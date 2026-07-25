@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Оплата успешно завершена. Документы будут отправлены на email.">
+  <title>Оплата прошла успешно — Маржа в бетоне</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="cart.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    .result-page{max-width:680px;margin:0 auto;padding:60px 24px;text-align:center}
+    .result-page .brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:40px;font-size:20px;font-weight:700}
+    .result-icon{width:80px;height:80px;margin:0 auto 24px;border-radius:50%;background:#2e7d32;display:flex;align-items:center;justify-content:center;color:#fff;font-size:40px}
+    .result-page h1{font-size:32px;margin-bottom:16px}
+    .result-page .lead{color:#65676a;margin-bottom:32px}
+    .order-details{background:#f4f1ea;border-radius:12px;padding:24px;margin:24px 0;text-align:left}
+    .order-details h3{margin-top:0;font-size:18px}
+    .order-items{list-style:none;margin:0;padding:0}
+    .order-items li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e0dcd3}
+    .order-items li:last-child{border-bottom:none;font-weight:700;font-size:18px}
+    .delivery-info{background:#e8f5e9;border-radius:8px;padding:16px;margin-top:24px}
+    .delivery-info p{margin:0;color:#2e7d32}
+    .btn-group{display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+    .spinner{width:40px;height:40px;border:3px solid #e0dcd3;border-top-color:#242629;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 24px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+  <div class="result-page">
+    <a href="/" class="brand"><span class="brand-mark">М</span><span>маржа в бетоне</span></a>
+    
+    <div id="loading">
+      <div class="spinner"></div>
+      <p>Проверяем статус оплаты...</p>
+    </div>
+    
+    <div id="success-content" class="hidden">
+      <div class="result-icon">✓</div>
+      <h1>Оплата прошла успешно</h1>
+      <p class="lead">Спасибо за покупку! Документы будут отправлены на ваш email в течение 5 минут.</p>
+      
+      <div class="order-details">
+        <h3>Ваш заказ</h3>
+        <ul class="order-items" id="order-items"></ul>
+      </div>
+      
+      <div class="delivery-info">
+        <p><strong>📧 Доставка:</strong> Ссылка на скачивание придёт на указанный email. Если письма нет — проверьте папку «Спам».</p>
+      </div>
+      
+      <div class="btn-group">
+        <a href="/" class="button">Вернуться в каталог</a>
+        <a href="https://t.me/marzhavbetone" target="_blank" class="button">Telegram-канал</a>
+      </div>
+    </div>
+    
+    <div id="pending-content" class="hidden">
+      <div class="result-icon" style="background:#f9a825">⏳</div>
+      <h1>Платёж обрабатывается</h1>
+      <p class="lead">Мы получили ваш заказ, но оплата ещё не подтверждена. Это может занять несколько минут.</p>
+      <p>Если оплата не пройдёт — свяжемся с вами по указанному email или телефону.</p>
+      <div class="btn-group">
+        <a href="/" class="button">Вернуться в каталог</a>
+      </div>
+    </div>
+    
+    <div id="error-content" class="hidden">
+      <div class="result-icon" style="background:#c62828">✕</div>
+      <h1>Не удалось подтвердить оплату</h1>
+      <p class="lead">Что-то пошло не так. Не волнутесь — ваш заказ сохранён.</p>
+      <p>Если деньги списались, но документы не пришли — напишите нам: <a href="mailto:marzhavbetone@yandex.ru">marzhavbetone@yandex.ru</a></p>
+      <div class="btn-group">
+        <a href="/" class="button">Вернуться в каталог</a>
+        <a href="contacts.html" class="button">Связаться с нами</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (async function() {
+      const params = new URLSearchParams(location.search);
+      const orderId = params.get('order');
+      
+      if (!orderId) {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('error-content').classList.remove('hidden');
+        return;
+      }
+      
+      try {
+        const res = await fetch('/check-payment.php?order=' + encodeURIComponent(orderId));
+        const data = await res.json();
+        
+        document.getElementById('loading').classList.add('hidden');
+        
+        if (!data.ok || !data.order) {
+          document.getElementById('error-content').classList.remove('hidden');
+          return;
+        }
+        
+        const order = data.order;
+        const itemsList = document.getElementById('order-items');
+        
+        // Заполняем список товаров
+        (order.items || []).forEach(item => {
+          const li = document.createElement('li');
+          const price = new Intl.NumberFormat('ru-RU').format(item.price / 100) + ' ₽';
+          li.innerHTML = '<span>' + (item.name || 'Товар') + '</span><span>' + price + '</span>';
+          itemsList.appendChild(li);
+        });
+        
+        // Итого
+        const totalLi = document.createElement('li');
+        totalLi.innerHTML = '<span>Итого</span><span>' + new Intl.NumberFormat('ru-RU').format(order.total / 100) + ' ₽</span>';
+        itemsList.appendChild(totalLi);
+        
+        if (order.status === 'paid') {
+          document.getElementById('success-content').classList.remove('hidden');
+          // Очищаем корзину
+          localStorage.removeItem('marzhavbetone-cart');
+        } else if (order.status === 'pending' || order.status === 'waiting_for_capture') {
+          document.getElementById('pending-content').classList.remove('hidden');
+        } else {
+          document.getElementById('error-content').classList.remove('hidden');
+        }
+      } catch (e) {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('error-content').classList.remove('hidden');
+      }
+    })();
+  </script>
+</body>
+</html>
