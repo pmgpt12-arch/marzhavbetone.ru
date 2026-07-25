@@ -1,0 +1,40 @@
+# КЕШИРОВАНИЕ СТАТИКИ + редиректы со старых адресов товаров
+# Залейте этот файл в /www/marzhavbetone.ru
+
+# 301-редиректы: старые страницы товаров → новые
+Redirect 301 /products/dengi-po-ks2.html /products/p1-oplata-po-ks2.html
+Redirect 301 /products/dopy-v-dengah.html /products/p2-dopolnitelnye-raboty.html
+Redirect 301 /products/shtrafy-i-uderzhaniya.html /products/p5-shtrafy-uderzhaniya.html
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html                "access plus 1 hour"
+    ExpiresByType text/css                 "access plus 1 week"
+    ExpiresByType application/javascript   "access plus 1 week"
+    ExpiresByType image/jpeg               "access plus 1 month"
+    ExpiresByType image/png                "access plus 1 month"
+    ExpiresByType image/gif                "access plus 1 month"
+    ExpiresByType image/svg+xml            "access plus 1 month"
+    ExpiresByType image/webp               "access plus 1 month"
+    ExpiresByType application/pdf          "access plus 1 week"
+    ExpiresByType font/woff2               "access plus 1 month"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "public, max-age=3600, must-revalidate"
+    </FilesMatch>
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "public, max-age=604800, immutable"
+    </FilesMatch>
+    <FilesMatch "\.(jpg|jpeg|png|gif|ico|svg|webp|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "public, max-age=2592000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.(pdf|zip|doc|docx|xls|xlsx)$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+</IfModule>

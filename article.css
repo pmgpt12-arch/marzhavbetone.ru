@@ -1,0 +1,194 @@
+/* ===== ТИПОГРАФИКА СТАТЕЙ — исправление размеров для ПК ===== */
+
+.article-page {
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  padding: 32px clamp(18px, 4vw, 48px) 80px !important;
+}
+
+.article-page .eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+
+.article-page h1 {
+  font-size: clamp(32px, 4.2vw, 48px) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.035em !important;
+  margin: 0 0 24px 0 !important;
+  max-width: 100% !important;
+}
+
+.article-page .lead {
+  font-size: clamp(16px, 1.4vw, 19px) !important;
+  line-height: 1.6 !important;
+  color: #44474a !important;
+  max-width: 100% !important;
+  margin: 0 0 32px 0 !important;
+}
+
+.article-page h2 {
+  font-size: clamp(22px, 2.4vw, 30px) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+  margin-top: 48px !important;
+  margin-bottom: 18px !important;
+}
+
+.article-page h3 {
+  font-size: clamp(18px, 1.8vw, 22px) !important;
+  line-height: 1.25 !important;
+  margin-top: 32px !important;
+  margin-bottom: 12px !important;
+}
+
+.article-page p,
+.article-page li {
+  font-size: clamp(15px, 1.2vw, 17px) !important;
+  line-height: 1.75 !important;
+  max-width: 100% !important;
+  margin-bottom: 14px !important;
+}
+
+.article-page ol,
+.article-page ul {
+  padding-left: 24px !important;
+  margin-bottom: 20px !important;
+}
+
+.article-page ol li {
+  margin-bottom: 10px !important;
+}
+
+.article-page table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-size: clamp(13px, 1.1vw, 15px) !important;
+  margin: 20px 0 !important;
+}
+
+.article-page th,
+.article-page td {
+  padding: 10px 14px !important;
+  text-align: left !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+
+.article-page th {
+  font-weight: 700 !important;
+  background: rgba(36, 38, 41, 0.04) !important;
+}
+
+.article-page strong {
+  font-weight: 700 !important;
+}
+
+.article-cover {
+  display: block !important;
+  width: 100% !important;
+  max-height: 420px !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  margin: 28px 0 32px 0 !important;
+}
+
+.article-page .article-cta {
+  margin: 48px 0 !important;
+  padding: 32px clamp(20px, 3vw, 40px) !important;
+}
+
+.article-page .article-cta h3 {
+  margin-top: 0 !important;
+  font-size: clamp(20px, 2vw, 26px) !important;
+}
+
+.article-page .article-links {
+  margin-top: 48px !important;
+}
+
+.article-page .article-links ul {
+  list-style: none !important;
+  padding: 0 !important;
+}
+
+.article-page .article-links li {
+  margin-bottom: 10px !important;
+  padding: 10px 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+
+.article-page .channel-banner {
+  margin-top: 48px !important;
+  padding: 32px !important;
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 20px !important;
+}
+
+.article-page .channel-banner h2 {
+  margin: 0 !important;
+  color: #fff !important;
+  font-size: clamp(20px, 2vw, 26px) !important;
+}
+
+/* Хлебные крошки */
+.breadcrumbs {
+  margin-bottom: 24px !important;
+  font-size: 13px !important;
+  color: #777 !important;
+}
+
+.breadcrumbs ol {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  gap: 8px !important;
+}
+
+.breadcrumbs li:not(:last-child)::after {
+  content: "/" !important;
+  margin-left: 8px !important;
+  color: var(--concrete) !important;
+}
+
+.breadcrumbs a {
+  color: var(--orange) !important;
+  font-weight: 600 !important;
+}
+
+/* Адаптация навигации статей */
+.article-nav {
+  padding: 12px clamp(16px, 4vw, 48px) !important;
+}
+
+.article-nav .button-small {
+  font-size: 12px !important;
+  padding: 8px 14px !important;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  .article-page h1 {
+    font-size: 28px !important;
+  }
+  .article-page h2 {
+    font-size: 22px !important;
+  }
+  .article-page {
+    padding-top: 20px !important;
+  }
+  .article-cover {
+    max-height: 240px !important;
+    margin: 16px 0 24px 0 !important;
+  }
+  .article-nav .links {
+    display: none !important;
+  }
+}

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Калькулятор процентов по статье 395 ГК РФ и гарантийного удержания — Маржа в бетоне">
+  <meta property="og:description" content="Бесплатный калькулятор для подрядчика: ориентировочный расчёт процентов за просрочку оплаты и стоимости замороженного гарантийного удержания.">
+  <meta property="og:image" content="https://marzhavbetone.ru/assets/hero.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://marzhavbetone.ru/kalkulyator.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="Бесплатный калькулятор для подрядчика: ориентировочный расчёт процентов за просрочку оплаты и стоимости замороженного гарантийного удержания.">
+  <link rel="canonical" href="https://marzhavbetone.ru/kalkulyator.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .calculator-page{max-width:980px;margin:0 auto;padding:56px 24px 90px}.calculator-page h1{max-width:900px}.calculator-intro{max-width:760px}
+    .calculator-tabs{display:flex;margin-top:34px}.calculator-tab{flex:1;padding:16px;border:1px solid #a9a49a;background:#d8d4ca;color:#242629;font:700 15px Arial;cursor:pointer}.calculator-tab[aria-selected="true"]{background:#242629;color:#e9e5dc}
+    .calculator-panel{display:none;background:#fff;border:1px solid #a9a49a;border-top:0;padding:30px}.calculator-panel.active{display:block}
+    .calculator-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.calculator-field label{display:block;margin:0 0 7px;font-weight:700}.calculator-field input{width:100%;padding:13px;border:1px solid #a9a49a;background:#e9e5dc;font:16px Arial}
+    .calculator-result{margin-top:24px;padding:24px;background:#242629;color:#e9e5dc}.calculator-result strong{display:block;margin:5px 0;color:#c7ff2e;font-size:clamp(30px,5vw,48px)}
+    .calculator-note{margin-top:18px;color:#65676a;font-size:13px;line-height:1.55}.calculator-cta{margin-top:34px;padding:24px;background:#fff;border-left:5px solid #ff5a00}.calculator-cta .button{margin-top:15px}
+    @media(max-width:700px){.calculator-tabs{display:block}.calculator-grid{grid-template-columns:1fr}.calculator-panel{padding:22px}.calculator-page{padding-top:34px}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://marzhavbetone.ru/kalkulyator.html#calculator",
+        "name": "Калькулятор процентов по статье 395 ГК РФ и гарантийного удержания",
+        "description": "Бесплатный калькулятор для подрядчика: ориентировочный расчёт процентов за просрочку оплаты и стоимости замороженного гарантийного удержания.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"},
+        "author": {"@id": "https://marzhavbetone.ru/#organization"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://marzhavbetone.ru/"},
+          {"@type": "ListItem", "position": 2, "name": "Калькулятор", "item": "https://marzhavbetone.ru/kalkulyator.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Маржа в бетоне, на главную"><span class="brand-mark">М</span><span>маржа в бетоне</span></a>
+    <nav aria-label="Основная навигация"><a href="/">Главная</a><a href="/#catalog">Каталог</a><a href="/#telegram">Telegram</a></nav>
+    <a class="button button-small" href="/#contact">Диагностика</a>
+  </header>
+
+  <main class="calculator-page">
+    <p class="eyebrow">БЕСПЛАТНЫЙ ИНСТРУМЕНТ</p>
+    <h1>Сколько вам должны — и сколько стоит ожидание</h1>
+    <p class="lead calculator-intro">Два ориентировочных расчёта для подрядчика: проценты за просрочку оплаты по статье 395 ГК РФ и стоимость замороженного гарантийного удержания.</p>
+
+    <div class="calculator-tabs" role="tablist" aria-label="Выбор расчёта">
+      <button class="calculator-tab" role="tab" aria-selected="true" aria-controls="debt-panel" id="debt-tab">Проценты за просрочку</button>
+      <button class="calculator-tab" role="tab" aria-selected="false" aria-controls="retention-panel" id="retention-tab">Стоимость удержания</button>
+    </div>
+
+    <section class="calculator-panel active" id="debt-panel" role="tabpanel" aria-labelledby="debt-tab">
+      <div class="calculator-grid">
+        <div class="calculator-field"><label for="debt-sum">Сумма задолженности, ₽</label><input id="debt-sum" type="number" min="0" step="1000" value="4200000"></div>
+        <div class="calculator-field"><label for="debt-days">Дней просрочки</label><input id="debt-days" type="number" min="0" step="1" value="60"></div>
+        <div class="calculator-field"><label for="key-rate">Ставка для расчёта, % годовых</label><input id="key-rate" type="number" min="0" step="0.01" value="14.25"></div>
+      </div>
+      <div class="calculator-result"><span>Ориентировочная сумма процентов</span><strong id="debt-result">—</strong><small>Формула: сумма × ставка ÷ 365 × количество дней.</small></div>
+      <p class="calculator-note">Ставка 14,25% установлена Банком России с 22 июня 2026 года. Перед расчётом проверьте актуальное значение. Если ставка менялась в период просрочки, расчёт выполняется отдельно по каждому периоду. Договор может устанавливать другой порядок ответственности.</p>
+    </section>
+
+    <section class="calculator-panel" id="retention-panel" role="tabpanel" aria-labelledby="retention-tab">
+      <div class="calculator-grid">
+        <div class="calculator-field"><label for="retention-sum">Сумма удержания, ₽</label><input id="retention-sum" type="number" min="0" step="1000" value="2500000"></div>
+        <div class="calculator-field"><label for="retention-months">Срок удержания, месяцев</label><input id="retention-months" type="number" min="0" step="1" value="24"></div>
+        <div class="calculator-field"><label for="money-rate">Стоимость денег, % годовых</label><input id="money-rate" type="number" min="0" step="0.1" value="18"></div>
+        <div class="calculator-field"><label for="planned-profit">Плановая прибыль объекта, ₽</label><input id="planned-profit" type="number" min="0" step="1000" value="4000000"></div>
+      </div>
+      <div class="calculator-result"><span>Ориентировочная стоимость заморозки</span><strong id="retention-result">—</strong><small id="retention-share">Без учёта сложного процента, налогов и инфляции.</small></div>
+      <p class="calculator-note">Расчёт показывает альтернативную стоимость денег и не определяет размер юридического требования к заказчику.</p>
+    </section>
+
+    <aside class="calculator-cta"><h2>Цифра получилась неприятной?</h2><p>Проверим договор, документы, срок оплаты и основания удержания — и определим следующий практический шаг.</p><a class="button" href="/#contact">Запросить диагностику</a></aside>
+  </main>
+
+  <footer><div class="footer-inner"><p>© «Маржа в бетоне»</p><p><a href="/offer.html">Оферта</a> · <a href="/payment-delivery.html">Оплата и получение</a> · <a href="/refund.html">Возврат</a></p></div></footer>
+  <script>
+    const money = value => new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:0}).format(Number.isFinite(value)?value:0);
+    const n = id => Math.max(0,Number(document.getElementById(id).value)||0);
+    function calculate(){
+      const debt=n('debt-sum')*n('key-rate')/100/365*n('debt-days');
+      document.getElementById('debt-result').textContent=money(debt);
+      const cost=n('retention-sum')*n('money-rate')/100*n('retention-months')/12;
+      document.getElementById('retention-result').textContent=money(cost);
+      const profit=n('planned-profit');
+      document.getElementById('retention-share').textContent=profit?`Это около ${Math.round(cost/profit*100)}% плановой прибыли объекта.`:'Без учёта сложного процента, налогов и инфляции.';
+    }
+    document.querySelectorAll('input').forEach(input=>input.addEventListener('input',calculate));
+    document.querySelectorAll('.calculator-tab').forEach((tab,index)=>tab.addEventListener('click',()=>{
+      document.querySelectorAll('.calculator-tab').forEach((item,i)=>item.setAttribute('aria-selected',String(i===index)));
+      document.querySelectorAll('.calculator-panel').forEach((panel,i)=>panel.classList.toggle('active',i===index));
+    }));
+    calculate();
+  </script>
+</body>
+</html>
