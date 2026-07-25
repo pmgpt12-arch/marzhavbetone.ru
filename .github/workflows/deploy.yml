@@ -1,0 +1,85 @@
+name: Deploy to server
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Пока секреты не заданы, workflow завершается зелёным и ничего не делает —
+      # инструкция по настройке в DEPLOY.md
+      - name: Check deploy secrets
+        id: check
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          if [ -z "$KEY" ]; then
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::DEPLOY_SSH_KEY не задан — деплой пропущен. Настройка описана в DEPLOY.md"
+          else
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.check.outputs.enabled == 'true'
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        if: steps.check.outputs.enabled == 'true'
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          PORT: ${{ secrets.DEPLOY_PORT }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "${PORT:-22}" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Deploy site files
+        if: steps.check.outputs.enabled == 'true'
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PORT: ${{ secrets.DEPLOY_PORT }}
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p ${PORT:-22}" \
+            --exclude '.git*' \
+            --exclude '.github/' \
+            --exclude 'orders/' \
+            --exclude 'products-storage/' \
+            --exclude 'config.php' \
+            --exclude 'setup-server.sh' \
+            --exclude 'check-server.sh' \
+            --exclude 'nginx-marzhavbetone.conf' \
+            --exclude 'DEPLOY.md' \
+            --exclude 'ИНСТРУКЦИЯ-ДЛЯ-ХОСТИНГА.txt' \
+            ./ "$USER@$HOST:/var/www/marzhavbetone.ru/"
+
+      # Файлы продуктов живут ВНЕ webroot — прямых ссылок на них нет,
+      # выдачу делает download.php (PRODUCTS_DIR в config.php на сервере)
+      - name: Deploy product files (outside webroot)
+        if: steps.check.outputs.enabled == 'true'
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PORT: ${{ secrets.DEPLOY_PORT }}
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p ${PORT:-22}" \
+            products-storage/ "$USER@$HOST:/var/www/marzhavbetone-products/"
+
+      - name: Verify site is up
+        if: steps.check.outputs.enabled == 'true'
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 https://marzhavbetone.ru/)
+          echo "https://marzhavbetone.ru/ → HTTP $code"
+          test "$code" = "200"
