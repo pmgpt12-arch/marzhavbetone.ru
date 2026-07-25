@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/config.php';
+require __DIR__ . '/products-config.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -111,6 +112,9 @@ switch ($status) {
         if (!$alreadyPaid) {
             mail(ADMIN_EMAIL, '=?UTF-8?B?' . base64_encode($subject) . '?=', $emailBody, implode("\r\n", $headers));
         }
+
+        // Автовыдача: архивы, ссылки, письмо покупателю (однократно)
+        mvb_deliver_and_notify($order);
         break;
         
     case 'canceled':

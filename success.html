@@ -45,9 +45,15 @@
         <h3>Ваш заказ</h3>
         <ul class="order-items" id="order-items"></ul>
       </div>
-      
+
+      <div class="order-details hidden" id="downloads-block">
+        <h3>Скачать материалы</h3>
+        <ul class="order-items" id="download-links"></ul>
+        <p style="margin:12px 0 0;color:#65676a;font-size:14px">Ссылки действуют 30 дней — сохраните файлы на компьютер.</p>
+      </div>
+
       <div class="delivery-info">
-        <p><strong>📧 Доставка:</strong> Ссылка на скачивание придёт на указанный email. Если письма нет — проверьте папку «Спам».</p>
+        <p><strong>📧 Доставка:</strong> Эти же ссылки отправлены на указанный email. Если письма нет — проверьте папку «Спам».</p>
       </div>
       
       <div class="btn-group">
@@ -117,11 +123,26 @@
         itemsList.appendChild(totalLi);
         
         if (order.status === 'paid') {
+          // Показываем ссылки на скачивание, если они готовы
+          if (Array.isArray(order.downloads) && order.downloads.length) {
+            const linksList = document.getElementById('download-links');
+            order.downloads.forEach(d => {
+              const li = document.createElement('li');
+              const a = document.createElement('a');
+              a.href = d.url;
+              a.textContent = d.name || 'Скачать архив';
+              li.appendChild(a);
+              linksList.appendChild(li);
+            });
+            document.getElementById('downloads-block').classList.remove('hidden');
+          }
           document.getElementById('success-content').classList.remove('hidden');
           // Очищаем корзину
           localStorage.removeItem('marzhavbetone-cart');
         } else if (order.status === 'pending' || order.status === 'waiting_for_capture') {
           document.getElementById('pending-content').classList.remove('hidden');
+          // Платёж мог ещё не подтвердиться — перепроверяем через 8 секунд
+          setTimeout(() => location.reload(), 8000);
         } else {
           document.getElementById('error-content').classList.remove('hidden');
         }

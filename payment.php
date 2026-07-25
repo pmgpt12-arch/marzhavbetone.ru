@@ -6,6 +6,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/config.php';
+require __DIR__ . '/products-config.php';
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -48,13 +49,26 @@ if ($email === '' && $phone === '') {
     exit;
 }
 
-// Считаем сумму
+// Сверяем позиции с каталогом: цена берётся с сервера, а не из запроса клиента
 $total = 0;
 $descriptionParts = [];
+$validatedItems = [];
 foreach ($items as $item) {
-    $total += (int)($item['price'] ?? 0);
-    $descriptionParts[] = $item['name'] ?? 'Товар';
+    $product = mvb_resolve_product((array)$item);
+    if (!$product) {
+        http_response_code(422);
+        echo json_encode(['ok' => false, 'message' => 'Товар не найден в каталоге. Обновите страницу и соберите корзину заново.'], JSON_UNESCAPED_UNICODE);
+        exit;
+    }
+    $total += $product['price'];
+    $descriptionParts[] = $product['name'];
+    $validatedItems[] = [
+        'sku'   => $product['sku'],
+        'name'  => $product['name'],
+        'price' => $product['price'],
+    ];
 }
+$items = $validatedItems;
 
 if ($total <= 0) {
     http_response_code(422);

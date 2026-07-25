@@ -6,6 +6,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/config.php';
+require __DIR__ . '/products-config.php';
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -72,6 +73,13 @@ if (!empty($order['payment_id']) && in_array($order['status'] ?? '', ['pending',
     }
 }
 
+// Для оплаченного заказа готовим выдачу (подстраховка, если вебхук ещё не пришёл)
+$downloadLinks = [];
+if (($order['status'] ?? '') === 'paid') {
+    $downloadLinks = mvb_deliver_and_notify($order);
+    file_put_contents($orderFile, json_encode($order, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+}
+
 // Возвращаем данные заказа (без чувствительных полей)
 echo json_encode([
     'ok' => true,
@@ -82,5 +90,6 @@ echo json_encode([
         'items' => $order['items'],
         'email' => $order['email'],
         'paid_at' => $order['paid_at'] ?? null,
+        'downloads' => $downloadLinks,
     ],
 ], JSON_UNESCAPED_UNICODE);

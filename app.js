@@ -65,7 +65,7 @@ document.querySelector('#cart-toggle').addEventListener('click', openCart);
 document.querySelector('#cart-close').addEventListener('click', closeCart);
 cartBackdrop.addEventListener('click', closeCart);
 document.querySelectorAll('.add-to-cart').forEach(button => button.addEventListener('click', () => {
-  if (!cart.some(item => item.name === button.dataset.product)) cart.push({ name: button.dataset.product, price: Number(button.dataset.price) });
+  if (!cart.some(item => item.name === button.dataset.product)) cart.push({ sku: button.dataset.sku || '', name: button.dataset.product, price: Number(button.dataset.price) });
   saveCart(); renderCart(); openCart();
 }));
 
