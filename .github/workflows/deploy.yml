@@ -58,8 +58,27 @@ jobs:
           HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
           mkdir -p ~/.ssh
-          printf '%s\n' "$KEY" > ~/.ssh/deploy_key
+          # tr -d '\r' — ключ, скопированный из Блокнота Windows, приходит с
+          # переносами CRLF, которые OpenSSH не принимает
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
+
+          # Секрет должен быть приватным ключом без пароля. Заодно выводим
+          # публичную часть: её нужно сверить с authorized_keys на хостинге.
+          if ! ssh-keygen -y -P '' -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub 2>/tmp/keyerr; then
+            echo "Ответ ssh-keygen: $(cat /tmp/keyerr)"
+            echo "::error::Секрет DEPLOY_SSH_KEY не читается как приватный ключ. Скопируйте файл deploy_key целиком (вместе со строками BEGIN/END), без пароля на ключ, и не перепутайте с deploy_key.pub."
+            exit 1
+          fi
+          echo "Ключ из секрета прочитан, отпечаток:"
+          ssh-keygen -l -f ~/.ssh/deploy_key.pub
+          echo ""
+          echo "Публичная часть этого ключа — ровно эта строка должна лежать"
+          echo "в ~/.ssh/authorized_keys на хостинге (одной строкой, без переносов):"
+          echo "---8<---"
+          cat ~/.ssh/deploy_key.pub
+          echo "--->8---"
+
           if ! ssh-keyscan -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null; then
             echo "::error::Не удалось получить SSH-ключ хоста $HOST:$SSH_PORT — проверьте DEPLOY_HOST и DEPLOY_PORT"
             exit 1
@@ -79,13 +98,26 @@ jobs:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
         run: |
+          # IdentitiesOnly=yes — проверяем именно наш ключ, без подстановки
+          # других идентификаторов (иначе результат может быть ложным)
           ssh_run() {
-            ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" -o BatchMode=yes \
-                -o ConnectTimeout=20 "$USER@$HOST" "$@"
+            ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p "$SSH_PORT" \
+                -o BatchMode=yes -o ConnectTimeout=20 "$USER@$HOST" "$@"
           }
 
-          if ! ssh_run 'echo ok' >/dev/null; then
-            echo "::error::Не удалось подключиться по SSH как $USER@$HOST:$SSH_PORT. Проверьте, что публичный ключ добавлен в ~/.ssh/authorized_keys на хостинге и SSH-доступ включён."
+          if ! ssh_run 'echo ok' >/dev/null 2>/tmp/ssherr; then
+            echo "Ответ сервера:"
+            cat /tmp/ssherr
+            if grep -q 'Permission denied' /tmp/ssherr; then
+              echo ""
+              echo "Сервер доступен, но отклонил ключ — значит его публичной части"
+              echo "нет в ~/.ssh/authorized_keys на хостинге (или она записана с"
+              echo "переносом строки/лишними символами). Сверьте строку, выведенную"
+              echo "выше в шаге «Set up SSH», с содержимым файла на хостинге:"
+              echo "  ISPmanager → Менеджер файлов → включить показ скрытых файлов"
+              echo "  → папка .ssh → файл authorized_keys"
+            fi
+            echo "::error::Не удалось подключиться по SSH как $USER@$HOST:$SSH_PORT — подробности выше."
             exit 1
           fi
           echo "SSH-подключение: ок"
@@ -139,7 +171,7 @@ jobs:
             [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
             for e in "${EXCLUDES[@]}"; do args+=(--exclude "$e"); done
             rsync "${args[@]}" \
-              -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT" \
+              -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT" \
               ./ "$USER@$HOST:$SITE_PATH/"
           else
             mirror_args="--reverse --delete --verbose --parallel=4"
@@ -148,7 +180,7 @@ jobs:
               mirror_args="$mirror_args --exclude-glob $e"
             done
             lftp -c "
-              set sftp:connect-program 'ssh -a -x -i ~/.ssh/deploy_key -p $SSH_PORT';
+              set sftp:connect-program 'ssh -a -x -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT';
               set net:max-retries 2;
               open sftp://$USER@$HOST;
               mirror $mirror_args ./ '$SITE_PATH/';
@@ -169,13 +201,13 @@ jobs:
             args=(-az --delete)
             [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
             rsync "${args[@]}" \
-              -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT" \
+              -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT" \
               products-storage/ "$USER@$HOST:$PRODUCTS_PATH/"
           else
             mirror_args="--reverse --delete --parallel=4"
             [ "$DRY_RUN" = "true" ] && mirror_args="$mirror_args --dry-run"
             lftp -c "
-              set sftp:connect-program 'ssh -a -x -i ~/.ssh/deploy_key -p $SSH_PORT';
+              set sftp:connect-program 'ssh -a -x -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT';
               set net:max-retries 2;
               open sftp://$USER@$HOST;
               mirror $mirror_args products-storage/ '$PRODUCTS_PATH/';
