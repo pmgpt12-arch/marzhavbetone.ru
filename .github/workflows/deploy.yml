@@ -149,6 +149,12 @@ jobs:
         if: steps.check.outputs.enabled == 'true' && steps.preflight.outputs.tool == 'lftp'
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
+      # Фид для Дзена собирается из статей при каждом деплое — так он не
+      # может разойтись с сайтом. Ошибка сборки останавливает деплой.
+      - name: Build RSS feed for Dzen
+        if: steps.check.outputs.enabled == 'true'
+        run: python3 tools/build_rss.py
+
       # config.php и orders/ исключены: боевые ключи ЮКассы и данные заказов
       # живут только на сервере. Исключённое --delete не трогает.
       - name: Deploy site files
@@ -162,7 +168,7 @@ jobs:
           EXCLUDES=(
             '.git*' '.github' 'orders' 'products-storage' 'config.php'
             '.well-known' 'setup-server.sh' 'check-server.sh'
-            'nginx-marzhavbetone.conf' 'DEPLOY.md'
+            'nginx-marzhavbetone.conf' 'DEPLOY.md' 'tools'
             'ИНСТРУКЦИЯ-ДЛЯ-ХОСТИНГА.txt'
           )
 
