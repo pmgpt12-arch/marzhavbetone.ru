@@ -1,0 +1,71 @@
+/* Стили продуктовых лендингов (P1–P6): десктоп + мобильная адаптация */
+
+.product-landing > .section:first-child{padding-top:52px;padding-bottom:72px}
+.product-landing .section{padding-top:72px;padding-bottom:72px}
+.product-landing h1{margin:0;max-width:980px;font-size:clamp(34px,4.6vw,64px);line-height:1.02;letter-spacing:-.04em}
+.product-landing h2{margin:0 0 12px;max-width:850px;font-size:clamp(28px,3.4vw,46px);line-height:1.05;letter-spacing:-.035em}
+.product-landing .section > p{max-width:760px;color:#55585b;font-size:17px;line-height:1.6}
+
+.breadcrumbs{margin:0 0 30px;font-size:13px;font-weight:700;color:#7a7d80}
+.breadcrumbs a{color:var(--ink);border-bottom:1px solid transparent}
+.breadcrumbs a:hover{color:var(--orange)}
+
+/* Герой продукта: фото + блок покупки */
+.product-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,56px);align-items:start;margin-top:44px}
+.product-hero img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--line);box-shadow:10px 10px 0 #c8c3b9}
+.price-block{display:flex;align-items:center;flex-wrap:wrap;gap:14px 22px}
+.price{font-size:clamp(28px,2.6vw,38px);font-weight:900;color:var(--orange);letter-spacing:-.02em}
+.price.old{font-size:20px;color:#858585;font-weight:700}
+.button.large{padding:18px 30px;font-size:15px}
+.product-features{margin:26px 0 0;padding:20px 0 0;list-style:none;border-top:1px solid var(--line)}
+.product-features li{position:relative;padding:8px 0 8px 26px;font-weight:700;line-height:1.45}
+.product-features li::before{content:"/";position:absolute;left:2px;color:var(--orange);font-weight:900}
+
+/* Состав комплекта */
+.document-list{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:32px}
+.doc-item{padding:24px 26px;background:#fff;border:1px solid rgba(36,38,41,.16);box-shadow:6px 6px 0 #c8c3b9}
+.doc-item h3{margin:0 0 10px;font-size:19px;line-height:1.25;letter-spacing:-.01em}
+.doc-item p{margin:0;color:#66676a;font-size:15px;line-height:1.55}
+
+/* Кому подойдёт */
+.audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+.audience-grid article{padding:24px 26px;background:#fff;border:1px solid rgba(36,38,41,.16);border-top:4px solid var(--orange)}
+.audience-grid h3{margin:0 0 10px;font-size:20px}
+.audience-grid p{margin:0;color:#66676a;font-size:15px;line-height:1.55}
+
+/* Состав полного комплекта (P6) */
+.bundle-list{display:grid;gap:16px;margin-top:32px}
+.bundle-item{padding:22px 26px;background:#fff;border:1px solid rgba(36,38,41,.16);box-shadow:6px 6px 0 #c8c3b9}
+.bundle-item h3{margin:0 0 8px;font-size:19px}
+.bundle-item p{margin:0;color:#66676a;font-size:15px;line-height:1.55}
+.bundle-item.highlight{background:var(--ink);color:var(--paper);box-shadow:6px 6px 0 var(--orange)}
+.bundle-item.highlight p{color:#bdb9b1}
+
+/* Похожие комплекты */
+.related .product-grid.compact .product-card h3{font-size:clamp(22px,2vw,30px);letter-spacing:-.02em}
+.related .product-grid.compact .product-card > p{min-height:0}
+.related .product-grid.compact .product-card a{margin-top:auto;font-weight:900;color:var(--orange)}
+
+/* Полезные материалы */
+.article-links{display:grid;gap:12px;margin-top:28px}
+.article-links a{display:block;padding:18px 22px;background:#fff;border:1px solid rgba(36,38,41,.16);font-weight:800;line-height:1.35}
+.article-links a:hover{border-color:var(--orange);color:var(--orange)}
+
+/* ===== Мобильная адаптация ===== */
+@media(max-width:900px){
+  .product-landing > .section:first-child{padding-top:36px;padding-bottom:52px}
+  .product-landing .section{padding:52px 20px}
+  .product-hero{grid-template-columns:1fr;gap:26px;margin-top:32px}
+  .product-hero img{box-shadow:6px 6px 0 #c8c3b9}
+  .audience-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .document-list{grid-template-columns:1fr}
+  .price-block{align-items:stretch;flex-direction:column}
+  .price-block .button{width:100%}
+  .related .product-grid.compact{grid-template-columns:1fr}
+}
+/* На продуктовых страницах корзина — единственный путь к покупке, не прячем её */
+@media(max-width:600px){
+  .topbar .cart-toggle{display:inline-flex}
+}

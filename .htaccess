@@ -1,10 +1,5 @@
-# КЕШИРОВАНИЕ СТАТИКИ + редиректы со старых адресов товаров
+# КЕШИРОВАНИЕ СТАТИКИ — без редиректов (они настроены в панели)
 # Залейте этот файл в /www/marzhavbetone.ru
-
-# 301-редиректы: старые страницы товаров → новые
-Redirect 301 /products/dengi-po-ks2.html /products/p1-oplata-po-ks2.html
-Redirect 301 /products/dopy-v-dengah.html /products/p2-dopolnitelnye-raboty.html
-Redirect 301 /products/shtrafy-i-uderzhaniya.html /products/p5-shtrafy-uderzhaniya.html
 
 <IfModule mod_expires.c>
     ExpiresActive On
