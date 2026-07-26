@@ -133,6 +133,7 @@ function createCheckoutModal() {
     .checkout-submit{width:100%;padding:14px;font-size:16px}
     .checkout-fine{margin-top:12px;font-size:12px;color:#65676a;text-align:center}
     .checkout-error{color:#c62828;font-size:14px;margin-top:8px;text-align:center}
+    .checkout-loading[hidden]{display:none}
     .checkout-loading{position:absolute;inset:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:16px}
     .checkout-loading .spinner{width:40px;height:40px;border:3px solid #e0dcd3;border-top-color:#242629;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:16px}
     @keyframes spin{to{transform:rotate(360deg)}}
