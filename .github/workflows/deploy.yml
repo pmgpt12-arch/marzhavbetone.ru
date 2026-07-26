@@ -4,10 +4,24 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Пробный прогон: показать изменения, ничего не заливать'
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy
-  cancel-in-progress: true
+  cancel-in-progress: false
+
+env:
+  # Пути по умолчанию — под виртуальный хостинг reg.ru: домашняя папка
+  # пользователя uXXXXXXX = /var/www/uXXXXXXX/data, сайт лежит в
+  # ~/www/marzhavbetone.ru, файлы продуктов — в ~/products-marzhavbetone
+  # (вне webroot, прямых ссылок нет). Переопределяются секретами.
+  SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
+  PRODUCTS_PATH: ${{ secrets.DEPLOY_PRODUCTS_PATH || 'products-marzhavbetone' }}
+  SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
 
 jobs:
   deploy:
@@ -19,10 +33,16 @@ jobs:
         id: check
         env:
           KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
         run: |
-          if [ -z "$KEY" ]; then
+          missing=""
+          [ -z "$KEY" ] && missing="$missing DEPLOY_SSH_KEY"
+          [ -z "$HOST" ] && missing="$missing DEPLOY_HOST"
+          [ -z "$USER" ] && missing="$missing DEPLOY_USER"
+          if [ -n "$missing" ]; then
             echo "enabled=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::DEPLOY_SSH_KEY не задан — деплой пропущен. Настройка описана в DEPLOY.md"
+            echo "::notice::Деплой пропущен — не заданы секреты:$missing. Настройка описана в DEPLOY.md"
           else
             echo "enabled=true" >> "$GITHUB_OUTPUT"
           fi
@@ -36,57 +56,138 @@ jobs:
         env:
           KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           HOST: ${{ secrets.DEPLOY_HOST }}
-          PORT: ${{ secrets.DEPLOY_PORT }}
         run: |
           mkdir -p ~/.ssh
           printf '%s\n' "$KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p "${PORT:-22}" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          if ! ssh-keyscan -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null; then
+            echo "::error::Не удалось получить SSH-ключ хоста $HOST:$SSH_PORT — проверьте DEPLOY_HOST и DEPLOY_PORT"
+            exit 1
+          fi
+          if ! grep -q . ~/.ssh/known_hosts; then
+            echo "::error::Хост $HOST:$SSH_PORT не отвечает по SSH. На виртуальном хостинге SSH-доступ включается в панели reg.ru (Доступы)."
+            exit 1
+          fi
 
-      # Пути по умолчанию — под виртуальный хостинг reg.ru:
-      # домашняя папка пользователя uXXXXXXX = /var/www/uXXXXXXX/data,
-      # сайт лежит в ~/www/marzhavbetone.ru, продукты — в ~/products-marzhavbetone
-      # (вне webroot). Для других хостингов задайте секреты DEPLOY_PATH и
-      # DEPLOY_PRODUCTS_PATH с нужными путями.
+      # Проверяем связь и целевые папки ДО заливки: rsync/lftp работают с
+      # --delete, и ошибка в пути стёрла бы чужие файлы. Сайт опознаём по
+      # index.html — заливаем только туда, где он уже лежит.
+      - name: Preflight checks
+        id: preflight
+        if: steps.check.outputs.enabled == 'true'
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          ssh_run() {
+            ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" -o BatchMode=yes \
+                -o ConnectTimeout=20 "$USER@$HOST" "$@"
+          }
+
+          if ! ssh_run 'echo ok' >/dev/null; then
+            echo "::error::Не удалось подключиться по SSH как $USER@$HOST:$SSH_PORT. Проверьте, что публичный ключ добавлен в ~/.ssh/authorized_keys на хостинге и SSH-доступ включён."
+            exit 1
+          fi
+          echo "SSH-подключение: ок"
+
+          if ! ssh_run "test -d '$SITE_PATH'"; then
+            echo "::error::На хостинге нет папки '$SITE_PATH' (путь считается от домашней папки $USER). Задайте секрет DEPLOY_PATH с верным путём."
+            exit 1
+          fi
+
+          if ! ssh_run "test -f '$SITE_PATH/index.html'"; then
+            echo "::error::В '$SITE_PATH' нет index.html — не похоже на корень сайта. Деплой остановлен, чтобы не удалить чужие файлы. Проверьте секрет DEPLOY_PATH."
+            exit 1
+          fi
+          echo "Папка сайта: $SITE_PATH — ок"
+
+          ssh_run "mkdir -p '$PRODUCTS_PATH'"
+          echo "Папка продуктов: $PRODUCTS_PATH — ок"
+
+          # На shared-хостинге rsync может отсутствовать — тогда льём по SFTP
+          if ssh_run 'command -v rsync' >/dev/null 2>&1; then
+            echo "tool=rsync" >> "$GITHUB_OUTPUT"
+            echo "Способ заливки: rsync"
+          else
+            echo "tool=lftp" >> "$GITHUB_OUTPUT"
+            echo "Способ заливки: lftp/SFTP (на сервере нет rsync)"
+          fi
+
+      - name: Install lftp
+        if: steps.check.outputs.enabled == 'true' && steps.preflight.outputs.tool == 'lftp'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      # config.php и orders/ исключены: боевые ключи ЮКассы и данные заказов
+      # живут только на сервере. Исключённое --delete не трогает.
       - name: Deploy site files
         if: steps.check.outputs.enabled == 'true'
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
-          PORT: ${{ secrets.DEPLOY_PORT }}
-          SITE_PATH: ${{ secrets.DEPLOY_PATH }}
+          TOOL: ${{ steps.preflight.outputs.tool }}
+          DRY_RUN: ${{ inputs.dry_run }}
         run: |
-          rsync -az --delete \
-            -e "ssh -i ~/.ssh/deploy_key -p ${PORT:-22}" \
-            --exclude '.git*' \
-            --exclude '.github/' \
-            --exclude 'orders/' \
-            --exclude 'products-storage/' \
-            --exclude 'config.php' \
-            --exclude 'setup-server.sh' \
-            --exclude 'check-server.sh' \
-            --exclude 'nginx-marzhavbetone.conf' \
-            --exclude 'DEPLOY.md' \
-            --exclude 'ИНСТРУКЦИЯ-ДЛЯ-ХОСТИНГА.txt' \
-            ./ "$USER@$HOST:${SITE_PATH:-www/marzhavbetone.ru}/"
+          EXCLUDES=(
+            '.git*' '.github' 'orders' 'products-storage' 'config.php'
+            '.well-known' 'setup-server.sh' 'check-server.sh'
+            'nginx-marzhavbetone.conf' 'DEPLOY.md'
+            'ИНСТРУКЦИЯ-ДЛЯ-ХОСТИНГА.txt'
+          )
 
-      # Файлы продуктов живут ВНЕ webroot — прямых ссылок на них нет,
-      # выдачу делает download.php (PRODUCTS_DIR в config.php на сервере)
+          if [ "$TOOL" = "rsync" ]; then
+            args=(-az --delete --itemize-changes)
+            [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
+            for e in "${EXCLUDES[@]}"; do args+=(--exclude "$e"); done
+            rsync "${args[@]}" \
+              -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT" \
+              ./ "$USER@$HOST:$SITE_PATH/"
+          else
+            mirror_args="--reverse --delete --verbose --parallel=4"
+            [ "$DRY_RUN" = "true" ] && mirror_args="$mirror_args --dry-run"
+            for e in "${EXCLUDES[@]}"; do
+              mirror_args="$mirror_args --exclude-glob $e"
+            done
+            lftp -c "
+              set sftp:connect-program 'ssh -a -x -i ~/.ssh/deploy_key -p $SSH_PORT';
+              set net:max-retries 2;
+              open sftp://$USER@$HOST;
+              mirror $mirror_args ./ '$SITE_PATH/';
+            "
+          fi
+
+      # Файлы продуктов лежат ВНЕ webroot — скачать их напрямую нельзя,
+      # выдачу покупателям делает download.php (PRODUCTS_DIR в config.php)
       - name: Deploy product files (outside webroot)
         if: steps.check.outputs.enabled == 'true'
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
-          PORT: ${{ secrets.DEPLOY_PORT }}
-          PRODUCTS_PATH: ${{ secrets.DEPLOY_PRODUCTS_PATH }}
+          TOOL: ${{ steps.preflight.outputs.tool }}
+          DRY_RUN: ${{ inputs.dry_run }}
         run: |
-          rsync -az --delete \
-            -e "ssh -i ~/.ssh/deploy_key -p ${PORT:-22}" \
-            products-storage/ "$USER@$HOST:${PRODUCTS_PATH:-products-marzhavbetone}/"
+          if [ "$TOOL" = "rsync" ]; then
+            args=(-az --delete)
+            [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
+            rsync "${args[@]}" \
+              -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT" \
+              products-storage/ "$USER@$HOST:$PRODUCTS_PATH/"
+          else
+            mirror_args="--reverse --delete --parallel=4"
+            [ "$DRY_RUN" = "true" ] && mirror_args="$mirror_args --dry-run"
+            lftp -c "
+              set sftp:connect-program 'ssh -a -x -i ~/.ssh/deploy_key -p $SSH_PORT';
+              set net:max-retries 2;
+              open sftp://$USER@$HOST;
+              mirror $mirror_args products-storage/ '$PRODUCTS_PATH/';
+            "
+          fi
 
       - name: Verify site is up
-        if: steps.check.outputs.enabled == 'true'
+        if: steps.check.outputs.enabled == 'true' && inputs.dry_run != true
         run: |
           code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 https://marzhavbetone.ru/)
           echo "https://marzhavbetone.ru/ → HTTP $code"
-          test "$code" = "200"
+          if [ "$code" != "200" ]; then
+            echo "::error::Сайт ответил $code вместо 200 — проверьте сайт вручную"
+            exit 1
+          fi
