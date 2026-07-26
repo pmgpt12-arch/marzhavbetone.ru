@@ -1,66 +1,89 @@
-# Автодеплой на сервер
+# Автодеплой на хостинг reg.ru
 
-Каждый push в ветку `main` автоматически выкладывает сайт на сервер
+Каждый push в ветку `main` автоматически выкладывает сайт на хостинг
 (workflow `.github/workflows/deploy.yml`). Пока секреты не настроены,
 workflow ничего не делает и завершается успешно.
 
-## Разовая настройка (10 минут)
+Хостинг: виртуальный хостинг reg.ru с ISPmanager.
 
-### 1. Создайте SSH-ключ для деплоя (на своём ПК)
+- Сервер: `server116.hosting.reg.ru`
+- Пользователь: `u3581543`
+- Сайт: `~/www/marzhavbetone.ru` (= `/var/www/u3581543/data/www/marzhavbetone.ru`)
+- Файлы продуктов: `~/products-marzhavbetone` — вне webroot, напрямую из
+  браузера недоступны; выдачу покупателям делает `download.php`
 
-```bash
-ssh-keygen -t ed25519 -f deploy_key -N "" -C "github-deploy-marzhavbetone"
+## Разовая настройка
+
+### 1. Ключ для деплоя (на своём ПК, PowerShell)
+
+```powershell
+cd $HOME
+ssh-keygen -t ed25519 -f deploy_key
 ```
 
-Появятся два файла: `deploy_key` (секретный) и `deploy_key.pub` (публичный).
+На вопросы о passphrase — просто Enter (дважды). Появятся файлы
+`deploy_key` (секретный) и `deploy_key.pub` (публичный).
 
-### 2. Разрешите этому ключу вход на сервер
+### 2. Разрешить ключу вход на хостинг
 
-Подключитесь к серверу как обычно и добавьте содержимое `deploy_key.pub`
-в файл `~/.ssh/authorized_keys` того пользователя, от имени которого
-будет идти деплой (пользователь должен иметь право записи в
-`/var/www/marzhavbetone.ru` и `/var/www/marzhavbetone-products`):
+Откройте `deploy_key.pub` (PowerShell: `notepad $HOME\deploy_key.pub`) и
+скопируйте всю строку `ssh-ed25519 AAAA...`.
+
+В ISPmanager откройте **Shell-клиент** (левое меню) и выполните одну
+команду, подставив свою строку внутрь кавычек:
 
 ```bash
-mkdir -p ~/.ssh && chmod 700 ~/.ssh
-cat >> ~/.ssh/authorized_keys   # вставьте строку из deploy_key.pub, Ctrl+D
-chmod 600 ~/.ssh/authorized_keys
+mkdir -p ~/.ssh && echo 'ssh-ed25519 AAAA...ваша_строка...' >> ~/.ssh/authorized_keys && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys
 ```
 
-### 3. Добавьте секреты в GitHub
+Проверка с ПК (PowerShell):
 
-Репозиторий → **Settings → Secrets and variables → Actions → New repository secret**:
+```powershell
+ssh -i $HOME\deploy_key u3581543@server116.hosting.reg.ru "echo OK"
+```
+
+Ответ `OK` без запроса пароля = ключ работает. Если SSH-доступ выключен —
+включите его в кабинете reg.ru: карточка хостинга → вкладка «Доступы».
+
+### 3. Секреты в GitHub
+
+Репозиторий → Settings → Secrets and variables → Actions → New repository secret:
 
 | Секрет | Значение |
 |---|---|
-| `DEPLOY_HOST` | IP или домен сервера, например `marzhavbetone.ru` |
-| `DEPLOY_USER` | SSH-пользователь, например `root` или `deploy` |
-| `DEPLOY_SSH_KEY` | Полное содержимое файла `deploy_key` (секретного, начинается с `-----BEGIN OPENSSH PRIVATE KEY-----`) |
-| `DEPLOY_PORT` | Порт SSH — только если не 22 |
+| `DEPLOY_HOST` | `server116.hosting.reg.ru` |
+| `DEPLOY_USER` | `u3581543` |
+| `DEPLOY_SSH_KEY` | Полное содержимое файла `deploy_key` (`notepad $HOME\deploy_key`, скопировать всё) |
 
-После этого удалите файл `deploy_key` со своего ПК — он больше не нужен.
+Необязательные (нужны только если пути отличаются): `DEPLOY_PORT`,
+`DEPLOY_PATH` (по умолчанию `www/marzhavbetone.ru`),
+`DEPLOY_PRODUCTS_PATH` (по умолчанию `products-marzhavbetone`).
 
-### 4. Однократно поправьте `config.php` на сервере
+После добавления секретов удалите `deploy_key` с ПК:
+`del $HOME\deploy_key; del $HOME\deploy_key.pub`
 
-Файлы продуктов деплоятся в `/var/www/marzhavbetone-products/` — вне
-webroot, чтобы их нельзя было скачать напрямую. Добавьте в серверный
-`config.php` (он деплоем не перезаписывается) строку:
+### 4. Однократно поправьте config.php на хостинге
+
+ISPmanager → Менеджер файлов → `www/marzhavbetone.ru/config.php` →
+Изменить. Добавьте в конец файла строку:
 
 ```php
-define('PRODUCTS_DIR', '/var/www/marzhavbetone-products');
+define('PRODUCTS_DIR', '/var/www/u3581543/data/products-marzhavbetone');
 ```
 
-### 5. Проверьте
+Там же проверьте боевые `YOOKASSA_SHOP_ID`, `YOOKASSA_SECRET_KEY` и
+`YOOKASSA_MODE` = `live`. Деплой этот файл никогда не перезаписывает.
 
-Запустите workflow вручную: **Actions → Deploy to server → Run workflow** —
-или сделайте любой push в `main`. В логе будет проверка: сайт должен
-ответить `HTTP 200`.
+### 5. Проверка
 
-## Что деплой никогда не трогает на сервере
+GitHub → Actions → «Deploy to server» → Run workflow. Все шаги должны
+стать зелёными; последний шаг проверяет, что сайт отвечает `HTTP 200`.
 
-- `config.php` — боевые ключи ЮКассы остаются на сервере;
+## Что деплой никогда не трогает на хостинге
+
+- `config.php` — боевые ключи ЮКассы;
 - `orders/` — данные заказов и ссылки выдачи;
-- серверные конфиги (`nginx-marzhavbetone.conf`, скрипты установки).
+- всё вне папок `www/marzhavbetone.ru` и `products-marzhavbetone`.
 
 ## Как это связано с контент-фабрикой
 

@@ -43,12 +43,18 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -p "${PORT:-22}" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
 
+      # Пути по умолчанию — под виртуальный хостинг reg.ru:
+      # домашняя папка пользователя uXXXXXXX = /var/www/uXXXXXXX/data,
+      # сайт лежит в ~/www/marzhavbetone.ru, продукты — в ~/products-marzhavbetone
+      # (вне webroot). Для других хостингов задайте секреты DEPLOY_PATH и
+      # DEPLOY_PRODUCTS_PATH с нужными путями.
       - name: Deploy site files
         if: steps.check.outputs.enabled == 'true'
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
           PORT: ${{ secrets.DEPLOY_PORT }}
+          SITE_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
           rsync -az --delete \
             -e "ssh -i ~/.ssh/deploy_key -p ${PORT:-22}" \
@@ -62,7 +68,7 @@ jobs:
             --exclude 'nginx-marzhavbetone.conf' \
             --exclude 'DEPLOY.md' \
             --exclude 'ИНСТРУКЦИЯ-ДЛЯ-ХОСТИНГА.txt' \
-            ./ "$USER@$HOST:/var/www/marzhavbetone.ru/"
+            ./ "$USER@$HOST:${SITE_PATH:-www/marzhavbetone.ru}/"
 
       # Файлы продуктов живут ВНЕ webroot — прямых ссылок на них нет,
       # выдачу делает download.php (PRODUCTS_DIR в config.php на сервере)
@@ -72,10 +78,11 @@ jobs:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
           PORT: ${{ secrets.DEPLOY_PORT }}
+          PRODUCTS_PATH: ${{ secrets.DEPLOY_PRODUCTS_PATH }}
         run: |
           rsync -az --delete \
             -e "ssh -i ~/.ssh/deploy_key -p ${PORT:-22}" \
-            products-storage/ "$USER@$HOST:/var/www/marzhavbetone-products/"
+            products-storage/ "$USER@$HOST:${PRODUCTS_PATH:-products-marzhavbetone}/"
 
       - name: Verify site is up
         if: steps.check.outputs.enabled == 'true'
