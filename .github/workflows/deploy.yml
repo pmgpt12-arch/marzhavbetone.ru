@@ -168,8 +168,8 @@ jobs:
           EXCLUDES=(
             '.git*' '.github' 'orders' 'products-storage' 'config.php'
             '.well-known' 'setup-server.sh' 'check-server.sh'
-            'nginx-marzhavbetone.conf' 'DEPLOY.md' 'tools'
-            'ИНСТРУКЦИЯ-ДЛЯ-ХОСТИНГА.txt'
+            'nginx-marzhavbetone.conf' 'DEPLOY.md' 'tools' 'content'
+            '__pycache__' 'ИНСТРУКЦИЯ-ДЛЯ-ХОСТИНГА.txt'
           )
 
           if [ "$TOOL" = "rsync" ]; then
