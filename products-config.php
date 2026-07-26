@@ -8,6 +8,14 @@
  */
 declare(strict_types=1);
 
+// Файл подключается из payment.php / webhook.php / download.php и не должен
+// открываться напрямую: без config.php он падал бы с ошибкой, раскрывающей
+// путь на сервере.
+if (!defined('ORDERS_DIR')) {
+    http_response_code(404);
+    exit;
+}
+
 if (!defined('PRODUCTS_DIR')) {
     define('PRODUCTS_DIR', __DIR__ . '/products-storage');
 }
