@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Тестовая покупка — служебная страница</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="catalog.css">
+  <link rel="stylesheet" href="product.css">
+  <link rel="stylesheet" href="cart.css">
+  <link rel="stylesheet" href="desktop.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Маржа в бетоне, на главную">
+      <span class="brand-mark">М</span>
+      <span>маржа в бетоне</span>
+    </a>
+    <nav aria-label="Основная навигация">
+      <a href="index.html#catalog">Каталог</a>
+    </nav>
+    <button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button>
+  </header>
+
+  <aside class="cart-panel" id="cart-panel" aria-label="Корзина" hidden>
+    <div class="cart-head"><div><p class="eyebrow">ВАШ ЗАКАЗ</p><h2>Корзина</h2></div><button class="cart-close" id="cart-close" type="button" aria-label="Закрыть корзину">×</button></div>
+    <div class="cart-empty" id="cart-empty">Пока пусто.</div>
+    <ul class="cart-items" id="cart-items"></ul>
+    <div class="cart-total"><span>Итого</span><strong id="cart-total">0 ₽</strong></div>
+    <button class="button cart-checkout" id="cart-checkout" type="button" disabled>Оформить заказ</button>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+
+  <main style="max-width:680px;margin:0 auto;padding:48px 24px">
+    <p class="eyebrow">СЛУЖЕБНАЯ СТРАНИЦА</p>
+    <h1>Тестовая покупка за 1 ₽</h1>
+    <p>Страница нужна, чтобы проверить всю цепочку продажи на боевых ключах:
+      оплата → подтверждение от ЮКассы → сборка архива → письмо покупателю →
+      скачивание по ссылке. Списывается 1 ₽.</p>
+
+    <div class="product-footer" style="margin:32px 0">
+      <strong>1 ₽</strong>
+      <button class="button add-to-cart large" type="button"
+              data-product="Тестовая покупка (проверка выдачи)"
+              data-sku="test1" data-price="100">Добавить в корзину</button>
+    </div>
+
+    <h2 style="font-size:20px">Что проверяем</h2>
+    <ol>
+      <li>Платёж создаётся и проходит.</li>
+      <li>На странице «Оплата прошла» появляется блок «Скачать материалы».</li>
+      <li>На указанный email приходит письмо со ссылками.</li>
+      <li>Архив скачивается и открывается.</li>
+    </ol>
+
+    <p style="color:#65676a;font-size:14px;margin-top:32px">
+      Страница закрыта от поисковых систем и не связана ссылками с каталогом.
+      Выдаётся бесплатный чек-лист, поэтому случайная покупка ничего не
+      раскрывает. Платёж можно вернуть в личном кабинете ЮКассы.
+    </p>
+
+    <p><a href="index.html">← На главную</a></p>
+  </main>
+
+  <script src="app-script.php?v=20"></script>
+</body>
+</html>
