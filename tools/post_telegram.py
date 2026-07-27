@@ -130,37 +130,99 @@ def save_state(state: dict) -> None:
     )
 
 
-def send(token: str, chat: str, post: dict) -> dict:
+def api_call(token: str, method: str, payload: dict | None = None) -> dict:
+    """Вызов метода Bot API. Возвращает result либо бросает RuntimeError."""
     api = os.environ.get("TELEGRAM_API", "https://api.telegram.org")
-    payload = json.dumps({
-        "chat_id": chat,
-        "text": post["text"],
-        "parse_mode": "HTML",
-        "link_preview_options": {"is_disabled": not post["preview"]},
-    }).encode("utf-8")
+    data = json.dumps(payload or {}).encode("utf-8")
     request = urllib.request.Request(
-        f"{api}/bot{token}/sendMessage",
-        data=payload,
+        f"{api}/bot{token}/{method}",
+        data=data,
         headers={"Content-Type": "application/json"},
     )
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
             answer = json.loads(response.read())
     except urllib.error.HTTPError as exc:
-        detail = exc.read().decode("utf-8", "replace")
-        raise RuntimeError(f"Telegram ответил {exc.code}: {detail}") from exc
+        body = exc.read().decode("utf-8", "replace")
+        try:
+            described = json.loads(body).get("description", body)
+        except json.JSONDecodeError:
+            described = body
+        raise RuntimeError(f"{method}: {described}") from exc
     except urllib.error.URLError as exc:
         raise RuntimeError(f"Не удалось связаться с Telegram: {exc.reason}") from exc
     if not answer.get("ok"):
-        raise RuntimeError(f"Telegram отклонил пост: {answer}")
-    return answer["result"]
+        raise RuntimeError(f"{method}: {answer.get('description', answer)}")
+    return answer.get("result", {})
+
+
+def check_access(token: str, chat: str) -> bool:
+    """Проверяет три причины, из-за которых обычно не работает публикация:
+    неверный токен, бот не добавлен в канал, нет права публикации."""
+    try:
+        me = api_call(token, "getMe")
+        print(f"Бот: @{me.get('username')} (id {me.get('id')}) — токен рабочий")
+    except RuntimeError as exc:
+        print(f"ОШИБКА: токен не работает — {exc}", file=sys.stderr)
+        print("Проверьте секрет TELEGRAM_BOT_TOKEN: он должен быть целиком, "
+              "в виде «123456789:AA...», без пробелов и переносов.", file=sys.stderr)
+        return False
+
+    try:
+        info = api_call(token, "getChat", {"chat_id": chat})
+        title = info.get("title") or info.get("username") or chat
+        print(f"Канал: {title} (тип {info.get('type')}) — бот его видит")
+    except RuntimeError as exc:
+        print(f"ОШИБКА: бот не видит канал {chat} — {exc}", file=sys.stderr)
+        print(f"Добавьте бота в администраторы канала {chat} "
+              f"с правом «Публикация сообщений».", file=sys.stderr)
+        return False
+
+    try:
+        member = api_call(token, "getChatMember",
+                          {"chat_id": chat, "user_id": me.get("id")})
+    except RuntimeError as exc:
+        print(f"ОШИБКА: не удалось проверить права бота — {exc}", file=sys.stderr)
+        return False
+
+    status = member.get("status")
+    if status != "administrator":
+        print(f"ОШИБКА: бот в канале со статусом «{status}», нужен «администратор»",
+              file=sys.stderr)
+        return False
+    if not member.get("can_post_messages", True):
+        print("ОШИБКА: бот администратор, но без права «Публикация сообщений»",
+              file=sys.stderr)
+        return False
+
+    print("Права: администратор, публикация разрешена")
+    return True
+
+
+def send(token: str, chat: str, post: dict) -> dict:
+    return api_call(token, "sendMessage", {
+        "chat_id": chat,
+        "text": post["text"],
+        "parse_mode": "HTML",
+        "link_preview_options": {"is_disabled": not post["preview"]},
+    })
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Публикация постов в Telegram")
     parser.add_argument("--dry-run", action="store_true",
                         help="показать, что было бы опубликовано, и выйти")
+    parser.add_argument("--check", action="store_true",
+                        help="проверить токен, доступ к каналу и права бота")
     args = parser.parse_args()
+
+    if args.check:
+        token = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
+        if not token:
+            print("ОШИБКА: не задан TELEGRAM_BOT_TOKEN", file=sys.stderr)
+            return 1
+        chat = os.environ.get("TELEGRAM_CHAT", "@marzhavbetone").strip()
+        return 0 if check_access(token, chat) else 1
 
     if not POSTS_DIR.is_dir():
         print(f"Папки {POSTS_DIR.relative_to(ROOT)} нет — публиковать нечего")

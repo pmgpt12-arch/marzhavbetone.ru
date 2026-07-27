@@ -40,6 +40,15 @@ jobs:
         if: steps.check.outputs.enabled == 'true'
         uses: actions/checkout@v4
 
+      # Токен, доступ к каналу и право публикации проверяем до отправки:
+      # иначе причина отказа остаётся неочевидной
+      - name: Check bot access
+        if: steps.check.outputs.enabled == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT || '@marzhavbetone' }}
+        run: python3 tools/post_telegram.py --check
+
       # Пробный прогон проверяет разметку и длину постов, ничего не отправляя
       - name: Dry run
         if: steps.check.outputs.enabled == 'true' && inputs.dry_run == true
