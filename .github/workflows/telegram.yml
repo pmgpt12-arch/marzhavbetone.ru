@@ -83,13 +83,15 @@ jobs:
       - name: Commit publication state
         if: steps.check.outputs.enabled == 'true' && inputs.dry_run != true && inputs.test_message == ''
         run: |
-          if git diff --quiet -- content/telegram/published.json; then
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          # Сначала add, потом сравнение с индексом: git diff не видит новых
+          # файлов, а published.json создаётся впервые при первой публикации
+          git add content/telegram/published.json
+          if git diff --cached --quiet -- content/telegram/published.json; then
             echo "Новых публикаций нет — коммитить нечего"
             exit 0
           fi
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add content/telegram/published.json
           git commit -m 'Record published Telegram posts [skip ci]'
           for attempt in 1 2 3 4; do
             git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && \
