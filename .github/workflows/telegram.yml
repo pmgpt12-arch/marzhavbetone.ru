@@ -10,6 +10,10 @@ on:
         description: 'Пробный прогон: показать посты, ничего не публикуя'
         type: boolean
         default: true
+      test_message:
+        description: 'Проверочное сообщение: отправить этот текст в канал и выйти'
+        type: string
+        default: ''
 
 concurrency:
   group: telegram
@@ -49,13 +53,25 @@ jobs:
           TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT || '@marzhavbetone' }}
         run: python3 tools/post_telegram.py --check
 
+      # Разовая проверка канала: отправляет заданный текст и на этом
+      # заканчивает — очередь постов и published.json не затрагиваются
+      - name: Send test message
+        if: steps.check.outputs.enabled == 'true' && inputs.test_message != ''
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT || '@marzhavbetone' }}
+          # Текст передаётся переменной окружения, а не подстановкой в команду:
+          # иначе содержимое поля выполнилось бы как часть shell-строки
+          TEST_MESSAGE: ${{ inputs.test_message }}
+        run: python3 tools/post_telegram.py --send-text "$TEST_MESSAGE"
+
       # Пробный прогон проверяет разметку и длину постов, ничего не отправляя
       - name: Dry run
-        if: steps.check.outputs.enabled == 'true' && inputs.dry_run == true
+        if: steps.check.outputs.enabled == 'true' && inputs.dry_run == true && inputs.test_message == ''
         run: python3 tools/post_telegram.py --dry-run
 
       - name: Publish due posts
-        if: steps.check.outputs.enabled == 'true' && inputs.dry_run != true
+        if: steps.check.outputs.enabled == 'true' && inputs.dry_run != true && inputs.test_message == ''
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT || '@marzhavbetone' }}
@@ -65,7 +81,7 @@ jobs:
       # следующий запуск отправит их заново. [skip ci] — чтобы коммит не
       # запускал деплой и этот же workflow повторно.
       - name: Commit publication state
-        if: steps.check.outputs.enabled == 'true' && inputs.dry_run != true
+        if: steps.check.outputs.enabled == 'true' && inputs.dry_run != true && inputs.test_message == ''
         run: |
           if git diff --quiet -- content/telegram/published.json; then
             echo "Новых публикаций нет — коммитить нечего"
