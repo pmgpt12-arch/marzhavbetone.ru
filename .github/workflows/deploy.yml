@@ -166,7 +166,7 @@ jobs:
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           EXCLUDES=(
-            '.git*' '.github' 'orders' 'products-storage' 'config.php'
+            '.git*' '.github' '.claude' 'orders' 'products-storage' 'config.php'
             '.well-known' 'setup-server.sh' 'check-server.sh'
             'nginx-marzhavbetone.conf' 'DEPLOY.md' 'tools'
             'ИНСТРУКЦИЯ-ДЛЯ-ХОСТИНГА.txt'
