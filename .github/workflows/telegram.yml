@@ -1,0 +1,85 @@
+name: Post to Telegram
+
+on:
+  schedule:
+    # Каждый час — публикуются посты, у которых наступил publish_at
+    - cron: '5 * * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Пробный прогон: показать посты, ничего не публикуя'
+        type: boolean
+        default: true
+
+concurrency:
+  group: telegram
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      # Без токена workflow завершается зелёным и ничего не делает —
+      # настройка описана в content/telegram/README.md
+      - name: Check token
+        id: check
+        env:
+          TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Секрет TELEGRAM_BOT_TOKEN не задан — публикация пропущена."
+          else
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.check.outputs.enabled == 'true'
+        uses: actions/checkout@v4
+
+      # Токен, доступ к каналу и право публикации проверяем до отправки:
+      # иначе причина отказа остаётся неочевидной
+      - name: Check bot access
+        if: steps.check.outputs.enabled == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT || '@marzhavbetone' }}
+        run: python3 tools/post_telegram.py --check
+
+      # Пробный прогон проверяет разметку и длину постов, ничего не отправляя
+      - name: Dry run
+        if: steps.check.outputs.enabled == 'true' && inputs.dry_run == true
+        run: python3 tools/post_telegram.py --dry-run
+
+      - name: Publish due posts
+        if: steps.check.outputs.enabled == 'true' && inputs.dry_run != true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT || '@marzhavbetone' }}
+        run: python3 tools/post_telegram.py
+
+      # Отметка об опубликованных постах возвращается в репозиторий, иначе
+      # следующий запуск отправит их заново. [skip ci] — чтобы коммит не
+      # запускал деплой и этот же workflow повторно.
+      - name: Commit publication state
+        if: steps.check.outputs.enabled == 'true' && inputs.dry_run != true
+        run: |
+          if git diff --quiet -- content/telegram/published.json; then
+            echo "Новых публикаций нет — коммитить нечего"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add content/telegram/published.json
+          git commit -m 'Record published Telegram posts [skip ci]'
+          for attempt in 1 2 3 4; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && \
+              git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            echo "Попытка $attempt не удалась, повтор через $((attempt * 3))с"
+            sleep $((attempt * 3))
+          done
+          echo "::error::Не удалось сохранить отметку о публикации. Посты уже в канале — при следующем запуске они не уйдут повторно только после того, как published.json попадёт в репозиторий."
+          exit 1
