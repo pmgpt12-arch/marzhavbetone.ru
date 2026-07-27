@@ -199,6 +199,19 @@ def check_access(token: str, chat: str) -> bool:
     return True
 
 
+def send_plain(token: str, chat: str, text: str) -> dict:
+    """Отправляет одно произвольное сообщение без разметки.
+
+    parse_mode не используется намеренно: проверочный текст пишет человек,
+    и случайный «<» не должен превращаться в ошибку Telegram.
+    """
+    return api_call(token, "sendMessage", {
+        "chat_id": chat,
+        "text": text,
+        "link_preview_options": {"is_disabled": True},
+    })
+
+
 def send(token: str, chat: str, post: dict) -> dict:
     return api_call(token, "sendMessage", {
         "chat_id": chat,
@@ -214,6 +227,9 @@ def main() -> int:
                         help="показать, что было бы опубликовано, и выйти")
     parser.add_argument("--check", action="store_true",
                         help="проверить токен, доступ к каналу и права бота")
+    parser.add_argument("--send-text", metavar="ТЕКСТ",
+                        help="отправить одно произвольное сообщение и выйти; "
+                             "очередь постов не трогается")
     args = parser.parse_args()
 
     if args.check:
@@ -223,6 +239,26 @@ def main() -> int:
             return 1
         chat = os.environ.get("TELEGRAM_CHAT", "@marzhavbetone").strip()
         return 0 if check_access(token, chat) else 1
+
+    if args.send_text is not None:
+        text = args.send_text.strip()
+        if not text:
+            print("ОШИБКА: --send-text получил пустой текст", file=sys.stderr)
+            return 1
+        token = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
+        if not token:
+            print("ОШИБКА: не задан TELEGRAM_BOT_TOKEN", file=sys.stderr)
+            return 1
+        chat = os.environ.get("TELEGRAM_CHAT", "@marzhavbetone").strip()
+        try:
+            result = send_plain(token, chat, text)
+        except RuntimeError as exc:
+            print(f"ОШИБКА при отправке: {exc}", file=sys.stderr)
+            return 1
+        # published.json не трогаем: это разовая проверка, а не публикация
+        # из очереди, и она не должна влиять на расписание постов
+        print(f"Отправлено в {chat}: сообщение {result.get('message_id')}")
+        return 0
 
     if not POSTS_DIR.is_dir():
         print(f"Папки {POSTS_DIR.relative_to(ROOT)} нет — публиковать нечего")
