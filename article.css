@@ -194,3 +194,14 @@
     display: none !important;
   }
 }
+
+/* Баннер каналов тёмный, поэтому кнопке нужен свой фон: иначе основная
+   ссылка сливается с подложкой и читается как обычный текст */
+.article-page .channel-banner .button {
+  background: var(--orange) !important;
+}
+
+.article-page .channel-banner .button.ghost {
+  background: transparent !important;
+  box-shadow: inset 0 0 0 2px #fff;
+}
