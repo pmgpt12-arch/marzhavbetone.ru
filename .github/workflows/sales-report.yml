@@ -1,0 +1,97 @@
+name: Sales report
+
+on:
+  schedule:
+    # Понедельник, 07:00 МСК — сводка за прошедшую неделю к началу работы
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'За сколько последних дней считать'
+        type: string
+        default: '30'
+
+concurrency:
+  group: sales-report
+  cancel-in-progress: false
+
+env:
+  SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+  SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check deploy secrets
+        id: check
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          if [ -z "$KEY" ] || [ -z "$HOST" ] || [ -z "$USER" ]; then
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Не заданы секреты доступа к хостингу — сводка пропущена. Настройка в DEPLOY.md"
+          else
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.check.outputs.enabled == 'true'
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        if: steps.check.outputs.enabled == 'true'
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+      # Заказы живут только на хостинге и содержат персональные данные, поэтому
+      # забираем их во временную папку раннера и в репозиторий не коммитим.
+      - name: Fetch orders from hosting
+        if: steps.check.outputs.enabled == 'true'
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          mkdir -p /tmp/orders
+          if ! scp -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -P "$SSH_PORT" \
+                 -o BatchMode=yes \
+                 "$USER@$HOST:$SITE_PATH/orders/order_*.json" /tmp/orders/ 2>/tmp/scp.err; then
+            if grep -qi 'no such file\|not a regular file\|No match' /tmp/scp.err; then
+              echo "::notice::Заказов на хостинге пока нет — сводке нечего показывать."
+            else
+              cat /tmp/scp.err
+              echo "::error::Не удалось забрать заказы с хостинга"
+              exit 1
+            fi
+          fi
+          echo "Файлов заказов получено: $(ls -1 /tmp/orders 2>/dev/null | wc -l)"
+
+      - name: Build report
+        if: steps.check.outputs.enabled == 'true'
+        run: |
+          days="${{ inputs.days || '7' }}"
+          python3 tools/sales_report.py /tmp/orders --days "$days" | tee /tmp/report.txt
+          {
+            echo '## Сводка продаж'
+            echo '```'
+            cat /tmp/report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Персональные данные покупателей остаются на раннере и удаляются вместе
+      # с ним; в артефакт кладём только агрегированный отчёт.
+      - name: Upload report
+        if: steps.check.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: sales-report
+          path: /tmp/report.txt
+          retention-days: 30
