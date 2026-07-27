@@ -1,0 +1,35 @@
+name: Build carousel cards
+
+# Картинки не хранятся в репозитории: они полностью выводятся из текста
+# карточек. Workflow собирает их по запросу и отдаёт архивом, чтобы не
+# требовать Python и Pillow на машине, с которой публикуют.
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Имя файла в content/social без .md'
+        type: string
+        required: true
+        default: 'vsyo-vklyucheno-v-cenu'
+
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Pillow
+        run: pip install --quiet pillow
+
+      - name: Build cards
+        env:
+          SLUG: ${{ inputs.slug }}
+        run: python3 tools/build_cards.py "$SLUG" --out cards
+
+      - name: Upload cards
+        uses: actions/upload-artifact@v4
+        with:
+          name: cards-${{ inputs.slug }}
+          path: cards/
+          retention-days: 30
