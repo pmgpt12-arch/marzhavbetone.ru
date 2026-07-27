@@ -1,0 +1,56 @@
+name: Render reel scene
+
+# Сцены рендерятся по запросу и отдаются архивом: на машине, с которой
+# публикуют, не нужны ни Node, ни Remotion, ни headless-браузер.
+on:
+  workflow_dispatch:
+    inputs:
+      composition:
+        description: 'Сцена: HookScene, MarkerListScene, MoneyCounterScene, CTAScene'
+        type: string
+        required: true
+        default: 'HookScene'
+      props:
+        description: 'JSON с параметрами сцены'
+        type: string
+        required: false
+        default: '{}'
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        working-directory: tools/remotion
+        run: npm install --no-audit --no-fund
+
+      # Remotion запускает старый headless-режим и ставит себе отдельный
+      # chrome-headless-shell: системного Chromium ему недостаточно
+      - name: Ensure headless browser
+        working-directory: tools/remotion
+        run: npx remotion browser ensure
+
+      - name: Render
+        working-directory: tools/remotion
+        env:
+          COMPOSITION: ${{ inputs.composition }}
+          PROPS: ${{ inputs.props }}
+        run: |
+          mkdir -p out
+          npx remotion render src/index.ts "$COMPOSITION" "out/${COMPOSITION}.mp4" \
+            --props="$PROPS"
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: scene-${{ inputs.composition }}
+          path: tools/remotion/out/
+          retention-days: 30
