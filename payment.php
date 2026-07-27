@@ -37,6 +37,39 @@ $items = $input['items'] ?? [];
 $email = trim((string)($input['email'] ?? ''));
 $phone = trim((string)($input['phone'] ?? ''));
 
+/**
+ * Источник перехода приходит из браузера, поэтому доверять ему нельзя:
+ * оставляем только известные поля, ограничиваем длину и вычищаем управляющие
+ * символы. Эти данные используются исключительно для отчёта — ни на цену, ни
+ * на выдачу товара они не влияют.
+ */
+function mvb_clean_touch($touch): array
+{
+    if (!is_array($touch)) {
+        return [];
+    }
+    $clean = [];
+    foreach (['source', 'medium', 'campaign', 'content', 'landing', 'at'] as $field) {
+        if (!isset($touch[$field]) || !is_scalar($touch[$field])) {
+            continue;
+        }
+        $value = preg_replace('/[^\P{C}]+/u', '', (string)$touch[$field]);
+        $value = mb_substr(trim((string)$value), 0, 200);
+        if ($value !== '') {
+            $clean[$field] = $value;
+        }
+    }
+    return $clean;
+}
+
+$attribution = [];
+foreach (['first', 'last'] as $touchName) {
+    $touch = mvb_clean_touch($input['attribution'][$touchName] ?? null);
+    if ($touch) {
+        $attribution[$touchName] = $touch;
+    }
+}
+
 if (empty($items)) {
     http_response_code(422);
     echo json_encode(['ok' => false, 'message' => 'Корзина пуста'], JSON_UNESCAPED_UNICODE);
@@ -95,6 +128,7 @@ $orderData = [
     'items' => $items,
     'total' => $total,
     'description' => $description,
+    'attribution' => $attribution,
     'payment_id' => null,
     'paid_at' => null,
 ];

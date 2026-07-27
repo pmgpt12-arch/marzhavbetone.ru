@@ -160,6 +160,7 @@ function createCheckoutModal() {
       items: cart,
       email: form.email.value.trim(),
       phone: form.phone.value.trim(),
+      attribution: typeof window.mvbAttribution === 'function' ? window.mvbAttribution() : {},
     };
     
     try {
