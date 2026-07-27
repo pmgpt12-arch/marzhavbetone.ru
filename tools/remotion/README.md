@@ -48,6 +48,9 @@ npx remotion render src/index.ts HookScene out/hook.mp4 \
   используется в `build_reel.py`.
 - **`zod` закреплён на 3.22.3.** С `^3.22.4` установка падает:
   `@remotion/zod-types` требует ровно эту версию.
+- **Concurrency не задан.** В шаблоне стояла четвёрка, а раннер GitHub даёт
+  два ядра — рендер падал с «Maximum for --concurrency is 2». Теперь
+  Remotion берёт столько потоков, сколько есть на машине.
 
 ## Чего в этих сценах не делаем
 
