@@ -66,6 +66,8 @@
   border-collapse: collapse !important;
   font-size: clamp(13px, 1.1vw, 15px) !important;
   margin: 20px 0 !important;
+  /* Проценты и суммы в таблицах разборов выравниваются по разрядам */
+  font-variant-numeric: tabular-nums;
 }
 
 .article-page th,
