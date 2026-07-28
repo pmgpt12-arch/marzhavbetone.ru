@@ -1,56 +1,46 @@
 # Обложка: «Пять доказательств, которые заставят заплатить»
 
 Заменяет `assets/pyat-dokazatelstv-vypolneniya.png` — текстовую карточку из
-`build_cover.py`. Рядом с кинематографичными обложками остальных разборов
-она выглядит заглушкой.
+`build_cover.py`. Используется в статье, в списке разборов и в материале
+`content/dzen/05-pyat-dokazatelstv.md`: меняется один файл — меняется везде.
 
-Обложка используется в двух местах: статья на сайте и материал для Дзена
-`content/dzen/05-pyat-dokazatelstv.md`. Меняется один файл — меняется в
-обоих.
+Сделано по системному промпту из `PROMPT.md`.
 
-## Идея
+---
 
-Статья о том, что доказательства выполнения создаются в день работы и почти
-не создаются позже. Самый сильный момент — секунда перед заливкой: как
-только бетон закроет арматуру, проверить объём будет нечем.
+## Название концепции
 
-Поэтому в кадре не документы, а то, что вот-вот исчезнет.
+Последняя секунда перед бетоном
 
-## Промпт, вариант 1 — основной
+## Готовый промт
 
 ```
-Cinematic wide shot at dusk on a construction site. In the foreground, a
-dense rebar cage ready for concrete pouring, wet steel catching the last
-orange light. A lone worker in a hard hat, seen from behind in silhouette,
-raises a phone to photograph the rebar — the phone screen is the only cold
-blue light in a warm frame. Concrete pump boom overhead, tower cranes and
-half-built towers on the horizon under heavy dramatic clouds. Backlit haze,
-deep shadows, amber rim light. Photoreal, cinematic, film still. No text,
-no readable documents, face not visible.
+Wide cinematic film still on a construction site at dusk. In the immediate
+foreground, a dense cage of tied steel rebar fills the lower third of the
+frame, wet metal catching low amber light, rust and dried concrete on the
+bars. A concrete pump boom hangs above it, ready to pour, its shadow
+falling across the steel. A lone worker in a hard hat and dirty jacket
+stands with his back to camera at the edge of the frame, raising a phone
+toward the rebar — the phone screen is the only cold blue light in a warm
+amber scene. Behind them, tower cranes and half-built concrete towers
+recede into heavy volumetric haze under a bruised sky. Deep shadows,
+strong backlight, dust suspended in the air, textures of concrete, rusted
+steel, mud and wet timber. Atmosphere of a narrow closing window before
+something is buried and can no longer be proven. No readable text, no
+logos, no watermarks, no visible face, photorealistic, cinematic film
+still, high detail.
 ```
 
-## Промпт, вариант 2 — если первый выйдет мелким и суетливым
+## Смысловая метафора
 
-```
-Cinematic low angle shot at dusk. A wall of tied rebar fills the left half
-of the frame, sharp and backlit; the right half opens onto a construction
-site with tower cranes silhouetted against a burning orange sky with heavy
-clouds. A single cold blue camera flash bursts from the shadow at the base
-of the rebar. Dust in the air, deep contrast, amber rim light. Photoreal,
-dramatic, film still. No text, no people in focus, no faces.
-```
+Доказательства выполнения создаются в тот день, когда работа делается: как
+только бетон закроет арматуру, объём проверить будет нечем. Кадр — это
+последняя секунда, когда ещё можно зафиксировать факт.
 
-## Требования, общие для всех обложек
-
-- Контровой свет, объект уходит в силуэт.
-- Палитра тёплая закатная или холодная грозовая, третьей нет.
-- Стройка на заднем плане — опознавательный знак канала.
-- Лиц в кадре нет: силуэт, спина, каска.
-- Никакого текста в кадре, включая вывески и документы с буквами.
-- Горизонтальный кадр под обложку статьи; Дзен принимает от 480×320,
-  запас нужен, поэтому не меньше 1500 px по длинной стороне.
+---
 
 ## После генерации
 
-Файл кладётся вместо `assets/pyat-dokazatelstv-vypolneniya.png` под тем же
-именем — тогда ни статью, ни материал для Дзена править не нужно.
+Файл кладётся в `assets/` под именем `pyat-dokazatelstv-vypolneniya.png` —
+ссылки на него уже стоят. Проверить: букв в кадре нет, лицо не видно,
+палитра совпадает с соседними обложками.
