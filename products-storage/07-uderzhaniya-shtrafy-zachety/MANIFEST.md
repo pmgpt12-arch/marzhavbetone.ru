@@ -13,8 +13,8 @@
 - `05-reestr-uderzhaniy.xlsx` — Excel: реестр удержаний и штрафов по объекту
 - `06-grafik-vozmeshcheniya.xlsx` — Excel: график возмещения удержанных сумм
 - `07-algoritm-proverki-uderzhaniy.pdf` — PDF: алгоритм проверки обоснованности удержаний
-- `08-tipovye-osnovaniya.pdf` — PDF: типовые основания для удержаний и как их оспорить
-- `09-sravnitelnaya-tablica.pdf` — PDF: сравнение с бесплатным материалом
+- `08-tipovye-osnovaniya.docx` — Word: типовые основания для удержаний и как их оспорить
+- `09-sravnitelnaya-tablica.docx` — Word: сравнение с бесплатным материалом
 - `10-konsultaciya-po-delu.docx` — Word: форма для подготовки к консультации с юристом
 
 ## Ограничение

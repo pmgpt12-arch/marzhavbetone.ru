@@ -265,7 +265,7 @@ if (leadForm) {
       const response = await fetch(leadForm.action, { method: 'POST', body: new FormData(leadForm), headers: { Accept: 'application/json' } });
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.message || 'Не удалось получить чек-лист');
-      leadStatus.innerHTML = `<a class="button" href="${result.download}" download>Скачать чек-лист PDF</a> <a class="text-link" href="https://t.me/marzhavbetone" target="_blank">Перейти в Telegram</a>`;
+      leadStatus.innerHTML = `<a class="button" href="${result.download}" download>${result.label || 'Скачать материалы'}</a> <a class="text-link" href="https://t.me/marzhavbetone" target="_blank">Разборы выходят в Telegram</a>`;
       leadForm.reset();
       trackGoal('checklist_download');
     } catch (error) { leadStatus.textContent = error.message; }

@@ -6,6 +6,8 @@
 Полный комплект для фиксации и оплаты дополнительных объемов работ. Включает допсоглашения, калькуляторы, алгоритмы согласования с заказчиком.
 
 ## Состав
+- `00-INSTRUKCIYA.docx` — Word
+- `00-INSTRUKCIYA.pdf` — PDF
 - `01-prikaz-na-dopobem.docx` — Word: приказ на допобъем
 - `02-soglasovanie-obema.docx` — Word: согласование объема
 - `03-uvedomlenie-o-doprabotah.docx` — Word: уведомление о допработах
