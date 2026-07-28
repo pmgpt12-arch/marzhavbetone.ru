@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/tools/hook_checks.py\" 2>/dev/null || true",
+            "timeout": 90,
+            "statusMessage": "Проверки репозитория"
+          }
+        ]
+      }
+    ]
+  }
+}
