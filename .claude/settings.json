@@ -1,4 +1,25 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(python3 tools/check_products.py:*)",
+      "Bash(python3 tools/check_packages.py:*)",
+      "Bash(python3 tools/check_covers.py:*)",
+      "Bash(python3 tools/check_reel.py:*)",
+      "Bash(python3 tools/dzen_channel.py:*)",
+      "Bash(python3 tools/build_free_zips.py:*)",
+      "Bash(python3 tools/hook_checks.py:*)",
+      "Bash(php -l:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ],
+    "deny": [
+      "Read(./config.php)",
+      "Read(./orders/**)",
+      "Read(./products-storage/**/*.zip)",
+      "Bash(rm -rf:*)"
+    ]
+  },
   "hooks": {
     "PostToolUse": [
       {
