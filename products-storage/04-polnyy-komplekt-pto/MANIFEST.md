@@ -7,6 +7,8 @@
 
 ## Состав
 ### Базовые пакеты (01-30)
+- `00-INSTRUKCIYA.docx` — Word
+- `00-INSTRUKCIYA.pdf` — PDF
 - `01-30-bazovye-pakety/01-zakrytie-rabot/` — пакет "КС подписаны — денег нет"
 - `01-30-bazovye-pakety/02-dopraboty-bez-poter/` — пакет "Допы не в подарок"
 - `01-30-bazovye-pakety/03-dogovor-podryada/` — пакет "Договор подряда"
