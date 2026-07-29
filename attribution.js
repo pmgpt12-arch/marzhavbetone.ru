@@ -1,4 +1,37 @@
 /**
+ * Яндекс.Метрика.
+ *
+ * Стоит здесь, а не в app.js, потому что attribution.js подключён на всех
+ * тридцати страницах, включая статьи без корзины — а именно статьи служат
+ * точками входа по UTM-ссылкам. app.js грузят только девять страниц.
+ *
+ * Пока номер счётчика равен нулю, ничего не происходит: скрипт не грузится,
+ * а `trackGoal` в app.js молчит по своему же условию на window.METRIKA_ID.
+ * Так эта правка безопасна до того, как счётчик заведён.
+ */
+window.METRIKA_ID = 0;   // ← сюда номер счётчика из metrika.yandex.ru
+
+if (window.METRIKA_ID) {
+  (function (m, e, t, r, i, k, a) {
+    m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+    m[i].l = 1 * new Date();
+    for (var j = 0; j < document.scripts.length; j++) {
+      if (document.scripts[j].src === r) { return; }
+    }
+    k = e.createElement(t); a = e.getElementsByTagName(t)[0];
+    k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
+  })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+  ym(window.METRIKA_ID, 'init', {
+    webvisor: true,
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true,
+    ecommerce: 'dataLayer'
+  });
+}
+
+/**
  * Запоминает, откуда пришёл посетитель.
  *
  * Отдельный файл, а не часть app.js, по двум причинам: точками входа по
