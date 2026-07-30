@@ -165,8 +165,12 @@ function mvb_build_product_zip(string $sku): ?string
             continue;
         }
         $local = substr($file->getPathname(), strlen($sourceDir) + 1);
-        // Служебные файлы не отдаём покупателю
-        if (basename($local) === '.htaccess' || basename($local) === '00-PISMO-POSLE-POKUPKI.txt') {
+        // Служебные файлы не отдаём покупателю. MANIFEST.md внутренний:
+        // в нём состав, ценовые гипотезы и связь с бесплатными материалами —
+        // это рабочая карточка продукта, а не документ для стройки. Число
+        // файлов на страницах товаров считается по этому же списку исключений.
+        $skip = ['.htaccess', '00-PISMO-POSLE-POKUPKI.txt', 'MANIFEST.md'];
+        if (in_array(basename($local), $skip, true)) {
             continue;
         }
         $zip->addFile($file->getPathname(), $local);
