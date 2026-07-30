@@ -96,7 +96,7 @@ function createCheckoutModal() {
           </label>
           <label class="checkout-consent">
             <input type="checkbox" name="consent" value="yes" required>
-            Принимаю <a href="offer.html" target="_blank">условия оферты</a>
+            Принимаю <a href="/offer.html" target="_blank">условия оферты</a> и соглашаюсь с <a href="/privacy.html" target="_blank">обработкой персональных данных</a>
           </label>
           <button type="submit" class="button checkout-submit">Перейти к оплате</button>
           <p class="checkout-fine">🔒 Оплата через защищённый шлюз ЮКасса. Данные карты не сохраняются на нашем сервере.</p>
