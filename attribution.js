@@ -5,11 +5,17 @@
  * тридцати страницах, включая статьи без корзины — а именно статьи служат
  * точками входа по UTM-ссылкам. app.js грузят только девять страниц.
  *
- * Пока номер счётчика равен нулю, ничего не происходит: скрипт не грузится,
- * а `trackGoal` в app.js молчит по своему же условию на window.METRIKA_ID.
- * Так эта правка безопасна до того, как счётчик заведён.
+ * Условие на METRIKA_ID оставлено сознательно: обнулив его, счётчик можно
+ * выключить целиком одной правкой, не разбирая код. `trackGoal` в app.js
+ * молчит по тому же условию.
+ *
+ * Настройки взяты из кода, выданного Яндексом при создании счётчика. Пиксель
+ * <noscript> из того кода не переносился: он считает посетителей с
+ * отключённым JavaScript, а их доля здесь неизмеримо мала — при том что
+ * вставка потребовала бы правки тридцати трёх файлов и добавила бы запрос к
+ * внешнему адресу на каждой странице.
  */
-window.METRIKA_ID = 0;   // ← сюда номер счётчика из metrika.yandex.ru
+window.METRIKA_ID = 111149105;
 
 if (window.METRIKA_ID) {
   (function (m, e, t, r, i, k, a) {
@@ -20,14 +26,18 @@ if (window.METRIKA_ID) {
     }
     k = e.createElement(t); a = e.getElementsByTagName(t)[0];
     k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
-  })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+  })(window, document, 'script',
+     'https://mc.yandex.ru/metrika/tag.js?id=' + window.METRIKA_ID, 'ym');
 
   ym(window.METRIKA_ID, 'init', {
+    ssr: true,
     webvisor: true,
     clickmap: true,
-    trackLinks: true,
+    ecommerce: 'dataLayer',
+    referrer: document.referrer,
+    url: location.href,
     accurateTrackBounce: true,
-    ecommerce: 'dataLayer'
+    trackLinks: true
   });
 }
 
