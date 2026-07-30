@@ -85,6 +85,11 @@
   </div>
 
   <script>
+    // Контейнер электронной коммерции. Создаётся здесь, а не в attribution.js,
+    // потому что должен существовать до инициализации счётчика (требование
+    // Метрики), а этот скрипт выполняется синхронно раньше attribution.js.
+    window.dataLayer = window.dataLayer || [];
+
     (async function() {
       const params = new URLSearchParams(location.search);
       const orderId = params.get('order');
@@ -133,6 +138,23 @@
               currency: 'RUB'
             });
           }
+          // Отчёт «Электронная коммерция»: те же данные заказа, что и в цели
+          // purchase выше — id, сумма в рублях, валюта; позиции из ответа
+          // check-payment.php (sku, name, цена в копейках).
+          window.dataLayer.push({
+            ecommerce: {
+              currencyCode: 'RUB',
+              purchase: {
+                actionField: { id: orderId, revenue: order.total / 100 },
+                products: (order.items || []).map(item => ({
+                  id: item.sku,
+                  name: item.name || 'Товар',
+                  price: item.price / 100,
+                  quantity: 1
+                }))
+              }
+            }
+          });
           // Показываем ссылки на скачивание, если они готовы
           if (Array.isArray(order.downloads) && order.downloads.length) {
             const linksList = document.getElementById('download-links');
