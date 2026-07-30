@@ -123,6 +123,16 @@
         itemsList.appendChild(totalLi);
         
         if (order.status === 'paid') {
+          // Цель ставится только здесь: success.html открывается и при
+          // неоплаченном заказе, и снаружи этой проверки покупкой считался бы
+          // каждый заход. Сервер отдаёт сумму в копейках.
+          if (typeof window.ym === 'function' && window.METRIKA_ID) {
+            window.ym(window.METRIKA_ID, 'reachGoal', 'purchase', {
+              order_id: orderId,
+              order_price: order.total / 100,
+              currency: 'RUB'
+            });
+          }
           // Показываем ссылки на скачивание, если они готовы
           if (Array.isArray(order.downloads) && order.downloads.length) {
             const linksList = document.getElementById('download-links');
@@ -152,6 +162,6 @@
       }
     })();
   </script>
-  <script src="/attribution.js?v=1"></script>
+  <script src="/attribution.js?v=3"></script>
 </body>
 </html>
