@@ -32,12 +32,12 @@ function saveCart() { localStorage.setItem('marzhavbetone-cart', JSON.stringify(
 function openCart() {
   cartPanel.hidden = false;
   cartBackdrop.hidden = false;
-  document.querySelector('#cart-toggle').setAttribute('aria-expanded', 'true');
+  if (cartToggle) cartToggle.setAttribute('aria-expanded', 'true');
 }
 function closeCart() {
   cartPanel.hidden = true;
   cartBackdrop.hidden = true;
-  document.querySelector('#cart-toggle').setAttribute('aria-expanded', 'false');
+  if (cartToggle) cartToggle.setAttribute('aria-expanded', 'false');
 }
 function renderCart() {
   cartItems.replaceChildren();
@@ -61,12 +61,20 @@ function renderCart() {
   });
 }
 
-document.querySelector('#cart-toggle').addEventListener('click', openCart);
-document.querySelector('#cart-close').addEventListener('click', closeCart);
-cartBackdrop.addEventListener('click', closeCart);
+// Разметки корзины нет на страницах лид-магнитов: там нечего покупать.
+// Без этой проверки первое же обращение к отсутствующей кнопке роняло весь
+// файл — вместе с ним не навешивался обработчик формы ниже, форма уходила
+// обычным POST, и человек, оставивший контакт, видел сырой JSON вместо
+// ссылки на файл. Цель checklist_download при этом не срабатывала никогда.
+const cartToggle = document.querySelector('#cart-toggle');
+const cartClose = document.querySelector('#cart-close');
+if (cartToggle) cartToggle.addEventListener('click', openCart);
+if (cartClose) cartClose.addEventListener('click', closeCart);
+if (cartBackdrop) cartBackdrop.addEventListener('click', closeCart);
 document.querySelectorAll('.add-to-cart').forEach(button => button.addEventListener('click', () => {
   if (!cart.some(item => item.name === button.dataset.product)) cart.push({ sku: button.dataset.sku || '', name: button.dataset.product, price: Number(button.dataset.price) });
   saveCart(); renderCart(); openCart();
+  trackGoal('add_to_cart');
 }));
 
 // ===================== ОПЛАТА ЧЕРЕЗ ЮКАССА =====================
@@ -192,6 +200,11 @@ function createCheckoutModal() {
 }
 
 function openCheckout() {
+  // Между «положил в корзину» и «заплатил» не было ни одной цели: отвал на
+  // форме e-mail не отличался от отвала уже на странице ЮKassa. Две цели
+  // ниже разделяют эти два случая, а без них любая правка воронки
+  // оценивается на глаз.
+  trackGoal('checkout_open');
   createCheckoutModal();
   const modal = document.getElementById('checkout-modal');
   const itemsEl = document.getElementById('checkout-items');
