@@ -22,8 +22,17 @@ ROOT = Path(__file__).resolve().parent.parent
 ARTICLES = ROOT / "articles"
 PROMPTS = ROOT / "content" / "covers"
 
-# Заглушки из build_cover.py — это текст на однородном фоне, они лёгкие.
-# Сгенерированные сцены весят на порядок больше при тех же размерах.
+# Заглушку из build_cover.py опознаём по её формату, а не по весу.
+# Вес обманывает: 01.08.2026 сгенерированная ночная сцена уложилась в
+# 167 КБ — тёмный кадр жмётся, — и проверка объявила её заглушкой, которой
+# «не хватает промпта». Ложная тревога в проверке стоит доверия ко всем
+# остальным её строкам.
+#
+# build_cover.py рисует ровно 1200x630 PNG (см. WIDTH, HEIGHT в нём) —
+# это og:image по стандарту и ни один прогон генератора такого размера не
+# даёт: у него 16:9. Пара «PNG и точно 1200x630» и есть подпись заглушки.
+PLACEHOLDER_SIZE = (1200, 630)
+# Вес остался вторым признаком, но уже не самостоятельным
 PLACEHOLDER_LIMIT_KB = 200
 # Ниже этого обложка мылит на ретине. Порог Дзена — 480x320, он ниже,
 # поэтому ограничивает нас именно экран, а не площадка
@@ -69,11 +78,16 @@ def main() -> int:
         with Image.open(asset) as image:
             width, height = image.size
 
-        if size_kb < PLACEHOLDER_LIMIT_KB:
+        if (width, height) == PLACEHOLDER_SIZE and size_kb < PLACEHOLDER_LIMIT_KB:
             prompt = PROMPTS.glob(f"*{asset.stem[:12]}*")
             has_prompt = any(prompt)
             note = "заглушка из build_cover.py"
-            note += ", промпт готов" if has_prompt else ", ПРОМПТА НЕТ"
+            # Запасные промпты лежат здесь, рабочие — в prompts-articles.yaml
+            # репозитория ai-business-os, куда этой проверке не дотянуться.
+            # Поэтому «ПРОМПТА НЕТ» означает «здесь нет», а не «нигде нет»
+            note += ", запасной промпт есть" if has_prompt else (
+                ", запасного промпта нет — рабочие в prompts-articles.yaml "
+                "репозитория ai-business-os")
             todo.append((asset.name, title, note))
         elif max(width, height) < MIN_LONG_SIDE:
             todo.append((asset.name, title,
