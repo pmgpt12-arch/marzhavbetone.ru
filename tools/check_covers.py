@@ -40,6 +40,12 @@ def article_title(text: str) -> str:
 def main() -> int:
     todo: list[tuple[str, str, str]] = []
     ratios: dict[str, list[str]] = {}
+    # Кто чью обложку использует. Переиспользованный кадр проходит все
+    # проверки ниже — он существует, он тяжёлый, он большой, — и проверка
+    # молча зеленеет на статье, у которой своей обложки нет. 01.08.2026
+    # так и вышло: восемь новых разборов взяли по одной картинке на
+    # кластер, а check_covers отчитался «требуют внимания: 0»
+    users: dict[str, list[str]] = {}
     checked = 0
 
     for path in sorted(ARTICLES.glob("*.html")):
@@ -75,6 +81,7 @@ def main() -> int:
                          f"{MIN_LONG_SIDE} px по длинной стороне"))
 
         ratios.setdefault(f"{width}x{height}", []).append(asset.name)
+        users.setdefault(asset.name, []).append(title)
 
     if todo:
         print("Нужна обложка:\n")
@@ -83,6 +90,18 @@ def main() -> int:
             print(f"      {asset} — {note}")
     else:
         print("Все разборы с обложками.")
+
+    shared = {name: titles for name, titles in users.items() if len(titles) > 1}
+    if shared:
+        # Замечание, а не задача: своя обложка у каждого разбора — решение
+        # владельца, а не требование. Но знать, где кадр делится, надо:
+        # в списке разборов две одинаковые карточки рядом читаются как
+        # дубль статьи
+        print("\nК сведению — одна обложка на несколько разборов:")
+        for name, titles in sorted(shared.items(), key=lambda item: -len(item[1])):
+            print(f"  {name} — {len(titles)}:")
+            for title in titles:
+                print(f"      {title}")
 
     if len(ratios) > 1:
         # Это замечание, а не задача: пропорция не мешает публикации, но
