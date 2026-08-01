@@ -49,7 +49,6 @@ CLUSTERS = {
         "garantiynoe-uderzhanie-chto-eto.html",
         "srok-garantiynogo-uderzhaniya.html",
         "vozvrat-garantiynogo-uderzhaniya.html",
-        "garantiynoe-uderzhanie.html",
         "genpodryadchik-zarabatyvaet-na-vas.html",
     ],
     "неоплата и закрытие работ": [

@@ -5,6 +5,12 @@
 **Длительность:** 22 секунды
 **Ссылка:** `https://marzhavbetone.ru/articles/garantiynoe-uderzhanie.html?utm_source=instagram&utm_medium=reels&utm_campaign=uderzhanie-5-mln`
 
+> **01.08.2026.** Страница по этой ссылке снята решением владельца.
+> Адрес не битый: в `.htaccess` стоит постоянный редирект на
+> `/articles/garantiynoe-uderzhanie-chto-eto.html`. Ссылку в самом рилсе
+> менять поздно — он опубликован; поэтому редирект и нужен.
+
+
 ---
 
 ## Крючок (0–3 с)
