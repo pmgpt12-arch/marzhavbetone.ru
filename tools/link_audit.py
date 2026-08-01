@@ -51,18 +51,26 @@ CLUSTERS = {
         "vozvrat-garantiynogo-uderzhaniya.html",
         "genpodryadchik-zarabatyvaet-na-vas.html",
     ],
+    "банкротство и реестр кредиторов": [
+        "bankrotstvo-genpodryadchika-5-markerov.html",
+        "reestr-trebovaniy-kreditorov.html",
+        "vklyuchenie-v-reestr-trebovaniy-kreditorov.html",
+        "srok-vklyucheniya-v-reestr-trebovaniy-kreditorov.html",
+        "zayavlenie-o-vklyuchenii-v-reestr-trebovaniy.html",
+        "zapros-arbitrazhnomu-upravlyayushchemu.html",
+    ],
+    "аванс": [
+        "avans-eto-ne-dengi-eto-kryuchok.html",
+        "neotrabotannyy-avans.html",
+        "vozvrat-avansa-po-dogovoru-podryada.html",
+        "bankovskaya-garantiya-na-vozvrat-avansa.html",
+    ],
     "неоплата и закрытие работ": [
         "podpisannaya-ks2-ne-znachit-chto-zaplatyat.html",
         "raboty-ne-prinyaty.html",
     ],
     "допработы": [
         "dopraboty-bez-soglasheniya.html",
-    ],
-    "банкротство": [
-        "bankrotstvo-genpodryadchika-5-markerov.html",
-    ],
-    "аванс": [
-        "avans-eto-ne-dengi-eto-kryuchok.html",
     ],
 }
 
