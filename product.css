@@ -69,3 +69,19 @@
 @media(max-width:600px){
   .topbar .cart-toggle{display:inline-flex}
 }
+
+/* Блок состава комплекта. Таблица широкая по устройству — три колонки с
+   текстом, — поэтому на узком экране она прокручивается внутри своей
+   рамки, а не растягивает страницу: горизонтальная прокрутка всей
+   страницы ломает чтение на телефоне, а половина трафика оттуда. */
+.kit-composition{margin-top:40px}
+.kit-composition h3{margin:28px 0 8px}
+.kit-composition>p{max-width:60ch}
+.kit-files{width:100%;border-collapse:collapse;margin:12px 0 4px;font-size:15px;display:block;overflow-x:auto;white-space:normal}
+.kit-files thead th{text-align:left;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:#6b6862;border-bottom:1px solid #d6d2c8;padding:8px 12px 8px 0}
+.kit-files td{vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid #e8e4da}
+.kit-files td:first-child{min-width:15ch}
+.kit-files td:nth-child(2){min-width:14ch;color:#6b6862}
+.kit-files td:last-child{min-width:34ch}
+.kit-files code{font-size:13px;background:#f0ece2;padding:1px 4px;border-radius:3px}
+@media(max-width:700px){.kit-files{font-size:14px}.kit-files td:last-child{min-width:26ch}}
