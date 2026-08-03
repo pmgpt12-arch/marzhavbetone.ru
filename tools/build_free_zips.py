@@ -26,6 +26,8 @@ MATERIALS = {
     "dengi": "00-free-ks-podpisany-deneg-net",
     "dop-raboty": "00-free-dopy-ne-v-podarok",
     "vozvrat-ks": "00-free-ks-bez-vozvrata",
+    "uderzhaniya": "00-free-uderzhaniya-do-podpisi",
+    "dogovor": "00-free-dogovor-do-podpisi",
 }
 
 
