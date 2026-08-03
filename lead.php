@@ -33,6 +33,17 @@ const MVB_MATERIALS = [
         'title' => 'КС без возврата: проверочный лист комплекта',
         'label' => 'Скачать материалы (ZIP)',
     ],
+
+    'uderzhaniya' => [
+        'file'  => '/downloads/uderzhaniya.zip',
+        'title' => 'Гарантийное удержание: что проверить до подписи',
+        'label' => 'Скачать материалы (ZIP)',
+    ],
+    'dogovor' => [
+        'file'  => '/downloads/dogovor.zip',
+        'title' => 'Договор субподряда: красные флаги до подписи',
+        'label' => 'Скачать материалы (ZIP)',
+    ],
 ];
 
 $name=trim((string)($_POST['name']??'')); $contact=trim((string)($_POST['contact']??'')); $consent=(string)($_POST['consent']??'');
