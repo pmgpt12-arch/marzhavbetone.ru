@@ -28,6 +28,7 @@ MATERIALS = {
     "vozvrat-ks": "00-free-ks-bez-vozvrata",
     "uderzhaniya": "00-free-uderzhaniya-do-podpisi",
     "dogovor": "00-free-dogovor-do-podpisi",
+    "bankrotstvo": "00-free-bankrotstvo-proverka",
 }
 
 
