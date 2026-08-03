@@ -225,15 +225,22 @@ function openCheckout() {
   closeCart();
 }
 
-cartCheckout.addEventListener('click', openCheckout);
+if (cartCheckout) cartCheckout.addEventListener('click', openCheckout);
 
 // ===================== СТАРАЯ ЛОГИКА (оставлена для совместимости) =====================
-cartCheckout.addEventListener('click', () => {
-  // Если корзина пуста — ничего не делаем
-  if (cart.length === 0) return;
-});
+// Проверка на существование корзины обязательна: страницы лид-магнитов и
+// статьи её не содержат, и обращение к null здесь роняло весь остаток
+// файла — включая обработчик формы бесплатного материала ниже. Форма
+// уходила обычным POST, браузер показывал JSON вместо кнопки скачивания,
+// а цель checklist_download не срабатывала никогда.
+if (cartCheckout) {
+  cartCheckout.addEventListener('click', () => {
+    // Если корзина пуста — ничего не делаем
+    if (cart.length === 0) return;
+  });
+}
 
-renderCart();
+if (cartItems && cartCount && cartTotal && cartEmpty && cartCheckout) renderCart();
 
 document.querySelectorAll('.product-select').forEach(link => link.addEventListener('click', () => {
   document.querySelector('#product').value = link.dataset.product;
