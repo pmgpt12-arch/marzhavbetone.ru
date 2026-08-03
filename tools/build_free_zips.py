@@ -19,8 +19,11 @@ ROOT = Path(__file__).resolve().parent.parent
 STORAGE = ROOT / "products-storage"
 DOWNLOADS = ROOT / "downloads"
 
-# Служебные файлы покупателю не отдаём — как в mvb_build_product_zip
-SKIP = {"00-PISMO-POSLE-POKUPKI.txt", ".htaccess"}
+# Служебные файлы покупателю не отдаём — тот же список, что в
+# mvb_build_product_zip. MANIFEST.md сюда добавлен 03.08.2026: он внутренний
+# документ с логикой воронки и границей платного, а страницы обещают четыре
+# файла — архив с пятым обещанию не соответствовал.
+SKIP = {"00-PISMO-POSLE-POKUPKI.txt", ".htaccess", "MANIFEST.md"}
 
 MATERIALS = {
     "dengi": "00-free-ks-podpisany-deneg-net",
@@ -29,6 +32,7 @@ MATERIALS = {
     "uderzhaniya": "00-free-uderzhaniya-do-podpisi",
     "dogovor": "00-free-dogovor-do-podpisi",
     "bankrotstvo": "00-free-bankrotstvo-proverka",
+    "avans": "00-free-avans-do-podpisi",
 }
 
 

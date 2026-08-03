@@ -49,6 +49,11 @@ const MVB_MATERIALS = [
         'title' => 'Банкротство заказчика: проверка контрагента до подписи',
         'label' => 'Скачать материалы (ZIP)',
     ],
+    'avans' => [
+        'file'  => '/downloads/avans.zip',
+        'title' => 'Аванс и обеспечение: что проверить до подписи',
+        'label' => 'Скачать материалы (ZIP)',
+    ],
 ];
 
 $name=trim((string)($_POST['name']??'')); $contact=trim((string)($_POST['contact']??'')); $consent=(string)($_POST['consent']??'');

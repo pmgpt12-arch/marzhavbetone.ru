@@ -42,6 +42,7 @@ GitHub Secrets, ключи кассы — только в `config.php` на се
 ```bash
 python3 tools/check_products.py   # каталог кассы против плана линейки
 python3 tools/check_packages.py   # состав против манифестов, копии внутри P6
+python3 tools/check_free_materials.py  # бесплатные: папка, архив, страница, врезка
 python3 tools/check_covers.py     # каким разборам нужна обложка
 python3 tools/check_reel.py       # сценарии роликов
 python3 tools/dzen_channel.py     # что уже опубликовано в Дзене, дубли
