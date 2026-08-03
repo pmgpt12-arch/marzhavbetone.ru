@@ -44,6 +44,11 @@ const MVB_MATERIALS = [
         'title' => 'Договор субподряда: красные флаги до подписи',
         'label' => 'Скачать материалы (ZIP)',
     ],
+    'bankrotstvo' => [
+        'file'  => '/downloads/bankrotstvo.zip',
+        'title' => 'Банкротство заказчика: проверка контрагента до подписи',
+        'label' => 'Скачать материалы (ZIP)',
+    ],
 ];
 
 $name=trim((string)($_POST['name']??'')); $contact=trim((string)($_POST['contact']??'')); $consent=(string)($_POST['consent']??'');
