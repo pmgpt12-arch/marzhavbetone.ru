@@ -9,6 +9,8 @@
     tools/build_free_zips.py        ключ → папка, из которой собран архив
     materialy/<ключ>.html           страница: форма и перечень «что внутри»
     tools/insert_lead_blocks.py     врезка в статьи: заголовок и перечень
+    index.html                      карточка на витрине
+    sitemap.xml                     адрес для поисковых систем
 
 Расхождение здесь тихое и дорогое одновременно. Три страницы полгода
 перечисляли файлы чужого материала — ссылки при этом были живыми, формы
@@ -69,6 +71,8 @@ def main() -> int:
     lead = keys_from_lead()
     builder = keys_from_builder()
     blocks = keys_from_blocks()
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
     problems: list[str] = []
 
     # 1. Один и тот же набор ключей в форме, сборщике архивов и врезке
@@ -138,6 +142,16 @@ def main() -> int:
         if key in blocks and len(blocks[key]) != len(files):
             problems.append(f"{key}: врезка в статьях обещает "
                             f"{len(blocks[key])} файлов, в папке {len(files)}")
+
+        # 5. Материал виден не только из статьи: карточка на витрине и
+        #    адрес в карте сайта. Ровно это и забылось при седьмом
+        #    материале — страница была готова, а с главной на неё не вело
+        #    ничего, и поисковые системы о ней не знали.
+        if f"materialy/{key}.html" not in home:
+            problems.append(f"{key}: нет карточки на главной")
+        if f"/materialy/{key}.html</loc>" not in sitemap:
+            problems.append(f"{key}: нет в sitemap.xml — "
+                            f"запустите tools/build_sitemap.py")
 
     for line in problems:
         print(f"РАСХОЖДЕНИЕ  {line}")
