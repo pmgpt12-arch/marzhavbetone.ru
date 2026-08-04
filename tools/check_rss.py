@@ -44,8 +44,16 @@ def main() -> int:
         subprocess.run([sys.executable, str(ROOT / "tools" / "build_rss.py")],
                        cwd=ROOT, check=True, capture_output=True)
 
+    # Статьи, опубликованные в Дзене вручную, из фида исключены намеренно:
+    # спрашивать с них содержимое значило бы жечь проверку на своём же
+    # решении. Список берётся из сборщика, а не повторяется здесь — две
+    # копии разошлись бы молча.
+    sys.path.insert(0, str(ROOT / "tools"))
+    from build_rss import PUBLISHED_BY_HAND
+
     feed = FEED.read_text(encoding="utf-8")
-    articles = [p for p in sorted(ARTICLES.glob("*.html")) if p.name != "index.html"]
+    articles = [p for p in sorted(ARTICLES.glob("*.html"))
+                if p.name != "index.html" and p.stem not in PUBLISHED_BY_HAND]
 
     problems: list[str] = []
     checked = 0
@@ -65,8 +73,9 @@ def main() -> int:
 
     for line in problems:
         print(f"РАСХОЖДЕНИЕ  {line}")
-    print(f"\nСтатей: {len(articles)}, таблиц проверено: {checked}, "
-          f"материалов в фиде: {items}, расхождений: {len(problems)}")
+    print(f"\nСтатей в фиде: {len(articles)}, исключено вручную "
+          f"опубликованных: {len(PUBLISHED_BY_HAND)}, таблиц проверено: "
+          f"{checked}, материалов в фиде: {items}, расхождений: {len(problems)}")
     if items < 10:
         print("В фиде меньше десяти материалов — Дзен трансляцию не включит.")
         return 1

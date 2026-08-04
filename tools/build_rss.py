@@ -40,6 +40,33 @@ MSK = timezone(timedelta(hours=3))
 ALLOWED_TAGS = {"p", "h2", "h3", "ul", "ol", "li", "strong", "em", "br", "a", "blockquote"}
 
 
+# Статьи, опубликованные в Дзене вручную до включения RSS-трансляции.
+#
+# Дзен привозит из фида всё, чего у него ещё нет, и по одному адресу
+# заводит вторую публикацию: накопленные дочитывания и подписчики
+# остаются у первой, а показы делятся между двумя. Поэтому исключение
+# делается ДО включения трансляции, а не после.
+#
+# Список снят с экрана Студии 04.08.2026: одиннадцать опубликованных,
+# сопоставлены с заготовками content/dzen по заголовку. Репозиторий до
+# этого считал девять — счёт вёлся по сверке канала от 27.07 и отстал.
+#
+# Что заставит пересмотреть: удаление ручной публикации в Студии. Тогда
+# статью надо вернуть в фид, иначе она не попадёт в Дзен вовсе.
+PUBLISHED_BY_HAND = {
+    "genpodryadchik-zarabatyvaet-na-vas",          # материал 01
+    "avans-eto-ne-dengi-eto-kryuchok",             # 02
+    "bankrotstvo-genpodryadchika-5-markerov",      # 03
+    "skidka-15-procentov-na-tendere-eto-otbor-zhertv",  # 04
+    "pyat-dokazatelstv-vypolneniya",               # 05
+    "podpisannaya-ks2-ne-znachit-chto-zaplatyat",  # 06
+    "stroitelnaya-smeta-gde-teryaetsya-marzha",    # 07
+    "akt-skrytyh-rabot-obrazec",                   # 08
+    "krasnye-flagi-dogovora-subpodryada",          # 09
+    "vklyuchenie-v-reestr-trebovaniy-kreditorov",  # 11
+    "neotrabotannyy-avans",                        # 15
+}
+
 def meta(source: str, prop: str) -> str | None:
     """Значение og:/name-метатега."""
     pattern = rf'<meta\s+(?:property|name)="{re.escape(prop)}"\s+content="([^"]*)"'
@@ -171,8 +198,12 @@ def article_body(source: str) -> str:
 
 def collect() -> list[dict]:
     items = []
+    skipped = []
     for path in sorted(ARTICLES.glob("*.html")):
         if path.name == "index.html":
+            continue
+        if path.stem in PUBLISHED_BY_HAND:
+            skipped.append(path.stem)
             continue
         source = path.read_text(encoding="utf-8")
 
@@ -219,6 +250,9 @@ def collect() -> list[dict]:
         })
 
     items.sort(key=lambda item: item["date"], reverse=True)
+    if skipped:
+        print(f"исключено как опубликованное вручную: {len(skipped)} — "
+              + ", ".join(sorted(skipped)))
     return items
 
 
