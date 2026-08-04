@@ -30,6 +30,7 @@ ROUTES: list[tuple[tuple[str, ...], str]] = [
     (("products-storage/",), "check_packages.py"),
     (("content/reels/",), "check_reel.py"),
     (("articles/", "assets/", "content/covers/"), "check_covers.py"),
+    (("articles/", "tools/build_rss.py"), "check_rss.py"),
 ]
 
 TIMEOUT = 60
