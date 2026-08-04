@@ -86,6 +86,48 @@ def strip_tags(fragment: str) -> str:
     return re.sub(r"<[^>]+>", "", fragment).strip()
 
 
+def table_to_list(fragment: str) -> str:
+    """Таблицу — в список: Дзен внутри content:encoded таблиц не принимает.
+
+    Раньше таблица не вырезалась, а просто не попадала в разбор: цикл идёт
+    по p, h2, h3, спискам и цитатам, table в этот перечень не входит, и
+    текст молча смыкался. В восемнадцати статьях из двадцати девяти это от
+    трёх до двадцати одного процента текста, а в разборах формулировок —
+    вся суть: колонка «что делает с деньгами» и есть материал.
+
+    Заголовок таблицы становится подписью к каждой строке: «Формулировка —
+    что делает: …; что спросить: …». Многословнее таблицы, зато читается
+    подряд и на телефоне лучше, чем таблица в семь колонок.
+    """
+    rows = re.findall(r"<tr[^>]*>(.*?)</tr>", fragment, re.S)
+    if not rows:
+        return ""
+    cells = [re.findall(r"<t[hd][^>]*>(.*?)</t[hd]>", row, re.S) for row in rows]
+    cells = [[strip_tags(c).strip() for c in row] for row in cells if row]
+    if not cells:
+        return ""
+
+    head, body = ([], cells) if len(cells) == 1 else (cells[0], cells[1:])
+    # Шапкой считаем первую строку, только если она из th
+    if "<th" not in rows[0]:
+        head, body = [], cells
+
+    items = []
+    for row in body:
+        if not any(row):
+            continue
+        first, rest = row[0], row[1:]
+        parts = []
+        for i, value in enumerate(rest, start=1):
+            if not value:
+                continue
+            label = head[i] if i < len(head) and head[i] else ""
+            parts.append(f"{label}: {value}" if label else value)
+        tail = "; ".join(parts)
+        items.append(f"<li><strong>{first}</strong>{' — ' + tail if tail else ''}</li>")
+    return "<ul>" + "".join(items) + "</ul>" if items else ""
+
+
 def article_body(source: str) -> str:
     """Текст статьи для content:encoded: лид, заголовки, абзацы, списки."""
     main = re.search(r"<main[^>]*>(.*?)</main>", source, re.S)
@@ -99,6 +141,11 @@ def article_body(source: str) -> str:
 
     # Навигация (хлебные крошки) в текст статьи не идёт
     body = re.sub(r"<nav\b.*?</nav>", "", body, flags=re.S)
+
+    # Таблицы — в списки до разбора по блокам: иначе они не попадут в него
+    # вовсе и исчезнут молча
+    body = re.sub(r"<table\b.*?</table>", lambda m: table_to_list(m.group(0)),
+                  body, flags=re.S)
 
     blocks: list[str] = []
     pattern = re.compile(
