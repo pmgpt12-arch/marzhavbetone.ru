@@ -162,9 +162,17 @@ def article_body(source: str) -> str:
         return ""
     body = main.group(1)
 
-    # Отрезаем всё после основного текста: кнопки действий и «Читайте также»
-    for cutoff in ('<div class="article-actions"', '<section class="article-links"'):
-        body = body.split(cutoff)[0]
+    # Конец текста — «Читайте также». Рекламные блоки убираются по классу,
+    # а не по положению: прежде границей служил блок кнопок, но он есть не у
+    # всех статей, и у тех, где его нет, карточка комплекта с ценой уезжала
+    # в фид. Замер 04.08.2026: цена стояла в тексте 16 материалов из 18.
+    #
+    # Классы перечислены поимённо, а не маской: маска однажды съест раздел
+    # статьи. Вложенных div внутри этих блоков нет — проверено, поэтому
+    # закрывающий тег ищется первый.
+    body = body.split('<section class="article-links"')[0]
+    for promo in ("article-cta", "article-lead", "article-actions"):
+        body = re.sub(rf'<div class="{promo}".*?</div>', "", body, flags=re.S)
 
     # Навигация (хлебные крошки) в текст статьи не идёт
     body = re.sub(r"<nav\b.*?</nav>", "", body, flags=re.S)
