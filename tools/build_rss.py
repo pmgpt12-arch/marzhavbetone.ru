@@ -68,6 +68,38 @@ PUBLISHED_BY_HAND = {
     "reestr-trebovaniy-kreditorov",                # 10, вышла 05.08
 }
 
+# Выпуск по одной в день. Дзен привозит из фида всё, чего у него ещё нет,
+# поэтому лента, отданная целиком, даёт залп: семнадцать публикаций разом и
+# сломанная калибровка. Решение владельца 05.08.2026 — фид отдаёт только то,
+# чему пришёл срок, и растёт на одну статью в сутки.
+#
+# Даты и порядок — из content/dzen/README.md, чередование денежных узлов.
+# Статья без записи здесь попадает в фид сразу: правило про придержанные, а
+# не про все.
+#
+# Чего это стоит: пока в фиде меньше десяти материалов, Дзен может не дать
+# подключить ленту — у него требование к минимуму. Если откажет, выпустить
+# первые десять одной датой и продолжить посуточно; правка на одну строку.
+RELEASE = {
+    "vozvrat-avansa-po-dogovoru-podryada": "2026-08-05",
+    "garantiynoe-uderzhanie-chto-eto": "2026-08-06",
+    "ispolnitelnaya-dokumentaciya-sostav": "2026-08-07",
+    "bankovskaya-garantiya-na-vozvrat-avansa": "2026-08-08",
+    "protokol-raznoglasiy-k-dogovoru": "2026-08-09",
+    "akt-osvidetelstvovaniya-skrytyh-rabot": "2026-08-10",
+    "srok-vklyucheniya-v-reestr-trebovaniy-kreditorov": "2026-08-11",
+    "stroitelnyy-musor-v-smete": "2026-08-12",
+    "dogovor-subpodryada-obrazec": "2026-08-13",
+    "vozvrat-garantiynogo-uderzhaniya": "2026-08-14",
+    "zayavlenie-o-vklyuchenii-v-reestr-trebovaniy": "2026-08-15",
+    "akt-peredachi-stroitelnoy-ploshchadki-obrazec": "2026-08-16",
+    "vsyo-vklyucheno-v-cenu": "2026-08-17",
+    "zapros-arbitrazhnomu-upravlyayushchemu": "2026-08-18",
+    "srok-garantiynogo-uderzhaniya": "2026-08-19",
+    "dopraboty-bez-soglasheniya": "2026-08-20",
+    "raboty-ne-prinyaty": "2026-08-21",
+}
+
 def meta(source: str, prop: str) -> str | None:
     """Значение og:/name-метатега."""
     pattern = rf'<meta\s+(?:property|name)="{re.escape(prop)}"\s+content="([^"]*)"'
@@ -208,11 +240,17 @@ def article_body(source: str) -> str:
 def collect() -> list[dict]:
     items = []
     skipped = []
+    held: list[tuple[str, str]] = []
+    today = datetime.now(MSK).date().isoformat()
     for path in sorted(ARTICLES.glob("*.html")):
         if path.name == "index.html":
             continue
         if path.stem in PUBLISHED_BY_HAND:
             skipped.append(path.stem)
+            continue
+        due = RELEASE.get(path.stem)
+        if due and due > today:
+            held.append((due, path.stem))
             continue
         source = path.read_text(encoding="utf-8")
 
@@ -260,8 +298,11 @@ def collect() -> list[dict]:
 
     items.sort(key=lambda item: item["date"], reverse=True)
     if skipped:
-        print(f"исключено как опубликованное вручную: {len(skipped)} — "
-              + ", ".join(sorted(skipped)))
+        print(f"исключено как опубликованное вручную: {len(skipped)}")
+    if held:
+        nearest = min(held)
+        print(f"придержано до срока: {len(held)}, ближайшая {nearest[1]} "
+              f"выходит {nearest[0]}")
     return items
 
 
