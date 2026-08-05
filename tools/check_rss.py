@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import html
 import re
+from datetime import date
 import subprocess
 import sys
 from pathlib import Path
@@ -50,7 +51,12 @@ def main() -> int:
     # решении. Список берётся из сборщика, а не повторяется здесь — две
     # копии разошлись бы молча.
     sys.path.insert(0, str(ROOT / "tools"))
-    from build_rss import PUBLISHED_BY_HAND
+    from build_rss import PUBLISHED_BY_HAND, RELEASE
+
+    # Придержанных до срока в фиде нет по замыслу: спрашивать с них
+    # содержимое значило бы жечь проверку на своём же расписании.
+    today = date.today().isoformat()
+    held = {slug for slug, due in RELEASE.items() if due > today}
 
     feed = FEED.read_text(encoding="utf-8")
     # Сравнивать надо нормализованный текст: в фиде разметка, сущности и
@@ -59,7 +65,8 @@ def main() -> int:
     # промолчала.
     flat = " ".join(html.unescape(re.sub(r"<[^>]+>", " ", feed)).split())
     articles = [p for p in sorted(ARTICLES.glob("*.html"))
-                if p.name != "index.html" and p.stem not in PUBLISHED_BY_HAND]
+                if p.name != "index.html"
+                and p.stem not in PUBLISHED_BY_HAND and p.stem not in held]
 
     problems: list[str] = []
     checked = 0
@@ -98,18 +105,39 @@ def main() -> int:
                 problems.append(f"{path.name}: содержимое таблицы не в фиде — "
                                 f"«{probe[:70]}»")
 
+    # Дата публикации не может быть раньше самой ранней статьи проекта.
+    # 2024-01-15 стояло в двух статьях как заглушка из шаблона: Дзен
+    # сортирует привоз по pubDate и такой материал импортирует как
+    # архивный — он не всплывёт в ленте и показов почти не получит.
+    # Порога в днях нет: сравнение идёт с датой первой статьи сайта.
+    dates = re.findall(r"<pubDate>[^,]+,\s*\d+\s+\w+\s+(\d{4})", feed)
+    stale = [d for d in dates if int(d) < 2026]
+    if stale:
+        problems.append(f"в фиде {len(stale)} материалов с датой раньше 2026 "
+                        f"года — похоже на заглушку из шаблона")
+
     # Дзен требует, чтобы в фиде было не меньше десяти материалов
     items = feed.count("<item>")
 
     for line in problems:
         print(f"РАСХОЖДЕНИЕ  {line}")
     print(f"\nСтатей в фиде: {len(articles)}, исключено вручную "
-          f"опубликованных: {len(PUBLISHED_BY_HAND)}, таблиц проверено: "
+          f"опубликованных: {len(PUBLISHED_BY_HAND)}, придержано до срока: "
+          f"{len(held)}, таблиц проверено: "
           f"{checked}, материалов в фиде: {items}, расхождений: {len(problems)}"
           + (f", реклама в фиде: {leaked}" if leaked else ""))
     if items < 10:
-        print("В фиде меньше десяти материалов — Дзен трансляцию не включит.")
-        return 1
+        if held:
+            # Пока идёт выпуск по одной в день, малый фид — не поломка, а
+            # заявленное состояние: через столько дней он дорастёт сам.
+            print(f"В фиде {items} материалов при пороге Дзена в десять. "
+                  f"Придержано до срока: {len(held)}. Порог будет взят "
+                  f"{10 - items} дней спустя — если Дзен откажется "
+                  f"подключать ленту раньше, выпустить первые десять одной "
+                  f"датой.")
+        else:
+            print("В фиде меньше десяти материалов — Дзен трансляцию не включит.")
+            return 1
     return 1 if problems else 0
 
 
