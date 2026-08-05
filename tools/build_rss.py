@@ -65,6 +65,7 @@ PUBLISHED_BY_HAND = {
     "krasnye-flagi-dogovora-subpodryada",          # 09
     "vklyuchenie-v-reestr-trebovaniy-kreditorov",  # 11
     "neotrabotannyy-avans",                        # 15
+    "reestr-trebovaniy-kreditorov",                # 10, вышла 05.08
 }
 
 def meta(source: str, prop: str) -> str | None:
