@@ -36,8 +36,19 @@ CHANNEL_DESCRIPTION = (
 AUTHOR = "Александр Сергеев"
 MSK = timezone(timedelta(hours=3))
 
-# Разметка, разрешённая Дзеном внутри content:encoded
-ALLOWED_TAGS = {"p", "h2", "h3", "ul", "ol", "li", "strong", "em", "br", "a", "blockquote"}
+# Разметка, разрешённая Дзеном внутри content:encoded — список площадки
+# дословно: p, a, b, i, u, s, h1-h4, blockquote, ul/li, ol/li, figure, img,
+# video (dzen.ru/help/ru/website/rss-modify.html). Наш прежний список был
+# написан по памяти и включал strong, em и br, которых там нет.
+ALLOWED_TAGS = {
+    "p", "a", "b", "i", "u", "s", "h1", "h2", "h3", "h4",
+    "blockquote", "ul", "li", "ol", "figure", "img", "video",
+}
+
+# Что сайт пишет одним тегом, а Дзен принимает другим. Выкидывать было бы
+# потерей смысла: 228 выделений на семнадцать статей — это термины и суммы,
+# ради которых абзац и написан.
+TAG_SWAP = {"strong": "b", "em": "i"}
 
 
 # Статьи, опубликованные в Дзене вручную до включения RSS-трансляции.
@@ -77,36 +88,46 @@ PUBLISHED_BY_HAND = {
 # Статья без записи здесь попадает в фид сразу: правило про придержанные, а
 # не про все.
 #
-# Чего это стоит — замерено 05.08.2026, и меньше, чем считалось. Заявку на
-# подключение ленты Дзен принял при одном материале в фиде: «Приняли вашу
-# заявку… проверить разметку ленты — обычно это занимает несколько дней».
-# Значит порога в десять материалов на подаче нет; проверяют разметку, а её
-# видно и по одному. Остаётся неизвестным, откажет ли модерация из-за малого
-# фида — но ждать её как раз выгодно: сколько дней идёт проверка, столько
-# материалов в фиде и накопится, а после включения они приезжают разом. Тогда
-# посуточный выпуск продолжится сам собой.
+# Чего это стоило, замерено по часам. 05.08 в 21:47 МСК придержание слилось в
+# main и срезало фид с восемнадцати материалов до одного. В 21:57 подана
+# заявка на разметку ленты — площадка ответила «приняли, проверим за
+# несколько дней». 06.08 в 15:02 пришёл отказ: «Содержимое RSS ленты не
+# соответствует требованиям Дзена к контенту».
 #
-# Если модерация всё же откажет по числу материалов, выпустить первые десять
-# одной датой и продолжить посуточно; правка на одну строку. Цена этого хода
-# названа: при включении трансляции они приедут в канал одним заходом.
+# Здесь стояла запись, что порога в десять материалов нет — раз заявку
+# приняли при одном. Она неверна дважды. «Приняли» означало «поставили в
+# очередь», а не «проверили»; а порог записан у площадки прямо: «При первой
+# разметке лента должна содержать минимум 10 материалов»
+# (dzen.ru/help/ru/website/rss-modify.html).
+#
+# Отсюда порядок: до подключения фид держит десять и больше, посуточный
+# выпуск идёт хвостом. Темп нужен каналу, а не приёмной комиссии.
 RELEASE = {
-    "vozvrat-avansa-po-dogovoru-podryada": "2026-08-05",
-    "garantiynoe-uderzhanie-chto-eto": "2026-08-06",
+    # Первые десять открыты одной датой: 06.08.2026 Дзен отказал в разметке
+    # ленты, и посуточное придержание — прямая причина отказа. Требование
+    # площадки: «При первой разметке лента должна содержать минимум 10
+    # материалов» (dzen.ru/help/ru/website/rss-modify.html). Придержание
+    # оставило в фиде один материал, его модерация и увидела.
+    "vozvrat-avansa-po-dogovoru-podryada": "2026-08-07",
+    "garantiynoe-uderzhanie-chto-eto": "2026-08-07",
     "ispolnitelnaya-dokumentaciya-sostav": "2026-08-07",
-    "bankovskaya-garantiya-na-vozvrat-avansa": "2026-08-08",
-    "protokol-raznoglasiy-k-dogovoru": "2026-08-09",
-    "akt-osvidetelstvovaniya-skrytyh-rabot": "2026-08-10",
-    "srok-vklyucheniya-v-reestr-trebovaniy-kreditorov": "2026-08-11",
-    "stroitelnyy-musor-v-smete": "2026-08-12",
-    "dogovor-subpodryada-obrazec": "2026-08-13",
-    "vozvrat-garantiynogo-uderzhaniya": "2026-08-14",
-    "zayavlenie-o-vklyuchenii-v-reestr-trebovaniy": "2026-08-15",
-    "akt-peredachi-stroitelnoy-ploshchadki-obrazec": "2026-08-16",
-    "vsyo-vklyucheno-v-cenu": "2026-08-17",
-    "zapros-arbitrazhnomu-upravlyayushchemu": "2026-08-18",
-    "srok-garantiynogo-uderzhaniya": "2026-08-19",
-    "dopraboty-bez-soglasheniya": "2026-08-20",
-    "raboty-ne-prinyaty": "2026-08-21",
+    "bankovskaya-garantiya-na-vozvrat-avansa": "2026-08-07",
+    "protokol-raznoglasiy-k-dogovoru": "2026-08-07",
+    "akt-osvidetelstvovaniya-skrytyh-rabot": "2026-08-07",
+    "srok-vklyucheniya-v-reestr-trebovaniy-kreditorov": "2026-08-07",
+    "stroitelnyy-musor-v-smete": "2026-08-07",
+    "dogovor-subpodryada-obrazec": "2026-08-07",
+    "vozvrat-garantiynogo-uderzhaniya": "2026-08-07",
+    # Остальные семь идут посуточно: темп нужен уже подключённому каналу, а
+    # не приёмной комиссии. Цена первых десяти названа — при включении
+    # трансляции они приедут одним заходом.
+    "zayavlenie-o-vklyuchenii-v-reestr-trebovaniy": "2026-08-08",
+    "akt-peredachi-stroitelnoy-ploshchadki-obrazec": "2026-08-09",
+    "vsyo-vklyucheno-v-cenu": "2026-08-10",
+    "zapros-arbitrazhnomu-upravlyayushchemu": "2026-08-11",
+    "srok-garantiynogo-uderzhaniya": "2026-08-12",
+    "dopraboty-bez-soglasheniya": "2026-08-13",
+    "raboty-ne-prinyaty": "2026-08-14",
 }
 
 def meta(source: str, prop: str) -> str | None:
@@ -236,7 +257,15 @@ def article_body(source: str) -> str:
         inner = inner.strip()
         if not inner or not strip_tags(inner):
             continue
-        # Оставляем только разрешённые Дзеном теги
+        # Сначала переводим теги-синонимы в те, что принимает Дзен, потом
+        # выкидываем всё, чего в его списке нет. Порядок важен: наоборот
+        # strong и em были бы вырезаны раньше, чем заменены.
+        inner = re.sub(
+            r"<(/?)(strong|em)(\s[^>]*)?>",
+            lambda m: f"<{m.group(1)}{TAG_SWAP[m.group(2).lower()]}>",
+            inner,
+            flags=re.I,
+        )
         inner = re.sub(
             r"</?([a-zA-Z0-9]+)([^>]*)>",
             lambda m: m.group(0) if m.group(1).lower() in ALLOWED_TAGS else "",
@@ -322,8 +351,12 @@ def build(items: list[dict]) -> str:
     parts = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<rss version="2.0"',
-        '     xmlns:content="https://purl.org/rss/1.0/modules/content/"',
-        '     xmlns:media="https://search.yahoo.com/mrss/">',
+        # Именно http, а не https: пространство имён — это строка-имя, а не
+        # адрес, по которому ходят. Парсер сверяет её посимвольно, и по
+        # https-варианту content:encoded для него просто не существует —
+        # материал уходит без полного текста. Так в примере площадки.
+        '     xmlns:content="http://purl.org/rss/1.0/modules/content/"',
+        '     xmlns:media="http://search.yahoo.com/mrss/">',
         "  <channel>",
         f"    <title>{esc(CHANNEL_TITLE)}</title>",
         f"    <link>{SITE}/</link>",
@@ -331,10 +364,13 @@ def build(items: list[dict]) -> str:
         "    <language>ru</language>",
     ]
     for item in items:
-        # Ссылка внутри текста помечена UTM — так видно переходы из Дзена
+        # Ссылка без параметров. UTM здесь стоял ради атрибуции, но наш же
+        # robots.txt запрещает `/*?utm_`: мы звали Дзен туда, куда сами
+        # закрыли вход, а площадка требует адреса «без UTM-меток и других
+        # параметров». Переходы остаются видны в Метрике по источнику
+        # dzen.ru — это грубее, чем метка, и это осознанная потеря.
         cta = (
-            f'<p><a href="{SITE}/?utm_source=dzen&amp;utm_medium=article'
-            f'&amp;utm_campaign=rss">Комплекты документов для подрядчиков '
+            f'<p><a href="{SITE}/">Комплекты документов для подрядчиков '
             f"на «Марже в бетоне»</a></p>"
         )
         parts += [
@@ -366,9 +402,9 @@ def main() -> int:
     print(f"rss.xml собран: {len(items)} материалов")
     if len(items) < 10:
         print(
-            f"В фиде {len(items)} материалов. Заявку Дзен принял при одном "
-            f"(05.08.2026), так что это состояние, а не поломка: до десяти "
-            f"фид дорастёт за {10 - len(items)} дней."
+            f"ВНИМАНИЕ: в фиде {len(items)} материалов при требовании "
+            f"площадки в десять на первой разметке. С таким фидом ленту на "
+            f"проверку подавать нечего — 06.08.2026 по этой причине отказали."
         )
     for item in items:
         print(f"  {item['date']:%d.%m.%Y}  {item['title']}")
