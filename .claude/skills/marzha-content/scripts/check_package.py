@@ -101,6 +101,42 @@ def check_article(slug: str) -> None:
                 ok(f"обложка {size[0]}x{size[1]}")
 
     check_links(path, source)
+    check_content_rules(source)
+
+
+# Обещание результата — запрещено ограничителями целиком; «гарантийное
+# удержание» и прочие формы на «гарантийн-» под шаблон не попадают.
+PROMISE = re.compile(
+    r"\bгарантиру\w*|\bгарантированн\w*|\bвы выиграете", re.I)
+# Ссылка на норму права в одном предложении с числом и единицей срока или
+# ставкой — числовая константа законодательства: она устаревает молча,
+# файл сам не обновится. Число без нормы (условие договора, сумма из кейса)
+# не трогаем.
+NORM_REF = re.compile(r"\bстать\w|\bкодекс\w?|-ФЗ\b|\bфедеральн\w+ закон", re.I)
+NORM_NUMBER = re.compile(
+    r"\d+\s*(?:рабоч\w+\s+|календарн\w+\s+)?(?:дней|дня|суток|месяц\w*|процент\w*|%)",
+    re.I)
+
+
+def check_content_rules(source: str) -> None:
+    """Контентные запреты: обещания результата и константы законодательства."""
+    text = re.sub(r"<!--.*?-->", " ", source, flags=re.S)
+    text = re.sub(r"<script.*?</script>", " ", text, flags=re.S)
+    text = re.sub(r"<[^>]+>", " ", text)
+    violations = []
+    for sentence in re.split(r"(?<=[.!?])\s+", text):
+        for match in PROMISE.finditer(sentence):
+            violations.append(f"обещание результата: «{match.group(0)}»")
+        if NORM_REF.search(sentence):
+            for match in NORM_NUMBER.finditer(sentence):
+                violations.append(
+                    "числовая константа законодательства рядом со ссылкой "
+                    f"на норму: «{match.group(0)}»")
+    if violations:
+        for v in violations:
+            fail(v)
+    else:
+        ok("контентные запреты: обещаний и констант законодательства нет")
 
 
 def image_size(path: Path) -> tuple[int, int] | None:
