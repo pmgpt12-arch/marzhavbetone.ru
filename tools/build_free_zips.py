@@ -33,6 +33,7 @@ MATERIALS = {
     "dogovor": "00-free-dogovor-do-podpisi",
     "bankrotstvo": "00-free-bankrotstvo-proverka",
     "avans": "00-free-avans-do-podpisi",
+    "raschet-metrami": "00-free-raschet-metrami",
 }
 
 

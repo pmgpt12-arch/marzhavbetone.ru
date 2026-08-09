@@ -54,6 +54,11 @@ const MVB_MATERIALS = [
         'title' => 'Аванс и обеспечение: что проверить до подписи',
         'label' => 'Скачать материалы (ZIP)',
     ],
+    'raschet-metrami' => [
+        'file'  => '/downloads/raschet-metrami.zip',
+        'title' => 'Красные флаги сделки «работы за квартиры»',
+        'label' => 'Скачать материалы (ZIP)',
+    ],
 ];
 
 $name=trim((string)($_POST['name']??'')); $contact=trim((string)($_POST['contact']??'')); $consent=(string)($_POST['consent']??'');
