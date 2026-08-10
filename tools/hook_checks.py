@@ -35,6 +35,9 @@ ROUTES: list[tuple[tuple[str, ...], str]] = [
     (("content/reels/",), "check_reel.py"),
     (("articles/", "assets/", "content/covers/"), "check_covers.py"),
     (("articles/", "tools/build_rss.py"), "check_rss.py"),
+    # Открытый кусок документа сверяется и при правке страницы, и при
+    # пересборке самого документа: расходятся они именно во втором случае
+    (("demo/", "products-storage/"), "check_demo.py"),
 ]
 
 TIMEOUT = 60

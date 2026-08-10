@@ -41,6 +41,9 @@ SECTIONS = [
     ("products/",      "monthly", "0.9"),
     ("articles/",      "monthly", "0.8"),
     ("materialy/",     "monthly", "0.7"),
+    # Открытые куски товаров: страница показывает работу до оплаты, и
+    # обходить её стоит наравне с бесплатными материалами
+    ("demo/",          "monthly", "0.7"),
     ("kalkulyator.html", "monthly", "0.9"),
 ]
 LEGAL = {"privacy.html": "0.2", "offer.html": "0.3", "payment-delivery.html": "0.3",
@@ -78,13 +81,16 @@ def classify(rel: str) -> tuple[str, str] | None:
         return "monthly", "0.8"
     if rel.startswith("materialy/"):
         return "monthly", "0.7"
+    if rel.startswith("demo/"):
+        return "monthly", "0.7"
     return None
 
 
 def collect() -> list[tuple[str, str, str, str]]:
     rows = []
     for path in sorted(SITE.glob("*.html")) + sorted(SITE.glob("products/*.html")) \
-            + sorted(SITE.glob("articles/*.html")) + sorted(SITE.glob("materialy/*.html")):
+            + sorted(SITE.glob("articles/*.html")) + sorted(SITE.glob("materialy/*.html")) \
+            + sorted(SITE.glob("demo/*.html")):
         rel = str(path.relative_to(SITE))
         kind = classify(rel)
         if not kind:
