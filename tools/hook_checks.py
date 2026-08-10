@@ -24,10 +24,14 @@ ROOT = Path(__file__).resolve().parent.parent
 # Какая правка какую проверку запускает. Порядок важен: первая подошедшая
 # запись выигрывает, поэтому частные шаблоны стоят выше общих.
 ROUTES: list[tuple[tuple[str, ...], str]] = [
-    (("products-config.php", "content/strategy/products.csv"), "check_products.py"),
+    (("products-config.php", "content/strategy/products.csv",
+      "products-storage/SERVER-MANIFEST.txt"), "check_products.py"),
     (("lead.php", "materialy/", "downloads/", "build_free_zips.py",
       "insert_lead_blocks.py"), "check_free_materials.py"),
-    (("products-storage/",), "check_packages.py"),
+    # Страницы товаров сверяются здесь же: число файлов в шапке страницы
+    # стоит против папки выдачи, и правка страницы должна красить так же,
+    # как правка папки.
+    (("products-storage/", "products/"), "check_packages.py"),
     (("content/reels/",), "check_reel.py"),
     (("articles/", "assets/", "content/covers/"), "check_covers.py"),
     (("articles/", "tools/build_rss.py"), "check_rss.py"),

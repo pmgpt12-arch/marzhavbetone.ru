@@ -33,6 +33,24 @@ ENTRY = re.compile(
     re.S,
 )
 
+# Памятка по серверу: по ней сверяют выдачу руками, и до 10.08.2026 она
+# описывала снятую линейку. Сверяются цена, папка и имя архива.
+SERVER_MANIFEST = ROOT / "products-storage" / "SERVER-MANIFEST.txt"
+DELIVERY = re.compile(
+    r"'(?P<sku>[a-z0-9]+)'\s*=>\s*\[\s*"
+    r"'name'\s*=>\s*'(?:[^'\\]|\\.)*'\s*,\s*"
+    r"'price'\s*=>\s*(?P<price>\d+)\s*,\s*"
+    r"'dir'\s*=>\s*'(?P<dir>[^']+)'\s*,\s*"
+    r"'zip'\s*=>\s*'(?P<zip>[^']+)'",
+    re.S,
+)
+# Строка таблицы памятки: sku, цена, папка, архив
+MANIFEST_ROW = re.compile(
+    r"^\s{2,}(?P<sku>[a-z]+[0-9]+)\s+(?P<price>\d+)\s+"
+    r"(?P<dir>[\w-]+)\s+(?P<zip>[\w.-]+\.zip)\s*$",
+    re.M,
+)
+
 
 def live_catalog() -> dict[str, tuple[str, int]]:
     text = CONFIG.read_text(encoding="utf-8")
@@ -44,6 +62,49 @@ def live_catalog() -> dict[str, tuple[str, int]]:
         name = match.group("name").replace("\\'", "'")
         found[sku] = (name, int(match.group("price")) // KOPECKS)
     return found
+
+
+def server_manifest_problems() -> list[str]:
+    """Сверяет памятку по серверу с каталогом кассы.
+
+    `products-storage/SERVER-MANIFEST.txt` — то, по чему сверяют выдачу на
+    сервере руками. Пока его никто не проверял, он девять дней описывал
+    снятую линейку: триггер-продукты t1–t3, которых нет, и цены
+    12 900–69 900 ₽ из removed_levels. Сверяются два поля, которые в нём
+    записаны машиночитаемо, — имя архива и цена; описания и порядок разделов
+    пишет человек.
+    """
+    if not SERVER_MANIFEST.is_file():
+        return ["products-storage/SERVER-MANIFEST.txt: файла нет"]
+
+    live = {
+        m.group("sku"): (int(m.group("price")) // KOPECKS,
+                         m.group("dir"), m.group("zip"))
+        for m in DELIVERY.finditer(CONFIG.read_text(encoding="utf-8"))
+    }
+    listed = {
+        row.group("sku"): (int(row.group("price")),
+                           row.group("dir"), row.group("zip"))
+        for row in MANIFEST_ROW.finditer(
+            SERVER_MANIFEST.read_text(encoding="utf-8"))
+    }
+
+    problems: list[str] = []
+    for sku in sorted(set(listed) - set(live)):
+        problems.append(
+            f"SERVER-MANIFEST.txt: {sku} описан, но в каталоге кассы его нет"
+        )
+    for sku in sorted(set(live) - set(listed)):
+        problems.append(f"SERVER-MANIFEST.txt: {sku} продаётся, но не описан")
+    for sku in sorted(set(live) & set(listed)):
+        for field, here, there in zip(("цена", "папка", "архив"),
+                                      listed[sku], live[sku]):
+            if here != there:
+                problems.append(
+                    f"SERVER-MANIFEST.txt ({sku}): {field} — «{here}», "
+                    f"в каталоге «{there}»"
+                )
+    return problems
 
 
 def main() -> int:
@@ -87,6 +148,8 @@ def main() -> int:
 
     for sku in sorted(set(live) - planned_skus):
         problems.append(f"{sku}: продаётся, но в продуктовой линейке не описан")
+
+    problems += server_manifest_problems()
 
     if problems:
         print("Каталог и план разошлись:\n")
