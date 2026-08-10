@@ -59,6 +59,11 @@ const MVB_MATERIALS = [
         'title' => 'Красные флаги сделки «работы за квартиры»',
         'label' => 'Скачать материалы (ZIP)',
     ],
+    'ispolnitelnaya-dokumentaciya' => [
+        'file'  => '/downloads/ispolnitelnaya-dokumentaciya.zip',
+        'title' => 'Исполнительная документация: проверка комплекта до передачи',
+        'label' => 'Скачать материалы (ZIP)',
+    ],
 ];
 
 $name=trim((string)($_POST['name']??'')); $contact=trim((string)($_POST['contact']??'')); $consent=(string)($_POST['consent']??'');
