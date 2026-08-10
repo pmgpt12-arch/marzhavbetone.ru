@@ -34,6 +34,7 @@ MATERIALS = {
     "bankrotstvo": "00-free-bankrotstvo-proverka",
     "avans": "00-free-avans-do-podpisi",
     "raschet-metrami": "00-free-raschet-metrami",
+    "ispolnitelnaya-dokumentaciya": "00-free-id-do-peredachi",
 }
 
 
