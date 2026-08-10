@@ -67,6 +67,72 @@ def keys_from_blocks() -> dict[str, list[str]]:
             re.findall(r"'([\w-]+)': \{.*?'files': \[(.*?)\],", block.group(1), re.S)}
 
 
+def titles_from_pages() -> dict[str, str]:
+    """Ключ материала → его заголовок на собственной странице."""
+    out: dict[str, str] = {}
+    for page in sorted((ROOT / "materialy").glob("*.html")):
+        html = page.read_text(encoding="utf-8")
+        found = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.S)
+        if found:
+            out[page.stem] = re.sub(
+                r"\s+", " ", re.sub(r"<[^>]+>", "", found.group(1))).strip()
+    return out
+
+
+def check_article_offers(titles: dict[str, str]) -> list[str]:
+    """Врезка в статье зовёт туда же, куда и называет.
+
+    Проверка появилась после разбора 10.08.2026. Пятнадцать статей несли
+    рукописную врезку на `/index.html#checklist`, которая обещала «7 причин,
+    почему не платят по КС-2» и шаблон письма; по ссылке отдавался чек-лист
+    закрытия работ, где ни того, ни другого нет. Все проверки при этом
+    молчали: ключи, папки и архивы сходились, а на текст обещания не
+    смотрел никто. Вдобавок в тех же статьях уже стоял генерируемый блок —
+    предложение показывалось дважды, в шести случаях на разные материалы.
+
+    Отсюда три условия: одно предложение на статью, ссылка на существующий
+    материал, заголовок врезки — тот же, что у страницы материала.
+    """
+    problems: list[str] = []
+    offer = re.compile(
+        r'<div class="article-(?:lead|cta)"(?:(?!</div>).)*?'
+        r'>\s*БЕСПЛАТНО[^<]*<(?:(?!</div>).)*?</div>', re.S)
+
+    for path in sorted((ROOT / "articles").glob("*.html")):
+        if path.name == "index.html":       # витрина списка, не статья
+            continue
+        html = path.read_text(encoding="utf-8")
+        blocks = offer.findall(html)
+        if not blocks:
+            problems.append(f"{path.name}: нет врезки бесплатного материала")
+            continue
+        if len(blocks) > 1:
+            problems.append(f"{path.name}: врезок бесплатного материала "
+                            f"{len(blocks)} — читателю предложено дважды")
+        for block in blocks:
+            href = re.search(r'href="/materialy/([\w-]+)\.html"', block)
+            if not href:
+                bad = re.search(r'href="([^"]+)"', block)
+                problems.append(
+                    f"{path.name}: врезка ведёт не на страницу материала — "
+                    f"{bad.group(1) if bad else 'ссылки нет'}")
+                continue
+            key = href.group(1)
+            if key not in titles:
+                problems.append(f"{path.name}: врезка ведёт на неизвестный "
+                                f"материал «{key}»")
+                continue
+            head = re.search(r"<h3>(.*?)</h3>", block, re.S)
+            said = re.sub(r"\s+", " ",
+                          re.sub(r"<[^>]+>", "", head.group(1))).strip() if head else ""
+            if said != titles[key]:
+                problems.append(
+                    f"{path.name}: врезка называет материал иначе, чем его "
+                    f"страница\n        врезка:  «{said}»\n"
+                    f"        {key}.html: «{titles[key]}»")
+    return problems
+
+
 def main() -> int:
     lead = keys_from_lead()
     builder = keys_from_builder()
@@ -152,6 +218,9 @@ def main() -> int:
         if f"/materialy/{key}.html</loc>" not in sitemap:
             problems.append(f"{key}: нет в sitemap.xml — "
                             f"запустите tools/build_sitemap.py")
+
+    # 6. Врезка в статье зовёт туда же, куда и называет, и она одна
+    problems += check_article_offers(titles_from_pages())
 
     for line in problems:
         print(f"РАСХОЖДЕНИЕ  {line}")
