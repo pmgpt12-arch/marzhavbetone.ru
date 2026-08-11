@@ -123,10 +123,7 @@ def build(cards: list[tuple[str, str]]) -> tuple[str, str, list[str]]:
             + "".join(members)
             + '\n          </div>\n        </details>')
 
-    jump = ('\n      <nav class="catalog-jump" aria-label="Разделы каталога">'
-            + "".join("\n        " + c for c in chips)
-            + '\n      </nav>')
-    return jump, "".join(blocks), unnamed
+    return chips, "".join(blocks), unnamed
 
 
 def main() -> int:
@@ -151,7 +148,22 @@ def main() -> int:
         print("карточек товара не найдено")
         return 1
 
-    jump, blocks, unnamed = build(cards)
+    chips, blocks, unnamed = build(cards)
+
+    # Бесплатные материалы лежат своей сеткой ниже групп и в группировку не
+    # входят — у них уже есть свой заголовок. В полосу переходов они всё
+    # равно попадают: без чипса раздел на телефоне достижим только
+    # прокруткой через весь каталог.
+    free = clean.count('class="product-card free"')
+    if free:
+        clean = clean.replace(
+            '<div class="section-head catalog-split">',
+            '<div class="section-head catalog-split" id="group-besplatno">', 1)
+        chips.append(
+            f'<a href="#group-besplatno">Бесплатные<span>{free}</span></a>')
+    jump = ('\n      <nav class="catalog-jump" aria-label="Разделы каталога">'
+            + "".join("\n        " + c for c in chips)
+            + '\n      </nav>')
     tail = f'\n      </div>\n      {END}'
     # Голову режем по rstrip: снятая полоса переходов забирает с собой
     # ведущий отступ, а вставляемая приносит свой — без этого каждый прогон

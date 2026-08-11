@@ -358,3 +358,44 @@ window.mvbTrackGoal = function (name) {
   grid.parentNode.insertBefore(more, grid.nextSibling);
   render();
 })();
+
+/* Бесплатные материалы на телефоне — порцией, а не десятью карточками
+ * подряд. Замер 11.08.2026: десять одинаковых по виду карточек занимали
+ * около 5 000px, то есть шесть экранов, и стояли между каталогом и
+ * остальной страницей.
+ *
+ * Прячем только на телефоне и только сверх трёх: на десктопе они идут
+ * сеткой в три колонки и в порции не нуждаются. Разметка приезжает
+ * полной — без JS всё видно, как сегодня.
+ */
+(function () {
+  var STEP = 3;
+  var cards = [].slice.call(
+    document.querySelectorAll('#catalog .product-card.free'));
+  if (cards.length <= STEP) return;
+
+  var grid = cards[0].parentNode;
+  var more = document.createElement('button');
+  more.type = 'button';
+  more.className = 'showcase-more free-more';
+  grid.parentNode.insertBefore(more, grid.nextSibling);
+
+  var shown = STEP;
+
+  function render() {
+    var phone = window.matchMedia('(max-width:600px)').matches;
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].hidden = phone && i >= shown;
+    }
+    var left = cards.length - shown;
+    more.hidden = !phone || left <= 0;
+    more.textContent = 'Показать ещё ' + left + ' из ' + cards.length;
+  }
+
+  more.addEventListener('click', function () {
+    shown = cards.length;
+    render();
+  });
+  window.addEventListener('resize', render);
+  render();
+})();
