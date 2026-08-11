@@ -10,5 +10,5 @@
 .cart-total{display:flex;justify-content:space-between;align-items:baseline;margin:26px 0 18px;font-size:18px}.cart-total strong{font-size:28px}
 .cart-checkout{width:100%}.cart-checkout:disabled{opacity:.45;cursor:not-allowed}.add-to-cart{border:0;font-family:inherit}
 .add-to-cart.added{background:#242629}.cart-panel .fine{margin-top:12px;color:#65676a;font-size:12px}
-@media(max-width:900px){.topbar nav{display:none}.cart-toggle{margin-left:auto}}
+@media(max-width:900px){.topbar nav:not(.is-open){display:none}.cart-toggle{margin-left:auto}}
 @media(max-width:560px){.cart-panel{padding:24px 20px}.product-footer .add-to-cart{width:100%;margin-top:12px}}

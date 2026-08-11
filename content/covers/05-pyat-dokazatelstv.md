@@ -1,6 +1,6 @@
 # Обложка: «Пять доказательств, которые заставят заплатить»
 
-Заменяет `assets/pyat-dokazatelstv-vypolneniya.png` — текстовую карточку из
+Заменяет `assets/pyat-dokazatelstv-vypolneniya.jpg` — текстовую карточку из
 `build_cover.py`. Используется в статье, в списке разборов и в материале
 `content/dzen/05-pyat-dokazatelstv.md`: меняется один файл — меняется везде.
 

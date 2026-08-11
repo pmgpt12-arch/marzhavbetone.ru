@@ -1,12 +1,12 @@
 # Материал 5
 
-Обложка: `assets/pyat-dokazatelstv-vypolneniya.png`
+Обложка: `assets/pyat-dokazatelstv-vypolneniya.jpg`
 
 ## Как публиковать с телефона
 
 1. Студия Дзена → «+» → «Статья».
 2. Заголовок скопировать из блока «Заголовок».
-3. Обложку загрузить из `assets/pyat-dokazatelstv-vypolneniya.png` — тот же
+3. Обложку загрузить из `assets/pyat-dokazatelstv-vypolneniya.jpg` — тот же
    файл, что на сайте.
 4. Текст скопировать одним куском из блока «Текст»: разметки в нём нет,
    поэтому в редактор он ложится как есть.

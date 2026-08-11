@@ -82,6 +82,22 @@
   background: rgba(36, 38, 41, 0.04) !important;
 }
 
+/* Таблица прокручивается внутри себя, а не растягивает страницу.
+   Замер 11.08.2026 на 390px: разбор про гарантийное удержание давал
+   горизонтальную прокрутку всей страницы на 12px — при `width:100%`
+   таблица всё равно шире экрана, когда её колонкам не хватает места.
+   Таблицы есть в 19 разборах из 33, то есть это касается большинства. */
+@media (max-width: 768px) {
+  .article-page table {
+    display: block !important;
+    width: max-content !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    /* Инерционная прокрутка внутри таблицы на телефоне */
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 .article-page strong {
   font-weight: 700 !important;
 }
@@ -190,8 +206,15 @@
     max-height: 240px !important;
     margin: 16px 0 24px 0 !important;
   }
-  .article-nav .links {
+  /* Раскрытое меню исключено: правило пряталo навигацию на телефоне и ничем
+     её не заменяло. Кнопку раскрытия ставит attribution.js, состояние —
+     класс is-open. !important здесь остаётся, потому что его снятие меняет
+     поведение остальных правил этого блока, написанных так же. */
+  .article-nav .links:not(.is-open) {
     display: none !important;
+  }
+  .article-nav .links.is-open {
+    display: flex !important;
   }
 }
 
@@ -204,4 +227,102 @@
 .article-page .channel-banner .button.ghost {
   background: transparent !important;
   box-shadow: inset 0 0 0 2px #fff;
+}
+
+/* Оглавление, видимая дата и врезка товара — добавлены 11.08.2026 по замерам
+   (tools/article_ui.py). Оглавления не было ни в одном разборе при десяти
+   разборах длиннее 10 000 знаков; первый выход на товар стоял на 73–79%
+   длины текста; дата была только в разметке, читателю её не показывали. */
+
+.article-date {
+  margin: 0 0 4px !important;
+  color: #6c6f73 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.02em;
+}
+
+.toc {
+  margin: 32px 0 40px !important;
+  padding: 24px 26px !important;
+  background: #f5f2ea;
+  border-left: 5px solid var(--orange);
+}
+
+.toc-title {
+  margin: 0 0 12px !important;
+  color: var(--orange) !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.toc ol {
+  margin: 0 !important;
+  padding-left: 20px !important;
+  line-height: 1.55;
+}
+
+.toc li {
+  margin-bottom: 8px !important;
+}
+
+.toc li::marker {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.toc a {
+  border-bottom: 1px solid rgba(36, 38, 41, 0.25);
+}
+
+.toc a:hover {
+  border-bottom-color: var(--orange);
+  color: var(--orange);
+}
+
+/* Короткая врезка в первой трети: она не должна перебивать чтение, поэтому
+   это строка со ссылкой, а не второй большой блок с ценой. */
+.article-cta-inline {
+  margin: 34px 0 !important;
+  padding: 18px 22px !important;
+  background: #f5f2ea;
+  border-left: 5px solid var(--ink);
+}
+
+.article-cta-inline p {
+  margin: 0 !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+}
+
+.article-cta-inline a {
+  font-weight: 800;
+  color: var(--orange);
+  border-bottom: 2px solid var(--orange);
+}
+
+@media (max-width: 768px) {
+  .toc {
+    margin: 24px 0 30px !important;
+    padding: 18px 18px 18px 20px !important;
+  }
+  .toc ol {
+    font-size: 15px !important;
+  }
+  /* Пункт оглавления — цель для пальца, а не строка текста. Высота даётся
+     межстрочным интервалом, а не inline-block: тот сбивал номер у пунктов,
+     занимающих две строки, — номер вставал у второй строки, а не у первой. */
+  .toc li {
+    margin-bottom: 12px !important;
+    line-height: 1.65;
+  }
+}
+
+/* Переход по ссылке оглавления не должен прятать заголовок под липкую шапку.
+   Замер: шапка разбора занимает 69px на телефоне и 63px на десктопе — запас
+   до 84px берётся с полем, чтобы заголовок стоял не впритык к её краю. */
+.article-page h2[id],
+.article-page h3[id] {
+  scroll-margin-top: 84px;
 }

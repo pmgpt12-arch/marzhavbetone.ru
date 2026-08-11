@@ -1,0 +1,86 @@
+name: Metrika snapshot
+
+# Числа сайта из Метрики в ряд снимков content/metrics/.
+#
+# Прогон здесь, а не из сессии: адрес api-metrika.yandex.net из облачной
+# сессии закрыт (CONNECT 403, замер 11.08.2026) — так же, как api.telegram.org
+# и dzen.ru. Раннер GitHub до него доходит, чем уже пользуется telegram.yml.
+
+on:
+  schedule:
+    # Понедельник, 06:00 МСК — до сводки продаж, чтобы к началу работы
+    # обе цифры, посещаемость и заказы, лежали рядом
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'За сколько последних дней считать'
+        type: string
+        default: '7'
+      write:
+        description: 'Записать снимок в content/metrics/ и закоммитить'
+        type: boolean
+        default: true
+
+concurrency:
+  group: metrika-snapshot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check token
+        id: check
+        env:
+          TOKEN: ${{ secrets.METRIKA_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Секрет METRIKA_TOKEN не задан — снимок пропущен. Это «не запускалось», а не «ноль визитов»."
+          else
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.check.outputs.enabled == 'true'
+        uses: actions/checkout@v4
+
+      - name: Build snapshot
+        if: steps.check.outputs.enabled == 'true'
+        env:
+          METRIKA_TOKEN: ${{ secrets.METRIKA_TOKEN }}
+        run: |
+          days="${{ inputs.days || '7' }}"
+          write=""
+          if [ "${{ inputs.write }}" != "false" ]; then write="--write"; fi
+          # --create-goals заводит в счётчике цели, которых там ещё нет.
+          # Метрика считает только объявленные цели и по необъявленной молчит,
+          # а не ошибается: без этого шага новая цель из кода не считалась бы
+          # и заметить это было бы нечем. Шаг добавляющий и идемпотентный.
+          python3 tools/metrika_report.py --days "$days" --create-goals $write \
+            | tee /tmp/metrika.txt
+          {
+            echo '## Числа сайта'
+            echo '```'
+            cat /tmp/metrika.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Снимок агрегированный: ни адресов, ни телефонов в нём нет, и content/
+      # не деплоится — числа остаются внутренними.
+      - name: Commit snapshot
+        if: steps.check.outputs.enabled == 'true' && inputs.write != false
+        run: |
+          if [ -z "$(git status --porcelain content/metrics)" ]; then
+            echo "::notice::Снимок не изменился — коммитить нечего."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/metrics
+          git commit -m "Снимок чисел сайта из Метрики за $(date -u +%F)"
+          git push

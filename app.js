@@ -11,10 +11,15 @@ if (dialog && openChecklist && closeChecklist) {
 
 const form = document.querySelector('#contact-form');
 const formStatus = document.querySelector('#form-status');
+// Реализация переехала в attribution.js: он подключён на всех страницах, а
+// app.js — только на двадцати пяти, и статей среди них нет. Здесь остался
+// вызов, чтобы места вызова целей ниже не переписывать. Запасная ветка нужна
+// на случай, если attribution.js не загрузился: тогда цель просто не уйдёт.
 function trackGoal(name) {
-  if (typeof window.ym === 'function' && window.METRIKA_ID) window.ym(window.METRIKA_ID, 'reachGoal', name);
+  if (typeof window.mvbTrackGoal === 'function') window.mvbTrackGoal(name);
 }
-document.querySelectorAll('a[href^="https://dzen.ru"]').forEach(link => link.addEventListener('click', () => trackGoal('dzen_click')));
+// Клик по ссылке на Дзен считает attribution.js делегированием — здесь
+// обработчика больше нет, иначе одно событие уходило бы дважды.
 
 // ===================== КОРЗИНА =====================
 const cartPanel = document.querySelector('#cart-panel');

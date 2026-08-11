@@ -237,6 +237,11 @@ def article_body(source: str) -> str:
     for promo in ("article-cta", "article-lead", "article-actions"):
         body = re.sub(rf'<div class="{promo}".*?</div>', "", body, flags=re.S)
 
+    # Короткая врезка товара в первой трети (article_ui.py) — реклама сайта,
+    # и в чужой ленте ей делать нечего. Оглавление вырезается ниже вместе со
+    # всеми <nav>: его ссылки — якоря страницы сайта, в Дзене они мертвы.
+    body = re.sub(r'<aside class="article-cta-inline".*?</aside>', "", body, flags=re.S)
+
     # Навигация (хлебные крошки) в текст статьи не идёт
     body = re.sub(r"<nav\b.*?</nav>", "", body, flags=re.S)
 
@@ -251,8 +256,9 @@ def article_body(source: str) -> str:
     )
     for match in pattern.finditer(body):
         tag, attrs, inner = match.group(1), match.group(2) or "", match.group(3)
-        # Хлебные крошки и рубрика в текст статьи не идут
-        if "breadcrumbs" in attrs or "eyebrow" in attrs:
+        # Хлебные крошки, рубрика и дата обновления в текст статьи не идут:
+        # дата материала в фиде задаётся полем pubDate, а не строкой в тексте
+        if "breadcrumbs" in attrs or "eyebrow" in attrs or "article-date" in attrs:
             continue
         inner = inner.strip()
         if not inner or not strip_tags(inner):
