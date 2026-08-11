@@ -8,3 +8,25 @@
 .catalog-split h3{margin:0 0 14px;font-size:clamp(30px,4vw,46px);line-height:1;letter-spacing:-.04em}
 .catalog-split .lead{margin:0;max-width:760px}
 @media(max-width:800px){.catalog-split{margin:48px 0 26px;padding-top:26px}}
+
+/* Карточка товара на телефоне. Замер 11.08.2026 на 390px: заголовок
+   выходил 34px — нижняя граница clamp(34px,4vw,54px), рассчитанной под
+   десктоп, — и карточка занимала 734–801px при экране 844. То есть один
+   товар на весь экран, а их в каталоге двадцать пять: до второго комплекта
+   читатель доезжал третьим экраном.
+
+   Уменьшен заголовок и поля, а не выброшен перечень документов: перечень
+   и есть то, за что платят, и прятать его под «показать ещё» значит
+   прятать товар. */
+@media(max-width:600px){
+  .product-card{padding:22px 20px}
+  .product-number{font-size:11px}
+  .product-card h3{margin:14px 0 10px;font-size:22px;line-height:1.15;letter-spacing:-.02em}
+  .product-card>p{font-size:15px;line-height:1.5}
+  .product-documents{font-size:13.5px;line-height:1.5}
+  .product-documents li{margin-bottom:5px}
+  .product-card ul{padding-top:14px;padding-bottom:14px}
+  .product-footer{padding-top:16px;gap:12px}
+  .product-footer strong{font-size:19px}
+  .product-footer .button,.product-footer .add-to-cart{width:100%}
+}
