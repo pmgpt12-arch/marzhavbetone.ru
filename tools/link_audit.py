@@ -30,6 +30,9 @@ INDEX = ARTICLES / "index.html"
 CLUSTERS = {
     "исполнительная документация": [
         "akt-skrytyh-rabot-obrazec.html",
+        "akty-skrytyh-rabot-kakie.html",
+        "akt-skrytyh-rabot-montazh.html",
+        "zos-v-stroitelstve.html",
         "akt-osvidetelstvovaniya-skrytyh-rabot.html",
         "ispolnitelnaya-dokumentaciya-sostav.html",
         "pyat-dokazatelstv-vypolneniya.html",
@@ -67,10 +70,12 @@ CLUSTERS = {
     ],
     "неоплата и закрытие работ": [
         "podpisannaya-ks2-ne-znachit-chto-zaplatyat.html",
+        "zakazchik-ne-oplachivaet-vypolnennye-raboty.html",
         "raboty-ne-prinyaty.html",
     ],
     "допработы": [
         "dopraboty-bez-soglasheniya.html",
+        "dopolnitelnye-raboty-v-stroitelstve.html",
     ],
     # Кластер открыт замером 02.08.2026: «акт передачи строительной площадки
     # подрядчику образец» — 308/мес, «акт входного контроля материалов

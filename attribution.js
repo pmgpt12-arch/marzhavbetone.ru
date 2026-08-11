@@ -297,3 +297,64 @@ window.mvbTrackGoal = function (name) {
   }
   window.addEventListener('resize', foldGroups);
 })();
+
+/* Фильтр тем и показ по частям на витрине разборов.
+ *
+ * Замер 11.08.2026 на 390px: `articles/index.html` — 20 638px, 24,5
+ * экрана, 36 карточек подряд. Чтобы понять, есть ли на сайте разбор про
+ * удержания, надо было пролистать всю ленту и запомнить, что видел.
+ *
+ * Разметка приезжает со всеми карточками: без JS витрина остаётся такой
+ * же, как была, — полной лентой, а не пустой страницей. Здесь добавляются
+ * отбор по теме и порция показа.
+ */
+(function () {
+  var STEP = 9;              // порция показа: три экрана телефона
+  var shown = STEP;
+  var active = '';
+
+  var grid = document.querySelector('.showcase-grid');
+  var bar = document.querySelector('.topic-filter');
+  if (!grid || !bar) return;
+
+  var cards = [].slice.call(grid.querySelectorAll('.showcase-card'));
+  var more = document.createElement('button');
+  more.type = 'button';
+  more.className = 'showcase-more';
+
+  function render() {
+    var matched = 0;
+    for (var i = 0; i < cards.length; i++) {
+      var fits = !active || cards[i].getAttribute('data-cluster') === active;
+      var visible = fits && matched < shown;
+      if (fits) matched++;
+      cards[i].hidden = !visible;
+    }
+    var left = matched - shown;
+    more.hidden = left <= 0;
+    more.textContent = 'Показать ещё ' + (left > STEP ? STEP : left);
+  }
+
+  more.addEventListener('click', function () {
+    shown += STEP;
+    render();
+  });
+
+  bar.addEventListener('click', function (e) {
+    var button = e.target.closest && e.target.closest('button[data-cluster]');
+    if (!button) return;
+    active = button.getAttribute('data-cluster');
+    // Порция считается заново от выбранной темы: иначе после «показать
+    // ещё» на «Всех» узкая тема открывалась бы сразу целиком, и кнопка
+    // переставала значить одно и то же.
+    shown = STEP;
+    for (var i = 0; i < bar.children.length; i++) {
+      bar.children[i].classList.toggle('is-active', bar.children[i] === button);
+    }
+    render();
+    grid.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  });
+
+  grid.parentNode.insertBefore(more, grid.nextSibling);
+  render();
+})();
