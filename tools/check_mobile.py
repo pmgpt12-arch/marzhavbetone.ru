@@ -14,7 +14,8 @@
 Проверяется на ширине 390px (iPhone 12/13/14 — самая распространённая):
   1. кнопка меню есть, видна и не меньше 44×44;
   2. меню закрыто до нажатия, раскрывается и закрывается;
-  3. страница не уходит в горизонтальную прокрутку;
+  3. страница не уходит в горизонтальную прокрутку и не съезжает после
+     загрузки (CLS), а весит не больше порога;
   4. пункты меню не ниже 44px — иначе по ним промахиваются пальцем;
   5. на 1440px меню осталось прежним, а кнопка не появилась.
 
@@ -45,6 +46,13 @@ ROOT = Path(__file__).resolve().parent.parent
 WIDTH_PHONE = 390
 HEIGHT_PHONE = 844
 TAP_MIN = 44  # минимальная площадь нажатия
+# «Хорошо» по Core Web Vitals — CLS ниже 0,1. Порог вдвое строже: сдвиг ниже
+# 0,05 на этих страницах достижим, замер 11.08.2026 даёт ноль.
+CLS_MAX = 0.05
+# Вес страницы целиком. Замер 11.08.2026 после сжатия картинок: 257–325 КБ.
+# Порог оставлен с запасом, чтобы ловить возврат мегабайтной обложки, а не
+# каждую новую картинку.
+WEIGHT_MAX = 800_000
 
 MENU_SELECTOR = "nav[aria-label='Основная навигация'], nav.links"
 
@@ -108,12 +116,38 @@ def pages(all_pages: bool) -> list[str]:
     return out
 
 
+CLS_SCRIPT = """() => new Promise(resolve => {
+  let value = 0;
+  new PerformanceObserver(list => {
+    for (const entry of list.getEntries()) if (!entry.hadRecentInput) value += entry.value;
+  }).observe({type: 'layout-shift', buffered: true});
+  setTimeout(() => resolve(value), 400);
+})"""
+
+
 def check_page(browser, base: str, rel: str) -> list[str]:
     bad: list[str] = []
     page = browser.new_page(viewport={"width": WIDTH_PHONE, "height": HEIGHT_PHONE})
+    weight = {"bytes": 0}
+
+    def count(response):
+        try:
+            weight["bytes"] += len(response.body())
+        except Exception:
+            pass  # редирект или отменённый запрос тела не имеет
+
+    page.on("response", count)
     try:
-        page.goto(f"{base}/{rel}", wait_until="domcontentloaded")
+        page.goto(f"{base}/{rel}", wait_until="load")
         page.wait_for_timeout(250)
+
+        shift = page.evaluate(CLS_SCRIPT)
+        if shift > CLS_MAX:
+            bad.append(f"{rel}: вёрстка съезжает после загрузки, CLS {shift:.3f} против {CLS_MAX}")
+
+        if weight["bytes"] > WEIGHT_MAX:
+            bad.append(f"{rel}: страница весит {weight['bytes'] / 1024:.0f} КБ "
+                       f"против {WEIGHT_MAX // 1024} КБ")
 
         overflow = page.evaluate(
             "() => document.documentElement.scrollWidth - document.documentElement.clientWidth")

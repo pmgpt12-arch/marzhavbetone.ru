@@ -1,6 +1,6 @@
 # Обложка: «Всё включено в цену» стоит вам миллионы
 
-Заменяет `assets/vsyo-vklyucheno-v-cenu.png` — текстовую карточку из
+Заменяет `assets/vsyo-vklyucheno-v-cenu.jpg` — текстовую карточку из
 `build_cover.py`. Используется в статье на сайте, в списке разборов и в
 материале `content/social/vsyo-vklyucheno-v-cenu.md`: меняется один файл —
 меняется везде.

@@ -1,12 +1,12 @@
 # Материал 6
 
-Обложка: `assets/podpisannaya-ks2-ne-znachit-chto-zaplatyat.png`
+Обложка: `assets/podpisannaya-ks2-ne-znachit-chto-zaplatyat.jpg`
 
 ## Как публиковать с телефона
 
 1. Студия Дзена → «+» → «Статья».
 2. Заголовок скопировать из блока «Заголовок».
-3. Обложку загрузить из `assets/podpisannaya-ks2-ne-znachit-chto-zaplatyat.png`
+3. Обложку загрузить из `assets/podpisannaya-ks2-ne-znachit-chto-zaplatyat.jpg`
    — тот же файл, что на сайте.
 4. Текст скопировать одним куском из блока «Текст»: разметки в нём нет,
    поэтому в редактор он ложится как есть.
