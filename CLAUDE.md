@@ -74,6 +74,8 @@ GitHub Secrets, ключи кассы — только в `config.php` на се
 Руками — когда нужно проверить всё:
 
 ```bash
+python3 tools/check_mobile.py     # вёрстка на телефоне: меню, ширина, сдвиг, вес
+python3 tools/sync_catalog.py     # витрина главной против каталога кассы и разметки
 python3 tools/check_products.py   # каталог кассы против плана линейки и SERVER-MANIFEST.txt
 python3 tools/check_packages.py   # состав против манифестов, копии внутри P6,
                                   # дубликаты внутри комплекта, число файлов
@@ -84,6 +86,23 @@ python3 tools/check_rss.py        # фид для Дзена несёт то ж�
 python3 tools/check_reel.py       # сценарии роликов
 python3 tools/dzen_channel.py     # что уже опубликовано в Дзене, дубли
 ```
+
+`check_mobile.py` требует playwright с хромиумом и без него честно говорит
+«не запускалась», а не «прошла». Он единственный ходит браузером — два
+дефекта, которых не видно ни в одном текстовом замере (на телефоне не было
+меню вовсе; таблица разбора растягивала страницу), нашлись только рендером.
+
+Правки шаблона делаются инструментами, а не руками по файлам:
+
+```bash
+python3 tools/optimize_images.py --write  # вес картинок: до 1600px, JPEG q82
+python3 tools/img_attrs.py --write        # width, height, loading, fetchpriority
+python3 tools/article_ui.py --write       # оглавление, дата, врезка товара, якоря
+python3 tools/sync_catalog.py --write     # разметка ItemList из витрины и кассы
+```
+
+Все четыре сначала показывают, что сделают, и меняют файлы только по
+`--write`. Повторный прогон ничего не дублирует.
 
 ## Дисциплина чтения
 
