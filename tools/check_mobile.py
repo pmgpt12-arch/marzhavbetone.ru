@@ -72,6 +72,9 @@ SAMPLE = [
 ]
 
 SKIP = {"test-pokupka.html", "success.html", "fail.html"}
+# .claude/worktrees — рабочие копии исполнителей: это чужие деревья того же
+# репозитория, и проверять их значит мерить одну страницу дважды.
+SKIP_DIRS = ("content/", ".claude/")
 
 
 def free_port() -> int:
@@ -114,7 +117,7 @@ def pages(all_pages: bool) -> list[str]:
     out = []
     for path in sorted(ROOT.glob("**/*.html")):
         rel = path.relative_to(ROOT).as_posix()
-        if rel.startswith(("content/", "demo/")) or path.name in SKIP:
+        if rel.startswith(SKIP_DIRS) or path.name in SKIP:
             continue
         out.append(rel)
     return out

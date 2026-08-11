@@ -74,9 +74,9 @@ def classify(rel: str) -> tuple[str, str] | None:
     if rel == "articles/index.html":
         return "weekly", "0.9"
     if rel.startswith("products/"):
-        # Полный комплект и договор — точки, с которых начинают чаще прочего
-        return "monthly", "1.0" if name in {"p6-polniy-komplekt.html",
-                                            "p7-dogovor-podryada.html"} else "0.9"
+        # Договор — точка, с которой начинают чаще прочего. Полный комплект
+        # стоял здесь же и снят с продажи 11.08.2026 решением владельца.
+        return "monthly", "1.0" if name == "p7-dogovor-podryada.html" else "0.9"
     if rel.startswith("articles/"):
         return "monthly", "0.8"
     if rel.startswith("materialy/"):

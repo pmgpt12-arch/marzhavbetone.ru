@@ -28,7 +28,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SKIP_DIRS = ("content/", "demo/")
+SKIP_DIRS = ("content/", "demo/", ".claude/")
 
 # Классы картинок первого экрана: им ленивая загрузка вредна.
 EAGER_MARKERS = ("article-cover", "hero-visual")
