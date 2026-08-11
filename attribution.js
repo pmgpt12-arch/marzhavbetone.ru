@@ -42,6 +42,47 @@ if (window.METRIKA_ID) {
 }
 
 /**
+ * Цели Метрики.
+ *
+ * Живут здесь, а не в app.js, по замеру 11.08.2026: `grep -l 'app-script.php'
+ * articles/*.html | wc -l` → 0. Ни одна страница в articles/ не грузит app.js,
+ * а именно статья служит точкой входа по UTM-ссылкам из Дзена и Телеграма.
+ * Пока цели жили в app.js, переход «статья → товар» не считался нигде: 39
+ * ссылок на товары и 32 врезки магнитов работали вслепую.
+ *
+ * app.js вызывает эту же функцию через window.mvbTrackGoal — своей копии у
+ * него больше нет, иначе одно событие считалось бы дважды.
+ */
+window.mvbTrackGoal = function (name) {
+  if (typeof window.ym === 'function' && window.METRIKA_ID) {
+    window.ym(window.METRIKA_ID, 'reachGoal', name);
+  }
+};
+
+(function () {
+  'use strict';
+
+  // Делегирование, а не обход ссылок при загрузке: врезки магнитов и блоки
+  // товаров вставляются сборкой, и обработчик не должен зависеть от того,
+  // существовал ли элемент на момент готовности документа.
+  document.addEventListener('click', function (event) {
+    var link = event.target.closest && event.target.closest('a[href]');
+    if (!link) return;
+
+    var href = link.getAttribute('href') || '';
+    var fromArticle = /^\/articles\//.test(location.pathname);
+
+    if (href.indexOf('/products/') !== -1) {
+      window.mvbTrackGoal(fromArticle ? 'article_to_product' : 'product_opened');
+    } else if (href.indexOf('/materialy/') !== -1) {
+      window.mvbTrackGoal(fromArticle ? 'article_to_magnet' : 'magnet_opened');
+    } else if (href.indexOf('dzen.ru') !== -1) {
+      window.mvbTrackGoal('dzen_click');
+    }
+  });
+})();
+
+/**
  * Запоминает, откуда пришёл посетитель.
  *
  * Отдельный файл, а не часть app.js, по двум причинам: точками входа по
