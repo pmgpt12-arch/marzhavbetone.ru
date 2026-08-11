@@ -82,6 +82,22 @@
   background: rgba(36, 38, 41, 0.04) !important;
 }
 
+/* Таблица прокручивается внутри себя, а не растягивает страницу.
+   Замер 11.08.2026 на 390px: разбор про гарантийное удержание давал
+   горизонтальную прокрутку всей страницы на 12px — при `width:100%`
+   таблица всё равно шире экрана, когда её колонкам не хватает места.
+   Таблицы есть в 19 разборах из 33, то есть это касается большинства. */
+@media (max-width: 768px) {
+  .article-page table {
+    display: block !important;
+    width: max-content !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    /* Инерционная прокрутка внутри таблицы на телефоне */
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 .article-page strong {
   font-weight: 700 !important;
 }
@@ -190,8 +206,15 @@
     max-height: 240px !important;
     margin: 16px 0 24px 0 !important;
   }
-  .article-nav .links {
+  /* Раскрытое меню исключено: правило пряталo навигацию на телефоне и ничем
+     её не заменяло. Кнопку раскрытия ставит attribution.js, состояние —
+     класс is-open. !important здесь остаётся, потому что его снятие меняет
+     поведение остальных правил этого блока, написанных так же. */
+  .article-nav .links:not(.is-open) {
     display: none !important;
+  }
+  .article-nav .links.is-open {
+    display: flex !important;
   }
 }
 

@@ -83,6 +83,61 @@ window.mvbTrackGoal = function (name) {
 })();
 
 /**
+ * Мобильное меню.
+ *
+ * Замер 11.08.2026: `grep -o 'topbar nav{display:none}' styles.css` и
+ * `grep -o 'article-nav .links{display:none}' styles.css` — оба правила есть,
+ * а `grep -o 'hamburger\|menu-toggle\|nav-toggle\|burger' *.css *.js` пуст.
+ * До 900px навигация пряталась и ничем не заменялась: читатель, пришедший из
+ * Дзена или Телеграма с телефона, не имел ни одного пути в каталог.
+ *
+ * Кнопка создаётся здесь, а не врезается в разметку, потому что шапок две
+ * (.topbar на 26 страницах, .article-nav на 33) и любая новая страница
+ * получит меню без отдельной правки. Разметку меню это не меняет: ссылки
+ * остаются в HTML и видны обходчику как раньше.
+ */
+(function () {
+  'use strict';
+
+  function setup() {
+    var header = document.querySelector('.topbar, .article-nav');
+    if (!header) return;
+
+    var menu = header.querySelector('nav[aria-label="Основная навигация"], nav.links');
+    if (!menu || header.querySelector('.nav-toggle')) return;
+
+    var toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'nav-toggle';
+    toggle.setAttribute('aria-label', 'Меню');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.appendChild(document.createElement('span'));
+
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Закрывается по выбору пункта: на телефоне переход по якорю не
+    // перезагружает страницу, и раскрытое меню осталось бы поверх текста.
+    menu.addEventListener('click', function (event) {
+      if (event.target.closest('a')) {
+        menu.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    header.appendChild(toggle);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setup);
+  } else {
+    setup();
+  }
+})();
+
+/**
  * Запоминает, откуда пришёл посетитель.
  *
  * Отдельный файл, а не часть app.js, по двум причинам: точками входа по
