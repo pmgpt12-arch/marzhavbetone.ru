@@ -48,3 +48,11 @@ body{font-family:"Segoe UI Variable","Segoe UI",Arial,sans-serif}.sales-solution
 @media(max-width:380px){
   .brand span:not(.brand-mark){display:none}
 }
+
+/* Кнопка возврата наверх. Ставит её attribution.js и только на страницах
+   длиннее четырёх экранов; появляется после двух прокрученных экранов.
+   Замер 11.08.2026: главная 37 экранов, витрина разборов 24,5 — на
+   телефоне возврат к меню стоил столько же прокрутки, сколько чтение. */
+.to-top{position:fixed;right:16px;bottom:78px;z-index:40;display:grid;place-items:center;width:46px;height:46px;padding:0;border:0;border-radius:999px;background:var(--ink);color:var(--paper);font-size:20px;font-weight:900;line-height:1;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .18s,transform .18s;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+.to-top.is-visible{opacity:1;pointer-events:auto;transform:none}
+@media(min-width:601px){.to-top{bottom:24px}}

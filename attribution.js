@@ -218,3 +218,82 @@ window.mvbTrackGoal = function (name) {
   // app.js берёт источник отсюда при оформлении заказа
   window.mvbAttribution = read;
 })();
+
+/* Свёртка групп каталога на телефоне и кнопка возврата наверх.
+ *
+ * Замер 11.08.2026 на 390px (playwright, viewport 390×844):
+ *   главная      31 214px = 37 экранов, секция каталога 20 экранов из них
+ *   витрина      20 638px = 24,5 экрана, 36 карточек подряд
+ *
+ * Группы приезжают в разметке открытыми — так страница без JS остаётся
+ * ровно такой, как была. Здесь они закрываются, и только на телефоне:
+ * на десктопе каталог идёт сеткой в три колонки, и прятать там нечего.
+ */
+(function () {
+  var PHONE = 600;
+
+  function foldGroups() {
+    var groups = document.querySelectorAll('.product-group');
+    if (!groups.length) return;
+    var phone = window.matchMedia('(max-width:' + PHONE + 'px)').matches;
+    // Первая группа остаётся открытой: свёрнутый целиком каталог не
+    // показывает, что вообще внутри, и читается как пустой раздел.
+    for (var i = 0; i < groups.length; i++) {
+      if (phone && i > 0) groups[i].removeAttribute('open');
+      if (!phone) groups[i].setAttribute('open', '');
+    }
+  }
+
+  // Переход по полосе разделов открывает группу: без этого якорь ведёт
+  // к закрытому заголовку, и тап выглядит как «ничего не произошло».
+  function openOnJump() {
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest && e.target.closest('.catalog-jump a');
+      if (!link) return;
+      var group = document.querySelector(link.getAttribute('href'));
+      if (group) group.setAttribute('open', '');
+    });
+    if (location.hash) {
+      var target = document.querySelector(location.hash);
+      if (target && target.classList.contains('product-group')) {
+        target.setAttribute('open', '');
+      }
+    }
+  }
+
+  /* Кнопка «наверх». Ставится только там, где страница длиннее четырёх
+   * экранов: на короткой она мешает, а не помогает. Порог взят от замера —
+   * четыре экрана это уже больше, чем помещается в память о том, откуда
+   * начал листать. */
+  function backToTop() {
+    if (document.querySelector('.to-top')) return;
+    if (document.documentElement.scrollHeight < window.innerHeight * 4) return;
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'to-top';
+    button.setAttribute('aria-label', 'Наверх');
+    button.textContent = '↑';
+    button.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    document.body.appendChild(button);
+    var show = function () {
+      button.classList.toggle('is-visible', window.scrollY > window.innerHeight * 2);
+    };
+    window.addEventListener('scroll', show, { passive: true });
+    show();
+  }
+
+  function setup() {
+    foldGroups();
+    openOnJump();
+    backToTop();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setup);
+  } else {
+    setup();
+  }
+  window.addEventListener('resize', foldGroups);
+})();

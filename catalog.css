@@ -30,3 +30,56 @@
   .product-footer strong{font-size:19px}
   .product-footer .button,.product-footer .add-to-cart{width:100%}
 }
+
+/* Группы каталога и полоса переходов. Замер 11.08.2026 на 390px: главная
+   31 214px = 37 экранов, из них секция каталога 16 638px = 20 экранов,
+   25 карточек сплошной лентой. Больше половины страницы — одна лента без
+   единой опоры: пролистать её до нужного товара нельзя, ориентиров нет.
+
+   Разметку собирает tools/catalog_groups.py, группы едут в разметке с
+   атрибутом open. Свёртку на телефоне делает attribution.js — он снимает
+   open со всех групп, кроме первой. Без JS страница остаётся такой же,
+   как была, а не ломается. */
+.catalog-jump{display:none}
+.product-group{margin:0}
+.product-group>summary{list-style:none;cursor:pointer}
+.product-group>summary::-webkit-details-marker{display:none}
+.product-group-note{color:#6c6f73}
+.product-grid-inner{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+
+/* На десктопе каталог сеткой в три колонки и в опоре не нуждается:
+   заголовки групп остаются как разделители, свёртки нет, полоса переходов
+   не показывается. */
+@media(min-width:801px){
+  .product-group+.product-group{margin-top:56px}
+  .product-group>summary{display:flex;align-items:baseline;gap:16px;margin-bottom:26px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+  .product-group-title{font-size:clamp(26px,2.6vw,36px);font-weight:900;letter-spacing:-.03em}
+  .product-group-note{font-size:15px}
+  .product-group-count{margin-left:auto;color:#a9a49a;font-weight:900}
+}
+
+@media(max-width:800px){
+  .product-grid-inner{grid-template-columns:1fr}
+}
+
+@media(max-width:600px){
+  /* Полоса переходов: тап по разделу открывает его группу и подводит к ней.
+     Горизонтальная прокрутка внутри полосы, а не перенос строк, — иначе
+     шесть разделов сами занимают треть экрана. */
+  .catalog-jump{display:flex;gap:8px;margin:0 -22px 22px;padding:2px 22px 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .catalog-jump::-webkit-scrollbar{display:none}
+  .catalog-jump a{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;padding:10px 15px;background:#fff;border:1px solid rgba(36,38,41,.18);border-radius:999px;font-size:14px;font-weight:800;white-space:nowrap}
+  .catalog-jump a span{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;background:var(--ink);color:var(--paper);border-radius:999px;font-size:11px}
+
+  .product-group+.product-group{margin-top:14px}
+  .product-group>summary{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 12px;padding:18px 18px;background:#fff;border:1px solid rgba(36,38,41,.18);box-shadow:5px 5px 0 #c8c3b9}
+  .product-group-title{font-size:20px;font-weight:900;line-height:1.15;letter-spacing:-.02em}
+  .product-group-note{grid-column:1;font-size:13.5px;line-height:1.35}
+  /* Счётчик и знак раскрытия справа: у закрытой группы это единственное,
+     что говорит, сколько за ней стоит. */
+  .product-group-count{grid-row:1/3;grid-column:2;display:inline-grid;place-items:center;width:34px;height:34px;background:var(--orange);color:#fff;border-radius:999px;font-size:14px;font-weight:900}
+  .product-group[open]>summary{margin-bottom:16px;box-shadow:5px 5px 0 var(--orange)}
+  .product-grid-inner{gap:16px}
+  /* Якорь ведёт к заголовку группы, а не под липкую шапку. */
+  .product-group{scroll-margin-top:84px}
+}
