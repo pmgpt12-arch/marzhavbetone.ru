@@ -48,3 +48,29 @@ body{font-family:"Segoe UI Variable","Segoe UI",Arial,sans-serif}.sales-solution
 @media(max-width:380px){
   .brand span:not(.brand-mark){display:none}
 }
+
+/* Кнопка возврата наверх. Ставит её attribution.js и только на страницах
+   длиннее четырёх экранов; появляется после двух прокрученных экранов.
+   Замер 11.08.2026: главная 37 экранов, витрина разборов 24,5 — на
+   телефоне возврат к меню стоил столько же прокрутки, сколько чтение. */
+.to-top{position:fixed;right:16px;bottom:78px;z-index:40;display:grid;place-items:center;width:46px;height:46px;padding:0;border:0;border-radius:999px;background:var(--ink);color:var(--paper);font-size:20px;font-weight:900;line-height:1;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .18s,transform .18s;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+.to-top.is-visible{opacity:1;pointer-events:auto;transform:none}
+@media(min-width:601px){.to-top{bottom:24px}}
+
+/* Полоса тем витрины разборов и кнопка порции. Разметку ставит
+   tools/articles_index.py, отбор и порцию — attribution.js. Замер
+   11.08.2026: витрина 20 638px = 24,5 экрана, 36 карточек подряд. */
+.topic-filter{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
+.topic-filter button{display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border:1px solid rgba(36,38,41,.18);border-radius:999px;background:var(--white);color:inherit;font:inherit;font-size:14px;font-weight:800;cursor:pointer}
+.topic-filter button span{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;background:rgba(36,38,41,.1);border-radius:999px;font-size:11px}
+.topic-filter button.is-active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.topic-filter button.is-active span{background:var(--orange);color:#fff}
+.showcase-more{display:block;width:100%;margin:26px 0 0;padding:18px;border:2px solid var(--ink);border-radius:4px;background:transparent;color:inherit;font:inherit;font-weight:900;cursor:pointer}
+.showcase-more:hover{background:var(--ink);color:var(--paper)}
+@media(max-width:600px){
+  /* На телефоне полоса прокручивается вбок: одиннадцать тем переносом
+     строк заняли бы треть экрана — ровно то, от чего уходим. */
+  .topic-filter{flex-wrap:nowrap;margin:0 -22px 22px;padding:2px 22px 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .topic-filter::-webkit-scrollbar{display:none}
+  .topic-filter button{flex:0 0 auto;white-space:nowrap}
+}
