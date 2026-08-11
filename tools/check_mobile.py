@@ -53,6 +53,10 @@ CLS_MAX = 0.05
 # Порог оставлен с запасом, чтобы ловить возврат мегабайтной обложки, а не
 # каждую новую картинку.
 WEIGHT_MAX = 800_000
+# Липкая шапка на телефоне съедает высоту у каждого экрана. Замер 11.08.2026:
+# кнопка меню не помещалась в строку и шапка разбора занимала 103px из 844;
+# после ужатия логотипа и призыва — 69px. Порог ловит возврат переноса.
+HEADER_MAX = 90
 
 MENU_SELECTOR = "nav[aria-label='Основная навигация'], nav.links"
 
@@ -162,6 +166,12 @@ def check_page(browser, base: str, rel: str) -> list[str]:
         menu = page.query_selector(MENU_SELECTOR)
         if menu is None:
             return bad  # страница без шапки с меню — калькулятор, служебные
+
+        header_height = page.evaluate(
+            """() => {const h = document.querySelector('.topbar, .article-nav');
+               return h ? Math.round(h.getBoundingClientRect().height) : 0;}""")
+        if header_height > HEADER_MAX:
+            bad.append(f"{rel}: шапка занимает {header_height}px — содержимое не влезло в строку")
 
         toggle = page.query_selector(".nav-toggle")
         if toggle is None or not toggle.is_visible():

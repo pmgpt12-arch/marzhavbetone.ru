@@ -31,3 +31,20 @@ body{font-family:"Segoe UI Variable","Segoe UI",Arial,sans-serif}.sales-solution
      промахивается пальцем, и это чинится отступом, а не размером шрифта. */
   .topbar nav.is-open a,.article-nav .links.is-open a{min-height:44px;display:flex;align-items:center}
 }
+/* Шапка в одну строку на телефоне. Замер на 390px: логотип 185 + кнопка 136 +
+   меню 44 + отступы 44 = 409 при экране 390, и кнопка меню уезжала на вторую
+   строку — липкая шапка занимала 103px из 844. Ужимаются логотип и кнопка,
+   а не выбрасывается что-то одно: и переход на главную, и призыв нужны оба. */
+@media(max-width:600px){
+  .topbar,.article-nav{padding-left:14px;padding-right:14px}
+  .brand{gap:7px;font-size:12px;letter-spacing:-.02em}
+  .brand-mark{width:28px;height:28px}
+  .topbar .button-small,.article-nav .button-small{padding:10px 12px!important;font-size:11px!important}
+  .nav-toggle{margin-left:8px}
+}
+/* Ниже 380px в строку не помещается и ужатое: замер на 360px давал 363px
+   содержимого. Слово в логотипе уступает место — знак «М» остаётся ссылкой
+   на главную, а призыв и меню важнее написанного словами названия. */
+@media(max-width:380px){
+  .brand span:not(.brand-mark){display:none}
+}
