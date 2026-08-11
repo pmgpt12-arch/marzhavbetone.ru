@@ -36,7 +36,7 @@ THRESHOLD = 300_000  # ниже этого веса трогать нечего
 # Где могут встретиться имена файлов. Двоичное и служебное не читаем.
 REFERENCE_GLOBS = ("**/*.html", "**/*.css", "**/*.xml", "**/*.md",
                    "**/*.yaml", "**/*.yml", "tools/*.py")
-SKIP_DIRS = (".git/", "downloads/", "products-storage/", "orders/")
+SKIP_DIRS = (".git/", ".claude/", "downloads/", "products-storage/", "orders/")
 
 
 def reference_files() -> list[Path]:
