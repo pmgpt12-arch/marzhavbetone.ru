@@ -35,6 +35,7 @@ MATERIALS = {
     "avans": "00-free-avans-do-podpisi",
     "raschet-metrami": "00-free-raschet-metrami",
     "ispolnitelnaya-dokumentaciya": "00-free-id-do-peredachi",
+    "akt-skrytyh-rabot": "00-free-akt-skrytyh-rabot",
 }
 
 

@@ -105,6 +105,10 @@
 .article-cover {
   display: block !important;
   width: 100% !important;
+  /* Высота выводится из ширины. Без этого атрибут height, проставленный
+     11.08.2026 ради устойчивой вёрстки, сам становится высотой: обложка
+     упиралась в max-height и кадр обрезался по бокам замысла. */
+  height: auto !important;
   max-height: 420px !important;
   object-fit: cover !important;
   border-radius: 8px !important;
