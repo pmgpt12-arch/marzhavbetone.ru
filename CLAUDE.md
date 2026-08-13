@@ -96,6 +96,9 @@ python3 tools/check_packages.py   # состав против манифесто
                                   # в манифесте и в шапке страницы товара
 python3 tools/check_free_materials.py  # бесплатные: папка, архив, страница, врезка
 python3 tools/check_covers.py     # каким разборам нужна обложка
+python3 tools/check_seo.py        # замеренный спрос против опубликованного:
+                                  # карта сайта, canonical, дубли заголовков,
+                                  # целевые URL семантики
 python3 tools/check_rss.py        # фид для Дзена несёт то же, что статья
 python3 tools/check_reel.py       # сценарии роликов
 python3 tools/dzen_channel.py     # что уже опубликовано в Дзене, дубли
