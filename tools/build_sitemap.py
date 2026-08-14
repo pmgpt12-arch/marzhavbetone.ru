@@ -77,6 +77,9 @@ def classify(rel: str) -> tuple[str, str] | None:
         return "monthly", "0.9"
     if rel == "articles/index.html":
         return "weekly", "0.9"
+    # Витрина бесплатных материалов — такой же хаб, как витрина разборов.
+    if rel == "materialy/index.html":
+        return "weekly", "0.8"
     if rel.startswith("products/"):
         # Договор — точка, с которой начинают чаще прочего. Полный комплект
         # стоял здесь же и снят с продажи 11.08.2026 решением владельца.
@@ -100,8 +103,17 @@ def collect() -> list[tuple[str, str, str, str]]:
         if not kind:
             continue
         freq, prio = kind
-        loc = f"{BASE}/" if rel == "index.html" else \
-              f"{BASE}/articles/" if rel == "articles/index.html" else f"{BASE}/{rel}"
+        # Любой index.html — адрес каталога, а не файла. Раньше правило
+        # было записано отдельной веткой под articles/, и витрина
+        # материалов тут же разошлась: canonical `/materialy/`, карта
+        # сайта `/materialy/index.html`. Правило обобщено, чтобы
+        # следующий хаб не повторил.
+        if rel == "index.html":
+            loc = f"{BASE}/"
+        elif rel.endswith("/index.html"):
+            loc = f"{BASE}/{rel[:-len('index.html')]}"
+        else:
+            loc = f"{BASE}/{rel}"
         rows.append((loc, git_date(path), freq, prio))
     # Порядок: главная, разделы, статьи, материалы, правовые — как читается человеком
     order = {"1.0": 0, "0.9": 1, "0.8": 2, "0.7": 3, "0.3": 4, "0.2": 5}
