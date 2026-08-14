@@ -104,6 +104,17 @@ python3 tools/check_reel.py       # сценарии роликов
 python3 tools/dzen_channel.py     # что уже опубликовано в Дзене, дубли
 ```
 
+Карта запрос → страница строится, а не проверяется, поэтому стоит отдельно:
+
+```bash
+python3 tools/keyword_map.py --out content/strategy/keyword-map.csv
+```
+
+Она сворачивает запросы семантики в группы по намерению и ставит по каждому
+предварительное решение — `keep`, `improve`, `merge`, `create`, `no-page`.
+Группировка здесь гипотеза, а не вердикт: страницы под группу решает
+`marzha-seo-strategist`, состав каталога — владелец.
+
 Числа сайта берутся прогоном `.github/workflows/metrika.yml` (секрет
 `METRIKA_TOKEN`), инструмент — `tools/metrika_report.py`, ряд снимков —
 `content/metrics/`. Из облачной сессии `api-metrika.yandex.net` закрыт
