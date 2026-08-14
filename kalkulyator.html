@@ -86,7 +86,26 @@
       <p class="calculator-note">Расчёт показывает альтернативную стоимость денег и не определяет размер юридического требования к заказчику.</p>
     </section>
 
-    <aside class="calculator-cta"><h2>Цифра получилась неприятной?</h2><p>Проверим договор, документы, срок оплаты и основания удержания — и определим следующий практический шаг.</p><a class="button" href="/#contact">Запросить диагностику</a></aside>
+    <!-- Следующий шаг зависит от того, какой расчёт человек вёл: за
+         просрочку оплаты или за замороженное удержание. Блок появляется по
+         введённой сумме, а не по полученному результату: ключевая ставка
+         здесь намеренно пустая, чтобы не устаревать, и при незаполненном
+         поле результат нулевой — самый горячий посетитель увидел бы
+         предложение последним. -->
+    <aside class="calculator-cta" id="next-step" hidden>
+      <h2>Что с этой цифрой делать дальше</h2>
+      <div id="next-debt" hidden>
+        <p>Работы сданы, срок оплаты прошёл — порядок один: сверить собственные документы, зафиксировать просрочку, предъявить требование.</p>
+        <p><a class="button" href="/products/p1-oplata-po-ks2.html">Комплект «Заказчик не оплачивает работы»</a></p>
+        <p class="calculator-note">Нужен только первый ход — <a href="/products/t1-pervyy-shag-pri-neoplate.html">«Первый шаг при неоплате»</a>. Проверить свои документы бесплатно — <a href="/materialy/dengi.html">семь проверок до обращения к юристу</a>.</p>
+      </div>
+      <div id="next-retention" hidden>
+        <p>Если сумма удержана как гарантийная — спор идёт не о выполнении работ, а об основании и сроке возврата.</p>
+        <p><a class="button" href="/products/p5-shtrafy-uderzhaniya.html">Комплект «Штрафы и удержания»</a></p>
+        <p class="calculator-note">Проверить основание бесплатно — <a href="/materialy/uderzhaniya.html">что смотреть в договоре об удержании</a>.</p>
+      </div>
+      <p class="calculator-note">Не разобрались, какой это случай? <a href="/#contact">Запросить диагностику</a> — посмотрим договор, документы и срок оплаты.</p>
+    </aside>
   </main>
 
   <footer><div class="footer-inner"><p>© «Маржа в бетоне»</p><p><a href="/offer.html">Оферта</a> · <a href="/payment-delivery.html">Оплата и получение</a> · <a href="/refund.html">Возврат</a></p></div></footer>
@@ -100,11 +119,25 @@
       document.getElementById('retention-result').textContent=money(cost);
       const profit=n('planned-profit');
       document.getElementById('retention-share').textContent=profit?`Это около ${Math.round(cost/profit*100)}% плановой прибыли объекта.`:'Без учёта сложного процента, налогов и инфляции.';
+      nextStep();
+    }
+    // Показываем ветку по введённой сумме, а не по результату: ставка
+    // намеренно пустая, и при ней результат ноль даже у того, кому есть что
+    // взыскивать.
+    function nextStep(){
+      // Вкладка — это заявленный случай: человек сам выбрал, что считает.
+      const onDebt=document.getElementById('debt-tab').getAttribute('aria-selected')==='true';
+      const debt=onDebt&&n('debt-sum')>0;
+      const retention=!onDebt&&n('retention-sum')>0;
+      document.getElementById('next-debt').hidden=!debt;
+      document.getElementById('next-retention').hidden=!retention;
+      document.getElementById('next-step').hidden=!(debt||retention);
     }
     document.querySelectorAll('input').forEach(input=>input.addEventListener('input',calculate));
     document.querySelectorAll('.calculator-tab').forEach((tab,index)=>tab.addEventListener('click',()=>{
       document.querySelectorAll('.calculator-tab').forEach((item,i)=>item.setAttribute('aria-selected',String(i===index)));
       document.querySelectorAll('.calculator-panel').forEach((panel,i)=>panel.classList.toggle('active',i===index));
+      nextStep();
     }));
     calculate();
   </script>

@@ -76,6 +76,41 @@ def fetch(url: str, ua: str = UA["browser"], follow: bool = True):
         return None, url, {}, None, str(e)
 
 
+# Ссылки страницы, отданной сервером. Проверка по файлам репозитория этого
+# не заменяет: она отвечает «в репозитории цель есть», а вопрос здесь —
+# «сервер по этому адресу отдаёт страницу». Между ними стоит выкладка.
+LOCAL_ATTR = re.compile(r'\b(?:href|src)="([^"]*)"')
+SKIP_TARGET = ("http://", "https://", "mailto:", "tel:", "javascript:",
+               "data:", "//", "#")
+# Выдача покупателю: адрес рабочий, но за ним заказ, а не страница.
+SKIP_PREFIX = ("/orders/", "/download.php", "/pay.php")
+
+
+def collect_local_targets(html: str, source: str,
+                          out: dict[str, set[str]]) -> None:
+    base = source.rsplit("/", 1)[0]
+    for value in LOCAL_ATTR.findall(html):
+        value = value.strip()
+        if not value or value.startswith(SKIP_TARGET):
+            continue
+        clean = value.split("#", 1)[0].split("?", 1)[0]
+        if not clean:
+            continue
+        target = clean if clean.startswith("/") else f"{base}/{clean}"
+        # Сворачиваем ../ — сервер это сделает сам, но сверять надо адрес.
+        parts: list[str] = []
+        for part in target.split("/"):
+            if part == "..":
+                if parts:
+                    parts.pop()
+            elif part not in ("", "."):
+                parts.append(part)
+        target = "/" + "/".join(parts) + ("/" if target.endswith("/") else "")
+        if target.startswith(SKIP_PREFIX):
+            continue
+        out.setdefault(target, set()).add(source)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, required=True)
@@ -86,6 +121,7 @@ def main() -> int:
     critical: list[str] = []
     high: list[str] = []
     medium: list[str] = []
+    link_targets: dict[str, set[str]] = {}
     lines: list[str] = [
         "# Живой аудит индексируемости marzhavbetone.ru",
         f"\nДата: {date.today().isoformat()}. Прогон: seo-audit.yml, "
@@ -142,6 +178,7 @@ def main() -> int:
         if final.rstrip("/") != url.rstrip("/"):
             high.append(f"{path}: редирект из карты на {final}")
         html = body.decode("utf-8", "replace")
+        collect_local_targets(html, path, link_targets)
         can = CANONICAL.search(html)
         can_val = (can.group(1).replace(SITE, "") or "/") if can else "нет"
         can_ok = can_val == path or (path == "/" and can_val == "/")
@@ -168,7 +205,32 @@ def main() -> int:
             f"{'да' if has_title else 'НЕТ'} | {'да' if has_h1 else 'НЕТ'} | "
             f"{verdict} |")
 
-    # --- 3. Дубли схемы ---------------------------------------------------
+    # --- 3. Куда ведут ссылки отданных страниц ----------------------------
+    #
+    # Отдельный слой от проверки по файлам. Замер 14.08.2026: кнопка покупки
+    # на `/materialy/akt-skrytyh-rabot.html` вела в несуществующий товар, и
+    # найдено это было разбором руками. Проверка по файлам теперь такое
+    # ловит до выкладки; здесь тот же вопрос задаётся серверу — потому что
+    # между репозиторием и сервером стоит деплой, и он тоже умеет не доехать.
+    lines.append("\n## Куда ведут ссылки страниц\n")
+    broken_links: list[tuple[str, list[str]]] = []
+    for target in sorted(link_targets):
+        code, _, _, _, err = fetch(f"{SITE}{target}")
+        if err or code is None or code >= 400:
+            sources = sorted(link_targets[target])
+            broken_links.append((f"{target} (код {code or err})", sources))
+            critical.append(
+                f"ссылка в никуда: {target} — код {code or err}, "
+                f"со страниц: {', '.join(sources[:3])}")
+    lines.append(f"- проверено локальных целей: {len(link_targets)}")
+    if broken_links:
+        lines.append("- КРИТИЧНО, ведут в никуда:")
+        for target, sources in broken_links:
+            lines.append(f"      {target} ← {', '.join(sources)}")
+    else:
+        lines.append("- все цели отвечают кодом ниже 400")
+
+    # --- 4. Дубли схемы ---------------------------------------------------
     lines.append("\n## Дубли схемы и хвосты\n")
     for probe, want in [
         ("http://marzhavbetone.ru/", f"{SITE}/"),
