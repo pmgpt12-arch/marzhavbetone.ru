@@ -75,16 +75,19 @@ body{font-family:"Segoe UI Variable","Segoe UI",Arial,sans-serif}.sales-solution
   .topic-filter button{flex:0 0 auto;white-space:nowrap}
 }
 
-/* Кнопка шапки на телефоне. Правило `.topbar .button-small{display:none}`
-   выше прячет в шапке все кнопки; решение владельца 14.08.2026 — кнопку
-   «Найти решение» показывать: она ведёт в диагностический блок, с которого
-   начинается путь покупателя.
+/* Шапка на телефоне: знак вместо логотипа, обе кнопки на месте.
+   Решение владельца 14.08.2026. Замер до правки: бренд 143 + «Найти
+   решение» 108 + корзина 84 + бургер 44 с отступами дают 419px при экране
+   390 — шапка переносилась на вторую строку и вырастала до 117px при
+   лимите 90 (tools/check_mobile.py). Логотип урезан до знака «М», и обе
+   кнопки помещаются в одну строку.
 
-   Корзина оставлена скрытой не по решению, а по замеру: на 390px бренд 143 +
-   кнопка 108 + корзина 84 + бургер 44 с отступами дают 419px, шапка
-   переносится на вторую строку и вырастает до 117px при лимите 90
-   (tools/check_mobile.py). Вернуть её можно, урезав логотип до знака, —
-   это правка дизайна и отдельное решение. */
+   Корзина возвращена не для симметрии: `add-to-cart` открывает её сама, но
+   вернуться в неё повторно на телефоне было нечем — единственный способ
+   дойти до оплаты пропадал после первого закрытия панели. */
 @media(max-width:600px){
-  .topbar .nav-cta{display:inline-flex;margin-left:auto;padding:10px 12px;font-size:12px}
+  .topbar .brand span:not(.brand-mark){display:none}
+  .topbar .nav-cta,.topbar .cart-toggle{display:inline-flex;padding:10px 12px;font-size:12px}
+  .topbar .nav-cta{margin-left:auto}
+  .topbar .cart-toggle{background:transparent;border:1px solid var(--line);color:var(--ink)}
 }
