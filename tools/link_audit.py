@@ -72,6 +72,7 @@ CLUSTERS = {
         "podpisannaya-ks2-ne-znachit-chto-zaplatyat.html",
         "zakazchik-ne-oplachivaet-vypolnennye-raboty.html",
         "raboty-ne-prinyaty.html",
+        "proverka-ks-2-pered-sdachey.html",
     ],
     "допработы": [
         "dopraboty-bez-soglasheniya.html",
