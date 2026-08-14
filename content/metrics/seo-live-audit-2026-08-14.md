@@ -17,7 +17,7 @@
 
 ## sitemap.xml
 
-- код 200, адресов: 74
+- код 200, адресов: 75
 
 ## Адреса карты сайта
 
@@ -53,6 +53,7 @@
 | /articles/dopolnitelnye-raboty-v-stroitelstve.html | 200 | /articles/dopolnitelnye-raboty-v-stroitelstve.html | — | — | да | да | ок |
 | /articles/dopraboty-bez-soglasheniya.html | 200 | /articles/dopraboty-bez-soglasheniya.html | — | — | да | да | ок |
 | /articles/garantiynoe-uderzhanie-chto-eto.html | 200 | /articles/garantiynoe-uderzhanie-chto-eto.html | — | — | да | да | ок |
+| /articles/garantiynoe-uderzhanie-v-ks-2-i-ks-3.html | 200 | /articles/garantiynoe-uderzhanie-v-ks-2-i-ks-3.html | — | — | да | да | ок |
 | /articles/genpodryadchik-zarabatyvaet-na-vas.html | 200 | /articles/genpodryadchik-zarabatyvaet-na-vas.html | — | — | да | да | ок |
 | /articles/ispolnitelnaya-dokumentaciya-sostav.html | 200 | /articles/ispolnitelnaya-dokumentaciya-sostav.html | — | — | да | да | ок |
 | /articles/krasnye-flagi-dogovora-subpodryada.html | 200 | /articles/krasnye-flagi-dogovora-subpodryada.html | — | — | да | да | ок |
@@ -97,6 +98,11 @@
 | /payment-delivery.html | 200 | /payment-delivery.html | — | — | да | да | ок |
 | /refund.html | 200 | /refund.html | — | — | да | да | ок |
 | /privacy.html | 200 | /privacy.html | — | — | да | да | ок |
+
+## Куда ведут ссылки страниц
+
+- проверено локальных целей: 139
+- все цели отвечают кодом ниже 400
 
 ## Дубли схемы и хвосты
 
