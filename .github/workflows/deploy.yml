@@ -56,6 +56,11 @@ jobs:
       - name: Checkout
         if: steps.check.outputs.enabled == 'true'
         uses: actions/checkout@v4
+        with:
+          # Глубина 2 — ради IndexNow: список изменённых страниц берётся
+          # диффом HEAD~1..HEAD, а при глубине 1 родителя в клоне нет и
+          # дифф всегда пуст — уведомление молчало бы, не сообщая об этом.
+          fetch-depth: 2
 
       - name: Set up SSH
         if: steps.check.outputs.enabled == 'true'
@@ -262,3 +267,19 @@ jobs:
 
           echo "::error::Сайт отвечает, но отдаёт не ту сборку: в HTML нет $expected. Залитое не доехало до выдачи — проверьте кеш сервера и путь заливки"
           exit 1
+
+      # IndexNow: сказать Яндексу, какие адреса изменились, не дожидаясь
+      # планового обхода. Ключ публичен по протоколу — он подтверждается
+      # файлом в корне сайта, секретом не является. Ошибка уведомления
+      # деплой не валит: индексация — не условие выкладки.
+      - name: Notify IndexNow
+        if: steps.check.outputs.enabled == 'true' && inputs.dry_run != true
+        continue-on-error: true
+        run: |
+          key="07e706758d2b3889c5bf9c7b3760d86d"
+          urls=$(git diff --name-only HEAD~1 HEAD 2>/dev/null                  | grep -E '^(articles/.*\.html|products/.*\.html|materialy/.*\.html|index\.html|kalkulyator\.html)$'                  | sed 's|^index.html$||; s|^|https://marzhavbetone.ru/|' | head -50)
+          if [ -z "$urls" ]; then echo "изменённых страниц нет"; exit 0; fi
+          list=$(printf '%s' "$urls" | python3 -c 'import sys,json; print(json.dumps([u for u in sys.stdin.read().split() if u]))')
+          payload=$(printf '{"host":"marzhavbetone.ru","key":"%s","urlList":%s}' "$key" "$list")
+          code=$(curl -s -o /tmp/indexnow.out -w '%{http_code}'                  -X POST 'https://yandex.com/indexnow'                  -H 'Content-Type: application/json; charset=utf-8'                  -d "$payload")
+          echo "IndexNow → HTTP $code"; cat /tmp/indexnow.out || true
