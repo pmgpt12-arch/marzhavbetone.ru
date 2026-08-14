@@ -26,7 +26,7 @@
 | / | 200 | / | — | — | да | да | ок |
 | /products/p7-dogovor-podryada.html | 200 | /products/p7-dogovor-podryada.html | — | — | да | да | ок |
 | /articles/ | 200 | /articles/ | — | — | да | да | ок |
-| /kalkulyator.html | 200 | /kalkulyator.html | — | — | НЕТ | да | СРЕДНЕ: нет title/h1 |
+| /kalkulyator.html | 200 | /kalkulyator.html | — | — | да | да | ок |
 | /products/p1-oplata-po-ks2.html | 200 | /products/p1-oplata-po-ks2.html | — | — | да | да | ок |
 | /products/p10-otvet-na-pretenziyu.html | 200 | /products/p10-otvet-na-pretenziyu.html | — | — | да | да | ок |
 | /products/p11-raschet-metrami.html | 200 | /products/p11-raschet-metrami.html | — | — | да | да | ок |
@@ -99,8 +99,8 @@
 
 ## Дубли схемы и хвосты
 
-- http://marzhavbetone.ru/ → 200   ← ВЫСОКО: ожидался 301 на https://marzhavbetone.ru/
-- https://www.marzhavbetone.ru/ → 200   ← ВЫСОКО: ожидался 301 на https://marzhavbetone.ru/
+- http://marzhavbetone.ru/ → 301 https://marzhavbetone.ru/
+- https://www.marzhavbetone.ru/ → 301 https://marzhavbetone.ru/
 - /products/p7-dogovor-podryada.html/ → 404 
 - /kalkulyator.html/ → 404 
 - /products/p1-oplata-po-ks2.html/ → 404 
@@ -123,11 +123,10 @@
 
 - не найдено
 
-### ВЫСОКО — 2
+### ВЫСОКО — 0
 
-- http://marzhavbetone.ru/: 200 , ожидался 301 → https://marzhavbetone.ru/
-- https://www.marzhavbetone.ru/: 200 , ожидался 301 → https://marzhavbetone.ru/
+- не найдено
 
-### СРЕДНЕ — 1
+### СРЕДНЕ — 0
 
-- /kalkulyator.html: title=False, h1=True
+- не найдено
