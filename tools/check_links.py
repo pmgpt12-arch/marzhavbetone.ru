@@ -16,13 +16,16 @@ from link_audit import link_integrity, site_html_files  # noqa: E402
 
 
 def main() -> int:
-    fails = link_integrity()
+    skipped: list[str] = []
+    fails = link_integrity(skipped)
     if fails:
         print("РАСХОЖДЕНИЕ: ссылки ведут в никуда")
         for f in fails:
             print("  ✗", f)
         return 1
-    print(f"Страниц {len(site_html_files())}, битых локальных целей 0.")
+    note = (f"; пропущено собираемых при деплое: {len(skipped)}"
+            if skipped else "")
+    print(f"Страниц {len(site_html_files())}, битых локальных целей 0{note}.")
     return 0
 
 

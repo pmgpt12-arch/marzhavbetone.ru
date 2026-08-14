@@ -412,6 +412,17 @@ EXTERNAL_PREFIXES = ("http://", "https://", "mailto:", "tel:", "javascript:",
 # Выдача покупателю лежит вне репозитория — файлы кладёт касса на сервере.
 RUNTIME_PATHS = ("/orders/", "/download.php", "/pay.php")
 
+# Собирается при деплое и в git не лежит (`.gitignore`). Пропускается по
+# имени, а не по факту отсутствия: иначе исчезновение любого файла читалось
+# бы как «наверное, генерируется». Счёт таких целей печатается — дыра в
+# проверке должна быть видна, а не подразумеваться.
+#
+# Замер 14.08.2026: первый же прогон гейта на чистом checkout назвал
+# `href="/rss.xml"` битой ссылкой на двух страницах. Локально прогон был
+# зелёным — файл лежал в рабочей копии после прошлой сборки. То есть
+# зелёный локальный прогон здесь ничего не значил, а гейт значил.
+GENERATED_AT_DEPLOY = {"rss.xml"}
+
 
 def site_html_files() -> list[Path]:
     """Все страницы, которые реально уезжают на сервер."""
@@ -442,8 +453,19 @@ def resolve_target(value: str, page: Path) -> Path | None:
     return target
 
 
-def link_integrity() -> list[str]:
-    """Битые локальные цели по всему сайту: href, src, action, canonical."""
+def is_generated(target: Path) -> bool:
+    try:
+        return target.relative_to(ROOT).as_posix() in GENERATED_AT_DEPLOY
+    except ValueError:
+        return False
+
+
+def link_integrity(skipped: list[str] | None = None) -> list[str]:
+    """Битые локальные цели по всему сайту: href, src, action, canonical.
+
+    В `skipped`, если он передан, складываются цели, пропущенные как
+    собираемые при деплое: они не дефект, но и не проверены.
+    """
     fails: list[str] = []
     attr_re = re.compile(r'\b(href|src|action)="([^"]*)"')
 
@@ -459,6 +481,10 @@ def link_integrity() -> list[str]:
             if target is None:
                 continue
             if not target.exists():
+                if is_generated(target):
+                    if skipped is not None:
+                        skipped.append(f"{rel}: {value}")
+                    continue
                 fails.append(f"{rel}: {attr}=\"{value}\" — цели нет")
 
         # canonical обязан указывать на существующую страницу своего сайта.
@@ -481,14 +507,15 @@ def link_integrity() -> list[str]:
                 fails.append(f"sitemap.xml: чужой хост — {loc}")
                 continue
             target = resolve_target(loc[len(SITE):] or "/", sitemap)
-            if target is not None and not target.exists():
+            if target is not None and not target.exists() and not is_generated(target):
                 fails.append(f"sitemap.xml: {loc} — страницы нет")
     return fails
 
 
 def verify() -> int:
     """Проверки, которые обязаны пройти до коммита. 0 = всё чисто."""
-    fails: list[str] = link_integrity()
+    skipped: list[str] = []
+    fails: list[str] = link_integrity(skipped)
     html_files = sorted(ARTICLES.glob("*.html")) + sorted(PRODUCTS.glob("*.html"))
 
     for path in html_files:
@@ -572,8 +599,9 @@ def verify() -> int:
         for f in fails:
             print("  ✗", f)
         return 1
+    note = f", пропущено собираемых при деплое {len(skipped)}" if skipped else ""
     print(f"ПРОВЕРКИ ПРОЙДЕНЫ: страниц {len(site_html_files())}, битых локальных")
-    print("целей 0 (href, src, action, canonical, карта сайта); HTML парсится,")
+    print(f"целей 0{note} (href, src, action, canonical, карта сайта); HTML парсится,")
     print("теги парные, JSON-LD валиден, позиции ItemList непрерывны и")
     print("покрывают все разборы.")
     return 0

@@ -16,7 +16,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from link_audit import ROOT, SITE, link_integrity, resolve_target  # noqa: E402
+from link_audit import (GENERATED_AT_DEPLOY, ROOT, SITE, link_integrity,  # noqa: E402
+                        resolve_target)
 
 # Файл кладётся в корень: разрешение относительных ссылок идёт от страницы,
 # и подмена каталога сделала бы проверку не той, что работает на сайте.
@@ -94,6 +95,38 @@ def test_valid_links_do_not_raise_findings() -> None:
         fails = [f for f in link_integrity() if ".link-audit-probe" in f]
         assert not fails, f"ложное срабатывание: {fails}"
     finally:
+        PROBE.unlink(missing_ok=True)
+
+
+def test_generated_files_are_skipped_by_name_and_counted() -> None:
+    """Ссылка на файл, который собирается при деплое, — не дефект.
+
+    Замер 14.08.2026: `rss.xml` лежит в `.gitignore` и собирается
+    `tools/build_rss.py` на деплое. Локально он был в рабочей копии, и
+    прогон зеленел; на чистом checkout гейт назвал `href="/rss.xml"` битой
+    ссылкой на двух страницах. Пропуск идёт по имени, а не по факту
+    отсутствия, и обязан попадать в счёт пропущенных.
+    """
+    assert "rss.xml" in GENERATED_AT_DEPLOY, "лента выпала из списка собираемых"
+
+    # Имя синтетическое намеренно: `rss.xml` может лежать в рабочей копии
+    # после прошлой сборки, и тест на нём мерил бы среду, а не проверку.
+    fake = ".link-audit-generated.xml"
+    GENERATED_AT_DEPLOY.add(fake)
+    try:
+        write_probe(f'<a href="/{fake}">лента</a>')
+        skipped: list[str] = []
+        fails = [f for f in link_integrity(skipped) if ".link-audit-probe" in f]
+        assert not fails, f"собираемый при деплое назван дефектом: {fails}"
+        assert any(".link-audit-probe" in s for s in skipped), \
+            "пропуск не попал в счёт — дыра в проверке стала невидимой"
+
+        # А незаявленный отсутствующий файл обязан остаться дефектом.
+        write_probe('<a href="/.link-audit-nezayavlennyy.xml">не лента</a>')
+        fails = [f for f in link_integrity() if ".link-audit-probe" in f]
+        assert fails, "пропуск оказался по факту отсутствия, а не по имени"
+    finally:
+        GENERATED_AT_DEPLOY.discard(fake)
         PROBE.unlink(missing_ok=True)
 
 
