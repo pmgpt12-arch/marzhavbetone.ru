@@ -17,7 +17,7 @@
 
 ## sitemap.xml
 
-- код 200, адресов: 73
+- код 200, адресов: 74
 
 ## Адреса карты сайта
 
@@ -60,6 +60,7 @@
 | /articles/podpisannaya-ks2-ne-znachit-chto-zaplatyat.html | 200 | /articles/podpisannaya-ks2-ne-znachit-chto-zaplatyat.html | — | — | да | да | ок |
 | /articles/pretenziya-za-chuzhuyu-kommunalku.html | 200 | /articles/pretenziya-za-chuzhuyu-kommunalku.html | — | — | да | да | ок |
 | /articles/protokol-raznoglasiy-k-dogovoru.html | 200 | /articles/protokol-raznoglasiy-k-dogovoru.html | — | — | да | да | ок |
+| /articles/proverka-ks-2-pered-sdachey.html | 200 | /articles/proverka-ks-2-pered-sdachey.html | — | — | да | да | ок |
 | /articles/pyat-dokazatelstv-vypolneniya.html | 200 | /articles/pyat-dokazatelstv-vypolneniya.html | — | — | да | да | ок |
 | /articles/raboty-ne-prinyaty.html | 200 | /articles/raboty-ne-prinyaty.html | — | — | да | да | ок |
 | /articles/raschet-metrami.html | 200 | /articles/raschet-metrami.html | — | — | да | да | ок |
