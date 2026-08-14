@@ -118,6 +118,9 @@ python3 tools/check_packages.py   # состав против манифесто
 python3 tools/check_free_materials.py  # бесплатные: папка, архив, страница, врезка
 python3 tools/check_meta.py       # заголовки и описания: дубль — дефект,
                                   # длина — замечание (предела длины нет)
+python3 tools/check_evidence.py   # доказательный контур: схемы реестров,
+                                  # уверенность, ловушка знаменателя
+python3 tools/test_evidence.py    # размеченные случаи запретов
 python3 tools/money_impact.py     # какая страница про какую денежную
                                   # проблему, выход на комплект своей
                                   # категории, перекос портфеля (--write
