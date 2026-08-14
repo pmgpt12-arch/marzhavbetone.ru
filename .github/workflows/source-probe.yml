@@ -1,0 +1,95 @@
+# Что отвечает первичным источникам: с раннера и с хостинга.
+#
+# Зачем два адреса. Раннер GitHub стоит за рубежом, и половина российских
+# государственных источников закрывает его по географии. Хостинг reg.ru —
+# российский адрес, и ключ к нему уже лежит в секретах деплоя. Пока обе
+# колонки не измерены, «источник недоступен» это предположение.
+#
+# Проба ничего не скачивает: один HEAD на источник, только код ответа.
+# Сбор данных — отдельная задача и отдельное решение владельца: хостинг
+# сайта не место для регулярной выгрузки, и вопрос о ней ставится числами
+# из этой пробы, а не заранее.
+name: Проба источников
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: source-probe
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: С раннера GitHub
+        id: runner
+        run: |
+          sh tools/source_probe.sh | tee /tmp/runner.txt
+
+      - name: Проверить ключ хостинга
+        id: check
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          if [ -z "$KEY" ] || [ -z "$HOST" ] || [ -z "$USER" ]; then
+            echo "secrets=no" >> "$GITHUB_OUTPUT"
+            echo "Секретов деплоя нет — вторая колонка НЕ ИЗМЕРЕНА."
+          else
+            echo "secrets=yes" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: С хостинга reg.ru
+        if: steps.check.outputs.secrets == 'yes'
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/probe_key
+          chmod 600 ~/.ssh/probe_key
+          ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          # IdentitiesOnly — иначе может войти другой ключ и замер соврёт.
+          ssh -i ~/.ssh/probe_key -o IdentitiesOnly=yes -p "$PORT" \
+              -o BatchMode=yes -o ConnectTimeout=20 "$USER@$HOST" \
+              'sh -s' < tools/source_probe.sh | tee /tmp/hosting.txt
+
+      - name: Записать отчёт
+        if: always()
+        run: |
+          out="content/metrics/source-probe-$(date -u +%F).md"
+          {
+            echo "# Проба первичных источников"
+            echo
+            echo "Дата: $(date -u +%F). Прогон: source-probe.yml."
+            echo
+            echo "Каждая строка — код ответа на один HEAD-запрос. Проба"
+            echo "отвечает на вопрос «пустит ли», а не собирает данные."
+            echo
+            echo '## С раннера GitHub (зарубежный адрес)'
+            echo
+            echo '```'
+            cat /tmp/runner.txt 2>/dev/null || echo 'не измерено'
+            echo '```'
+            echo
+            echo '## С хостинга reg.ru (российский адрес)'
+            echo
+            echo '```'
+            cat /tmp/hosting.txt 2>/dev/null \
+              || echo 'НЕ ИЗМЕРЕНО: секретов деплоя нет или SSH не ответил'
+            echo '```'
+          } > "$out"
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add content/metrics
+          git diff --cached --quiet && { echo 'Изменений нет'; exit 0; }
+          git commit -m "Проба первичных источников за $(date -u +%F)"
+          git push
