@@ -133,7 +133,24 @@
       document.getElementById('next-retention').hidden=!retention;
       document.getElementById('next-step').hidden=!(debt||retention);
     }
-    document.querySelectorAll('input').forEach(input=>input.addEventListener('input',calculate));
+    // Событие расчёта — один раз за посещение, а не на каждое нажатие
+    // клавиши: иначе одна введённая сумма даёт семь срабатываний и цель
+    // перестаёт что-либо означать.
+    let calcCounted=false;
+    function countUse(){
+      if(calcCounted) return;
+      if(n('debt-sum')<=0&&n('retention-sum')<=0) return;
+      calcCounted=true;
+      if(typeof window.mvbTrackGoal==='function') window.mvbTrackGoal('calculator_use');
+    }
+    document.querySelectorAll('input').forEach(input=>input.addEventListener('input',()=>{calculate();countUse();}));
+    // Переход из расчёта в комплект считается отдельной целью: обычный
+    // product_opened не отличает его от клика по любой другой ссылке, а
+    // именно этот переход — самый горячий на сайте.
+    document.getElementById('next-step').addEventListener('click',event=>{
+      const link=event.target.closest&&event.target.closest('a[href*="/products/"]');
+      if(link&&typeof window.mvbTrackGoal==='function') window.mvbTrackGoal('calculator_to_product');
+    });
     document.querySelectorAll('.calculator-tab').forEach((tab,index)=>tab.addEventListener('click',()=>{
       document.querySelectorAll('.calculator-tab').forEach((item,i)=>item.setAttribute('aria-selected',String(i===index)));
       document.querySelectorAll('.calculator-panel').forEach((panel,i)=>panel.classList.toggle('active',i===index));

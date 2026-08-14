@@ -140,9 +140,34 @@ python3 tools/keyword_map.py --out content/strategy/keyword-map.csv
 Группировка здесь гипотеза, а не вердикт: страницы под группу решает
 `marzha-seo-strategist`, состав каталога — владелец.
 
+**Чисел сайта нет ни одного, и это замер, а не оценка.** Прогон
+`search-demand.yml` от 14.08.2026 показал в логе `WM:` и `MT:` пустыми:
+секрета `METRIKA_TOKEN` в репозитории **не существует**. Отсюда
+`content/metrics/` не содержит ни одного снимка Метрики — только живой
+SEO-аудит. Еженедельный прогон `metrika.yml` запускается и честно говорит
+«сбор НЕ ЗАПУСКАЛСЯ».
+
+Данные при этом собираются: счётчик `111149105` стоит в `attribution.js`,
+подключённом на всех 80 страницах, и шлёт тринадцать целей —
+`add_to_cart`, `article_to_magnet`, `article_to_product`,
+`calculator_to_product`, `calculator_use`, `checklist_download`,
+`checkout_open`, `dzen_click`, `lead_sent`, `magnet_opened`,
+`product_opened`, `product_selected`, `purchase`. Они видны владельцу в
+интерфейсе Метрики, но не выгружаются в репозиторий и не попадают ни в
+один отчёт. Метрика считает только объявленные в счётчике цели, а
+объявить их прогоном (`--create-goals`) нельзя без того же токена.
+
+Что снимает блокер: один секрет `METRIKA_TOKEN`. Поисковый спрос требует
+второго — `YANDEX_WEBMASTER_TOKEN` с правом `webmaster:hostinfo`; Search
+Console — третьего, своего. До них весь слой «данные» не существует, и
+решения о страницах принимать не на чем.
+
 Числа сайта берутся прогоном `.github/workflows/metrika.yml` (секрет
 `METRIKA_TOKEN`), инструмент — `tools/metrika_report.py`, ряд снимков —
-`content/metrics/`. Из облачной сессии `api-metrika.yandex.net` закрыт
+`content/metrics/`. База поискового спроса — `tools/search_demand.py`,
+прогон `.github/workflows/search-demand.yml`, правила разметки
+`data/seo/search-demand-rules.yaml`, размеченные случаи владельца
+`tools/test_search_demand.py`. Из облачной сессии `api-metrika.yandex.net` закрыт
 (CONNECT 403), как `api.telegram.org` и `dzen.ru`. Метрика считает только
 объявленные в счётчике цели и по необъявленной молчит, поэтому прогон
 заводит недостающие сам — `--create-goals`.
