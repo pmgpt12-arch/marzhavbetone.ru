@@ -105,6 +105,10 @@
 .article-cover {
   display: block !important;
   width: 100% !important;
+  /* Высота выводится из ширины. Без этого атрибут height, проставленный
+     11.08.2026 ради устойчивой вёрстки, сам становится высотой: обложка
+     упиралась в max-height и кадр обрезался по бокам замысла. */
+  height: auto !important;
   max-height: 420px !important;
   object-fit: cover !important;
   border-radius: 8px !important;
@@ -326,3 +330,12 @@
 .article-page h3[id] {
   scroll-margin-top: 84px;
 }
+
+/* Следующий шаг по процессу. Стоит выше «Читайте также» намеренно: список
+   похожего отвечает на вопрос «о чём ещё есть текст», а этот блок — на
+   вопрос «что дальше у меня». Маршруты объявлены в
+   data/seo/money-graph.yaml, разрывы находит tools/money_graph.py. */
+.next-step{padding:22px 24px;background:#fff;border-left:5px solid var(--orange,#ff5a00)}
+.next-step .eyebrow{margin:0 0 8px}
+.next-step p{margin:0;line-height:1.6}
+.next-step a{font-weight:700}

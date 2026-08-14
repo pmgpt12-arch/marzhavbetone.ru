@@ -233,7 +233,11 @@ def check_copies(package: Path, manifest: Path) -> int:
 
 
 def main() -> int:
-    packages = sorted(p for p in STORAGE.iterdir() if p.is_dir())
+    # __pycache__ появляется рядом со сборками при первом импорте между
+    # ними и комплектом не является: 11.08.2026 он дал ложное
+    # расхождение «нет манифеста».
+    packages = sorted(p for p in STORAGE.iterdir()
+                      if p.is_dir() and p.name != "__pycache__")
     if not packages:
         print("Комплектов не найдено", file=sys.stderr)
         return 1

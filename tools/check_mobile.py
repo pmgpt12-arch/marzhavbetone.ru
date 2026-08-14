@@ -16,6 +16,8 @@
   2. меню закрыто до нажатия, раскрывается и закрывается;
   3. страница не уходит в горизонтальную прокрутку и не съезжает после
      загрузки (CLS), а весит не больше порога;
+  3a. ни одна картинка не растянута: пропорция рендера совпадает с
+     исходной, кроме тех, что режет object-fit: cover;
   4. пункты меню не ниже 44px — иначе по ним промахиваются пальцем;
   5. на 1440px меню осталось прежним, а кнопка не появилась.
 
@@ -57,10 +59,19 @@ WEIGHT_MAX = 800_000
 # кнопка меню не помещалась в строку и шапка разбора занимала 103px из 844;
 # после ужатия логотипа и призыва — 69px. Порог ловит возврат переноса.
 HEADER_MAX = 90
+# Картинка обязана держать свою пропорцию. Замер 11.08.2026: атрибуты
+# width/height, проставленные ради устойчивой вёрстки, сами стали высотой
+# там, где в CSS не было height:auto, — карточки рендерились 346×954 вместо
+# 346×260. Ни один текстовый замер этого не видел, проверка веса и
+# прокрутки тоже: страница не переполнялась, картинка просто была
+# растянута. Допуск 5% — на округление.
+RATIO_TOLERANCE = 0.05
 
 MENU_SELECTOR = "nav[aria-label='Основная навигация'], nav.links"
 
-# Выборка: по одной странице каждого шаблона. Шаблонов четыре, и дефект
+# Выборка: по одной странице каждого шаблона. Витрина материалов добавлена
+# отдельно от страниц раздела: у неё семь секций подряд, и растяжка
+# карточки на телефоне видна только на ней. Дефект шапки в одном шаблоне
 # шапки в одном из них не виден на остальных — так и нашёлся дефект статьи.
 SAMPLE = [
     "index.html",
@@ -68,6 +79,7 @@ SAMPLE = [
     "products/p1-oplata-po-ks2.html",
     "materialy/uderzhaniya.html",
     "articles/index.html",
+    "materialy/index.html",
     "kalkulyator.html",
 ]
 
@@ -155,6 +167,46 @@ def check_page(browser, base: str, rel: str) -> list[str]:
         if weight["bytes"] > WEIGHT_MAX:
             bad.append(f"{rel}: страница весит {weight['bytes'] / 1024:.0f} КБ "
                        f"против {WEIGHT_MAX // 1024} КБ")
+
+        # Два разных дефекта, и первый я сам же и внёс.
+        #
+        # Первый: в CSS объявлена aspect-ratio, а картинка её не держит.
+        # Так ломается коробка при object-fit: cover — сама картинка не
+        # растягивается, она кадрируется, поэтому сверка с исходной
+        # пропорцией тут молчит. Замер 11.08.2026: карточки рендерились
+        # 346×954 вместо 346×260, потому что атрибут height стал высотой.
+        #
+        # Второй: пропорция рендера разошлась с исходной там, где картинку
+        # никто не режет, — это и есть растянутая картинка.
+        broken = page.evaluate("""() => {
+            const out = [];
+            for (const i of document.images) {
+                if (!i.naturalWidth) continue;
+                const cs = getComputedStyle(i), r = i.getBoundingClientRect();
+                if (!r.height || !r.width) continue;
+                const shown = r.width / r.height;
+                const declared = cs.aspectRatio && cs.aspectRatio !== 'auto'
+                    ? cs.aspectRatio.split('/').map(Number) : null;
+                const src = i.currentSrc.split('/').pop();
+                if (declared && declared.length === 2 && declared[1]) {
+                    const want = declared[0] / declared[1];
+                    if (Math.abs(shown - want) / want > %(tol)s) {
+                        out.push(src + ': коробка ' + Math.round(r.width) + '×' +
+                                 Math.round(r.height) + ' против объявленной ' + cs.aspectRatio);
+                        continue;
+                    }
+                }
+                if (cs.objectFit === 'cover' || cs.objectFit === 'contain') continue;
+                const nat = i.naturalWidth / i.naturalHeight;
+                if (Math.abs(shown - nat) / nat > %(tol)s) {
+                    out.push(src + ': растянута, ' + shown.toFixed(2) +
+                             ' против исходной ' + nat.toFixed(2));
+                }
+            }
+            return out;
+        }""" % {"tol": RATIO_TOLERANCE})
+        if broken:
+            bad.append(f"{rel}: картинки не держат пропорцию — " + "; ".join(broken[:3]))
 
         overflow = page.evaluate(
             "() => document.documentElement.scrollWidth - document.documentElement.clientWidth")

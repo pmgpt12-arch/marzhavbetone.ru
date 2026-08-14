@@ -10,9 +10,10 @@
   <meta property="og:url" content="https://marzhavbetone.ru/kalkulyator.html">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="description" content="Бесплатный калькулятор для подрядчика: ориентировочный расчёт процентов за просрочку оплаты и стоимости замороженного гарантийного удержания.">
+  <title>Калькулятор процентов по статье 395 ГК РФ и гарантийного удержания — Маржа в бетоне</title>
   <link rel="canonical" href="https://marzhavbetone.ru/kalkulyator.html">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=80e94265">
   <style>
     .calculator-page{max-width:980px;margin:0 auto;padding:56px 24px 90px}.calculator-page h1{max-width:900px}.calculator-intro{max-width:760px}
     .calculator-tabs{display:flex;margin-top:34px}.calculator-tab{flex:1;padding:16px;border:1px solid #a9a49a;background:#d8d4ca;color:#242629;font:700 15px Arial;cursor:pointer}.calculator-tab[aria-selected="true"]{background:#242629;color:#e9e5dc}
@@ -47,7 +48,6 @@
   }
   </script>
 </head>
-</head>
 <body>
   <header class="topbar">
     <a class="brand" href="/" aria-label="Маржа в бетоне, на главную"><span class="brand-mark">М</span><span>маржа в бетоне</span></a>
@@ -69,10 +69,10 @@
       <div class="calculator-grid">
         <div class="calculator-field"><label for="debt-sum">Сумма задолженности, ₽</label><input id="debt-sum" type="number" min="0" step="1000" value="4200000"></div>
         <div class="calculator-field"><label for="debt-days">Дней просрочки</label><input id="debt-days" type="number" min="0" step="1" value="60"></div>
-        <div class="calculator-field"><label for="key-rate">Ставка для расчёта, % годовых</label><input id="key-rate" type="number" min="0" step="0.01" value="14.25"></div>
+        <div class="calculator-field"><label for="key-rate">Ставка для расчёта, % годовых</label><input id="key-rate" type="number" min="0" step="0.01" placeholder="ключевая ставка на дату расчёта"></div>
       </div>
       <div class="calculator-result"><span>Ориентировочная сумма процентов</span><strong id="debt-result">—</strong><small>Формула: сумма × ставка ÷ 365 × количество дней.</small></div>
-      <p class="calculator-note">Ставка 14,25% установлена Банком России с 22 июня 2026 года. Перед расчётом проверьте актуальное значение. Если ставка менялась в период просрочки, расчёт выполняется отдельно по каждому периоду. Договор может устанавливать другой порядок ответственности.</p>
+      <p class="calculator-note">Если ставка менялась в период просрочки, расчёт выполняется отдельно по каждому периоду. Действующую ключевую ставку сверьте на сайте Банка России — предзаполненного значения здесь нет намеренно: оно устаревает. Договор может устанавливать другой порядок ответственности.</p>
     </section>
 
     <section class="calculator-panel" id="retention-panel" role="tabpanel" aria-labelledby="retention-tab">
@@ -86,7 +86,26 @@
       <p class="calculator-note">Расчёт показывает альтернативную стоимость денег и не определяет размер юридического требования к заказчику.</p>
     </section>
 
-    <aside class="calculator-cta"><h2>Цифра получилась неприятной?</h2><p>Проверим договор, документы, срок оплаты и основания удержания — и определим следующий практический шаг.</p><a class="button" href="/#contact">Запросить диагностику</a></aside>
+    <!-- Следующий шаг зависит от того, какой расчёт человек вёл: за
+         просрочку оплаты или за замороженное удержание. Блок появляется по
+         введённой сумме, а не по полученному результату: ключевая ставка
+         здесь намеренно пустая, чтобы не устаревать, и при незаполненном
+         поле результат нулевой — самый горячий посетитель увидел бы
+         предложение последним. -->
+    <aside class="calculator-cta" id="next-step" hidden>
+      <h2>Что с этой цифрой делать дальше</h2>
+      <div id="next-debt" hidden>
+        <p>Работы сданы, срок оплаты прошёл — порядок один: сверить собственные документы, зафиксировать просрочку, предъявить требование.</p>
+        <p><a class="button" href="/products/p1-oplata-po-ks2.html">Комплект «Заказчик не оплачивает работы»</a></p>
+        <p class="calculator-note">Нужен только первый ход — <a href="/products/t1-pervyy-shag-pri-neoplate.html">«Первый шаг при неоплате»</a>. Проверить свои документы бесплатно — <a href="/materialy/dengi.html">семь проверок до обращения к юристу</a>.</p>
+      </div>
+      <div id="next-retention" hidden>
+        <p>Если сумма удержана как гарантийная — спор идёт не о выполнении работ, а об основании и сроке возврата.</p>
+        <p><a class="button" href="/products/p5-shtrafy-uderzhaniya.html">Комплект «Штрафы и удержания»</a></p>
+        <p class="calculator-note">Проверить основание бесплатно — <a href="/materialy/uderzhaniya.html">что смотреть в договоре об удержании</a>.</p>
+      </div>
+      <p class="calculator-note">Не разобрались, какой это случай? <a href="/#contact">Запросить диагностику</a> — посмотрим договор, документы и срок оплаты.</p>
+    </aside>
   </main>
 
   <footer><div class="footer-inner"><p>© «Маржа в бетоне»</p><p><a href="/offer.html">Оферта</a> · <a href="/payment-delivery.html">Оплата и получение</a> · <a href="/refund.html">Возврат</a></p></div></footer>
@@ -100,14 +119,45 @@
       document.getElementById('retention-result').textContent=money(cost);
       const profit=n('planned-profit');
       document.getElementById('retention-share').textContent=profit?`Это около ${Math.round(cost/profit*100)}% плановой прибыли объекта.`:'Без учёта сложного процента, налогов и инфляции.';
+      nextStep();
     }
-    document.querySelectorAll('input').forEach(input=>input.addEventListener('input',calculate));
+    // Показываем ветку по введённой сумме, а не по результату: ставка
+    // намеренно пустая, и при ней результат ноль даже у того, кому есть что
+    // взыскивать.
+    function nextStep(){
+      // Вкладка — это заявленный случай: человек сам выбрал, что считает.
+      const onDebt=document.getElementById('debt-tab').getAttribute('aria-selected')==='true';
+      const debt=onDebt&&n('debt-sum')>0;
+      const retention=!onDebt&&n('retention-sum')>0;
+      document.getElementById('next-debt').hidden=!debt;
+      document.getElementById('next-retention').hidden=!retention;
+      document.getElementById('next-step').hidden=!(debt||retention);
+    }
+    // Событие расчёта — один раз за посещение, а не на каждое нажатие
+    // клавиши: иначе одна введённая сумма даёт семь срабатываний и цель
+    // перестаёт что-либо означать.
+    let calcCounted=false;
+    function countUse(){
+      if(calcCounted) return;
+      if(n('debt-sum')<=0&&n('retention-sum')<=0) return;
+      calcCounted=true;
+      if(typeof window.mvbTrackGoal==='function') window.mvbTrackGoal('calculator_use');
+    }
+    document.querySelectorAll('input').forEach(input=>input.addEventListener('input',()=>{calculate();countUse();}));
+    // Переход из расчёта в комплект считается отдельной целью: обычный
+    // product_opened не отличает его от клика по любой другой ссылке, а
+    // именно этот переход — самый горячий на сайте.
+    document.getElementById('next-step').addEventListener('click',event=>{
+      const link=event.target.closest&&event.target.closest('a[href*="/products/"]');
+      if(link&&typeof window.mvbTrackGoal==='function') window.mvbTrackGoal('calculator_to_product');
+    });
     document.querySelectorAll('.calculator-tab').forEach((tab,index)=>tab.addEventListener('click',()=>{
       document.querySelectorAll('.calculator-tab').forEach((item,i)=>item.setAttribute('aria-selected',String(i===index)));
       document.querySelectorAll('.calculator-panel').forEach((panel,i)=>panel.classList.toggle('active',i===index));
+      nextStep();
     }));
     calculate();
   </script>
-  <script src="/attribution.js?v=4"></script>
+  <script src="/attribution.js?v=fd4f359d"></script>
 </body>
 </html>

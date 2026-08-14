@@ -1,0 +1,71 @@
+# Гейт качества: падает до того, как правка доедет до сервера.
+#
+# Зачем отдельно от хука `PostToolUse`: хук работает в сессии и его можно
+# не запустить — правка руками, правка с телефона, чужой PR. Замер
+# 14.08.2026: две битые ссылки на materialy/akt-skrytyh-rabot.html доехали
+# до боевого сайта, одна из них — кнопка покупки в 404. Хук их не поймал бы
+# в принципе: проверка тогда смотрела только каталог articles/.
+#
+# Здесь только то, что не требует ни сети, ни секретов, ни браузера, и
+# отвечает однозначным кодом. check_mobile.py сюда не входит: он требует
+# playwright с хромиумом и без него честно молчит, а молчание в гейте
+# читается как «прошло».
+name: Проверки
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Единственная зависимость вне стандартной библиотеки на весь набор:
+      # `check_covers.py` меряет размеры обложек. Замер по импортам всех
+      # девяти проверок — больше ставить нечего.
+      - name: Поставить Pillow (нужен check_covers)
+        run: python3 -m pip install --quiet pillow
+
+      - name: Целостность ссылок по всему сайту
+        run: python3 tools/link_audit.py --verify
+
+      - name: Регресс на проверку ссылок
+        run: python3 tools/test_link_audit.py
+
+      # Размеченные примеры владельца против правил классификации спроса.
+      # Сети не требует: правила локальные, набор локальный.
+      - name: Разметка поискового спроса на размеченных случаях
+        run: python3 tools/test_search_demand.py
+
+      # Дубль описания или заголовка — дефект: обещание в выдаче перестаёт
+      # различать страницы. Длина — только замечание, кода не меняет.
+      - name: Заголовки и описания
+        run: python3 tools/check_meta.py
+
+      # Денежная принадлежность страницы: категория и выход на комплект.
+      # Метрик не требует — структура известна без замеров.
+      - name: Money Impact
+        run: python3 tools/money_impact.py
+
+      - name: Связность по процессу
+        run: python3 tools/money_graph.py
+
+      - name: Остальные проверки репозитория
+        run: |
+          status=0
+          for check in check_seo check_rss check_packages check_products \
+                       check_free_materials check_covers; do
+            echo "::group::$check"
+            python3 "tools/$check.py" || status=1
+            echo "::endgroup::"
+          done
+          exit $status

@@ -1,0 +1,91 @@
+# База поискового спроса: фактические показы сайта из Вебмастера.
+#
+# Зачем прогоном, а не из сессии: `api.webmaster.yandex.net` из облачной
+# сессии закрыт политикой сети, как `api-metrika.yandex.net`. Раннер
+# Actions до него достаёт.
+#
+# `--probe` отвечает на единственный вопрос, от которого зависит весь
+# этап: хватает ли имеющегося токена. Ответ приходит кодом, а не
+# предположением: 401 — токен не той службы, 403 — нет права
+# webmaster:hostinfo, 200 — можно собирать.
+name: Поисковый спрос
+
+on:
+  workflow_dispatch:
+    inputs:
+      probe:
+        description: 'Только проверить доступ токена, ничего не собирать'
+        type: boolean
+        default: false
+      days:
+        description: 'За сколько дней брать показы'
+        default: '28'
+  schedule:
+    # Понедельник, 06:00 UTC. Недельный цикл разбора спроса.
+    - cron: '0 6 * * 1'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: search-demand
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Токен пробуется в двух видах намеренно. Отдельного секрета под
+      # Вебмастер может не быть, а METRIKA_TOKEN — тоже OAuth Яндекса, и
+      # вопрос «подойдёт ли он» решается запросом, а не рассуждением.
+      - name: Проверить доступ
+        id: probe
+        env:
+          WM: ${{ secrets.YANDEX_WEBMASTER_TOKEN }}
+          MT: ${{ secrets.METRIKA_TOKEN }}
+        run: |
+          for name in WM MT; do
+            token="${!name}"
+            [ -z "$token" ] && { echo "$name: секрета нет"; continue; }
+            echo "::group::пробую $name"
+            if YANDEX_WEBMASTER_TOKEN="$token" \
+               python3 tools/search_demand.py --probe; then
+              echo "working_token=$name" >> "$GITHUB_OUTPUT"
+              echo "::endgroup::"
+              exit 0
+            fi
+            echo "::endgroup::"
+          done
+          echo "Ни один токен не открыл Вебмастер."
+          exit 1
+
+      - name: Собрать спрос
+        if: steps.probe.outputs.working_token != '' && !inputs.probe
+        env:
+          WM: ${{ secrets.YANDEX_WEBMASTER_TOKEN }}
+          MT: ${{ secrets.METRIKA_TOKEN }}
+        run: |
+          token="${WM:-$MT}"
+          [ "${{ steps.probe.outputs.working_token }}" = "MT" ] && token="$MT"
+          YANDEX_WEBMASTER_TOKEN="$token" python3 tools/search_demand.py \
+            --days "${{ inputs.days || 28 }}" --write
+
+      - name: Зафиксировать базу
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/seo
+          if git diff --cached --quiet; then
+            echo 'Изменений нет'
+            exit 0
+          fi
+          git commit -m "Поисковый спрос за $(date -u +%F)"
+          git push
