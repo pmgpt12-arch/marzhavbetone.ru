@@ -67,6 +67,18 @@ if [ "$1" = "--query" ]; then
     size=$([ -f /tmp/kad.out ] && wc -c < /tmp/kad.out || echo 0)
     printf '%-6s  kad.arbitr.ru поиск, тело %s байт\n' "$code" "$size"
 
+    # Поиск банка решений: POST, а не главная. Главная у ras отдала 200 и
+    # 138 КБ, но это ничего не говорит о поиске — у картотеки главная тоже
+    # отвечала, а её поиск дал 451. Один запрос, ответ не разбирается.
+    code=$(curl -s -o /tmp/rassearch.out -w '%{http_code}' -m 30 \
+        -A 'Mozilla/5.0 (compatible; marzhavbetone-probe/1.0)' \
+        -H 'Content-Type: application/json' \
+        -H 'X-Requested-With: XMLHttpRequest' \
+        --data '{"Page":1,"Count":5,"Text":"дополнительные работы подряд","Courts":[],"DateFrom":null,"DateTo":null,"Sides":[],"Judges":[],"CaseNumbers":[],"WithVKSInstances":false}' \
+        'https://ras.arbitr.ru/Ras/Search' 2>/dev/null)
+    size=$([ -f /tmp/rassearch.out ] && wc -c < /tmp/rassearch.out || echo 0)
+    printf '%-6s  ras.arbitr.ru ПОИСК (POST), тело %s байт\n' "$code" "$size"
+
     # Вторичный источник с открытым поиском — запасной путь, класс C.
     code=$(curl -s -o /tmp/sud.out -w '%{http_code}' -m 30 \
         -A 'Mozilla/5.0 (compatible; marzhavbetone-probe/1.0)' \
