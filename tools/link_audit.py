@@ -50,6 +50,7 @@ CLUSTERS = {
     ],
     "гарантийное удержание": [
         "garantiynoe-uderzhanie-chto-eto.html",
+        "garantiynoe-uderzhanie-v-ks-2-i-ks-3.html",
         "srok-garantiynogo-uderzhaniya.html",
         "vozvrat-garantiynogo-uderzhaniya.html",
         "genpodryadchik-zarabatyvaet-na-vas.html",
