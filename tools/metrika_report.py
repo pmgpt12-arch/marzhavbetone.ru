@@ -57,8 +57,8 @@ TIMEOUT = 40
 # Цели, ради которых всё и делалось. Порядок — путь читателя, а не алфавит.
 GOAL_ORDER = [
     "article_to_product", "article_to_magnet", "magnet_opened", "product_opened",
-    "checklist_download", "lead_sent", "product_selected", "add_to_cart",
-    "checkout_open", "dzen_click",
+    "checklist_download", "lead_sent", "calculator_use", "calculator_to_product",
+    "product_selected", "add_to_cart", "checkout_open", "purchase", "dzen_click",
 ]
 
 
