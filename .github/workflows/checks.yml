@@ -29,6 +29,12 @@ jobs:
         with:
           python-version: '3.11'
 
+      # Единственная зависимость вне стандартной библиотеки на весь набор:
+      # `check_covers.py` меряет размеры обложек. Замер по импортам всех
+      # девяти проверок — больше ставить нечего.
+      - name: Поставить Pillow (нужен check_covers)
+        run: python3 -m pip install --quiet pillow
+
       - name: Целостность ссылок по всему сайту
         run: python3 tools/link_audit.py --verify
 
