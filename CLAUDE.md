@@ -116,6 +116,8 @@ python3 tools/check_packages.py   # состав против манифесто
                                   # дубликаты внутри комплекта, число файлов
                                   # в манифесте и в шапке страницы товара
 python3 tools/check_free_materials.py  # бесплатные: папка, архив, страница, врезка
+python3 tools/money_graph.py      # ведёт ли страница вперёд по процессу:
+                                  # маршруты data/seo/money-graph.yaml
 python3 tools/check_links.py      # битые локальные цели по всему сайту:
                                   # href, src, action, canonical, карта сайта
 python3 tools/link_audit.py --verify   # то же плюс граф разборов и JSON-LD
