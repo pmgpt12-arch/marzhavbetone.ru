@@ -48,7 +48,6 @@
   }
   </script>
 </head>
-</head>
 <body>
   <header class="topbar">
     <a class="brand" href="/" aria-label="Маржа в бетоне, на главную"><span class="brand-mark">М</span><span>маржа в бетоне</span></a>
@@ -70,10 +69,10 @@
       <div class="calculator-grid">
         <div class="calculator-field"><label for="debt-sum">Сумма задолженности, ₽</label><input id="debt-sum" type="number" min="0" step="1000" value="4200000"></div>
         <div class="calculator-field"><label for="debt-days">Дней просрочки</label><input id="debt-days" type="number" min="0" step="1" value="60"></div>
-        <div class="calculator-field"><label for="key-rate">Ставка для расчёта, % годовых</label><input id="key-rate" type="number" min="0" step="0.01" value="14.25"></div>
+        <div class="calculator-field"><label for="key-rate">Ставка для расчёта, % годовых</label><input id="key-rate" type="number" min="0" step="0.01" placeholder="ключевая ставка на дату расчёта"></div>
       </div>
       <div class="calculator-result"><span>Ориентировочная сумма процентов</span><strong id="debt-result">—</strong><small>Формула: сумма × ставка ÷ 365 × количество дней.</small></div>
-      <p class="calculator-note">Ставка 14,25% установлена Банком России с 22 июня 2026 года. Перед расчётом проверьте актуальное значение. Если ставка менялась в период просрочки, расчёт выполняется отдельно по каждому периоду. Договор может устанавливать другой порядок ответственности.</p>
+      <p class="calculator-note">Если ставка менялась в период просрочки, расчёт выполняется отдельно по каждому периоду. Действующую ключевую ставку сверьте на сайте Банка России — предзаполненного значения здесь нет намеренно: оно устаревает. Договор может устанавливать другой порядок ответственности.</p>
     </section>
 
     <section class="calculator-panel" id="retention-panel" role="tabpanel" aria-labelledby="retention-tab">
