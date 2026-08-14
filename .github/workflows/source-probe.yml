@@ -13,6 +13,11 @@ name: Проба источников
 
 on:
   workflow_dispatch:
+    inputs:
+      query:
+        description: 'Проверить настоящим запросом, а не только главной'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -30,7 +35,7 @@ jobs:
       - name: С раннера GitHub
         id: runner
         run: |
-          sh tools/source_probe.sh | tee /tmp/runner.txt
+          sh tools/source_probe.sh ${{ inputs.query == true && '--query' || '' }} | tee /tmp/runner.txt
 
       - name: Проверить ключ хостинга
         id: check
@@ -60,7 +65,8 @@ jobs:
           # IdentitiesOnly — иначе может войти другой ключ и замер соврёт.
           ssh -i ~/.ssh/probe_key -o IdentitiesOnly=yes -p "$PORT" \
               -o BatchMode=yes -o ConnectTimeout=20 "$USER@$HOST" \
-              'sh -s' < tools/source_probe.sh | tee /tmp/hosting.txt
+              "sh -s -- ${{ inputs.query == true && '--query' || '' }}" \
+              < tools/source_probe.sh | tee /tmp/hosting.txt
 
       - name: Записать отчёт
         if: always()
@@ -71,7 +77,7 @@ jobs:
             echo
             echo "Дата: $(date -u +%F). Прогон: source-probe.yml."
             echo
-            echo "Каждая строка — код ответа на один HEAD-запрос. Проба"
+            echo "Каждая строка — код ответа на один запрос. Проба"
             echo "отвечает на вопрос «пустит ли», а не собирает данные."
             echo
             echo '## С раннера GitHub (зарубежный адрес)'

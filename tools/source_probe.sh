@@ -37,3 +37,48 @@ probe "ЕФРСБ (SOURCE_B)"          "https://bankrot.fedresurs.ru/"
 probe "Федресурс (SOURCE_B)"      "https://fedresurs.ru/"
 probe "sudact.ru (SOURCE_C)"      "https://sudact.ru/"
 probe "consultant.ru (SOURCE_C)"  "https://www.consultant.ru/"
+
+# --- Запрос, а не главная -------------------------------------------------
+#
+# Код 200 на главной не означает, что работает поиск по делам: защита от
+# автоматических запросов срабатывает на запросе, а не на входе. Режим
+# включается аргументом, чтобы обычная проба оставалась одним HEAD.
+#
+# Запрос ровно один и без разбора ответа: меряется пригодность источника,
+# а не собираются данные. Вопрос выборки объявлен в
+# research/dopolnitelnye-raboty.yaml и здесь не решается.
+if [ "$1" = "--query" ]; then
+    echo
+    echo "--- один поисковый запрос ---"
+    echo "код     что запрошено"
+
+    # Банк решений арбитражных судов: поиск по тексту.
+    code=$(curl -s -o /tmp/ras.out -w '%{http_code}' -m 30 \
+        -A 'Mozilla/5.0 (compatible; marzhavbetone-probe/1.0)' \
+        'https://ras.arbitr.ru/' 2>/dev/null)
+    size=$([ -f /tmp/ras.out ] && wc -c < /tmp/ras.out || echo 0)
+    printf '%-6s  ras.arbitr.ru GET главной, тело %s байт\n' "$code" "$size"
+
+    # Картотека: карточка поиска. Ответ не разбирается, важен код и размер.
+    code=$(curl -s -o /tmp/kad.out -w '%{http_code}' -m 30 \
+        -A 'Mozilla/5.0 (compatible; marzhavbetone-probe/1.0)' \
+        -H 'Accept: text/html' \
+        'https://kad.arbitr.ru/Kad/SearchInstances' 2>/dev/null)
+    size=$([ -f /tmp/kad.out ] && wc -c < /tmp/kad.out || echo 0)
+    printf '%-6s  kad.arbitr.ru поиск, тело %s байт\n' "$code" "$size"
+
+    # Вторичный источник с открытым поиском — запасной путь, класс C.
+    code=$(curl -s -o /tmp/sud.out -w '%{http_code}' -m 30 \
+        -A 'Mozilla/5.0 (compatible; marzhavbetone-probe/1.0)' \
+        'https://sudact.ru/arbitral/?arbitral-txt=дополнительные+работы+подряд' \
+        2>/dev/null)
+    size=$([ -f /tmp/sud.out ] && wc -c < /tmp/sud.out || echo 0)
+    printf '%-6s  sudact.ru поиск по тексту, тело %s байт\n' "$code" "$size"
+
+    # Официальное опубликование: тот же адрес, но GET вместо HEAD — 405
+    # на HEAD означает метод, а не блокировку, и это надо показать.
+    code=$(curl -s -o /dev/null -w '%{http_code}' -m 30 \
+        -A 'Mozilla/5.0 (compatible; marzhavbetone-probe/1.0)' \
+        'http://publication.pravo.gov.ru/' 2>/dev/null)
+    printf '%-6s  publication.pravo.gov.ru GET (на HEAD было 405)\n' "$code"
+fi
