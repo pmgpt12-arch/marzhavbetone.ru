@@ -226,12 +226,39 @@ jobs:
             "
           fi
 
-      - name: Verify site is up
+      # Проверяется не «сайт жив», а «сайт отдаёт то, что мы залили». Разница
+      # стоила разбора 14.08.2026: деплой отчитался успехом, шаг проверял
+      # только код ответа, и владелец полчаса смотрел на старую страницу,
+      # пока выяснялось, что правка вообще не в main. Код 200 отдаёт и
+      # версия недельной давности.
+      #
+      # Меткой служит версия стилей: `tools/asset_versions.py` вписывает в
+      # HTML восемь знаков sha1 от содержимого файла, то есть метка меняется
+      # ровно тогда, когда меняется сборка.
+      - name: Verify deployed content
         if: steps.check.outputs.enabled == 'true' && inputs.dry_run != true
         run: |
-          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 https://marzhavbetone.ru/)
-          echo "https://marzhavbetone.ru/ → HTTP $code"
-          if [ "$code" != "200" ]; then
-            echo "::error::Сайт ответил $code вместо 200 — проверьте сайт вручную"
+          expected=$(grep -o 'styles\.css?v=[0-9a-f]\{8\}' index.html | head -1)
+          if [ -z "$expected" ]; then
+            echo "::error::В index.html нет версии styles.css — прогоните tools/asset_versions.py --write"
             exit 1
           fi
+          echo "Ожидаем на боевой странице: $expected"
+
+          # HTML отдаётся с max-age=3600, поэтому запрашиваем без кеша и даём
+          # серверу время: пять попыток с нарастающей паузой, суммарно ~2,5 мин.
+          for attempt in 1 2 3 4 5; do
+            body=$(curl -s --max-time 30 \
+                     -H 'Cache-Control: no-cache' -H 'Pragma: no-cache' \
+                     -w '\n%{http_code}' https://marzhavbetone.ru/ || true)
+            code=$(printf '%s' "$body" | tail -n1)
+            echo "попытка $attempt: HTTP $code"
+            if [ "$code" = "200" ] && printf '%s' "$body" | grep -qF "$expected"; then
+              echo "Боевая страница отдаёт свежую сборку ($expected)."
+              exit 0
+            fi
+            sleep $((attempt * 15))
+          done
+
+          echo "::error::Сайт отвечает, но отдаёт не ту сборку: в HTML нет $expected. Залитое не доехало до выдачи — проверьте кеш сервера и путь заливки"
+          exit 1
