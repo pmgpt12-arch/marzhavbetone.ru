@@ -74,3 +74,17 @@ body{font-family:"Segoe UI Variable","Segoe UI",Arial,sans-serif}.sales-solution
   .topic-filter::-webkit-scrollbar{display:none}
   .topic-filter button{flex:0 0 auto;white-space:nowrap}
 }
+
+/* Кнопка шапки на телефоне. Правило `.topbar .button-small{display:none}`
+   выше прячет в шапке все кнопки; решение владельца 14.08.2026 — кнопку
+   «Найти решение» показывать: она ведёт в диагностический блок, с которого
+   начинается путь покупателя.
+
+   Корзина оставлена скрытой не по решению, а по замеру: на 390px бренд 143 +
+   кнопка 108 + корзина 84 + бургер 44 с отступами дают 419px, шапка
+   переносится на вторую строку и вырастает до 117px при лимите 90
+   (tools/check_mobile.py). Вернуть её можно, урезав логотип до знака, —
+   это правка дизайна и отдельное решение. */
+@media(max-width:600px){
+  .topbar .nav-cta{display:inline-flex;margin-left:auto;padding:10px 12px;font-size:12px}
+}
