@@ -66,14 +66,24 @@ jobs:
           echo "Ни один токен не открыл Вебмастер."
           exit 1
 
+      # Условие сравнивает со строкой намеренно. `!inputs.probe` здесь не
+      # работает: при запуске через API значение приходит строкой, и
+      # непустая строка «false» истинна — шаг пропускался всегда, а прогон
+      # при этом заканчивался успехом. Замер 14.08.2026: первый сбор с
+      # рабочим токеном не собрал ничего и не сказал об этом.
+      #
+      # На выход шага пробы больше не смотрим: проба падает кодом 1, если
+      # ни один токен не подошёл, и до этого шага дело просто не доходит.
       - name: Собрать спрос
-        if: steps.probe.outputs.working_token != '' && !inputs.probe
+        if: inputs.probe != 'true'
         env:
           WM: ${{ secrets.YANDEX_WEBMASTER_TOKEN }}
           MT: ${{ secrets.METRIKA_TOKEN }}
+          WORKING: ${{ steps.probe.outputs.working_token }}
         run: |
-          token="${WM:-$MT}"
-          [ "${{ steps.probe.outputs.working_token }}" = "MT" ] && token="$MT"
+          token="$WM"
+          [ "$WORKING" = "MT" ] && token="$MT"
+          [ -z "$token" ] && token="${MT:-$WM}"
           YANDEX_WEBMASTER_TOKEN="$token" python3 tools/search_demand.py \
             --days "${{ inputs.days || 28 }}" --write
 
@@ -84,7 +94,11 @@ jobs:
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add data/seo
           if git diff --cached --quiet; then
-            echo 'Изменений нет'
+            if [ -f data/seo/search-demand.csv ]; then
+              echo 'Изменений нет: база та же, что была'
+            else
+              echo 'База не создана — сбор не выполнялся или ничего не вернул'
+            fi
             exit 0
           fi
           git commit -m "Поисковый спрос за $(date -u +%F)"
