@@ -84,4 +84,11 @@
 # опубликованного рилса, её задним числом не поменять.
 <IfModule mod_alias.c>
     Redirect 301 /articles/garantiynoe-uderzhanie.html /articles/garantiynoe-uderzhanie-chto-eto.html
+
+    # Реквизиты жили отдельной страницей-заглушкой с <meta http-equiv=
+    # "refresh"> и canonical на контакты. Заглушка отдавала 200: для
+    # робота это страница, а не склейка, и обрабатывается она хуже 301.
+    # Замер 14.08.2026: на неё не ведёт ни одна ссылка сайта и её нет в
+    # карте — риск переезда нулевой, а сигнал становится однозначным.
+    Redirect 301 /rekvizity.html /contacts.html
 </IfModule>
