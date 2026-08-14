@@ -22,6 +22,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+SITE = "https://marzhavbetone.ru"
 ARTICLES = ROOT / "articles"
 PRODUCTS = ROOT / "products"
 INDEX = ARTICLES / "index.html"
@@ -390,9 +391,104 @@ class Nesting(HTMLParser):
                 f"<{top}> не закрыт перед </{tag}> (строка {self.getpos()[0]})")
 
 
+# --- сплошная целостность ссылок --------------------------------------------
+#
+# Отдельно от графа разборов выше. Тот отвечает на вопрос «как связаны статьи»,
+# этот — на «ведёт ли хоть одна ссылка сайта в никуда», и по всем каталогам
+# сразу. Разделение появилось из замера 14.08.2026: граф считал сирот и тупики
+# и при этом молчал про кнопку покупки на materialy/akt-skrytyh-rabot.html,
+# которая вела в несуществующий products/p4-akt-skrytyh-rabot-pto.html. Причина
+# — граф обходил только префикс articles/. Здесь префиксов нет вовсе:
+# проверяется любая локальная цель, включая src картинок и скриптов.
+
+# Каталоги, которых нет на сервере: черновики, мастера продуктов, служебное.
+NOT_DEPLOYED = {"content", "products-storage", "research", "tools", "tests",
+                ".git", ".github", ".claude", "node_modules"}
+
+# Что не является внутренней целью и проверке не подлежит.
+EXTERNAL_PREFIXES = ("http://", "https://", "mailto:", "tel:", "javascript:",
+                     "data:", "//")
+
+# Выдача покупателю лежит вне репозитория — файлы кладёт касса на сервере.
+RUNTIME_PATHS = ("/orders/", "/download.php", "/pay.php")
+
+
+def site_html_files() -> list[Path]:
+    """Все страницы, которые реально уезжают на сервер."""
+    return sorted(
+        p for p in ROOT.rglob("*.html")
+        if not set(p.relative_to(ROOT).parts) & NOT_DEPLOYED
+    )
+
+
+def resolve_target(value: str, page: Path) -> Path | None:
+    """Локальная ссылка → путь в репозитории. None — проверять нечего."""
+    value = value.strip()
+    if not value or value.startswith("#"):
+        return None
+    if value.startswith(EXTERNAL_PREFIXES):
+        return None
+    # Якорь и версия ассета к существованию файла отношения не имеют.
+    clean = value.split("#", 1)[0].split("?", 1)[0]
+    if not clean:
+        return None
+    if any(clean.startswith(r) or clean == r.rstrip("/") for r in RUNTIME_PATHS):
+        return None
+    base = ROOT if clean.startswith("/") else page.parent
+    target = (base / clean.lstrip("/")).resolve()
+    # Каталог — значит index.html внутри него.
+    if clean.endswith("/") or (target.is_dir()):
+        target = target / "index.html"
+    return target
+
+
+def link_integrity() -> list[str]:
+    """Битые локальные цели по всему сайту: href, src, action, canonical."""
+    fails: list[str] = []
+    attr_re = re.compile(r'\b(href|src|action)="([^"]*)"')
+
+    for page in site_html_files():
+        rel = page.relative_to(ROOT).as_posix()
+        text = page.read_text(encoding="utf-8", errors="replace")
+        seen: set[tuple[str, str]] = set()
+        for attr, value in attr_re.findall(text):
+            if (attr, value) in seen:
+                continue
+            seen.add((attr, value))
+            target = resolve_target(value, page)
+            if target is None:
+                continue
+            if not target.exists():
+                fails.append(f"{rel}: {attr}=\"{value}\" — цели нет")
+
+        # canonical обязан указывать на существующую страницу своего сайта.
+        m = re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', text)
+        if m:
+            href = m.group(1)
+            if href.startswith(SITE):
+                target = resolve_target(href[len(SITE):] or "/", page)
+                if target is not None and not target.exists():
+                    fails.append(f"{rel}: canonical → {href} — страницы нет")
+            elif href.startswith(("http://", "https://")):
+                fails.append(f"{rel}: canonical на чужой хост — {href}")
+
+    # Карта сайта не должна обещать роботу того, чего нет.
+    sitemap = ROOT / "sitemap.xml"
+    if sitemap.exists():
+        for loc in re.findall(r"<loc>(.*?)</loc>",
+                              sitemap.read_text(encoding="utf-8")):
+            if not loc.startswith(SITE):
+                fails.append(f"sitemap.xml: чужой хост — {loc}")
+                continue
+            target = resolve_target(loc[len(SITE):] or "/", sitemap)
+            if target is not None and not target.exists():
+                fails.append(f"sitemap.xml: {loc} — страницы нет")
+    return fails
+
+
 def verify() -> int:
     """Проверки, которые обязаны пройти до коммита. 0 = всё чисто."""
-    fails: list[str] = []
+    fails: list[str] = link_integrity()
     html_files = sorted(ARTICLES.glob("*.html")) + sorted(PRODUCTS.glob("*.html"))
 
     for path in html_files:
@@ -429,11 +525,14 @@ def verify() -> int:
             if not target.exists():
                 fails.append(f"ССЫЛКА {path.name}: {href} → нет файла")
 
-    # Витрина: CRLF, непрерывные позиции ItemList, все разборы на месте.
-    raw = INDEX.read_bytes()
-    if raw.count(b"\n") != raw.count(b"\r\n"):
-        fails.append("ВИТРИНА: появились переводы строк без CR")
-    text = raw.decode("utf-8")
+    # Витрина: непрерывные позиции ItemList, все разборы на месте.
+    #
+    # Требования CRLF здесь больше нет. Оно стояло с первого дня и было
+    # неверным: `git show 54a99f5~1:articles/index.html | grep -c $'\r'` → 0,
+    # то есть у витрины не было CR никогда. Проверка требовала свойства,
+    # которого файл не имел, и держала verify() красным. CRLF значим для
+    # `content/strategy/semantic-core.csv` — другой файл, другая проверка.
+    text = INDEX.read_text(encoding="utf-8")
     ld = re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)
     try:
         graph = json.loads(ld.group(1))["@graph"]
@@ -453,7 +552,11 @@ def verify() -> int:
             fails.append(f"ВИТРИНА: нет в ItemList: {sorted(missing)}")
         if extra:
             fails.append(f"ВИТРИНА: лишние в ItemList: {sorted(extra)}")
-    cards = set(re.findall(r'<a class="showcase-card" href="([^"]+)"', text))
+    # Между class и href стоит data-cluster с 54a99f5 («Витрина разборов —
+    # фильтр по темам»). Регулярка требовала их рядом и с того дня не
+    # находила ни одной карточки — проверка была красной три недели и никем
+    # не запускалась. Атрибуты между ними допускаются намеренно.
+    cards = set(re.findall(r'<a class="showcase-card"[^>]*href="([^"]+)"', text))
     missing = set(article_files()) - cards
     if missing:
         fails.append(f"ВИТРИНА: нет карточки: {sorted(missing)}")
@@ -469,9 +572,10 @@ def verify() -> int:
         for f in fails:
             print("  ✗", f)
         return 1
-    print("ПРОВЕРКИ ПРОЙДЕНЫ: HTML парсится, теги парные, JSON-LD валиден,")
-    print("внутренние ссылки ведут в существующие файлы, витрина CRLF,")
-    print("позиции ItemList непрерывны и покрывают все разборы.")
+    print(f"ПРОВЕРКИ ПРОЙДЕНЫ: страниц {len(site_html_files())}, битых локальных")
+    print("целей 0 (href, src, action, canonical, карта сайта); HTML парсится,")
+    print("теги парные, JSON-LD валиден, позиции ItemList непрерывны и")
+    print("покрывают все разборы.")
     return 0
 
 
@@ -485,6 +589,16 @@ def main() -> int:
         return verify()
     g = build()
     print(report(g))
+    # Целостность считается и в обычном прогоне: битая ссылка — дефект, а не
+    # строка отчёта, и код возврата обязан о ней говорить.
+    broken = link_integrity()
+    if broken:
+        print("\nБИТЫЕ ЛОКАЛЬНЫЕ ЦЕЛИ:")
+        for f in broken:
+            print("  ✗", f)
+    else:
+        print(f"\nЦелостность ссылок: страниц {len(site_html_files())}, "
+              "битых локальных целей 0.")
     if args.json:
         serial = {
             k: (sorted(v) if isinstance(v, set) else v)
@@ -495,7 +609,7 @@ def main() -> int:
         serial["product_in"] = {k: sorted(v) for k, v in g["product_in"].items()}
         args.json.write_text(json.dumps(serial, ensure_ascii=False, indent=2),
                              encoding="utf-8")
-    return 0
+    return 1 if broken else 0
 
 
 if __name__ == "__main__":

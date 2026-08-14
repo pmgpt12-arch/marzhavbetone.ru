@@ -62,6 +62,14 @@ jobs:
           # дифф всегда пуст — уведомление молчало бы, не сообщая об этом.
           fetch-depth: 2
 
+      # Гейт стоит до SSH намеренно: битая ссылка не должна доехать до сервера
+      # даже при исправных секретах. Прогон в checks.yml идёт параллельно
+      # деплою и остановить его не может — этот шаг может.
+      - name: Целостность ссылок (гейт выкладки)
+        run: |
+          python3 tools/link_audit.py --verify
+          python3 tools/test_link_audit.py
+
       - name: Set up SSH
         if: steps.check.outputs.enabled == 'true'
         env:
