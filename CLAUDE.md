@@ -118,6 +118,10 @@ python3 tools/check_packages.py   # состав против манифесто
 python3 tools/check_free_materials.py  # бесплатные: папка, архив, страница, врезка
 python3 tools/check_meta.py       # заголовки и описания: дубль — дефект,
                                   # длина — замечание (предела длины нет)
+python3 tools/money_impact.py     # какая страница про какую денежную
+                                  # проблему, выход на комплект своей
+                                  # категории, перекос портфеля (--write
+                                  # пишет data/business/money-impact.csv)
 python3 tools/money_graph.py      # ведёт ли страница вперёд по процессу:
                                   # маршруты data/seo/money-graph.yaml
 python3 tools/check_links.py      # битые локальные цели по всему сайту:

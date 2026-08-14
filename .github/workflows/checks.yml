@@ -51,6 +51,11 @@ jobs:
       - name: Заголовки и описания
         run: python3 tools/check_meta.py
 
+      # Денежная принадлежность страницы: категория и выход на комплект.
+      # Метрик не требует — структура известна без замеров.
+      - name: Money Impact
+        run: python3 tools/money_impact.py
+
       - name: Связность по процессу
         run: python3 tools/money_graph.py
 
