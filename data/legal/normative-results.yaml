@@ -1,0 +1,234 @@
+# Результаты нормативной сверки, привязанные к версии документа.
+#
+# Привязка по смысловому хешу (`tools/semantic_hash.py`) — то, ради чего
+# файл существует. Отчёт от 15.08.2026 не должен пропускать документ,
+# изменённый 16.08: хеш другой, значит результата для этой версии нет.
+#
+# Модель отсюда не вызывается. Гейт `tools/normative_gate.py` только
+# проверяет, что годный результат существует; добывает его отдельный заход
+# `normative-checker` — сегодня руками, автоматический запуск по diff это
+# следующий этап, и обещать его до доказанного P0 нельзя.
+#
+# `recheck` заполняется, когда вердикт был PASS_WITH_CORRECTIONS или FAIL:
+# первый вердикт после правок недостаточен. Основание замером — перечит
+# D-06 нашёл три ошибки в самих правках (адрес пункта ст. 328, пропущенная
+# ст. 191, пояснение сильнее нормы п. 8.1 ч. 2 ст. 125 АПК).
+
+meta:
+  updated: 2026-08-15
+  report: projects/marzha_v_betone/product/Normative_Check_P1_2026-08-15.md (ai-business-os)
+
+results:
+  - document: products-storage/01-zakrytie-rabot/11-slovar-poley.docx
+    document_hash: sha256:0de6e706383dae3aa66a88d7e8f1d486fceb42b073015b618b991c268affafce
+    generator: projects/marzha_v_betone/product/build/00-slovar.js
+    generator_hash: sha256:d43c11f1299bafcc7d4824f213186560ae85e926048cac341dd2a4f2863440ac
+    checked_at: 2026-08-15
+    checker: normative-checker
+    task: D-06
+    norms_checked:
+      - norm_id: gk-746
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-711
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-191
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-193
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-395
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: apk-4-5
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: apk-125-126
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: nk-333-21
+        verdict: подтверждена
+        quote_obtained: true
+    verdict: PASS_WITH_CORRECTIONS
+    escalation_required: false
+    escalation_reason: null
+    recheck:
+      checked_at: 2026-08-15
+      checker: normative-checker
+      scope: только внесённые правки
+      verdict: PASS_WITH_CORRECTIONS
+
+  - document: products-storage/01-zakrytie-rabot/12-pretenziya-na-neoplatu-po-ks-2.docx
+    document_hash: sha256:0d7035a61d298e9954ff96e00176073d792ab4f21ae482c14dd92b19f3cc6522
+    generator: projects/marzha_v_betone/product/build/01-pretenziya.js
+    generator_hash: sha256:bb6cf1478ea6af027f68a1de9243ce1cb37fc87b24fb2146eccea429422752af
+    checked_at: 2026-08-15
+    checker: normative-checker
+    task: D-06
+    norms_checked:
+      - norm_id: gk-711
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-746
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-753
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-395
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-314
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-193
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: apk-4-5
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: apk-128-148
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: nk-333-40
+        verdict: подтверждена
+        quote_obtained: true
+    verdict: PASS_WITH_CORRECTIONS
+    escalation_required: false
+    escalation_reason: null
+    recheck:
+      checked_at: 2026-08-15
+      checker: normative-checker
+      scope: только внесённые правки
+      verdict: PASS_WITH_CORRECTIONS
+
+  - document: products-storage/01-zakrytie-rabot/13-uvedomlenie-o-prosrochke-oplaty.docx
+    document_hash: sha256:8567f8a9e8f4f1c302ea24d5180ce46fff5b8a354f62aef742d27b4c407a7bc3
+    generator: projects/marzha_v_betone/product/build/02-uvedomlenie.js
+    generator_hash: sha256:f6be100605a91debaa7a237527ce0e31d187f4fdd19f44142ae9c499462cf06f
+    checked_at: 2026-08-15
+    checker: normative-checker
+    task: D-06
+    norms_checked:
+      - norm_id: apk-4-5
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-395
+        verdict: подтверждена
+        quote_obtained: true
+    verdict: PASS_WITH_CORRECTIONS
+    escalation_required: false
+    escalation_reason: null
+    recheck:
+      checked_at: 2026-08-15
+      checker: normative-checker
+      scope: документ не правился — перечит не требовался
+      verdict: PASS_WITH_CORRECTIONS
+
+  - document: products-storage/01-zakrytie-rabot/14-raschet-procentov-395-gk.xlsx
+    document_hash: sha256:676845844735a82e31ebf4a50223c8939fe3cc7300bdd55b39fb2cd57d315000
+    generator: projects/marzha_v_betone/product/build/03-raschet.py
+    generator_hash: sha256:9e28cee9098b991d804caf01590abf4463016fc5e4bbe80b0871696dfd984a37
+    checked_at: 2026-08-15
+    checker: normative-checker
+    task: D-06
+    norms_checked:
+      - norm_id: gk-395
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-191
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-193
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: ppvs-7-2016
+        verdict: подтверждена
+        quote_obtained: true
+    verdict: PASS_WITH_CORRECTIONS
+    escalation_required: false
+    escalation_reason: null
+    recheck:
+      checked_at: 2026-08-15
+      checker: normative-checker
+      scope: только внесённые правки
+      verdict: PASS_WITH_CORRECTIONS
+
+  - document: products-storage/01-zakrytie-rabot/15-algoritm-pri-zaderzhke-oplaty.docx
+    document_hash: sha256:70d11b4dc5a09cc346cbe469cb0cbca560cf28acad4064b4bba8ad06ec8e7cfe
+    generator: projects/marzha_v_betone/product/build/04-algoritm.js
+    generator_hash: sha256:fe0b1121bad34c631afe1ef645bff9045ba238b6d7fc1af7398d5b96f545ed54
+    checked_at: 2026-08-15
+    checker: normative-checker
+    task: D-06
+    norms_checked:
+      - norm_id: gk-328
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-719
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-753
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-196-200
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: apk-4-5
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: fz-127-7
+        verdict: подтверждена
+        quote_obtained: true
+    verdict: PASS_WITH_CORRECTIONS
+    escalation_required: false
+    escalation_reason: null
+    recheck:
+      checked_at: 2026-08-15
+      checker: normative-checker
+      scope: только внесённые правки
+      verdict: PASS_WITH_CORRECTIONS
+
+  - document: products-storage/01-zakrytie-rabot/16-iskovoe-zayavlenie-o-vzyskanii.docx
+    document_hash: sha256:2ae9a3a4e87f52625319b99c2f2abfbf150865f8ec4cfb8849f67c1284563755
+    generator: projects/marzha_v_betone/product/build/05-isk.js
+    generator_hash: sha256:40d9db682b42d9fd5c1b2063ee060f8e0851bdc372aab712f466303befa0984a
+    checked_at: 2026-08-15
+    checker: normative-checker
+    task: D-06
+    norms_checked:
+      - norm_id: gk-711
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-746
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-753
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: gk-395
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: apk-4-5
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: apk-125-126
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: apk-128-148
+        verdict: подтверждена
+        quote_obtained: true
+      - norm_id: nk-333-21
+        verdict: подтверждена
+        quote_obtained: true
+    verdict: PASS_WITH_CORRECTIONS
+    escalation_required: false
+    escalation_reason: null
+    recheck:
+      checked_at: 2026-08-15
+      checker: normative-checker
+      scope: только внесённые правки
+      verdict: PASS_WITH_CORRECTIONS
+

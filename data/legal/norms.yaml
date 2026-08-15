@@ -1,0 +1,221 @@
+# Реестр норм, на которые опираются юридические документы линейки.
+#
+# Здесь реквизиты и адрес источника, а не текст закона. Копировать кодексы
+# в репозиторий незачем: файл не обновляется сам, а устаревшая копия нормы
+# опаснее её отсутствия — она выглядит проверенной.
+#
+# `source_class` — главное поле, и оно решает судьбу вердикта:
+#
+#   official     — текст нормы прочитан у официального публикатора
+#   secondary    — текст получен через посредника (поиск, правовая база)
+#   not_verified — действующую редакцию подтвердить не удалось
+#
+# Вторичный источник сам по себе PASS не даёт (`tools/normative_gate.py`).
+# Это не перестраховка, а вывод из замера 15.08.2026: из рабочей среды
+# закрыты `pravo.gov.ru`, `consultant.ru`, `base.garant.ru`, `vsrf.ru`,
+# `arbitr.ru`, `cbr.ru`, `sudact.ru` — все дают `CONNECT tunnel failed,
+# response 403`. Сверка D-06 прошла на дословных цитатах из поисковой
+# выдачи, и назвать это чтением официальной публикации нельзя.
+#
+# Отсюда исходное состояние гейта — красное, и это осознанный выбор:
+# ложная зелень дороже честного отказа.
+#
+# `recheck_after` — срок перепроверки, а не предсказание изменения закона.
+# Его истечение сообщается `tools/normative_scope.py` и не роняет чужой PR.
+
+meta:
+  updated: 2026-08-15
+  source_of_evidence: projects/marzha_v_betone/product/Normative_Check_P1_2026-08-15.md (ai-business-os)
+
+norms:
+  - norm_id: gk-191
+    act: ГК РФ часть первая
+    article: "191"
+    title: Начало срока, определенного периодом времени
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    fallback_sources: [https://base.garant.ru/10164072/c310495fb04e03cd147b58ba5fee6e32/]
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: дословная цитата получена поиском; официальный публикатор закрыт (CONNECT 403)
+    recheck_after: 2026-11-15
+
+  - norm_id: gk-193
+    act: ГК РФ часть первая
+    article: "193"
+    title: Окончание срока в нерабочий день
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_5142/8aaa310a192d916fce0327f6226a59ffe5b49b9b/]
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: дословная цитата получена поиском
+    recheck_after: 2026-11-15
+
+  - norm_id: gk-314
+    act: ГК РФ часть первая
+    article: "314"
+    title: Срок исполнения обязательства
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_5142/3a7d3c1ca588deb50bc9bc8bde5576afc732f9a2/]
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: п. 2 процитирован дословно
+    recheck_after: 2026-11-15
+
+  - norm_id: gk-328
+    act: ГК РФ часть первая
+    article: "328"
+    title: Встречное исполнение обязательства
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_5142/331033e3d6e7b72213bd9903b03e29dfb9e608fe/]
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: пп. 1, 2, 4 процитированы дословно; перечит 15.08 исправил адрес пункта
+    recheck_after: 2026-11-15
+
+  - norm_id: gk-395
+    act: ГК РФ часть первая
+    article: "395"
+    title: Ответственность за неисполнение денежного обязательства
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_5142/93383099dc4f06165d8d4aac4eeb159db4f6da3d/]
+    edition_marker: ред. ФЗ от 03.07.2016 № 315-ФЗ
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: пп. 1, 3, 4 процитированы дословно
+    recheck_after: 2026-11-15
+
+  - norm_id: gk-711
+    act: ГК РФ часть вторая
+    article: "711"
+    title: Порядок оплаты работы
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_9027/46561f5271883fcf47f3e9859d3a59eb56bfcd96/]
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: п. 1 процитирован дословно
+    recheck_after: 2026-11-15
+
+  - norm_id: gk-719
+    act: ГК РФ часть вторая
+    article: "719"
+    title: Неисполнение заказчиком встречных обязанностей по договору подряда
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_9027/3a590316d2440dd63f7510f9238f24357b93bf61/]
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: пп. 1, 2 процитированы дословно; перечит 15.08 снял неверную ссылку на п. 2
+    recheck_after: 2026-11-15
+
+  - norm_id: gk-746
+    act: ГК РФ часть вторая
+    article: "746"
+    title: Оплата работ
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_9027/213b00ab7366c34225e24be2f360912884de054e/]
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: п. 1 процитирован дословно
+    recheck_after: 2026-11-15
+
+  - norm_id: gk-753
+    act: ГК РФ часть вторая
+    article: "753"
+    title: Сдача и приемка работ
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_9027/6b2d751a0d605616a9a1012cb7c7fbac1b6d84b3/]
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: п. 4 процитирован дословно
+    recheck_after: 2026-11-15
+
+  - norm_id: gk-196-200
+    act: ГК РФ часть первая
+    article: 196, 200
+    title: Общий срок исковой давности и начало его течения
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_5142/2dd3d0a52b1ab6e77f6f0bfeb85d98c14fd738da/]
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: обе статьи процитированы дословно
+    recheck_after: 2026-11-15
+
+  - norm_id: apk-4-5
+    act: АПК РФ
+    article: ч. 5 ст. 4
+    title: Досудебный порядок урегулирования спора
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078170
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_37800/4d77fceae32b76a1cc26db3a1c64857d59045fdc/]
+    edition_marker: ред. от 15.12.2025, действует с 01.01.2026
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: процитирована дословно; срок в документы числом не вносится (Р-009)
+    recheck_after: 2026-10-15
+
+  - norm_id: apk-125-126
+    act: АПК РФ
+    article: 125, 126
+    title: Форма, содержание искового заявления и прилагаемые документы
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078170
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_37800/faa5e7dfaa0bfec48b19b0f862a9366a0dbf43e1/]
+    edition_marker: п. 8.1 введён ФЗ от 26.07.2019 № 197-ФЗ
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: состав сведений подтверждён; точный номер пункта о примирении в выдаче двоился
+    recheck_after: 2026-10-15
+
+  - norm_id: apk-128-148
+    act: АПК РФ
+    article: 128, 148
+    title: Оставление заявления без движения и без рассмотрения
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078170
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_37800/01e33f2baed9309b9b2b408f7b69e048bec20c55/]
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: обе статьи процитированы дословно
+    recheck_after: 2026-11-15
+
+  - norm_id: nk-333-40
+    act: НК РФ часть вторая
+    article: 333.40
+    title: Основания и порядок возврата или зачета государственной пошлины
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102067058
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_28165/7c55dda6b9038640682d24714009aefa6689594c/]
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: пп. 3 п. 1 и п. 6 процитированы дословно
+    recheck_after: 2026-10-15
+
+  - norm_id: nk-333-21
+    act: НК РФ часть вторая
+    article: 333.21
+    title: Размеры государственной пошлины по делам, рассматриваемым арбитражными судами
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102067058
+    fallback_sources: [https://base.garant.ru/10900200/8eddc29bd4d7eecd531faa7fa836b463/]
+    edition_marker: ставки ред. ФЗ от 08.08.2024 № 259-ФЗ
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: статья действует; размеров пошлины в документах числом нет (Р-009)
+    recheck_after: 2026-10-15
+
+  - norm_id: fz-127-7
+    act: ФЗ от 26.10.2002 № 127-ФЗ
+    article: п. 2.1 ст. 7
+    title: Уведомление о намерении обратиться с заявлением о банкротстве
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527
+    fallback_sources: [https://base.garant.ru/185181/e88847e78ccd9fdb54482c7fa15982bf/]
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: механизм и реестр ЕФРСФДЮЛ подтверждены; редакционная дата пункта не установлена
+    recheck_after: 2026-10-15
+
+  - norm_id: ppvs-7-2016
+    act: Постановление Пленума ВС РФ от 24.03.2016 № 7
+    article: пп. 42, 48, 84
+    title: О применении судами некоторых положений ГК РФ об ответственности за нарушение обязательств
+    official_source: https://www.vsrf.ru/documents/own/
+    fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_195783/]
+    edition_marker: ред. от 22.06.2021
+    source_class: secondary
+    last_verified: 2026-08-15
+    evidence: пп. 42 и 48 процитированы; дословный текст п. 39 получить не удалось
+    recheck_after: 2026-11-15
