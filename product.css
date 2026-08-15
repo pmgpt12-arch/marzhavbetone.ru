@@ -53,6 +53,18 @@
 .doc-item .doc-meta{margin-top:10px;color:#8a8b8d;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
 .doc-item .doc-next{margin-top:12px;padding-top:12px;border-top:1px solid rgba(36,38,41,.12);font-size:14px}
 
+/* Предпросмотр комплекта. Ставится tools/build_preview.py из самих .docx:
+   заголовок документа и строка, которой он себя объясняет. Моноширинное
+   имя файла здесь не украшение — оно показывает, что фрагмент взят из
+   файла, а не написан для витрины. */
+.kit-preview{margin-top:36px;padding-top:28px;border-top:1px solid rgba(36,38,41,.16)}
+.preview-head{margin:0 0 8px;font-size:clamp(18px,1.4vw,22px);letter-spacing:-.02em;text-transform:uppercase}
+.preview-note{margin:0 0 22px;max-width:70ch;color:#7a7d80;font-size:14px;line-height:1.55}
+.preview-item{padding:18px 20px;margin-bottom:12px;background:#f5f2ea;border-left:3px solid var(--orange)}
+.preview-file{margin:0 0 6px;font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;font-size:12px;color:#8a8b8d;overflow-wrap:break-word}
+.preview-item h3{margin:0 0 6px;font-size:17px;line-height:1.25;letter-spacing:-.01em}
+.preview-item p{margin:0;color:#55585b;font-size:15px;line-height:1.5}
+
 /* Состав полного комплекта (P6) */
 .bundle-list{display:grid;gap:16px;margin-top:32px}
 .bundle-item{padding:22px 26px;background:#fff;border:1px solid rgba(36,38,41,.16);box-shadow:6px 6px 0 #c8c3b9}
