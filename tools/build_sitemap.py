@@ -75,6 +75,9 @@ def classify(rel: str) -> tuple[str, str] | None:
         return "weekly", "1.0"
     if rel == "kalkulyator.html":
         return "monthly", "0.9"
+    # Диагностика — такой же инструмент входа, как калькулятор.
+    if rel == "diagnostika.html":
+        return "monthly", "0.9"
     if rel == "articles/index.html":
         return "weekly", "0.9"
     # Витрина бесплатных материалов — такой же хаб, как витрина разборов.

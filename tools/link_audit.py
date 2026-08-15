@@ -471,7 +471,17 @@ def link_integrity(skipped: list[str] | None = None) -> list[str]:
 
     for page in site_html_files():
         rel = page.relative_to(ROOT).as_posix()
-        text = page.read_text(encoding="utf-8", errors="replace")
+        raw = page.read_text(encoding="utf-8", errors="replace")
+        # Содержимое <script> и <style> — не разметка. Замер 15.08.2026:
+        # страница диагностики собирает адрес строками, и `href="' +
+        # hit.core.url + '"` в скрипте читалось как битая ссылка. Проверка
+        # обязана смотреть туда, где ссылка действительно есть.
+        # Вырезается только содержимое, открывающий тег остаётся: у
+        # <script src="..."> адрес живёт в атрибуте, и снятие элемента
+        # целиком его теряет. Поймано регрессом: «проверка не увидела
+        # битую цель: скрипт src».
+        text = re.sub(r"(<(?:script|style)\b[^>]*>).*?</(?:script|style)>",
+                      r"\1", raw, flags=re.S | re.I)
         seen: set[tuple[str, str]] = set()
         for attr, value in attr_re.findall(text):
             if (attr, value) in seen:
@@ -488,7 +498,7 @@ def link_integrity(skipped: list[str] | None = None) -> list[str]:
                 fails.append(f"{rel}: {attr}=\"{value}\" — цели нет")
 
         # canonical обязан указывать на существующую страницу своего сайта.
-        m = re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', text)
+        m = re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', raw)
         if m:
             href = m.group(1)
             if href.startswith(SITE):
