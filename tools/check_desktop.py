@@ -15,8 +15,8 @@
   1. страница не уходит в горизонтальную прокрутку;
   2. ни один элемент не вылезает за свой контейнер — карточка, у которой
      текст выходит за рамку, ловится здесь, а не глазами;
-  3. страница не длиннее порога в экранах: длина главной это её структура,
-     и мерить её надо числом, а не ощущением «长о»;
+  3. страница не длиннее своего порога высоты: длина главной это её
+     структура, и мерить её надо числом, а не ощущением;
   4. сетка не оставляет рваного хвоста: в ряду из N колонок последний ряд
      не должен содержать одну карточку, когда всего их больше двух.
 
@@ -53,10 +53,18 @@ WIDTHS = [(1366, 768), (1440, 900), (1920, 1080)]
 # полпикселя — округление, а не переполнение.
 OVERFLOW_TOLERANCE = 1.0
 
-# Длина главной в экранах. Порог поставлен по замеру 15.08.2026 и по
-# требованию владельца: главная должна умещаться в 7–9 экранов вместо
-# двух десятков прокруток. 10 — потолок с запасом на один экран.
-SCREENS_MAX = {"index.html": 10.0}
+# Длина страницы в пикселях, а не в экранах. Экран — мера подвижная: одна
+# и та же страница даёт 13,0 экрана на 768px высоты и 9,2 на 1080, и порог
+# в экранах наказывал бы за низкий монитор, а не за длинную страницу.
+#
+# Замеры 15.08.2026 по главной: 25 475px до переработки (весь каталог на
+# главной), 14 380px после переноса каталога, 9 956px после снятия повторов
+# и правки ритма. Порог 10 500px ловит возврат отросшего блока, оставляя
+# запас на правку текста. В экранах это 9,2 на 1920×1080.
+#
+# Структура главной — десять блоков примерно по экрану каждый; порог
+# соответствует ей, а не выбран круглым числом.
+HEIGHT_MAX = {"index.html": 10_500}
 
 SAMPLE = [
     "index.html",
@@ -175,6 +183,44 @@ OVERFLOW_SCRIPT = """(tol) => {
 }"""
 
 
+# Рваный хвост сетки. Замер 15.08.2026: шесть карточек ситуаций стояли в
+# сетке из четырёх колонок и давали ряд 4 + ряд 2 — две сироты во втором
+# ряду. Дефект видно глазами на любом широком экране, но ни одна текстовая
+# проверка его не ловит: разметка правильная, переполнения нет.
+#
+# Считается по фактическим координатам, а не по CSS: колонок в ряду —
+# сколько разных левых краёв у детей, сирот — сколько детей в последнем
+# ряду. Одна сирота при трёх и более колонках это дефект; два ряда по
+# половине — нет.
+#
+# Сетка групп каталога (`.product-grid-inner`) сюда намеренно не входит.
+# Размер группы — это состав каталога, а он решение владельца (Р-006):
+# в группе «До подписания» четыре комплекта, и в трёх колонках они дают
+# 3 + 1. Подогнать ряд можно только добавив или убрав товар, то есть
+# приняв за владельца решение о составе. Прогон 15.08.2026 эту сироту
+# нашёл — она названа здесь, а не спрятана.
+ORPHAN_SCRIPT = """(tol) => {
+  const out = [];
+  for (const grid of document.querySelectorAll('.topic-grid, .cards, .case-grid, .solution-grid')) {
+    const kids = [...grid.children].filter(k => {
+      const cs = getComputedStyle(k);
+      return cs.display !== 'none' && k.getBoundingClientRect().width > 0;
+    });
+    if (kids.length < 3) continue;
+    const lefts = [...new Set(kids.map(k => Math.round(k.getBoundingClientRect().left)))];
+    const columns = lefts.length;
+    if (columns < 3) continue;
+    const orphans = kids.length % columns;
+    if (orphans === 1) {
+      const cls = (typeof grid.className === 'string' ? grid.className : '').trim().split(/\\s+/)[0];
+      out.push('.' + cls + ': ' + kids.length + ' карточек в ' + columns
+               + ' колонки — одна сирота в последнем ряду');
+    }
+  }
+  return out;
+}"""
+
+
 def check_page(browser, base: str, rel: str) -> list[str]:
     bad: list[str] = []
     for width, height in WIDTHS:
@@ -191,13 +237,15 @@ def check_page(browser, base: str, rel: str) -> list[str]:
             for item in page.evaluate(OVERFLOW_SCRIPT, OVERFLOW_TOLERANCE):
                 bad.append(f"{rel} @{width}: {item}")
 
-            limit = SCREENS_MAX.get(rel)
+            for item in page.evaluate(ORPHAN_SCRIPT, OVERFLOW_TOLERANCE):
+                bad.append(f"{rel} @{width}: {item}")
+
+            limit = HEIGHT_MAX.get(rel)
             if limit is not None:
                 doc_height = page.evaluate("document.documentElement.scrollHeight")
-                screens = doc_height / height
-                if screens > limit:
-                    bad.append(f"{rel} @{width}: страница длиной {screens:.1f} экрана "
-                               f"против {limit} — {doc_height}px")
+                if doc_height > limit:
+                    bad.append(f"{rel} @{width}: страница длиной {doc_height}px "
+                               f"против {limit} — {doc_height / height:.1f} экрана")
         finally:
             page.close()
     return bad

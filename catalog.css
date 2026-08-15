@@ -131,3 +131,41 @@
 /* Заголовок страницы каталога. На главной это была секция с h2; на своей
    странице тот же заголовок стал h1, и размер ему нужен тот же. */
 .section-head h1{margin:0;max-width:850px;font-size:clamp(46px,6vw,78px);line-height:.94;letter-spacing:-.05em}
+
+/* Блок «Изнутри стройки». Заведён 15.08.2026
+   (tools/rebuild_home_2026-08-15.py): до этого разборы стояли одиннадцатым
+   блоком из пятнадцати — ниже каталога и порядка покупки, то есть после
+   всего, что просит денег.
+
+   Язык карточки — служебная записка: номер, служебная метка, заголовок,
+   строка о том, где именно потеряны деньги. Ни номер, ни метка ничего не
+   утверждают сверх статьи: метка взята из её надзаголовка, строка — из
+   описания либо из карточки, которая уже стояла на главной. */
+.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px}
+.case-card{display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid rgba(36,38,41,.16);box-shadow:8px 8px 0 #c8c3b9;color:inherit;text-decoration:none;transition:box-shadow .15s,transform .15s}
+.case-card:hover{box-shadow:8px 8px 0 #ff5a00;transform:translateY(-2px)}
+.case-card img{width:100%;height:auto;aspect-ratio:1536/954;object-fit:cover;display:block}
+.case-body{display:flex;flex-direction:column;flex:1;gap:10px;padding:26px 26px 28px}
+.case-no{margin:0;color:#c8c3b9;font-size:34px;font-weight:900;line-height:1;letter-spacing:-.04em}
+.case-tag{margin:0;color:#ff5a00;font-size:11px;font-weight:900;letter-spacing:.12em;line-height:1.4}
+.case-card h3{margin:0;font-size:clamp(20px,1.6vw,25px);line-height:1.15;letter-spacing:-.02em;overflow-wrap:break-word}
+.case-point{margin:0;color:#606164;font-size:14.5px;line-height:1.5;overflow-wrap:break-word}
+.case-open{margin-top:auto;padding-top:14px;color:#242629;font-size:14px;font-weight:800;border-top:1px solid rgba(120,120,120,.25)}
+.case-card:hover .case-open{color:#ff5a00}
+
+/* Два промо-блока сведены в один ряд: порознь они занимали 1136px на
+   двух заголовках второго уровня и одном абзаце каждый. */
+.next-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:34px}
+.next-steps>div{min-width:0}
+.next-steps h3{margin:8px 0 10px;font-size:clamp(22px,2vw,30px);line-height:1.12;letter-spacing:-.03em}
+.next-steps p{margin:0 0 14px;color:#606164;line-height:1.55}
+
+/* Факт о трёх сторонах процесса переехал сюда из снятой секции #practice. */
+.author-facts{flex-wrap:wrap;margin-top:34px}
+
+@media(max-width:600px){
+  .case-grid{grid-template-columns:1fr;gap:16px}
+  .case-body{padding:20px 20px 22px}
+  .case-no{font-size:26px}
+  .next-steps{gap:28px}
+}
