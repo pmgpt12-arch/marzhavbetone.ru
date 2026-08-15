@@ -121,6 +121,16 @@ python3 tools/check_meta.py       # заголовки и описания: ду
 python3 tools/check_evidence.py   # доказательный контур: схемы реестров,
                                   # уверенность, ловушка знаменателя
 python3 tools/test_evidence.py    # размеченные случаи запретов
+python3 tools/check_offer.py      # лестница боль → бесплатник → вход →
+                                  # комплект → допродажа; цены против кассы,
+                                  # лид карточки продаёт решение или файлы
+python3 tools/check_backlog.py    # мастер-бэклог: зависимости, критерии
+                                  # приёмки, ворота фаз (--next — что можно
+                                  # брать сейчас); план — docs/EXECUTION-90.md
+python3 tools/content_router.py --check  # контентный контур: базы, крючки,
+                                  # разметка ссылок внешних каналов
+python3 tools/content_router.py "<тема>"  # усилить существующее или создать
+python3 tools/test_content_router.py     # размеченные случаи маршрутизатора
 python3 tools/money_impact.py     # какая страница про какую денежную
                                   # проблему, выход на комплект своей
                                   # категории, перекос портфеля (--write
