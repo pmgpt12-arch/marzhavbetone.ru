@@ -63,11 +63,12 @@ def product_page(sku: str) -> str | None:
     return None
 
 
-def build() -> tuple[list[dict], list[str]]:
+def build() -> tuple[list[dict], list[str], list[str]]:
     import yaml
     data = yaml.safe_load(PAINS.read_text(encoding="utf-8"))
     cat = catalog()
     problems: list[str] = []
+    notes: list[str] = []
 
     # sku → (боль, ступень, бесплатный вход, допродажа)
     meta: dict[str, dict] = {}
@@ -104,6 +105,22 @@ def build() -> tuple[list[dict], list[str]]:
             elif sku in meta and pain_id not in meta[sku]["pains"]:
                 meta[sku]["pains"].append(pain_id)
 
+    # Ступень вверх по той же боли. Замер 15.08.2026: предложение после
+    # покупки было у семи товаров из восемнадцати, и не было ни у одного
+    # входного — при том что именно там оно и напрашивается. Человек,
+    # купивший первый ход за 990 ₽, ровно тот, кому нужен весь порядок по
+    # той же боли за 2 490–2 990 ₽. Лестница это уже описывает, просто
+    # читалась она только в одну сторону.
+    #
+    # Это не то же самое, что `cross_sell`: там соседняя ситуация, здесь
+    # та же самая, взятая глубже. Слить их в одну колонку значило бы
+    # потерять разницу, из-за которой у предложения разные слова.
+    core_of: dict[str, str] = {}
+    for pain_id, pain in (data.get("pains") or {}).items():
+        node = pain.get("core") or {}
+        if node.get("sku"):
+            core_of[pain_id] = node["sku"]
+
     rows: list[dict] = []
     for sku, product in sorted(cat.items()):
         url = product_page(sku)
@@ -123,6 +140,34 @@ def build() -> tuple[list[dict], list[str]]:
         free = info.get("free") or ""
         if free and not (ROOT / free).exists():
             problems.append(f"{sku}: бесплатный вход {free} не существует")
+
+        upsell = ""
+        if info.get("stage") in ("entry", "cross"):
+            for pain_id in info.get("pains", []):
+                target = core_of.get(pain_id)
+                # Ступень вверх обязана быть вверх. Комплект той же боли,
+                # который стоит столько же или дешевле купленного, это не
+                # допродажа, а понижение: покупателю комплекта за 9 900 ₽
+                # предлагать набор за 1 990 ₽ — читается как ошибка, потому
+                # что ею и является. Такая связь остаётся соседней
+                # ситуацией в `cross_sell`, а не ступенью.
+                if (target and target != sku and target in cat
+                        and product_page(target)
+                        and cat[target]["price"] > product["price"]):
+                    upsell = target
+                    break
+            else:
+                if info.get("stage") == "entry":
+                    problems.append(f"{sku}: входная ступень без комплекта "
+                                    f"по той же боли — покупателю некуда идти дальше")
+                else:
+                    # Не дефект, а состояние каталога: у боли нет ступени
+                    # дороже. Состав каталога — решение владельца (Р-006),
+                    # и придумывать здесь товар нечем. Но и молчать нельзя:
+                    # пустая клетка читается как «забыли заполнить».
+                    notes.append(f"{sku}: ступени вверх по своей боли нет — "
+                                 f"в каталоге нет комплекта дороже "
+                                 f"{product['price']} ₽ по той же боли")
         rows.append({
             "product_id": sku,
             "product_url": url or "",
@@ -132,7 +177,7 @@ def build() -> tuple[list[dict], list[str]]:
             "primary_landing": url or "",
             "free_entry": "/" + free if free else "",
             "cross_sell": ";".join(cross),
-            "upsell": "",
+            "upsell": upsell,
             "bundle": "",
             "status": "test" if sku == "test1" else "active",
         })
@@ -145,7 +190,7 @@ def build() -> tuple[list[dict], list[str]]:
     for sku in orphans:
         problems.append(f"{sku}: не привязан ни к одной денежной боли — "
                         f"продаётся только допродажей или не продаётся вовсе")
-    return rows, problems
+    return rows, problems, notes
 
 
 def main() -> int:
@@ -155,14 +200,16 @@ def main() -> int:
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
 
-    rows, problems = build()
+    rows, problems, notes = build()
     cat = catalog()
 
     print(f"Товаров в кассе: {len(cat)}; строк в карте: {len(rows)}")
     covered = sum(1 for r in rows if r["money_pain"] != "не назначена")
     with_cross = sum(1 for r in rows if r["cross_sell"])
+    with_upsell = sum(1 for r in rows if r["upsell"])
     print(f"С назначенной болью: {covered}/{len(rows)}; "
-          f"с допродажей: {with_cross}/{len(rows)}")
+          f"с соседней ситуацией: {with_cross}/{len(rows)}; "
+          f"со ступенью вверх: {with_upsell}/{len(rows)}")
 
     if args.write:
         OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -171,6 +218,11 @@ def main() -> int:
             writer.writeheader()
             writer.writerows(rows)
         print(f"записано: {OUT.relative_to(ROOT)}")
+
+    if notes:
+        print(f"\nК сведению — ступени вверх нет: {len(notes)}")
+        for line in notes:
+            print(f"   · {line}")
 
     if problems:
         print(f"\nРАСХОЖДЕНИЙ: {len(problems)}")
