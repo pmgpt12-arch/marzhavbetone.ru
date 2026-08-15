@@ -1,0 +1,43 @@
+# Дымовой прогон боевого сайта после выкладки.
+#
+# Зачем отдельным прогоном, а не в гейте: гейт смотрит репозиторий и о
+# боевом сайте не знает ничего. Замер 15.08.2026 — аудит после выкладки не
+# смог проверить ни одного пользовательского маршрута, потому что из
+# облачной сессии сайт закрыт егресс-политикой (CONNECT 403). У раннера
+# GitHub Actions егресс есть, поэтому проверка живёт здесь.
+#
+# Запускается сам после успешной выкладки, а не по расписанию: смотреть
+# надо то, что только что выложено, и смотреть сразу.
+name: Дымовой прогон прода
+
+on:
+  workflow_run:
+    workflows: ["Deploy to server"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      base:
+        description: "Адрес для проверки"
+        default: "https://marzhavbetone.ru"
+        required: false
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # После неудачной выкладки проверять нечего: на сервере осталась
+    # прежняя версия, и красный прогон здесь указывал бы не на ту причину.
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Проверить боевой сайт
+        run: |
+          python3 tools/smoke_production.py \
+            --base "${{ github.event.inputs.base || 'https://marzhavbetone.ru' }}"
