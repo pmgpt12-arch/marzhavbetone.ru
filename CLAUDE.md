@@ -121,6 +121,8 @@ python3 tools/check_meta.py       # заголовки и описания: ду
 python3 tools/check_evidence.py   # доказательный контур: схемы реестров,
                                   # уверенность, ловушка знаменателя
 python3 tools/test_evidence.py    # размеченные случаи запретов
+python3 tools/build_diagnostic.py --write  # /diagnostika.html из лестницы
+                                  # и дерева сценариев; руками не правится
 python3 tools/check_offer.py      # лестница боль → бесплатник → вход →
                                   # комплект → допродажа; цены против кассы,
                                   # лид карточки продаёт решение или файлы
