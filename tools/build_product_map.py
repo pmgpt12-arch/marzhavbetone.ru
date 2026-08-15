@@ -10,6 +10,9 @@
     data/business/money-pains.yaml  боль, ступень лестницы, допродажа
     products/*.html              наличие страницы товара
 
+Нужен PyYAML: структура лестницы вложенная, и ручной разбор такой был бы
+источником тихих ошибок. В гейте зависимость ставится явным шагом.
+
 Что проверяется на выходе:
 
   · все товары каталога попали в карту, ни один не потерян;
@@ -51,26 +54,6 @@ def catalog() -> dict[str, dict]:
             "name": m.group(2).replace("\\'", "'"),
             "price": int(m.group(3)) // 100,
         }
-    return out
-
-
-def pains() -> dict:
-    """Лестница болей. Разбирается построчно: yaml в окружении может не быть,
-    а ставить зависимость ради одного файла — лишнее."""
-    try:
-        import yaml
-        return yaml.safe_load(PAINS.read_text(encoding="utf-8")).get("pains", {})
-    except ImportError:
-        pass
-    out, current, key = {}, None, None
-    for line in PAINS.read_text(encoding="utf-8").splitlines():
-        if re.match(r"^  (MP-\d+):", line):
-            key = line.strip().rstrip(":")
-            current = out.setdefault(key, {})
-        elif current is not None and line.startswith("    "):
-            m = re.match(r"^    (\w+):\s*(.*)$", line)
-            if m:
-                current[m.group(1)] = m.group(2)
     return out
 
 
