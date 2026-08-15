@@ -1,0 +1,226 @@
+# Приёмочный аудит боевого сайта после правок вёрстки.
+#
+# Два контура, и они не равны по весу.
+#
+# Внешний — обычный раннер GitHub Actions с настоящим Chromium. Он и есть
+# источник истины: доступность, рендер на пяти ширинах, вылет за экран,
+# длина страницы, ссылки, коды ответа, поисковый слой.
+#
+# SSH к reg.ru — только дополнительная проверка origin: та ли версия лежит
+# на сервере. Origin, опрашивающий сам себя, о внешней доступности не
+# говорит ничего, и результат его curl нигде не подставляется вместо
+# внешнего замера. Схема подключения взята из source-probe.yml без
+# изменений: ключ из секрета DEPLOY_SSH_KEY, IdentitiesOnly, BatchMode.
+#
+# Прогон ничего не чинит. Он снимает числа и снимки.
+name: Приёмочный аудит после правок вёрстки
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: Что проверять
+        default: https://marzhavbetone.ru/
+  push:
+    branches:
+      - claude/ru-ssh-mechanism-audit-ta2pvd
+
+permissions:
+  contents: write
+
+concurrency:
+  group: audit-after-redesign
+  cancel-in-progress: false
+
+env:
+  AUDIT_URL: ${{ inputs.url || 'https://marzhavbetone.ru/' }}
+  OUT: audit-after-redesign
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Поставить браузер
+        run: |
+          python3 -m pip install --quiet playwright pillow
+          python3 -m playwright install --with-deps chromium
+
+      # --- КОНТУР 1: внешний, источник истины -----------------------------
+      - name: Внешний аудит с раннера
+        id: external
+        run: |
+          mkdir -p "$OUT"
+          python3 tools/audit_after_redesign.py --url "$AUDIT_URL" --out-dir "$OUT"
+
+      - name: Снять внешний HTML для сверки с origin
+        if: always()
+        run: |
+          mkdir -p "$OUT"
+          curl -sS -L --max-time 30 -A 'marzhavbetone-audit/1.0' \
+            "$AUDIT_URL" -o "$OUT/external.html" || true
+          {
+            echo "--- внешний раннер ---"
+            echo "адрес раннера: $(curl -s -m 10 https://api.ipify.org || echo 'не определён')"
+            echo "HTTP заголовки главной:"
+            curl -sS -I --max-time 20 "$AUDIT_URL" || true
+            echo "размер тела: $(wc -c < "$OUT/external.html" 2>/dev/null || echo 0) байт"
+            echo "md5 тела:    $(md5sum "$OUT/external.html" 2>/dev/null | cut -d' ' -f1)"
+            echo "md5 index.html в репозитории: $(md5sum index.html | cut -d' ' -f1)"
+          } > "$OUT/external-probe.txt"
+          cat "$OUT/external-probe.txt"
+
+      # --- КОНТУР 2: origin по SSH, дополнительно -------------------------
+      - name: Проверить секреты хостинга
+        id: check
+        if: always()
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          if [ -z "$KEY" ] || [ -z "$HOST" ] || [ -z "$USER" ]; then
+            echo "secrets=no" >> "$GITHUB_OUTPUT"
+            echo "Секретов деплоя нет — проверка origin НЕ ИЗМЕРЕНА."
+          else
+            echo "secrets=yes" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Проверка origin по SSH
+        if: always() && steps.check.outputs.secrets == 'yes'
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/probe_key
+          chmod 600 ~/.ssh/probe_key
+          ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          # IdentitiesOnly — иначе может войти другой ключ и замер соврёт.
+          ssh -i ~/.ssh/probe_key -o IdentitiesOnly=yes -p "$PORT" \
+              -o BatchMode=yes -o ConnectTimeout=20 "$USER@$HOST" \
+              "SITE_PATH='$SITE_PATH' sh -s" > "$OUT/origin-probe.txt" 2>&1 <<'REMOTE' || true
+          echo "--- окружение origin ---"
+          echo "curl:  $(curl --version 2>/dev/null | head -1 | cut -d' ' -f1-2)"
+          echo "адрес: $(curl -s -m 10 https://api.ipify.org 2>/dev/null || echo 'не определён')"
+          echo
+          echo "--- файл на диске ---"
+          f="$HOME/$SITE_PATH/index.html"
+          if [ -f "$f" ]; then
+            ls -l "$f" | awk '{print "права/размер/дата:", $1, $5, $6, $7, $8}'
+            echo "md5 на диске: $(md5sum "$f" 2>/dev/null | cut -d' ' -f1)"
+            echo "байт:         $(wc -c < "$f")"
+            echo "секций <section: $(grep -c '<section' "$f")"
+            echo "id блоков:"
+            grep -o 'id="[a-z0-9-]*"' "$f" | sort -u | head -40
+          else
+            echo "НЕ НАЙДЕН: $f"
+          fi
+          echo
+          echo "--- origin отдаёт себе ---"
+          curl -sS -I --max-time 20 https://marzhavbetone.ru/ 2>&1 | head -20
+          curl -sS -L --max-time 30 https://marzhavbetone.ru/ -o /tmp/origin.html 2>/dev/null
+          echo "размер тела: $(wc -c < /tmp/origin.html 2>/dev/null || echo 0) байт"
+          echo "md5 тела:    $(md5sum /tmp/origin.html 2>/dev/null | cut -d' ' -f1)"
+          REMOTE
+          cat "$OUT/origin-probe.txt"
+
+      - name: Сверить внешнее с origin
+        if: always()
+        run: |
+          ext_md5=$(md5sum "$OUT/external.html" 2>/dev/null | cut -d' ' -f1)
+          repo_md5=$(md5sum index.html | cut -d' ' -f1)
+          org_md5=$(grep -m1 'md5 на диске:' "$OUT/origin-probe.txt" 2>/dev/null \
+                    | awk '{print $4}')
+          org_body=$(grep -m1 'md5 тела:' "$OUT/origin-probe.txt" 2>/dev/null \
+                     | tail -1 | awk '{print $3}')
+          {
+            echo
+            echo "--- сверка версий ---"
+            echo "внешний HTML (раннер):        ${ext_md5:-нет}"
+            echo "origin, файл на диске:        ${org_md5:-НЕ ИЗМЕРЕНО}"
+            echo "origin, тело по curl:         ${org_body:-НЕ ИЗМЕРЕНО}"
+            echo "index.html в репозитории:     ${repo_md5:-нет}"
+            if [ -n "$ext_md5" ] && [ -n "$org_md5" ]; then
+              if [ "$ext_md5" = "$org_md5" ]; then
+                echo "ВЫВОД: внешняя выдача побайтно совпала с файлом на origin."
+              else
+                echo "ВЫВОД: внешняя выдача НЕ совпала с файлом на origin —"
+                echo "проверить выкладку и кэш (P0, если расходится состав блоков)."
+              fi
+            else
+              echo "ВЫВОД: сверка неполная, одна из сторон не измерена."
+            fi
+            if [ -n "$ext_md5" ] && [ "$ext_md5" = "$repo_md5" ]; then
+              echo "Выложена ровно та версия index.html, что лежит в этой ветке."
+            else
+              echo "Внешняя выдача отличается от index.html этой ветки —"
+              echo "это норма, если ветка обогнала main или сервер подставляет своё."
+            fi
+          } | tee -a "$OUT/origin-probe.txt"
+
+      - name: Собрать отчёт
+        if: always()
+        run: |
+          python3 tools/audit_report.py --dir "$OUT"
+          echo '### Отчёт аудита' >> "$GITHUB_STEP_SUMMARY"
+          cat "$OUT/audit-report.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Артефакт
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-after-redesign
+          path: audit-after-redesign/
+          retention-days: 30
+
+      # Снимки уменьшаются и кладутся в репозиторий рядом с отчётом:
+      # артефакт живёт тридцать дней и требует скачивания зипа, а замер
+      # должен оставаться читаемым позже и без него. content/ не деплоится.
+      - name: Положить отчёт и уменьшенные снимки в ветку
+        if: always()
+        run: |
+          day=$(date -u +%F)
+          dest="content/metrics/audit-after-redesign-$day"
+          mkdir -p "$dest"
+          cp "$OUT"/*.json "$OUT"/audit-report.md "$OUT"/origin-probe.txt "$dest"/ 2>/dev/null || true
+          python3 - "$OUT" "$dest" <<'PY'
+          import sys
+          from pathlib import Path
+          from PIL import Image
+          src, dst = Path(sys.argv[1]), Path(sys.argv[2])
+          for png in sorted(src.glob("*-full.png")):
+              img = Image.open(png).convert("RGB")
+              # Полноэкранный снимок длинной страницы в PNG весит десятки
+              # мегабайт. В репозиторий идёт превью: ширина 1000, JPEG.
+              if img.width > 1000:
+                  img = img.resize((1000, round(img.height * 1000 / img.width)), Image.LANCZOS)
+              # Очень длинную ленту режем на куски по 4000px: браузер и
+              # просмотрщик репозитория одну картинку в 20 000px не тянут.
+              step = 4000
+              if img.height <= step:
+                  img.save(dst / f"{png.stem}.jpg", quality=72, optimize=True)
+                  continue
+              for i in range(0, img.height, step):
+                  img.crop((0, i, img.width, min(i + step, img.height))).save(
+                      dst / f"{png.stem}-{i // step + 1}.jpg", quality=72, optimize=True)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo 'Изменений нет'
+            exit 0
+          fi
+          git commit -m "Приёмочный аудит боевого сайта за $day [skip ci]"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}"
