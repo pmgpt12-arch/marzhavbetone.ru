@@ -1,0 +1,63 @@
+--- окружение origin ---
+curl:  curl 7.61.1
+адрес: 37.140.192.133
+
+--- файл на диске ---
+права/размер/дата: -rw-r--r-- 42541 Aug 15 07:56
+md5 на диске: 94d5f6ead5b3ba5f74ee9c1b7dba9482
+байт:         42541
+секций <section: 14
+id блоков:
+id="author"
+id="cart-backdrop"
+id="cart-checkout"
+id="cart-close"
+id="cart-count"
+id="cart-empty"
+id="cart-items"
+id="cart-panel"
+id="cart-toggle"
+id="cart-total"
+id="cases"
+id="catalog"
+id="checklist"
+id="checklist-dialog"
+id="close-checklist"
+id="contact"
+id="contact-form"
+id="faq"
+id="form-status"
+id="lead-form"
+id="lead-status"
+id="materials"
+id="open-checklist"
+id="product"
+id="selected-product"
+id="situations"
+id="top"
+
+--- origin отдаёт себе ---
+HTTP/2 200 
+server: nginx
+date: Sat, 15 Aug 2026 04:57:27 GMT
+content-type: text/html
+content-length: 42541
+vary: Accept-Encoding
+last-modified: Sat, 15 Aug 2026 04:56:57 GMT
+accept-ranges: none
+cache-control: public, max-age=3600, must-revalidate
+expires: Sat, 15 Aug 2026 05:57:27 GMT
+vary: Accept-Encoding
+strict-transport-security: max-age=31536000;
+
+размер тела: 42541 байт
+md5 тела:    94d5f6ead5b3ba5f74ee9c1b7dba9482
+
+--- сверка версий ---
+внешний HTML (раннер):        94d5f6ead5b3ba5f74ee9c1b7dba9482
+origin, файл на диске:        94d5f6ead5b3ba5f74ee9c1b7dba9482
+origin, тело по curl:         94d5f6ead5b3ba5f74ee9c1b7dba9482
+index.html в репозитории:     7bed025785878a1748ab5f3f33c8f0a6
+ВЫВОД: внешняя выдача побайтно совпала с файлом на origin.
+Внешняя выдача отличается от index.html этой ветки —
+это норма, если ветка обогнала main или сервер подставляет своё.
