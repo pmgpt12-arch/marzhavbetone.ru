@@ -104,7 +104,7 @@
         <p><a class="button" href="/products/p5-shtrafy-uderzhaniya.html">Комплект «Штрафы и удержания»</a></p>
         <p class="calculator-note">Проверить основание бесплатно — <a href="/materialy/uderzhaniya.html">что смотреть в договоре об удержании</a>.</p>
       </div>
-      <p class="calculator-note">Не разобрались, какой это случай? <a href="/#contact">Запросить диагностику</a> — посмотрим договор, документы и срок оплаты.</p>
+      <p class="calculator-note">Не разобрались, какой это случай? <a class="calculator-diagnostic" href="/diagnostika.html">Пройдите диагностику</a> — восемь вопросов о положении на объекте, маршрут и комплект подберутся по ответам.</p>
     </aside>
   </main>
 
@@ -148,8 +148,14 @@
     // product_opened не отличает его от клика по любой другой ссылке, а
     // именно этот переход — самый горячий на сайте.
     document.getElementById('next-step').addEventListener('click',event=>{
-      const link=event.target.closest&&event.target.closest('a[href*="/products/"]');
-      if(link&&typeof window.mvbTrackGoal==='function') window.mvbTrackGoal('calculator_to_product');
+      if(!event.target.closest) return;
+      if(event.target.closest('a[href*="/products/"]')){
+        if(typeof window.mvbTrackGoal==='function') window.mvbTrackGoal('calculator_to_product');
+        return;
+      }
+      if(event.target.closest('a[href*="diagnostika"]')){
+        if(typeof window.mvbTrackGoal==='function') window.mvbTrackGoal('calculator_diagnostic_click');
+      }
     });
     document.querySelectorAll('.calculator-tab').forEach((tab,index)=>tab.addEventListener('click',()=>{
       document.querySelectorAll('.calculator-tab').forEach((item,i)=>item.setAttribute('aria-selected',String(i===index)));

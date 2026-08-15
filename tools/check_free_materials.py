@@ -9,7 +9,7 @@
     tools/build_free_zips.py        ключ → папка, из которой собран архив
     materialy/<ключ>.html           страница: форма и перечень «что внутри»
     tools/insert_lead_blocks.py     врезка в статьи: заголовок и перечень
-    index.html                      карточка на витрине
+    katalog.html                    карточка на витрине
     sitemap.xml                     адрес для поисковых систем
 
 Расхождение здесь тихое и дорогое одновременно. Три страницы полгода
@@ -137,7 +137,10 @@ def main() -> int:
     lead = keys_from_lead()
     builder = keys_from_builder()
     blocks = keys_from_blocks()
-    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    # Витрина переехала на katalog.html 15.08.2026
+    # (tools/split_catalog_2026-08-15.py): на главной каталог давал
+    # 33 экрана длины и распирал страницу вбок.
+    home = (ROOT / "katalog.html").read_text(encoding="utf-8")
     sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
     problems: list[str] = []
 

@@ -59,6 +59,11 @@ GOAL_ORDER = [
     "article_to_product", "article_to_magnet", "magnet_opened", "product_opened",
     "checklist_download", "lead_sent", "calculator_use", "calculator_to_product",
     "product_selected", "add_to_cart", "checkout_open", "purchase", "dzen_click",
+    # Заведены 15.08.2026. Первые две страница диагностики слала с самого
+    # своего появления, и Метрика их молча теряла: вся воронка диагностики
+    # не считалась. Найдено сверкой tools/check_goals.py, которая с тех пор
+    # держит список и код в согласии.
+    "diagnostic_start", "diagnostic_complete", "calculator_diagnostic_click",
 ]
 
 

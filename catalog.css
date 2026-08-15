@@ -90,3 +90,160 @@
    спрятанных карточек не убрали ни пикселя. Ошибка была бы незаметна:
    счётчик показывал «скрыто 7», а страница не становилась короче. */
 .product-card[hidden]{display:none}
+
+/* Короткий блок решений на главной. Заведён 15.08.2026 вместе с переносом
+   каталога на свою страницу (tools/split_catalog_2026-08-15.py).
+
+   Замер до переноса: главная 33,2 экрана на 1366px и 1399px ширины против
+   1366 доступных — весь каталог, 25 карточек, стоял на главной. Здесь их
+   шесть, по числу ситуаций блока #situations, и карточка короткая: момент,
+   название, результат, три пункта, цена, кнопка. Полный перечень файлов
+   живёт на странице товара — он и есть то, за чем туда идут.
+
+   Сетка объявлена через minmax(0,1fr), а не 1fr: колонка с 1fr не может
+   стать уже своего самого длинного слова, и именно так каталог распирал
+   страницу вбок. */
+.solution-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px}
+.solution-card{display:flex;flex-direction:column;min-width:0;padding:30px 28px;background:#fff;border:1px solid rgba(36,38,41,.16);box-shadow:8px 8px 0 #c8c3b9}
+.solution-when{margin:0 0 14px;color:#ff5a00;font-size:12px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;line-height:1.3}
+.solution-card h3{margin:0 0 12px;font-size:clamp(22px,1.8vw,28px);line-height:1.12;letter-spacing:-.02em;overflow-wrap:break-word;hyphens:auto}
+.solution-card h3 a{color:inherit;text-decoration:none}
+.solution-card h3 a:hover{color:#ff5a00}
+.solution-result{margin:0;color:#606164;font-size:15px;line-height:1.5}
+.solution-points{margin:16px 0 0;padding:16px 0 0 20px;border-top:1px solid rgba(120,120,120,.3);font-size:14px;line-height:1.5}
+.solution-points li{margin:0 0 6px;overflow-wrap:break-word}
+.solution-points li::marker{color:#ff5a00}
+.solution-card .product-footer{margin-top:auto}
+.solutions-more{margin:34px 0 0}
+
+/* Хлебные крошки каталога. */
+.breadcrumbs{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:22px clamp(28px,7vw,110px) 0;color:#6c6f73;font-size:13px}
+.breadcrumbs a{color:#6c6f73}
+.breadcrumbs span{color:#a9a49a}
+
+@media(max-width:600px){
+  .solution-grid{grid-template-columns:1fr;gap:16px}
+  .solution-card{padding:22px 20px}
+  .solution-card h3{font-size:21px}
+  .breadcrumbs{padding:16px 22px 0}
+}
+
+/* Заголовок страницы каталога. На главной это была секция с h2; на своей
+   странице тот же заголовок стал h1, и размер ему нужен тот же. */
+.section-head h1{margin:0;max-width:850px;font-size:clamp(46px,6vw,78px);line-height:.94;letter-spacing:-.05em}
+
+/* Блок «Изнутри стройки». Заведён 15.08.2026
+   (tools/rebuild_home_2026-08-15.py): до этого разборы стояли одиннадцатым
+   блоком из пятнадцати — ниже каталога и порядка покупки, то есть после
+   всего, что просит денег.
+
+   Язык карточки — служебная записка: номер, служебная метка, заголовок,
+   строка о том, где именно потеряны деньги. Ни номер, ни метка ничего не
+   утверждают сверх статьи: метка взята из её надзаголовка, строка — из
+   описания либо из карточки, которая уже стояла на главной. */
+.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px}
+.case-card{display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid rgba(36,38,41,.16);box-shadow:8px 8px 0 #c8c3b9;color:inherit;text-decoration:none;transition:box-shadow .15s,transform .15s}
+.case-card:hover{box-shadow:8px 8px 0 #ff5a00;transform:translateY(-2px)}
+.case-card img{width:100%;height:auto;aspect-ratio:1536/954;object-fit:cover;display:block}
+.case-body{display:flex;flex-direction:column;flex:1;gap:10px;padding:26px 26px 28px}
+.case-no{margin:0;color:#c8c3b9;font-size:34px;font-weight:900;line-height:1;letter-spacing:-.04em}
+.case-tag{margin:0;color:#ff5a00;font-size:11px;font-weight:900;letter-spacing:.12em;line-height:1.4}
+.case-card h3{margin:0;font-size:clamp(20px,1.6vw,25px);line-height:1.15;letter-spacing:-.02em;overflow-wrap:break-word}
+.case-point{margin:0;color:#606164;font-size:14.5px;line-height:1.5;overflow-wrap:break-word}
+.case-open{margin-top:auto;padding-top:14px;color:#242629;font-size:14px;font-weight:800;border-top:1px solid rgba(120,120,120,.25)}
+.case-card:hover .case-open{color:#ff5a00}
+
+/* Два промо-блока сведены в один ряд: порознь они занимали 1136px на
+   двух заголовках второго уровня и одном абзаце каждый. */
+.next-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:34px}
+.next-steps>div{min-width:0}
+.next-steps h3{margin:8px 0 10px;font-size:clamp(22px,2vw,30px);line-height:1.12;letter-spacing:-.03em}
+.next-steps p{margin:0 0 14px;color:#606164;line-height:1.55}
+
+/* Факт о трёх сторонах процесса переехал сюда из снятой секции #practice. */
+.author-facts{flex-wrap:wrap;margin-top:34px}
+
+@media(max-width:600px){
+  .case-grid{grid-template-columns:1fr;gap:16px}
+  .case-body{padding:20px 20px 22px}
+  .case-no{font-size:26px}
+  .next-steps{gap:28px}
+}
+
+/* Схема процесса в первом экране. Заведена 15.08.2026 вместо снимка.
+   Содержимое взято из секции #results, снятой тем же заходом: одна и та
+   же лестница этапов в двух местах — это ровно тот повтор, из-за
+   которого страница и разрослась. Входящих ссылок на якорь #results по
+   сайту было ноль, поэтому снятие ничего не оборвало.
+
+   Схема — не украшение: она называет пять этапов, на любом из которых
+   ломается основание для оплаты, и ведёт к решениям по этапам. */
+.hero-scheme{display:flex;flex-direction:column;justify-content:center;gap:18px;padding:56px clamp(28px,4vw,64px);background:#242629;color:#e9e5dc}
+.hero-scheme figcaption{position:static;left:auto;bottom:auto;max-width:100%;padding:0;background:none;box-shadow:none;color:#a9a49a;font-size:12px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;line-height:1.4}
+.scheme{display:flex;flex-direction:column;gap:0;margin:0;padding:0;list-style:none;counter-reset:none}
+.scheme li{display:flex;align-items:center;gap:18px;padding:15px 0;border-bottom:1px solid rgba(233,229,220,.16)}
+.scheme li:first-child{border-top:1px solid rgba(233,229,220,.16)}
+.scheme b{flex:0 0 auto;min-width:38px;color:#6c6f73;font-size:15px;font-weight:900;letter-spacing:.04em}
+.scheme span{font-size:clamp(19px,1.7vw,25px);font-weight:900;letter-spacing:-.025em;line-height:1.15;overflow-wrap:break-word}
+.scheme-money{border-bottom:none}
+.scheme-money b{color:#ff5a00}
+.scheme-money span{color:#ff5a00}
+.scheme-note{margin:0;color:#bdb9b1;font-size:14.5px;line-height:1.5}
+.hero-scheme .text-link{color:#e9e5dc}
+.hero-scheme .text-link:hover{color:#ff5a00}
+
+@media(max-width:900px){
+  .hero-scheme{padding:34px 22px;gap:14px}
+  .scheme li{padding:12px 0;gap:14px}
+}
+
+/* Схема на телефоне. Замер 15.08.2026 на 390px: страница ушла в
+   горизонтальную прокрутку на 13px — «Исполнительная документация» в
+   одну строку рядом с номером шириной 38px не помещается. Дефект внесён
+   вместе со схемой и пойман телефонной проверкой в тот же заход. */
+@media(max-width:600px){
+  .hero-scheme{padding:28px 22px}
+  .scheme li{gap:12px;padding:11px 0}
+  .scheme b{min-width:26px;font-size:13px}
+  .scheme span{font-size:17px;overflow-wrap:break-word;hyphens:auto}
+  .hero-scheme figcaption{font-size:11px}
+  .scheme-note{font-size:13.5px}
+}
+
+/* Заголовок первого экрана на телефоне. Замер 15.08.2026 на 390px:
+   при 56px самое длинное слово нового заголовка — «строительные» —
+   даёт min-content 360px, и страница уходит вбок на 13px. Прежний
+   заголовок («за сданные работы») туда помещался, новый нет: дефект
+   внесён сменой формулировки и пойман телефонной проверкой в тот же
+   заход. Уменьшен размер, а не разрешён перенос внутри слова: рваное
+   слово в заголовке читается как опечатка. */
+@media(max-width:600px){
+  .hero h1{font-size:46px;line-height:.98}
+}
+
+/* Сетка бесплатных инструментов. Заведена 15.08.2026: до этого из трёх
+   бесплатных входов на главной стоял один — чек-лист, а диагностика и
+   калькуляторы были доступны только из навигации. Тексты карточек взяты
+   со самих страниц, а не написаны заново. */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:22px}
+.tool-card{display:flex;flex-direction:column;gap:9px;min-width:0;padding:26px 24px 24px;background:#f5f2ea;border:1px solid rgba(36,38,41,.14);color:inherit;text-decoration:none;transition:background .15s,border-color .15s}
+.tool-card:hover{background:#fff;border-color:#ff5a00}
+.tool-tag{margin:0;color:#ff5a00;font-size:11px;font-weight:900;letter-spacing:.12em}
+.tool-card h3{margin:0;font-size:clamp(19px,1.5vw,23px);line-height:1.15;letter-spacing:-.02em;overflow-wrap:break-word}
+.tool-card p{margin:0;color:#606164;font-size:14.5px;line-height:1.5}
+.tool-open{margin-top:auto;padding-top:14px;font-size:14px;font-weight:800}
+.tool-card:hover .tool-open{color:#ff5a00}
+
+@media(max-width:600px){
+  .tool-grid{grid-template-columns:1fr;gap:14px}
+  .tool-card{padding:20px}
+}
+
+/* Сетка инструментов внутри секции чек-листа: одна бесплатная зона —
+   один заголовок. Секция размечена в две колонки, поэтому сетка
+   растягивается на обе. */
+.checklist .tools-inline{grid-column:1/-1;margin-top:44px;padding-top:34px;border-top:1px solid rgba(36,38,41,.16)}
+.tools-inline-title{margin:0 0 22px;font-size:15px;font-weight:900;letter-spacing:.02em}
+@media(max-width:600px){
+  .checklist .tools-inline{margin-top:30px;padding-top:24px}
+}
