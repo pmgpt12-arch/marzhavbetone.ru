@@ -35,7 +35,9 @@ COLS = ["task_id", "system", "cluster", "priority", "business_impact",
         "acceptance_criteria", "metric", "deadline"]
 
 STATUSES = {"todo", "in_progress", "blocked", "done", "dropped"}
-PRIORITIES = {"P0", "P1", "P2"}
+# P3 — отложенное до появления продаж: Research и Content Factory
+# не удалены, а понижены (коррекция стратегии 14.08.2026).
+PRIORITIES = {"P0", "P1", "P2", "P3"}
 # Статусы, при которых зависимость обязана быть закрыта.
 REQUIRES_DEPS = {"in_progress", "done"}
 
