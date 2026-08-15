@@ -68,16 +68,35 @@ if (!empty($order['payment_id']) && in_array($order['status'] ?? '', ['pending',
                 $order['status'] = 'canceled';
             }
             
-            file_put_contents($orderFile, json_encode($order, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+            mvb_with_order_lock($orderFile, function (array &$locked) use ($payment) {
+                $locked['payment_status'] = $payment['status'];
+                if ($payment['status'] === 'succeeded') {
+                    $locked['status'] = 'paid';
+                    $locked['paid_at'] = $locked['paid_at'] ?? date('c');
+                } elseif ($payment['status'] === 'canceled') {
+                    $locked['status'] = 'canceled';
+                }
+                return null;
+            });
         }
     }
 }
 
-// Для оплаченного заказа готовим выдачу (подстраховка, если вебхук ещё не пришёл)
+// Для оплаченного заказа готовим выдачу (подстраховка, если вебхук ещё не
+// пришёл). Под блокировкой: этот запрос и webhook.php идут одновременно —
+// покупатель возвращается на success.html ровно тогда, когда касса шлёт
+// уведомление. Без блокировки оба видели пустое delivery.email_sent_at и
+// слали письмо дважды.
 $downloadLinks = [];
 if (($order['status'] ?? '') === 'paid') {
-    $downloadLinks = mvb_deliver_and_notify($order);
-    file_put_contents($orderFile, json_encode($order, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    $downloadLinks = mvb_with_order_lock($orderFile, function (array &$locked) {
+        return mvb_deliver_and_notify($locked);
+    }) ?: [];
+    // Свежая копия: под блокировкой заказ мог быть дополнен вторым процессом.
+    $fresh = json_decode((string)@file_get_contents($orderFile), true);
+    if (is_array($fresh)) {
+        $order = $fresh;
+    }
 }
 
 // Возвращаем данные заказа (без чувствительных полей)

@@ -73,61 +73,74 @@ if (!$order) {
     exit;
 }
 
-// Обновляем статус
-$order['payment_status'] = $status;
-$order['payment_id'] = $paymentId;
-$order['updated_at'] = date('c');
+// Всё изменение заказа — одной операцией под блокировкой. Этот процесс и
+// check-payment.php работают одновременно (покупатель возвращается на
+// success.html ровно тогда, когда касса шлёт уведомление), и разбиение на
+// «прочитали здесь, записали там» — это и есть гонка: оба процесса видели
+// пустое delivery.email_sent_at и слали покупателю письмо дважды, а запись,
+// сделанная позже, затирала поля первой.
+$adminMail = null;
+mvb_with_order_lock($orderFile, function (array &$locked) use ($status, $paymentId, $orderId, &$adminMail) {
+    $locked['payment_status'] = $status;
+    $locked['payment_id'] = $paymentId;
+    $locked['updated_at'] = date('c');
 
-// Обработка по реальному статусу платежа из API (а не по типу события)
-switch ($status) {
-    case 'succeeded':
-        $alreadyPaid = ($order['status'] ?? '') === 'paid';
-        $order['status'] = 'paid';
-        $order['paid_at'] = $order['paid_at'] ?? date('c');
-        
-        // Отправляем email админу
-        $itemsText = [];
-        foreach ($order['items'] ?? [] as $item) {
-            $price = number_format((int)$item['price'] / 100, 0, '', ' ');
-            $itemsText[] = '- ' . ($item['name'] ?? 'Товар') . ' — ' . $price . ' ₽';
-        }
-        $totalFormatted = number_format($order['total'] / 100, 0, '', ' ');
-        
-        $subject = '✅ Оплачен заказ ' . $orderId;
-        $emailBody = "Новый оплаченный заказ:\n\n";
-        $emailBody .= "ID заказа: {$orderId}\n";
-        $emailBody .= "Email: " . ($order['email'] ?: 'не указан') . "\n";
-        $emailBody .= "Телефон: " . ($order['phone'] ?: 'не указан') . "\n";
-        $emailBody .= "Сумма: {$totalFormatted} ₽\n\n";
-        $emailBody .= "Товары:\n" . implode("\n", $itemsText) . "\n\n";
-        $emailBody .= "Payment ID: {$paymentId}\n";
-        $emailBody .= "Дата: " . date('d.m.Y H:i:s') . "\n";
-        
-        $headers = [
-            'From: site@marzhavbetone.ru',
-            'Reply-To: ' . ($order['email'] ?: ADMIN_EMAIL),
-            'Content-Type: text/plain; charset=UTF-8',
-        ];
-        // Письмо отправляем только один раз — при первом переходе в «paid»
-        if (!$alreadyPaid) {
-            mail(ADMIN_EMAIL, '=?UTF-8?B?' . base64_encode($subject) . '?=', $emailBody, implode("\r\n", $headers));
-        }
+    switch ($status) {
+        case 'succeeded':
+            $locked['status'] = 'paid';
+            $locked['paid_at'] = $locked['paid_at'] ?? date('c');
 
-        // Автовыдача: архивы, ссылки, письмо покупателю (однократно)
-        mvb_deliver_and_notify($order);
-        break;
-        
-    case 'canceled':
-        $order['status'] = 'canceled';
-        break;
-        
-    case 'waiting_for_capture':
-        $order['status'] = 'waiting_for_capture';
-        break;
+            // Признак «письмо админу уже уходило» лежит в самом заказе, а не
+            // в переменной процесса: о повторной доставке вебхука переменная
+            // ничего не знает, а поле знает.
+            if (empty($locked['admin_notified_at'])) {
+                $locked['admin_notified_at'] = date('c');
+                $itemsText = [];
+                foreach ($locked['items'] ?? [] as $item) {
+                    $price = number_format((int)$item['price'] / 100, 0, '', ' ');
+                    $itemsText[] = '- ' . ($item['name'] ?? 'Товар') . ' — ' . $price . ' ₽';
+                }
+                $totalFormatted = number_format($locked['total'] / 100, 0, '', ' ');
+                $body  = "Новый оплаченный заказ:\n\n";
+                $body .= "ID заказа: {$orderId}\n";
+                $body .= 'Email: ' . ($locked['email'] ?: 'не указан') . "\n";
+                $body .= 'Телефон: ' . ($locked['phone'] ?: 'не указан') . "\n";
+                $body .= "Сумма: {$totalFormatted} ₽\n\n";
+                $body .= "Товары:\n" . implode("\n", $itemsText) . "\n\n";
+                $body .= "Payment ID: {$paymentId}\n";
+                $body .= 'Дата: ' . date('d.m.Y H:i:s') . "\n";
+                $adminMail = [
+                    'subject' => '=?UTF-8?B?' . base64_encode('✅ Оплачен заказ ' . $orderId) . '?=',
+                    'body'    => $body,
+                    'headers' => implode("\r\n", [
+                        'From: site@marzhavbetone.ru',
+                        'Reply-To: ' . ($locked['email'] ?: ADMIN_EMAIL),
+                        'Content-Type: text/plain; charset=UTF-8',
+                    ]),
+                ];
+            }
+
+            // Выдача обязана идти под той же блокировкой: её защита от
+            // повтора — поле в этом же файле заказа.
+            mvb_deliver_and_notify($locked);
+            break;
+
+        case 'canceled':
+            $locked['status'] = 'canceled';
+            break;
+
+        case 'waiting_for_capture':
+            $locked['status'] = 'waiting_for_capture';
+            break;
+    }
+    return null;
+});
+
+// Письмо админу уходит после снятия блокировки: mail() может ждать SMTP, и
+// держать на этом заказ значит держать на нём второй процесс.
+if ($adminMail) {
+    mail(ADMIN_EMAIL, $adminMail['subject'], $adminMail['body'], $adminMail['headers']);
 }
-
-// Сохраняем обновлённый заказ
-file_put_contents($orderFile, json_encode($order, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
 // Отвечаем ЮКассе успехом
 echo json_encode(['ok' => true], JSON_UNESCAPED_UNICODE);

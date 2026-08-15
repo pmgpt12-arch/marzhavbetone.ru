@@ -349,9 +349,76 @@ function mvb_prepare_delivery(array &$order): array
 }
 
 /**
+ * Читает заказ, отдаёт его обработчику и записывает обратно — под
+ * исключительной блокировкой.
+ *
+ * Заведено 15.08.2026 по разбору гонки. Выдачу зовут два независимых
+ * процесса: webhook.php по уведомлению ЮKassa и check-payment.php по
+ * заходу покупателя на success.html. Это не редкий случай, а обычный:
+ * покупатель возвращается на сайт ровно в тот момент, когда касса шлёт
+ * уведомление.
+ *
+ * Защита от повторной выдачи стояла на поле delivery.email_sent_at, и
+ * против последовательных вызовов она работает. Против одновременных —
+ * нет: оба процесса читают файл заказа до того, как любой из них успел
+ * записать, оба видят пустое email_sent_at, оба шлют письмо. Второй
+ * дефект той же природы — потерянное обновление: запись, сделанная
+ * позже, затирает поля, проставленные первым процессом.
+ *
+ * Блокировка берётся на отдельном .lock-файле, а не на самом заказе:
+ * запись идёт через временный файл и rename, то есть исходный inode
+ * заменяется, и блокировка на нём была бы снята с чужого файла.
+ */
+function mvb_with_order_lock(string $orderFile, callable $fn)
+{
+    $lock = @fopen($orderFile . '.lock', 'c');
+    if ($lock === false) {
+        // Взять блокировку не удалось. Выполняем без неё: пропущенная
+        // выдача дороже возможного повтора письма.
+        $order = json_decode((string)@file_get_contents($orderFile), true);
+        if (!is_array($order)) {
+            return null;
+        }
+        $result = $fn($order);
+        mvb_write_order($orderFile, $order);
+        return $result;
+    }
+
+    @flock($lock, LOCK_EX);
+    $order = json_decode((string)@file_get_contents($orderFile), true);
+    if (!is_array($order)) {
+        @flock($lock, LOCK_UN);
+        fclose($lock);
+        return null;
+    }
+    try {
+        $result = $fn($order);
+        mvb_write_order($orderFile, $order);
+    } finally {
+        @flock($lock, LOCK_UN);
+        fclose($lock);
+    }
+    return $result;
+}
+
+/** Запись заказа целиком: через временный файл и rename, чтобы читатель
+ *  никогда не увидел половину JSON. */
+function mvb_write_order(string $orderFile, array $order): void
+{
+    $json = json_encode($order, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    $tmp = $orderFile . '.tmp' . getmypid();
+    if (@file_put_contents($tmp, $json) !== false) {
+        @rename($tmp, $orderFile);
+    } else {
+        @file_put_contents($orderFile, $json);
+    }
+}
+
+/**
  * Полный цикл выдачи для оплаченного заказа: архивы, ссылки, письмо покупателю.
- * Письмо уходит один раз (email_sent_at), повторные вызовы безопасны —
- * функцию зовут и webhook, и check-payment, кто успеет первым.
+ * Письмо уходит один раз (email_sent_at). Повторные вызовы безопасны только
+ * под mvb_with_order_lock(): сама по себе проверка email_sent_at от
+ * одновременных вызовов не защищает — см. разбор гонки выше.
  * Возвращает список ссылок на скачивание.
  */
 function mvb_deliver_and_notify(array &$order): array
