@@ -60,6 +60,7 @@ SCREENS_MAX = {"index.html": 10.0}
 
 SAMPLE = [
     "index.html",
+    "katalog.html",
     "articles/garantiynoe-uderzhanie-chto-eto.html",
     "products/p1-oplata-po-ks2.html",
     "materialy/uderzhaniya.html",

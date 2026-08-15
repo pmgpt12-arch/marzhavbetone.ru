@@ -75,6 +75,7 @@ MENU_SELECTOR = "nav[aria-label='Основная навигация'], nav.link
 # шапки в одном из них не виден на остальных — так и нашёлся дефект статьи.
 SAMPLE = [
     "index.html",
+    "katalog.html",
     "articles/garantiynoe-uderzhanie-chto-eto.html",
     "products/p1-oplata-po-ks2.html",
     "materialy/uderzhaniya.html",

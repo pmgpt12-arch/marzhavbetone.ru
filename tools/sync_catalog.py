@@ -27,7 +27,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-INDEX = ROOT / "index.html"
+# Витрина и её разметка переехали на katalog.html 15.08.2026
+# (tools/split_catalog_2026-08-15.py).
+INDEX = ROOT / "katalog.html"
 CONFIG = ROOT / "products-config.php"
 SITE = "https://marzhavbetone.ru"
 

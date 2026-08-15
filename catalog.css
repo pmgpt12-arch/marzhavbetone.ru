@@ -90,3 +90,44 @@
    спрятанных карточек не убрали ни пикселя. Ошибка была бы незаметна:
    счётчик показывал «скрыто 7», а страница не становилась короче. */
 .product-card[hidden]{display:none}
+
+/* Короткий блок решений на главной. Заведён 15.08.2026 вместе с переносом
+   каталога на свою страницу (tools/split_catalog_2026-08-15.py).
+
+   Замер до переноса: главная 33,2 экрана на 1366px и 1399px ширины против
+   1366 доступных — весь каталог, 25 карточек, стоял на главной. Здесь их
+   шесть, по числу ситуаций блока #situations, и карточка короткая: момент,
+   название, результат, три пункта, цена, кнопка. Полный перечень файлов
+   живёт на странице товара — он и есть то, за чем туда идут.
+
+   Сетка объявлена через minmax(0,1fr), а не 1fr: колонка с 1fr не может
+   стать уже своего самого длинного слова, и именно так каталог распирал
+   страницу вбок. */
+.solution-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px}
+.solution-card{display:flex;flex-direction:column;min-width:0;padding:30px 28px;background:#fff;border:1px solid rgba(36,38,41,.16);box-shadow:8px 8px 0 #c8c3b9}
+.solution-when{margin:0 0 14px;color:#ff5a00;font-size:12px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;line-height:1.3}
+.solution-card h3{margin:0 0 12px;font-size:clamp(22px,1.8vw,28px);line-height:1.12;letter-spacing:-.02em;overflow-wrap:break-word;hyphens:auto}
+.solution-card h3 a{color:inherit;text-decoration:none}
+.solution-card h3 a:hover{color:#ff5a00}
+.solution-result{margin:0;color:#606164;font-size:15px;line-height:1.5}
+.solution-points{margin:16px 0 0;padding:16px 0 0 20px;border-top:1px solid rgba(120,120,120,.3);font-size:14px;line-height:1.5}
+.solution-points li{margin:0 0 6px;overflow-wrap:break-word}
+.solution-points li::marker{color:#ff5a00}
+.solution-card .product-footer{margin-top:auto}
+.solutions-more{margin:34px 0 0}
+
+/* Хлебные крошки каталога. */
+.breadcrumbs{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:22px clamp(28px,7vw,110px) 0;color:#6c6f73;font-size:13px}
+.breadcrumbs a{color:#6c6f73}
+.breadcrumbs span{color:#a9a49a}
+
+@media(max-width:600px){
+  .solution-grid{grid-template-columns:1fr;gap:16px}
+  .solution-card{padding:22px 20px}
+  .solution-card h3{font-size:21px}
+  .breadcrumbs{padding:16px 22px 0}
+}
+
+/* Заголовок страницы каталога. На главной это была секция с h2; на своей
+   странице тот же заголовок стал h1, и размер ему нужен тот же. */
+.section-head h1{margin:0;max-width:850px;font-size:clamp(46px,6vw,78px);line-height:.94;letter-spacing:-.05em}

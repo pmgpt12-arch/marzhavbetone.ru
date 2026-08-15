@@ -41,7 +41,10 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAGE = os.path.join(ROOT, "index.html")
+# Каталог переехал на свою страницу 15.08.2026 (см.
+# tools/split_catalog_2026-08-15.py): на главной он давал 33 экрана
+# длины и распирал её вбок.
+PAGE = os.path.join(ROOT, "katalog.html")
 
 # Группы в порядке появления. Ключ — идентификатор якоря, значение —
 # заголовок, короткая подпись и перечень sku. Это данные, а не код:
