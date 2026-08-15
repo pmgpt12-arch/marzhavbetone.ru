@@ -68,22 +68,47 @@ OVERFLOW_TOLERANCE = 1.0
 # соответствует ей, а не выбран круглым числом.
 HEIGHT_MAX = {"index.html": 9_800}
 
+# Второй показатель — число экранов, и он нужен рядом с пикселями, а не
+# вместо них. Пиксельный порог не наказывает за низкий монитор, но и не
+# показывает, сколько человек реально прокрутит: 9 500px это 8,8 экрана
+# на 1920×1080 и 12,4 на 1366×768. Замер 15.08.2026.
+#
+# Порог пока предупреждающий, а не блокирующий: цель ≤10 экранов на 1366
+# не достигнута (12,4), и делать проверку красной до того, как длина
+# сокращена, значит красить гейт на известном и незакрытом.
+SCREENS_TARGET = {"index.html": 10.0}
+
 # Главная кнопка первого экрана — та, ради которой экран и существует.
 # Селектор, а не «первая кнопка на странице»: первой в разметке идёт
 # кнопка корзины в шапке, и проверка по ней всегда была бы зелёной.
 CTA_SELECTORS = {"index.html": ".hero-actions .button"}
 
+# Первый экран страницы товара. Требование спринта 15.08.2026: в первых
+# 1–1.5 экранах покупатель видит ситуацию, результат, «кому подойдёт»,
+# «когда применять», цену и одну кнопку покупки.
+#
+# Замер до правки: низ блока «когда применять / кому подойдёт» стоял на
+# 1,60–1,80 экрана при 1366×768, то есть за пределом, а кнопка покупки на
+# двух страницах — на 0,95 экрана, на волосок от сгиба. Причина не в самом
+# блоке: заголовок товара занимал до 256px четырьмя строками по 63px, а
+# декоративная картинка 4/3 — ещё 441px. Оба числа получены рендером;
+# чтением разметки их не видно.
+#
+# Порог держит возврат этой картины. Он в долях экрана, а не в пикселях,
+# потому что здесь вопрос ровно про сгиб: «видно ли без прокрутки».
+PRODUCT_FIT_SCREENS = 1.5
+PRODUCT_BUY_SCREENS = 1.0
+
 SAMPLE = [
     "index.html",
     "katalog.html",
     "articles/garantiynoe-uderzhanie-chto-eto.html",
-    "products/p1-oplata-po-ks2.html",
     "materialy/uderzhaniya.html",
     "articles/index.html",
     "materialy/index.html",
     "kalkulyator.html",
     "diagnostika.html",
-]
+] + sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / "products").glob("*.html"))
 
 SKIP = {"test-pokupka.html", "success.html", "fail.html"}
 SKIP_DIRS = ("content/", ".claude/")
@@ -228,7 +253,41 @@ ORPHAN_SCRIPT = """(tol) => {
 }"""
 
 
-def check_page(browser, base: str, rel: str) -> list[str]:
+def first_screen(page, height: int) -> list[str]:
+    """Что видно на странице товара до прокрутки.
+
+    Отсутствие блока — тоже дефект, и он назван отдельно от «низ слишком
+    низко»: пустой селектор молча даёт ноль, а ноль читается как «всё
+    хорошо». Ровно так теряются цели Метрики, и здесь ошибка была бы та же.
+    """
+    out = []
+    box = page.evaluate(
+        """() => {
+          const at = sel => {
+            const el = document.querySelector(sel);
+            return el ? Math.round(el.getBoundingClientRect().bottom + scrollY) : null;
+          };
+          return {fit: at('.product-fit'), buy: at('.add-to-cart'),
+                  price: at('.price')};
+        }""")
+    for name, key, limit, human in (
+            ("«когда применять / кому подойдёт»", "fit", PRODUCT_FIT_SCREENS,
+             ".product-fit"),
+            ("кнопка покупки", "buy", PRODUCT_BUY_SCREENS, ".add-to-cart"),
+            ("цена", "price", PRODUCT_BUY_SCREENS, ".price")):
+        bottom = box[key]
+        if bottom is None:
+            out.append(f"{name} не найдена по {human}")
+            continue
+        screens = bottom / height
+        if screens > limit:
+            out.append(f"{name}: низ на {bottom}px — {screens:.2f} экрана "
+                       f"при пороге {limit}")
+    return out
+
+
+def check_page(browser, base: str, rel: str,
+               notes: list[str]) -> list[str]:
     bad: list[str] = []
     for width, height in WIDTHS:
         page = browser.new_page(viewport={"width": width, "height": height})
@@ -266,6 +325,18 @@ def check_page(browser, base: str, rel: str) -> list[str]:
                     bad.append(f"{rel} @{width}: главная кнопка ниже сгиба — "
                                f"низ на {bottom}px при экране {height}px")
 
+            target = SCREENS_TARGET.get(rel)
+            if target is not None:
+                doc_height = page.evaluate("document.documentElement.scrollHeight")
+                screens = doc_height / height
+                if screens > target:
+                    notes.append(f"{rel} @{width}: {screens:.1f} экрана против цели "
+                                 f"{target} — {doc_height}px при окне {height}px")
+
+            if rel.startswith("products/"):
+                bad.extend(f"{rel} @{width}: {item}"
+                           for item in first_screen(page, height))
+
             limit = HEIGHT_MAX.get(rel)
             if limit is not None:
                 doc_height = page.evaluate("document.documentElement.scrollHeight")
@@ -294,6 +365,7 @@ def main() -> int:
     base = f"http://127.0.0.1:{port}"
     targets = pages(args.all)
     bad: list[str] = []
+    notes: list[str] = []
     try:
         with sync_playwright() as p:
             near = chromium_nearby()
@@ -306,11 +378,16 @@ def main() -> int:
                 return 2
             try:
                 for rel in targets:
-                    bad.extend(check_page(browser, base, rel))
+                    bad.extend(check_page(browser, base, rel, notes))
             finally:
                 browser.close()
     finally:
         httpd.shutdown()
+
+    if notes:
+        print("Замечание — длина в экранах выше цели (не блокирует):")
+        for line in notes:
+            print(f"   · {line}")
 
     widths = ", ".join(str(w) for w, _ in WIDTHS)
     if bad:

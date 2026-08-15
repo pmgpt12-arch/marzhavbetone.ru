@@ -61,7 +61,36 @@ def build_map() -> dict[str, dict]:
     for sku, row in rows.items():
         if row["status"] != "active" or not row["product_url"]:
             continue
-        own = set(filter(None, row["money_pain"].split(";")))
+        # Порядок болей — как записан в карте, а не как ляжет множество.
+        # `set` даёт произвольный порядок обхода, и подпись «ступень вверх
+        # по …» брала бы из него случайную боль: у t3 их две, и текст
+        # называл бы то ту, то другую.
+        own_order = [x for x in row["money_pain"].split(";") if x]
+        own = set(own_order)
+
+        # Ступень вверх по той же боли идёт первой и говорит другими
+        # словами. Купившему первый ход за 990 ₽ незачем рассказывать про
+        # «следующую ситуацию»: у него та же самая, просто он взял её на
+        # один день, а не целиком. Замер 15.08.2026: предложения после
+        # покупки не было ни у одного входного товара — именно там, где
+        # оно очевиднее всего.
+        step = rows.get(row.get("upsell") or "")
+        if step and step["status"] == "active" and step["product_url"]:
+            out[sku] = {
+                "url": step["product_url"],
+                "name": short_name(names.get(step["product_id"], step["product_id"])),
+                # Боль, по которой связаны купленный и предлагаемый, —
+                # общая для обоих. Иначе у товара с двумя болями подпись
+                # назовёт не ту, по которой ступень вверх и построена.
+                "closed": next(
+                    (titles[p] for p in own_order
+                     if p in titles and p in step["money_pain"].split(";")),
+                    next((titles[p] for p in own_order if p in titles), "")),
+                "next": "",
+                "kind": "step",
+            }
+            continue
+
         # Кандидаты сортируются так, чтобы вперёд шли те, чья боль
         # отличается от уже закрытой. Иначе выходит «вы закрыли допработы,
         # следом приходят допработы» — предложение, которое покупатель
@@ -84,12 +113,13 @@ def build_map() -> dict[str, dict]:
                 continue
             # Ситуация, которую покупатель уже закрыл, и та, что часто
             # приходит следом. Обе — словами лестницы, а не выдуманными.
-            closed = next((titles[p] for p in own if p in titles), "")
+            closed = next((titles[p] for p in own_order if p in titles), "")
             out[sku] = {
                 "url": target["product_url"],
                 "name": short_name(names.get(cid, cid)),
                 "closed": closed,
                 "next": titles[target_pains[0]],
+                "kind": "next",
             }
             break
     return out
@@ -116,7 +146,9 @@ def main() -> int:
 
     print(f"Товаров с предложением после покупки: {len(mapping)}")
     for sku, item in sorted(mapping.items()):
-        print(f"   {sku} → {item['name']} (следом: {item['next']})")
+        why = (f"ступень вверх по «{item['closed']}»" if item["kind"] == "step"
+               else f"следом: {item['next']}")
+        print(f"   {sku} → {item['name']} ({why})")
 
     if not args.write:
         print("\nпоказ, файл не изменён. Вставить — с --write")

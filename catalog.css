@@ -132,25 +132,60 @@
    странице тот же заголовок стал h1, и размер ему нужен тот же. */
 .section-head h1{margin:0;max-width:850px;font-size:clamp(46px,6vw,78px);line-height:.94;letter-spacing:-.05em}
 
-/* Блок «Изнутри стройки». Заведён 15.08.2026
-   (tools/rebuild_home_2026-08-15.py): до этого разборы стояли одиннадцатым
-   блоком из пятнадцати — ниже каталога и порядка покупки, то есть после
-   всего, что просит денег.
+/* Блок «Изнутри стройки». Переработан 15.08.2026 из сетки блог-карточек
+   в досье. Прежний вид — фотография сверху, заголовок, лид, ссылка — это
+   самый обычный паттерн карточки контента в вебе: он ничего не сообщал о
+   том, что за материалом стоит практика, а стоковая иллюстрация
+   подлинности не добавляет. Хуже: карточки были светлее продуктовых, то
+   есть читались как менее важные, чем товар.
 
-   Язык карточки — служебная записка: номер, служебная метка, заголовок,
-   строка о том, где именно потеряны деньги. Ни номер, ни метка ничего не
-   утверждают сверх статьи: метка взята из её надзаголовка, строка — из
-   описания либо из карточки, которая уже стояла на главной. */
-.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px}
-.case-card{display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid rgba(36,38,41,.16);box-shadow:8px 8px 0 #c8c3b9;color:inherit;text-decoration:none;transition:box-shadow .15s,transform .15s}
-.case-card:hover{box-shadow:8px 8px 0 #ff5a00;transform:translateY(-2px)}
-.case-card img{width:100%;height:auto;aspect-ratio:1536/954;object-fit:cover;display:block}
-.case-body{display:flex;flex-direction:column;flex:1;gap:10px;padding:26px 26px 28px}
-.case-no{margin:0;color:#c8c3b9;font-size:34px;font-weight:900;line-height:1;letter-spacing:-.04em}
-.case-tag{margin:0;color:#ff5a00;font-size:11px;font-weight:900;letter-spacing:.12em;line-height:1.4}
-.case-card h3{margin:0;font-size:clamp(20px,1.6vw,25px);line-height:1.15;letter-spacing:-.02em;overflow-wrap:break-word}
-.case-point{margin:0;color:#606164;font-size:14.5px;line-height:1.5;overflow-wrap:break-word}
-.case-open{margin-top:auto;padding-top:14px;color:#242629;font-size:14px;font-weight:800;border-top:1px solid rgba(120,120,120,.25)}
+   Теперь карточка — служебная запись: номер дела, маркер типа, период,
+   стороны, сумма, точка ошибки. Тёмный фон и рамка ставят блок выше
+   всего остального на странице; ни один другой блок так не выглядит.
+
+   Содержимое собирается tools/build_cases.py из data/business/cases.yaml,
+   где у каждого поля назван источник. Руками не правится. */
+.cases{background:#1c1e21;color:#e9e5dc}
+.cases .eyebrow{color:#ff5a00}
+.cases h2{color:#fff}
+.cases .lead{color:#a9a49a;max-width:640px}
+.cases .text-link{color:#e9e5dc;border-bottom-color:rgba(233,229,220,.4)}
+.cases .text-link:hover{color:#ff5a00}
+
+.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:20px}
+.case-card{display:flex;flex-direction:column;min-width:0;padding:24px 22px 22px;
+  background:#242629;border:1px solid rgba(233,229,220,.18);color:inherit;
+  text-decoration:none;transition:border-color .15s,transform .15s}
+.case-card:hover{border-color:#ff5a00;transform:translateY(-2px)}
+
+/* Шапка досье: номер слева, маркер типа справа. Маркер настоящего дела
+   оранжевый, расчёта — приглушённый: разница видна до чтения. */
+.case-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid rgba(233,229,220,.18)}
+.case-label{font-size:13px;font-weight:900;letter-spacing:.14em;color:#fff}
+.case-marker{font-size:10px;font-weight:900;letter-spacing:.1em;line-height:1.3;
+  text-align:right;color:#8b8781}
+.case-case .case-marker{color:#ff5a00}
+.case-case{border-color:rgba(255,90,0,.45)}
+
+.case-tag{margin:0 0 8px;font-size:10.5px;font-weight:900;letter-spacing:.11em;color:#8b8781}
+.case-card h3{margin:0 0 16px;font-size:clamp(19px,1.5vw,23px);line-height:1.18;
+  letter-spacing:-.02em;color:#fff;overflow-wrap:break-word}
+
+/* Реквизиты дела. Строки появляются только там, где факт есть в статье. */
+.case-facts{display:grid;gap:7px;margin:0 0 14px}
+.case-facts div{display:grid;grid-template-columns:92px minmax(0,1fr);gap:10px;align-items:baseline}
+.case-facts dt{margin:0;font-size:10.5px;font-weight:900;letter-spacing:.06em;
+  text-transform:uppercase;color:#6f6c67}
+.case-facts dd{margin:0;font-size:13.5px;line-height:1.35;color:#cfcac1;overflow-wrap:break-word}
+.case-figure{font-size:17px;font-weight:900;letter-spacing:-.01em;color:#ff5a00}
+
+.case-error{margin:0;padding:12px 14px;background:rgba(255,90,0,.09);
+  border-left:3px solid #ff5a00;font-size:13.5px;line-height:1.45;color:#cfcac1}
+.case-error span{display:block;margin-bottom:4px;font-size:10px;font-weight:900;
+  letter-spacing:.1em;color:#ff5a00}
+
+.case-open{margin-top:auto;padding-top:16px;font-size:14px;font-weight:800;color:#fff}
 .case-card:hover .case-open{color:#ff5a00}
 
 /* Два промо-блока сведены в один ряд: порознь они занимали 1136px на
