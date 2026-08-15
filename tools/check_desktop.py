@@ -68,6 +68,16 @@ OVERFLOW_TOLERANCE = 1.0
 # соответствует ей, а не выбран круглым числом.
 HEIGHT_MAX = {"index.html": 9_800}
 
+# Второй показатель — число экранов, и он нужен рядом с пикселями, а не
+# вместо них. Пиксельный порог не наказывает за низкий монитор, но и не
+# показывает, сколько человек реально прокрутит: 9 500px это 8,8 экрана
+# на 1920×1080 и 12,4 на 1366×768. Замер 15.08.2026.
+#
+# Порог пока предупреждающий, а не блокирующий: цель ≤10 экранов на 1366
+# не достигнута (12,4), и делать проверку красной до того, как длина
+# сокращена, значит красить гейт на известном и незакрытом.
+SCREENS_TARGET = {"index.html": 10.0}
+
 # Главная кнопка первого экрана — та, ради которой экран и существует.
 # Селектор, а не «первая кнопка на странице»: первой в разметке идёт
 # кнопка корзины в шапке, и проверка по ней всегда была бы зелёной.
@@ -228,7 +238,8 @@ ORPHAN_SCRIPT = """(tol) => {
 }"""
 
 
-def check_page(browser, base: str, rel: str) -> list[str]:
+def check_page(browser, base: str, rel: str,
+               notes: list[str]) -> list[str]:
     bad: list[str] = []
     for width, height in WIDTHS:
         page = browser.new_page(viewport={"width": width, "height": height})
@@ -266,6 +277,14 @@ def check_page(browser, base: str, rel: str) -> list[str]:
                     bad.append(f"{rel} @{width}: главная кнопка ниже сгиба — "
                                f"низ на {bottom}px при экране {height}px")
 
+            target = SCREENS_TARGET.get(rel)
+            if target is not None:
+                doc_height = page.evaluate("document.documentElement.scrollHeight")
+                screens = doc_height / height
+                if screens > target:
+                    notes.append(f"{rel} @{width}: {screens:.1f} экрана против цели "
+                                 f"{target} — {doc_height}px при окне {height}px")
+
             limit = HEIGHT_MAX.get(rel)
             if limit is not None:
                 doc_height = page.evaluate("document.documentElement.scrollHeight")
@@ -294,6 +313,7 @@ def main() -> int:
     base = f"http://127.0.0.1:{port}"
     targets = pages(args.all)
     bad: list[str] = []
+    notes: list[str] = []
     try:
         with sync_playwright() as p:
             near = chromium_nearby()
@@ -306,11 +326,16 @@ def main() -> int:
                 return 2
             try:
                 for rel in targets:
-                    bad.extend(check_page(browser, base, rel))
+                    bad.extend(check_page(browser, base, rel, notes))
             finally:
                 browser.close()
     finally:
         httpd.shutdown()
+
+    if notes:
+        print("Замечание — длина в экранах выше цели (не блокирует):")
+        for line in notes:
+            print(f"   · {line}")
 
     widths = ", ".join(str(w) for w, _ in WIDTHS)
     if bad:
