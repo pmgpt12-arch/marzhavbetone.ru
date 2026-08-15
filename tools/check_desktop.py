@@ -83,17 +83,32 @@ SCREENS_TARGET = {"index.html": 10.0}
 # кнопка корзины в шапке, и проверка по ней всегда была бы зелёной.
 CTA_SELECTORS = {"index.html": ".hero-actions .button"}
 
+# Первый экран страницы товара. Требование спринта 15.08.2026: в первых
+# 1–1.5 экранах покупатель видит ситуацию, результат, «кому подойдёт»,
+# «когда применять», цену и одну кнопку покупки.
+#
+# Замер до правки: низ блока «когда применять / кому подойдёт» стоял на
+# 1,60–1,80 экрана при 1366×768, то есть за пределом, а кнопка покупки на
+# двух страницах — на 0,95 экрана, на волосок от сгиба. Причина не в самом
+# блоке: заголовок товара занимал до 256px четырьмя строками по 63px, а
+# декоративная картинка 4/3 — ещё 441px. Оба числа получены рендером;
+# чтением разметки их не видно.
+#
+# Порог держит возврат этой картины. Он в долях экрана, а не в пикселях,
+# потому что здесь вопрос ровно про сгиб: «видно ли без прокрутки».
+PRODUCT_FIT_SCREENS = 1.5
+PRODUCT_BUY_SCREENS = 1.0
+
 SAMPLE = [
     "index.html",
     "katalog.html",
     "articles/garantiynoe-uderzhanie-chto-eto.html",
-    "products/p1-oplata-po-ks2.html",
     "materialy/uderzhaniya.html",
     "articles/index.html",
     "materialy/index.html",
     "kalkulyator.html",
     "diagnostika.html",
-]
+] + sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / "products").glob("*.html"))
 
 SKIP = {"test-pokupka.html", "success.html", "fail.html"}
 SKIP_DIRS = ("content/", ".claude/")
@@ -238,6 +253,39 @@ ORPHAN_SCRIPT = """(tol) => {
 }"""
 
 
+def first_screen(page, height: int) -> list[str]:
+    """Что видно на странице товара до прокрутки.
+
+    Отсутствие блока — тоже дефект, и он назван отдельно от «низ слишком
+    низко»: пустой селектор молча даёт ноль, а ноль читается как «всё
+    хорошо». Ровно так теряются цели Метрики, и здесь ошибка была бы та же.
+    """
+    out = []
+    box = page.evaluate(
+        """() => {
+          const at = sel => {
+            const el = document.querySelector(sel);
+            return el ? Math.round(el.getBoundingClientRect().bottom + scrollY) : null;
+          };
+          return {fit: at('.product-fit'), buy: at('.add-to-cart'),
+                  price: at('.price')};
+        }""")
+    for name, key, limit, human in (
+            ("«когда применять / кому подойдёт»", "fit", PRODUCT_FIT_SCREENS,
+             ".product-fit"),
+            ("кнопка покупки", "buy", PRODUCT_BUY_SCREENS, ".add-to-cart"),
+            ("цена", "price", PRODUCT_BUY_SCREENS, ".price")):
+        bottom = box[key]
+        if bottom is None:
+            out.append(f"{name} не найдена по {human}")
+            continue
+        screens = bottom / height
+        if screens > limit:
+            out.append(f"{name}: низ на {bottom}px — {screens:.2f} экрана "
+                       f"при пороге {limit}")
+    return out
+
+
 def check_page(browser, base: str, rel: str,
                notes: list[str]) -> list[str]:
     bad: list[str] = []
@@ -284,6 +332,10 @@ def check_page(browser, base: str, rel: str,
                 if screens > target:
                     notes.append(f"{rel} @{width}: {screens:.1f} экрана против цели "
                                  f"{target} — {doc_height}px при окне {height}px")
+
+            if rel.startswith("products/"):
+                bad.extend(f"{rel} @{width}: {item}"
+                           for item in first_screen(page, height))
 
             limit = HEIGHT_MAX.get(rel)
             if limit is not None:
