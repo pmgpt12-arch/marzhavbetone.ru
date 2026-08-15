@@ -4,21 +4,21 @@
 # в репозиторий незачем: файл не обновляется сам, а устаревшая копия нормы
 # опаснее её отсутствия — она выглядит проверенной.
 #
-# `source_class` — главное поле, и оно решает судьбу вердикта:
+# Здесь только реквизиты нормы и адрес, где её читать. Ни класса
+# источника, ни доказательства тут нет намеренно: адрес говорит, где
+# смотреть, а не что написано, и молча меняется вместе с текстом.
 #
-#   official     — текст нормы прочитан у официального публикатора
-#   secondary    — текст получен через посредника (поиск, правовая база)
-#   not_verified — действующую редакцию подтвердить не удалось
+# Доказательство — сам сохранённый текст статьи и его хеш, слой
+# `data/legal/evidence/<norm_id>.yaml`. Добывается
+# `tools/fetch_legal_evidence.py` с машины, у которой есть сеть; в CI он не
+# запускается. Один факт — одно место: класс источника живёт при
+# доказательстве, а не при реквизитах.
 #
-# Вторичный источник сам по себе PASS не даёт (`tools/normative_gate.py`).
-# Это не перестраховка, а вывод из замера 15.08.2026: из рабочей среды
-# закрыты `pravo.gov.ru`, `consultant.ru`, `base.garant.ru`, `vsrf.ru`,
-# `arbitr.ru`, `cbr.ru`, `sudact.ru` — все дают `CONNECT tunnel failed,
-# response 403`. Сверка D-06 прошла на дословных цитатах из поисковой
-# выдачи, и назвать это чтением официальной публикации нельзя.
-#
-# Отсюда исходное состояние гейта — красное, и это осознанный выбор:
-# ложная зелень дороже честного отказа.
+# Замер 15.08.2026: из рабочей среды `pravo.gov.ru` и
+# `publication.pravo.gov.ru` дают 403 на CONNECT, `consultant.ru` и
+# `base.garant.ru` не резолвятся. Доказательств сегодня нет ни по одной
+# норме, и гейт по всем шести документам красный. Это верный исход, а не
+# поломка: ложная зелень дороже честного отказа.
 #
 # `recheck_after` — срок перепроверки, а не предсказание изменения закона.
 # Его истечение сообщается `tools/normative_scope.py` и не роняет чужой PR.
@@ -34,9 +34,6 @@ norms:
     title: Начало срока, определенного периодом времени
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
     fallback_sources: [https://base.garant.ru/10164072/c310495fb04e03cd147b58ba5fee6e32/]
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: дословная цитата получена поиском; официальный публикатор закрыт (CONNECT 403)
     recheck_after: 2026-11-15
 
   - norm_id: gk-193
@@ -45,9 +42,6 @@ norms:
     title: Окончание срока в нерабочий день
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_5142/8aaa310a192d916fce0327f6226a59ffe5b49b9b/]
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: дословная цитата получена поиском
     recheck_after: 2026-11-15
 
   - norm_id: gk-314
@@ -56,9 +50,6 @@ norms:
     title: Срок исполнения обязательства
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_5142/3a7d3c1ca588deb50bc9bc8bde5576afc732f9a2/]
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: п. 2 процитирован дословно
     recheck_after: 2026-11-15
 
   - norm_id: gk-328
@@ -67,9 +58,6 @@ norms:
     title: Встречное исполнение обязательства
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_5142/331033e3d6e7b72213bd9903b03e29dfb9e608fe/]
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: пп. 1, 2, 4 процитированы дословно; перечит 15.08 исправил адрес пункта
     recheck_after: 2026-11-15
 
   - norm_id: gk-395
@@ -79,9 +67,6 @@ norms:
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_5142/93383099dc4f06165d8d4aac4eeb159db4f6da3d/]
     edition_marker: ред. ФЗ от 03.07.2016 № 315-ФЗ
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: пп. 1, 3, 4 процитированы дословно
     recheck_after: 2026-11-15
 
   - norm_id: gk-711
@@ -90,9 +75,6 @@ norms:
     title: Порядок оплаты работы
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_9027/46561f5271883fcf47f3e9859d3a59eb56bfcd96/]
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: п. 1 процитирован дословно
     recheck_after: 2026-11-15
 
   - norm_id: gk-719
@@ -101,9 +83,6 @@ norms:
     title: Неисполнение заказчиком встречных обязанностей по договору подряда
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_9027/3a590316d2440dd63f7510f9238f24357b93bf61/]
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: пп. 1, 2 процитированы дословно; перечит 15.08 снял неверную ссылку на п. 2
     recheck_after: 2026-11-15
 
   - norm_id: gk-746
@@ -112,9 +91,6 @@ norms:
     title: Оплата работ
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_9027/213b00ab7366c34225e24be2f360912884de054e/]
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: п. 1 процитирован дословно
     recheck_after: 2026-11-15
 
   - norm_id: gk-753
@@ -123,9 +99,6 @@ norms:
     title: Сдача и приемка работ
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_9027/6b2d751a0d605616a9a1012cb7c7fbac1b6d84b3/]
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: п. 4 процитирован дословно
     recheck_after: 2026-11-15
 
   - norm_id: gk-196-200
@@ -134,9 +107,6 @@ norms:
     title: Общий срок исковой давности и начало его течения
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_5142/2dd3d0a52b1ab6e77f6f0bfeb85d98c14fd738da/]
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: обе статьи процитированы дословно
     recheck_after: 2026-11-15
 
   - norm_id: apk-4-5
@@ -146,9 +116,6 @@ norms:
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078170
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_37800/4d77fceae32b76a1cc26db3a1c64857d59045fdc/]
     edition_marker: ред. от 15.12.2025, действует с 01.01.2026
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: процитирована дословно; срок в документы числом не вносится (Р-009)
     recheck_after: 2026-10-15
 
   - norm_id: apk-125-126
@@ -158,9 +125,6 @@ norms:
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078170
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_37800/faa5e7dfaa0bfec48b19b0f862a9366a0dbf43e1/]
     edition_marker: п. 8.1 введён ФЗ от 26.07.2019 № 197-ФЗ
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: состав сведений подтверждён; точный номер пункта о примирении в выдаче двоился
     recheck_after: 2026-10-15
 
   - norm_id: apk-128-148
@@ -169,9 +133,6 @@ norms:
     title: Оставление заявления без движения и без рассмотрения
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078170
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_37800/01e33f2baed9309b9b2b408f7b69e048bec20c55/]
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: обе статьи процитированы дословно
     recheck_after: 2026-11-15
 
   - norm_id: nk-333-40
@@ -180,9 +141,6 @@ norms:
     title: Основания и порядок возврата или зачета государственной пошлины
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102067058
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_28165/7c55dda6b9038640682d24714009aefa6689594c/]
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: пп. 3 п. 1 и п. 6 процитированы дословно
     recheck_after: 2026-10-15
 
   - norm_id: nk-333-21
@@ -192,9 +150,6 @@ norms:
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102067058
     fallback_sources: [https://base.garant.ru/10900200/8eddc29bd4d7eecd531faa7fa836b463/]
     edition_marker: ставки ред. ФЗ от 08.08.2024 № 259-ФЗ
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: статья действует; размеров пошлины в документах числом нет (Р-009)
     recheck_after: 2026-10-15
 
   - norm_id: fz-127-7
@@ -203,9 +158,6 @@ norms:
     title: Уведомление о намерении обратиться с заявлением о банкротстве
     official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527
     fallback_sources: [https://base.garant.ru/185181/e88847e78ccd9fdb54482c7fa15982bf/]
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: механизм и реестр ЕФРСФДЮЛ подтверждены; редакционная дата пункта не установлена
     recheck_after: 2026-10-15
 
   - norm_id: ppvs-7-2016
@@ -215,7 +167,4 @@ norms:
     official_source: https://www.vsrf.ru/documents/own/
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_195783/]
     edition_marker: ред. от 22.06.2021
-    source_class: secondary
-    last_verified: 2026-08-15
-    evidence: пп. 42 и 48 процитированы; дословный текст п. 39 получить не удалось
     recheck_after: 2026-11-15

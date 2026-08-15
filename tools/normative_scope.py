@@ -30,6 +30,9 @@ from pathlib import Path
 
 import yaml
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from legal_evidence import verify as verify_evidence  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 LEGAL = ROOT / "data" / "legal"
 
@@ -63,14 +66,16 @@ def main() -> int:
             print(f"  • {path}")
         return 0
 
-    expired, soon, weak = [], [], []
+    expired, soon, weak, fresh_hashes = [], [], [], {}
     for norm_id, norm in sorted(norms.items()):
         after = norm.get("recheck_after")
         if after:
             due = date.fromisoformat(str(after))
             (expired if due < today else soon).append((norm_id, due))
-        if norm.get("source_class") != "official":
-            weak.append((norm_id, norm.get("source_class", "не объявлен")))
+        evidence_hash, why = verify_evidence(norm_id)
+        fresh_hashes[norm_id] = evidence_hash if not why else None
+        if why:
+            weak.append((norm_id, why))
 
     if expired:
         print(f"ПОРА ПЕРЕСВЕРИТЬ — норм {len(expired)}\n")
@@ -88,10 +93,27 @@ def main() -> int:
               + (f"; ближайший срок {nearest[1]} ({nearest[0]})." if nearest else "."))
 
     if weak:
-        print(f"\nНорм не из официального источника: {len(weak)} из {len(norms)}.")
-        print("Они не дают документу полного PASS — это правило гейта, и")
-        print("сегодня именно оно держит его красным. Снимается чтением")
-        print("официальной публикации либо подтверждением человека.")
+        print(f"\nНорм без годного офлайн-доказательства: {len(weak)} из {len(norms)}.")
+        for norm_id, why in weak[:5]:
+            print(f"  {norm_id}: {why}")
+        if len(weak) > 5:
+            print(f"  … и ещё {len(weak) - 5}")
+        print("\nПолного PASS такие нормы документу не дают. Снимается одним")
+        print("способом: python3 tools/fetch_legal_evidence.py --all на машине")
+        print("с доступом к официальному публикатору. Подтверждением человека")
+        print("это не снимается — эскалация не заменяет текст нормы.")
+
+    # Смена доказательства — то, ради чего нужен обратный индекс: какие
+    # документы придётся пересверить, если норма перечитана и изменилась.
+    changed = [(n, h) for n, h in fresh_hashes.items() if h]
+    if changed:
+        print(f"\nНорм с годным доказательством: {len(changed)}. Если при "
+              "следующем прогоне")
+        print("fetch_legal_evidence хеш любой из них изменится, пересверить "
+              "придётся:")
+        for norm_id, _ in changed[:3]:
+            docs = affected_by(norm_id, documents)
+            print(f"  {norm_id} → {len(docs)} документ(ов)")
 
     print(f"\nДокументов под нормативным контуром: {len(documents)}.")
     return 0

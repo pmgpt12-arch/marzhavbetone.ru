@@ -9,6 +9,11 @@
 # `normative-checker` — сегодня руками, автоматический запуск по diff это
 # следующий этап, и обещать его до доказанного P0 нельзя.
 #
+# `source_hash` у каждой нормы — хеш offline-доказательства, против
+# которого сверялись. Пусто значит «результат ни к какой редакции не
+# привязан»: сверка D-06 шла по поисковой выдаче, сохранённого текста
+# нормы за ней не стоит. Гейт такой результат не принимает.
+#
 # `recheck` заполняется, когда вердикт был PASS_WITH_CORRECTIONS или FAIL:
 # первый вердикт после правок недостаточен. Основание замером — перечит
 # D-06 нашёл три ошибки в самих правках (адрес пункта ст. 328, пропущенная
@@ -30,27 +35,35 @@ results:
       - norm_id: gk-746
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-711
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-191
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-193
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-395
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: apk-4-5
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: apk-125-126
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: nk-333-21
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
     verdict: PASS_WITH_CORRECTIONS
     escalation_required: false
     escalation_reason: null
@@ -71,30 +84,39 @@ results:
       - norm_id: gk-711
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-746
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-753
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-395
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-314
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-193
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: apk-4-5
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: apk-128-148
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: nk-333-40
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
     verdict: PASS_WITH_CORRECTIONS
     escalation_required: false
     escalation_reason: null
@@ -115,9 +137,11 @@ results:
       - norm_id: apk-4-5
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-395
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
     verdict: PASS_WITH_CORRECTIONS
     escalation_required: false
     escalation_reason: null
@@ -138,15 +162,19 @@ results:
       - norm_id: gk-395
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-191
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-193
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: ppvs-7-2016
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
     verdict: PASS_WITH_CORRECTIONS
     escalation_required: false
     escalation_reason: null
@@ -167,21 +195,27 @@ results:
       - norm_id: gk-328
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-719
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-753
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-196-200
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: apk-4-5
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: fz-127-7
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
     verdict: PASS_WITH_CORRECTIONS
     escalation_required: false
     escalation_reason: null
@@ -202,27 +236,35 @@ results:
       - norm_id: gk-711
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-746
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-753
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: gk-395
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: apk-4-5
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: apk-125-126
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: apk-128-148
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
       - norm_id: nk-333-21
         verdict: подтверждена
         quote_obtained: true
+        source_hash: null
     verdict: PASS_WITH_CORRECTIONS
     escalation_required: false
     escalation_reason: null

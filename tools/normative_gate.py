@@ -26,7 +26,8 @@ P1 продавались, и нормативной сверки по ним н
   6. вердикт PASS_WITH_CORRECTIONS без перечита;
   7. `escalation_required` без записи о проверке человеком под этот хеш;
   8. норма, на которую опирается документ, не объявлена в реестре;
-  9. **источник нормы вторичный** — сам по себе PASS не даёт;
+  9. доказательство нормы отсутствует, не сходится по хешу, не официально
+     или результат привязан к другой её редакции;
  10. в пользовательской точке стоит утверждение о вычитке юристом, а
      записи `human_review` под текущую версию нет.
 
@@ -53,6 +54,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from legal_evidence import verify as verify_evidence  # noqa: E402
 from semantic_hash import (  # noqa: E402
     UnsupportedType, docx_parts, semantic_hash, xlsx_parts)
 
@@ -176,15 +178,40 @@ def check() -> list[str]:
                     f"{short}: escalation_required, а проверки человеком "
                     "под эту версию нет")
 
-        # 9. Вторичный источник сам по себе PASS не даёт.
-        weak = [c["norm_id"] for c in result.get("norms_checked", [])
-                if norms.get(c["norm_id"], {}).get("source_class") != "official"]
+        # 9. Доказательство нормы: официальное, целое и то самое.
+        #
+        # Проверяется тройка, и каждая часть закрывает свой обход. Хеш
+        # пересчитывается из сохранённого текста — записанному хешу верить
+        # нельзя, подменивший текст подменил бы и его. Класс обязан быть
+        # official — вторичный источник полного PASS не даёт. И результат
+        # обязан ссылаться на тот же хеш: документ мог не измениться, а
+        # редакция нормы под ним — да, и тогда прежний PASS не о чём.
+        weak, stale, broken = [], [], []
+        for checked in result.get("norms_checked", []):
+            norm_id = checked["norm_id"]
+            evidence_hash, why = verify_evidence(norm_id)
+            if evidence_hash is None:
+                broken.append(f"{norm_id} ({why})")
+                continue
+            if why:
+                weak.append(f"{norm_id} ({why})")
+                continue
+            if checked.get("source_hash") != evidence_hash:
+                stale.append(
+                    f"{norm_id} (результат на {str(checked.get('source_hash'))[7:19]}, "
+                    f"доказательство {evidence_hash[7:19]})")
+        if broken:
+            defects.append(f"{short}: доказательства норм негодны — "
+                           + "; ".join(broken[:3])
+                           + (f" и ещё {len(broken) - 3}" if len(broken) > 3 else ""))
         if weak:
-            klass = {norms.get(w, {}).get("source_class", "не объявлен") for w in weak}
-            defects.append(
-                f"{short}: источник норм не официальный ({', '.join(sorted(klass))}) — "
-                f"{len(weak)} из {len(result.get('norms_checked', []))}: "
-                f"{', '.join(weak[:4])}{'…' if len(weak) > 4 else ''}")
+            defects.append(f"{short}: источник норм не официальный — "
+                           + "; ".join(weak[:3])
+                           + (f" и ещё {len(weak) - 3}" if len(weak) > 3 else ""))
+        if stale:
+            defects.append(f"{short}: результат привязан к другой редакции нормы — "
+                           + "; ".join(stale[:3])
+                           + (f" и ещё {len(stale) - 3}" if len(stale) > 3 else ""))
 
     # 10. Утверждение о юристе — только при доказанной проверке человеком.
     # Сначала сами выдаваемые файлы: именно в них claim и стоял до 15.08.
@@ -232,15 +259,21 @@ def main() -> int:
         print(f"\nЮридических документов под гейтом: {covered}.")
         print("Гейт модель не вызывает: он проверяет наличие годного результата.")
         print("Добыть результат — отдельный заход normative-checker.")
-        if any("источник норм не официальный" in d for d in defects):
-            print("\nПро вторичный источник. Он снимается одним из двух, и оба"
-                  " честные:")
-            print("  • официальный публикатор стал доступен — перечитать норму"
-                  " и поднять source_class до official;")
-            print("  • человек подтвердил эту версию — запись в"
-                  " data/legal/human-review.yaml с document_hash.")
-            print("Третьего пути нет: выдать вторичному источнику полный PASS"
-                  " значит завести ложную зелень.")
+        if any("доказательства норм" in d or "источник норм" in d
+               for d in defects):
+            print("\nПро доказательства норм. Снимается это ровно одним"
+                  " способом:")
+            print("  python3 tools/fetch_legal_evidence.py --all")
+            print("на машине, у которой есть доступ к официальному"
+                  " публикатору. Инструмент сложит")
+            print("тексты статей в data/legal/evidence/ и посчитает хеши;"
+                  " в CI он не запускается.")
+            print("\nЗаписью в human-review.yaml это НЕ снимается, и попытка"
+                  " будет напрасной:")
+            print("подтверждение человека — эскалация юридического вопроса, а"
+                  " не замена")
+            print("официальному тексту нормы. Разные вещи, и правило их не"
+                  " смешивает.")
         return 1
     print(f"Юридических документов под гейтом: {covered}, дефектов нет: "
           "у каждого есть результат сверки под текущую версию.")

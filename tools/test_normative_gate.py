@@ -19,6 +19,8 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+
+import yaml
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -27,6 +29,7 @@ DOCX = f"{PKG}/12-pretenziya-na-neoplatu-po-ks-2.docx"
 XLSX = f"{PKG}/14-raschet-procentov-395-gk.xlsx"
 
 NEEDED = ["tools/normative_gate.py", "tools/semantic_hash.py",
+          "tools/legal_evidence.py",
           "data/legal/norms.yaml", "data/legal/document-norms.yaml",
           "data/legal/normative-results.yaml", "products/p1-oplata-po-ks2.html"]
 
@@ -43,6 +46,42 @@ def sandbox(tmp: Path) -> Path:
     for src in (ROOT / PKG).glob("*.xlsx"):
         shutil.copy2(src, tmp / PKG / src.name)
     return tmp
+
+
+def seed_evidence(tmp: Path, source_class: str = "official") -> None:
+    """Разложить в песочницу доказательства норм и привязать к ним результат.
+
+    Настоящих доказательств в репозитории пока нет: официальный публикатор
+    из среды закрыт. Стенд их синтезирует, чтобы проверить путь, который
+    начнёт работать после bootstrap на машине с доступом. Текст здесь
+    условный и за пределы песочницы не выходит.
+    """
+    sys.path.insert(0, str(tmp / "tools"))
+    import importlib
+    import legal_evidence
+    importlib.reload(legal_evidence)
+    legal_evidence.ROOT = tmp
+    legal_evidence.EVIDENCE_DIR = tmp / "data/legal/evidence"
+
+    norms = yaml.safe_load((tmp / "data/legal/norms.yaml").read_text("utf-8"))
+    hashes = {}
+    for norm in norms["norms"]:
+        nid = norm["norm_id"]
+        text = f"условный текст нормы {nid} для стенда"
+        marker = norm.get("edition_marker", "")
+        legal_evidence.write(
+            nid, official_url=norm.get("official_source", ""),
+            edition_marker=marker, text=text, source_class=source_class,
+            retrieved_at="2026-08-15", retrieved_by="стенд мутаций")
+        hashes[nid] = legal_evidence.source_hash(marker, text)
+
+    path = tmp / "data/legal/normative-results.yaml"
+    data = yaml.safe_load(path.read_text("utf-8"))
+    for result in data["results"]:
+        for checked in result["norms_checked"]:
+            checked["source_hash"] = hashes[checked["norm_id"]]
+    path.write_text(yaml.safe_dump(data, allow_unicode=True, sort_keys=False),
+                    encoding="utf-8")
 
 
 def run(tmp: Path) -> tuple[int, str]:
@@ -77,9 +116,11 @@ def edit_xlsx_formula(path: Path) -> None:
             z.writestr(name, data)
 
 
-def mutation(name: str, apply) -> tuple[bool, str]:
+def mutation(name: str, apply, seed: bool = True) -> tuple[bool, str]:
     with tempfile.TemporaryDirectory() as d:
         tmp = sandbox(Path(d))
+        if seed:
+            seed_evidence(tmp)
         apply(tmp)
         code, out = run(tmp)
         return code != 0, out
@@ -113,10 +154,71 @@ def m_missing_mapping(tmp: Path) -> None:
 
 
 def m_secondary_passes(tmp: Path) -> None:
-    """Вторичному источнику пытаются выдать полный PASS."""
+    """Доказательство вторичное — полного PASS оно не даёт."""
+    seed_evidence(tmp, source_class="secondary")
     p = tmp / "data/legal/normative-results.yaml"
     p.write_text(p.read_text(encoding="utf-8")
                  .replace("PASS_WITH_CORRECTIONS", "PASS"), encoding="utf-8")
+
+
+def m_evidence_changed(tmp: Path) -> None:
+    """Норму перечитали, текст другой — прежний результат не о чём."""
+    import importlib
+    sys.path.insert(0, str(tmp / "tools"))
+    import legal_evidence
+    importlib.reload(legal_evidence)
+    legal_evidence.ROOT = tmp
+    legal_evidence.EVIDENCE_DIR = tmp / "data/legal/evidence"
+    legal_evidence.write(
+        "gk-395", official_url="http://pravo.gov.ru/", edition_marker="",
+        text="новая редакция статьи 395", source_class="official",
+        retrieved_at="2026-08-16", retrieved_by="стенд мутаций")
+
+
+def m_edition_changed(tmp: Path) -> None:
+    """Текст тот же, метка редакции другая — хеш обязан разойтись."""
+    import importlib
+    sys.path.insert(0, str(tmp / "tools"))
+    import legal_evidence
+    importlib.reload(legal_evidence)
+    legal_evidence.ROOT = tmp
+    legal_evidence.EVIDENCE_DIR = tmp / "data/legal/evidence"
+    legal_evidence.write(
+        "gk-395", official_url="http://pravo.gov.ru/",
+        edition_marker="ред. от 01.01.2027 № 999-ФЗ",
+        text="условный текст нормы gk-395 для стенда", source_class="official",
+        retrieved_at="2026-08-16", retrieved_by="стенд мутаций")
+
+
+def m_evidence_tampered(tmp: Path) -> None:
+    """Текст доказательства правили мимо инструмента — хеш не сойдётся."""
+    p = tmp / "data/legal/evidence/gk-395.yaml"
+    p.write_text(p.read_text(encoding="utf-8")
+                 .replace("условный текст нормы gk-395",
+                          "подменённый текст нормы gk-395"), encoding="utf-8")
+
+
+def m_human_review_cannot_fix_source(tmp: Path) -> None:
+    """Запись человека не заменяет официальный текст нормы.
+
+    Проверяется прямой соблазн: доказательства вторичные, владелец
+    добавляет human-review на все шесть документов и ждёт зелени. Гейт
+    обязан остаться красным — подтверждение человека это эскалация
+    юридического вопроса, а не источник редакции нормы.
+    """
+    seed_evidence(tmp, source_class="secondary")
+    mapping = yaml.safe_load(
+        (tmp / "data/legal/document-norms.yaml").read_text("utf-8"))
+    reviews = [{"document": d["path"], "document_hash": "sha256:" + "f" * 64,
+                "reviewed_by": "владелец", "reviewed_at": "2026-08-15"}
+               for d in mapping["documents"]]
+    (tmp / "data/legal/human-review.yaml").write_text(
+        yaml.safe_dump({"reviews": reviews}, allow_unicode=True), encoding="utf-8")
+
+
+def m_no_evidence_at_all(tmp: Path) -> None:
+    """Сегодняшнее состояние репозитория: доказательств нет вовсе."""
+    shutil.rmtree(tmp / "data/legal/evidence")
 
 
 def m_lawyer_claim(tmp: Path) -> None:
@@ -149,15 +251,24 @@ def m_all_official(tmp: Path) -> None:
                  encoding="utf-8")
 
 
+def m_nothing(tmp: Path) -> None:
+    """Ничего не меняем: документ, результат и доказательства сходятся."""
+
+
 CASES = [
     ("1. изменён юридический текст DOCX", m_docx_text, True),
     ("2. изменена формула XLSX", m_xlsx_formula, True),
     ("3. подставлен результат прежней версии", m_stale_result, True),
     ("4. документ выпал из реестра", m_missing_mapping, True),
-    ("5. вторичный источник получает PASS", m_secondary_passes, True),
+    ("5. вторичное доказательство получает PASS", m_secondary_passes, True),
     ("6. вернулось утверждение о вычитке юристом", m_lawyer_claim, True),
     ("7. вердикт NOT_VERIFIED", m_verdict_fail, True),
-    ("8. источники official — гейт зеленеет", m_all_official, False),
+    ("8. изменилось доказательство нормы", m_evidence_changed, True),
+    ("9. изменилась метка редакции нормы", m_edition_changed, True),
+    ("10. текст доказательства правлен мимо инструмента", m_evidence_tampered, True),
+    ("11. human-review не заменяет официальный текст", m_human_review_cannot_fix_source, True),
+    ("12. доказательств нет вовсе — состояние на сегодня", m_no_evidence_at_all, True),
+    ("13. всё сходится — гейт зеленеет", m_nothing, False),
 ]
 
 
