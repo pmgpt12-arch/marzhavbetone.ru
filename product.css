@@ -41,6 +41,20 @@
 .steps li::marker{color:var(--orange);font-weight:900}
 .steps strong{color:var(--ink)}
 
+/* Возражения у цены. Ставятся tools/build_objections.py из
+   data/sales/objections.yaml. Свёрнутые: четыре развёрнутых ответа между
+   ценой и составом отодвинули бы состав на экран вниз, а вопрос человек
+   читает свой, а не все четыре. */
+.objections{margin-top:30px;padding-top:26px;border-top:1px solid rgba(36,38,41,.16)}
+.product-landing .objections h2{margin:0 0 14px;font-size:clamp(18px,1.4vw,22px);letter-spacing:-.02em;text-transform:uppercase}
+.objections details{border-bottom:1px solid rgba(36,38,41,.12)}
+.objections summary{padding:12px 26px 12px 0;position:relative;font-weight:800;font-size:16px;line-height:1.35;cursor:pointer;list-style:none}
+.objections summary::-webkit-details-marker{display:none}
+.objections summary::after{content:"+";position:absolute;right:4px;top:11px;color:var(--orange);font-weight:900}
+.objections details[open] summary::after{content:"–"}
+.objections summary:hover{color:var(--orange)}
+.objections details p{margin:0 0 14px;max-width:70ch;color:#55585b;font-size:15px;line-height:1.55}
+
 /* Состав комплекта */
 .document-list{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:32px}
 .doc-item{padding:24px 26px;background:#fff;border:1px solid rgba(36,38,41,.16);box-shadow:6px 6px 0 #c8c3b9}
