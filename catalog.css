@@ -169,3 +169,54 @@
   .case-no{font-size:26px}
   .next-steps{gap:28px}
 }
+
+/* Схема процесса в первом экране. Заведена 15.08.2026 вместо снимка.
+   Содержимое взято из секции #results, снятой тем же заходом: одна и та
+   же лестница этапов в двух местах — это ровно тот повтор, из-за
+   которого страница и разрослась. Входящих ссылок на якорь #results по
+   сайту было ноль, поэтому снятие ничего не оборвало.
+
+   Схема — не украшение: она называет пять этапов, на любом из которых
+   ломается основание для оплаты, и ведёт к решениям по этапам. */
+.hero-scheme{display:flex;flex-direction:column;justify-content:center;gap:18px;padding:56px clamp(28px,4vw,64px);background:#242629;color:#e9e5dc}
+.hero-scheme figcaption{position:static;left:auto;bottom:auto;max-width:100%;padding:0;background:none;box-shadow:none;color:#a9a49a;font-size:12px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;line-height:1.4}
+.scheme{display:flex;flex-direction:column;gap:0;margin:0;padding:0;list-style:none;counter-reset:none}
+.scheme li{display:flex;align-items:center;gap:18px;padding:15px 0;border-bottom:1px solid rgba(233,229,220,.16)}
+.scheme li:first-child{border-top:1px solid rgba(233,229,220,.16)}
+.scheme b{flex:0 0 auto;min-width:38px;color:#6c6f73;font-size:15px;font-weight:900;letter-spacing:.04em}
+.scheme span{font-size:clamp(19px,1.7vw,25px);font-weight:900;letter-spacing:-.025em;line-height:1.15;overflow-wrap:break-word}
+.scheme-money{border-bottom:none}
+.scheme-money b{color:#ff5a00}
+.scheme-money span{color:#ff5a00}
+.scheme-note{margin:0;color:#bdb9b1;font-size:14.5px;line-height:1.5}
+.hero-scheme .text-link{color:#e9e5dc}
+.hero-scheme .text-link:hover{color:#ff5a00}
+
+@media(max-width:900px){
+  .hero-scheme{padding:34px 22px;gap:14px}
+  .scheme li{padding:12px 0;gap:14px}
+}
+
+/* Схема на телефоне. Замер 15.08.2026 на 390px: страница ушла в
+   горизонтальную прокрутку на 13px — «Исполнительная документация» в
+   одну строку рядом с номером шириной 38px не помещается. Дефект внесён
+   вместе со схемой и пойман телефонной проверкой в тот же заход. */
+@media(max-width:600px){
+  .hero-scheme{padding:28px 22px}
+  .scheme li{gap:12px;padding:11px 0}
+  .scheme b{min-width:26px;font-size:13px}
+  .scheme span{font-size:17px;overflow-wrap:break-word;hyphens:auto}
+  .hero-scheme figcaption{font-size:11px}
+  .scheme-note{font-size:13.5px}
+}
+
+/* Заголовок первого экрана на телефоне. Замер 15.08.2026 на 390px:
+   при 56px самое длинное слово нового заголовка — «строительные» —
+   даёт min-content 360px, и страница уходит вбок на 13px. Прежний
+   заголовок («за сданные работы») туда помещался, новый нет: дефект
+   внесён сменой формулировки и пойман телефонной проверкой в тот же
+   заход. Уменьшен размер, а не разрешён перенос внутри слова: рваное
+   слово в заголовке читается как опечатка. */
+@media(max-width:600px){
+  .hero h1{font-size:46px;line-height:.98}
+}
