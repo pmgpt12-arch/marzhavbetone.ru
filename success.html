@@ -52,6 +52,11 @@
         <p style="margin:12px 0 0;color:#65676a;font-size:14px">Ссылки действуют 30 дней — сохраните файлы на компьютер.</p>
       </div>
 
+      <!-- Заполняется скриптом ниже по фактически купленному товару.
+           Пустой и скрытый, пока предложения нет: случайный товар здесь
+           хуже, чем ничего. -->
+      <section class="upsell" id="upsell" hidden></section>
+
       <div class="delivery-info">
         <p><strong>📧 Доставка:</strong> Эти же ссылки отправлены на указанный email. Если письма нет — проверьте папку «Спам».</p>
       </div>
@@ -132,10 +137,28 @@
           // неоплаченном заказе, и снаружи этой проверки покупкой считался бы
           // каждый заход. Сервер отдаёт сумму в копейках.
           if (typeof window.ym === 'function' && window.METRIKA_ID) {
+            // Источник перехода: без него нельзя сказать, какой канал
+            // принёс деньги, а значит нельзя решить, где публиковать.
+            // Первое касание переживает все переходы по сайту, последнее
+            // называет, откуда пришёл этот визит.
+            var attribution = (typeof window.mvbAttribution === 'function'
+              ? window.mvbAttribution() : {}) || {};
+            var firstTouch = attribution.first || {};
+            var lastTouch = attribution.last || {};
+            // Почта и телефон покупателя в заказе есть и сюда не идут:
+            // в аналитику уходит только то, что нужно для решения о канале.
             window.ym(window.METRIKA_ID, 'reachGoal', 'purchase', {
               order_id: orderId,
+              product_id: (order.items || []).map(function (i) { return i.sku; })
+                .filter(Boolean).join(','),
+              revenue: order.total / 100,
               order_price: order.total / 100,
-              currency: 'RUB'
+              currency: 'RUB',
+              first_touch_source: firstTouch.source || 'direct',
+              first_touch_medium: firstTouch.medium || '',
+              first_touch_campaign: firstTouch.campaign || '',
+              last_touch_source: lastTouch.source || firstTouch.source || 'direct',
+              landing_page: firstTouch.landing || ''
             });
           }
           // Отчёт «Электронная коммерция»: те же данные заказа, что и в цели
@@ -155,6 +178,36 @@
               }
             }
           });
+          // Что дальше: предложение по фактически купленному товару.
+          // Таблицу собирает tools/build_upsell.py из product-map.csv;
+          // если для sku в ней ничего нет, блок не появляется вовсе.
+          (function () {
+            var table = window.MVB_UPSELL || {};
+            var offer = null;
+            (order.items || []).some(function (item) {
+              if (item.sku && table[item.sku]) { offer = table[item.sku]; return true; }
+              return false;
+            });
+            var host = document.getElementById('upsell');
+            if (!offer || !host) return;
+            host.innerHTML =
+              '<p class="eyebrow">ЧТО ЧАСТО ИДЁТ СЛЕДОМ</p>' +
+              '<h2>' + offer.next + '</h2>' +
+              '<p class="lead">Вы закрыли ситуацию «' + offer.closed +
+              '». Следующая по процессу — та, что выше.</p>' +
+              '<a class="button" href="' + offer.url + '" id="upsell-link">' +
+              offer.name + ' →</a>';
+            host.hidden = false;
+            var link = document.getElementById('upsell-link');
+            if (link) {
+              link.addEventListener('click', function () {
+                if (typeof window.mvbTrackGoal === 'function') {
+                  window.mvbTrackGoal('upsell_click');
+                }
+              });
+            }
+          })();
+
           // Показываем ссылки на скачивание, если они готовы
           if (Array.isArray(order.downloads) && order.downloads.length) {
             const linksList = document.getElementById('download-links');
@@ -184,6 +237,56 @@
       }
     })();
   </script>
-  <script src="/attribution.js?v=fd4f359d"></script>
+  <script src="/attribution.js?v=b828940e"></script>
+  <!-- upsell:begin -->
+  <script>
+    // Таблица собирается tools/build_upsell.py из data/sales/product-map.csv.
+    // Руками не правится: разойдётся с каталогом на первой правке состава.
+    window.MVB_UPSELL = {
+  "p1": {
+    "url": "/products/p5-shtrafy-uderzhaniya.html",
+    "name": "Гарантийное удержание",
+    "closed": "Не принимают и не подписывают КС",
+    "next": "Не возвращают удержания"
+  },
+  "p2": {
+    "url": "/products/p13-chto-v-smete-ne-oplatyat.html",
+    "name": "Что в смете не оплатят",
+    "closed": "Не оплачивают дополнительные работы",
+    "next": "Опасные условия договора"
+  },
+  "p3": {
+    "url": "/products/p10-otvet-na-pretenziyu.html",
+    "name": "Ответ на претензию заказчика или генподрядчика",
+    "closed": "Не принимают и не подписывают КС",
+    "next": "Не возвращают удержания"
+  },
+  "p4": {
+    "url": "/products/p3-shablony-ks2-ks3.html",
+    "name": "КС-2 без возврата",
+    "closed": "Исполнительная документация блокирует приёмку и оплату",
+    "next": "Не принимают и не подписывают КС"
+  },
+  "p5": {
+    "url": "/products/p1-oplata-po-ks2.html",
+    "name": "Акты выполненных работ, КС-2 и КС-3",
+    "closed": "Не возвращают удержания",
+    "next": "Не принимают и не подписывают КС"
+  },
+  "p7": {
+    "url": "/products/p13-chto-v-smete-ne-oplatyat.html",
+    "name": "Что в смете не оплатят",
+    "closed": "Опасные условия договора",
+    "next": "Не оплачивают дополнительные работы"
+  },
+  "p9": {
+    "url": "/products/p1-oplata-po-ks2.html",
+    "name": "Акты выполненных работ, КС-2 и КС-3",
+    "closed": "Контрагент становится неплатёжеспособным",
+    "next": "Работы выполнены — денег нет"
+  }
+};
+  </script>
+  <!-- upsell:end -->
 </body>
 </html>

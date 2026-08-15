@@ -216,6 +216,17 @@ window.mvbTrackGoal = function (name) {
   }
 
   // app.js берёт источник отсюда при оформлении заказа
+  // Переход по допродаже считается отдельно от обычного открытия товара:
+  // product_opened не отличает его от клика по любой другой ссылке, а
+  // именно этот переход показывает, работает ли блок «если ваша ситуация
+  // также включает».
+  document.addEventListener('click', function (event) {
+    if (!event.target.closest) return;
+    if (event.target.closest('.cross-sell a[href]')) {
+      window.mvbTrackGoal('cross_sell_click');
+    }
+  });
+
   window.mvbAttribution = read;
 })();
 
