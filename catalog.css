@@ -220,3 +220,30 @@
 @media(max-width:600px){
   .hero h1{font-size:46px;line-height:.98}
 }
+
+/* Сетка бесплатных инструментов. Заведена 15.08.2026: до этого из трёх
+   бесплатных входов на главной стоял один — чек-лист, а диагностика и
+   калькуляторы были доступны только из навигации. Тексты карточек взяты
+   со самих страниц, а не написаны заново. */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:22px}
+.tool-card{display:flex;flex-direction:column;gap:9px;min-width:0;padding:26px 24px 24px;background:#f5f2ea;border:1px solid rgba(36,38,41,.14);color:inherit;text-decoration:none;transition:background .15s,border-color .15s}
+.tool-card:hover{background:#fff;border-color:#ff5a00}
+.tool-tag{margin:0;color:#ff5a00;font-size:11px;font-weight:900;letter-spacing:.12em}
+.tool-card h3{margin:0;font-size:clamp(19px,1.5vw,23px);line-height:1.15;letter-spacing:-.02em;overflow-wrap:break-word}
+.tool-card p{margin:0;color:#606164;font-size:14.5px;line-height:1.5}
+.tool-open{margin-top:auto;padding-top:14px;font-size:14px;font-weight:800}
+.tool-card:hover .tool-open{color:#ff5a00}
+
+@media(max-width:600px){
+  .tool-grid{grid-template-columns:1fr;gap:14px}
+  .tool-card{padding:20px}
+}
+
+/* Сетка инструментов внутри секции чек-листа: одна бесплатная зона —
+   один заголовок. Секция размечена в две колонки, поэтому сетка
+   растягивается на обе. */
+.checklist .tools-inline{grid-column:1/-1;margin-top:44px;padding-top:34px;border-top:1px solid rgba(36,38,41,.16)}
+.tools-inline-title{margin:0 0 22px;font-size:15px;font-weight:900;letter-spacing:.02em}
+@media(max-width:600px){
+  .checklist .tools-inline{margin-top:30px;padding-top:24px}
+}
