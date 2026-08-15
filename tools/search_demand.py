@@ -43,7 +43,8 @@ HOST = "marzhavbetone.ru"
 API = "https://api.webmaster.yandex.net/v4"
 
 COLUMNS = [
-    "query", "landing_url", "cluster", "intent", "money_stage",
+    "query", "landing_url", "cluster", "intent", "commercial_intent",
+    "money_stage",
     "impressions", "clicks", "ctr", "position", "business_value",
     "existing_solution", "recommended_action", "target_product",
     "source", "updated_at",
@@ -127,6 +128,28 @@ def classify(query: str, rules: dict) -> tuple[str, str]:
     return "", ""
 
 
+def classify_commercial(query: str, intent: str, rules: dict) -> str:
+    """Близость запроса к покупке — ось, отдельная от природы боли.
+
+    «Как оформить акт скрытых работ» по природе PROBLEM, но человек уже
+    собирает документ, который лежит в комплекте, — путь до продукта у
+    него короче, чем у «не платят». Порядок жёсткий: чужой запрос не
+    получает категории вовсе (высокая частотность и слово «купить» не
+    делают запрос нашим); маркер действия старше природы боли; без
+    маркера категория наследует intent. Предварительно — вердикт за
+    владельцем, как и intent.
+    """
+    if intent == "IRRELEVANT":
+        return ""
+    low = query.lower()
+    for marker in rules.get("action", []):
+        if marker.lower() in low:
+            return "ACTION"
+    if intent in ("MONEY", "PROBLEM", "INFORMATION"):
+        return intent
+    return ""
+
+
 def existing_pages() -> dict[str, str]:
     """Опубликованные адреса — чтобы `existing_solution` не выдумывался."""
     pages = {}
@@ -191,6 +214,7 @@ def main() -> int:
             "landing_url": "",
             "cluster": "",
             "intent": intent,
+            "commercial_intent": classify_commercial(text, intent, rules),
             "money_stage": "",
             "impressions": shows,
             "clicks": clicks,

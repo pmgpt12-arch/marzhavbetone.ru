@@ -19,7 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from search_demand import classify, load_rules  # noqa: E402
+from search_demand import classify, classify_commercial, load_rules  # noqa: E402
 
 # Примеры из постановки этапа, дословно.
 CASES: list[tuple[str, str]] = [
@@ -93,6 +93,40 @@ def test_unknown_query_is_left_unmarked() -> None:
     rules = load_rules()
     intent, value = classify("асфальтоукладчик аренда сутки", rules)
     assert (intent, value) == ("", ""), (intent, value)
+
+
+def test_commercial_intent_precedence() -> None:
+    """Порядок оси commercial_intent — часть правила (C-07).
+
+    Проверяются все четыре категории приёмки и оба края порядка:
+    чужой запрос не получает категории, сколько бы «купить» и «цена» в
+    нём ни стояло; маркер действия старше природы боли; без маркера
+    категория наследует intent; незнакомый запрос остаётся пустым.
+    """
+    rules = load_rules()
+    cases = [
+        # документный маркер на справочном по природе запросе
+        ("образец акта скрытых работ", "ACTION"),
+        # действие старше природы боли: intent здесь PROBLEM
+        ("как оформить акт скрытых работ", "ACTION"),
+        # боль без маркера действия наследует intent
+        ("как вернуть гарантийное удержание", "MONEY"),
+        ("заказчик не подписывает кс-2", "PROBLEM"),
+        ("что такое кс-2", "INFORMATION"),
+        # чужой запрос: «купить» и «цена» категории не дают
+        ("купить бетон цена за куб", ""),
+        # незнакомый запрос остаётся без категории
+        ("асфальтоукладчик аренда сутки", ""),
+    ]
+    wrong = []
+    for query, expected in cases:
+        intent, _ = classify(query, rules)
+        got = classify_commercial(query, intent, rules)
+        if got != expected:
+            wrong.append(f"«{query}»: ожидалось {expected or 'пусто'}, "
+                         f"вышло {got or 'пусто'}")
+    assert not wrong, "расхождений " + str(len(wrong)) + ":\n  " + \
+                      "\n  ".join(wrong)
 
 
 def main() -> int:
