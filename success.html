@@ -133,6 +133,14 @@
         itemsList.appendChild(totalLi);
         
         if (order.status === 'paid') {
+          // Покупатель возвращается сюда за ссылками, пока те живы, и каждый
+          // повторный заход слал бы purchase заново — одна продажа считалась
+          // бы несколькими. Отметка по номеру заказа отправляет её один раз;
+          // недоступное хранилище (приватный режим) даёт повтор, а не потерю.
+          var alreadyTracked = false;
+          var trackedKey = 'marzhavbetone-purchase-' + orderId;
+          try { alreadyTracked = !!localStorage.getItem(trackedKey); } catch (e) {}
+          if (!alreadyTracked) {
           // Цель ставится только здесь: success.html открывается и при
           // неоплаченном заказе, и снаружи этой проверки покупкой считался бы
           // каждый заход. Сервер отдаёт сумму в копейках.
@@ -178,6 +186,8 @@
               }
             }
           });
+          try { localStorage.setItem(trackedKey, new Date().toISOString()); } catch (e) {}
+          }
           // Что дальше: предложение по фактически купленному товару.
           // Таблицу собирает tools/build_upsell.py из product-map.csv;
           // если для sku в ней ничего нет, блок не появляется вовсе.
