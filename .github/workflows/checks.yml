@@ -111,6 +111,7 @@ jobs:
           for f in *.php; do php -l "$f" > /dev/null || exit 1; done
           echo "синтаксис PHP: без ошибок"
           php tools/test_order_lock.php
+          php tools/test_price_authority.php
 
       # Юридический линт стоит предупреждением, а не блокировкой. Причина
       # названа прямо: инструмент не толкует право и не знает, ошибка ли

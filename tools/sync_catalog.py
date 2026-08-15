@@ -142,15 +142,13 @@ def main() -> int:
     for url in sorted(now - was):
         print(f"  добавлено: {url}")
 
-    for problem in problems:
-        print(f"  РАСХОЖДЕНИЕ: {problem}")
-
+    # Разметка переписывается первой: срез ниже опирается на смещения,
+    # посчитанные по исходному тексту, и правка выше по файлу их сдвинула бы.
     if fresh != old:
         lists[0]["itemListElement"] = fresh
         if args.write:
             updated = json.dumps(graph, ensure_ascii=False, indent=2)
             text = text[:block.start(1)] + "\n" + updated + "\n  " + text[block.end(1):]
-            INDEX.write_text(text, encoding="utf-8")
             print("Разметка переписана.")
         else:
             print("Это показ. Записать: --write")
@@ -160,6 +158,33 @@ def main() -> int:
             problems.append("разметка ItemList разошлась с витриной")
     else:
         print("Разметка совпадает с витриной.")
+
+    # Число бесплатных материалов в тексте — из того же счёта, что и
+    # разметка. Замер 15.08.2026: полоса переходов показывала 10 (её
+    # собирает инструмент), а лид рядом говорил «Девять материалов» — его
+    # писали рукой, и он отстал на один. Считали одно и то же из разных
+    # источников, поэтому расходились молча и ничем не ловились.
+    words = {8: "Восемь", 9: "Девять", 10: "Десять", 11: "Одиннадцать",
+             12: "Двенадцать", 13: "Тринадцать", 14: "Четырнадцать",
+             15: "Пятнадцать", 16: "Шестнадцать"}
+    want = words.get(len(shown_free))
+    lead = re.search(r'(<p class="lead">)(\w+)( материал\w* под отдельные узлы)', text)
+    if lead and want and lead.group(2) != want:
+        if args.write:
+            text = text[:lead.start(2)] + want + text[lead.end(2):]
+            print(f"  счёт материалов в лиде: {lead.group(2)} → {want}")
+        else:
+            # Как и с разметкой: расхождение — дефект только пока оно не
+            # исправлено. Прогон с --write, который его починил, не должен
+            # возвращать код 1 и красить гейт.
+            problems.append(f"в лиде бесплатных стоит «{lead.group(2)}», "
+                            f"а материалов {len(shown_free)} — надо «{want}»")
+
+    if args.write:
+        INDEX.write_text(text, encoding="utf-8")
+
+    for problem in problems:
+        print(f"  РАСХОЖДЕНИЕ: {problem}")
 
     return 1 if problems else 0
 
