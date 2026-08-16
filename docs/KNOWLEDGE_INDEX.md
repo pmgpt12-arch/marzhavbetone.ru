@@ -17,6 +17,7 @@
 | --- | --- |
 | Воронка: числа | `docs/FUNNEL.md` (собирает `tools/funnel_report.py`) |
 | Поисковый спрос | `data/seo/search-demand.csv`, `content/strategy/keyword-map.csv` |
+| Маршруты «поиск → продажа» | `docs/SEARCH_TO_SALE_SPRINT_2026-08-16.md` |
 | Что делать под поиск | скил `marzha-seo` |
 | Материал и публикация | скил `marzha-content` |
 | Позиционирование и персона | `content/strategy/positioning.md` |
