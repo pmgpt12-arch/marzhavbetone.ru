@@ -111,7 +111,16 @@ SAMPLE = [
 ] + sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / "products").glob("*.html"))
 
 SKIP = {"test-pokupka.html", "success.html", "fail.html"}
-SKIP_DIRS = ("content/", ".claude/")
+
+# `data/` — не сайт. Туда правовой контур складывает снятые страницы
+# источников: чужая вёрстка девяностых на таблицах, `nobr` и фиксированных
+# ширинах. Замер 16.08.2026: `--all` давал 733 расхождения, из них 731 на
+# `data/legal/fixtures/pages` и 2 — замечания по длине главной. Режим,
+# который на каждый прогон печатает семь сотен строк про чужие страницы,
+# не читают вовсе, и настоящая находка в нём тонет. Ровно этим он и был
+# бесполезен: дефект каталога при 1920px в этом выводе никто бы не нашёл,
+# даже если бы проверка умела его видеть.
+SKIP_DIRS = ("content/", ".claude/", "data/")
 
 
 def free_port() -> int:
@@ -253,6 +262,63 @@ ORPHAN_SCRIPT = """(tol) => {
 }"""
 
 
+# Разрыв внутри слова. Класс дефектов, который проверка не видела вовсе:
+# прогон 16.08.2026 на katalog.html при 1920px давал «расхождений нет», а
+# на экране стояло «неотработанны/й остаток» и «субподрядчико/м».
+#
+# Почему не видела. Все прежние показатели — про коробки: ушла ли страница
+# вбок, торчит ли содержимое, сирота ли в хвосте сетки. Здесь коробки
+# целы: заголовок ровно в колонке, колонка ровно в сетке, переполнения
+# нет. Дефект в том, ЧТО браузер сделал, чтобы переполнения не случилось, —
+# `overflow-wrap:break-word` разрезал слово посередине. Проверка мерила
+# следствие, которого не было, вместо причины, которая была.
+#
+# Меряется без порога, и это важно: «колонка уже 400px» было бы числом из
+# головы. Слово либо помещается в строку, либо нет. Ширина слова считается
+# тем же шрифтом, что и у самого заголовка, — скрытым span с `white-space:
+# pre`, — и сравнивается с шириной содержимого строки.
+#
+# Мягкий перенос и неразрывный пробел в расчёт не идут: `­` даёт
+# перенос по замыслу автора, а не по нехватке места.
+WORDBREAK_SCRIPT = """() => {
+  const out = [];
+  const meas = document.createElement('span');
+  document.body.appendChild(meas);
+  const label = el => {
+    const id = el.id ? '#' + el.id : '';
+    const cls = (typeof el.className === 'string' && el.className)
+      ? '.' + el.className.trim().split(/\\s+/).slice(0, 2).join('.') : '';
+    return el.tagName.toLowerCase() + id + cls;
+  };
+  for (const el of document.querySelectorAll('h1, h2, h3, h4, .button, .product-number')) {
+    const cs = getComputedStyle(el);
+    if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+    if (cs.overflowWrap !== 'break-word' && cs.overflowWrap !== 'anywhere'
+        && cs.wordBreak !== 'break-all' && cs.wordBreak !== 'break-word') continue;
+    const r = el.getBoundingClientRect();
+    if (!r.width || !r.height) continue;
+    const avail = el.clientWidth
+      - parseFloat(cs.paddingLeft || 0) - parseFloat(cs.paddingRight || 0);
+    if (!(avail > 0)) continue;
+    meas.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;'
+      + 'font:' + cs.font + ';letter-spacing:' + cs.letterSpacing;
+    for (const word of (el.textContent || '').split(/[\\s\\u00a0\\u00ad]+/)) {
+      if (!word) continue;
+      meas.textContent = word;
+      const w = meas.getBoundingClientRect().width;
+      if (w > avail + 0.5) {
+        out.push(label(el) + ': слово «' + word + '» ' + Math.round(w)
+                 + 'px не влезает в строку ' + Math.round(avail)
+                 + 'px и рвётся посередине (кегль ' + cs.fontSize + ')');
+        break;
+      }
+    }
+  }
+  meas.remove();
+  return out.slice(0, 8);
+}"""
+
+
 def first_screen(page, height: int) -> list[str]:
     """Что видно на странице товара до прокрутки.
 
@@ -304,6 +370,9 @@ def check_page(browser, base: str, rel: str,
                 bad.append(f"{rel} @{width}: {item}")
 
             for item in page.evaluate(ORPHAN_SCRIPT, OVERFLOW_TOLERANCE):
+                bad.append(f"{rel} @{width}: {item}")
+
+            for item in page.evaluate(WORDBREAK_SCRIPT):
                 bad.append(f"{rel} @{width}: {item}")
 
             # Главная кнопка первого экрана. Замер 15.08.2026: заголовок
