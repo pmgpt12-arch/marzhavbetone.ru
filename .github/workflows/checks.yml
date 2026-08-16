@@ -232,6 +232,7 @@ jobs:
           echo "синтаксис PHP: без ошибок"
           php tools/test_order_lock.php
           php tools/test_price_authority.php
+          php tools/test_ig_webhook.php
 
       # Юридический линт стоит предупреждением, а не блокировкой. Причина
       # названа прямо: инструмент не толкует право и не знает, ошибка ли
