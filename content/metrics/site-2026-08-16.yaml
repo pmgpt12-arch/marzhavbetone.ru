@@ -7,16 +7,16 @@
 # Каталог content/ не деплоится: числа остаются внутренними.
 snapshot_date: "2026-08-16"
 period:
-  from: "2026-08-09"
+  from: "2026-07-17"
   to: "2026-08-15"
-  days: 7
+  days: 30
 counter: 111149105
 traffic:
-  visits: 56.0
-  users: 38.0
-  pageviews: 89.0
-  bounce_rate: 64.29
-  avg_visit_seconds: 175.61
+  visits: 108.0
+  users: 81.0
+  pageviews: 164.0
+  bounce_rate: 61.11
+  avg_visit_seconds: 111.29
 goals:
   article_to_product: 0.0
   article_to_magnet: 0.0
@@ -30,7 +30,7 @@ goals:
   add_to_cart: 0.0
   checkout_open: 0.0
   purchase: 0.0
-  dzen_click: 0.0
+  dzen_click: 1.0
   diagnostic_start: 0.0
   diagnostic_complete: 0.0
   calculator_diagnostic_click: 0.0
@@ -52,45 +52,197 @@ goals_extra_in_counter:
   - "Скачан бесплатный материал"
 top_pages:
   - path: "/"
-    pageviews: 68.0
+    pageviews: 91.0
+  - path: "/articles/stroitelnaya-smeta-gde-teryaetsya-marzha.html"
+    pageviews: 7.0
+  - path: "/#catalog"
+    pageviews: 6.0
   - path: "/#situations"
     pageviews: 6.0
-  - path: "/#catalog"
+  - path: "/articles/reestr-trebovaniy-kreditorov.html"
+    pageviews: 6.0
+  - path: "/articles/neotrabotannyy-avans.html"
     pageviews: 5.0
+  - path: "/articles/krasnye-flagi-dogovora-subpodryada.html"
+    pageviews: 4.0
+  - path: "/articles/vklyuchenie-v-reestr-trebovaniy-kreditorov.html"
+    pageviews: 4.0
+  - path: "/articles/akt-skrytyh-rabot-obrazec.html"
+    pageviews: 3.0
+  - path: "/articles/ispolnitelnaya-dokumentaciya-sostav.html"
+    pageviews: 3.0
   - path: "/kalkulyator.html"
+    pageviews: 3.0
+  - path: "/materialy/dengi.html"
+    pageviews: 3.0
+  - path: "/offer.html"
+    pageviews: 3.0
+  - path: "/test-pokupka.html"
     pageviews: 3.0
   - path: "/#top"
     pageviews: 2.0
+  - path: "/contacts.html"
+    pageviews: 2.0
+  - path: "/products/p10-otvet-na-pretenziyu.html"
+    pageviews: 2.0
   - path: "/articles/bankovskaya-garantiya-na-vozvrat-avansa.html"
     pageviews: 1.0
-  - path: "/articles/pretenziya-za-chuzhuyu-kommunalku.html"
+  - path: "/articles/bankrotstvo-genpodryadchika-5-markerov.html"
     pageviews: 1.0
-  - path: "/articles/raschet-metrami.html"
-    pageviews: 1.0
-  - path: "/articles/srok-vklyucheniya-v-reestr-trebovaniy-kreditorov.html"
-    pageviews: 1.0
-  - path: "/articles/zos-v-stroitelstve.html"
+  - path: "/articles/genpodryadchik-zarabatyvaet-na-vas.html"
     pageviews: 1.0
 sources:
   - source: "Direct traffic"
-    visits: 56.0
+    visits: 101.0
+  - source: "Recommendation system traffic"
+    visits: 4.0
+  - source: "Search engine traffic"
+    visits: 2.0
+  - source: "Link traffic"
+    visits: 1.0
 utm:
-  attributed_visits: 0.0
+  attributed_visits: 28.0
   unmarked_visits: 0.0
   by_channel:
-    dzen: 0.0
+    dzen: 27.0
     instagram: 0.0
-    telegram: 0.0
+    telegram: 1.0
     max: 0.0
     other_utm: 0.0
-    none: 56.0
-  sources: []
-  campaigns: []
+    none: 80.0
+  sources:
+    - source: "dzen"
+      visits: 27.0
+      product_opened: 0.0
+      checkout_open: 0.0
+      purchase: 0.0
+    - source: "telegram"
+      visits: 1.0
+      product_opened: 0.0
+      checkout_open: 0.0
+      purchase: 0.0
+  campaigns:
+    - source: "dzen"
+      medium: "article"
+      campaign: "neotrabotannyy-avans"
+      visits: 5.0
+    - source: "dzen"
+      medium: "article"
+      campaign: "reestr-trebovaniy"
+      visits: 5.0
+    - source: "dzen"
+      medium: "article"
+      campaign: "smeta-marzha"
+      visits: 5.0
+    - source: "dzen"
+      medium: "article"
+      campaign: "krasnye-flagi-dogovora"
+      visits: 4.0
+    - source: "dzen"
+      medium: "article"
+      campaign: "vklyuchenie-v-reestr"
+      visits: 4.0
+    - source: "dzen"
+      medium: "article"
+      campaign: "akt-skrytyh-rabot"
+      visits: 2.0
+    - source: "dzen"
+      medium: "article"
+      campaign: "bankrotstvo-markery"
+      visits: 1.0
+    - source: "dzen"
+      medium: "article"
+      campaign: "genpodryadchik-udergivaet"
+      visits: 1.0
+    - source: "telegram"
+      medium: "post"
+      campaign: "stroitelnaya-smeta"
+      visits: 1.0
   error: null
 landings:
   - path: "/"
     group: "home"
-    visits: 55.0
+    visits: 73.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  - path: "/articles/stroitelnaya-smeta-gde-teryaetsya-marzha.html"
+    group: "article"
+    visits: 6.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  - path: "/articles/neotrabotannyy-avans.html"
+    group: "article"
+    visits: 5.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  - path: "/articles/reestr-trebovaniy-kreditorov.html"
+    group: "article"
+    visits: 5.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  - path: "/articles/krasnye-flagi-dogovora-subpodryada.html"
+    group: "article"
+    visits: 4.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  - path: "/articles/vklyuchenie-v-reestr-trebovaniy-kreditorov.html"
+    group: "article"
+    visits: 4.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  - path: "/articles/akt-skrytyh-rabot-obrazec.html"
+    group: "article"
+    visits: 2.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  - path: "/articles/ispolnitelnaya-dokumentaciya-sostav.html"
+    group: "article"
+    visits: 2.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  - path: "/materialy/dengi.html"
+    group: "other"
+    visits: 2.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  - path: "/articles/bankrotstvo-genpodryadchika-5-markerov.html"
+    group: "article"
+    visits: 1.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  - path: "/articles/genpodryadchik-zarabatyvaet-na-vas.html"
+    group: "article"
+    visits: 1.0
     product_opened: 0.0
     article_to_product: 0.0
     add_to_cart: 0.0
@@ -104,16 +256,39 @@ landings:
     add_to_cart: 0.0
     checkout_open: 0.0
     purchase: 0.0
+  - path: "/materialy/dogovor.html"
+    group: "other"
+    visits: 1.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  - path: "/test-pokupka.html"
+    group: "other"
+    visits: 1.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
 entry_groups:
   home:
-    visits: 55.0
+    visits: 73.0
     product_opened: 0.0
     article_to_product: 0.0
     add_to_cart: 0.0
     checkout_open: 0.0
     purchase: 0.0
   article:
-    visits: 1.0
+    visits: 31.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  other:
+    visits: 4.0
     product_opened: 0.0
     article_to_product: 0.0
     add_to_cart: 0.0
