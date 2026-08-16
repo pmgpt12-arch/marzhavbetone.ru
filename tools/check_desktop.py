@@ -369,9 +369,28 @@ REALBREAK_SCRIPT = """() => {
         const r = document.createRange();
         r.setStart(node, m.index);
         r.setEnd(node, m.index + word.length);
-        const rects = [...r.getClientRects()];
+        const rects = [...r.getClientRects()].filter(x => x.width && x.height);
         if (rects.length < 2) continue;
-        if (new Set(rects.map(x => Math.round(x.top))).size < 2) continue;
+        // Строки считаются по пересечению по вертикали, а не по равенству
+        // `top`. Замер на раннере 16.08.2026: сравнение округлённых `top`
+        // объявило разорванным слово «работ» на index.html при 1366 и 1440,
+        // хотя оно стоит одной строкой. Один диапазон отдаёт несколько
+        // прямоугольников и внутри строки — на границе шрифтового отката
+        // кириллицы, — и у них `top` расходится на доли пикселя. Локально
+        // шрифты другие, и прогон был зелёным: разошлись среды, а не вёрстка.
+        //
+        // Настоящий перенос даёт прямоугольники, не пересекающиеся по
+        // вертикали вовсе. Поэтому новая строка засчитывается, только если
+        // перекрытие с уже найденными меньше половины высоты.
+        const lines = [];
+        for (const x of rects) {
+          const same = lines.some(l => {
+            const overlap = Math.min(l.bottom, x.bottom) - Math.max(l.top, x.top);
+            return overlap > Math.min(l.height, x.height) * 0.5;
+          });
+          if (!same) lines.push(x);
+        }
+        if (lines.length < 2) continue;
         const el = node.parentElement;
         out.push('слово «' + word + '» разорвано между строками в '
                  + el.tagName.toLowerCase()
