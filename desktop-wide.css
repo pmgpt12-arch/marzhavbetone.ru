@@ -1,1 +1,19 @@
 @media(min-width:1600px){.section{padding-left:calc((100vw - 1440px)/2);padding-right:calc((100vw - 1440px)/2)}.topbar,footer{padding-left:calc((100vw - 1440px)/2);padding-right:calc((100vw - 1440px)/2)}.hero-copy{padding-left:calc((100vw - 1680px)/2);padding-right:clamp(60px,5vw,96px)}.product-card h3{font-size:46px}.product-card{padding:34px}.contact{grid-template-columns:minmax(0,1fr) 560px!important}}#telegram,#author{scroll-margin-top:92px}
+/* Витрина каталога на широком мониторе. Замер рендером 16.08.2026 на
+   katalog.html: при 1920px колонка каталога 437px, а `.product-card h3`
+   выше по этому файлу получал плоские 46px — при 30px на 1536px. Скачок
+   вверх ровно там, где колонка перестала расти: сетка упёрлась в
+   `width:min(100%,1360px)`. Самому длинному слову заголовка
+   («сопроводительное») при 46px нужно 423px, в колонке оставалось 367px, и
+   `overflow-wrap:break-word` резал слова посередине — «неотработанны/й»,
+   «субподрядчико/м». Четыре заголовка из двадцати восьми.
+   46px писались под широкую карточку в две колонки, а не под три по 437px,
+   поэтому правило здесь адресное, а не отменяющее.
+   Лечится причина, не симптом: сетке отдаётся вся ширина полосы секции
+   (1440px вместо 1360px), а кегль заголовка внутри узкой колонки снова
+   растёт непрерывно, как до 1600px, вместо ступеньки. Обрезка текста и
+   уменьшение кегля против рабочей базы 1366px не годятся — это маскировка. */
+@media(min-width:1600px){
+  .sales-solutions .section-head,.sales-solutions .product-grid{width:100%}
+  .product-grid-inner .product-card h3{font-size:clamp(30px,2.2vw,36px)}
+}
