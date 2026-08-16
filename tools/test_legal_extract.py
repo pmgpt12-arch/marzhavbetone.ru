@@ -288,8 +288,14 @@ def test_у_каждого_ответа_есть_текст_или_путь_к_�
     тексту нет. Он означает, что путь снова потерян и мы этого не заметили.
     """
     verdicts = {}
+    registry = _registry()
     for norm_id, norm, html, card in _real_pages():
         base = card.get("final_url") or card.get("url") or ""
+        # Слепок, снятый по прежнему адресу реестра, тупиком не считается:
+        # адрес заменён, и ответ по нему больше ни о чём не говорит.
+        declared = registry[norm_id]["official_source"].split("?")[-1]
+        if declared not in (card.get("url") or "") and declared not in base:
+            continue
         if looks_truncated(html):
             verdicts[norm_id] = "TRUNCATED — повтор запроса"
         elif extract(strip_html(html), norm).ok:
@@ -458,6 +464,80 @@ def test_оборванный_ответ_опознаётся_обрывом():
     if not seen:
         print("      (оборванного ответа среди сохранённых нет)")
 
+
+
+
+def _registry():
+    import yaml
+    return {n["norm_id"]: n for n in yaml.safe_load(
+        (FIXTURES.parent / "norms.yaml").read_text(encoding="utf-8"))["norms"]}
+
+
+def test_адрес_апк_ведёт_на_апк_а_не_на_прежний_документ():
+    """Прежний `nd=102078170` отдавал Распоряжение Правительства № 1214-р.
+
+    Проверено слепками 16.08.2026: и оболочка, и фрейм, и печатный вид по
+    тому адресу — чужой документ. Идентификатор заменён на проверенный
+    владельцем по официальному публикатору (АПК РФ от 24.07.2002 № 95-ФЗ).
+    Тест держит замену: возврат прежнего номера — регресс, а не правка.
+    """
+    reg = _registry()
+    for norm_id in ("apk-4-5", "apk-125-126", "apk-128-148"):
+        src = reg[norm_id]["official_source"]
+        assert "nd=102079219" in src, f"{norm_id}: {src}"
+        assert "102078170" not in src, f"{norm_id}: вернулся прежний адрес"
+        assert reg[norm_id]["document_match"] == [
+            "арбитражный процессуальный кодекс"], norm_id
+
+
+def test_прежний_адрес_апк_не_опознаётся_как_апк():
+    """Сохранённые байты доказывают, почему замена понадобилась."""
+    checked = 0
+    for rec, html, body in _responses():
+        if "102078170" not in rec["url"]:
+            continue
+        checked += 1
+        assert not identifies_act(html, body,
+                                  ["арбитражный процессуальный кодекс"])
+    if not checked:
+        print("      (ответов по прежнему адресу среди сохранённых нет)")
+
+
+def test_ппвс_идёт_прямо_на_документ_а_не_в_перечень():
+    """Перечень `/documents/own/` собирается скриптом и ссылок не даёт.
+
+    Замер по сохранённой странице: 85 ссылок, ни одной на документ. Обход
+    раздела снят, адрес документа проверен владельцем.
+    """
+    norm = _registry()["ppvs-7-2016"]
+    assert norm["official_source"].rstrip("/").endswith("/documents/own/8478"), \
+        norm["official_source"]
+    assert not norm.get("search_path"), "обход перечня больше не нужен"
+    kind, units, _ = parse_units(norm["article"], norm["act"])
+    assert (kind, units) == (POINT, ["42", "48", "84"])
+
+
+def test_все_три_пункта_постановления_обязательны():
+    """Два пункта из трёх доказательством не считаются."""
+    norm = {"act": "Постановление Пленума ВС РФ от 24.03.2016 № 7",
+            "article": "пп. 42, 48, 84"}
+    two = ("Пленум Верховного Суда постановляет. "
+           "42. Если законом или соглашением сторон установлена неустойка, "
+           "кредитор вправе предъявить требование о применении одной из мер "
+           "ответственности, не допуская их суммирования по одному periodu. "
+           "48. Сумма процентов, подлежащих взысканию по правилам статьи 395 "
+           "Кодекса, определяется на день вынесения решения судом исходя из "
+           "периодов, имевших место до указанного дня, если иное не следует. "
+           + DOBIVKA)
+    res = extract(two, norm)
+    assert not res.ok, "84-го пункта нет — это не доказательство"
+    assert res.missing == ["84"], res.missing
+
+
+def test_каждая_норма_реестра_объявляет_реквизиты_опознания():
+    """Без опознания чужой документ снова сможет стать доказательством."""
+    without = [n for n, v in _registry().items() if not v.get("document_match")]
+    assert not without, "нормы без document_match: " + ", ".join(without)
 
 
 def main() -> int:
