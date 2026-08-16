@@ -20,6 +20,10 @@
 | Что делать под поиск | скил `marzha-seo` |
 | Материал и публикация | скил `marzha-content` |
 | Позиционирование и персона | `content/strategy/positioning.md` |
+| Instagram: доступ и публикация | `docs/INSTAGRAM_SETUP.md` |
+| Ролики: конвейер, стоимость, дефекты | `docs/INSTAGRAM_SPRINT_2026-08-16.md` |
+| Ролики: формат сценария и учёт | `content/reels/README.md` |
+| Готовые mp4 и почему они в репозитории | `media/README.md` |
 | Задачи и ворота фаз | `data/ops/backlog.csv`, `docs/EXECUTION-90.md` |
 | Текущее состояние | `docs/PROJECT_STATE.md` |
 
