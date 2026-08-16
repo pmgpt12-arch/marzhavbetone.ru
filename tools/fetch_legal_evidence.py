@@ -18,18 +18,25 @@
     python tools/fetch_legal_evidence.py --norm gk-395 --debug
     python tools/fetch_legal_evidence.py --all --allow-secondary
 
-Что изменилось после прогона владельца 16.08.2026. Прогон дал `official 0,
-secondary 0, not_verified 17`, и по большинству норм — «источник ответил,
-но статья в нём не найдена». То есть сеть работает, а разбор нет, и по
-выводу нельзя было понять, чем именно ответил публикатор. Отсюда две
-вещи: разбор вынесен в `legal_extract.py` и накрыт тестами без сети, а
-здесь появился `--debug` и `--capture`, которые показывают и сохраняют
-фактический ответ. Инструмент, который не умеет объяснить свой отказ,
-чинится вслепую.
+Корневая причина семнадцати отказов названа слепками владельца от
+16.08.2026, и она оказалась не в адресах и не в регулярках.
+`pravo.gov.ru` отдаёт `Content-Type: text/html` **без charset**, страницы
+в windows-1251, а код брал utf-8 с `errors="replace"` — вся кириллица
+превращалась в U+FFFD. Соответствие в слепках точное, один байт на один
+знак замены. Слова «Статья» в таком тексте нет, и найти его было нельзя
+ничем. Шестнадцать слепков из семнадцати — ровно этот случай.
+
+Семнадцатый другой: `vsrf.ru/documents/own/` отвечает целой кириллицей,
+но это перечень документов, а не текст постановления. Три слепка АПК —
+27 740 байт при 598 знаках текста, то есть навигация. На такие ответы
+инструмент теперь идёт по ссылке самой страницы, совпавшей с реквизитами
+акта из реестра: адрес берётся из ответа официального источника, а не
+угадывается.
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 import time
@@ -44,7 +51,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from legal_evidence import (  # noqa: E402
     NOT_VERIFIED, OFFICIAL, SECONDARY, write)
 from legal_extract import (  # noqa: E402
-    extract, page_title, parse_units, strip_html)
+    decode_body, extract, find_document_links, looks_damaged, page_title,
+    parse_units, strip_html)
 
 ROOT = Path(__file__).resolve().parent.parent
 NORMS = ROOT / "data" / "legal" / "norms.yaml"
@@ -74,13 +82,17 @@ def fetch(url: str) -> dict:
         try:
             with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
                 raw = resp.read()
+                body, codec = decode_body(
+                    raw, resp.headers.get_content_charset() or "")
                 return {
                     "status": resp.status,
                     "final_url": resp.geturl(),
                     "content_type": resp.headers.get("Content-Type", ""),
                     "length": len(raw),
-                    "body": raw.decode(
-                        resp.headers.get_content_charset() or "utf-8", "replace"),
+                    "charset": codec,
+                    "damaged": looks_damaged(body),
+                    "raw": raw,
+                    "body": body,
                     "attempts": attempt,
                 }
         except urllib.error.HTTPError as e:
@@ -92,8 +104,15 @@ def fetch(url: str) -> dict:
     raise Unreachable(f"{last} — попыток {RETRIES}")
 
 
-def probe(norm: dict, url: str) -> dict:
-    """Один адрес: что пришло и что из этого разобралось. Ничего не пишет."""
+def probe(norm: dict, url: str, follow: bool = True) -> dict:
+    """Один адрес: что пришло и что из этого разобралось. Ничего не пишет.
+
+    Не нашлось на объявленном адресе — ссылки фактического ответа
+    просматриваются на совпадение с реквизитами акта, и найденное
+    проходится один уровень вглубь. Владелец при этом статей руками не
+    открывает, а адрес не угадывается: он взят из ответа официального
+    источника.
+    """
     kind, units, subs = parse_units(norm.get("article", ""), norm.get("act", ""))
     card = {"url": url, "strategy": kind, "wanted": units, "subdivisions": subs}
     try:
@@ -103,40 +122,79 @@ def probe(norm: dict, url: str) -> dict:
 
     body = strip_html(resp["body"])
     res = extract(body, norm)
-    return {**card,
+    card = {**card,
             "status": resp["status"], "final_url": resp["final_url"],
             "content_type": resp["content_type"], "length": resp["length"],
+            "charset": resp["charset"], "damaged": resp["damaged"],
             "attempts": resp["attempts"], "title": page_title(resp["body"]),
             "text_length": len(body), "excerpt": body[:1200],
             "found": res.found, "missing": res.missing,
-            "ok": res.ok, "reason": res.reason, "text": res.text}
+            "ok": res.ok, "reason": res.reason, "text": res.text,
+            "raw": resp["raw"], "followed": []}
+    if card["damaged"]:
+        card["reason"] = (f"{card['reason']}; страница декодирована как "
+                          f"{resp['charset']} и содержит знаки замены — "
+                          "кодировка определена неверно")
+    if res.ok or not follow:
+        return card
+
+    for link in find_document_links(resp["body"], resp["final_url"],
+                                    norm.get("search_terms") or []):
+        deeper = probe(norm, link, follow=False)
+        card["followed"].append({"url": link, "ok": deeper.get("ok"),
+                                 "reason": deeper.get("reason", "")})
+        if deeper.get("ok"):
+            deeper["followed"] = card["followed"]
+            deeper["reached_from"] = url
+            return deeper
+    return card
 
 
 def show_debug(norm: dict, card: dict) -> None:
     print(f"\n=== {norm['norm_id']} — {norm.get('act','')} {norm.get('article','')}")
-    for key in ("url", "status", "final_url", "content_type", "length",
-                "attempts", "title", "text_length", "strategy", "wanted",
-                "subdivisions", "found", "missing"):
+    for key in ("url", "status", "final_url", "content_type", "charset",
+                "damaged", "length", "attempts", "title", "text_length",
+                "strategy", "wanted", "subdivisions", "found", "missing",
+                "reached_from"):
         if key in card:
             print(f"  {key:14} {card[key]}")
     print(f"  {'извлечено':14} {'да' if card.get('ok') else 'нет'}")
     if card.get("reason"):
         print(f"  {'причина':14} {card['reason']}")
+    for step in card.get("followed") or []:
+        print(f"  {'перешли':14} {step['url']} → "
+              f"{'да' if step['ok'] else step['reason'][:70]}")
     if card.get("excerpt"):
         print(f"  {'начало ответа':14} {card['excerpt'][:400]}")
 
 
 def capture(card: dict, norm_id: str, out: Path) -> Path:
-    """Диагностический слепок для сборки фикстуры. Без cookies и заголовков.
+    """Диагностический слепок. Без cookies и заголовков запроса.
 
-    Сохраняется то, чем чинится разбор: обстоятельства ответа и текст
-    вокруг искомых маркеров. Целиком страница не пишется намеренно —
-    чужой документ на мегабайты в репозитории не нужен, а для правки
-    регулярного выражения хватает окрестности маркера.
+    Пишутся **исходные байты**, а не декодированный текст. Причина замером
+    16.08.2026: первый слепок сохранил уже испорченную строку, и по нему
+    нельзя было ни проверить починку кодировки, ни восстановить исходное —
+    `errors="replace"` необратим. Слепок, теряющий то, ради чего он снят,
+    диагностикой не является.
+
+    Страницы кладутся по хешу адреса: шесть актов на семнадцать норм, и
+    хранить один и тот же кодекс шесть раз незачем.
     """
     out.mkdir(parents=True, exist_ok=True)
-    payload = {k: v for k, v in card.items() if k not in ("text",)}
+    payload = {k: v for k, v in card.items() if k not in ("text", "raw")}
     payload["excerpt"] = card.get("excerpt", "")[:4000]
+
+    raw = card.get("raw")
+    if raw:
+        pages = out / "pages"
+        pages.mkdir(exist_ok=True)
+        name = hashlib.sha1(
+            (card.get("final_url") or card["url"]).encode()).hexdigest()[:16]
+        page = pages / f"{name}.html"
+        if not page.exists():
+            page.write_bytes(raw)
+        payload["page_file"] = f"pages/{page.name}"
+
     path = out / f"{norm_id}.json"
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2),
                     encoding="utf-8")

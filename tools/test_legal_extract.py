@@ -9,12 +9,15 @@
 здесь тела ответов и ожидаемый результат.
 
 Случаи ниже **синтетические и названы синтетическими**: они воспроизводят
-формы, которые публикаторы дают заведомо (оглавление перед текстом,
-карточка документа вместо текста, пункты вместо статей), а не байты
-конкретной страницы. Настоящие формы приезжают слепками `--capture` с
-машины владельца и подхватываются последним тестом автоматически — как
-только в `data/legal/fixtures/` появится хоть один слепок, он становится
-регрессом, и подгонять его руками не нужно.
+формы, которые публикаторы дают заведомо, а не байты конкретной страницы.
+
+Два теста работают по настоящим данным. Первый держит диагноз по
+семнадцати слепкам владельца от 16.08.2026: шестнадцать страниц пришли в
+однобайтовой кодировке и были испорчены декодированием, семнадцатая
+(`vsrf.ru`) цела, но это перечень документов, а не текст постановления.
+Второй прогоняет сквозной разбор по сохранённым **байтам** страниц и
+включается сам, как только они появятся: прежний захват писал уже
+испорченную строку, и проверить по нему починку было нечем.
 """
 from __future__ import annotations
 
@@ -24,7 +27,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from legal_extract import (  # noqa: E402
-    ARTICLE, MIN_UNIT_CHARS, POINT, extract, find_article, parse_units)
+    ARTICLE, MIN_UNIT_CHARS, POINT, decode_body, extract, find_article,
+    find_document_links, looks_damaged, parse_units, strip_html)
 
 FIXTURES = Path(__file__).resolve().parent.parent / "data" / "legal" / "fixtures"
 
@@ -161,24 +165,115 @@ def test_соседний_номер_не_ловится_префиксом():
     assert not find_article(body, "1911")
 
 
-def test_реальные_слепки_если_они_есть():
-    """Слепки `--capture` с машины владельца становятся регрессом сами."""
+def test_кодировка_берётся_из_метатега():
+    raw = ('<html><head><meta http-equiv="Content-Type" content="text/html; '
+           'charset=windows-1251"></head><body>' + TELO_191
+           + "</body></html>").encode("cp1251")
+    text, codec = decode_body(raw, header_charset="")
+    assert "windows-1251" in codec, codec
+    assert "Статья 191" in text and "�" not in text
+
+
+def test_кодировка_без_объявления_определяется_пробой():
+    """Ровно случай pravo.gov.ru: `text/html` без charset и без метатега."""
+    raw = ("<html><body>" + TELO_191 + "</body></html>").encode("cp1251")
+    text, codec = decode_body(raw, header_charset="")
+    assert "cp1251" in codec, codec
+    assert "Статья 191" in text and "�" not in text
+
+
+def test_utf8_страница_пробой_не_ломается():
+    raw = ("<html><body>" + TELO_191 + "</body></html>").encode("utf-8")
+    text, _ = decode_body(raw, header_charset="")
+    assert "Статья 191" in text and "�" not in text
+
+
+def test_норма_извлекается_из_cp1251_страницы_целиком():
+    """Сквозной путь: байты → декодирование → разметка → извлечение."""
+    raw = ("<html><body><p>" + DOBIVKA + TELO_191 + "</p><p>" + TELO_192
+           + "</p></body></html>").encode("cp1251")
+    text, _ = decode_body(raw, header_charset="")
+    res = extract(strip_html(text), GK)
+    assert res.ok, res.reason
+    assert "которым определено его начало" in res.text
+
+
+def test_порча_декодирования_называется_порчей():
+    broken = ("<html><body>" + TELO_191 + "</body></html>"
+              ).encode("cp1251").decode("utf-8", "replace")
+    assert looks_damaged(broken)
+    assert not looks_damaged(TELO_191 + DOBIVKA)
+
+
+def test_ссылка_на_документ_находится_в_фактическом_перечне():
+    listing = ('<ul>'
+               '<li><a href="/documents/all/">Все документы</a></li>'
+               '<li><a href="/documents/own/28123/">Постановление Пленума '
+               'Верховного Суда РФ от 24.03.2016 № 7</a></li>'
+               '<li><a href="/documents/own/28999/">Постановление Пленума '
+               'от 21.01.2016 № 1</a></li></ul>')
+    hits = find_document_links(listing, "https://www.vsrf.ru/documents/own/",
+                               ["24.03.2016"])
+    assert hits == ["https://www.vsrf.ru/documents/own/28123/"], hits
+
+
+def test_переход_не_делается_без_реквизитов():
+    listing = '<a href="/x/">Постановление Пленума от 24.03.2016 № 7</a>'
+    assert find_document_links(listing, "https://www.vsrf.ru/", []) == []
+
+
+def test_реальные_слепки_разобраны_и_диагноз_записан():
+    """Диагноз по семнадцати слепкам владельца от 16.08.2026.
+
+    Слепки сняты прежней версией инструмента и содержат уже испорченный
+    текст: `errors="replace"` необратим, исходные байты потеряны. Поэтому
+    здесь проверяется не извлечение — извлекать из них нечего, — а то, что
+    установленный по ним диагноз держится и не переписывается задним
+    числом. Пригодным материалом слепки станут после повторного захвата:
+    он пишет байты.
+    """
     shots = sorted(FIXTURES.glob("*.json")) if FIXTURES.exists() else []
     if not shots:
-        print("      (слепков нет — ждут прогона --capture у владельца)")
+        print("      (слепков нет)")
         return
-    bad = []
+    damaged, intact = [], []
     for shot in shots:
         card = json.loads(shot.read_text(encoding="utf-8"))
-        if card.get("ok"):
+        (damaged if "�" in (card.get("excerpt") or "") else intact
+         ).append(shot.stem)
+    assert len(shots) == 17, f"слепков {len(shots)}, ждали 17"
+    assert len(damaged) == 16, f"испорченных {len(damaged)}, ждали 16"
+    assert intact == ["ppvs-7-2016"], intact
+    for shot in shots:
+        card = json.loads(shot.read_text(encoding="utf-8"))
+        assert card.get("status") == 200, f"{shot.stem}: {card.get('status')}"
+        assert not card.get("ok"), f"{shot.stem} не может быть успехом"
+
+
+def test_слепки_с_байтами_проходят_разбор_насквозь():
+    """Как только захват сохранит байты, они становятся регрессом сами."""
+    pages = FIXTURES / "pages"
+    if not pages.exists():
+        print("      (байтов страниц нет — ждут повторного --capture)")
+        return
+    import yaml
+    registry = {n["norm_id"]: n for n in yaml.safe_load(
+        (FIXTURES.parent / "norms.yaml").read_text(encoding="utf-8"))["norms"]}
+    bad = []
+    for shot in sorted(FIXTURES.glob("*.json")):
+        card = json.loads(shot.read_text(encoding="utf-8"))
+        page = card.get("page_file")
+        if not page or not (FIXTURES / page).exists():
             continue
-        # Недоступный источник — не регресс разбора. Разбирать нечего, и
-        # красить этим тест значит красить его чужой сетью.
-        if "недоступен" in card.get("reason", ""):
+        text, codec = decode_body((FIXTURES / page).read_bytes())
+        if looks_damaged(text):
+            bad.append(f"{shot.stem}: декодировано как {codec}, знаки замены")
             continue
-        bad.append(f"{shot.stem}: {card.get('reason', 'без причины')}")
-    assert not bad, ("слепки, на которых разбор не сходится:\n  "
-                     + "\n  ".join(bad))
+        res = extract(strip_html(text), registry[shot.stem])
+        if not res.ok:
+            bad.append(f"{shot.stem}: {res.reason}")
+    assert not bad, "на сохранённых байтах разбор не сходится:\n  " + \
+                    "\n  ".join(bad)
 
 
 def main() -> int:

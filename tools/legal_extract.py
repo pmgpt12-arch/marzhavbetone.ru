@@ -30,6 +30,7 @@ from __future__ import annotations
 import re
 import unicodedata
 from dataclasses import dataclass, field
+from urllib.parse import urljoin
 
 # Ниже этого порога вхождение считается заголовком из оглавления, а не
 # текстом нормы. Самая короткая норма реестра — ГК 193 (окончание срока в
@@ -66,6 +67,89 @@ class Extraction:
     @property
     def ok(self) -> bool:
         return bool(self.text) and not self.missing
+
+
+def sniff_charset(raw: bytes) -> str:
+    """Кодировка из самой страницы, когда заголовок её не назвал.
+
+    Замер 16.08.2026 на семнадцати слепках с машины владельца:
+    `pravo.gov.ru` отдаёт `Content-Type: text/html` **без charset**, а сами
+    страницы в windows-1251. `get_content_charset()` возвращает None,
+    прежний код молча брал utf-8 с `errors="replace"` — и вся кириллица
+    превращалась в U+FFFD. Соответствие точное, один байт на один знак
+    замены: «от» → 2, «№» → 1, «ФЗ» → 2, «ред» → 3. Слово «Статья» после
+    такого декодирования не существует, и найтись не могло ни при какой
+    регулярке.
+
+    Метатег ищется в первых килобайтах и по ASCII: до выбора кодировки
+    читать страницу как текст нельзя.
+    """
+    head = raw[:4096].decode("ascii", "ignore").lower()
+    m = re.search(r'<meta[^>]+charset=["\']?\s*([\w-]+)', head)
+    return m.group(1) if m else ""
+
+
+def decode_body(raw: bytes, header_charset: str = "") -> tuple[str, str]:
+    """(текст, чем декодировано). Порядок: заголовок, метатег, проба.
+
+    `errors="replace"` здесь не применяется ни на одном шаге, кроме
+    последнего, и последний называет себя в ответе. Молчаливая порча —
+    ровно то, что стоило семнадцати отказов подряд: инструмент сообщал
+    «статья не найдена», хотя статья была, а испорчен был алфавит.
+    """
+    for name in (header_charset, sniff_charset(raw)):
+        if not name:
+            continue
+        try:
+            return raw.decode(name), name
+        except (LookupError, UnicodeDecodeError):
+            continue
+    # utf-8 строго — он ломается на однобайтовой кириллице, и это признак,
+    # а не помеха: сломался — значит перед нами cp1251.
+    try:
+        return raw.decode("utf-8"), "utf-8 (проба)"
+    except UnicodeDecodeError:
+        pass
+    return raw.decode("cp1251", "replace"), "cp1251 (проба)"
+
+
+def looks_damaged(text: str) -> bool:
+    """Признак испорченного декодирования: знаки замены при живом ASCII."""
+    return text.count("�") > max(20, len(text) // 200)
+
+
+def find_document_links(html: str, base_url: str,
+                        terms: list[str]) -> list[str]:
+    """Ссылки страницы, чей текст называет искомый документ.
+
+    Нужно там, где официальный адрес ведёт не на акт, а на перечень или
+    оболочку. Замер 16.08.2026: `vsrf.ru/documents/own/` — страница списка
+    документов (UTF-8, кириллица целая, текста постановления нет), а
+    `?nd=102078170` отдаёт 27 740 байт при 598 знаках текста, то есть
+    навигацию, а не кодекс.
+
+    Адрес не угадывается: он берётся из фактического ответа официального
+    источника по совпадению с реквизитами из реестра. Гадание про
+    параметры портала и разбор его ответа — разные вещи.
+    """
+    if not terms:
+        return []
+    needles = [t.lower() for t in terms]
+    out: list[str] = []
+    for m in re.finditer(r'<a\b[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>',
+                         html, re.S | re.I):
+        href, label = m.group(1), normalize(re.sub(r"<[^>]+>", " ", m.group(2)))
+        if not label or href.startswith(("#", "javascript:", "mailto:")):
+            continue
+        low = label.lower()
+        if all(n in low for n in needles):
+            out.append(urljoin(base_url, href))
+    seen, uniq = set(), []
+    for url in out:
+        if url not in seen:
+            seen.add(url)
+            uniq.append(url)
+    return uniq[:5]
 
 
 def normalize(text: str) -> str:
