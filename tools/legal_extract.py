@@ -1,0 +1,210 @@
+#!/usr/bin/env python3
+"""Извлечение нормы из фактического ответа публикатора. Чистые функции.
+
+Отделено от `fetch_legal_evidence.py` намеренно. Сеть из рабочей среды к
+официальным публикаторам закрыта (замер 16.08.2026: `pravo.gov.ru` — 403 на
+CONNECT, `vsrf.ru` не резолвится), поэтому исправление, проверяемое только
+живым прогоном, здесь непроверяемо в принципе. Разбор вынесен в функции без
+сети: тело ответа на входе, разобранное на выходе, и на этом стоят тесты.
+
+Три вещи, которых не было в первой версии и из-за которых прогон владельца
+16.08.2026 дал 17 отказов подряд.
+
+**Единиц бывает несколько, а бралась последняя.** `article: 196, 200`
+разбирался как `split()[-1]` → искалась только статья 200. Норма при этом
+опирается на обе, и «доказательство» без 196 доказывало бы половину. То же
+на `125, 126` и `128, 148`.
+
+**Постановление Пленума статей не имеет.** У него пункты. Поиск «Статья 84»
+в тексте, где написано «84.», не находил ничего и не мог найти.
+
+**Короткое вхождение принималось за норму.** Оглавление публикатора
+повторяет заголовки статей, первое вхождение попадает в него, и на выходе
+получалась строка «Статья 191. Начало срока» в 25 знаков — с виду успех,
+по существу заголовок. Такое доказательство хешируется и выглядит
+проверенным. Поэтому берётся не первое вхождение, а самое длинное, и ниже
+порога в знаках результат отвергается с названной причиной.
+"""
+from __future__ import annotations
+
+import re
+import unicodedata
+from dataclasses import dataclass, field
+
+# Ниже этого порога вхождение считается заголовком из оглавления, а не
+# текстом нормы. Самая короткая норма реестра — ГК 193 (окончание срока в
+# нерабочий день), около 180 знаков вместе с заголовком. Порог взят с
+# запасом вниз и назван здесь, а не спрятан в условии.
+MIN_UNIT_CHARS = 120
+
+# Ответ короче этого — заведомо не текст акта, а карточка документа,
+# страница ошибки или заглушка. Отличать их по коду ответа нельзя: карточка
+# отдаётся с кодом 200.
+MIN_PAGE_CHARS = 500
+
+ARTICLE, POINT = "article", "point"
+
+_NUM = r"\d+(?:\.\d+)*"
+_PLENUM = re.compile(r"пленум", re.I)
+_ST = re.compile(r"ст(?:ать[яи]|\.)\s*", re.I)
+_NOT_FOUND_PAGE = re.compile(
+    r"документ не найден|страница не найдена|ничего не найдено"
+    r"|доступ (?:запрещ|ограни)|404", re.I)
+
+
+@dataclass
+class Extraction:
+    """Разобранное вместе с тем, как оно разобрано. Диагностика — часть ответа."""
+    text: str = ""
+    kind: str = ARTICLE
+    wanted: list[str] = field(default_factory=list)
+    found: list[str] = field(default_factory=list)
+    missing: list[str] = field(default_factory=list)
+    subdivisions: list[str] = field(default_factory=list)
+    reason: str = ""
+
+    @property
+    def ok(self) -> bool:
+        return bool(self.text) and not self.missing
+
+
+def normalize(text: str) -> str:
+    """NFC, пробелы схлопнуты. Неразрывный пробел — обычный пробел.
+
+    Публикаторы ставят `&nbsp;` внутри «Статья 191» произвольно, и без этой
+    замены маркер не находится по причине, которую в выводе не видно.
+    """
+    text = unicodedata.normalize("NFC", text)
+    text = text.replace(" ", " ").replace(" ", " ")
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def strip_html(html: str) -> str:
+    html = re.sub(r"<(script|style|noscript)\b.*?</\1>", " ", html,
+                  flags=re.S | re.I)
+    html = re.sub(r"<br\s*/?>|</p>|</div>|</tr>", " ", html, flags=re.I)
+    html = re.sub(r"<[^>]+>", " ", html)
+    for entity, char in (("&nbsp;", " "), ("&laquo;", "«"), ("&raquo;", "»"),
+                         ("&mdash;", "—"), ("&ndash;", "–"), ("&quot;", '"'),
+                         ("&#39;", "'"), ("&amp;", "&")):
+        html = html.replace(entity, char)
+    return normalize(html)
+
+
+def page_title(html: str) -> str:
+    m = re.search(r"<title[^>]*>(.*?)</title>", html, re.S | re.I)
+    return normalize(re.sub(r"<[^>]+>", " ", m.group(1)))[:200] if m else ""
+
+
+def is_plenum(act: str) -> bool:
+    return bool(_PLENUM.search(act or ""))
+
+
+def parse_units(article_field, act: str) -> tuple[str, list[str], list[str]]:
+    """Поле `article` реестра → (вид единицы, номера единиц, подразделы).
+
+    Подразделы (часть, пункт внутри статьи) возвращаются отдельно и в поиске
+    не участвуют: сохраняется статья целиком. Вырезать из неё часть по
+    номеру значило бы разбирать структуру акта регулярным выражением, а
+    ошибка там даёт доказательство не той нормы — хуже, чем его отсутствие.
+    """
+    raw = article_field
+    # YAML без кавычек делает из `333.40` число, и номер молча становится
+    # `333.4`. Поймано замером 16.08.2026: искалась «Статья 333.4.», которой
+    # в НК нет. Кавычки в реестре проставлены, здесь — вторая застава.
+    if isinstance(raw, float):
+        text = f"{raw:.10f}".rstrip("0").rstrip(".")
+    else:
+        text = str(raw)
+
+    numbers = re.findall(_NUM, text)
+    if is_plenum(act):
+        return POINT, numbers, []
+
+    marker = _ST.search(text)
+    if marker:
+        units = re.findall(_NUM, text[marker.end():])
+        subs = re.findall(_NUM, text[: marker.start()])
+        return ARTICLE, units, subs
+    return ARTICLE, numbers, []
+
+
+def _slice_candidates(body: str, starts, boundary: re.Pattern) -> list[str]:
+    out = []
+    for m in starts:
+        tail = body[m.start():]
+        nxt = boundary.search(tail, m.end() - m.start())
+        out.append(tail[: nxt.start()] if nxt else tail[:20000])
+    return out
+
+
+def _best(candidates: list[str]) -> str:
+    """Самое длинное вхождение, а не первое.
+
+    Первое почти всегда оглавление: публикаторы печатают перечень
+    заголовков перед текстом. Длина здесь — признак того, что за заголовком
+    идёт норма.
+    """
+    return max(candidates, key=len) if candidates else ""
+
+
+def find_article(body: str, number: str) -> str:
+    # `(?!\d)(?!\.\d)` разделяет точку-конец-заголовка и точку внутри
+    # номера: «Статья 191.» брать, «Статья 191.1» и «Статья 1911» — нет.
+    # Запрет на точку вообще (первая версия правила) отвергал ровно те
+    # заголовки, ради которых поиск и написан.
+    starts = list(re.finditer(
+        rf"Стать[яи]\s+{re.escape(number)}(?!\d)(?!\.\d)\s*[.．]?", body))
+    boundary = re.compile(rf"Стать[яи]\s+{_NUM}\s*[.．]")
+    return _best(_slice_candidates(body, starts, boundary))
+
+
+def find_point(body: str, number: str) -> str:
+    """Пункт постановления: «42.» с заглавной буквы после точки."""
+    starts = list(re.finditer(
+        rf"(?<![\d.]){re.escape(number)}\s*[.．]\s+(?=[А-ЯЁ«\"])", body))
+    boundary = re.compile(r"(?<![\d.])\d{1,3}\s*[.．]\s+(?=[А-ЯЁ«\"])")
+    return _best(_slice_candidates(body, starts, boundary))
+
+
+def extract(body: str, norm: dict) -> Extraction:
+    """Тело ответа + норма реестра → извлечённое с причиной отказа."""
+    body = normalize(body)
+    kind, wanted, subs = parse_units(norm.get("article", ""), norm.get("act", ""))
+    res = Extraction(kind=kind, wanted=wanted, subdivisions=subs)
+
+    if not wanted:
+        res.reason = "в реестре не назван номер статьи или пункта"
+        return res
+    if len(body) < MIN_PAGE_CHARS:
+        res.reason = (f"ответ короче {MIN_PAGE_CHARS} знаков ({len(body)}) — "
+                      "это не текст акта, а карточка или заглушка")
+        return res
+    if _NOT_FOUND_PAGE.search(body[:2000]):
+        res.reason = "в ответе страница «не найдено» или отказ в доступе"
+        return res
+
+    seek = find_point if kind == POINT else find_article
+    chunks, short = [], []
+    for number in wanted:
+        got = seek(body, number).strip()
+        if not got:
+            res.missing.append(number)
+        elif len(got) < MIN_UNIT_CHARS:
+            short.append(f"{number} ({len(got)} зн.)")
+            res.missing.append(number)
+        else:
+            res.found.append(number)
+            chunks.append(got)
+
+    if res.missing:
+        label = "пункт" if kind == POINT else "статья"
+        parts = [f"не найдено ({label}): {', '.join(res.missing)}"]
+        if short:
+            parts.append("только короткие вхождения — это оглавление, а не "
+                         f"текст нормы: {', '.join(short)}")
+        res.reason = "; ".join(parts)
+        return res
+
+    res.text = "\n\n".join(chunks)
+    return res
