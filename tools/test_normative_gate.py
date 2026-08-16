@@ -293,6 +293,9 @@ def m_all_green(tmp: Path) -> None:
     legal_evidence.ROOT = tmp
     legal_evidence.EVIDENCE_DIR = tmp / "data/legal/evidence"
 
+    import semantic_hash
+    importlib.reload(semantic_hash)
+
     mapping = {d["path"]: d for d in yaml.safe_load(
         (tmp / "data/legal/document-norms.yaml").read_text("utf-8"))["documents"]}
     path = tmp / "data/legal/normative-results.yaml"
@@ -301,6 +304,13 @@ def m_all_green(tmp: Path) -> None:
         result["verdict"] = "PASS"
         result["escalation_required"] = False
         result["recheck"] = ""
+        # Хеш документа тоже берётся из песочницы. Замер 16.08.2026: три
+        # документа пересобраны после правок, результаты ещё указывали на
+        # прежние версии — и базовый случай разошёлся, хотя гейт работал
+        # верно. Доказательство того, что гейт умеет зеленеть, не должно
+        # зависеть от того, дошла ли до результатов очередная пересборка.
+        result["document_hash"] = semantic_hash.semantic_hash(
+            tmp / result["document"])
         # Набор сверенных норм собирается из mapping, а не берётся из
         # живого результата: реестр растёт, и базовый случай не должен
         # краснеть от его пополнения.
