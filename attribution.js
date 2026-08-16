@@ -69,15 +69,39 @@ window.mvbTrackGoal = function (name) {
     var link = event.target.closest && event.target.closest('a[href]');
     if (!link) return;
 
-    var href = link.getAttribute('href') || '';
+    // Адрес приводится к абсолютному, а не сверяется подстрокой в атрибуте.
+    //
+    // Замер 16.08.2026: `grep -ohE 'href="(\.\./)?products/[^"]*"'` по всем
+    // страницам сайта — 63 ссылки на товар и 27 на бесплатный материал
+    // записаны относительно (`products/p1-…`, `../materialy/…`), и подстроки
+    // '/products/' в них нет. Слепыми оказались обе точки витрины: главная
+    // (18 ссылок) и katalog.html (18) — то есть весь путь «каталог → товар».
+    // Ноль product_opened в снимке 14.08 при 28 просмотрах главной из 51
+    // означает «прибор не подключён», а не «никто не дошёл».
+    //
+    // Сверка по хосту, а не по подстроке 'dzen.ru', закрывает вторую
+    // сторону: внешний адрес с /products/ в пути больше не считается
+    // открытием своего товара.
+    var url;
+    try {
+      url = new URL(link.getAttribute('href') || '', location.href);
+    } catch (error) {
+      return;
+    }
+
+    if (url.host !== location.host) {
+      if (url.hostname === 'dzen.ru' || /\.dzen\.ru$/.test(url.hostname)) {
+        window.mvbTrackGoal('dzen_click');
+      }
+      return;
+    }
+
     var fromArticle = /^\/articles\//.test(location.pathname);
 
-    if (href.indexOf('/products/') !== -1) {
+    if (url.pathname.indexOf('/products/') === 0) {
       window.mvbTrackGoal(fromArticle ? 'article_to_product' : 'product_opened');
-    } else if (href.indexOf('/materialy/') !== -1) {
+    } else if (url.pathname.indexOf('/materialy/') === 0) {
       window.mvbTrackGoal(fromArticle ? 'article_to_magnet' : 'magnet_opened');
-    } else if (href.indexOf('dzen.ru') !== -1) {
-      window.mvbTrackGoal('dzen_click');
     }
   });
 })();

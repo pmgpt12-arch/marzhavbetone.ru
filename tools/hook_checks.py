@@ -54,6 +54,10 @@ ROUTES: list[tuple[tuple[str, ...], str]] = [
     # ходит по выборке из шести страниц, по одной на шаблон. Без playwright
     # говорит «не запускалась», а не «прошла».
     ((".css", "attribution.js", "article_ui.py"), "check_mobile.py"),
+    # Цели перехода на ссылках витрины. Правка обработчика и правка разметки
+    # ломают счёт одинаково: 223 из 375 ссылок под целью записаны
+    # относительно, и подстрочная сверка их не видела
+    (("attribution.js", ".html"), "test_attribution_goals.js"),
     # Любая правка страницы или карты сайта. Стоит последней и без привязки
     # к каталогу намеренно: ровно привязка к каталогу и была дефектом —
     # проверка смотрела articles/ и не видела кнопку покупки в 404 на
@@ -70,11 +74,21 @@ def checks_for(path: str) -> list[str]:
 
 
 def run(script: str) -> tuple[int, str]:
+    # Проверка целей перехода написана на JavaScript, потому что проверяет
+    # JavaScript: обработчик прогоняется настоящий, а не пересказанный на
+    # питоне. Пересказ разошёлся бы с оригиналом молча — ровно тот дефект,
+    # который она и ловит.
+    if script.endswith(".js"):
+        command = ["node", str(ROOT / "tools" / script)]
+    else:
+        command = [sys.executable, str(ROOT / "tools" / script)]
     try:
         done = subprocess.run(
-            [sys.executable, str(ROOT / "tools" / script)],
-            capture_output=True, text=True, timeout=TIMEOUT, cwd=ROOT,
+            command, capture_output=True, text=True, timeout=TIMEOUT, cwd=ROOT,
         )
+    except FileNotFoundError:
+        # Без node проверка не запускалась — это не «прошла»
+        return 1, f"{script}: не запускалась, нет node"
     except subprocess.TimeoutExpired:
         return 1, f"{script}: не уложился в {TIMEOUT} с"
     except OSError as exc:
