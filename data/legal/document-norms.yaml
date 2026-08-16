@@ -48,7 +48,7 @@ documents:
   - path: products-storage/01-zakrytie-rabot/11-slovar-poley.docx
     generator: projects/marzha_v_betone/product/build/00-slovar.js
     legally_significant: true
-    norms: [gk-746, gk-711, gk-191, gk-193, gk-395, apk-4-5, apk-125-126, nk-333-21]
+    norms: [gk-746, gk-711, gk-191, gk-193, gk-395, apk-4-5, apk-125-126, nk-333-21, apk-35, apk-37]
     mechanisms:
       - определение первого дня просрочки
       - состав базы долга
@@ -57,7 +57,7 @@ documents:
   - path: products-storage/01-zakrytie-rabot/12-pretenziya-na-neoplatu-po-ks-2.docx
     generator: projects/marzha_v_betone/product/build/01-pretenziya.js
     legally_significant: true
-    norms: [gk-711, gk-746, gk-753, gk-395, gk-314, gk-193, apk-4-5, apk-128-148, nk-333-40]
+    norms: [gk-711, gk-746, gk-753, gk-395, gk-314, gk-193, apk-4-5, apk-128-148, nk-333-40, apk-110, goskomstat-100, gk-202]
     mechanisms:
       - обязательный досудебный порядок и точка отсчёта срока ожидания
       - соотношение процентов по ст. 395 и договорной неустойки
@@ -72,7 +72,7 @@ documents:
   - path: products-storage/01-zakrytie-rabot/14-raschet-procentov-395-gk.xlsx
     generator: projects/marzha_v_betone/product/build/03-raschet.py
     legally_significant: true
-    norms: [gk-395, gk-191, gk-193, ppvs-7-2016]
+    norms: [gk-395, gk-191, gk-193, ppvs-7-2016, gk-319]
     mechanisms:
       - порядок расчёта процентов по ключевой ставке с разбивкой по периодам
       - учёт частичных оплат в основном долге
@@ -80,7 +80,7 @@ documents:
   - path: products-storage/01-zakrytie-rabot/15-algoritm-pri-zaderzhke-oplaty.docx
     generator: projects/marzha_v_betone/product/build/04-algoritm.js
     legally_significant: true
-    norms: [gk-328, gk-719, gk-753, gk-196-200, apk-4-5, fz-127-7]
+    norms: [gk-328, gk-719, gk-753, gk-196-200, apk-4-5, fz-127-7, gk-395, nk-333-21, plenum-54-57, fz-229-8]
     mechanisms:
       - право приостановить встречное исполнение
       - банкротная развилка и реестр публикации намерения
@@ -88,7 +88,7 @@ documents:
   - path: products-storage/01-zakrytie-rabot/16-iskovoe-zayavlenie-o-vzyskanii.docx
     generator: projects/marzha_v_betone/product/build/05-isk.js
     legally_significant: true
-    norms: [gk-711, gk-746, gk-753, gk-395, apk-4-5, apk-125-126, apk-128-148, nk-333-21]
+    norms: [gk-711, gk-746, gk-753, gk-395, apk-4-5, apk-125-126, apk-128-148, nk-333-21, apk-27, apk-28, apk-35, apk-37, apk-103, apk-110, gk-309, gk-310, gk-330]
     mechanisms:
       - состав искового заявления и приложений
       - сведения о примирении и об обеспечительных мерах

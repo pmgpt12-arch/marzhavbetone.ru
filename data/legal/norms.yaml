@@ -185,3 +185,133 @@ norms:
     fallback_sources: [https://www.consultant.ru/document/cons_doc_LAW_195783/]
     edition_marker: ред. от 22.06.2021
     recheck_after: 2026-11-15
+
+# ── Добавлено 16.08.2026: нормы, на которые документы опираются, но
+# которых в контуре не было. Найдены не чтением, а проверкой
+# `tools/check_legal_coverage.py`: она сравнивает правовые ссылки самих
+# документов с реестром и дала семнадцать непокрытых ссылок.
+#
+# Из четырнадцати единиц ниже двенадцать вытекают прямо из текста
+# документов. Две — `gk-202` и `apk-103` — в тексте не названы ни разу
+# (проверено поиском): они нужны под утверждения, которые документы
+# делают. Про течение исковой давности в претензии и про цену иска.
+# Записаны сюда потому, что утверждение без нормы за ним — то же
+# непокрытое место, только проверкой его не поймать.
+#
+# У трёх норм адрес официального публикатора не заполнен: проверенного
+# идентификатора нет, а угадывать его нельзя — прошлые два раза
+# `nd=102078170` оказался чужим документом, а перечень ВС не вёл к
+# постановлению. Добытчик по ним честно вернёт not_verified.
+
+
+  - norm_id: gk-202
+    act: ГК РФ часть первая
+    article: "202"
+    title: Приостановление течения срока исковой давности
+    document_match: [гражданский кодекс, часть первая]
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    recheck_after: 2026-11-15
+
+  - norm_id: gk-309
+    act: ГК РФ часть первая
+    article: "309"
+    title: Общие положения об исполнении обязательств
+    document_match: [гражданский кодекс, часть первая]
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    recheck_after: 2026-11-15
+
+  - norm_id: gk-310
+    act: ГК РФ часть первая
+    article: "310"
+    title: Недопустимость одностороннего отказа от исполнения обязательства
+    document_match: [гражданский кодекс, часть первая]
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    recheck_after: 2026-11-15
+
+  - norm_id: gk-319
+    act: ГК РФ часть первая
+    article: "319"
+    title: Очередность погашения требований по денежному обязательству
+    document_match: [гражданский кодекс, часть первая]
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    recheck_after: 2026-11-15
+
+  - norm_id: gk-330
+    act: ГК РФ часть первая
+    article: "330"
+    title: Понятие неустойки
+    document_match: [гражданский кодекс, часть первая]
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    recheck_after: 2026-11-15
+
+  - norm_id: apk-27
+    act: АПК РФ
+    article: "27"
+    title: Подведомственность дел арбитражному суду
+    document_match: [арбитражный процессуальный кодекс]
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
+    recheck_after: 2026-10-15
+
+  - norm_id: apk-28
+    act: АПК РФ
+    article: "28"
+    title: Подведомственность экономических споров из гражданских правоотношений
+    document_match: [арбитражный процессуальный кодекс]
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
+    recheck_after: 2026-10-15
+
+  - norm_id: apk-35
+    act: АПК РФ
+    article: "35"
+    title: Предъявление иска по месту нахождения или месту жительства ответчика
+    document_match: [арбитражный процессуальный кодекс]
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
+    recheck_after: 2026-10-15
+
+  - norm_id: apk-37
+    act: АПК РФ
+    article: "37"
+    title: Договорная подсудность
+    document_match: [арбитражный процессуальный кодекс]
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
+    recheck_after: 2026-10-15
+
+  - norm_id: apk-103
+    act: АПК РФ
+    article: "103"
+    title: Цена иска
+    document_match: [арбитражный процессуальный кодекс]
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
+    recheck_after: 2026-10-15
+
+  - norm_id: apk-110
+    act: АПК РФ
+    article: "110"
+    title: Распределение судебных расходов между лицами, участвующими в деле
+    document_match: [арбитражный процессуальный кодекс]
+    official_source: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
+    recheck_after: 2026-10-15
+
+  - norm_id: fz-229-8
+    act: ФЗ от 02.10.2007 № 229-ФЗ
+    article: "8"
+    title: Исполнение требований, содержащихся в исполнительном документе, банком
+    document_match: [об исполнительном производстве]
+    official_source: ''   # идентификатор не проверен — нужен владельцу
+    recheck_after: 2026-10-15
+
+  - norm_id: plenum-54-57
+    act: Постановление Пленума ВС РФ от 22.11.2016 № 54
+    article: "п. 57"
+    title: О некоторых вопросах применения общих положений ГК РФ об обязательствах и их исполнении
+    document_match: [пленума верховного суда, "№ 54"]
+    official_source: ''   # идентификатор не проверен — нужен владельцу
+    recheck_after: 2026-11-15
+
+  - norm_id: goskomstat-100
+    act: Постановление Госкомстата России от 11.11.1999 № 100
+    article: "—"
+    title: Унифицированные формы первичной учётной документации по учёту работ в капитальном строительстве (КС-2, КС-3)
+    document_match: [госкомстат, "№ 100"]
+    official_source: ''   # идентификатор не проверен — нужен владельцу
+    recheck_after: 2026-10-15

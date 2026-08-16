@@ -50,7 +50,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from legal_evidence import (  # noqa: E402
-    NOT_VERIFIED, OFFICIAL, SECONDARY, write)
+    NOT_VERIFIED, OFFICIAL, SECONDARY, verify, write)
 from legal_extract import (  # noqa: E402
     decode_body, extract, find_document_links, identifies_act,
     ips_document_url, ips_print_url, looks_damaged, looks_truncated,
@@ -487,6 +487,9 @@ def main() -> int:
     ap.add_argument("--show", action="store_true", help="показать, не записывая")
     ap.add_argument("--debug", action="store_true",
                     help="показать фактический ответ и разбор, ничего не писать")
+    ap.add_argument("--refresh", action="store_true",
+                    help="перечитать и те нормы, по которым доказательство уже "
+                         "есть и годно (по умолчанию они пропускаются)")
     ap.add_argument("--capture", metavar="КАТАЛОГ",
                     help="сохранить диагностические слепки для сборки фикстур")
     args = ap.parse_args()
@@ -531,7 +534,25 @@ def main() -> int:
         return klass if text or klass != NOT_VERIFIED else (
             "транспорт" if "недоступен" in note else NOT_VERIFIED)
 
-    исходы = {norm["norm_id"]: взять(norm) for norm in norms}
+    # Годное официальное доказательство второй раз не качается. Причина
+    # замером 16.08.2026: реестр вырос с 17 норм до 31, и перечитывать ради
+    # четырнадцати недостающих семнадцать добытых значит грузить чужой
+    # сервер семью мегабайтами впустую и заново рисковать таймаутом на том,
+    # что уже доказано. Хеш при этом не меняется — перечит не «обновляет»
+    # норму, а повторяет её.
+    готовы = set()
+    if not args.refresh:
+        for norm in norms:
+            h, why = verify(norm["norm_id"])
+            if h and not why:
+                готовы.add(norm["norm_id"])
+        if готовы:
+            print(f"Уже есть годное официальное доказательство: {len(готовы)} — "
+                  "пропускаются (перечитать: --refresh).\n")
+
+    исходы = {n["norm_id"]: OFFICIAL for n in norms if n["norm_id"] in готовы}
+    исходы.update({norm["norm_id"]: взять(norm)
+                   for norm in norms if norm["norm_id"] not in готовы})
 
     # Второй заход по тем, кто упал на транспорте. Замеры владельца
     # 16.08.2026: три нормы АПК дважды подряд закончились WinError 10060, и

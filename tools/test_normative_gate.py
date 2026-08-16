@@ -254,6 +254,23 @@ def m_all_official(tmp: Path) -> None:
                  encoding="utf-8")
 
 
+def m_result_misses_norm(tmp: Path) -> None:
+    """Реестр расширился, результат остался на прежнем наборе норм.
+
+    Причина замером 16.08.2026: контур вырос с 17 норм до 31, а шесть
+    результатов сверки покрывали прежние. Сверка по половине применимых
+    норм это не сверка документа, и без этого правила гейт её принимал бы.
+    """
+    m_all_green(tmp)
+    path = tmp / "data/legal/document-norms.yaml"
+    s = path.read_text(encoding="utf-8")
+    # Норма реестра, которой в этом документе нет: добавленная в mapping,
+    # она обязана попасть в «не покрыто сверкой».
+    assert "gk-330" not in s.split("norms: [gk-746")[1].split("]")[0]
+    path.write_text(s.replace("norms: [gk-746", "norms: [gk-330, gk-746", 1),
+                    encoding="utf-8")
+
+
 def m_all_green(tmp: Path) -> None:
     """Привести песочницу к состоянию, где сходится всё.
 
@@ -269,12 +286,28 @@ def m_all_green(tmp: Path) -> None:
     tempdir и на выпуск не влияет; ослаблением было бы обратное, править
     настоящий результат ради зелени.
     """
+    import importlib
+    sys.path.insert(0, str(tmp / "tools"))
+    import legal_evidence
+    importlib.reload(legal_evidence)
+    legal_evidence.ROOT = tmp
+    legal_evidence.EVIDENCE_DIR = tmp / "data/legal/evidence"
+
+    mapping = {d["path"]: d for d in yaml.safe_load(
+        (tmp / "data/legal/document-norms.yaml").read_text("utf-8"))["documents"]}
     path = tmp / "data/legal/normative-results.yaml"
     data = yaml.safe_load(path.read_text("utf-8"))
     for result in data["results"]:
         result["verdict"] = "PASS"
         result["escalation_required"] = False
         result["recheck"] = ""
+        # Набор сверенных норм собирается из mapping, а не берётся из
+        # живого результата: реестр растёт, и базовый случай не должен
+        # краснеть от его пополнения.
+        result["norms_checked"] = [
+            {"norm_id": nid, "source_class": "official",
+             "source_hash": legal_evidence.verify(nid)[0]}
+            for nid in mapping[result["document"]]["norms"]]
     path.write_text(yaml.safe_dump(data, allow_unicode=True, sort_keys=False),
                     encoding="utf-8")
 
@@ -292,7 +325,8 @@ CASES = [
     ("10. текст доказательства правлен мимо инструмента", m_evidence_tampered, True),
     ("11. human-review не заменяет официальный текст", m_human_review_cannot_fix_source, True),
     ("12. доказательств нет вовсе — состояние на сегодня", m_no_evidence_at_all, True),
-    ("13. всё сходится — гейт зеленеет", m_all_green, False),
+    ("13. сверка не покрыла применимые нормы", m_result_misses_norm, True),
+    ("14. всё сходится — гейт зеленеет", m_all_green, False),
 ]
 
 
