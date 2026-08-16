@@ -7,10 +7,14 @@
 и переполняться вбок, и растягиваться на два десятка экранов — ни одну из
 этих поломок телефонная проверка не видит по устройству.
 
-Проверяется на трёх ширинах — 1366, 1440, 1920. Это не «популярные
-разрешения вообще», а три разных режима вёрстки сайта: 1366 ниже
-брейкпоинта 1600, 1440 между 1100 и 1600, 1920 выше обоих. Ширина, не
+Проверяется на четырёх ширинах — 1366, 1440, 1600, 1920. Это не «популярные
+разрешения вообще», а разные режимы вёрстки сайта: 1366 и 1440 в ветке
+1100+, 1600 — сама граница `desktop-wide.css`, 1920 выше обеих. Ширина, не
 меняющая ни одной ветки CSS, ничего бы не проверяла.
+
+Граница проверяется отдельно от того, что за ней: дефект широкого монитора
+16.08.2026 включался ровно на 1600, а в списке стояли 1440 и 1920 — то есть
+сама точка переключения не бралась ни разу.
 
   1. страница не уходит в горизонтальную прокрутку;
   2. ни один элемент не вылезает за свой контейнер — карточка, у которой
@@ -339,31 +343,41 @@ WORDBREAK_SCRIPT = """() => {
 # (U+00AD) в составе оставлен: разрыв по нему — это уже искусственная
 # расстановка переносов, то есть ровно то, что ищем.
 REALBREAK_SCRIPT = """() => {
-  const root = document.querySelector('.product-grid') || document.body;
+  // Область — карточки, а не вся страница. Первая редакция откатывалась на
+  // document.body там, где витрины нет, и строила диапазон на каждое слово
+  // разбора: на длинной статье это тысячи вызовов getClientRects, шаг
+  // прогона рос минутами. Заодно проверка уходила за свою тему — «из-за» в
+  // тексте товара к вёрстке каталога отношения не имеет.
+  const grids = document.querySelectorAll('.product-grid');
+  const roots = grids.length ? [...grids]
+                            : [...document.querySelectorAll('.product-card')];
+  if (!roots.length) return [];
   const out = [];
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-  let node;
-  while ((node = walker.nextNode())) {
-    const text = node.nodeValue;
-    if (!text || !text.trim()) continue;
-    const cs = getComputedStyle(node.parentElement);
-    if (cs.display === 'none' || cs.visibility === 'hidden') continue;
-    const re = /[\\p{L}\\p{N}][\\p{L}\\p{N}\\u00ad]*/gu;
-    let m;
-    while ((m = re.exec(text))) {
-      const word = m[0];
-      if (word.length < 4) continue;
-      const r = document.createRange();
-      r.setStart(node, m.index);
-      r.setEnd(node, m.index + word.length);
-      const rects = [...r.getClientRects()];
-      if (rects.length < 2) continue;
-      if (new Set(rects.map(x => Math.round(x.top))).size < 2) continue;
-      const el = node.parentElement;
-      out.push('слово «' + word + '» разорвано между строками в '
-               + el.tagName.toLowerCase()
-               + (el.className ? '.' + String(el.className).split(/\\s+/)[0] : ''));
-      if (out.length >= 8) return out;
+  for (const root of roots) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    let node;
+    while ((node = walker.nextNode())) {
+      const text = node.nodeValue;
+      if (!text || !text.trim()) continue;
+      const cs = getComputedStyle(node.parentElement);
+      if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+      const re = /[\\p{L}\\p{N}][\\p{L}\\p{N}\\u00ad]*/gu;
+      let m;
+      while ((m = re.exec(text))) {
+        const word = m[0];
+        if (word.length < 4) continue;
+        const r = document.createRange();
+        r.setStart(node, m.index);
+        r.setEnd(node, m.index + word.length);
+        const rects = [...r.getClientRects()];
+        if (rects.length < 2) continue;
+        if (new Set(rects.map(x => Math.round(x.top))).size < 2) continue;
+        const el = node.parentElement;
+        out.push('слово «' + word + '» разорвано между строками в '
+                 + el.tagName.toLowerCase()
+                 + (el.className ? '.' + String(el.className).split(/\\s+/)[0] : ''));
+        if (out.length >= 8) return out;
+      }
     }
   }
   return out;

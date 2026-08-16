@@ -52,7 +52,7 @@ jobs:
       - name: Телефон — 390px
         run: python3 tools/check_mobile.py
 
-      - name: Десктоп — 1366, 1440, 1920
+      - name: Десктоп — 1366, 1440, 1600, 1920
         run: python3 tools/check_desktop.py
 
       # Корзина проверяется кликом, а не чтением разметки: связь страницы
