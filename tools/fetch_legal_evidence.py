@@ -52,7 +52,7 @@ from legal_evidence import (  # noqa: E402
     NOT_VERIFIED, OFFICIAL, SECONDARY, write)
 from legal_extract import (  # noqa: E402
     decode_body, extract, find_document_links, ips_document_url,
-    looks_damaged, page_title, parse_units, strip_html)
+    ips_print_url, looks_damaged, page_title, parse_units, strip_html)
 
 ROOT = Path(__file__).resolve().parent.parent
 NORMS = ROOT / "data" / "legal" / "norms.yaml"
@@ -68,12 +68,66 @@ RETRIES = 3
 BACKOFF = (2, 5)
 
 
+# Пауза между обращениями к одному хосту. Причина замером 16.08.2026: в
+# прогоне владельца оболочка НК на втором обращении вернула 4 559 байт
+# вместо 106 070 — портал отвечает короткой страницей под частым запросом.
+# Тот же прогон дёргал один и тот же документ по разу на норму: фрейм ГК
+# части первой качался шесть раз по полмегабайта. Ниже и пауза, и память.
+POLITE_PAUSE = 1.5
+
+# Ответы за прогон: один адрес — одно обращение. Семнадцать норм стоят на
+# шести актах, и без этого каждая тянет чужой мегабайт заново.
+_CACHE: dict[str, dict] = {}
+_LAST_CALL = [0.0]
+
+# Куда складывать все ответы прогона. Ставится один раз в main.
+_SINK: list = [None]
+
+
 class Unreachable(RuntimeError):
     """Источник не ответил. Причина называется кодом, а не словом «не смог»."""
 
 
+def _store(url: str, resp: dict) -> None:
+    """Сохранить фактический ответ. Имя — по содержимому, а не по адресу.
+
+    Первый захват именовал файл хешем адреса и не перезаписывал уже
+    существующий. Замер 16.08.2026 показал, чем это плохо: у `nk-333-40` в
+    слепке записано 4 559 байт, а на диске лежал файл на 106 070 от
+    прошлого обращения к тому же адресу. Слепок и байты разошлись, и
+    разобрать по ним отказ было нельзя.
+
+    Второй дефект того же ряда: сохранялся только последний ответ нормы.
+    Ответы фрейма — то единственное, что объясняет двенадцать отказов, — не
+    сохранялись вовсе. Теперь пишется каждый.
+    """
+    sink = _SINK[0]
+    if sink is None:
+        return
+    pages = sink / "pages"
+    pages.mkdir(parents=True, exist_ok=True)
+    digest = hashlib.sha1(resp["raw"]).hexdigest()[:16]
+    path = pages / f"{digest}.html"
+    if not path.exists():
+        path.write_bytes(resp["raw"])
+    index = sink / "responses.json"
+    log = json.loads(index.read_text(encoding="utf-8")) if index.exists() else []
+    log.append({"url": url, "final_url": resp["final_url"],
+                "status": resp["status"], "length": resp["length"],
+                "charset": resp["charset"], "damaged": resp["damaged"],
+                "page_file": f"pages/{path.name}"})
+    index.write_text(json.dumps(log, ensure_ascii=False, indent=2),
+                     encoding="utf-8")
+
+
 def fetch(url: str) -> dict:
     """Ответ вместе с обстоятельствами: они нужны и для разбора, и для отказа."""
+    if url in _CACHE:
+        return _CACHE[url]
+    pause = POLITE_PAUSE - (time.monotonic() - _LAST_CALL[0])
+    if _LAST_CALL[0] and pause > 0:
+        time.sleep(pause)
+    _LAST_CALL[0] = time.monotonic()
     last = ""
     for attempt in range(1, RETRIES + 1):
         req = urllib.request.Request(
@@ -84,7 +138,7 @@ def fetch(url: str) -> dict:
                 raw = resp.read()
                 body, codec = decode_body(
                     raw, resp.headers.get_content_charset() or "")
-                return {
+                out = {
                     "status": resp.status,
                     "final_url": resp.geturl(),
                     "content_type": resp.headers.get("Content-Type", ""),
@@ -95,6 +149,9 @@ def fetch(url: str) -> dict:
                     "body": body,
                     "attempts": attempt,
                 }
+                _CACHE[url] = out
+                _store(url, out)
+                return out
         except urllib.error.HTTPError as e:
             raise Unreachable(f"код {e.code}") from e
         except Exception as e:
@@ -150,6 +207,19 @@ def probe(norm: dict, url: str, follow: bool = True) -> dict:
         paged = _walk_ips_pages(norm, resp["body"], resp["final_url"], card)
         if paged:
             return paged
+
+    # Печатный вид — второй адрес текста, объявленный той же оболочкой.
+    # Замер 16.08.2026: фрейм отдал документ по двум актам из пяти, по трём
+    # вернул ответ без статей. Пробовать объявленный порталом второй путь
+    # дешевле, чем гадать про параметры первого.
+    printed = ips_print_url(resp["body"], resp["final_url"])
+    if printed:
+        deeper = probe(norm, printed, follow=False)
+        card["followed"].append({"url": printed, "ok": deeper.get("ok"),
+                                 "reason": deeper.get("reason", "")})
+        if deeper.get("ok"):
+            deeper["followed"], deeper["reached_from"] = card["followed"], url
+            return deeper
 
     return _walk_search_path(norm, resp["body"], resp["final_url"], card) or card
 
@@ -274,14 +344,7 @@ def capture(card: dict, norm_id: str, out: Path) -> Path:
 
     raw = card.get("raw")
     if raw:
-        pages = out / "pages"
-        pages.mkdir(exist_ok=True)
-        name = hashlib.sha1(
-            (card.get("final_url") or card["url"]).encode()).hexdigest()[:16]
-        page = pages / f"{name}.html"
-        if not page.exists():
-            page.write_bytes(raw)
-        payload["page_file"] = f"pages/{page.name}"
+        payload["page_file"] = "pages/" + hashlib.sha1(raw).hexdigest()[:16] + ".html"
 
     path = out / f"{norm_id}.json"
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2),
@@ -346,6 +409,7 @@ def main() -> int:
             return 1
 
     out = Path(args.capture) if args.capture else None
+    _SINK[0] = out
 
     if args.debug:
         for norm in norms:

@@ -11,16 +11,16 @@
 Случаи ниже **синтетические и названы синтетическими**: они воспроизводят
 формы, которые публикаторы дают заведомо, а не байты конкретной страницы.
 
-Четыре теста работают по настоящим данным — шести страницам, снятым с
-машины владельца 16.08.2026 и сохранённым **байтами**. Они держат
-кодировку, распознавание оболочки ИПС, адрес текста внутри неё и вердикт
-по каждому уникальному ответу. Синтетика доказательством починки не
-считается там, где есть настоящие байты.
+Пять тестов работают по настоящим байтам, сохранённым захватом с машины
+владельца. Они держат кодировку, наличие пути к тексту, печатный вид у
+каждой оболочки, извлечение из настоящего фрейма и полноту составной
+нормы. Синтетика доказательством починки не считается там, где есть
+настоящие байты.
 
-Прежний тест на испорченные слепки снят: он описывал состояние до
-повторного захвата, и после починки кодировки перестал быть верным. Его
-работу делает `test_кодировка_реальных_страниц_определяется_верно`, и
-делает строже — на байтах, а не на пересказе.
+Ни один из них не закрепляет **счёт** страниц или вердиктов: набор растёт
+с каждым захватом, и прибитый к снимку тест краснеет на пополнении
+доказательств, а не на дефекте. Так уже случилось дважды — с тестом на
+испорченные слепки и с тестом на пять оболочек. Закрепляются свойства.
 """
 from __future__ import annotations
 
@@ -31,8 +31,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from legal_extract import (  # noqa: E402
     ARTICLE, MIN_UNIT_CHARS, POINT, decode_body, extract, find_article,
-    find_document_links, ips_document_url, looks_damaged, page_title,
-    parse_units, strip_html)
+    find_document_links, ips_document_url, ips_print_url, looks_damaged,
+    page_title, parse_units, strip_html)
 
 FIXTURES = Path(__file__).resolve().parent.parent / "data" / "legal" / "fixtures"
 
@@ -239,92 +239,124 @@ def test_адрес_текста_акта_берётся_из_оболочки_�
     assert ips_document_url("<html><body>нет фрейма</body></html>", base) == ""
 
 
-def test_оболочка_ипс_распознана_во_всех_сохранённых_страницах():
-    """Пять актов на настоящих байтах: адрес текста находится у каждого."""
-    pages = FIXTURES / "pages"
-    if not pages.exists():
-        print("      (байтов страниц нет)")
-        return
-    missing = []
-    for shot in sorted(FIXTURES.glob("*.json")):
+def _real_pages():
+    """(norm_id, норма, html, карточка) по каждому сохранённому ответу."""
+    import yaml
+    fx = FIXTURES
+    if not (fx / "pages").exists():
+        return []
+    registry = {n["norm_id"]: n for n in yaml.safe_load(
+        (fx.parent / "norms.yaml").read_text(encoding="utf-8"))["norms"]}
+    out = []
+    for shot in sorted(fx.glob("*.json")):
+        if shot.name == "responses.json":
+            continue
         card = json.loads(shot.read_text(encoding="utf-8"))
         page = card.get("page_file")
-        if not page or not (FIXTURES / page).exists():
-            continue
-        html, _ = decode_body((FIXTURES / page).read_bytes())
-        if "pravo.gov.ru" not in (card.get("final_url") or ""):
-            continue
-        if not ips_document_url(html, card["final_url"]):
-            missing.append(shot.stem)
-    assert not missing, ("оболочка ИПС без адреса текста: "
-                         + ", ".join(missing))
+        if page and (fx / page).exists():
+            html, _ = decode_body((fx / page).read_bytes())
+            out.append((shot.stem, registry[shot.stem], html, card))
+    return out
 
 
-def test_вердикт_по_каждому_реальному_ответу():
-    """По каждому уникальному ответу — явный вердикт на его настоящих байтах.
+def test_каждый_сохранённый_ответ_декодируется_без_порчи():
+    """Кодировка доказывается настоящими байтами, а не синтетикой.
 
-    Замер 16.08.2026 по шести сохранённым страницам. Пять из них — оболочка
-    ИПС: код 200, кодировка windows-1251, декодируется без порчи, заголовок
-    акта на месте, слово «Статья» встречается **ноль раз**. Текста акта в
-    этом ответе нет вовсе, он во фрейме `doc_itself`. Шестая — перечень
-    документов Верховного Суда, UTF-8, тоже без текста постановления.
-
-    Отсюда вердикты: ни один ответ не EXTRACTABLE DIRECTLY, пять —
-    REQUIRES FOLLOW LINK через фрейм, один — WRONG PAGE с переходом по
-    разделу. Тест держит именно это: если завтра портал начнёт отдавать
-    текст сразу, вердикт разойдётся и его придётся пересмотреть осознанно.
+    Счёт страниц здесь не закрепляется: он растёт с каждым захватом, и
+    прибитый к нему тест краснел бы на пополнении доказательств, а не на
+    дефекте. Закрепляется свойство — ни одна страница не декодируется в
+    знаки замены, ни один заголовок не бит.
     """
     pages = FIXTURES / "pages"
     if not pages.exists():
         print("      (байтов страниц нет)")
         return
-    import yaml
-    registry = {n["norm_id"]: n for n in yaml.safe_load(
-        (FIXTURES.parent / "norms.yaml").read_text(encoding="utf-8"))["norms"]}
-
-    verdicts, wrong = {}, []
-    for shot in sorted(FIXTURES.glob("*.json")):
-        card = json.loads(shot.read_text(encoding="utf-8"))
-        page = card.get("page_file")
-        if not page or not (FIXTURES / page).exists():
-            continue
-        norm = registry[shot.stem]
-        html, codec = decode_body((FIXTURES / page).read_bytes())
-        if looks_damaged(html):
-            wrong.append(f"{shot.stem}: декодировано как {codec}, знаки замены")
-            continue
-        body = strip_html(html)
-        if extract(body, norm).ok:
-            verdicts[page] = "EXTRACTABLE DIRECTLY"
-        elif ips_document_url(html, card["final_url"]):
-            verdicts[page] = "REQUIRES FOLLOW LINK"
-        elif find_document_links(html, card["final_url"],
-                                 (norm.get("search_path") or [[]])[0]):
-            verdicts[page] = "WRONG PAGE"
-        else:
-            wrong.append(f"{shot.stem}: ни текста, ни пути к нему — OTHER")
-    assert not wrong, "неразобранные ответы:\n  " + "\n  ".join(wrong)
-    assert len(verdicts) == 6, f"уникальных ответов {len(verdicts)}, ждали 6"
-    tally = {}
-    for v in verdicts.values():
-        tally[v] = tally.get(v, 0) + 1
-    assert tally == {"REQUIRES FOLLOW LINK": 5, "WRONG PAGE": 1}, tally
-
-
-def test_кодировка_реальных_страниц_определяется_верно():
-    """Починка кодировки доказывается настоящими байтами, не синтетикой."""
-    pages = FIXTURES / "pages"
-    if not pages.exists():
-        print("      (байтов страниц нет)")
-        return
-    seen = {}
+    bad = []
     for page in sorted(pages.glob("*.html")):
         text, codec = decode_body(page.read_bytes())
-        seen[page.name] = codec
-        assert not looks_damaged(text), f"{page.name}: порча при {codec}"
-        assert "�" not in page_title(text), f"{page.name}: заголовок битый"
-    assert sorted(seen.values()).count("windows-1251") == 5, seen
-    assert sorted(seen.values()).count("utf-8") == 1, seen
+        if looks_damaged(text) or "\ufffd" in page_title(text):
+            bad.append(f"{page.name}: {codec}")
+    assert not bad, "порча при декодировании:\n  " + "\n  ".join(bad)
+
+
+def test_у_каждого_ответа_есть_текст_или_путь_к_нему():
+    """Главное свойство: тупика быть не должно.
+
+    Ответ либо содержит норму, либо объявляет, где её взять — фреймом,
+    печатным видом или ссылкой перечня. Четвёртого исхода (OTHER) нет, и
+    появление такого исхода означает, что путь к тексту снова потерян.
+    """
+    verdicts = {}
+    for norm_id, norm, html, card in _real_pages():
+        base = card.get("final_url") or card.get("url") or ""
+        if extract(strip_html(html), norm).ok:
+            verdicts[norm_id] = "EXTRACTABLE DIRECTLY"
+        elif ips_document_url(html, base) or ips_print_url(html, base):
+            verdicts[norm_id] = "REQUIRES FOLLOW LINK"
+        elif find_document_links(html, base, (norm.get("search_path")
+                                              or [[]])[0]):
+            verdicts[norm_id] = "WRONG PAGE"
+        else:
+            verdicts[norm_id] = "OTHER"
+    if not verdicts:
+        print("      (байтов страниц нет)")
+        return
+    dead = [n for n, v in verdicts.items() if v == "OTHER"]
+    assert not dead, "ни текста, ни пути к нему: " + ", ".join(dead)
+
+
+def test_печатный_вид_объявлен_каждой_оболочкой_ипс():
+    """Второй путь к тексту, и он есть у всех оболочек, а не у части."""
+    seen, missing = 0, []
+    for norm_id, _, html, card in _real_pages():
+        base = card.get("final_url") or ""
+        if "pravo.gov.ru" not in base or not ips_document_url(html, base):
+            continue          # не оболочка: это уже сам текст
+        seen += 1
+        if not ips_print_url(html, base):
+            missing.append(norm_id)
+    if not seen:
+        print("      (оболочек среди слепков нет)")
+        return
+    assert not missing, "оболочка без печатного вида: " + ", ".join(missing)
+
+
+def test_норма_извлекается_из_настоящего_фрейма():
+    """Успех пяти норм проверяется по байтам, а не по записи в слепке."""
+    checked = 0
+    for norm_id, norm, html, card in _real_pages():
+        if not card.get("ok"):
+            continue
+        res = extract(strip_html(html), norm)
+        assert res.ok, f"{norm_id}: слепок говорит успех, разбор — {res.reason}"
+        assert not res.missing, f"{norm_id}: недобрано {res.missing}"
+        checked += 1
+    if not checked:
+        print("      (успешных слепков нет)")
+
+
+def test_составная_норма_на_настоящем_фрейме_берёт_все_единицы():
+    """Доказательство не может быть половиной нормы.
+
+    Составных норм реестра (196+200, 125+126, 128+148) среди добытых пока
+    нет, поэтому свойство проверяется на том акте, который добыт: две
+    статьи из настоящего фрейма ГК части второй берутся обе, а
+    несуществующая третья роняет весь результат, а не пропускается молча.
+    """
+    frame = None
+    for _, _, html, card in _real_pages():
+        if card.get("ok") and "102039276" in (card.get("final_url") or ""):
+            frame = strip_html(html)
+            break
+    if frame is None:
+        print("      (фрейма ГК части второй среди слепков нет)")
+        return
+    act = "ГК РФ часть вторая"
+    both = extract(frame, {"act": act, "article": "711, 719"})
+    assert both.ok and both.found == ["711", "719"], both.found
+    assert "предварительная оп" in both.text or len(both.text) > 800
+    half = extract(frame, {"act": act, "article": "711, 999"})
+    assert not half.ok and half.missing == ["999"], half.missing
 
 
 def main() -> int:

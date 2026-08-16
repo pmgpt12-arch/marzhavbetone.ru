@@ -146,6 +146,22 @@ def ips_document_url(html: str, base_url: str, page: str = "all") -> str:
     return urljoin(base_url, src)
 
 
+_IPS_PRINT = re.compile(r'\?docview[^"\'\s>]*print=1[^"\'\s>]*')
+
+
+def ips_print_url(html: str, base_url: str) -> str:
+    """Печатный вид документа — второй адрес текста, объявленный оболочкой.
+
+    Замер 16.08.2026: у всех пяти сохранённых оболочек рядом с фреймом
+    стоит `?docview&page=1&print=1&nd=...&rdk=...&&empire=`. Нужен потому,
+    что фрейм `doc_itself` отдал документ только по двум актам из пяти, а
+    по трём — ответ без статей. Это второй объявленный порталом путь к
+    тому же тексту, а не догадка про параметры.
+    """
+    m = _IPS_PRINT.search(html)
+    return urljoin(base_url, m.group(0).replace("&amp;", "&")) if m else ""
+
+
 def find_document_links(html: str, base_url: str,
                         terms: list[str]) -> list[str]:
     """Ссылки страницы, чей текст называет искомый документ.
