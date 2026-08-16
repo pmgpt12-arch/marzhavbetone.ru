@@ -1,0 +1,66 @@
+# Опорный снимок канала Дзена — до изменения фида, ничего не меняющий.
+#
+# Зачем отдельно от `dzen-channel.yml`: тот наблюдает за каналом рядом
+# чисел и коммитит снимки. Этот снимается один раз перед правкой
+# заголовков, печатает сырой ответ площадки целиком и **ничего не пишет в
+# репозиторий** — опорный замер не должен менять то, что меряет.
+#
+# Триггер `pull_request` здесь не для красоты: dzen.ru из облачной сессии
+# закрыт политикой сети (403 на CONNECT, хост в журнале прокси), а
+# `workflow_dispatch` работает только для файла, уже лежащего в main. Пока
+# правка не слита, единственный способ дотянуться до канала с раннера —
+# прогон на самом pull request. Пути сужены до файлов замера, чтобы прогон
+# не запускался на чужих правках.
+name: Опорный снимок канала Дзена
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'tools/dzen_baseline.py'
+      - 'tools/dzen_channel.py'
+      - '.github/workflows/dzen-baseline.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dzen-baseline-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      # Отвечает ли dzen.ru раннеру — не измерялось ни разу. Раннер GitHub
+      # стоит за рубежом, и отказ по географии здесь такой же возможный
+      # исход, как ответ; код печатается строкой, чтобы «не пустили» не
+      # читалось потом как «в канале пусто».
+      - name: Отвечает ли dzen.ru раннеру
+        id: reach
+        run: |
+          code=$(curl -sS -o /tmp/probe.json -w '%{http_code}' --max-time 30 \
+            -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36' \
+            'https://dzen.ru/api/v3/launcher/export?channel_name=marzhavbetone' || echo 000)
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          echo "::notice::Публичный экспорт канала ответил раннеру кодом $code"
+          echo "Первые 400 байт ответа:"
+          head -c 400 /tmp/probe.json || true
+          if [ "$code" != "200" ]; then
+            echo "::error::Раннер до канала не дошёл (код $code). Это «не измерено», а не «в канале пусто»."
+            exit 1
+          fi
+
+      - name: Опорный снимок
+        run: python3 tools/dzen_baseline.py --out /tmp/dzen-raw.json
+
+      - name: Сохранить сырой ответ артефактом
+        if: always() && steps.reach.outputs.code == '200'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dzen-baseline-raw
+          path: /tmp/dzen-raw.json
+          if-no-files-found: warn
