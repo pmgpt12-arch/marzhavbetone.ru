@@ -291,3 +291,24 @@
 @media(max-width:600px){
   .checklist .tools-inline{margin-top:30px;padding-top:24px}
 }
+
+/* Этапы схемы в первом экране — навигация, а не картинка.
+   Замер 16.08.2026: пять этапов выглядели как перечень разделов, но не были
+   ссылками вовсе, и клик по ним не делал ничего. Цели не выдуманы: они взяты
+   из раздела «Что происходит на вашем объекте» той же страницы, где сайт уже
+   объявил соответствие этап → комплект.
+   Кликается вся строка, поэтому коробка строки переезжает с `li` на `a`:
+   ссылка поверх содержимого (position:absolute) осталась бы пустой для
+   скринридера, а `display:contents` до сих пор ломает доступность в старых
+   версиях Safari. */
+.scheme li{padding:0}
+.scheme li>a{display:flex;align-items:center;gap:18px;width:100%;padding:15px 0;color:inherit;text-decoration:none;transition:background-color .15s ease,padding-left .15s ease}
+.scheme li>a::after{content:"→";margin-left:auto;color:#6c6f73;opacity:0;transform:translateX(-5px);transition:opacity .15s ease,transform .15s ease}
+.scheme li>a:hover,.scheme li>a:focus-visible{background:rgba(233,229,220,.07);padding-left:10px}
+.scheme li>a:hover::after,.scheme li>a:focus-visible::after{opacity:1;transform:translateX(0)}
+/* Обводка заметная и не съедается тёмным фоном: клавиатурный фокус на этом
+   блоке иначе не виден вовсе. */
+.scheme li>a:focus-visible{outline:2px solid #ff5a00;outline-offset:-2px}
+.scheme-money>a::after{color:#ff5a00}
+@media(max-width:900px){.scheme li>a{padding:12px 0;gap:14px}}
+@media(max-width:600px){.scheme li>a{padding:11px 0;gap:12px}}
