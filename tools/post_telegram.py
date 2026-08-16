@@ -91,6 +91,13 @@ def parse_post(path: Path) -> dict:
             f"{link}{separator}utm_source=telegram&utm_medium=post"
             f"&utm_campaign={urllib.parse.quote(campaign)}"
         )
+        # utm_content необязателен по стандарту (data/content/rules.yaml) и
+        # сам не выдумывается: campaign уже различает пост от поста. Он нужен
+        # там, где на одну тему уходит несколько ссылок — анонс и повтор,
+        # посев, размещение, — иначе они сольются в один столбец отчёта.
+        variant = meta.get("utm_content", "").strip()
+        if variant:
+            tagged += f"&utm_content={urllib.parse.quote(variant)}"
         text = text.replace("{link}", tagged) if "{link}" in text else f"{text}\n\n{tagged}"
     elif "{link}" in text:
         raise ValueError(f"{path.name}: в тексте есть {{link}}, но в шапке нет link")
