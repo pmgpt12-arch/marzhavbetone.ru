@@ -31,8 +31,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from legal_extract import (  # noqa: E402
     ARTICLE, MIN_UNIT_CHARS, POINT, decode_body, extract, find_article,
-    find_document_links, ips_document_url, ips_print_url, looks_damaged,
-    page_title, parse_units, strip_html)
+    find_document_links, identifies_act, ips_document_url, ips_print_url,
+    looks_damaged, looks_truncated, page_title, parse_units, strip_html)
 
 FIXTURES = Path(__file__).resolve().parent.parent / "data" / "legal" / "fixtures"
 
@@ -283,13 +283,16 @@ def test_у_каждого_ответа_есть_текст_или_путь_к_�
     """Главное свойство: тупика быть не должно.
 
     Ответ либо содержит норму, либо объявляет, где её взять — фреймом,
-    печатным видом или ссылкой перечня. Четвёртого исхода (OTHER) нет, и
-    появление такого исхода означает, что путь к тексту снова потерян.
+    печатным видом или ссылкой перечня, либо честно оборван и повторяется.
+    Запрещён единственный исход — OTHER: код 200, ответ целый, а пути к
+    тексту нет. Он означает, что путь снова потерян и мы этого не заметили.
     """
     verdicts = {}
     for norm_id, norm, html, card in _real_pages():
         base = card.get("final_url") or card.get("url") or ""
-        if extract(strip_html(html), norm).ok:
+        if looks_truncated(html):
+            verdicts[norm_id] = "TRUNCATED — повтор запроса"
+        elif extract(strip_html(html), norm).ok:
             verdicts[norm_id] = "EXTRACTABLE DIRECTLY"
         elif ips_document_url(html, base) or ips_print_url(html, base):
             verdicts[norm_id] = "REQUIRES FOLLOW LINK"
@@ -357,6 +360,104 @@ def test_составная_норма_на_настоящем_фрейме_бе
     assert "предварительная оп" in both.text or len(both.text) > 800
     half = extract(frame, {"act": act, "article": "711, 999"})
     assert not half.ok and half.missing == ["999"], half.missing
+
+
+
+def _responses():
+    """Полный след прогона: (запись, html, текст) по каждому ответу."""
+    index = FIXTURES / "responses.json"
+    if not index.exists():
+        return []
+    out = []
+    for rec in json.loads(index.read_text(encoding="utf-8")):
+        page = FIXTURES / rec["page_file"]
+        if page.exists():
+            html, _ = decode_body(page.read_bytes())
+            out.append((rec, html, strip_html(html)))
+    return out
+
+
+def test_надстрочный_номер_статьи_склеивается():
+    """`Статья 333<span class="W9">21</span>.` — это статья 333.21.
+
+    Так публикатор печатает статьи с дополнительным индексом. После снятия
+    тегов получалось «Статья 333 21», и «Статья 333.21» не находилась ни
+    разу: замер по семимегабайтному печатному виду НК — вхождений ноль при
+    261 найденной статье. На этом стояли оба отказа по НК.
+    """
+    html = ('<p>Статья 333<span class="W9">21</span>. Размеры пошлины</p>'
+            '<p>1. По делам, рассматриваемым судами, пошлина уплачивается в '
+            'следующих размерах, если иное не установлено настоящей статьёй '
+            'и главой 25.3 настоящего Кодекса, с учётом особенностей.</p>'
+            '<p>Статья 333<sup>22</sup>. Особенности уплаты</p>')
+    body = strip_html(html)
+    assert "Статья 333.21." in body, body[:120]
+    assert "Статья 333.22." in body
+    res = extract(body + " " + DOBIVKA, {"act": "НК РФ часть вторая",
+                                         "article": "333.21"})
+    assert res.ok, res.reason
+
+
+def test_нк_извлекается_из_настоящего_печатного_вида():
+    """Сквозная проверка на семи мегабайтах настоящего ответа портала."""
+    got = 0
+    for rec, html, body in _responses():
+        if "print=1&nd=102067058" not in rec["url"]:
+            continue
+        for num in ("333.21", "333.40"):
+            res = extract(body, {"act": "НК РФ часть вторая", "article": num})
+            assert res.ok, f"ст. {num}: {res.reason}"
+            assert len(res.text) > 1000, f"ст. {num}: текста {len(res.text)}"
+            got += 1
+    if not got:
+        print("      (печатного вида НК среди ответов нет)")
+
+
+def test_чужой_документ_по_адресу_реестра_отвергается():
+    """`nd=102078170` отдаёт Распоряжение Правительства, а не АПК.
+
+    Без опознания акта совпадения номера статьи хватило бы, чтобы текст
+    чужого документа лёг в доказательство под именем АПК. Это хуже отказа:
+    гейт получил бы зелень на подложном тексте.
+    """
+    checked = 0
+    for rec, html, body in _responses():
+        if "102078170" not in rec["url"]:
+            continue
+        checked += 1
+        assert not identifies_act(html, body, ["арбитражный процессуальный "
+                                               "кодекс"]), rec["url"]
+    if not checked:
+        print("      (ответов по адресу АПК среди сохранённых нет)")
+
+
+def test_опознание_не_отвергает_настоящие_акты():
+    """Защита не должна ронять то, что уже работает."""
+    pairs = (("102039276", ["гражданский кодекс", "часть вторая"]),
+             ("102067058", ["налоговый кодекс", "часть вторая"]),
+             ("102078527", ["о несостоятельности"]))
+    for nd, terms in pairs:
+        for rec, html, body in _responses():
+            if nd in rec["url"] and ("page=all" in rec["url"]
+                                     or "print=1" in rec["url"]):
+                assert identifies_act(html, body, terms), rec["url"]
+
+
+def test_оборванный_ответ_опознаётся_обрывом():
+    """Код 200, заголовок верный, но `</html>` нет — ответ недокачан."""
+    seen = 0
+    for rec, html, body in _responses():
+        if rec["url"].endswith("nd=102033239") and rec["length"] < 10000:
+            seen += 1
+            assert looks_truncated(html), "обрыв не опознан"
+            assert not ips_document_url(html, rec["url"]), \
+                "в обрезке не может быть фрейма с текстом"
+    for rec, html, body in _responses():
+        if "page=all" in rec["url"]:
+            assert not looks_truncated(html), f"ложный обрыв: {rec['url']}"
+    if not seen:
+        print("      (оборванного ответа среди сохранённых нет)")
+
 
 
 def main() -> int:

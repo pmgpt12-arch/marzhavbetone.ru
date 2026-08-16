@@ -44,6 +44,7 @@ import urllib.error
 import urllib.request
 from datetime import date
 from pathlib import Path
+from urllib.parse import urljoin
 
 import yaml
 
@@ -51,8 +52,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from legal_evidence import (  # noqa: E402
     NOT_VERIFIED, OFFICIAL, SECONDARY, write)
 from legal_extract import (  # noqa: E402
-    decode_body, extract, find_document_links, ips_document_url,
-    ips_print_url, looks_damaged, page_title, parse_units, strip_html)
+    decode_body, extract, find_document_links, identifies_act,
+    ips_document_url, ips_print_url, looks_damaged, looks_truncated,
+    page_title, parse_units, strip_html)
 
 ROOT = Path(__file__).resolve().parent.parent
 NORMS = ROOT / "data" / "legal" / "norms.yaml"
@@ -138,6 +140,15 @@ def fetch(url: str) -> dict:
                 raw = resp.read()
                 body, codec = decode_body(
                     raw, resp.headers.get_content_charset() or "")
+                if looks_truncated(body) and attempt < RETRIES:
+                    # Код 200, но ответ оборван на полуслове. Замер
+                    # 16.08.2026: оболочка ГК части первой пришла на 4 561
+                    # байт вместо 56 248, без `</html>`, и фрейма с текстом
+                    # в обрезке уже не было. Это повод повторить запрос, а
+                    # не докладывать «пути к тексту нет».
+                    last = "ответ оборван (нет закрывающего тега)"
+                    time.sleep(BACKOFF[min(attempt - 1, len(BACKOFF) - 1)])
+                    continue
                 out = {
                     "status": resp.status,
                     "final_url": resp.geturl(),
@@ -178,6 +189,24 @@ def probe(norm: dict, url: str, follow: bool = True) -> dict:
         return {**card, "ok": False, "reason": f"источник недоступен: {e}"}
 
     body = strip_html(resp["body"])
+    if not identifies_act(resp["body"], body, norm.get("document_match") or []):
+        # Адрес в реестре ведёт не на тот акт, и починить его нечем: в
+        # оболочке ИПС ссылок всего шесть — стили, помощь, выгрузка в RTF и
+        # корень портала. Поиска по документам среди них нет. Корень
+        # снимается в захват, чтобы у следующего разбора был материал:
+        # угадывать идентификатор документа нельзя, а искать его надо где-то.
+        if "pravo.gov.ru" in url and _SINK[0] is not None:
+            try:
+                fetch(urljoin(resp["final_url"], "/"))
+            except Unreachable:
+                pass
+        return {**card, "ok": False, "status": resp["status"],
+                "final_url": resp["final_url"], "length": resp["length"],
+                "title": page_title(resp["body"]), "excerpt": body[:1200],
+                "raw": resp["raw"], "followed": [],
+                "reason": ("по адресу лежит другой документ — «"
+                           + (page_title(resp["body"]) or body[:70]).strip()
+                           + "»; адрес в реестре указывает не на тот акт")}
     res = extract(body, norm)
     card = {**card,
             "status": resp["status"], "final_url": resp["final_url"],
