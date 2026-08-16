@@ -55,6 +55,7 @@ from legal_extract import (  # noqa: E402
     decode_body, extract, find_document_links, identifies_act,
     ips_document_url, ips_print_url, looks_damaged, looks_truncated,
     page_title, parse_units, strip_html)
+from legal_pdf import is_pdf, pdf_text  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 NORMS = ROOT / "data" / "legal" / "norms.yaml"
@@ -65,9 +66,9 @@ UA = "marzhavbetone-legal-evidence/1.1 (+normative gate bootstrap)"
 # секунд не «мало вообще», а мало для этого хоста; повтор с паузой дешевле
 # ручного перезапуска. Исчерпание повторов даёт NOT_VERIFIED с числом
 # попыток в причине, а не молчаливый пропуск.
-TIMEOUT = 45
-RETRIES = 3
-BACKOFF = (2, 5)
+TIMEOUT = 90
+RETRIES = 5
+BACKOFF = (3, 8, 20, 40)
 
 
 # Пауза между обращениями к одному хосту. Причина замером 16.08.2026: в
@@ -80,6 +81,7 @@ POLITE_PAUSE = 1.5
 # Ответы за прогон: один адрес — одно обращение. Семнадцать норм стоят на
 # шести актах, и без этого каждая тянет чужой мегабайт заново.
 _CACHE: dict[str, dict] = {}
+_FAILED: dict[str, str] = {}
 _LAST_CALL = [0.0]
 
 # Куда складывать все ответы прогона. Ставится один раз в main.
@@ -109,7 +111,8 @@ def _store(url: str, resp: dict) -> None:
     pages = sink / "pages"
     pages.mkdir(parents=True, exist_ok=True)
     digest = hashlib.sha1(resp["raw"]).hexdigest()[:16]
-    path = pages / f"{digest}.html"
+    suffix = "pdf" if is_pdf(resp["raw"]) else "html"
+    path = pages / f"{digest}.{suffix}"
     if not path.exists():
         path.write_bytes(resp["raw"])
     index = sink / "responses.json"
@@ -126,6 +129,12 @@ def fetch(url: str) -> dict:
     """Ответ вместе с обстоятельствами: они нужны и для разбора, и для отказа."""
     if url in _CACHE:
         return _CACHE[url]
+    if url in _FAILED:
+        # Замер владельца 16.08.2026: три нормы АПК стоят на одном акте, и
+        # таймаут по нему повторился трижды по пять попыток — пятнадцать
+        # ожиданий вместо пяти. Исчерпанный адрес помнится так же, как
+        # удачный: это тот же факт, только отрицательный.
+        raise Unreachable(_FAILED[url])
     pause = POLITE_PAUSE - (time.monotonic() - _LAST_CALL[0])
     if _LAST_CALL[0] and pause > 0:
         time.sleep(pause)
@@ -138,9 +147,15 @@ def fetch(url: str) -> dict:
         try:
             with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
                 raw = resp.read()
-                body, codec = decode_body(
-                    raw, resp.headers.get_content_charset() or "")
-                if looks_truncated(body) and attempt < RETRIES:
+                if is_pdf(raw):
+                    # PDF не разметка: опознавать его как HTML нельзя, и
+                    # проверка обрыва по закрывающему тегу к нему тоже не
+                    # применяется — тега там нет по устройству формата.
+                    body, codec = pdf_text(raw), "pdf"
+                else:
+                    body, codec = decode_body(
+                        raw, resp.headers.get_content_charset() or "")
+                if codec != "pdf" and looks_truncated(body) and attempt < RETRIES:
                     # Код 200, но ответ оборван на полуслове. Замер
                     # 16.08.2026: оболочка ГК части первой пришла на 4 561
                     # байт вместо 56 248, без `</html>`, и фрейма с текстом
@@ -169,7 +184,8 @@ def fetch(url: str) -> dict:
             last = f"{type(e).__name__}: {e}"
             if attempt < RETRIES:
                 time.sleep(BACKOFF[min(attempt - 1, len(BACKOFF) - 1)])
-    raise Unreachable(f"{last} — попыток {RETRIES}")
+    _FAILED[url] = f"{last} — попыток {RETRIES}"
+    raise Unreachable(_FAILED[url])
 
 
 def probe(norm: dict, url: str, follow: bool = True) -> dict:
