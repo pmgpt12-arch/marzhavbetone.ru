@@ -91,3 +91,9 @@ body{font-family:"Segoe UI Variable","Segoe UI",Arial,sans-serif}.sales-solution
   .topbar .nav-cta{margin-left:auto}
   .topbar .cart-toggle{background:transparent;border:1px solid var(--line);color:var(--ink)}
 }
+
+/* Текущий раздел в шапке. Подсветка добавляет признак текущей ссылке и
+   ничего не отнимает у остальных: они остаются такой же величины и такими
+   же кликабельными — иначе навигация превращается в подпись «вы здесь»,
+   а не в навигацию. */
+.topbar nav a.is-current{color:var(--orange);text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
