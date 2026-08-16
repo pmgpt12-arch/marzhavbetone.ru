@@ -112,10 +112,23 @@ def перенос_допустим(старый: str, новый: str, было
     return True, "правка сводится к объявленному токену и права не касается"
 
 
+class ИсторияНедоступна(RuntimeError):
+    """Прежней версии нет в этом клоне — доказать равенство нечем."""
+
+
 def _старый_текст(path: str, ref: str) -> str:
     """Прежняя версия файла берётся из истории, а не со слов."""
-    blob = subprocess.run(["git", "show", f"{ref}:{path}"], cwd=ROOT,
-                          capture_output=True, check=True).stdout
+    p = subprocess.run(["git", "show", f"{ref}:{path}"], cwd=ROOT,
+                       capture_output=True)
+    if p.returncode != 0:
+        # Замер 16.08.2026: на клоне глубиной 1 (`actions/checkout` по
+        # умолчанию) git отвечает кодом 128, и проверка падала трассировкой.
+        # Отказ обязан быть внятным и обязан быть отказом: нет прежней
+        # версии — нет и доказательства, а зеленеть на этом нельзя.
+        raise ИсторияНедоступна(
+            f"версия {ref[:12]} недоступна в этом клоне: git вернул "
+            f"{p.returncode}. Нужна полная история — fetch-depth: 0")
+    blob = p.stdout
     with tempfile.NamedTemporaryFile(suffix=Path(path).suffix,
                                      delete=False) as f:
         f.write(blob)
@@ -154,7 +167,12 @@ def main() -> int:
             отказов += 1
             continue
 
-        старый, хеш_старого = _старый_текст(з["document"], з["from_ref"])
+        try:
+            старый, хеш_старого = _старый_текст(з["document"], з["from_ref"])
+        except ИсторияНедоступна as e:
+            print(f"  ✗ {имя}: {e}")
+            отказов += 1
+            continue
         новый = текст(ROOT / з["document"])
         хеш_нового = semantic_hash(ROOT / з["document"])
 
