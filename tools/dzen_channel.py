@@ -18,6 +18,7 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import re
 import sys
@@ -43,20 +44,63 @@ STOP_WORDS = {
 }
 
 
-def fetch_items(channel: str = CHANNEL) -> list[dict]:
-    request = urllib.request.Request(
-        API.format(channel=channel), headers={"User-Agent": USER_AGENT}
-    )
+def fetch_page(url: str) -> dict:
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
-            payload = json.loads(response.read())
+            return json.loads(response.read())
     except urllib.error.URLError as exc:
         raise RuntimeError(f"Не удалось получить канал: {exc}") from exc
     except json.JSONDecodeError as exc:
         raise RuntimeError(
             "Дзен ответил не JSON — вероятно, поменялся адрес API"
         ) from exc
-    return payload.get("items") or []
+
+
+def fetch_items(channel: str = CHANNEL, max_pages: int = 10) -> list[dict]:
+    """Все публикации канала, а не первая страница.
+
+    Страницу площадка отдаёт по двадцать штук и продолжение кладёт в `more`.
+    Первый живой замер 16.08.2026 это и показал: в ответе ровно 20 записей,
+    а самых старых ручных публикаций в них нет — счёт по одной странице
+    занизил бы канал и показал бы «пропавшие» материалы, которых никто не
+    терял.
+    """
+    items, url, seen_urls = [], API.format(channel=channel), set()
+    for _ in range(max_pages):
+        if not url or url in seen_urls:
+            break
+        seen_urls.add(url)
+        payload = fetch_page(url)
+        page = payload.get("items") or []
+        if not page:
+            break
+        items.extend(page)
+        more = payload.get("more") or {}
+        url = more.get("link") if isinstance(more, dict) else None
+    return items
+
+
+def channel_meta(channel: str = CHANNEL) -> dict:
+    """Что площадка говорит о самом канале, включая подписчиков.
+
+    Подписчики здесь есть — вопреки тому, что считалось. Прежде было
+    записано, что публичный экспорт счётчика не отдаёт и число снимается
+    только с экрана Студии; первый живой ответ 16.08.2026 показал
+    `source.subscribers`, и ручной шаг владельца на этом снимается.
+    """
+    payload = fetch_page(API.format(channel=channel))
+    for item in payload.get("items") or []:
+        source = item.get("source") or {}
+        if source.get("subscribers") is not None:
+            return {
+                "channel": source.get("url"),
+                "title": source.get("title"),
+                "subscribers": source.get("subscribers"),
+                "publisher_id": source.get("publisher_id"),
+                "share_link": source.get("feed_share_link"),
+            }
+    return {}
 
 
 def words(text: str) -> set[str]:
@@ -114,9 +158,18 @@ def expected_from_feed() -> dict[str, str]:
             continue
         title = headlines.get(path.stem)
         if not title:
+            # Ровно то, что кладёт в фид build_rss: og:title без хвоста
+            # бренда. Здесь стоял <h1>, и это давало ложное «не привезено»:
+            # у dolg-zakryvali h1 звучит «...как четыре дома подряд
+            # превратились в 28 млн», а в ленту и в канал ушло
+            # «...случай на 28 млн» (замер 16.08.2026).
             text = path.read_text(encoding="utf-8", errors="replace")
-            found = re.search(r"<h1[^>]*>(.*?)</h1>", text, re.S)
-            title = re.sub(r"<[^>]+>", "", found.group(1)).strip() if found else ""
+            found = re.search(
+                r'<meta[^>]+property=["\']og:title["\'][^>]+content=["\'](.*?)["\']',
+                text,
+            )
+            title = html.unescape(found.group(1)) if found else ""
+            title = re.sub(r"\s*—\s*Маржа в бетоне$", "", title)
         if title:
             expected[path.stem] = title
     return expected

@@ -64,6 +64,16 @@ def main() -> int:
         )
         return 1
 
+    meta = dzen_channel.channel_meta()
+    print("=" * 72)
+    print("КАНАЛ ПО ДАННЫМ САМОЙ ПЛОЩАДКИ")
+    print("=" * 72)
+    for key, value in meta.items():
+        print(f"  {key}: {value}")
+    if not meta:
+        print("  площадка о канале ничего не сказала")
+
+    print()
     print("=" * 72)
     print(f"СЫРОЙ ОТВЕТ ПЛОЩАДКИ, канал {CHANNEL}, публикаций {len(items)}")
     print("=" * 72)
@@ -167,17 +177,42 @@ def main() -> int:
         print("    Ключа даты в ответе не нашлось: вопрос решается по сырому "
               "JSON выше, а не этим разбором.")
     else:
-        days = Counter()
+        from datetime import datetime, timedelta, timezone
+
+        msk = timezone(timedelta(hours=3))
+        days, midnight, odd = Counter(), 0, 0
+        stamps = []
         for item in items:
             _, when = first_key(item, DATE_KEYS)
-            days[str(when)[:10]] += 1
+            try:
+                moment = datetime.fromtimestamp(int(when), msk)
+            except (TypeError, ValueError):
+                days[str(when)[:10]] += 1
+                continue
+            days[moment.strftime("%Y-%m-%d")] += 1
+            stamps.append((moment, item.get("title") or ""))
+            # Привезённое лентой садится ровно на полночь МСК: время берётся
+            # из даты статьи в фиде, а не из момента загрузки. Руками так не
+            # попадают — у ручных стоит 19:42, 12:47, 09:14.
+            if (moment.hour, moment.minute) == (0, 0):
+                midnight += 1
+            else:
+                odd += 1
         for day, count in sorted(days.items()):
             print(f"      {day}: {count}")
-        top = max(days.values())
+        top = max(days.values()) if days else 0
         print(f"\n    Максимум за одну дату: {top} из {len(items)}.")
-        print("    Залпом это называется, если почти всё легло на одну дату;")
-        print("    разнесённый привоз даёт ряд по дням. Вывод — по числам "
-              "выше,\n    а не по этой строке.")
+        print(f"    Ровно в 00:00 МСК: {midnight} — признак привоза лентой.")
+        print(f"    В произвольное время: {odd} — признак ручной публикации.")
+        print("    Залпом называлось бы почти всё на одной дате; ряд по дням "
+              "значит\n    разнесённый привоз. Вывод — по числам выше, а не "
+              "по этой строке.")
+        if stamps:
+            stamps.sort()
+            print(f"\n    Самая ранняя: {stamps[0][0]:%d.%m.%Y %H:%M} МСК — "
+                  f"{stamps[0][1][:60]}")
+            print(f"    Самая поздняя: {stamps[-1][0]:%d.%m.%Y %H:%M} МСК — "
+                  f"{stamps[-1][1][:60]}")
 
     print("\n[9] ПОДПИСЧИКИ: в публичном экспорте канала их нет. "
           "Снимаются только\n    из Студии владельцем.")
