@@ -141,8 +141,8 @@ jobs:
       - name: Остальные проверки репозитория
         run: |
           status=0
-          for check in check_seo check_rss check_packages check_products \
-                       check_free_materials check_covers; do
+          for check in check_seo check_keyword_map check_rss check_packages \
+                       check_products check_free_materials check_covers; do
             echo "::group::$check"
             python3 "tools/$check.py" || status=1
             echo "::endgroup::"
