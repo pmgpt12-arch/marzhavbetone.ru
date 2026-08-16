@@ -25,8 +25,12 @@ HOOKS = REELS_DIR / "hooks.md"
 MAX_CHARS_PER_SECOND = 20
 # Крючок обязан уложиться в первые секунды — дальше зритель уже решил
 MAX_HOOK_END = 4
-# Наша серия. Меняем длительность осознанно, а не потому что так вышло
+# Стартовая партия V1-MVP: длительность одна на все три ролика, иначе
+# результаты не сравнить — в серии меняется только механика.
 EXPECTED_DURATION = 22
+# V2 длительность не фиксирует: ролик собирается из сцен, и число сцен
+# диктует хронометраж. Окно объявлено стандартом.
+V2_DURATION = (20, 30)
 
 REQUIRED_SECTIONS = ["Крючок", "Тело", "Финал", "Оговорка"]
 REQUIRED_FIELDS = ["Механика", "Гипотеза", "Ссылка", "Стандарт"]
@@ -133,7 +137,14 @@ def check(path: Path, mechanics: set[str]) -> list[str]:
         problems.append(
             f"в шапке заявлено {declared.group(1)} с, по кадрам выходит {duration} с"
         )
-    if duration != EXPECTED_DURATION:
+    standard = re.search(r"^\*\*Стандарт:\*\*\s*(\S+)", text, re.M)
+    standard = standard.group(1) if standard else ""
+    if standard == "V2":
+        if not V2_DURATION[0] <= duration <= V2_DURATION[1]:
+            problems.append(
+                f"длительность {duration} с вне окна "
+                f"{V2_DURATION[0]}–{V2_DURATION[1]} с стандарта V2")
+    elif duration != EXPECTED_DURATION:
         problems.append(
             f"длительность {duration} с вместо {EXPECTED_DURATION} с — "
             f"в серии меняется только механика, иначе результаты не сравнить"
@@ -177,6 +188,9 @@ CTA_TYPES = {"DIAGNOSTIC", "FREE_ENTRY", "PRODUCT"}
 STANDARDS = {"V1-MVP", "V2"}
 # Обложка разбора допустима вспомогательным кадром, но не основой ролика
 MAX_COVER_SHARE = 0.5
+# Ролик 20–30 с — это 5–8 визуально разных сцен. Меньше пяти означает,
+# что кадр висит на экране, пока говорит голос.
+MIN_SCENES = 5
 CTA_MIN_SECONDS, CTA_MAX_SECONDS = 2, 4
 CTA_ANCHOR = "ссылка в профиле"
 
@@ -205,12 +219,22 @@ def check_not_slideshow(shots: Path) -> list[str]:
     import yaml
 
     plan = yaml.safe_load(shots.read_text(encoding="utf-8")) or {}
-    total = covers = 0
-    for shot in plan.get("shots", []):
-        seconds = float(shot.get("seconds", 0))
-        total += seconds
-        if str(shot.get("image", "")).startswith("assets/"):
-            covers += seconds
+    if "scenes" in plan:
+        сцены = plan["scenes"]
+        if len(сцены) < MIN_SCENES:
+            return [f"сцен {len(сцены)}, а V2 требует не меньше {MIN_SCENES}: "
+                    f"меньше — это подложка под голос, а не ролик"]
+        total = sum(float(s.get("seconds", 0)) for s in сцены)
+        covers = sum(float(s.get("seconds", 0)) for s in сцены
+                     if str((s.get("props") or {}).get("image", ""))
+                     .startswith("assets/"))
+    else:
+        total = covers = 0
+        for shot in plan.get("shots", []):
+            seconds = float(shot.get("seconds", 0))
+            total += seconds
+            if str(shot.get("image", "")).startswith("assets/"):
+                covers += seconds
     if total and covers / total > MAX_COVER_SHARE:
         return [f"{covers:.0f} с из {total:.0f} — готовые обложки assets/ "
                 f"({covers / total:.0%}); в V2 они вспомогательный кадр, "
@@ -220,7 +244,8 @@ def check_not_slideshow(shots: Path) -> list[str]:
 
 def check_cta(path: Path, text: str, found: list[dict]) -> list[str]:
     stem = re.sub(r"^(\d{2})-.*", r"\1", path.stem)
-    shots = sorted(REELS_DIR.glob(f"shots/{stem}-*.yaml"))
+    shots = (sorted(REELS_DIR.glob(f"shots/{stem}-*.yaml"))
+             or sorted(REELS_DIR.glob(f"scenes/{stem}-*.yaml")))
     if not shots:
         # Черновик: сцен нет, собирать нечего. Готовым он станет вместе с
         # планами — тогда включатся и требования ниже.

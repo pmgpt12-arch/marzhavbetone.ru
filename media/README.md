@@ -35,6 +35,13 @@
 | `01-uderzhanie.mp4` | `content/reels/01-uderzhanie-5-millionov.md` | `captions/01-uderzhanie.txt` | 22,0 с | $0,0030 |
 | `02-avans.mp4` | `content/reels/02-avans-kryuchok.md` | `captions/02-avans.txt` | 22,5 с | $0,0032 |
 | `03-ks2.mp4` | `content/reels/03-ks2-8-millionov.md` | `captions/03-ks2.txt` | 22,0 с | $0,0026 |
+| `07-dopraboty.mp4` | `content/reels/07-dopraboty-ustnaya-komanda.md` | `captions/07-dopraboty.txt` | 30,0 с | $0,0020 + $0,20 кадры |
+
+Ролик 7 — пилот стандарта V2 и собран другим конвейером:
+`tools/build_reel_v2.py` по плану сцен `content/reels/scenes/07-dopraboty.yaml`.
+Шесть сцен, обложек разборов ноль, два кадра сгенерированы под свои сцены
+($0,2019 за три прогона: один кадр переснят, потому что на обложке тома
+читалось «Градостроительный кодекс», а речь про Гражданский).
 
 Все три пересобраны 16.08.2026 с призывом к действию в трёх слоях —
 финальный кадр, озвучка, подпись. Стоимость в таблице — суммарная по двум
