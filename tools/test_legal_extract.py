@@ -548,6 +548,41 @@ def test_каждая_норма_реестра_объявляет_реквиз�
     assert not without, "нормы без document_match: " + ", ".join(without)
 
 
+
+def test_адреса_проверенных_актов_не_возвращаются_к_прежним():
+    """Каждый идентификатор давался владельцем после проверки. Регресс.
+
+    Замер 16.08.2026: `nd=102078170` отдавал Распоряжение Правительства
+    вместо АПК, перечень ВС не вёл к постановлению, а у ФЗ об
+    исполнительном производстве есть предшественник `102048381`,
+    утративший силу. Ошибка в идентификаторе не видна ничем, кроме
+    опознания акта, — и стоит она целого захода владельца.
+    """
+    reg = _registry()
+    assert "nd=102117007" in reg["fz-229-8"]["official_source"]
+    assert "102048381" not in reg["fz-229-8"]["official_source"], \
+        "прежний закон об исполнительном производстве, утратил силу"
+    assert reg["plenum-54-57"]["official_source"].rstrip("/").endswith(
+        "/documents/own/8524"), reg["plenum-54-57"]["official_source"]
+    assert "nd=102079219" in reg["apk-4-5"]["official_source"]
+    assert reg["ppvs-7-2016"]["official_source"].rstrip("/").endswith(
+        "/documents/own/8478")
+
+
+def test_госкомстат_без_прямого_источника_остаётся_без_адреса():
+    """Ссылка в другом акте текстом самого акта не является.
+
+    Отдельный тест потому, что соблазн конкретный: постановление № 100
+    упоминается в действующих документах Росстата, и подставить туда
+    вторичный источник или чужой акт выглядело бы закрытием вопроса.
+    Это было бы подменой доказательства ссылкой на него.
+    """
+    norm = _registry()["goskomstat-100"]
+    assert not norm.get("official_source"), norm.get("official_source")
+    for чужое in ("consultant.ru", "garant.ru", "publication.pravo.gov.ru"):
+        assert чужое not in str(norm.get("official_source") or "")
+
+
 def main() -> int:
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     failed = 0
