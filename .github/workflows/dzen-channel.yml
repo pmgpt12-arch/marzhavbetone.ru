@@ -1,0 +1,75 @@
+# Снимок канала Дзена в ряд content/metrics/.
+#
+# Прогон здесь, а не из сессии: dzen.ru из облачной сессии закрыт
+# (CONNECT tunnel failed 403, замер 16.08.2026 — `python3 tools/dzen_channel.py`).
+# Отвечает ли dzen.ru раннеру GitHub — до первого прогона этого workflow не
+# измерялось ни разу. Раннер стоит за рубежом, и отказ по географии здесь
+# такой же возможный исход, как ответ; поэтому прогон и написан так, чтобы
+# отличить «не ответил» от «в канале ничего нет».
+#
+# Что снимок отвечает: включена ли трансляция из rss.xml. Со стороны
+# репозитория это иначе не узнать — Студия Дзена машинно не читается, а
+# привезённый лентой материал в публичном экспорте канала виден.
+#
+# Чего снимок не отвечает: числа подписчиков. Публичный экспорт его не
+# отдаёт, и подставить туда цифру с экрана Студии значило бы выдать снятое
+# руками за замер.
+name: Снимок канала Дзена
+
+on:
+  schedule:
+    # Понедельник, 07:00 МСК — после ночного деплоя, который пересобирает
+    # ленту, и до сводки продаж
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+    inputs:
+      write:
+        description: 'Записать снимок в content/metrics/ и закоммитить'
+        type: boolean
+        default: true
+
+concurrency:
+  group: dzen-channel
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      # Отдельным шагом и до самого снимка: если Дзен закрывает раннер по
+      # географии, это факт среды, и он должен быть виден в логе строкой, а
+      # не утонуть в трассировке питона.
+      - name: Отвечает ли dzen.ru раннеру
+        id: reach
+        run: |
+          code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 \
+            -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36' \
+            'https://dzen.ru/api/v3/launcher/export?channel_name=marzhavbetone' || echo 000)
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          echo "::notice::Публичный экспорт канала ответил раннеру кодом $code"
+          if [ "$code" != "200" ]; then
+            echo "::warning::Это «не измерено», а не «в канале пусто». Код $code записан как факт среды."
+          fi
+
+      - name: Снимок канала
+        if: steps.reach.outputs.code == '200'
+        run: python3 tools/dzen_channel.py --snapshot
+
+      - name: Закоммитить снимок
+        if: steps.reach.outputs.code == '200' && inputs.write != false
+        run: |
+          if [ -z "$(git status --porcelain content/metrics)" ]; then
+            echo "::notice::Снимок не изменился — коммитить нечего"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/metrics
+          git commit -m "Снимок канала Дзена $(date -u +%Y-%m-%d)"
+          git push

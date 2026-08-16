@@ -120,6 +120,30 @@ def load_pains() -> dict[str, dict]:
     return pains
 
 
+def squash(value: object) -> str:
+    """Многострочный блок YAML в одну строку — для печати."""
+    return " ".join(str(value or "").split())
+
+
+def load_deferred() -> list[dict]:
+    """Отложенные решения владельца.
+
+    Читается yaml-ом, а не узким разбором выше: блок вложенный и живёт
+    списком. Без pyyaml проверка говорит об этом вслух — молча пропустить
+    отложенное значило бы показать разрыв без решения по нему, то есть
+    ровно то, чего решение и не хотело.
+    """
+    try:
+        import yaml
+    except ImportError:
+        print("Отложенные решения не прочитаны: нет pyyaml "
+              "(python3 -m pip install pyyaml)", file=sys.stderr)
+        return []
+    data = yaml.safe_load(PAINS.read_text(encoding="utf-8")) or {}
+    items = data.get("deferred") or []
+    return [i for i in items if isinstance(i, dict)]
+
+
 def product_page(sku: str) -> Path | None:
     hits = sorted((ROOT / "products").glob(f"{sku}-*.html"))
     return hits[0] if hits else None
@@ -195,6 +219,22 @@ def main() -> int:
         print(f"\n## Разрывы и решения владельца — {len(notes)}")
         for n in notes:
             print(f"   • {n}")
+
+    # Отложенное печатается отдельно от разрывов и не отменяет их: строка
+    # разрыва выше остаётся на месте. Иначе «отложено» через месяц читается
+    # как «закрыто», а следующая сессия либо заводит товар заново, либо
+    # находит разрыв как новость.
+    deferred = load_deferred()
+    if deferred:
+        print(f"\n## Отложено решением владельца — {len(deferred)}")
+        for item in deferred:
+            print(f"   ⏸ {item.get('id')}: {squash(item.get('what'))}")
+            print(f"      решено {item.get('decided')}: {squash(item.get('why'))}")
+            conditions = item.get("revisit_any_of") or []
+            if item.get("revisit_when"):
+                conditions = [item["revisit_when"]]
+            for condition in conditions:
+                print(f"      пересмотр: {squash(condition)}")
 
     if defects:
         print(f"\n## ДЕФЕКТЫ — {len(defects)}")
