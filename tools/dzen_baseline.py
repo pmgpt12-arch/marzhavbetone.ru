@@ -214,8 +214,23 @@ def main() -> int:
             print(f"    Самая поздняя: {stamps[-1][0]:%d.%m.%Y %H:%M} МСК — "
                   f"{stamps[-1][1][:60]}")
 
-    print("\n[9] ПОДПИСЧИКИ: в публичном экспорте канала их нет. "
-          "Снимаются только\n    из Студии владельцем.")
+    subscribers = meta.get("subscribers")
+    print(f"\n[9] ПОДПИСЧИКИ: {subscribers if subscribers is not None else '—'}")
+    print("    Из ответа площадки (source.subscribers), а не с экрана Студии.")
+    print("    Здесь стояло «в публичном экспорте их нет» — это было неверно и")
+    print("    снято первым живым замером 16.08.2026.")
+
+    # Признак источника прямее, чем время публикации. Материал, привезённый
+    # лентой, обычно несёт домен сайта-источника; набранный в редакторе —
+    # нет. Печатается разбивкой, а не вердиктом: поле не задокументировано,
+    # и совпадёт ли оно с разделением по времени — вопрос замера.
+    print("\n[10] ПРИЗНАКИ ИСТОЧНИКА В САМИХ ДАННЫХ")
+    for field in ("domain", "domain_title", "item_type", "card_type", "type"):
+        spread = Counter(str(item.get(field) or "—") for item in items)
+        if len(spread) > 1 or field in ("domain", "domain_title"):
+            print(f"    {field}:")
+            for value, count in spread.most_common():
+                print(f"      {count:3}  {value[:70]}")
     return 0
 
 
