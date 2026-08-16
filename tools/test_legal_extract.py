@@ -29,6 +29,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from legal_pdf import is_pdf, pdf_text  # noqa: E402
 from legal_extract import (  # noqa: E402
     ARTICLE, MIN_UNIT_CHARS, POINT, decode_body, extract, find_article,
     find_document_links, identifies_act, ips_document_url, ips_print_url,
@@ -254,7 +255,11 @@ def _real_pages():
         card = json.loads(shot.read_text(encoding="utf-8"))
         page = card.get("page_file")
         if page and (fx / page).exists():
-            html, _ = decode_body((fx / page).read_bytes())
+            raw = (fx / page).read_bytes()
+            # Ответ бывает не разметкой: Верховный Суд отдаёт постановление
+            # файлом PDF. Разбирать его как HTML нельзя — тексту неоткуда
+            # взяться, и тест краснел бы на верном документе.
+            html = pdf_text(raw) if is_pdf(raw) else decode_body(raw)[0]
             out.append((shot.stem, registry[shot.stem], html, card))
     return out
 
@@ -272,8 +277,11 @@ def test_каждый_сохранённый_ответ_декодируется
         print("      (байтов страниц нет)")
         return
     bad = []
-    for page in sorted(pages.glob("*.html")):
-        text, codec = decode_body(page.read_bytes())
+    for page in sorted(pages.glob("*")):
+        raw = page.read_bytes()
+        if not page.is_file() or is_pdf(raw):
+            continue
+        text, codec = decode_body(raw)
         if looks_damaged(text) or "\ufffd" in page_title(text):
             bad.append(f"{page.name}: {codec}")
     assert not bad, "порча при декодировании:\n  " + "\n  ".join(bad)

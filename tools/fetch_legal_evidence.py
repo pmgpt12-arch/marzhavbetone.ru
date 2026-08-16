@@ -84,7 +84,7 @@ RETRY_ROUND_PAUSE = 30
 # Ответы за прогон: один адрес — одно обращение. Семнадцать норм стоят на
 # шести актах, и без этого каждая тянет чужой мегабайт заново.
 _CACHE: dict[str, dict] = {}
-_FAILED: dict[str, str] = {}
+_FAILED: dict[str, tuple[str, bool]] = {}
 _LAST_CALL = [0.0]
 
 # Куда складывать все ответы прогона. Ставится один раз в main.
@@ -92,7 +92,16 @@ _SINK: list = [None]
 
 
 class Unreachable(RuntimeError):
-    """Источник не ответил. Причина называется кодом, а не словом «не смог»."""
+    """Источник не ответил. Причина называется кодом, а не словом «не смог».
+
+    `transport` отделяет молчание от ответа. Код 403 — это ответ: пробовать
+    тот же адрес другой схемой бессмысленно, сервер уже всё сказал.
+    Таймаут и обрыв — молчание, и вот его стоит переспросить иначе.
+    """
+
+    def __init__(self, message: str, transport: bool = True):
+        super().__init__(message)
+        self.transport = transport
 
 
 def _store(url: str, resp: dict) -> None:
@@ -137,7 +146,8 @@ def fetch(url: str) -> dict:
         # таймаут по нему повторился трижды по пять попыток — пятнадцать
         # ожиданий вместо пяти. Исчерпанный адрес помнится так же, как
         # удачный: это тот же факт, только отрицательный.
-        raise Unreachable(_FAILED[url])
+        причина, транспорт = _FAILED[url]
+        raise Unreachable(причина, transport=транспорт)
     pause = POLITE_PAUSE - (time.monotonic() - _LAST_CALL[0])
     if _LAST_CALL[0] and pause > 0:
         time.sleep(pause)
@@ -182,13 +192,48 @@ def fetch(url: str) -> dict:
                 _store(url, out)
                 return out
         except urllib.error.HTTPError as e:
-            raise Unreachable(f"код {e.code}") from e
+            raise Unreachable(f"код {e.code}", transport=False) from e
         except Exception as e:
             last = f"{type(e).__name__}: {e}"
             if attempt < RETRIES:
                 time.sleep(BACKOFF[min(attempt - 1, len(BACKOFF) - 1)])
-    _FAILED[url] = f"{last} — попыток {RETRIES}"
-    raise Unreachable(_FAILED[url])
+    _FAILED[url] = (f"{last} — попыток {RETRIES}", True)
+    raise Unreachable(_FAILED[url][0])
+
+
+def _другая_схема(url: str) -> str:
+    """Тот же адрес другой схемой. Официальность от этого не меняется.
+
+    Замер 16.08.2026 по трём прогонам: все четырнадцать добытых норм идут
+    по `http://pravo.gov.ru`, а три нормы АПК — единственные по
+    `https://`, и по ним не дошло ни одного ответа. В следе прогонов
+    `https://pravo.gov.ru` не отвечал **ни разу**, при том что
+    `https://vsrf.ru` в том же прогоне отвечал. То есть дело не в
+    документе и не в шифровании вообще, а в этом хосте по этой схеме.
+
+    Подстановка вторичным источником не является: хост, путь и
+    идентификатор документа те же самые, меняется способ соединения.
+    Опознание акта после перехода выполняется как обычно.
+    """
+    if url.startswith("https://"):
+        return "http://" + url[len("https://"):]
+    if url.startswith("http://"):
+        return "https://" + url[len("http://"):]
+    return ""
+
+
+def fetch_упорно(url: str) -> dict:
+    """Официальный адрес: сначала как объявлен, потом другой схемой."""
+    try:
+        return fetch(url)
+    except Unreachable as первая:
+        запасная = _другая_схема(url) if первая.transport else ""
+        if not запасная:
+            raise
+        try:
+            return fetch(запасная)
+        except Unreachable as вторая:
+            raise Unreachable(f"{первая}; другой схемой — {вторая}") from вторая
 
 
 def probe(norm: dict, url: str, follow: bool = True) -> dict:
@@ -203,7 +248,7 @@ def probe(norm: dict, url: str, follow: bool = True) -> dict:
     kind, units, subs = parse_units(norm.get("article", ""), norm.get("act", ""))
     card = {"url": url, "strategy": kind, "wanted": units, "subdivisions": subs}
     try:
-        resp = fetch(url)
+        resp = fetch_упорно(url) if follow else fetch(url)
     except Unreachable as e:
         return {**card, "ok": False, "reason": f"источник недоступен: {e}"}
 

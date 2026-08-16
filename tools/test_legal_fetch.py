@@ -160,8 +160,10 @@ def test_исчерпанный_адрес_не_перебирается_каж�
             F.collect(norm, False, None)
     finally:
         urllib.request.urlopen = _настоящий
-    assert счёт["вызовов"] == F.RETRIES, \
-        f"обращений {счёт['вызовов']}, ждали {F.RETRIES} на все три нормы"
+    # Пять попыток по объявленной схеме плюс пять по другой — и всё это
+    # один раз на три нормы, а не по разу на каждую.
+    assert счёт["вызовов"] == 2 * F.RETRIES, \
+        f"обращений {счёт['вызовов']}, ждали {2 * F.RETRIES} на все три нормы"
 
 
 def test_повтор_после_переходного_таймаута_даёт_успех():
@@ -267,6 +269,83 @@ def test_второй_заход_не_прячет_полный_отказ():
     assert "not_verified 3" in текст, текст[-300:]
     assert код == 1, код
     assert записано == [], записано
+
+
+
+def test_молчание_переспрашивается_другой_схемой():
+    """Минимальное различие рабочих норм и АПК было в схеме адреса.
+
+    Замер 16.08.2026 по трём прогонам: все четырнадцать добытых норм идут
+    по `http://pravo.gov.ru`, три нормы АПК — единственные по `https://`, и
+    по ним не дошло ни одного ответа. В следе `https://pravo.gov.ru` не
+    отвечал ни разу, а `https://vsrf.ru` в том же прогоне отвечал.
+    """
+    видели = []
+
+    def https_молчит(n, url):
+        видели.append(url)
+        if url.startswith("https://"):
+            raise TimeoutError("[WinError 10060]")
+        return _Ответ(СТРАНИЦА, url)
+
+    норма = dict(АПК[1], official_source=АДРЕС)   # объявлен по https
+    _подменить(https_молчит)
+    try:
+        text, klass, использован, _ = F.collect(норма, False, None)
+    finally:
+        urllib.request.urlopen = _настоящий
+    assert klass == F.OFFICIAL, klass
+    assert "Статья 125." in text and "Статья 126." in text
+    assert any(u.startswith("http://") for u in видели), видели
+    assert использован == АДРЕС, "объявленный адрес остаётся объявленным"
+
+
+def test_смена_схемы_не_делает_источник_вторичным():
+    """Хост, путь и идентификатор те же — меняется способ соединения."""
+    def https_молчит(n, url):
+        if url.startswith("https://"):
+            raise TimeoutError("[WinError 10060]")
+        return _Ответ(СТРАНИЦА, url)
+
+    _подменить(https_молчит)
+    try:
+        _, klass, _, note = F.collect(dict(АПК[0], official_source=АДРЕС),
+                                      False, None)
+    finally:
+        urllib.request.urlopen = _настоящий
+    assert klass == F.OFFICIAL
+    assert "вторичн" not in note, note
+
+
+def test_чужой_документ_другой_схемой_не_спасается():
+    """Опознание акта после перехода работает как обычно."""
+    def https_молчит(n, url):
+        if url.startswith("https://"):
+            raise TimeoutError("[WinError 10060]")
+        return _Ответ("<html><body>" + "Распоряжение Правительства "
+                      "Российской Федерации от 30.08.2002 № 1214-р. " * 20
+                      + "Статья 4. Нечто. " + "х" * 300
+                      + "</body></html>", url)
+
+    class _Стр(_Ответ):
+        def __init__(self, payload, url):
+            super().__init__(payload.encode("cp1251"), url)
+
+    def обёртка(n, url):
+        if url.startswith("https://"):
+            raise TimeoutError("[WinError 10060]")
+        return _Стр("<html><body>" + "Распоряжение Правительства "
+                    "Российской Федерации от 30.08.2002 № 1214-р. " * 20
+                    + "</body></html>", url)
+
+    _подменить(обёртка)
+    try:
+        _, klass, _, note = F.collect(dict(АПК[0], official_source=АДРЕС),
+                                      False, None)
+    finally:
+        urllib.request.urlopen = _настоящий
+    assert klass == F.NOT_VERIFIED
+    assert "другой документ" in note, note
 
 
 def main() -> int:
