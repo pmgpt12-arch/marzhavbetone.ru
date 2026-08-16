@@ -172,6 +172,20 @@ FUNNEL_BY_LANDING = [
     "add_to_cart", "checkout_open", "purchase",
 ]
 
+# Разрез по нашим меткам. Он отвечает на другой вопрос, чем lastTrafficSource,
+# и не заменяет его: тот называет тип источника — прямой заход, переход,
+# поиск, — а этот называет наш канал. Замер 16.08.2026: в снимке за неделю
+# стояло «Direct traffic 30, Recommendation 3, Link 1», и ни одно из трёх не
+# отвечало на вопрос, сколько визитов дал телеграм-канал, хотя все ссылки
+# в постах размечены с первого дня.
+UTM_FUNNEL = ["product_opened", "checkout_open", "purchase"]
+
+# Визит без метки Метрика отдаёт пустым именем измерения. Это не «прочий
+# канал», а «метки не было»: смешать их значит превратить весь прямой и
+# поисковый трафик в чужой канал.
+NO_UTM_LABELS = {"", "—", "-", "none", "null", "не указано", "не определено",
+                 "not set", "(none)", "undefined"}
+
 
 def entry_group(path: str) -> str:
     """Куда человек вошёл: главная, каталог, разбор, прочее.
@@ -246,6 +260,105 @@ def by_group(rows_of_landings: list[dict]) -> dict[str, dict]:
                 continue
             bucket[name] = (bucket.get(name) or 0) + value
     return groups
+
+
+def declared_channels() -> list[str]:
+    """Каналы — из стандарта меток `data/content/rules.yaml`, а не отсюда.
+
+    Второй список каналов разошёлся бы с первым молча: канал завели бы в
+    стандарте, а в отчёте он попал бы в «прочие» и остался незамеченным.
+    """
+    path = ROOT / "data" / "content" / "rules.yaml"
+    if not path.is_file():
+        return []
+    block = re.search(r"^utm:\s*$(.*?)^\S", path.read_text(encoding="utf-8"),
+                      re.M | re.S)
+    if not block:
+        return []
+    found = re.search(r"^\s+sources:\s*\[([^\]]*)\]", block.group(1), re.M)
+    if not found:
+        return []
+    return [name.strip() for name in found.group(1).split(",") if name.strip()]
+
+
+def is_unmarked(label: str) -> bool:
+    return label.strip().lower() in NO_UTM_LABELS
+
+
+def utm_report(token: str, counter: str, found: dict[str, int],
+               d1: str, d2: str, total_visits: float) -> dict:
+    """Визиты в разрезе наших меток: источник, канал, кампания, ступени.
+
+    Отдельным запросом, а не расширением прежнего: `lastTrafficSource`
+    остаётся на месте и отвечает на свой вопрос. Ошибка здесь не должна
+    ронять весь снимок — прежние ключи важнее нового, поэтому отказ
+    записывается строкой `error`, а не обрывает прогон.
+    """
+    report: dict = {"attributed_visits": 0.0, "unmarked_visits": None,
+                    "by_channel": {}, "sources": [], "campaigns": [],
+                    "error": None}
+    present = [name for name in UTM_FUNNEL if name in found]
+    metrics = ["ym:s:visits"] + [f"ym:s:goal{found[n]}reaches" for n in present]
+    names = ["visits"] + present
+
+    try:
+        by_source = rows_multi(
+            stat(token, counter, metrics, d1, d2,
+                 dimensions="ym:s:UTMSource", limit=20), names)
+        by_campaign = stat(token, counter, ["ym:s:visits"], d1, d2,
+                           dimensions="ym:s:UTMSource,ym:s:UTMMedium,"
+                                      "ym:s:UTMCampaign", limit=40)
+    except SystemExit as stop:
+        # Именно так узнаётся, что идентификатор измерения не тот: Метрика
+        # отвечает кодом и текстом, а не пустой таблицей.
+        report["error"] = str(stop)
+        return report
+
+    attributed = 0.0
+    unmarked = 0.0
+    for label, values in sorted(by_source.items(),
+                                key=lambda kv: -kv[1].get("visits", 0)):
+        visits = values.get("visits", 0.0)
+        if is_unmarked(label):
+            unmarked += visits
+            continue
+        attributed += visits
+        row = {"source": label, "visits": visits}
+        for name in UTM_FUNNEL:
+            # None, а не 0: цели нет в счётчике — это «не измерено»
+            row[name] = values.get(name) if name in present else None
+        report["sources"].append(row)
+
+    for row in by_campaign.get("data", []):
+        parts = [str(d.get("name") or d.get("id") or "") for d in row["dimensions"]]
+        source, medium, campaign = (parts + ["", "", ""])[:3]
+        if is_unmarked(source):
+            continue
+        report["campaigns"].append({
+            "source": source,
+            "medium": medium if not is_unmarked(medium) else None,
+            "campaign": campaign if not is_unmarked(campaign) else None,
+            "visits": round(row["metrics"][0], 2),
+        })
+
+    # Свод по объявленным каналам: ответ должен читаться строкой, а не
+    # складываться глазами из таблицы источников.
+    channels = {name: 0.0 for name in declared_channels()}
+    other = 0.0
+    for row in report["sources"]:
+        if row["source"] in channels:
+            channels[row["source"]] += row["visits"]
+        else:
+            other += row["visits"]
+    channels["other_utm"] = other
+    # Разница со списком источников — тоже «без метки»: Метрика могла не
+    # вернуть пустую строку отдельным рядом, и тогда ноль был бы ложью.
+    channels["none"] = round(max(unmarked, total_visits - attributed), 2)
+
+    report["attributed_visits"] = round(attributed, 2)
+    report["unmarked_visits"] = round(unmarked, 2)
+    report["by_channel"] = {k: round(v, 2) for k, v in channels.items()}
+    return report
 
 
 def yaml_dump(value, indent: int = 0) -> str:
@@ -329,6 +442,7 @@ def main() -> int:
                         dimensions="ym:s:lastTrafficSource", limit=12))
     entry_rows = landings(token, counter, found, d1, d2)
     entry_totals = by_group(entry_rows)
+    utm = utm_report(token, counter, found, d1, d2, visits)
 
     snapshot = {
         "snapshot_date": date.today().isoformat(),
@@ -343,6 +457,7 @@ def main() -> int:
         "goals_extra_in_counter": extra,
         "top_pages": [{"path": path, "pageviews": views} for path, views in pages],
         "sources": [{"source": name, "visits": value} for name, value in sources],
+        "utm": utm,
         "landings": entry_rows,
         "entry_groups": entry_totals,
     }
@@ -362,6 +477,23 @@ def main() -> int:
         print("  самые читаемые:")
         for path, views in pages[:8]:
             print(f"    {views:7g}  {path}")
+    if utm.get("error"):
+        print("  РАЗРЕЗ ПО МЕТКАМ НЕ СОБРАН, и это не ноль визитов из каналов:")
+        print(f"    {utm['error']}")
+    else:
+        print(f"  по нашим меткам: с меткой {utm['attributed_visits']:g}, "
+              f"без метки {utm['by_channel'].get('none', 0):g}")
+        for name, value in utm["by_channel"].items():
+            if name == "none":
+                continue
+            print(f"    {name:12s} {value:6g}")
+        for row in utm["sources"][:8]:
+            cells = []
+            for goal in UTM_FUNNEL:
+                value = row.get(goal)
+                cells.append("н/д" if value is None else f"{value:g}")
+            print(f"    {row['source']:12s} визитов {row['visits']:6g}  "
+                  + "  ".join(f"{g}={c}" for g, c in zip(UTM_FUNNEL, cells)))
     if entry_totals:
         print("  по странице входа (визиты → товар → корзина → оформление → оплата):")
         for group in ("home", "catalog", "article", "other"):
