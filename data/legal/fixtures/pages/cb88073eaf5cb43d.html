@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>Гражданский кодекс Российской Федерации. Часть первая</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link rel="stylesheet" type="text/css" href="?style.css" />
+<link rel="stylesheet" type="text/css" href="?style_sets.css" />
+<link rel="stylesheet" type="text/css" href="?layout.css" />
+<style>
+	.sh1, .sh2 	{ 
+		color:#ffffff; 
+		font-weight:bold; 
+		font-size:1.3em; 
+	}
+	table.global_header td.doc_editions 	{ 
+		padding:0px 7px 1px 0px; 
+		text-align:right; 
+		width: 10px; 
+	}
+	#xdoc_toolbar {
+		height: 100px;
+		vertical-align: top;
+	}
+	
+	#xdoc_content {
+		vertical-align: middle;
+	}
+	
+	#xdoc_footer {	
+		vertical-align: bottom;
+	}
+</style>
+<script type="text/javascript" src="?json.js" charset="windows-1251"></script>
+<script type="text/javascript" src="?script.js" charset="windows-1251"></script>
+<script>
+	function manyFragmentsComposer(link) {
+		window.open(link);
+	}
+	
+	function initMessage() {
+		var ecpName = 'infostrdsign';
+		var redactionName = 'infostr0';
+		var countMessage = 0;
+		var contentsName = 'infostrcontents';
+		
+		if(pCookies['show_sign_status'] == '1')
+			document.getElementById(ecpName).style.display='';
+				
+		if(document.getElementById(contentsName)) {
+			if(document.getElementById(contentsName).style.display == '')
+				countMessage++;
+		}
+		if(document.getElementById(ecpName)) {
+			if(document.getElementById(ecpName).style.display == '')
+				countMessage++;
+		}
+		if(document.getElementById(redactionName)) {
+			if(document.getElementById(redactionName).style.display == '')
+				countMessage++;
+		}
+		if(countMessage == 0) {
+			 
+				document.getElementById('xdoc_toolbar').style.height='35px';
+				
+		} else if(countMessage == 1) {
+			if(document.getElementById(contentsName) != null) {
+				if(document.getElementById(contentsName).style.display == '') {
+					document.getElementById('xdoc_toolbar').style.height='120px';
+				} else {
+					document.getElementById('xdoc_toolbar').style.height='70px';
+				}
+			} else {
+				document.getElementById('xdoc_toolbar').style.height='70px';
+			}
+			
+				document.getElementById('xdoc_toolbar').style.height='70px';
+				
+		} else if(countMessage == 2) {
+			if(document.getElementById(contentsName) != null) {
+				if(document.getElementById(contentsName).style.display == '')
+					document.getElementById('xdoc_toolbar').style.height='120px';
+				else
+				
+					document.getElementById('xdoc_toolbar').style.height='100px';
+					
+			}
+		}
+	}
+	function setCookieSignStatus(value){
+		var today = new Date();
+		today.setDate(today.getDate() + 7);
+		document.cookie="show_sign_status" + "=" + value + "; expires=" + today.toGMTString();
+		parseCookies();
+	}
+	function delCookieSignStatus(){
+		var today = new Date();
+		today.setDate(today.getDate() + 7);
+		document.cookie="show_sign_status" + "=;";
+		pCookies = new Array();
+		parseCookies();
+	}
+	function LinkParseHash(){
+			var cells = document.getElementsByTagName("a"); 
+			for (var i = 0; i < cells.length; i++) { 
+				var status = cells[i].setAttribute("target","_self"); 
+			}
+	}
+</script>
+</head>
+
+<body style="overflow:hidden;" onload="document.link_id=0; document.isBodyLoaded = true; checkFrame(); 
+			document.getElementById('backlink').style.display='none';
+			top.closeOthers=null; initMessage();''">
+<iframe id="tempframe" name="tempframe" src=""about:blank" style="position:absolute; top: -500; left: -500; visibility: hidden; height: 1px; width: 1px;"></iframe>
+<table class="root">
+<tr>
+<td class="header">
+<div style="position:relative;height:37px">
+
+<!-- BEGIN шапка -->
+
+	<table class="global_header" style="position:absolute;top:0; left:0">
+	<tr>
+	<td class="pics">
+			<div id="doc_pic_frame_maximize" class="vis"><img src="?pic_hide2left.gif" onClick="maximizeDocFrame('')" alt="Развернуть панель" title="Развернуть панель" /></div>
+			<div id="doc_pic_frame_minimize" class="inv"><img src="?pic_hide2right.gif" onClick="restoreDocFrame('')" alt="Свернуть панель" title="Свернуть панель" /></div>
+		</td>	<td class="text">
+<nobr>
+<span class="sh2">Текст документа:</span>
+</nobr>
+	</td>
+	<td class="help">
+<nobr>
+	<a target='_top' href='?start_search&fattrib=1' class="white"><img alt="на главную" title="На главную" src="?pic_home.gif" align="absmiddle" /></a>&nbsp;
+	<a href="?help_common.html" class="white" target="_blank"><img alt="Справка" title="справка" src="?pic_help.gif" align="absmiddle" /></a>&nbsp;
+	</nobr>  </td>
+	<td class="doc_editions">
+<select name="doc_editions" onchange="ChangeSelRDK(this, document.all['last_select_ed'], '')">
