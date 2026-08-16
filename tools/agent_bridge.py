@@ -32,8 +32,12 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 РЕЕСТР = ROOT / "data" / "ai" / "agent-model-policy.yaml"
 ЖУРНАЛ = ROOT / "data" / "ai" / "bridge"
+# Реестр называется явно: исполнители сайта живут здесь, маршруты и
+# исполнение — у соседа. Без `--registry` названная команда не сработала бы,
+# а отказ с нерабочей командой это петля, а не защита.
 КОМАНДА = ("python3 ../ai-business-os/tools/agent_bridge.py run "
-           "--agent {agent} --task-type {tt}")
+           "--registry " + str(ROOT / "data" / "ai" / "agent-model-policy.yaml") +
+           " --agent {agent} --task-type {tt}")
 
 
 def где_искали() -> list[Path]:
