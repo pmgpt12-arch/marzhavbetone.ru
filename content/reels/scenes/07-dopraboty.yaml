@@ -16,7 +16,7 @@ scenes:
     composition: HookScene
     seconds: 3
     props:
-      hookText: "«Делайте, потом оформим». Это не поручение"
+      hookText: "«Делайте, потом оформим». Это не документ"
       highlightWords: ["не"]
       subtitle: ""
       dimAmount: 0.6
@@ -37,7 +37,7 @@ scenes:
   # разбора, а не украшение. Значки словами: эмодзи в проекте нет нигде.
   - id: pyat-strok
     composition: MarkerListScene
-    seconds: 8
+    seconds: 7
     props:
       title: "Спор распадается на пять вопросов"
       framesPerItem: 40
@@ -56,11 +56,11 @@ scenes:
   # CONSEQUENCE. Норма показывается документом, а не текстом на пустом фоне.
   - id: statya
     composition: PhotoStatementScene
-    seconds: 5
+    seconds: 4
     props:
       image: 07-scene4-statya.png
-      text: "Не сообщил заказчику — лишился права требовать оплаты"
-      highlightWords: ["лишился"]
+      text: "Не сообщил — лишился права требовать оплаты допработ"
+      highlightWords: ["допработ"]
       anchor: bottom
       dimAmount: 0.5
       zoom: out
@@ -73,10 +73,10 @@ scenes:
       title: "Что оставить до начала работ"
       framesPerItem: 45
       items:
-        - text: "Служебная записка в день обхода"
-          icon: "→"
-        - text: "Отметка о вручении"
-          icon: "→"
+        - text: "Записка с отметкой о вручении"
+          icon: "1"
+        - text: "Нет ответа 10 дней — работы стоп"
+          icon: "2"
 
   # CTA. Одно действие и место, где оно делается.
   - id: cta
