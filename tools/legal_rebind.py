@@ -170,7 +170,14 @@ def main() -> int:
                   f"объявлено {з['to_hash'][7:19]}")
             отказов += 1
             continue
-        if result.get("document_hash") != з["from_hash"]:
+        # Перенос уже записан: в реестре новый хеш и запись об этом в
+        # `rebinds`. Проверку это не отменяет — равенство текстов считается
+        # заново, — но повторной записи не требует. Без этой ветки проверка
+        # в гейте краснела бы на следующий же прогон после применения.
+        применён = (result.get("document_hash") == з["to_hash"]
+                    and any(r.get("from_hash") == з["from_hash"]
+                            for r in result.get("rebinds") or []))
+        if not применён and result.get("document_hash") != з["from_hash"]:
             print(f"  ✗ {имя}: в реестре стоит "
                   f"{str(result.get('document_hash'))[7:19]}, "
                   f"перенос объявлен с {з['from_hash'][7:19]}")
@@ -183,10 +190,12 @@ def main() -> int:
             print(f"  ✗ {имя}: {почему}")
             отказов += 1
             continue
+        состояние = "уже перенесён" if применён else "переносится"
         print(f"  ✓ {имя}: {почему}")
         print(f"      {з['from_hash'][7:19]} → {з['to_hash'][7:19]}, "
-              f"вердикт {result['verdict']} переносится")
-        к_записи.append((з, result))
+              f"вердикт {result['verdict']} {состояние}")
+        if not применён:
+            к_записи.append((з, result))
 
     if отказов:
         print(f"\nПереносов отклонено: {отказов}. Такая правка закрывается "
