@@ -24,6 +24,22 @@
 запросу, и не заводит страниц. Первое — суждение (`marzha-seo-strategist`),
 второе — решение владельца (Р-006 в ai-business-os).
 
+Где страницы нет, в колонке «Целевая страница» стоит `LANDING GAP`, а не
+запланированный адрес. Причина замером 16.08.2026: карта подставляла туда
+`Целевой URL` из семантики, то есть план, и 227 её строк указывали на
+`/baza-znanii/` и `/proverki/` — разделы, которых на сайте нет. Читалось
+это как «страница есть, вот её адрес», а означало «страницы нет». План при
+этом не теряется: он уходит в «Примечание» и остаётся видимым.
+
+Само сведение группы на существующую страницу инструмент не угадывает.
+Замер 16.08.2026: правило «головной запрос дословно входит в H1
+опубликованной страницы» свело 5 групп из 29, и у трёх из пяти кандидатов
+оказалось от двух до пяти — выбор между разбором, бесплатным материалом и
+товаром это суждение, а не строка. Сведение по схожести имён пробовалось и
+отвергнуто: «акт скрытых работ скачать» оно уводило на
+`akty-skrytyh-rabot-kakie`, мимо страницы-образца. Адрес правится в
+`semantic-core.csv`, колонка «Целевой URL», с датой и основанием.
+
     python3 tools/keyword_map.py                  # сводка
     python3 tools/keyword_map.py --out карта.csv  # карта построчно
 
@@ -62,9 +78,25 @@ COLUMNS = [
 ]
 
 
+# Явный признак того, что страницы под группу нет. Стоит вместо адреса, а
+# не рядом с ним: пустая клетка читается как «не заполнили», а плановый
+# адрес — как «страница есть». Значение проверяется `check_keyword_map.py`.
+GAP = "LANDING GAP"
+
+
 def slug_of(url: str) -> str:
     tail = url.strip("/").split("/")[-1]
     return tail[: -len(".html")] if tail.endswith(".html") else tail
+
+
+def join_notes(*parts: str) -> str:
+    return "; ".join(p.strip() for p in parts if p and p.strip())
+
+
+def planned_note(url: str) -> str:
+    """План не теряется вместе с адресом: он уходит в примечание."""
+    url = (url or "").strip()
+    return f"страницы нет; по плану семантики {url}" if url else "страницы нет"
 
 
 def published_by_slug() -> dict[str, str]:
@@ -169,17 +201,21 @@ def build() -> tuple[list[dict[str, str]], dict[str, int]]:
                 note = f"тот же интент, что «{carrier.get('Запрос','')}»"
             elif is_carrier:
                 decision = "create"
-                target = member.get("Целевой URL", "").strip()
-                note = (
-                    "единственный запрос группы — страница будет тонкой, "
-                    "рассмотреть merge в соседнюю"
-                    if len(members) == 1
-                    else ""
-                )
+                target = GAP
+                note = planned_note(member.get("Целевой URL", ""))
+                if len(members) == 1:
+                    note = join_notes(
+                        note,
+                        "единственный запрос группы — страница будет тонкой, "
+                        "рассмотреть merge в соседнюю",
+                    )
             else:
                 decision = "no-page"
-                target = carrier.get("Целевой URL", "").strip()
-                note = f"тот же интент, что «{carrier.get('Запрос','')}»"
+                target = GAP
+                note = join_notes(
+                    f"тот же интент, что «{carrier.get('Запрос','')}»",
+                    planned_note(carrier.get("Целевой URL", "")),
+                )
 
             counts[decision] += 1
             out.append(
