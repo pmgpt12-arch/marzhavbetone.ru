@@ -123,27 +123,85 @@ def _decode(raw_bytes: bytes, cmap: dict[int, str]) -> str:
         raw_bytes.decode("latin-1", "replace")
 
 
+# Разбор потока содержимого пооператорно. Строка, число, массив, имя,
+# оператор — этого хватает, чтобы отличить перенос строки от продолжения
+# слова, и без этого текст рассыпается.
+_TOKEN = re.compile(rb"""
+      \((?:\\.|[^\\()])*\)
+    | <[0-9A-Fa-f\s]+>
+    | \[ | \]
+    | -?\d+(?:\.\d+)?
+    | /[^\s/<>\[\]()]+
+    | ['"]|[A-Za-z*]+
+""", re.X | re.S)
+
+# Кернинг отрицательнее этого публикатор ставит вместо пробела. Значение в
+# тысячных доли кегля; -100 это десятая часть буквы — меньше бывает и
+# внутри слова, больше уже читается как пробел.
+TJ_SPACE = -100
+
+# Операторы, после которых текст продолжается с новой позиции: между ними
+# слово не тянется.
+_BREAKS = {b"Td", b"TD", b"T*", b"Tm", b"TL", b"BT", b"ET", b"'", b'"'}
+
+
 def pdf_text(raw: bytes) -> str:
     """Весь текстовый слой документа одной строкой.
 
-    Порядок операторов сохраняется, разделителем ставится пробел: для
-    поиска статьи или пункта разбиение на строки значения не имеет, а
-    склейка слов без пробела ломала бы его.
+    Склейка — главное место этого разбора, и первая версия его провалила.
+    Замер 16.08.2026 на настоящем ответе Верховного Суда (367 339 байт,
+    `%PDF-1.5`): каждый фрагмент показа текста отделялся пробелом, и
+    заголовок выходил как «ПОСТА Н О ВЛЕНИ Е ПЛЕН УМА» — 103 тысячи знаков
+    настоящей кириллицы, ни одного целого слова. Ни опознание, ни поиск
+    пункта на таком тексте работать не могли.
+
+    Пробел ставится там, где он есть в документе: по большому
+    отрицательному кернингу внутри массива `TJ` и по операторам смены
+    позиции. Внутри одного показа фрагменты склеиваются встык.
     """
     if not is_pdf(raw):
         return ""
     streams = _streams(raw)
     cmap = to_unicode_map(streams)
-    parts = []
+    out: list[str] = []
+
     for data in streams:
         if b"Tj" not in data and b"TJ" not in data:
             continue
-        for m in TEXT_OPS.finditer(data):
+        operands: list = []
+        for m in _TOKEN.finditer(data):
             token = m.group(0)
-            if token.startswith(b"<"):
-                codes = _hex_codes(token[1:-1])
-                parts.append("".join(cmap.get(c, "") for c in codes)
-                             if cmap else "")
+            head = token[:1]
+            if head in b"(<":
+                operands.append(_show(token, cmap))
+            elif head == b"[" or head == b"]":
+                operands.append(token)
+            elif head.isdigit() or head == b"-":
+                operands.append(float(token))
+            elif head == b"/":
+                continue
             else:
-                parts.append(_decode(_literal(token), cmap))
-    return re.sub(r"\s+", " ", " ".join(parts)).strip()
+                if token in (b"Tj", b"TJ", b"'", b'"'):
+                    out.append(_flush(operands))
+                if token in _BREAKS:
+                    out.append(" ")
+                operands = []
+    return re.sub(r"[ \t]+", " ", "".join(out)).strip()
+
+
+def _show(token: bytes, cmap: dict[int, str]) -> str:
+    if token.startswith(b"<"):
+        codes = _hex_codes(token[1:-1])
+        return "".join(cmap.get(c, "") for c in codes) if cmap else ""
+    return _decode(_literal(token), cmap)
+
+
+def _flush(operands: list) -> str:
+    """Операнды одного показа текста → строка с пробелами по кернингу."""
+    parts = []
+    for item in operands:
+        if isinstance(item, str):
+            parts.append(item)
+        elif isinstance(item, float) and item <= TJ_SPACE:
+            parts.append(" ")
+    return "".join(parts)

@@ -195,6 +195,80 @@ def test_код_ответа_повтора_не_получает():
     assert счёт["вызовов"] == 1, f"обращений {счёт['вызовов']}, ждали 1"
 
 
+
+def test_второй_заход_поднимает_упавшее_на_транспорте():
+    """Хост, молчавший в начале прогона, к концу часто отвечает.
+
+    Проверяется через `main`: первый круг по трём нормам АПК кладётся в
+    таймаут, второй отвечает. Итог — official, а не ещё один заход
+    владельца.
+    """
+    import io
+    import contextlib
+    состояние = {"молчит": True}
+
+    def сначала_молчит(n, url):
+        if состояние["молчит"]:
+            raise TimeoutError("[WinError 10060]")
+        return _Ответ(СТРАНИЦА, url)
+
+    счёт = _подменить(сначала_молчит)
+    # Паузу второго круга делаем узнаваемой: задержки повторов тоже нулевые,
+    # и по нулю их не отличить.
+    F.RETRY_ROUND_PAUSE = 7
+    исходный_norms = F.NORMS
+    записано = []
+    F.write = lambda norm_id, **kw: записано.append(norm_id)
+    F.yaml.safe_load = lambda text: {"norms": АПК}
+
+    def оживить():
+        состояние["молчит"] = False
+    старый_sleep = F.time.sleep
+    F.time.sleep = lambda s: оживить() if s == F.RETRY_ROUND_PAUSE else None
+
+    try:
+        with contextlib.redirect_stdout(io.StringIO()) as вывод:
+            F.sys.argv = ["fetch", "--all"]
+            код = F.main()
+    finally:
+        urllib.request.urlopen = _настоящий
+        F.time.sleep = старый_sleep
+        F.NORMS = исходный_norms
+    текст = вывод.getvalue()
+    assert "Второй заход" in текст, текст[-300:]
+    assert "official 3" in текст, текст[-300:]
+    assert код == 0, код
+    assert sorted(записано) == ["apk-125-126", "apk-128-148", "apk-4-5"], записано
+
+
+def test_второй_заход_не_прячет_полный_отказ():
+    """Молчит и во второй раз — NOT_VERIFIED, а не тихий пропуск."""
+    import io
+    import contextlib
+
+    def всегда_молчит(n, url):
+        raise TimeoutError("[WinError 10060]")
+
+    _подменить(всегда_молчит)
+    F.RETRY_ROUND_PAUSE = 0
+    записано = []
+    F.write = lambda norm_id, **kw: записано.append(norm_id)
+    F.yaml.safe_load = lambda text: {"norms": АПК}
+    старый_sleep = F.time.sleep
+    F.time.sleep = lambda s: None
+    try:
+        with contextlib.redirect_stdout(io.StringIO()) as вывод:
+            F.sys.argv = ["fetch", "--all"]
+            код = F.main()
+    finally:
+        urllib.request.urlopen = _настоящий
+        F.time.sleep = старый_sleep
+    текст = вывод.getvalue()
+    assert "not_verified 3" in текст, текст[-300:]
+    assert код == 1, код
+    assert записано == [], записано
+
+
 def main() -> int:
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     failed = 0

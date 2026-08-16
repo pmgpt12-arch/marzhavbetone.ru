@@ -78,6 +78,9 @@ BACKOFF = (3, 8, 20, 40)
 # части первой качался шесть раз по полмегабайта. Ниже и пауза, и память.
 POLITE_PAUSE = 1.5
 
+# Пауза перед вторым заходом по упавшим на транспорте.
+RETRY_ROUND_PAUSE = 30
+
 # Ответы за прогон: один адрес — одно обращение. Семнадцать норм стоят на
 # шести актах, и без этого каждая тянет чужой мегабайт заново.
 _CACHE: dict[str, dict] = {}
@@ -468,18 +471,41 @@ def main() -> int:
 
     today = date.today().isoformat()
     tally = {OFFICIAL: 0, SECONDARY: 0, NOT_VERIFIED: 0}
-    for norm in norms:
+
+    def взять(norm: dict) -> str:
+        """Одна норма: добыть, записать, назвать исход. Возвращает класс."""
         norm_id = norm["norm_id"]
         text, klass, url, note = collect(norm, args.allow_secondary, out)
-        tally[klass] += 1
         mark = {OFFICIAL: "✓", SECONDARY: "~", NOT_VERIFIED: "✗"}[klass]
         print(f"  {mark} {norm_id:14} {klass:12} {note or url}")
-        if args.show or not text:
-            continue
-        write(norm_id, official_url=url,
-              edition_marker=norm.get("edition_marker", ""), text=text,
-              source_class=klass, retrieved_at=today,
-              retrieved_by="tools/fetch_legal_evidence.py", note=note)
+        if text and not args.show:
+            write(norm_id, official_url=url,
+                  edition_marker=norm.get("edition_marker", ""), text=text,
+                  source_class=klass, retrieved_at=today,
+                  retrieved_by="tools/fetch_legal_evidence.py", note=note)
+        return klass if text or klass != NOT_VERIFIED else (
+            "транспорт" if "недоступен" in note else NOT_VERIFIED)
+
+    исходы = {norm["norm_id"]: взять(norm) for norm in norms}
+
+    # Второй заход по тем, кто упал на транспорте. Замеры владельца
+    # 16.08.2026: три нормы АПК дважды подряд закончились WinError 10060, и
+    # ни один HTTP-ответ по их адресу не дошёл — в следе прогона его нет
+    # вовсе. Это неустойчивость хоста, а не разбор и не адрес: остальные
+    # тринадцать норм в том же прогоне взялись. Хост, молчавший в начале,
+    # к концу прогона часто отвечает, и один повторный круг дешевле
+    # ещё одного захода владельца.
+    вторые = [n for n in norms if исходы[n["norm_id"]] == "транспорт"]
+    if вторые:
+        print(f"\nВторой заход по упавшим на транспорте: {len(вторые)}.")
+        _FAILED.clear()
+        time.sleep(RETRY_ROUND_PAUSE)
+        for norm in вторые:
+            исходы[norm["norm_id"]] = взять(norm)
+
+    for klass in исходы.values():
+        tally[OFFICIAL if klass == OFFICIAL else
+              SECONDARY if klass == SECONDARY else NOT_VERIFIED] += 1
 
     print(f"\nofficial {tally[OFFICIAL]}, secondary {tally[SECONDARY]}, "
           f"not_verified {tally[NOT_VERIFIED]} — всего {len(norms)}.")
