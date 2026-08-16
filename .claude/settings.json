@@ -33,6 +33,19 @@
         ]
       }
     ],
+    "PreToolUse": [
+      {
+        "matcher": "Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/tools/agent_bridge.py\" hook",
+            "timeout": 20,
+            "statusMessage": "Выбор модели исполнителю"
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Write|Edit",
