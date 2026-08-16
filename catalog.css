@@ -312,3 +312,20 @@
 .scheme-money>a::after{color:#ff5a00}
 @media(max-width:900px){.scheme li>a{padding:12px 0;gap:14px}}
 @media(max-width:600px){.scheme li>a{padding:11px 0;gap:12px}}
+
+/* Карточка решения на главной: коробка задаётся здесь и только здесь.
+   Замер 16.08.2026 на iPhone-эмуляции: содержимое карточки лежало вплотную
+   к её краю — зазор 1px слева и 0 справа при 375/390/393/430. Причина не в
+   этом файле: в styles.css оставался прежний трёхколоночный макет
+   `.solution-grid article{padding:34px 32px 40px 0}` с мобильным
+   `padding:26px 0`. Селектор с именем тега весомее класса `.solution-card`,
+   поэтому колоночные отступы побеждали карточные на всех ширинах — на
+   десктопе это же правило обнуляло левое поле первой карточке.
+   Разметки под тот макет в сайте не осталось: `.solution-grid` есть только
+   на главной, и каждый `article` внутри несёт класс `.solution-card`.
+   Правила удалены, а не переопределены: переопределение оставило бы вторую
+   коробку, ждущую следующей правки.
+   Здесь — только страховка на случай возврата тегового селектора. */
+.solution-grid .solution-card{padding:30px 28px}
+@media(max-width:600px){.solution-grid .solution-card{padding:22px 20px}}
+@media(min-width:1100px){.solution-grid .solution-card{padding:26px 24px}}
