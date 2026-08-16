@@ -21,6 +21,12 @@ meta:
   policy: ai-business-os/docs/AI_Execution_Policy.md
   updated: 2026-08-16
   agents_dir: .claude/agents
+  # Реестр объявляет режим, мост его исполняет: без него запись `router`
+  # оставалась пожеланием — нативный запуск `Agent` брал модель у среды.
+  # Хук `PreToolUse` в `.claude/settings.json`. Маршруты и логика решения
+  # живут у соседа; запрет держится и без него.
+  bridge: tools/agent_bridge.py
+  routes: ai-business-os/docs/Model_Ladder.yaml → routes
 
 modes: [router, fixed, inherit_approved, unknown]
 
