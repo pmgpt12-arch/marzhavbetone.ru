@@ -118,6 +118,34 @@ def looks_damaged(text: str) -> bool:
     return text.count("�") > max(20, len(text) // 200)
 
 
+_IPS_FRAME = re.compile(
+    r'<iframe[^>]*\bid=["\']list["\'][^>]*\bsrc=["\']([^"\']+)["\']', re.I)
+
+
+def ips_document_url(html: str, base_url: str, page: str = "all") -> str:
+    """Адрес самого текста акта в оболочке ИПС «Законодательство России».
+
+    Взято из фактического ответа, а не из документации портала. Замер
+    16.08.2026 по шести сохранённым страницам: то, что отдаёт
+    `?docbody=&nd=<id>`, текстом акта не является — это оболочка со списком
+    редакций и поисковой панелью, слова «Статья» в ней ноль раз. Текст
+    лежит во фрейме, и адрес фрейма стоит в самой оболочке:
+
+        <iframe id="list" src="?doc_itself=&nd=102033239&page=1&rdk=156">
+
+    Значение `page=all` тоже не выдумано: тем же ответом рядом объявлен
+    `?savertf=&nd=...&page=all`, то есть словарь параметров портала его
+    знает. Не сработает — вызывающий обходит страницы по одной.
+    """
+    m = _IPS_FRAME.search(html)
+    if not m:
+        return ""
+    src = m.group(1).replace("&amp;", "&")
+    if page:
+        src = re.sub(r"(?<=[?&])page=[^&]*", f"page={page}", src)
+    return urljoin(base_url, src)
+
+
 def find_document_links(html: str, base_url: str,
                         terms: list[str]) -> list[str]:
     """Ссылки страницы, чей текст называет искомый документ.

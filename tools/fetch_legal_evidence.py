@@ -51,8 +51,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from legal_evidence import (  # noqa: E402
     NOT_VERIFIED, OFFICIAL, SECONDARY, write)
 from legal_extract import (  # noqa: E402
-    decode_body, extract, find_document_links, looks_damaged, page_title,
-    parse_units, strip_html)
+    decode_body, extract, find_document_links, ips_document_url,
+    looks_damaged, page_title, parse_units, strip_html)
 
 ROOT = Path(__file__).resolve().parent.parent
 NORMS = ROOT / "data" / "legal" / "norms.yaml"
@@ -138,16 +138,104 @@ def probe(norm: dict, url: str, follow: bool = True) -> dict:
     if res.ok or not follow:
         return card
 
-    for link in find_document_links(resp["body"], resp["final_url"],
-                                    norm.get("search_terms") or []):
-        deeper = probe(norm, link, follow=False)
-        card["followed"].append({"url": link, "ok": deeper.get("ok"),
+    # Оболочка ИПС: текст акта лежит во фрейме, а не в этом ответе.
+    frame = ips_document_url(resp["body"], resp["final_url"], page="all")
+    if frame:
+        deeper = probe(norm, frame, follow=False)
+        card["followed"].append({"url": frame, "ok": deeper.get("ok"),
                                  "reason": deeper.get("reason", "")})
         if deeper.get("ok"):
-            deeper["followed"] = card["followed"]
-            deeper["reached_from"] = url
+            deeper["followed"], deeper["reached_from"] = card["followed"], url
             return deeper
-    return card
+        paged = _walk_ips_pages(norm, resp["body"], resp["final_url"], card)
+        if paged:
+            return paged
+
+    return _walk_search_path(norm, resp["body"], resp["final_url"], card) or card
+
+
+MAX_HOP_LINKS = 5
+MAX_HOP_PAGES = 3
+
+
+def _walk_search_path(norm: dict, html: str, base: str, card: dict) -> dict:
+    """Дойти до документа по ссылкам самих страниц, шаг за шагом.
+
+    Нужно там, где официальный адрес ведёт на перечень. Замер 16.08.2026 по
+    сохранённой странице `vsrf.ru/documents/own/`: восемьдесят пять ссылок,
+    ни одна не называет 24.03.2016 — постановления там нет, а есть переход
+    в раздел «Постановления Пленума». Значит одного шага мало, и путь
+    описывается шагами: сначала раздел, потом документ.
+
+    Реквизиты шагов лежат в реестре (`search_path`), адреса — нет: каждый
+    следующий адрес берётся из фактического ответа официального источника.
+    """
+    pages = [(html, base)]
+    for hop, terms in enumerate(norm.get("search_path") or [], 1):
+        nxt = []
+        for page_html, page_base in pages:
+            for link in find_document_links(page_html, page_base,
+                                            terms)[:MAX_HOP_LINKS]:
+                try:
+                    resp = fetch(link)
+                except Unreachable as e:
+                    card["followed"].append({"url": link, "ok": False,
+                                             "reason": f"шаг {hop}: {e}"})
+                    continue
+                res = extract(strip_html(resp["body"]), norm)
+                card["followed"].append({"url": link, "ok": res.ok,
+                                         "reason": res.reason or f"шаг {hop}"})
+                if res.ok:
+                    return {**card, "ok": True, "reason": "", "text": res.text,
+                            "found": res.found, "missing": [],
+                            "reached_from": base}
+                nxt.append((resp["body"], resp["final_url"]))
+        pages = nxt[:MAX_HOP_PAGES]
+        if not pages:
+            break
+    return {}
+
+
+MAX_IPS_PAGES = 120
+
+
+def _walk_ips_pages(norm: dict, shell: str, base: str, card: dict) -> dict:
+    """Собрать текст акта по страницам фрейма, когда `page=all` не сработал.
+
+    Страницы складываются и разбираются один раз в конце: статья может
+    начаться на одной странице и кончиться на следующей, и разбор по
+    отдельности резал бы норму пополам. Обход прекращается на повторе —
+    портал на несуществующей странице отдаёт последнюю, и без этого выхода
+    цикл был бы вечным.
+    """
+    chunks, seen = [], set()
+    for page in range(1, MAX_IPS_PAGES + 1):
+        url = ips_document_url(shell, base, page=str(page))
+        if not url:
+            break
+        try:
+            resp = fetch(url)
+        except Unreachable as e:
+            card["followed"].append({"url": url, "ok": False,
+                                     "reason": f"страница {page}: {e}"})
+            break
+        body = strip_html(resp["body"])
+        digest = hashlib.sha1(body.encode("utf-8")).hexdigest()
+        if digest in seen or not body:
+            break
+        seen.add(digest)
+        chunks.append(body)
+
+    if not chunks:
+        return {}
+    res = extract(" ".join(chunks), norm)
+    card["followed"].append({"url": f"фрейм по страницам ({len(chunks)})",
+                             "ok": res.ok, "reason": res.reason})
+    if not res.ok:
+        return {}
+    return {**card, "ok": True, "reason": "", "text": res.text,
+            "found": res.found, "missing": [],
+            "reached_from": base, "text_length": sum(len(c) for c in chunks)}
 
 
 def show_debug(norm: dict, card: dict) -> None:
