@@ -27,6 +27,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES = ROOT / "articles"
+DZEN_DIR = ROOT / "content" / "dzen"
 SITE = "https://marzhavbetone.ru"
 CHANNEL_TITLE = "Маржа в бетоне"
 CHANNEL_DESCRIPTION = (
@@ -281,10 +282,63 @@ def article_body(source: str) -> str:
     return "\n".join(blocks)
 
 
+# Заголовок статьи на сайте и заголовок той же статьи в Дзене решают разные
+# задачи, и это не вкусовщина, а замер: «Гарантийное удержание: что это такое
+# и сколько оно стоит субподрядчику» написано под запрос «гарантийное
+# удержание» 4 917 в месяц, а «Пять процентов, которые вы больше не увидите» —
+# под ленту, где заголовок конкурирует за клик, а не за позицию.
+#
+# Заготовки в content/dzen несут второй вариант в блоке «Заголовок», и до сих
+# пор он доставался только ручной публикации: фид брал og:title, то есть
+# поисковый. Из семнадцати статей расписания четырнадцать теряли на этом
+# написанный заголовок — молча, потому что заголовки фид не проверяет.
+#
+# Побочно это разводит две наши же страницы по разным запросам: за
+# «гарантийное удержание» отвечает статья сайта, она каноническая, а копия в
+# Дзене больше не встаёт с ней в один запрос.
+#
+# Вернуть поисковые заголовки в фид — снять этот флаг, правка на одну строку.
+USE_DZEN_TITLES = True
+
+
+def dzen_titles() -> dict[str, str]:
+    """slug статьи → заголовок из заготовки content/dzen.
+
+    Связь берётся из блока «Ссылка»: там лежит канонический адрес статьи, и
+    он есть во всех заготовках. Обложка (`assets/<slug>.jpg`) для этого не
+    годится — её нет у трёх заготовок из двадцати восьми.
+    """
+    titles: dict[str, str] = {}
+    if not USE_DZEN_TITLES or not DZEN_DIR.is_dir():
+        return titles
+    for path in sorted(DZEN_DIR.glob("*.md")):
+        if path.name == "README.md":
+            continue
+        text = path.read_text(encoding="utf-8")
+        title = re.search(r"##\s*Заголовок\s*\n+```\s*\n(.+?)\n```", text, re.S)
+        link = re.search(r"marzhavbetone\.ru/articles/([a-z0-9\-]+)\.html", text)
+        if not title or not link:
+            continue
+        headline = title.group(1).strip()
+        slug = link.group(1)
+        # Две заготовки на одну статью означают, что одна из них — копия,
+        # оставленная при переименовании. Молча взять первую значит однажды
+        # выпустить в ленту заголовок, который никто не писал.
+        if slug in titles and titles[slug] != headline:
+            raise SystemExit(
+                f"{path.name}: на статью {slug} уже есть заготовка с другим "
+                f"заголовком — «{titles[slug]}» против «{headline}»"
+            )
+        titles[slug] = headline
+    return titles
+
+
 def collect() -> list[dict]:
     items = []
     skipped = []
     held: list[tuple[str, str]] = []
+    headlines = dzen_titles()
+    adapted: list[str] = []
     today = datetime.now(MSK).date().isoformat()
     for path in sorted(ARTICLES.glob("*.html")):
         if path.name == "index.html":
@@ -303,6 +357,14 @@ def collect() -> list[dict]:
         if not title:
             found = re.search(r"<title>(.*?)</title>", source, re.S)
             title = html.unescape(found.group(1)) if found else path.stem
+
+        # Заготовка Дзена главнее поискового заголовка: она написана под
+        # ленту. Нет заготовки — идёт заголовок сайта, статья без заголовка
+        # в фид не уходит.
+        headline = headlines.get(path.stem)
+        if headline and headline != title:
+            adapted.append(path.stem)
+            title = headline
 
         published = re.search(r'"datePublished":\s*"([^"]+)"', source)
         if not published:
@@ -341,6 +403,9 @@ def collect() -> list[dict]:
         })
 
     items.sort(key=lambda item: item["date"], reverse=True)
+    # Число называется всегда, включая ноль: молчание здесь читалось бы как
+    # «заголовки адаптированы», а означало бы «заготовки не нашлись».
+    print(f"заголовок из заготовки Дзена: {len(adapted)} из {len(items)}")
     if skipped:
         print(f"исключено как опубликованное вручную: {len(skipped)}")
     if held:
