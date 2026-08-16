@@ -1,1 +1,28 @@
 html{scroll-padding-top:92px}#catalog,#how-to-buy,#results,#materials,#contact{scroll-margin-top:92px}@media(min-width:1100px){.hero h1{font-size:clamp(42px,4.2vw,64px);line-height:.98}.hero-copy{padding-top:56px;padding-bottom:56px}.section{padding-top:78px;padding-bottom:78px}.section-head{margin-bottom:36px}.section h2,.section-head h2{font-size:clamp(38px,3.6vw,52px);line-height:1.02}.author-facts{gap:34px;margin-top:26px}.author-facts dt{font-size:30px}.author-facts div{max-width:200px}.solution-card{padding:26px 24px}.solution-points{margin-top:14px;padding-top:14px}.solution-points li{margin-bottom:4px}#situations .topic-grid{grid-template-columns:repeat(3,minmax(0,1fr))}#situations .topic-grid h3{font-size:24px;margin-top:26px}.author-timeline{grid-template-columns:repeat(2,minmax(0,1fr))}.author-stage{padding:20px 24px 22px 0}.author-value{margin-top:26px;padding:22px 26px}.author-section{align-items:center}.sales-solutions .section-head,.sales-solutions .product-grid{width:min(100%,1360px);margin-left:auto;margin-right:auto}.sales-solutions{padding-top:96px;padding-bottom:96px}.product-grid{gap:28px}.product-grid-inner{grid-template-columns:repeat(3,minmax(0,1fr))}.product-documents{columns:1;font-size:14px}.product-documents li{overflow-wrap:break-word;hyphens:manual}.product-card>p,.product-card .product-fit{overflow-wrap:break-word}.product-footer{flex-wrap:wrap;row-gap:14px}.product-footer .button{flex:1 1 auto;min-width:0;white-space:normal;padding-left:18px;padding-right:18px}.product-group,.product-grid-inner,.product-card{min-width:0}.product-number{overflow-wrap:break-word;line-height:1.35}.product-card{padding:32px 34px}.product-card h3{font-size:clamp(24px,1.9vw,30px);line-height:1.1;letter-spacing:-.02em;overflow-wrap:break-word;hyphens:manual}.product-card>p{min-height:64px}.product-card ul{margin-top:16px}.product-card details{min-height:32px}.order-steps .section-head,.order-steps .topic-grid,.sales-result>*,.contact>*,.telegram-promo>*,.personal-review>*{min-width:0}.contact{grid-template-columns:minmax(0,1fr) minmax(420px,560px)!important}.contact-copy{max-width:760px}.contact h2{font-size:clamp(48px,4.8vw,72px)}}@media(min-width:1700px){.topbar{padding-left:max(72px,calc((100vw - 1680px)/2));padding-right:max(72px,calc((100vw - 1680px)/2))}}
+
+/* Плотность карточки каталога на десктопе. Замер рендером 16.08.2026 на
+   katalog.html при 1366px: карточка 1004px — это полтора экрана на одну
+   позицию, при том что содержимого в ней 691px. Разбор по блокам показал,
+   где уходит остальное: межблочные отступы 22+28+32+32 = 114px, поля
+   списка 18px сверху и снизу, и по 7px под каждым из десяти пунктов.
+
+   Что здесь НЕ трогается и почему. `margin-top:auto` у `.product-footer`
+   оставлен: он держит цену и кнопку на одной линии во всём ряду, и без
+   него витрина рассыпается. Пустота над футером в короткой карточке —
+   следствие равной высоты ряда, а не отступов: ряд задаёт самая высокая
+   карточка. Убрать её можно только отказом от общей линии цены, что
+   дороже самой пустоты.
+
+   Кегль не уменьшается: против рабочей базы это маскировка, а не
+   уплотнение. Уменьшается только воздух между блоками. */
+@media(min-width:1100px){
+  .product-card h3{margin-top:16px}
+  .product-card>p,.product-card .product-fit{margin-top:11px;margin-bottom:11px}
+  /* min-height задумывался как выравниватель коротких описаний, но замер
+     показал 72–120px при пороге 64px — он не срабатывает почти нигде, а
+     там, где сработал бы, производит ровно ту пустоту, против которой
+     написан этот блок. */
+  .product-card>p{min-height:0}
+  .product-card ul{padding-top:13px;padding-bottom:13px}
+  .product-documents li{margin-bottom:4px}
+}
