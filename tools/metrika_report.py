@@ -165,6 +165,89 @@ def rows(data: dict) -> list[tuple[str, float]]:
     return out
 
 
+# Ступени воронки, которые считаются в разрезе страницы входа. Порядок —
+# порядок движения к деньгам, и он же порядок колонок в отчёте.
+FUNNEL_BY_LANDING = [
+    "product_opened", "article_to_product",
+    "add_to_cart", "checkout_open", "purchase",
+]
+
+
+def entry_group(path: str) -> str:
+    """Куда человек вошёл: главная, каталог, разбор, прочее.
+
+    Три группы разделены потому, что ведут себя по-разному и лечатся
+    разным: на главной витрина, в каталоге перечень, в разборе текст под
+    запрос. Сложенные в одно число они дают среднее, из которого не
+    следует ни одного действия.
+    """
+    if path in ("/", "/index.html", "/#catalog", "/#top"):
+        return "home"
+    if path.startswith("/katalog"):
+        return "catalog"
+    if path.startswith("/articles/"):
+        return "article"
+    return "other"
+
+
+def rows_multi(data: dict, names: list[str]) -> dict[str, dict[str, float]]:
+    """Строки с несколькими метриками: путь → {имя метрики: значение}."""
+    out: dict[str, dict[str, float]] = {}
+    for row in data.get("data", []):
+        dimension = row["dimensions"][0]
+        label = str(dimension.get("name") or dimension.get("id") or "—")
+        out[label] = {n: round(v, 2) for n, v in zip(names, row["metrics"])}
+    return out
+
+
+def landings(token: str, counter: str, found: dict[str, int],
+             d1: str, d2: str) -> list[dict]:
+    """Воронка в разрезе страницы входа.
+
+    Двумя запросами, а не одним: Метрика ограничивает число метрик в
+    запросе, и визиты берутся в обоих, чтобы строки сходились по одному
+    и тому же знаменателю. Цель, которой нет в счётчике, не запрашивается
+    вовсе — иначе запрос падает целиком и молчит вся таблица.
+    """
+    present = [name for name in FUNNEL_BY_LANDING if name in found]
+    merged: dict[str, dict[str, float]] = {}
+    for part in (present[:2], present[2:]):
+        if not part:
+            continue
+        names = ["visits"] + part
+        metrics = ["ym:s:visits"] + [f"ym:s:goal{found[n]}reaches" for n in part]
+        data = stat(token, counter, metrics, d1, d2,
+                    dimensions="ym:s:startURLPath", limit=30)
+        for path, values in rows_multi(data, names).items():
+            merged.setdefault(path, {}).update(values)
+
+    out = []
+    for path, values in sorted(merged.items(),
+                               key=lambda kv: -kv[1].get("visits", 0)):
+        row = {"path": path, "group": entry_group(path),
+               "visits": values.get("visits", 0)}
+        for name in FUNNEL_BY_LANDING:
+            # None, а не 0: цели нет в счётчике — это «не измерено»
+            row[name] = values.get(name) if name in present else None
+        out.append(row)
+    return out
+
+
+def by_group(rows_of_landings: list[dict]) -> dict[str, dict]:
+    """Свод по группам входа. Доля не считается — её порог живёт в отчёте."""
+    groups: dict[str, dict] = {}
+    for row in rows_of_landings:
+        bucket = groups.setdefault(row["group"], {"visits": 0.0})
+        bucket["visits"] += row["visits"]
+        for name in FUNNEL_BY_LANDING:
+            value = row.get(name)
+            if value is None:
+                bucket.setdefault(name, None)
+                continue
+            bucket[name] = (bucket.get(name) or 0) + value
+    return groups
+
+
 def yaml_dump(value, indent: int = 0) -> str:
     pad = "  " * indent
     if isinstance(value, dict):
@@ -244,6 +327,8 @@ def main() -> int:
                       dimensions="ym:pv:URLPathFull", limit=20))
     sources = rows(stat(token, counter, ["ym:s:visits"], d1, d2,
                         dimensions="ym:s:lastTrafficSource", limit=12))
+    entry_rows = landings(token, counter, found, d1, d2)
+    entry_totals = by_group(entry_rows)
 
     snapshot = {
         "snapshot_date": date.today().isoformat(),
@@ -258,6 +343,8 @@ def main() -> int:
         "goals_extra_in_counter": extra,
         "top_pages": [{"path": path, "pageviews": views} for path, views in pages],
         "sources": [{"source": name, "visits": value} for name, value in sources],
+        "landings": entry_rows,
+        "entry_groups": entry_totals,
     }
 
     print(f"Счётчик {counter}, период {d1} — {d2} ({args.days} дн.)")
@@ -275,6 +362,18 @@ def main() -> int:
         print("  самые читаемые:")
         for path, views in pages[:8]:
             print(f"    {views:7g}  {path}")
+    if entry_totals:
+        print("  по странице входа (визиты → товар → корзина → оформление → оплата):")
+        for group in ("home", "catalog", "article", "other"):
+            bucket = entry_totals.get(group)
+            if not bucket:
+                continue
+            cells = []
+            for name in FUNNEL_BY_LANDING:
+                value = bucket.get(name)
+                cells.append("н/д" if value is None else f"{value:g}")
+            print(f"    {group:8s} визитов {bucket['visits']:6g}  "
+                  + "  ".join(f"{n}={c}" for n, c in zip(FUNNEL_BY_LANDING, cells)))
 
     if args.write:
         OUT_DIR.mkdir(parents=True, exist_ok=True)
