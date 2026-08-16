@@ -264,6 +264,131 @@ def check_page(browser, base: str, rel: str) -> list[str]:
     return bad
 
 
+# Ширины, на которых смотрят с телефона. Одной мало: дефект полей карточки
+# 16.08.2026 владелец увидел на своём аппарате, а проверка стояла только на
+# 390 и его не показывала — не потому, что 390 «хорошая» ширина, а потому
+# что мерилась не та карточка.
+CARD_WIDTHS = (375, 390, 393, 430)
+
+# Минимальный внутренний зазор карточки. 12px — не «красиво», а граница
+# между «поле есть» и «текст лежит на рамке»: сломанные карточки давали
+# 0–1px, целые — 20–21px.
+CARD_GAP_MIN = 12
+
+# Насколько плавающий блок может заходить на содержимое. Ноль недостижим:
+# блок с `position:fixed` по устройству лежит поверх прокручиваемого
+# содержимого, и при ширине колонки во весь экран любой видимый блок с ней
+# пересекается. Замер 16.08.2026: строка из четырёх значков по центру низа
+# перекрывала заголовок и кнопку на 230px, столбец в углу — на 13px, то
+# есть попадает в поле карточки, а не в текст. Порог 24px отделяет одно от
+# другого.
+FLOAT_OVERLAP_MAX = 24
+
+# Карточка — блок с собственным фоном или рамкой, внутри которого есть
+# заголовок. Класс не перечисляется: перечень устаревает, а дефект
+# 16.08.2026 сидел ровно в той карточке, которой в перечне не было бы.
+CARDGAP_SCRIPT = """(minGap) => {
+  const bodyBg = getComputedStyle(document.body).backgroundColor;
+  const out = [];
+  for (const el of document.querySelectorAll('article, section, div, li, aside')) {
+    const cs = getComputedStyle(el);
+    if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+    const bg = cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && cs.backgroundColor !== bodyBg;
+    const bordered = parseFloat(cs.borderLeftWidth) > 0 && cs.borderLeftStyle !== 'none';
+    if (!bg && !bordered) continue;
+    const head = el.querySelector(':scope > h2, :scope > h3, :scope > h4');
+    if (!head) continue;
+    const r = el.getBoundingClientRect();
+    if (r.width < 240 || r.height < 120) continue;
+    let worst = null;
+    for (const kid of el.children) {
+      const kr = kid.getBoundingClientRect();
+      if (!kr.width || !kr.height) continue;
+      const gap = Math.min(kr.left - r.left, r.right - kr.right);
+      if (worst === null || gap < worst.gap) {
+        worst = {gap, tag: kid.tagName.toLowerCase()
+                      + (kid.className ? '.' + String(kid.className).split(/\\s+/)[0] : '')};
+      }
+    }
+    if (worst && worst.gap < minGap) {
+      out.push('карточка ' + el.tagName.toLowerCase()
+               + (el.className ? '.' + String(el.className).split(/\\s+/)[0] : '')
+               + ': поле ' + worst.gap.toFixed(1) + 'px до ' + worst.tag
+               + ' (нужно от ' + minGap + ')');
+    }
+  }
+  return out.slice(0, 6);
+}"""
+
+# Плавающие блоки против того, ради чего страница существует: цена и кнопка.
+FLOATHIT_SCRIPT = """(maxOverlap) => {
+  const floats = [...document.querySelectorAll('body *')].filter(el => {
+    const cs = getComputedStyle(el);
+    if (cs.position !== 'fixed') return false;
+    if (cs.display === 'none' || cs.visibility === 'hidden' || cs.opacity === '0') return false;
+    const r = el.getBoundingClientRect();
+    return r.width > 0 && r.height > 0 && r.top < innerHeight && r.bottom > 0;
+  });
+  const targets = [...document.querySelectorAll(
+    '.product-footer strong, .product-footer .button, .product-footer .add-to-cart,'
+    + ' .product-card h3, .solution-card h3')];
+  const out = [];
+  for (const f of floats) {
+    const fr = f.getBoundingClientRect();
+    for (const t of targets) {
+      const tr = t.getBoundingClientRect();
+      if (tr.bottom < 0 || tr.top > innerHeight) continue;
+      const ox = Math.min(fr.right, tr.right) - Math.max(fr.left, tr.left);
+      const oy = Math.min(fr.bottom, tr.bottom) - Math.max(fr.top, tr.top);
+      if (ox > maxOverlap && oy > 2) {
+        out.push((f.className ? '.' + String(f.className).split(/\\s+/)[0] : f.tagName)
+                 + ' закрывает ' + (t.className ? '.' + String(t.className).split(/\\s+/)[0]
+                                                : t.tagName.toLowerCase())
+                 + ' «' + (t.textContent || '').trim().slice(0, 22) + '» на '
+                 + Math.round(ox) + 'px');
+      }
+    }
+  }
+  return out.slice(0, 6);
+}"""
+
+
+def check_cards(browser, base: str, rel: str) -> list[str]:
+    """Геометрия карточек и плавающих блоков на четырёх ширинах телефона.
+
+    Меряется рендер, а не объявления в css: дефект 16.08.2026 был именно
+    расхождением объявленного с получившимся — `.solution-card` объявляла
+    `padding:22px 20px`, а получала `26px 0` от пережившего вёрстку правила
+    `.solution-grid article`, у которого специфичность выше.
+    """
+    bad: list[str] = []
+    for width in CARD_WIDTHS:
+        context = browser.new_context(
+            viewport={"width": width, "height": HEIGHT_PHONE},
+            device_scale_factor=3, is_mobile=True, has_touch=True)
+        page = context.new_page()
+        try:
+            page.goto(f"{base}/{rel}", wait_until="load")
+            page.wait_for_timeout(250)
+            # Одинаковых карточек в сетке несколько, и правило у них общее:
+            # шесть одинаковых строк про один дефект читать невозможно.
+            for item in dict.fromkeys(page.evaluate(CARDGAP_SCRIPT, CARD_GAP_MIN)):
+                bad.append(f"{rel} @{width}: {item}")
+            # Прокрутка нужна: плавающий блок стоит на месте, а содержимое
+            # под ним меняется, и на первом экране пересечения может не быть.
+            for y in (0, 900, 1800, 3000):
+                page.evaluate("(y) => window.scrollTo(0, y)", y)
+                page.wait_for_timeout(140)
+                for item in page.evaluate(FLOATHIT_SCRIPT, FLOAT_OVERLAP_MAX):
+                    line = f"{rel} @{width}: {item}"
+                    if line not in bad:
+                        bad.append(line)
+        finally:
+            page.close()
+            context.close()
+    return bad
+
+
 def check_desktop(browser, base: str) -> list[str]:
     bad: list[str] = []
     page = browser.new_page(viewport={"width": 1440, "height": 900})
@@ -313,6 +438,11 @@ def main() -> int:
                 browser = p.chromium.launch(executable_path=str(found))
             for rel in targets:
                 bad += check_page(browser, base, rel)
+            # Геометрия карточек — там, где карточки есть. Гонять четыре
+            # ширины по всем страницам незачем: на разборе карточек нет.
+            for rel in ("index.html", "katalog.html", "materialy/index.html"):
+                if rel in targets:
+                    bad += check_cards(browser, base, rel)
             bad += check_desktop(browser, base)
             browser.close()
     finally:
