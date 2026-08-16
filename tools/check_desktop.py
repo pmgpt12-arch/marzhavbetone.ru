@@ -48,7 +48,10 @@ ROOT = Path(__file__).resolve().parent.parent
 # Брейкпоинты на 15.08.2026: 1100 (desktop.css), 1600 (desktop-wide.css),
 # 1700 (desktop.css). 1366 берёт ветку 1100+, 1440 её же с другим запасом
 # по ширине контейнера, 1920 — обе широкие.
-WIDTHS = [(1366, 768), (1440, 900), (1920, 1080)]
+# 1600 добавлена 16.08.2026: ровно на этой границе жил дефект широкого
+# монитора (кегль заголовка ступенькой при упёршейся колонке), а в списке
+# стояли 1440 и 1920 — то есть сама граница не проверялась ни разу.
+WIDTHS = [(1366, 768), (1440, 900), (1600, 900), (1920, 1080)]
 
 # Допуск на субпиксель: рендер даёт дробные ширины, и расхождение в
 # полпикселя — округление, а не переполнение.
@@ -318,6 +321,104 @@ WORDBREAK_SCRIPT = """() => {
   return out.slice(0, 8);
 }"""
 
+# Разрыв слова по факту раскладки, а не по предсказанию.
+#
+# WORDBREAK_SCRIPT выше считает, влезет ли слово в строку, и смотрит только
+# заголовки, кнопки и рубрику. Этого мало по двум причинам, и обе замерены
+# 16.08.2026 на katalog.html: перечень файлов внутри карточки — это `li`, в
+# список селекторов он не входил вовсе; а предсказание по ширине шрифта не
+# знает, где реально встал перенос строки.
+#
+# Здесь мерится результат: диапазон, покрывающий слово, отдаёт несколько
+# прямоугольников на разной высоте только тогда, когда слово разложено на
+# две строки. Порога нет — слово либо разорвано, либо нет.
+#
+# Дефис в состав слова НЕ входит, и это не мелочь. Первая редакция включала
+# его и дала шесть ложных срабатываний на «чек-листу» и «из-за»: перенос по
+# настоящему дефису — нормальная типографика, а не дефект. Мягкий перенос
+# (U+00AD) в составе оставлен: разрыв по нему — это уже искусственная
+# расстановка переносов, то есть ровно то, что ищем.
+REALBREAK_SCRIPT = """() => {
+  const root = document.querySelector('.product-grid') || document.body;
+  const out = [];
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  let node;
+  while ((node = walker.nextNode())) {
+    const text = node.nodeValue;
+    if (!text || !text.trim()) continue;
+    const cs = getComputedStyle(node.parentElement);
+    if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+    const re = /[\\p{L}\\p{N}][\\p{L}\\p{N}\\u00ad]*/gu;
+    let m;
+    while ((m = re.exec(text))) {
+      const word = m[0];
+      if (word.length < 4) continue;
+      const r = document.createRange();
+      r.setStart(node, m.index);
+      r.setEnd(node, m.index + word.length);
+      const rects = [...r.getClientRects()];
+      if (rects.length < 2) continue;
+      if (new Set(rects.map(x => Math.round(x.top))).size < 2) continue;
+      const el = node.parentElement;
+      out.push('слово «' + word + '» разорвано между строками в '
+               + el.tagName.toLowerCase()
+               + (el.className ? '.' + String(el.className).split(/\\s+/)[0] : ''));
+      if (out.length >= 8) return out;
+    }
+  }
+  return out;
+}"""
+
+# Карточка каталога: содержимое на одной внутренней сетке, цена внутри
+# коробки.
+#
+# Замер 16.08.2026: дефект первой карточки описывался как «текст и цена
+# прижаты к левому краю». Проверять его сравнением `padding` недостаточно —
+# padding может совпадать, а отрицательный margin, transform или вылет
+# строки всё равно вынесут содержимое за границу. Поэтому меряется
+# фактическое расстояние от левого края карточки до каждого её блока, и
+# первая карточка сравнивается с соседними: расхождение больше пикселя
+# означает, что к ней применилось правило, не применившееся к остальным.
+CARDBOX_SCRIPT = """() => {
+  const cards = [...document.querySelectorAll('.product-grid-inner .product-card')];
+  if (cards.length < 2) return [];
+  const out = [];
+  const offsets = card => {
+    const cr = card.getBoundingClientRect();
+    const kids = ['.product-number', 'h3', 'p', 'ul', '.product-footer strong',
+                  '.product-footer .button'];
+    const o = {};
+    for (const sel of kids) {
+      const el = card.querySelector(sel);
+      if (el) o[sel] = +(el.getBoundingClientRect().left - cr.left).toFixed(1);
+    }
+    return o;
+  };
+  const base = offsets(cards[1]);
+  const first = offsets(cards[0]);
+  for (const sel of Object.keys(first)) {
+    if (!(sel in base)) continue;
+    if (Math.abs(first[sel] - base[sel]) > 1) {
+      out.push('первая карточка: ' + sel + ' отступ слева ' + first[sel]
+               + 'px против ' + base[sel] + 'px у соседней');
+    }
+  }
+  cards.forEach((card, i) => {
+    const cr = card.getBoundingClientRect();
+    for (const sel of ['.product-footer strong', '.product-footer .button']) {
+      const el = card.querySelector(sel);
+      if (!el) continue;
+      const r = el.getBoundingClientRect();
+      if (r.left < cr.left - 0.5 || r.right > cr.right + 0.5) {
+        out.push('карточка ' + (i + 1) + ': ' + sel + ' выходит за границу — '
+                 + Math.round(r.left) + '..' + Math.round(r.right)
+                 + ' против ' + Math.round(cr.left) + '..' + Math.round(cr.right));
+      }
+    }
+  });
+  return out.slice(0, 8);
+}"""
+
 
 def first_screen(page, height: int) -> list[str]:
     """Что видно на странице товара до прокрутки.
@@ -373,6 +474,12 @@ def check_page(browser, base: str, rel: str,
                 bad.append(f"{rel} @{width}: {item}")
 
             for item in page.evaluate(WORDBREAK_SCRIPT):
+                bad.append(f"{rel} @{width}: {item}")
+
+            for item in page.evaluate(REALBREAK_SCRIPT):
+                bad.append(f"{rel} @{width}: {item}")
+
+            for item in page.evaluate(CARDBOX_SCRIPT):
                 bad.append(f"{rel} @{width}: {item}")
 
             # Главная кнопка первого экрана. Замер 15.08.2026: заголовок
