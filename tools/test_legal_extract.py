@@ -569,20 +569,6 @@ def test_адреса_проверенных_актов_не_возвращаю�
         "/documents/own/8478")
 
 
-def test_госкомстат_без_прямого_источника_остаётся_без_адреса():
-    """Ссылка в другом акте текстом самого акта не является.
-
-    Отдельный тест потому, что соблазн конкретный: постановление № 100
-    упоминается в действующих документах Росстата, и подставить туда
-    вторичный источник или чужой акт выглядело бы закрытием вопроса.
-    Это было бы подменой доказательства ссылкой на него.
-    """
-    norm = _registry()["goskomstat-100"]
-    assert not norm.get("official_source"), norm.get("official_source")
-    for чужое in ("consultant.ru", "garant.ru", "publication.pravo.gov.ru"):
-        assert чужое not in str(norm.get("official_source") or "")
-
-
 def main() -> int:
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     failed = 0

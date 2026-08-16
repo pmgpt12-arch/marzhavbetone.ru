@@ -116,6 +116,84 @@ def test_снятая_привязка_краснеет():
         assert "ГК:395" in p.stdout, p.stdout
 
 
+
+def _песочница(tmp):
+    import shutil
+    for rel in ("tools/check_legal_coverage.py", "tools/semantic_hash.py",
+                "data/legal/norms.yaml", "data/legal/document-norms.yaml"):
+        dst = tmp / rel
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / rel, dst)
+    pkg = "products-storage/01-zakrytie-rabot"
+    (tmp / pkg).mkdir(parents=True, exist_ok=True)
+    for pattern in ("*.docx", "*.xlsx"):
+        for src in (ROOT / pkg).glob(pattern):
+            shutil.copy2(src, tmp / pkg / src.name)
+    return tmp
+
+
+def _прогон(tmp):
+    return subprocess.run([sys.executable, "tools/check_legal_coverage.py"],
+                          cwd=tmp, capture_output=True, text=True, timeout=120)
+
+
+def test_атрибутивная_ссылка_без_причины_краснеет():
+    """Иначе объявление атрибутивной стало бы способом спрятать опору."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as d:
+        tmp = _песочница(Path(d))
+        path = tmp / "data/legal/document-norms.yaml"
+        s = path.read_text(encoding="utf-8")
+        начало = s.index("        reason: >-")
+        конец = s.index("\n    mechanisms:", начало)
+        path.write_text(s[:начало] + '        reason: ""' + s[конец:],
+                        encoding="utf-8")
+        p = _прогон(tmp)
+        assert p.returncode != 0, "атрибутивная без причины обязана краснеть"
+        assert "без причины" in p.stdout, p.stdout
+
+
+def test_атрибутивной_нельзя_объявить_то_чего_в_тексте_нет():
+    """Объявление должно описывать документ, а не желаемое."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as d:
+        tmp = _песочница(Path(d))
+        path = tmp / "data/legal/document-norms.yaml"
+        path.write_text(path.read_text(encoding="utf-8")
+                        .replace("ref: ГОСКОМСТАТ:100", "ref: ГОСКОМСТАТ:999"),
+                        encoding="utf-8")
+        p = _прогон(tmp)
+        assert p.returncode != 0
+        assert "в тексте не найдена" in p.stdout, p.stdout
+
+
+def test_снятая_атрибутивная_обнажает_ссылку():
+    """Убрали объявление — ссылка снова непокрыта, а не исчезла."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as d:
+        tmp = _песочница(Path(d))
+        path = tmp / "data/legal/document-norms.yaml"
+        s = path.read_text(encoding="utf-8")
+        начало = s.index("    attributive_references:")
+        конец = s.index("    mechanisms:", начало)
+        path.write_text(s[:начало] + s[конец:], encoding="utf-8")
+        p = _прогон(tmp)
+        assert p.returncode != 0
+        assert "ГОСКОМСТАТ:100" in p.stdout, p.stdout
+
+
+def test_госкомстат_не_числится_нормативной_опорой():
+    import yaml
+    norms = {n["norm_id"] for n in yaml.safe_load(
+        (ROOT / "data/legal/norms.yaml").read_text(encoding="utf-8"))["norms"]}
+    assert "goskomstat-100" not in norms, \
+        "акт назван документом, но юридический вывод на нём не стоит"
+    docs = yaml.safe_load((ROOT / "data/legal/document-norms.yaml")
+                          .read_text(encoding="utf-8"))["documents"]
+    for d in docs:
+        assert "goskomstat-100" not in d["norms"], d["path"]
+
+
 def main() -> int:
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     failed = 0
