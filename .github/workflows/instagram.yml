@@ -1,0 +1,70 @@
+# Публикация в Instagram — из прогона, а не из сессии.
+#
+# Из облачной сессии graph.facebook.com и www.instagram.com отвечают 000
+# (замер 16.08.2026), у раннера выход в сеть свой. Тот же порядок, что у
+# отправки в Телеграм и съёмки фрагментов.
+#
+# Кнопкой, а не по расписанию: публикация необратима и направлена наружу —
+# по Р-006 нажатие остаётся за владельцем. Автоматизируется подготовка,
+# не само нажатие.
+name: Instagram
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Что сделать'
+        type: choice
+        options: [probe, publish]
+        default: probe
+      media_url:
+        description: 'Публичный адрес mp4 или jpg (только для publish)'
+        type: string
+        required: false
+      media_kind:
+        description: 'Ролик или картинка'
+        type: choice
+        options: [reel, image]
+        default: reel
+      caption_file:
+        description: 'Файл подписи в репозитории'
+        type: string
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: instagram
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Проба обязательна и перед публикацией тоже: истёкший токен лучше
+      # увидеть до того, как Meta заберёт файл и создаст контейнер.
+      - name: Проверить доступ и токен
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: python3 tools/instagram_publish.py --probe
+
+      - name: Опубликовать
+        if: inputs.mode == 'publish'
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          if [ -z "${{ inputs.media_url }}" ]; then
+            echo "ОШИБКА: для publish нужен media_url" >&2
+            exit 2
+          fi
+          python3 tools/instagram_publish.py \
+            --${{ inputs.media_kind }} "${{ inputs.media_url }}" \
+            --caption-file "${{ inputs.caption_file }}"
