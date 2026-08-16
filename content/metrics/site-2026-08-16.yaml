@@ -1,0 +1,108 @@
+# Снимок чисел сайта из Яндекс.Метрики. Пишется прогоном
+# .github/workflows/metrika.yml, инструмент — tools/metrika_report.py.
+#
+# Ряд читается сравнением файлов между собой: один снимок не отвечает
+# ни на один вопрос плана развития, два отвечают.
+#
+# Каталог content/ не деплоится: числа остаются внутренними.
+snapshot_date: "2026-08-16"
+period:
+  from: "2026-08-09"
+  to: "2026-08-15"
+  days: 7
+counter: 111149105
+traffic:
+  visits: 56.0
+  users: 38.0
+  pageviews: 89.0
+  bounce_rate: 64.29
+  avg_visit_seconds: 175.61
+goals:
+  article_to_product: 0.0
+  article_to_magnet: 0.0
+  magnet_opened: 0.0
+  product_opened: 0.0
+  checklist_download: 0.0
+  lead_sent: 0.0
+  calculator_use: 0.0
+  calculator_to_product: 0.0
+  product_selected: 0.0
+  add_to_cart: 0.0
+  checkout_open: 0.0
+  purchase: 0.0
+  dzen_click: 0.0
+  diagnostic_start: 0.0
+  diagnostic_complete: 0.0
+  calculator_diagnostic_click: 0.0
+  cross_sell_click: 0.0
+  upsell_click: 0.0
+goals_not_in_counter: []
+goals_extra_in_counter:
+  - "all_messengers"
+  - "checklist_download lead_sent product_selected dzen_click"
+  - "Автоцель: заполнил контактные данные"
+  - "Автоцель: отправил контактные данные"
+  - "Автоцель: отправка формы"
+  - "Автоцель: переход в мессенджер"
+  - "Автоцель: переход в соц.сеть"
+  - "Автоцель: скачивание файла"
+  - "Комплект добавлен в корзину"
+  - "Отправлена форма контакта"
+  - "Переход на Дзен"
+  - "Скачан бесплатный материал"
+top_pages:
+  - path: "/"
+    pageviews: 68.0
+  - path: "/#situations"
+    pageviews: 6.0
+  - path: "/#catalog"
+    pageviews: 5.0
+  - path: "/kalkulyator.html"
+    pageviews: 3.0
+  - path: "/#top"
+    pageviews: 2.0
+  - path: "/articles/bankovskaya-garantiya-na-vozvrat-avansa.html"
+    pageviews: 1.0
+  - path: "/articles/pretenziya-za-chuzhuyu-kommunalku.html"
+    pageviews: 1.0
+  - path: "/articles/raschet-metrami.html"
+    pageviews: 1.0
+  - path: "/articles/srok-vklyucheniya-v-reestr-trebovaniy-kreditorov.html"
+    pageviews: 1.0
+  - path: "/articles/zos-v-stroitelstve.html"
+    pageviews: 1.0
+sources:
+  - source: "Direct traffic"
+    visits: 56.0
+landings:
+  - path: "/"
+    group: "home"
+    visits: 55.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  - path: "/articles/pretenziya-za-chuzhuyu-kommunalku.html"
+    group: "article"
+    visits: 1.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+entry_groups:
+  home:
+    visits: 55.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
+  article:
+    visits: 1.0
+    product_opened: 0.0
+    article_to_product: 0.0
+    add_to_cart: 0.0
+    checkout_open: 0.0
+    purchase: 0.0
