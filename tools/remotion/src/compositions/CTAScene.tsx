@@ -18,9 +18,9 @@ export const ctaSchema = z.object({
 export type CTASceneProps = z.infer<typeof ctaSchema>;
 
 export const ctaDefaultProps: CTASceneProps = {
-  ctaText: "Подпишись — расскажем, как не потерять деньги на стройке",
-  channelName: "@stroy_bez_ila",
-  subText: "Разборы смет, судов и банкротств — каждую неделю",
+  ctaText: "Проверьте свою ситуацию",
+  channelName: "Ссылка в профиле",
+  subText: "",
 };
 
 /** Финальная сцена: призыв подписаться, пульсирующая янтарная кнопка */
@@ -52,7 +52,7 @@ export const CTAScene: React.FC<CTASceneProps> = ({ ctaText, channelName, subTex
           padding: "0 70px",
         }}
       >
-        <AnimatedText text={ctaText} fontSize={64} highlightWords={["Подпишись"]} />
+        <AnimatedText text={ctaText} fontSize={64} highlightWords={[]} />
         <div
           style={{
             opacity: btnOpacity,
@@ -67,7 +67,7 @@ export const CTAScene: React.FC<CTASceneProps> = ({ ctaText, channelName, subTex
             boxShadow: theme.shadows.amberGlow,
           }}
         >
-          Подписаться · {channelName}
+          {channelName}
         </div>
         {subText && (
           <div
