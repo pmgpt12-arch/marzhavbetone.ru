@@ -64,6 +64,28 @@ Telegram при этом остаётся и стоит вторым: ссылк
 2. `https://marzhavbetone.ru/diagnostika.html?utm_source=instagram&utm_medium=social&utm_campaign=bio-diagnostika` — разбор ситуации по шагам
 3. `https://t.me/marzhavbetone` — канал
 
+## Ссылки под опубликованные ролики
+
+Ролик обещает конкретный материал — «семь проверок», «три условия», «своё
+условие о возврате». Если в профиле лежит только главная, обещание не
+выполнено, и зритель видит это за две секунды. Поэтому каждый
+опубликованный ролик приносит в профиль свой адрес, и метка совпадает с
+той, что записана в сценарии:
+
+| ролик | адрес |
+|---|---|
+| 1, удержание | `https://marzhavbetone.ru/materialy/uderzhaniya.html?utm_source=instagram&utm_medium=reels&utm_campaign=reel-uderzhanie-checklist` |
+| 2, аванс | `https://marzhavbetone.ru/materialy/avans.html?utm_source=instagram&utm_medium=reels&utm_campaign=reel-avans-tri-usloviya` |
+| 3, КС-2 | `https://marzhavbetone.ru/materialy/dengi.html?utm_source=instagram&utm_medium=reels&utm_campaign=reel-ks2-sem-proverok` |
+
+Метка `utm_medium=reels`, а не `social`: переход из-под ролика и переход из
+шапки профиля — разные события, и смешивать их значит не узнать, работает
+ли ролик вообще.
+
+Порог, за которым так больше нельзя: **четыре ролика**. Дальше список
+ссылок в профиле перестаёт читаться, и нужна одна страница-хаб на сайте —
+решение владельца, потому что это новая публичная страница.
+
 ## Что в закрепе
 
 Три публикации, и все три из стартового пакета — отдельно ничего писать не

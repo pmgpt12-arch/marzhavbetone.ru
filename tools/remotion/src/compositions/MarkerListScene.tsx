@@ -16,8 +16,12 @@ import { AnimatedText } from "../components/AnimatedText";
 export const markerItemSchema = z.object({
   /** Текст маркера */
   text: z.string(),
-  /** Эмодзи или короткий символ-иконка (⚠️, 🏗, 💰…) */
-  icon: z.string().default("⚠️"),
+  /** Короткий символ в кружке: номер или стрелка.
+   *  Эмодзи не берём — их нет ни на сайте, ни в материалах */
+  icon: z.string().default("!"),
+  /** Надстрочник над пунктом. Пустой — строки не будет вовсе:
+   *  «МАРКЕР 1» из бренд-шаблона в нашем ролике ничего не значит */
+  kicker: z.string().default(""),
   /** Мелкая подпись-пояснение */
   caption: z.string().default(""),
 });
@@ -37,11 +41,11 @@ export type MarkerListSceneProps = z.infer<typeof markerListSchema>;
 export const markerListDefaultProps: MarkerListSceneProps = {
   title: "5 маркеров банкротства генподрядчика",
   items: [
-    { text: "Смета растёт каждую неделю", icon: "📈", caption: "Допы без вашей подписи" },
-    { text: "Субподрядчики меняются как перчатки", icon: "🔁", caption: "Исходники договоров не показывают" },
-    { text: "Сроки сдвигаются без актов", icon: "🗓", caption: "Ни одного письменного уведомления" },
-    { text: "Просят предоплату «на материалы»", icon: "💰", caption: "Деньги уходят мимо эскроу" },
-    { text: "Директор перестал выходить на связь", icon: "📵", caption: "Финальный маркер" },
+    { text: "Смета растёт каждую неделю", icon: "1", caption: "Допы без вашей подписи" },
+    { text: "Субподрядчики меняются как перчатки", icon: "2", caption: "Исходники договоров не показывают" },
+    { text: "Сроки сдвигаются без актов", icon: "3", caption: "Ни одного письменного уведомления" },
+    { text: "Просят предоплату «на материалы»", icon: "4", caption: "Деньги уходят мимо эскроу" },
+    { text: "Директор перестал выходить на связь", icon: "5", caption: "Финальный маркер" },
   ],
   framesPerItem: 60,
 };
@@ -89,17 +93,19 @@ const MarkerRow: React.FC<{ item: MarkerItem; index: number }> = ({ item, index 
         {item.icon}
       </div>
       <div style={{ flex: 1 }}>
-        <div
-          style={{
-            fontFamily: theme.fonts.mono,
-            fontSize: 30,
-            color: theme.colors.amber,
-            letterSpacing: 2,
-            marginBottom: 6,
-          }}
-        >
-          МАРКЕР {index + 1}
-        </div>
+        {item.kicker ? (
+          <div
+            style={{
+              fontFamily: theme.fonts.mono,
+              fontSize: 30,
+              color: theme.colors.amber,
+              letterSpacing: 2,
+              marginBottom: 6,
+            }}
+          >
+            {item.kicker}
+          </div>
+        ) : null}
         <div
           style={{
             fontFamily: theme.fonts.display,
@@ -150,7 +156,7 @@ export const MarkerListScene: React.FC<MarkerListSceneProps> = ({
         }}
       >
         <div style={{ marginBottom: 20 }}>
-          <AnimatedText text={title} fontSize={60} align="left" highlightWords={["банкротства"]} />
+          <AnimatedText text={title} fontSize={60} align="left" highlightWords={[]} />
         </div>
         {items.map((item, i) => (
           <Sequence key={i} from={i * framesPerItem} layout="none">

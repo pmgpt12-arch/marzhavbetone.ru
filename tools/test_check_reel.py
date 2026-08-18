@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+"""Размеченные случаи проверки роликов: гейт должен отказывать.
+
+Зачем отдельный прогон. Зелёная проверка на исправных файлах не значит, что
+она что-то ловит: правило, которое ни разу не сработало, неотличимо от
+правила, которого нет. Требование призыва к действию появилось после того,
+как владелец включил готовые ролики и не понял, что делать дальше, — и до
+этого все шесть сценариев проходили гейт.
+
+Каждый случай портит исправный сценарий одним способом и ждёт отказа с
+названной причиной.
+
+    python3 tools/test_check_reel.py
+"""
+from __future__ import annotations
+
+import re
+import shutil
+import sys
+import tempfile
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import check_reel  # noqa: E402
+
+ROOT = Path(__file__).resolve().parent.parent
+ЭТАЛОН = ROOT / "content" / "reels" / "01-uderzhanie-5-millionov.md"
+
+
+def порча_убрать_призыв_с_экрана(text: str) -> str:
+    return text.replace("Проверьте своё удержание\nСсылка в профиле",
+                        "Вот так это и работает")
+
+
+def порча_общий_призыв(text: str) -> str:
+    return text.replace("Проверьте своё удержание\nСсылка в профиле",
+                        "Узнайте больше\nСсылка в профиле")
+
+
+def порча_подписка_вместо_действия(text: str) -> str:
+    return text.replace("Проверьте своё удержание\nСсылка в профиле",
+                        "Подпишитесь\nСсылка в профиле")
+
+
+def порча_короткий_финал(text: str) -> str:
+    return text.replace("## Финал (18–22 с)", "## Финал (21–22 с)")
+
+
+def порча_нет_поля_маршрута(text: str) -> str:
+    return re.sub(r"^\*\*CTA TYPE:\*\*.*$", "", text, flags=re.M)
+
+
+def порча_неизвестный_тип(text: str) -> str:
+    return text.replace("**CTA TYPE:** FREE_ENTRY", "**CTA TYPE:** ПОДПИСКА")
+
+
+def порча_несуществующая_страница(text: str) -> str:
+    return text.replace("**TARGET LANDING:** `materialy/uderzhaniya.html`",
+                        "**TARGET LANDING:** `materialy/такой-страницы-нет.html`")
+
+
+def порча_нет_стандарта(text: str) -> str:
+    return text.replace("**Стандарт:** V1-MVP\n", "")
+
+
+СЛУЧАИ = [
+    (порча_убрать_призыв_с_экрана, "на экране в финале нет слов"),
+    (порча_общий_призыв, "не называет действия"),
+    (порча_подписка_вместо_действия, "не называет действия"),
+    (порча_короткий_финал, "призыву отводится"),
+    (порча_нет_поля_маршрута, "нет поля «CTA TYPE»"),
+    (порча_неизвестный_тип, "не из набора"),
+    (порча_несуществующая_страница, "нет в репозитории"),
+    (порча_нет_стандарта, "нет поля «Стандарт»"),
+]
+
+
+def прогнать(путь: Path) -> list[str]:
+    return check_reel.check(путь, check_reel.known_mechanics())
+
+
+def main() -> int:
+    эталон = ЭТАЛОН.read_text(encoding="utf-8")
+    if прогнать(ЭТАЛОН):
+        print("ЭТАЛОН НЕ ПРОХОДИТ — испорченные случаи ничего не докажут",
+              file=sys.stderr)
+        for problem in прогнать(ЭТАЛОН):
+            print(f"    {problem}", file=sys.stderr)
+        return 1
+
+    провалов = 0
+    with tempfile.TemporaryDirectory() as каталог:
+        # Проверка ищет планы и озвучку рядом с оригиналом, поэтому копия
+        # кладётся в тот же каталог, а не в /tmp
+        # Имя сохраняет двузначный номер: по нему проверка находит планы
+        # и озвучку. Копия «__проверка__.md» молча пропускала бы весь
+        # разбор призыва — это и показал первый прогон.
+        копия = ЭТАЛОН.with_name("01-proverka-gejta.md")
+        try:
+            for порча, ожидание in СЛУЧАИ:
+                копия.write_text(порча(эталон), encoding="utf-8")
+                найдено = прогнать(копия)
+                if any(ожидание in problem for problem in найдено):
+                    print(f"ок        {порча.__name__}")
+                else:
+                    провалов += 1
+                    print(f"НЕ ЛОВИТ  {порча.__name__}: ждали «{ожидание}»")
+                    for problem in найдено:
+                        print(f"    видим: {problem}")
+        finally:
+            копия.unlink(missing_ok=True)
+            shutil.rmtree(каталог, ignore_errors=True)
+
+    print(f"\nСлучаев: {len(СЛУЧАИ)}, не поймано: {провалов}")
+    return 1 if провалов else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
