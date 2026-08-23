@@ -26,7 +26,10 @@
 | Ролики: состояние контура | `docs/INSTAGRAM_SPRINT_2026-08-23.md` |
 | Ролик 1: пакет на утверждение | `docs/INSTAGRAM_REEL1_PACKAGE_2026-08-23.md` |
 | Ролики: конвейер, стоимость, дефекты | `docs/INSTAGRAM_SPRINT_2026-08-16.md` |
+| Ролики: жизненный цикл и ворота | `docs/INSTAGRAM_REELS_LIFECYCLE.md` |
 | Ролики: стандарт производства | `content/reels/STANDARD-V2.md` |
+| Ролики: источники референсов | `data/social/trend-providers.yaml` |
+| Ролики: что оставляем и что пересобираем | `content/reels/AUDIT-2026-08-23.md` |
 | Почему первые три ролика отклонены | `content/reels/RESET-2026-08-17.md` |
 | Ролики: формат сценария и учёт | `content/reels/README.md` |
 | Готовые mp4 и почему они в репозитории | `media/README.md` |

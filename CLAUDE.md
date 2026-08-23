@@ -226,6 +226,10 @@ python3 tools/check_seo.py        # замеренный спрос против
                                   # целевые URL семантики
 python3 tools/check_rss.py        # фид для Дзена несёт то же, что статья
 python3 tools/check_reel.py       # сценарии роликов
+python3 tools/check_reel_refs.py  # доказательство референсов: ролик
+                                  # не идёт в производство вслепую
+python3 tools/trend_provider.py --list  # источники референсов и
+                                  # состояние их проверки
 python3 tools/dzen_channel.py     # что уже опубликовано в Дзене, дубли
 ```
 

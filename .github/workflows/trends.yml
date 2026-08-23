@@ -1,0 +1,85 @@
+name: Референсы роликов
+
+# ЗАЧЕМ ПРОГОН, А НЕ ВЫЗОВ ИЗ СЕССИИ. Из облачной сессии закрыты все
+# провайдеры разом: CONNECT отвечает 403 (замер 23.08.2026, записан в
+# data/social/trend-providers.yaml). У раннера выход есть — тем же путём
+# здесь работают сбор метрик и дымовой прогон.
+#
+# Ключ заводит владелец: создать секрет репозитория из сессии невозможно.
+# Без ключа прогон заканчивается зелёным и говорит, чего не хватает, —
+# молчаливый ноль карточек читался бы как «референсов не нашлось».
+
+on:
+  workflow_dispatch:
+    inputs:
+      provider:
+        description: 'Источник: file | scrapecreators | captapi'
+        type: choice
+        options: [file, scrapecreators, captapi]
+        default: file
+      query:
+        description: 'Запрос: ниша или тема (для file — фильтр по выгрузке)'
+        type: string
+        default: ''
+      limit:
+        description: 'Сколько карточек забрать'
+        type: string
+        default: '5'
+
+concurrency:
+  group: trends
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Установить зависимости
+        run: pip install --quiet pyyaml
+
+      # Ключ уходит только тому источнику, которому он нужен: ключ в
+      # окружении чужого прогона однажды уедет в чужой лог.
+      - name: Забрать карточки
+        env:
+          SCRAPECREATORS_API_KEY: >-
+            ${{ inputs.provider == 'scrapecreators' && secrets.SCRAPECREATORS_API_KEY || '' }}
+          CAPTAPI_API_KEY: >-
+            ${{ inputs.provider == 'captapi' && secrets.CAPTAPI_API_KEY || '' }}
+        run: |
+          set -uo pipefail
+          python3 tools/trend_provider.py \
+            --provider "${{ inputs.provider }}" \
+            --query "${{ inputs.query }}" \
+            --limit "${{ inputs.limit }}" \
+            --out content/reels/references/cards/
+          код=$?
+          if [ $код -eq 2 ]; then
+            echo "::warning::Источник не дал данных — причина выше. Ключ заводит владелец в настройках репозитория."
+            exit 0
+          fi
+          exit $код
+
+      # Карточки возвращаются в репозиторий: следующая сессия чат не увидит,
+      # а артефакт прогона живёт три месяца и не читается проверками.
+      - name: Сохранить карточки
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add content/reels/references/cards
+          if git diff --cached --quiet; then
+            echo "Новых карточек нет — коммитить нечего"
+            exit 0
+          fi
+          git commit -m 'Карточки референсов: прогон ${{ inputs.provider }} [skip ci]'
+          for попытка in 1 2 3 4; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && \
+              git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((попытка * 3))
+          done
+          echo "::error::Карточки собраны, но не сохранены в репозиторий"
+          exit 1

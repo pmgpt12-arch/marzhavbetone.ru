@@ -1,0 +1,167 @@
+#!/usr/bin/env python3
+"""Размеченные случаи слоя источников: чего он делать не должен.
+
+Зачем отдельный прогон. Слой провайдера ценен ровно тем, что отказывает
+там, где источника нет. Провайдер, который на нехватку ключа возвращает
+пустой список, тише — и потому опаснее: конвейер поедет дальше, а ролик
+поедет без референсов.
+
+    python3 tools/test_trend_provider.py
+"""
+from __future__ import annotations
+
+import json
+import sys
+import tempfile
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import trend_provider as tp  # noqa: E402
+
+НАСТРОЙКИ = {
+    "active": "file",
+    "providers": {
+        "file": {"kind": "local", "input": None},
+        "scrapecreators": {
+            "kind": "api",
+            "base_url": "https://api.scrapecreators.com",
+            "endpoints": {"search": "/v1/instagram/search"},
+        },
+        "captapi": {
+            "kind": "api",
+            "base_url": "https://api.captapi.com",
+            "endpoints": {"profile_reels": "/instagram/profile/reels"},
+        },
+        "virale": {"kind": "ui", "programmatic_access": "not_found"},
+    },
+}
+
+провалов = 0
+
+
+def случай(имя: str, условие: bool, подробность: str = "") -> None:
+    global провалов
+    if условие:
+        print(f"ок        {имя}")
+    else:
+        провалов += 1
+        print(f"НЕ ЛОВИТ  {имя}: {подробность}")
+
+
+def отказ(вызов) -> str:
+    """Текст отказа или пустая строка, если отказа не было."""
+    try:
+        вызов()
+    except tp.ProviderError as exc:
+        return str(exc)
+    return ""
+
+
+def main() -> int:
+    # 1. Источник без программного интерфейса не притворяется рабочим.
+    текст = отказ(lambda: tp.provider("virale", настройки=НАСТРОЙКИ))
+    случай("virale_без_api_отказывает",
+           "нет программного интерфейса" in текст, f"получили {текст!r}")
+    случай("virale_отказ_называет_запрет_скрейпинга",
+           "Скрейпинг" in текст, f"получили {текст!r}")
+
+    # 2. Незнакомый источник не подставляется молча.
+    текст = отказ(lambda: tp.provider("тиктокмагия", настройки=НАСТРОЙКИ))
+    случай("незнакомый_источник_отказывает",
+           "не объявлен" in текст, f"получили {текст!r}")
+
+    # 3. Нет ключа — отказ с именем переменной, а не пустой список.
+    источник = tp.ScrapeCreatorsProvider(
+        НАСТРОЙКИ["providers"]["scrapecreators"], environ={})
+    текст = отказ(lambda: источник.fetch("удержание", 3))
+    случай("без_ключа_отказывает",
+           "SCRAPECREATORS_API_KEY" in текст, f"получили {текст!r}")
+
+    # 4. Ответ без списка записей — отказ, а не ноль карточек.
+    источник = tp.ScrapeCreatorsProvider(
+        НАСТРОЙКИ["providers"]["scrapecreators"],
+        environ={"SCRAPECREATORS_API_KEY": "k"},
+        transport=lambda url, headers: {"status": "ok"})
+    текст = отказ(lambda: источник.fetch("удержание", 3))
+    случай("ответ_без_записей_отказывает",
+           "нет списка записей" in текст, f"получили {текст!r}")
+
+    # 5. Числа провайдера доезжают до карточки без переименований руками.
+    источник = tp.ScrapeCreatorsProvider(
+        НАСТРОЙКИ["providers"]["scrapecreators"],
+        environ={"SCRAPECREATORS_API_KEY": "k"},
+        transport=lambda url, headers: {"items": [{
+            "id": "abc", "url": "https://instagram.com/reel/abc",
+            "username": "buhgalter", "play_count": 412000,
+            "like_count": 9100, "comment_count": 640,
+            "video_duration": 27.5, "thumbnail_url": "https://x/t.jpg",
+        }]})
+    карточки = источник.fetch("удержание", 3)
+    случай("измеренное_доезжает",
+           карточки[0].views == 412000 and карточки[0].duration_sec == 27.5,
+           f"получили {карточки[0].views}, {карточки[0].duration_sec}")
+
+    # 6. Ключ не уезжает в адрес запроса: он живёт в заголовке.
+    следы: list[tuple[str, dict]] = []
+
+    def перехват(url, headers):
+        следы.append((url, headers))
+        return {"items": []}
+
+    tp.ScrapeCreatorsProvider(
+        НАСТРОЙКИ["providers"]["scrapecreators"],
+        environ={"SCRAPECREATORS_API_KEY": "секрет"},
+        transport=перехват).fetch("удержание", 3)
+    случай("ключ_не_в_адресе", "секрет" not in следы[0][0], следы[0][0])
+
+    # 7. Captapi называет поля иначе, и это единственное его отличие.
+    источник = tp.CaptapiProvider(
+        НАСТРОЙКИ["providers"]["captapi"],
+        environ={"CAPTAPI_API_KEY": "k"},
+        transport=lambda url, headers: {"data": [{
+            "code": "xyz", "link": "https://instagram.com/reel/xyz",
+            "playCount": 88000, "likeCount": 3300, "commentCount": 210,
+            "duration": 19, "thumbnailUrl": "https://x/y.jpg",
+        }]})
+    карточка = источник.fetch("", 1)[0]
+    случай("captapi_поля_разобраны",
+           карточка.views == 88000 and карточка.id == "xyz",
+           f"получили {карточка.views}, {карточка.id}")
+
+    # 8. Поля суждения провайдер не заполняет — и говорит об этом.
+    случай("суждение_остаётся_пустым",
+           set(карточка.чего_не_хватает()) == set(tp.СУЖДЕНИЕ),
+           f"пусты: {карточка.чего_не_хватает()}")
+
+    # 9. Выгрузка владельца читается без сети и без ключа.
+    with tempfile.TemporaryDirectory() as каталог:
+        путь = Path(каталог) / "export.json"
+        путь.write_text(json.dumps([{
+            "id": "r1", "url": "https://instagram.com/reel/r1",
+            "author": "yurist", "date": "2026-08-20",
+            "play_count": 250000, "like_count": 7000, "comment_count": 900,
+            "duration": 22, "чужое_поле": "сохранить",
+        }], ensure_ascii=False), encoding="utf-8")
+        карточки = tp.FileProvider(Path(каталог)).fetch("", 5)
+        случай("выгрузка_читается",
+               карточки[0].views == 250000 and карточки[0].author == "yurist",
+               f"получили {карточки[0]}")
+        случай("незнакомое_поле_не_теряется",
+               карточки[0].raw.get("чужое_поле") == "сохранить",
+               f"raw: {карточки[0].raw}")
+
+    # 10. Неполная выгрузка называется неполной, а не дополняется догадкой.
+    with tempfile.TemporaryDirectory() as каталог:
+        (Path(каталог) / "e.json").write_text(
+            json.dumps([{"id": "r2", "play_count": 10}]), encoding="utf-8")
+        карточка = tp.FileProvider(Path(каталог)).fetch("", 1)[0]
+        случай("неполный_замер_назван",
+               "url" in карточка.дефекты_замера(),
+               f"дефекты: {карточка.дефекты_замера()}")
+
+    print(f"\nСлучаев: 12, не поймано: {провалов}")
+    return 1 if провалов else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
