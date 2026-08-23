@@ -1,0 +1,55 @@
+# План сцен ролика 8. Пять сцен, три носителя кадра, ни одной обложки.
+voice: 08-zaem-pod-nol
+scenes:
+  - id: hook
+    composition: HookScene
+    seconds: 2
+    props:
+      hookText: "5% — это не скидка. Это заём под 0%"
+      highlightWords: ["не"]
+      subtitle: ""
+      dimAmount: 0.65
+
+  - id: stroka
+    composition: PhotoStatementScene
+    seconds: 5
+    props:
+      image: r-dogovor-uderzhanie.png
+      text: "Строку вы подписали сами"
+      highlightWords: ["сами"]
+      anchor: top
+      dimAmount: 0.5
+      zoom: in
+      align: center
+
+  - id: dengi
+    composition: PhotoStatementScene
+    seconds: 5
+    props:
+      image: r-dengi-pod-zamkom.png
+      text: "Деньги ваши. Лежат у него"
+      highlightWords: ["его"]
+      anchor: top
+      dimAmount: 0.5
+      zoom: out
+      align: center
+
+  - id: razvorot
+    composition: MarkerListScene
+    seconds: 4
+    props:
+      title: "Что вы теряете"
+      framesPerItem: 45
+      items:
+        - text: "Тело удержания вернут"
+          icon: "1"
+        - text: "Платите вы временем"
+          icon: "2"
+
+  - id: cta
+    composition: CTAScene
+    seconds: 4
+    props:
+      ctaText: "Проверьте своё условие"
+      channelName: "Ссылка в профиле"
+      subText: "Бесплатно: проверочный лист по удержанию"

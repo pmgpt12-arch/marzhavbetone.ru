@@ -25,6 +25,7 @@
 | Автовыдача по слову в комментарии | `docs/INSTAGRAM_SETUP.md`, `ig-webhook.php` |
 | Ролики: конвейер, стоимость, дефекты | `docs/INSTAGRAM_SPRINT_2026-08-16.md` |
 | Ролики: стандарт производства | `content/reels/STANDARD-V2.md` |
+| Почему первые три ролика отклонены | `content/reels/RESET-2026-08-17.md` |
 | Ролики: формат сценария и учёт | `content/reels/README.md` |
 | Готовые mp4 и почему они в репозитории | `media/README.md` |
 | Задачи и ворота фаз | `data/ops/backlog.csv`, `docs/EXECUTION-90.md` |
