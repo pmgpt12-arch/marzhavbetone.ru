@@ -80,14 +80,37 @@ def скачать(адрес: str, куда: Path, opener=None) -> None:
         raise FramesError(f"{type(exc).__name__}: {exc}") from exc
 
 
+def ffmpeg_путь() -> str:
+    """Где взять ffmpeg. Своя машина — не раннер GitHub, там его может не быть.
+
+    Замер 23.08.2026, прогон 32640067499: `command -v ffmpeg` на своей
+    машине не нашёл ничего. Ставить пакетом системы нельзя — нужен root,
+    которого у раннера нет. Поэтому запасной путь — статический бинарник
+    из `imageio-ffmpeg`: он ставится в пользовательский каталог обычным pip.
+    """
+    найденный = shutil.which("ffmpeg")
+    if найденный:
+        return найденный
+    try:
+        import imageio_ffmpeg
+        return imageio_ffmpeg.get_ffmpeg_exe()
+    except Exception as exc:  # библиотеки нет или бинарник не распакован
+        raise FramesError(
+            "ffmpeg не найден ни в PATH, ни через imageio-ffmpeg "
+            f"({type(exc).__name__}). Поставить: python3 -m pip install --user "
+            "imageio-ffmpeg — root для этого не нужен."
+        ) from exc
+
+
 def вырезать(видео: Path, точки: list[float], каталог: Path, runner=None) -> list[Path]:
+    двоичный = "ffmpeg" if runner else ffmpeg_путь()
     запустить = runner or (lambda cmd: subprocess.run(cmd, capture_output=True))
     каталог.mkdir(parents=True, exist_ok=True)
     готовые = []
     for номер, отметка in enumerate(точки, start=1):
         путь = каталог / f"{номер:02d}-{отметка:g}s.jpg"
         итог = запустить([
-            "ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
+            двоичный, "-hide_banner", "-loglevel", "error", "-y",
             "-ss", f"{отметка}", "-i", str(видео),
             "-frames:v", "1", "-vf", f"scale=-2:{ВЫСОТА}", "-q:v", "4",
             str(путь),
