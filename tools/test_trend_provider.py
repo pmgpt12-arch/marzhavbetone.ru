@@ -85,7 +85,7 @@ def main() -> int:
         transport=lambda url, headers: {"status": "ok"})
     текст = отказ(lambda: источник.fetch("удержание", 3))
     случай("ответ_без_записей_отказывает",
-           "ни роликов, ни аккаунтов" in текст and "status" in текст,
+           "не дал роликов" in текст and "status" in текст,
            f"получили {текст!r}")
 
     # 4a. Поиск отдаёт подсказку — аккаунты, а не ролики. Так отвечает живой
@@ -137,6 +137,45 @@ def main() -> int:
     случай("перебор_адресов_роликов_назван",
            текст.count("user/reels") >= 3 and "buhgalter" in текст,
            f"получили {текст!r}")
+
+    # 4в. Разнообразие. Замер 23.08.2026, прогон 32639533581: без предела на
+    # аккаунт первый же автор закрыл весь лимит, и пять «кандидатов»
+    # оказались пятью роликами одного человека. Это не выбор механики.
+    ДВА_АККАУНТА = {"users": [{"user": {"username": "yurist"}},
+                              {"user": {"username": "buhgalter"}}]}
+
+    def много_роликов(url, headers):
+        if "user/reels" not in url:
+            return ДВА_АККАУНТА
+        имя = "yurist" if "yurist" in url else "buhgalter"
+        return {"items": [dict(РОЛИК["media"], code=f"{имя}{i}",
+                               user={"username": имя}) for i in range(9)]}
+
+    собрано = tp.ScrapeCreatorsProvider(
+        НАСТРОЙКИ["providers"]["scrapecreators"],
+        environ={"SCRAPECREATORS_API_KEY": "k"},
+        transport=много_роликов).fetch("юрист", 6)
+    авторы = {к.author for к in собрано}
+    случай("один_аккаунт_не_закрывает_лимит",
+           len(авторы) == 2 and len(собрано) == 4,
+           f"авторов {авторы}, карточек {len(собрано)}")
+
+    # 4г. Несколько запросов через черту — разные слова находят разных
+    # авторов, а одна фраза находит одного и часто мимо темы.
+    спрошено: list[str] = []
+
+    def по_запросам(url, headers):
+        if "user/reels" not in url:
+            спрошено.append(url)
+            return {"users": []}
+        return {"items": []}
+
+    отказ(lambda: tp.ScrapeCreatorsProvider(
+        НАСТРОЙКИ["providers"]["scrapecreators"],
+        environ={"SCRAPECREATORS_API_KEY": "k"},
+        transport=по_запросам).fetch("юрист|подряд|тендер", 6))
+    случай("запросы_идут_по_очереди", len(спрошено) == 3,
+           f"запросов сделано {len(спрошено)}")
 
     # 5. Числа провайдера доезжают до карточки без переименований руками.
     источник = tp.ScrapeCreatorsProvider(
@@ -211,7 +250,7 @@ def main() -> int:
                "url" in карточка.дефекты_замера(),
                f"дефекты: {карточка.дефекты_замера()}")
 
-    print(f"\nСлучаев: 18, не поймано: {провалов}")
+    print(f"\nСлучаев: 21, не поймано: {провалов}")
     return 1 if провалов else 0
 
 
