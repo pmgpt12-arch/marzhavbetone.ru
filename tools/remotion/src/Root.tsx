@@ -16,6 +16,11 @@ import {
   moneyCounterDefaultProps,
 } from "./compositions/MoneyCounterScene";
 import {
+  BeatScene,
+  beatSceneSchema,
+  beatSceneDefaultProps,
+} from "./compositions/BeatScene";
+import {
   PhotoStatementScene,
   photoStatementSchema,
   photoStatementDefaultProps,
@@ -65,6 +70,19 @@ export const Root: React.FC = () => {
         height={HEIGHT}
         schema={moneyCounterSchema}
         defaultProps={moneyCounterDefaultProps}
+      />
+      <Composition
+        id="BeatScene"
+        component={BeatScene}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+        schema={beatSceneSchema}
+        defaultProps={beatSceneDefaultProps}
+        calculateMetadata={({ props }) => ({
+          durationInFrames: Math.round(
+            props.beats.reduce((s, b) => s + b.seconds, 0) * FPS),
+        })}
       />
       <Composition
         id="PhotoStatementScene"

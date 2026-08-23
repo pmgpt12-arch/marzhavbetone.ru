@@ -1,55 +1,102 @@
-# План сцен ролика 8. Пять сцен, три носителя кадра, ни одной обложки.
+# План сцен ролика 8, редакция 17.08.2026 после отказа владельца.
+#
+# Что изменилось против первой сборки. Было пять сцен, из них три —
+# «картинка висит пять секунд, поверх одна фраза». Владелец назвал это
+# презентацией, сохранённой в mp4, и это верно: слайд остаётся слайдом,
+# сколько его ни зумируй.
+#
+# Стало: те же три исходника дают девять визуальных событий. Внутри сцены
+# идут жёсткие резы между разными планами одного кадра (BeatScene), на
+# каждом — своя короткая фраза в два-четыре слова. Смена картинки каждые
+# 2–2,5 секунды вместо каждых пяти.
+#
+# Крупность выбрана по смыслу удара, а не для разнообразия: «5% с каждого
+# акта» — тугой план на строку с процентами, «деньги ваши» — общий план,
+# где виден весь предмет.
 voice: 08-zaem-pod-nol
 scenes:
   - id: hook
     composition: HookScene
     seconds: 2
     props:
-      hookText: "5% — это не скидка. Это заём под 0%"
-      highlightWords: ["не"]
+      hookText: "Скидка? Нет. Кредит"
+      highlightWords: ["Кредит"]
       subtitle: ""
-      dimAmount: 0.65
+      dimAmount: 0.7
 
-  - id: stroka
-    composition: PhotoStatementScene
+  # Два плана одной строки договора: общий и тугой
+  - id: procenty
+    composition: BeatScene
     seconds: 5
     props:
-      image: r-dogovor-uderzhanie.png
-      text: "Строку вы подписали сами"
-      highlightWords: ["сами"]
-      anchor: top
+      image: r-procenty-dogovor.png
       dimAmount: 0.5
-      zoom: in
-      align: center
+      beats:
+        - text: "5% с каждого акта"
+          seconds: 2.5
+          scale: 1.1
+          x: 0.5
+          y: 0.55
+          highlightWords: ["5%"]
+        - text: "Он их не платит"
+          seconds: 2.5
+          scale: 1.8
+          x: 0.45
+          y: 0.6
+          highlightWords: ["не"]
 
+  # Три плана денег в запертом ящике: общий, ближе, вплотную к замку
   - id: dengi
-    composition: PhotoStatementScene
-    seconds: 5
+    composition: BeatScene
+    seconds: 7
     props:
       image: r-dengi-pod-zamkom.png
-      text: "Деньги ваши. Лежат у него"
-      highlightWords: ["его"]
-      anchor: top
       dimAmount: 0.5
-      zoom: out
-      align: center
+      beats:
+        - text: "Деньги ваши"
+          seconds: 2.3
+          scale: 1.05
+          x: 0.5
+          y: 0.5
+          highlightWords: ["ваши"]
+        - text: "Работают на него"
+          seconds: 2.3
+          scale: 1.6
+          x: 0.45
+          y: 0.62
+          highlightWords: ["него"]
+        - text: "Процентов — ноль"
+          seconds: 2.4
+          scale: 2.2
+          x: 0.42
+          y: 0.72
+          highlightWords: ["ноль"]
 
-  - id: razvorot
-    composition: MarkerListScene
-    seconds: 4
+  # Два плана: рука с маркером и строка, к которой она идёт
+  - id: dogovor
+    composition: BeatScene
+    seconds: 3
     props:
-      title: "Что вы теряете"
-      framesPerItem: 45
-      items:
-        - text: "Тело удержания вернут"
-          icon: "1"
-        - text: "Платите вы временем"
-          icon: "2"
+      image: r-dogovor-uderzhanie.png
+      dimAmount: 0.5
+      beats:
+        - text: "Откройте договор"
+          seconds: 1.5
+          scale: 1.1
+          x: 0.5
+          y: 0.5
+          highlightWords: []
+        - text: "Событие возврата"
+          seconds: 1.5
+          scale: 1.9
+          x: 0.5
+          y: 0.55
+          highlightWords: ["Событие"]
 
   - id: cta
     composition: CTAScene
     seconds: 4
     props:
-      ctaText: "Проверьте своё условие"
-      channelName: "Ссылка в профиле"
-      subText: "Бесплатно: проверочный лист по удержанию"
+      ctaText: "Напишите в директ"
+      channelName: "УДЕРЖАНИЕ"
+      subText: "Пришлю проверочный лист по вашему договору"
