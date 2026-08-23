@@ -78,8 +78,17 @@ jobs:
           if python3 -c "import imageio_ffmpeg" 2>/dev/null; then
             echo "imageio-ffmpeg уже установлен"
           else
-            python3 -m pip install --user --quiet imageio-ffmpeg || \
-              echo "::warning::imageio-ffmpeg не поставился — кадры будут пропущены"
+            # Первая попытка обычная. Вторая — с --break-system-packages:
+            # современные Debian и Ubuntu помечают системный python как
+            # externally-managed (PEP 668) и отвергают --user молча для
+            # прогона, но заметно для нас: замер 32640217346 — модуль так и
+            # не появился, а шаг остался зелёным.
+            python3 -m pip install --user --quiet imageio-ffmpeg \
+              || python3 -m pip install --user --quiet --break-system-packages imageio-ffmpeg \
+              || echo "::warning::imageio-ffmpeg не поставился"
+            python3 -c "import imageio_ffmpeg" 2>/dev/null \
+              && echo "imageio-ffmpeg поставлен" \
+              || echo "::warning::модуля всё равно нет — кадры будут пропущены"
           fi
 
       # Ключ уходит только тому источнику, которому он нужен: ключ в
