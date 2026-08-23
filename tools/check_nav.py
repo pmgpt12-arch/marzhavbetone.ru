@@ -46,7 +46,15 @@ def страницы() -> list[Path]:
     out = []
     for путь in sorted(ROOT.glob("**/*.html")):
         rel = путь.relative_to(ROOT).as_posix()
-        if rel.startswith(ПРОПУСК_КАТАЛОГОВ) or путь.name in ПРОПУСК_ФАЙЛОВ:
+        # Каталог пропускается на любой глубине, а не только в корне.
+        # `startswith` не ловил tools/remotion/node_modules/**, и локальный
+        # прогон давал три расхождения на чужих html из зависимостей —
+        # расхождения, которых на раннере нет: node_modules туда не
+        # выкладывается. Гейт и локальный прогон обязаны отвечать одинаково.
+        части = set(rel.split("/")[:-1])
+        if (rel.startswith(ПРОПУСК_КАТАЛОГОВ)
+                or части & {к.rstrip("/") for к in ПРОПУСК_КАТАЛОГОВ}
+                or путь.name in ПРОПУСК_ФАЙЛОВ):
             continue
         out.append(путь)
     return out
