@@ -130,7 +130,55 @@ def main() -> int:
         finally:
             кадры.КАДРЫ = прежний
 
-    print(f"\nСлучаев: 9, не поймано: {провалов}")
+    # 10. Добыча ffmpeg колесом: pip и права администратора не нужны.
+    # Проверяется решение, а не сеть — каталог PyPI и само колесо подменены.
+    import io, json as _json, zipfile
+
+    буфер = io.BytesIO()
+    with zipfile.ZipFile(буфер, "w") as zf:
+        zf.writestr("imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0", b"BINARY")
+    колесо = буфер.getvalue()
+
+    class Поток:
+        def __init__(self, тело):
+            self.тело = тело
+
+        def read(self, *_):
+            тело, self.тело = self.тело, b""
+            return тело
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_):
+            return False
+
+    def каталог_pypi(url, *a, **k):
+        if url.endswith("/json"):
+            return Поток(_json.dumps({"urls": [
+                {"filename": "imageio_ffmpeg-0.5-py3-none-manylinux2014_x86_64.whl",
+                 "url": "https://files.pythonhosted.org/w.whl"},
+                {"filename": "imageio_ffmpeg-0.5.tar.gz",
+                 "url": "https://files.pythonhosted.org/s.tar.gz"},
+            ]}).encode())
+        return Поток(колесо)
+
+    with tempfile.TemporaryDirectory() as врем:
+        прежний_кэш = кадры.КЭШ_FFMPEG
+        кадры.КЭШ_FFMPEG = Path(врем) / "cache"
+        try:
+            путь = кадры._из_колеса(opener=каталог_pypi)
+            случай("ffmpeg_добыт_колесом",
+                   Path(путь).exists() and Path(путь).stat().st_mode & 0o111,
+                   f"получили {путь}")
+            # Повторный заход берёт уже добытое, а не качает снова.
+            снова = кадры._из_колеса(opener=lambda *a, **k: (_ for _ in ()).throw(
+                AssertionError("не должно было качать заново")))
+            случай("колесо_не_качается_дважды", снова == путь, снова)
+        finally:
+            кадры.КЭШ_FFMPEG = прежний_кэш
+
+    print(f"\nСлучаев: 11, не поймано: {провалов}")
     return 1 if провалов else 0
 
 

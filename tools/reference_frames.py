@@ -80,25 +80,77 @@ def скачать(адрес: str, куда: Path, opener=None) -> None:
         raise FramesError(f"{type(exc).__name__}: {exc}") from exc
 
 
-def ffmpeg_путь() -> str:
-    """Где взять ffmpeg. Своя машина — не раннер GitHub, там его может не быть.
+# Куда кладётся добытый бинарник. Каталог рабочей копии, не система:
+# прав на систему у раннера нет, а между прогонами копия сохраняется.
+КЭШ_FFMPEG = ROOT / ".ffmpeg-cache"
+КОЛЕСО = "https://pypi.org/pypi/imageio-ffmpeg/json"
 
-    Замер 23.08.2026, прогон 32640067499: `command -v ffmpeg` на своей
-    машине не нашёл ничего. Ставить пакетом системы нельзя — нужен root,
-    которого у раннера нет. Поэтому запасной путь — статический бинарник
-    из `imageio-ffmpeg`: он ставится в пользовательский каталог обычным pip.
+
+def _из_колеса(opener=None) -> str:
+    """Бинарник ffmpeg из колеса PyPI, без pip и без прав администратора.
+
+    ПОЧЕМУ ТАК, А НЕ ПАКЕТОМ. На своей машине по очереди не сработали три
+    обычных пути (замеры 23.08.2026): ffmpeg нет в PATH (32640067499);
+    `pip install --user` не поставил модуль — системный python помечен
+    externally-managed по PEP 668 (32640217346); `python3 -m venv` создал
+    каталог без pip, потому что ensurepip в системе не установлен
+    (32641025448). Четвёртая попытка того же класса стоила бы ещё прогона.
+
+    Колесо `imageio-ffmpeg` — обычный zip со статическим бинарником внутри,
+    и берётся оно с того же PyPI, откуда его взял бы pip. Распаковка своя,
+    посредник не нужен.
     """
+    import json as _json
+    import urllib.request as _req
+    import zipfile
+
+    открыть = opener or _req.urlopen
+    готовый = next(iter(sorted(КЭШ_FFMPEG.glob("**/ffmpeg-*"))), None)
+    if готовый and готовый.is_file():
+        готовый.chmod(0o755)
+        return str(готовый)
+
+    with открыть(КОЛЕСО, timeout=60) as ответ:
+        каталог = _json.loads(ответ.read().decode("utf-8"))
+    ссылки = [ф["url"] for ф in каталог["urls"]
+              if ф["filename"].endswith(".whl") and "manylinux" in ф["filename"]
+              and "x86_64" in ф["filename"]]
+    if not ссылки:
+        raise FramesError("В каталоге PyPI нет колеса imageio-ffmpeg под linux x86_64")
+
+    КЭШ_FFMPEG.mkdir(parents=True, exist_ok=True)
+    архив = КЭШ_FFMPEG / "wheel.zip"
+    with открыть(ссылки[0], timeout=180) as ответ, архив.open("wb") as файл:
+        shutil.copyfileobj(ответ, файл)
+    with zipfile.ZipFile(архив) as zf:
+        имена = [и for и in zf.namelist() if "/binaries/ffmpeg-" in и]
+        if not имена:
+            raise FramesError("В колесе imageio-ffmpeg не нашлось бинарника")
+        zf.extract(имена[0], КЭШ_FFMPEG)
+    архив.unlink(missing_ok=True)
+    путь = КЭШ_FFMPEG / имена[0]
+    путь.chmod(0o755)
+    return str(путь)
+
+
+def ffmpeg_путь(opener=None) -> str:
+    """Где взять ffmpeg: PATH, установленная библиотека, колесо с PyPI."""
     найденный = shutil.which("ffmpeg")
     if найденный:
         return найденный
     try:
         import imageio_ffmpeg
         return imageio_ffmpeg.get_ffmpeg_exe()
-    except Exception as exc:  # библиотеки нет или бинарник не распакован
+    except Exception:
+        pass
+    try:
+        return _из_колеса(opener)
+    except FramesError:
+        raise
+    except Exception as exc:
         raise FramesError(
-            "ffmpeg не найден ни в PATH, ни через imageio-ffmpeg "
-            f"({type(exc).__name__}). Поставить: python3 -m pip install --user "
-            "imageio-ffmpeg — root для этого не нужен."
+            f"ffmpeg не добыт ни одним из трёх путей: PATH, установленная "
+            f"библиотека, колесо с PyPI ({type(exc).__name__}: {exc})"
         ) from exc
 
 
