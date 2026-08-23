@@ -75,21 +75,26 @@ jobs:
           # ffmpeg системой не поставить: раннер работает без root. Пакет
           # imageio-ffmpeg несёт статический бинарник и ставится в
           # пользовательский каталог — этого достаточно для вырезки кадров.
-          if python3 -c "import imageio_ffmpeg" 2>/dev/null; then
-            echo "imageio-ffmpeg уже установлен"
-          else
-            # Первая попытка обычная. Вторая — с --break-system-packages:
-            # современные Debian и Ubuntu помечают системный python как
-            # externally-managed (PEP 668) и отвергают --user молча для
-            # прогона, но заметно для нас: замер 32640217346 — модуль так и
-            # не появился, а шаг остался зелёным.
-            python3 -m pip install --user --quiet imageio-ffmpeg \
-              || python3 -m pip install --user --quiet --break-system-packages imageio-ffmpeg \
-              || echo "::warning::imageio-ffmpeg не поставился"
-            python3 -c "import imageio_ffmpeg" 2>/dev/null \
-              && echo "imageio-ffmpeg поставлен" \
-              || echo "::warning::модуля всё равно нет — кадры будут пропущены"
+          # ffmpeg системой не поставить — раннер работает без root, — а
+          # `pip install --user` отвергается: современные Debian и Ubuntu
+          # помечают системный python как externally-managed (PEP 668).
+          # Замер 32640217346: модуль не появился, шаг остался зелёным.
+          # Отдельное окружение под это ограничение не подпадает и root не
+          # требует. Оно же несёт pyyaml, чтобы инструмент видел обе
+          # библиотеки из одного интерпретатора.
+          if [ ! -x .venv-frames/bin/python ]; then
+            python3 -m venv .venv-frames || echo "::warning::venv не создан"
           fi
+          if [ -x .venv-frames/bin/python ]; then
+            .venv-frames/bin/python -m pip install --quiet --upgrade pip
+            .venv-frames/bin/python -m pip install --quiet pyyaml imageio-ffmpeg \
+              || echo "::warning::библиотеки в окружение не встали"
+          fi
+          echo "--- что получилось ---"
+          python3 --version
+          .venv-frames/bin/python -c \
+            "import imageio_ffmpeg; print('ffmpeg:', imageio_ffmpeg.get_ffmpeg_exe())" \
+            || echo "::warning::imageio-ffmpeg в окружении не работает"
 
       # Ключ уходит только тому источнику, которому он нужен: ключ в
       # окружении чужого прогона однажды уедет в чужой лог.
@@ -141,7 +146,13 @@ jobs:
       # и сразу, потому что адреса Инстаграма подписаны и живут часы.
       # Отсутствие ffmpeg не роняет прогон: карточки уже добыты.
       - name: Вырезать кадры референсов
-        run: python3 tools/reference_frames.py
+        run: |
+          # Инструмент запускается тем интерпретатором, где лежит ffmpeg.
+          if [ -x .venv-frames/bin/python ]; then
+            .venv-frames/bin/python tools/reference_frames.py
+          else
+            python3 tools/reference_frames.py
+          fi
 
       # Карточки возвращаются в репозиторий: следующая сессия чат не увидит,
       # а артефакт прогона живёт три месяца и не читается проверками.
