@@ -224,6 +224,7 @@ class _HttpProvider:
 
     name = ""
     key_env = ""
+    сработавший_адрес = ""
 
     def __init__(self, настройки: dict, environ: dict | None = None,
                  transport=None) -> None:
@@ -239,10 +240,47 @@ class _HttpProvider:
                 "Accept": "application/json"}
 
     def fetch(self, query: str = "", limit: int = 10, **_) -> list[ReferenceCard]:
-        адрес = self._адрес(query, limit)
-        ответ = _запрос(адрес, self._headers(), self.transport)
-        записи = self._записи(ответ)
-        return [self._карточка(з) for з in записи[:limit]]
+        """Перебор объявленных адресов до первого ответившего.
+
+        ЗАЧЕМ ПЕРЕБОР, А НЕ ОДИН АДРЕС. Путь эндпоинта взят из документации,
+        которую нельзя проверить вызовом: из сессии провайдер закрыт, а
+        каждая проверка догадки стоит отдельного прогона Actions. Неверный
+        путь отвечает 404, и перебор превращает три прогона в один.
+
+        Отказ называет каждую попытку с её кодом — иначе «не сработало»
+        неотличимо от «ключ не тот» и от «путь не тот».
+        """
+        заголовки = self._headers()
+        неудачи = []
+        for адрес in self._адреса(query, limit):
+            try:
+                ответ = _запрос(адрес, заголовки, self.transport)
+            except ProviderError as exc:
+                неудачи.append(f"{адрес} → {exc}")
+                continue
+            try:
+                записи = self._записи(ответ)
+            except ProviderError as exc:
+                неудачи.append(f"{адрес} → {exc}")
+                continue
+            self.сработавший_адрес = адрес
+            return [self._карточка(з) for з in записи[:limit]]
+        raise ProviderError(
+            f"Ни один объявленный адрес {self.name} не ответил данными:\n  "
+            + "\n  ".join(неудачи)
+        )
+
+    def _адреса(self, query: str, limit: int) -> list[str]:
+        """Основной адрес и объявленные запасные, в порядке доверия."""
+        return [self._адрес(query, limit)] + self._запасные(query, limit)
+
+    def _запасные(self, query: str, limit: int) -> list[str]:
+        пути = self.настройки.get("endpoints", {}).get("search_alternates") or []
+        return [f"{self._base()}{путь}?{self._параметры(query, limit)}"
+                for путь in пути]
+
+    def _параметры(self, query: str, limit: int) -> str:  # pragma: no cover
+        raise NotImplementedError
 
     def _адрес(self, query: str, limit: int) -> str:  # pragma: no cover
         raise NotImplementedError
@@ -262,10 +300,12 @@ class ScrapeCreatorsProvider(_HttpProvider):
     name = "scrapecreators"
     key_env = "SCRAPECREATORS_API_KEY"
 
+    def _параметры(self, query: str, limit: int) -> str:
+        return urllib.parse.urlencode({"query": query, "amount": limit})
+
     def _адрес(self, query: str, limit: int) -> str:
         путь = self.настройки.get("endpoints", {}).get("search", "/v1/instagram/search")
-        параметры = urllib.parse.urlencode({"query": query, "amount": limit})
-        return f"{self._base()}{путь}?{параметры}"
+        return f"{self._base()}{путь}?{self._параметры(query, limit)}"
 
     def _карточка(self, запись: dict) -> ReferenceCard:
         return ReferenceCard(
@@ -290,11 +330,13 @@ class CaptapiProvider(_HttpProvider):
     name = "captapi"
     key_env = "CAPTAPI_API_KEY"
 
+    def _параметры(self, query: str, limit: int) -> str:
+        return urllib.parse.urlencode({"query": query, "limit": limit})
+
     def _адрес(self, query: str, limit: int) -> str:
         путь = self.настройки.get("endpoints", {}).get(
             "profile_reels", "/instagram/profile/reels")
-        параметры = urllib.parse.urlencode({"query": query, "limit": limit})
-        return f"{self._base()}{путь}?{параметры}"
+        return f"{self._base()}{путь}?{self._параметры(query, limit)}"
 
     def _карточка(self, запись: dict) -> ReferenceCard:
         return ReferenceCard(

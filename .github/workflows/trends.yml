@@ -10,8 +10,23 @@ name: Референсы роликов
 # молчаливый ноль карточек читался бы как «референсов не нашлось».
 
 on:
+  # Толчок в рабочую ветку — временный вход, и он здесь по измеренной
+  # причине. Кнопку GitHub даёт только прогонам, зарегистрированным с
+  # ветки по умолчанию: `workflow_dispatch` по имени файла отвечает 404,
+  # пока trends.yml не слит в main (замер 23.08.2026 — зарегистрировано 16
+  # прогонов, этого среди них нет). Прогон по толчку выполняется с той
+  # ветки, где лежит файл, и это единственный способ добыть карточки до
+  # слияния. После слияния строка снимается, остаётся кнопка.
+  push:
+    branches: [claude/marzha-instagram-reels-q6esnh]
+    paths: ['.github/workflows/trends.yml']
   workflow_dispatch:
     inputs:
+      runner:
+        description: 'Где выполнить: ubuntu-latest или self-hosted'
+        type: choice
+        options: [ubuntu-latest, self-hosted]
+        default: ubuntu-latest
       provider:
         description: 'Источник: file | scrapecreators | captapi'
         type: choice
@@ -35,7 +50,13 @@ permissions:
 
 jobs:
   fetch:
-    runs-on: ubuntu-latest
+    # Раннер выбирается входом, а по толчку берётся свой, и это не
+    # предпочтение, а замер: размещённые раннеры GitHub с 23.08.2026 не
+    # берут задания вовсе — «The job was not started because recent account
+    # payments have failed». Self-hosted минутами GitHub не оплачивается,
+    # поэтому пока работать может только он. Задание безопасно для чужой
+    # машины: чтение по HTTP, запись YAML в репозиторий, ничего больше.
+    runs-on: ${{ inputs.runner || 'self-hosted' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -46,23 +67,38 @@ jobs:
       # окружении чужого прогона однажды уедет в чужой лог.
       - name: Забрать карточки
         env:
+          # По толчку входов нет вовсе, поэтому у каждого названо умолчание.
+          PROVIDER: ${{ inputs.provider || 'scrapecreators' }}
+          QUERY: ${{ inputs.query || 'подряд договор деньги' }}
+          LIMIT: ${{ inputs.limit || '5' }}
           SCRAPECREATORS_API_KEY: >-
-            ${{ inputs.provider == 'scrapecreators' && secrets.SCRAPECREATORS_API_KEY || '' }}
+            ${{ (inputs.provider || 'scrapecreators') == 'scrapecreators'
+                && secrets.SCRAPECREATORS_API_KEY || '' }}
           CAPTAPI_API_KEY: >-
             ${{ inputs.provider == 'captapi' && secrets.CAPTAPI_API_KEY || '' }}
         run: |
           set -uo pipefail
+          # Наличие ключа называется до вызова: иначе «источник не ответил»
+          # неотличимо от «секрет не заведён». Печатается признак, не значение.
+          if [ "$PROVIDER" = "scrapecreators" ]; then
+            if [ -n "${SCRAPECREATORS_API_KEY}" ]; then
+              echo "SCRAPECREATORS_API_KEY: задан, длина ${#SCRAPECREATORS_API_KEY}"
+            else
+              echo "::error::SCRAPECREATORS_API_KEY пуст — секрет не виден прогону."
+              exit 1
+            fi
+          fi
           python3 tools/trend_provider.py \
-            --provider "${{ inputs.provider }}" \
-            --query "${{ inputs.query }}" \
-            --limit "${{ inputs.limit }}" \
+            --provider "$PROVIDER" \
+            --query "$QUERY" \
+            --limit "$LIMIT" \
             --out content/reels/references/cards/
-          код=$?
-          if [ $код -eq 2 ]; then
-            echo "::warning::Источник не дал данных — причина выше. Ключ заводит владелец в настройках репозитория."
+          code=$?
+          if [ $code -eq 2 ]; then
+            echo "::warning::Источник не дал данных — причина выше."
             exit 0
           fi
-          exit $код
+          exit $code
 
       # Карточки возвращаются в репозиторий: следующая сессия чат не увидит,
       # а артефакт прогона живёт три месяца и не читается проверками.
