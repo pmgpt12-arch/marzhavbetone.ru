@@ -98,17 +98,21 @@ jobs:
               exit 1
             fi
           fi
+          # Оболочка шага запускается с -e, поэтому код возврата снимается
+          # через `|| code=$?`: без этого ненулевой ответ инструмента
+          # обрывал шаг до разбора кода, и «источник не дал данных»
+          # становилось красным прогоном вместо предупреждения.
+          code=0
           python3 tools/trend_provider.py \
             --provider "$PROVIDER" \
             --query "$QUERY" \
             --limit "$LIMIT" \
-            --out content/reels/references/cards/
-          code=$?
-          if [ $code -eq 2 ]; then
+            --out content/reels/references/cards/ || code=$?
+          if [ "$code" -eq 2 ]; then
             echo "::warning::Источник не дал данных — причина выше."
             exit 0
           fi
-          exit $code
+          exit "$code"
 
       # Карточки возвращаются в репозиторий: следующая сессия чат не увидит,
       # а артефакт прогона живёт три месяца и не читается проверками.

@@ -51,6 +51,12 @@ providers:
       profile_reels: /v1/instagram/user/reels
       post_info: /v1/instagram/post
       search: /v1/instagram/search
+    # ЗАМЕР 23.08.2026, прогон 32639314158. Ключ работает, адрес поиска
+    # отвечает 200 — и отдаёт `users`, `hashtags`, `keywords`, `places`,
+    # `credits_charged`, `rank_token`. То есть это подсказка по строке, а
+    # не лента роликов: списка записей там нет и перебором его не найти.
+    # Отсюда порядок в коде — поиск даёт аккаунты, ролики берутся у них.
+    search_returns: подсказка (users, hashtags, keywords, places)
     free_tier: 100 кредитов при регистрации, карта не требуется
     cost: >-
       пакетами: $47 за 25 000 кредитов (~$1,88 за 1000 запросов),

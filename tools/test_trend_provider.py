@@ -77,14 +77,66 @@ def main() -> int:
     случай("без_ключа_отказывает",
            "SCRAPECREATORS_API_KEY" in текст, f"получили {текст!r}")
 
-    # 4. Ответ без списка записей — отказ, а не ноль карточек.
+    # 4. Ответ без списка записей и без аккаунтов — отказ, а не ноль карточек,
+    # и он называет ключи ответа: по ним видно, что вообще вернул источник.
     источник = tp.ScrapeCreatorsProvider(
         НАСТРОЙКИ["providers"]["scrapecreators"],
         environ={"SCRAPECREATORS_API_KEY": "k"},
         transport=lambda url, headers: {"status": "ok"})
     текст = отказ(lambda: источник.fetch("удержание", 3))
     случай("ответ_без_записей_отказывает",
-           "нет списка записей" in текст, f"получили {текст!r}")
+           "ни роликов, ни аккаунтов" in текст and "status" in текст,
+           f"получили {текст!r}")
+
+    # 4a. Поиск отдаёт подсказку — аккаунты, а не ролики. Так отвечает живой
+    # ScrapeCreators (замер 23.08.2026, прогон 32639314158): в ответе
+    # users, hashtags, keywords, places. Второй шаг обязан забрать ролики
+    # аккаунта, а не сдаться.
+    ЖИВОЙ_ПОИСК = {"users": [{"user": {"username": "buhgalter"}}],
+                   "hashtags": [], "places": [], "success": True}
+    РОЛИК = {"media": {
+        "code": "DXyz", "taken_at": 1787443200,
+        "user": {"username": "buhgalter"},
+        "play_count": 412000, "like_count": 9100, "comment_count": 640,
+        "video_duration": 27.5,
+        "image_versions2": {"candidates": [{"url": "https://x/t.jpg"}]},
+        "video_versions": [{"url": "https://x/v.mp4"}],
+    }}
+
+    def двухшаговый(url, headers):
+        return {"items": [РОЛИК]} if "user/reels" in url else ЖИВОЙ_ПОИСК
+
+    карточка = tp.ScrapeCreatorsProvider(
+        НАСТРОЙКИ["providers"]["scrapecreators"],
+        environ={"SCRAPECREATORS_API_KEY": "k"},
+        transport=двухшаговый).fetch("удержание", 3)[0]
+    случай("поиск_ведёт_к_роликам_аккаунта",
+           карточка.views == 412000 and карточка.author == "buhgalter",
+           f"получили {карточка.views}, {карточка.author!r}")
+    случай("вложенные_адреса_разобраны",
+           карточка.thumbnail == "https://x/t.jpg"
+           and карточка.video_url == "https://x/v.mp4",
+           f"получили {карточка.thumbnail!r}, {карточка.video_url!r}")
+    случай("эпоха_стала_датой", карточка.date == "2026-08-23",
+           f"получили {карточка.date!r}")
+    случай("адрес_ролика_собран",
+           карточка.url == "https://www.instagram.com/reel/DXyz/",
+           f"получили {карточка.url!r}")
+
+    # 4b. Аккаунты есть, роликов не отдал никто — отказ перечисляет попытки,
+    # а не молчит: иначе непонятно, какой адрес пробовали.
+    def только_поиск(url, headers):
+        if "user/reels" in url:
+            raise tp.ProviderError("HTTP 404 Not Found: ")
+        return ЖИВОЙ_ПОИСК
+
+    текст = отказ(lambda: tp.ScrapeCreatorsProvider(
+        НАСТРОЙКИ["providers"]["scrapecreators"],
+        environ={"SCRAPECREATORS_API_KEY": "k"},
+        transport=только_поиск).fetch("удержание", 3))
+    случай("перебор_адресов_роликов_назван",
+           текст.count("user/reels") >= 3 and "buhgalter" in текст,
+           f"получили {текст!r}")
 
     # 5. Числа провайдера доезжают до карточки без переименований руками.
     источник = tp.ScrapeCreatorsProvider(
@@ -159,7 +211,7 @@ def main() -> int:
                "url" in карточка.дефекты_замера(),
                f"дефекты: {карточка.дефекты_замера()}")
 
-    print(f"\nСлучаев: 12, не поймано: {провалов}")
+    print(f"\nСлучаев: 18, не поймано: {провалов}")
     return 1 if провалов else 0
 
 

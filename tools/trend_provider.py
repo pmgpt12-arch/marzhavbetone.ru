@@ -144,6 +144,40 @@ def _float(значение) -> float:
         return 0.0
 
 
+def _дата(значение) -> str:
+    """Дата в виде YYYY-MM-DD. Инстаграм отдаёт секунды эпохи.
+
+    Строка возвращается как есть: перекладывать чужой формат в свой — это
+    уже толкование, а поле объявлено измеренным.
+    """
+    if значение in (None, ""):
+        return ""
+    try:
+        отметка = int(значение)
+    except (TypeError, ValueError):
+        return str(значение)
+    if отметка <= 0:
+        return ""
+    from datetime import datetime, timezone
+    return datetime.fromtimestamp(отметка, tz=timezone.utc).date().isoformat()
+
+
+def _первый_адрес(значение) -> str:
+    """Первый url из набора вариантов картинки или видео.
+
+    Инстаграм отдаёт список размеров; берём первый и не выбираем «лучший»:
+    выбор здесь был бы суждением, а нам нужна ссылка для предпросмотра.
+    """
+    кандидаты = значение
+    if isinstance(значение, dict):
+        кандидаты = значение.get("candidates") or []
+    if isinstance(кандидаты, list):
+        for элемент in кандидаты:
+            if isinstance(элемент, dict) and элемент.get("url"):
+                return str(элемент["url"])
+    return ""
+
+
 def _запрос(url: str, headers: dict, transport=None) -> dict:
     """Единственное место, где ходят в сеть. В проверках подменяется."""
     if transport is not None:
@@ -297,8 +331,25 @@ class _HttpProvider:
 
 
 class ScrapeCreatorsProvider(_HttpProvider):
+    """Два шага: поиск аккаунтов, затем ролики каждого.
+
+    ПОЧЕМУ ДВА, А НЕ ОДИН. Замер 23.08.2026, прогон 32639314158: адрес
+    `/v1/instagram/search` отвечает 200 и отдаёт `users`, `hashtags`,
+    `keywords`, `places` — это подсказка по строке, а не лента роликов.
+    Списка записей в нём нет и не будет, сколько его ни перебирай.
+
+    Отсюда порядок: поиском берём аккаунты по теме, у каждого забираем
+    ролики. Это же ближе к делу: механику ищут у авторов ниши, а не в
+    случайной выдаче.
+    """
+
     name = "scrapecreators"
     key_env = "SCRAPECREATORS_API_KEY"
+
+    # Адрес роликов аккаунта проверить из сессии нечем, поэтому кандидаты
+    # перебираются до первого ответившего, а отказ называет каждый с кодом.
+    ПУТИ_РОЛИКОВ = ("/v1/instagram/user/reels", "/v1/instagram/user/reels/simple",
+                    "/v2/instagram/user/reels")
 
     def _параметры(self, query: str, limit: int) -> str:
         return urllib.parse.urlencode({"query": query, "amount": limit})
@@ -307,20 +358,88 @@ class ScrapeCreatorsProvider(_HttpProvider):
         путь = self.настройки.get("endpoints", {}).get("search", "/v1/instagram/search")
         return f"{self._base()}{путь}?{self._параметры(query, limit)}"
 
+    def fetch(self, query: str = "", limit: int = 10, **_) -> list[ReferenceCard]:
+        заголовки = self._headers()
+        ответ = _запрос(self._адрес(query, limit), заголовки, self.transport)
+
+        # Если когда-нибудь поиск начнёт отдавать ролики — берём их сразу.
+        # Пустой список при этом остаётся ответом «ничего не нашлось», а не
+        # поводом идти во второй шаг: это разные исходы, и путать их значит
+        # тратить кредиты на аккаунты, которых поиск не называл.
+        try:
+            записи = self._записи(ответ)
+        except ProviderError:
+            записи = None
+        if записи is not None:
+            return [self._карточка(з) for з in записи[:limit]]
+
+        аккаунты = self._аккаунты(ответ)
+        if not аккаунты:
+            raise ProviderError(
+                "Поиск не дал ни роликов, ни аккаунтов; ключи ответа: "
+                + ", ".join(sorted(ответ)) or "нет"
+            )
+
+        карточки: list[ReferenceCard] = []
+        неудачи: list[str] = []
+        for имя in аккаунты:
+            if len(карточки) >= limit:
+                break
+            for путь in self.ПУТИ_РОЛИКОВ:
+                адрес = (f"{self._base()}{путь}?"
+                         + urllib.parse.urlencode({"handle": имя, "amount": limit}))
+                try:
+                    ответ_роликов = _запрос(адрес, заголовки, self.transport)
+                    ролики = self._записи(ответ_роликов)
+                except ProviderError as exc:
+                    неудачи.append(f"{адрес} → {exc}")
+                    continue
+                self.сработавший_адрес = адрес
+                карточки.extend(self._карточка(р) for р in ролики)
+                break
+
+        if not карточки:
+            raise ProviderError(
+                "Аккаунты найдены (" + ", ".join(аккаунты)
+                + "), но роликов не отдал ни один адрес:\n  "
+                + "\n  ".join(неудачи)
+            )
+        return карточки[:limit]
+
+    def _аккаунты(self, ответ: dict) -> list[str]:
+        """Имена аккаунтов из подсказки поиска, в порядке выдачи."""
+        имена = []
+        for запись in ответ.get("users") or []:
+            пользователь = запись.get("user") if isinstance(запись, dict) else None
+            источник = пользователь if isinstance(пользователь, dict) else запись
+            имя = str((источник or {}).get("username") or "").strip()
+            if имя and имя not in имена:
+                имена.append(имя)
+        return имена
+
     def _карточка(self, запись: dict) -> ReferenceCard:
+        # Ролик приходит либо сам по себе, либо завёрнутым в `media`.
+        медиа = запись.get("media") if isinstance(запись.get("media"), dict) else запись
+        код = str(медиа.get("code") or медиа.get("shortcode") or медиа.get("id") or "")
+        автор = медиа.get("user") if isinstance(медиа.get("user"), dict) else {}
         return ReferenceCard(
-            id=str(запись.get("id") or запись.get("shortcode") or ""),
+            id=код,
             source="scrapecreators",
-            url=str(запись.get("url") or запись.get("permalink") or ""),
-            author=str(запись.get("username") or запись.get("owner") or ""),
-            date=str(запись.get("taken_at") or запись.get("published_at") or ""),
-            duration_sec=_float(запись.get("video_duration") or запись.get("duration")),
-            views=_int(запись.get("play_count") or запись.get("view_count")),
-            likes=_int(запись.get("like_count")),
-            comments=_int(запись.get("comment_count")),
-            shares=запись.get("share_count"),
-            thumbnail=str(запись.get("thumbnail_url") or запись.get("display_url") or ""),
-            video_url=str(запись.get("video_url") or ""),
+            url=str(медиа.get("url") or медиа.get("permalink")
+                    or (f"https://www.instagram.com/reel/{код}/" if код else "")),
+            author=str(автор.get("username") or медиа.get("username") or ""),
+            date=_дата(медиа.get("taken_at") or медиа.get("taken_at_timestamp")
+                       or медиа.get("published_at")),
+            duration_sec=_float(медиа.get("video_duration") or медиа.get("duration")),
+            views=_int(медиа.get("play_count") or медиа.get("ig_play_count")
+                       or медиа.get("view_count")),
+            likes=_int(медиа.get("like_count")),
+            comments=_int(медиа.get("comment_count")),
+            shares=медиа.get("reshare_count", медиа.get("share_count")),
+            thumbnail=_первый_адрес(медиа.get("image_versions2"))
+                      or str(медиа.get("thumbnail_url") or медиа.get("display_url") or ""),
+            video_url=_первый_адрес(медиа.get("video_versions"))
+                      or str(медиа.get("video_url") or ""),
             fetched_by="scrapecreators",
             raw=запись,
         )
