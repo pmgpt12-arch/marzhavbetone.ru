@@ -117,6 +117,8 @@ jobs:
       # Карточки возвращаются в репозиторий: следующая сессия чат не увидит,
       # а артефакт прогона живёт три месяца и не читается проверками.
       - name: Сохранить карточки
+        env:
+          PROVIDER: ${{ inputs.provider || 'scrapecreators' }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
@@ -125,11 +127,15 @@ jobs:
             echo "Новых карточек нет — коммитить нечего"
             exit 0
           fi
-          git commit -m 'Карточки референсов: прогон ${{ inputs.provider }} [skip ci]'
-          for попытка in 1 2 3 4; do
+          git commit -m "Карточки референсов: прогон $PROVIDER [skip ci]"
+          # Имя переменной оболочки — только латиницей. Кириллическое имя
+          # bash отвергает («not a valid identifier»), и прогон 32639533581
+          # на этом потерял уже собранные пять карточек: коммит был создан,
+          # цикл повторов не запустился, push не случился.
+          for attempt in 1 2 3 4; do
             git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && \
               git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
-            sleep $((попытка * 3))
+            sleep $((attempt * 3))
           done
           echo "::error::Карточки собраны, но не сохранены в репозиторий"
           exit 1
