@@ -118,6 +118,18 @@ jobs:
           fi
           exit "$code"
 
+      # Кадры — единственный способ разобрать чужую механику честно: числа
+      # карточки не говорят ни о крючке, ни о ритме резов. Делается здесь же
+      # и сразу, потому что адреса Инстаграма подписаны и живут часы.
+      # Отсутствие ffmpeg не роняет прогон: карточки уже добыты.
+      - name: Вырезать кадры референсов
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            echo "::warning::ffmpeg не найден — кадры не вырезаны, карточки на месте."
+            exit 0
+          fi
+          python3 tools/reference_frames.py
+
       # Карточки возвращаются в репозиторий: следующая сессия чат не увидит,
       # а артефакт прогона живёт три месяца и не читается проверками.
       - name: Сохранить карточки
@@ -126,7 +138,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add content/reels/references/cards
+          git add content/reels/references/cards content/reels/references/frames
           if git diff --cached --quiet; then
             echo "Новых карточек нет — коммитить нечего"
             exit 0
