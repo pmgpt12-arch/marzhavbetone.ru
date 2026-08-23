@@ -23,6 +23,7 @@
 | Позиционирование и персона | `content/strategy/positioning.md` |
 | Instagram: доступ и публикация | `docs/INSTAGRAM_SETUP.md` |
 | Автовыдача по слову в комментарии | `docs/INSTAGRAM_SETUP.md`, `ig-webhook.php` |
+| Ролики: состояние контура | `docs/INSTAGRAM_SPRINT_2026-08-23.md` |
 | Ролики: конвейер, стоимость, дефекты | `docs/INSTAGRAM_SPRINT_2026-08-16.md` |
 | Ролики: стандарт производства | `content/reels/STANDARD-V2.md` |
 | Почему первые три ролика отклонены | `content/reels/RESET-2026-08-17.md` |
