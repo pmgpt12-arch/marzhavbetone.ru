@@ -46,6 +46,7 @@ def build_bundle():
         print('::error::Не найдены css: %s' % ', '.join(missing))
         sys.exit(1)
     bundle = '\n'.join(parts)
+    # Версия совпадает по алгоритму с tools/asset_versions.py: sha1 содержимого.
     v = hashlib.sha1(bundle.encode()).hexdigest()[:8]
     with open(os.path.join(ROOT, 'bundle.css'), 'w', encoding='utf-8') as f:
         f.write(bundle)
