@@ -1,0 +1,44 @@
+name: Perf optimize (one-off)
+
+on:
+  push:
+    branches: [seo-performance-fixes]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: pip install --quiet pillow
+
+      - name: Run optimization
+        run: python3 tools/perf_optimize.py
+
+      - name: Sanity check
+        run: |
+          test -f bundle.css || { echo '::error::bundle.css не создан'; exit 1; }
+          grep -q 'bundle.css' index.html || { echo '::error::index.html без bundle.css'; exit 1; }
+          echo 'sanity ok'
+
+      - name: Commit changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Изменений нет'
+          else
+            git commit -m 'chore: perf optimizations (auto)'
+            git push
+          fi
