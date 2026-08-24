@@ -46,7 +46,7 @@ def build_bundle():
         print('::error::Не найдены css: %s' % ', '.join(missing))
         sys.exit(1)
     bundle = '\n'.join(parts)
-    v = hashlib.md5(bundle.encode()).hexdigest()[:8]
+    v = hashlib.sha1(bundle.encode()).hexdigest()[:8]
     with open(os.path.join(ROOT, 'bundle.css'), 'w', encoding='utf-8') as f:
         f.write(bundle)
     print('bundle.css: %d bytes, v=%s' % (len(bundle), v))
