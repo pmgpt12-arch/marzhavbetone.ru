@@ -7,9 +7,13 @@
 # 3. Сокращает title и og:title главной до 56 символов.
 # 4. Пережимает assets/*.jpg (quality=82, progressive, optimize), если результат меньше.
 # Все преобразования идемпотентны: повторный запуск ничего не меняет.
+# Для картинок идемпотентность обеспечивает .perf-images.json: пережатие JPEG
+# необратимо меняет байты, поэтому обработанные файлы помечаются sha256-хешем
+# результата и при совпадении хеша пропускаются.
 # После мержа PR одноразовый workflow можно удалить отдельной правкой.
 
 import hashlib
+import json
 import os
 import re
 import sys
@@ -31,6 +35,13 @@ SKIP_DIRS = {
 
 OLD_TITLE = 'Шаблоны КС-2, КС-3 и документы для субподрядчиков — Маржа в бетоне'
 NEW_TITLE = 'Шаблоны КС-2 и КС-3 для субподрядчиков — Маржа в бетоне'
+
+IMG_STATE_FILE = os.path.join(ROOT, '.perf-images.json')
+
+
+def sha256_file(path):
+    with open(path, 'rb') as f:
+        return hashlib.sha256(f.read()).hexdigest()
 
 
 def build_bundle():
@@ -119,15 +130,23 @@ def recompress_images():
     except ImportError:
         print('::error::Pillow не установлен')
         sys.exit(1)
-    total_before = total_after = 0
-    changed = 0
     assets = os.path.join(ROOT, 'assets')
     if not os.path.isdir(assets):
         return
+    state = {}
+    if os.path.exists(IMG_STATE_FILE):
+        with open(IMG_STATE_FILE, encoding='utf-8') as f:
+            state = json.load(f)
+    total_before = total_after = 0
+    changed = 0
+    state_dirty = False
     for fn in sorted(os.listdir(assets)):
         if not fn.lower().endswith(('.jpg', '.jpeg')):
             continue
         p = os.path.join(assets, fn)
+        cur_hash = sha256_file(p)
+        if state.get(fn) == cur_hash:
+            continue  # уже обработан на прошлом запуске
         before = os.path.getsize(p)
         try:
             img = Image.open(p)
@@ -137,13 +156,20 @@ def recompress_images():
             after = os.path.getsize(buf)
             if after < before:
                 os.replace(buf, p)
+                state[fn] = sha256_file(p)
                 changed += 1
                 total_before += before
                 total_after += after
             else:
                 os.remove(buf)
+                state[fn] = cur_hash
+            state_dirty = True
         except Exception as e:
             print('::warning::%s: %s' % (fn, e))
+    if state_dirty or not os.path.exists(IMG_STATE_FILE):
+        with open(IMG_STATE_FILE, 'w', encoding='utf-8') as f:
+            json.dump(state, f, ensure_ascii=False, indent=1, sort_keys=True)
+            f.write('\n')
     print('images: %d пережато, %d KB -> %d KB' % (changed, total_before // 1024, total_after // 1024))
 
 
