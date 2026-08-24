@@ -1,0 +1,164 @@
+name: Референсы роликов
+
+# ЗАЧЕМ ПРОГОН, А НЕ ВЫЗОВ ИЗ СЕССИИ. Из облачной сессии закрыты все
+# провайдеры разом: CONNECT отвечает 403 (замер 23.08.2026, записан в
+# data/social/trend-providers.yaml). У раннера выход есть — тем же путём
+# здесь работают сбор метрик и дымовой прогон.
+#
+# Ключ заводит владелец: создать секрет репозитория из сессии невозможно.
+# Без ключа прогон заканчивается зелёным и говорит, чего не хватает, —
+# молчаливый ноль карточек читался бы как «референсов не нашлось».
+
+on:
+  # Толчок в рабочую ветку — временный вход, и он здесь по измеренной
+  # причине. Кнопку GitHub даёт только прогонам, зарегистрированным с
+  # ветки по умолчанию: `workflow_dispatch` по имени файла отвечает 404,
+  # пока trends.yml не слит в main (замер 23.08.2026 — зарегистрировано 16
+  # прогонов, этого среди них нет). Прогон по толчку выполняется с той
+  # ветки, где лежит файл, и это единственный способ добыть карточки до
+  # слияния. После слияния строка снимается, остаётся кнопка.
+  push:
+    branches: [claude/marzha-instagram-reels-q6esnh]
+    paths: ['.github/workflows/trends.yml']
+  workflow_dispatch:
+    inputs:
+      runner:
+        description: 'Где выполнить: ubuntu-latest или self-hosted'
+        type: choice
+        options: [ubuntu-latest, self-hosted]
+        default: ubuntu-latest
+      provider:
+        description: 'Источник: file | scrapecreators | captapi'
+        type: choice
+        options: [file, scrapecreators, captapi]
+        default: file
+      query:
+        description: 'Запрос: ниша или тема (для file — фильтр по выгрузке)'
+        type: string
+        default: ''
+      limit:
+        description: 'Сколько карточек забрать'
+        type: string
+        default: '5'
+
+concurrency:
+  group: trends
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    # Раннер выбирается входом, а по толчку берётся свой, и это не
+    # предпочтение, а замер: размещённые раннеры GitHub с 23.08.2026 не
+    # берут задания вовсе — «The job was not started because recent account
+    # payments have failed». Self-hosted минутами GitHub не оплачивается,
+    # поэтому пока работать может только он. Задание безопасно для чужой
+    # машины: чтение по HTTP, запись YAML в репозиторий, ничего больше.
+    runs-on: ${{ inputs.runner || 'self-hosted' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # `pip` голой командой на своей машине отвечает 127 — её нет в PATH
+      # (замер: прогон 32636274728, шаг упал до вызова инструмента). Ставим
+      # модулем интерпретатора, а если библиотека уже есть — не ставим вовсе:
+      # на своей машине окружение живёт между прогонами, в отличие от
+      # размещённого раннера.
+      - name: Установить зависимости
+        run: |
+          if python3 -c "import yaml" 2>/dev/null; then
+            echo "pyyaml уже установлен — ставить нечего"
+          else
+            python3 -m pip install --user --quiet pyyaml
+          fi
+          # ffmpeg системой не поставить: раннер работает без root. Пакет
+          # imageio-ffmpeg несёт статический бинарник и ставится в
+          # пользовательский каталог — этого достаточно для вырезки кадров.
+          # ffmpeg на этой машине добывается самим инструментом: колесом с
+          # PyPI, без pip и без прав администратора. Три обычных пути по
+          # очереди не сработали — ffmpeg нет в PATH (32640067499), pip
+          # отвергнут по PEP 668 (32640217346), venv создан без pip, потому
+          # что ensurepip не установлен (32641025448). Ставить здесь нечего.
+          python3 --version
+
+      # Ключ уходит только тому источнику, которому он нужен: ключ в
+      # окружении чужого прогона однажды уедет в чужой лог.
+      - name: Забрать карточки
+        env:
+          # По толчку входов нет вовсе, поэтому у каждого названо умолчание.
+          PROVIDER: ${{ inputs.provider || 'scrapecreators' }}
+          # Запросы через черту: живой поиск — подсказка по строке, и
+          # фраза «подряд договор деньги» нашла один аккаунт про покер
+          # (прогон 32639533581). Одиночные слова ниши находят разных
+          # авторов, а разнообразие тут и есть смысл.
+          QUERY: ${{ inputs.query || 'юрист|арбитраж|подряд|тендер|госзакупки' }}
+          LIMIT: ${{ inputs.limit || '5' }}
+          SCRAPECREATORS_API_KEY: >-
+            ${{ (inputs.provider || 'scrapecreators') == 'scrapecreators'
+                && secrets.SCRAPECREATORS_API_KEY || '' }}
+          CAPTAPI_API_KEY: >-
+            ${{ inputs.provider == 'captapi' && secrets.CAPTAPI_API_KEY || '' }}
+        run: |
+          set -uo pipefail
+          # Наличие ключа называется до вызова: иначе «источник не ответил»
+          # неотличимо от «секрет не заведён». Печатается признак, не значение.
+          if [ "$PROVIDER" = "scrapecreators" ]; then
+            if [ -n "${SCRAPECREATORS_API_KEY}" ]; then
+              echo "SCRAPECREATORS_API_KEY: задан, длина ${#SCRAPECREATORS_API_KEY}"
+            else
+              echo "::error::SCRAPECREATORS_API_KEY пуст — секрет не виден прогону."
+              exit 1
+            fi
+          fi
+          # Оболочка шага запускается с -e, поэтому код возврата снимается
+          # через `|| code=$?`: без этого ненулевой ответ инструмента
+          # обрывал шаг до разбора кода, и «источник не дал данных»
+          # становилось красным прогоном вместо предупреждения.
+          code=0
+          python3 tools/trend_provider.py \
+            --provider "$PROVIDER" \
+            --query "$QUERY" \
+            --limit "$LIMIT" \
+            --out content/reels/references/cards/ || code=$?
+          if [ "$code" -eq 2 ]; then
+            echo "::warning::Источник не дал данных — причина выше."
+            exit 0
+          fi
+          exit "$code"
+
+      # Кадры — единственный способ разобрать чужую механику честно: числа
+      # карточки не говорят ни о крючке, ни о ритме резов. Делается здесь же
+      # и сразу, потому что адреса Инстаграма подписаны и живут часы.
+      # Отсутствие ffmpeg не роняет прогон: карточки уже добыты.
+      - name: Вырезать кадры референсов
+        run: python3 tools/reference_frames.py
+
+      # Карточки возвращаются в репозиторий: следующая сессия чат не увидит,
+      # а артефакт прогона живёт три месяца и не читается проверками.
+      - name: Сохранить карточки
+        env:
+          PROVIDER: ${{ inputs.provider || 'scrapecreators' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          # Каталога кадров может не быть вовсе — тогда `git add` по имени
+          # падает с кодом 128 и роняет уже добытые карточки (прогон
+          # 32640067499). Добавляется весь каталог референсов разом.
+          git add content/reels/references
+          if git diff --cached --quiet; then
+            echo "Новых карточек нет — коммитить нечего"
+            exit 0
+          fi
+          git commit -m "Карточки референсов: прогон $PROVIDER [skip ci]"
+          # Имя переменной оболочки — только латиницей. Кириллическое имя
+          # bash отвергает («not a valid identifier»), и прогон 32639533581
+          # на этом потерял уже собранные пять карточек: коммит был создан,
+          # цикл повторов не запустился, push не случился.
+          for attempt in 1 2 3 4; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && \
+              git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((attempt * 3))
+          done
+          echo "::error::Карточки собраны, но не сохранены в репозиторий"
+          exit 1

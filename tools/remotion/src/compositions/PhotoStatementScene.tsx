@@ -38,6 +38,9 @@ export const photoStatementSchema = z.object({
   zoom: z.enum(["in", "out"]).default("in"),
   /** Длительность сцены: у кадра под тезис она своя, а не общая */
   durationSec: z.number().default(5),
+  /** Выравнивание надписи. По центру — то, как читают ленту: замер
+   *  форматов 17.08.2026 (текст крупно, по центру, 6–8 слов) */
+  align: z.enum(["left", "center"]).default("center"),
 });
 
 export type PhotoStatementProps = z.infer<typeof photoStatementSchema>;
@@ -50,6 +53,7 @@ export const photoStatementDefaultProps: PhotoStatementProps = {
   dimAmount: 0.45,
   zoom: "in",
   durationSec: 5,
+  align: "center",
 };
 
 // Интерфейс Instagram перекрывает края кадра: сверху имя автора, снизу
@@ -64,6 +68,7 @@ export const PhotoStatementScene: React.FC<PhotoStatementProps> = ({
   anchor,
   dimAmount,
   zoom,
+  align,
 }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
@@ -105,13 +110,14 @@ export const PhotoStatementScene: React.FC<PhotoStatementProps> = ({
         style={{
           padding: `${SAFE_TOP}px 70px ${SAFE_BOTTOM}px`,
           justifyContent: anchor === "top" ? "flex-start" : "flex-end",
-          alignItems: "flex-start",
+          alignItems: align === "center" ? "center" : "flex-start",
         }}
       >
         <AnimatedText
           text={text}
-          fontSize={68}
+          fontSize={76}
           highlightWords={highlightWords}
+          align={align}
         />
       </AbsoluteFill>
     </AbsoluteFill>

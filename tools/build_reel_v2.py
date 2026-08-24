@@ -93,6 +93,19 @@ def отрисовать(сцена: dict, куда: Path) -> Path:
     return ровно
 
 
+def длительность_потока(файл: Path, поток: str) -> float:
+    """ffprobe отдаёт csv с хвостовой запятой — разбор должен это пережить."""
+    вывод = subprocess.run(
+        ["ffprobe", "-v", "error", "-select_streams", поток,
+         "-show_entries", "stream=duration", "-of", "csv=p=0", str(файл)],
+        capture_output=True, text=True).stdout
+    число = вывод.strip().splitlines()[0].strip().rstrip(",") if вывод.strip() else ""
+    try:
+        return float(число)
+    except ValueError:
+        return 0.0
+
+
 def main() -> int:
     разбор = argparse.ArgumentParser(description=__doc__)
     разбор.add_argument("план", type=Path, help="список сцен")
@@ -131,8 +144,20 @@ def main() -> int:
                 "-filter:a", "loudnorm=I=-14:TP=-1.5:LRA=11",
                 "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy",
                 "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
-                "-shortest", "-movflags", "+faststart", str(аргументы.out),
+                "-movflags", "+faststart", str(аргументы.out),
             ])
+            # Без -shortest намеренно. С ним видео обрезается по концу
+            # озвучки, и первым это съедает финальную карточку призыва:
+            # замер 17.08.2026 — план 20 с, голос 18,4 с, на выходе 18,5 с
+            # и призыв вместо четырёх секунд стоял два с половиной.
+            # План здесь главнее звука; хвост карточки без голоса нужен,
+            # чтобы её успели прочитать.
+            видео = длительность_потока(аргументы.out, "v:0")
+            звук = длительность_потока(аргументы.out, "a:0")
+            if звук > видео + 0.3:
+                print(f"  ВНИМАНИЕ: голос {звук:.1f} с длиннее картинки "
+                      f"{видео:.1f} с — конец фразы обрежется площадкой",
+                      file=sys.stderr)
     finally:
         shutil.rmtree(работа, ignore_errors=True)
 

@@ -29,8 +29,9 @@ MAX_HOOK_END = 4
 # результаты не сравнить — в серии меняется только механика.
 EXPECTED_DURATION = 22
 # V2 длительность не фиксирует: ролик собирается из сцен, и число сцен
-# диктует хронометраж. Окно объявлено стандартом.
-V2_DURATION = (20, 30)
+# диктует хронометраж. Окно объявлено стандартом и совпадает с брифом
+# владельца 17.08.2026 — 15–30 с.
+V2_DURATION = (15, 30)
 
 REQUIRED_SECTIONS = ["Крючок", "Тело", "Финал", "Оговорка"]
 REQUIRED_FIELDS = ["Механика", "Гипотеза", "Ссылка", "Стандарт"]
@@ -192,7 +193,10 @@ MAX_COVER_SHARE = 0.5
 # что кадр висит на экране, пока говорит голос.
 MIN_SCENES = 5
 CTA_MIN_SECONDS, CTA_MAX_SECONDS = 2, 4
-CTA_ANCHOR = "ссылка в профиле"
+# Куда зовёт призыв. «Ссылка в профиле» решением владельца 17.08.2026
+# перестала быть первичным призывом: принята воронка через директ. Форма
+# с профилем оставлена только для роликов V1-MVP, которые не публикуются.
+CTA_ANCHORS = ("в директ", "ссылка в профиле")
 
 # Приглашения вместо действия: зритель не знает, что именно сделает
 GENERIC_CTA = [
@@ -271,6 +275,18 @@ def check_cta(path: Path, text: str, found: list[dict]) -> list[str]:
             f"CTA TYPE «{cta_type.group(1)}» не из набора "
             f"{', '.join(sorted(CTA_TYPES))}")
 
+    # Слово для директа: по нему ig-webhook.php выдаёт материал, поэтому
+    # оно обязано совпадать во всех слоях и жить в data/social/ig-keywords.yaml
+    keyword = re.search(r"^\*\*CTA KEYWORD:\*\*\s*(\S+)", text, re.M)
+    keyword = keyword.group(1).strip("`") if keyword else ""
+    if keyword:
+        карта = ROOT / "data" / "social" / "ig-keywords.yaml"
+        if карта.is_file() and keyword.lower() not in карта.read_text(
+                encoding="utf-8").lower():
+            problems.append(
+                f"слова «{keyword}» нет в data/social/ig-keywords.yaml — "
+                f"выдавать по нему нечего")
+
     landing = re.search(r"^\*\*TARGET LANDING:\*\*\s*`?([^`\s]+)", text, re.M)
     if landing and not (ROOT / landing.group(1)).exists():
         problems.append(f"целевой страницы {landing.group(1)} нет в репозитории")
@@ -283,8 +299,12 @@ def check_cta(path: Path, text: str, found: list[dict]) -> list[str]:
             f"{CTA_MIN_SECONDS}–{CTA_MAX_SECONDS} с")
 
     screen = final["text"].lower()
-    if CTA_ANCHOR not in flat(screen):
-        problems.append(f"на экране в финале нет слов «{CTA_ANCHOR}»")
+    if not any(a in flat(screen) for a in CTA_ANCHORS):
+        problems.append(
+            "на экране в финале не названо, куда идти: ждём одно из "
+            + ", ".join(f"«{a}»" for a in CTA_ANCHORS))
+    if keyword and keyword.lower() not in flat(screen):
+        problems.append(f"на финальном кадре нет слова «{keyword}»")
     for phrase in GENERIC_CTA:
         if phrase in screen:
             problems.append(
@@ -299,8 +319,12 @@ def check_cta(path: Path, text: str, found: list[dict]) -> list[str]:
             problems.append(f"нет файла {kind}: {layer.relative_to(ROOT)}")
             continue
         body = layer.read_text(encoding="utf-8").lower()
-        if CTA_ANCHOR not in flat(body):
-            problems.append(f"в {kind} нет призыва «{CTA_ANCHOR}»")
+        if not any(a in flat(body) for a in CTA_ANCHORS):
+            problems.append(f"в {kind} не названо, куда идти")
+        if keyword and keyword.lower() not in flat(body):
+            problems.append(
+                f"в {kind} нет слова «{keyword}» — призыв в директ работает "
+                f"только целым словом, по нему идёт выдача")
         if action and len(action & significant(body)) < 2:
             problems.append(
                 f"призыв в {kind} расходится с экраном: общих слов меньше двух")
