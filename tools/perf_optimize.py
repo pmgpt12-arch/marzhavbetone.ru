@@ -20,7 +20,13 @@ CSS_ORDER = [
     'footer', 'contact-form', 'cart', 'author', 'desktop', 'desktop-wide', 'legal',
 ]
 
-SKIP_DIRS = {'.git', '.github', '.claude', 'node_modules', 'out', '.venv-frames'}
+# Обрабатываем только публичные страницы сайта. Служебные и внутренние
+# каталоги пропускаем: там могут лежать фикстуры в не-UTF-8 кодировках.
+SKIP_DIRS = {
+    '.git', '.github', '.claude', 'node_modules', 'out', '.venv-frames',
+    'content', 'data', 'docs', 'reports', 'research', 'tools',
+    'products-storage', 'downloads', 'media',
+}
 
 OLD_TITLE = 'Шаблоны КС-2, КС-3 и документы для субподрядчиков — Маржа в бетоне'
 NEW_TITLE = 'Шаблоны КС-2 и КС-3 для субподрядчиков — Маржа в бетоне'
@@ -56,8 +62,12 @@ def iter_html():
 
 
 def transform_html(path, version):
-    with open(path, encoding='utf-8') as f:
-        h = f.read()
+    try:
+        with open(path, encoding='utf-8') as f:
+            h = f.read()
+    except (OSError, UnicodeDecodeError) as e:
+        print('::warning::%s: HTML пропущен (%s)' % (path, e))
+        return False
     orig = h
 
     bundle_tag = '<link rel="stylesheet" href="/bundle.css?v=%s">' % version
