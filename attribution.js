@@ -173,6 +173,245 @@ window.mvbTrackGoal = function (name) {
  * оплата происходит на другой. Поэтому источник сохраняется здесь, а
  * app.js отправляет его вместе с заказом.
  */
+/* Устойчивый анонимный идентификатор посетителя и идентификатор посещения.
+ *
+ * ЗАЧЕМ. Метки источника этот файл собирает давно, и они доезжают до заказа.
+ * Чего не было — ключа, по которому событие связывается с событием: путь
+ * одного человека от ролика до покупки не склеивался ничем. Здесь этот ключ.
+ *
+ * ЧТО ЭТО НЕ ЕСТЬ. Не идентификация человека: случайные 128 бит, ни одного
+ * его признака. Почты, телефона и имени здесь нет и быть не может.
+ *
+ * ДВА ИДЕНТИФИКАТОРА, А НЕ ОДИН. `mvb_aid` живёт год и означает браузер;
+ * идентификатор посещения живёт в sessionStorage и означает один заход.
+ * Один ключ на оба смысла отвечал бы на два разных вопроса одним числом —
+ * «сколько людей» и «сколько заходов» перестали бы различаться.
+ *
+ * ГЛАВНОЕ: НИЧЕГО НЕ ЛОМАТЬ. Приватный режим, запрещённые cookie,
+ * переполненное хранилище, отсутствие window.crypto — каждый из случаев
+ * оставляет страницу работающей. Наблюдаемость не становится условием
+ * работы сайта: обращение к cookie обёрнуто целиком, а не «на всякий
+ * случай», и при отказе функция отдаёт null, а не бросает.
+ */
+(function () {
+  'use strict';
+
+  var COOKIE = 'mvb_aid';
+  var SESSION_KEY = 'mvb_sid';
+  var ГОД = 365 * 24 * 60 * 60;
+
+  /* UUIDv4. randomUUID есть не везде, getRandomValues — почти везде;
+     Math.random остаётся последним рубежом и назван так прямо: он не
+     криптографический, и на нём идентификатор всё же лучше, чем никакой. */
+  function uuid4() {
+    try {
+      if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+        return window.crypto.randomUUID();
+      }
+      if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
+        var байты = new Uint8Array(16);
+        window.crypto.getRandomValues(байты);
+        байты[6] = (байты[6] & 0x0f) | 0x40;
+        байты[8] = (байты[8] & 0x3f) | 0x80;
+        var hex = [];
+        for (var i = 0; i < 16; i++) hex.push((байты[i] + 0x100).toString(16).slice(1));
+        return hex.slice(0, 4).join('') + '-' + hex.slice(4, 6).join('') + '-'
+             + hex.slice(6, 8).join('') + '-' + hex.slice(8, 10).join('') + '-'
+             + hex.slice(10, 16).join('');
+      }
+    } catch (error) {
+      /* Ниже запасной путь */
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = (Math.random() * 16) | 0;
+      return (c === 'x' ? r : ((r & 0x3) | 0x8)).toString(16);
+    });
+  }
+
+  function читатьCookie(имя) {
+    try {
+      var строки = String(document.cookie || '').split(';');
+      for (var i = 0; i < строки.length; i++) {
+        var пара = строки[i];
+        var знак = пара.indexOf('=');
+        if (знак < 0) continue;
+        if (пара.slice(0, знак).trim() === имя) return пара.slice(знак + 1).trim();
+      }
+    } catch (error) {
+      /* Приватный режим: чтение cookie бросает — это не наша беда */
+    }
+    return null;
+  }
+
+  function писатьCookie(имя, значение) {
+    try {
+      var защита = location.protocol === 'https:' ? '; Secure' : '';
+      document.cookie = имя + '=' + значение + '; Max-Age=' + ГОД
+        + '; Path=/; SameSite=Lax' + защита;
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  var анонимный = null;
+  try {
+    анонимный = читатьCookie(COOKIE);
+    if (!анонимный) {
+      var свежий = uuid4();
+      анонимный = писатьCookie(COOKIE, свежий) ? свежий : null;
+      /* Записали и тут же перечитали: браузер мог cookie отвергнуть молча,
+         и тогда «идентификатор есть» было бы неправдой. */
+      if (анонимный && читатьCookie(COOKIE) !== свежий) анонимный = null;
+    }
+  } catch (error) {
+    анонимный = null;
+  }
+
+  var посещение = null;
+  try {
+    посещение = window.sessionStorage.getItem(SESSION_KEY);
+    if (!посещение) {
+      посещение = uuid4();
+      window.sessionStorage.setItem(SESSION_KEY, посещение);
+    }
+  } catch (error) {
+    /* Хранилище недоступно — идентификатор посещения живёт в памяти
+       страницы. Для одного перехода этого достаточно, для отчёта — нет,
+       и «нет» здесь честнее выдуманной устойчивости. */
+    посещение = посещение || uuid4();
+  }
+
+  /* Возвращает null, когда устойчивого идентификатора нет. Выдуманное
+     значение выглядело бы измерением, не будучи им. */
+  window.mvbAnonymousId = function () { return анонимный; };
+  window.mvbSessionId = function () { return посещение; };
+})();
+
+/* События воронки: начало посещения и просмотр страницы.
+ *
+ * КУДА ШЛЁМ. На свой домен, /event.php. Приёмник Control Plane закрыт
+ * токеном, а класть токен в браузерный JS нельзя — его прочтёт любой.
+ * Посредник на своём домене решает это и заодно снимает CORS.
+ *
+ * БОЛЬ ЗДЕСЬ НЕ ВЫВОДИТСЯ. Браузер сообщает только то, что видно из адреса:
+ * ключ материала или артикул товара. Сопоставить их боли — дело Control
+ * Plane, у которого канон и лежит. Таблица «адрес → боль» в JS была бы
+ * четвёртой таксономией, ради устранения которой всё это и затевалось.
+ *
+ * НИЧЕГО НЕ ЖДЁМ И НИЧЕГО НЕ ЛОМАЕМ. sendBeacon по устройству не задерживает
+ * переход; там, где его нет, fetch с keepalive и молча проглоченным отказом.
+ * Любая поломка — отсутствующий sendBeacon, брошенное исключение, отвергнутый
+ * промис, офлайн — оставляет страницу работающей. Проверяется отдельными
+ * случаями в tools/test_browser_events.js.
+ */
+(function () {
+  'use strict';
+
+  var АДРЕС = '/event.php';
+  var НАЧАЛО = 'mvb_session_started';
+
+  function послать(тип, поля) {
+    try {
+      var тело = { event_type: тип };
+      тело.anonymous_id = window.mvbAnonymousId ? window.mvbAnonymousId() : null;
+      тело.session_id = window.mvbSessionId ? window.mvbSessionId() : null;
+      var метки = window.mvbAttribution ? window.mvbAttribution() : null;
+      if (метки && метки.last) {
+        тело.utm = {
+          source: метки.last.source, medium: метки.last.medium,
+          campaign: метки.last.campaign, content: метки.last.content
+        };
+        if (метки.last.source) тело.source = метки.last.source;
+      }
+      for (var ключ in поля) {
+        if (Object.prototype.hasOwnProperty.call(поля, ключ)) тело[ключ] = поля[ключ];
+      }
+      var текст = JSON.stringify(тело);
+
+      if (typeof navigator.sendBeacon === 'function') {
+        var кусок = new Blob([текст], { type: 'application/json' });
+        if (navigator.sendBeacon(АДРЕС, кусок)) return;
+        /* false означает «браузер не взял» — например офлайн. Падать
+           обратно на fetch незачем: он тоже не уйдёт. */
+        return;
+      }
+      if (typeof fetch === 'function') {
+        var обещание = fetch(АДРЕС, {
+          method: 'POST', body: текст, keepalive: true,
+          headers: { 'Content-Type': 'application/json' }
+        });
+        if (обещание && typeof обещание.catch === 'function') {
+          обещание.catch(function () { /* отказ доставки — не наша беда */ });
+        }
+      }
+    } catch (error) {
+      /* Наблюдаемость не имеет права ломать страницу. Тишина намеренна. */
+    }
+  }
+
+  /* Что видно из адреса. Ключ материала — имя страницы в /materialy/,
+     артикул — первый кусок имени в /products/. Это соглашение о путях, а
+     не таблица: незнакомое значение отвергнет приёмник по канону. */
+  function изАдреса() {
+    var поля = { content_id: location.pathname };
+    var материал = location.pathname.match(/^\/materialy\/([a-z0-9-]+)\.html$/);
+    if (материал) { поля.magnet_id = материал[1]; return поля; }
+    var товар = location.pathname.match(/^\/products\/((?:p|t)\d+)-[a-z0-9-]+\.html$/);
+    if (товар) { поля.sku = товар[1]; }
+    return поля;
+  }
+
+  try {
+    var новая = false;
+    try {
+      if (!window.sessionStorage.getItem(НАЧАЛО)) {
+        window.sessionStorage.setItem(НАЧАЛО, '1');
+        новая = true;
+      }
+    } catch (error) {
+      /* Хранилище недоступно: начало посещения не отмечается, и повторов
+         мы не увидим. Считать каждую страницу новой сессией хуже —
+         это врёт числом, а не молчит. */
+    }
+    if (новая) послать('funnel.session_started', {});
+    послать('funnel.content_viewed', изАдреса());
+  } catch (error) {
+    /* см. выше */
+  }
+
+  /* Форма материала уходит FormData, собранной из полей формы. Скрытое поле
+     кладётся в разметку заранее — тогда его подберёт любой обработчик
+     отправки, и править app.js не нужно. Без него lead.php не свяжет
+     выдачу с посетителем. */
+  try {
+    var свои = {
+      anonymous_id: window.mvbAnonymousId ? window.mvbAnonymousId() : null,
+      session_id: window.mvbSessionId ? window.mvbSessionId() : null
+    };
+    if (свои.anonymous_id || свои.session_id) {
+      var формы = document.querySelectorAll('form[action]') || [];
+      for (var i = 0; i < формы.length; i++) {
+        var форма = формы[i];
+        var куда = String(форма.getAttribute('action') || '');
+        if (куда.indexOf('lead.php') < 0) continue;
+        for (var имя in свои) {
+          if (!Object.prototype.hasOwnProperty.call(свои, имя)) continue;
+          if (!свои[имя]) continue;
+          if (форма.querySelector('input[name="' + имя + '"]')) continue;
+          var поле = document.createElement('input');
+          поле.type = 'hidden';
+          поле.name = имя;
+          поле.value = свои[имя];
+          форма.appendChild(поле);
+        }
+      }
+    }
+  } catch (error) {
+    /* Нет формы, нет DOM, нет идентификатора — страница всё равно жива. */
+  }
+})();
+
 (function () {
   'use strict';
 

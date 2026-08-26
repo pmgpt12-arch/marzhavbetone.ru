@@ -93,3 +93,43 @@ echo json_encode([
     'download' => $material['file'],
     'label'    => $material['label'],
 ], JSON_UNESCAPED_UNICODE);
+
+/* Событие «материал выдан» — ПОСЛЕ выдачи и только после неё.
+ *
+ * Порядок здесь и есть смысл правки. Заявка без согласия уходит выше по
+ * коду с 422 и до этой строки не доходит: magnet_requested и
+ * magnet_delivered — разные события, и второе означает, что человек
+ * действительно получил ссылку.
+ *
+ * mvb_funnel_release() закрывает соединение с браузером до отправки: на
+ * PHP-FPM человек не ждёт приёмника вовсе. Там, где закрыть нельзя,
+ * остаётся потолок в три секунды внутри отправителя.
+ *
+ * Отказ приёмника здесь не проверяется и не может ни на что повлиять:
+ * возвращаемое значение намеренно не читается. Ответ человеку уже ушёл.
+ *
+ * Соответствие «материал -> боль» читается из сгенерированного снимка
+ * taxonomy/pains.generated.json, а не записано здесь: своя таблица в этом
+ * файле была бы четвёртой таксономией.
+ *
+ * Ни имени, ни контакта в событии нет ни под каким ключом.
+ */
+require_once __DIR__ . '/mvb_funnel.php';
+mvb_funnel_release();
+
+$событие = [
+    'anonymous_id' => mvb_clean_uuid($_POST['anonymous_id'] ?? null),
+    'session_id'   => mvb_clean_uuid($_POST['session_id'] ?? null),
+    'magnet_id'    => $key,
+    'source'       => $source,
+];
+$боль = mvb_pain_of_magnet($key);
+if ($боль !== null) {
+    $событие['pain_id'] = $боль;
+}
+$contentId = preg_replace('/[^a-zA-Z0-9_\-.]/', '',
+                          (string)($_POST['content_id'] ?? ''));
+if ($contentId !== '') {
+    $событие['content_id'] = $contentId;
+}
+mvb_funnel_event('funnel.magnet_delivered', $событие);
