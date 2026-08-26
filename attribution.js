@@ -288,6 +288,130 @@ window.mvbTrackGoal = function (name) {
   window.mvbSessionId = function () { return посещение; };
 })();
 
+/* События воронки: начало посещения и просмотр страницы.
+ *
+ * КУДА ШЛЁМ. На свой домен, /event.php. Приёмник Control Plane закрыт
+ * токеном, а класть токен в браузерный JS нельзя — его прочтёт любой.
+ * Посредник на своём домене решает это и заодно снимает CORS.
+ *
+ * БОЛЬ ЗДЕСЬ НЕ ВЫВОДИТСЯ. Браузер сообщает только то, что видно из адреса:
+ * ключ материала или артикул товара. Сопоставить их боли — дело Control
+ * Plane, у которого канон и лежит. Таблица «адрес → боль» в JS была бы
+ * четвёртой таксономией, ради устранения которой всё это и затевалось.
+ *
+ * НИЧЕГО НЕ ЖДЁМ И НИЧЕГО НЕ ЛОМАЕМ. sendBeacon по устройству не задерживает
+ * переход; там, где его нет, fetch с keepalive и молча проглоченным отказом.
+ * Любая поломка — отсутствующий sendBeacon, брошенное исключение, отвергнутый
+ * промис, офлайн — оставляет страницу работающей. Проверяется отдельными
+ * случаями в tools/test_browser_events.js.
+ */
+(function () {
+  'use strict';
+
+  var АДРЕС = '/event.php';
+  var НАЧАЛО = 'mvb_session_started';
+
+  function послать(тип, поля) {
+    try {
+      var тело = { event_type: тип };
+      тело.anonymous_id = window.mvbAnonymousId ? window.mvbAnonymousId() : null;
+      тело.session_id = window.mvbSessionId ? window.mvbSessionId() : null;
+      var метки = window.mvbAttribution ? window.mvbAttribution() : null;
+      if (метки && метки.last) {
+        тело.utm = {
+          source: метки.last.source, medium: метки.last.medium,
+          campaign: метки.last.campaign, content: метки.last.content
+        };
+        if (метки.last.source) тело.source = метки.last.source;
+      }
+      for (var ключ in поля) {
+        if (Object.prototype.hasOwnProperty.call(поля, ключ)) тело[ключ] = поля[ключ];
+      }
+      var текст = JSON.stringify(тело);
+
+      if (typeof navigator.sendBeacon === 'function') {
+        var кусок = new Blob([текст], { type: 'application/json' });
+        if (navigator.sendBeacon(АДРЕС, кусок)) return;
+        /* false означает «браузер не взял» — например офлайн. Падать
+           обратно на fetch незачем: он тоже не уйдёт. */
+        return;
+      }
+      if (typeof fetch === 'function') {
+        var обещание = fetch(АДРЕС, {
+          method: 'POST', body: текст, keepalive: true,
+          headers: { 'Content-Type': 'application/json' }
+        });
+        if (обещание && typeof обещание.catch === 'function') {
+          обещание.catch(function () { /* отказ доставки — не наша беда */ });
+        }
+      }
+    } catch (error) {
+      /* Наблюдаемость не имеет права ломать страницу. Тишина намеренна. */
+    }
+  }
+
+  /* Что видно из адреса. Ключ материала — имя страницы в /materialy/,
+     артикул — первый кусок имени в /products/. Это соглашение о путях, а
+     не таблица: незнакомое значение отвергнет приёмник по канону. */
+  function изАдреса() {
+    var поля = { content_id: location.pathname };
+    var материал = location.pathname.match(/^\/materialy\/([a-z0-9-]+)\.html$/);
+    if (материал) { поля.magnet_id = материал[1]; return поля; }
+    var товар = location.pathname.match(/^\/products\/((?:p|t)\d+)-[a-z0-9-]+\.html$/);
+    if (товар) { поля.sku = товар[1]; }
+    return поля;
+  }
+
+  try {
+    var новая = false;
+    try {
+      if (!window.sessionStorage.getItem(НАЧАЛО)) {
+        window.sessionStorage.setItem(НАЧАЛО, '1');
+        новая = true;
+      }
+    } catch (error) {
+      /* Хранилище недоступно: начало посещения не отмечается, и повторов
+         мы не увидим. Считать каждую страницу новой сессией хуже —
+         это врёт числом, а не молчит. */
+    }
+    if (новая) послать('funnel.session_started', {});
+    послать('funnel.content_viewed', изАдреса());
+  } catch (error) {
+    /* см. выше */
+  }
+
+  /* Форма материала уходит FormData, собранной из полей формы. Скрытое поле
+     кладётся в разметку заранее — тогда его подберёт любой обработчик
+     отправки, и править app.js не нужно. Без него lead.php не свяжет
+     выдачу с посетителем. */
+  try {
+    var свои = {
+      anonymous_id: window.mvbAnonymousId ? window.mvbAnonymousId() : null,
+      session_id: window.mvbSessionId ? window.mvbSessionId() : null
+    };
+    if (свои.anonymous_id || свои.session_id) {
+      var формы = document.querySelectorAll('form[action]') || [];
+      for (var i = 0; i < формы.length; i++) {
+        var форма = формы[i];
+        var куда = String(форма.getAttribute('action') || '');
+        if (куда.indexOf('lead.php') < 0) continue;
+        for (var имя in свои) {
+          if (!Object.prototype.hasOwnProperty.call(свои, имя)) continue;
+          if (!свои[имя]) continue;
+          if (форма.querySelector('input[name="' + имя + '"]')) continue;
+          var поле = document.createElement('input');
+          поле.type = 'hidden';
+          поле.name = имя;
+          поле.value = свои[имя];
+          форма.appendChild(поле);
+        }
+      }
+    }
+  } catch (error) {
+    /* Нет формы, нет DOM, нет идентификатора — страница всё равно жива. */
+  }
+})();
+
 (function () {
   'use strict';
 

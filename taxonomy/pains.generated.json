@@ -1,0 +1,246 @@
+{
+  "meta": {
+    "generated": true,
+    "generated_at": "2026-08-26T17:02:21+00:00",
+    "generator": "ai-business-os/tools/export_taxonomy.py",
+    "schema_version": "1.0.0",
+    "source": "ai-business-os/00_Core/rules/Pains.yaml",
+    "source_commit": "d25096ffc346dc00e52c4d55496f4eb60b618c29",
+    "source_stages": "ai-business-os/00_Core/rules/Stages.yaml",
+    "warning": "GENERATED — DO NOT EDIT. Правка руками роняет проверку."
+  },
+  "taxonomy": {
+    "known_skus": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p7",
+      "p8",
+      "p9",
+      "p10",
+      "p11",
+      "p12",
+      "p13",
+      "t1",
+      "t2",
+      "t3",
+      "t4",
+      "t5",
+      "t6"
+    ],
+    "magnet_to_pain": {
+      "akt-skrytyh-rabot": "ispolnitelnaya",
+      "avans": "dogovor",
+      "bankrotstvo": "bankrotstvo",
+      "dengi": "neoplata",
+      "dogovor": "dogovor",
+      "dop-raboty": "dop_raboty",
+      "ispolnitelnaya-dokumentaciya": "ispolnitelnaya",
+      "raschet-metrami": "dogovor",
+      "uderzhaniya": "uderzhanie",
+      "vozvrat-ks": "ks"
+    },
+    "pains": {
+      "bankrotstvo": {
+        "core": [
+          "p9"
+        ],
+        "cross_sell": [
+          "p1"
+        ],
+        "default_stage": "insolvent",
+        "entry": [
+          "t4"
+        ],
+        "ladder_complete": true,
+        "magnet": [
+          "bankrotstvo"
+        ],
+        "mi_priority": 7,
+        "resolution_order": 1,
+        "stages": [
+          "insolvent"
+        ],
+        "title": "Контрагент становится неплатёжеспособным"
+      },
+      "dogovor": {
+        "core": [
+          "p7"
+        ],
+        "cross_sell": [
+          "p8",
+          "p11",
+          "p13",
+          "t5"
+        ],
+        "default_stage": "before_work",
+        "entry": [
+          "t6"
+        ],
+        "ladder_complete": true,
+        "magnet": [
+          "dogovor",
+          "avans",
+          "raschet-metrami"
+        ],
+        "mi_priority": 6,
+        "resolution_order": 2,
+        "stages": [
+          "before_work"
+        ],
+        "title": "Опасные условия договора"
+      },
+      "dop_raboty": {
+        "core": [
+          "p2"
+        ],
+        "cross_sell": [
+          "p13",
+          "p1"
+        ],
+        "default_stage": "in_progress",
+        "entry": [],
+        "ladder_complete": false,
+        "magnet": [
+          "dop-raboty"
+        ],
+        "mi_priority": 3,
+        "resolution_order": 3,
+        "stages": [
+          "in_progress"
+        ],
+        "title": "Не оплачивают дополнительные работы"
+      },
+      "ispolnitelnaya": {
+        "core": [
+          "p4"
+        ],
+        "cross_sell": [
+          "p3",
+          "p1"
+        ],
+        "default_stage": "in_progress",
+        "entry": [
+          "t2"
+        ],
+        "ladder_complete": true,
+        "magnet": [
+          "ispolnitelnaya-dokumentaciya",
+          "akt-skrytyh-rabot"
+        ],
+        "mi_priority": 5,
+        "resolution_order": 4,
+        "stages": [
+          "in_progress"
+        ],
+        "title": "Исполнительная документация блокирует приёмку и оплату"
+      },
+      "ks": {
+        "core": [
+          "p3"
+        ],
+        "cross_sell": [
+          "p10",
+          "p12",
+          "p1"
+        ],
+        "default_stage": "submitted",
+        "entry": [
+          "t3"
+        ],
+        "ladder_complete": true,
+        "magnet": [
+          "vozvrat-ks"
+        ],
+        "mi_priority": 2,
+        "resolution_order": 5,
+        "stages": [
+          "submitted"
+        ],
+        "title": "Не принимают и не подписывают КС"
+      },
+      "neoplata": {
+        "core": [
+          "p1"
+        ],
+        "cross_sell": [
+          "p5",
+          "p2"
+        ],
+        "default_stage": "overdue",
+        "entry": [
+          "t1"
+        ],
+        "ladder_complete": true,
+        "magnet": [
+          "dengi"
+        ],
+        "mi_priority": 1,
+        "resolution_order": 7,
+        "stages": [
+          "accepted_unpaid",
+          "overdue"
+        ],
+        "title": "Работы выполнены — денег нет"
+      },
+      "uderzhanie": {
+        "core": [
+          "p5"
+        ],
+        "cross_sell": [
+          "p1",
+          "p10"
+        ],
+        "default_stage": "contested",
+        "entry": [
+          "t3"
+        ],
+        "ladder_complete": true,
+        "magnet": [
+          "uderzhaniya"
+        ],
+        "mi_priority": 4,
+        "resolution_order": 6,
+        "stages": [
+          "contested"
+        ],
+        "title": "Не возвращают удержания"
+      }
+    },
+    "stages": {
+      "accepted_unpaid": {
+        "order": 7,
+        "title": "КС подписаны, срок оплаты не вышел"
+      },
+      "before_work": {
+        "order": 2,
+        "title": "Работы ещё не начаты, договор не подписан"
+      },
+      "contested": {
+        "order": 5,
+        "title": "Односторонний акт, зачёт или удержание"
+      },
+      "in_progress": {
+        "order": 3,
+        "title": "Работы идут, КС не поданы"
+      },
+      "insolvent": {
+        "order": 1,
+        "title": "Контрагент неплатёжеспособен"
+      },
+      "overdue": {
+        "order": 6,
+        "title": "Срок оплаты прошёл"
+      },
+      "submitted": {
+        "order": 4,
+        "title": "КС поданы, не подписаны"
+      }
+    },
+    "unmapped_magnets": {
+      "checklist": "Чек-лист закрытия выполненных работ — старейший магнит формы на главной. Ложится сразу на две боли: «работы выполнены — денег нет» (neoplata) и «не принимают и не подписывают КС» (ks). Выбрать одну — решение о содержании, а не о коде, и оно за владельцем (Р-006). До решения событие уходит без pain_id: пустое поле честнее наугад выбранного."
+    }
+  }
+}
