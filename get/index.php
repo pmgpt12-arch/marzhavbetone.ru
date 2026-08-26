@@ -15,7 +15,7 @@
  */
 declare(strict_types=1);
 
-const MVB_BOT = 'marzha_business_os_bot';
+const MVB_BOT = 'marzhafunnel_bot';
 
 /** Ключ → название материала. Названия здесь для читателя кода и 404-страницы:
  *  файл отдаёт бот, соответствие ключ → PDF живёт на его стороне. */
