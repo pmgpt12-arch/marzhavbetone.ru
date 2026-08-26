@@ -173,6 +173,121 @@ window.mvbTrackGoal = function (name) {
  * оплата происходит на другой. Поэтому источник сохраняется здесь, а
  * app.js отправляет его вместе с заказом.
  */
+/* Устойчивый анонимный идентификатор посетителя и идентификатор посещения.
+ *
+ * ЗАЧЕМ. Метки источника этот файл собирает давно, и они доезжают до заказа.
+ * Чего не было — ключа, по которому событие связывается с событием: путь
+ * одного человека от ролика до покупки не склеивался ничем. Здесь этот ключ.
+ *
+ * ЧТО ЭТО НЕ ЕСТЬ. Не идентификация человека: случайные 128 бит, ни одного
+ * его признака. Почты, телефона и имени здесь нет и быть не может.
+ *
+ * ДВА ИДЕНТИФИКАТОРА, А НЕ ОДИН. `mvb_aid` живёт год и означает браузер;
+ * идентификатор посещения живёт в sessionStorage и означает один заход.
+ * Один ключ на оба смысла отвечал бы на два разных вопроса одним числом —
+ * «сколько людей» и «сколько заходов» перестали бы различаться.
+ *
+ * ГЛАВНОЕ: НИЧЕГО НЕ ЛОМАТЬ. Приватный режим, запрещённые cookie,
+ * переполненное хранилище, отсутствие window.crypto — каждый из случаев
+ * оставляет страницу работающей. Наблюдаемость не становится условием
+ * работы сайта: обращение к cookie обёрнуто целиком, а не «на всякий
+ * случай», и при отказе функция отдаёт null, а не бросает.
+ */
+(function () {
+  'use strict';
+
+  var COOKIE = 'mvb_aid';
+  var SESSION_KEY = 'mvb_sid';
+  var ГОД = 365 * 24 * 60 * 60;
+
+  /* UUIDv4. randomUUID есть не везде, getRandomValues — почти везде;
+     Math.random остаётся последним рубежом и назван так прямо: он не
+     криптографический, и на нём идентификатор всё же лучше, чем никакой. */
+  function uuid4() {
+    try {
+      if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+        return window.crypto.randomUUID();
+      }
+      if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
+        var байты = new Uint8Array(16);
+        window.crypto.getRandomValues(байты);
+        байты[6] = (байты[6] & 0x0f) | 0x40;
+        байты[8] = (байты[8] & 0x3f) | 0x80;
+        var hex = [];
+        for (var i = 0; i < 16; i++) hex.push((байты[i] + 0x100).toString(16).slice(1));
+        return hex.slice(0, 4).join('') + '-' + hex.slice(4, 6).join('') + '-'
+             + hex.slice(6, 8).join('') + '-' + hex.slice(8, 10).join('') + '-'
+             + hex.slice(10, 16).join('');
+      }
+    } catch (error) {
+      /* Ниже запасной путь */
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = (Math.random() * 16) | 0;
+      return (c === 'x' ? r : ((r & 0x3) | 0x8)).toString(16);
+    });
+  }
+
+  function читатьCookie(имя) {
+    try {
+      var строки = String(document.cookie || '').split(';');
+      for (var i = 0; i < строки.length; i++) {
+        var пара = строки[i];
+        var знак = пара.indexOf('=');
+        if (знак < 0) continue;
+        if (пара.slice(0, знак).trim() === имя) return пара.slice(знак + 1).trim();
+      }
+    } catch (error) {
+      /* Приватный режим: чтение cookie бросает — это не наша беда */
+    }
+    return null;
+  }
+
+  function писатьCookie(имя, значение) {
+    try {
+      var защита = location.protocol === 'https:' ? '; Secure' : '';
+      document.cookie = имя + '=' + значение + '; Max-Age=' + ГОД
+        + '; Path=/; SameSite=Lax' + защита;
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  var анонимный = null;
+  try {
+    анонимный = читатьCookie(COOKIE);
+    if (!анонимный) {
+      var свежий = uuid4();
+      анонимный = писатьCookie(COOKIE, свежий) ? свежий : null;
+      /* Записали и тут же перечитали: браузер мог cookie отвергнуть молча,
+         и тогда «идентификатор есть» было бы неправдой. */
+      if (анонимный && читатьCookie(COOKIE) !== свежий) анонимный = null;
+    }
+  } catch (error) {
+    анонимный = null;
+  }
+
+  var посещение = null;
+  try {
+    посещение = window.sessionStorage.getItem(SESSION_KEY);
+    if (!посещение) {
+      посещение = uuid4();
+      window.sessionStorage.setItem(SESSION_KEY, посещение);
+    }
+  } catch (error) {
+    /* Хранилище недоступно — идентификатор посещения живёт в памяти
+       страницы. Для одного перехода этого достаточно, для отчёта — нет,
+       и «нет» здесь честнее выдуманной устойчивости. */
+    посещение = посещение || uuid4();
+  }
+
+  /* Возвращает null, когда устойчивого идентификатора нет. Выдуманное
+     значение выглядело бы измерением, не будучи им. */
+  window.mvbAnonymousId = function () { return анонимный; };
+  window.mvbSessionId = function () { return посещение; };
+})();
+
 (function () {
   'use strict';
 
