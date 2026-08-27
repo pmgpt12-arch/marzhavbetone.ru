@@ -16,6 +16,14 @@ name: Проверить сборщик событий на сервере
 
 on:
   workflow_dispatch:
+    inputs:
+      synthetic:
+        description: >-
+          Слать синтетические события. Каждый такой прогон добавляет три
+          строки в боевой поток, поэтому для обычной проверки здоровья —
+          выключено.
+        type: boolean
+        default: false
 
 concurrency:
   group: funnel-verify
@@ -104,6 +112,7 @@ jobs:
       # из суточных чисел: иначе первые строки потока — наши собственные, и
       # они завысят и посещения, и посетителей.
       - name: Синтетические события доходят до сборщика
+        if: inputs.synthetic
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
@@ -190,6 +199,7 @@ jobs:
       # же самый. Что этого НЕ хватает для проверки самой выдачи, сказано
       # прямо в отчёте.
       - name: Серверное событие пишется на боевом
+        if: inputs.synthetic
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
