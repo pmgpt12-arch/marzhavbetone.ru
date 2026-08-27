@@ -258,6 +258,11 @@ jobs:
       - name: Выдача материала против отказа приёмника событий
         run: php tools/test_lead_event.php
 
+      # Сборщик событий на хостинге: события ложатся строками в файл, поток
+      # недоступен по HTTP, отказ сборщика не меняет ответ человеку.
+      - name: Сборщик событий воронки
+        run: php tools/test_funnel_outbox.php
+
       - name: Посредник событий браузера
         run: php tools/test_event_proxy.php
 

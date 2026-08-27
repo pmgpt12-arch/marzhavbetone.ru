@@ -12,12 +12,27 @@
  * PHP-FPM он закрывает соединение с браузером, и дальнейшая работа идёт уже
  * без человека на другом конце.
  *
+ * КУДА УХОДИТ СОБЫТИЕ. Не в сеть. Событие ложится строкой в файл рядом с
+ * сайтом, а домашняя сторона забирает файл сама, когда проснётся. Прежде
+ * событие отправлялось прямо в Control Plane на домашней машине, и это
+ * теряло его целиком всякий раз, когда та спала: повторить некому,
+ * посетитель уже ушёл. Открывать домашнюю машину наружу — цена, которой
+ * платить не за что.
+ *
+ * ТРАНСПОРТ ЗДЕСЬ ОДИН. `mvb_funnel_event()` — единственный вход, и логика
+ * записи в файл живёт только в этом файле. Размазать её по lead.php,
+ * event.php и будущему webhook.php значило бы получить три расходящихся
+ * копии там, где нужна одна.
+ *
  * НАСТРОЙКА ЧЕРЕЗ ОКРУЖЕНИЕ, А НЕ ЧЕРЕЗ РЕПОЗИТОРИЙ:
- *   MVB_FUNNEL_ENDPOINT  адрес приёмника, например
- *                        https://…/api/connector/events
- *   MVB_FUNNEL_TOKEN     значение заголовка X-Connector-Token
- * Не задано хотя бы одно — событий нет вовсе, сети никто не трогает. Это
- * рабочее состояние, а не поломка: сайт обязан работать без Control Plane.
+ *   MVB_FUNNEL_OUTBOX    каталог сборщика. Не задан — берётся соседний с
+ *                        корнем сайта `../mvb-private/funnel-outbox`.
+ *
+ * КАТАЛОГ СБОРЩИКА ОБЯЗАН БЫТЬ ВНЕ КОРНЯ САЙТА. В строках лежат анонимные
+ * идентификаторы посетителей; открытый каталог сделал бы их общим
+ * достоянием. Проверка не полагается на права и на `.htaccess`: если
+ * каталог оказывается внутри корня документов, запись не делается вовсе.
+ * Потерять наблюдаемость дешевле, чем отдать поток наружу.
  *
  * ПЕРСОНАЛЬНЫХ ДАННЫХ ЗДЕСЬ НЕ БЫВАЕТ. Имя, почта и телефон в событие не
  * попадают ни под каким ключом. Понадобится опознание по почте — это
@@ -29,9 +44,25 @@ declare(strict_types=1);
 /** Снимок таксономии. Сгенерирован в ai-business-os, руками не правится. */
 const MVB_TAXONOMY_SNAPSHOT = __DIR__ . '/taxonomy/pains.generated.json';
 
-/** Потолки на сеть. Человек уже получил своё, но процесс держать незачем. */
-const MVB_FUNNEL_CONNECT_TIMEOUT = 2;
-const MVB_FUNNEL_TIMEOUT = 3;
+/**
+ * Потолок на весь сборщик. Наблюдаемость не имеет права заполнить хостинг и
+ * положить сайт: взят потолок — запись прекращается, сайт работает дальше.
+ * 64 МиБ это порядка 300 тысяч событий, то есть месяцы потока при нынешней
+ * посещаемости; слив опустошает очередь задолго до этого.
+ */
+const MVB_OUTBOX_MAX_BYTES = 67108864;
+
+/**
+ * Канонный конверт. Порядок и состав полей заданы здесь, потому что читает
+ * их другая сторона и другой язык: молчаливое расхождение состава — это
+ * событие, потерянное при разборе. Незаполненное поле остаётся `null`, а не
+ * пропадает: «не знаем» и «нет» — разные утверждения.
+ */
+const MVB_OUTBOX_FIELDS = [
+    'event_uuid', 'event_type', 'occurred_at', 'anonymous_id', 'session_id',
+    'content_id', 'pain_id', 'stage_id', 'magnet_id', 'source', 'utm', 'sku',
+    'amount_kopeck',
+];
 
 /**
  * Закрыть соединение с браузером, оставив процесс работать.
@@ -98,50 +129,239 @@ function mvb_clean_uuid($значение): ?string
 }
 
 /**
- * Отправить событие воронки. Возвращает `true` только при коде 2xx.
+ * Корень документов, каким его видит веб-сервер.
  *
- * Возвращаемое значение существует для тестов и журнала, а не для решений:
+ * В веб-запросе его называет сам сервер. В CLI переменной нет, и тогда
+ * корнем считается каталог этого файла: сайт лежит именно там, и для
+ * проверки «внутри или снаружи» этого достаточно.
+ */
+function mvb_funnel_docroot(): string
+{
+    $корень = (string)($_SERVER['DOCUMENT_ROOT'] ?? '');
+    if ($корень === '') {
+        $корень = __DIR__;
+    }
+    $настоящий = realpath($корень);
+    return $настоящий === false ? rtrim($корень, '/') : rtrim($настоящий, '/');
+}
+
+/** Каталог сборщика. Значение из окружения, иначе соседний с корнем сайта. */
+function mvb_funnel_outbox_dir(): string
+{
+    $путь = trim((string)getenv('MVB_FUNNEL_OUTBOX'));
+    if ($путь === '') {
+        $путь = dirname(__DIR__) . '/mvb-private/funnel-outbox';
+    }
+    return rtrim($путь, '/');
+}
+
+/**
+ * Лежит ли каталог внутри корня документов.
+ *
+ * Сравниваются настоящие пути, а не написанные: `../` и символическая
+ * ссылка выводят наружу на вид, оставаясь внутри на деле. Каталога может
+ * ещё не быть — тогда меряется ближайший существующий предок, потому что
+ * именно он определяет, куда попадёт созданный.
+ */
+function mvb_funnel_outbox_inside_docroot(string $каталог): bool
+{
+    $корень = mvb_funnel_docroot();
+    $проба = $каталог;
+    while ($проба !== '' && $проба !== '/' && !file_exists($проба)) {
+        $родитель = dirname($проба);
+        if ($родитель === $проба) { break; }
+        $проба = $родитель;
+    }
+    $настоящий = realpath($проба);
+    if ($настоящий === false) {
+        // Не смогли выяснить — считаем небезопасным. Отказ дешевле утечки.
+        return true;
+    }
+    $настоящий = rtrim($настоящий, '/');
+    return $настоящий === $корень || strpos($настоящий . '/', $корень . '/') === 0;
+}
+
+/**
+ * Готов ли сборщик принимать события.
+ *
+ * Три условия, и каждое — причина отказаться: каталог внутри корня сайта,
+ * каталог не создаётся, очередь взяла потолок. Ни одно из них не имеет
+ * права дойти до посетителя.
+ */
+function mvb_funnel_outbox_usable(?string &$причина = null): bool
+{
+    $каталог = mvb_funnel_outbox_dir();
+    if (mvb_funnel_outbox_inside_docroot($каталог)) {
+        $причина = 'каталог сборщика внутри корня сайта';
+        return false;
+    }
+    if (!is_dir($каталог) && !@mkdir($каталог, 0700, true) && !is_dir($каталог)) {
+        $причина = 'каталог сборщика не создаётся';
+        return false;
+    }
+    if (!is_writable($каталог)) {
+        $причина = 'каталог сборщика закрыт на запись';
+        return false;
+    }
+    if (mvb_funnel_outbox_bytes($каталог) >= MVB_OUTBOX_MAX_BYTES) {
+        $причина = 'очередь сборщика взяла потолок';
+        return false;
+    }
+    $причина = null;
+    return true;
+}
+
+/** Сколько занимает очередь целиком. */
+function mvb_funnel_outbox_bytes(string $каталог): int
+{
+    $всего = 0;
+    foreach ((array)glob($каталог . '/*') as $файл) {
+        if (is_file($файл)) { $всего += (int)@filesize($файл); }
+    }
+    return $всего;
+}
+
+/**
+ * Собрать канонный конверт из полей, которые дал вызывающий.
+ *
+ * Берётся только перечисленное в MVB_OUTBOX_FIELDS. Это то же правило, что
+ * и в посреднике браузера, и по той же причине: не «вырезаем лишнее», а
+ * «берём названное». Поле, о котором никто не подумал, в поток не попадёт.
+ */
+function mvb_funnel_envelope(string $тип, array $payload): array
+{
+    $конверт = [];
+    foreach (MVB_OUTBOX_FIELDS as $поле) {
+        $конверт[$поле] = $payload[$поле] ?? null;
+    }
+    $конверт['event_type'] = $тип;
+    if (!is_string($конверт['event_uuid']) || $конверт['event_uuid'] === '') {
+        $конверт['event_uuid'] = mvb_uuid4();
+    }
+    if (!is_string($конверт['occurred_at']) || $конверт['occurred_at'] === '') {
+        $конверт['occurred_at'] = gmdate('c');
+    }
+    if ($конверт['utm'] !== null && !is_array($конверт['utm'])) {
+        $конверт['utm'] = null;
+    }
+    return $конверт;
+}
+
+/**
+ * Проверка транспортного уровня, и только его.
+ *
+ * Здесь не повторяется проверка таксономии Control Plane: у неё свои
+ * правила, свой словарь и своё право отвергнуть. Разделение намеренное —
+ * хостинг отвечает за то, что строка доедет и разберётся, домашняя сторона
+ * за то, что событие законно. Иначе снимок таксономии на сайте отставал бы
+ * от ядра и молча выбрасывал бы годные события.
+ */
+function mvb_funnel_transport_valid(array $конверт): bool
+{
+    if (!is_string($конверт['event_type']) || $конверт['event_type'] === '') {
+        return false;
+    }
+    if (strpos($конверт['event_type'], 'funnel.') !== 0) {
+        return false;
+    }
+    return mvb_clean_uuid($конверт['event_uuid']) !== null
+        && is_string($конверт['occurred_at']) && $конверт['occurred_at'] !== '';
+}
+
+/** Отметить отказ записи. Само по себе не имеет права ничего сломать. */
+function mvb_funnel_note_failure(string $причина): void
+{
+    $каталог = mvb_funnel_outbox_dir();
+    if (!is_dir($каталог) || !is_writable($каталог)) {
+        return;                     // некуда записать — и не надо
+    }
+    @file_put_contents($каталог . '/' . gmdate('Y-m-d') . '.append-errors.log',
+                       gmdate('c') . ' ' . $причина . "\n",
+                       FILE_APPEND | LOCK_EX);
+}
+
+/**
+ * Записать событие воронки в сборщик. Возвращает `true` только при записи.
+ *
+ * Возвращаемое значение существует для тестов и здоровья, а не для решений:
  * ни один вызывающий не имеет права менять поведение в зависимости от него.
  */
 function mvb_funnel_event(string $тип, array $payload): bool
 {
-    $адрес = (string)getenv('MVB_FUNNEL_ENDPOINT');
-    $токен = (string)getenv('MVB_FUNNEL_TOKEN');
-    if ($адрес === '' || $токен === '') {
-        return false;               // не настроено — сети не касаемся
-    }
-    if (!function_exists('curl_init')) {
-        return false;
-    }
-
-    $payload += [
-        'event_uuid'  => mvb_uuid4(),
-        'occurred_at' => gmdate('c'),
-    ];
-    $тело = json_encode(['event_type' => $тип, 'agent' => 'site',
-                         'payload' => $payload],
-                        JSON_UNESCAPED_UNICODE);
-    if ($тело === false) {
-        return false;
-    }
-
     try {
-        $ch = curl_init($адрес);
-        curl_setopt_array($ch, [
-            CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => $тело,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HTTPHEADER => ['Content-Type: application/json',
-                                   'X-Connector-Token: ' . $токен],
-            CURLOPT_CONNECTTIMEOUT => MVB_FUNNEL_CONNECT_TIMEOUT,
-            CURLOPT_TIMEOUT => MVB_FUNNEL_TIMEOUT,
-            CURLOPT_FAILONERROR => false,
-        ]);
-        curl_exec($ch);
-        $код = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-        return $код >= 200 && $код < 300;
+        $конверт = mvb_funnel_envelope($тип, $payload);
+        if (!mvb_funnel_transport_valid($конверт)) {
+            return false;           // до файла негодный конверт не доходит
+        }
+        $строка = json_encode($конверт, JSON_UNESCAPED_UNICODE
+                                        | JSON_UNESCAPED_SLASHES);
+        if ($строка === false || strpos($строка, "\n") !== false) {
+            return false;           // одна строка на событие, и никак иначе
+        }
+
+        $причина = null;
+        if (!mvb_funnel_outbox_usable($причина)) {
+            mvb_funnel_note_failure((string)$причина);
+            return false;
+        }
+
+        $файл = mvb_funnel_outbox_dir() . '/' . gmdate('Y-m-d') . '.pending.jsonl';
+        // LOCK_EX, потому что запросов на хостинге несколько одновременно, а
+        // строка обязана остаться целой: половина строки — потерянное
+        // событие и сломанный разбор всего файла на той стороне.
+        $записано = @file_put_contents($файл, $строка . "\n", FILE_APPEND | LOCK_EX);
+        if ($записано === false) {
+            mvb_funnel_note_failure('запись не удалась: ' . $тип);
+            return false;
+        }
+        return true;
     } catch (Throwable $ошибка) {
         return false;               // молча: человек своё уже получил
     }
+}
+
+/**
+ * Здоровье сборщика числами, а не самочувствием.
+ *
+ * Считается по файлам при каждом вызове, а не ведётся счётчиками: счётчик
+ * требует своей блокировки, расходится при отказе и врёт ровно тогда, когда
+ * на него смотрят. Единственное, что приходится записывать, — отказы
+ * записи: их по файлам очереди не восстановить.
+ */
+function mvb_funnel_outbox_status(): array
+{
+    $каталог = mvb_funnel_outbox_dir();
+    $причина = null;
+    $годен = mvb_funnel_outbox_usable($причина);
+
+    $строк = 0;
+    $старейшее = null;
+    foreach ((array)glob($каталог . '/*.pending.jsonl') as $файл) {
+        $строк += max(0, (int)@substr_count((string)@file_get_contents($файл), "\n"));
+        $время = @filemtime($файл);
+        if ($время !== false && ($старейшее === null || $время < $старейшее)) {
+            $старейшее = $время;
+        }
+    }
+    $отказов = 0;
+    foreach ((array)glob($каталог . '/*.append-errors.log') as $файл) {
+        $отказов += (int)@substr_count((string)@file_get_contents($файл), "\n");
+    }
+    $карантин = 0;
+    foreach ((array)glob($каталог . '/*.quarantine.jsonl') as $файл) {
+        $карантин += (int)@substr_count((string)@file_get_contents($файл), "\n");
+    }
+
+    return [
+        'dir' => $каталог,
+        'usable' => $годен,
+        'reason' => $причина,
+        'pending_count' => $строк,
+        'quarantined_count' => $карантин,
+        'append_failures' => $отказов,
+        'total_bytes' => mvb_funnel_outbox_bytes($каталог),
+        'max_bytes' => MVB_OUTBOX_MAX_BYTES,
+        'oldest_pending_age_seconds' => $старейшее === null
+            ? null : max(0, time() - $старейшее),
+    ];
 }
