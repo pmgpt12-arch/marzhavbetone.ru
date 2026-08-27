@@ -23,6 +23,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 from pathlib import Path
@@ -142,7 +143,69 @@ def главная(argv=None) -> int:
             if аргументы.write:
                 манифест.write_text(новый, encoding="utf-8")
 
-    # 2. Страницы: любое «N файлов», у которого нашёлся однозначный хозяин.
+    # 2. JSON-LD: описание товара в разметке для поисковика.
+    #
+    # ОТДЕЛЬНО ОТ ОСТАЛЬНОГО ТЕКСТА, потому что соседством хозяин там не
+    # определяется: внутри `<script type="application/ld+json">` ссылок вида
+    # `href=` нет вовсе, адрес товара лежит полем `offers.url`. Замер
+    # 27.08.2026: девятнадцать чисел не находили хозяина, и одиннадцать из
+    # них — описания товаров в разметке каталога. Для поисковика это то же
+    # обещание, что и на странице.
+    for файл in sorted(КОРЕНЬ.glob("**/*.html")):
+        if ".git" in файл.parts or "products-storage" in файл.parts:
+            continue
+        текст = файл.read_text(encoding="utf-8")
+        если_менять = False
+        куски, конец = [], 0
+        for блок in re.finditer(
+                r'<script type="application/ld\+json">(.*?)</script>', текст, re.S):
+            try:
+                данные = json.loads(блок.group(1))
+            except json.JSONDecodeError:
+                спорных.append((str(файл.relative_to(КОРЕНЬ)), 0,
+                                "JSON-LD не разбирается"))
+                continue
+            правки: list[tuple[str, str]] = []
+
+            def обойти(узел) -> None:
+                if isinstance(узел, dict):
+                    описание = узел.get("description")
+                    адрес = (узел.get("url")
+                             or (узел.get("offers") or {}).get("url", "")
+                             if isinstance(узел.get("offers"), dict)
+                             else узел.get("url"))
+                    if isinstance(описание, str) and ЧИСЛО.search(описание) and адрес:
+                        найдено = re.search(r"/products/([pt]\d+)-", str(адрес))
+                        if найдено and найдено.group(1) in факт:
+                            нужно = факт[найдено.group(1)]
+                            новое = ЧИСЛО.sub(
+                                lambda m: f"{нужно}{m.group(2)}{m.group(3)}"
+                                          f"{склонение(нужно)}", описание)
+                            if новое != описание:
+                                правки.append((описание, новое))
+                    for значение in узел.values():
+                        обойти(значение)
+                elif isinstance(узел, list):
+                    for значение in узел:
+                        обойти(значение)
+
+            обойти(данные)
+            if правки:
+                тело = блок.group(1)
+                for было, стало in правки:
+                    тело = тело.replace(было, стало)
+                куски.append(текст[конец:блок.start(1)])
+                куски.append(тело)
+                конец = блок.end(1)
+                если_менять = True
+                правок += len(правки)
+                print(f"разметка {файл.relative_to(КОРЕНЬ)}: описаний {len(правки)}")
+        if если_менять:
+            куски.append(текст[конец:])
+            if аргументы.write:
+                файл.write_text("".join(куски), encoding="utf-8")
+
+    # 3. Страницы: любое «N файлов», у которого нашёлся однозначный хозяин.
     for файл in sorted(КОРЕНЬ.glob("**/*.html")):
         if ".git" in файл.parts or "products-storage" in файл.parts:
             continue
