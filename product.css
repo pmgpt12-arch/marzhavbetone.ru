@@ -87,6 +87,13 @@
 .bundle-item.highlight{background:var(--ink);color:var(--paper);box-shadow:6px 6px 0 var(--orange)}
 .bundle-item.highlight p{color:#bdb9b1}
 
+/* Оговорка о пересечении со старшим комплектом. Стоит внутри блока «Если
+   нужно больше», то есть ровно там, где принимается решение о второй
+   покупке: сноской внизу страницы её бы не прочитали. Полоса слева и фон —
+   чтобы отличалась от описания товара, а не сливалась с ним. */
+.overlap-note{max-width:70ch;margin:0 0 26px;padding:16px 20px;background:#f5f2ea;
+  border-left:3px solid var(--orange);color:#55585b;font-size:15px;line-height:1.55}
+
 /* Похожие комплекты */
 .related .product-grid.compact .product-card h3{font-size:clamp(22px,2vw,30px);letter-spacing:-.02em}
 .related .product-grid.compact .product-card > p{min-height:0}
