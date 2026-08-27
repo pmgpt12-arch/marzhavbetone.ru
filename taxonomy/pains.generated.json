@@ -1,11 +1,11 @@
 {
   "meta": {
     "generated": true,
-    "generated_at": "2026-08-26T17:02:21+00:00",
+    "generated_at": "2026-08-27T14:42:24+00:00",
     "generator": "ai-business-os/tools/export_taxonomy.py",
     "schema_version": "1.0.0",
     "source": "ai-business-os/00_Core/rules/Pains.yaml",
-    "source_commit": "d25096ffc346dc00e52c4d55496f4eb60b618c29",
+    "source_commit": "8a804ae0c73494175baac4a77ee04ace457762ea",
     "source_stages": "ai-business-os/00_Core/rules/Stages.yaml",
     "warning": "GENERATED — DO NOT EDIT. Правка руками роняет проверку."
   },
@@ -67,16 +67,15 @@
       },
       "dogovor": {
         "core": [
-          "p7"
-        ],
-        "cross_sell": [
+          "p7",
           "p8",
           "p11",
-          "p13",
-          "t5"
+          "p13"
         ],
+        "cross_sell": [],
         "default_stage": "before_work",
         "entry": [
+          "t5",
           "t6"
         ],
         "ladder_complete": true,
@@ -88,7 +87,8 @@
         "mi_priority": 6,
         "resolution_order": 2,
         "stages": [
-          "before_work"
+          "before_work",
+          "after_termination"
         ],
         "title": "Опасные условия договора"
       },
@@ -211,8 +211,12 @@
     },
     "stages": {
       "accepted_unpaid": {
-        "order": 7,
+        "order": 8,
         "title": "КС подписаны, срок оплаты не вышел"
+      },
+      "after_termination": {
+        "order": 7,
+        "title": "Договор расторгнут, требуют вернуть аванс"
       },
       "before_work": {
         "order": 2,
