@@ -95,6 +95,88 @@ jobs:
               sys.exit(1)
           PY
 
+      # СИНТЕТИЧЕСКИЕ СОБЫТИЯ (§19-20). Доказывают не намерение, а путь целиком:
+      # браузер -> event.php -> сборщик на диске. Пока это не проверено на
+      # боевом, «сборщик включён» остаётся утверждением о коде, а не о
+      # работе.
+      #
+      # События помечены source=synthetic-smoke, чтобы их можно было вычесть
+      # из суточных чисел: иначе первые строки потока — наши собственные, и
+      # они завысят и посещения, и посетителей.
+      - name: Синтетические события доходят до сборщика
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          ssh_run() {
+            ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p "$SSH_PORT" \
+                -o BatchMode=yes -o ConnectTimeout=20 "$USER@$HOST" "$@"
+          }
+          outbox=$(ssh_run "cd '$SITE_PATH' && php -r 'require \"mvb_funnel.php\"; echo mvb_funnel_outbox_dir();'")
+          before=$(ssh_run "cat '$outbox'/*.pending.jsonl 2>/dev/null | grep -c . || true")
+          before=${before:-0}
+          echo "строк в очереди до: $before"
+
+          anon=$(python3 -c 'import uuid;print(uuid.uuid4())')
+          sess=$(python3 -c 'import uuid;print(uuid.uuid4())')
+          echo "посетитель: $anon"
+
+          post_event() {
+            code=$(curl -s -o /tmp/ev.out -w '%{http_code}' --max-time 25 \
+                   -X POST 'https://marzhavbetone.ru/event.php' \
+                   -H 'Content-Type: application/json' -d "$1")
+            echo "  event.php -> HTTP $code"
+            [ "$code" = "204" ] || { echo "::error::event.php ответил $code, а обязан 204"; exit 1; }
+          }
+          post_event "{\"event_type\":\"funnel.session_started\",\"anonymous_id\":\"$anon\",\"session_id\":\"$sess\",\"source\":\"synthetic-smoke\"}"
+          post_event "{\"event_type\":\"funnel.content_viewed\",\"anonymous_id\":\"$anon\",\"session_id\":\"$sess\",\"content_id\":\"/kalkulyator.html\",\"source\":\"synthetic-smoke\"}"
+
+          # Запись идёт ПОСЛЕ ответа человеку — ждём, а не предполагаем.
+          for i in 1 2 3 4 5 6 7 8 9 10; do
+            after=$(ssh_run "cat '$outbox'/*.pending.jsonl 2>/dev/null | grep -c . || true")
+            after=${after:-0}
+            [ "$after" -ge $((before + 2)) ] && break
+            sleep 3
+          done
+          echo "строк в очереди после: $after"
+          if [ "$after" -lt $((before + 2)) ]; then
+            echo "::error::События не легли в сборщик: было $before, стало $after"
+            exit 1
+          fi
+
+          echo "--- последние две строки, проверка на персональные данные ---"
+          ssh_run "cat '$outbox'/*.pending.jsonl | tail -2" > /tmp/last.jsonl
+          cat /tmp/last.jsonl
+          python3 - "$anon" <<'PYEOF'
+          import json, re, sys, pathlib
+          anon = sys.argv[1]
+          строки = [json.loads(s) for s in
+                    pathlib.Path('/tmp/last.jsonl').read_text(encoding='utf-8').splitlines() if s.strip()]
+          беды = []
+          типы = [s.get('event_type') for s in строки]
+          if 'funnel.session_started' not in типы or 'funnel.content_viewed' not in типы:
+              беды.append('в очереди не оба типа события: ' + str(типы))
+          if any(s.get('anonymous_id') != anon for s in строки):
+              беды.append('anonymous_id не наш')
+          ключи = {s.get('event_uuid') for s in строки}
+          if len(ключи) != len(строки) or None in ключи:
+              беды.append('event_uuid повторяется или отсутствует')
+          сырое = json.dumps(строки, ensure_ascii=False)
+          # UUID вырезаются ДО поиска телефона. Идентификатор посетителя это
+          # цифры и дефисы, и шаблон телефона ловит его как телефон — эта же
+          # ошибка уже случалась в проверке anonymous_id и повторена здесь.
+          сырое = re.sub(r'[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-'
+                         r'[0-9a-fA-F]{4}-[0-9a-fA-F]{12}', '', сырое)
+          for имя, шаблон in {'почта': r'[\w.+-]+@[\w-]+\.[a-zA-Z]{2,}',
+                              'телефон': r'\+?\d[\d\s()-]{9,}\d'}.items():
+              if re.search(шаблон, сырое):
+                  беды.append('в потоке след ' + имя)
+          for б in беды:
+              print('::error::' + б)
+          sys.exit(1 if беды else 0)
+          PYEOF
+          echo "Синтетические события дошли, персональных данных в них нет."
+
       - name: Поток событий недоступен по HTTP
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
