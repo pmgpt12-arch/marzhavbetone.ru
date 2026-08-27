@@ -401,4 +401,39 @@ mvb_check('здоровье сборщика считается, а не объ�
              'нет счёта отказов записи');
 });
 
+mvb_check('здоровье не отдаётся через веб', function () use ($ROOT) {
+    // Файл лежит в каталоге сайта и после заливки доступен по HTTP.
+    // Отдавать путь к сборщику и число накопленных событий незачем никому.
+    $порт = mvb_free_port();
+    $сервер = mvb_serve($ROOT, $порт);
+    try {
+        $ch = curl_init("http://127.0.0.1:{$порт}/tools/funnel_outbox_health.php");
+        curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_TIMEOUT => 10]);
+        $тело = (string)curl_exec($ch);
+        $код = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        mvb_equal($код, 404, 'здоровье сборщика открыто по HTTP');
+        mvb_true(strpos($тело, 'каталог сборщика') === false,
+                 'путь к сборщику отдан по HTTP');
+    } finally { mvb_kill($сервер); }
+});
+
+mvb_check('здоровье из командной строки считает то же самое', function () use ($ROOT) {
+    $каталог = outbox_tmp('healthcli');
+    putenv("MVB_FUNNEL_OUTBOX={$каталог}");
+    require_once $ROOT . '/mvb_funnel.php';
+    mvb_funnel_event('funnel.content_viewed', ['content_id' => 'a']);
+    $вывод = [];
+    $код = 0;
+    exec('MVB_FUNNEL_OUTBOX=' . escapeshellarg($каталог) . ' php '
+         . escapeshellarg($ROOT . '/tools/funnel_outbox_health.php') . ' --json',
+         $вывод, $код);
+    mvb_equal($код, 0, 'код прогона здоровья');
+    $здоровье = json_decode(implode("\n", $вывод), true);
+    mvb_true(is_array($здоровье), 'здоровье не разобралось как JSON');
+    mvb_equal($здоровье['pending_count'], 1, 'событий в очереди');
+    mvb_equal($здоровье['usable'], true, 'пригодность');
+});
+
 mvb_finish();
