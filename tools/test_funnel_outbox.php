@@ -407,7 +407,7 @@ mvb_check('здоровье не отдаётся через веб', function (
     $порт = mvb_free_port();
     $сервер = mvb_serve($ROOT, $порт);
     try {
-        $ch = curl_init("http://127.0.0.1:{$порт}/tools/funnel_outbox_health.php");
+        $ch = curl_init("http://127.0.0.1:{$порт}/mvb_funnel_health.php");
         curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true,
                                 CURLOPT_TIMEOUT => 10]);
         $тело = (string)curl_exec($ch);
@@ -427,7 +427,7 @@ mvb_check('здоровье из командной строки считает 
     $вывод = [];
     $код = 0;
     exec('MVB_FUNNEL_OUTBOX=' . escapeshellarg($каталог) . ' php '
-         . escapeshellarg($ROOT . '/tools/funnel_outbox_health.php') . ' --json',
+         . escapeshellarg($ROOT . '/mvb_funnel_health.php') . ' --json',
          $вывод, $код);
     mvb_equal($код, 0, 'код прогона здоровья');
     $здоровье = json_decode(implode("\n", $вывод), true);

@@ -1,6 +1,6 @@
 <?php
 /**
- * Здоровье сборщика событий числами. Запуск на хостинге: php tools/funnel_outbox_health.php
+ * Здоровье сборщика событий числами. Запуск на хостинге: php mvb_funnel_health.php
  *
  * ЗАЧЕМ. Сборщик пишет молча и обязан писать молча: отказ записи не имеет
  * права дойти до посетителя. Значит единственный способ узнать, что он не
@@ -17,7 +17,7 @@ if (PHP_SAPI !== 'cli') {
     exit;
 }
 
-require_once dirname(__DIR__) . '/mvb_funnel.php';
+require_once __DIR__ . '/mvb_funnel.php';
 
 $здоровье = mvb_funnel_outbox_status();
 
