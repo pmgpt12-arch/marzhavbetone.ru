@@ -1,0 +1,143 @@
+# Что на самом деле происходит со сборщиком событий на боевом сервере.
+#
+# ЗАЧЕМ ОТДЕЛЬНЫЙ ПРОГОН. Проверить это можно только оттуда, где есть доступ к
+# хостингу, и только настоящим Apache: правило живёт в .htaccess, каталог — в
+# домашней папке. Из облачной сессии домен закрыт политикой шлюза, из
+# репозитория видно лишь намерение.
+#
+# ЧТО ИМЕННО ВЫЯСНЯЕТСЯ:
+#   1. какой путь сборщик выбрал на самом деле (realpath, а не предположение);
+#   2. лежит ли он вне корня документов;
+#   3. пишется ли в него;
+#   4. НЕ отдаётся ли он по HTTP — проверяется пробным файлом, а не рассуждением.
+#
+# Ничего не включает и не меняет: только смотрит и кладёт-убирает пробный файл.
+name: Проверить сборщик событий на сервере
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: funnel-verify
+  cancel-in-progress: false
+
+env:
+  SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
+  SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Проверить секреты
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          missing=''
+          [ -z "$KEY" ] && missing="$missing DEPLOY_SSH_KEY"
+          [ -z "$HOST" ] && missing="$missing DEPLOY_HOST"
+          [ -z "$USER" ] && missing="$missing DEPLOY_USER"
+          if [ -n "$missing" ]; then
+            echo "::error::Не заданы секреты:$missing"
+            exit 1
+          fi
+
+      - name: Set up SSH
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Здоровье сборщика и фактические пути
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          ssh_run() {
+            ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p "$SSH_PORT" \
+                -o BatchMode=yes -o ConnectTimeout=20 "$USER@$HOST" "$@"
+          }
+
+          echo "--- есть ли PHP в командной строке ---"
+          if ! ssh_run 'command -v php' ; then
+            echo "::error::На хостинге нет php в PATH — проверку здоровья запустить нечем"
+            exit 1
+          fi
+
+          echo "--- здоровье сборщика ---"
+          ssh_run "cd '$SITE_PATH' && php mvb_funnel_health.php --json" | tee /tmp/health.json || true
+
+          echo "--- фактические пути ---"
+          ssh_run "cd '$SITE_PATH' && pwd -P && echo '---' && ls -ld ../mvb-private ../mvb-private/funnel-outbox 2>&1 | head -5"
+
+          python3 - <<'PY'
+          import json, pathlib, sys
+          сырое = pathlib.Path('/tmp/health.json').read_text(encoding='utf-8').strip()
+          начало = сырое.find('{')
+          if начало < 0:
+              print('::error::Здоровье не отдало JSON. Ответ: ' + сырое[:300]); sys.exit(1)
+          h = json.loads(сырое[начало:])
+          print('каталог сборщика:', h.get('dir'))
+          print('пригоден:', h.get('usable'), '| причина:', h.get('reason'))
+          print('ждут слива:', h.get('pending_count'))
+          print('отказов записи:', h.get('append_failures'))
+          if not h.get('usable'):
+              print('::error::Сборщик непригоден: ' + str(h.get('reason')))
+              sys.exit(1)
+          PY
+
+      - name: Поток событий недоступен по HTTP
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          # Имена латиницей: bash не принимает кириллицу в именах переменных.
+          ssh_run() {
+            ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p "$SSH_PORT" \
+                -o BatchMode=yes -o ConnectTimeout=20 "$USER@$HOST" "$@"
+          }
+          probe="probe-$(date -u +%s)-$RANDOM.pending.jsonl"
+          outbox=$(ssh_run "cd '$SITE_PATH' && php -r 'require \"mvb_funnel.php\"; echo mvb_funnel_outbox_dir();'")
+          echo "каталог сборщика: $outbox"
+          cleanup() { ssh_run "rm -f '$outbox/$probe'" >/dev/null 2>&1 || true; }
+          trap cleanup EXIT
+          ssh_run "mkdir -p '$outbox' && printf '%s\n' '{\"event_uuid\":\"OUTBOX-LEAK-CANARY\"}' > '$outbox/$probe'"
+
+          docroot=$(ssh_run "cd '$SITE_PATH' && pwd -P")
+          echo "корень документов: $docroot"
+          case "$outbox" in
+            "$docroot"/*|"$docroot") echo "::error::Каталог сборщика ВНУТРИ корня документов"; exit 1 ;;
+            *) echo "  каталог вне корня документов — ок" ;;
+          esac
+
+          failures=0
+          try_url() {
+            code=$(curl -s -o /tmp/body.out -w '%{http_code}' --max-time 25 "$1" || true)
+            leak=no
+            grep -qF 'OUTBOX-LEAK-CANARY' /tmp/body.out 2>/dev/null && leak=yes
+            echo "  $1 -> HTTP $code, утечка: $leak"
+            if [ "$leak" = "yes" ]; then
+              echo "::error::Поток событий отдан по адресу $1"
+              failures=$((failures+1))
+            fi
+          }
+          base='https://marzhavbetone.ru'
+          try_url "$base/mvb-private/funnel-outbox/$probe"
+          try_url "$base/../mvb-private/funnel-outbox/$probe"
+          try_url "$base/%2e%2e/mvb-private/funnel-outbox/$probe"
+          try_url "$base/mvb-private/"
+
+          if [ "$failures" -ne 0 ]; then
+            echo "::error::P0: поток событий доступен из веба"
+            exit 1
+          fi
+          echo "Поток событий по HTTP недоступен."
