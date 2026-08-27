@@ -276,6 +276,65 @@ jobs:
           echo "::error::Сайт отвечает, но отдаёт не ту сборку: в HTML нет $expected. Залитое не доехало до выдачи — проверьте кеш сервера и путь заливки"
           exit 1
 
+      # ЗАКАЗЫ И МАСТЕРА ТОВАРОВ НЕ ОТДАЮТСЯ ВЕБОМ. Проверяется на боевом
+      # сервере, потому что нигде больше это не проверяемо: правило живёт в
+      # .htaccess, а .htaccess исполняет только настоящий Apache. Локальный
+      # прогон подтверждает наличие правила, а не его срабатывание.
+      #
+      # ЗАЧЕМ ПРОБНЫЙ ФАЙЛ, А НЕ ТОЛЬКО КАТАЛОГ. Код 403 на `/orders/` можно
+      # получить просто оттого, что листинг выключен, — при том что файл
+      # внутри отдаётся прекрасно. А в файле заказа лежат почта, телефон и
+      # токен выдачи оплаченного товара. Поэтому кладём заведомо безобидный
+      # файл и просим именно его.
+      #
+      # Файл убирается всегда, в том числе когда проверка падает.
+      - name: Заказы недоступны с боевого сервера
+        if: steps.check.outputs.enabled == 'true' && inputs.dry_run != true
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          # Имена переменных латиницей намеренно: bash не принимает кириллицу
+          # в именах — `proba=x` кириллицей превращается в «command not found»,
+          # и шаг падал бы на ровном месте уже в боевом деплое.
+          ssh_run() {
+            ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p "$SSH_PORT" \
+                -o BatchMode=yes -o ConnectTimeout=20 "$USER@$HOST" "$@"
+          }
+          probe="security-probe-$(date -u +%s)-$RANDOM.json"
+          cleanup() { ssh_run "rm -f '$SITE_PATH/orders/$probe'" >/dev/null 2>&1 || true; }
+          trap cleanup EXIT
+
+          # Ни персональных данных, ни рабочего токена: файл ничего не стоит,
+          # даже если его кто-то успеет прочитать.
+          ssh_run "mkdir -p '$SITE_PATH/orders' && printf '%s' '{\"probe\":\"OUTBOX-LEAK-CANARY\",\"pii\":\"none\"}' > '$SITE_PATH/orders/$probe'"
+
+          failures=0
+          check_path() {
+            path="$1"
+            body=$(curl -s --max-time 30 -w '\n%{http_code}' "https://marzhavbetone.ru$path" || true)
+            code=$(printf '%s' "$body" | tail -n1)
+            echo "  $path -> HTTP $code (ждём 403 или 404)"
+            case "$code" in
+              403|404) ;;
+              *) echo "::error::$path отвечает $code, а обязан 403 или 404"; failures=$((failures+1)) ;;
+            esac
+            if printf '%s' "$body" | grep -qF 'OUTBOX-LEAK-CANARY'; then
+              echo "::error::$path ОТДАЛ содержимое файла — заказы доступны из веба"
+              failures=$((failures+1))
+            fi
+          }
+
+          check_path "/orders/"
+          check_path "/orders/$probe"
+          check_path "/products-storage/"
+
+          if [ "$failures" -ne 0 ]; then
+            echo "::error::P0: каталог заказов или мастеров товаров доступен из веба. Это утечка персональных данных и токенов выдачи."
+            exit 1
+          fi
+          echo "Заказы и мастера товаров закрыты."
+
       # IndexNow: сказать Яндексу, какие адреса изменились, не дожидаясь
       # планового обхода. Ключ публичен по протоколу — он подтверждается
       # файлом в корне сайта, секретом не является. Ошибка уведомления
