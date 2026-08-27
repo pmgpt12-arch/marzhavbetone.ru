@@ -177,6 +177,63 @@ jobs:
           PYEOF
           echo "Синтетические события дошли, персональных данных в них нет."
 
+      # СЕРВЕРНЫЙ ИСТОЧНИК (§21), НО БЕЗ ПИСЬМА И БЕЗ ЛИДА.
+      #
+      # Полная форма не дёргается намеренно: lead.php на каждой заявке шлёт
+      # письмо на реальный ящик владельца (lead.php:89) и создаёт настоящий
+      # лид. Синтетическая заявка засорила бы и почту, и воронку — цена выше
+      # того, что проверка добавляет.
+      #
+      # Проверяется ровно тот же путь записи, который зовёт lead.php:
+      # mvb_funnel_event() с серверным типом события. Отличие от полной формы
+      # одно — не выполняется выдача файла и отправка письма, а транспорт тот
+      # же самый. Что этого НЕ хватает для проверки самой выдачи, сказано
+      # прямо в отчёте.
+      - name: Серверное событие пишется на боевом
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          ssh_run() {
+            ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p "$SSH_PORT" \
+                -o BatchMode=yes -o ConnectTimeout=20 "$USER@$HOST" "$@"
+          }
+          outbox=$(ssh_run "cd '$SITE_PATH' && php -r 'require \"mvb_funnel.php\"; echo mvb_funnel_outbox_dir();'")
+          before=$(ssh_run "cat '$outbox'/*.pending.jsonl 2>/dev/null | grep -c . || true")
+          before=${before:-0}
+
+          anon=$(python3 -c 'import uuid;print(uuid.uuid4())')
+          ssh_run "cd '$SITE_PATH' && php -r 'require \"mvb_funnel.php\"; \$ok = mvb_funnel_event(\"funnel.magnet_delivered\", [\"anonymous_id\" => \"$anon\", \"magnet_id\" => \"dengi\", \"pain_id\" => mvb_pain_of_magnet(\"dengi\"), \"source\" => \"synthetic-smoke\"]); echo \$ok ? \"записано\" : \"ОТКАЗ\";'"
+
+          after=$(ssh_run "cat '$outbox'/*.pending.jsonl 2>/dev/null | grep -c . || true")
+          after=${after:-0}
+          echo "строк было $before, стало $after"
+          if [ "$after" -lt $((before + 1)) ]; then
+            echo "::error::Серверное событие не легло в сборщик"
+            exit 1
+          fi
+
+          ssh_run "cat '$outbox'/*.pending.jsonl | tail -1" > /tmp/magnet.jsonl
+          cat /tmp/magnet.jsonl
+          python3 - "$anon" <<'PYEOF'
+          import json, sys, pathlib
+          anon = sys.argv[1]
+          s = json.loads(pathlib.Path('/tmp/magnet.jsonl').read_text(encoding='utf-8').strip())
+          беды = []
+          if s.get('event_type') != 'funnel.magnet_delivered':
+              беды.append('не тот тип: ' + str(s.get('event_type')))
+          if s.get('anonymous_id') != anon:
+              беды.append('anonymous_id не наш')
+          if s.get('magnet_id') != 'dengi':
+              беды.append('magnet_id не тот: ' + str(s.get('magnet_id')))
+          if s.get('pain_id') != 'neoplata':
+              беды.append('боль не проставлена из снимка: ' + str(s.get('pain_id')))
+          for б in беды:
+              print('::error::' + б)
+          sys.exit(1 if беды else 0)
+          PYEOF
+          echo "Серверное событие записано, боль проставлена из снимка таксономии."
+
       - name: Поток событий недоступен по HTTP
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
