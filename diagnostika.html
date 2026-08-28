@@ -41,6 +41,10 @@
     .dq legend{padding:0;font-size:clamp(21px,1.9vw,27px);font-weight:900;line-height:1.18;letter-spacing:-.02em}
     .dq-hint{margin:12px 0 0;color:#65676a;font-size:14.5px;line-height:1.55}
     .dq .dopts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+    /* Вопрос с тремя и более вариантами: колонка, а не сетка 1fr 1fr.
+       В два столбца три варианта дают сироту, а длинные подписи
+       («Расчёт квартирами или метрами») ломаются посреди слова. */
+    .dq .dopts-list{grid-template-columns:1fr}
     .dq button{padding:17px 20px;border:2px solid #242629;background:#e9e5dc;
       font:900 17px Arial;cursor:pointer;transition:background-color .12s,color .12s}
     .dq button:hover{background:#242629;color:#e9e5dc}
@@ -153,10 +157,21 @@
             </div>
           </fieldset>
           <fieldset class="dq" data-q="signed">
-            <legend>Договор уже подписан?</legend>
-            <div class="dopts">
-              <button type="button" data-a="yes" aria-pressed="false">Да</button>
-              <button type="button" data-a="no" aria-pressed="false">Нет</button>
+            <legend>В каком состоянии договор?</legend>
+            <div class="dopts dopts-list">
+              <button type="button" data-a="no" aria-pressed="false">Ещё не подписан</button>
+              <button type="button" data-a="yes" aria-pressed="false">Подписан и действует</button>
+              <button type="button" data-a="terminated" aria-pressed="false">Расторгнут или прекращён</button>
+            </div>
+          </fieldset>
+          <fieldset class="dq" data-q="predmet">
+            <legend>Что именно вы сейчас проверяете до подписания?</legend>
+            <p class="dq-hint">До подписи правится всё перечисленное; после — только соглашением сторон.</p>
+            <div class="dopts dopts-list">
+              <button type="button" data-a="dogovor" aria-pressed="false">Условия договора</button>
+              <button type="button" data-a="avans" aria-pressed="false">Аванс</button>
+              <button type="button" data-a="metry" aria-pressed="false">Расчёт квартирами или метрами</button>
+              <button type="button" data-a="smeta" aria-pressed="false">Смету и состав цены</button>
             </div>
           </fieldset>
           <fieldset class="dq" data-q="done">
@@ -213,13 +228,19 @@
   <footer><div class="footer-inner"><p>© «Маржа в бетоне»</p><p><a href="/contacts.html">Реквизиты</a> · <a href="/offer.html">Оферта</a> · <a href="/payment-delivery.html">Оплата и получение</a> · <a href="/refund.html">Возврат</a></p></div></footer>
 
   <script>
-  // Сценарии собраны из data/business/diagnostic.yaml и money-pains.yaml
-  // прогоном tools/build_diagnostic.py. Руками этот блок не правится:
-  // маршрут обязан вести в комплект, который продаётся сейчас.
-  const SCENARIOS = [{"id": "S-7", "when": {"bankrot": true}, "verdict": "Контрагент неплатёжеспособен", "means": "Обычный маршрут «претензия — иск» здесь не работает: требование заявляется в деле о банкротстве и в ограниченный срок. Срок считается не с того дня, когда вы узнали, а от публикации сведений о процедуре.", "pain": "Контрагент становится неплатёжеспособным", "free": "/materialy/bankrotstvo.html", "core": {"url": "/products/p9-bankrotstvo-genpodryadchika.html", "price": 2990}, "entry": {"url": "/products/t4-genpodryadchik-bankrotitsya.html", "price": 990}}, {"id": "S-6", "when": {"bankrot": false, "signed": false}, "verdict": "Договор ещё не подписан", "means": "Условия оплаты, приёмки и удержаний правятся только сейчас. После подписи каждая из этих строк стоит денег, и правится она уже спором.", "pain": "Опасные условия договора", "free": "/materialy/dogovor.html", "core": {"url": "/products/p7-dogovor-podryada.html", "price": 2490}, "entry": {"url": "/products/t6-kvartiry-vmesto-deneg.html", "price": 990}}, {"id": "S-3", "when": {"bankrot": false, "signed": true, "done": true, "extra": true}, "verdict": "Спор об оплате дополнительных работ", "means": "Решает не факт выполнения, а доказанность поручения до начала работ. Проверять надо, чем зафиксировано задание и согласована ли стоимость.", "pain": "Не оплачивают дополнительные работы", "free": "/materialy/dop-raboty.html", "core": {"url": "/products/p2-dopolnitelnye-raboty.html", "price": 2490}}, {"id": "S-5", "when": {"bankrot": false, "signed": true, "done": true, "extra": false, "docs": true}, "verdict": "Документация блокирует приёмку и оплату", "means": "Пока комплект не принят, не двигаются ни приёмка, ни срок оплаты. Возвращают почти всегда по одним и тем же причинам, и они проверяемы у себя до передачи.", "pain": "Исполнительная документация блокирует приёмку и оплату", "free": "/materialy/ispolnitelnaya-dokumentaciya.html", "core": {"url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html", "price": 2990}, "entry": {"url": "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html", "price": 990}}, {"id": "S-2", "when": {"bankrot": false, "signed": true, "done": true, "extra": false, "docs": false, "accepted": false}, "verdict": "Работы выполнены, но не приняты", "means": "Срок оплаты не начинает течь, пока работы не приняты или пока не сработал порядок одностороннего оформления. Спор идёт о приёмке, а не о деньгах — пока.", "pain": "Не принимают и не подписывают КС", "free": "/materialy/vozvrat-ks.html", "core": {"url": "/products/p3-shablony-ks2-ks3.html", "price": 1990}, "entry": {"url": "/products/t3-odnostoronniy-akt-i-zachet.html", "price": 990}}, {"id": "S-4", "when": {"bankrot": false, "signed": true, "done": true, "extra": false, "docs": false, "accepted": true, "retention": true}, "verdict": "Часть суммы удержана", "means": "Спор не о выполнении, а об основании и сроке возврата. Проверять надо условие договора, событие отсчёта срока и обоснованность удержания.", "pain": "Не возвращают удержания", "free": "/materialy/uderzhaniya.html", "core": {"url": "/products/p5-shtrafy-uderzhaniya.html", "price": 2990}, "entry": {"url": "/products/t3-odnostoronniy-akt-i-zachet.html", "price": 990}}, {"id": "S-1", "when": {"bankrot": false, "signed": true, "done": true, "extra": false, "docs": false, "accepted": true, "retention": false, "overdue": true}, "verdict": "Просрочка оплаты принятых работ", "means": "Работы приняты, срок прошёл, удержаний нет — предмет спора только деньги. Дальше порядок один: сверить свои документы, зафиксировать просрочку, предъявить требование.", "pain": "Работы выполнены — денег нет", "free": "/materialy/dengi.html", "core": {"url": "/products/p1-oplata-po-ks2.html", "price": 2490}, "entry": {"url": "/products/t1-pervyy-shag-pri-neoplate.html", "price": 990}}, {"id": "S-0", "when": {"bankrot": false, "signed": true, "done": true, "extra": false, "docs": false, "accepted": true, "retention": false, "overdue": false}, "verdict": "Работы приняты, срок оплаты ещё не наступил", "means": "Требовать пока нечего, и это хорошая новость: время есть на то, чтобы проверить собственные документы до наступления срока. Половина отказов в оплате держится на расхождениях в них, а не на нежелании платить.", "pain": "Работы выполнены — денег нет", "free": "/materialy/dengi.html", "core": {"url": "/products/p1-oplata-po-ks2.html", "price": 2490}, "entry": {"url": "/products/t1-pervyy-shag-pri-neoplate.html", "price": 990}}];
+  // Сценарии правятся здесь руками, и это вынужденно. Блок собирался
+  // прогоном tools/build_diagnostic.py из data/business/diagnostic.yaml и
+  // money-pains.yaml; оба источника удалены коммитом a1373b0, восстанавливать
+  // их запрещено решением владельца, и генератор с 27.08.2026 падает на
+  // FileNotFoundError. Сторожем вместо него стоит проверка в Business OS
+  // (tests/test_diagnostic_routing.py): каждый маршрут сверяется с
+  // 00_Core/rules/Pains.yaml — боль, ситуация, стадия, ядро, вход — и с
+  // ценой из products-config.php. Маршрут обязан вести в комплект, который
+  // продаётся сейчас; проверяет это теперь тест, а не генератор.
+  const SCENARIOS = [{"id": "S-7", "when": {"bankrot": true}, "verdict": "Контрагент неплатёжеспособен", "means": "Обычный маршрут «претензия — иск» здесь не работает: требование заявляется в деле о банкротстве и в ограниченный срок. Срок считается не с того дня, когда вы узнали, а от публикации сведений о процедуре.", "pain": "Контрагент становится неплатёжеспособным", "free": "/materialy/bankrotstvo.html", "core": {"url": "/products/p9-bankrotstvo-genpodryadchika.html", "price": 2990}, "entry": {"url": "/products/t4-genpodryadchik-bankrotitsya.html", "price": 990}, "pain_id": "bankrotstvo", "situation": null, "stage": "insolvent"}, {"id": "S-11", "when": {"bankrot": false, "signed": "terminated"}, "verdict": "Договор расторгнут, требуют вернуть аванс", "means": "Требование приходит одной цифрой, и, пока вашей нет, спорить нечем. Считается отработанная часть аванса и сальдо расчётов, а срок на ответ берётся из договора, а не из ощущения «успеем». Молчание здесь читается как согласие с их цифрой.", "pain": "Опасные условия договора", "pain_id": "dogovor", "situation": "avans", "stage": "after_termination", "free": "/materialy/avans.html", "core": {"url": "/products/p8-avans-po-dogovoru-subpodryada.html", "price": 2490}, "entry": {"url": "/products/t5-trebuyut-vernut-avans.html", "price": 990}}, {"id": "S-6", "when": {"bankrot": false, "signed": false, "predmet": "dogovor"}, "verdict": "Условия договора до подписи", "means": "Условия оплаты, приёмки и удержаний правятся только сейчас. После подписи каждая из этих строк стоит денег, и правится она уже спором.", "pain": "Опасные условия договора", "free": "/materialy/dogovor.html", "core": {"url": "/products/p7-dogovor-podryada.html", "price": 2490}, "pain_id": "dogovor", "situation": "dogovor_do_podpisi", "stage": "before_work"}, {"id": "S-8", "when": {"bankrot": false, "signed": false, "predmet": "avans"}, "verdict": "Аванс: условия ещё можно поменять", "means": "Аванс — не деньги вперёд, а обязательство с порядком погашения и сроком отработки. Спорят потом не о самом авансе, а о том, как записаны четыре условия: размер, порядок погашения, срок отработки и что считается неотработанным остатком. Сейчас они правятся протоколом разногласий, после подписи — только соглашением сторон.", "pain": "Опасные условия договора", "pain_id": "dogovor", "situation": "avans", "stage": "before_work", "free": "/materialy/avans.html", "core": {"url": "/products/p8-avans-po-dogovoru-subpodryada.html", "price": 2490}}, {"id": "S-9", "when": {"bankrot": false, "signed": false, "predmet": "metry"}, "verdict": "Расчёт квартирами или метрами вместо денег", "means": "Платёж метрами — не цена со скидкой, а перенос на подрядчика сроков продажи и рисков объекта. До подписи проверяются статус объекта и состояние эскроу: после подписи эти два вопроса задавать уже поздно, а отвечать на них придётся деньгами.", "pain": "Опасные условия договора", "pain_id": "dogovor", "situation": "raschet_metrami", "stage": "before_work", "free": "/materialy/raschet-metrami.html", "core": {"url": "/products/p11-raschet-metrami.html", "price": 2490}, "entry": {"url": "/products/t6-kvartiry-vmesto-deneg.html", "price": 990}}, {"id": "S-10", "when": {"bankrot": false, "signed": false, "predmet": "smeta"}, "verdict": "Смета и состав цены до подписания", "means": "Часть потерь маржи заложена в смету до начала работ: накладные и сметная прибыль, зимнее удорожание и ВЗиС, мусор, транспорт и непредвиденные. Проверяется состав цены один раз — сейчас, потому что после подписи он меняется только соглашением.", "pain": "Опасные условия договора", "pain_id": "dogovor", "situation": "smeta", "stage": "before_work", "core": {"url": "/products/p13-chto-v-smete-ne-oplatyat.html", "price": 2490}}, {"id": "S-3", "when": {"bankrot": false, "signed": true, "done": true, "extra": true}, "verdict": "Спор об оплате дополнительных работ", "means": "Решает не факт выполнения, а доказанность поручения до начала работ. Проверять надо, чем зафиксировано задание и согласована ли стоимость.", "pain": "Не оплачивают дополнительные работы", "free": "/materialy/dop-raboty.html", "core": {"url": "/products/p2-dopolnitelnye-raboty.html", "price": 2490}, "pain_id": "dop_raboty", "situation": null, "stage": "in_progress"}, {"id": "S-5", "when": {"bankrot": false, "signed": true, "done": true, "extra": false, "docs": true}, "verdict": "Документация блокирует приёмку и оплату", "means": "Пока комплект не принят, не двигаются ни приёмка, ни срок оплаты. Возвращают почти всегда по одним и тем же причинам, и они проверяемы у себя до передачи.", "pain": "Исполнительная документация блокирует приёмку и оплату", "free": "/materialy/ispolnitelnaya-dokumentaciya.html", "core": {"url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html", "price": 2990}, "entry": {"url": "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html", "price": 990}, "pain_id": "ispolnitelnaya", "situation": null, "stage": "in_progress"}, {"id": "S-2", "when": {"bankrot": false, "signed": true, "done": true, "extra": false, "docs": false, "accepted": false}, "verdict": "Работы выполнены, но не приняты", "means": "Срок оплаты не начинает течь, пока работы не приняты или пока не сработал порядок одностороннего оформления. Спор идёт о приёмке, а не о деньгах — пока.", "pain": "Не принимают и не подписывают КС", "free": "/materialy/vozvrat-ks.html", "core": {"url": "/products/p3-shablony-ks2-ks3.html", "price": 1990}, "entry": {"url": "/products/t3-odnostoronniy-akt-i-zachet.html", "price": 990}, "pain_id": "ks", "situation": null, "stage": "submitted"}, {"id": "S-4", "when": {"bankrot": false, "signed": true, "done": true, "extra": false, "docs": false, "accepted": true, "retention": true}, "verdict": "Часть суммы удержана", "means": "Спор не о выполнении, а об основании и сроке возврата. Проверять надо условие договора, событие отсчёта срока и обоснованность удержания.", "pain": "Не возвращают удержания", "free": "/materialy/uderzhaniya.html", "core": {"url": "/products/p5-shtrafy-uderzhaniya.html", "price": 2990}, "entry": {"url": "/products/t3-odnostoronniy-akt-i-zachet.html", "price": 990}, "pain_id": "uderzhanie", "situation": null, "stage": "contested"}, {"id": "S-1", "when": {"bankrot": false, "signed": true, "done": true, "extra": false, "docs": false, "accepted": true, "retention": false, "overdue": true}, "verdict": "Просрочка оплаты принятых работ", "means": "Работы приняты, срок прошёл, удержаний нет — предмет спора только деньги. Дальше порядок один: сверить свои документы, зафиксировать просрочку, предъявить требование.", "pain": "Работы выполнены — денег нет", "free": "/materialy/dengi.html", "core": {"url": "/products/p1-oplata-po-ks2.html", "price": 2490}, "entry": {"url": "/products/t1-pervyy-shag-pri-neoplate.html", "price": 990}, "pain_id": "neoplata", "situation": null, "stage": "overdue"}, {"id": "S-0", "when": {"bankrot": false, "signed": true, "done": true, "extra": false, "docs": false, "accepted": true, "retention": false, "overdue": false}, "verdict": "Работы приняты, срок оплаты ещё не наступил", "means": "Требовать пока нечего, и это хорошая новость: время есть на то, чтобы проверить собственные документы до наступления срока. Половина отказов в оплате держится на расхождениях в них, а не на нежелании платить.", "pain": "Работы выполнены — денег нет", "free": "/materialy/dengi.html", "core": {"url": "/products/p1-oplata-po-ks2.html", "price": 2490}, "entry": {"url": "/products/t1-pervyy-shag-pri-neoplate.html", "price": 990}, "pain_id": "neoplata", "situation": null, "stage": "accepted_unpaid"}];
   const answers = {};
   const order = [];            // порядок ответов — чтобы можно было вернуться
-  const MAXQ = 8;
+  const MAXQ = 8;   // самая длинная ветка, замер перебором 1536 сочетаний
   const form = document.getElementById('dform');
   const out = document.getElementById('dresult');
   const card = document.getElementById('dcard');
@@ -235,10 +256,12 @@
   function nextUnanswered() {
     // Спрашиваем только то, что ещё может изменить исход.
     const asked = new Set(Object.keys(answers));
+    const alive = SCENARIOS.filter(s => Object.entries(s.when)
+      .every(([q, v]) => !(q in answers) || answers[q] === v));
     for (const box of form.querySelectorAll('.dq')) {
       const q = box.dataset.q;
       if (asked.has(q)) continue;
-      if (SCENARIOS.some(s => q in s.when)) return box;
+      if (alive.some(s => q in s.when)) return box;
     }
     return null;
   }
@@ -321,7 +344,11 @@
     const q = box.dataset.q;
     const first = order.length === 0;
     if (!(q in answers)) order.push(q);
-    answers[q] = btn.dataset.a === 'yes';
+    // Значение ответа: да/нет остаются булевыми, любой другой вариант
+    // хранится строкой. Приводить всё к булеву нельзя — тогда третий
+    // вариант вопроса о договоре молча читался бы как «нет».
+    const a = btn.dataset.a;
+    answers[q] = a === 'yes' ? true : (a === 'no' ? false : a);
     box.querySelectorAll('button[data-a]').forEach(b =>
       b.setAttribute('aria-pressed', String(b === btn)));
     if (first && typeof window.mvbTrackGoal === 'function') window.mvbTrackGoal('diagnostic_start');

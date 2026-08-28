@@ -290,7 +290,15 @@ if (leadForm) {
       const response = await fetch(leadForm.action, { method: 'POST', body: new FormData(leadForm), headers: { Accept: 'application/json' } });
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.message || 'Не удалось получить чек-лист');
-      leadStatus.innerHTML = `<a class="button" href="${result.download}" download>${result.label || 'Скачать материалы'}</a> <a class="text-link" href="https://t.me/marzhavbetone" target="_blank">Разборы выходят в Telegram</a>`;
+      // Второй строкой — один ненавязчивый переход по этой же ситуации.
+      // Адрес объявлен на самой форме (data-continue) и собирается из
+      // страницы набора: своей таблицы соответствий здесь не заводится.
+      // Ровно один переход, а не три: экран выдачи — не витрина.
+      const дальше = leadForm.dataset.continue;
+      const продолжение = дальше
+        ? `<p class="lead-continue"><a class="text-link" href="${дальше}">Разобраться, что делать дальше →</a></p>`
+        : '';
+      leadStatus.innerHTML = `<p class="lead-ready">Материал готов.</p><a class="button" href="${result.download}" download>${result.label || 'Скачать материалы'}</a> <a class="text-link" href="https://t.me/marzhavbetone" target="_blank">Разборы выходят в Telegram</a>${продолжение}`;
       leadForm.reset();
       trackGoal('checklist_download');
     } catch (error) { leadStatus.textContent = error.message; }

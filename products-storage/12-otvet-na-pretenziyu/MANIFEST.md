@@ -41,6 +41,7 @@
 
 ## Состав
 
+- `00-START-HERE.txt` — Текст
 - `30-slovar-poley-oborona.docx` — Word: словарь подстановок, одно поле значит одно и то же во всех документах комплекта
 - `31-algoritm-pri-navyazannoy-vine.docx` — Word: что делать в первый час после претензии и какой документ открывать в каждом сценарии
 - `32-soglashenie-o-razgranichenii-otvetstvennosti.docx` — Word: подписывается до спора, при заходе на объект

@@ -3,6 +3,7 @@
 Версия: 21.07.2026
 
 ## Состав
+- `00-START-HERE.txt` — Текст
 - `00-INSTRUKCIYA.docx` — Word
 - `00-INSTRUKCIYA.pdf` — PDF
 - `01-dogovor-subpodryada.docx` — Word

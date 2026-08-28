@@ -21,6 +21,7 @@
 
 ## Состав
 
+- `00-START-HERE.txt` — Текст
 - `50-slovar-poley-raschet-metrami.docx` — Word: словарь подстановок, одно поле значит одно и то же во всех документах комплекта
 - `51-algoritm-raschet-metrami.pdf` — PDF: алгоритм шести шагов с развилками; ядро комплекта
 - `52-chek-list-raschet-metrami.docx` — Word: рабочий лист к алгоритму, семь разделов, заполняется до подписи
