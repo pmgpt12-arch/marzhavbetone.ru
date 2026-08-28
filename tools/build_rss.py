@@ -19,6 +19,7 @@
 from __future__ import annotations
 
 import html
+import json
 import re
 import struct
 import sys
@@ -27,7 +28,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES = ROOT / "articles"
-DZEN_DIR = ROOT / "content" / "dzen"
+DZEN_TITLES = ROOT / "data" / "site" / "dzen-titles.json"
 SITE = "https://marzhavbetone.ru"
 CHANNEL_TITLE = "Маржа в бетоне"
 CHANNEL_DESCRIPTION = (
@@ -311,49 +312,103 @@ def article_body(source: str) -> str:
 # удержание» 4 917 в месяц, а «Пять процентов, которые вы больше не увидите» —
 # под ленту, где заголовок конкурирует за клик, а не за позицию.
 #
-# Заготовки в content/dzen несут второй вариант в блоке «Заголовок», и до сих
-# пор он доставался только ручной публикации: фид брал og:title, то есть
-# поисковый. Из семнадцати статей расписания четырнадцать теряли на этом
-# написанный заголовок — молча, потому что заголовки фид не проверяет.
-#
 # Побочно это разводит две наши же страницы по разным запросам: за
 # «гарантийное удержание» отвечает статья сайта, она каноническая, а копия в
 # Дзене больше не встаёт с ней в один запрос.
 #
-# Вернуть поисковые заголовки в фид — снять этот флаг, правка на одну строку.
+# ОТКУДА ОНИ БЕРУТСЯ ТЕПЕРЬ. Прежде — из заготовок `content/dzen/*.md`, по
+# двум регулярным выражениям поверх текста черновика. Каталог удалён из
+# публичного репозитория коммитом a1373b0, и фид на это не упал: функция
+# возвращала пустой словарь, а сборка молча уходила на поисковые заголовки.
+# Замер 28.08.2026: 17 элементов ленты из 29 несли поисковый заголовок вместо
+# написанного под ленту, и ни одна проверка этого не показала.
+#
+# Отсюда правило: источник объявлен файлом данных, а не выводится из наличия
+# каталога. Файла нет — сборка падает, а не деградирует. Восстановление
+# значений и разбор — projects/marzha_v_betone/DZEN_RSS_TITLE_CONTRACT_REPORT.md
+# в каноне.
+#
+# Вернуть поисковые заголовки в фид — снять этот флаг. Он остаётся ручкой на
+# один случай: Дзен потребует совпадения заголовков. Гейт при этом требует,
+# чтобы флаг стоял поднятым, — снятие его перестаёт быть незаметным.
 USE_DZEN_TITLES = True
 
 
-def dzen_titles() -> dict[str, str]:
-    """slug статьи → заголовок из заготовки content/dzen.
+def dzen_titles(файл: Path = DZEN_TITLES,
+                статьи: Path | None = None) -> dict[str, str]:
+    """slug статьи → заголовок для ленты Дзена из `data/site/dzen-titles.json`.
 
-    Связь берётся из блока «Ссылка»: там лежит канонический адрес статьи, и
-    он есть во всех заготовках. Обложка (`assets/<slug>.jpg`) для этого не
-    годится — её нет у трёх заготовок из двадцати восьми.
+    Договор жёсткий во все стороны, кроме одной. Ошибка сборки:
+
+      * файла нет или он не читается как JSON;
+      * раздел «заголовки» не объект или значения не строки;
+      * один slug объявлен дважды (JSON молча оставил бы последний);
+      * запись указывает на статью, которой нет в articles/.
+
+    Единственный мягкий случай — статья без записи здесь: она уходит в ленту
+    со своим заголовком. Это объявленный откат, он назван в выводе сборки, и
+    иначе новая статья не могла бы выйти до того, как ей написан заголовок
+    под ленту.
     """
-    titles: dict[str, str] = {}
-    if not USE_DZEN_TITLES or not DZEN_DIR.is_dir():
-        return titles
-    for path in sorted(DZEN_DIR.glob("*.md")):
-        if path.name == "README.md":
-            continue
-        text = path.read_text(encoding="utf-8")
-        title = re.search(r"##\s*Заголовок\s*\n+```\s*\n(.+?)\n```", text, re.S)
-        link = re.search(r"marzhavbetone\.ru/articles/([a-z0-9\-]+)\.html", text)
-        if not title or not link:
-            continue
-        headline = title.group(1).strip()
-        slug = link.group(1)
-        # Две заготовки на одну статью означают, что одна из них — копия,
-        # оставленная при переименовании. Молча взять первую значит однажды
-        # выпустить в ленту заголовок, который никто не писал.
-        if slug in titles and titles[slug] != headline:
-            raise SystemExit(
-                f"{path.name}: на статью {slug} уже есть заготовка с другим "
-                f"заголовком — «{titles[slug]}» против «{headline}»"
-            )
-        titles[slug] = headline
-    return titles
+    статьи = ARTICLES if статьи is None else статьи
+    if not USE_DZEN_TITLES:
+        return {}
+    if not файл.is_file():
+        # `relative_to` здесь ошибся бы на подставном файле из проверок:
+        # он лежит во временном каталоге, а не под корнем репозитория.
+        где = файл.relative_to(ROOT) if файл.is_relative_to(ROOT) else файл
+        raise SystemExit(
+            f"нет файла заголовков Дзена {где}. "
+            "Это источник истины для заголовков ленты; без него фид уходит на "
+            "поисковые заголовки молча, поэтому сборка остановлена."
+        )
+
+    def без_дубликатов(пары: list[tuple[str, object]]) -> dict:
+        видел: set[str] = set()
+        for ключ, _ in пары:
+            if ключ in видел:
+                raise SystemExit(
+                    f"{файл.name}: slug {ключ} объявлен дважды — JSON оставил "
+                    "бы последнее значение, и в ленту ушёл бы заголовок, "
+                    "который никто не выбирал"
+                )
+            видел.add(ключ)
+        return dict(пары)
+
+    try:
+        данные = json.loads(файл.read_text(encoding="utf-8"),
+                            object_pairs_hook=без_дубликатов)
+    except json.JSONDecodeError as ошибка:
+        raise SystemExit(f"{файл.name}: не читается как JSON — {ошибка}")
+
+    заголовки = данные.get("заголовки")
+    if not isinstance(заголовки, dict):
+        raise SystemExit(
+            f"{файл.name}: нет раздела «заголовки» или он не объект "
+            f"(получено {type(заголовки).__name__})"
+        )
+
+    битые = [f"{k!r}: {type(v).__name__}" for k, v in заголовки.items()
+             if not isinstance(v, str) or not v.strip()]
+    if битые:
+        raise SystemExit(
+            f"{файл.name}: заголовок должен быть непустой строкой — "
+            + "; ".join(sorted(битые))
+        )
+
+    # Запись на несуществующую статью — почти всегда переименование slug,
+    # после которого переопределение потерялось. Молчание здесь стоило бы
+    # ровно того же, что стоило удаление каталога: заголовок исчезает, а
+    # сборка зелёная.
+    потеряны = sorted(s for s in заголовки if not (статьи / f"{s}.html").is_file())
+    if потеряны:
+        raise SystemExit(
+            f"{файл.name}: заголовок объявлен для статьи, которой нет в "
+            f"{статьи.name}/ — {', '.join(потеряны)}. Переименован slug или "
+            "удалена статья: запись надо поправить или снять."
+        )
+
+    return {slug: заголовки[slug].strip() for slug in sorted(заголовки)}
 
 
 def collect() -> list[dict]:
@@ -362,6 +417,7 @@ def collect() -> list[dict]:
     held: list[tuple[str, str]] = []
     headlines = dzen_titles()
     adapted: list[str] = []
+    fallback: list[str] = []
     today = datetime.now(MSK).date().isoformat()
     for path in sorted(ARTICLES.glob("*.html")):
         if path.name == "index.html":
@@ -381,13 +437,15 @@ def collect() -> list[dict]:
             found = re.search(r"<title>(.*?)</title>", source, re.S)
             title = html.unescape(found.group(1)) if found else path.stem
 
-        # Заготовка Дзена главнее поискового заголовка: она написана под
-        # ленту. Нет заготовки — идёт заголовок сайта, статья без заголовка
-        # в фид не уходит.
+        # Заголовок из файла соответствий главнее поискового: он написан
+        # под ленту. Нет записи — идёт заголовок сайта, и это объявленный
+        # откат: он назван поимённо в конце сборки.
         headline = headlines.get(path.stem)
         if headline and headline != title:
             adapted.append(path.stem)
             title = headline
+        elif not headline:
+            fallback.append(path.stem)
 
         published = re.search(r'"datePublished":\s*"([^"]+)"', source)
         if not published:
@@ -428,7 +486,10 @@ def collect() -> list[dict]:
     items.sort(key=lambda item: item["date"], reverse=True)
     # Число называется всегда, включая ноль: молчание здесь читалось бы как
     # «заголовки адаптированы», а означало бы «заготовки не нашлись».
-    print(f"заголовок из заготовки Дзена: {len(adapted)} из {len(items)}")
+    print(f"заголовок из data/site/dzen-titles.json: {len(adapted)} из {len(items)}")
+    if fallback:
+        print(f"откат на заголовок статьи ({len(fallback)}): "
+              + ", ".join(sorted(fallback)))
     if skipped:
         print(f"исключено как опубликованное вручную: {len(skipped)}")
     if held:
