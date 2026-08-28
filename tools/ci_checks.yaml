@@ -98,6 +98,13 @@
   зачем: состав комплектов и число файлов
   требует: []
   решение: ''
+- id: sync_kit_file_counts
+  команда: python3 tools/sync_kit_file_counts.py --check
+  класс: public
+  блокирует: true
+  зачем: число файлов на страницах и в карточках против диска
+  требует: []
+  решение: ''
 - id: check_free_materials
   команда: python3 tools/check_free_materials.py
   класс: public
