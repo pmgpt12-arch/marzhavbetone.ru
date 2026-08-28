@@ -1,0 +1,572 @@
+# Реестр проверок репозитория — единственный список, из которого их берут.
+#
+# Прежде список жил шагами `.github/workflows/checks.yml`, и это было не
+# просто неудобно: шаги идут последовательно на `bash -e`, поэтому первая
+# упавшая проверка отменяла все следующие. Замер 27.08.2026 — гейт умирал
+# на `test_search_demand`, и `check_packages`, `check_free_materials`,
+# `check_rss` не исполнялись в CI ни на одном PR.
+#
+# ПОЛЯ
+#   id         — короткое имя, по нему же `--only`
+#   команда    — что запускается, из корня репозитория
+#   класс      — public: про выложенный сайт и выдачу покупателю;
+#                internal: про внутреннюю кухню, витрины не касается
+#   блокирует  — красит ли прогон. Только public может блокировать
+#   зачем      — что охраняет, одной строкой; попадает в лог и в аннотацию
+#   требует    — входные файлы. Нет файла — проверка не запускается и
+#                печатается строкой «НЕТ ДАННЫХ» с именем пути. Это не
+#                тихий пропуск: он назван и снимается сам, когда файл
+#                вернётся
+#   решение    — почему проверка не блокирует; для унаследованных — вердикт
+#
+# Прогон: python3 tools/run_checks.py --class public
+проверки:
+- id: test_web_exposure
+  команда: python3 tools/test_web_exposure.py
+  класс: public
+  блокирует: true
+  зачем: заказы и мастера товаров закрыты от веба
+  требует: []
+  решение: ''
+- id: link_audit
+  команда: python3 tools/link_audit.py --verify
+  класс: public
+  блокирует: true
+  зачем: битые ссылки на витрине
+  требует: []
+  решение: ''
+- id: test_link_audit
+  команда: python3 tools/test_link_audit.py
+  класс: public
+  блокирует: true
+  зачем: сторож самой проверки ссылок
+  требует: []
+  решение: ''
+- id: test_run_checks
+  команда: python3 tools/test_run_checks.py
+  класс: public
+  блокирует: true
+  зачем: 'сторож самого раннера: блокирующая красит прогон, падение одной не отменяет остальные'
+  требует: []
+  решение: ''
+- id: asset_versions
+  команда: python3 tools/asset_versions.py --check
+  класс: public
+  блокирует: true
+  зачем: версии стилей доезжают до браузера
+  требует: []
+  решение: ''
+- id: test_published_data
+  команда: python3 tools/test_published_data.py
+  класс: public
+  блокирует: true
+  зачем: граница публикации каталога data
+  требует: []
+  решение: ''
+- id: check_nav
+  команда: python3 tools/check_nav.py
+  класс: public
+  блокирует: true
+  зачем: шапка одна и та же на всех страницах
+  требует: []
+  решение: ''
+- id: check_meta
+  команда: python3 tools/check_meta.py
+  класс: public
+  блокирует: true
+  зачем: заголовки и описания страниц
+  требует: []
+  решение: ''
+- id: check_seo
+  команда: python3 tools/check_seo.py
+  класс: public
+  блокирует: true
+  зачем: поисковый слой витрины
+  требует: []
+  решение: ''
+- id: check_rss
+  команда: python3 tools/check_rss.py
+  класс: public
+  блокирует: true
+  зачем: фид Дзена собирается из статей
+  требует: []
+  решение: ''
+- id: check_packages
+  команда: python3 tools/check_packages.py
+  класс: public
+  блокирует: true
+  зачем: состав комплектов и число файлов
+  требует: []
+  решение: ''
+- id: check_free_materials
+  команда: python3 tools/check_free_materials.py
+  класс: public
+  блокирует: true
+  зачем: бесплатные наборы против диска
+  требует: []
+  решение: ''
+- id: check_covers
+  команда: python3 tools/check_covers.py
+  класс: public
+  блокирует: true
+  зачем: обложки страниц
+  требует: []
+  решение: ''
+- id: test_covers
+  команда: python3 tools/test_covers.py
+  класс: public
+  блокирует: true
+  зачем: сторож проверки обложек
+  требует: []
+  решение: ''
+- id: check_goals
+  команда: python3 tools/check_goals.py
+  класс: public
+  блокирует: true
+  зачем: цели счётчика
+  требует: []
+  решение: ''
+- id: test_attribution_goals
+  команда: node tools/test_attribution_goals.js
+  класс: public
+  блокирует: true
+  зачем: цели перехода на ссылках витрины
+  требует: []
+  решение: ''
+- id: test_anonymous_id
+  команда: node tools/test_anonymous_id.js
+  класс: public
+  блокирует: true
+  зачем: идентификаторы посетителя и посещения
+  требует: []
+  решение: ''
+- id: test_browser_events
+  команда: node tools/test_browser_events.js
+  класс: public
+  блокирует: true
+  зачем: события браузера
+  требует: []
+  решение: ''
+- id: test_taxonomy_snapshot
+  команда: python3 tools/test_taxonomy_snapshot.py
+  класс: public
+  блокирует: true
+  зачем: снимок таксономии согласован с каноном
+  требует: []
+  решение: ''
+- id: test_lead_event
+  команда: php tools/test_lead_event.php
+  класс: public
+  блокирует: true
+  зачем: выдача материала против отказа приёмника событий
+  требует: []
+  решение: ''
+- id: test_funnel_outbox
+  команда: php tools/test_funnel_outbox.php
+  класс: public
+  блокирует: true
+  зачем: сборщик событий воронки
+  требует: []
+  решение: ''
+- id: test_event_proxy
+  команда: php tools/test_event_proxy.php
+  класс: public
+  блокирует: true
+  зачем: посредник событий браузера
+  требует: []
+  решение: ''
+- id: build_preview
+  команда: python3 tools/build_preview.py --check
+  класс: public
+  блокирует: true
+  зачем: предпросмотр комплектов
+  требует: []
+  решение: ''
+- id: test_manifest_rebuild
+  команда: python3 tools/test_manifest_rebuild.py
+  класс: public
+  блокирует: true
+  зачем: манифесты переживают повторную сборку
+  требует: []
+  решение: ''
+- id: php_lint
+  команда: 'for f in *.php; do php -l "$f" > /dev/null || exit 1; done; echo "синтаксис PHP: без ошибок"'
+  класс: public
+  блокирует: true
+  зачем: синтаксис всех PHP корня
+  требует: []
+  решение: ''
+- id: test_order_lock
+  команда: php tools/test_order_lock.php
+  класс: public
+  блокирует: true
+  зачем: гонка выдачи заказа
+  требует: []
+  решение: ''
+- id: test_price_authority
+  команда: php tools/test_price_authority.php
+  класс: public
+  блокирует: true
+  зачем: цена берётся из одного места
+  требует: []
+  решение: ''
+- id: verify_delivery_zips
+  команда: mkdir -p orders && cp tools/verify_delivery_zips.php . && php verify_delivery_zips.php; rc=$?;
+    rm -f verify_delivery_zips.php; exit $rc
+  класс: public
+  блокирует: true
+  зачем: состав восемнадцати архивов выдачи
+  требует: []
+  решение: ''
+- id: test_metrika_utm
+  команда: python3 tools/test_metrika_utm.py
+  класс: internal
+  блокирует: false
+  зачем: разрез снимка по UTM
+  требует:
+  - data/content/rules.yaml
+  решение: 'MOVE_TO_INTERNAL. Числился настоящим регрессом «расхождение в своде меток» (аудит RC1, раздел
+    13) — замер 28.08.2026 это снимает: metrika_report.declared_channels() возвращает пустой список, когда
+    нет data/content/rules.yaml, и тогда КАЖДЫЙ источник попадает в other_utm. Оба падения — следствие
+    удалённого файла, а не поломки кода. Сам инструмент на сервер не заливается: tools/ исключён из выкладки.'
+- id: test_post_telegram
+  команда: python3 tools/test_post_telegram.py
+  класс: internal
+  блокирует: false
+  зачем: разметка ссылок в заготовках Телеграма
+  требует: []
+  решение: 'MOVE_TO_INTERNAL: content/telegram не заливается на сервер.'
+- id: test_dzen_snapshot
+  команда: python3 tools/test_dzen_snapshot.py
+  класс: internal
+  блокирует: false
+  зачем: размеченные случаи снимка канала Дзена
+  требует: []
+  решение: 'MOVE_TO_INTERNAL: канал, а не витрина.'
+- id: test_dzen_titles
+  команда: python3 tools/test_dzen_titles.py
+  класс: internal
+  блокирует: false
+  зачем: заголовки заготовок Дзена против фида
+  требует: []
+  решение: 'MOVE_TO_INTERNAL: красный и до этого захода: заголовок правки не доехал до фида. content/
+    не выкладывается, витрину это не трогает.'
+- id: check_reel_refs
+  команда: python3 tools/check_reel_refs.py
+  класс: internal
+  блокирует: false
+  зачем: доказательство референсов роликов
+  требует: []
+  решение: 'MOVE_TO_INTERNAL: производство роликов.'
+- id: test_trend_provider
+  команда: python3 tools/test_trend_provider.py
+  класс: internal
+  блокирует: false
+  зачем: слой источников трендов
+  требует: []
+  решение: 'MOVE_TO_INTERNAL: производство роликов.'
+- id: test_check_reel_refs
+  команда: python3 tools/test_check_reel_refs.py
+  класс: internal
+  блокирует: false
+  зачем: ворота референсов
+  требует: []
+  решение: 'MOVE_TO_INTERNAL: производство роликов.'
+- id: test_reference_frames
+  команда: python3 tools/test_reference_frames.py
+  класс: internal
+  блокирует: false
+  зачем: вырезка кадров
+  требует: []
+  решение: 'MOVE_TO_INTERNAL: производство роликов.'
+- id: test_legal_pdf
+  команда: python3 tools/test_legal_pdf.py
+  класс: internal
+  блокирует: false
+  зачем: норма из PDF
+  требует: []
+  решение: 'MOVE_TO_INTERNAL: нормативный контур, не витрина.'
+- id: legal_rebind
+  команда: python3 tools/legal_rebind.py
+  класс: internal
+  блокирует: false
+  зачем: объявленные переносы вердикта годны
+  требует: []
+  решение: 'MOVE_TO_INTERNAL: нормативный контур, не витрина.'
+- id: legal_claim_audit
+  команда: python3 tools/legal_claim_audit.py
+  класс: internal
+  блокирует: false
+  зачем: места, требующие проверки человеком
+  требует: []
+  решение: 'MOVE_TO_INTERNAL: подсказка редактору, не ворота.'
+- id: test_search_demand
+  команда: python3 tools/test_search_demand.py
+  класс: internal
+  блокирует: false
+  зачем: разметка поискового спроса
+  требует:
+  - data/seo/search-demand-rules.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: check_evidence
+  команда: python3 tools/check_evidence.py
+  класс: internal
+  блокирует: false
+  зачем: доказательный контур
+  требует:
+  - data/evidence/rules.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: test_evidence
+  команда: python3 tools/test_evidence.py
+  класс: internal
+  блокирует: false
+  зачем: случаи доказательного контура
+  требует:
+  - research/_probe.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: check_offer
+  команда: python3 tools/check_offer.py
+  класс: internal
+  блокирует: false
+  зачем: лестница боли и оффер
+  требует:
+  - data/business/money-pains.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: check_backlog
+  команда: python3 tools/check_backlog.py
+  класс: internal
+  блокирует: false
+  зачем: мастер-бэклог
+  требует:
+  - data/ops/backlog.csv
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: content_router
+  команда: python3 tools/content_router.py --check
+  класс: internal
+  блокирует: false
+  зачем: контентный контур
+  требует:
+  - data/content/rules.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: test_content_router
+  команда: python3 tools/test_content_router.py
+  класс: internal
+  блокирует: false
+  зачем: случаи контентного контура
+  требует:
+  - data/content/publication-queue.csv
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: money_impact
+  команда: python3 tools/money_impact.py
+  класс: internal
+  блокирует: false
+  зачем: денежное влияние
+  требует:
+  - data/business/money-impact.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: money_graph
+  команда: python3 tools/money_graph.py
+  класс: internal
+  блокирует: false
+  зачем: связность по процессу
+  требует:
+  - data/seo/money-graph.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: check_reel
+  команда: python3 tools/check_reel.py
+  класс: internal
+  блокирует: false
+  зачем: сценарии роликов
+  требует:
+  - content/reels
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: test_check_reel
+  команда: python3 tools/test_check_reel.py
+  класс: internal
+  блокирует: false
+  зачем: случаи проверки роликов
+  требует:
+  - content/reels/01-uderzhanie-5-millionov.md
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: check_keyword_map
+  команда: python3 tools/check_keyword_map.py
+  класс: internal
+  блокирует: false
+  зачем: карта запросов
+  требует:
+  - content/strategy/keyword-map.csv
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: build_product_map
+  команда: python3 tools/build_product_map.py
+  класс: internal
+  блокирует: false
+  зачем: карта товаров
+  требует:
+  - data/business/money-pains.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: build_product_fit
+  команда: python3 tools/build_product_fit.py --check
+  класс: internal
+  блокирует: false
+  зачем: первый экран страниц товаров
+  требует:
+  - data/sales/product-fit.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: content_product_map
+  команда: python3 tools/content_product_map.py --check
+  класс: internal
+  блокирует: false
+  зачем: выход страницы контента на товар
+  требует:
+  - data/sales/product-map.csv
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: build_objections
+  команда: python3 tools/build_objections.py --check
+  класс: internal
+  блокирует: false
+  зачем: возражения у цены
+  требует:
+  - data/sales/objections.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: build_solution_cards
+  команда: python3 tools/build_solution_cards.py --check
+  класс: internal
+  блокирует: false
+  зачем: карточки решений на главной
+  требует:
+  - data/sales/product-fit.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: test_ig_webhook
+  команда: php tools/test_ig_webhook.php
+  класс: internal
+  блокирует: false
+  зачем: разбор ключей Instagram
+  требует:
+  - data/social/ig-keywords.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: test_legal_extract
+  команда: python3 tools/test_legal_extract.py
+  класс: internal
+  блокирует: false
+  зачем: разбор нормы из ответа публикатора
+  требует:
+  - data/legal/norms.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: test_legal_fetch
+  команда: python3 tools/test_legal_fetch.py
+  класс: internal
+  блокирует: false
+  зачем: сетевое поведение добытчика норм
+  требует:
+  - data/legal/norms.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: check_legal_coverage
+  команда: python3 tools/check_legal_coverage.py
+  класс: internal
+  блокирует: false
+  зачем: полнота нормативного контура
+  требует:
+  - data/legal/norms.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: test_legal_coverage
+  команда: python3 tools/test_legal_coverage.py
+  класс: internal
+  блокирует: false
+  зачем: случаи полноты контура
+  требует:
+  - data/legal/norms.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: check_agent_models
+  команда: python3 tools/check_agent_models.py
+  класс: internal
+  блокирует: false
+  зачем: выбор модели объявлен у исполнителя
+  требует:
+  - data/ai/agent-model-policy.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: test_agent_models
+  команда: python3 tools/test_agent_models.py
+  класс: internal
+  блокирует: false
+  зачем: случаи выбора модели
+  требует:
+  - data/ai/agent-model-policy.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: agent_bridge
+  команда: python3 tools/agent_bridge.py --matrix
+  класс: internal
+  блокирует: false
+  зачем: мост исполнителей
+  требует:
+  - data/ai/agent-model-policy.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: test_agent_bridge
+  команда: python3 tools/test_agent_bridge.py
+  класс: internal
+  блокирует: false
+  зачем: случаи моста
+  требует:
+  - data/ai/agent-model-policy.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: test_legal_rebind
+  команда: python3 tools/test_legal_rebind.py
+  класс: internal
+  блокирует: false
+  зачем: мутации переноса вердикта
+  требует:
+  - data/legal/rebinds.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: test_normative_gate
+  команда: python3 tools/test_normative_gate.py
+  класс: internal
+  блокирует: false
+  зачем: мутации нормативного гейта
+  требует:
+  - data/legal/norms.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: normative_gate
+  команда: python3 tools/normative_gate.py
+  класс: internal
+  блокирует: false
+  зачем: нормативный гейт
+  требует:
+  - data/legal/document-norms.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
+- id: normative_scope
+  команда: python3 tools/normative_scope.py
+  класс: internal
+  блокирует: false
+  зачем: свежесть норм
+  требует:
+  - data/legal/norms.yaml
+  решение: 'MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена
+    и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
