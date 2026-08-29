@@ -55,3 +55,6 @@ data/*
 !data/site/
 data/site/*
 !data/site/navigation.yaml
+# Второе исключение: заголовки для ленты Дзена. Публичные по смыслу —
+# именно они уходят в rss.xml. Граница проверяется тем же тестом.
+!data/site/dzen-titles.json
