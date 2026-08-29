@@ -250,6 +250,13 @@
   зачем: размеченные случаи снимка канала Дзена
   требует: []
   решение: 'MOVE_TO_INTERNAL: канал, а не витрина.'
+- id: test_smoke_production
+  команда: python3 tools/test_smoke_production.py
+  класс: public
+  блокирует: true
+  зачем: отказ неподтверждённой имитации робота не выдаётся за проверку настоящего робота
+  требует: []
+  решение: ''
 - id: test_dzen_titles
   команда: python3 tools/test_dzen_titles.py
   класс: public
