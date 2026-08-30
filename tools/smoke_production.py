@@ -15,9 +15,10 @@
   · совпадает ли canonical на живой странице с её адресом;
   · не закрыта ли страница от индексации `noindex` — ни в мете, ни
     заголовком `X-Robots-Tag`, который в файлах вообще не виден;
-  · одинаково ли сайт отвечает браузеру и роботам. Разный ответ поисковому
-    роботу — это клоакинг, за него выкидывают из выдачи, и завестись он
-    может не злым умыслом, а правилом хостинга или плагином защиты.
+  · одинаково ли сайт отвечает браузеру и роботам. Исключение —
+    подтверждённые роботы: подставленный User-Agent не подтверждает IP
+    раннера, поэтому отказ Cloudflare такой имитации не доказывает, что
+    закрыт настоящий робот. Это ограничение прогон обязан назвать.
 
 Проверка намеренно не лезет в корзину и оплату: там нужен настоящий
 платёж, и его цена — деньги, а не время.
@@ -73,6 +74,26 @@ def fetch(url: str, agent: str) -> tuple[int, dict, str]:
         return 0, {"_error": str(exc)}, ""
 
 
+def unverified_cloudflare_bot_probe(name: str, status: int,
+                                    headers: dict) -> bool:
+    """Cloudflare отверг имитацию подтверждённого OAI-SearchBot.
+
+    Раннер управляет только User-Agent, но не исходным IP. Поэтому такой
+    ответ не подтверждает ни доступ, ни блокировку настоящего робота.
+    Исключение намеренно узкое: один агент, 403, Server и непустой CF-Ray.
+    """
+    нормализованные = {
+        str(key).lower(): str(value).strip()
+        for key, value in headers.items()
+    }
+    return (
+        name == "OAI-SearchBot"
+        and status == 403
+        and нормализованные.get("server", "").lower() == "cloudflare"
+        and bool(нормализованные.get("cf-ray"))
+    )
+
+
 def sample_urls(count: int) -> list[str]:
     """Адреса берутся из репозитория: проверять надо то, что выложено."""
     out = []
@@ -84,7 +105,8 @@ def sample_urls(count: int) -> list[str]:
     return out
 
 
-def check(base: str, path: str, results: list[str]) -> None:
+def check(base: str, path: str, results: list[str],
+          observations: set[str] | None = None) -> None:
     url = base.rstrip("/") + path
     status, headers, body = fetch(url, AGENTS["browser"])
 
@@ -132,6 +154,14 @@ def check(base: str, path: str, results: list[str]) -> None:
             continue
         bot_status, bot_headers, bot_body = fetch(url, agent)
         if bot_status != status:
+            if unverified_cloudflare_bot_probe(name, bot_status, bot_headers):
+                if observations is not None:
+                    observations.add(
+                        "Cloudflare отверг имитацию OAI-SearchBot от IP "
+                        "раннера (403 + CF-Ray). Доступ настоящего "
+                        "подтверждённого робота этим прогоном не измеряется."
+                    )
+                continue
             results.append(f"{path}: {name} получает код {bot_status}, "
                            f"браузер — {status}")
             continue
@@ -154,11 +184,14 @@ def main() -> int:
 
     paths = FIXED + sample_urls(args.sample)
     results: list[str] = []
+    observations: set[str] = set()
     for path in paths:
-        check(args.base, path, results)
+        check(args.base, path, results, observations)
 
     print(f"Дымовой прогон {args.base}: проверено адресов {len(paths)}, "
           f"агентов {len(AGENTS)}")
+    for observation in sorted(observations):
+        print(f"ОГРАНИЧЕНИЕ: {observation}")
     if results:
         print(f"РАСХОЖДЕНИЙ: {len(results)}")
         for line in results:

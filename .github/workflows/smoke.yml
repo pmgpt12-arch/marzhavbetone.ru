@@ -37,6 +37,9 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Проверить классификацию отказа робота
+        run: python3 tools/test_smoke_production.py
+
       - name: Проверить боевой сайт
         run: |
           python3 tools/smoke_production.py \
