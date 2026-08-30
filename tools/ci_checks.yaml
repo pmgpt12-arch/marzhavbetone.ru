@@ -217,6 +217,13 @@
   зачем: цена берётся из одного места
   требует: []
   решение: ''
+- id: test_products_dir
+  команда: php tools/test_products_dir.php
+  класс: public
+  блокирует: true
+  зачем: мастера продуктов находятся и в боевой раскладке, а не только в репозитории
+  требует: []
+  решение: ''
 - id: verify_delivery_zips
   команда: mkdir -p orders && cp tools/verify_delivery_zips.php . && php verify_delivery_zips.php; rc=$?;
     rm -f verify_delivery_zips.php; exit $rc
