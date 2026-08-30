@@ -239,6 +239,65 @@ jobs:
             "
           fi
 
+      # ГЕЙТ АВТОВЫДАЧИ. Мастера продуктов только что залиты в PRODUCTS_PATH —
+      # вне webroot. Отсюда их должен найти products-config.php, иначе после
+      # оплаты архив не соберётся: mvb_build_product_zip() вернёт null, ссылок
+      # не будет, письмо не уйдёт. Деньги списаны, товар не выдан, и узнаем мы
+      # об этом от покупателя.
+      #
+      # Проверяется здесь, а не в CI: verify_delivery_zips.php собирает все
+      # восемнадцать архивов и проходит, потому что в прогоне CI
+      # products-storage лежит рядом с сайтом. Боевая раскладка другая, и
+      # измерить её можно только на боевом сервере.
+      #
+      # Список путей повторяет mvb_products_dir_candidates() из
+      # products-config.php. Расхождение этих двух списков само по себе —
+      # дефект: тогда гейт зелёный, а выдача сломана.
+      - name: Мастера продуктов видны сайту (гейт автовыдачи)
+        if: steps.check.outputs.enabled == 'true' && inputs.dry_run != true
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          ssh_run() {
+            ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p "$SSH_PORT" \
+                -o BatchMode=yes -o ConnectTimeout=20 "$USER@$HOST" "$@"
+          }
+
+          # Сначала — доехало ли вообще хоть что-то. Пустая папка мастеров
+          # означает, что выдавать после оплаты нечего.
+          if ! ssh_run "find '$PRODUCTS_PATH' -mindepth 2 -type f -print -quit 2>/dev/null | grep -q ."; then
+            echo "::error::В '$PRODUCTS_PATH' на сервере нет файлов продуктов — после оплаты собирать архив не из чего."
+            exit 1
+          fi
+          echo "Мастера на сервере: есть"
+
+          # Теперь — найдёт ли их сайт. Явный define в config.php старше
+          # поиска: он объявлен владельцем и может указывать куда угодно.
+          verdict=$(ssh_run "
+            target=\$(cd '$PRODUCTS_PATH' 2>/dev/null && pwd -P) || exit 0
+            if grep -q \"define('PRODUCTS_DIR'\" '$SITE_PATH/config.php' 2>/dev/null; then
+              echo define; exit 0
+            fi
+            for c in '$SITE_PATH/../../products-marzhavbetone' \
+                     '$SITE_PATH/../products-marzhavbetone' \
+                     '$SITE_PATH/products-storage'; do
+              [ -d \"\$c\" ] || continue
+              [ \"\$(cd \"\$c\" && pwd -P)\" = \"\$target\" ] && { echo candidate; exit 0; }
+            done
+            echo none
+          ")
+
+          case "$verdict" in
+            define)
+              echo "config.php задаёт PRODUCTS_DIR явно — выдача берёт путь оттуда." ;;
+            candidate)
+              echo "Залитая папка мастеров совпала с той, что ищет products-config.php." ;;
+            *)
+              echo "::error::Мастера лежат в '$PRODUCTS_PATH', но сайт их там не ищет, и PRODUCTS_DIR в config.php не задан. После оплаты архив не соберётся. Допишите в config.php на сервере строку: define('PRODUCTS_DIR', '<полный путь к $PRODUCTS_PATH>');"
+              exit 1 ;;
+          esac
+
       # Проверяется не «сайт жив», а «сайт отдаёт то, что мы залили». Разница
       # стоила разбора 14.08.2026: деплой отчитался успехом, шаг проверял
       # только код ответа, и владелец полчаса смотрел на старую страницу,
