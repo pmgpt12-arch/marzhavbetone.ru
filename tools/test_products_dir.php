@@ -95,6 +95,10 @@ $случаи = [
         ['marzhavbetone.ru/products-storage' => false, 'products-marzhavbetone' => true],
         'products-marzhavbetone',
     ],
+    'обе папки полны: побеждает та, что вне webroot' => [
+        ['www/marzhavbetone.ru/products-storage' => true, 'products-marzhavbetone' => true],
+        'products-marzhavbetone',
+    ],
     'мастеров нет нигде: путь по умолчанию ради внятной ошибки' => [
         [],
         'www/marzhavbetone.ru/products-storage',

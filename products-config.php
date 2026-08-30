@@ -30,12 +30,15 @@ if (!defined('ORDERS_DIR')) {
 function mvb_products_dir_candidates(string $siteDir): array
 {
     return [
-        // Репозиторий, локальная машина, прогон CI.
-        $siteDir . '/products-storage',
         // Боевой reg.ru: сайт в ~/www/<домен>, мастера в ~/products-marzhavbetone.
         $siteDir . '/../../products-marzhavbetone',
         // Тот же сервер, если сайт лежит прямо в домашней папке.
         $siteDir . '/../products-marzhavbetone',
+        // Репозиторий, локальная машина, прогон CI. Идёт ПОСЛЕДНИМ намеренно:
+        // этот путь внутри webroot, и если рядом с сайтом когда-нибудь
+        // окажется копия мастеров, выдача обязана продолжить брать ту, что
+        // вне webroot, а не ту, до которой ближе прямая ссылка.
+        $siteDir . '/products-storage',
     ];
 }
 

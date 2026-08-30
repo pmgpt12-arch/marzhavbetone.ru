@@ -279,9 +279,9 @@ jobs:
             if grep -q \"define('PRODUCTS_DIR'\" '$SITE_PATH/config.php' 2>/dev/null; then
               echo define; exit 0
             fi
-            for c in '$SITE_PATH/products-storage' \
-                     '$SITE_PATH/../../products-marzhavbetone' \
-                     '$SITE_PATH/../products-marzhavbetone'; do
+            for c in '$SITE_PATH/../../products-marzhavbetone' \
+                     '$SITE_PATH/../products-marzhavbetone' \
+                     '$SITE_PATH/products-storage'; do
               [ -d \"\$c\" ] || continue
               [ \"\$(cd \"\$c\" && pwd -P)\" = \"\$target\" ] && { echo candidate; exit 0; }
             done
