@@ -82,6 +82,7 @@ jobs:
         if: always()
         run: |
           out="content/metrics/source-probe-$(date -u +%F).md"
+          mkdir -p "$(dirname "$out")"
           {
             echo "# Проба первичных источников"
             echo
