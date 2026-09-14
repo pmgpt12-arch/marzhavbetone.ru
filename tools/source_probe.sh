@@ -9,6 +9,15 @@
 # Только заголовки: один HEAD на источник, ничего не скачивается и не
 # разбирается. Проба отвечает на вопрос «пустит ли», а не собирает данные.
 
+has_arg() {
+    target=$1
+    shift
+    for arg in "$@"; do
+        [ "$arg" = "$target" ] && return 0
+    done
+    return 1
+}
+
 probe() {
     name=$1
     url=$2
@@ -47,7 +56,7 @@ probe "consultant.ru (SOURCE_C)"  "https://www.consultant.ru/"
 # Запрос ровно один и без разбора ответа: меряется пригодность источника,
 # а не собираются данные. Вопрос выборки объявлен в
 # research/dopolnitelnye-raboty.yaml и здесь не решается.
-if [ "$1" = "--query" ]; then
+if has_arg "--query" "$@"; then
     echo
     echo "--- один поисковый запрос ---"
     echo "код     что запрошено"
@@ -93,4 +102,42 @@ if [ "$1" = "--query" ]; then
         -A 'Mozilla/5.0 (compatible; marzhavbetone-probe/1.0)' \
         'http://publication.pravo.gov.ru/' 2>/dev/null)
     printf '%-6s  publication.pravo.gov.ru GET (на HEAD было 405)\n' "$code"
+fi
+
+# --- Яндекс: доступ к настоящей странице поиска ----------------------------
+#
+# Это не сбор спроса и не парсинг SERP. Проба проверяет, отдаёт ли Яндекс
+# страницу поиска с каждого адреса; по коду, финальному URL, размеру и title
+# видно CAPTCHA/редирект/реальную страницу. Список результатов не извлекается,
+# чтобы не выдать эвристику HTML за первую страницу выдачи.
+if has_arg "--yandex-serp" "$@"; then
+    echo
+    echo "--- Яндекс: страницы поиска (только доступ) ---"
+    echo "код     запрос / финальный URL / размер / title"
+
+    probe_yandex() {
+        id=$1
+        query=$2
+        body="/tmp/mvb-yandex-serp-$id-$$.html"
+        meta=$(curl -sS -L -m 30 --get \
+            -A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/128 Safari/537.36' \
+            --data-urlencode "text=$query" \
+            -o "$body" -w '%{http_code}|%{url_effective}' \
+            'https://yandex.ru/search/' 2>/dev/null)
+        code=${meta%%|*}
+        final=${meta#*|}
+        [ -z "$code" ] && code="---"
+        size=$([ -f "$body" ] && wc -c < "$body" || echo 0)
+        title=$([ -f "$body" ] && tr '\n\r' '  ' < "$body" | \
+            sed -n 's:.*<title[^>]*>\([^<]*\)</title>.*:\1:p' | head -c 120)
+        [ -z "$title" ] && title="(title не извлечён)"
+        printf '%-6s  q%s: %s\n            url: %s\n            body: %s байт; title: %s\n' \
+            "$code" "$id" "$query" "$final" "$size" "$title"
+        rm -f "$body"
+    }
+
+    probe_yandex 1 'заказчик не подписывает КС-2 КС-3 что делать'
+    probe_yandex 2 'претензия субподрядчика об оплате выполненных работ образец'
+    probe_yandex 3 'взыскание долга по договору субподряда стоимость юридических услуг'
+    probe_yandex 4 'КС-2 КС-3 бланк скачать'
 fi
