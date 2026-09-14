@@ -18,6 +18,10 @@ on:
         description: 'Проверить настоящим запросом, а не только главной'
         type: boolean
         default: false
+      yandex_serp:
+        description: 'Проверить доступ к выдаче Яндекса; результаты не извлекаются'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -35,7 +39,10 @@ jobs:
       - name: С раннера GitHub
         id: runner
         run: |
-          sh tools/source_probe.sh ${{ inputs.query == true && '--query' || '' }} | tee /tmp/runner.txt
+          args=''
+          [ "${{ inputs.query }}" = 'true' ] && args="$args --query"
+          [ "${{ inputs.yandex_serp }}" = 'true' ] && args="$args --yandex-serp"
+          sh tools/source_probe.sh $args | tee /tmp/runner.txt
 
       - name: Проверить ключ хостинга
         id: check
@@ -63,9 +70,12 @@ jobs:
           chmod 600 ~/.ssh/probe_key
           ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
           # IdentitiesOnly — иначе может войти другой ключ и замер соврёт.
+          args=''
+          [ "${{ inputs.query }}" = 'true' ] && args="$args --query"
+          [ "${{ inputs.yandex_serp }}" = 'true' ] && args="$args --yandex-serp"
           ssh -i ~/.ssh/probe_key -o IdentitiesOnly=yes -p "$PORT" \
               -o BatchMode=yes -o ConnectTimeout=20 "$USER@$HOST" \
-              "sh -s -- ${{ inputs.query == true && '--query' || '' }}" \
+              "sh -s -- $args" \
               < tools/source_probe.sh | tee /tmp/hosting.txt
 
       - name: Записать отчёт
