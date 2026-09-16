@@ -82,20 +82,62 @@ def create_word_doc(filepath, title, sections):
     print(f"  [Word]  {filepath}")
 
 
+# Кириллица в PDF: стандартные шрифты reportlab (Helvetica и прочие из
+# «стандартных четырнадцати») кодируются WinAnsi и кириллических глифов не
+# содержат — c.drawString() отрабатывает молча и не рисует ничего. Так и
+# получились файлы 08-*.pdf: 2 290 и 2 305 байт при 85–91 КБ у соседних,
+# нулевой видимый текст, ни одной ошибки при сборке. Регистрируем шрифт со
+# славянским набором.
+#
+# Liberation Sans выбран по метрической совместимости с Arial: уже собранные
+# PDF комплектов несут подмножества ArialMT и Arial-BoldMT, и замена на
+# метрический клон сохраняет вид страницы. Самого Arial в окружении сборки
+# нет.
+_ШРИФТЫ = (
+    ("MVBSans", "MVBSans-Bold",
+     "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+     "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"),
+    ("MVBSans", "MVBSans-Bold",
+     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
+)
+
+
+def _register_cyrillic_font():
+    """Имена шрифтов для основного текста и заголовка.
+
+    Возвращает стандартные Helvetica только если ни один файл шрифта не
+    нашёлся. Это не тихий откат: вызывающий обязан проверить, что в
+    собранном PDF есть текст, — проверка в отчёте о правке.
+    """
+    from reportlab.pdfbase import pdfmetrics
+    from reportlab.pdfbase.ttfonts import TTFont
+
+    for обычный, жирный, файл_о, файл_ж in _ШРИФТЫ:
+        if not (os.path.exists(файл_о) and os.path.exists(файл_ж)):
+            continue
+        if обычный not in pdfmetrics.getRegisteredFontNames():
+            pdfmetrics.registerFont(TTFont(обычный, файл_о))
+            pdfmetrics.registerFont(TTFont(жирный, файл_ж))
+        return обычный, жирный
+    return "Helvetica", "Helvetica-Bold"
+
+
 def create_pdf_simple(filepath, title, lines):
+    обычный, жирный = _register_cyrillic_font()
     c = canvas.Canvas(filepath, pagesize=A4)
     width, height = A4
     
-    c.setFont("Helvetica-Bold", 16)
+    c.setFont(жирный, 16)
     c.drawCentredString(width/2, height - 2*cm, title)
     
-    c.setFont("Helvetica", 11)
+    c.setFont(обычный, 11)
     y = height - 3.5*cm
     for line in lines:
         if y < 2*cm:
             c.showPage()
             y = height - 2*cm
-            c.setFont("Helvetica", 11)
+            c.setFont(обычный, 11)
         c.drawString(2*cm, y, line)
         y -= 0.6*cm
     
@@ -175,9 +217,9 @@ def build_paid_05():
         cell.border = thin_border
         cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
     
-    ws.append([1, "Акт скрытых работ", "АОСР-001", "", 3, "ОК", "", "=ЕСЛИ(F2=\"ОК\";\"✓\";\"✗\")"])
-    ws.append([2, "Ведомость ресурсов", "КС-4-001", "", 2, "ОК", "", "=ЕСЛИ(F3=\"ОК\";\"✓\";\"✗\")"])
-    ws.append([3, "Журнал учета работ", "КС-6-001", "", 5, "ОК", "", "=ЕСЛИ(F4=\"ОК\";\"✓\";\"✗\")"])
+    ws.append([1, "Акт скрытых работ", "АОСР-001", "", 3, "ОК", "", "=IF(F2=\"ОК\",\"✓\",\"✗\")"])
+    ws.append([2, "Ведомость ресурсов", "КС-4-001", "", 2, "ОК", "", "=IF(F3=\"ОК\",\"✓\",\"✗\")"])
+    ws.append([3, "Журнал учета работ", "КС-6-001", "", 5, "ОК", "", "=IF(F4=\"ОК\",\"✓\",\"✗\")"])
     
     ws.column_dimensions['A'].width = 8
     ws.column_dimensions['B'].width = 30
@@ -419,7 +461,7 @@ def build_paid_05():
                  ["Типовые ошибки", "7 ошибок", "15+ ошибок + способы устранения", "Предупреждаете проблемы"],
              ]},
             {"text": "\nПолный комплект 'КС без возврата' - это не просто шаблоны. Это система, которая снижает количество возвратов КС от заказчика с 30-40% до 5-10%."},
-            {"text": "\nСтоимость полного комплекта: 12 900 - 16 900 ₽\nСтоимость одного возврата КС: 3-5 рабочих дней + риск срыва сроков оплаты.\nОкупаемость: после первого же объекта."},
+            {"text": "\nСтоимость комплекта: 1 990 ₽\nСтоимость одного возврата КС: 3-5 рабочих дней + риск срыва сроков оплаты.\nОкупаемость: после первого же объекта."},
         ]
     )
 
