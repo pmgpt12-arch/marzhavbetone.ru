@@ -115,6 +115,40 @@ def test_исторические_архивы_проверкой_не_охва�
         f"в выдачу попали неадресуемые папки: {sorted(охвачено & исторические)}")
 
 
+def test_p5_не_отдаёт_снятую_сравнительную_таблицу() -> None:
+    """В P5 таблица сравнивала покупку со снятым товаром. Продаж до её
+    снятия не было, поэтому она удалена из единственного текущего издания,
+    а число файлов во всех покупательских точках равно одиннадцати."""
+    folder = STORAGE / "07-uderzhaniya-shtrafy-zachety"
+    files = cp.delivered(folder)
+    stale = "09-sravnitelnaya-tablica.docx"
+    assert stale not in files, "снятая таблица снова попала в выдачу P5"
+    assert len(files) == 11, f"P5: ожидалось 11 файлов, получено {len(files)}"
+
+    start = (folder / "00-START-HERE.txt").read_text(encoding="utf-8")
+    manifest = (folder / "MANIFEST.md").read_text(encoding="utf-8")
+    page = (cp.PAGES / "p5-shtrafy-uderzhaniya.html").read_text(encoding="utf-8")
+    catalog = (cp.ROOT / "katalog.html").read_text(encoding="utf-8")
+    sku_at = catalog.find('data-sku="p5"')
+    card_start = catalog.rfind('<article class="product-card">', 0, sku_at)
+    card_end = catalog.find('</article>', sku_at)
+    card = (catalog[card_start:card_end + len('</article>')]
+            if card_start >= 0 and card_end >= 0 else "")
+
+    for name, text in {
+        "00-START-HERE": start,
+        "MANIFEST": manifest,
+        "страница P5": page,
+        "карточка P5": card,
+    }.items():
+        assert text, f"{name}: фрагмент P5 не найден"
+        assert stale not in text, f"{name}: назван снятый файл"
+        assert "Сравнительная таблица" not in text, f"{name}: названа снятая таблица"
+        assert ("11 файлов" in text or "файлов в архиве: 11" in text
+                or name == "MANIFEST"), (
+            f"{name}: не указан актуальный счёт 11 файлов")
+
+
 def main() -> int:
     провал = 0
     for имя, проверка in sorted(globals().items()):
