@@ -477,36 +477,71 @@ function mvb_build_product_zip(string $sku): ?string
  */
 function mvb_prepare_delivery(array &$order): array
 {
-    if (empty($order['delivery']['token'])) {
-        $order['delivery'] = [
-            'token'      => bin2hex(random_bytes(16)),
-            'created_at' => date('c'),
-            'expires_at' => date('c', time() + DELIVERY_TTL_DAYS * 86400),
-            'downloads'  => 0,
-            'items'      => [],
-        ];
+    // Токен решается до планирования — он входит в адреса, — но попадает в
+    // заказ только вместе с полным составом. Уже выданный переиспользуется:
+    // ссылки, ушедшие покупателю прошлым разом, ломать нельзя.
+    $existing = is_array($order['delivery'] ?? null) ? $order['delivery'] : [];
+    $token = (string)($existing['token'] ?? '');
+    if ($token === '') {
+        $token = bin2hex(random_bytes(16));
     }
 
+    $positions = $order['items'] ?? [];
+    if (!is_array($positions) || !$positions) {
+        return ['links' => [], 'missing' => [['sku' => '—', 'reason' => 'в заказе нет позиций']]];
+    }
+
+    // Считаем ВСЕ позиции, а не падаем на первой: лог должен назвать каждый
+    // sku, который надо починить, иначе разбор пойдёт по одному за заход.
+    $items = [];
     $links = [];
-    foreach ($order['items'] ?? [] as $item) {
-        $product = mvb_resolve_product($item);
+    $missing = [];
+    foreach ($positions as $position) {
+        $product = mvb_resolve_product((array)$position);
         if (!$product) {
+            $sku = (string)($position['sku'] ?? '');
+            $missing[] = [
+                'sku'    => $sku !== '' ? $sku : '—',
+                'reason' => 'нет в каталоге',
+            ];
             continue;
         }
         $zipPath = mvb_build_product_zip($product['sku']);
         if (!$zipPath) {
+            $missing[] = [
+                'sku'    => $product['sku'],
+                'reason' => 'архив не собрался',
+            ];
             continue;
         }
-        $order['delivery']['items'][$product['sku']] = basename($zipPath);
+        $items[$product['sku']] = basename($zipPath);
         $links[] = [
             'sku'  => $product['sku'],
             'name' => $product['name'],
-            'url'  => SITE_URL . '/download.php?o=' . rawurlencode($order['id'])
-                . '&t=' . $order['delivery']['token']
+            'url'  => SITE_URL . '/download.php?o=' . rawurlencode((string)($order['id'] ?? ''))
+                . '&t=' . $token
                 . '&f=' . $product['sku'],
         ];
     }
-    return $links;
+
+    // Хоть одна непройденная позиция — заказ не выдаётся целиком, и в него не
+    // пишется ничего. Половина состава, записанная в delivery.items, делает
+    // недостачу невидимой: письмо ушло, email_sent_at проставлен, повтор
+    // вебхука заблокирован, а товара нет.
+    if ($missing) {
+        return ['links' => [], 'missing' => $missing];
+    }
+
+    $order['delivery'] = [
+        'token'      => $token,
+        'created_at' => (string)($existing['created_at'] ?? date('c')),
+        'expires_at' => (string)($existing['expires_at']
+            ?? date('c', time() + DELIVERY_TTL_DAYS * 86400)),
+        'downloads'  => (int)($existing['downloads'] ?? 0),
+        'items'      => $items,
+    ] + $existing;   // прежние поля (email_sent_at и прочие) не теряются
+
+    return ['links' => $links, 'missing' => []];
 }
 
 /**
@@ -562,17 +597,107 @@ function mvb_with_order_lock(string $orderFile, callable $fn)
     return $result;
 }
 
-/** Запись заказа целиком: через временный файл и rename, чтобы читатель
- *  никогда не увидел половину JSON. */
-function mvb_write_order(string $orderFile, array $order): void
+/**
+ * То же, что mvb_with_order_lock(), но без работы «без блокировки, если не
+ * получилось». Возвращает ['ok' => bool, 'result' => mixed].
+ *
+ * Разница нужна ровно одному вызывающему — download.php. Мягкий откат
+ * оправдан там, где пропущенная выдача дороже возможного повтора письма:
+ * вебхук лучше отработает без блокировки, чем не отработает вовсе. У выдачи
+ * файла цена ошибки обратная — без блокировки перестаёт быть пределом лимит
+ * скачиваний, и правильный ответ здесь не «отдать», а «отказать и не
+ * соврать кодом 200».
+ *
+ * `ok => false` означает: блокировку не взяли или заказ не читается как
+ * массив (например, читателя застали посреди чужой записи). Ни одного
+ * изменения в заказ при этом не внесено.
+ */
+function mvb_with_order_lock_strict(string $orderFile, callable $fn): array
+{
+    $lock = @fopen($orderFile . '.lock', 'c');
+    if ($lock === false) {
+        return ['ok' => false, 'result' => null];
+    }
+    if (!@flock($lock, LOCK_EX)) {
+        fclose($lock);
+        return ['ok' => false, 'result' => null];
+    }
+    $order = json_decode((string)@file_get_contents($orderFile), true);
+    if (!is_array($order)) {
+        @flock($lock, LOCK_UN);
+        fclose($lock);
+        return ['ok' => false, 'result' => null];
+    }
+    $записано = false;
+    try {
+        $result = $fn($order);
+        // Без резервной неатомарной записи: строгому пути нужна
+        // гарантия, а не «скорее всего сохранилось».
+        $записано = mvb_write_order($orderFile, $order, false);
+    } finally {
+        @flock($lock, LOCK_UN);
+        fclose($lock);
+    }
+
+    // Заказ не сохранён — значит и решения, принятого внутри $fn, на диске
+    // нет. Докладывать успех нельзя: вызывающий по нему отдаст товар.
+    if (!$записано) {
+        return ['ok' => false, 'result' => null];
+    }
+
+    return ['ok' => true, 'result' => $result];
+}
+
+/**
+ * Запись заказа целиком: через временный файл и rename, чтобы читатель
+ * никогда не увидел половину JSON.
+ *
+ * Возвращает true ТОЛЬКО после состоявшейся атомарной записи: временный
+ * файл записан и переименован поверх заказа. Любая другая развязка — false.
+ *
+ * Прежде функция была void и результат rename выбрасывала. Из-за этого
+ * mvb_with_order_lock_strict() докладывала ok: true даже когда заказ на
+ * диск не лёг, а download.php по такому ok отдавал архив кодом 200 с
+ * несохранённым счётчиком — то есть предел 30 скачиваний переставал быть
+ * гарантией. Ошибка записи обязана быть видна вызывающему.
+ *
+ * Резервная прямая запись оставлена для вызывающих, которым пропущенное
+ * обновление дороже возможного повтора (вебхук, страница успеха): им лучше
+ * записать неатомарно, чем не записать вовсе. Успехом она всё равно не
+ * называется — читатель может застать половину JSON.
+ *
+ * `$резерв = false` выключает и её. Так зовёт mvb_with_order_lock_strict():
+ * у выдачи файла цена ошибки обратная, и «записалось, но не атомарно и с
+ * ответом 503» означало бы сгоревшее скачивание из лимита покупателя.
+ * Строгому пути нужно либо атомарно, либо вообще ничего.
+ *
+ * `@` перед rename глушит только текст предупреждения, а не результат:
+ * возвращённое значение теперь проверяется. Предупреждение подавлено
+ * намеренно — при включённом display_errors оно ушло бы прямо в тело
+ * ответа, то есть в JSON страницы успеха или в поток архива.
+ */
+function mvb_write_order(string $orderFile, array $order, bool $резерв = true): bool
 {
     $json = json_encode($order, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-    $tmp = $orderFile . '.tmp' . getmypid();
-    if (@file_put_contents($tmp, $json) !== false) {
-        @rename($tmp, $orderFile);
-    } else {
-        @file_put_contents($orderFile, $json);
+    if ($json === false) {
+        return false;
     }
+
+    $tmp = $orderFile . '.tmp' . getmypid();
+    if (@file_put_contents($tmp, $json) === false) {
+        if ($резерв) {
+            @file_put_contents($orderFile, $json);   // не атомарно — см. выше
+        }
+        return false;
+    }
+
+    if (!@rename($tmp, $orderFile)) {
+        // Временный файл иначе остаётся в каталоге заказов навсегда.
+        @unlink($tmp);
+        return false;
+    }
+
+    return true;
 }
 
 /**
@@ -584,12 +709,26 @@ function mvb_write_order(string $orderFile, array $order): void
  */
 function mvb_deliver_and_notify(array &$order): array
 {
-    $links = mvb_prepare_delivery($order);
+    $plan = mvb_prepare_delivery($order);
+    $links = $plan['links'];
     $orderId = (string)($order['id'] ?? '');
 
-    if (!$links) {
+    // Частичной выдачи не бывает: либо весь заказ, либо ничего. Письмо не
+    // уходит, email_sent_at не проставляется, delivery.items не пишется —
+    // значит повторная доставка вебхука после починки причины отработает
+    // заказ заново и выдаст его целиком.
+    //
+    // В лог идут номер заказа, sku и причина. Почты, токена выдачи и ключа
+    // статуса здесь нет намеренно: файл лежит рядом с заказами и читается
+    // при разборе, а не только владельцем.
+    if ($plan['missing']) {
+        $parts = [];
+        foreach ($plan['missing'] as $miss) {
+            $parts[] = $miss['sku'] . ' (' . $miss['reason'] . ')';
+        }
         @file_put_contents(ORDERS_DIR . '/delivery-errors.log',
-            date('c') . " заказ {$orderId}: не удалось подготовить выдачу (нет файлов продуктов?)\n", FILE_APPEND);
+            date('c') . " заказ {$orderId}: выдача отменена целиком, не готовы позиции: "
+            . implode(', ', $parts) . "\n", FILE_APPEND);
         return [];
     }
 

@@ -17,32 +17,52 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit;
 }
 
-$orderId = trim((string)($_GET['order'] ?? ''));
-if ($orderId === '') {
-    http_response_code(422);
-    echo json_encode(['ok' => false, 'message' => 'Не указан ID заказа'], JSON_UNESCAPED_UNICODE);
+/**
+ * Отказ одной формы на все случаи: нет ключа, ключ не тот, заказа не
+ * существует, идентификатор кривой. Ответ обязан быть неотличим, иначе он
+ * сам становится ответом на вопрос «а есть ли такой заказ».
+ */
+function refuse(): void
+{
+    http_response_code(403);
+    echo json_encode([
+        'ok'      => false,
+        'message' => 'Ссылка недействительна. Откройте страницу по адресу из письма или обратитесь к нам.',
+    ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-// Проверяем безопасность ID заказа
-if (!preg_match('/^order_\d{8}_\d{6}_[a-z0-9]{6}$/', $orderId)) {
-    http_response_code(400);
-    echo json_encode(['ok' => false, 'message' => 'Некорректный ID заказа'], JSON_UNESCAPED_UNICODE);
-    exit;
+$orderId = trim((string)($_GET['order'] ?? ''));
+$statusKey = (string)($_GET['key'] ?? $_GET['k'] ?? '');
+
+// Идентификатор заказа секретом не является (см. комментарий в payment.php),
+// поэтому одного его мало. Ключ проверяется ДО чтения заказа и до любого
+// обращения к кассе: ни статус, ни сумма, ни состав, ни факт существования
+// заказа наружу без ключа не выходят.
+if ($orderId === '' || $statusKey === ''
+    || !preg_match('/^order_\d{8}_\d{6}_[a-z0-9]{6}$/', $orderId)) {
+    refuse();
 }
 
 $orderFile = ORDERS_DIR . '/' . $orderId . '.json';
 if (!file_exists($orderFile)) {
-    http_response_code(404);
-    echo json_encode(['ok' => false, 'message' => 'Заказ не найден'], JSON_UNESCAPED_UNICODE);
-    exit;
+    refuse();
 }
 
 $order = json_decode(file_get_contents($orderFile), true);
-if (!$order) {
-    http_response_code(500);
-    echo json_encode(['ok' => false, 'message' => 'Ошибка чтения заказа'], JSON_UNESCAPED_UNICODE);
-    exit;
+if (!is_array($order)) {
+    refuse();
+}
+
+// Заказы, созданные до появления ключа, ключа не имеют. Небезопасного отката
+// «нет ключа — пустим по одному номеру» здесь нет: это вернуло бы ровно ту
+// утечку, ради которой ключ и заведён. Покупателю — нейтральный отказ с
+// адресом для связи; ранее выданные ссылки скачивания при этом продолжают
+// работать, они проверяются своим токеном в download.php и от ключа не
+// зависят.
+$hash = (string)($order['status_key_hash'] ?? '');
+if ($hash === '' || !hash_equals($hash, hash('sha256', $statusKey))) {
+    refuse();
 }
 
 // Если платёж ожидает подтверждения — проверим статус в ЮКассе
@@ -99,16 +119,27 @@ if (($order['status'] ?? '') === 'paid') {
     }
 }
 
-// Возвращаем данные заказа (без чувствительных полей)
+// Наружу идёт только то, что success.html действительно читает: статус,
+// сумма, состав (sku, название, цена) и ссылки выдачи. Почта покупателя,
+// телефон, номер платежа, атрибуция и хеш ключа со страницы не читаются
+// ни одной строкой и в ответе не нужны — проверено по самой странице.
+// Сырых токенов здесь нет: токен выдачи существует только внутри готовых
+// адресов download.php, отдельным полем не публикуется.
+$publicItems = [];
+foreach ($order['items'] ?? [] as $item) {
+    $publicItems[] = [
+        'sku'   => (string)($item['sku'] ?? ''),
+        'name'  => (string)($item['name'] ?? ''),
+        'price' => (int)($item['price'] ?? 0),
+    ];
+}
+
 echo json_encode([
     'ok' => true,
     'order' => [
-        'id' => $order['id'],
-        'status' => $order['status'],
-        'total' => $order['total'],
-        'items' => $order['items'],
-        'email' => $order['email'],
-        'paid_at' => $order['paid_at'] ?? null,
+        'status'    => $order['status'] ?? 'pending',
+        'total'     => (int)($order['total'] ?? 0),
+        'items'     => $publicItems,
         'downloads' => $downloadLinks,
     ],
 ], JSON_UNESCAPED_UNICODE);

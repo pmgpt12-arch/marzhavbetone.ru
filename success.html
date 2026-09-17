@@ -3,6 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Ключ статуса стоит в адресе этой страницы. Referer с ним не уйдёт
+       никуда: ни на внешний домен, ни на свой. Страница внешних
+       подресурсов не грузит, но полагаться на это нельзя — один
+       добавленный сюда счётчик отправил бы ключ третьей стороне. -->
+  <meta name="referrer" content="no-referrer">
   <meta name="description" content="Оплата успешно завершена. Документы будут отправлены на email.">
   <title>Оплата прошла успешно — Маржа в бетоне</title>
   <link rel="stylesheet" href="styles.css?v=fda7e0ac">
@@ -98,15 +103,19 @@
     (async function() {
       const params = new URLSearchParams(location.search);
       const orderId = params.get('order');
+      // Ключ статуса: без него check-payment.php не отдаёт ни статуса, ни
+      // ссылок. Приходит в адресе возврата от кассы вместе с номером заказа.
+      const statusKey = params.get('k') || params.get('key');
       
-      if (!orderId) {
+      if (!orderId || !statusKey) {
         document.getElementById('loading').classList.add('hidden');
         document.getElementById('error-content').classList.remove('hidden');
         return;
       }
       
       try {
-        const res = await fetch('/check-payment.php?order=' + encodeURIComponent(orderId));
+        const res = await fetch('/check-payment.php?order=' + encodeURIComponent(orderId)
+          + '&key=' + encodeURIComponent(statusKey));
         const data = await res.json();
         
         document.getElementById('loading').classList.add('hidden');
