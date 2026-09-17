@@ -82,22 +82,97 @@ def create_word_doc(filepath, title, sections):
     print(f"  [Word]  {filepath}")
 
 
+# Кириллица в PDF: стандартные шрифты reportlab (Helvetica и прочие из
+# «стандартных четырнадцати») кодируются WinAnsi и кириллических глифов не
+# содержат — c.drawString() отрабатывает молча и не рисует ничего. Так и
+# получился файл 07-algoritm-proverki-uderzhaniy.pdf: 2 432 байта при
+# 85–91 КБ у PDF соседних комплектов, на месте русского текста — ряды «n»,
+# ни одной ошибки при сборке. Регистрируем шрифт со славянским набором.
+#
+# Дефект и лечение те же, что у 08-*.pdf комплектов P3 и P4 (правка
+# 16.09.2026): helper дословно повторяет build_paid_05.py и build_paid_06.py,
+# чтобы третий комплект не разошёлся с двумя исправленными.
+_ШРИФТЫ = (
+    ("MVBSans", "MVBSans-Bold",
+     "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+     "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"),
+    ("MVBSans", "MVBSans-Bold",
+     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
+)
+
+
+def _register_cyrillic_font():
+    """Имена шрифтов для основного текста и заголовка.
+
+    Возвращает стандартные Helvetica только если ни один файл шрифта не
+    нашёлся. Это не тихий откат: вызывающий обязан проверить, что в
+    собранном PDF есть текст, — проверка в отчёте о правке.
+    """
+    from reportlab.pdfbase import pdfmetrics
+    from reportlab.pdfbase.ttfonts import TTFont
+
+    for обычный, жирный, файл_о, файл_ж in _ШРИФТЫ:
+        if not (os.path.exists(файл_о) and os.path.exists(файл_ж)):
+            continue
+        if обычный not in pdfmetrics.getRegisteredFontNames():
+            pdfmetrics.registerFont(TTFont(обычный, файл_о))
+            pdfmetrics.registerFont(TTFont(жирный, файл_ж))
+        return обычный, жирный
+    return "Helvetica", "Helvetica-Bold"
+
+
+def _wrap(line, шрифт, кегль, поле):
+    """Режет строку по ширине поля, не меняя ни одного слова.
+
+    Нужно ровно из-за одной строки этого комплекта — про претензионный срок
+    по ч. 5 ст. 4 АПК РФ, 193 знака. drawString переносов не делает: строка
+    уходит за правый край листа, и на бумаге предложение обрывается на
+    полуслове. У соседних комплектов P3 и P4 длинных строк нет вовсе, и до
+    встроенного шрифта обрыв был не виден — текст не рисовался совсем.
+
+    Продолжение выравнивается по отступу исходной строки: перечисления вида
+    «   - …» остаются перечислениями.
+    """
+    from reportlab.pdfbase.pdfmetrics import stringWidth
+
+    if stringWidth(line, шрифт, кегль) <= поле:
+        return [line]
+
+    отступ = " " * (len(line) - len(line.lstrip(" ")))
+    продолжение = отступ + "  "
+    строки, текущая = [], отступ
+    for слово in line.split():
+        проба = (текущая + " " + слово) if текущая.strip() else (текущая + слово)
+        if текущая.strip() and stringWidth(проба, шрифт, кегль) > поле:
+            строки.append(текущая)
+            текущая = продолжение + слово
+        else:
+            текущая = проба
+    if текущая.strip():
+        строки.append(текущая)
+    return строки
+
+
 def create_pdf_simple(filepath, title, lines):
+    обычный, жирный = _register_cyrillic_font()
     c = canvas.Canvas(filepath, pagesize=A4)
     width, height = A4
+    поле = width - 2 * 2*cm
     
-    c.setFont("Helvetica-Bold", 16)
+    c.setFont(жирный, 16)
     c.drawCentredString(width/2, height - 2*cm, title)
     
-    c.setFont("Helvetica", 11)
+    c.setFont(обычный, 11)
     y = height - 3.5*cm
     for line in lines:
-        if y < 2*cm:
-            c.showPage()
-            y = height - 2*cm
-            c.setFont("Helvetica", 11)
-        c.drawString(2*cm, y, line)
-        y -= 0.6*cm
+        for кусок in _wrap(line, обычный, 11, поле):
+            if y < 2*cm:
+                c.showPage()
+                y = height - 2*cm
+                c.setFont(обычный, 11)
+            c.drawString(2*cm, y, кусок)
+            y -= 0.6*cm
     
     c.save()
     print(f"  [PDF]   {filepath}")
@@ -300,7 +375,7 @@ def build_paid_07():
             [1, "", "Удержание", "", 0, "Оспаривается", "Претензия направлена", ""],
             [2, "", "Штраф", "", 0, "Оспаривается", "", ""],
             [3, "", "Зачет", "", 0, "Оспаривается", "", ""],
-            ["", "", "", "ИТОГО:", "=СУММ(E2:E20)", "", "", ""],
+            ["", "", "", "ИТОГО:", "=SUM(E2:E20)", "", "", ""],
         ],
         col_widths=[6, 12, 14, 30, 14, 14, 25, 20]
     )
@@ -312,7 +387,7 @@ def build_paid_07():
         rows=[
             [1, "Первая часть", "", 0, "Банковский перевод", "", "Ожидается"],
             [2, "Вторая часть", "", 0, "Банковский перевод", "", "Ожидается"],
-            ["", "", "ИТОГО:", "=СУММ(D2:D10)", "", "", ""],
+            ["", "", "ИТОГО:", "=SUM(D2:D10)", "", "", ""],
         ],
         col_widths=[6, 16, 14, 14, 20, 18, 14]
     )
