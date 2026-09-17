@@ -33,6 +33,14 @@ MANIFEST.md — это то, что покупатель видит внутри
 Код возврата 1, если комплект расходится с манифестом, вложенная копия
 расходится с отдельным комплектом, внутри комплекта есть дубликаты или
 обещанное число файлов не совпало с фактическим.
+
+Исключение — папка, на которую не ссылается ни один sku. Покупателю она не
+уходит никогда (`mvb_build_product_zip` ищет папку по имени из
+конфигурации), поэтому её расхождение с актуальным комплектом никому не
+доезжает: это исторический архив, сохранённый как есть. Такое расхождение
+называется строкой к сведению, в счёт отставших копий не идёт и кода 1 не
+даёт. Для всего, что адресовано sku, поведение прежнее — отставшая копия
+остаётся ошибкой.
 """
 from __future__ import annotations
 
@@ -120,6 +128,25 @@ def catalog() -> dict[str, str]:
     return {m.group("sku"): m.group("dir") for m in CATALOG.finditer(text)}
 
 
+def not_addressed(packages: list[Path], dirs: dict[str, str]) -> set[str]:
+    """Папки, на которые не ссылается ни один sku в products-config.php.
+
+    Один источник истины на два вывода: строку к сведению в конце прогона и
+    послабление для вложенных копий внутри таких папок. Бесплатные наборы
+    (`00-free-`) sku не адресуются по устройству, а покупателю выдаются, —
+    в число неадресуемых они не входят и проверяются строго.
+
+    Пустой каталог означает «конфиг не прочитан», а не «ничего не
+    адресуется»: послабления тогда не получает никто.
+    """
+    if not dirs:
+        return set()
+    used = set(dirs.values())
+    return {package.name for package in packages
+            if package.name not in used
+            and not package.name.startswith("00-free-")}
+
+
 def check_duplicates(package: Path) -> int:
     """Ищет файлы, лежащие в комплекте дважды. Возвращает число повторов.
 
@@ -193,14 +220,21 @@ def check_pages(dirs: dict[str, str]) -> int:
     return broken
 
 
-def check_copies(package: Path, manifest: Path) -> int:
+def check_copies(package: Path, manifest: Path, *,
+                 addressed: bool = True) -> tuple[int, int]:
     """Сверяет вложенные копии базовых пакетов с отдельными комплектами.
 
-    Возвращает число разошедшихся копий. Сравнивается содержимое: файл,
-    переписанный в отдельном комплекте и не перенесённый в копию, по именам
-    неотличим от целого, а покупатель полного получает старую редакцию.
+    Возвращает два числа: разошедшихся копий и расхождений к сведению.
+    Сравнивается содержимое: файл, переписанный в отдельном комплекте и не
+    перенесённый в копию, по именам неотличим от целого, а покупатель
+    полного получает старую редакцию.
+
+    `addressed=False` — папка не адресуется ни одним sku, покупателю не
+    уходит, и её расхождение попадает во второе число: старую редакцию
+    некому получить.
     """
     broken = 0
+    noted = 0
     explicit = sources(manifest)
     nested = [name for name in declared(manifest) if name.endswith("/")]
     for name in nested:
@@ -209,8 +243,14 @@ def check_copies(package: Path, manifest: Path) -> int:
         if not copy.is_dir():
             continue          # отсутствие папки ловит основная проверка
         if not origin.is_dir():
-            print(f"НЕТ ИСТОЧНИКА  {package.name}: {name} ← {origin.name}")
-            broken += 1
+            if addressed:
+                print(f"НЕТ ИСТОЧНИКА  {package.name}: {name} ← {origin.name}")
+                broken += 1
+            else:
+                noted += 1
+                print(f"ИСТОРИЧЕСКИЙ АРХИВ  {package.name}: {name} ← "
+                      f"{origin.name} — источника нет; папка не адресуется "
+                      f"ни одним sku и покупателю не отдаётся")
             continue
 
         here, there = delivered(copy), delivered(origin)
@@ -221,15 +261,22 @@ def check_copies(package: Path, manifest: Path) -> int:
         if not (missing or extra or changed):
             continue
 
-        broken += 1
-        print(f"КОПИЯ ОТСТАЛА  {package.name}: {name} ← {origin.name}")
+        if addressed:
+            broken += 1
+            print(f"КОПИЯ ОТСТАЛА  {package.name}: {name} ← {origin.name}")
+        else:
+            noted += 1
+            print(f"ИСТОРИЧЕСКИЙ АРХИВ  {package.name}: {name} ← "
+                  f"{origin.name} — расходится с актуальным комплектом; "
+                  f"папка не адресуется ни одним sku и покупателю не "
+                  f"отдаётся")
         for item in missing:
             print(f"    {item} — есть в комплекте, нет в копии")
         for item in extra:
             print(f"    {item} — есть в копии, нет в комплекте")
         for item in changed:
             print(f"    {item} — содержимое разное")
-    return broken
+    return broken, noted
 
 
 def main() -> int:
@@ -243,8 +290,10 @@ def main() -> int:
         return 1
 
     dirs = catalog()
+    orphans = not_addressed(packages, dirs)
     broken = 0
     stale = 0
+    noted = 0
     doubled = 0
     counted = 0
     for package in packages:
@@ -256,7 +305,10 @@ def main() -> int:
 
         # До проверки состава: комплект может сойтись с манифестом и при этом
         # отставать от оригиналов — это два разных расхождения.
-        stale += check_copies(package, manifest)
+        критичных, к_сведению = check_copies(
+            package, manifest, addressed=package.name not in orphans)
+        stale += критичных
+        noted += к_сведению
         doubled += check_duplicates(package)
         counted += check_promised(package, manifest)
 
@@ -303,19 +355,16 @@ def main() -> int:
     # никогда: mvb_build_product_zip() ищет папку по имени из конфигурации.
     # Это не расхождение, а вопрос к составу каталога — решение владельца,
     # поэтому строкой к сведению, а не красным.
-    if dirs:
-        used = set(dirs.values())
-        orphans = [p.name for p in packages
-                   if p.name not in used and not p.name.startswith("00-free-")]
-        if orphans:
-            print("\nК сведению — папки, не адресуемые ни одним sku "
-                  "(покупателю не отдаются):")
-            for name in orphans:
-                print(f"  {name}")
+    if orphans:
+        print("\nК сведению — папки, не адресуемые ни одним sku "
+              "(покупателю не отдаются):")
+        for name in sorted(orphans):
+            print(f"  {name}")
 
     print(f"\nКомплектов: {len(packages)}, с расхождениями: {broken}, "
           f"отставших копий: {stale}, дубликатов внутри комплекта: {doubled}, "
-          f"расхождений в числе файлов: {counted}")
+          f"расхождений в числе файлов: {counted}, "
+          f"расхождений в неадресуемых папках (к сведению): {noted}")
     return 1 if broken or stale or doubled or counted else 0
 
 

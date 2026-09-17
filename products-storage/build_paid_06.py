@@ -82,20 +82,62 @@ def create_word_doc(filepath, title, sections):
     print(f"  [Word]  {filepath}")
 
 
+# Кириллица в PDF: стандартные шрифты reportlab (Helvetica и прочие из
+# «стандартных четырнадцати») кодируются WinAnsi и кириллических глифов не
+# содержат — c.drawString() отрабатывает молча и не рисует ничего. Так и
+# получились файлы 08-*.pdf: 2 290 и 2 305 байт при 85–91 КБ у соседних,
+# нулевой видимый текст, ни одной ошибки при сборке. Регистрируем шрифт со
+# славянским набором.
+#
+# Liberation Sans выбран по метрической совместимости с Arial: уже собранные
+# PDF комплектов несут подмножества ArialMT и Arial-BoldMT, и замена на
+# метрический клон сохраняет вид страницы. Самого Arial в окружении сборки
+# нет.
+_ШРИФТЫ = (
+    ("MVBSans", "MVBSans-Bold",
+     "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+     "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"),
+    ("MVBSans", "MVBSans-Bold",
+     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
+)
+
+
+def _register_cyrillic_font():
+    """Имена шрифтов для основного текста и заголовка.
+
+    Возвращает стандартные Helvetica только если ни один файл шрифта не
+    нашёлся. Это не тихий откат: вызывающий обязан проверить, что в
+    собранном PDF есть текст, — проверка в отчёте о правке.
+    """
+    from reportlab.pdfbase import pdfmetrics
+    from reportlab.pdfbase.ttfonts import TTFont
+
+    for обычный, жирный, файл_о, файл_ж in _ШРИФТЫ:
+        if not (os.path.exists(файл_о) and os.path.exists(файл_ж)):
+            continue
+        if обычный not in pdfmetrics.getRegisteredFontNames():
+            pdfmetrics.registerFont(TTFont(обычный, файл_о))
+            pdfmetrics.registerFont(TTFont(жирный, файл_ж))
+        return обычный, жирный
+    return "Helvetica", "Helvetica-Bold"
+
+
 def create_pdf_simple(filepath, title, lines):
+    обычный, жирный = _register_cyrillic_font()
     c = canvas.Canvas(filepath, pagesize=A4)
     width, height = A4
     
-    c.setFont("Helvetica-Bold", 16)
+    c.setFont(жирный, 16)
     c.drawCentredString(width/2, height - 2*cm, title)
     
-    c.setFont("Helvetica", 11)
+    c.setFont(обычный, 11)
     y = height - 3.5*cm
     for line in lines:
         if y < 2*cm:
             c.showPage()
             y = height - 2*cm
-            c.setFont("Helvetica", 11)
+            c.setFont(обычный, 11)
         c.drawString(2*cm, y, line)
         y -= 0.6*cm
     
@@ -326,7 +368,7 @@ def build_paid_06():
             [2, "", "Акт приемки", "", "", "", "В работе", ""],
             [3, "", "Устно", "", "", "", "В работе", ""],
             ["", "", "", "", "", "", "", ""],
-            ["", "", "", "Всего замечаний:", "=СЧЁТЕСЛИ(G2:G20;\"В работе\")", "", "Открыто", ""],
+            ["", "", "", "Всего замечаний:", "=COUNTIF(G2:G20,\"В работе\")", "", "Открыто", ""],
             ["", "", "", "", "", "", "", "Закрыто"],
         ],
         col_widths=[6, 14, 16, 40, 18, 14, 14, 14]
@@ -339,7 +381,7 @@ def build_paid_06():
         rows=[
             [1, "", "", "", "", "В работе", 0, ""],
             [2, "", "", "", "", "В работе", 0, ""],
-            ["", "", "", "", "Общий прогресс:", "", "=СРЗНАЧ(G2:G20)", ""],
+            ["", "", "", "", "Общий прогресс:", "", "=AVERAGE(G2:G3)", ""],
         ],
         col_widths=[6, 35, 18, 14, 14, 14, 12, 20]
     )
@@ -421,7 +463,7 @@ def build_paid_06():
                  ["Служебная записка", "Нет", "Шаблон для руководства", "Быстрое согласование действий"],
              ]},
             {"text": "\nБлокировка оплаты - один из самых болезненных сценариев для подрядчика. Полный комплект дает инструменты для профессиональной защиты."},
-            {"text": "\nСтоимость полного комплекта: 14 900 - 19 900 ₽\nСтоимость месяца блокировки оплаты: упущенная выгода + пени к банку + риск срыва графика.\nОкупаемость: с первой же блокировки."},
+            {"text": "\nСтоимость комплекта: 2 990 ₽\nСтоимость месяца блокировки оплаты: упущенная выгода + пени к банку + риск срыва графика.\nОкупаемость: с первой же блокировки."},
         ]
     )
 
