@@ -118,6 +118,18 @@ if (mb_strlen($description) > 120) {
 // Генерируем ID заказа
 $orderId = 'order_' . date('Ymd_His') . '_' . substr(uniqid(), -6);
 
+// Ключ статуса заказа. Идентификатор заказа секретом не является и никогда
+// им не был: `substr(uniqid(), -6)` это младшие разряды времени в
+// микросекундах, а не случайность, и вместе с `date('Ymd_His')` в том же
+// имени он перебираем (это записано и в корневом .htaccess). Пока
+// check-payment.php отвечал на один только `order`, знание идентификатора
+// давало почту покупателя и рабочие ссылки выдачи.
+//
+// Отсюда отдельный ключ: 32 байта из CSPRNG — 256 бит. В заказе лежит
+// только его sha256; сырой ключ живёт в адресе возврата и в браузере
+// покупателя, на диск сервера не попадает и в логи не пишется.
+$statusKey = bin2hex(random_bytes(32));
+
 // Сохраняем заказ
 $orderData = [
     'id' => $orderId,
@@ -129,6 +141,7 @@ $orderData = [
     'total' => $total,
     'description' => $description,
     'attribution' => $attribution,
+    'status_key_hash' => hash('sha256', $statusKey),
     'payment_id' => null,
     'paid_at' => null,
 ];
@@ -144,7 +157,11 @@ $paymentData = [
     'capture' => true,
     'confirmation' => [
         'type' => 'redirect',
-        'return_url' => SITE_URL . '/success.html?order=' . urlencode($orderId),
+        // Оба параметра: без ключа страница успеха не получит ни статуса,
+        // ни ссылок. Ключ уходит только сюда — в адрес, по которому касса
+        // вернёт самого покупателя.
+        'return_url' => SITE_URL . '/success.html?order=' . urlencode($orderId)
+            . '&k=' . urlencode($statusKey),
     ],
     'description' => $description,
     'metadata' => [
