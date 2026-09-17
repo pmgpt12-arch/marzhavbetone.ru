@@ -154,11 +154,32 @@ function mvb_products(): array
             'dir'   => '08-pto-bez-zamechaniy',
             'zip'   => '08-pto-bez-zamechaniy.zip',
         ],
+        // Издания выдачи. 17.09.2026 решением владельца из состава P5 снята
+        // сравнительная таблица 09-sravnitelnaya-tablica.docx: она сравнивала
+        // покупку со снятым с продажи «Полным комплектом» и не отвечала
+        // обещанию страницы. Файл остался в мастерах — без него нечем
+        // пересобрать прежнее издание.
+        //
+        // Почему недостаточно просто убрать файл. Заказ запоминает только имя
+        // архива (`delivery.items[sku]`), а download.php, не найдя файл в
+        // кэше, пересобирает его из ТЕКУЩИХ мастеров. Кэш чистится штатно —
+        // `rm -f orders/delivery/*.zip` стоит в runbook выкладки. То есть
+        // после первой же чистки старый оплаченный заказ молча получил бы
+        // новый состав под прежним именем. Проверено воспроизведением
+        // 17.09.2026: 12 файлов до, 11 после, имя одно и то же.
+        //
+        // Поэтому у каждого издания своё имя архива, и `editions` говорит,
+        // чего в этом издании нет. Прежнее имя остаётся навсегда и собирает
+        // прежний состав; новые заказы получают `-v2`.
         'p5' => [
             'name'  => 'Комплект «Гарантийное удержание: возврат, оспаривание штрафов и зачётов»',
             'price' => 299000,
             'dir'   => '07-uderzhaniya-shtrafy-zachety',
-            'zip'   => '07-uderzhaniya-shtrafy-zachety.zip',
+            'zip'   => '07-uderzhaniya-shtrafy-zachety-v2.zip',
+            'editions' => [
+                '07-uderzhaniya-shtrafy-zachety.zip'    => [],
+                '07-uderzhaniya-shtrafy-zachety-v2.zip' => ['09-sravnitelnaya-tablica.docx'],
+            ],
         ],
         // Полный комплект снят с продажи 11.08.2026 решением владельца.
         // Основание — разбор состава content/strategy/product-composition-2026-08-11.md:
@@ -421,17 +442,55 @@ function mvb_resolve_product(array $item): ?array
 }
 
 /**
+ * Издания выдачи для sku: имя архива → файлы, которых в этом издании нет.
+ *
+ * У комплекта без объявленных изданий оно одно — текущее, и в нём нет
+ * исключений. Это же и ответ на вопрос «какие имена архивов законны»:
+ * пересобирать по имени, которого здесь нет, нельзя.
+ */
+function mvb_zip_editions(string $sku): array
+{
+    $catalog = mvb_products();
+    if (!isset($catalog[$sku])) {
+        return [];
+    }
+    $editions = $catalog[$sku]['editions'] ?? [];
+    $current = (string)$catalog[$sku]['zip'];
+    if (!isset($editions[$current])) {
+        $editions[$current] = [];
+    }
+    return $editions;
+}
+
+/**
  * Собирает (и кэширует) архив продукта в DELIVERY_DIR.
  * Возвращает абсолютный путь к zip либо null при ошибке.
+ *
+ * `$zipName` — имя издания. Без него берётся текущее издание каталога: так
+ * зовут новые покупки. Старый оплаченный заказ передаёт имя, записанное в
+ * нём самом, и получает ровно тот состав, за который заплатил.
+ *
+ * Имя проверяется по таблице изданий, а не подставляется в путь как есть:
+ * оно приходит из файла заказа, и собирать по произвольному имени нельзя.
  */
-function mvb_build_product_zip(string $sku): ?string
+function mvb_build_product_zip(string $sku, ?string $zipName = null): ?string
 {
     $catalog = mvb_products();
     if (!isset($catalog[$sku])) {
         return null;
     }
+
+    $editions = mvb_zip_editions($sku);
+    $zipName = $zipName === null ? (string)$catalog[$sku]['zip'] : basename($zipName);
+    if (!isset($editions[$zipName])) {
+        @file_put_contents(ORDERS_DIR . '/delivery-errors.log',
+            date('c') . " неизвестное издание выдачи: {$sku} / {$zipName}\n", FILE_APPEND);
+        return null;
+    }
+    $excluded = $editions[$zipName];
+
     $sourceDir = PRODUCTS_DIR . '/' . $catalog[$sku]['dir'];
-    $zipPath = DELIVERY_DIR . '/' . $catalog[$sku]['zip'];
+    $zipPath = DELIVERY_DIR . '/' . $zipName;
 
     if (is_file($zipPath) && filesize($zipPath) > 0) {
         return $zipPath;
@@ -462,7 +521,10 @@ function mvb_build_product_zip(string $sku): ?string
         // за который заплатили. Число файлов на страницах товаров считается
         // по этому же списку исключений.
         $service = ['.htaccess', '00-PISMO-POSLE-POKUPKI.txt', 'MANIFEST.md'];
-        if (in_array(basename($local), $service, true)) {
+        // Плюс то, чего нет в этом издании. Мастер файла остаётся на диске:
+        // им собирается прежнее издание для старых заказов.
+        if (in_array(basename($local), $service, true)
+            || in_array(basename($local), $excluded, true)) {
             continue;
         }
         $zip->addFile($file->getPathname(), $local);

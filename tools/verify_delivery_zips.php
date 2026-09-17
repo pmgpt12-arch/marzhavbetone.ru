@@ -25,15 +25,21 @@ define('ORDERS_DIR', __DIR__ . '/orders');
 require __DIR__ . '/products-config.php';
 
 $service = ['.htaccess', '00-PISMO-POSLE-POKUPKI.txt', 'MANIFEST.md'];
+// Плюс файлы, исключённые из текущего издания выдачи: мастер лежит в
+// папке, но покупателю сегодня не уходит. Список берётся у самого
+// каталога, второго здесь не заводится.
 $skus = ['t1','t2','t3','t4','t5','t6','p1','p2','p3','p4','p5','p7','p8','p9','p10','p11','p12','p13'];
 $bad = 0;
 
 foreach ($skus as $sku) {
     $catalog = mvb_products();
     $dir = PRODUCTS_DIR . '/' . $catalog[$sku]['dir'];
+    $издания = mvb_zip_editions($sku);
+    $исключено = $издания[(string)$catalog[$sku]['zip']] ?? [];
     $want = [];
     foreach (scandir($dir) as $f) {
         if ($f === '.' || $f === '..' || in_array($f, $service, true)) continue;
+        if (in_array($f, $исключено, true)) continue;
         if (is_file("$dir/$f")) $want[] = $f;
     }
     sort($want);

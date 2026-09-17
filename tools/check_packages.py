@@ -69,6 +69,18 @@ CATALOG = re.compile(
     r"\s*'price'\s*=>\s*\d+\s*,\s*'dir'\s*=>\s*'(?P<dir>[^']+)'",
     re.S,
 )
+# Издание выдачи: `'zip' => '…'` и, если объявлен, блок `'editions'`.
+# Комплект может отдавать не всю папку: из текущего издания часть файлов
+# исключена, а мастера остаются на диске — ими собирается прежнее издание
+# для старых оплаченных заказов. Число на странице считается по текущему
+# изданию, иначе страница краснеет на том, что покупателю и не уходит.
+ТЕКУЩИЙ_ZIP = re.compile(
+    r"'(?P<sku>[a-z0-9]+)'\s*=>\s*\[(?P<тело>.*?)\n        \],",
+    re.S,
+)
+ИЗДАНИЕ = re.compile(r"'(?P<имя>[^']+\.zip)'\s*=>\s*\[(?P<файлы>[^\]]*)\]")
+ФАЙЛ_ИЗДАНИЯ = re.compile(r"'([^']+)'")
+
 # Шапка страницы товара: «ПОЛНЫЙ КОМПЛЕКТ P6 / 86 ФАЙЛОВ»
 EYEBROW = re.compile(r'class="eyebrow"[^>]*>[^<]*?/\s*(\d+)\s*ФАЙЛ[А-Я]*\s*<')
 PAGE_SKU = re.compile(r'data-sku="([a-z0-9]+)"')
@@ -101,7 +113,30 @@ def sources(manifest: Path) -> dict[str, str]:
     return dict(SOURCE.findall(section.group(1) if section else ""))
 
 
-def delivered(root: Path) -> dict[str, str]:
+def excluded_by_edition() -> dict[str, set[str]]:
+    """sku → имена файлов, которых нет в его ТЕКУЩЕМ издании выдачи.
+
+    Источник тот же, что у сборщика, — `products-config.php`. Второго списка
+    здесь не заводится: разойдясь с первым, он сделал бы проверку проверкой
+    самой себя.
+    """
+    if not CONFIG.is_file():
+        return {}
+    text = CONFIG.read_text(encoding="utf-8")
+    out: dict[str, set[str]] = {}
+    for m in ТЕКУЩИЙ_ZIP.finditer(text):
+        тело = m.group("тело")
+        текущий = re.search(r"'zip'\s*=>\s*'([^']+)'", тело)
+        блок = re.search(r"'editions'\s*=>\s*\[(.*?)\n            \]", тело, re.S)
+        if not (текущий and блок):
+            continue
+        for изд in ИЗДАНИЕ.finditer(блок.group(1)):
+            if изд.group("имя") == текущий.group(1):
+                out[m.group("sku")] = set(ФАЙЛ_ИЗДАНИЯ.findall(изд.group("файлы")))
+    return out
+
+
+def delivered(root: Path, skip_extra: set[str] | None = None) -> dict[str, str]:
     """Что покупатель получит из этой папки: путь внутри неё → хэш файла.
 
     Служебные файлы исключаются на любой глубине — так же, как в
@@ -110,7 +145,7 @@ def delivered(root: Path) -> dict[str, str]:
     не видит, и требовать его наличия значило бы сравнивать то, чего
     в архиве нет.
     """
-    skip = NOT_DELIVERED | NOT_LISTED
+    skip = NOT_DELIVERED | NOT_LISTED | (skip_extra or set())
     return {
         item.relative_to(root).as_posix():
             hashlib.sha256(item.read_bytes()).hexdigest()
@@ -211,12 +246,13 @@ def check_pages(dirs: dict[str, str]) -> int:
             print(f"НЕТ ПАПКИ  {page.name}: {folder}")
             broken += 1
             continue
-        promised, actual = int(number.group(1)), len(delivered(package))
+        actual = len(delivered(package, excluded_by_edition().get(sku)))
+        promised = int(number.group(1))
         if promised == actual:
             continue
         broken += 1
         print(f"ЧИСЛО НА СТРАНИЦЕ  {page.name}: обещано {promised}, "
-              f"в {folder} лежит {actual}")
+              f"в {folder} уходит покупателю {actual}")
     return broken
 
 
