@@ -628,27 +628,76 @@ function mvb_with_order_lock_strict(string $orderFile, callable $fn): array
         fclose($lock);
         return ['ok' => false, 'result' => null];
     }
+    $записано = false;
     try {
         $result = $fn($order);
-        mvb_write_order($orderFile, $order);
+        // Без резервной неатомарной записи: строгому пути нужна
+        // гарантия, а не «скорее всего сохранилось».
+        $записано = mvb_write_order($orderFile, $order, false);
     } finally {
         @flock($lock, LOCK_UN);
         fclose($lock);
     }
+
+    // Заказ не сохранён — значит и решения, принятого внутри $fn, на диске
+    // нет. Докладывать успех нельзя: вызывающий по нему отдаст товар.
+    if (!$записано) {
+        return ['ok' => false, 'result' => null];
+    }
+
     return ['ok' => true, 'result' => $result];
 }
 
-/** Запись заказа целиком: через временный файл и rename, чтобы читатель
- *  никогда не увидел половину JSON. */
-function mvb_write_order(string $orderFile, array $order): void
+/**
+ * Запись заказа целиком: через временный файл и rename, чтобы читатель
+ * никогда не увидел половину JSON.
+ *
+ * Возвращает true ТОЛЬКО после состоявшейся атомарной записи: временный
+ * файл записан и переименован поверх заказа. Любая другая развязка — false.
+ *
+ * Прежде функция была void и результат rename выбрасывала. Из-за этого
+ * mvb_with_order_lock_strict() докладывала ok: true даже когда заказ на
+ * диск не лёг, а download.php по такому ok отдавал архив кодом 200 с
+ * несохранённым счётчиком — то есть предел 30 скачиваний переставал быть
+ * гарантией. Ошибка записи обязана быть видна вызывающему.
+ *
+ * Резервная прямая запись оставлена для вызывающих, которым пропущенное
+ * обновление дороже возможного повтора (вебхук, страница успеха): им лучше
+ * записать неатомарно, чем не записать вовсе. Успехом она всё равно не
+ * называется — читатель может застать половину JSON.
+ *
+ * `$резерв = false` выключает и её. Так зовёт mvb_with_order_lock_strict():
+ * у выдачи файла цена ошибки обратная, и «записалось, но не атомарно и с
+ * ответом 503» означало бы сгоревшее скачивание из лимита покупателя.
+ * Строгому пути нужно либо атомарно, либо вообще ничего.
+ *
+ * `@` перед rename глушит только текст предупреждения, а не результат:
+ * возвращённое значение теперь проверяется. Предупреждение подавлено
+ * намеренно — при включённом display_errors оно ушло бы прямо в тело
+ * ответа, то есть в JSON страницы успеха или в поток архива.
+ */
+function mvb_write_order(string $orderFile, array $order, bool $резерв = true): bool
 {
     $json = json_encode($order, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-    $tmp = $orderFile . '.tmp' . getmypid();
-    if (@file_put_contents($tmp, $json) !== false) {
-        @rename($tmp, $orderFile);
-    } else {
-        @file_put_contents($orderFile, $json);
+    if ($json === false) {
+        return false;
     }
+
+    $tmp = $orderFile . '.tmp' . getmypid();
+    if (@file_put_contents($tmp, $json) === false) {
+        if ($резерв) {
+            @file_put_contents($orderFile, $json);   // не атомарно — см. выше
+        }
+        return false;
+    }
+
+    if (!@rename($tmp, $orderFile)) {
+        // Временный файл иначе остаётся в каталоге заказов навсегда.
+        @unlink($tmp);
+        return false;
+    }
+
+    return true;
 }
 
 /**
