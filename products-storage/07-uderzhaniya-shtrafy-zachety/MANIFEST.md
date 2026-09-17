@@ -15,7 +15,6 @@
 - `06-grafik-vozmeshcheniya.xlsx` — Excel: график возмещения удержанных сумм
 - `07-algoritm-proverki-uderzhaniy.pdf` — PDF: алгоритм проверки обоснованности удержаний
 - `08-tipovye-osnovaniya.docx` — Word: типовые основания для удержаний и как их оспорить
-- `09-sravnitelnaya-tablica.docx` — Word: сравнение с бесплатным материалом
 - `10-konsultaciya-po-delu.docx` — Word: форма для подготовки к консультации с юристом
 - `11-trebovanie-o-vozvrate-uderzhaniya.docx` — Word: требование о возврате гарантийного удержания по наступившему сроку — событие возврата наступило, спора ещё нет
 
