@@ -53,10 +53,10 @@ jobs:
           python-version: '3.11'
 
       # Pillow меряет размеры обложек (check_covers). PyYAML читает реестр
-      # проверок и данные карты товаров. Больше зависимостей вне
-      # стандартной библиотеки на весь набор нет — замер по импортам.
-      - name: Поставить Pillow и PyYAML
-        run: python3 -m pip install --quiet pillow pyyaml
+      # проверок и данные карты товаров. pytest запускает регрессионные
+      # тесты инструментов, включённые в публичный гейт.
+      - name: Поставить зависимости проверок
+        run: python3 -m pip install --quiet pillow pyyaml pytest
 
       - name: Проверки публичного контура
         run: python3 tools/run_checks.py --class public
@@ -84,8 +84,8 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Поставить Pillow и PyYAML
-        run: python3 -m pip install --quiet pillow pyyaml
+      - name: Поставить зависимости проверок
+        run: python3 -m pip install --quiet pillow pyyaml pytest
 
       - name: Проверки внутреннего контура
         run: python3 tools/run_checks.py --class internal
