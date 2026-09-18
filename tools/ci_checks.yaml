@@ -105,6 +105,13 @@
   зачем: число файлов на страницах и в карточках против диска
   требует: []
   решение: ''
+- id: test_sync_kit_file_counts
+  команда: python3 tools/test_sync_kit_file_counts.py
+  класс: public
+  блокирует: true
+  зачем: сторож источника числа файлов у товаров и бесплатных материалов
+  требует: []
+  решение: ''
 - id: check_free_materials
   команда: python3 tools/check_free_materials.py
   класс: public
