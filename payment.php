@@ -103,6 +103,18 @@ foreach ($items as $item) {
 }
 $items = $validatedItems;
 
+// Зачёт стоимости ступени. Считается на сервере по оплаченным заказам
+// этого же покупателя: браузер о зачёте ничего не сообщает и сообщить не
+// может — он передал только корзину и контакт. Итог пересчитывается из
+// позиций, чтобы сумма платежа и сумма чека брались из одного места.
+$upgradeResult = mvb_apply_upgrade_credit($items, $email, $phone);
+$items = $upgradeResult['items'];
+$upgrade = $upgradeResult['upgrade'];
+$total = 0;
+foreach ($items as $item) {
+    $total += (int)$item['price'];
+}
+
 if ($total <= 0) {
     http_response_code(422);
     echo json_encode(['ok' => false, 'message' => 'Некорректная сумма заказа'], JSON_UNESCAPED_UNICODE);
@@ -142,11 +154,20 @@ $orderData = [
     'description' => $description,
     'attribution' => $attribution,
     'status_key_hash' => hash('sha256', $statusKey),
+    'upgrade' => $upgrade,
     'payment_id' => null,
     'paid_at' => null,
 ];
 
 file_put_contents(ORDERS_DIR . '/' . $orderId . '.json', json_encode($orderData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
+// Заявка ставится ПОСЛЕ записи заказа: она ссылается на него по
+// идентификатору, и заявка на несуществующий заказ заблокировала бы право
+// покупателя до истечения срока. Блокировка берётся на файле ступени, и
+// заказ ядра в этот момент не заперт — порядок захвата один во всём коде.
+if ($upgrade) {
+    mvb_claim_upgrade((string)$upgrade['source_file'], $orderId);
+}
 
 // Создаём платеж в ЮКассе
 $paymentData = [

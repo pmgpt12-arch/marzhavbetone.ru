@@ -224,6 +224,13 @@
   зачем: цена берётся из одного места
   требует: []
   решение: ''
+- id: test_upgrade_credit
+  команда: php tools/test_upgrade_credit.php
+  класс: public
+  блокирует: true
+  зачем: стоимость ступени засчитывается при переходе на ядро, и только по своей покупке
+  требует: []
+  решение: ''
 - id: test_products_dir
   команда: php tools/test_products_dir.php
   класс: public
