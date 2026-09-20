@@ -80,11 +80,7 @@ if (!$order) {
 // пустое delivery.email_sent_at и слали покупателю письмо дважды, а запись,
 // сделанная позже, затирала поля первой.
 $adminMail = null;
-// Итог зачёта закрывается ПОСЛЕ снятия блокировки: заявка лежит в файле
-// заказа ступени, а не этого, и брать второй замок под первым незачем.
-$upgradeOutcome = null;
-$upgradeOrder = null;
-mvb_with_order_lock($orderFile, function (array &$locked) use ($status, $paymentId, $orderId, &$adminMail, &$upgradeOutcome, &$upgradeOrder) {
+mvb_with_order_lock($orderFile, function (array &$locked) use ($status, $paymentId, $orderId, &$adminMail) {
     $locked['payment_status'] = $status;
     $locked['payment_id'] = $paymentId;
     $locked['updated_at'] = date('c');
@@ -127,15 +123,10 @@ mvb_with_order_lock($orderFile, function (array &$locked) use ($status, $payment
             // Выдача обязана идти под той же блокировкой: её защита от
             // повтора — поле в этом же файле заказа.
             mvb_deliver_and_notify($locked);
-            $upgradeOutcome = 'used';
-            $upgradeOrder = $locked;
             break;
 
         case 'canceled':
             $locked['status'] = 'canceled';
-            // Платёж не прошёл — право на зачёт возвращается покупателю.
-            $upgradeOutcome = 'released';
-            $upgradeOrder = $locked;
             break;
 
         case 'waiting_for_capture':
@@ -149,10 +140,6 @@ mvb_with_order_lock($orderFile, function (array &$locked) use ($status, $payment
 // держать на этом заказ значит держать на нём второй процесс.
 if ($adminMail) {
     mail(ADMIN_EMAIL, $adminMail['subject'], $adminMail['body'], $adminMail['headers']);
-}
-
-if ($upgradeOutcome !== null && is_array($upgradeOrder)) {
-    mvb_settle_upgrade($upgradeOrder, $upgradeOutcome);
 }
 
 // Отвечаем ЮКассе успехом
