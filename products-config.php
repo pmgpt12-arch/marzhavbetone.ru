@@ -424,6 +424,29 @@ function mvb_resolve_product(array $item): ?array
  * Собирает (и кэширует) архив продукта в DELIVERY_DIR.
  * Возвращает абсолютный путь к zip либо null при ошибке.
  */
+/**
+ * Есть ли среди мастеров продукта файл новее собранного архива.
+ *
+ * Сравнение по времени правки, а не по хешу состава: хеш потребовал бы
+ * читать все файлы на каждой выдаче, а вопрос здесь ровно один — не
+ * устарел ли архив.
+ */
+function mvb_product_sources_newer_than(string $sourceDir, int $zipMtime): bool
+{
+    if (!is_dir($sourceDir)) {
+        return false;
+    }
+    $iterator = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($sourceDir, FilesystemIterator::SKIP_DOTS)
+    );
+    foreach ($iterator as $file) {
+        if ($file->isFile() && $file->getMTime() > $zipMtime) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function mvb_build_product_zip(string $sku): ?string
 {
     $catalog = mvb_products();
@@ -433,7 +456,13 @@ function mvb_build_product_zip(string $sku): ?string
     $sourceDir = PRODUCTS_DIR . '/' . $catalog[$sku]['dir'];
     $zipPath = DELIVERY_DIR . '/' . $catalog[$sku]['zip'];
 
-    if (is_file($zipPath) && filesize($zipPath) > 0) {
+    // Кэш действителен, пока мастера не изменились. Раньше условием было
+    // одно существование архива — и обновление файлов продукта до покупателя
+    // не доезжало: архив, собранный прошлой версией, отдавался дальше, а
+    // `orders/` из заливки исключена, то есть сам по себе он не исчезнет.
+    // Исправленный файл, не дошедший до покупателя, равен неисправленному.
+    if (is_file($zipPath) && filesize($zipPath) > 0
+        && !mvb_product_sources_newer_than($sourceDir, (int)filemtime($zipPath))) {
         return $zipPath;
     }
     if (!is_dir($sourceDir)) {

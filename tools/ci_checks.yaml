@@ -224,6 +224,20 @@
   зачем: цена берётся из одного места
   требует: []
   решение: ''
+- id: test_delivery_cache_freshness
+  команда: php tools/test_delivery_cache_freshness.php
+  класс: public
+  блокирует: true
+  зачем: покупателю уходит архив из текущих файлов продукта, а не из прошлых
+  требует: []
+  решение: ''
+- id: check_storefront_claims
+  команда: python3 tools/check_storefront_claims.py
+  класс: public
+  блокирует: true
+  зачем: страница товара не обещает проверки, которой нет в его файлах
+  требует: []
+  решение: ''
 - id: test_products_dir
   команда: php tools/test_products_dir.php
   класс: public
