@@ -1,6 +1,6 @@
 # S1 «Система получения оплаты за выполненные работы» — кандидат
 
-Редакция: `s1-candidate-2026-09-27-r2`. Статус: **BUILD CANDIDATE / NO PUBLIC LAUNCH**.
+Редакция: `s1-candidate-2026-09-27-r3`. Статус: **BUILD CANDIDATE / NO PUBLIC LAUNCH**.
 
 Внутренний документ. Кандидат не адресован ни одним sku в
 `products-config.php`, лежит вне `products-storage/` и вне деплоя.
@@ -29,4 +29,6 @@
 ## Служебные (не выдаются)
 
 - `MANIFEST.md`
-- `ROUTE-MAP.json`
+
+Машинная карта маршрута — `tools/candidates/S1-ROUTE-MAP.json`, вне этой папки:
+выдача архивирует папку целиком, и файл карты ушёл бы покупателю.
