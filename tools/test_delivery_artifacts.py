@@ -107,7 +107,7 @@ def формулы_книги(книга: Path) -> list[str]:
     формулы = []
     with zipfile.ZipFile(книга) as z:
         for лист in z.namelist():
-            if re.match(r"xl/worksheets/sheet\\d+\\.xml$", лист):
+            if re.match(r"xl/worksheets/sheet\d+\.xml$", лист):
                 xml = z.read(лист).decode("utf-8", "replace")
                 формулы.extend(html.unescape(m.group(1)) for m in ФОРМУЛА.finditer(xml))
     return формулы
