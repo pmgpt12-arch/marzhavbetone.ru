@@ -115,16 +115,109 @@ def test_каждый_шаг_имеет_инструмент_подтвержд�
         for t in s["tools"]:
             assert t in R.FILES, f"{s['id']}: инструмент {t} не входит в состав"
         assert len(s["confirmation"]) > 30, f"{s['id']}: нет проверяемого подтверждения"
-        assert s["next"] in ids or s["next"] == "END", f"{s['id']}: следующий шаг {s['next']} не существует"
+        if s["next"] == R.SCENARIO_NEXT:
+            assert s["id"] in ("S0", "S1"), f"{s['id']}: следующий шаг «по ситуации» допустим только у S0 и S1"
+        else:
+            assert s["next"] in ids or s["next"] == "END", f"{s['id']}: следующий шаг {s['next']} не существует"
         for b in s["boundaries"]:
             assert b in R.BOUNDARIES, f"{s['id']}: неизвестная граница {b}"
-    # маршрут связен: из S0 по «next» достигается END через все шаги
-    seen, cur = [], "S0"
-    while cur != "END":
-        assert cur not in seen, f"цикл в маршруте на {cur}"
-        seen.append(cur)
-        cur = next(s for s in R.STEPS if s["id"] == cur)["next"]
-    assert seen == ids, "не все шаги лежат на основном пути"
+    # каждый шаг, кроме выбора ситуации и проверки по желанию, лежит на пути
+    # хотя бы одной ситуации
+    вне_путей = set(ids) - R.scenario_steps() - {"S0", "S1"}
+    assert not вне_путей, f"шаги вне всех путей: {sorted(вне_путей)}"
+
+
+def _шаг(sid: str) -> dict:
+    return next(s for s in R.STEPS if s["id"] == sid)
+
+
+def test_каждый_сценарий_имеет_однозначный_старт_и_следующий_шаг() -> None:
+    ids = [sc["id"] for sc in R.SCENARIOS]
+    assert len(ids) == len(set(ids)), "повторяющиеся ситуации"
+    for sc in R.SCENARIOS:
+        путь = sc["path"]
+        assert sc["start"] == путь[0], f"{sc['id']}: стартовый шаг не совпадает с началом пути"
+        assert len(путь) == len(set(путь)), f"{sc['id']}: шаг повторяется в пути"
+        for a, b in zip(путь, путь[1:]):
+            assert _шаг(a)["next"] == b, (
+                f"{sc['id']}: после {a} в пути {b}, а в шаге {a} следующим назван {_шаг(a)['next']}")
+        assert _шаг(путь[-1])["next"] == "END", f"{sc['id']}: путь не доходит до конца маршрута"
+    # то же в файлах покупателя: стартовый и следующий шаг в карте ситуаций,
+    # путь — в алгоритме
+    карта = docx_text(C / "01-karta-situacii-i-granic.docx")
+    алгоритм = docx_text(C / "03-algoritm-dejstviy.docx")
+    старт = START_HERE()
+    for sc in R.SCENARIOS:
+        путь = " → ".join(x[1:] for x in sc["path"])
+        строка = (f"{sc['id']}. {sc['title']} {sc['signs']} Шаг {sc['start'][1:]} {путь} "
+                  f"шаг {sc['path'][1][1:]}")
+        assert строка in карта, f"файл 01: строка ситуации {sc['id']} расходится с картой маршрута"
+        assert f"{sc['id']}. {sc['title']} Шаг {sc['start'][1:]} {путь}" in алгоритм, (
+            f"файл 03: путь ситуации {sc['id']} расходится с картой маршрута")
+        assert f"Начать: шаг {sc['start'][1:]}. Путь: шаги {путь}." in старт, (
+            f"00-START-HERE: ситуация {sc['id']} расходится с картой маршрута")
+    карта_json = json.loads((C / "ROUTE-MAP.json").read_text(encoding="utf-8"))
+    assert карта_json["scenarios"] == json.loads(json.dumps(R.SCENARIOS, ensure_ascii=False))
+
+
+def START_HERE() -> str:
+    return (C / "00-START-HERE.txt").read_text(encoding="utf-8")
+
+
+def test_основной_сценарий_ведёт_напрямую_s6_s12() -> None:
+    прямой = [f"S{i}" for i in range(6, 13)]
+    оформление = {"S2", "S3", "S4", "S5"}
+    осн = next(sc for sc in R.SCENARIOS if sc["id"] == R.MAIN_SCENARIO)
+    assert "КС-2/КС-3" in осн["signs"] and "срок оплаты истёк" in осн["signs"], "основная ситуация описана не так, как утверждено"
+    assert осн["path"] == прямой, f"основная ситуация идёт не S6–S12: {осн['path']}"
+    # не сверены взаиморасчёты — тоже с S6 и реестра взаиморасчётов, без S2–S5
+    несверено = next(sc for sc in R.SCENARIOS if "не сверены" in sc["title"])
+    assert несверено["path"] == прямой, f"ситуация «{несверено['title']}» уходит в оформление актов"
+    assert any("реестр взаиморасчётов" in f for f in _шаг("S6")["forks"]), "S6 не ведёт несверенный долг через реестр взаиморасчётов"
+    # S2–S5 — только там, где документы не оформлены, не переданы или есть замечания
+    for sc in R.SCENARIOS:
+        if оформление & set(sc["path"]):
+            assert re.search(r"не оформлены|не переданы|замечани|не подписывает", sc["title"]), (
+                f"ситуация «{sc['title']}» без причины проходит шаги 2–5")
+    алгоритм = docx_text(C / "03-algoritm-dejstviy.docx")
+    assert "Основной путь при просроченной оплате — шаги 6–12" in алгоритм
+
+
+def test_детальные_вопросы_не_обязательный_вход() -> None:
+    s0, s1 = _шаг("S0"), _шаг("S1")
+    assert "02-pervichnaya-proverka-i-kontrol.xlsx" not in s0["tools"], "выбор ситуации требует опросник файла 02"
+    assert s1.get("optional") and s1["id"] not in R.scenario_steps(), "детальная проверка стоит на обязательном пути"
+    старт = START_HERE()
+    первая_ситуация = старт.find(f"{R.SCENARIOS[0]['id']}. {R.SCENARIOS[0]['title']}")
+    assert 0 <= первая_ситуация < старт.find("02-pervichnaya"), "первый экран начинается не с выбора ситуации"
+    assert "Отвечать на вопросы файла 02 не нужно" in старт
+    assert "ответьте\n   на все вопросы" not in старт, "первый экран требует ответить на все вопросы"
+    маршрут = xlsx_text(C / "02-pervichnaya-proverka-i-kontrol.xlsx")
+    assert "Детальная проверка — по желанию" in маршрут and "Необязательно" in маршрут
+    карта = docx_text(C / "01-karta-situacii-i-granic.docx")
+    assert "Для выбора ситуации она не обязательна" in карта
+
+
+def test_стороны_только_субподрядчик_и_заказчик() -> None:
+    роль = re.compile(r"(?<![А-Яа-яЁё])(подрядчик|генподрядчик)", re.I)
+    плохие = []
+    for f in delivered():
+        for m in set(роль.findall(buyer_text(f))):
+            плохие.append(f"{f.name}: «{m}»")
+    assert not плохие, "в покупательском тексте осталась роль «Подрядчик»:\n  " + "\n  ".join(плохие)
+    for name in ("05-akt-vypolnennyh-rabot.docx", "11-peregovory-i-perenos-sroka.docx", "13-pretenziya.docx"):
+        t = docx_text(C / name)
+        assert "Субподрядчик" in t and "Заказчик" in t, f"{name}: стороны не названы"
+    кс = xlsx_text(C / "04-ks-2-ks-3.xlsx")
+    assert "Субподрядчик" in кс and "Заказчик" in кс
+
+
+def test_устная_договорённость_фиксируется_документом() -> None:
+    утв = ("Итог устной договорённости фиксируют документом с основанием, суммой, "
+           "сроком оплаты и полномочиями подписанта.")
+    assert утв in docx_text(C / "11-peregovory-i-perenos-sroka.docx"), "нет утверждённой формулировки"
+    for f in delivered():
+        assert "Устная договорённость в споре не существует" not in buyer_text(f), f"{f.name}: старая фраза"
 
 
 def test_нет_файлов_ради_счётчика() -> None:
@@ -302,8 +395,15 @@ def test_эталон_больше_десяти_оплат() -> None:
 # ─────────────────────── 3. прогон в LibreOffice ───────────────────────
 
 def _lo_ready() -> str | None:
-    if not shutil.which("soffice"):
+    soffice = shutil.which("soffice")
+    if not soffice:
         return "soffice не найден"
+    # Пакет libreoffice-core ставит soffice без Calc: тогда книгу он не
+    # открывает («source file could not be loaded»), и это не провал кандидата,
+    # а неполная среда. Системные пакеты тест не ставит.
+    программа = Path(soffice).resolve().parent
+    if not (программа / "libsclo.so").exists():
+        return f"LibreOffice без модуля Calc ({программа}), установлен только core"
     try:
         import openpyxl  # noqa: F401
     except ImportError:
