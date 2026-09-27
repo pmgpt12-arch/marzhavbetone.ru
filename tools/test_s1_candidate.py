@@ -99,12 +99,14 @@ def test_состав_совпадает_с_картой() -> None:
         f"лишние: {sorted(фактически - set(R.FILES))}; нет: {sorted(set(R.FILES) - фактически)}")
     for n in R.INTERNAL:
         assert (C / n).is_file(), f"нет служебного файла {n}"
+    assert not (C / "ROUTE-MAP.json").exists(), "ROUTE-MAP.json лежит в папке выдачи"
 
 
 def test_карта_маршрута_не_отстала_от_источника() -> None:
-    на_диске = json.loads((C / "ROUTE-MAP.json").read_text(encoding="utf-8"))
+    assert R.ROUTE_MAP.parent != C and C not in R.ROUTE_MAP.parents, "карта маршрута внутри папки выдачи"
+    на_диске = json.loads(R.ROUTE_MAP.read_text(encoding="utf-8"))
     assert на_диске == json.loads(json.dumps(R.route_map(), ensure_ascii=False)), (
-        "ROUTE-MAP.json расходится с s1_route.py — пересоберите кандидат")
+        f"{R.ROUTE_MAP.name} расходится с s1_route.py — пересоберите кандидат")
 
 
 def test_каждый_шаг_имеет_инструмент_подтверждение_и_следующий_шаг() -> None:
@@ -115,16 +117,213 @@ def test_каждый_шаг_имеет_инструмент_подтвержд�
         for t in s["tools"]:
             assert t in R.FILES, f"{s['id']}: инструмент {t} не входит в состав"
         assert len(s["confirmation"]) > 30, f"{s['id']}: нет проверяемого подтверждения"
-        assert s["next"] in ids or s["next"] == "END", f"{s['id']}: следующий шаг {s['next']} не существует"
+        if s["next"] == R.SCENARIO_NEXT:
+            assert s["id"] in ("S0", "S1"), f"{s['id']}: следующий шаг «по ситуации» допустим только у S0 и S1"
+        elif s["next"] == R.GATE_ID:
+            assert s["id"] in ("S4", "S5"), f"{s['id']}: к проверке G ведут только шаги сдачи работ"
+        else:
+            assert s["next"] in ids or s["next"] == "END", f"{s['id']}: следующий шаг {s['next']} не существует"
         for b in s["boundaries"]:
             assert b in R.BOUNDARIES, f"{s['id']}: неизвестная граница {b}"
-    # маршрут связен: из S0 по «next» достигается END через все шаги
-    seen, cur = [], "S0"
-    while cur != "END":
-        assert cur not in seen, f"цикл в маршруте на {cur}"
-        seen.append(cur)
-        cur = next(s for s in R.STEPS if s["id"] == cur)["next"]
-    assert seen == ids, "не все шаги лежат на основном пути"
+    # каждый шаг, кроме выбора ситуации и проверки по желанию, лежит на пути
+    # хотя бы одной ситуации
+    вне_путей = set(ids) - R.scenario_steps() - {"S0", "S1"}
+    assert not вне_путей, f"шаги вне всех путей: {sorted(вне_путей)}"
+
+
+def _шаг(sid: str) -> dict:
+    return next(s for s in R.STEPS if s["id"] == sid)
+
+
+def test_каждый_сценарий_имеет_однозначный_старт_и_следующий_шаг() -> None:
+    ids = [sc["id"] for sc in R.SCENARIOS]
+    assert len(ids) == len(set(ids)), "повторяющиеся ситуации"
+    for sc in R.SCENARIOS:
+        путь = sc["path"]
+        assert sc["start"] == путь[0], f"{sc['id']}: стартовый шаг не совпадает с началом пути"
+        assert len(путь) == len(set(путь)), f"{sc['id']}: шаг повторяется в пути"
+        for a, b in zip(путь, путь[1:]):
+            assert _шаг(a)["next"] == b, (
+                f"{sc['id']}: после {a} в пути {b}, а в шаге {a} следующим назван {_шаг(a)['next']}")
+        конец = "END" if sc["gate"] == "before" else R.GATE_ID
+        assert _шаг(путь[-1])["next"] == конец, f"{sc['id']}: путь должен заканчиваться «{конец}»"
+    # то же в файлах покупателя: стартовый и следующий шаг в карте ситуаций,
+    # путь — в алгоритме
+    карта = docx_text(C / "01-karta-situacii-i-granic.docx")
+    алгоритм = docx_text(C / "03-algoritm-dejstviy.docx")
+    старт = START_HERE()
+    for sc in R.SCENARIOS:
+        путь = " → ".join(x[1:] for x in sc["path"])
+        маршрут = f"G → {путь}" if sc["gate"] == "before" else f"{путь} → G"
+        старт_ = (f"Проверка G, затем шаг {sc['start'][1:]}" if sc["gate"] == "before"
+                  else f"Шаг {sc['start'][1:]}")
+        строка = f"{sc['id']}. {sc['title']} {sc['signs']} {старт_} {маршрут}"
+        assert строка in карта, f"файл 01: строка ситуации {sc['id']} расходится с картой маршрута"
+        assert f"{sc['id']}. {sc['title']} {старт_} {маршрут}" in алгоритм, (
+            f"файл 03: путь ситуации {sc['id']} расходится с картой маршрута")
+        assert f"Начать: {старт_[0].lower()}{старт_[1:]}. Путь: {маршрут}." in старт, (
+            f"00-START-HERE: ситуация {sc['id']} расходится с картой маршрута")
+    карта_json = json.loads(R.ROUTE_MAP.read_text(encoding="utf-8"))
+    assert карта_json["scenarios"] == json.loads(json.dumps(R.SCENARIOS, ensure_ascii=False))
+
+
+def START_HERE() -> str:
+    return (C / "00-START-HERE.txt").read_text(encoding="utf-8")
+
+
+def test_основной_сценарий_ведёт_напрямую_s6_s12() -> None:
+    прямой = [f"S{i}" for i in range(6, 13)]
+    оформление = {"S2", "S3", "S4", "S5"}
+    осн = next(sc for sc in R.SCENARIOS if sc["id"] == R.MAIN_SCENARIO)
+    assert "КС-2/КС-3" in осн["signs"] and "срок оплаты истёк" in осн["signs"], "основная ситуация описана не так, как утверждено"
+    assert осн["path"] == прямой, f"основная ситуация идёт не S6–S12: {осн['path']}"
+    # не сверены взаиморасчёты — тоже с S6 и реестра взаиморасчётов, без S2–S5
+    несверено = next(sc for sc in R.SCENARIOS if "не сверены" in sc["title"])
+    assert несверено["path"] == прямой, f"ситуация «{несверено['title']}» уходит в оформление актов"
+    assert any("реестр взаиморасчётов" in f for f in _шаг("S6")["forks"]), "S6 не ведёт несверенный долг через реестр взаиморасчётов"
+    # S2–S5 — только там, где документы не оформлены, не переданы или есть замечания
+    for sc in R.SCENARIOS:
+        if оформление & set(sc["path"]):
+            assert re.search(r"не оформлены|не переданы|замечани|не подписывает", sc["title"]), (
+                f"ситуация «{sc['title']}» без причины проходит шаги 2–5")
+    алгоритм = docx_text(C / "03-algoritm-dejstviy.docx")
+    assert "Основной путь при просроченной оплате — шаги 6–12" in алгоритм
+
+
+def test_задолженность_только_через_проверку_G() -> None:
+    """S1-A3: неподписанные акты, непереданные документы, замечания и
+    молчание заказчика не ведут к фиксации задолженности и претензии."""
+    # в машинной карте: к шагу 6 не ведёт ни один шаг, только проверка G
+    assert R.GATE["pass"] == "S6"
+    ведут_к_6 = [s["id"] for s in R.STEPS if s["next"] == "S6"]
+    assert not ведут_к_6, f"шаг 6 достижим в обход проверки G: {ведут_к_6}"
+    assert len(R.GATE["conditions"]) >= 3
+    условия = " ".join(R.GATE["conditions"])
+    assert "подписан обеими сторонами" in условия and "срок истёк" in условия and "замечаний" in условия
+    for sc in R.SCENARIOS:
+        в_долг = R.DEBT_STEPS & set(sc["path"])
+        if sc["accepted"]:
+            assert sc["gate"] == "before", f"{sc['id']}: маршрут задолженности без проверки G"
+            assert "приняты" in sc["signs"] and "срок оплаты истёк" in sc["signs"], (
+                f"{sc['id']}: ситуация задолженности без принятых работ и истёкшего срока")
+        else:
+            assert not в_долг, f"{sc['id']}: работы не приняты, а путь идёт в шаги {sorted(в_долг)}"
+            assert sc["gate"] == "after", f"{sc['id']}: путь не заканчивается проверкой G"
+    # каждая строка «не выполнено» ведёт не в долг: ни шагов 6–12, ни файлов 11–15
+    долговые = re.compile(r"[Шш]аг(?:и)? (?:6|7|8|9|1[0-2])\b|файл(?:ы)? 1[1-5]\b|претензи[юя] (?:направ|подгот)")
+    for когда, дальше in R.GATE["fail"]:
+        m = долговые.search(дальше)
+        assert not m, f"проверка G, «{когда}»: следующий шаг ведёт в долг («{m.group(0)}»)"
+    молчание = dict(R.GATE["fail"])["Документы переданы, заказчик не подписывает и не отвечает"]
+    assert "долг не фиксируйте" in молчание and "повторно предъявите" in молчание
+    # шаги сдачи работ ссылаются на проверку G, а не на шаг 6
+    for sid in ("S4", "S5"):
+        текст = " ".join(_шаг(sid)["forks"])
+        assert "шаг 6" not in текст and "проверка G" in текст, f"{sid}: развилки ведут в обход проверки G"
+    # то же в файлах покупателя 00, 01, 03 и 02
+    старт, карта, алгоритм = START_HERE(), docx_text(C / "01-karta-situacii-i-granic.docx"), docx_text(C / "03-algoritm-dejstviy.docx")
+    for имя, текст in (("00", старт), ("01", карта), ("03", алгоритм)):
+        assert R.GATE["title"].lower() in текст.lower(), f"файл {имя}: нет проверки G"
+        for когда, дальше in R.GATE["fail"]:
+            assert дальше in " ".join(текст.split()), f"файл {имя}: нет строки проверки G «{когда}»"
+    assert "Работы выполнены и приняты, задолженность" not in старт, "START HERE описывает только ситуацию долга"
+    for sc in R.SCENARIOS:
+        if not sc["accepted"]:
+            строка = next(l for l in старт.splitlines() if l.startswith(f"{sc['id']}. "))
+            след = старт.splitlines()[старт.splitlines().index(строка) + 1]
+            assert "→ G." in след and "12" not in след, f"START HERE, {sc['id']}: путь ведёт в задолженность: {след}"
+    маршрут02 = xlsx_text(C / "02-pervichnaya-proverka-i-kontrol.xlsx")
+    assert "затем шаг 6" not in маршрут02, "файл 02 ведёт в шаг 6 в обход проверки G"
+    assert '"ПОДПИСЬ"' in маршрут02, "файл 02 не различает «не подписывает и не отвечает»"
+
+
+def test_start_here_не_обещает_всё_внутри() -> None:
+    старт = START_HERE()
+    for фраза in ("ВСЁ НЕОБХОДИМОЕ ВНУТРИ", "Других материалов", "не требуется"):
+        assert фраза.lower() not in старт.lower(), f"START HERE обещает полноту: «{фраза}»"
+    текст = " ".join(старт.split())
+    assert "Все рабочие инструменты маршрута включены" in текст
+    for документ in ("договор", "акты", "платёжные документы", "переписку"):
+        assert документ in текст, f"START HERE не называет «{документ}» среди того, что собирает покупатель"
+    assert "Исходные документы по своему объекту собираете вы" in текст
+
+
+def _служебные_из_выдачи() -> set[str]:
+    """Имена, которые mvb_build_product_zip не кладёт в архив, — из самой
+    выдачи, а не из копии списка: изменится выдача — изменится проверка."""
+    php = (R.ROOT / "products-config.php").read_text(encoding="utf-8")
+    fn = php[php.index("function mvb_build_product_zip"):]
+    список = re.search(r"\$service\s*=\s*\[([^\]]*)\]", fn).group(1)
+    return set(re.findall(r"'([^']+)'", список))
+
+
+def _архив_покупателя(папка: Path) -> list[str]:
+    служебные = _служебные_из_выдачи()
+    return sorted(p.relative_to(папка).as_posix() for p in папка.rglob("*")
+                  if p.is_file() and p.name not in служебные)
+
+
+def test_выдача_ровно_16_файлов_без_карты_маршрута() -> None:
+    assert len(R.FILES) == 16
+    assert "ROUTE-MAP.json" not in _служебные_из_выдачи(), "проверка опиралась бы на исключение, а не на отсутствие"
+    архив = _архив_покупателя(C)
+    assert архив == sorted(R.FILES), (
+        f"в архив попало {len(архив)} файлов: лишние {sorted(set(архив) - set(R.FILES))}, "
+        f"нет {sorted(set(R.FILES) - set(архив))}")
+    assert not any("ROUTE-MAP" in n or n.endswith(".json") for n in архив), "служебная карта в выдаче"
+    # сборка в папку выдачи (как её будут собирать в products-storage) не
+    # кладёт туда карту маршрута
+    try:
+        import build_s1_candidate as B
+    except SystemExit as e:
+        ПРОПУСКИ.append(f"выдача из генератора: {e}")
+        return
+    tmp = Path(tempfile.mkdtemp(prefix="s1-out-"))
+    try:
+        B.build(tmp / "izdanie")
+        архив = _архив_покупателя(tmp / "izdanie")
+        assert архив == sorted(R.FILES) and len(архив) == 16, f"генератор кладёт в выдачу: {архив}"
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def test_детальные_вопросы_не_обязательный_вход() -> None:
+    s0, s1 = _шаг("S0"), _шаг("S1")
+    assert "02-pervichnaya-proverka-i-kontrol.xlsx" not in s0["tools"], "выбор ситуации требует опросник файла 02"
+    assert s1.get("optional") and s1["id"] not in R.scenario_steps(), "детальная проверка стоит на обязательном пути"
+    старт = START_HERE()
+    первая_ситуация = старт.find(f"{R.SCENARIOS[0]['id']}. {R.SCENARIOS[0]['title']}")
+    assert 0 <= первая_ситуация < старт.find("02-pervichnaya"), "первый экран начинается не с выбора ситуации"
+    assert "Отвечать на вопросы файла 02 не нужно" in старт
+    assert "ответьте\n   на все вопросы" not in старт, "первый экран требует ответить на все вопросы"
+    маршрут = xlsx_text(C / "02-pervichnaya-proverka-i-kontrol.xlsx")
+    assert "Детальная проверка — по желанию" in маршрут and "Необязательно" in маршрут
+    карта = docx_text(C / "01-karta-situacii-i-granic.docx")
+    assert "Для выбора ситуации она не обязательна" in карта
+
+
+def test_стороны_только_субподрядчик_и_заказчик() -> None:
+    # Класс ошибки, а не отдельные слова: любая сторона, кроме субподрядчика и
+    # заказчика. «Субподрядчик» не ловится — перед «подрядчик» стоит буква.
+    роль = re.compile(r"(?<![А-Яа-яЁё])(подрядчик|генподрядчик|инвестор|иные участники)", re.I)
+    плохие = []
+    for f in delivered():
+        for m in set(роль.findall(buyer_text(f))):
+            плохие.append(f"{f.name}: «{m}»")
+    assert not плохие, "в покупательском тексте третья сторона или роль «Подрядчик»:\n  " + "\n  ".join(плохие)
+    for name in ("05-akt-vypolnennyh-rabot.docx", "11-peregovory-i-perenos-sroka.docx", "13-pretenziya.docx"):
+        t = docx_text(C / name)
+        assert "Субподрядчик" in t and "Заказчик" in t, f"{name}: стороны не названы"
+    кс = xlsx_text(C / "04-ks-2-ks-3.xlsx")
+    assert "Субподрядчик" in кс and "Заказчик" in кс
+
+
+def test_устная_договорённость_фиксируется_документом() -> None:
+    утв = ("Итог устной договорённости фиксируют документом с основанием, суммой, "
+           "сроком оплаты и полномочиями подписанта.")
+    assert утв in docx_text(C / "11-peregovory-i-perenos-sroka.docx"), "нет утверждённой формулировки"
+    for f in delivered():
+        assert "Устная договорённость в споре не существует" not in buyer_text(f), f"{f.name}: старая фраза"
 
 
 def test_нет_файлов_ради_счётчика() -> None:
@@ -302,8 +501,15 @@ def test_эталон_больше_десяти_оплат() -> None:
 # ─────────────────────── 3. прогон в LibreOffice ───────────────────────
 
 def _lo_ready() -> str | None:
-    if not shutil.which("soffice"):
+    soffice = shutil.which("soffice")
+    if not soffice:
         return "soffice не найден"
+    # Пакет libreoffice-core ставит soffice без Calc: тогда книгу он не
+    # открывает («source file could not be loaded»), и это не провал кандидата,
+    # а неполная среда. Системные пакеты тест не ставит.
+    программа = Path(soffice).resolve().parent
+    if not (программа / "libsclo.so").exists():
+        return f"LibreOffice без модуля Calc ({программа}), установлен только core"
     try:
         import openpyxl  # noqa: F401
     except ImportError:
@@ -382,7 +588,10 @@ def test_libreoffice_прогон() -> None:
                    "q8": "Нет", "q9": "Нет", "q10": "Нет", "q11": "Да", "q12": "Да", "q13": "Нет",
                    "q14": "Нет", "q15": "Да", "q16": "Да"}
         варианты = {"ок": {}, "b2": {"q8": "Да"}, "b3": {"q8": "Да", "q9": "Да"}, "b4": {"q4": "Да"},
-                    "рано": {"q12": "Нет"}, "гарантийное": {"q14": "Да"}}
+                    "рано": {"q12": "Нет"}, "гарантийное": {"q14": "Да"},
+                    "не_оформлены": {"q2": "Нет", "q16": "Нет"},
+                    "замечания": {"q2": "Нет", "q7": "Да"},
+                    "молчит": {"q2": "Нет"}}
         for имя, правка in варианты.items():
             wb = openpyxl.load_workbook(C / "02-pervichnaya-proverka-i-kontrol.xlsx")
             ws = wb["Маршрут"]
@@ -435,6 +644,12 @@ def test_libreoffice_прогон() -> None:
             v = get(f"r_{имя}", "Маршрут", f"C{n}")
             assert str(v).startswith(начало), f"маршрут «{имя}»: {v}"
         assert "не переносит срок" in str(get("r_гарантийное", "Маршрут", f"C{n + 2}")), "нет предупреждения о гарантийном письме"
+        # работы не приняты — ситуация сдачи работ, следующий шаг не в долг
+        for имя, начало in {"не_оформлены": "СИТУАЦИЯ Г", "замечания": "СИТУАЦИЯ Д", "молчит": "СИТУАЦИЯ Е"}.items():
+            итог_, след = get(f"r_{имя}", "Маршрут", f"C{n}"), str(get(f"r_{имя}", "Маршрут", f"C{n + 1}"))
+            assert str(итог_).startswith(начало), f"маршрут «{имя}»: {итог_}"
+            assert "шаг 6" not in след and "претензи" not in след.replace("претензию не готовьте", ""), (
+                f"маршрут «{имя}» ведёт в задолженность: {след}")
         assert str(get("r_ок", "Контроль ответа", "G5")).startswith("Граница B2"), "контроль ответа не ведёт к границе B2"
 
         wb = openpyxl.load_workbook(r["вз"], data_only=True)["Взаиморасчёты"]
@@ -454,9 +669,13 @@ def test_сборка_воспроизводима() -> None:
     tmp = Path(tempfile.mkdtemp(prefix="s1-build-"))
     try:
         B.build(tmp / "c")
+        assert sorted(p.name for p in C.iterdir()) == sorted(p.name for p in (tmp / "c").iterdir()), (
+            "состав закоммиченного кандидата отличается от вывода генератора")
         разные = [p.name for p in sorted(C.iterdir())
                   if p.read_bytes() != (tmp / "c" / p.name).read_bytes()]
         assert not разные, f"закоммиченный кандидат отличается от вывода генератора: {разные}"
+        assert R.ROUTE_MAP.read_text(encoding="utf-8") == B.route_map_json(), (
+            f"{R.ROUTE_MAP.name} отличается от вывода генератора")
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
