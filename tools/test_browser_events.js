@@ -271,7 +271,7 @@ function формаМатериала() {
   };
 }
 
-проверка('test_lead_source_article_path_strips_query_and_hash', () => {
+проверка('test_lead_source_article_slug_strips_query_and_hash', () => {
   const форма = формаМатериала();
   песочница({ формы: [форма],
     url: 'https://marzhavbetone.ru/materialy/dengi.html',
@@ -279,15 +279,19 @@ function формаМатериала() {
               '?utm_source=dzen&utm_medium=article#vyvod' });
   const тело = форма.данныеФормы();
   равно(тело.getAll('content_id').length, 1, 'content_id ровно один');
-  равно(тело.get('content_id'), '/articles/ks-2-podpisany-deneg-net.html',
-        'путь статьи без домена, query и hash');
+  равно(тело.get('content_id'), 'ks-2-podpisany-deneg-net',
+        'slug статьи без /articles/, .html, query и hash');
+  // Контракт lead.php: content_id чистится по [^a-zA-Z0-9_\-.]. Slug его
+  // проходит без изменений — в magnet_delivered ляжет то же значение.
+  const значение = тело.get('content_id');
+  равно(значение.replace(/[^a-zA-Z0-9_\-.]/g, ''), значение, 'значение переживает очистку lead.php');
 });
 
 проверка('test_lead_source_form_on_article_page_itself', () => {
   const форма = формаМатериала();
   песочница({ формы: [форма],
     url: 'https://marzhavbetone.ru/articles/avans-po-dogovoru-podryada.html?x=1#forma' });
-  равно(форма.данныеФормы().get('content_id'), '/articles/avans-po-dogovoru-podryada.html',
+  равно(форма.данныеФормы().get('content_id'), 'avans-po-dogovoru-podryada',
         'форма на самой статье');
 });
 
@@ -330,7 +334,7 @@ function формаМатериала() {
   const тело = форма.данныеФормы();
   равно(тело.get('source'), 'site-dengi', 'поле source формы не тронуто');
   равно(тело.get('material'), 'dengi', 'material');
-  равно(тело.get('content_id'), '/articles/ks-2-podpisany-deneg-net.html', 'статья');
+  равно(тело.get('content_id'), 'ks-2-podpisany-deneg-net', 'статья');
 
   // Внутренний переход со статьи не перезаписывает ранее сохранённый канал.
   const local2 = new Map([['marzhavbetone-attribution', JSON.stringify({
@@ -354,21 +358,20 @@ function формаМатериала() {
   равно(тело.get('consent'), 'yes', 'consent');
   равно(тело.get('anonymous_id'), песок.ctx.window.mvbAnonymousId(), 'anonymous_id');
   равно(тело.get('session_id'), песок.ctx.window.mvbSessionId(), 'session_id');
-  истинно(тело.toString().indexOf(
-    'content_id=%2Farticles%2Fks-2-podpisany-deneg-net.html') >= 0,
+  истинно(/(^|&)content_id=ks-2-podpisany-deneg-net(&|$)/.test(тело.toString()),
     'в теле запроса: ' + тело.toString());
 
   // Поле, уже стоящее в разметке, скрипт не дублирует и не перетирает.
   const своя = формаМатериала();
-  своя.appendChild({ name: 'content_id', value: '/articles/zadano-razmetkoy.html' });
+  своя.appendChild({ name: 'content_id', value: 'zadano-razmetkoy' });
   песочница({ формы: [своя],
     url: 'https://marzhavbetone.ru/materialy/dengi.html',
     referrer: 'https://marzhavbetone.ru/articles/ks-2-podpisany-deneg-net.html' });
   равно(своя.данныеФормы().getAll('content_id').join(','),
-        '/articles/zadano-razmetkoy.html', 'поле разметки');
+        'zadano-razmetkoy', 'поле разметки');
 
   // В событиях просмотра статья-источник не появляется: это поле заявки.
-  истинно(события(песок).every((с) => с.content_id !== '/articles/ks-2-podpisany-deneg-net.html'),
+  истинно(события(песок).every((с) => с.content_id !== 'ks-2-podpisany-deneg-net'),
           'статья-источник утекла в событие просмотра');
 });
 

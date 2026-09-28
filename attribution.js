@@ -397,13 +397,15 @@ window.mvbTrackGoal = function (name) {
      статья хуже пустого поля. Ничего не запоминается — ни cookie, ни
      хранилища.
 
-     Значение — путь без домена, query и hash: `/articles/<slug>.html`.
+     Значение — slug статьи: `/articles/<slug>.html` → `<slug>`, без домена,
+     query и hash. Не путь: lead.php чистит content_id по
+     `[^a-zA-Z0-9_\-.]`, и путь со слешами доехал бы искажённым
+     (`articles<slug>.html`). Slug контракт поля проходит без потерь.
      Витрина /articles/index.html статьёй не считается. */
   function статьяИзПути(путь) {
-    var путьСтатьи = String(путь || '');
-    if (!/^\/articles\/[a-z0-9-]+\.html$/.test(путьСтатьи)) return null;
-    if (путьСтатьи === '/articles/index.html') return null;
-    return путьСтатьи;
+    var найдено = String(путь || '').match(/^\/articles\/([a-z0-9-]+)\.html$/);
+    if (!найдено || найдено[1] === 'index') return null;
+    return найдено[1];
   }
 
   function статьяИсточник() {
