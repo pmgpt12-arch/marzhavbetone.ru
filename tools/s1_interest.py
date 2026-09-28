@@ -16,13 +16,12 @@
 - период — непрерывный отрезок дней с одинаковыми долгом, ставкой, числом
   дней в году и признаком исключения; проценты за период округляются до
   копейки, итог — сумма округлённых периодов;
-- несколько актов с разными датами начала просрочки (`calculate_acts`): долг
-  дня — сумма остатков всех актов, первый день просрочки которых уже наступил;
-  оплата уменьшает долг своего акта со следующего дня. Акт входит в долг со
-  своей даты, поэтому его начало тоже открывает новый период. Объединять акты
-  в один долг с одной датой нельзя: это занижает или завышает проценты.
-  Проценты по каждому акту (`ActResult.total`) — справочная разбивка без
-  округления по периодам; сумма к взысканию — округлённые периоды общего долга.
+- несколько актов с разными датами начала просрочки считаются по отдельности
+  (`calculate_acts`): у каждого акта свои периоды и своё округление, итог —
+  точная сумма итогов по актам до копейки. Объединять акты в один долг
+  нельзя: ни с одной датой (занижает или завышает проценты), ни по дням
+  с округлением общих периодов (`calculate_combined`) — это расходится с
+  суммой по актам на копейки и служит в проверках только контрастом.
 
 Модуль без внешних зависимостей.
 """
@@ -116,77 +115,61 @@ class ActResult:
             (Decimal(str(a)) for _, a in self.act.payments), Decimal(0))
 
 
-def _day_weight(day: date, rates, excluded) -> Decimal:
-    if any(a <= day <= b for a, b in excluded):
-        return Decimal(0)
-    rate = [r for d, r in rates if d <= day][-1]
-    return rate / Decimal(100) / year_days(day)
-
-
-def calculate_acts(acts: list[Act], end: date,
-                   rates: list[tuple[date, float]],
-                   excluded: list[tuple[date, date]] = ()) -> tuple[Decimal, list[Period], list[ActResult]]:
-    """Проценты по нескольким актам с разными датами начала просрочки.
-
-    Одна строка на календарный день: долг дня — сумма остатков актов, по
-    которым просрочка уже началась. Возвращает итог (сумма округлённых
-    периодов общего долга), периоды и справочную разбивку по актам.
-    """
+def _check_acts(acts: list[Act]) -> None:
     if not acts:
         raise ValueError("нужен хотя бы один акт с суммой долга и датой начала просрочки")
     ids = [a.id for a in acts]
     if len(ids) != len(set(ids)):
         raise ValueError("идентификатор акта повторяется: оплату нельзя отнести однозначно")
-    rates = sorted((d, Decimal(str(r))) for d, r in rates)
-    first = min(a.start for a in acts)
-    if not rates or rates[0][0] > first:
-        raise ValueError("нет ставки на дату начала просрочки")
+
+
+def calculate_acts(acts: list[Act], end: date,
+                   rates: list[tuple[date, float]],
+                   excluded: list[tuple[date, date]] = ()) -> tuple[Decimal, list[ActResult]]:
+    """Проценты по нескольким актам с разными датами начала просрочки.
+
+    Каждый акт считается своим `calculate` (свои периоды, своё округление),
+    итог — сумма итогов по актам. Общий долг не собирается нигде.
+    """
+    _check_acts(acts)
+    out: list[ActResult] = []
     for a in acts:
-        if a.start > end:
-            raise ValueError(f"акт {a.id}: первый день просрочки позже последнего дня расчёта")
-        for d, s in a.payments:
-            if d < a.start or d > end or Decimal(str(s)) <= 0:
-                raise ValueError(f"акт {a.id}: оплата {d} {s} вне периода расчёта или неположительна")
-        if sum((Decimal(str(s)) for _, s in a.payments), Decimal(0)) > Decimal(str(a.debt)):
-            raise ValueError(f"акт {a.id}: оплаты превышают сумму долга")
+        total, periods = calculate(a.debt, a.start, end, rates, a.payments, excluded)
+        out.append(ActResult(a, total, periods))
+    return sum((r.total for r in out), Decimal("0.00")), out
 
-    def act_debt(a: Act, day: date) -> Decimal:
-        if day < a.start:
-            return Decimal(0)
-        return Decimal(str(a.debt)) - sum((Decimal(str(s)) for d, s in a.payments if d < day), Decimal(0))
 
+def calculate_combined(acts: list[Act], end: date,
+                       rates: list[tuple[date, float]],
+                       excluded: list[tuple[date, date]] = ()) -> tuple[Decimal, list[Period]]:
+    """НЕ для итога. Долг дня — сумма наступивших актов, округление по периодам
+    общего долга. Нужна проверкам как контраст: результат может отличаться от
+    суммы по актам на копейки."""
+    _check_acts(acts)
+    rates = sorted((d, Decimal(str(r))) for d, r in rates)
     periods: list[Period] = []
-    per_act = {a.id: Decimal(0) for a in acts}
-    day = first
+    day = min(a.start for a in acts)
     while day <= end:
-        w = _day_weight(day, rates, excluded)
-        debt = Decimal(0)
-        for a in acts:
-            ad = act_debt(a, day)
-            per_act[a.id] += ad * w
-            debt += ad
+        debt = sum((Decimal(str(a.debt)) - sum((Decimal(str(s)) for d, s in a.payments if d < day), Decimal(0))
+                    for a in acts if a.start <= day), Decimal(0))
         rate = [r for d, r in rates if d <= day][-1]
-        ex = any(a <= day <= b for a, b in excluded)
+        ex = any(x <= day <= y for x, y in excluded)
         key = (debt, rate, year_days(day), ex)
-        if periods and (periods[-1].debt, periods[-1].rate,
-                        periods[-1].year_days, periods[-1].excluded) == key:
+        if periods and (periods[-1].debt, periods[-1].rate, periods[-1].year_days, periods[-1].excluded) == key:
             periods[-1].end = day
         else:
             periods.append(Period(day, day, debt, rate, year_days(day), ex))
         day += timedelta(days=1)
-    total = sum((p.interest for p in periods), Decimal("0.00"))
-    out = [ActResult(a, per_act[a.id].quantize(Decimal("0.01"), rounding=ROUND_HALF_UP), [])
-           for a in acts]
-    return total, periods, out
+    return sum((p.interest for p in periods), Decimal("0.00")), periods
 
 
 if __name__ == "__main__":
-    total, periods, acts = calculate_acts(
+    total, acts = calculate_acts(
         [Act("КС-2 № 1", 700_000, date(2026, 7, 31), [(date(2026, 8, 20), 200_000)]),
          Act("КС-2 № 2", 300_000, date(2026, 8, 11))],
         end=date(2026, 9, 27), rates=[(date(2026, 1, 1), 20)])
     for r in acts:
         print(r.act.id, r.total, "долг на конец", r.debt_at_end)
-    for p in periods:
-        print("   ", p.start, p.end, p.days, p.debt, p.rate, p.year_days, p.interest)
+        for p in r.periods:
+            print("   ", p.start, p.end, p.days, p.debt, p.rate, p.year_days, p.interest)
     print("итого", total)
