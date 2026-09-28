@@ -15,13 +15,17 @@
 - дни исключаемых периодов (например, мораторий) не начисляются;
 - период — непрерывный отрезок дней с одинаковыми долгом, ставкой, числом
   дней в году и признаком исключения; проценты за период округляются до
-  копейки, итог — сумма округлённых периодов.
+  копейки, итог — сумма округлённых периодов;
+- несколько актов с разными датами начала просрочки считаются по отдельности
+  (`calculate_acts`): периоды одного акта не разрываются датами другого, итог —
+  сумма итогов по актам. Объединять акты в один долг с одной датой нельзя:
+  это занижает или завышает проценты.
 
 Модуль без внешних зависимостей.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date, timedelta
 from decimal import ROUND_HALF_UP, Decimal
 
@@ -83,11 +87,60 @@ def calculate(principal, start: date, end: date,
     return total, periods
 
 
+@dataclass
+class Act:
+    """Одна часть долга со своей датой начала просрочки.
+
+    `debt` — основной долг на первый день просрочки (`start`), то есть уже за
+    вычетом всего, что было оплачено и зачтено до этой даты. `payments` —
+    только оплаты, отнесённые к этому акту и поступившие не раньше `start`.
+    """
+    id: str
+    debt: Decimal | int | float | str
+    start: date
+    payments: list[tuple[date, float]] = field(default_factory=list)
+
+
+@dataclass
+class ActResult:
+    act: Act
+    total: Decimal
+    periods: list[Period]
+
+    @property
+    def debt_at_end(self) -> Decimal:
+        return Decimal(str(self.act.debt)) - sum(
+            (Decimal(str(a)) for _, a in self.act.payments), Decimal(0))
+
+
+def calculate_acts(acts: list[Act], end: date,
+                   rates: list[tuple[date, float]],
+                   excluded: list[tuple[date, date]] = ()) -> tuple[Decimal, list[ActResult]]:
+    """Проценты по нескольким актам с разными датами начала просрочки.
+
+    Каждый акт считается своим `calculate`, итог — сумма итогов по актам.
+    Общий долг с одной датой не собирается нигде: у каждого акта своя дата,
+    свой долг и свои оплаты.
+    """
+    if not acts:
+        raise ValueError("нужен хотя бы один акт с суммой долга и датой начала просрочки")
+    ids = [a.id for a in acts]
+    if len(ids) != len(set(ids)):
+        raise ValueError("идентификатор акта повторяется: оплату нельзя отнести однозначно")
+    out: list[ActResult] = []
+    for a in acts:
+        total, periods = calculate(a.debt, a.start, end, rates, a.payments, excluded)
+        out.append(ActResult(a, total, periods))
+    return sum((r.total for r in out), Decimal("0.00")), out
+
+
 if __name__ == "__main__":
-    total, periods = calculate(
-        1_000_000, date(2025, 1, 10), date(2025, 3, 31),
-        rates=[(date(2024, 10, 28), 21)],
-        payments=[(date(2025, 2, 14), 300_000)])
-    for p in periods:
-        print(p.start, p.end, p.days, p.debt, p.rate, p.year_days, p.interest)
+    total, acts = calculate_acts(
+        [Act("КС-2 № 1", 700_000, date(2026, 7, 31), [(date(2026, 8, 20), 200_000)]),
+         Act("КС-2 № 2", 300_000, date(2026, 8, 11))],
+        end=date(2026, 9, 27), rates=[(date(2026, 1, 1), 20)])
+    for r in acts:
+        print(r.act.id, r.total, "долг на конец", r.debt_at_end)
+        for p in r.periods:
+            print("   ", p.start, p.end, p.days, p.debt, p.rate, p.year_days, p.interest)
     print("итого", total)
