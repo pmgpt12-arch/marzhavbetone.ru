@@ -1,4 +1,6 @@
 import os
+import re
+import zipfile
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
@@ -24,6 +26,28 @@ PAID_URL = "https://marzhavbetone.ru/products/p3-shablony-ks2-ks3.html"
 thin_border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
 header_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
 header_font = Font(color="FFFFFF", bold=True, size=11)
+
+
+# Книга должна собираться побайтно одинаково: иначе каждый прогон
+# генератора меняет файл и архив в downloads/, хотя содержание то же.
+# openpyxl пишет в docProps/core.xml момент сохранения, а в zip — время
+# каждой записи; оба заменяются постоянными.
+XLSX_STAMP = b"2026-01-01T00:00:00Z"
+XLSX_ZIP_DATE = (2026, 1, 1, 0, 0, 0)
+
+
+def normalize_xlsx(filepath):
+    with zipfile.ZipFile(filepath) as src:
+        entries = [(info.filename, src.read(info)) for info in src.infolist()]
+    with zipfile.ZipFile(filepath, "w", zipfile.ZIP_DEFLATED) as dst:
+        for name, data in entries:
+            if name == "docProps/core.xml":
+                data = re.sub(rb"(<dcterms:(?:created|modified)[^>]*>)[^<]*",
+                              rb"\g<1>" + XLSX_STAMP, data)
+            info = zipfile.ZipInfo(name, XLSX_ZIP_DATE)
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o644 << 16
+            dst.writestr(info, data)
 
 
 def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_widths=None):
@@ -54,6 +78,7 @@ def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_
             ws.column_dimensions[get_column_letter(idx)].width = w
     
     wb.save(filepath)
+    normalize_xlsx(filepath)
     print(f"  [Excel] {filepath}")
 
 
@@ -183,17 +208,23 @@ def build_free_03():
         ]
     )
     
+    # Итог суммирует строки данных над собой и не включает свою ячейку.
+    # До 28.09.2026 здесь стоял SUM(E2:E20) в E7: итог ссылался на себя,
+    # и Calc показывал Err:522 (Issue #296).
+    data = [
+        [1, "Акт скрытых работ", "АОСР-001", "", 3, "ОК", ""],
+        [2, "Ведомость ресурсов", "КС-4-001", "", 2, "ОК", ""],
+        [3, "Журнал учета работ", "КС-6-001", "", 5, "ОК", ""],
+        [4, "Исполнительная схема", "ИС-001", "", 1, "Проверить", "Нет печати"],
+        ["", "", "", "", "", "", ""],
+    ]
+    last = 1 + len(data)
     create_excel(
         os.path.join(folder, "02-reestr-prilozheniy.xlsx"),
         "Реестр приложений к КС",
         headers=["№ п/п", "Название документа", "Номер", "Дата", "Кол-во листов", "Статус", "Примечание"],
-        rows=[
-            [1, "Акт скрытых работ", "АОСР-001", "", 3, "ОК", ""],
-            [2, "Ведомость ресурсов", "КС-4-001", "", 2, "ОК", ""],
-            [3, "Журнал учета работ", "КС-6-001", "", 5, "ОК", ""],
-            [4, "Исполнительная схема", "ИС-001", "", 1, "Проверить", "Нет печати"],
-            ["", "", "", "", "", "", ""],
-            ["", "", "", "ИТОГО листов:", "=SUM(E2:E20)", "", ""],
+        rows=data + [
+            ["", "", "", "ИТОГО листов:", f"=SUM(E2:E{last})", "", ""],
         ],
         col_widths=[8, 30, 14, 12, 12, 12, 25]
     )

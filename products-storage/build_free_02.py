@@ -1,4 +1,6 @@
 import os
+import re
+import zipfile
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
@@ -24,6 +26,28 @@ PAID_URL = "https://marzhavbetone.ru/products/p2-dopolnitelnye-raboty.html"
 thin_border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
 header_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
 header_font = Font(color="FFFFFF", bold=True, size=11)
+
+
+# Книга должна собираться побайтно одинаково: иначе каждый прогон
+# генератора меняет файл и архив в downloads/, хотя содержание то же.
+# openpyxl пишет в docProps/core.xml момент сохранения, а в zip — время
+# каждой записи; оба заменяются постоянными.
+XLSX_STAMP = b"2026-01-01T00:00:00Z"
+XLSX_ZIP_DATE = (2026, 1, 1, 0, 0, 0)
+
+
+def normalize_xlsx(filepath):
+    with zipfile.ZipFile(filepath) as src:
+        entries = [(info.filename, src.read(info)) for info in src.infolist()]
+    with zipfile.ZipFile(filepath, "w", zipfile.ZIP_DEFLATED) as dst:
+        for name, data in entries:
+            if name == "docProps/core.xml":
+                data = re.sub(rb"(<dcterms:(?:created|modified)[^>]*>)[^<]*",
+                              rb"\g<1>" + XLSX_STAMP, data)
+            info = zipfile.ZipInfo(name, XLSX_ZIP_DATE)
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o644 << 16
+            dst.writestr(info, data)
 
 
 def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_widths=None):
@@ -54,6 +78,7 @@ def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_
             ws.column_dimensions[get_column_letter(idx)].width = w
     
     wb.save(filepath)
+    normalize_xlsx(filepath)
     print(f"  [Excel] {filepath}")
 
 
@@ -234,15 +259,25 @@ def build_free_02():
         ]
     )
     
+    # Сумма = Объем (D) × Цена (F); пустая строка — пустая сумма, а не 0.
+    # Итог суммирует строки данных над собой и не включает свою ячейку.
+    # До 28.09.2026 здесь стояли G2 = G2*D2 и итог SUM(G2:G10) в G5: обе
+    # формулы ссылались на себя, и Calc показывал Err:522 (Issue #296).
+    def amount(r):
+        return f'=IF(OR(D{r}="",F{r}=""),"",D{r}*F{r})'
+
+    data = [
+        [1, "", "Пример: Устройство отмостки", 150, "м2", 850, amount(2), "", "Согласовано", ""],
+        [2, "", "", "", "", "", amount(3), "", "", ""],
+        [3, "", "", "", "", "", amount(4), "", "", ""],
+    ]
+    last = 1 + len(data)
     create_excel(
         os.path.join(folder, "04-reestr-doprabot.xlsx"),
         "Реестр допработ",
         headers=["№ п/п", "Дата поручения", "Описание работ", "Объем", "Ед. изм.", "Цена за ед.", "Сумма", "Дата согласования", "Статус", "Примечание"],
-        rows=[
-            [1, "", "Пример: Устройство отмостки", "150", "м2", "850", "=G2*D2", "", "Согласовано", ""],
-            [2, "", "", "", "", "", "", "", "", ""],
-            [3, "", "", "", "", "", "", "", "", ""],
-            ["", "", "", "", "", "ИТОГО:", "=SUM(G2:G10)", "", "", ""],
+        rows=data + [
+            ["", "", "", "", "", "ИТОГО:", f"=SUM(G2:G{last})", "", "", ""],
         ],
         col_widths=[8, 14, 30, 10, 10, 12, 12, 16, 14, 20]
     )
