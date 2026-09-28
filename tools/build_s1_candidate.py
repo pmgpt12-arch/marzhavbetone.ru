@@ -280,7 +280,7 @@ def normalize(path: Path) -> None:
             if info.filename == "docProps/core.xml":
                 data = STAMP.sub(rb"\g<1>2026-09-27T00:00:00Z\g<2>", data)
             elif info.filename == "docProps/app.xml":
-                data = APP.sub(b"<Application>Microsoft Excel</Application>", data)
+                data = APP.sub(b"<Application>Microsoft Excel Compatible / Openpyxl 3.1.5</Application>", data)
             zi = zipfile.ZipInfo(info.filename, date_time=(2026, 9, 27, 0, 0, 0))
             zi.compress_type = zipfile.ZIP_DEFLATED
             zi.external_attr = 0o644 << 16
@@ -998,20 +998,24 @@ def f08(out: Path):
         da.cell(row=r, column=7, value=(
             f'=IF(OR(B{r}="",E{r}=""),"",SUMIFS({ve},{vc},"Оплата",{vf},B{r},{vb},"<"&E{r})'
             f'+SUMIFS({ve},{vc},"Зачёт аванса по договору",{vf},B{r},{vb},"<"&E{r}))'))
-        da.cell(row=r, column=8, value=f'=IF(OR(B{r}="",E{r}=""),"",F{r}-G{r})')
+        # реестр заблокирован (двойной аванс, платёж без акта…) — сумм к переносу нет
+        da.cell(row=r, column=8, value=(
+            f'=IF(OR(B{r}="",E{r}=""),"",IF(NOT(ISNUMBER(Взаиморасчёты!$M$10)),"ЗАБЛОКИРОВАН",F{r}-G{r}))'))
         da.cell(row=r, column=9, value=(
             f'=IF(OR(B{r}="",E{r}=""),"",SUMIFS({ve},{vc},"Оплата",{vf},B{r},{vb},">="&E{r})'
             f'+SUMIFS({ve},{vc},"Зачёт аванса по договору",{vf},B{r},{vb},">="&E{r}))'))
-        da.cell(row=r, column=10, value=f'=IF(OR(B{r}="",E{r}=""),"",H{r}-I{r})')
+        da.cell(row=r, column=10, value=f'=IF(OR(B{r}="",E{r}=""),"",IF(NOT(ISNUMBER(H{r})),"ЗАБЛОКИРОВАН",H{r}-I{r}))')
         da.cell(row=r, column=11, value=(
             f'=IF(AND(B{r}="",C{r}="",D{r}=""),"",'
             f'IF(B{r}="","БЛОК: нужен идентификатор акта — по нему распределяются оплаты",'
             f'IF(COUNTIF($B$5:$B$34,B{r})>1,"БЛОК: идентификатор акта повторяется — оплату нельзя отнести однозначно",'
             f'IF(NOT(ISNUMBER(D{r})),"БЛОК: нужен последний день срока оплаты по этому акту",'
             f'IF(COUNTIF(Взаиморасчёты!$F$5:$F$504,B{r})=0,"БЛОК: во «Взаиморасчётах» нет ни одной операции по этому акту",'
+            f'IF(NOT(ISNUMBER(Взаиморасчёты!$M$10)),"БЛОК: реестр «Взаиморасчёты» заблокирован (например, двойной учёт аванса '
+            f'или платёж без акта) — исправьте строки с «БЛОК»: до этого долг по акту не посчитан и в файл 14 не переносится",'
             f'IF(N(H{r})<0,"БЛОК: до первого дня просрочки оплачено и зачтено больше, чем начислено по акту — проверьте распределение",'
             f'IF(N(J{r})<0,"БЛОК: оплаты с первого дня просрочки больше долга на первый день просрочки — проверьте распределение",'
-            f'"ок")))))))'))
+            f'"ок"))))))))'))
         da.cell(row=r, column=12, value=(
             f'=IF(OR(B{r}="",K{r}<>"ок"),"",IF(N(H{r})>0,"да","нет: долга на первый день просрочки нет"))'))
         for col in (6, 7, 8, 9, 10):
