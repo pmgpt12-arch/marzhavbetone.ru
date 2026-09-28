@@ -78,7 +78,11 @@ function песочница(опции) {
     location: { href: адрес.href, host: адрес.host, hostname: адрес.hostname,
                 pathname: адрес.pathname, search: адрес.search, hash: адрес.hash,
                 protocol: адрес.protocol },
-    localStorage: { getItem: () => null, setItem() {}, removeItem() {} },
+    localStorage: н.local
+      ? { getItem: (k) => (н.local.has(k) ? н.local.get(k) : null),
+          setItem: (k, v) => н.local.set(k, String(v)),
+          removeItem: (k) => н.local.delete(k) }
+      : { getItem: () => null, setItem() {}, removeItem() {} },
     sessionStorage: {
       getItem: (k) => (session.has(k) ? session.get(k) : null),
       setItem: (k, v) => session.set(k, String(v)),
@@ -233,6 +237,139 @@ console.log('события браузера');
   const сессия = поля.filter((п) => п && п.name === 'session_id');
   равно(сессия.length, 1, 'скрытое поле session_id в форме');
   равно(сессия[0].value, песок.ctx.window.mvbSessionId(), 'значение session_id');
+});
+
+/* Статья-источник заявки (MB001 L1-A).
+
+   Форма стоит на /materialy/…; в статье её нет. Статья попадает в заявку
+   через referrer своего хоста, форма на самой статье — через свой адрес.
+   Форма здесь — заглушка с полями разметки materialy/dengi.html; FormData
+   браузер собирает из всех input формы, и `данныеФормы` повторяет это
+   правило: заранее стоящие поля плюс добавленные скриптом. */
+function формаМатериала() {
+  const разметка = [
+    { name: 'material', value: 'dengi' },
+    { name: 'source', value: 'site-dengi' },
+    { name: 'name', value: 'Тест' },
+    { name: 'contact', value: '@test' },
+    { name: 'consent', value: 'yes' }
+  ];
+  const добавленные = [];
+  return {
+    action: 'https://marzhavbetone.ru/lead.php',
+    getAttribute: () => '../lead.php',
+    appendChild: (узел) => добавленные.push(узел),
+    querySelector: (селектор) => {
+      const м = String(селектор).match(/name="([^"]+)"/);
+      return м ? (разметка.concat(добавленные).find((п) => п.name === м[1]) || null) : null;
+    },
+    данныеФормы: () => {
+      const тело = new URLSearchParams();
+      for (const п of разметка.concat(добавленные)) тело.append(п.name, п.value);
+      return тело;
+    }
+  };
+}
+
+проверка('test_lead_source_article_path_strips_query_and_hash', () => {
+  const форма = формаМатериала();
+  песочница({ формы: [форма],
+    url: 'https://marzhavbetone.ru/materialy/dengi.html',
+    referrer: 'https://marzhavbetone.ru/articles/ks-2-podpisany-deneg-net.html' +
+              '?utm_source=dzen&utm_medium=article#vyvod' });
+  const тело = форма.данныеФормы();
+  равно(тело.getAll('content_id').length, 1, 'content_id ровно один');
+  равно(тело.get('content_id'), '/articles/ks-2-podpisany-deneg-net.html',
+        'путь статьи без домена, query и hash');
+});
+
+проверка('test_lead_source_form_on_article_page_itself', () => {
+  const форма = формаМатериала();
+  песочница({ формы: [форма],
+    url: 'https://marzhavbetone.ru/articles/avans-po-dogovoru-podryada.html?x=1#forma' });
+  равно(форма.данныеФормы().get('content_id'), '/articles/avans-po-dogovoru-podryada.html',
+        'форма на самой статье');
+});
+
+проверка('test_lead_source_absent_on_direct_or_non_article_entry', () => {
+  const случаи = [
+    ['прямой заход', ''],
+    ['поиск', 'https://yandex.ru/search/?text=ks-2'],
+    ['чужой сайт с /articles/', 'https://dzen.ru/articles/ks-2-podpisany-deneg-net.html'],
+    ['главная', 'https://marzhavbetone.ru/'],
+    ['витрина разборов', 'https://marzhavbetone.ru/articles/index.html'],
+    ['каталог разборов', 'https://marzhavbetone.ru/articles/'],
+    ['другой материал', 'https://marzhavbetone.ru/materialy/dogovor.html'],
+    ['битый referrer', 'не адрес']
+  ];
+  for (const [что, откуда] of случаи) {
+    const форма = формаМатериала();
+    песочница({ формы: [форма], referrer: откуда,
+      url: 'https://marzhavbetone.ru/materialy/dengi.html' });
+    равно(форма.данныеФормы().get('content_id'), null, что + ': приписан ложный источник');
+  }
+});
+
+проверка('test_lead_source_keeps_utm_and_existing_fields', () => {
+  /* Заход по UTM-ссылке прямо на материал после статьи: метки остаются в
+     атрибуции, форма сохраняет свои поля, а статья добавляется рядом. */
+  const local = new Map();
+  const форма = формаМатериала();
+  const песок = песочница({ формы: [форма], local,
+    url: 'https://marzhavbetone.ru/materialy/dengi.html' +
+         '?utm_source=telegram&utm_medium=post&utm_campaign=neoplata&utm_content=ks2',
+    referrer: 'https://marzhavbetone.ru/articles/ks-2-podpisany-deneg-net.html' });
+
+  const метки = песок.ctx.window.mvbAttribution();
+  равно(метки.last.source, 'telegram', 'utm_source');
+  равно(метки.last.medium, 'post', 'utm_medium');
+  равно(метки.last.campaign, 'neoplata', 'utm_campaign');
+  равно(метки.last.content, 'ks2', 'utm_content');
+  равно(метки.first.source, 'telegram', 'first touch');
+
+  const тело = форма.данныеФормы();
+  равно(тело.get('source'), 'site-dengi', 'поле source формы не тронуто');
+  равно(тело.get('material'), 'dengi', 'material');
+  равно(тело.get('content_id'), '/articles/ks-2-podpisany-deneg-net.html', 'статья');
+
+  // Внутренний переход со статьи не перезаписывает ранее сохранённый канал.
+  const local2 = new Map([['marzhavbetone-attribution', JSON.stringify({
+    first: { source: 'dzen', medium: 'article' },
+    last: { source: 'dzen', medium: 'article' } })]]);
+  const песок2 = песочница({ формы: [формаМатериала()], local: local2,
+    url: 'https://marzhavbetone.ru/materialy/dengi.html',
+    referrer: 'https://marzhavbetone.ru/articles/ks-2-podpisany-deneg-net.html' });
+  равно(песок2.ctx.window.mvbAttribution().last.source, 'dzen', 'last touch сохранён');
+
+});
+
+проверка('test_lead_form_serializes_source_with_all_fields', () => {
+  const форма = формаМатериала();
+  const песок = песочница({ формы: [форма],
+    url: 'https://marzhavbetone.ru/materialy/dengi.html',
+    referrer: 'https://marzhavbetone.ru/articles/ks-2-podpisany-deneg-net.html#top' });
+  const тело = форма.данныеФормы();
+  равно(тело.get('name'), 'Тест', 'name');
+  равно(тело.get('contact'), '@test', 'contact');
+  равно(тело.get('consent'), 'yes', 'consent');
+  равно(тело.get('anonymous_id'), песок.ctx.window.mvbAnonymousId(), 'anonymous_id');
+  равно(тело.get('session_id'), песок.ctx.window.mvbSessionId(), 'session_id');
+  истинно(тело.toString().indexOf(
+    'content_id=%2Farticles%2Fks-2-podpisany-deneg-net.html') >= 0,
+    'в теле запроса: ' + тело.toString());
+
+  // Поле, уже стоящее в разметке, скрипт не дублирует и не перетирает.
+  const своя = формаМатериала();
+  своя.appendChild({ name: 'content_id', value: '/articles/zadano-razmetkoy.html' });
+  песочница({ формы: [своя],
+    url: 'https://marzhavbetone.ru/materialy/dengi.html',
+    referrer: 'https://marzhavbetone.ru/articles/ks-2-podpisany-deneg-net.html' });
+  равно(своя.данныеФормы().getAll('content_id').join(','),
+        '/articles/zadano-razmetkoy.html', 'поле разметки');
+
+  // В событиях просмотра статья-источник не появляется: это поле заявки.
+  истинно(события(песок).every((с) => с.content_id !== '/articles/ks-2-podpisany-deneg-net.html'),
+          'статья-источник утекла в событие просмотра');
 });
 
 console.log('');
