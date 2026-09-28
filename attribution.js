@@ -384,12 +384,50 @@ window.mvbTrackGoal = function (name) {
      кладётся в разметку заранее — тогда его подберёт любой обработчик
      отправки, и править app.js не нужно. Без него lead.php не свяжет
      выдачу с посетителем. */
+
+  /* Статья-источник заявки (MB001 L1-A). Поле `content_id` lead.php уже
+     принимает и кладёт в magnet_delivered; до этой правки форма его не
+     слала, и лид не знал, из какой статьи пришёл.
+
+     Источник — только статья, и только достоверно: либо форма стоит на
+     самой статье, либо на страницу формы перешли со статьи этого же сайта
+     (referrer своего хоста; Referrer-Policy strict-origin-when-cross-origin
+     отдаёт внутри сайта полный адрес). Прямой заход, переход из поиска,
+     с витрины или с другой страницы сайта источника не получают: ложная
+     статья хуже пустого поля. Ничего не запоминается — ни cookie, ни
+     хранилища.
+
+     Значение — slug статьи: `/articles/<slug>.html` → `<slug>`, без домена,
+     query и hash. Не путь: lead.php чистит content_id по
+     `[^a-zA-Z0-9_\-.]`, и путь со слешами доехал бы искажённым
+     (`articles<slug>.html`). Slug контракт поля проходит без потерь.
+     Витрина /articles/index.html статьёй не считается. */
+  function статьяИзПути(путь) {
+    var найдено = String(путь || '').match(/^\/articles\/([a-z0-9-]+)\.html$/);
+    if (!найдено || найдено[1] === 'index') return null;
+    return найдено[1];
+  }
+
+  function статьяИсточник() {
+    var здесь = статьяИзПути(location.pathname);
+    if (здесь) return здесь;
+    try {
+      if (!document.referrer) return null;
+      var откуда = new URL(document.referrer);
+      if (откуда.host !== location.host) return null;
+      return статьяИзПути(откуда.pathname);
+    } catch (error) {
+      return null;
+    }
+  }
+
   try {
     var свои = {
       anonymous_id: window.mvbAnonymousId ? window.mvbAnonymousId() : null,
-      session_id: window.mvbSessionId ? window.mvbSessionId() : null
+      session_id: window.mvbSessionId ? window.mvbSessionId() : null,
+      content_id: статьяИсточник()
     };
-    if (свои.anonymous_id || свои.session_id) {
+    if (свои.anonymous_id || свои.session_id || свои.content_id) {
       var формы = document.querySelectorAll('form[action]') || [];
       for (var i = 0; i < формы.length; i++) {
         var форма = формы[i];
