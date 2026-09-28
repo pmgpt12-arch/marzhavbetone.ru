@@ -22,6 +22,7 @@
 """
 from __future__ import annotations
 
+import json
 import os
 import re
 import socket
@@ -76,6 +77,57 @@ def chromium_nearby() -> Path | None:
         if candidate.exists():
             return candidate
     return None
+
+
+def stale_cart(page, port: int, path: Path, prices: dict[str, int]) -> list[str]:
+    """Корзина из прошлого визита: повтор sku и ответ кассы «корзина обновлена».
+
+    Сверку по каталогу делает `payment.php` (`test_cart_reconcile.php`); здесь
+    проверяется, что браузер её исполняет: повтор схлопывается при загрузке,
+    а исправленная сервером корзина показывается вместо старой, без перехода
+    к оплате. `payment.php` подменён — заказ не создаётся.
+    """
+    rel = path.relative_to(ROOT).as_posix()
+    bad: list[str] = []
+    page.goto(f"http://127.0.0.1:{port}/{rel}", wait_until="load")
+    button = page.locator(".product-hero .add-to-cart").first
+    sku = button.get_attribute("data-sku")
+    name = button.get_attribute("data-product")
+    price = prices.get(sku, 0)
+    stale = [{"sku": sku, "name": name, "price": price + 750000},
+             {"sku": "", "name": name, "price": price + 750000}]
+    page.evaluate("c => localStorage.setItem('marzhavbetone-cart', JSON.stringify(c))", stale)
+    page.reload(wait_until="load")
+    if page.inner_text("#cart-count").strip() != "1":
+        bad.append(f"{rel}: повтор sku из старой корзины не схлопнут при загрузке")
+
+    fixed = [{"sku": sku, "name": name, "price": price}]
+    message = "Корзина обновлена: цена изменилась. Проверьте итог."
+    page.route("**/payment.php", lambda route: route.fulfill(
+        status=409, content_type="application/json",
+        body=json.dumps({"ok": False, "cart_changed": True, "cart": fixed,
+                         "changes": ["цена"], "message": message})))
+    page.click("#cart-toggle")
+    page.click("#cart-checkout")
+    page.fill("#checkout-form input[name=email]", "buyer@example.invalid")
+    page.check("#checkout-form input[name=consent]")
+    page.click("#checkout-form .checkout-submit")
+    page.wait_for_function(
+        "() => document.querySelector('#checkout-error').textContent !== ''")
+    cart = page.evaluate(
+        "() => JSON.parse(localStorage.getItem('marzhavbetone-cart') || '[]')")
+    if cart != fixed:
+        bad.append(f"{rel}: исправленная сервером корзина не сохранена: {cart!r}")
+    if page.inner_text("#checkout-error").strip() != message:
+        bad.append(f"{rel}: покупатель не видит сообщения об обновлении корзины")
+    total = page.inner_text("#checkout-total").replace(" ", " ").replace(" ", " ")
+    expected = f"{price // 100:,}".replace(",", " ")
+    if expected not in total:
+        bad.append(f"{rel}: итог в оформлении {total!r}, в кассе {expected} ₽")
+    if page.is_disabled("#checkout-form .checkout-submit"):
+        bad.append(f"{rel}: после обновления корзины оплатить нельзя")
+    page.unroute("**/payment.php")
+    return bad
 
 
 def main() -> int:
@@ -143,6 +195,8 @@ def main() -> int:
                                f"в кассе {prices[sku]} коп.")
                 if count.strip() != "1":
                     bad.append(f"{rel}: счётчик корзины показывает {count!r}")
+            if pages:
+                bad.extend(stale_cart(page, port, pages[0], prices))
             browser.close()
     finally:
         server.terminate()

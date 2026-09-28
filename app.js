@@ -31,6 +31,16 @@ const cartCount = document.querySelector('#cart-count');
 const cartCheckout = document.querySelector('#cart-checkout');
 let cart = [];
 try { cart = JSON.parse(localStorage.getItem('marzhavbetone-cart') || '[]'); } catch (_) { cart = []; }
+// Один цифровой товар — одна позиция. Старые корзины держали позицию по
+// названию без sku, и тот же товар мог лечь второй раз уже с sku. Итог и
+// состав окончательно сверяет payment.php по каталогу.
+function sameProduct(item, sku, name) { return Boolean((sku && item.sku === sku) || (name && item.name === name)); }
+function uniqueCart(items) {
+  if (!Array.isArray(items)) return [];
+  return items.filter((item, index) => item && typeof item === 'object' &&
+    items.findIndex(other => other && sameProduct(other, item.sku, item.name)) === index);
+}
+cart = uniqueCart(cart);
 
 function money(value) { return new Intl.NumberFormat('ru-RU').format(value / 100) + ' ₽'; }
 function saveCart() { localStorage.setItem('marzhavbetone-cart', JSON.stringify(cart)); }
@@ -60,7 +70,7 @@ function renderCart() {
   cartEmpty.hidden = cart.length > 0;
   cartCheckout.disabled = cart.length === 0;
   document.querySelectorAll('.add-to-cart').forEach(button => {
-    const added = cart.some(item => item.name === button.dataset.product);
+    const added = cart.some(item => sameProduct(item, button.dataset.sku, button.dataset.product));
     button.classList.toggle('added', added);
     button.textContent = added ? 'В корзине' : 'Добавить в корзину';
   });
@@ -77,7 +87,7 @@ if (cartToggle) cartToggle.addEventListener('click', openCart);
 if (cartClose) cartClose.addEventListener('click', closeCart);
 if (cartBackdrop) cartBackdrop.addEventListener('click', closeCart);
 document.querySelectorAll('.add-to-cart').forEach(button => button.addEventListener('click', () => {
-  if (!cart.some(item => item.name === button.dataset.product)) cart.push({ sku: button.dataset.sku || '', name: button.dataset.product, price: Number(button.dataset.price) });
+  if (!cart.some(item => sameProduct(item, button.dataset.sku, button.dataset.product))) cart.push({ sku: button.dataset.sku || '', name: button.dataset.product, price: Number(button.dataset.price) });
   saveCart(); renderCart(); openCart();
   trackGoal('add_to_cart');
 }));
@@ -193,6 +203,16 @@ function createCheckoutModal() {
       if (result.ok && result.payment_url) {
         // Редирект на страницу оплаты ЮКасса
         window.location.href = result.payment_url;
+      } else if (result.cart_changed && Array.isArray(result.cart)) {
+        // Сервер сверил корзину с каталогом и платёж не создал: показываем
+        // исправленный состав и цену, оплата — следующим нажатием.
+        cart = uniqueCart(result.cart);
+        saveCart();
+        if (cartItems && cartCount && cartTotal && cartEmpty && cartCheckout) renderCart();
+        fillCheckout();
+        errorEl.textContent = result.message || 'Корзина обновлена. Проверьте итог.';
+        submitBtn.disabled = cart.length === 0;
+        loadingEl.hidden = true;
       } else {
         throw new Error(result.message || 'Не удалось создать платёж');
       }
@@ -212,22 +232,25 @@ function openCheckout() {
   trackGoal('checkout_open');
   createCheckoutModal();
   const modal = document.getElementById('checkout-modal');
+  fillCheckout();
+  modal.classList.add('active');
+  closeCart();
+}
+
+function fillCheckout() {
   const itemsEl = document.getElementById('checkout-items');
   const totalEl = document.getElementById('checkout-total');
-  
-  itemsEl.innerHTML = '';
+  itemsEl.replaceChildren();
   cart.forEach(item => {
     const div = document.createElement('div');
     div.className = 'checkout-item';
-    div.innerHTML = `<strong>${item.name}</strong><span>${money(item.price)}</span>`;
+    const name = document.createElement('strong'); name.textContent = item.name;
+    const price = document.createElement('span'); price.textContent = money(item.price);
+    div.append(name, price);
     itemsEl.appendChild(div);
   });
-  
   const total = cart.reduce((sum, item) => sum + item.price, 0);
   totalEl.innerHTML = `<span>Итого</span><span>${money(total)}</span>`;
-  
-  modal.classList.add('active');
-  closeCart();
 }
 
 if (cartCheckout) cartCheckout.addEventListener('click', openCheckout);
