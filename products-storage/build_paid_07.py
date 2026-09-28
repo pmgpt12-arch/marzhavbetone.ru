@@ -1,4 +1,8 @@
+import io
 import os
+import re
+import zipfile
+
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
@@ -14,6 +18,41 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 thin_border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
 header_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
 header_font = Font(color="FFFFFF", bold=True, size=11)
+
+# Excel не принимает имя листа длиннее 31 символа: Calc при сохранении его
+# обрезает, Excel предлагает «восстановить» книгу.
+ПРЕДЕЛ_ИМЕНИ_ЛИСТА = 31
+
+# openpyxl пишет в книгу время сборки (docProps/core.xml и даты записей
+# zip), поэтому две сборки подряд различались побайтно. Время заменяется
+# постоянным — одинаковый исходник даёт одинаковый файл.
+ДАТА_СБОРКИ = (2026, 9, 28, 0, 0, 0)
+_W3CDTF = "%04d-%02d-%02dT%02d:%02d:%02dZ" % ДАТА_СБОРКИ
+_ВРЕМЯ_В_CORE = re.compile(
+    r"(<dcterms:(?:created|modified)\b[^>]*>)[^<]*(</dcterms:(?:created|modified)>)")
+
+
+def save_workbook(wb, filepath):
+    """Сохраняет книгу без меток времени сборки."""
+    for ws in wb.worksheets:
+        if len(ws.title) > ПРЕДЕЛ_ИМЕНИ_ЛИСТА:
+            raise ValueError(
+                f"{os.path.basename(filepath)}: имя листа «{ws.title}» — "
+                f"{len(ws.title)} символов, Excel допускает {ПРЕДЕЛ_ИМЕНИ_ЛИСТА}")
+    buf = io.BytesIO()
+    wb.save(buf)
+    with zipfile.ZipFile(buf) as src, \
+            zipfile.ZipFile(filepath, "w", zipfile.ZIP_DEFLATED) as dst:
+        for item in src.infolist():
+            data = src.read(item.filename)
+            if item.filename == "docProps/core.xml":
+                data = _ВРЕМЯ_В_CORE.sub(
+                    lambda m: m.group(1) + _W3CDTF + m.group(2),
+                    data.decode("utf-8")).encode("utf-8")
+            info = zipfile.ZipInfo(item.filename, date_time=ДАТА_СБОРКИ)
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o644 << 16
+            dst.writestr(info, data)
 
 
 def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_widths=None):
@@ -43,7 +82,7 @@ def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_
         for idx, w in enumerate(col_widths, 1):
             ws.column_dimensions[get_column_letter(idx)].width = w
     
-    wb.save(filepath)
+    save_workbook(wb, filepath)
     print(f"  [Excel] {filepath}")
 
 
@@ -364,17 +403,21 @@ def build_paid_07():
     ws.column_dimensions['C'].width = 25
     ws.column_dimensions['D'].width = 18
     
-    wb.save(os.path.join(folder, "04-raschet-ubytkov.xlsx"))
+    save_workbook(wb, os.path.join(folder, "04-raschet-ubytkov.xlsx"))
     print(f"  [Excel] {os.path.join(folder, '04-raschet-ubytkov.xlsx')}")
     
     create_excel(
         os.path.join(folder, "05-reestr-uderzhaniy.xlsx"),
-        "Реестр удержаний и штрафов по объекту",
+        "Реестр удержаний и штрафов",
         headers=["№", "Дата", "Тип", "Основание", "Сумма", "Статус", "Ответ", "Результат"],
+        # Итог стоит под диапазоном E2:E20, а не внутри него: строка итога в
+        # пятой строке суммировала саму себя (Calc: Err:522). Строки 5–20 —
+        # пустые, под новые удержания.
         rows=[
             [1, "", "Удержание", "", 0, "Оспаривается", "Претензия направлена", ""],
             [2, "", "Штраф", "", 0, "Оспаривается", "", ""],
             [3, "", "Зачет", "", 0, "Оспаривается", "", ""],
+        ] + [[None] * 8 for _ in range(5, 21)] + [
             ["", "", "", "ИТОГО:", "=SUM(E2:E20)", "", "", ""],
         ],
         col_widths=[6, 12, 14, 30, 14, 14, 25, 20]
@@ -382,11 +425,14 @@ def build_paid_07():
     
     create_excel(
         os.path.join(folder, "06-grafik-vozmeshcheniya.xlsx"),
-        "График возмещения удержанных сумм",
+        "График возмещения",
         headers=["№", "Платеж", "Дата", "Сумма", "Способ", "Подтверждение", "Статус"],
+        # Итог под диапазоном D2:D10, а не внутри него (было: D4 в D2:D10).
+        # Строки 4–10 — пустые, под следующие платежи.
         rows=[
             [1, "Первая часть", "", 0, "Банковский перевод", "", "Ожидается"],
             [2, "Вторая часть", "", 0, "Банковский перевод", "", "Ожидается"],
+        ] + [[None] * 7 for _ in range(4, 11)] + [
             ["", "", "ИТОГО:", "=SUM(D2:D10)", "", "", ""],
         ],
         col_widths=[6, 16, 14, 14, 20, 18, 14]
