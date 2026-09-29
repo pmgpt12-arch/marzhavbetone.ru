@@ -392,6 +392,11 @@ def _grid(doc, rows, widths, header=True, blank_height=0.75):
     table = doc.add_table(rows=len(rows), cols=len(widths))
     table.style = "Table Grid"
     table.autofit = False
+    # Ширина ячейки (tcW) Word читает, а Writer берёт ширины из сетки
+    # таблицы (tblGrid): без неё колонки в LibreOffice встают равными и
+    # таблица не доходит до правого поля. Задаются обе.
+    for column, width in zip(table._tbl.tblGrid.gridCol_lst, widths):
+        column.w = Cm(width)
     for i, values in enumerate(rows):
         row = table.rows[i]
         if i > 0 or not header:
