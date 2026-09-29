@@ -123,8 +123,11 @@ STOP = {
 
 
 def _параметры():
+    # raises=AssertionError: xfail ждёт только провала по существу.
+    # BLOCKED (нет PHP, нет архива) под STOP не прячется.
     return [pytest.param(н, id=н,
-                         marks=pytest.mark.xfail(strict=True, reason=STOP[н]))
+                         marks=pytest.mark.xfail(strict=True, reason=STOP[н],
+                                                 raises=AssertionError))
             if н in STOP else pytest.param(н, id=н)
             for н in ФОРМЫ]
 
