@@ -41,7 +41,6 @@ import argparse
 import functools
 import http.server
 import socket
-import socketserver
 import sys
 import threading
 from pathlib import Path
@@ -136,16 +135,25 @@ def free_port() -> int:
         return s.getsockname()[1]
 
 
-def serve() -> tuple[socketserver.TCPServer, int]:
+def serve() -> tuple[http.server.ThreadingHTTPServer, int]:
     """Отдаёт сайт по http: ассеты подключены абсолютными путями, и по file://
-    они не грузятся — под file:// проверка молча прошла бы на пустой странице."""
+    они не грузятся — под file:// проверка молча прошла бы на пустой странице.
+
+    Сервер многопоточный. Однопоточный `TCPServer` блокировался на
+    соединении, по которому браузер ничего не прислал (предварительное
+    соединение Chromium): остальные запросы страницы ждали, `load` не
+    наступал, и 29.09.2026 job render в #317 упал на `Page.goto: Timeout`
+    на `katalog.html` при исправном сайте. Регресс —
+    `tools/test_check_desktop_server.py`."""
     class Quiet(http.server.SimpleHTTPRequestHandler):
         def log_message(self, *args):
             pass
 
     port = free_port()
     handler = functools.partial(Quiet, directory=str(ROOT))
-    httpd = socketserver.TCPServer(("127.0.0.1", port), handler)
+    httpd = http.server.ThreadingHTTPServer(("127.0.0.1", port), handler)
+    # Поток, застрявший на молчащем соединении, не держит выход процесса.
+    httpd.daemon_threads = True
     threading.Thread(target=httpd.serve_forever, daemon=True).start()
     return httpd, port
 
