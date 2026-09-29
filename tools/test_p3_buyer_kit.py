@@ -143,7 +143,7 @@ def test_start_here_lists_what_is_delivered():
     listed = re.findall(r"^   (\d\d-[^\s]+)", archive, re.M)
     assert listed == [p.name for p in delivered()]
     assert f"файлов в архиве: {len(delivered())}" in start
-    assert "формы актов освидетельствования скрытых работ (03)" in start.replace("\n   ", " ").lower()
+    assert "шаблоны акта освидетельствования скрытых работ по видам работ (03)" in start.replace("\n   ", " ")
 
 
 def test_build_all_has_no_second_p3_source():
@@ -288,3 +288,56 @@ def test_r026_usage_section():
         "ни образец таких подписантов не предусматривают.",
     ):
         assert phrase in usage, phrase[:60]
+
+
+# MB001-R2-P3-T3: покупательские формулировки о статусе форм АОСР.
+# Основание — PR #316 (MB001_R026_P3_AOSR_NORMATIVE_VERIFICATION.md): для АОСР
+# есть только рекомендуемый образец; «типовая форма» читается как утверждённая,
+# «бланк» — не слово нормы. Витрина, START-HERE и MANIFEST называют файл 03
+# рабочим шаблоном и не создают впечатления обязательного бланка.
+PAGE = ROOT / "products" / "p3-shablony-ks2-ks3.html"
+AGREED = re.compile(r"рабоч\w* шаблон\w* акта освидетельствования скрытых работ по видам работ", re.I)
+STATUS_FORBIDDEN = [
+    r"типов\w*\s+(шаблон|форм|бланк)",
+    r"бланк",
+    r"(утвержд[её]нн|обязательн|нормативн|унифицированн|официальн)\w*\s+(форм|бланк|образ)",
+    r"по форме приказа",
+    r"соответству\w*\s+(приказ|образц|344|СП\b|норм)",
+    r"форма освидетельствования",
+    r"(?<!рабочие )(?<!рабочих )\bформ\w* актов? (освидетельствования )?скрытых работ",
+]
+
+
+def flat(path: Path) -> str:
+    return re.sub(r"\s+", " ", path.read_text(encoding="utf-8"))
+
+
+@pytest.mark.parametrize("path", [PAGE, KIT / "00-START-HERE.txt", KIT / "MANIFEST.md"],
+                         ids=lambda p: p.name)
+def test_status_wording_is_not_a_mandatory_form(path):
+    text = flat(path)
+    hits = [m.group(0) for rx in STATUS_FORBIDDEN for m in re.finditer(rx, text, re.I)]
+    assert not hits, hits
+
+
+def test_page_card_and_faq_name_working_template():
+    page = flat(PAGE)
+    card = re.search(r"<h3>Акт скрытых работ</h3><p>(.*?)</p>", page).group(1)
+    assert AGREED.search(card), card
+    faq = "Нет. Это рабочие шаблоны и расчётные инструменты."
+    assert page.count(faq) == 2, "FAQ: JSON-LD и <details> должны совпадать"
+
+
+def test_start_here_names_working_template():
+    start = flat(KIT / "00-START-HERE.txt")
+    later = start[start.index("3. КОГДА НУЖНЫ"):start.index("4. ЧТО В АРХИВЕ")]
+    limits = start[start.index("6. ЧЕГО ЭТОТ"):start.index("7. ЕСЛИ")]
+    assert AGREED.search(later) and AGREED.search(limits)
+
+
+def test_manifest_names_working_template():
+    line = next(l for l in (KIT / "MANIFEST.md").read_text(encoding="utf-8").splitlines()
+                if l.startswith("- `03-akt-skrytyh-rabot.docx`"))
+    assert AGREED.search(line), line
+    assert "составлен на основе рекомендуемого образца" in line
+    assert "соответствие образцу не заявляется" in line
