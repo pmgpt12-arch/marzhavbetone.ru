@@ -10,6 +10,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
 from docx.enum.section import WD_ORIENT
 from docx.enum.table import WD_ROW_HEIGHT_RULE
 from docx.oxml.ns import qn
+from docx.oxml import OxmlElement
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
@@ -438,6 +439,13 @@ def _grid(doc, rows, widths, header=True, blank_height=0.75):
         if i > 0 or not header:
             row.height = Cm(blank_height)
             row.height_rule = WD_ROW_HEIGHT_RULE.AT_LEAST
+        else:
+            # Шапка повторяется на новой странице: без этого таблица подписей
+            # рвётся так, что шапка остаётся внизу листа, а строки уходят на
+            # следующий (замечено в Writer на форме 5).
+            header_flag = OxmlElement("w:tblHeader")
+            header_flag.set(qn("w:val"), "true")
+            row._tr.get_or_add_trPr().append(header_flag)
         for j, value in enumerate(values):
             cell = row.cells[j]
             cell.width = Cm(widths[j])
