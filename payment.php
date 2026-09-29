@@ -82,26 +82,28 @@ if ($email === '' && $phone === '') {
     exit;
 }
 
-// Сверяем позиции с каталогом: цена берётся с сервера, а не из запроса клиента
-$total = 0;
-$descriptionParts = [];
-$validatedItems = [];
-foreach ($items as $item) {
-    $product = mvb_resolve_product((array)$item);
-    if (!$product) {
-        http_response_code(422);
-        echo json_encode(['ok' => false, 'message' => 'Товар не найден в каталоге. Обновите страницу и соберите корзину заново.'], JSON_UNESCAPED_UNICODE);
-        exit;
-    }
-    $total += $product['price'];
-    $descriptionParts[] = $product['name'];
-    $validatedItems[] = [
-        'sku'   => $product['sku'],
-        'name'  => $product['name'],
-        'price' => $product['price'],
-    ];
+// Сверяем позиции с каталогом: цена берётся с сервера, а не из запроса клиента.
+// Если корзина разошлась с каталогом (снятый sku, повтор, другая цена),
+// платёж не создаётся: браузер получает исправленную корзину и показывает
+// её покупателю, чтобы оплачивалось ровно то, что он видел.
+$reconciled = mvb_reconcile_cart(is_array($items) ? $items : []);
+if ($reconciled['changes']) {
+    http_response_code(409);
+    echo json_encode([
+        'ok' => false,
+        'cart_changed' => true,
+        'cart' => $reconciled['items'],
+        'changes' => $reconciled['changes'],
+        'message' => 'Корзина обновлена: ' . implode('; ', $reconciled['changes']) . '. '
+            . ($reconciled['items']
+                ? 'Проверьте итог и нажмите «Перейти к оплате» ещё раз.'
+                : 'Добавьте товары из каталога заново.'),
+    ], JSON_UNESCAPED_UNICODE);
+    exit;
 }
-$items = $validatedItems;
+$items = $reconciled['items'];
+$total = array_sum(array_column($items, 'price'));
+$descriptionParts = array_column($items, 'name');
 
 if ($total <= 0) {
     http_response_code(422);

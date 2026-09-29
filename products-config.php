@@ -427,6 +427,65 @@ function mvb_resolve_product(array $item): ?array
 }
 
 /**
+ * Сверяет корзину из браузера с каталогом до создания платежа.
+ *
+ * Корзина живёт в localStorage и может пережить правку каталога: в ней
+ * остаётся цена, показанная неделю назад, снятый с продажи sku или один и
+ * тот же товар дважды (старая позиция без sku по названию плюс новая с sku).
+ * Касса считает по каталогу, поэтому без сверки покупатель видит одну сумму,
+ * а платит другую, или платит за цифровой товар дважды.
+ *
+ * Правило общее для всего каталога:
+ *  - позиция, которой нет в каталоге, исключается;
+ *  - повтор sku исключается — цифровой товар в заказе один раз;
+ *  - если браузер прислал цену (её он и показывал) и она не равна цене
+ *    каталога, это расхождение. Цена из запроса к оплате не идёт никогда.
+ *
+ * Возвращает позиции по каталогу и список изменений; непустой список
+ * значит, что корзину надо показать покупателю заново, а не оплачивать.
+ */
+function mvb_reconcile_cart(array $items): array
+{
+    $money = static function (int $kopecks): string {
+        return number_format($kopecks / 100, $kopecks % 100 ? 2 : 0, ',', ' ') . ' ₽';
+    };
+    $label = static function (array $item): string {
+        $text = (string)($item['name'] ?? '') !== '' ? (string)$item['name'] : (string)($item['sku'] ?? '');
+        $text = mb_substr(trim((string)preg_replace('/[^\P{C}]+/u', '', $text)), 0, 120);
+        return $text !== '' ? $text : 'товар без названия';
+    };
+
+    $valid = [];
+    $changes = [];
+    foreach ($items as $raw) {
+        $item = is_array($raw) ? $raw : [];
+        $product = mvb_resolve_product($item);
+        if (!$product) {
+            $changes[] = '«' . $label($item) . '» больше не продаётся и исключён из заказа';
+            continue;
+        }
+        if (isset($valid[$product['sku']])) {
+            $changes[] = '«' . $product['name'] . '» уже есть в заказе, повтор убран';
+            continue;
+        }
+        if (array_key_exists('price', $item)) {
+            $shown = $item['price'];
+            if (!is_int($shown) || $shown !== $product['price']) {
+                $changes[] = 'цена «' . $product['name'] . '» сейчас ' . $money($product['price'])
+                    . (is_int($shown) ? ' (в корзине было ' . $money($shown) . ')' : '');
+            }
+        }
+        $valid[$product['sku']] = [
+            'sku'   => $product['sku'],
+            'name'  => $product['name'],
+            'price' => $product['price'],
+        ];
+    }
+
+    return ['items' => array_values($valid), 'changes' => $changes];
+}
+
+/**
  * Собирает (и кэширует) архив продукта в DELIVERY_DIR.
  * Возвращает абсолютный путь к zip либо null при ошибке.
  */

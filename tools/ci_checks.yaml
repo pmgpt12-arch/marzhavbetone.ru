@@ -224,6 +224,13 @@
   зачем: цена берётся из одного места
   требует: []
   решение: ''
+- id: test_cart_reconcile
+  команда: php tools/test_cart_reconcile.php
+  класс: public
+  блокирует: true
+  зачем: 'корзина из localStorage сверяется с каталогом до оплаты: цена, повтор sku, снятый sku'
+  требует: []
+  решение: ''
 - id: test_delivery_cache_freshness
   команда: php tools/test_delivery_cache_freshness.php
   класс: public
