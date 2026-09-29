@@ -1,0 +1,107 @@
+[
+  {
+    "строка_исходника": 24,
+    "json": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Product",
+          "name": "Комплект «Договор субподряда: образец, красные флаги, протокол разногласий»",
+          "image": "https://marzhavbetone.ru/assets/vsyo-vklyucheno-v-cenu.jpg",
+          "description": "Договор субподряда с приложениями, допсоглашения, протокол разногласий, чек-лист проверки и разбор опасных условий. 13 готовых файлов.",
+          "brand": {
+            "@type": "Brand",
+            "name": "Маржа в бетоне"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://marzhavbetone.ru/products/p7-dogovor-podryada.html",
+            "price": "2490",
+            "priceCurrency": "RUB",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+              "@type": "Organization",
+              "name": "Маржа в бетоне"
+            }
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Что входит в комплект?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "13 файлов в форматах Word и Excel; полный перечень — в разделе «Что входит» выше."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Как я получу файлы после оплаты?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ссылка на скачивание придёт на указанный при заказе email после подтверждения оплаты. Плановый срок автоматической доставки — до 5 минут."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Можно ли редактировать документы под свой договор?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Да, для этого они и сделаны: файлы редактируются в Word и Excel, поля для заполнения выделены в самих документах. Шаблоны нужно адаптировать под ваш договор, вид работ и правила заказчика."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Это юридическая консультация?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Нет. Это типовые шаблоны и расчётные инструменты. Для спорной ситуации или существенных рисков нужна проверка профильного специалиста — в файлах прямо названы случаи, когда идти к юристу."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Можно ли пользоваться комплектом на нескольких объектах?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Да. Лицензия действует для одной компании и не ограничивает количество её объектов. Передавать файлы другим компаниям нельзя."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Как устроен возврат?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Порядок зависит от того, отправлена ли уже ссылка на скачивание, — он описан на странице «Возврат». При технической проблеме в первую очередь восстанавливается доступ или заменяются файлы."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Главная",
+              "item": "https://marzhavbetone.ru/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Каталог",
+              "item": "https://marzhavbetone.ru/#catalog"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Договор субподряда",
+              "item": "https://marzhavbetone.ru/products/p7-dogovor-podryada.html"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]
