@@ -30,6 +30,12 @@
     .spinner{width:40px;height:40px;border:3px solid #e0dcd3;border-top-color:#242629;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 24px}
     @keyframes spin{to{transform:rotate(360deg)}}
     .hidden{display:none}
+    .upsell{margin:24px 0;padding:24px;background:#242629;color:#e9e5dc;border-left:7px solid #ff5a00;border-radius:4px;text-align:left}
+    .upsell .eyebrow{margin:0 0 8px;font-size:11px}
+    .upsell h2{margin:0 0 10px;font-size:clamp(21px,5vw,28px);line-height:1.15}
+    .upsell .lead{margin:0 0 16px;color:#bdb9b1;font-size:15px;line-height:1.5}
+    .upsell .button{display:inline-flex;max-width:100%;white-space:normal;text-align:left}
+    .upsell .upsell-note{margin:14px 0 0;color:#bdb9b1;font-size:13px;line-height:1.45}
   </style>
 </head>
 <body>
@@ -197,49 +203,44 @@
           });
           try { localStorage.setItem(trackedKey, new Date().toISOString()); } catch (e) {}
           }
-          // Что дальше: предложение по фактически купленному товару.
-          // Таблицу собирает tools/build_upsell.py из product-map.csv;
-          // если для sku в ней ничего нет, блок не появляется вовсе.
+          // Что дальше: тот же шаг, что в 00-START-HERE.txt купленного
+          // товара. Таблицу собирает tools/build_upsell.py из самих
+          // START-HERE и статусов готовности; в неготовый товар она не
+          // ведёт — там стоит нейтральный шаг из того же файла.
           (function () {
             var table = window.MVB_UPSELL || {};
-            var offer = null;
-            (order.items || []).some(function (item) {
-              if (item.sku && table[item.sku]) { offer = table[item.sku]; return true; }
-              return false;
-            });
+            var bought = {};
+            (order.items || []).forEach(function (item) { bought[item.sku] = true; });
+            var steps = (order.items || [])
+              .map(function (item) { return table[item.sku]; })
+              .filter(function (step) { return step && !(step.sku && bought[step.sku]); });
+            // Товар из START-HERE — вперёд нейтрального шага: при заказе из
+            // двух товаров показывается тот, у которого шаг конкретнее.
+            var offer = steps.filter(function (s) { return s.kind === 'product'; })[0] || steps[0];
             var host = document.getElementById('upsell');
             if (!offer || !host) return;
-            // Два разных предложения и потому два разных текста.
-            // «Ступень вверх» — та же ситуация, взятая целиком: купившему
-            // порядок одного дня незачем рассказывать про следующую беду.
-            // «Следом» — соседняя ситуация по процессу.
-            if (offer.kind === 'step') {
-              host.innerHTML =
-                '<p class="eyebrow">СЛЕДУЮЩИЙ ШАГ ПО ЭТОЙ ЖЕ СИТУАЦИИ</p>' +
-                '<h2>' + offer.closed + '</h2>' +
-                '<p class="lead">Вы взяли первый ход. Весь порядок по этой ' +
-                'ситуации собран в комплекте — вместе с формами, которые ' +
-                'понадобятся дальше.</p>' +
-                '<a class="button" href="' + offer.url + '" id="upsell-link">' +
-                offer.name + ' →</a>';
-            } else {
-              host.innerHTML =
-                '<p class="eyebrow">ЧТО ЧАСТО ИДЁТ СЛЕДОМ</p>' +
-                '<h2>' + offer.next + '</h2>' +
-                '<p class="lead">Вы закрыли ситуацию «' + offer.closed +
-                '». Следующая по процессу — та, что выше.</p>' +
-                '<a class="button" href="' + offer.url + '" id="upsell-link">' +
-                offer.name + ' →</a>';
+            function el(tag, cls, text) {
+              var node = document.createElement(tag);
+              if (cls) node.className = cls;
+              if (text) node.textContent = text;
+              return node;
             }
+            host.appendChild(el('p', 'eyebrow', 'ЧТО ДАЛЬШЕ'));
+            host.appendChild(el('h2', '', offer.title));
+            host.appendChild(el('p', 'lead', offer.lead));
+            var link = el('a', 'button', offer.name + ' →');
+            link.href = offer.url;
+            link.id = 'upsell-link';
+            host.appendChild(link);
+            host.appendChild(el('p', 'upsell-note',
+              'В архиве начните с файла 00-START-HERE.txt — в нём порядок ' +
+              'работы с документами и этот раздел целиком.'));
             host.hidden = false;
-            var link = document.getElementById('upsell-link');
-            if (link) {
-              link.addEventListener('click', function () {
-                if (typeof window.mvbTrackGoal === 'function') {
-                  window.mvbTrackGoal('upsell_click');
-                }
-              });
-            }
+            link.addEventListener('click', function () {
+              if (typeof window.mvbTrackGoal === 'function') {
+                window.mvbTrackGoal('upsell_click');
+              }
+            });
           })();
 
           // Показываем ссылки на скачивание, если они готовы
@@ -274,99 +275,171 @@
   <script src="/attribution.js?v=f075465a"></script>
   <!-- upsell:begin -->
   <script>
-    // Таблица собирается tools/build_upsell.py из data/sales/product-map.csv.
-    // Руками не правится: разойдётся с каталогом на первой правке состава.
+    // Таблица собирается tools/build_upsell.py из 00-START-HERE.txt товаров
+    // и tools/product_readiness.yaml. Руками не правится: разойдётся с
+    // архивом покупателя (проверка — tools/test_commercial_journey.py).
     window.MVB_UPSELL = {
   "p1": {
-    "url": "/products/p5-shtrafy-uderzhaniya.html",
-    "name": "Гарантийное удержание",
-    "closed": "Работы выполнены — денег нет",
-    "next": "Не возвращают удержания",
-    "kind": "next"
+    "kind": "neutral",
+    "sku": "",
+    "url": "/diagnostika.html",
+    "title": "Другая ситуация на объекте",
+    "lead": "Разбор по семи вопросам называет ситуацию и материалы под неё.",
+    "name": "Пройти разбор ситуации",
+    "held": "p5 (BLOCKED)"
+  },
+  "p10": {
+    "kind": "product",
+    "sku": "p12",
+    "url": "/products/p12-spor-s-summoy.html",
+    "title": "Если ситуация изменилась",
+    "lead": "Спор вышел за рамки переписки: назначен осмотр, заказана экспертиза или дело пошло в суд. Заявление об участии в осмотре, разбор заключения, вопросы эксперту и опись доказательств — в комплекте «Спор с суммой».",
+    "name": "Спор с суммой",
+    "held": ""
+  },
+  "p11": {
+    "kind": "neutral",
+    "sku": "",
+    "url": "/diagnostika.html",
+    "title": "Другая ситуация на объекте",
+    "lead": "Разбор по семи вопросам называет ситуацию и материалы под неё.",
+    "name": "Пройти разбор ситуации",
+    "held": "p7 (RED)"
+  },
+  "p12": {
+    "kind": "neutral",
+    "sku": "",
+    "url": "/diagnostika.html",
+    "title": "Другая ситуация на объекте",
+    "lead": "Разбор по семи вопросам называет ситуацию и материалы под неё.",
+    "name": "Пройти разбор ситуации",
+    "held": ""
+  },
+  "p13": {
+    "kind": "neutral",
+    "sku": "",
+    "url": "/diagnostika.html",
+    "title": "Другая ситуация на объекте",
+    "lead": "Разбор по семи вопросам называет ситуацию и материалы под неё.",
+    "name": "Пройти разбор ситуации",
+    "held": "p7 (RED)"
   },
   "p2": {
-    "url": "/products/p13-chto-v-smete-ne-oplatyat.html",
-    "name": "Что в смете не оплатят",
-    "closed": "Не оплачивают дополнительные работы",
-    "next": "Опасные условия договора",
-    "kind": "next"
+    "kind": "neutral",
+    "sku": "",
+    "url": "/diagnostika.html",
+    "title": "Другая ситуация на объекте",
+    "lead": "Разбор по семи вопросам называет ситуацию и материалы под неё.",
+    "name": "Пройти разбор ситуации",
+    "held": "p1 (BLOCKED)"
   },
   "p3": {
-    "url": "/products/p10-otvet-na-pretenziyu.html",
-    "name": "Ответ на претензию заказчика или генподрядчика",
-    "closed": "Не принимают и не подписывают КС",
-    "next": "Не возвращают удержания",
-    "kind": "next"
+    "kind": "neutral",
+    "sku": "",
+    "url": "/diagnostika.html",
+    "title": "Другая ситуация на объекте",
+    "lead": "Разбор по семи вопросам называет ситуацию и материалы под неё.",
+    "name": "Пройти разбор ситуации",
+    "held": "p1 (BLOCKED)"
   },
   "p4": {
-    "url": "/products/p3-shablony-ks2-ks3.html",
-    "name": "КС-2 без возврата",
-    "closed": "Исполнительная документация блокирует приёмку и оплату",
-    "next": "Не принимают и не подписывают КС",
-    "kind": "next"
+    "kind": "neutral",
+    "sku": "",
+    "url": "/diagnostika.html",
+    "title": "Другая ситуация на объекте",
+    "lead": "Разбор по семи вопросам называет ситуацию и материалы под неё.",
+    "name": "Пройти разбор ситуации",
+    "held": "p1 (BLOCKED)"
   },
   "p5": {
-    "url": "/products/p1-oplata-po-ks2.html",
-    "name": "Акты выполненных работ, КС-2 и КС-3",
-    "closed": "Не возвращают удержания",
-    "next": "Не принимают и не подписывают КС",
-    "kind": "next"
+    "kind": "neutral",
+    "sku": "",
+    "url": "/diagnostika.html",
+    "title": "Другая ситуация на объекте",
+    "lead": "Разбор по семи вопросам называет ситуацию и материалы под неё.",
+    "name": "Пройти разбор ситуации",
+    "held": "p1 (BLOCKED)"
   },
   "p7": {
-    "url": "/products/p13-chto-v-smete-ne-oplatyat.html",
-    "name": "Что в смете не оплатят",
-    "closed": "Опасные условия договора",
-    "next": "Не оплачивают дополнительные работы",
-    "kind": "next"
+    "kind": "neutral",
+    "sku": "",
+    "url": "/diagnostika.html",
+    "title": "Другая ситуация на объекте",
+    "lead": "Разбор по семи вопросам называет ситуацию и материалы под неё.",
+    "name": "Пройти разбор ситуации",
+    "held": ""
+  },
+  "p8": {
+    "kind": "neutral",
+    "sku": "",
+    "url": "/diagnostika.html",
+    "title": "Другая ситуация на объекте",
+    "lead": "Разбор по семи вопросам называет ситуацию и материалы под неё.",
+    "name": "Пройти разбор ситуации",
+    "held": "p7 (RED)"
   },
   "p9": {
-    "url": "/products/p1-oplata-po-ks2.html",
-    "name": "Акты выполненных работ, КС-2 и КС-3",
-    "closed": "Контрагент становится неплатёжеспособным",
-    "next": "Работы выполнены — денег нет",
-    "kind": "next"
+    "kind": "neutral",
+    "sku": "",
+    "url": "/diagnostika.html",
+    "title": "Другая ситуация на объекте",
+    "lead": "Разбор по семи вопросам называет ситуацию и материалы под неё.",
+    "name": "Пройти разбор ситуации",
+    "held": ""
   },
   "t1": {
-    "url": "/products/p1-oplata-po-ks2.html",
-    "name": "Акты выполненных работ, КС-2 и КС-3",
-    "closed": "Работы выполнены — денег нет",
-    "next": "",
-    "kind": "step"
+    "kind": "neutral",
+    "sku": "",
+    "url": "/diagnostika.html",
+    "title": "Другая ситуация на объекте",
+    "lead": "Разбор по семи вопросам называет ситуацию и материалы под неё.",
+    "name": "Пройти разбор ситуации",
+    "held": "p1 (BLOCKED)"
   },
   "t2": {
+    "kind": "product",
+    "sku": "p4",
     "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+    "title": "Если ситуация изменилась",
+    "lead": "Комплект вернули с замечаниями или приёмку не двигают, ссылаясь на документацию. Эта ступень доводит до подписанного акта передачи и заканчивается ровно там, где комплект вернули: работа с замечаниями — отдельный набор документов.",
     "name": "Акты скрытых работ и исполнительная документация",
-    "closed": "Исполнительная документация блокирует приёмку и оплату",
-    "next": "",
-    "kind": "step"
+    "held": ""
   },
   "t3": {
-    "url": "/products/p3-shablony-ks2-ks3.html",
-    "name": "КС-2 без возврата",
-    "closed": "Не принимают и не подписывают КС",
-    "next": "",
-    "kind": "step"
+    "kind": "neutral",
+    "sku": "",
+    "url": "/diagnostika.html",
+    "title": "Другая ситуация на объекте",
+    "lead": "Разбор по семи вопросам называет ситуацию и материалы под неё.",
+    "name": "Пройти разбор ситуации",
+    "held": ""
   },
   "t4": {
+    "kind": "product",
+    "sku": "p9",
     "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+    "title": "Если ситуация изменилась",
+    "lead": "Пора собирать и подавать само требование в реестр. Ступень закрывает первый день; процедура целиком — от маркеров до заявления и переписки с управляющим — в комплекте «Реестр требований кредиторов».",
     "name": "Реестр требований кредиторов",
-    "closed": "Контрагент становится неплатёжеспособным",
-    "next": "",
-    "kind": "step"
+    "held": ""
   },
   "t5": {
-    "url": "/products/p7-dogovor-podryada.html",
-    "name": "Договор субподряда",
-    "closed": "Опасные условия договора",
-    "next": "",
-    "kind": "step"
+    "kind": "product",
+    "sku": "p8",
+    "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+    "title": "Если ситуация изменилась",
+    "lead": "Нужен расчёт отработанной части аванса и сальдо расчётов, а не только ответ в срок. Расчёта отработанной части в ступени нет, и файлы говорят это прямо: он в комплекте «Аванс по договору субподряда» вместе с реестром актов и встречных требований.",
+    "name": "Аванс по договору подряда и неотработанный остаток",
+    "held": ""
   },
   "t6": {
-    "url": "/products/p7-dogovor-podryada.html",
-    "name": "Договор субподряда",
-    "closed": "Опасные условия договора",
-    "next": "",
-    "kind": "step"
+    "kind": "product",
+    "sku": "p11",
+    "url": "/products/p11-raschet-metrami.html",
+    "title": "Если ситуация изменилась",
+    "lead": "Проверка идёт дальше двух запросов: уступка, ЗОС, разрешение на ввод, формулировки пункта об уступке. Алгоритм проверки целиком и памятка по формулировкам уступки — в комплекте «Расчёт метрами».",
+    "name": "Расчёт метрами",
+    "held": ""
   }
 };
   </script>

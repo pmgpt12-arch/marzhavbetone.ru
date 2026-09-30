@@ -8,13 +8,16 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); echo json_
  * значение уходит в путь файла, и подстановка произвольной строки недопустима.
  * Архивы собирает tools/build_free_zips.py, идентификаторы там те же.
  *
- * Ключ по умолчанию — прежний чек-лист: форма на главной работает давно,
- * ссылки на неё могли разойтись, и запрос без параметра должен отдавать файл,
- * а не ошибку.
+ * Ключ по умолчанию — чек-лист закрытия работ (MVB_DEFAULT_MATERIAL ниже):
+ * форма на главной работает давно, ссылки на неё могли разойтись, и запрос
+ * без параметра должен отдавать файл, а не ошибку. С 30.09.2026 форма
+ * главной передаёт ключ явно, а сам чек-лист выдаётся одной страницей:
+ * вторая страница прежнего PDF рекламировала снятый с продажи «Полный
+ * комплект ПТО» (аудит MB001, G-01; сборка — tools/build_home_checklist.py).
  */
 const MVB_MATERIALS = [
     'checklist' => [
-        'file'  => '/downloads/checklist-zakrytiya-rabot.pdf',
+        'file'  => '/downloads/checklist-zakrytiya-rabot-20-punktov.pdf',
         'title' => 'Чек-лист закрытия выполненных работ',
         'label' => 'Скачать чек-лист PDF',
     ],
@@ -76,8 +79,12 @@ const MVB_MATERIALS = [
 $name=trim((string)($_POST['name']??'')); $contact=trim((string)($_POST['contact']??'')); $consent=(string)($_POST['consent']??'');
 if ($name===''||$contact===''||$consent!=='yes') { http_response_code(422); echo json_encode(['ok'=>false,'message'=>'Заполните имя, контакт и согласие'], JSON_UNESCAPED_UNICODE); exit; }
 
-$key = (string)($_POST['material'] ?? 'checklist');
-if (!isset(MVB_MATERIALS[$key])) { $key = 'checklist'; }
+// Ответ без ключа и с неизвестным ключом — один и тот же, названный здесь,
+// а не вписанный строкой в разбор запроса. Проверка — tools/test_commercial_journey.py.
+const MVB_DEFAULT_MATERIAL = 'checklist';
+
+$key = (string)($_POST['material'] ?? MVB_DEFAULT_MATERIAL);
+if (!isset(MVB_MATERIALS[$key])) { $key = MVB_DEFAULT_MATERIAL; }
 $material = MVB_MATERIALS[$key];
 
 // Откуда пришёл человек: канал и слово. Нужно, чтобы понимать, что сработало
