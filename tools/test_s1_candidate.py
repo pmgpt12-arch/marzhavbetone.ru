@@ -1102,6 +1102,334 @@ def test_сборка_воспроизводима() -> None:
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ─────────────── S1-02А: состав и маршрут (контракт §9.1) ───────────────
+
+# Перечень §10.1a — утверждённый состав выдачи. Держится здесь, а не берётся
+# из s1_route: проверка ловит расхождение источника с утверждённым перечнем.
+СОСТАВ_11 = [
+    "00-START-HERE.txt",
+    "01-karta-situacii-i-granic.docx",
+    "02-proverka-i-kontrol-otveta.xlsx",
+    "03-algoritm-dejstviy.docx",
+    "04-uchet-raschetov-i-otpravok.xlsx",
+    "05-peregovory-i-perenos-sroka.docx",
+    "06-uvedomlenie-o-prosrochke.docx",
+    "07-otpravka-i-dokazatelstvo.docx",
+    "08-raschet-procentov-395.xlsx",
+    "09-pretenziya.docx",
+    "10-obrashchenie-v-sud.docx",
+]
+# §10.1a «Не входят в выдачу»: файлы, листы книги учёта и часть файла 10 #286
+ИСКЛЮЧЁННЫЕ_ФАЙЛЫ = {"04-ks-2-ks-3.xlsx", "05-akt-vypolnennyh-rabot.docx", "06-akt-priemki-rezultata.docx",
+                     "07-peredatochnyy-akt.docx", "09-vnutrennyaya-proverka.docx"}
+ИСКЛЮЧЁННЫЕ_ЛИСТЫ = {"Журнал объёмов", "Реестр замечаний"}
+ИСКЛЮЧЁННОЕ_В_ТЕКСТЕ = re.compile(r"журнал\w* объёмов|реестр\w* замечаний|сопроводительн\w* письм|"
+                                  r"[Шш]аг(?:и|е|у|ам|ов)?\s+[2-5]\b", re.I)
+ПРОВЕРКА_02 = C / "02-proverka-i-kontrol-otveta.xlsx"
+КНИГА_УЧЁТА = C / "04-uchet-raschetov-i-otpravok.xlsx"
+КНИГА_РАСЧЁТА = C / "08-raschet-procentov-395.xlsx"
+# ссылка на шаг маршрута задолженности (6–12)
+ДОЛГОВЫЕ_ШАГИ = re.compile(r"[Шш]аг(?:и|у|ам|ов)?\s+(?:6|7|8|9|1[0-2])\b")
+ШАГ_ИЛИ_ГРАНИЦА = re.compile(r"[Шш]аг(?:и|у|ам)?\s+\d|[Гг]раница B\d|[Мм]аршрут завершён")
+РЕАКЦИИ_ND6 = ("Прислал гарантийное письмо без соглашения", "Подписал акт сверки, но не оплатил",
+               "Возражает по сумме или вернул акт сверки с расхождением",
+               "Отказ: работы не предусмотрены договором")
+ВХОДЯЩИЕ_ND2 = ("Гарантийное письмо заказчика", "Протокол переговоров / соглашение",
+                "Акт сверки, подписанный Заказчиком", "Возражения Заказчика")
+
+
+def docx_элементы(path: Path) -> list[tuple[str, str, int | None]]:
+    """Тело документа по порядку: (вид, текст, уровень заголовка или None).
+    Таблица — одним элементом, текст ячеек через « | »."""
+    xml = docx_xml(path)
+    body = xml[xml.index("<w:body>"):]
+    out = []
+    for m in re.finditer(r"<w:tbl>.*?</w:tbl>|<w:p[ >].*?</w:p>", body, re.S):
+        el = m.group(0)
+        if el.startswith("<w:tbl>"):
+            ячейки_ = [html.unescape("".join(re.findall(r"<w:t[^>]*>([^<]*)</w:t>", tc)))
+                       for tc in re.findall(r"<w:tc>.*?</w:tc>", el, re.S)]
+            out.append(("tbl", " | ".join(ячейки_), None))
+            continue
+        текст = html.unescape("".join(re.findall(r"<w:t[^>]*>([^<]*)</w:t>", el)))
+        стиль = re.search(r'<w:pStyle w:val="([^"]+)"', el)
+        уровень = None
+        if стиль:
+            s = стиль.group(1)
+            уровень = 0 if s == "Title" else (int(s[7:]) if s.startswith("Heading") and s[7:].isdigit() else None)
+        out.append(("p", текст, уровень))
+    return out
+
+
+def docx_заголовки(path: Path) -> list[str]:
+    return [t for вид, t, ур in docx_элементы(path) if вид == "p" and ур is not None]
+
+
+def раздел(path: Path, начало: str) -> str:
+    """Текст раздела от заголовка, который начинается с `начало`, до следующего
+    заголовка того же или более высокого уровня. Нет раздела — пустая строка."""
+    эл = docx_элементы(path)
+    for i, (вид, t, ур) in enumerate(эл):
+        if вид == "p" and ур is not None and t.startswith(начало):
+            части = []
+            for вид2, t2, ур2 in эл[i + 1:]:
+                if ур2 is not None and ур2 <= ур:
+                    break
+                части.append(t2)
+            return "\n".join(части)
+    return ""
+
+
+def таблица_строк(path: Path, заголовок_колонки: str) -> int:
+    """Число строк самой длинной таблицы, у которой есть колонка с этим заголовком."""
+    xml = docx_xml(path)
+    строк = [len(re.findall(r"<w:tr[ >]", t)) for t in re.findall(r"<w:tbl>.*?</w:tbl>", xml, re.S)
+             if заголовок_колонки in html.unescape("".join(re.findall(r"<w:t[^>]*>([^<]*)</w:t>", t)))]
+    return max(строк, default=0)
+
+
+def листы(book: Path) -> list[str]:
+    with zipfile.ZipFile(book) as z:
+        return [html.unescape(n) for n in re.findall(r'<sheet[^>]*name="([^"]+)"', z.read("xl/workbook.xml").decode())]
+
+
+def ячейки(book: Path, title: str) -> dict[str, str]:
+    """Значения ячеек листа без openpyxl: строки общего словаря и вписанные."""
+    with zipfile.ZipFile(book) as z:
+        общие = []
+        if "xl/sharedStrings.xml" in z.namelist():
+            sx = z.read("xl/sharedStrings.xml").decode("utf-8")
+            общие = [html.unescape("".join(re.findall(r"<t[^>]*>([^<]*)</t>", si)))
+                     for si in re.findall(r"<si>(.*?)</si>", sx, re.S)]
+    out = {}
+    for ref, attrs, body in re.findall(r'<c r="([A-Z]+\d+)"([^>]*?)(?:/>|>(.*?)</c>)', sheet_xml(book, title), re.S):
+        v = re.search(r"<v>([^<]*)</v>", body or "")
+        if 't="s"' in attrs and v:
+            out[ref] = общие[int(v.group(1))]
+        elif 't="inlineStr"' in attrs:
+            out[ref] = html.unescape("".join(re.findall(r"<t[^>]*>([^<]*)</t>", body)))
+        elif v:
+            out[ref] = html.unescape(v.group(1))
+    return out
+
+
+# «файл 04», «файлы 04–07, 09», «файл 04, лист «Долг по актам»», «файл 10, раздел В»,
+# «файл 01, таблица 2», «файла 15 (раздел «Опись…»)»
+ССЫЛКА = re.compile(
+    r"[Фф]айл(?:а|е|ы|ом|у|ам|ах)?\s+(\d{2}(?:\s*(?:,|и|–|-)\s*\d{2})*)"
+    r"(?:\s*[,(]?\s*(?:(?:лист|раздел)\s*)?«([^»]+)»"
+    r"|\s*[,(]\s*раздел\s+([А-Г])(?![А-Яа-я])"
+    r"|\s*[,(]\s*таблиц[аеуы]\s+(\d+а?)(?![А-Яа-я0-9]))?")
+ИМЯ_ФАЙЛА = re.compile(r"\b\d{2}-[a-z0-9-]+\.(?:docx|xlsx|txt)\b")
+
+
+def _номера(список: str) -> list[str]:
+    out = []
+    for часть in re.split(r"\s*(?:,|и)\s*", список):
+        m = re.fullmatch(r"(\d{2})\s*[–-]\s*(\d{2})", часть)
+        out += [f"{n:02d}" for n in range(int(m.group(1)), int(m.group(2)) + 1)] if m else [часть]
+    return out
+
+
+def перекрёстные_ссылки() -> tuple[list[str], list[str]]:
+    """(битые, на исключённое) по всем выдаваемым файлам."""
+    по_номеру = {p.name[:2]: p for p in delivered()}
+    битые, исключённые = [], []
+    for f in delivered():
+        текст = " ".join(buyer_text(f).split())
+        for m in ССЫЛКА.finditer(текст):
+            номера, кавычки, буква, таблица = m.groups()
+            for i, n in enumerate(_номера(номера)):
+                цель = по_номеру.get(n)
+                где = f"{f.name}: «{m.group(0)}»"
+                if цель is None:
+                    битые.append(f"{где} — файла {n} нет в выдаче")
+                    continue
+                if цель.name in ИСКЛЮЧЁННЫЕ_ФАЙЛЫ:
+                    исключённые.append(f"{где} → {цель.name}")
+                    continue
+                if i != len(_номера(номера)) - 1 or not (кавычки or буква or таблица):
+                    continue
+                if цель.suffix == ".xlsx":
+                    if кавычки in ИСКЛЮЧЁННЫЕ_ЛИСТЫ:
+                        исключённые.append(f"{где} → лист исключён")
+                    elif кавычки and кавычки not in листы(цель):
+                        битые.append(f"{где} — в {цель.name} нет листа «{кавычки}»")
+                    elif буква or таблица:
+                        битые.append(f"{где} — у книги нет разделов и таблиц")
+                    continue
+                заголовки = docx_заголовки(цель) if цель.suffix == ".docx" else []
+                if кавычки and not any(кавычки.lower() in з.lower() for з in заголовки):
+                    битые.append(f"{где} — в {цель.name} нет раздела «{кавычки}»")
+                elif буква and not any(з.startswith(f"Раздел {буква}.") for з in заголовки):
+                    битые.append(f"{где} — в {цель.name} нет раздела {буква}")
+                elif таблица and not any(з.startswith(f"Таблица {таблица}.") for з in заголовки):
+                    битые.append(f"{где} — в {цель.name} нет таблицы {таблица}")
+        for имя in ИМЯ_ФАЙЛА.findall(текст):
+            if имя not in R.FILES:
+                (исключённые if имя in ИСКЛЮЧЁННЫЕ_ФАЙЛЫ else битые).append(f"{f.name}: имя {имя} не в составе")
+        for m in ИСКЛЮЧЁННОЕ_В_ТЕКСТЕ.finditer(текст):
+            исключённые.append(f"{f.name}: «{m.group(0)}» — исключённая часть или шаг 2–5")
+    return битые, исключённые
+
+
+def test_перекрёстные_ссылки_целы() -> None:
+    битые, исключённые = перекрёстные_ссылки()
+    assert not битые and not исключённые, (
+        f"битых ссылок {len(битые)}, ссылок на исключённое {len(исключённые)}:\n  "
+        + "\n  ".join(битые + исключённые))
+
+
+def test_выдача_ровно_11_файлов_без_карты_маршрута() -> None:
+    assert list(R.FILES) == СОСТАВ_11, f"состав s1_route не совпадает с перечнем §10.1a: {list(R.FILES)}"
+    assert "ROUTE-MAP.json" not in _служебные_из_выдачи(), "проверка опиралась бы на исключение, а не на отсутствие"
+    архив = _архив_покупателя(C)
+    assert архив == sorted(СОСТАВ_11), (
+        f"в архив попало {len(архив)} файлов: лишние {sorted(set(архив) - set(СОСТАВ_11))}, "
+        f"нет {sorted(set(СОСТАВ_11) - set(архив))}")
+    assert not any("ROUTE-MAP" in n or n.endswith(".json") for n in архив), "служебная карта в выдаче"
+    # «СОСТАВ» START-HERE и MANIFEST перечисляют ровно архив
+    старт = START_HERE()
+    assert "\nСОСТАВ\n" in старт, "в START-HERE нет раздела «СОСТАВ»"
+    блок = старт.split("\nСОСТАВ\n", 1)[1].split("\n\n", 1)[0]
+    assert re.findall(r"^\s+(\S+\.(?:txt|docx|xlsx)) — ", блок, re.M) == СОСТАВ_11, f"«СОСТАВ» START-HERE:\n{блок}"
+    ман = (C / "MANIFEST.md").read_text(encoding="utf-8")
+    assert re.findall(r"^- `(\d{2}-[^`]+)`", ман, re.M) == СОСТАВ_11, "MANIFEST перечисляет не 11 файлов выдачи"
+    # #320 S-3: строка книги расчёта говорит, что актов может быть несколько
+    строка = next(l for l in блок.splitlines() if "08-raschet-procentov-395.xlsx" in l)
+    assert "несколько актов" in строка, f"START-HERE не говорит, что книга считает несколько актов: {строка}"
+    try:
+        import build_s1_candidate as B
+    except SystemExit as e:
+        ПРОПУСКИ.append(f"выдача из генератора: {e}")
+        return
+    tmp = Path(tempfile.mkdtemp(prefix="s1-out-"))
+    try:
+        B.build(tmp / "izdanie")
+        архив = _архив_покупателя(tmp / "izdanie")
+        assert архив == sorted(СОСТАВ_11) and len(архив) == 11, f"генератор кладёт в выдачу: {архив}"
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+ОТВЕТ_ДА = {"q1", "q2", "q11", "q12", "q15"}   # остальные вопросы «Маршрута» — «Нет» в чистом случае
+
+
+def заполнить_маршрут(src: Path, dst: Path, правки: dict) -> Path:
+    import openpyxl
+    import build_s1_candidate as B
+    wb = openpyxl.load_workbook(src)
+    ws = wb["Маршрут"]
+    for i, (q, _) in enumerate(B.QUESTIONS):
+        ws[f"C{5 + i}"] = правки.get(q, "Да" if q in ОТВЕТ_ДА else "Нет")
+    wb.save(dst)
+    return dst
+
+
+def строка_итога() -> int:
+    import build_s1_candidate as B
+    return 4 + len(B.QUESTIONS) + 3   # шапка, вопросы, пропуск, служебный код
+
+
+def test_допработы_выход_B5_маршрут() -> None:
+    assert "B5" in R.BOUNDARIES, "нет границы B5 «Допработы без соглашения»"
+    b5 = R.BOUNDARIES["B5"]
+    for w in ("допработ", "соглашени"):
+        assert w in (b5["name"] + b5["signs"]).lower(), f"B5: признак «{w}» не назван"
+    m = ДОЛГОВЫЕ_ШАГИ.search(b5["buyer_next"])
+    assert not m, f"B5 ведёт в шаги 6–12: «{m.group(0)}»"
+    assert "файл 10, раздел В" in b5["buyer_next"], "B5 не называет опись по точному имени раздела"
+    for sid in ("S6", "S11"):
+        assert "B5" in _шаг(sid)["boundaries"], f"{sid}: B5 не распознаётся"
+        assert any("B5" in f for f in _шаг(sid)["forks"]), f"{sid}: нет развилки на B5"
+    assert b5["name"] in docx_text(C / "01-karta-situacii-i-granic.docx"), "B5 нет в карте границ (файл 01)"
+    assert "B5" in раздел(C / "09-pretenziya.docx", "Перед отправкой"), "B5 нет в «Перед отправкой» претензии"
+    assert "B5" in раздел(C / "10-obrashchenie-v-sud.docx", "Раздел А."), "B5 нет в проверочном листе иска"
+    assert ПРОВЕРКА_02.exists(), f"нет {ПРОВЕРКА_02.name}"
+    маршрут = xlsx_text(ПРОВЕРКА_02)
+    assert '"B5"' in маршрут and "ГРАНИЦА B5" in маршрут, "маршрутизатор файла 02 не выдаёт B5"
+    причина = _lo_ready()
+    if причина:
+        ПРОПУСКИ.append(f"B5 в Calc: {причина}")
+        return
+    import openpyxl
+    import build_s1_candidate as B
+    q = next(k for k, t in B.QUESTIONS if "допсоглашени" in t and "смет" in t)
+    tmp = Path(tempfile.mkdtemp(prefix="s1-b5-"))
+    try:
+        r = пересчитать({"b5": заполнить_маршрут(ПРОВЕРКА_02, tmp / "b5.xlsx", {q: "Да"})}, tmp)
+        ws = openpyxl.load_workbook(r["b5"], data_only=True)["Маршрут"]
+        итог, след = str(ws[f"C{строка_итога()}"].value), str(ws[f"C{строка_итога() + 1}"].value)
+        assert итог.startswith("ГРАНИЦА B5"), f"ответ «Да» о допработах даёт «{итог}»"
+        assert not ДОЛГОВЫЕ_ШАГИ.search(след), f"B5 ведёт в шаги 6–12: {след}"
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def реакции_02() -> dict[str, str]:
+    спр = ячейки(ПРОВЕРКА_02, "Справочник")
+    шапка = next(int(k[1:]) for k, v in спр.items() if k.startswith("A") and v == "Реакция заказчика")
+    out, r = {}, шапка + 1
+    while спр.get(f"A{r}"):
+        out[спр[f"A{r}"]] = спр.get(f"B{r}", "")
+        r += 1
+    return out
+
+
+def test_реакции_на_сверку_письмо_допработы() -> None:
+    assert ПРОВЕРКА_02.exists(), f"нет {ПРОВЕРКА_02.name}"
+    реакции = реакции_02()
+    нет = [р for р in РЕАКЦИИ_ND6 if р not in реакции]
+    assert not нет, f"в «Контроле ответа» нет реакций: {нет}"
+    # список выбора в «Контроле ответа» покрывает все реакции
+    dv = re.search(r"<formula1>Справочник!\$A\$(\d+):\$A\$(\d+)</formula1>", sheet_xml(ПРОВЕРКА_02, "Контроль ответа"))
+    assert dv and int(dv.group(2)) - int(dv.group(1)) + 1 == len(реакции), "список выбора реакций короче справочника"
+    for р, шаг in реакции.items():
+        assert ШАГ_ИЛИ_ГРАНИЦА.search(шаг), f"реакция «{р}» не называет следующего шага: {шаг}"
+        if re.search(r"[Гг]раница B[245]", шаг):
+            m = ДОЛГОВЫЕ_ШАГИ.search(шаг)
+            assert not m, f"спорная реакция «{р}» ведёт в шаги 6–12: «{m.group(0)}»"
+    assert "не перенесён" in реакции[РЕАКЦИИ_ND6[0]], "гарантийное письмо: нет правила «срок не перенесён»"
+    assert ДОЛГОВЫЕ_ШАГИ.search(реакции[РЕАКЦИИ_ND6[1]]), "подписанный акт сверки не ведёт дальше по маршруту"
+    for b in ("B2", "B4", "B5"):
+        assert b in реакции[РЕАКЦИИ_ND6[2]], f"возражение по сумме не разводит по {b}"
+    assert "B5" in реакции[РЕАКЦИИ_ND6[3]], "«работы не предусмотрены договором» не ведёт к B5"
+    # ND-7: B4 — для принятых работ; неоспоренные акты идут дальше
+    b4 = R.BOUNDARIES["B4"]
+    assert "после подписания" in b4["signs"], "B4 описан не для принятых работ"
+    assert "не оспаривает" in b4["buyer_next"], "B4 не говорит, что неоспоренные акты идут дальше"
+    assert "файл 10, раздел В" in b4["buyer_next"], "B4 не называет опись по точному имени раздела"
+
+
+def test_входящие_документы_не_в_реестре_передачи() -> None:
+    f05 = C / "05-peregovory-i-perenos-sroka.docx"
+    assert f05.exists(), f"нет {f05.name}"
+    в = раздел(f05, "Раздел В.")
+    assert в, "в файле 05 нет раздела В"
+    m = re.search(r"(?<!не )(?:внес|внос)\w*[^.;|]{0,40}реестр\w* передачи", в, re.I)
+    assert not m, f"файл 05, раздел В отправляет входящий документ в «Реестр передачи»: «{m.group(0)}»"
+    assert "«Контроль ответа»" in в and "«Реестр приложений»" in в, "файл 05, раздел В не называет места учёта входящих"
+    assert КНИГА_УЧЁТА.exists(), f"нет {КНИГА_УЧЁТА.name}"
+    строки = {v for k, v in ячейки(КНИГА_УЧЁТА, "Реестр приложений").items() if re.fullmatch(r"B\d+", k)}
+    нет = [d for d in ВХОДЯЩИЕ_ND2 if d not in строки]
+    assert not нет, f"в «Реестре приложений» нет строк: {нет}"
+    передача = " ".join(ячейки(КНИГА_УЧЁТА, "Реестр передачи").values())
+    assert "входящие" in передача.lower(), "«Реестр передачи» не говорит, что входящие в него не вносятся"
+
+
+def test_претензия_содержит_сумму_процентов() -> None:
+    f09, f06 = C / "09-pretenziya.docx", C / "06-uvedomlenie-o-prosrochke.docx"
+    assert f09.exists() and f06.exists(), "нет файлов 09 и 06 нового состава"
+    абзацы = [t for вид, t, _ in docx_элементы(f09) if вид == "p"]
+    п4 = next((a for a in абзацы if a.startswith("4. Требуем")), "")
+    for поле in ("{{СУММА_ПРОЦЕНТОВ}}", "{{ДАТА_РАСЧЁТА}}"):
+        assert поле in п4, f"в требовании претензии (п. 4) нет поля {поле}: {п4}"
+        assert поле in раздел(f09, "Перед отправкой"), f"«Перед отправкой» не говорит, откуда взять {поле}"
+    for f, колонка in ((f06, "Акт (№, дата)"), (f09, "Документ (КС-2, КС-3, акт), №"), (f09, "Дата оплаты")):
+        строк = таблица_строк(f, колонка) - 1
+        assert строк >= 12, f"{f.name}: в таблице «{колонка}» {строк} строк, книга расчёта принимает 12 актов"
+
+
 def main() -> int:
     провал = 0
     for имя, проверка in sorted(globals().items()):

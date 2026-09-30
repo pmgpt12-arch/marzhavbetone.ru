@@ -1,0 +1,235 @@
+# python3 tools/test_s1_candidate.py на 5ffaae1 + шесть проверок §9.1 (до правки генератора)
+# LibreOffice 24.2.7.2, openpyxl 3.1.5; rc=1
+ок  test_libreoffice_итог_это_сумма_строк_по_актам
+ок  test_libreoffice_прогон
+ок  test_libreoffice_сценарий_A_частичная_оплата
+ок  test_libreoffice_сценарий_B_несколько_актов
+ок  test_libreoffice_сценарий_C_двойной_учёт_аванса
+ок  test_start_here_использует_утверждённую_формулировку_об_оплате
+ок  test_start_here_не_обещает_всё_внутри
+ок  test_взаиморасчёты_требуют_отнесения_к_акту_и_ловят_двойной_аванс
+ПРОВАЛ  test_входящие_документы_не_в_реестре_передачи
+нет 05-peregovory-i-perenos-sroka.docx
+ПРОВАЛ  test_выдача_ровно_11_файлов_без_карты_маршрута
+состав s1_route не совпадает с перечнем §10.1a: ['00-START-HERE.txt', '01-karta-situacii-i-granic.docx', '02-pervichnaya-proverka-i-kontrol.xlsx', '03-algoritm-dejstviy.docx', '04-ks-2-ks-3.xlsx', '05-akt-vypolnennyh-rabot.docx', '06-akt-priemki-rezultata.docx', '07-peredatochnyy-akt.docx', '08-uchet-obemov-peredachi-raschetov.xlsx', '09-vnutrennyaya-proverka.docx', '10-peredacha-i-zamechaniya.docx', '11-peregovory-i-perenos-sroka.docx', '12-uvedomlenie-o-prosrochke.docx', '13-pretenziya.docx', '14-raschet-procentov-395.xlsx', '15-obrashchenie-v-sud.docx']
+ок  test_выдача_ровно_16_файлов_без_карты_маршрута
+ок  test_гарантийное_письмо_не_заменяет_соглашение
+ок  test_детальные_вопросы_не_обязательный_вход
+ПРОВАЛ  test_допработы_выход_B5_маршрут
+нет границы B5 «Допработы без соглашения»
+ок  test_задолженность_только_через_проверку_G
+ок  test_каждая_граница_распознаётся_и_имеет_следующий_шаг
+ок  test_каждый_сценарий_имеет_однозначный_старт_и_следующий_шаг
+ок  test_каждый_шаг_имеет_инструмент_подтверждение_и_следующий_шаг
+ок  test_кандидат_не_подключён_к_выдаче
+ок  test_карта_маршрута_не_отстала_от_источника
+ок  test_кс2_кс3_связаны_и_считают
+ок  test_нет_кириллических_функций
+ок  test_нет_обязательной_допокупки
+ок  test_нет_файлов_ради_счётчика
+ок  test_основной_сценарий_ведёт_напрямую_s6_s12
+ПРОВАЛ  test_перекрёстные_ссылки_целы
+битых ссылок 2, ссылок на исключённое 149:
+  01-karta-situacii-i-granic.docx: «файла 15 (раздел «Опись материалов для специалиста»» — в 15-obrashchenie-v-sud.docx нет раздела «Опись материалов для специалиста»
+  02-pervichnaya-proverka-i-kontrol.xlsx: «файла 15 (раздел «Опись материалов для специалиста»» — в 15-obrashchenie-v-sud.docx нет раздела «Опись материалов для специалиста»
+  00-START-HERE.txt: «файлы 04–07» → 04-ks-2-ks-3.xlsx
+  00-START-HERE.txt: «файлы 04–07» → 05-akt-vypolnennyh-rabot.docx
+  00-START-HERE.txt: «файлы 04–07» → 06-akt-priemki-rezultata.docx
+  00-START-HERE.txt: «файлы 04–07» → 07-peredatochnyy-akt.docx
+  00-START-HERE.txt: «шаг 2» — исключённая часть или шаг 2–5
+  00-START-HERE.txt: «шаг 5» — исключённая часть или шаг 2–5
+  00-START-HERE.txt: «шаг 4» — исключённая часть или шаг 2–5
+  00-START-HERE.txt: «Шаг 2» — исключённая часть или шаг 2–5
+  00-START-HERE.txt: «шаги 3» — исключённая часть или шаг 2–5
+  00-START-HERE.txt: «Шаг 4» — исключённая часть или шаг 2–5
+  00-START-HERE.txt: «Шаг 5» — исключённая часть или шаг 2–5
+  00-START-HERE.txt: «Журнал объёмов» — исключённая часть или шаг 2–5
+  00-START-HERE.txt: «реестры замечаний» — исключённая часть или шаг 2–5
+  01-karta-situacii-i-granic.docx: «файлы 04–07» → 04-ks-2-ks-3.xlsx
+  01-karta-situacii-i-granic.docx: «файлы 04–07» → 05-akt-vypolnennyh-rabot.docx
+  01-karta-situacii-i-granic.docx: «файлы 04–07» → 06-akt-priemki-rezultata.docx
+  01-karta-situacii-i-granic.docx: «файлы 04–07» → 07-peredatochnyy-akt.docx
+  01-karta-situacii-i-granic.docx: «Шаг 2» — исключённая часть или шаг 2–5
+  01-karta-situacii-i-granic.docx: «Шаг 5» — исключённая часть или шаг 2–5
+  01-karta-situacii-i-granic.docx: «Шаг 4» — исключённая часть или шаг 2–5
+  01-karta-situacii-i-granic.docx: «Шаг 2» — исключённая часть или шаг 2–5
+  01-karta-situacii-i-granic.docx: «шаги 3» — исключённая часть или шаг 2–5
+  01-karta-situacii-i-granic.docx: «Шаг 4» — исключённая часть или шаг 2–5
+  01-karta-situacii-i-granic.docx: «Шаг 5» — исключённая часть или шаг 2–5
+  01-karta-situacii-i-granic.docx: «журнал объёмов» — исключённая часть или шаг 2–5
+  01-karta-situacii-i-granic.docx: «реестр замечаний» — исключённая часть или шаг 2–5
+  01-karta-situacii-i-granic.docx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  01-karta-situacii-i-granic.docx: «реестры замечаний» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «файлы 04–07, 09, 10» → 04-ks-2-ks-3.xlsx
+  02-pervichnaya-proverka-i-kontrol.xlsx: «файлы 04–07, 09, 10» → 05-akt-vypolnennyh-rabot.docx
+  02-pervichnaya-proverka-i-kontrol.xlsx: «файлы 04–07, 09, 10» → 06-akt-priemki-rezultata.docx
+  02-pervichnaya-proverka-i-kontrol.xlsx: «файлы 04–07, 09, 10» → 07-peredatochnyy-akt.docx
+  02-pervichnaya-proverka-i-kontrol.xlsx: «файлы 04–07, 09, 10» → 09-vnutrennyaya-proverka.docx
+  02-pervichnaya-proverka-i-kontrol.xlsx: «Файл 04, лист «КС-3»» → 04-ks-2-ks-3.xlsx
+  02-pervichnaya-proverka-i-kontrol.xlsx: «файл 08, «Реестр замечаний»» → лист исключён
+  02-pervichnaya-proverka-i-kontrol.xlsx: «Файл 08, «Журнал объёмов»» → лист исключён
+  02-pervichnaya-proverka-i-kontrol.xlsx: «файлы 04–07» → 04-ks-2-ks-3.xlsx
+  02-pervichnaya-proverka-i-kontrol.xlsx: «файлы 04–07» → 05-akt-vypolnennyh-rabot.docx
+  02-pervichnaya-proverka-i-kontrol.xlsx: «файлы 04–07» → 06-akt-priemki-rezultata.docx
+  02-pervichnaya-proverka-i-kontrol.xlsx: «файлы 04–07» → 07-peredatochnyy-akt.docx
+  02-pervichnaya-proverka-i-kontrol.xlsx: «шаги 2» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «шаг 5» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «шаг 4» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «Шаги 2» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «Реестр замечаний» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «журнал объёмов» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «реестр замечаний» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «ШАГ 2» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «шаги 2» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «ШАГ 4» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «ШАГ 5» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «реестр замечаний» — исключённая часть или шаг 2–5
+  02-pervichnaya-proverka-i-kontrol.xlsx: «шаги 2» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «файлы 04–07» → 04-ks-2-ks-3.xlsx
+  03-algoritm-dejstviy.docx: «файлы 04–07» → 05-akt-vypolnennyh-rabot.docx
+  03-algoritm-dejstviy.docx: «файлы 04–07» → 06-akt-priemki-rezultata.docx
+  03-algoritm-dejstviy.docx: «файлы 04–07» → 07-peredatochnyy-akt.docx
+  03-algoritm-dejstviy.docx: «файл 04» → 04-ks-2-ks-3.xlsx
+  03-algoritm-dejstviy.docx: «файл 05» → 05-akt-vypolnennyh-rabot.docx
+  03-algoritm-dejstviy.docx: «файл 06» → 06-akt-priemki-rezultata.docx
+  03-algoritm-dejstviy.docx: «файл 07» → 07-peredatochnyy-akt.docx
+  03-algoritm-dejstviy.docx: «файле 04» → 04-ks-2-ks-3.xlsx
+  03-algoritm-dejstviy.docx: «файл 09» → 09-vnutrennyaya-proverka.docx
+  03-algoritm-dejstviy.docx: «файл 09, раздел Б» → 09-vnutrennyaya-proverka.docx
+  03-algoritm-dejstviy.docx: «файл 07» → 07-peredatochnyy-akt.docx
+  03-algoritm-dejstviy.docx: «файле 08, лист «Реестр замечаний»» → лист исключён
+  03-algoritm-dejstviy.docx: «файле 04» → 04-ks-2-ks-3.xlsx
+  03-algoritm-dejstviy.docx: «файл 04» → 04-ks-2-ks-3.xlsx
+  03-algoritm-dejstviy.docx: «файл 05» → 05-akt-vypolnennyh-rabot.docx
+  03-algoritm-dejstviy.docx: «файл 07» → 07-peredatochnyy-akt.docx
+  03-algoritm-dejstviy.docx: «файл 09, раздел Б» → 09-vnutrennyaya-proverka.docx
+  03-algoritm-dejstviy.docx: «файле 08, лист «Реестр замечаний»» → лист исключён
+  03-algoritm-dejstviy.docx: «шаги 2» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаги 2» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 2» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 5» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 4» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 2» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «шаги 3» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 4» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 5» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 2» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «журнал объёмов» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «шаг 3» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 3» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «шаг 4» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 4» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 5» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Реестр замечаний» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 2» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «реестры замечаний» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «журнал объёмов» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «шаг 3» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 3» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «реестры замечаний» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «шаг 4» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 4» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «реестры замечаний» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «шаг 5» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Шаг 5» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «реестры замечаний» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Реестр замечаний» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «реестры замечаний» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «шаги 2» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «реестры замечаний» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «реестры замечаний» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  03-algoritm-dejstviy.docx: «реестры замечаний» — исключённая часть или шаг 2–5
+  05-akt-vypolnennyh-rabot.docx: «Файл 05» → 05-akt-vypolnennyh-rabot.docx
+  05-akt-vypolnennyh-rabot.docx: «журналом объёмов» — исключённая часть или шаг 2–5
+  05-akt-vypolnennyh-rabot.docx: «реестре замечаний» — исключённая часть или шаг 2–5
+  06-akt-priemki-rezultata.docx: «Файл 06» → 06-akt-priemki-rezultata.docx
+  06-akt-priemki-rezultata.docx: «реестр замечаний» — исключённая часть или шаг 2–5
+  07-peredatochnyy-akt.docx: «Файл 07» → 07-peredatochnyy-akt.docx
+  07-peredatochnyy-akt.docx: «сопроводительному письм» — исключённая часть или шаг 2–5
+  08-uchet-obemov-peredachi-raschetov.xlsx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  08-uchet-obemov-peredachi-raschetov.xlsx: «Реестр замечаний» — исключённая часть или шаг 2–5
+  09-vnutrennyaya-proverka.docx: «Файл 09» → 09-vnutrennyaya-proverka.docx
+  09-vnutrennyaya-proverka.docx: «Файл 04, лист «Сверка»» → 04-ks-2-ks-3.xlsx
+  09-vnutrennyaya-proverka.docx: «Файл 04» → 04-ks-2-ks-3.xlsx
+  09-vnutrennyaya-proverka.docx: «Файл 04, лист «Сверка»» → 04-ks-2-ks-3.xlsx
+  09-vnutrennyaya-proverka.docx: «Файл 08, «Журнал объёмов»» → лист исключён
+  09-vnutrennyaya-proverka.docx: «Файл 04, лист «Сверка»» → 04-ks-2-ks-3.xlsx
+  09-vnutrennyaya-proverka.docx: «Файл 08, «Реестр замечаний»» → лист исключён
+  09-vnutrennyaya-proverka.docx: «журналом объёмов» — исключённая часть или шаг 2–5
+  09-vnutrennyaya-proverka.docx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  09-vnutrennyaya-proverka.docx: «Реестр замечаний» — исключённая часть или шаг 2–5
+  10-peredacha-i-zamechaniya.docx: «файл 09» → 09-vnutrennyaya-proverka.docx
+  10-peredacha-i-zamechaniya.docx: «файл 06» → 06-akt-priemki-rezultata.docx
+  10-peredacha-i-zamechaniya.docx: «Сопроводительное письм» — исключённая часть или шаг 2–5
+  10-peredacha-i-zamechaniya.docx: «реестре замечаний» — исключённая часть или шаг 2–5
+  15-obrashchenie-v-sud.docx: «Файл 08, «Реестр замечаний»» → лист исключён
+  15-obrashchenie-v-sud.docx: «Файлы 04, 05» → 04-ks-2-ks-3.xlsx
+  15-obrashchenie-v-sud.docx: «Файлы 04, 05» → 05-akt-vypolnennyh-rabot.docx
+  15-obrashchenie-v-sud.docx: «Файлы 06, 07» → 06-akt-priemki-rezultata.docx
+  15-obrashchenie-v-sud.docx: «Файлы 06, 07» → 07-peredatochnyy-akt.docx
+  15-obrashchenie-v-sud.docx: «Файл 09» → 09-vnutrennyaya-proverka.docx
+  15-obrashchenie-v-sud.docx: «Реестр замечаний» — исключённая часть или шаг 2–5
+  15-obrashchenie-v-sud.docx: «Журнал объёмов» — исключённая часть или шаг 2–5
+  15-obrashchenie-v-sud.docx: «Реестр замечаний» — исключённая часть или шаг 2–5
+ок  test_по_дням_одна_строка_на_день_без_матрицы_актов
+ПРОВАЛ  test_претензия_содержит_сумму_процентов
+нет файлов 09 и 06 нового состава
+ок  test_расчёт_395_считает_акты_по_отдельности
+ок  test_расчёт_395_устроен_без_молчаливых_потерь
+ПРОВАЛ  test_реакции_на_сверку_письмо_допработы
+нет 02-proverka-i-kontrol-otveta.xlsx
+ок  test_реестры_на_месте
+ок  test_сборка_воспроизводима
+ок  test_система_не_обещает_решить_граничные_ситуации
+ок  test_состав_совпадает_с_картой
+ок  test_стороны_только_субподрядчик_и_заказчик
+ок  test_устная_договорённость_фиксируется_документом
+ок  test_файл_14_не_берёт_текущий_остаток_как_сумму_долга
+ок  test_формы_содержат_рабочую_табличную_часть
+ок  test_эталон_больше_десяти_оплат
+ок  test_эталон_округление_по_актам_а_не_общего_долга
+ок  test_эталон_сценарий_A_частичная_оплата_после_начала_просрочки
+ок  test_эталон_сценарий_B_несколько_актов_с_разными_датами
+ок  test_эталон_частичная_оплата_внутри_периода
+
+# разбивка ссылок на исключённое по файлам и видам
+4 ('00-START-HERE.txt', 'файл → исключённый файл')
+2 ('00-START-HERE.txt', 'часть в тексте')
+7 ('00-START-HERE.txt', 'шаг 2–5')
+4 ('01-karta-situacii-i-granic.docx', 'файл → исключённый файл')
+4 ('01-karta-situacii-i-granic.docx', 'часть в тексте')
+7 ('01-karta-situacii-i-granic.docx', 'шаг 2–5')
+2 ('02-pervichnaya-proverka-i-kontrol.xlsx', 'лист исключён')
+9 ('02-pervichnaya-proverka-i-kontrol.xlsx', 'файл → исключённый файл')
+10 ('02-pervichnaya-proverka-i-kontrol.xlsx', 'часть в тексте')
+6 ('02-pervichnaya-proverka-i-kontrol.xlsx', 'шаг 2–5')
+2 ('03-algoritm-dejstviy.docx', 'лист исключён')
+17 ('03-algoritm-dejstviy.docx', 'файл → исключённый файл')
+20 ('03-algoritm-dejstviy.docx', 'часть в тексте')
+23 ('03-algoritm-dejstviy.docx', 'шаг 2–5')
+1 ('05-akt-vypolnennyh-rabot.docx', 'файл → исключённый файл')
+2 ('05-akt-vypolnennyh-rabot.docx', 'часть в тексте')
+1 ('06-akt-priemki-rezultata.docx', 'файл → исключённый файл')
+1 ('06-akt-priemki-rezultata.docx', 'часть в тексте')
+1 ('07-peredatochnyy-akt.docx', 'файл → исключённый файл')
+1 ('07-peredatochnyy-akt.docx', 'часть в тексте')
+2 ('08-uchet-obemov-peredachi-raschetov.xlsx', 'часть в тексте')
+2 ('09-vnutrennyaya-proverka.docx', 'лист исключён')
+2 ('09-vnutrennyaya-proverka.docx', 'файл → исключённый файл')
+6 ('09-vnutrennyaya-proverka.docx', 'часть в тексте')
+2 ('10-peredacha-i-zamechaniya.docx', 'файл → исключённый файл')
+2 ('10-peredacha-i-zamechaniya.docx', 'часть в тексте')
+1 ('15-obrashchenie-v-sud.docx', 'лист исключён')
+5 ('15-obrashchenie-v-sud.docx', 'файл → исключённый файл')
+3 ('15-obrashchenie-v-sud.docx', 'часть в тексте')
+всего 149
