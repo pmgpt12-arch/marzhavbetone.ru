@@ -39,7 +39,6 @@ import argparse
 import functools
 import http.server
 import socket
-import socketserver
 import sys
 import threading
 from pathlib import Path
@@ -96,16 +95,23 @@ def free_port() -> int:
         return s.getsockname()[1]
 
 
-def serve() -> tuple[socketserver.TCPServer, int]:
+def serve() -> tuple[http.server.ThreadingHTTPServer, int]:
     """Отдаёт сайт по http: ассеты подключены абсолютными путями, и по file://
-    они не грузятся — под file:// проверка молча прошла бы на пустой странице."""
+    они не грузятся — под file:// проверка молча прошла бы на пустой странице.
+
+    Сервер многопоточный — по той же причине, что в `check_desktop.py`:
+    однопоточный `TCPServer` блокировался на соединении, по которому браузер
+    ничего не прислал, и `Page.goto` падал по таймауту при исправном сайте.
+    Регресс — `tools/test_check_mobile_server.py`."""
     class Quiet(http.server.SimpleHTTPRequestHandler):
         def log_message(self, *args):  # обращения к файлам не нужны в выводе
             pass
 
     port = free_port()
     handler = functools.partial(Quiet, directory=str(ROOT))
-    httpd = socketserver.TCPServer(("127.0.0.1", port), handler)
+    httpd = http.server.ThreadingHTTPServer(("127.0.0.1", port), handler)
+    # Поток, застрявший на молчащем соединении, не держит выход процесса.
+    httpd.daemon_threads = True
     threading.Thread(target=httpd.serve_forever, daemon=True).start()
     return httpd, port
 

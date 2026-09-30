@@ -169,6 +169,141 @@ def test_p5_не_отдаёт_снятую_сравнительную_табли
             f"{name}: не указан актуальный счёт 11 файлов")
 
 
+P4 = STORAGE / "08-pto-bez-zamechaniy"
+P4_СТРАНИЦА = "p4-ispolnitelnaya-dokumentaciya-pto.html"
+# Состав P4, закреплённый выпуском 28.09.2026 (Issue #308): 10 снят, 43 добавлен.
+# Список, а не число: число сойдётся и при подмене одного файла другим.
+P4_СОСТАВ = (
+    "00-START-HERE.txt",
+    "01-uvedomlenie-o-gotovnosti-id.docx",
+    "02-akt-priemki-id.docx",
+    "03-perechen-vozmozhnyh-zamechaniy.docx",
+    "04-pismo-na-zamechaniya.docx",
+    "05-sluzhebnaya-zapiska.docx",
+    "06-reestr-zamechaniy.xlsx",
+    "07-grafik-ustraneniya.xlsx",
+    "08-algoritm-raboty-s-id.pdf",
+    "09-krasnye-flagi.docx",
+    "31-pyat-aktov-skrytyh-rabot.docx",
+    "32-shablon-ispolnitelnoy-shemy.docx",
+    "33-akt-peredachi-komplekta-pto.docx",
+    "34-sluzhebnaya-zapiska.docx",
+    "35-obshiy-zhurnal-rabot.xlsx",
+    "36-vhodnoy-kontrol.xlsx",
+    "37-reestr-pasportov.xlsx",
+    "38-reestr-id.xlsx",
+    "39-algoritm-zamechaniy.pdf",
+    "40-ezhemesyachnaya-proverka.pdf",
+    "41-akt-peredachi-ploshchadki-fronta.docx",
+    "42-akt-vhodnogo-kontrolya-materialov.docx",
+    "43-preduprezhdenie-po-st-716.docx",
+)
+# Сумма числом со знаком рубля. Пустое поле «____ ₽» в бланке суммой не является.
+ЦЕНА = re.compile(r"\d[\d   ]*\s*₽")
+# Обещания, которых комплект не подтверждает (#300 P4-03, #293 S-5, S-13)
+P4_ЛОЖНЫЕ_ОБЕЩАНИЯ = (
+    "окупаем", "полный комплект", "полного комплекта", "юридически выверен",
+    "автопроверк", "15+", "сп и снип", "закрывает каждый пункт",
+)
+
+
+def текст_файла(файл: Path) -> str:
+    """Видимый текст выдаваемого файла: абзацы .docx, строки .xlsx, .txt."""
+    import docx_text
+    if файл.suffix == ".docx":
+        return "\n".join(docx_text.paragraphs(файл))
+    if файл.suffix == ".xlsx":
+        with zipfile.ZipFile(файл) as z:
+            xml = "".join(z.read(n).decode("utf-8", "replace") for n in z.namelist()
+                          if n.startswith("xl/") and n.endswith(".xml"))
+        return html.unescape(" ".join(re.findall(r"<t[^>]*>([^<]*)</t>", xml)))
+    if файл.suffix == ".txt":
+        return файл.read_text(encoding="utf-8")
+    return ""
+
+
+def test_p4_покупатель_получает_ровно_обещанный_состав() -> None:
+    files = cp.delivered(P4)
+    assert sorted(files) == sorted(P4_СОСТАВ), (
+        f"P4: лишние {sorted(set(files) - set(P4_СОСТАВ))}, "
+        f"нет {sorted(set(P4_СОСТАВ) - set(files))}")
+
+    start = (P4 / "00-START-HERE.txt").read_text(encoding="utf-8")
+    названы = set(re.findall(r"^\s+(\d\d-[A-Za-z0-9-]+\.(?:txt|docx|xlsx|pdf))", start, re.M))
+    assert названы == set(P4_СОСТАВ), (
+        f"START-HERE P4: лишние {sorted(названы - set(P4_СОСТАВ))}, "
+        f"не названы {sorted(set(P4_СОСТАВ) - названы)}")
+    assert f"файлов в архиве: {len(P4_СОСТАВ)}" in start
+
+    manifest = P4 / "MANIFEST.md"
+    assert sorted(cp.declared(manifest)) == sorted(P4_СОСТАВ)
+    assert f"Покупателю уходит {len(P4_СОСТАВ)} файла" in manifest.read_text(encoding="utf-8")
+
+    page = (cp.PAGES / P4_СТРАНИЦА).read_text(encoding="utf-8")
+    карточки = re.findall(r'<article class="doc-item"><h3>([^<]+)</h3>', page)
+    assert len(карточки) == len(P4_СОСТАВ) - 1, (
+        f"страница P4: {len(карточки)} карточек в «Что входит», "
+        f"файлов кроме START-HERE {len(P4_СОСТАВ) - 1}")
+    assert any("ст. 716" in к for к in карточки), "страница P4 не называет письмо по ст. 716"
+    assert not any("Сравнительная таблица" in к for к in карточки)
+    assert f"{len(P4_СОСТАВ)} файл" in page
+
+
+def test_p4_обещание_письма_по_716_подкреплено_файлом() -> None:
+    """Акт 42 говорит, что шаблон письма-предупреждения входит в комплект, —
+    значит, письмо лежит рядом и не отсылает к документам, которых в P4 нет."""
+    акт = текст_файла(P4 / "42-akt-vhodnogo-kontrolya-materialov.docx")
+    if "Шаблон письма-предупреждения входит в комплект" in акт:
+        письмо = P4 / "43-preduprezhdenie-po-st-716.docx"
+        assert письмо.is_file(), "акт 42 обещает письмо по ст. 716, а файла нет"
+        текст = текст_файла(письмо)
+        assert "ст. 716 ГК РФ" in текст
+        assert "отдельный документ комплекта" not in текст, (
+            "письмо в P4 отсылает к документу P12, которого в P4 нет")
+
+
+def test_p4_нет_цены_окупаемости_и_неподтверждённых_свойств() -> None:
+    плохие = []
+    # Фактическая выдача, а не закреплённый список: вернувшийся файл тоже читается
+    for имя in sorted(cp.delivered(P4)):
+        текст = текст_файла(P4 / имя)
+        if имя != "00-START-HERE.txt":
+            # Цена в START-HERE — общая политика линейки (#293 S-1, S-17), не P4
+            плохие += [f"{имя}: цена «{m.group(0).strip()}»" for m in ЦЕНА.finditer(текст)]
+        низ = текст.lower()
+        плохие += [f"{имя}: «{с}»" for с in P4_ЛОЖНЫЕ_ОБЕЩАНИЯ if с in низ]
+    страница = (cp.PAGES / P4_СТРАНИЦА).read_text(encoding="utf-8").lower()
+    плохие += [f"страница P4: «{с}»" for с in P4_ЛОЖНЫЕ_ОБЕЩАНИЯ if с in страница]
+    assert not плохие, "P4 обещает то, чего комплект не подтверждает:\n  " + "\n  ".join(плохие)
+
+
+def test_p4_архив_воспроизводим() -> None:
+    """Файл 43 выводится из вычитанного письма P12 одной объявленной правкой,
+    а архив, собранный по правилу `mvb_build_product_zip`, дважды одинаков."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "build_p4_release", STORAGE / "build_p4_release.py")
+    выпуск = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(выпуск)
+    assert выпуск.расхождения() == [], выпуск.расхождения()
+    assert выпуск.содержимое(выпуск.письмо_p4()) == выпуск.содержимое(выпуск.письмо_p4())
+
+    def архив() -> bytes:
+        buf = __import__("io").BytesIO()
+        with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
+            for имя in sorted(cp.delivered(P4)):
+                z.writestr(zipfile.ZipInfo(имя, (2026, 9, 28, 0, 0, 0)),
+                           (P4 / имя).read_bytes())
+        return buf.getvalue()
+
+    первый, второй = архив(), архив()
+    assert первый == второй, "архив P4 собирается по-разному из одного источника"
+    with zipfile.ZipFile(__import__("io").BytesIO(первый)) as z:
+        assert sorted(z.namelist()) == sorted(P4_СОСТАВ)
+        for имя in z.namelist():
+            assert z.read(имя) == (P4 / имя).read_bytes(), имя
+
+
 def main() -> int:
     провал = 0
     for имя, проверка in sorted(globals().items()):
