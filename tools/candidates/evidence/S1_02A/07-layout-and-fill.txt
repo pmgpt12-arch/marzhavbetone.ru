@@ -1,0 +1,37 @@
+# DOCX/XLSX → PDF (LibreOffice 24.2.7.2), поиск разрывов слов посередине
+## база 5ffaae1
+01: 4, 03: 26, 11(→05): 0, 10(→07): 2, 02 (xlsx): 33, 08 учёт (xlsx): 70
+## ветка
+01-karta-situacii-i-granic.pdf: страниц 6, разрывов слов 0 []
+02-proverka-i-kontrol-otveta.pdf: страниц 9, разрывов слов 0 []
+03-algoritm-dejstviy.pdf: страниц 10, разрывов слов 0 []
+04-uchet-raschetov-i-otpravok.pdf: страниц 14, разрывов слов 0 []
+05-peregovory-i-perenos-sroka.pdf: страниц 4, разрывов слов 0 []
+06-uvedomlenie-o-prosrochke.pdf: страниц 2, разрывов слов 0 []
+07-otpravka-i-dokazatelstvo.pdf: страниц 2, разрывов слов 0 []
+09-pretenziya.pdf: страниц 3, разрывов слов 0 []
+10-obrashchenie-v-sud.pdf: страниц 4, разрывов слов 0 []
+## заполненные 09 и 06 (все поля {{…}} подставлены, по 12 строк)
+06-uvedomlenie-o-prosrochke.pdf: страниц 2, разрывов слов 0 []
+09-pretenziya.pdf: страниц 4, разрывов слов 0 []
+
+## книга 04 в Calc
+листы: ['Взаиморасчёты', 'Долг по актам', 'Реестр передачи', 'Реестр приложений']
+Реестр передачи K5: ОТПРАВЛЕНО, ЖДЁМ ПОЛУЧЕНИЯ | K6: НЕ ОТПРАВЛЕНО
+строки ND-2 в «Реестре приложений»: {'Гарантийное письмо заказчика': 19, 'Протокол переговоров / соглашение': 20, 'Акт сверки, подписанный Заказчиком': 21, 'Возражения Заказчика': 22}
+«Нужно к иску, но нет» I56 = 3 (ожидалось 3)
+Взаиморасчёты M10 пустой книги: 0
+ошибок в ячейках: 0 []
+
+## пометка «Редакция-кандидат» в выдаваемых файлах
+00-START-HERE.txt True
+01-karta-situacii-i-granic.docx True
+02-proverka-i-kontrol-otveta.xlsx False
+03-algoritm-dejstviy.docx True
+04-uchet-raschetov-i-otpravok.xlsx False
+05-peregovory-i-perenos-sroka.docx True
+06-uvedomlenie-o-prosrochke.docx True
+07-otpravka-i-dokazatelstvo.docx True
+08-raschet-procentov-395.xlsx True
+09-pretenziya.docx True
+10-obrashchenie-v-sud.docx True

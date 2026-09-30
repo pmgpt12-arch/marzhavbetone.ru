@@ -1,0 +1,89 @@
+# python3 tools/run_checks.py --class public  (строки итогов по проверкам)
+ok          test_web_exposure          код 0, 0.0 с
+ok          link_audit                 код 0, 0.3 с
+ok          test_link_audit            код 0, 1.4 с
+ok          test_run_checks            код 0, 0.5 с
+ok          asset_versions             код 0, 0.1 с
+ok          test_published_data        код 0, 0.1 с
+ok          check_nav                  код 0, 0.1 с
+ok          check_meta                 код 0, 0.0 с
+ok          check_seo                  код 0, 0.0 с
+ok          check_rss                  код 0, 0.1 с
+ok          check_packages             код 0, 0.2 с
+ok          sync_kit_file_counts       код 0, 0.1 с
+ok          test_sync_kit_file_counts  код 0, 2.3 с
+ok          check_free_materials       код 0, 0.1 с
+ok          check_covers               код 0, 1.1 с
+ok          test_covers                код 0, 6.3 с
+ok          check_goals                код 0, 0.1 с
+ok          test_attribution_goals     код 0, 0.3 с
+ok          test_anonymous_id          код 0, 0.2 с
+ok          test_browser_events        код 0, 0.1 с
+ok          test_taxonomy_snapshot     код 0, 0.0 с
+ok          test_lead_event            код 0, 1.3 с
+ok          test_funnel_outbox         код 0, 1.1 с
+ok          test_event_proxy           код 0, 1.8 с
+ok          build_preview              код 0, 0.3 с
+ok          test_manifest_rebuild      код 0, 0.2 с
+ok          php_lint                   код 0, 0.5 с
+ok          test_order_lock            код 0, 0.2 с
+ok          test_price_authority       код 0, 0.0 с
+ok          test_delivery_cache_freshness код 0, 0.0 с
+ok          check_storefront_claims    код 0, 0.1 с
+ok          test_products_dir          код 0, 0.1 с
+ok          verify_delivery_zips       код 0, 0.0 с
+ok          test_smoke_production      код 0, 0.1 с
+ok          test_dzen_titles           код 0, 0.1 с
+ok          test_t3_article_cta        код 0, 0.1 с
+ok          test_diagnostic_sku_standalone код 0, 0.1 с
+ok          test_mb005_no_ladder_copy  код 0, 0.1 с
+ok          check_404_page             код 0, 0.1 с
+прогнано 39, прошли 39, упали 0 (блокирующих 0, предупреждений 0), пропущено без данных 0
+ИТОГ: PASS — все обязательные проверки прошли.
+
+# python3 tools/run_checks.py --class internal
+ok          test_post_telegram         код 0, 0.1 с
+ok          test_dzen_snapshot         код 0, 0.1 с
+ok          check_reel_refs            код 0, 0.0 с
+ok          test_trend_provider        код 0, 0.1 с
+ok          test_check_reel_refs       код 0, 0.2 с
+ok          test_reference_frames      код 0, 0.1 с
+ok          test_legal_pdf             код 0, 0.1 с
+ok          legal_rebind               код 0, 0.1 с
+ok          legal_claim_audit          код 0, 0.3 с
+ok          test_case_discovery        код 0, 0.3 с
+ok          test_case_package          код 0, 0.9 с
+ok          test_s1_candidate          код 0, 68.8 с
+прогнано 12, прошли 12, упали 0 (блокирующих 0, предупреждений 0), пропущено без данных 31
+  пропущена  test_metrika_utm — нет data/content/rules.yaml; MOVE_TO_INTERNAL. Числился настоящим регрессом «расхождение в своде меток» (аудит RC1, раздел 13) — замер 28.08.2026 это снимает: metrika_report.declared_channels() возвращает пустой список, когда нет data/content/rules.yaml, и тогда КАЖДЫЙ источник попадает в other_utm. Оба падения — следствие удалённого файла, а не поломки кода. Сам инструмент на сервер не заливается: tools/ исключён из выкладки.
+  пропущена  test_search_demand — нет data/seo/search-demand-rules.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  check_evidence — нет data/evidence/rules.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  test_evidence — нет research/_probe.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  check_offer — нет data/business/money-pains.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  check_backlog — нет data/ops/backlog.csv; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  content_router — нет data/content/rules.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  test_content_router — нет data/content/publication-queue.csv; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  money_impact — нет data/business/money-impact.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  money_graph — нет data/seo/money-graph.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  check_reel — нет content/reels; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  test_check_reel — нет content/reels/01-uderzhanie-5-millionov.md; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  check_keyword_map — нет content/strategy/keyword-map.csv; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  build_product_map — нет data/business/money-pains.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  build_product_fit — нет data/sales/product-fit.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  content_product_map — нет data/sales/product-map.csv; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  build_objections — нет data/sales/objections.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  build_solution_cards — нет data/sales/product-fit.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  test_ig_webhook — нет data/social/ig-keywords.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  test_legal_extract — нет data/legal/norms.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  test_legal_fetch — нет data/legal/norms.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  check_legal_coverage — нет data/legal/norms.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  test_legal_coverage — нет data/legal/norms.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  check_agent_models — нет data/ai/agent-model-policy.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  test_agent_models — нет data/ai/agent-model-policy.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  agent_bridge — нет data/ai/agent-model-policy.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  test_agent_bridge — нет data/ai/agent-model-policy.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  test_legal_rebind — нет data/legal/rebinds.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  test_normative_gate — нет data/legal/norms.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  normative_gate — нет data/legal/document-norms.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+  пропущена  normative_scope — нет data/legal/norms.yaml; MOVE_TO_INTERNAL: входные данные удалены при открытии репозитория (a1373b0). Проверка объявлена и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.
+ИТОГ: PASS — все обязательные проверки прошли.
