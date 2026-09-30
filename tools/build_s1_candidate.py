@@ -267,6 +267,26 @@ def note(ws, cell, text, bold=False):
         ws[cell].font = BOLD
 
 
+def fit_height(ws, row, text, first_col: int, last_col: int):
+    """Высота строки под текст в колонках first..last. Calc не подбирает
+    высоту объединённых ячеек сам: без неё текст обрезается."""
+    width = sum(ws.column_dimensions[get_column_letter(i)].width or 8.43 for i in range(first_col, last_col + 1))
+    lines = max(1, -(-int(len(str(text)) * 1.15) // int(width)))
+    ws.row_dimensions[row].height = max(ws.row_dimensions[row].height or 0, 15 * lines + 3)
+
+
+def fit_banners(ws, last_col: int, rows=(1, 2)):
+    """Заголовок (A1) и пояснение (A2) листа — на всю ширину таблицы. В колонке
+    «№» шириной 5 знаков они рвали слова по слогам (S1-02А, проверка вёрстки)."""
+    for r in rows:
+        text = ws.cell(row=r, column=1).value
+        if not text:
+            continue
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=last_col)
+        ws.cell(row=r, column=1).alignment = WRAP
+        fit_height(ws, r, text, 1, last_col)
+
+
 # ─────────────────────── воспроизводимость ───────────────────────────
 
 STAMP = re.compile(rb"(<dcterms:(?:created|modified)[^>]*>)[^<]*(</dcterms:)")
@@ -484,7 +504,7 @@ def f03(out: Path):
             s["confirmation"], step_label(s["next"]),
             ", ".join(scenarios_of(s["id"])) or ("по желанию" if s.get("optional") else "все")]
            for s in R.STEPS],
-          widths=[1.5, 2.9, 2.2, 5.2, 2.0, 1.4], pt=8.5)
+          widths=[1.3, 2.6, 2.2, 4.5, 2.6, 2.0], pt=8.5)
     for s in R.STEPS:
         H(doc, f"{cap(step_label(s['id']))}. {s['title']}", level=2)
         P(doc, "Инструменты: " + "; ".join(f"{t} — {R.FILES[t][0]}" for t in s["tools"]))
@@ -661,10 +681,13 @@ def f02(out: Path):
     ws.cell(row=r0 + 3, column=3, value=(
         f'=IF(AND({c["q14"]}="Да",{c["q13"]}<>"Да"),"Гарантийное письмо не переносит срок оплаты: '
         f'просрочка считается от договорного срока. Для переноса нужно двустороннее соглашение (файл 05).","")'))
+    самое_длинное = {r0: "", r0 + 1: max((t for _, t, _ in ROUTE_CODES), key=len),
+                      r0 + 2: max((n for _, _, n in ROUTE_CODES), key=len), r0 + 3: "x" * 170}
     for rr in range(r0, r0 + 4):
         ws.merge_cells(start_row=rr, start_column=3, end_row=rr, end_column=4)
         ws.cell(row=rr, column=3).alignment = WRAP
-        ws.row_dimensions[rr].height = 45
+        ws.row_dimensions[rr].height = 30
+        fit_height(ws, rr, самое_длинное[rr], 3, 4)
     rd = r0 + 5
     ws.cell(row=rd, column=2, value="Последний день срока оплаты (по договору или двустороннему соглашению; если он пришёлся на нерабочий день — ближайший следующий рабочий день, ст. 193 ГК РФ). Если актов несколько и сроки оплаты по ним разные, заполните срок по каждому акту в файле 04, лист «Долг по актам»: эта строка тогда служит для самого раннего акта")
     ws.cell(row=rd, column=3).number_format = DATE
@@ -673,7 +696,8 @@ def f02(out: Path):
     ws.cell(row=rd + 1, column=3, value=f'=IF(C{rd}="","",C{rd}+1)').number_format = DATE
     for rr in (rd, rd + 1):
         ws.cell(row=rr, column=2).alignment = WRAP
-        ws.row_dimensions[rr].height = 45
+        fit_height(ws, rr, ws.cell(row=rr, column=2).value, 2, 2)
+    fit_banners(ws, 4)
     ws.freeze_panes = "A5"
 
     sp = wb.create_sheet("Справочник")
@@ -712,6 +736,7 @@ def f02(out: Path):
     rk.cell(row=rl + 2, column=4, value=f'=COUNTIF(E5:E{rl},"НЕ ХВАТАЕТ")')
     rk.cell(row=rl + 3, column=2, value="Не проверено").font = BOLD
     rk.cell(row=rl + 3, column=4, value=f'=COUNTIF(E5:E{rl},"ПРОВЕРИТЬ")')
+    fit_banners(rk, 7)
 
     kt = wb.create_sheet("Контроль ответа", 2)
     note(kt, "A1", "Контроль ответа заказчика и следующий шаг", True)
@@ -730,6 +755,7 @@ def f02(out: Path):
     inputs(kt, "B5:D204")
     inputs(kt, "F5:F204")
     inputs(kt, "H5:H204")
+    fit_banners(kt, 8)
     dv = DataValidation(type="list", formula1=f"Справочник!$A${rr0 + 1}:$A${rr0 + len(REACTIONS)}", allow_blank=True)
     kt.add_data_validation(dv)
     dv.add("F5:F204")
@@ -760,6 +786,7 @@ def f04(out: Path):
     listval(rp, "F5:F304", ways)
     rp["B306"] = "Отправлений без доказательства"
     rp["K306"] = '=COUNTIF(K5:K304,"НЕТ ДОКАЗАТЕЛЬСТВА")'
+    fit_banners(rp, 11)
 
     vz = wb.create_sheet("Взаиморасчёты")
     note(vz, "A1", "Реестр взаиморасчётов", True)
@@ -805,6 +832,7 @@ def f04(out: Path):
     boxed(vz, "A5:J504")
     inputs(vz, "B5:F504")
     listval(vz, "C5:C504", ops)
+    fit_banners(vz, 10)
     # Строки свода: M4 начислено, M5 оплачено, M6 аванс, M7 корректировки,
     # M8 спорные, M9 ниже таблицы, M10 долг, M11 граница, M12 без типа/суммы,
     # M13 строки с БЛОК
@@ -840,7 +868,7 @@ def f04(out: Path):
                  "ДОЛГ НА ПЕРВЫЙ ДЕНЬ ПРОСРОЧКИ, руб. → файл 08, «Акты»",
                  "Оплачено с первого дня просрочки, руб. → файл 08, «Оплаты»",
                  "Текущий остаток по акту, руб. → файл 08, «Акты», сверка", "Проверка", "Переносить в файл 08"],
-         [5, 22, 24, 18, 14, 16, 18, 22, 20, 20, 52, 20])
+         [5, 22, 24, 18, 14, 18, 18, 22, 20, 20, 52, 20])
     vb, vc, ve, vf = ("Взаиморасчёты!$B$5:$B$504", "Взаиморасчёты!$C$5:$C$504",
                       "Взаиморасчёты!$E$5:$E$504", "Взаиморасчёты!$F$5:$F$504")
     for r in range(5, 35):
@@ -893,6 +921,7 @@ def f04(out: Path):
     da.column_dimensions["M"].width = 3
     da.column_dimensions["O"].width = 22
     boxed(da, f"N4:O{3 + len(свод)}")
+    fit_banners(da, 12)
     da.freeze_panes = "A5"
 
     pr = wb.create_sheet("Реестр приложений")
@@ -922,6 +951,7 @@ def f04(out: Path):
     listval(pr, "I5:I54", ["Да", "Нет"])
     pr["B56"] = "Нужно к иску, но нет"
     pr["I56"] = '=COUNTIFS(G5:G54,"Да",I5:I54,"<>Да")'
+    fit_banners(pr, 9)
     # порядок листов — порядок шага 6: взаиморасчёты, долг по актам, затем отправки
     wb.move_sheet("Реестр передачи", offset=2)
     wb.active = 0
@@ -1297,7 +1327,7 @@ def f07(out: Path):
         ["Электронный документооборот", "Квитанции оператора, извещение о получении, подписанный документ", "ЭДО предусмотрено договором или используется сторонами", "Документ отправлен, но не получен адресатом"],
         ["Электронная почта", "Письмо с вложениями, адрес из договора, ответ заказчика или уведомление о прочтении", "Канал прямо предусмотрен договором", "Адрес не из договора — направление будет сложно доказать"],
         ["Курьерская служба", "Накладная с описью вложения и отметкой о вручении", "Нужна скорость, почта ненадёжна", "Накладная без описи не подтверждает состав"],
-    ], widths=[3.4, 4.4, 3.8, 3.6])
+    ], widths=[3.2, 4.4, 3.6, 4.0], pt=9.5)
     P(doc, "Правило: основной способ + дубль. Каждое отправление — строка в файле 04, лист «Реестр передачи»: способ, дата, идентификатор и где хранится доказательство. Для подтверждения направления сохраните реестр и доказательство направления или получения документов.", bold=True)
     P(doc, "Входящие документы заказчика — гарантийное письмо, ответ на претензию, возражения, акт сверки — в «Реестр передачи» не вносятся: их учёт описан в файле 05, раздел В.", italic=True)
     save(doc, out / "07-otpravka-i-dokazatelstvo.docx")
@@ -1320,7 +1350,7 @@ def f05(out: Path):
         ["Причина неоплаты, названная Заказчиком", ""],
     ], widths=[6.2, 9.0])
     P(doc, "Договорённости:")
-    table(doc, ["№", "Договорённость", "Срок", "Ответственный"], blank_rows=5, widths=[1.0, 8.2, 2.8, 3.2])
+    table(doc, ["№", "Договорённость", "Срок", "Ответственный"], blank_rows=5, widths=[1.0, 7.6, 2.8, 3.8])
     P(doc, "Протокол не изменяет условия договора. Изменение срока оплаты оформляется только соглашением сторон (раздел Б).", italic=True)
     P(doc, f"От Заказчика: {SIGN} / {{{{ФИО}}}} /     От Субподрядчика: {SIGN} / {{{{ФИО}}}} /")
 
