@@ -1,40 +1,93 @@
 #!/usr/bin/env python3
-"""Допродажа после покупки на success.html — из карты товаров, не наугад.
+"""«Что дальше» на success.html — из того же файла, что покупатель получает в архиве.
 
 Замер 15.08.2026: страница благодарности показывала состав заказа и ссылки
-на скачивание и ничем не заканчивалась. Купивший один комплект не узнавал о
-следующем — при том, что это самый дешёвый показ на сайте: человек уже
-заплатил, доверие максимально, а платить второй раз не надо ни за трафик,
-ни за прогрев.
+на скачивание и ничем не заканчивалась. Тогда таблицу «что дальше» стали
+собирать из `data/sales/product-map.csv`.
 
-Что делает инструмент: собирает из `data/sales/product-map.csv` таблицу
-«купленный sku → что предложить» и вставляет её в `success.html` вместе с
-блоком, который выбирает предложение по фактическому составу заказа.
-Случайных товаров не показывает: если для купленного sku в карте ничего
-нет, блок не появляется вовсе.
+Замер 30.09.2026 (аудит MB001, G-05, G-06, G-32): карты товаров в
+репозитории больше нет (удалена при открытии, `a1373b0`), таблица стояла
+руками, и у 12 из 18 товаров страница успеха и `00-START-HERE.txt` в архиве
+называли РАЗНЫЕ следующие товары. Для t5 страница обещала «весь порядок по
+этой ситуации» и вела в чужой комплект p7. Ещё семь предложений вели в
+товары, которые сами не готовы к продаже.
 
-Предложение берётся из той же связи «по ситуации», что и допродажа на
-странице товара, — но здесь выводится словами о положении покупателя:
-«вы закрыли <боль>, часто следом приходит <боль>».
+Поэтому источник теперь один — раздел «Если ситуация изменилась» в
+`00-START-HERE.txt` каждого товара. Это тот текст, который покупатель
+держит в руках; его собирает `ai-business-os/tools/build_start_here.py`
+из `data/onboarding/post_purchase.yaml`. Страница успеха его не
+пересказывает своими словами, а повторяет:
+
+  · товар из раздела «Если ситуация изменилась» — если он есть и его статус
+    в `tools/product_readiness.yaml` не RED и не BLOCKED;
+  · иначе — раздел «Другая ситуация на объекте» того же файла: разбор по
+    семи вопросам (диагностика). Он есть в каждом START-HERE, поэтому
+    страница успеха не предлагает того, чего нет в архиве, и не выдумывает
+    рекомендацию, которой нет нигде.
+
+Случайных товаров блок не показывает никогда.
 
     python3 tools/build_upsell.py           # показать
-    python3 tools/build_upsell.py --write   # вставить
+    python3 tools/build_upsell.py --write   # вставить в success.html
+    python3 tools/build_upsell.py --check   # код 1, если success.html разошёлся
 """
 from __future__ import annotations
 
 import argparse
-import csv
 import json
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-MAP = ROOT / "data" / "sales" / "product-map.csv"
 PAGE = ROOT / "success.html"
-PAINS = ROOT / "data" / "business" / "money-pains.yaml"
+CONFIG = ROOT / "products-config.php"
+STORAGE = ROOT / "products-storage"
+READINESS = ROOT / "tools" / "product_readiness.yaml"
+START_HERE = "00-START-HERE.txt"
 
 BEGIN = "  <!-- upsell:begin -->"
 END = "  <!-- upsell:end -->"
+
+# Статусы, в которые «что дальше» не ведёт (аудит MB001, раздел 4).
+NOT_READY = {"RED", "BLOCKED"}
+
+# Заголовки разделов START-HERE, из которых берётся шаг. Номер раздела не
+# закрепляется: он зависит от числа разделов выше.
+CHANGED = "ЕСЛИ СИТУАЦИЯ ИЗМЕНИЛАСЬ"
+OTHER = "ДРУГАЯ СИТУАЦИЯ НА ОБЪЕКТЕ"
+
+# Запись каталога: только незакомментированные — снятый p6 в продаже не
+# участвует и следующим шагом быть не может.
+ENTRY = re.compile(
+    r"^\s+'([a-z0-9]+)'\s*=>\s*\[\s*\n"
+    r"\s*'name'\s*=>\s*'((?:[^'\\]|\\.)*)',\s*\n"
+    r"\s*'price'\s*=>\s*\d+,\s*\n"
+    r"\s*'dir'\s*=>\s*'([^']+)'", re.M)
+HEADING = re.compile(r"^\d+\. ([А-ЯЁA-Z ,—-]+)$", re.M)
+LINK = re.compile(r"https://marzhavbetone\.ru(/[a-z0-9/-]*\.html)\?\S*")
+
+
+def catalog() -> dict[str, dict]:
+    """sku → название, папка, адрес страницы — из конфига кассы."""
+    text = CONFIG.read_text(encoding="utf-8")
+    out = {}
+    for sku, name, folder in ENTRY.findall(text):
+        if sku == "test1":
+            continue
+        pages = sorted((ROOT / "products").glob(f"{sku}-*.html"))
+        out[sku] = {"name": name.replace("\\'", "'"), "dir": folder,
+                    "url": f"/products/{pages[0].name}" if pages else ""}
+    return out
+
+
+def sku_by_url(items: dict[str, dict]) -> dict[str, str]:
+    return {item["url"]: sku for sku, item in items.items() if item["url"]}
+
+
+def readiness() -> dict[str, str]:
+    import yaml
+    data = yaml.safe_load(READINESS.read_text(encoding="utf-8"))
+    return {sku: row["статус"] for sku, row in (data.get("статусы") or {}).items()}
 
 
 def short_name(name: str) -> str:
@@ -43,126 +96,127 @@ def short_name(name: str) -> str:
     return text.split(":")[0].strip()
 
 
-def catalog_names() -> dict[str, str]:
-    text = (ROOT / "products-config.php").read_text(encoding="utf-8")
-    return {m.group(1): m.group(2).replace("\\'", "'") for m in
-            re.finditer(r"'([a-z0-9]+)'\s*=>\s*\[\s*'name'\s*=>\s*'((?:[^']|\\')*)'", text)}
-
-
-def build_map() -> dict[str, dict]:
-    import yaml
-    titles = {k: v.get("title", k) for k, v in
-              (yaml.safe_load(PAINS.read_text(encoding="utf-8")).get("pains") or {}).items()}
-    names = catalog_names()
-    with MAP.open(encoding="utf-8") as fh:
-        rows = {r["product_id"]: r for r in csv.DictReader(fh)}
-
-    out: dict[str, dict] = {}
-    for sku, row in rows.items():
-        if row["status"] != "active" or not row["product_url"]:
-            continue
-        # Порядок болей — как записан в карте, а не как ляжет множество.
-        # `set` даёт произвольный порядок обхода, и подпись «ступень вверх
-        # по …» брала бы из него случайную боль: у t3 их две, и текст
-        # называл бы то ту, то другую.
-        own_order = [x for x in row["money_pain"].split(";") if x]
-        own = set(own_order)
-
-        # Ступень вверх по той же боли идёт первой и говорит другими
-        # словами. Купившему первый ход за 990 ₽ незачем рассказывать про
-        # «следующую ситуацию»: у него та же самая, просто он взял её на
-        # один день, а не целиком. Замер 15.08.2026: предложения после
-        # покупки не было ни у одного входного товара — именно там, где
-        # оно очевиднее всего.
-        step = rows.get(row.get("upsell") or "")
-        if step and step["status"] == "active" and step["product_url"]:
-            out[sku] = {
-                "url": step["product_url"],
-                "name": short_name(names.get(step["product_id"], step["product_id"])),
-                # Боль, по которой связаны купленный и предлагаемый, —
-                # общая для обоих. Иначе у товара с двумя болями подпись
-                # назовёт не ту, по которой ступень вверх и построена.
-                "closed": next(
-                    (titles[p] for p in own_order
-                     if p in titles and p in step["money_pain"].split(";")),
-                    next((titles[p] for p in own_order if p in titles), "")),
-                "next": "",
-                "kind": "step",
-            }
-            continue
-
-        # Кандидаты сортируются так, чтобы вперёд шли те, чья боль
-        # отличается от уже закрытой. Иначе выходит «вы закрыли допработы,
-        # следом приходят допработы» — предложение, которое покупатель
-        # читает как ошибку, потому что это и есть ошибка.
-        candidates = [c for c in row["cross_sell"].split(";") if c]
-        def differs(cid: str) -> int:
-            target = rows.get(cid)
-            if not target:
-                return 2
-            other = set(filter(None, target["money_pain"].split(";")))
-            return 0 if other - own else 1
-        for cid in sorted(candidates, key=differs):
-            target = rows.get(cid)
-            if not target or target["status"] != "active" or not target["product_url"]:
-                continue
-            target_pains = [p for p in target["money_pain"].split(";")
-                            if p in titles and p not in own] or \
-                           [p for p in target["money_pain"].split(";") if p in titles]
-            if not target_pains:
-                continue
-            # Ситуация, которую покупатель уже закрыл, и та, что часто
-            # приходит следом. Обе — словами лестницы, а не выдуманными.
-            closed = next((titles[p] for p in own_order if p in titles), "")
-            out[sku] = {
-                "url": target["product_url"],
-                "name": short_name(names.get(cid, cid)),
-                "closed": closed,
-                "next": titles[target_pains[0]],
-                "kind": "next",
-            }
-            break
+def sections(text: str) -> dict[str, str]:
+    """Заголовок раздела START-HERE → его тело до следующего заголовка."""
+    marks = list(HEADING.finditer(text))
+    out = {}
+    for i, mark in enumerate(marks):
+        stop = marks[i + 1].start() if i + 1 < len(marks) else len(text)
+        out[mark.group(1).strip()] = text[mark.end():stop]
     return out
+
+
+def first_paragraph(body: str) -> str:
+    """Первый абзац раздела без строк-ссылок: ссылку страница даёт кнопкой."""
+    for block in re.split(r"\n\s*\n", body.strip()):
+        lines = [line for line in block.splitlines() if not LINK.search(line)]
+        text = re.sub(r"\s+", " ", " ".join(lines)).strip()
+        if text and not text.startswith("---"):
+            # «…материалы под неё:» — двоеточие стояло перед ссылкой.
+            return text[:-1] + "." if text.endswith(":") else text
+    return ""
+
+
+def step_for(sku: str, item: dict, items: dict[str, dict], status: dict[str, str]) -> dict:
+    path = STORAGE / item["dir"] / START_HERE
+    if not path.is_file():
+        raise SystemExit(f"{sku}: нет {path.relative_to(ROOT)} — шаг после покупки не из чего взять")
+    parts = sections(path.read_text(encoding="utf-8"))
+    for title in (CHANGED, OTHER):
+        if title not in parts:
+            raise SystemExit(f"{sku}: в {START_HERE} нет раздела «{title}»")
+
+    by_url = sku_by_url(items)
+    changed = parts[CHANGED]
+    target = next((m.group(1) for m in LINK.finditer(changed) if m.group(1) in by_url), "")
+    target_sku = by_url.get(target, "")
+    if target_sku and target_sku not in status:
+        raise SystemExit(f"{target_sku}: нет статуса в {READINESS.relative_to(ROOT)}")
+
+    if target_sku and status[target_sku] not in NOT_READY:
+        return {
+            "kind": "product",
+            "sku": target_sku,
+            "url": target,
+            "title": CHANGED.capitalize(),
+            "lead": first_paragraph(changed),
+            "name": short_name(items[target_sku]["name"]),
+            "held": "",
+        }
+
+    other = parts[OTHER]
+    neutral = next((m.group(1) for m in LINK.finditer(other)), "")
+    if not neutral:
+        raise SystemExit(f"{sku}: в разделе «{OTHER}» нет ссылки")
+    return {
+        "kind": "neutral",
+        "sku": "",
+        "url": neutral,
+        "title": OTHER.capitalize(),
+        "lead": first_paragraph(other),
+        "name": "Пройти разбор ситуации",
+        # Какой товар START-HERE называет, но страница успеха не ведёт в
+        # него из-за статуса. В интерфейс не выводится — только в показ.
+        "held": f"{target_sku} ({status[target_sku]})" if target_sku else "",
+    }
+
+
+def build_table() -> dict[str, dict]:
+    items = catalog()
+    status = readiness()
+    missing = sorted(set(items) - set(status))
+    if missing:
+        raise SystemExit(f"нет статуса готовности у {missing}: {READINESS.relative_to(ROOT)}")
+    return {sku: step_for(sku, item, items, status) for sku, item in sorted(items.items())}
 
 
 BLOCK = """  <!-- upsell:begin -->
   <script>
-    // Таблица собирается tools/build_upsell.py из data/sales/product-map.csv.
-    // Руками не правится: разойдётся с каталогом на первой правке состава.
+    // Таблица собирается tools/build_upsell.py из 00-START-HERE.txt товаров
+    // и tools/product_readiness.yaml. Руками не правится: разойдётся с
+    // архивом покупателя (проверка — tools/test_commercial_journey.py).
     window.MVB_UPSELL = %(map)s;
   </script>
   <!-- upsell:end -->
 """
 
 
+def render(text: str, table: dict) -> str:
+    block = BLOCK % {"map": json.dumps(table, ensure_ascii=False, indent=2)}
+    if BEGIN in text:
+        start = text.index(BEGIN)
+        finish = text.index(END) + len(END) + 1
+        return text[:start] + block + text[finish:]
+    anchor = text.rindex("</body>")
+    return text[:anchor] + block + text[anchor:]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--write", action="store_true")
+    parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
 
-    mapping = build_map()
+    table = build_table()
     text = PAGE.read_text(encoding="utf-8")
+    fresh = render(text, table)
 
-    print(f"Товаров с предложением после покупки: {len(mapping)}")
-    for sku, item in sorted(mapping.items()):
-        why = (f"ступень вверх по «{item['closed']}»" if item["kind"] == "step"
-               else f"следом: {item['next']}")
-        print(f"   {sku} → {item['name']} ({why})")
+    print(f"Шаг после покупки: {len(table)} товаров")
+    for sku, item in table.items():
+        note = f", START-HERE называет {item['held']}" if item["held"] else ""
+        print(f"   {sku:<4}→ {item['url']} ({item['kind']}{note})")
 
+    if args.check:
+        if fresh != text:
+            print("\nsuccess.html разошёлся с источником: python3 tools/build_upsell.py --write")
+            return 1
+        print("\nsuccess.html совпадает с источником")
+        return 0
     if not args.write:
         print("\nпоказ, файл не изменён. Вставить — с --write")
         return 0
-
-    block = BLOCK % {"map": json.dumps(mapping, ensure_ascii=False, indent=2)}
-    if BEGIN in text:
-        start = text.index(BEGIN)
-        finish = text.index(END) + len(END) + 1
-        text = text[:start] + block + text[finish:]
-    else:
-        anchor = text.rindex("</body>")
-        text = text[:anchor] + block + text[anchor:]
-    PAGE.write_text(text, encoding="utf-8")
+    PAGE.write_text(fresh, encoding="utf-8")
     print("\nзаписано: success.html")
     return 0
 
