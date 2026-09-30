@@ -1,0 +1,17 @@
+# Сборка: штатный mvb_build_product_zip('p1') через build_zip.php (#320) на временной подстановке
+# head #324: 05661b33c75e57a5bda50d9d3e64b6adaf331126
+# ZIP sha256: e1d018ed6f24c6c16ce3696b46b8697dafdd8bd6142bd9342494f3f0e0035296  (имя архива штатное для p1)
+# unzip -l:   1010989                     11 files
+<scratch>/work/orders/delivery/01-ks-podpisany-deneg-net.zip
+00-START-HERE.txt                                12504 3ad1c0f0710cc8be7e963368f557493dcb135ed5701372df6a118fdc93a37a7e
+01-karta-situacii-i-granic.docx                  43224 0269350a57ded4346269c9f4dc017e84c5931bf20b6851e3710b092b9936e5d1
+02-proverka-i-kontrol-otveta.xlsx                27340 db113d6d5ee6c76e877f3e1e863b91b8c1e7f6c1472de64f849c08b993b6fb36
+03-algoritm-dejstviy.docx                        44473 ee22d9e66813a81fde07a017f9fd12eecd7dbfa9850f0083f8aa8dca10038d17
+04-uchet-raschetov-i-otpravok.xlsx              132000 93999ae811c5c2747f2e52ae830cc3d88d697b298d92669c7de7e3cf2802fc1b
+05-peregovory-i-perenos-sroka.docx               41627 b410d255e1a2169f7543b93b5ab3b74b4a037319b88f46fcf7751752dc0e7cf0
+06-uvedomlenie-o-prosrochke.docx                 39185 c4c732cf0493bb7454085aae8d3eace0500872c4455674e20b8bfb368ea404f0
+07-otpravka-i-dokazatelstvo.docx                 39266 34715d29501b13a8f8eb1e99f1dee33483add91caa5c6b3803bdaf489c4e5629
+08-raschet-procentov-395.xlsx                   549324 6d1f4f672233933b3109f02420f9dfaab2e86632f95b478ea26a5745238be1fa
+09-pretenziya.docx                               40590 f459465a3bab102c47c4ac62eed5887be7fc074ba426a3738f8bf6402a11b68c
+10-obrashchenie-v-sud.docx                       41456 06525c291d3021526ed4258066f62cfd3f639a45165df562affd578d36fdb98e
+# сверка с деревом 05661b3 (git show 05661b3:tools/candidates/s1-oplata-za-raboty/<f> | sha256sum): 11 из 11 совпадают
