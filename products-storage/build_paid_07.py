@@ -86,6 +86,135 @@ def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_
     print(f"  [Excel] {filepath}")
 
 
+def _print_setup(ws, area, landscape=False, title_rows=None):
+    """Печать в ширину одного листа A4: столбцы не уходят на соседние
+    страницы (приёмка #322, Кс-2 — книги резались на 2–3 листа)."""
+    ws.print_area = area
+    ws.page_setup.paperSize = ws.PAPERSIZE_A4
+    ws.page_setup.orientation = "landscape" if landscape else "portrait"
+    ws.page_setup.fitToWidth = 1
+    ws.page_setup.fitToHeight = 0
+    ws.sheet_properties.pageSetUpPr.fitToPage = True
+    if title_rows:
+        ws.print_title_rows = title_rows
+
+
+input_fill = PatternFill(start_color="FFF2CC", end_color="FFF2CC", fill_type="solid")
+section_font = Font(bold=True, size=11)
+ФОРМАТ_РУБ = "#,##0.00"
+ФОРМАТ_СТАВКИ = "0.00##"
+ФОРМАТ_ДАТЫ = "DD.MM.YYYY"
+СТРОК_ПЕРИОДОВ = 5
+
+
+def build_raschet_04(filepath):
+    """04 — расчёт суммы требования к заказчику.
+
+    Прежняя книга считала неустойку `=B8*B9` — «%/день × дни» без базы, и
+    складывала проценты с рублями: 1,95 вместо 4 680,00 (приёмка #322,
+    К-1). Теперь каждая строка названа по виду начисления и единицам:
+    штраф в твёрдой сумме, штраф в процентах от базы, пени по периодам
+    (база × % в день / 100 × дни). Ставки — входные ячейки, а не
+    константы: норма отсылает к ставке «в соответствующие периоды»
+    (сверка Р-026, Н-6 в normative-check-p5-2026-08-14.md).
+
+    Проценты по ст. 395 считаются по-прежнему: база × ставка / 100 / 365 ×
+    дни. Можно ли требовать их вместе с неустойкой — вопрос Р-026 (В-1 в
+    #322), итог их складывает, как и прежняя книга.
+    """
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Расчёт требования"
+    ws.column_dimensions["A"].width = 6
+    for col, w in zip("BCDEFG", (13, 13, 8, 17, 15, 18)):
+        ws.column_dimensions[col].width = w
+
+    def строка_ввода(r, подпись, формула=None, формат=ФОРМАТ_РУБ):
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=6)
+        ws.cell(row=r, column=1, value=подпись).alignment = Alignment(wrap_text=True, vertical="center")
+        g = ws.cell(row=r, column=7, value=формула)
+        g.number_format = формат
+        g.border = thin_border
+        if формула is None:
+            g.fill = input_fill
+        else:
+            g.font = Font(bold=True)
+
+    def раздел(r, текст):
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=7)
+        ws.cell(row=r, column=1, value=текст).font = section_font
+
+    def таблица_периодов(r0, шапка_ставки, шапка_суммы, формула_суммы):
+        for col, h in enumerate(["№", "Начало", "Окончание", "Дней", "База, руб.",
+                                 шапка_ставки, шапка_суммы], 1):
+            c = ws.cell(row=r0, column=col, value=h)
+            c.fill, c.font, c.border = header_fill, header_font, thin_border
+            c.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+        строки = range(r0 + 1, r0 + 1 + СТРОК_ПЕРИОДОВ)
+        for i, r in enumerate(строки, 1):
+            значения = [i, None, None,
+                        f'=IF(AND(ISNUMBER(B{r}),ISNUMBER(C{r})),C{r}-B{r}+1,0)',
+                        None, None, формула_суммы.format(r=r)]
+            форматы = ["0", ФОРМАТ_ДАТЫ, ФОРМАТ_ДАТЫ, "0", ФОРМАТ_РУБ, ФОРМАТ_СТАВКИ, ФОРМАТ_РУБ]
+            for col, (v, f) in enumerate(zip(значения, форматы), 1):
+                c = ws.cell(row=r, column=col, value=v)
+                c.number_format, c.border = f, thin_border
+                if col in (2, 3, 5, 6):
+                    c.fill = input_fill
+        return строки[0], строки[-1]
+
+    ws.merge_cells("A1:G1")
+    ws["A1"] = "РАСЧЁТ СУММЫ ТРЕБОВАНИЯ К ЗАКАЗЧИКУ"
+    ws["A1"].font = Font(bold=True, size=13)
+    ws.merge_cells("A2:G2")
+    ws["A2"] = ("Вводите данные только в жёлтые ячейки. Суммы — в рублях. "
+                "Ставка — числом процентов: 0,05 % в день вводится как 0,05, "
+                "16 % годовых — как 16. Даты — ДД.ММ.ГГГГ; первый и последний "
+                "день периода входят в число дней. Период с другой базой или "
+                "ставкой — отдельной строкой.")
+    ws["A2"].alignment = Alignment(wrap_text=True, vertical="top")
+    ws.row_dimensions[2].height = 45
+
+    раздел(4, "1. ОСНОВНОЙ ДОЛГ")
+    строка_ввода(5, "Сумма по КС-2 (по всем актам спора), руб.")
+    строка_ввода(6, "Фактически оплачено, руб.")
+    строка_ввода(7, "Из неоплаченного: удержание, срок возврата которого по договору "
+                    "ещё не наступил, руб.")
+    строка_ввода(8, "Основной долг к требованию, руб.", "=G5-G6-G7")
+
+    раздел(10, "2. НЕУСТОЙКА ПО ДОГОВОРУ — заполните тот вид, который записан в договоре")
+    строка_ввода(11, "2.1. Штраф в твёрдой сумме, руб.")
+    строка_ввода(12, "2.2. Штраф в процентах от суммы (разовый): сумма, от которой он считается, руб.")
+    строка_ввода(13, "процент штрафа, % (5 % вводится как 5)", формат=ФОРМАТ_СТАВКИ)
+    строка_ввода(14, "сумма штрафа, руб.", "=G12*G13/100")
+    раздел(15, "2.3. Пени за каждый день просрочки: база × ставка в день / 100 × дни")
+    п0, п1 = таблица_периодов(16, "Ставка, % в день", "Сумма, руб.",
+                              "=E{r}*F{r}/100*D{r}")
+    строка_ввода(п1 + 1, "Итого пени, руб.", f"=SUM(G{п0}:G{п1})")
+    r_пени = п1 + 1
+    строка_ввода(r_пени + 1, "Итого неустойка (2.1 + 2.2 + 2.3), руб.",
+                 f"=G11+G14+G{r_пени}")
+    r_неуст = r_пени + 1
+
+    r = r_неуст + 2
+    раздел(r, "3. ПРОЦЕНТЫ ПО СТ. 395 ГК РФ: база × ключевая ставка / 100 / 365 × дни")
+    к0, к1 = таблица_периодов(r + 1, "Ключевая ставка, % годовых", "Сумма, руб.",
+                              "=E{r}*F{r}/100/365*D{r}")
+    строка_ввода(к1 + 1, "Итого проценты, руб.", f"=SUM(G{к0}:G{к1})")
+    r_проц = к1 + 1
+
+    r = r_проц + 2
+    раздел(r, "4. ИТОГО")
+    строка_ввода(r + 1, "Основной долг, руб.", "=G8")
+    строка_ввода(r + 2, "Неустойка по договору, руб.", f"=G{r_неуст}")
+    строка_ввода(r + 3, "Проценты по ст. 395 ГК РФ, руб.", f"=G{r_проц}")
+    строка_ввода(r + 4, "ИТОГО к взысканию, руб.", f"=G{r + 1}+G{r + 2}+G{r + 3}")
+    ws.cell(row=r + 4, column=1).font = Font(bold=True)
+
+    _print_setup(ws, f"A1:G{r + 4}")
+    save_workbook(wb, filepath)
+
+
 def create_word_doc(filepath, title, sections):
     doc = Document()
     title_para = doc.add_heading(title, level=0)
@@ -369,64 +498,43 @@ def build_paid_07():
         ]
     )
     
-    wb = openpyxl.Workbook()
-    ws = wb.active
-    ws.title = "Калькулятор убытков"
-    
-    # Ставка по ст. 395 — входная ячейка, не константа в формуле: норма
-    # отсылает к ключевой ставке ЦБ «в соответствующие периоды», и любое
-    # зашитое значение устаревает с первым её изменением (сверка Р-026,
-    # Н-6 в normative-check-p5-2026-08-14.md). Дни просрочки вводятся в
-    # B9 — формулы считают от неё же, а не от служебной D9.
-    data = [
-        ["ПАРАМЕТР", "ЗНАЧЕНИЕ", "РАСЧЕТ", "ИТОГО"],
-        ["Сумма по КС-2", "", "", "=B2"],
-        ["Фактически оплачено", "", "", "=B3"],
-        ["Удержано", "", "", "=B4"],
-        ["Ключевая ставка Банка России, % (на периоды просрочки)", "", "", ""],
-        ["УБЫТКИ:", "", "", ""],
-        ["Проценты по ст. 395 ГК РФ", "", "=B7*B5/100/365*B9", "=C7"],
-        ["Неустойка по договору (%/день)", "", "=B8*B9", "=C8"],
-        ["Дни просрочки", "", "", ""],
-        ["", "", "", ""],
-        ["ИТОГО к взысканию:", "", "", "=D2-D3+C7+C8"],
-    ]
-    
-    for row in data:
-        ws.append(row)
-    
-    for col in range(1, 5):
-        cell = ws.cell(row=1, column=col)
-        cell.fill = header_fill
-        cell.font = header_font
-        cell.border = thin_border
-        cell.alignment = Alignment(horizontal="center", vertical="center")
-    
-    ws.column_dimensions['A'].width = 35
-    ws.column_dimensions['B'].width = 18
-    ws.column_dimensions['C'].width = 25
-    ws.column_dimensions['D'].width = 18
-    
-    save_workbook(wb, os.path.join(folder, "04-raschet-ubytkov.xlsx"))
+    build_raschet_04(os.path.join(folder, "04-raschet-ubytkov.xlsx"))
     print(f"  [Excel] {os.path.join(folder, '04-raschet-ubytkov.xlsx')}")
-    
+
+    # Поля учёта отправки (дата, способ, подтверждение, срок ответа и его
+    # основание) — по приёмке #322, К-2 и З-4. Срок ответа не подставляется:
+    # универсального срока нет, основание покупатель выписывает сам.
+    # «Сумма» остаётся в E: на ней стоит итог SUM(E2:E20).
+    reestr = os.path.join(folder, "05-reestr-uderzhaniy.xlsx")
     create_excel(
-        os.path.join(folder, "05-reestr-uderzhaniy.xlsx"),
+        reestr,
         "Реестр удержаний и штрафов",
-        headers=["№", "Дата", "Тип", "Основание", "Сумма", "Статус", "Ответ", "Результат"],
+        headers=["№", "Дата", "Тип", "Основание", "Сумма", "Статус",
+                 "Дата отправки", "Способ отправки", "Подтверждение отправки",
+                 "Срок ответа", "Основание срока", "Ответ", "Результат"],
         # Итог стоит под диапазоном E2:E20, а не внутри него: строка итога в
         # пятой строке суммировала саму себя (Calc: Err:522). Строки 5–20 —
         # пустые, под новые удержания.
         rows=[
-            [1, "", "Удержание", "", 0, "Оспаривается", "Претензия направлена", ""],
-            [2, "", "Штраф", "", 0, "Оспаривается", "", ""],
-            [3, "", "Зачет", "", 0, "Оспаривается", "", ""],
-        ] + [[None] * 8 for _ in range(5, 21)] + [
-            ["", "", "", "ИТОГО:", "=SUM(E2:E20)", "", "", ""],
+            [1, "", "Удержание", "", 0, "Оспаривается", "", "", "", "", "", "Претензия направлена", ""],
+            [2, "", "Штраф", "", 0, "Оспаривается", "", "", "", "", "", "", ""],
+            [3, "", "Зачет", "", 0, "Оспаривается", "", "", "", "", "", "", ""],
+        ] + [[None] * 13 for _ in range(5, 21)] + [
+            ["", "", "", "ИТОГО:", "=SUM(E2:E20)", "", "", "", "", "", "", "", ""],
         ],
-        col_widths=[6, 12, 14, 30, 14, 14, 25, 20]
+        col_widths=[5, 11, 12, 24, 12, 13, 11, 15, 18, 11, 18, 18, 16]
     )
-    
+    wb = openpyxl.load_workbook(reestr)
+    ws = wb.active
+    for r in range(2, 21):
+        ws.cell(row=r, column=2).number_format = "DD.MM.YYYY"
+        ws.cell(row=r, column=5).number_format = "#,##0.00"
+        ws.cell(row=r, column=7).number_format = "DD.MM.YYYY"
+    ws.cell(row=21, column=5).number_format = "#,##0.00"
+    ws.freeze_panes = "A2"
+    _print_setup(ws, "A1:M21", landscape=True, title_rows="1:1")
+    save_workbook(wb, reestr)
+
     create_excel(
         os.path.join(folder, "06-grafik-vozmeshcheniya.xlsx"),
         "График возмещения",
