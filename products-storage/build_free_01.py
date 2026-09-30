@@ -1,4 +1,8 @@
+import io
 import os
+import re
+import zipfile
+from datetime import datetime, timezone
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
@@ -8,22 +12,81 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Название, цена и адрес платного комплекта — из products-config.php, ключ p1.
-# Здесь они повторены текстом; при расхождении верным считается config.
-# До 16.09.2026 здесь стояла цена снятой линейки и строка-заглушка вместо
-# адреса: файл уходил читателю с ценой, которой в кассе нет, и без ссылки,
-# по которой её можно проверить.
-PAID_KEY = "p1"
-PAID_NAME = "Акты выполненных работ, КС-2 и КС-3: закрытие и взыскание оплаты"
-PAID_PRICE = "2 490 ₽"
-PAID_URL = "https://marzhavbetone.ru/products/p1-oplata-po-ks2.html"
+# Следующий шаг после бесплатного набора — «Система получения оплаты за
+# выполненные работы» (S1). По решению владельца (S1-EDITION-SKU-DECISION-MEMO,
+# §7) она занимает ключ p1 и адрес /products/p1-oplata-po-ks2.html; T1 снимается
+# с продажи. Цены здесь нет намеренно: скачанный файл не обновляется, а цена
+# меняется. Состав S1 перечислен только тем, что в ней есть по кандидату
+# (tools/candidates/s1-oplata-za-raboty/00-START-HERE.txt): маршрут
+# заканчивается подготовкой обращения в арбитражный суд. Исполнительного
+# производства, ФССП и «стратегий взыскания» в S1 нет — и в тексте их нет.
+NEXT_KEY = "p1"
+NEXT_NAME = "Система получения оплаты за выполненные работы"
+NEXT_URL = "https://marzhavbetone.ru/products/p1-oplata-po-ks2.html"
+# NEXT_NAME в предложном падеже — отдельной строкой, склонять f-строкой нельзя
+NEXT_TEXT = (
+    "Если КС подписаны, срок оплаты по договору истёк, а оплаты нет, "
+    "следующий шаг описан в «Системе получения оплаты за выполненные работы»: "
+    "фиксация задолженности, переговоры и перенос срока, уведомление и "
+    "претензия, расчёт процентов, подготовка обращения в арбитражный суд. "
+    "Это рабочий порядок действий и шаблоны, а не юридическая консультация "
+    "и не гарантия оплаты."
+)
+
+# Лист «Что делать дальше» (99-chto-dalshe.pdf). До 28.09.2026 он собирался во
+# внешнем репозитории и первым маршрутом вёл на T1; теперь его источник здесь.
+# utm_content=dengi-primary сохранён, чтобы ряд сопоставлялся с историей.
+UTM = "utm_source=site&utm_medium=magnet&utm_campaign=neoplata"
+NEXT_STEPS = [
+    ("1. Срок оплаты истёк, а денег нет — порядок действий по шагам",
+     NEXT_TEXT,
+     f"{NEXT_URL}?{UTM}&utm_content=dengi-primary"),
+    ("2. Разобраться подробнее — разбор ситуации и остальные файлы набора",
+     "",
+     f"https://marzhavbetone.ru/materialy/dengi.html?{UTM}&utm_content=dengi-secondary"),
+    ("3. Если на объекте застряло другое — определить, что именно",
+     "",
+     f"https://marzhavbetone.ru/diagnostika.html?{UTM}&utm_content=dengi-fallback"),
+]
+FREE_NAME = "КС подписаны, денег нет: первые 7 проверок"
+NEXT_STEPS_VERSION = "версия 1.1.0 · источник от 2026-09-28"
+
+# Одинаковый вход — одинаковые байты: архив dengi.zip пересобирается из этих
+# файлов, и повторный прогон не должен давать diff без изменения текста.
+FIXED_DATE = datetime(2026, 9, 28, tzinfo=timezone.utc)
+ZIP_DATE = (2026, 9, 28, 0, 0, 0)
 
 thin_border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
 header_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
 header_font = Font(color="FFFFFF", bold=True, size=11)
+
+
+def save_reproducible(save, filepath):
+    """Сохраняет .docx/.xlsx с одинаковыми байтами при одинаковом содержимом.
+
+    python-docx и openpyxl пишут в zip текущее время — и в даты элементов
+    архива, и в свойства документа. Здесь оба времени фиксированы."""
+    buffer = io.BytesIO()
+    save(buffer)
+    buffer.seek(0)
+    with zipfile.ZipFile(buffer) as source, \
+            zipfile.ZipFile(filepath, "w", zipfile.ZIP_DEFLATED) as target:
+        for item in source.infolist():
+            fixed = zipfile.ZipInfo(item.filename, date_time=ZIP_DATE)
+            fixed.compress_type = zipfile.ZIP_DEFLATED
+            fixed.external_attr = 0o644 << 16
+            data = source.read(item.filename)
+            if item.filename == "docProps/core.xml":
+                # openpyxl ставит modified = «сейчас» при каждом save()
+                data = re.sub(rb"(<dcterms:modified[^>]*>)[^<]*",
+                              rb"\g<1>" + FIXED_DATE.strftime("%Y-%m-%dT%H:%M:%SZ").encode(),
+                              data)
+            target.writestr(fixed, data)
 
 
 def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_widths=None):
@@ -53,7 +116,10 @@ def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_
         for idx, w in enumerate(col_widths, 1):
             ws.column_dimensions[get_column_letter(idx)].width = w
     
-    wb.save(filepath)
+    wb.properties.creator = "Маржа в бетоне"
+    wb.properties.created = FIXED_DATE.replace(tzinfo=None)
+    wb.properties.modified = FIXED_DATE.replace(tzinfo=None)
+    save_reproducible(wb.save, filepath)
     print(f"  [Excel] {filepath}")
 
 
@@ -88,7 +154,11 @@ def create_word_doc(filepath, title, sections):
             for item in section["numbered"]:
                 doc.add_paragraph(item, style='List Number')
     
-    doc.save(filepath)
+    core = doc.core_properties
+    core.author = core.last_modified_by = "Маржа в бетоне"
+    core.created = core.modified = FIXED_DATE
+    core.revision = 1
+    save_reproducible(doc.save, filepath)
     print(f"  [Word]  {filepath}")
 
 
@@ -113,6 +183,81 @@ def create_pdf_simple(filepath, title, lines):
     print(f"  [PDF]   {filepath}")
 
 
+FONT_DIR = "/usr/share/fonts/truetype/dejavu"
+
+
+def create_next_steps_pdf(filepath):
+    """Одна страница «Что делать дальше»: не больше трёх маршрутов."""
+    from reportlab.lib.utils import simpleSplit
+
+    for name, file in (("DejaVuSans", "DejaVuSans.ttf"),
+                       ("DejaVuSans-Bold", "DejaVuSans-Bold.ttf")):
+        path = os.path.join(FONT_DIR, file)
+        if not os.path.exists(path):
+            raise SystemExit(f"нет шрифта {path}: кириллица в PDF без него не выводится")
+        pdfmetrics.registerFont(TTFont(name, path))
+
+    width, height = A4
+    left = 2.2 * cm
+    text_width = width - 2 * left
+    c = canvas.Canvas(filepath, pagesize=A4, invariant=1)
+    c.setTitle("Что делать дальше")
+    c.setAuthor("Маржа в бетоне")
+    c.setSubject(FREE_NAME)
+    y = height - 2.4 * cm
+
+    def paragraph(text, font="DejaVuSans", size=10.5, leading=15, colour=(0, 0, 0)):
+        nonlocal y
+        c.setFont(font, size)
+        c.setFillColorRGB(*colour)
+        for line in simpleSplit(text, font, size, text_width):
+            c.drawString(left, y, line)
+            y -= leading
+
+    def link(url, size=9, leading=13):
+        # Адрес без пробелов simpleSplit не переносит — режем по символам,
+        # и каждая строка остаётся кликабельной целиком.
+        nonlocal y
+        c.setFont("DejaVuSans", size)
+        c.setFillColorRGB(0.13, 0.33, 0.62)
+        line = ""
+        lines = []
+        for char in url:
+            if pdfmetrics.stringWidth(line + char, "DejaVuSans", size) > text_width:
+                lines.append(line)
+                line = ""
+            line += char
+        lines.append(line)
+        for part in lines:
+            c.drawString(left, y, part)
+            c.linkURL(url, (left, y - 3, left + pdfmetrics.stringWidth(part, "DejaVuSans", size), y + size),
+                      relative=0)
+            y -= leading
+
+    paragraph("Что делать дальше", "DejaVuSans-Bold", 18, 26)
+    y -= 4
+    paragraph(f"Вы скачали набор «{FREE_NAME}». Ниже — куда идти, если ситуация уже "
+              "перешла в следующую стадию. Больше трёх маршрутов здесь не бывает: их и есть три.")
+    y -= 10
+    for label, description, url in NEXT_STEPS:
+        paragraph(label, "DejaVuSans-Bold", 11, 16)
+        if description:
+            paragraph(description, size=10, leading=14)
+        link(url)
+        y -= 12
+    y -= 4
+    paragraph("Материалы — редактируемые шаблоны. Их нужно адаптировать под ваш договор и "
+              "обстоятельства объекта; они не заменяют юридическую консультацию.",
+              size=9.5, leading=13, colour=(0.3, 0.3, 0.3))
+
+    c.setFont("DejaVuSans", 8)
+    c.setFillColorRGB(0.45, 0.45, 0.45)
+    c.drawString(left, 1.6 * cm, f"{FREE_NAME} · {NEXT_STEPS_VERSION} · marzhavbetone.ru")
+    c.showPage()
+    c.save()
+    print(f"  [PDF]   {filepath}")
+
+
 # ==================== FREE 01 ====================
 def build_free_01():
     folder = os.path.join(BASE_DIR, "00-free-ks-podpisany-deneg-net")
@@ -133,7 +278,7 @@ def build_free_01():
                  "Есть ли подписи обеих сторон на КС-2?",
                  "Есть ли подписи на КС-3?",
                  "Совпадают ли даты подписания с фактом выполнения работ?",
-                 "Если КС не подписана - это другая ситуация (см. полный комплект)."
+                 "Если КС не подписана - это другая ситуация (см. раздел «Следующий шаг» в конце документа)."
              ]},
             {"heading": "Шаг 3. Проверьте срок исковой давности",
              "text": "По договору подряда - 3 года с даты, когда должна была быть произведена оплата. Если срок близок к истечению - срочно направьте претензию."},
@@ -155,11 +300,10 @@ def build_free_01():
              "bullet": [
                  "Составление полноценной претензии с юридическим обоснованием",
                  "Подготовка искового заявления и представление интересов в суде",
-                 "Работа с исполнительным производством",
                  "Анализ сложных случаев: банкротство заказчика, субподрядные цепочки, залоги"
              ]},
-            {"heading": "🔗 Переход к полному комплекту",
-             "text": f"Комплект «{PAID_NAME}» включает: готовые шаблоны претензий, исковых заявлений, алгоритмы работы с исполнительным производством, консультационные материалы.\n\nСтоимость: {PAID_PRICE}\nСтраница комплекта: {PAID_URL}"},
+            {"heading": "🔗 Следующий шаг",
+             "text": f"{NEXT_TEXT}\n\nСтраница: {NEXT_URL}"},
         ]
     )
     
@@ -263,12 +407,14 @@ def build_free_01():
                  "Проверьте соответствие сроков и сумм с договором и КС-2.",
                  "Отправьте заказным письмом с уведомлением о вручении и описью вложения.",
                  "Сохраните квитанцию об отправке - это доказательство направления.",
-                 "Если заказчик не отвечает в течение 30 дней - готовьте претензию (см. полный комплект)."
+                 "Если заказчик не отвечает в течение 30 дней - готовьте претензию (см. раздел «Следующий шаг» ниже)."
              ]},
-            {"heading": "🔗 Переход к полному комплекту",
-             "text": f"Этот шаблон - только первый шаг. Комплект «{PAID_NAME}» включает: готовые претензии с юридическими ссылками, исковые заявления, алгоритмы работы с ФССП, стратегии взыскания с проблемных заказчиков.\n\nСтоимость: {PAID_PRICE}\nСтраница комплекта: {PAID_URL}"},
+            {"heading": "🔗 Следующий шаг",
+             "text": f"Этот шаблон - только первый шаг. {NEXT_TEXT}\n\nСтраница: {NEXT_URL}"},
         ]
     )
+
+    create_next_steps_pdf(os.path.join(folder, "99-chto-dalshe.pdf"))
 
 
 if __name__ == "__main__":
