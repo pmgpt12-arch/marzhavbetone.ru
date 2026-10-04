@@ -65,6 +65,9 @@ for n, line in enumerate(lines, 1):
                     'source_path': SOURCE_PATH, 'source_sha': SHA,
                     'start_line': n, 'end_line': n, 'historical': True})
 
+expected_source_rows = {(r['start_line'], r['end_line']): (r['sku'], r['defect_id'])
+                        for r in records}
+
 def validate(data):
     assert isinstance(data, list) and len(data) <= 25
     keys = {'sku', 'defect_id', 'exact_quote', 'source_path', 'source_sha', 'start_line', 'end_line', 'historical'}
@@ -74,6 +77,7 @@ def validate(data):
         assert type(r['start_line']) is int and type(r['end_line']) is int
         assert 1 <= r['start_line'] <= r['end_line'] <= len(lines)
         assert r['exact_quote'] == '\n'.join(lines[r['start_line']-1:r['end_line']])
+        assert expected_source_rows.get((r['start_line'], r['end_line'])) == (r['sku'], r['defect_id'])
         assert r['defect_id'] is None or re.fullmatch(r'[DS]-\d+', r['defect_id'])
         if r['defect_id']:
             assert r['exact_quote'].startswith('| ' + r['defect_id'] + ' |')
@@ -84,6 +88,7 @@ for name, change in [('changed_quote', lambda r: r.update(exact_quote=r['exact_q
                      ('missing_line', lambda r: r.update(start_line=len(lines)+1, end_line=len(lines)+1)),
                      ('wrong_sha', lambda r: r.update(source_sha='0'*40)),
                      ('wrong_sku', lambda r: r.update(sku='P5')),
+                     ('eligible_sku_swap', lambda r: r.update(sku='P7')),
                      ('historical_false', lambda r: r.update(historical=False))]:
     bad = copy.deepcopy(records)
     change(bad[0])
@@ -99,8 +104,16 @@ output = root / 'MB001_BASELINE_QUOTED_DEFECTS.json'
 output.write_text(json.dumps(records, ensure_ascii=False, indent=2)+'\n')
 proof = {'source_commit': SHA, 'source_blob': BLOB, 'source_bytes': len(raw), 'source_lines': len(lines),
          'record_count': len(records), 'checks': checks, 'manual_review': manual,
-         'elapsed_seconds': elapsed, 'llm_api_calls': 0, 'execution_environment': 'ChatGPT execution workspace Python3; not ai-workstation',
+         'elapsed_seconds': elapsed, 'llm_api_calls': 0, 'execution_environment': 'ai-workstation Python3; verified 2026-10-04',
          'selection_rule': 'Whole table rows only. Sections1,3,6. Explicit primary SKU or single SKU location; multi/indirect locations retained for manual review. No field paraphrasing.'}
 (root / 'MB001_BASELINE_QUOTED_DEFECTS_PROOF.json').write_text(json.dumps(proof, ensure_ascii=False, indent=2)+'\n')
 print(json.dumps({k:v for k,v in proof.items() if k != 'manual_review'}, ensure_ascii=False))
 ```
+
+## Independent recovery verification — 2026-10-04
+
+Base PR #347 remains unchanged at b6e483071f8dc8d8c9a9bf6426776424c386a5fa. Independent ai-workstation reproduction matched all 10 quoted records and 3 manual-review entries. An additional negative case exposed that the original validator accepted changing P2 to eligible P7 while retaining a P2 source quote. The root cause was SKU membership validation without binding SKU/defect ID to its immutable source row.
+
+The reproduction validator now binds each source line range to its extracted SKU/defect ID tuple. A new eligible-SKU substitution negative case rejects P2 to P7, alongside the existing five negative cases. Source bytes, quoted output, historical classification and selection rule are unchanged. Current proof records ai-workstation execution; the earlier workspace proof above is historical.
+
+Regression: python3 -m unittest discover -s tools -p test_baseline_quoted_defects_binding.py -v. Eight tests verify unchanged published records, exact source SHA/blob, the original negative cases, eligible-SKU substitution and explicit defect-ID removal. All tests run deterministically with stdlib and the pinned Git source, without LLM/API calls or product generation.
