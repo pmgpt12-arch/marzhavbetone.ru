@@ -1,0 +1,69 @@
+{
+  "status": "CHECKS_PASSED",
+  "finished": "2026-10-04T14:09:42.150987+00:00",
+  "results": [
+    {
+      "task": "canonical-zip",
+      "files": 11,
+      "content_equal": true,
+      "sha256": "2def6ee0f1637f598c3a57242f011abe66f019cae79439a91bce791f5439b982",
+      "member_sha256": {
+        "04-uchet-raschetov-i-otpravok.xlsx": "c921fc8a7a94fd6a18235c71a216fb2a68272c970b08a5e1cd1c5bda7e32f284",
+        "05-peregovory-i-perenos-sroka.docx": "5536d8ce554aba459b358d2632ed749f318641cc14ea027bc1a031ae35359b56",
+        "08-raschet-procentov-395.xlsx": "3bb73ba9fa82c7ea4c8a1c71c62a31486a296cabe7fa8dddd9ed11b86f22cc83",
+        "06-uvedomlenie-o-prosrochke.docx": "8122e078b4b02861c72cfd5253c16c4a988ebbc683f3809d515ef2a885a62c82",
+        "07-otpravka-i-dokazatelstvo.docx": "34715d29501b13a8f8eb1e99f1dee33483add91caa5c6b3803bdaf489c4e5629",
+        "10-obrashchenie-v-sud.docx": "df462ce7a91e13b3b22d2764ea5f20fb90c94cfa54bc6cdae76019ad71077e53",
+        "01-karta-situacii-i-granic.docx": "01911c2c1868f59e31dbae7058bac662a0af933a8de9aa73f06c8c3a062fba83",
+        "09-pretenziya.docx": "03ba9b24e0a322a21e1bfbbeedc71a929c0fa2e14b63002875fa2a1774180ef4",
+        "03-algoritm-dejstviy.docx": "471919c0f3c9d565860582dc6636bab93d2bec538167328cf1c24ab52a46e6fd",
+        "02-proverka-i-kontrol-otveta.xlsx": "831441ef2bd3b0fdd855d9f878501a3ffd97f2cbd575a8b7b457d217c0f88b4e",
+        "00-START-HERE.txt": "5d0dea77ab296dff622abb6b6ceb768ed7110ada790d30ab2f681ffbd525c4ee"
+      },
+      "boundary": "Canonical builder in temporary config/storage/cache; production untouched."
+    },
+    {
+      "task": "writer",
+      "files": [
+        {
+          "source": "01-karta-situacii-i-granic.docx",
+          "pdf": "01-karta-situacii-i-granic.pdf",
+          "text_characters": 12634,
+          "info": [
+            "Pages:           6",
+            "Page size:       612 x 792 pts (letter)"
+          ]
+        },
+        {
+          "source": "03-algoritm-dejstviy.docx",
+          "pdf": "03-algoritm-dejstviy.pdf",
+          "text_characters": 21414,
+          "info": [
+            "Pages:           10",
+            "Page size:       612 x 792 pts (letter)"
+          ]
+        }
+      ],
+      "boundary": "Actual Writer conversion only; no legal or full layout acceptance."
+    },
+    {
+      "task": "act-print",
+      "pages": "Pages:           2",
+      "printed_totals": [
+        779934,
+        50000,
+        729934
+      ],
+      "sha256": "993699c901efe0d7d25eab4a47fe56162bd0f9336bb01d02ccbca51f0a6a77f7",
+      "pdf": "tools/candidates/evidence/S1_02B/act-sverki-779934.pdf",
+      "boundary": "Mechanical text/totals and PDF export; visual review separate."
+    }
+  ],
+  "caption_fix": {
+    "reason": "Printed B8 label clipped at filled C8 date. Shortened to Дата сверки in generator and regenerated book 04.",
+    "changed_xml_parts": [
+      "xl/worksheets/sheet3.xml"
+    ],
+    "content_change": "B8 caption only. Formulas/data/styles/other worksheets unchanged. First comparison needed decoding XML numeric entities; no extra content change."
+  }
+}
