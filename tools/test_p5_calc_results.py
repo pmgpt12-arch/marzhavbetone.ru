@@ -29,6 +29,13 @@ Calc выдавал 1,95 вместо 4 680,00 и 1,5 вместо 36 000,00.
 сумма записей, а не размер требования: одна сумма может стоять в нём
 несколько раз.
 
+Дополнение FIX-2 (приёмка #333): ставка, набранная со знаком % («0,05%»,
+«16%»), не даёт суммы — Calc хранит её в 100 раз меньше, поэтому ставка
+пеней ниже 0,01 % в день и ключевая ставка ниже 1 % годовых не считаются
+(Н-1). Набор проверяется настоящим вводом строк в Calc с профилем ru-RU.
+«Срок ответа» в 05 — дата ДД.ММ.ГГГГ и на печати не превращается в «###»
+(Н-2).
+
 Причины провала разделены, чтобы отказ среды не выдавался за дефект книги:
 - `СРЕДА:` — нет PHP, Calc, openpyxl или pdfinfo, Calc не открыл файл;
 - `РАСКЛАДКА:` — в книге нет места под сценарий (например, нет таблицы
@@ -45,11 +52,13 @@ from __future__ import annotations
 
 import datetime as dt
 import functools
+import os
 import re
 import shutil
 import subprocess
 import sys
 import tempfile
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -99,7 +108,12 @@ def д(день: int, месяц: int) -> dt.datetime:
     "отрицательная_ставка": ([(д(29, 7), д(5, 9), 39, 240_000, -0.05)], "меньше нуля"),
     "нет_ставки": ([(д(29, 7), д(5, 9), 39, 240_000, None)], "заполните"),
     "нет_окончания": ([(д(29, 7), None, 0, 240_000, 0.05)], "заполните"),
+    # FIX-2, #333 Н-1: так Calc хранит набранное «0,05%»
+    "ставка_со_знаком_процента": ([(д(29, 7), д(5, 9), 39, 240_000, 0.0005)], "без знака %"),
 }
+# Порог ставки пеней — 0,01 % в день: сама пороговая ставка считается.
+# 240 000 × 0,01 % × 39 = 936,00
+ПЕНИ["пороговая_ставка"] = ([(д(29, 7), д(5, 9), 39, 240_000, 0.01)], 936.00)
 
 # Проценты по ст. 395 — (начало, окончание, дней, база, % годовых).
 # #322 §3: 240 000 × 16 % × 39 / 365 = 4 103,01. Ставка иллюстративная.
@@ -107,6 +121,10 @@ def д(день: int, месяц: int) -> dt.datetime:
 # падает, сломан ввод, а не арифметика.
 ПРОЦЕНТЫ_395 = ([(д(29, 7), д(5, 9), 39, 240_000, 16)], 4_103.013698630137)
 ПРОЦЕНТЫ_395_ОТКАЗ = ([(д(5, 9), д(29, 7), 0, 240_000, 16)], "раньше")
+# FIX-2: «16%» Calc хранит как 0,16; порог — 1 % годовых, сам порог считается:
+# 240 000 × 1 % × 39 / 365 = 256,44
+ПРОЦЕНТЫ_395_ЗНАК = ([(д(29, 7), д(5, 9), 39, 240_000, 0.16)], "без знака %")
+ПРОЦЕНТЫ_395_ПОРОГ = ([(д(29, 7), д(5, 9), 39, 240_000, 1)], 256.43835616438355)
 
 # Штрафы: в твёрдой сумме 50 000; в процентах 5 % от 2 400 000 = 120 000.
 ШТРАФ_ТВЁРДЫЙ = 50_000.00
@@ -304,6 +322,10 @@ def _сценарии():
     yield "проценты_395_контроль", functools.partial(заполнить_395, периоды=ПРОЦЕНТЫ_395[0]), ПРОЦЕНТЫ_395[1]
     yield ("отказ_395_окончание_раньше_начала",
            functools.partial(заполнить_395, периоды=ПРОЦЕНТЫ_395_ОТКАЗ[0]), ("отказ", ПРОЦЕНТЫ_395_ОТКАЗ[1]))
+    yield ("отказ_395_ставка_со_знаком_процента",
+           functools.partial(заполнить_395, периоды=ПРОЦЕНТЫ_395_ЗНАК[0]), ("отказ", ПРОЦЕНТЫ_395_ЗНАК[1]))
+    yield ("проценты_395_пороговая_ставка",
+           functools.partial(заполнить_395, периоды=ПРОЦЕНТЫ_395_ПОРОГ[0]), ПРОЦЕНТЫ_395_ПОРОГ[1])
     yield "штраф_твёрдый", заполнить_штраф_твёрдый, ШТРАФ_ТВЁРДЫЙ
     yield "штраф_процентный", заполнить_штраф_процентный, ШТРАФ_ПРОЦЕНТНЫЙ[2]
     yield ("отказ_штраф_отрицательный_процент",
@@ -400,6 +422,16 @@ def test_04_пени_несколько_периодов() -> None:
 
 def test_04_проценты_395_контроль() -> None:
     _проверить("проценты_395_контроль")
+
+
+def test_04_пороговые_ставки_считаются() -> None:
+    """Порог против набора со знаком % не отсекает саму пороговую ставку."""
+    _проверить("пени_пороговая_ставка", "проценты_395_пороговая_ставка")
+
+
+def test_04_ставка_со_знаком_процента_не_даёт_суммы() -> None:
+    """#333 Н-1: число, которое Calc хранит после набора «0,05%» / «16%»."""
+    _проверить("отказ_пени_ставка_со_знаком_процента", "отказ_395_ставка_со_знаком_процента")
 
 
 def test_04_штрафы_твёрдый_и_процентный() -> None:
@@ -530,6 +562,243 @@ def test_печать_04_и_05_без_разреза_по_ширине() -> None
         листов = {имя: _страницы_pdf(p) for имя, p in pdf.items()}
         лишние = {n: k for n, k in листов.items() if k != 1}
         assert not лишние, f"РАСКЛАДКА: печать Calc: страниц {лишние}, ожидалась 1"
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+# ─────────────────── набор с клавиатуры в Calc ru-RU (FIX-2) ───────────────────
+#
+# Приёмка #333 нашла Н-1 только при наборе: openpyxl пишет в ячейку число,
+# а покупатель набирает строку, и разбирает её Calc. Здесь строки вводятся
+# командой .uno:EnterString — тем же путём, что набор в ячейке. Локаль
+# ru-RU записана в отдельный временный профиль до запуска Calc, а не
+# меняется в работающем процессе: так разделитель «,» действует с первой
+# ячейки.
+
+_ПРОФИЛЬ_RU = """<?xml version="1.0" encoding="UTF-8"?>
+<oor:items xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" \
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<item oor:path="/org.openoffice.Setup/L10N"><prop oor:name="ooSetupSystemLocale" oor:op="fuse">\
+<value>ru-RU</value></prop></item>
+</oor:items>
+"""
+
+
+class _CalcНабор:
+    """Calc headless с профилем ru-RU; набор строк в ячейки книги."""
+
+    def __init__(self, tmp: Path):
+        _среда_calc()
+        try:
+            import uno  # noqa: F401
+        except ImportError:
+            raise Среда("СРЕДА: нет модуля uno (python3-uno) для набора в Calc") from None
+        профиль = tmp / "profile-ru"
+        (профиль / "user").mkdir(parents=True)
+        (профиль / "user" / "registrymodifications.xcu").write_text(_ПРОФИЛЬ_RU, encoding="utf-8")
+        self.труба = f"mvb_p5_{os.getpid()}_{id(self)}"
+        self.proc = subprocess.Popen(
+            ["soffice", f"-env:UserInstallation=file://{профиль}", "--headless", "--norestore",
+             "--nologo", f"--accept=pipe,name={self.труба};urp;"],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        self.desktop = None
+
+    def __enter__(self):
+        import uno
+        local = uno.getComponentContext()
+        resolver = local.ServiceManager.createInstanceWithContext("com.sun.star.bridge.UnoUrlResolver", local)
+        ctx = None
+        for _ in range(240):
+            try:
+                ctx = resolver.resolve(f"uno:pipe,name={self.труба};urp;StarOffice.ComponentContext")
+                break
+            except Exception:
+                if self.proc.poll() is not None:
+                    break
+                time.sleep(0.25)
+        if ctx is None:
+            self.__exit__()
+            raise Среда("СРЕДА: Calc не принял UNO-подключение за 60 с")
+        smgr = ctx.ServiceManager
+        self.desktop = smgr.createInstanceWithContext("com.sun.star.frame.Desktop", ctx)
+        self.disp = smgr.createInstanceWithContext("com.sun.star.frame.DispatchHelper", ctx)
+        return self
+
+    def __exit__(self, *_):
+        try:
+            if self.desktop is not None:
+                self.desktop.terminate()
+        except Exception:
+            pass
+        try:
+            self.proc.wait(timeout=30)
+        except subprocess.TimeoutExpired:
+            self.proc.kill()
+            self.proc.wait(timeout=30)
+
+    @staticmethod
+    def _pv(имя, значение):
+        from com.sun.star.beans import PropertyValue
+        p = PropertyValue()
+        p.Name, p.Value = имя, значение
+        return p
+
+    def набрать(self, книга: Path, ввод: list[tuple[str, str]]):
+        """Открывает `книгу`, набирает строки, пересчитывает; документ UNO."""
+        import uno
+        doc = self.desktop.loadComponentFromURL(uno.systemPathToFileUrl(str(книга)), "_blank", 0,
+                                                (self._pv("Hidden", True),))
+        if doc is None:
+            raise Среда(f"СРЕДА: Calc не открыл {книга.name}")
+        frame = doc.getCurrentController().getFrame()
+        for адрес, строка_ввода in ввод:
+            self.disp.executeDispatch(frame, ".uno:GoToCell", "", 0, (self._pv("ToPoint", адрес),))
+            self.disp.executeDispatch(frame, ".uno:EnterString", "", 0,
+                                      (self._pv("StringName", строка_ввода),))
+        doc.calculateAll()
+        return doc
+
+    def сохранить(self, doc, путь: Path, фильтр: str) -> None:
+        import uno
+        doc.storeToURL(uno.systemPathToFileUrl(str(путь)), (self._pv("FilterName", фильтр),))
+
+
+def _набор_периода(r: int, начало: str, окончание: str, база: str, ставка: str) -> list[tuple[str, str]]:
+    return [(f"B{r}", начало), (f"C{r}", окончание), (f"E{r}", база), (f"F{r}", ставка)]
+
+
+# Набор в 04: (таблица, строка ставки, ожидание). Таблица «2.3.» — пени,
+# «3.» — проценты по ст. 395. Даты и база — пример 1 из #322.
+НАБОР_04 = {
+    "пени «0,05»": ("2.3.", "0,05", 4_680.00),
+    "пени «0,05%»": ("2.3.", "0,05%", ("отказ", "без знака %")),
+    "пени «0,05 %»": ("2.3.", "0,05 %", ("отказ", "без знака %")),
+    "395 «16»": ("3.", "16", 4_103.013698630137),
+    "395 «16%»": ("3.", "16%", ("отказ", "без знака %")),
+}
+
+
+@functools.lru_cache(maxsize=None)
+def результаты_набора_04() -> dict[str, tuple]:
+    """Сценарий → (F строки, G строки, H строки, итог G, итог H) после набора
+    в Calc ru-RU и сохранения; значения читаются из сохранённого файла."""
+    import openpyxl
+    tmp = Path(tempfile.mkdtemp(prefix="p5-typed-04-"))
+    try:
+        исходник = tmp / КНИГА_04
+        исходник.write_bytes(книги_из_архива()[КНИГА_04])
+        ws = openpyxl.load_workbook(исходник).worksheets[0]
+        таблицы = {"2.3.": _строки_таблицы(ws, "2.3.", "Итого пени"),
+                   "3.": _строки_таблицы(ws, "3.", "Итого проценты")}
+        итог = {}
+        with _CalcНабор(tmp) as calc:
+            for i, (имя, (таблица, ставка, _)) in enumerate(НАБОР_04.items()):
+                строки, r_итог = таблицы[таблица]
+                r = строки[0]
+                копия = tmp / f"typed-{i}.xlsx"
+                shutil.copy(исходник, копия)
+                doc = calc.набрать(копия, _набор_периода(r, "29.07.2026", "05.09.2026", "240000", ставка))
+                сохранено = tmp / f"typed-{i}-calc.xlsx"
+                calc.сохранить(doc, сохранено, "Calc Office Open XML")
+                pdf = tmp / f"typed-{i}.pdf"
+                calc.сохранить(doc, pdf, "calc_pdf_Export")
+                doc.close(True)
+                w = openpyxl.load_workbook(сохранено, data_only=True).worksheets[0]
+                итог[имя] = (w[f"F{r}"].value, w[f"G{r}"].value, _текст(w[f"H{r}"].value),
+                             w[f"G{r_итог}"].value, _текст(w[f"H{r_итог}"].value), r, r_итог,
+                             _страницы_pdf(pdf), _текст(_текст_pdf(pdf)))
+        return итог
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def test_04_набор_в_calc_ru_ставка_без_знака_и_со_знаком() -> None:
+    """#333 Н-1: «0,05» считается верно; «0,05%», «0,05 %», «16%» не дают
+    суммы, а в «Проверке» сказано вводить число без знака %. Лист после
+    набора печатается на одной странице, сообщение видно на печати."""
+    провалы = []
+    результаты = результаты_набора_04()
+    f_05 = результаты["пени «0,05»"][0]
+    if not (_число(f_05) and abs(f_05 - 0.05) < 1e-12):
+        raise Среда(f"СРЕДА: набор «0,05» дал F = {f_05!r}, а не 0,05 — профиль Calc не ru-RU")
+    for имя, (_, _, ожидание) in НАБОР_04.items():
+        f, g, h, g_итог, h_итог, r, r_итог, страниц, текст_печати = результаты[имя]
+        if страниц != 1:
+            провалы.append(f"РАСКЛАДКА: печать 04 после набора {имя}: страниц {страниц}, ожидалась 1")
+        if isinstance(ожидание, tuple):
+            if "без знака %" not in текст_печати:
+                провалы.append(f"РАСКЛАДКА: печать 04 после набора {имя}: сообщения нет на листе")
+            слово = ожидание[1]
+            if _число(g) or _число(g_итог):
+                провалы.append(f"ВВОД: набор {имя}: F{r} = {f!r}, G{r} = {g!r}, итог G{r_итог} = "
+                               f"{g_итог!r} — ставка со знаком % дала сумму")
+            if слово not in h.lower():
+                провалы.append(f"ВВОД: набор {имя}: в H{r} нет «{слово}»: {h!r}")
+            if not h_итог:
+                провалы.append(f"ВВОД: набор {имя}: у итога H{r_итог} нет сообщения")
+        else:
+            for адрес, v in ((f"G{r}", g), (f"G{r_итог}", g_итог)):
+                if not _число(v) or abs(v - ожидание) > ТОЧНОСТЬ:
+                    провалы.append(f"АРИФМЕТИКА: набор {имя}: {адрес} = {v!r}, ожидалось {ожидание:.2f}")
+            if h or h_итог:
+                провалы.append(f"ВВОД: набор {имя}: верная ставка дала сообщение {h!r} / {h_итог!r}")
+    assert not провалы, "\n  ".join(провалы)
+
+
+ДАТА_ОТВЕТА = "24.05.2026"
+
+
+def _текст_pdf(pdf: Path) -> str:
+    pdftotext = shutil.which("pdftotext")
+    if not pdftotext:
+        raise Среда("СРЕДА: нет pdftotext (poppler-utils)")
+    r = subprocess.run([pdftotext, "-layout", str(pdf), "-"], capture_output=True, text=True, timeout=60)
+    if r.returncode != 0:
+        raise Среда(f"СРЕДА: pdftotext не прочитал {pdf.name}: {r.stderr}")
+    return r.stdout
+
+
+def test_05_срок_ответа_формат_даты() -> None:
+    """#333 Н-2: у «Срока ответа» формат ДД.ММ.ГГГГ, как у «Даты» и «Даты отправки»."""
+    tmp, _, ws = _лист_05()
+    shutil.rmtree(tmp, ignore_errors=True)
+    шапка = [_текст(c.value) for c in ws[1]]
+    с = шапка.index("Срок ответа") + 1
+    не_те = {ws.cell(r, с).coordinate: ws.cell(r, с).number_format for r in range(2, 21)
+             if ws.cell(r, с).number_format.upper() != "DD.MM.YYYY"}
+    assert not не_те, f"РАСКЛАДКА: формат «Срок ответа» не DD.MM.YYYY: {не_те}"
+
+
+def test_05_срок_ответа_печать_из_файла_и_набором() -> None:
+    """#333 Н-2: дата в «Сроке ответа» печатается полностью — и записанная
+    в файл, и набранная в Calc ru-RU; «###» на печати нет."""
+    from openpyxl.utils import get_column_letter
+    tmp, путь, ws = _лист_05()
+    try:
+        шапка = [_текст(c.value) for c in ws[1]]
+        j = get_column_letter(шапка.index("Срок ответа") + 1)
+        ws[f"{j}3"] = dt.datetime(2026, 5, 24)
+        из_файла = tmp / "05-file-date.xlsx"
+        ws.parent.save(из_файла)
+        pdf_файл = пересчитать([из_файла], tmp, "pdf")[из_файла.name]
+        with _CalcНабор(tmp) as calc:
+            doc = calc.набрать(путь, [("G3", "24.04.2026"), (f"{j}4", ДАТА_ОТВЕТА)])
+            показ = doc.Sheets.getByIndex(0).getCellRangeByName(f"{j}4").getString()
+            pdf_набор = tmp / "05-typed.pdf"
+            calc.сохранить(doc, pdf_набор, "calc_pdf_Export")
+            doc.close(True)
+        провалы = []
+        if показ != ДАТА_ОТВЕТА:
+            провалы.append(f"РАСКЛАДКА: набор «{ДАТА_ОТВЕТА}» в {j}4 показан как {показ!r}")
+        for что, pdf in (("из файла", pdf_файл), ("набором", pdf_набор)):
+            текст = _текст_pdf(pdf)
+            if ДАТА_ОТВЕТА not in текст:
+                провалы.append(f"РАСКЛАДКА: печать 05 ({что}): даты {ДАТА_ОТВЕТА} нет в PDF")
+            if "###" in текст:
+                провалы.append(f"РАСКЛАДКА: печать 05 ({что}): в PDF «###»")
+            if _страницы_pdf(pdf) != 1:
+                провалы.append(f"РАСКЛАДКА: печать 05 ({что}): страниц {_страницы_pdf(pdf)}, ожидалась 1")
+        assert not провалы, "\n  ".join(провалы)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
