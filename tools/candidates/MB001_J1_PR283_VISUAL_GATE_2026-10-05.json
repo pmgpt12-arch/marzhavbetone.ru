@@ -1,0 +1,36 @@
+{
+  "execution_pattern": "one_shot",
+  "primary_result": "PR283_exact_head_visual_gate",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "frozen_input_sha": "14c5a562c93ad7f7c28aa73588d9ca2d8b35fea3",
+  "timestamp_utc": "2026-10-05T11:41:22.427105+00:00",
+  "status": "BLOCKED/MISSING_RUNTIME_DEPENDENCY",
+  "reason": "playwright.sync_api absent in system Python and existing mvb-media venv; Node Playwright/Puppeteer absent",
+  "chrome_executable": "/usr/bin/google-chrome",
+  "cached_chromium": "/home/denis/.cache/ms-playwright/chromium-1234",
+  "rendered": false,
+  "png_count": 0,
+  "ephemeral_server_started": false,
+  "dependencies_installed": false,
+  "runs": [
+    {
+      "command": [
+        "python3",
+        "tools/check_mobile.py"
+      ],
+      "exit_code": 2,
+      "stdout": "playwright не установлен — проверка НЕ ЗАПУСКАЛАСЬ, а не прошла.\n  pip install playwright && playwright install chromium\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/check_desktop.py"
+      ],
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Проверка не запускалась: нет playwright. Установка: pip install playwright\n"
+    }
+  ]
+}
