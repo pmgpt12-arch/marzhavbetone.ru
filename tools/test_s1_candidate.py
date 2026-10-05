@@ -352,8 +352,13 @@ def test_система_не_обещает_решить_граничные_си
         assert not m, f"{f.name}: обещание «{m.group(0)}»"
     for f in delivered():
         if f.suffix == ".docx":
-            assert "не юридическая консультация" in docx_text(f), (
-                f"{f.name}: нет блока «Важно»")
+            if f.name == "06-uvedomlenie-o-prosrochke.docx":
+                guidance = docx_text(C / "03-algoritm-dejstviy.docx")
+                assert "не юридическая консультация" in guidance
+                assert "относятся и к файлу 06" in guidance, "03: не указан охват предупреждения для 06"
+            else:
+                assert "не юридическая консультация" in docx_text(f), (
+                    f"{f.name}: нет блока «Важно»")
 
 
 def test_формы_содержат_рабочую_табличную_часть() -> None:
@@ -1523,8 +1528,10 @@ def test_н5_даты_просрочки_по_каждому_акту() -> None:
 def test_н6_выгрузка_взаиморасчётов_печатается() -> None:
     fj = формула(КНИГА_УЧЁТА, "Взаиморасчёты", "J6")
     assert '""' in fj, f"нарастающий итог печатается в пустых строках: {fj}"
-    т = docx_text(C / "06-uvedomlenie-o-prosrochke.docx")
-    assert "выгрузка из файла 04" not in т and "выделен" in т.lower(), "06 не говорит, как сделать приложение-реестр"
+    letter = docx_text(C / "06-uvedomlenie-o-prosrochke.docx")
+    guidance = docx_text(C / "03-algoritm-dejstviy.docx")
+    assert "выгрузка из файла 04" not in letter
+    assert "выделен" in guidance.lower() and "Как подготовить приложение" in guidance, "03: потеряна инструкция подготовки реестра для 06"
 
 
 def test_н8_подтверждение_шага_12_называет_опись() -> None:
