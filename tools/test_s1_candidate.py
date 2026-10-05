@@ -1791,6 +1791,65 @@ def test_libreoffice_r1_общие_столбцы_не_проходят_свер
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+def test_печать_08_ставка_и_строки_проверок() -> None:
+    """F-1/F-2 (#376), статика. Ставка печатается без «%» при любом формате
+    ячейки ввода; строка «Проверок» вмещает самое длинное своё сообщение.
+    Емкость строки — по замеру Calc (колонка 110, ru-RU): строка ≈ 100 знаков
+    и ≈ 13,3 pt, плюс 2 pt."""
+    import openpyxl
+    import build_s1_candidate as B
+    wb = openpyxl.load_workbook(КНИГА_РАСЧЁТА)
+    ввод, дни, рс, пв = wb["Ввод"], wb["По дням"], wb["Расчёт"], wb["Проверки"]
+    # при чтении openpyxl оставляет у правила только номер dxf
+    dxf = wb._differential_styles
+    формат_ус = [dxf[п.dxfId].numFmt.formatCode for диап in ввод.conditional_formatting for п in диап.rules
+                 if str(диап.sqref) == f"B{B.RATE_FIRST}:B{B.RATE_LAST}" and п.dxfId is not None
+                 and dxf[п.dxfId].numFmt is not None]
+    assert формат_ус and "%" not in формат_ус[0], f"нет условного формата ставки без «%» на «Ввод»: {формат_ус}"
+    ячейки_ставки = ([рс[f"G{r}"] for r in range(7, 7 + B.INTERVALS)]
+                     + [дни[f"B{r}"] for r in range(B.DAY_FIRST, B.DAY_LAST + 1)])
+    плохие = [c.coordinate for c in ячейки_ставки if c.number_format == "General" or "%" in c.number_format]
+    assert not плохие, f"ставка наследует формат ввода (General) или с «%»: {плохие[:5]}"
+    тесно = []
+    for r in range(2, пв.max_row + 1):
+        f = пв[f"C{r}"].value
+        if not (isinstance(f, str) and f.startswith("=") and пв[f"B{r}"].value != "СТАТУС РАСЧЁТА"):
+            continue
+        строк = -(-len(B.самое_длинное(f)) // 100)
+        if (пв.row_dimensions[r].height or 15) < 13.3 * строк + 2:
+            тесно.append((r, строк, пв.row_dimensions[r].height))
+    assert not тесно, f"строка «Проверок» ниже самого длинного сообщения: {тесно}"
+
+
+def test_libreoffice_печать_ставки_после_повторного_ввода() -> None:
+    """F-2 (#376), Calc: после «21%» → «21» число 21 остаётся с процентным
+    форматом ячейки. ГОТОВЫЙ расчёт не должен печатать «2100%»."""
+    причина = _lo_ready() or (None if shutil.which("pdftotext") else "pdftotext не найден")
+    if причина:
+        ПРОПУСКИ.append(f"печать ставки 08: {причина}")
+        return
+    tmp = Path(tempfile.mkdtemp(prefix="s1-rate-"))
+    try:
+        акты = [("A", 950_000, date(2026, 7, 1)), ("B", 320_000, date(2026, 8, 1))]
+
+        def процент(wb):
+            wb["Ввод"]["B12"].number_format = "0.00%"
+
+        книга = заполнить_395(КНИГА_РАСЧЁТА, tmp / "rate.xlsx", акты, R1_КОНЕЦ, R1_СТАВКА,
+                              R1_ОПЛАТЫ_08, итог04=870_000, extra=процент)
+        cmd = ["soffice", f"-env:UserInstallation=file://{tmp}/profile", "--headless", "--norestore",
+               "--convert-to", "pdf", "--outdir", str(tmp / "out"), str(книга)]
+        subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+        pdf = tmp / "out" / "rate.pdf"
+        assert pdf.exists(), "LibreOffice не напечатал 08 в PDF"
+        текст = subprocess.run(["pdftotext", "-layout", str(pdf), "-"], capture_output=True, text=True).stdout
+        assert "ГОТОВ" in текст and re.search(r"45[  ,]?678[,.]91", текст), "нет ГОТОВ / 45 678,91 в печати"
+        assert "2100" not in текст, "печать ГОТОВОГО расчёта показывает ставку 2100% вместо 21"
+        assert re.search(r"\b21[,.]00\b", текст) and re.search(r"\b19[,.]00\b", текст), "ставка 21 / 19 не напечатана"
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main() -> int:
     провал = 0
     for имя, проверка in sorted(globals().items()):
