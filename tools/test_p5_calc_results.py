@@ -836,6 +836,11 @@ def _текст_pdf(pdf: Path) -> str:
     return r.stdout
 
 
+def _полный_формат_даты(code: str) -> bool:
+    """Excel may escape literal dots; both spellings show DD.MM.YYYY."""
+    return code.upper() in {"DD.MM.YYYY", r"DD\.MM\.YYYY"}
+
+
 def test_05_срок_ответа_формат_даты() -> None:
     """#333 Н-2: у «Срока ответа» формат ДД.ММ.ГГГГ, как у «Даты» и «Даты отправки»."""
     tmp, _, ws = _лист_05()
@@ -843,7 +848,7 @@ def test_05_срок_ответа_формат_даты() -> None:
     шапка = [_текст(c.value) for c in ws[1]]
     с = шапка.index("Срок ответа") + 1
     не_те = {ws.cell(r, с).coordinate: ws.cell(r, с).number_format for r in range(2, 21)
-             if ws.cell(r, с).number_format.upper() != "DD.MM.YYYY"}
+             if not _полный_формат_даты(ws.cell(r, с).number_format)}
     assert not не_те, f"РАСКЛАДКА: формат «Срок ответа» не DD.MM.YYYY: {не_те}"
 
 
