@@ -1,0 +1,416 @@
+{
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "source_status": "CACHED_CONFIGURED_BASELINE_NOT_ACCEPTED_DELIVERY",
+  "sku": "p7",
+  "execution_pattern": "iterative",
+  "primary_result": "baseline_literal_source_index_for_future_lawyer",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "documents": [
+    {
+      "path": "products-storage/03-dogovor-podryada/00-INSTRUKCIYA.docx",
+      "relative_name": "00-INSTRUKCIYA.docx",
+      "git_blob": "a96a87ebde352ae664328651c250e8ba5cacdf72",
+      "sha256": "f1c74fa7af4ad01457e28eb8c8a3bd382ca3f28fd0c8d02190343ae39f82678a",
+      "size": 39646,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "f1c74fa7af4ad01457e28eb8c8a3bd382ca3f28fd0c8d02190343ae39f82678a",
+        "suffix": ".docx",
+        "worker_pid": 1973488,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/header1.xml",
+          "word/footer1.xml"
+        ],
+        "text_units": 55,
+        "elapsed_seconds": 0.004350078001152724
+      },
+      "native_corpus_key": "f1c74fa7af4ad01457e28eb8c8a3bd382ca3f28fd0c8d02190343ae39f82678a",
+      "text_units": 55
+    },
+    {
+      "path": "products-storage/03-dogovor-podryada/00-INSTRUKCIYA.pdf",
+      "relative_name": "00-INSTRUKCIYA.pdf",
+      "git_blob": "7991412e9f0dc758367104148c15d0f5b5caf5d7",
+      "sha256": "a67b90c1c13083781e254dd5342f87187015101b69777f8fb94ccaeb82eeba17",
+      "size": 89750,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "a67b90c1c13083781e254dd5342f87187015101b69777f8fb94ccaeb82eeba17",
+        "suffix": ".pdf",
+        "worker_pid": 1973488,
+        "limitations": [
+          {
+            "kind": "PDF_TEXT_LAYER_ONLY_NO_LAYOUT_OR_OCR_REVIEW",
+            "image_rows": [],
+            "empty_pages": []
+          }
+        ],
+        "pdf_pages": [
+          {
+            "page": 1,
+            "text_sha256": "ae43a58b6e72bf89622e0a0779055a6f75694a924793441731ed0ca7a8b98256",
+            "characters": 1266,
+            "physical_lines": 56,
+            "text_empty": false
+          },
+          {
+            "page": 2,
+            "text_sha256": "425a8d18dfce247ffa873397b4915a16dce053d43f7fb560d8a2c53daf0e9d57",
+            "characters": 912,
+            "physical_lines": 41,
+            "text_empty": false
+          }
+        ],
+        "pdf_raw_text_sha256": "7b99b0fa5e10c3dbe8eefd2115f63c82de494cde233bc5114ca984883a391a32",
+        "text_units": 2,
+        "elapsed_seconds": 0.020141891000093892
+      },
+      "native_corpus_key": "a67b90c1c13083781e254dd5342f87187015101b69777f8fb94ccaeb82eeba17",
+      "text_units": 2
+    },
+    {
+      "path": "products-storage/03-dogovor-podryada/00-START-HERE.txt",
+      "relative_name": "00-START-HERE.txt",
+      "git_blob": "f2cb4c24ab722a574c45952802d752d423d553ab",
+      "sha256": "279d268abb42636750aea2cb6d8c14a61f2b4ac2467e8704aff5feefcd098f74",
+      "size": 3871,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "279d268abb42636750aea2cb6d8c14a61f2b4ac2467e8704aff5feefcd098f74",
+        "suffix": ".txt",
+        "worker_pid": 1973486,
+        "limitations": [],
+        "text_units": 52,
+        "elapsed_seconds": 0.00010263299918733537
+      },
+      "native_corpus_key": "279d268abb42636750aea2cb6d8c14a61f2b4ac2467e8704aff5feefcd098f74",
+      "text_units": 52
+    },
+    {
+      "path": "products-storage/03-dogovor-podryada/01-dogovor-subpodryada.docx",
+      "relative_name": "01-dogovor-subpodryada.docx",
+      "git_blob": "d4775dc94fdb1197c3438d3fa4fa990a2366342d",
+      "sha256": "0a7782461435c8c230e46a224b3f535d90d95bd19eb68ad34af76a4f605509e3",
+      "size": 39619,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "0a7782461435c8c230e46a224b3f535d90d95bd19eb68ad34af76a4f605509e3",
+        "suffix": ".docx",
+        "worker_pid": 1973486,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/header1.xml",
+          "word/footer1.xml"
+        ],
+        "text_units": 42,
+        "elapsed_seconds": 0.0027246400131843984
+      },
+      "native_corpus_key": "0a7782461435c8c230e46a224b3f535d90d95bd19eb68ad34af76a4f605509e3",
+      "text_units": 42
+    },
+    {
+      "path": "products-storage/03-dogovor-podryada/02-perechen-rabot.xlsx",
+      "relative_name": "02-perechen-rabot.xlsx",
+      "git_blob": "1cf4ac4aa6db95e9033f03fca78e7e7ec0bfd67f",
+      "sha256": "ad2d7f995b6bd276de6e9051b7cc5a93ef4032546001a3b95a8db43e707f719d",
+      "size": 8792,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "ad2d7f995b6bd276de6e9051b7cc5a93ef4032546001a3b95a8db43e707f719d",
+        "suffix": ".xlsx",
+        "worker_pid": 1973488,
+        "limitations": [],
+        "read_sheets": [
+          {
+            "sheet": "Реестр",
+            "part": "xl/worksheets/sheet1.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Инструкция",
+            "part": "xl/worksheets/sheet2.xml",
+            "state": "visible"
+          }
+        ],
+        "read_mode": "native ZIP/XML; stored values/formulas/caches only",
+        "text_units": 16,
+        "elapsed_seconds": 0.18160953899496235
+      },
+      "native_corpus_key": "ad2d7f995b6bd276de6e9051b7cc5a93ef4032546001a3b95a8db43e707f719d",
+      "text_units": 16
+    },
+    {
+      "path": "products-storage/03-dogovor-podryada/03-kalendarnyy-plan.xlsx",
+      "relative_name": "03-kalendarnyy-plan.xlsx",
+      "git_blob": "025448685e4e1ed0c12eefacfe517c4d2e3b32d3",
+      "sha256": "a7e559ba286c9a5b17114504f5db60d6483e6d7e7c4f272119c097d1426926ab",
+      "size": 8728,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "a7e559ba286c9a5b17114504f5db60d6483e6d7e7c4f272119c097d1426926ab",
+        "suffix": ".xlsx",
+        "worker_pid": 1973486,
+        "limitations": [],
+        "read_sheets": [
+          {
+            "sheet": "Реестр",
+            "part": "xl/worksheets/sheet1.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Инструкция",
+            "part": "xl/worksheets/sheet2.xml",
+            "state": "visible"
+          }
+        ],
+        "read_mode": "native ZIP/XML; stored values/formulas/caches only",
+        "text_units": 16,
+        "elapsed_seconds": 0.18458031298359856
+      },
+      "native_corpus_key": "a7e559ba286c9a5b17114504f5db60d6483e6d7e7c4f272119c097d1426926ab",
+      "text_units": 16
+    },
+    {
+      "path": "products-storage/03-dogovor-podryada/04-poryadok-priemki.docx",
+      "relative_name": "04-poryadok-priemki.docx",
+      "git_blob": "79329508080a92ba38a7ebfbed97bb6c3636ee5f",
+      "sha256": "6d535c76822d74a4cfc4af40977090afb93fe82c66a8a964e023f2cfae1c8864",
+      "size": 38965,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "6d535c76822d74a4cfc4af40977090afb93fe82c66a8a964e023f2cfae1c8864",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/header1.xml",
+          "word/footer1.xml"
+        ],
+        "text_units": 29,
+        "elapsed_seconds": 0.0019220889953430742
+      },
+      "native_corpus_key": "6d535c76822d74a4cfc4af40977090afb93fe82c66a8a964e023f2cfae1c8864",
+      "text_units": 29
+    },
+    {
+      "path": "products-storage/03-dogovor-podryada/05-grafik-platezhey.xlsx",
+      "relative_name": "05-grafik-platezhey.xlsx",
+      "git_blob": "f5894a41b81f36e4657a4c94634c351b479f0fa6",
+      "sha256": "a2d147b4830eec42ff75752bd06fd3ab38b5dedb444cd46e0dd39064b28b94e7",
+      "size": 8914,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "a2d147b4830eec42ff75752bd06fd3ab38b5dedb444cd46e0dd39064b28b94e7",
+        "suffix": ".xlsx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_sheets": [
+          {
+            "sheet": "Реестр",
+            "part": "xl/worksheets/sheet1.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Инструкция",
+            "part": "xl/worksheets/sheet2.xml",
+            "state": "visible"
+          }
+        ],
+        "read_mode": "native ZIP/XML; stored values/formulas/caches only",
+        "text_units": 17,
+        "elapsed_seconds": 0.22042406399850734
+      },
+      "native_corpus_key": "a2d147b4830eec42ff75752bd06fd3ab38b5dedb444cd46e0dd39064b28b94e7",
+      "text_units": 17
+    },
+    {
+      "path": "products-storage/03-dogovor-podryada/06-dopsoglashenie-obem.docx",
+      "relative_name": "06-dopsoglashenie-obem.docx",
+      "git_blob": "a124edccf6848539ff3c579379cb182675209ee0",
+      "sha256": "6667ce895ab8721becb41911323555499d3106afa35c283428d3561e771b7c96",
+      "size": 38907,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "6667ce895ab8721becb41911323555499d3106afa35c283428d3561e771b7c96",
+        "suffix": ".docx",
+        "worker_pid": 1973485,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/header1.xml",
+          "word/footer1.xml"
+        ],
+        "text_units": 24,
+        "elapsed_seconds": 0.0014523770078085363
+      },
+      "native_corpus_key": "6667ce895ab8721becb41911323555499d3106afa35c283428d3561e771b7c96",
+      "text_units": 24
+    },
+    {
+      "path": "products-storage/03-dogovor-podryada/07-dopsoglashenie-sroki.docx",
+      "relative_name": "07-dopsoglashenie-sroki.docx",
+      "git_blob": "35e66bebfc6c6d80673e2ccaf3d72fcad06dfc86",
+      "sha256": "46eecec0d400ec72a50053a2f2d6a33c69a5033d7869968199b53a9bb5505012",
+      "size": 38879,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "46eecec0d400ec72a50053a2f2d6a33c69a5033d7869968199b53a9bb5505012",
+        "suffix": ".docx",
+        "worker_pid": 1973485,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/header1.xml",
+          "word/footer1.xml"
+        ],
+        "text_units": 24,
+        "elapsed_seconds": 0.0014378939813468605
+      },
+      "native_corpus_key": "46eecec0d400ec72a50053a2f2d6a33c69a5033d7869968199b53a9bb5505012",
+      "text_units": 24
+    },
+    {
+      "path": "products-storage/03-dogovor-podryada/08-krasnye-flagi.pdf",
+      "relative_name": "08-krasnye-flagi.pdf",
+      "git_blob": "aceea14186b6114faa858cd50eb75abfa89ea0c6",
+      "sha256": "64b29355a98feaa3838f224d1bb9019998cdeb06357b64d637fa6f6bd0fd6cc9",
+      "size": 86337,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "64b29355a98feaa3838f224d1bb9019998cdeb06357b64d637fa6f6bd0fd6cc9",
+        "suffix": ".pdf",
+        "worker_pid": 1973485,
+        "limitations": [
+          {
+            "kind": "PDF_TEXT_LAYER_ONLY_NO_LAYOUT_OR_OCR_REVIEW",
+            "image_rows": [],
+            "empty_pages": []
+          }
+        ],
+        "pdf_pages": [
+          {
+            "page": 1,
+            "text_sha256": "7233e6448c32705ab321b7bd65a1581e23f9863b355e09c4d73b24ff8698f128",
+            "characters": 751,
+            "physical_lines": 38,
+            "text_empty": false
+          }
+        ],
+        "pdf_raw_text_sha256": "98995bab2ced31cc9e72ce728ca1ad4eae2307452f23896f88e78e72204bfe35",
+        "text_units": 1,
+        "elapsed_seconds": 0.019130623986711726
+      },
+      "native_corpus_key": "64b29355a98feaa3838f224d1bb9019998cdeb06357b64d637fa6f6bd0fd6cc9",
+      "text_units": 1
+    },
+    {
+      "path": "products-storage/03-dogovor-podryada/09-checklist-dogovora.pdf",
+      "relative_name": "09-checklist-dogovora.pdf",
+      "git_blob": "ecd63b9741d9eedf1909e368832e18bbc88f4511",
+      "sha256": "3ec9b05fc1c9f35ed7904910013c39d7d97904b07710cc2d52eaa88315425c07",
+      "size": 85622,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "3ec9b05fc1c9f35ed7904910013c39d7d97904b07710cc2d52eaa88315425c07",
+        "suffix": ".pdf",
+        "worker_pid": 1973488,
+        "limitations": [
+          {
+            "kind": "PDF_TEXT_LAYER_ONLY_NO_LAYOUT_OR_OCR_REVIEW",
+            "image_rows": [],
+            "empty_pages": []
+          }
+        ],
+        "pdf_pages": [
+          {
+            "page": 1,
+            "text_sha256": "97be76ac58c63d34861edf7b8a74dac06cca08d7c24a80ff8527546eb2bb65c7",
+            "characters": 804,
+            "physical_lines": 47,
+            "text_empty": false
+          }
+        ],
+        "pdf_raw_text_sha256": "0603c6ae63334f1ed2425f989a7a47692f97eb72268aa5369ece4b0edbd716b8",
+        "text_units": 1,
+        "elapsed_seconds": 0.018572864995803684
+      },
+      "native_corpus_key": "3ec9b05fc1c9f35ed7904910013c39d7d97904b07710cc2d52eaa88315425c07",
+      "text_units": 1
+    },
+    {
+      "path": "products-storage/03-dogovor-podryada/10-protokol-raznoglasiy.docx",
+      "relative_name": "10-protokol-raznoglasiy.docx",
+      "git_blob": "0c703c6317c0427c85858dc599eac5ab7d672a95",
+      "sha256": "e78d19b88e58d75669b7a266ed0f194eae488c4216ea8295307d4732d39c4ac0",
+      "size": 38811,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "e78d19b88e58d75669b7a266ed0f194eae488c4216ea8295307d4732d39c4ac0",
+        "suffix": ".docx",
+        "worker_pid": 1973486,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/header1.xml",
+          "word/footer1.xml"
+        ],
+        "text_units": 25,
+        "elapsed_seconds": 0.0015035170072223991
+      },
+      "native_corpus_key": "e78d19b88e58d75669b7a266ed0f194eae488c4216ea8295307d4732d39c4ac0",
+      "text_units": 25
+    }
+  ],
+  "parser": {
+    "article_regex": "(?<![А-Яа-яA-Za-z])(?:(?:пп?|пункт(?:а|ы|ов|у|ом)?|ч|част(?:ь|и|ью)|абз|абзац(?:а|ы|ев)?)\\.?\\s*\\d+(?:\\.\\d+)?\\s*){0,4}(?:ст\\.|стать(?:я|и|ю|е|ей|ями))\\s*\\d+(?:\\.\\d+)?(?:\\s*(?:,|и|–|-)\\s*\\d+(?:\\.\\d+)?)*(?:\\s*(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)(?:\\s*РФ)?)?",
+    "law_marker_regex": "\\b(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)\\b|\\bст\\.\\s*\\d|\\bстать(?:я|и|ю|е|ей|ями)\\b|Пленум|Верховн\\w*\\s+[Сс]уд\\w*|[Фф]едеральн\\w*\\s+закон\\w*|[Пп]риказ\\w*|[Пп]остановлен\\w*|\\bзакон(?:а|у|ом|е|ы|ов|ам|ами|ах)?\\b|[Пп]оложени\\w*|\\bкодекс\\w*|Минстро\\w*|Ростехнадзор\\w*",
+    "standard_regex": "(?<!\\w)(?:ГОСТ(?:\\s+Р)?|СП|СНиП|ФСБУ|СанПиН|СН|ВСН|РД)\\b(?:\\s+\\d[\\d./–-]*)?|\\b\\d+\\s*[-–]\\s*ФЗ\\b",
+    "numbered_reference_regex": "№\\s*\\d+(?:[./–-]\\d+)*(?:/[A-Za-zА-Яа-я]+)?",
+    "full_code_name_regex": "\\b(?:Гражданск\\w*|Градостроительн\\w*|Налогов\\w*|Трудов\\w*|Земельн\\w*|Жилищн\\w*|Семейн\\w*|Бюджетн\\w*|Уголовн\\w*|Арбитражн\\w*|Гражданск\\w*[- ]процессуальн\\w*)\\s+(?:процессуальн\\w*\\s+)?кодекс\\w*(?:\\s+(?:РФ|Российск\\w*\\s+Федераци\\w*))?",
+    "code_binding": "Explicit abbreviation or unique abbreviation in same unit; PDF physical line only; full names retained raw without semantic resolution",
+    "lists_ranges": "As written; not expanded into norms"
+  },
+  "literal_occurrences": [],
+  "deduplicated_groups": [],
+  "unresolved_legal_and_standard_markers": [
+    {
+      "sku": "p7",
+      "document": "products-storage/03-dogovor-podryada/01-dogovor-subpodryada.docx",
+      "file_sha256": "0a7782461435c8c230e46a224b3f535d90d95bd19eb68ad34af76a4f605509e3",
+      "unit_id": "p7:products-storage/03-dogovor-podryada/01-dogovor-subpodryada.docx:4",
+      "native_unit_index": 4,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[4]",
+        "global_paragraph_ordinal_including_empty": 4,
+        "nonempty_paragraph_ordinal": 4
+      },
+      "span": [
+        44,
+        46
+      ],
+      "short_quote": "Субподрядчик выполняет работы по приложению №1 на объекте [___].",
+      "quote_span": [
+        0,
+        64
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p7-marker-0001",
+      "marker": "№1",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    }
+  ],
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "normative_verdict": "NOT_VERIFIED",
+  "membership": "SOURCE_ELIGIBLE_DRY_INVENTORY_NOT_ACTUAL_PHP_ZIP",
+  "scope_limit": "Native textual lexical scope only, not legal completeness/layout/formula/sale/currentacceptedrepackaging"
+}

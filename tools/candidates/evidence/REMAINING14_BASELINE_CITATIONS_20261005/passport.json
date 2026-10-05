@@ -1,0 +1,56 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "REMAINING14_cached_baseline_literal_source_index_for_future_lawyer",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "source_status": "CACHED_CONFIGURED_BASELINE_NOT_ACCEPTED_CURRENT_REPACKAGING",
+  "skus": [
+    "p4",
+    "p7",
+    "p8",
+    "p9",
+    "p10",
+    "p11",
+    "p12",
+    "p13",
+    "t1",
+    "t2",
+    "t3",
+    "t4",
+    "t5",
+    "t6"
+  ],
+  "input_bindings": 135,
+  "unique_SHA256_inputs": 125,
+  "workers": 4,
+  "overall_subprocess_deadline_seconds": 120,
+  "scope": "native textual citation facts only; DOCX paragraphs/header/footer/footnotes/endnotes/comments/core titlefields; native XLSX storedformula/cache/cells/headerfooter/comments/validation/titlefields; uniquePDFtext-layer page/char/physical lines/image-limit flags; TXTphysical lines",
+  "acceptance": [
+    "135 fullSHA/Gitblob source bindings verified before and after",
+    "Exactly14module maps retaining separate modulepath bindings for sameSHA",
+    "Every article/standard/code/№/generic marker exactquote/span/native locator; no registryIDs",
+    "Identical fullSHA native text reused once only when type and native locator context same",
+    "Each uniquePDF pdftotext once; rawpages/metadata/limits retained",
+    "Root and independent broad source coverage acceptance before Git mutation"
+  ],
+  "negative_cases": [
+    "Lists/ranges not expanded into normative IDs",
+    "Ambiguous fullcode/numeric names retained unresolved",
+    "Genericmarkers not defects; zeroarticlehits notlegalcomplete",
+    "PDF/images/layout/noOCR scope limits",
+    "Cachedmain acceptance/currentness unknown"
+  ],
+  "prohibited": [
+    "Source/product changes",
+    "ZIP/PHP/Calc/formula/layout/generaltest/LLM/currentofficiallookup",
+    "Legal judgment/semantic guidance",
+    "Commit until root+independent accepted"
+  ],
+  "grammar_reference": {
+    "source_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/extract.py",
+    "sha256": "b1ca49a5940ce6d1c3fb47af60036f9baf45585b47d1d6b766f040db38dc0f47",
+    "fragment_sha256": "43bb82d4e361602b232e4ecd6b5e0328eef76bb0cf53a67f3f1282f3a1a77860",
+    "prior_module_review_scaffolding": "NOT_COPIED"
+  }
+}

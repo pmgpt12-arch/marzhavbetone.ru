@@ -1,0 +1,80 @@
+{
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "source_status": "CACHED_CONFIGURED_BASELINE_NOT_ACCEPTED_DELIVERY",
+  "author_run": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-baseline-citations-20261005",
+  "frozen_READY_sha256": "342fd1a66f340a61025df248d004376f61988b8209c1e58216f02435d2289a30",
+  "author_server_only": [
+    {
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-baseline-citations-20261005/unique-source-text-units.json",
+      "bytes": 6624061,
+      "sha256": "8fa143c6e5c4820acceecd3ebdb136f16e18edac5d9c245e4dae5a12072c507f"
+    },
+    {
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-baseline-citations-20261005/unique-inputs",
+      "policy": "125 exactGit source input copies server-only; each fullSHA/size/path pinned input-hashes.json"
+    }
+  ],
+  "independent_server_only": {
+    "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-baseline-citations-independent-20261005/corpus",
+    "policy": "125 complete nativecorpus JSON files and inputPDFcopies server-only; exact pins independent/server-only-corpus-manifest.json"
+  },
+  "included_independent_asrun_files": 66,
+  "model_calls": 0,
+  "legal_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "normative_verdict": "NOT_VERIFIED",
+  "excluded_repeated_PDF_text_evidence": [
+    {
+      "relative_path": "pdf/1e9f97f7eb94e326fd84660e6c5fbaf4279ee9259ddddc87fb002795be138ce8.txt",
+      "bytes": 1113,
+      "sha256": "55a6b9b0d2dc82d536336b64b3cca084f02a2b2348957f9775b5c00bda4a3f2a",
+      "server_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-baseline-citations-independent-20261005/pdf/1e9f97f7eb94e326fd84660e6c5fbaf4279ee9259ddddc87fb002795be138ce8.txt"
+    },
+    {
+      "relative_path": "pdf/3ec9b05fc1c9f35ed7904910013c39d7d97904b07710cc2d52eaa88315425c07.txt",
+      "bytes": 1336,
+      "sha256": "0603c6ae63334f1ed2425f989a7a47692f97eb72268aa5369ece4b0edbd716b8",
+      "server_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-baseline-citations-independent-20261005/pdf/3ec9b05fc1c9f35ed7904910013c39d7d97904b07710cc2d52eaa88315425c07.txt"
+    },
+    {
+      "relative_path": "pdf/64b29355a98feaa3838f224d1bb9019998cdeb06357b64d637fa6f6bd0fd6cc9.txt",
+      "bytes": 1266,
+      "sha256": "98995bab2ced31cc9e72ce728ca1ad4eae2307452f23896f88e78e72204bfe35",
+      "server_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-baseline-citations-independent-20261005/pdf/64b29355a98feaa3838f224d1bb9019998cdeb06357b64d637fa6f6bd0fd6cc9.txt"
+    },
+    {
+      "relative_path": "pdf/77d584afea231df36189bcfc745673676711fbc572745bad191c19bc853b33cd.txt",
+      "bytes": 1863,
+      "sha256": "c42238a245b9eb356c264dc8d245d035aae54822944a236279190f3b05f85363",
+      "server_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-baseline-citations-independent-20261005/pdf/77d584afea231df36189bcfc745673676711fbc572745bad191c19bc853b33cd.txt"
+    },
+    {
+      "relative_path": "pdf/a67b90c1c13083781e254dd5342f87187015101b69777f8fb94ccaeb82eeba17.txt",
+      "bytes": 3629,
+      "sha256": "7b99b0fa5e10c3dbe8eefd2115f63c82de494cde233bc5114ca984883a391a32",
+      "server_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-baseline-citations-independent-20261005/pdf/a67b90c1c13083781e254dd5342f87187015101b69777f8fb94ccaeb82eeba17.txt"
+    },
+    {
+      "relative_path": "pdf/b104471e26c0c00214452cc999cdcbddcaa2f2e978c11657acb9556e1646baf4.txt",
+      "bytes": 13381,
+      "sha256": "58038c57d831500f4cb9c569522a71f030c7d04553fa44a44e67bb53c5a20376",
+      "server_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-baseline-citations-independent-20261005/pdf/b104471e26c0c00214452cc999cdcbddcaa2f2e978c11657acb9556e1646baf4.txt"
+    },
+    {
+      "relative_path": "pdf/c8fe766b86f25d2390d7f2aace58adda4a2cf2803195007aa2362dc3cbc9f35b.txt",
+      "bytes": 10293,
+      "sha256": "6c02e2f4e36f30eb9cebc5427fb4dedd5b1c5eb6bf9e91b173c0ee5d9df9e848",
+      "server_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-baseline-citations-independent-20261005/pdf/c8fe766b86f25d2390d7f2aace58adda4a2cf2803195007aa2362dc3cbc9f35b.txt"
+    },
+    {
+      "relative_path": "pdf/f1b6c85b9282634b6fa88c00cba11a6702bc00bf33361a9829591f496bd60ca2.txt",
+      "bytes": 1160,
+      "sha256": "db6f1e39cbd7f677176138d20065df5ee451e9e4bf4653b596e1cacc03ce5c4f",
+      "server_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-baseline-citations-independent-20261005/pdf/f1b6c85b9282634b6fa88c00cba11a6702bc00bf33361a9829591f496bd60ca2.txt"
+    }
+  ],
+  "author_pdf_raw_metadata_policy": {
+    "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-baseline-citations-20261005/unique-pdf",
+    "policy": "All8unique rawPDFtexts+pdfinfo/images outputs server-only, pinned exactauthor-full-server-manifest.txt; native page hashes/images/limits also included in maps/commands"
+  }
+}

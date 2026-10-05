@@ -1,0 +1,765 @@
+{
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "source_status": "CACHED_CONFIGURED_BASELINE_NOT_ACCEPTED_DELIVERY",
+  "sku": "p11",
+  "execution_pattern": "iterative",
+  "primary_result": "baseline_literal_source_index_for_future_lawyer",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "documents": [
+    {
+      "path": "products-storage/13-raschet-metrami/00-START-HERE.txt",
+      "relative_name": "00-START-HERE.txt",
+      "git_blob": "a51eef5e288a9322c50f9230e68faa4f0c26af3d",
+      "sha256": "0842d9dcbfe60a0e05d531681b02f670e6723e1d76d53a75433ce76ff67d06fa",
+      "size": 3594,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "0842d9dcbfe60a0e05d531681b02f670e6723e1d76d53a75433ce76ff67d06fa",
+        "suffix": ".txt",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "text_units": 46,
+        "elapsed_seconds": 9.913300164043903e-05
+      },
+      "native_corpus_key": "0842d9dcbfe60a0e05d531681b02f670e6723e1d76d53a75433ce76ff67d06fa",
+      "text_units": 46
+    },
+    {
+      "path": "products-storage/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+      "relative_name": "50-slovar-poley-raschet-metrami.docx",
+      "git_blob": "d8d681746569b31581e95aa6ba467fca0a9c2702",
+      "sha256": "f80f23ea0b096f8f4626552465125cf728c1947d78447e19d089354406058349",
+      "size": 13717,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "f80f23ea0b096f8f4626552465125cf728c1947d78447e19d089354406058349",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 96,
+        "elapsed_seconds": 0.040279136010212824
+      },
+      "native_corpus_key": "f80f23ea0b096f8f4626552465125cf728c1947d78447e19d089354406058349",
+      "text_units": 96
+    },
+    {
+      "path": "products-storage/13-raschet-metrami/51-algoritm-raschet-metrami.pdf",
+      "relative_name": "51-algoritm-raschet-metrami.pdf",
+      "git_blob": "86688bd4af7188fd6d24d342b3b5bf6f984dac09",
+      "sha256": "b104471e26c0c00214452cc999cdcbddcaa2f2e978c11657acb9556e1646baf4",
+      "size": 63067,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "b104471e26c0c00214452cc999cdcbddcaa2f2e978c11657acb9556e1646baf4",
+        "suffix": ".pdf",
+        "worker_pid": 1973487,
+        "limitations": [
+          {
+            "kind": "PDF_TEXT_LAYER_ONLY_NO_LAYOUT_OR_OCR_REVIEW",
+            "image_rows": [],
+            "empty_pages": []
+          }
+        ],
+        "pdf_pages": [
+          {
+            "page": 1,
+            "text_sha256": "8bb501a06dae33717cd4b73f3668af0a48ea59e1e919a68e3019ffe393dae84c",
+            "characters": 1937,
+            "physical_lines": 46,
+            "text_empty": false
+          },
+          {
+            "page": 2,
+            "text_sha256": "4dd82702b0ebc720389bdd79e0fdce806391781e4a85103d934284f28515752b",
+            "characters": 2020,
+            "physical_lines": 48,
+            "text_empty": false
+          },
+          {
+            "page": 3,
+            "text_sha256": "c6d46119dad5539f93dcaecccc9903f51f139b986d3e0aa2ab212b5c139ad78e",
+            "characters": 2220,
+            "physical_lines": 47,
+            "text_empty": false
+          },
+          {
+            "page": 4,
+            "text_sha256": "b1e74c99e1f00fdf7c8b46ea15e5ce46f1d9498caad1e697402c8144a99ade31",
+            "characters": 1187,
+            "physical_lines": 24,
+            "text_empty": false
+          }
+        ],
+        "pdf_raw_text_sha256": "58038c57d831500f4cb9c569522a71f030c7d04553fa44a44e67bb53c5a20376",
+        "text_units": 4,
+        "elapsed_seconds": 0.02332702200510539
+      },
+      "native_corpus_key": "b104471e26c0c00214452cc999cdcbddcaa2f2e978c11657acb9556e1646baf4",
+      "text_units": 4
+    },
+    {
+      "path": "products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+      "relative_name": "52-chek-list-raschet-metrami.docx",
+      "git_blob": "22d1f3e17fc8d845d399f8b9b50d2fceb757a3e0",
+      "sha256": "a195a5db3960c9187cebebce240ddcb966b96e52b555122b9102ffac1fa50a7f",
+      "size": 12118,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "a195a5db3960c9187cebebce240ddcb966b96e52b555122b9102ffac1fa50a7f",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 50,
+        "elapsed_seconds": 0.0069916519860271364
+      },
+      "native_corpus_key": "a195a5db3960c9187cebebce240ddcb966b96e52b555122b9102ffac1fa50a7f",
+      "text_units": 50
+    },
+    {
+      "path": "products-storage/13-raschet-metrami/53-zapros-status-obekta.docx",
+      "relative_name": "53-zapros-status-obekta.docx",
+      "git_blob": "ee35ac5ead9c03ed5938fbf310c1fa7844205120",
+      "sha256": "89183de06f06e349ee5e9bf4ef7aba220a485a631c1067045ca2ffdebfa696d3",
+      "size": 12707,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "89183de06f06e349ee5e9bf4ef7aba220a485a631c1067045ca2ffdebfa696d3",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 40,
+        "elapsed_seconds": 0.0064987110090442
+      },
+      "native_corpus_key": "89183de06f06e349ee5e9bf4ef7aba220a485a631c1067045ca2ffdebfa696d3",
+      "text_units": 40
+    },
+    {
+      "path": "products-storage/13-raschet-metrami/54-zapros-sostoyanie-escrow.docx",
+      "relative_name": "54-zapros-sostoyanie-escrow.docx",
+      "git_blob": "8ac202a5bf2d9312ef140c9fb4fa55b9957b278c",
+      "sha256": "90f20f6d4e151418edd16a2ea21c49453c248b28e4f379eb63c829e8e91846f1",
+      "size": 12763,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "90f20f6d4e151418edd16a2ea21c49453c248b28e4f379eb63c829e8e91846f1",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 43,
+        "elapsed_seconds": 0.007655841996893287
+      },
+      "native_corpus_key": "90f20f6d4e151418edd16a2ea21c49453c248b28e4f379eb63c829e8e91846f1",
+      "text_units": 43
+    },
+    {
+      "path": "products-storage/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf",
+      "relative_name": "55-pamyatka-punkt-ustupki-escrow.pdf",
+      "git_blob": "cb2edfbad6114eac4e857b6c9162aa1580111534",
+      "sha256": "c8fe766b86f25d2390d7f2aace58adda4a2cf2803195007aa2362dc3cbc9f35b",
+      "size": 59892,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "c8fe766b86f25d2390d7f2aace58adda4a2cf2803195007aa2362dc3cbc9f35b",
+        "suffix": ".pdf",
+        "worker_pid": 1973487,
+        "limitations": [
+          {
+            "kind": "PDF_TEXT_LAYER_ONLY_NO_LAYOUT_OR_OCR_REVIEW",
+            "image_rows": [],
+            "empty_pages": []
+          }
+        ],
+        "pdf_pages": [
+          {
+            "page": 1,
+            "text_sha256": "7312fae05d9ab3a5aa457c45fba153f64eae64ba6536e718004fcbced89d13e8",
+            "characters": 2132,
+            "physical_lines": 48,
+            "text_empty": false
+          },
+          {
+            "page": 2,
+            "text_sha256": "e72dd3e34b3659f4d9f3156867d0180ffd63df6fd1cd85af7e70a407215f20e3",
+            "characters": 2353,
+            "physical_lines": 45,
+            "text_empty": false
+          },
+          {
+            "page": 3,
+            "text_sha256": "b1e74c99e1f00fdf7c8b46ea15e5ce46f1d9498caad1e697402c8144a99ade31",
+            "characters": 1187,
+            "physical_lines": 24,
+            "text_empty": false
+          }
+        ],
+        "pdf_raw_text_sha256": "6c02e2f4e36f30eb9cebc5427fb4dedd5b1c5eb6bf9e91b173c0ee5d9df9e848",
+        "text_units": 3,
+        "elapsed_seconds": 0.022028425009921193
+      },
+      "native_corpus_key": "c8fe766b86f25d2390d7f2aace58adda4a2cf2803195007aa2362dc3cbc9f35b",
+      "text_units": 3
+    }
+  ],
+  "parser": {
+    "article_regex": "(?<![А-Яа-яA-Za-z])(?:(?:пп?|пункт(?:а|ы|ов|у|ом)?|ч|част(?:ь|и|ью)|абз|абзац(?:а|ы|ев)?)\\.?\\s*\\d+(?:\\.\\d+)?\\s*){0,4}(?:ст\\.|стать(?:я|и|ю|е|ей|ями))\\s*\\d+(?:\\.\\d+)?(?:\\s*(?:,|и|–|-)\\s*\\d+(?:\\.\\d+)?)*(?:\\s*(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)(?:\\s*РФ)?)?",
+    "law_marker_regex": "\\b(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)\\b|\\bст\\.\\s*\\d|\\bстать(?:я|и|ю|е|ей|ями)\\b|Пленум|Верховн\\w*\\s+[Сс]уд\\w*|[Фф]едеральн\\w*\\s+закон\\w*|[Пп]риказ\\w*|[Пп]остановлен\\w*|\\bзакон(?:а|у|ом|е|ы|ов|ам|ами|ах)?\\b|[Пп]оложени\\w*|\\bкодекс\\w*|Минстро\\w*|Ростехнадзор\\w*",
+    "standard_regex": "(?<!\\w)(?:ГОСТ(?:\\s+Р)?|СП|СНиП|ФСБУ|СанПиН|СН|ВСН|РД)\\b(?:\\s+\\d[\\d./–-]*)?|\\b\\d+\\s*[-–]\\s*ФЗ\\b",
+    "numbered_reference_regex": "№\\s*\\d+(?:[./–-]\\d+)*(?:/[A-Za-zА-Яа-я]+)?",
+    "full_code_name_regex": "\\b(?:Гражданск\\w*|Градостроительн\\w*|Налогов\\w*|Трудов\\w*|Земельн\\w*|Жилищн\\w*|Семейн\\w*|Бюджетн\\w*|Уголовн\\w*|Арбитражн\\w*|Гражданск\\w*[- ]процессуальн\\w*)\\s+(?:процессуальн\\w*\\s+)?кодекс\\w*(?:\\s+(?:РФ|Российск\\w*\\s+Федераци\\w*))?",
+    "code_binding": "Explicit abbreviation or unique abbreviation in same unit; PDF physical line only; full names retained raw without semantic resolution",
+    "lists_ranges": "As written; not expanded into norms"
+  },
+  "literal_occurrences": [
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+      "file_sha256": "f80f23ea0b096f8f4626552465125cf728c1947d78447e19d089354406058349",
+      "unit_id": "p11:products-storage/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx:36",
+      "native_unit_index": 36,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[8]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 37,
+        "nonempty_paragraph_ordinal": 36
+      },
+      "span": [
+        41,
+        55
+      ],
+      "short_quote": "выписка ЕГРЮЛ; для иска они обязательны (ст. 125 АПК РФ)",
+      "quote_span": [
+        0,
+        56
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p11-ref-0001",
+      "literal": "ст. 125 АПК РФ",
+      "code": "АПК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "125"
+      ],
+      "ranges_or_variants": []
+    }
+  ],
+  "deduplicated_groups": [
+    {
+      "group_id": "p11-group-001",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 125 АПК РФ",
+      "code": "АПК",
+      "articles_as_written": [
+        "125"
+      ],
+      "occurrence_ids": [
+        "p11-ref-0001"
+      ]
+    }
+  ],
+  "unresolved_legal_and_standard_markers": [
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+      "file_sha256": "f80f23ea0b096f8f4626552465125cf728c1947d78447e19d089354406058349",
+      "unit_id": "p11:products-storage/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx:7",
+      "native_unit_index": 7,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[1]/tr[1]/tc[1]/p[5]",
+        "global_paragraph_ordinal_including_empty": 7,
+        "nonempty_paragraph_ordinal": 7
+      },
+      "span": [
+        14,
+        20
+      ],
+      "short_quote": "Числовых норм закона в файлах нет намеренно: нормы названы по имени, значения берутся из действующей редакции на дату пр",
+      "quote_span": [
+        0,
+        120
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0001",
+      "marker": "закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+      "file_sha256": "f80f23ea0b096f8f4626552465125cf728c1947d78447e19d089354406058349",
+      "unit_id": "p11:products-storage/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx:69",
+      "native_unit_index": 69,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[8]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 71,
+        "nonempty_paragraph_ordinal": 69
+      },
+      "span": [
+        78,
+        85
+      ],
+      "short_quote": " которой вы просите ответить. Назначаете сами, разумный рабочий срок; законом срок ответа на такой запрос не установлен",
+      "quote_span": [
+        8,
+        127
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0002",
+      "marker": "законом",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+      "file_sha256": "f80f23ea0b096f8f4626552465125cf728c1947d78447e19d089354406058349",
+      "unit_id": "p11:products-storage/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx:96",
+      "native_unit_index": 96,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[13]",
+        "global_paragraph_ordinal_including_empty": 99,
+        "nonempty_paragraph_ordinal": 96
+      },
+      "span": [
+        105,
+        112
+      ],
+      "short_quote": "й ставки, ни одного срока и ни одного размера платежа, установленного законом: такие значения берутся из действующей редакции нормы на дату проверки, а не из скачанного файла.",
+      "quote_span": [
+        35,
+        210
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0003",
+      "marker": "законом",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/51-algoritm-raschet-metrami.pdf",
+      "file_sha256": "b104471e26c0c00214452cc999cdcbddcaa2f2e978c11657acb9556e1646baf4",
+      "unit_id": "p11:products-storage/13-raschet-metrami/51-algoritm-raschet-metrami.pdf:1",
+      "native_unit_index": 1,
+      "location": {
+        "kind": "pdf_pdftotext_page",
+        "page": 1,
+        "extraction": "pdftotext -layout -enc UTF-8",
+        "text_sha256": "8bb501a06dae33717cd4b73f3668af0a48ea59e1e919a68e3019ffe393dae84c",
+        "line_numbering": "1-based physical lines in this exact raw extracted page",
+        "page_character_span": [
+          1884,
+          1890
+        ],
+        "physical_line_start": 45,
+        "physical_line_end": 45
+      },
+      "span": [
+        1884,
+        1890
+      ],
+      "short_quote": "полнен на сумму, указанную\nв договоре (проверьте действующую редакцию 214-ФЗ — в этот файл нормы\nнамеренно не переписаны).\n",
+      "quote_span": [
+        1814,
+        1937
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0004",
+      "marker": "214-ФЗ",
+      "classification": "UNRESOLVED_STANDARD_OR_OTHER_NORMATIVE_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/51-algoritm-raschet-metrami.pdf",
+      "file_sha256": "b104471e26c0c00214452cc999cdcbddcaa2f2e978c11657acb9556e1646baf4",
+      "unit_id": "p11:products-storage/13-raschet-metrami/51-algoritm-raschet-metrami.pdf:4",
+      "native_unit_index": 4,
+      "location": {
+        "kind": "pdf_pdftotext_page",
+        "page": 4,
+        "extraction": "pdftotext -layout -enc UTF-8",
+        "text_sha256": "b1e74c99e1f00fdf7c8b46ea15e5ce46f1d9498caad1e697402c8144a99ade31",
+        "line_numbering": "1-based physical lines in this exact raw extracted page",
+        "page_character_span": [
+          949,
+          955
+        ],
+        "physical_line_start": 21,
+        "physical_line_end": 21
+      },
+      "span": [
+        949,
+        955
+      ],
+      "short_quote": "Реестр требований кредиторов» и юрист, а не\nэти файлы.\n\nЧисловых норм закона в файлах нет намеренно: нормы названы по имени,\nзначения берутся из действующей редакции на дату пр",
+      "quote_span": [
+        879,
+        1055
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0005",
+      "marker": "закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+      "file_sha256": "a195a5db3960c9187cebebce240ddcb966b96e52b555122b9102ffac1fa50a7f",
+      "unit_id": "p11:products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx:7",
+      "native_unit_index": 7,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[1]/tr[1]/tc[1]/p[5]",
+        "global_paragraph_ordinal_including_empty": 7,
+        "nonempty_paragraph_ordinal": 7
+      },
+      "span": [
+        14,
+        20
+      ],
+      "short_quote": "Числовых норм закона в файлах нет намеренно: нормы названы по имени, значения берутся из действующей редакции на дату пр",
+      "quote_span": [
+        0,
+        120
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0006",
+      "marker": "закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/53-zapros-status-obekta.docx",
+      "file_sha256": "89183de06f06e349ee5e9bf4ef7aba220a485a631c1067045ca2ffdebfa696d3",
+      "unit_id": "p11:products-storage/13-raschet-metrami/53-zapros-status-obekta.docx:7",
+      "native_unit_index": 7,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[1]/tr[1]/tc[1]/p[5]",
+        "global_paragraph_ordinal_including_empty": 7,
+        "nonempty_paragraph_ordinal": 7
+      },
+      "span": [
+        14,
+        20
+      ],
+      "short_quote": "Числовых норм закона в файлах нет намеренно: нормы названы по имени, значения берутся из действующей редакции на дату пр",
+      "quote_span": [
+        0,
+        120
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0007",
+      "marker": "закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/53-zapros-status-obekta.docx",
+      "file_sha256": "89183de06f06e349ee5e9bf4ef7aba220a485a631c1067045ca2ffdebfa696d3",
+      "unit_id": "p11:products-storage/13-raschet-metrami/53-zapros-status-obekta.docx:36",
+      "native_unit_index": 36,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[34]",
+        "global_paragraph_ordinal_including_empty": 39,
+        "nonempty_paragraph_ordinal": 36
+      },
+      "span": [
+        182,
+        189
+      ],
+      "short_quote": " ({{СРОК_ОТВЕТА_НА_ЗАПРОС}} — назначаете сами, разумный рабочий срок; законом он не установлен).",
+      "quote_span": [
+        112,
+        208
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0008",
+      "marker": "законом",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/53-zapros-status-obekta.docx",
+      "file_sha256": "89183de06f06e349ee5e9bf4ef7aba220a485a631c1067045ca2ffdebfa696d3",
+      "unit_id": "p11:products-storage/13-raschet-metrami/53-zapros-status-obekta.docx:38",
+      "native_unit_index": 38,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[36]",
+        "global_paragraph_ordinal_including_empty": 41,
+        "nonempty_paragraph_ordinal": 38
+      },
+      "span": [
+        69,
+        74
+      ],
+      "short_quote": "Не обязывает адресата ответить: обязанности отвечать на такой запрос закон не устанавливает. Ценность в другом: заданный письменно вопрос с зафиксированным молчанием читается",
+      "quote_span": [
+        0,
+        174
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0009",
+      "marker": "закон",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/54-zapros-sostoyanie-escrow.docx",
+      "file_sha256": "90f20f6d4e151418edd16a2ea21c49453c248b28e4f379eb63c829e8e91846f1",
+      "unit_id": "p11:products-storage/13-raschet-metrami/54-zapros-sostoyanie-escrow.docx:7",
+      "native_unit_index": 7,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[1]/tr[1]/tc[1]/p[5]",
+        "global_paragraph_ordinal_including_empty": 7,
+        "nonempty_paragraph_ordinal": 7
+      },
+      "span": [
+        14,
+        20
+      ],
+      "short_quote": "Числовых норм закона в файлах нет намеренно: нормы названы по имени, значения берутся из действующей редакции на дату пр",
+      "quote_span": [
+        0,
+        120
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0010",
+      "marker": "закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/54-zapros-sostoyanie-escrow.docx",
+      "file_sha256": "90f20f6d4e151418edd16a2ea21c49453c248b28e4f379eb63c829e8e91846f1",
+      "unit_id": "p11:products-storage/13-raschet-metrami/54-zapros-sostoyanie-escrow.docx:39",
+      "native_unit_index": 39,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[37]",
+        "global_paragraph_ordinal_including_empty": 42,
+        "nonempty_paragraph_ordinal": 39
+      },
+      "span": [
+        147,
+        154
+      ],
+      "short_quote": "к уступке, срок ответа ({{СРОК_ОТВЕТА_НА_ЗАПРОС}} — разумный рабочий; законом не установлен).",
+      "quote_span": [
+        77,
+        170
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0011",
+      "marker": "законом",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf",
+      "file_sha256": "c8fe766b86f25d2390d7f2aace58adda4a2cf2803195007aa2362dc3cbc9f35b",
+      "unit_id": "p11:products-storage/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf:1",
+      "native_unit_index": 1,
+      "location": {
+        "kind": "pdf_pdftotext_page",
+        "page": 1,
+        "extraction": "pdftotext -layout -enc UTF-8",
+        "text_sha256": "7312fae05d9ab3a5aa457c45fba153f64eae64ba6536e718004fcbced89d13e8",
+        "line_numbering": "1-based physical lines in this exact raw extracted page",
+        "page_character_span": [
+          749,
+          755
+        ],
+        "physical_line_start": 16,
+        "physical_line_end": 16
+      },
+      "span": [
+        749,
+        755
+      ],
+      "short_quote": "\nисполненной с момента поступления денег на счёт эскроу — так устроен 214-ФЗ в\nдействующей редакции. Уступить можно и оплаченное право, и неоплаченное —\nно неоплаченное передаё",
+      "quote_span": [
+        679,
+        855
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0012",
+      "marker": "214-ФЗ",
+      "classification": "UNRESOLVED_STANDARD_OR_OTHER_NORMATIVE_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf",
+      "file_sha256": "c8fe766b86f25d2390d7f2aace58adda4a2cf2803195007aa2362dc3cbc9f35b",
+      "unit_id": "p11:products-storage/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf:2",
+      "native_unit_index": 2,
+      "location": {
+        "kind": "pdf_pdftotext_page",
+        "page": 2,
+        "extraction": "pdftotext -layout -enc UTF-8",
+        "text_sha256": "e72dd3e34b3659f4d9f3156867d0180ffd63df6fd1cd85af7e70a407215f20e3",
+        "line_numbering": "1-based physical lines in this exact raw extracted page",
+        "page_character_span": [
+          2161,
+          2167
+        ],
+        "physical_line_start": 43,
+        "physical_line_end": 43
+      },
+      "span": [
+        2161,
+        2167
+      ],
+      "short_quote": "ии строит юрист вокруг норм ГК об уступке и переводе долга и\n  статей 214-ФЗ об эскроу и уступке, в действующих редакциях.\n— Не касается налоговых последствий получения и прода",
+      "quote_span": [
+        2091,
+        2267
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0013",
+      "marker": "214-ФЗ",
+      "classification": "UNRESOLVED_STANDARD_OR_OTHER_NORMATIVE_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf",
+      "file_sha256": "c8fe766b86f25d2390d7f2aace58adda4a2cf2803195007aa2362dc3cbc9f35b",
+      "unit_id": "p11:products-storage/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf:2",
+      "native_unit_index": 2,
+      "location": {
+        "kind": "pdf_pdftotext_page",
+        "page": 2,
+        "extraction": "pdftotext -layout -enc UTF-8",
+        "text_sha256": "e72dd3e34b3659f4d9f3156867d0180ffd63df6fd1cd85af7e70a407215f20e3",
+        "line_numbering": "1-based physical lines in this exact raw extracted page",
+        "page_character_span": [
+          2119,
+          2121
+        ],
+        "physical_line_start": 42,
+        "physical_line_end": 42
+      },
+      "span": [
+        2119,
+        2121
+      ],
+      "short_quote": "исанной уступке, — по таким\n  спорам позиции строит юрист вокруг норм ГК об уступке и переводе долга и\n  статей 214-ФЗ об эскроу и уступке, в действующих редакциях.\n— Не ка",
+      "quote_span": [
+        2049,
+        2221
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0014",
+      "marker": "ГК",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p11",
+      "document": "products-storage/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf",
+      "file_sha256": "c8fe766b86f25d2390d7f2aace58adda4a2cf2803195007aa2362dc3cbc9f35b",
+      "unit_id": "p11:products-storage/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf:3",
+      "native_unit_index": 3,
+      "location": {
+        "kind": "pdf_pdftotext_page",
+        "page": 3,
+        "extraction": "pdftotext -layout -enc UTF-8",
+        "text_sha256": "b1e74c99e1f00fdf7c8b46ea15e5ce46f1d9498caad1e697402c8144a99ade31",
+        "line_numbering": "1-based physical lines in this exact raw extracted page",
+        "page_character_span": [
+          949,
+          955
+        ],
+        "physical_line_start": 21,
+        "physical_line_end": 21
+      },
+      "span": [
+        949,
+        955
+      ],
+      "short_quote": "Реестр требований кредиторов» и юрист, а не\nэти файлы.\n\nЧисловых норм закона в файлах нет намеренно: нормы названы по имени,\nзначения берутся из действующей редакции на дату пр",
+      "quote_span": [
+        879,
+        1055
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p11-marker-0015",
+      "marker": "закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    }
+  ],
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "normative_verdict": "NOT_VERIFIED",
+  "membership": "SOURCE_ELIGIBLE_DRY_INVENTORY_NOT_ACTUAL_PHP_ZIP",
+  "scope_limit": "Native textual lexical scope only, not legal completeness/layout/formula/sale/currentacceptedrepackaging"
+}
