@@ -1,0 +1,22 @@
+# P3: factual citation handoff at accepted 7cdf snapshot
+
+Frozen source: 7cdf72d77ade7a377e0f01ca68fee3d233152832. The actual 11 buyer names, Git blobs and hashes are bound to the previously accepted real PHP ZIP membership and merged composition; no catalog guess or rebuild was used here.
+
+execution_pattern: iterative
+primary_result: P3_current_factual_citation_handoff_for_lawyer
+feedback_loop_required: true
+checkpoint_policy: verified_only
+
+All 11 buyers were captured as 808 native text units: DOCX XML part/paragraph paths, XLSX stored cells/formulas/caches read as ZIP/XML without saving or recalculation, TXT physical lines, and PDF08 raw pdftotext page text. The inventory retains 15 article-literal occurrences as two lexical groups and 34 unresolved law/technical-standard/numbered-reference markers, including three СНиП/ГОСТ signals. Groups are not normative identities; markers are not defects. Every quote/span and source locator was rechecked against frozen text, and every original buyer byte remained unchanged.
+
+The first bounded extraction overmatched «закончена» through закон\w*. Its checkpoint remains on the server. The own parser was narrowed to explicit grammatical law-word endings and expanded to preserve Положения signals. The final numeric-refined extraction exited 0 in 1.47 seconds; passport explicitly records actual iterative refinement. No product/general tests/Calc/PHP build or model API was run.
+
+PDF08 has one nonempty extracted page (856 characters, 47 physical lines), with no detected images; it contains no detected law/standard marker. Raw PDF and raw extracted text are included. Findings, if present, carry page character spans and physical line ranges, and contextual code binding is limited to the same PDF physical line, never the whole page. Text capture does not prove visual/OCR/legal-mechanism completeness. Full code names and generic «положение» remain explicitly unresolved rather than being converted into norms.
+
+The frozen script SHA256 is 01495853233f0056b9d295a1538eac8997fa48b1ff6c206e93136eddc383fd2e; map SHA256 is 13a9cf9705ea2f662c70d15b240857887c691ff5c83c70c68a266a9e33e614a5. READY.json pins report, map, script, receipt, compact/full units, actual command output and the original manifest. Normative Contract and Task Protocol are pinned exact copies. Installed binary versions/hashes and actual command outputs are preserved.
+
+Evidence is in P3_CURRENT_CITATION_INVENTORY_20261005. citation-source-units.json includes all 22 full units supporting findings. The complete 407682-byte source-text-units.json, all 11 original buyer inputs and initial checkpoint remain server-only under the retained run directory and are explicitly indexed by hash. PERSISTED_SHA256SUMS validates the compact persisted files; original SHA256SUMS additionally authenticates omitted server files. Scripts remain as-run with original absolute input paths; do not silently reinterpret those paths as current checkout inputs.
+
+Root read the full final script, numeric delta, READY and complete independent review receipt and accepted the factual inventory before commit. Independent review recorded 396 checks, zero errors, exact all11 sources/808 native units/15 references/34 unresolved markers/two lexical groups, and 45 broad tokens across 20 source passages. Its exact receipt SHA256 is a63953b03b5ad6ebee6d0decfd2e510218a3e950dab7896e5cd4e5e0a86a9a4d; all14 compact files in the reviewer handoff are retained byteexact. This documentary report claims no legal judgment, source edition/currentness, applicability, normative registry or legal-mechanism completeness. Every registry_norm_id is null; source_currentness=NOT_VERIFIED; human_legal=NOT_PERFORMED. No main/release/deploy claim.
+
+The first independent review rejected ten omitted numeric № locators. That failure and rejected author freeze are retained. The focused correction adds all ten raw numbered signals: five №468, №3, two full №344/пр, №4 and №5. Quotes preserve their actual context; numbering alone establishes neither normative identity nor procedural meaning. Previous15 article records/two groups/all11 document metadata remain JSON-equal; the previous24 markers keep exact core locator/literal/span/quote/class/hash/verdict. Marker ID ordering and explanatory reason wording changed and are explicitly disclosed. This scope change concerns the inventory, without changing any buyer file or evaluating law.

@@ -1,0 +1,81 @@
+{
+  "status": "ACCEPT_FACTUAL_INVENTORY",
+  "run": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p3-citation-inventory-independent-20261005",
+  "compact_files": [
+    {
+      "name": "passport.json",
+      "bytes": 1628,
+      "sha256": "c3118d6674296c8dfa056f7bf995eb074922d7e4d0b1aebd7a4f6995137778cd"
+    },
+    {
+      "name": "config.json",
+      "bytes": 538,
+      "sha256": "8719118eab08d839782d84311b381c5b63c4a310f095d4d96828ec0b8fe113e3"
+    },
+    {
+      "name": "independent_review.py",
+      "bytes": 11611,
+      "sha256": "ec143cd4d286142907072429865d04c5fe51eee9d635c8cbb82e742cb46be5ff"
+    },
+    {
+      "name": "author-artifact-pins-before-review.json",
+      "bytes": 1272,
+      "sha256": "46c2c7cd7967df2d3b24cf0492e38e8cae6dcdab816585febd34747bf77a5b16"
+    },
+    {
+      "name": "independent-input-hashes.json",
+      "bytes": 3175,
+      "sha256": "4b0236ef0eca2793894f43456fc85071f2f346ec0afefad4c0ee8935b24f7e46"
+    },
+    {
+      "name": "independent-pdf-extraction.json",
+      "bytes": 574,
+      "sha256": "e8614e0e5a169b775a8c85d2212a5f178b536d25149147745aec922dcac15754"
+    },
+    {
+      "name": "independent-extra-part-hits.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "independent-check-details.json",
+      "bytes": 52217,
+      "sha256": "bff1a7b46cb458667a1eb5388f84498d739f8c3275d5e0d65388f6d1eb2c3a77"
+    },
+    {
+      "name": "independent-broad-coverage.json",
+      "bytes": 23246,
+      "sha256": "58e5022469a1a984f1ecd2d53de3b1b0edc46982b238cdb11f666820bfe6d345"
+    },
+    {
+      "name": "independent-review-receipt.json",
+      "bytes": 1548,
+      "sha256": "a63953b03b5ad6ebee6d0decfd2e510218a3e950dab7896e5cd4e5e0a86a9a4d"
+    },
+    {
+      "name": "independent-review-report.md",
+      "bytes": 1578,
+      "sha256": "326ef0dc003834871a04886cd72841f2edc403483c52773cbf39839ebe582105"
+    },
+    {
+      "name": "independent-numeric-delta-check.json",
+      "bytes": 12754,
+      "sha256": "b4d2799f4eb8b923739f7804f30fce2d6e8d33ea6bf139536cfbbed3459b6e0c"
+    },
+    {
+      "name": "independent-lexical-prefix-exclusions.json",
+      "bytes": 832,
+      "sha256": "1cead8340dc90bde3579536582445735ed95fe734c1e1ba0c51476598fbd31ea"
+    },
+    {
+      "name": "execution-output-v2.txt",
+      "bytes": 1391,
+      "sha256": "9ccd3123e391afd1b08ceda53f9ca6eba3f20e2ac75e59a09c902d8d4ffbd92d"
+    }
+  ],
+  "initial_failure_directory": "initial-numbered-coverage-failure",
+  "source_text_server_only": "independent-visible-fragments.json",
+  "model_calls": 0,
+  "usd": 0,
+  "scope": "Factual inventory only; normative applicability/currentness NOT_VERIFIED, humanlegal NOT_PERFORMED"
+}

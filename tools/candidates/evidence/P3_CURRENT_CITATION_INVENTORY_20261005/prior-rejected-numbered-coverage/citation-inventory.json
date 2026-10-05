@@ -1,0 +1,1364 @@
+{
+  "source_sha": "7cdf72d77ade7a377e0f01ca68fee3d233152832",
+  "execution_pattern": "iterative",
+  "primary_result": "P3_current_factual_citation_handoff_for_lawyer",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "documents": [
+    {
+      "document": "products-storage/05-ks-bez-vozvrata/00-START-HERE.txt",
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/00-START-HERE.txt",
+      "source_sha": "7cdf72d77ade7a377e0f01ca68fee3d233152832",
+      "git_blob": "2f9e17acdb776895ebd301150fa83b372f7c5a91",
+      "sha256": "a421d541c4fccba15c51e6822526eead7b10c97395f34dcd87740bfc956f4aac",
+      "bytes": 4353,
+      "limitations": [],
+      "text_units": 56
+    },
+    {
+      "document": "products-storage/05-ks-bez-vozvrata/01-proverochnyy-list-komplekta-ks.docx",
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/01-proverochnyy-list-komplekta-ks.docx",
+      "source_sha": "7cdf72d77ade7a377e0f01ca68fee3d233152832",
+      "git_blob": "564975e3f4fe363b08c76e72386d481278475f0b",
+      "sha256": "f331aa99522386fde96914e6e69ea582afe2e0c2bfb3c3c8a343a1e19c375129",
+      "bytes": 38483,
+      "limitations": [],
+      "read_xml_parts": [
+        "word/document.xml"
+      ],
+      "text_units": 116
+    },
+    {
+      "document": "products-storage/05-ks-bez-vozvrata/02-reestr-prilozheniy.xlsx",
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/02-reestr-prilozheniy.xlsx",
+      "source_sha": "7cdf72d77ade7a377e0f01ca68fee3d233152832",
+      "git_blob": "46e777902a289500730e2883ce7b4efe1b2184d3",
+      "sha256": "7d3a10560614401c36ef854cd3aead16961864479a9bfcb7d38dc78ab743c7f3",
+      "bytes": 5472,
+      "limitations": [],
+      "read_sheets": [
+        {
+          "sheet": "Реестр приложений",
+          "xml_part": "xl/worksheets/sheet1.xml",
+          "state": "visible"
+        }
+      ],
+      "read_mode": "ZIP/XML readonly; stored values/formulas/caches only",
+      "text_units": 26
+    },
+    {
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/03-akt-skrytyh-rabot.docx",
+      "source_sha": "7cdf72d77ade7a377e0f01ca68fee3d233152832",
+      "git_blob": "fd444a45c04f60c9206d46d4f0d7ec74f4adf622",
+      "sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "bytes": 55388,
+      "limitations": [],
+      "read_xml_parts": [
+        "word/document.xml"
+      ],
+      "text_units": 437
+    },
+    {
+      "document": "products-storage/05-ks-bez-vozvrata/04-protokol-vnutrenney-proverki.docx",
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/04-protokol-vnutrenney-proverki.docx",
+      "source_sha": "7cdf72d77ade7a377e0f01ca68fee3d233152832",
+      "git_blob": "4af816186926984f5732d872cf29076a507c7771",
+      "sha256": "d8a78245c33de6c7bc7d480325484d656ccabdd95b7fa53837d9a46182fac176",
+      "bytes": 37655,
+      "limitations": [],
+      "read_xml_parts": [
+        "word/document.xml"
+      ],
+      "text_units": 39
+    },
+    {
+      "document": "products-storage/05-ks-bez-vozvrata/05-pismo-o-nedostatkah.docx",
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/05-pismo-o-nedostatkah.docx",
+      "source_sha": "7cdf72d77ade7a377e0f01ca68fee3d233152832",
+      "git_blob": "a00e191ca70da9f9d409bc7720111521264f942c",
+      "sha256": "aca9127579be18ae480e06b249798d2c7bd33e9500cc7354be2b1430c8729d7a",
+      "bytes": 37406,
+      "limitations": [],
+      "read_xml_parts": [
+        "word/document.xml"
+      ],
+      "text_units": 25
+    },
+    {
+      "document": "products-storage/05-ks-bez-vozvrata/06-zhurnal-peredachi.xlsx",
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/06-zhurnal-peredachi.xlsx",
+      "source_sha": "7cdf72d77ade7a377e0f01ca68fee3d233152832",
+      "git_blob": "358e48473c5b80e93a3d1a34b4eeb98715bf469f",
+      "sha256": "98f20a51a39c41d5cf0e0fd6766cbeb1e8906bbad087956b736b1482f18ab73d",
+      "bytes": 5406,
+      "limitations": [],
+      "read_sheets": [
+        {
+          "sheet": "Журнал передачи комплекта КС",
+          "xml_part": "xl/worksheets/sheet1.xml",
+          "state": "visible"
+        }
+      ],
+      "read_mode": "ZIP/XML readonly; stored values/formulas/caches only",
+      "text_units": 15
+    },
+    {
+      "document": "products-storage/05-ks-bez-vozvrata/07-sroki-hraneniya.docx",
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/07-sroki-hraneniya.docx",
+      "source_sha": "7cdf72d77ade7a377e0f01ca68fee3d233152832",
+      "git_blob": "fc2dc382f208a0730c13ba782c61d3b6025c76d8",
+      "sha256": "28373a1b8aecce7eb2325b9dbdc90965508d82868cabcd55587e42a93db30f20",
+      "bytes": 37483,
+      "limitations": [],
+      "read_xml_parts": [
+        "word/document.xml"
+      ],
+      "text_units": 40
+    },
+    {
+      "document": "products-storage/05-ks-bez-vozvrata/08-algoritm-proverki.pdf",
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/08-algoritm-proverki.pdf",
+      "source_sha": "7cdf72d77ade7a377e0f01ca68fee3d233152832",
+      "git_blob": "da248453bbca665610acfb5dae949e69ce1173e0",
+      "sha256": "f93fa7661aca9dd0e40e9f3f6e7764fc147e5bca1b02d2c60cc0c8cf01053dd7",
+      "bytes": 46027,
+      "limitations": [
+        {
+          "kind": "PDF_LAYOUT_AND_IMAGES_NOT_VISUALLY_VALIDATED",
+          "image_rows": 0,
+          "empty_text_pages": [],
+          "scope": "exact extracted text only; no OCR/layout/legal mechanism completeness claim"
+        }
+      ],
+      "pdf_pages": 1,
+      "pdf_image_rows": [],
+      "text_units": 1
+    },
+    {
+      "document": "products-storage/05-ks-bez-vozvrata/09-tipovye-oshibki.docx",
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/09-tipovye-oshibki.docx",
+      "source_sha": "7cdf72d77ade7a377e0f01ca68fee3d233152832",
+      "git_blob": "7c939443cefa95f8f5184924ac26e93d370b382a",
+      "sha256": "9f3ee6f09857e0a50f2efb6f99f07484c9b1cbb873427f91605f0f6791f49eda",
+      "bytes": 37796,
+      "limitations": [],
+      "read_xml_parts": [
+        "word/document.xml"
+      ],
+      "text_units": 15
+    },
+    {
+      "document": "products-storage/05-ks-bez-vozvrata/10-sravnitelnaya-tablica.docx",
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/10-sravnitelnaya-tablica.docx",
+      "source_sha": "7cdf72d77ade7a377e0f01ca68fee3d233152832",
+      "git_blob": "5f89c18f7c19fdc0cd9e8242ee80314890ba24dd",
+      "sha256": "5f2b9f1dcee86cfca5d061388f27cb1ad1a491dde76eaf105c50376121b320ef",
+      "bytes": 38260,
+      "limitations": [],
+      "read_xml_parts": [
+        "word/document.xml"
+      ],
+      "text_units": 38
+    }
+  ],
+  "parser": {
+    "article_regex": "(?<![А-Яа-яA-Za-z])(?:(?:пп?|пункт(?:а|ы|ов|у|ом)?|ч|част(?:ь|и|ью)|абз|абзац(?:а|ы|ев)?)\\.?\\s*\\d+(?:\\.\\d+)?\\s*){0,4}(?:ст\\.|стать(?:я|и|ю|е|ей|ями))\\s*\\d+(?:\\.\\d+)?(?:\\s*(?:,|и|–|-)\\s*\\d+(?:\\.\\d+)?)*(?:\\s*(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)(?:\\s*РФ)?)?",
+    "standard_regex": "(?<!\\w)(?:ГОСТ(?:\\s+Р)?|СП|СНиП|ФСБУ|СанПиН|СН|ВСН|РД)\\b(?:\\s+\\d[\\d./–-]*)?|\\b\\d+\\s*[-–]\\s*ФЗ\\b",
+    "law_marker_regex": "\\b(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)\\b|\\bст\\.\\s*\\d|\\bстать(?:я|и|ю|е|ей|ями)\\b|Пленум|Верховн\\w*\\s+[Сс]уд\\w*|[Фф]едеральн\\w*\\s+закон\\w*|[Пп]риказ\\w*|[Пп]остановлен\\w*|\\bзакон(?:а|у|ом|е|ы|ов|ам|ами|ах)?\\b|[Пп]оложени\\w*|\\bкодекс\\w*|Минстро\\w*|Ростехнадзор\\w*",
+    "code_binding": "Explicit literal or unique explicit code in same source unit; PDF contextual code allowed only same physical line, never whole page",
+    "article_list_rule": "Numbers/variants/ranges as written; no expansion into norms",
+    "groups_are_not_norms": true
+  },
+  "literal_occurrences": [
+    {
+      "occurrence_id": "ref-0001",
+      "unit_id": "unit-00222",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 45,
+        "nonempty_paragraph_ordinal": 24
+      },
+      "literal": "части 2 статьи 53",
+      "span": [
+        238,
+        255
+      ],
+      "short_quote": "оверки соответствия выполняемых работ проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        168,
+        304
+      ],
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0002",
+      "unit_id": "unit-00281",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[9]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 161,
+        "nonempty_paragraph_ordinal": 83
+      },
+      "literal": "части 2 статьи 53",
+      "span": [
+        238,
+        255
+      ],
+      "short_quote": "оверки соответствия выполняемых работ проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        168,
+        304
+      ],
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0003",
+      "unit_id": "unit-00284",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[35]",
+        "global_paragraph_ordinal_including_empty": 171,
+        "nonempty_paragraph_ordinal": 86
+      },
+      "literal": "ч. 7 ст. 53 ГрК РФ",
+      "span": [
+        68,
+        86
+      ],
+      "short_quote": "Замечания оформляются письменно; об их устранении составляется акт (ч. 7 ст. 53 ГрК РФ). До завершения освидетельствования последующие работы не выполняются (п. 10 Положения о проведении",
+      "quote_span": [
+        0,
+        186
+      ],
+      "code": "ГрК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0004",
+      "unit_id": "unit-00307",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[12]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 216,
+        "nonempty_paragraph_ordinal": 109
+      },
+      "literal": "части 2 статьи 53",
+      "span": [
+        238,
+        255
+      ],
+      "short_quote": "оверки соответствия выполняемых работ проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        168,
+        304
+      ],
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0005",
+      "unit_id": "unit-00367",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[18]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 336,
+        "nonempty_paragraph_ordinal": 169
+      },
+      "literal": "части 2 статьи 53",
+      "span": [
+        238,
+        255
+      ],
+      "short_quote": "оверки соответствия выполняемых работ проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        168,
+        304
+      ],
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0006",
+      "unit_id": "unit-00370",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[70]",
+        "global_paragraph_ordinal_including_empty": 346,
+        "nonempty_paragraph_ordinal": 172
+      },
+      "literal": "ч. 7 ст. 53 ГрК РФ",
+      "span": [
+        68,
+        86
+      ],
+      "short_quote": "Замечания оформляются письменно; об их устранении составляется акт (ч. 7 ст. 53 ГрК РФ). До завершения освидетельствования последующие работы не выполняются (п. 10 Положения о проведении",
+      "quote_span": [
+        0,
+        186
+      ],
+      "code": "ГрК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0007",
+      "unit_id": "unit-00393",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[21]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 391,
+        "nonempty_paragraph_ordinal": 195
+      },
+      "literal": "части 2 статьи 53",
+      "span": [
+        238,
+        255
+      ],
+      "short_quote": "оверки соответствия выполняемых работ проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        168,
+        304
+      ],
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0008",
+      "unit_id": "unit-00454",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[27]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 515,
+        "nonempty_paragraph_ordinal": 256
+      },
+      "literal": "части 2 статьи 53",
+      "span": [
+        238,
+        255
+      ],
+      "short_quote": "оверки соответствия выполняемых работ проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        168,
+        304
+      ],
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0009",
+      "unit_id": "unit-00457",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[105]",
+        "global_paragraph_ordinal_including_empty": 525,
+        "nonempty_paragraph_ordinal": 259
+      },
+      "literal": "ч. 7 ст. 53 ГрК РФ",
+      "span": [
+        68,
+        86
+      ],
+      "short_quote": "Замечания оформляются письменно; об их устранении составляется акт (ч. 7 ст. 53 ГрК РФ). До завершения освидетельствования последующие работы не выполняются (п. 10 Положения о проведении",
+      "quote_span": [
+        0,
+        186
+      ],
+      "code": "ГрК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0010",
+      "unit_id": "unit-00480",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[30]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 570,
+        "nonempty_paragraph_ordinal": 282
+      },
+      "literal": "части 2 статьи 53",
+      "span": [
+        238,
+        255
+      ],
+      "short_quote": "оверки соответствия выполняемых работ проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        168,
+        304
+      ],
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0011",
+      "unit_id": "unit-00542",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[36]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 698,
+        "nonempty_paragraph_ordinal": 344
+      },
+      "literal": "части 2 статьи 53",
+      "span": [
+        238,
+        255
+      ],
+      "short_quote": "оверки соответствия выполняемых работ проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        168,
+        304
+      ],
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0012",
+      "unit_id": "unit-00545",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[140]",
+        "global_paragraph_ordinal_including_empty": 708,
+        "nonempty_paragraph_ordinal": 347
+      },
+      "literal": "ч. 7 ст. 53 ГрК РФ",
+      "span": [
+        68,
+        86
+      ],
+      "short_quote": "Замечания оформляются письменно; об их устранении составляется акт (ч. 7 ст. 53 ГрК РФ). До завершения освидетельствования последующие работы не выполняются (п. 10 Положения о проведении",
+      "quote_span": [
+        0,
+        186
+      ],
+      "code": "ГрК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0013",
+      "unit_id": "unit-00568",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[39]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 753,
+        "nonempty_paragraph_ordinal": 370
+      },
+      "literal": "части 2 статьи 53",
+      "span": [
+        238,
+        255
+      ],
+      "short_quote": "оверки соответствия выполняемых работ проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        168,
+        304
+      ],
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0014",
+      "unit_id": "unit-00622",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[45]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 869,
+        "nonempty_paragraph_ordinal": 424
+      },
+      "literal": "части 2 статьи 53",
+      "span": [
+        238,
+        255
+      ],
+      "short_quote": "оверки соответствия выполняемых работ проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        168,
+        304
+      ],
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "occurrence_id": "ref-0015",
+      "unit_id": "unit-00625",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[175]",
+        "global_paragraph_ordinal_including_empty": 879,
+        "nonempty_paragraph_ordinal": 427
+      },
+      "literal": "ч. 7 ст. 53 ГрК РФ",
+      "span": [
+        68,
+        86
+      ],
+      "short_quote": "Замечания оформляются письменно; об их устранении составляется акт (ч. 7 ст. 53 ГрК РФ). До завершения освидетельствования последующие работы не выполняются (п. 10 Положения о проведении",
+      "quote_span": [
+        0,
+        186
+      ],
+      "code": "ГрК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "53"
+      ],
+      "ranges_or_variants": [],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    }
+  ],
+  "deduplicated_groups": [
+    {
+      "group_id": "group-001",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "части 2 статьи 53",
+      "code": null,
+      "articles_as_written": [
+        "53"
+      ],
+      "occurrence_ids": [
+        "ref-0001",
+        "ref-0002",
+        "ref-0004",
+        "ref-0005",
+        "ref-0007",
+        "ref-0008",
+        "ref-0010",
+        "ref-0011",
+        "ref-0013",
+        "ref-0014"
+      ]
+    },
+    {
+      "group_id": "group-002",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ч. 7 ст. 53 ГрК РФ",
+      "code": "ГрК",
+      "articles_as_written": [
+        "53"
+      ],
+      "occurrence_ids": [
+        "ref-0003",
+        "ref-0006",
+        "ref-0009",
+        "ref-0012",
+        "ref-0015"
+      ]
+    }
+  ],
+  "unresolved_legal_and_standard_markers": [
+    {
+      "marker_id": "marker-0001",
+      "unit_id": "unit-00059",
+      "document": "products-storage/05-ks-bez-vozvrata/01-proverochnyy-list-komplekta-ks.docx",
+      "file_sha256": "f331aa99522386fde96914e6e69ea582afe2e0c2bfb3c3c8a343a1e19c375129",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[4]",
+        "global_paragraph_ordinal_including_empty": 4,
+        "nonempty_paragraph_ordinal": 3
+      },
+      "marker": "СНиП",
+      "span": [
+        103,
+        107
+      ],
+      "short_quote": "е пункты бесплатной версии плюс дополнительные проверки: соответствие СНиП, ГОСТ, проверку исполнительных схем, анализ первичных документов.",
+      "quote_span": [
+        33,
+        173
+      ],
+      "classification": "UNRESOLVED_STANDARD_OR_OTHER_NORMATIVE_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0002",
+      "unit_id": "unit-00059",
+      "document": "products-storage/05-ks-bez-vozvrata/01-proverochnyy-list-komplekta-ks.docx",
+      "file_sha256": "f331aa99522386fde96914e6e69ea582afe2e0c2bfb3c3c8a343a1e19c375129",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[4]",
+        "global_paragraph_ordinal_including_empty": 4,
+        "nonempty_paragraph_ordinal": 3
+      },
+      "marker": "ГОСТ",
+      "span": [
+        109,
+        113
+      ],
+      "short_quote": "ты бесплатной версии плюс дополнительные проверки: соответствие СНиП, ГОСТ, проверку исполнительных схем, анализ первичных документов.",
+      "quote_span": [
+        39,
+        173
+      ],
+      "classification": "UNRESOLVED_STANDARD_OR_OTHER_NORMATIVE_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0003",
+      "unit_id": "unit-00122",
+      "document": "products-storage/05-ks-bez-vozvrata/01-proverochnyy-list-komplekta-ks.docx",
+      "file_sha256": "f331aa99522386fde96914e6e69ea582afe2e0c2bfb3c3c8a343a1e19c375129",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[2]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 82,
+        "nonempty_paragraph_ordinal": 66
+      },
+      "marker": "ГОСТ 21.101-2020",
+      "span": [
+        20,
+        36
+      ],
+      "short_quote": "Схемы составлены по ГОСТ 21.101-2020",
+      "quote_span": [
+        0,
+        36
+      ],
+      "classification": "UNRESOLVED_STANDARD_OR_OTHER_NORMATIVE_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0004",
+      "unit_id": "unit-00222",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 45,
+        "nonempty_paragraph_ordinal": 24
+      },
+      "marker": "кодекса",
+      "span": [
+        275,
+        282
+      ],
+      "short_quote": " проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        205,
+        304
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0005",
+      "unit_id": "unit-00247",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[6]/tr[2]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 98,
+        "nonempty_paragraph_ordinal": 49
+      },
+      "marker": "Положение",
+      "span": [
+        0,
+        9
+      ],
+      "short_quote": "Положение каркаса: оси и отметки",
+      "quote_span": [
+        0,
+        32
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0006",
+      "unit_id": "unit-00249",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[6]/tr[4]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 106,
+        "nonempty_paragraph_ordinal": 51
+      },
+      "marker": "положение",
+      "span": [
+        27,
+        36
+      ],
+      "short_quote": "Закладные детали и проёмы: положение и количество",
+      "quote_span": [
+        0,
+        49
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0007",
+      "unit_id": "unit-00281",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[9]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 161,
+        "nonempty_paragraph_ordinal": 83
+      },
+      "marker": "кодекса",
+      "span": [
+        275,
+        282
+      ],
+      "short_quote": " проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        205,
+        304
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0008",
+      "unit_id": "unit-00284",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[35]",
+        "global_paragraph_ordinal_including_empty": 171,
+        "nonempty_paragraph_ordinal": 86
+      },
+      "marker": "Положения",
+      "span": [
+        164,
+        173
+      ],
+      "short_quote": "вершения освидетельствования последующие работы не выполняются (п. 10 Положения о проведении строительного контроля, ПП РФ от 21.06.2010 № 468).",
+      "quote_span": [
+        94,
+        238
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0009",
+      "unit_id": "unit-00307",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[12]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 216,
+        "nonempty_paragraph_ordinal": 109
+      },
+      "marker": "кодекса",
+      "span": [
+        275,
+        282
+      ],
+      "short_quote": " проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        205,
+        304
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0010",
+      "unit_id": "unit-00367",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[18]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 336,
+        "nonempty_paragraph_ordinal": 169
+      },
+      "marker": "кодекса",
+      "span": [
+        275,
+        282
+      ],
+      "short_quote": " проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        205,
+        304
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0011",
+      "unit_id": "unit-00370",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[70]",
+        "global_paragraph_ordinal_including_empty": 346,
+        "nonempty_paragraph_ordinal": 172
+      },
+      "marker": "Положения",
+      "span": [
+        164,
+        173
+      ],
+      "short_quote": "вершения освидетельствования последующие работы не выполняются (п. 10 Положения о проведении строительного контроля, ПП РФ от 21.06.2010 № 468).",
+      "quote_span": [
+        94,
+        238
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0012",
+      "unit_id": "unit-00393",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[21]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 391,
+        "nonempty_paragraph_ordinal": 195
+      },
+      "marker": "кодекса",
+      "span": [
+        275,
+        282
+      ],
+      "short_quote": " проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        205,
+        304
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0013",
+      "unit_id": "unit-00454",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[27]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 515,
+        "nonempty_paragraph_ordinal": 256
+      },
+      "marker": "кодекса",
+      "span": [
+        275,
+        282
+      ],
+      "short_quote": " проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        205,
+        304
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0014",
+      "unit_id": "unit-00457",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[105]",
+        "global_paragraph_ordinal_including_empty": 525,
+        "nonempty_paragraph_ordinal": 259
+      },
+      "marker": "Положения",
+      "span": [
+        164,
+        173
+      ],
+      "short_quote": "вершения освидетельствования последующие работы не выполняются (п. 10 Положения о проведении строительного контроля, ПП РФ от 21.06.2010 № 468).",
+      "quote_span": [
+        94,
+        238
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0015",
+      "unit_id": "unit-00480",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[30]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 570,
+        "nonempty_paragraph_ordinal": 282
+      },
+      "marker": "кодекса",
+      "span": [
+        275,
+        282
+      ],
+      "short_quote": " проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        205,
+        304
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0016",
+      "unit_id": "unit-00542",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[36]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 698,
+        "nonempty_paragraph_ordinal": 344
+      },
+      "marker": "кодекса",
+      "span": [
+        275,
+        282
+      ],
+      "short_quote": " проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        205,
+        304
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0017",
+      "unit_id": "unit-00545",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[140]",
+        "global_paragraph_ordinal_including_empty": 708,
+        "nonempty_paragraph_ordinal": 347
+      },
+      "marker": "Положения",
+      "span": [
+        164,
+        173
+      ],
+      "short_quote": "вершения освидетельствования последующие работы не выполняются (п. 10 Положения о проведении строительного контроля, ПП РФ от 21.06.2010 № 468).",
+      "quote_span": [
+        94,
+        238
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0018",
+      "unit_id": "unit-00568",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[39]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 753,
+        "nonempty_paragraph_ordinal": 370
+      },
+      "marker": "кодекса",
+      "span": [
+        275,
+        282
+      ],
+      "short_quote": " проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        205,
+        304
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0019",
+      "unit_id": "unit-00622",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[45]/tr[5]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 869,
+        "nonempty_paragraph_ordinal": 424
+      },
+      "marker": "кодекса",
+      "span": [
+        275,
+        282
+      ],
+      "short_quote": " проектной документации согласно части 2 статьи 53 Градостроительного кодекса Российской Федерации)",
+      "quote_span": [
+        205,
+        304
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0020",
+      "unit_id": "unit-00625",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[175]",
+        "global_paragraph_ordinal_including_empty": 879,
+        "nonempty_paragraph_ordinal": 427
+      },
+      "marker": "Положения",
+      "span": [
+        164,
+        173
+      ],
+      "short_quote": "вершения освидетельствования последующие работы не выполняются (п. 10 Положения о проведении строительного контроля, ПП РФ от 21.06.2010 № 468).",
+      "quote_span": [
+        94,
+        238
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0021",
+      "unit_id": "unit-00627",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[178]",
+        "global_paragraph_ordinal_including_empty": 882,
+        "nonempty_paragraph_ordinal": 429
+      },
+      "marker": "приказом",
+      "span": [
+        383,
+        391
+      ],
+      "short_quote": "в приложении № 3 к составу исполнительной документации, утверждённому приказом Минстроя России от 16.05.2023 № 344/пр; его сверяют в действующей редакции. Формы этого файла — раб",
+      "quote_span": [
+        313,
+        491
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0022",
+      "unit_id": "unit-00627",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[178]",
+        "global_paragraph_ordinal_including_empty": 882,
+        "nonempty_paragraph_ordinal": 429
+      },
+      "marker": "Минстроя",
+      "span": [
+        392,
+        400
+      ],
+      "short_quote": "нии № 3 к составу исполнительной документации, утверждённому приказом Минстроя России от 16.05.2023 № 344/пр; его сверяют в действующей редакции. Формы этого файла — рабочие шабл",
+      "quote_span": [
+        322,
+        500
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0023",
+      "unit_id": "unit-00631",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[182]",
+        "global_paragraph_ordinal_including_empty": 886,
+        "nonempty_paragraph_ordinal": 433
+      },
+      "marker": "приказ",
+      "span": [
+        94,
+        100
+      ],
+      "short_quote": "ет акт, установлено п. 3 порядка ведения исполнительной документации (приказ Минстроя России от 16.05.2023 № 344/пр). Представитель лица, готовившего проектную документацию, и ",
+      "quote_span": [
+        24,
+        200
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    },
+    {
+      "marker_id": "marker-0024",
+      "unit_id": "unit-00631",
+      "document": "products-storage/05-ks-bez-vozvrata/03-akt-skrytyh-rabot.docx",
+      "file_sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[182]",
+        "global_paragraph_ordinal_including_empty": 886,
+        "nonempty_paragraph_ordinal": 433
+      },
+      "marker": "Минстроя",
+      "span": [
+        101,
+        109
+      ],
+      "short_quote": " установлено п. 3 порядка ведения исполнительной документации (приказ Минстроя России от 16.05.2023 № 344/пр). Представитель лица, готовившего проектную документацию, и представи",
+      "quote_span": [
+        31,
+        209
+      ],
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Literal technical/law signal only; edition, applicability and normative identity unresolved; marker is not a defect",
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED"
+    }
+  ],
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "scope_limit": "Factual law and technical-standard lexical signals in captured text of actual11buyers; not legal mechanism coverage, edition/applicability judgment, normative registry or defect list",
+  "pdf_limitations": [
+    {
+      "page": 1,
+      "text_sha256": "7c5c3b4d520b7e97621352ccb84eea7b08518cdee35a6f20787184928ba4155e",
+      "characters": 856,
+      "physical_lines": 47,
+      "text_empty": false
+    }
+  ],
+  "old_S1_maps_used": false
+}

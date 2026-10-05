@@ -1,0 +1,40 @@
+[
+  {
+    "command": [
+      "pdfinfo",
+      "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/08-algoritm-proverki.pdf"
+    ],
+    "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005",
+    "exit_code": 0,
+    "elapsed_seconds": 0.006057291000615805,
+    "stdout_sha256": "2c6b54d884155b6b6b6f7a9c13e34c3bdc128fecee11ce4c049725a12f1f02a6",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "pdfimages",
+      "-list",
+      "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/08-algoritm-proverki.pdf"
+    ],
+    "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005",
+    "exit_code": 0,
+    "elapsed_seconds": 0.0057424589758738875,
+    "stdout_sha256": "0fabc764e123f7f3acd3eaa47311e1c50317f8bbb5b50878e699f21534352e8e",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "pdftotext",
+      "-layout",
+      "-enc",
+      "UTF-8",
+      "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/inputs/08-algoritm-proverki.pdf",
+      "-"
+    ],
+    "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005",
+    "exit_code": 0,
+    "elapsed_seconds": 0.006072301999665797,
+    "stdout_sha256": "0131aceefc096e58c9149c9ab6a4ce425743d741032f695270c3da2e34861428",
+    "stderr": ""
+  }
+]
