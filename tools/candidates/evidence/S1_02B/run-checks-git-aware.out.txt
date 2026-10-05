@@ -1,0 +1,416 @@
+── test_web_exposure — заказы и мастера товаров закрыты от веба
+что сервер отдаёт наружу
+  ok   каталоги с заказами и товарами закрыты
+  ok   листинг каталогов подавлен
+  ok   имя файла заказа не считается защитой
+  ok   проверка здоровья доезжает до сервера
+  ok   проверка здоровья не отдаётся вебом
+
+все проверки пройдены
+ok          test_web_exposure          код 0, 0.0 с
+── link_audit — битые ссылки на витрине
+ПРОВЕРКИ ПРОЙДЕНЫ: страниц 88, битых локальных
+целей 0, пропущено собираемых при деплое 3 (href, src, action, canonical, карта сайта); HTML парсится,
+теги парные, JSON-LD валиден, позиции ItemList непрерывны и
+покрывают все разборы.
+ok          link_audit                 код 0, 0.4 с
+── test_link_audit — сторож самой проверки ссылок
+  ✓ test_directory_link_resolves_to_index
+  ✓ test_every_directory_and_attribute_is_checked
+  ✓ test_generated_files_are_skipped_by_name_and_counted
+  ✓ test_resolve_target_ignores_external_and_anchors
+  ✓ test_resolve_target_strips_query_and_hash
+  ✓ test_site_is_clean_today
+  ✓ test_valid_links_do_not_raise_findings
+
+Проверок 7, упало 0.
+ok          test_link_audit            код 0, 1.3 с
+── test_run_checks — сторож самого раннера: блокирующая красит прогон, падение одной не отменяет остальные
+Сторож раннера проверок
+  ✓ упала блокирующая — прогон FAIL
+  ✓ в итоге назван виновник
+  ✓ упала не блокирующая — прогон PASS
+  ✓ но провал напечатан
+  ✓ после падения остальные исполняются
+  ✓ сводка считает все три
+  ✓ нет входных данных — проверка не запускается
+  ✓ и путь назван
+  ✓ пропуск не считается прошедшей проверкой
+  ✓ дубликат id отвергается
+  ✓ внутренняя не может блокировать
+  ✓ все инструменты реестра на месте
+  ✓ имена в реестре уникальны
+  ✓ у каждой не блокирующей записано решение
+  ✓ публичный контур не пуст
+
+провалов: 0
+ok          test_run_checks            код 0, 0.4 с
+── asset_versions — версии стилей доезжают до браузера
+версии на месте, менять нечего
+ok          asset_versions             код 0, 0.1 с
+── test_published_data — граница публикации каталога data
+граница публикации data/
+  ok   меню сайта опубликовано
+  ok   файл есть в рабочем дереве
+  ok   внутренние каталоги не опубликованы
+  ok   в меню нет непубличного
+  ok   заголовки Дзена опубликованы
+  ok   в заголовках Дзена нет непубличного
+  ok   все ссылки — адреса своего сайта
+  ok   правило игнора пускает один файл
+
+все проверки пройдены
+ok          test_published_data        код 0, 0.0 с
+── check_nav — шапка одна и та же на всех страницах
+Шапка: 85 страниц, вариант один, расхождений нет
+ok          check_nav                  код 0, 0.1 с
+── check_meta — заголовки и описания страниц
+Страниц проверено: 85
+
+## Замечания — 19
+   • /404.html: нет описания
+   • /articles/akt-peredachi-stroitelnoy-ploshchadki-obrazec.html: описание 207 знаков — хвост может не попасть в выдачу, важное в начало
+   • /articles/akt-skrytyh-rabot-montazh.html: описание 228 знаков — хвост может не попасть в выдачу, важное в начало
+   • /articles/akty-skrytyh-rabot-kakie.html: описание 216 знаков — хвост может не попасть в выдачу, важное в начало
+   • /articles/avans-po-dogovoru-podryada.html: описание 208 знаков — хвост может не попасть в выдачу, важное в начало
+   • /articles/bankovskaya-garantiya-na-vozvrat-avansa.html: описание 205 знаков — хвост может не попасть в выдачу, важное в начало
+   • /articles/dopolnitelnye-raboty-v-stroitelstve.html: описание 211 знаков — хвост может не попасть в выдачу, важное в начало
+   • /articles/dostraivali-za-metry-otkaz-v-zos.html: описание 273 знаков — хвост может не попасть в выдачу, важное в начало
+   • /articles/pretenziya-za-chuzhuyu-kommunalku.html: описание 202 знаков — хвост может не попасть в выдачу, важное в начало
+   • /articles/raschet-metrami.html: описание 224 знаков — хвост может не попасть в выдачу, важное в начало
+   • /articles/srok-vklyucheniya-v-reestr-trebovaniy-kreditorov.html: описание 214 знаков — хвост может не попасть в выдачу, важное в начало
+   • /articles/vklyuchenie-v-reestr-trebovaniy-kreditorov.html: описание 215 знаков — хвост может не попасть в выдачу, важное в начало
+   • /articles/zos-v-stroitelstve.html: описание 216 знаков — хвост может не попасть в выдачу, важное в начало
+   • /materialy/ispolnitelnaya-dokumentaciya.html: описание 201 знаков — хвост может не попасть в выдачу, важное в начало
+   • /products/p1-oplata-po-ks2.html: описание 216 знаков — хвост может не попасть в выдачу, важное в начало
+   • /products/p12-spor-s-summoy.html: описание 210 знаков — хвост может не попасть в выдачу, важное в начало
+   • /products/p13-chto-v-smete-ne-oplatyat.html: описание 235 знаков — хвост может не попасть в выдачу, важное в начало
+   • /products/p7-dogovor-podryada.html: описание 209 знаков — хвост может не попасть в выдачу, важное в начало
+   • /products/p8-avans-po-dogovoru-subpodryada.html: описание 215 знаков — хвост может не попасть в выдачу, важное в начало
+
+Дефектов нет: title и h1 на месте, дублирующихся заголовков и описаний нет.
+ok          check_meta                 код 0, 0.0 с
+── check_seo — поисковый слой витрины
+РЕШЕНИЕ      разборов без строки в семантике: 41 (например /articles/akt-osvidetelstvovaniya-skrytyh-rabot.html, /articles/akt-peredachi-stroitelnoy-ploshchadki-obrazec.html, /articles/akt-skrytyh-rabot-montazh.html)
+
+Страниц в поиске: 84, в sitemap.xml: 84, строк семантики: 0, целевых URL: 0, расхождений: 0, решений владельцу: 1
+ok          check_seo                  код 0, 0.2 с
+── check_rss — фид Дзена собирается из статей
+
+Статей в фиде: 29, исключено вручную опубликованных: 12, придержано до срока: 0, таблиц проверено: 19, материалов в фиде: 29, расхождений: 0
+rss.xml не найден — собираю
+ok          check_rss                  код 0, 0.5 с
+── check_packages — состав комплектов и число файлов
+ИСТОРИЧЕСКИЙ АРХИВ  04-polnyy-komplekt-pto: 01-30-bazovye-pakety/01-zakrytie-rabot/ ← 01-zakrytie-rabot — расходится с актуальным комплектом; папка не адресуется ни одним sku и покупателю не отдаётся
+    00-INSTRUKCIYA.pdf — содержимое разное
+ИСТОРИЧЕСКИЙ АРХИВ  04-polnyy-komplekt-pto: 01-30-bazovye-pakety/02-dopraboty-bez-poter/ ← 02-dopraboty-bez-poter — расходится с актуальным комплектом; папка не адресуется ни одним sku и покупателю не отдаётся
+    00-INSTRUKCIYA.pdf — содержимое разное
+ИСТОРИЧЕСКИЙ АРХИВ  04-polnyy-komplekt-pto: 01-30-bazovye-pakety/03-dogovor-podryada/ ← 03-dogovor-podryada — расходится с актуальным комплектом; папка не адресуется ни одним sku и покупателю не отдаётся
+    00-INSTRUKCIYA.pdf — содержимое разное
+ИСТОРИЧЕСКИЙ АРХИВ  04-polnyy-komplekt-pto: 01-30-bazovye-pakety/05-ks-bez-vozvrata/ ← 05-ks-bez-vozvrata — расходится с актуальным комплектом; папка не адресуется ни одним sku и покупателю не отдаётся
+    02-reestr-prilozheniy.xlsx — содержимое разное
+    08-algoritm-proverki.pdf — содержимое разное
+    10-sravnitelnaya-tablica.docx — содержимое разное
+ИСТОРИЧЕСКИЙ АРХИВ  04-polnyy-komplekt-pto: 01-30-bazovye-pakety/06-id-blokiruet-oplatu/ ← 08-pto-bez-zamechaniy — расходится с актуальным комплектом; папка не адресуется ни одним sku и покупателю не отдаётся
+    06-reestr-zamechaniy.xlsx — содержимое разное
+    07-grafik-ustraneniya.xlsx — содержимое разное
+    08-algoritm-raboty-s-id.pdf — содержимое разное
+    10-sravnitelnaya-tablica.docx — содержимое разное
+ИСТОРИЧЕСКИЙ АРХИВ  04-polnyy-komplekt-pto: 01-30-bazovye-pakety/07-uderzhaniya-shtrafy-zachety/ ← 07-uderzhaniya-shtrafy-zachety — расходится с актуальным комплектом; папка не адресуется ни одним sku и покупателю не отдаётся
+    09-sravnitelnaya-tablica.docx — есть в копии, нет в комплекте
+    00-START-HERE.txt — содержимое разное
+    05-reestr-uderzhaniy.xlsx — содержимое разное
+    06-grafik-vozmeshcheniya.xlsx — содержимое разное
+    07-algoritm-proverki-uderzhaniy.pdf — содержимое разное
+
+К сведению — папки, не адресуемые ни одним sku (покупателю не отдаются):
+  04-polnyy-komplekt-pto
+  06-id-blokiruet-oplatu
+
+Комплектов: 30, с расхождениями: 0, отставших копий: 0, дубликатов внутри комплекта: 0, расхождений в числе файлов: 0, расхождений в неадресуемых папках (к сведению): 6
+ok          check_packages             код 0, 0.4 с
+── sync_kit_file_counts — число файлов на страницах и в карточках против диска
+
+НЕ ОПРЕДЕЛИЛОСЬ — разобрать руками:
+  articles/akt-osvidetelstvovaniya-skrytyh-rabot.html: «23 файл…» — хозяин не определился
+  articles/akt-peredachi-stroitelnoy-ploshchadki-obrazec.html: «23 файл…» — хозяин не определился
+  articles/akt-skrytyh-rabot-montazh.html: «23 файл…» — хозяин не определился
+  articles/akt-skrytyh-rabot-montazh.html: «5 файл…» — хозяин не определился
+  articles/akt-skrytyh-rabot-obrazec.html: «23 файл…» — хозяин не определился
+  articles/bankrotstvo-genpodryadchika-5-markerov.html: «9 файл…» — хозяин не определился
+  articles/dolg-zakryvali-na-sleduyushchem-obekte.html: «19 файл…» — хозяин не определился
+  articles/dostraivali-za-metry-otkaz-v-zos.html: «6 файл…» — хозяин не определился
+  articles/garantiynoe-uderzhanie-v-ks-2-i-ks-3.html: «11 файл…» — хозяин не определился
+  articles/ispolnitelnaya-dokumentaciya-sostav.html: «6 файл…» — хозяин не определился
+  articles/ispolnitelnaya-dokumentaciya-sostav.html: «23 файл…» — хозяин не определился
+  articles/neotrabotannyy-avans.html: «10 файл…» — хозяин не определился
+  articles/podpisannaya-ks2-ne-znachit-chto-zaplatyat.html: «19 файл…» — хозяин не определился
+  articles/proverka-ks-2-pered-sdachey.html: «10 файл…» — хозяин не определился
+  articles/pyat-dokazatelstv-vypolneniya.html: «23 файл…» — хозяин не определился
+  articles/raboty-ne-prinyaty.html: «10 файл…» — хозяин не определился
+  articles/raschet-metrami.html: «7 файл…» — хозяин не определился
+  articles/skidka-15-procentov-na-tendere-eto-otbor-zhertv.html: «13 файл…» — хозяин не определился
+  articles/stroitelnyy-musor-v-smete.html: «12 файл…» — хозяин не определился
+  articles/vsyo-vklyucheno-v-cenu.html: «10 файл…» — рядом p2, у него 15 — не похоже на тот же счёт
+  articles/zakazchik-ne-oplachivaet-vypolnennye-raboty.html: «5 файл…» — хозяин не определился
+  articles/zakazchik-ne-oplachivaet-vypolnennye-raboty.html: «19 файл…» — хозяин не определился
+  katalog.html: «11 файл…» — хозяин не определился
+  katalog.html: «7 файл…» — хозяин не определился
+  katalog.html: «23 файл…» — хозяин не определился
+  katalog.html: «15 файл…» — хозяин не определился
+  katalog.html: «19 файл…» — хозяин не определился
+  katalog.html: «6 файл…» — хозяин не определился
+  katalog.html: «6 файл…» — хозяин не определился
+  katalog.html: «11 файл…» — хозяин не определился
+  katalog.html: «10 файл…» — хозяин не определился
+  materialy/index.html: «4 файл…» — рядом p1, у него 19 — не похоже на тот же счёт
+  materialy/index.html: «4 файл…» — рядом p3, у него 11 — не похоже на тот же счёт
+  materialy/index.html: «4 файл…» — рядом p2, у него 15 — не похоже на тот же счёт
+  materialy/index.html: «4 файл…» — рядом p4, у него 23 — не похоже на тот же счёт
+  materialy/index.html: «4 файл…» — рядом p4, у него 23 — не похоже на тот же счёт
+  materialy/index.html: «4 файл…» — рядом p5, у него 11 — не похоже на тот же счёт
+  materialy/index.html: «4 файл…» — рядом p7, у него 13 — не похоже на тот же счёт
+  materialy/index.html: «4 файл…» — рядом p8, у него 11 — не похоже на тот же счёт
+  materialy/index.html: «1 файл…» — рядом p11, у него 7 — не похоже на тот же счёт
+  materialy/index.html: «4 файл…» — рядом p9, у него 10 — не похоже на тот же счёт
+
+мест исправлено: 0, спорных: 41, проверка без записи
+ok          sync_kit_file_counts       код 0, 0.1 с
+── test_sync_kit_file_counts — сторож источника числа файлов у товаров и бесплатных материалов
+.......................                                                  [100%]
+23 passed in 2.21s
+ok          test_sync_kit_file_counts  код 0, 2.6 с
+── check_free_materials — бесплатные наборы против диска
+
+Бесплатных материалов: 10, расхождений: 0
+ok          check_free_materials       код 0, 0.1 с
+── check_covers — обложки страниц
+Все разборы с обложками.
+
+К сведению — разные пропорции. В превью ссылки вертикальные
+обложки обрезаются по центру и теряют композицию:
+  1600x893: 19 — akt-osvidetelstvovaniya-skrytyh-rabot.jpg, akt-skrytyh-rabot-obrazec.jpg, bankovskaya-garantiya-na-vozvrat-avansa.jpg и др.
+  1376x768: 10 — akt-skrytyh-rabot-montazh.jpg, akty-skrytyh-rabot-kakie.jpg, avans-po-dogovoru-podryada.jpg и др.
+  1536x954: 5 — avans-eto-ne-dengi-eto-kryuchok.jpg, bankrotstvo-genpodryadchika-5-markerov.jpg, genpodryadchik-zarabatyvaet-na-vas.jpg и др.
+  1376x744: 2 — dolg-zakryvali-na-sleduyushchem-obekte.jpg, dostraivali-za-metry-otkaz-v-zos.jpg
+  1344x768: 1 — akt-peredachi-stroitelnoy-ploshchadki-obrazec.jpg
+  1122x1402: 1 — dopraboty.jpg
+  1600x961: 1 — pyat-dokazatelstv-vypolneniya.jpg
+  1080x1350: 1 — priemka.jpg
+  1536x1024: 1 — vsyo-vklyucheno-v-cenu.jpg
+
+Разборов с обложками: 41, требуют внимания: 0, повторов обложек: 0
+ok          check_covers               код 0, 0.7 с
+── test_covers — сторож проверки обложек
+  [ok] test_clean_tree_passes
+  [ok] test_duplicate_fails
+  [ok] test_duplicate_under_new_name_fails
+  [ok] test_listing_card_counted
+  [ok] test_near_duplicate_detected
+  [ok] test_no_false_positives_on_real_covers
+
+Все проверки сторожа обложек прошли: 6
+ok          test_covers                код 0, 3.8 с
+── check_goals — цели счётчика
+
+Целей в коде: 18; объявлено: 18; расхождений: 0
+Дефектов нет: код и объявленный список сходятся.
+ok          check_goals                код 0, 0.0 с
+── test_attribution_goals — цели перехода на ссылках витрины
+Ссылок под целью: 381 (товар 290, бесплатный материал 91); из них записаны относительно: 225
+Дефектов нет: каждая ссылка на товар и на бесплатный материал считается счётчиком.
+ok          test_attribution_goals     код 0, 0.4 с
+── test_anonymous_id — идентификаторы посетителя и посещения
+anonymous_id
+  ok   anonymous_id_created
+  ok   anonymous_id_survives_reload
+  ok   anonymous_id_survives_internal_navigation
+  ok   anonymous_id_is_not_pii
+  ok   cookie_failure_does_not_break_page
+  ok   storage_failure_does_not_break_page
+  ok   works_without_crypto
+  ok   cookie_is_first_party_and_long_lived
+
+session_id — отдельно от anonymous_id
+  ok   session_id_is_not_the_anonymous_id
+  ok   session_id_is_new_in_a_new_session
+
+все проверки пройдены
+ok          test_anonymous_id          код 0, 0.1 с
+── test_browser_events — события браузера
+события браузера
+  ok   test_session_started_once_per_session
+  ok   test_session_started_again_in_new_session
+  ok   test_content_viewed_emitted
+  ok   test_content_viewed_carries_sku_on_product_page
+  ok   test_browser_does_not_invent_pain
+  ok   test_events_carry_no_pii
+  ok   test_beacon_failure_does_not_break_navigation
+  ok   test_offline_receiver_does_not_break_page
+  ok   test_no_beacon_falls_back_without_throwing
+  ok   test_everything_broken_still_leaves_page_usable
+  ok   test_lead_form_gets_anonymous_id
+
+все проверки пройдены
+ok          test_browser_events        код 0, 0.0 с
+── test_taxonomy_snapshot — снимок таксономии согласован с каноном
+снимок таксономии
+  ok   test_snapshot_exists_and_parses
+  ok   test_snapshot_is_marked_generated
+  ok   test_snapshot_source_commit_present
+  ok   test_snapshot_schema_version_supported
+  ok   test_every_site_magnet_maps_to_pain
+  ok   test_every_magnet_page_is_known_to_canon
+  ok   test_no_second_taxonomy_in_php
+  ok   test_pain_ids_are_url_safe
+
+снимок согласован с каноном и с сайтом
+ok          test_taxonomy_snapshot     код 0, 0.0 с
+── test_lead_event — выдача материала против отказа приёмника событий
+выдача материала против отказа сборщика
+  ok   test_lead_delivers_and_event_lands_in_outbox
+  ok   test_lead_delivers_when_outbox_cannot_be_created
+  ok   test_lead_delivers_when_outbox_file_cannot_be_written
+  ok   test_event_failure_does_not_change_user_response
+  ok   test_magnet_delivered_only_after_successful_delivery
+  ok   test_lead_event_contains_no_plain_email
+  ok   test_lead_event_contains_known_pain_and_magnet
+  ok   test_unmapped_magnet_sends_event_without_pain
+  ok   test_lead_delivers_when_outbox_unusable_and_unconfigured
+
+выдача материала не зависит от сборщика событий
+ok          test_lead_event            код 0, 1.6 с
+── test_funnel_outbox — сборщик событий воронки
+сборщик событий на хостинге
+  ok   браузерные события ложатся строками в сборщик
+  ok   строка сборщика — канонный конверт целиком
+  ok   одно событие — одна строка, файл не переписывается
+  ok   после выдачи материала пишется magnet_delivered
+  ok   в потоке нет ни почты, ни имени, ни телефона
+  ok   браузер не может подделать покупку и выдачу
+  ok   поток недоступен по HTTP
+  ok   проверка недоступности умеет падать
+  ok   сборщик отказывается писать в открытое веб-сервером место
+  ok   материал выдаётся, когда сборщик писать не может
+  ok   сайт работает, когда домашней машины нет вовсе
+  ok   негодный конверт до файла не доходит
+  ok   здоровье сборщика считается, а не объявляется
+  ok   здоровье не отдаётся через веб
+  ok   здоровье из командной строки считает то же самое
+
+все проверки пройдены
+ok          test_funnel_outbox         код 0, 1.5 с
+── test_event_proxy — посредник событий браузера
+посредник событий браузера
+  ok   test_content_viewed_accepted_and_stored
+  ok   test_session_started_accepted
+  ok   test_proxy_refuses_events_browser_may_not_send
+  ok   test_proxy_strips_pii
+  ok   test_proxy_answers_when_outbox_is_unusable
+  ok   test_proxy_answers_without_touching_the_network
+  ok   test_proxy_rejects_garbage_without_crashing
+
+все проверки пройдены
+ok          test_event_proxy           код 0, 2.2 с
+── build_preview — предпросмотр комплектов
+Страниц товаров: 18; с предпросмотром: 18
+   расхождений нет
+ok          build_preview              код 0, 0.2 с
+── test_manifest_rebuild — манифесты переживают повторную сборку
+  ✓ test_d02_documents_survive
+    не запускался — build_all.py: не компилируется
+    не запускался — update_manifests.py: отказался, код 1
+  ✓ test_rebuild_does_not_change_manifests
+
+Проверок 2, упало 0.
+ok          test_manifest_rebuild      код 0, 0.1 с
+── php_lint — синтаксис всех PHP корня
+синтаксис PHP: без ошибок
+ok          php_lint                   код 0, 0.4 с
+── test_order_lock — гонка выдачи заказа
+Гонка выдачи закрыта: 8 одновременных процессов, выдача одна, обновления не теряются.
+ok          test_order_lock            код 0, 0.1 с
+── test_price_authority — цена берётся из одного места
+Цену назначает сервер: p1 — подделка цены, имени и несуществующий товар отвергнуты (эталон 249000 коп.).
+ok          test_price_authority       код 0, 0.0 с
+── test_delivery_cache_freshness — покупателю уходит архив из текущих файлов продукта, а не из прошлых
+Свежесть архива выдачи: 4 проверки пройдено — архив переиспользуется, пока файлы продукта не тронуты, и пересобирается, как только они новее.
+ok          test_delivery_cache_freshness код 0, 0.0 с
+── check_storefront_claims — страница товара не обещает проверки, которой нет в его файлах
+
+Страниц товаров проверено: 18, дефектов: 0
+Ни одна страница не обещает того, чего нет в её файлах.
+ok          check_storefront_claims    код 0, 0.1 с
+── test_products_dir — мастера продуктов находятся и в боевой раскладке, а не только в репозитории
+Поиск мастеров продуктов: раскладок проверено 6, явный define старше поиска, пустой каталог не выдаётся за товар.
+ok          test_products_dir          код 0, 0.0 с
+── verify_delivery_zips — состав восемнадцати архивов выдачи
+t1   ok  файлов 6, 71 КБ
+t2   ok  файлов 6, 67 КБ
+t3   ok  файлов 5, 48 КБ
+t4   ok  файлов 5, 58 КБ
+t5   ok  файлов 5, 61 КБ
+t6   ok  файлов 5, 48 КБ
+p1   ok  файлов 19, 567 КБ
+p2   ok  файлов 15, 583 КБ
+p3   ok  файлов 11, 295 КБ
+p4   ok  файлов 23, 648 КБ
+p5   ok  файлов 11, 269 КБ
+p7   ok  файлов 13, 484 КБ
+p8   ok  файлов 11, 177 КБ
+p9   ok  файлов 10, 134 КБ
+p10  ok  файлов 9, 107 КБ
+p11  ok  файлов 7, 156 КБ
+p12  ok  файлов 20, 274 КБ
+p13  ok  файлов 10, 310 КБ
+
+комплектов 18, с бедой 0
+ok          verify_delivery_zips       код 0, 0.3 с
+── test_smoke_production — отказ неподтверждённой имитации робота не выдаётся за проверку настоящего робота
+  ✓ test_cloudflare_rejection_of_spoofed_oai_is_inconclusive
+  ✓ test_oai_403_from_origin_still_fails
+  ✓ test_oai_403_without_cf_ray_still_fails
+  ✓ test_oai_server_error_still_fails
+  ✓ test_other_bot_403_from_cloudflare_still_fails
+
+Проверок 5, упало 0.
+ok          test_smoke_production      код 0, 0.0 с
+── test_dzen_titles — заголовки ленты Дзена — источник, откат и шесть способов потерять их молча
+заголовок из data/site/dzen-titles.json: 16 из 29
+откат на заголовок статьи (12): akt-skrytyh-rabot-montazh, akty-skrytyh-rabot-kakie, avans-po-dogovoru-podryada, dolg-zakryvali-na-sleduyushchem-obekte, dopolnitelnye-raboty-v-stroitelstve, dostraivali-za-metry-otkaz-v-zos, garantiynoe-uderzhanie-v-ks-2-i-ks-3, pretenziya-za-chuzhuyu-kommunalku, proverka-ks-2-pered-sdachey, raschet-metrami, zakazchik-ne-oplachivaet-vypolnennye-raboty, zos-v-stroitelstve
+исключено как опубликованное вручную: 12
+Соответствий в файле: 28; в ленте 29 статей, из них с откатом на заголовок статьи 12.
+Откат (записи нет, идёт заголовок сайта): akt-skrytyh-rabot-montazh, akty-skrytyh-rabot-kakie, avans-po-dogovoru-podryada, dolg-zakryvali-na-sleduyushchem-obekte, dopolnitelnye-raboty-v-stroitelstve, dostraivali-za-metry-otkaz-v-zos, garantiynoe-uderzhanie-v-ks-2-i-ks-3, pretenziya-za-chuzhuyu-kommunalku, proverka-ks-2-pered-sdachey, raschet-metrami, zakazchik-ne-oplachivaet-vypolnennye-raboty, zos-v-stroitelstve
+Размеченных случаев сошлось: 3; способов потерять заголовок, роняющих сборку: 6 из 6.
+ok          test_dzen_titles           код 0, 0.1 с
+── test_t3_article_cta — входная ступень t3 остаётся доступной из статей, которые разбирают её ситуацию
+  ✓ test_t3_остаётся_входной_ступенью_своих_кластеров
+  ✓ test_утверждённые_статьи_ведут_на_t3
+  ✓ test_цена_рядом_со_ссылкой_совпадает_с_конфигурацией
+
+Проверок 3, упало 0.
+ok          test_t3_article_cta        код 0, 0.0 с
+── test_diagnostic_sku_standalone — ступень и комплект в диагностике — два самостоятельных товара по ситуации, а не последовательность покупки
+  ok   цены пары на странице совпадают с products-config.php
+  ok   сценарий с парой показывает оба товара одновременно
+  ok   оба варианта открыты собственным условием, условия различны
+  ok   пара S-0/S-1 ведёт t1 и p1 — состав не изменился
+
+Проверок 4, упало 0.
+ok          test_diagnostic_sku_standalone код 0, 0.1 с
+── test_mb005_no_ladder_copy — формулировки отменённой лестницы покупки («следующая ступень», «доплатить до», «зачёт стоимости») не возвращаются в видимый текст витрины
+
+Витринных страниц проверено: 84, дефектов: 0
+Отменённая лестница покупки на витрине не читается.
+ok          test_mb005_no_ladder_copy  код 0, 0.3 с
+── check_404_page — своя страница 404 существует и объявлена в .htaccess и nginx-конфиге — без неё посетитель чужого адреса получает страницу хостинга
+
+Проверок страницы 404: 5, дефектов: 0
+404.html стоит, объявлена в .htaccess и nginx-конфиге, ссылки назад ведут в существующие цели.
+ok          check_404_page             код 0, 0.0 с
+
+========================================================================
+контур: public
+прогнано 39, прошли 39, упали 0 (блокирующих 0, предупреждений 0), пропущено без данных 0
+
+ИТОГ: PASS — все обязательные проверки прошли.

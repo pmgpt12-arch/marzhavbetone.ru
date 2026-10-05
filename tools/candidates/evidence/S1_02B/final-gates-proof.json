@@ -1,0 +1,30 @@
+{
+  "status": "BLOCKED",
+  "finished": "2026-10-04T14:16:38.698062+00:00",
+  "results": [
+    {
+      "task": "run-checks",
+      "exit_code": 1,
+      "log": "tools/candidates/evidence/S1_02B/run-checks.out.txt",
+      "source": "existing tools/run_checks.py --class public",
+      "isolation": "Full tracked HEAD plus changed tracked candidate files copied to temporary directory; test caches/fixtures never touch source worktree or production."
+    },
+    {
+      "task": "cycles",
+      "exit_code": 0,
+      "log": "tools/candidates/evidence/S1_02B/cycles.out.txt",
+      "source": "PR320 a587b928d3d0593eb1ed60f54944cca3feaf2f97",
+      "source_blob": "30c872ad20aa5497e03b414d8a7288f66fb889e3",
+      "no_cycles": true
+    },
+    {
+      "task": "calc-edges",
+      "exit_code": 0,
+      "log": "tools/candidates/evidence/S1_02B/calc-edges.out.txt",
+      "source": "PR320 a587b928d3d0593eb1ed60f54944cca3feaf2f97",
+      "adaptation": "Only renamed candidate workbook 14→08; checks and independent daily reference unchanged. T1 comparator is pinned worktree, not current production.",
+      "source_blob": "73449cc5950ba0d8757ca5de69292401aa58bcc0",
+      "ok_cases": 15
+    }
+  ]
+}
