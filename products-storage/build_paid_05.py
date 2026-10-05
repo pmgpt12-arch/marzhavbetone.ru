@@ -36,6 +36,12 @@ def _freeze_ooxml(path):
         items = [(info, src.read(info.filename)) for info in src.infolist()]
     with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as dst:
         for info, data in items:
+            # Package compatibility label is editorial metadata, not the
+            # current serializer version; keep it stable across openpyxl releases.
+            if path.endswith(".xlsx") and info.filename == "docProps/app.xml":
+                text = data.decode("utf-8")
+                text = re.sub(r"(<Application>)[^<]*(</Application>)", r"\g<1>Microsoft Excel\g<2>", text)
+                data = text.encode("utf-8")
             if info.filename == "docProps/core.xml":
                 text = data.decode("utf-8")
                 text = re.sub(r"(<dcterms:(?:created|modified)[^>]*>)[^<]*(<)",
