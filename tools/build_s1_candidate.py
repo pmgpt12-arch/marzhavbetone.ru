@@ -32,6 +32,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import s1_route as R                                        # noqa: E402
+import approved_s1_excel as owner_excel                       # noqa: E402
 
 try:
     import openpyxl
@@ -336,6 +337,9 @@ def normalize(path: Path) -> None:
 
 
 def save(obj, path: Path):
+    if isinstance(obj, openpyxl.Workbook) and path.name in owner_excel.APPROVED:
+        owner_excel.write_approved_layout(obj, path)
+        return
     if isinstance(obj, openpyxl.Workbook):
         # Печать: альбомная ориентация, все колонки листа на ширину страницы
         for ws in obj.worksheets:
@@ -1507,7 +1511,7 @@ def f08(out: Path):
         rs[f"N{r}"].number_format = DATE
         for col in "OPQ":
             rs[f"{col}{r}"].number_format = MONEY
-    rs.cell(row=итог_свода, column=13, value="Итого по акта́м").font = BOLD
+    rs.cell(row=итог_свода, column=13, value="Итого по актам").font = BOLD
     rs[f"P{итог_свода}"] = f"=SUM(P7:P{6 + ACTS})"
     rs[f"Q{итог_свода}"] = f"=SUM(Q7:Q{6 + ACTS})"
     for col in "PQ":
