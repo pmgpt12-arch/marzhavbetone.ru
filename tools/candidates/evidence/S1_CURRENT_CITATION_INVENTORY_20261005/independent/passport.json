@@ -1,0 +1,23 @@
+{
+  "execution_pattern": "one_shot",
+  "primary_result": "Independent factual source-and-coverage review of exact current S1 lawyer inventory; no legal interpretation",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "tools": "USD0 PythonCLI read-only source extraction; no models",
+  "inputs": "WAITING_FOR_AUTHOR_READY exact full a774 SHA, frozen map/passport/receipts/schema paths",
+  "independent_checks": [
+    "Exact frozen11 buyer hashes from actual commit",
+    "02 and08 corrected bytes/04 native pin",
+    "Actual locators and exact literal quotes from DOCX/XLSX native XML",
+    "Alternative broad legal-token scan: ст./статья/ГК/АПК/Пленум/Федеральный закон/№; classify number-only false positives separately",
+    "Explicit unresolved variants; no invented norm IDs/currentness/legal-human PASS"
+  ],
+  "forbidden": [
+    "source changes",
+    "author checker used as independent review",
+    "tests/renders",
+    "reviewer merge before root receipt",
+    "legal opinions",
+    "official edition/currentness claims"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "status": "CHANGES_REQUESTED_FACTUAL_INVENTORY",
+  "source_sha": "a77422195c2c68281a7797ad99f9f6b70426d740",
+  "inventory_sha256": "5f2ac5ec7950ff21de17d8907fe2d6bd2973dc422f516426f76061d6b98f3c05",
+  "buyer_hashes_checked": 11,
+  "literal_occurrences_checked": 47,
+  "unresolved_markers_checked": 23,
+  "dedup_groups_checked": 24,
+  "old_rows_checked": 58,
+  "independent_native_visible_fragments": 4478,
+  "independent_broad_law_passages": 42,
+  "checks": 861,
+  "errors": [
+    {
+      "check": "Old literal genuinely relocated",
+      "detail": 6
+    },
+    {
+      "check": "Old literal genuinely relocated",
+      "detail": 8
+    },
+    {
+      "check": "Old literal genuinely relocated",
+      "detail": 9
+    },
+    {
+      "check": "Old literal genuinely relocated",
+      "detail": 29
+    },
+    {
+      "check": "Old literal genuinely relocated",
+      "detail": 40
+    },
+    {
+      "check": "Old literal genuinely relocated",
+      "detail": 43
+    }
+  ],
+  "registry_files_present": [
+    {
+      "path": "data/legal/norms.yaml",
+      "present_in_source_git": false
+    },
+    {
+      "path": "data/legal/document-norms.yaml",
+      "present_in_source_git": false
+    },
+    {
+      "path": "data/legal/normative-results.yaml",
+      "present_in_source_git": false
+    },
+    {
+      "path": "data/legal/human-review.yaml",
+      "present_in_source_git": false
+    }
+  ],
+  "model_calls": 0,
+  "api_usd": 0,
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "normative_verdict": "NOT_VERIFIED",
+  "scope": "Factual quote/locator/hash/grammar/coverage review only; no article applicability or legal-completeness judgment."
+}
