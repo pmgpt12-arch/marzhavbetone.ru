@@ -1,0 +1,119 @@
+{
+  "frozen_input_sha": "14c5a562c93ad7f7c28aa73588d9ca2d8b35fea3",
+  "route": "existing Google Chrome CLI; not Playwright test scripts",
+  "bound_address": "127.0.0.1",
+  "port": 46237,
+  "server_closed": true,
+  "serving_copy_only_changes": [
+    "attribution.js METRIKA_ID=0",
+    "append instrumentation: layout measurement and index target scrollIntoView"
+  ],
+  "original_head_text_and_main_paragraphs_preserved": true,
+  "blocked_by_csp": [
+    "all connect requests",
+    "all form actions",
+    "all external scripts/images/frames"
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/articles/ks-2-ks-3-podpisany-zakazchik-ne-oplachivaet.html"
+    },
+    {
+      "method": "GET",
+      "path": "/styles.css"
+    },
+    {
+      "method": "GET",
+      "path": "/article.css"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/ks-2-ks-3-podpisany-zakazchik-ne-oplachivaet.jpg"
+    },
+    {
+      "method": "GET",
+      "path": "/attribution.js"
+    },
+    {
+      "method": "GET",
+      "path": "/favicon.ico"
+    }
+  ],
+  "post_requests": 0,
+  "runs": [
+    {
+      "kind": "article",
+      "requested_width": 390,
+      "requested_height": 4200,
+      "image_dimensions": [
+        390,
+        4200
+      ],
+      "png": "article-390.png",
+      "png_sha256": "c234f19d81c442d234e9f2b034e284fe6d133bebe3f89d06bb164923610271b9",
+      "exit_code": 0,
+      "layout": {
+        "innerWidth": 500,
+        "innerHeight": 4057,
+        "scrollWidth": 500,
+        "clientWidth": 500,
+        "scrollHeight": 4057,
+        "scrollY": 0,
+        "cover": {
+          "x": 20,
+          "y": 417.1875,
+          "width": 460,
+          "height": 240,
+          "objectFit": "cover",
+          "naturalWidth": 1672,
+          "naturalHeight": 941,
+          "display": "block"
+        },
+        "target": null,
+        "navToggle": {
+          "x": 442,
+          "y": 18,
+          "width": 44,
+          "height": 44,
+          "objectFit": "fill",
+          "display": "flex"
+        },
+        "formCount": 0
+      },
+      "command": [
+        "/usr/bin/google-chrome",
+        "--headless=new",
+        "--no-sandbox",
+        "--disable-gpu",
+        "--disable-background-networking",
+        "--disable-component-update",
+        "--disable-sync",
+        "--disable-default-apps",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--metrics-recording-only",
+        "--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1",
+        "--user-data-dir=/tmp/pr283-chrome-j9yksaye",
+        "--force-device-scale-factor=1",
+        "--window-size=390,4200",
+        "--virtual-time-budget=2200",
+        "--screenshot=/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/pr283/tools/candidates/PR283_VISUAL_2026-10-05/article-390.png",
+        "--dump-dom",
+        "http://127.0.0.1:46237/articles/ks-2-ks-3-podpisany-zakazchik-ne-oplachivaet.html"
+      ]
+    }
+  ],
+  "elapsed_seconds": 0.8171640990185551,
+  "screenshots_created": 1,
+  "dependencies_installed": false,
+  "status": "BLOCKED/VIEWPORT_MISMATCH",
+  "screenshot_inspected": true,
+  "inspection_tool": "Desktop Commander read_file image returned and visually inspected",
+  "diagnostic_attempts": 1,
+  "reason": "ChromeCLI requested390 producesPNG390 but DOM viewport500; not a valid390 responsive rendering",
+  "execution_pattern": "one_shot",
+  "primary_result": "PR283_exact_head_visual_gate",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only"
+}
