@@ -211,8 +211,10 @@ def test_claim_has_numbered_attachment_list_with_sheet_counts() -> None:
 def test_claim_text_requests_and_signature_unchanged() -> None:
     items = section(Document(N10), "Раздел Б.")
     pars = [b.text for b in items if isinstance(b, Paragraph) and b.text]
-    assert pars[:len(CLAIM_BEFORE)] == CLAIM_BEFORE
-    assert pars[len(CLAIM_BEFORE):] == ["Приложения:", SIGNATURE]
+    # Обучающий абзац перенесён в А; юридический текст заявления сохранён.
+    assert pars[:len(CLAIM_BEFORE) - 1] == CLAIM_BEFORE[1:]
+    assert pars[len(CLAIM_BEFORE) - 1:] == ["Приложения:", SIGNATURE]
+    assert CLAIM_BEFORE[0] in text_of(section(Document(N10), "Раздел А."))
 
 
 def test_tokens_unchanged_and_unambiguous() -> None:
