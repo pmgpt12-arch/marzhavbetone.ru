@@ -506,6 +506,20 @@ def f01(out: Path):
     ])
     H(doc, "Таблица 4. Документы маршрута")
     table(doc, ["Файл", "Назначение"], [[k, v[0]] for k, v in R.FILES.items()], widths=[6.2, 9.0])
+    # Читаемая печать инструкции: строки таблиц целиком, шапка на каждой странице.
+    from docx.oxml import OxmlElement
+    for tbl in doc.tables:
+        for row in tbl.rows:
+            row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
+        tbl.rows[0]._tr.get_or_add_trPr().append(OxmlElement("w:tblHeader"))
+        for cell in tbl.rows[0].cells:
+            for par in cell.paragraphs:
+                par.paragraph_format.keep_with_next = True
+    # Keep the compact final reference table together; no isolated tail rows.
+    for row in doc.tables[-1].rows[:-1]:
+        for cell in row.cells:
+            for par in cell.paragraphs:
+                par.paragraph_format.keep_with_next = True
     save(doc, out / "01-karta-situacii-i-granic.docx")
 
 
@@ -588,6 +602,20 @@ def f03(out: Path):
         ["Далее", "иск или передача специалисту", "файл 10"],
     ], widths=[5.0, 4.6, 5.6])
     P(doc, "Не затягивайте: общий срок исковой давности установлен ст. 196 ГК РФ; порядок его исчисления для вашего случая проверьте в действующей редакции или у специалиста.")
+    # Читаемая печать инструкции: строки таблиц целиком, шапка на каждой странице.
+    from docx.oxml import OxmlElement
+    for tbl in doc.tables:
+        for row in tbl.rows:
+            row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
+        tbl.rows[0]._tr.get_or_add_trPr().append(OxmlElement("w:tblHeader"))
+        for cell in tbl.rows[0].cells:
+            for par in cell.paragraphs:
+                par.paragraph_format.keep_with_next = True
+    # Keep the compact final reference table together; no isolated tail rows.
+    for row in doc.tables[-1].rows[:-1]:
+        for cell in row.cells:
+            for par in cell.paragraphs:
+                par.paragraph_format.keep_with_next = True
     save(doc, out / "03-algoritm-dejstviy.docx")
 
 
