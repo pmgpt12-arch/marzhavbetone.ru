@@ -1,0 +1,83 @@
+{
+  "observed_pins": {
+    "site_main": "64b210e5ed4d631f74aee8f0e345fcc87ff1760e",
+    "p2": "1be0493ae194b2647c4b22c98e9981b9c5e64a54",
+    "p3": "f8bfdc569b9d561b87595aa9d6b5f28f76871e02"
+  },
+  "tests": {
+    "p2": {
+      "command": [
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "-rx",
+        "-rs",
+        "-p",
+        "no:cacheprovider",
+        "tools/test_p2_forms_buyer_text.py",
+        "tools/test_p2_kit_instruction.py",
+        "tools/test_delivery_artifacts.py"
+      ],
+      "returncode": 0,
+      "stdout": "..x.xx..x.xx......................                                       [100%]\n28 passed, 6 xfailed in 0.52s\n",
+      "stderr": "",
+      "timeout_seconds": 55
+    },
+    "p3": {
+      "command": [
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "-rx",
+        "-rs",
+        "-p",
+        "no:cacheprovider",
+        "tools/test_p3_buyer_kit.py",
+        "tools/test_delivery_artifacts.py"
+      ],
+      "returncode": 1,
+      "stdout": "................F..................                                      [100%]\n=================================== FAILURES ===================================\n__________________ test_generator_reproduces_delivered_files ___________________\n\ntmp_path = PosixPath('/tmp/pytest-of-denis/pytest-102/test_generator_reproduces_deli0')\n\n    def test_generator_reproduces_delivered_files(tmp_path):\n        for module in (\"docx\", \"openpyxl\", \"reportlab\"):\n            pytest.importorskip(module)\n        shutil.copy(STORAGE / \"build_paid_05.py\", tmp_path)\n        (tmp_path / KIT.name).mkdir()\n        subprocess.run([sys.executable, \"build_paid_05.py\"], cwd=tmp_path, check=True,\n                       capture_output=True)\n        built = sorted(p.name for p in (tmp_path / KIT.name).iterdir())\n        assert built, \"генератор ничего не собрал\"\n        differ = [n for n in built if not filecmp.cmp(tmp_path / KIT.name / n, KIT / n, shallow=False)]\n>       assert not differ, f\"собранное генератором расходится с выдачей: {differ}\"\nE       AssertionError: собранное генератором расходится с выдачей: ['02-reestr-prilozheniy.xlsx', '06-zhurnal-peredachi.xlsx']\nE       assert not ['02-reestr-prilozheniy.xlsx', '06-zhurnal-peredachi.xlsx']\n\ntools/test_p3_buyer_kit.py:166: AssertionError\n1 failed, 34 passed in 1.46s\n",
+      "stderr": "",
+      "timeout_seconds": 55
+    }
+  },
+  "current_p3": {
+    "head": "302d2e4d44bea16508b8e6e64211a2d10953aa51",
+    "fix": "4135aba99e392cf805efcae40cd81f02a571197a",
+    "PR459_merged_at": "2026-10-05T13:41:25Z",
+    "classification": "observed historical failure superseded; no current failure inferred",
+    "source_diff": "diff --git a/products-storage/build_paid_05.py b/products-storage/build_paid_05.py\nindex 75f37ef..e0636fa 100644\n--- a/products-storage/build_paid_05.py\n+++ b/products-storage/build_paid_05.py\n@@ -36,6 +36,12 @@ def _freeze_ooxml(path):\n         items = [(info, src.read(info.filename)) for info in src.infolist()]\n     with zipfile.ZipFile(path, \"w\", zipfile.ZIP_DEFLATED) as dst:\n         for info, data in items:\n+            # Package compatibility label is editorial metadata, not the\n+            # current serializer version; keep it stable across openpyxl releases.\n+            if path.endswith(\".xlsx\") and info.filename == \"docProps/app.xml\":\n+                text = data.decode(\"utf-8\")\n+                text = re.sub(r\"(<Application>)[^<]*(</Application>)\", r\"\\g<1>Microsoft Excel\\g<2>\", text)\n+                data = text.encode(\"utf-8\")\n             if info.filename == \"docProps/core.xml\":\n                 text = data.decode(\"utf-8\")\n                 text = re.sub(r\"(<dcterms:(?:created|modified)[^>]*>)[^<]*(<)\",\n"
+  },
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "merge-base",
+        "--is-ancestor",
+        "f8bfdc569b9d561b87595aa9d6b5f28f76871e02",
+        "302d2e4d44bea16508b8e6e64211a2d10953aa51"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "merge-base",
+        "--is-ancestor",
+        "4135aba99e392cf805efcae40cd81f02a571197a",
+        "302d2e4d44bea16508b8e6e64211a2d10953aa51"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}
