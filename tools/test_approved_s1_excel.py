@@ -7,15 +7,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import approved_s1_excel as layout
 
 @pytest.mark.parametrize("filename", sorted(layout.APPROVED))
-def test_native_owner_bytes_survive(filename, tmp_path):
+def test_owner_lineage_and_reviewed_native_output(filename, tmp_path):
     template = layout.TEMPLATES / filename
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore")
-        generated = openpyxl.load_workbook(template)
     output = tmp_path / filename
     import build_s1_candidate as builder
     {"02-proverka-i-kontrol-otveta.xlsx": builder.f02, "04-uchet-raschetov-i-otpravok.xlsx": builder.f04, "08-raschet-procentov-395.xlsx": builder.f08}[filename](tmp_path)
-    assert output.read_bytes() == template.read_bytes()
+    owner = template.read_bytes()
+    assert layout.hashlib.sha256(owner).hexdigest() == layout.APPROVED[filename]
+    assert output.read_bytes() == layout._reviewed_native(owner, filename)
 
 def test_formula_divergence_blocks_before_existing_output_is_touched(tmp_path):
     filename = "04-uchet-raschetov-i-otpravok.xlsx"
