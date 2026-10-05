@@ -84,7 +84,18 @@ def sheet_xml(book: Path, title: str) -> str:
 
 
 def formulas(book: Path, title: str) -> list[str]:
-    return [html.unescape(f) for f in re.findall(r"<f>([^<]*)</f>", sheet_xml(book, title))]
+    # Excel shares formula bodies; the OOXML reader expands them by cell.
+    import openpyxl
+    import warnings
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", message=".*extension is not supported.*")
+        wb = openpyxl.load_workbook(book, read_only=True)
+    try:
+        return [cell.value[1:] for row in wb[title].iter_rows() for cell in row
+                if isinstance(cell.value, str) and cell.value.startswith("=")]
+    finally:
+        wb.close()
+
 
 
 def delivered() -> list[Path]:
@@ -1360,8 +1371,10 @@ def test_реакции_на_сверку_письмо_допработы() -> N
     нет = [р for р in РЕАКЦИИ_ND6 if р not in реакции]
     assert not нет, f"в «Контроле ответа» нет реакций: {нет}"
     # список выбора в «Контроле ответа» покрывает все реакции
-    dv = re.search(r"<formula1>Справочник!\$A\$(\d+):\$A\$(\d+)</formula1>",
-                   html.unescape(sheet_xml(ПРОВЕРКА_02, "Контроль ответа")))
+    import approved_s1_excel as owner_excel
+    rules = owner_excel._native_validations(ПРОВЕРКА_02.read_bytes())
+    dv = re.fullmatch(r"Справочник!\$A\$(\d+):\$A\$(\d+)",
+                      rules[("Контроль ответа", "F5")][3])
     assert dv and int(dv.group(2)) - int(dv.group(1)) + 1 == len(реакции), "список выбора реакций короче справочника"
     for р, шаг in реакции.items():
         assert ШАГ_ИЛИ_ГРАНИЦА.search(шаг), f"реакция «{р}» не называет следующего шага: {шаг}"

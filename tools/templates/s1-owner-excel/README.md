@@ -1,0 +1,2 @@
+Owner-approved native Excel layout sources. 02/08 accepted by owner in Excel;04 combined layout and formulas accepted2026-10-05 14:39:59+07. Never save these through an OOXML reader dropping native extensions. Build functions remain authoritative for values/formulas; semantic divergence fails before writing. Refresh requires a reviewed change and new exact-byte acceptance.
+08 retains owner layout except Проверки row13 height restored from28.8 to original source63 points for longest warning; this narrow update awaits native Excel owner review.
