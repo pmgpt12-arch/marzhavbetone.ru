@@ -1,0 +1,42 @@
+{
+  "execution_pattern": "one_shot",
+  "primary_result": "P3_exact_302d_actual_PHP_ZIP_membership_hash_CRC_and_02_06_metadata",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "frozen_input_sha": "302d2e4d44bea16508b8e6e64211a2d10953aa51",
+  "branch": "claude/cool-bardeen-pbwfsx",
+  "live_branch_verified": true,
+  "timestamp_utc": "2026-10-05T16:07:32.770307+00:00",
+  "source_read_only": true,
+  "isolated_products_orders_delivery": true,
+  "duplicate_exact_head_packaging_proof": [],
+  "runtime": "PHP 8.3.6, ZipArchive available; Python standard library",
+  "bounded_command": "timeout --kill-after=5s 60s python3 verify.py",
+  "acceptance": [
+    "real mvb_build_product_zip(p3) once",
+    "catalog resolved through actual config",
+    "complete membership and every SHA256 equal accepted git source",
+    "ZIP CRC all members",
+    "02/06 raw bytes exact accepted hashes",
+    "producer canonical Application/AppVersion metadata exact in delivered XLSX",
+    "no service/template files",
+    "source files unchanged"
+  ],
+  "exclusions": [
+    "35 tests rerun",
+    "Calc/Excel run",
+    "body/legal review",
+    "main edits",
+    "merge/deploy",
+    "release readiness"
+  ],
+  "usd": 0,
+  "release_pass": false,
+  "stop": [
+    "duplicate proof",
+    "source/head mismatch",
+    "runtime unavailable",
+    "build failure/timeout",
+    "membership/hash/CRC/metadata mismatch"
+  ]
+}
