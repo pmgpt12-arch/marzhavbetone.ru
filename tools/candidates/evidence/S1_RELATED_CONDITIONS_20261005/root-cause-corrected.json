@@ -1,0 +1,8 @@
+{
+  "root_cause": "RISKS is module-level and consumed by f02; lexical last-def scan incorrectly attributed its line to f03. Only source-value probe confirmed native 02 Карта рисков!F19 mismatch. К_ЮРИСТУ is separate f01-only constant and was not the cause.",
+  "class": "LEXICAL_FUNCTION_SCOPE_MISCLASSIFICATION",
+  "rule": "derive function boundaries with AST, enumerate global consumers, compare actual workbook values before interpretation",
+  "correction": "restore RISKS fully; change f01 handoff and f03 STEP9 canonical route only, plus f03 deadline. No approved Excel save or guard bypass",
+  "early_hypothesis": "superseded; failure-classification.json kept as historical record",
+  "gate": "actual existing generator-native semantic gate and full-build checks"
+}
