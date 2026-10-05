@@ -1,0 +1,9 @@
+# S1: readable dates before printing the selected appendix range
+
+The existing f03 paragraph “Как подготовить приложение” now asks the user to check preview readability of dates and sums and widen the “Дата” column in a working copy if ### appears. Existing row 4 plus filled rows A–J selection, Calc/Excel commands and exclusion of L–M remain unchanged. Only one existing paragraph changes; no other document text, table, font, paragraph formatting or builder function changes.
+
+Two actual f03 builds match at SHA256 0ba40d84824283333d6728b1a22878b432e59b5b0b42384309cee24b239e281c. Only word/document.xml differs; reverting one text node restores exact canonical XML. Other 10 buyer files plus MANIFEST, native 04 and owner templates match base 486981310e231a5d5f2b739bcf9ee80069a32d78. Focused assembly/delivery checks: 2 PASS, 59 deselected, 6.93s. git diff --check: PASS.
+
+Writer exported 12 pages with a separate profile, same as the accepted PR469 baseline. At scale-to 1400, pages 1–7 and 11–12 are pixel-exact; only pages 8, 9, 10 change. Root reviewed changed pages 8, 9, 10: all readable with no clipping or overlap. Unchanged pages 1–7 and 11–12 are accepted through exact pixel comparison to the previously fully reviewed baseline. Acceptance is limited to this single print instruction paragraph.
+
+Supporting synthetic print evidence preserves two single-page PDFs/PNGs, the exact script, raw receipt, visual review and qualified lineage. It verifies selected ranges A4:J6/A4:J8 after column B OptimalWidth(True) in a disposable in-memory copy. Native XLSX remains untouched and is never saved. The baseline failure is retained: actual dates appeared as ### despite its has_hash_marks=False field. This grants no original native print PASS, manual Excel acceptance, long/multipage print acceptance, legal or sale/release acceptance.
