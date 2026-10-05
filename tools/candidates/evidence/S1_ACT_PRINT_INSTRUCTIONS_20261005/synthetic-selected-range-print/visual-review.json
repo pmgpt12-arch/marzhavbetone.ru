@@ -1,0 +1,39 @@
+{
+  "status": "WORKING_COPY_WIDTH_FIX_VERIFIED",
+  "baseline_original_path": "FAIL_DATE_READABILITY_PRESERVED",
+  "reviewed_pngs": [
+    "one-act-page-1.png",
+    "two-acts-page-1.png"
+  ],
+  "visual_observations": [
+    "All ten headers visible, full numeric dates readable, operation amounts and running balances readable; no clipping or hash-mark placeholders observed.",
+    "Two-acts table contains exactly four operations, no K/L–M summaries, no other sheets and no unused operation rows."
+  ],
+  "render_difference_bbox": [
+    89,
+    258,
+    1306,
+    356
+  ],
+  "png_dimensions": [
+    [
+      1400,
+      990
+    ],
+    [
+      1400,
+      990
+    ]
+  ],
+  "width_change_1_100mm": [
+    1783,
+    2258
+  ],
+  "changes_only": "Взаиморасчёты column B OptimalWidth=True in disposable in-memory copy",
+  "no_xlsx_saved": true,
+  "native_preserved": true,
+  "excel_manual_pass": false,
+  "owner_native_print_pass": false,
+  "proposed_qualified_instruction": "В рабочей копии перед экспортом проверьте даты в предпросмотре; если вместо даты видны ###, расширьте колонку «Дата» по содержимому. Затем выделите A4:J до последней заполненной строки и экспортируйте выделение.",
+  "limitations": "Only one-act/two-act synthetic rows tested; long/multipage fixtures and native Excel manual print not tested."
+}
