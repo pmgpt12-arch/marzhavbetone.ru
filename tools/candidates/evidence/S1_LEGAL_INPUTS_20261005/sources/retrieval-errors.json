@@ -1,0 +1,21 @@
+{
+  "observed_at": "2026-10-05T11:44:17.454943+00:00",
+  "remote_secondary_route": {
+    "urls": [
+      "https://www.consultant.ru/document/cons_doc_LAW_5142/",
+      "https://www.consultant.ru/document/cons_doc_LAW_9027/"
+    ],
+    "budget": "1 attempt per URL; 8 second socket timeout",
+    "outcome": "no output HTML files; exact urllib errors lost after script control-flow failure",
+    "classification": "SOURCE_ROUTE_NETWORK plus SCRIPT_LIST_MUTATION",
+    "script_error": "KeyError gk1-165-1 because results list was appended during its own iteration",
+    "recovery": "no remote network retry; use web direct article URLs and save captured text",
+    "gate": "collect fetch receipts before adaptive iteration; iterate snapshot/list copy, never append to live iterable"
+  },
+  "web_click_batch": {
+    "classification": "TOOL_ARGUMENT_RESOLUTION",
+    "capture": "web-gk-article-extracts.txt",
+    "outcome": "12 invalid click calls; no article evidence",
+    "recovery": "resolved real article URLs with search then direct open; no click retry"
+  }
+}

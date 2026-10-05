@@ -1,0 +1,24 @@
+{
+  "observed_at": "2026-10-05T11:49:08.810125+00:00",
+  "status": "VERIFIED_INPUT_BUNDLE",
+  "source_sha": "a610c1524711f2179ba42c12f00692e4db7373a4",
+  "execution_pattern": "one_shot",
+  "primary_result": "S1_normative_input_bundle",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "checks": [
+    "11 buyer documents accounted; MANIFEST excluded",
+    "All 11 byte/extract SHA and Git blob hashes verified; all 10 supported Office semantic hashes verified",
+    "8 literal GK article texts matched title, 3 reused official PDFs verified; all source byte/text/capture SHA verified",
+    "a610c15 update: only document 10 changed relative to b3e1eb8; expected new SHA aed923... matched",
+    "No registry/result/human-review records available; absence reported per-document, not a rejection of input preparation"
+  ],
+  "buyerfiles": 11,
+  "unique_literal_norm_candidates": 21,
+  "secondary_article_texts": 8,
+  "prior_official_pdfs": 3,
+  "manifest_files": 44,
+  "legal_acceptance": "NOT_PERFORMED",
+  "model_calls": 0,
+  "paid_model_calls": 0
+}

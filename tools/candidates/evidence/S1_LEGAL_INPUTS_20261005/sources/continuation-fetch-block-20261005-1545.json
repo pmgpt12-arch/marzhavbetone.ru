@@ -1,0 +1,22 @@
+{
+  "status": "BLOCKED_PRIMARY_CURRENTNESS",
+  "class": "SOURCE_RETRIEVAL_TOOL_NETWORK",
+  "observed_at": "2026-10-05T15:45:00+07:00",
+  "sources": [
+    "https://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239",
+    "https://pravo.gov.ru/proxy/ips/?docbody=&nd=102039740"
+  ],
+  "server_prior": "bounded official retrieval timeout persisted in prior attempts",
+  "alternative_web_direct_open": [
+    "GK1 Timeout fetching HTTP400",
+    "GK2 not accessible via web tool"
+  ],
+  "search_alternative": "system1 search returned unrelated sources; excluded from evidence",
+  "rule": "Do not treat source/network error as model weakness; no model legal-currentness admission without authoritative texts/date",
+  "not_done": [
+    "current GK1/GK2 verification",
+    "legal acceptance",
+    "publication"
+  ],
+  "next": "distinct official source acquisition or user-supplied authoritative current text; preserve server/VPN/services"
+}

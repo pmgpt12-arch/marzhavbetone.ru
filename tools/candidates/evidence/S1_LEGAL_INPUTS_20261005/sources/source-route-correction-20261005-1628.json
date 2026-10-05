@@ -1,0 +1,22 @@
+{
+  "observed_at": "2026-10-05T16:28:00.576538+07:00",
+  "previous_claim": "legal acceptance blocked by access to official GK text endpoints",
+  "correction": "Specific pravo.gov.ru/proxy/ips route failed; this does not establish unavailability of legislation or block all legal review preparation",
+  "observed_alternative": "web direct open Consultant GK1 cons_doc_LAW_5142 and GK2 cons_doc_LAW_9027 succeeded; retrieved consolidated source headers/table of contents, not yet all relevant articletexts/datecurrentnessverified",
+  "verified_before": "official VS plenums7/6/43 PDFs retrieved, currentness unverified",
+  "class": "SOURCE_ROUTE_SELECTION_AND_OVERBROAD_BLOCK_SCOPE",
+  "rule": "Isolate failed retrieval endpoint. Continue claim inventory and unaffected verified-source checks. Consolidated established legal databases may supply working articletexts; confirm relevant edition/effectivedates and material changes through official publications before final acceptance",
+  "acceptance_gate": [
+    "each legal claim mapped to exact productfile/formula/route",
+    "article or plenum paragraph text saved with source/hash/date/edition",
+    "effective date verified for relevant claim",
+    "exceptions and applicability checked",
+    "independent frozen-source review and regressions",
+    "no final normativeacceptance from mere accessiblecontentspage"
+  ],
+  "next": "Working extraction from accessible consolidated texts can proceed; final PASS requires relevant official source/effective-edition confirmation or established version-specific human-review evidence. Do not soften gate or stop all other work.",
+  "status": "PARTIAL_SOURCE_ACCESS_BLOCK_SCOPE_NARROWED",
+  "existing_contract": "docs/Normative_Contract.md",
+  "contract_sha": "614cf592c319518e242f9d776d211da1e59e3530",
+  "formal_gate": "secondary alone does not grant PASS; official text read or version-specific human-review record per existing contract"
+}
