@@ -1881,6 +1881,33 @@ def test_libreoffice_печать_ставки_после_повторного_�
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+
+def test_литералы_формул_совместимы_с_Excel() -> None:
+    """Сторож класса: отдельная строковая константа формулы не длиннее 255."""
+    def размеры(формула):
+        строки = re.findall(r'"((?:[^"]|"")*)"', формула)
+        return [len(строка.replace('""', '"').encode("utf-16-le")) // 2
+                for строка in строки]
+    assert размеры('="' + 'a' * 255 + '"') == [255]
+    assert размеры('="' + 'a' * 256 + '"') == [256]
+    assert размеры('="' + 'a' * 128 + '"&"' + 'a' * 128 + '"') == [128, 128]
+    assert размеры('="a""b"') == [3]
+    for номер in ("02-", "04-", "08-"):
+        файлы = list(C.glob(номер + "*.xlsx"))
+        assert len(файлы) == 1
+        import xml.etree.ElementTree as ET
+        ns = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
+        with zipfile.ZipFile(файлы[0]) as архив:
+            for имя in архив.namelist():
+                if not (имя.startswith("xl/worksheets/") and имя.endswith(".xml")):
+                    continue
+                for ячейка in ET.fromstring(архив.read(имя)).findall(".//m:c", ns):
+                    формула = ячейка.find("m:f", ns)
+                    if формула is not None and формула.text:
+                        assert all(n <= 255 for n in размеры(формула.text)), (
+                            файлы[0].name, имя, ячейка.get("r"), размеры(формула.text))
+
+
 def main() -> int:
     провал = 0
     for имя, проверка in sorted(globals().items()):
