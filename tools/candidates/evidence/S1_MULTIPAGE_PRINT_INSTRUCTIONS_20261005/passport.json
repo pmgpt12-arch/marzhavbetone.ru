@@ -1,0 +1,16 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "existing doc03 print paragraph adds repeated row4 header instruction for multipage working copy",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "base": "6077a5d6cdba42cbef6f2452b799b5c118f8c5d2",
+  "scope": "one appended sentence in f03 existing print paragraph; all XLSX/native04/otherbuyers unchanged",
+  "gates": [
+    "qualified actual64ops4page receipt read",
+    "two equal f03 builds",
+    "two focused assembly tests only",
+    "pixel compare all pages to6077baseline",
+    "root changed-page review before commit/push"
+  ],
+  "manual_gui_excel_tested": false
+}
