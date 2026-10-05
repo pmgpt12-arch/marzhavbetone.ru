@@ -103,3 +103,33 @@ def test_full_date_accepts_exact_native_literal_equivalent_only(code, expected):
     sys.path.insert(0, str(ROOT / 'tools'))
     from test_p5_calc_results import _полный_формат_даты
     assert _полный_формат_даты(code) is expected
+
+
+def test_sheet_scoped_name_blocks_before_existing_output_mutation(tmp_path):
+    module, filename, generated = workbook()
+    generated.active.defined_names.add(DefinedName('localname', attr_text="'Расчёт требования'!$F$18", localSheetId=0))
+    output = tmp_path / filename
+    output.write_bytes(b'previous accepted output')
+    with pytest.raises(ValueError, match='sheet-defined-name mismatch'):
+        module.write_owner_p5_workbook(generated, output)
+    assert output.read_bytes() == b'previous accepted output'
+    assert not list(tmp_path.glob('*.tmp'))
+
+
+@pytest.mark.parametrize('operation', ['write_bytes', 'replace'])
+def test_failed_atomic_write_cleans_temp_and_preserves_existing_output(tmp_path, monkeypatch, operation):
+    module, filename, generated = workbook()
+    output = tmp_path / filename
+    output.write_bytes(b'previous accepted output')
+    original = getattr(Path, operation)
+    def fail_temporary(self, *args, **kwargs):
+        if self.name.endswith('.approved.tmp'):
+            if operation == 'write_bytes':
+                original(self, b'partial write')
+            raise OSError('injected atomic write failure')
+        return original(self, *args, **kwargs)
+    monkeypatch.setattr(Path, operation, fail_temporary)
+    with pytest.raises(OSError, match='injected atomic write failure'):
+        module.write_owner_p5_workbook(generated, output)
+    assert output.read_bytes() == b'previous accepted output'
+    assert not list(tmp_path.glob('*.tmp'))

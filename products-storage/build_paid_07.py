@@ -85,6 +85,8 @@ def write_owner_p5_workbook(generated, filepath):
                 raise ValueError(f"P5 owner semantic mismatch: {output.name}/{name}!{a.coordinate}")
         if set(map(str, actual.merged_cells.ranges)) != set(map(str, expected.merged_cells.ranges)):
             raise ValueError("P5 owner merged-cell mismatch: " + output.name)
+        if {k: v.attr_text for k, v in actual.defined_names.items()} != {k: v.attr_text for k, v in expected.defined_names.items()}:
+            raise ValueError("P5 owner sheet-defined-name mismatch: " + output.name + "/" + name)
         # Both approved P5 books have no input validation rules. Stop if
         # rules are introduced rather than silently dropping native rules.
         if actual.data_validations.dataValidation or expected.data_validations.dataValidation:
@@ -95,8 +97,11 @@ def write_owner_p5_workbook(generated, filepath):
     if {k: v.attr_text for k, v in generated.defined_names.items()} != {k: v.attr_text for k, v in approved.defined_names.items()}:
         raise ValueError("P5 owner defined-name mismatch: " + output.name)
     temporary = output.with_name(output.name + ".approved.tmp")
-    temporary.write_bytes(native)
-    temporary.replace(output)
+    try:
+        temporary.write_bytes(native)
+        temporary.replace(output)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_widths=None, defer_save=False):
