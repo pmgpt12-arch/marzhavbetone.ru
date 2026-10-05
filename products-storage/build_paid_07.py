@@ -1,4 +1,6 @@
 import io
+import hashlib
+from pathlib import Path
 import os
 import re
 import zipfile
@@ -55,7 +57,54 @@ def save_workbook(wb, filepath):
             dst.writestr(info, data)
 
 
-def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_widths=None):
+
+# Owner approved these exact native Excel layouts on 05.10.2026. Reading
+# with openpyxl is semantic verification only; native bytes are never saved
+# through it. A future formula change must update/reapprove the template.
+P5_OWNER_TEMPLATES = Path(BASE_DIR).parent / "tools" / "templates" / "p5-owner-excel"
+P5_OWNER_SHA256 = {
+    "04-raschet-ubytkov.xlsx": "20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31",
+    "05-reestr-uderzhaniy.xlsx": "db0d99f745e460b29654c3079483103e1bcc39d65ad9e8c36d002288ed5df9ae",
+}
+
+
+def write_owner_p5_workbook(generated, filepath):
+    """Publish owner OOXML only if current generated business cells agree."""
+    output = Path(filepath)
+    native = (P5_OWNER_TEMPLATES / output.name).read_bytes()
+    if hashlib.sha256(native).hexdigest() != P5_OWNER_SHA256[output.name]:
+        raise ValueError("P5 owner template hash mismatch: " + output.name)
+    approved = openpyxl.load_workbook(io.BytesIO(native))
+    if generated.sheetnames != approved.sheetnames:
+        raise ValueError("P5 owner sheet mismatch: " + output.name)
+    for name in generated.sheetnames:
+        actual, expected = generated[name], approved[name]
+        for coordinate in set(actual._cells) | set(expected._cells):
+            a, e = actual.cell(*coordinate), expected.cell(*coordinate)
+            if (None if a.value == "" else a.value) != (None if e.value == "" else e.value):
+                raise ValueError(f"P5 owner semantic mismatch: {output.name}/{name}!{a.coordinate}")
+        if set(map(str, actual.merged_cells.ranges)) != set(map(str, expected.merged_cells.ranges)):
+            raise ValueError("P5 owner merged-cell mismatch: " + output.name)
+        if {k: v.attr_text for k, v in actual.defined_names.items()} != {k: v.attr_text for k, v in expected.defined_names.items()}:
+            raise ValueError("P5 owner sheet-defined-name mismatch: " + output.name + "/" + name)
+        # Both approved P5 books have no input validation rules. Stop if
+        # rules are introduced rather than silently dropping native rules.
+        if actual.data_validations.dataValidation or expected.data_validations.dataValidation:
+            raise ValueError("P5 owner validation mismatch: explicit integration required")
+    with zipfile.ZipFile(io.BytesIO(native)) as archive:
+        if any(b"dataValidation" in archive.read(n) for n in archive.namelist() if n.startswith("xl/worksheets/") and n.endswith(".xml")):
+            raise ValueError("P5 owner native validation mismatch: explicit integration required")
+    if {k: v.attr_text for k, v in generated.defined_names.items()} != {k: v.attr_text for k, v in approved.defined_names.items()}:
+        raise ValueError("P5 owner defined-name mismatch: " + output.name)
+    temporary = output.with_name(output.name + ".approved.tmp")
+    try:
+        temporary.write_bytes(native)
+        temporary.replace(output)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_widths=None, defer_save=False):
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.title = sheet_name
@@ -82,8 +131,10 @@ def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_
         for idx, w in enumerate(col_widths, 1):
             ws.column_dimensions[get_column_letter(idx)].width = w
     
-    save_workbook(wb, filepath)
-    print(f"  [Excel] {filepath}")
+    if not defer_save:
+        save_workbook(wb, filepath)
+        print(f"  [Excel] {filepath}")
+    return wb
 
 
 def _print_setup(ws, area, landscape=False, title_rows=None):
@@ -306,7 +357,7 @@ def build_raschet_04(filepath):
     last = r + 1 + len(сводка)
 
     _print_setup(ws, f"A1:H{last}")
-    save_workbook(wb, filepath)
+    write_owner_p5_workbook(wb, filepath)
 
 
 def create_word_doc(filepath, title, sections):
@@ -600,7 +651,7 @@ def build_paid_07():
     # универсального срока нет, основание покупатель выписывает сам.
     # «Сумма» остаётся в E: на ней стоит итог SUM(E2:E20).
     reestr = os.path.join(folder, "05-reestr-uderzhaniy.xlsx")
-    create_excel(
+    wb = create_excel(
         reestr,
         "Реестр удержаний и штрафов",
         headers=["№", "Дата", "Тип", "Основание", "Сумма", "Статус",
@@ -617,9 +668,9 @@ def build_paid_07():
             ["", "", "", "Сумма записей (не размер требования):", "=SUM(E2:E20)",
              "", "", "", "", "", "", "", ""],
         ],
-        col_widths=[5, 11, 12, 24, 12, 13, 11, 15, 18, 11, 18, 18, 16]
+        col_widths=[5, 11, 12, 24, 12, 13, 11, 15, 18, 11, 18, 18, 16],
+        defer_save=True
     )
-    wb = openpyxl.load_workbook(reestr)
     ws = wb.active
     for r in range(2, 21):
         ws.cell(row=r, column=2).number_format = "DD.MM.YYYY"
@@ -640,7 +691,7 @@ def build_paid_07():
     ws.row_dimensions[22].height = 30
     ws.freeze_panes = "A2"
     _print_setup(ws, "A1:M22", landscape=True, title_rows="1:1")
-    save_workbook(wb, reestr)
+    write_owner_p5_workbook(wb, reestr)
 
     create_excel(
         os.path.join(folder, "06-grafik-vozmeshcheniya.xlsx"),

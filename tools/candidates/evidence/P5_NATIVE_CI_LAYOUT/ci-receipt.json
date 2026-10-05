@@ -1,0 +1,49 @@
+[
+  {
+    "test": "old-package",
+    "exit": 1,
+    "expected": 1,
+    "command": [
+      "python3",
+      "-B",
+      "tools/check_packages.py"
+    ]
+  },
+  {
+    "test": "fixed-package",
+    "exit": 0,
+    "expected": 0,
+    "command": [
+      "python3",
+      "-B",
+      "tools/check_packages.py"
+    ]
+  },
+  {
+    "test": "native-gates",
+    "exit": 0,
+    "expected": 0,
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tools/test_p5_owner_native.py"
+    ]
+  },
+  {
+    "test": "public",
+    "exit": 0,
+    "expected": 0,
+    "command": [
+      "python3",
+      "-B",
+      "tools/run_checks.py",
+      "--class",
+      "public"
+    ]
+  }
+]
