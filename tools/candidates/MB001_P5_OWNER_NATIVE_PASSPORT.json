@@ -21,7 +21,10 @@
     "tools/test_p5_owner_native.py",
     "tools/candidates/MB001_P5_OWNER_NATIVE*",
     "tools/candidates/evidence/P5_OWNER_NATIVE/*",
-    "tools/test_p5_calc_results.py"
+    "tools/test_p5_calc_results.py",
+    "tools/templates/p5-owner-excel/*",
+    "tools/candidates/MB001_P5_NATIVE_CI_LAYOUT_FIX.md",
+    "tools/candidates/evidence/P5_NATIVE_CI_LAYOUT/*"
   ],
   "acceptance": [
     "two canonical book bytes equal immutable owner uploads",
@@ -49,5 +52,33 @@
   "feedback_observed": [
     "Temp pack missing: fixture dependency repaired, builder not widened",
     "Native Excel literal date dots escaped: exact equivalent accepted; negative DD.MM.YY/General/MM-DD formats rejected; actual Calc date print already passed"
-  ]
+  ],
+  "ci_correction": {
+    "execution_pattern": "iterative",
+    "primary_result": "Immutable native P5 templates stored outside product-package inventory, restoring public CI without weakening check_packages",
+    "feedback_loop_required": true,
+    "checkpoint_policy": "verified_only",
+    "base_sha": "218c4f8705f9ea2e805b7197f2f4463432686545",
+    "observed_failure": "run37305164702/job111746964983 check_packages: НЕТ МАНИФЕСТА templates; other38public checks PASS",
+    "root_cause": "Author placed reusable inputs in products-storage direct subdirectory; inventory correctly treats it as package",
+    "class": "PRODUCT_SCOPE_DISCOVERY / source placement",
+    "scope": [
+      "move products-storage/templates/p5-owner-excel to tools/templates/p5-owner-excel preserving bytes",
+      "update only P5 template locator and corresponding docs",
+      "record actual focused/public checks"
+    ],
+    "acceptance": [
+      "template/canonical SHA unchanged",
+      "13native tests PASS",
+      "check_packages PASS",
+      "public39checks PASS"
+    ],
+    "budget": {
+      "api_usd": 0,
+      "seconds_per_command": 180
+    },
+    "frozen_author_tree": "PR449@218c remains unchanged during independent452",
+    "gate_rule": "Keep check_packages unchanged; generator resources follow existing tools/templates convention",
+    "verified_result": "frozen218c packageFAIL expected; corrected packagePASS; native13PASS; public39/39PASS"
+  }
 }

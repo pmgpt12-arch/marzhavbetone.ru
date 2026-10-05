@@ -61,7 +61,7 @@ def save_workbook(wb, filepath):
 # Owner approved these exact native Excel layouts on 05.10.2026. Reading
 # with openpyxl is semantic verification only; native bytes are never saved
 # through it. A future formula change must update/reapprove the template.
-P5_OWNER_TEMPLATES = Path(BASE_DIR) / "templates" / "p5-owner-excel"
+P5_OWNER_TEMPLATES = Path(BASE_DIR).parent / "tools" / "templates" / "p5-owner-excel"
 P5_OWNER_SHA256 = {
     "04-raschet-ubytkov.xlsx": "20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31",
     "05-reestr-uderzhaniy.xlsx": "db0d99f745e460b29654c3079483103e1bcc39d65ad9e8c36d002288ed5df9ae",
