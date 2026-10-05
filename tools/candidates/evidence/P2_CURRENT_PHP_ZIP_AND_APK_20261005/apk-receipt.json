@@ -1,0 +1,15 @@
+{
+  "observed": "2026-10-05T15:56:27.009756+00:00",
+  "url": "https://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219",
+  "execution_pattern": "one_shot",
+  "primary_result": "APK_OFFICIAL_HTTP_ACQUISITION_RECEIPT",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "attempts": 1,
+  "transport": "server urllib.request;20s socket timeout;8MiB limit",
+  "currentness": "NOT_VERIFIED",
+  "legal_acceptance": "NOT_PERFORMED",
+  "status": "BLOCKED",
+  "error": "URLError(TimeoutError('timed out'))",
+  "elapsed_seconds": 40.195
+}
