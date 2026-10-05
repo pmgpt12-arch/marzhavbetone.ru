@@ -1,0 +1,17 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "Qualified long multipage Calc selection-export evidence: 64 operations, no missing/duplicate rows, continuous running balance, readable page breaks; original native/Excel gate remains unverified",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "scope": "synthetic disposable proof only",
+  "forbidden": [
+    "canonical writes",
+    "store/save XLSX",
+    "setPrintAreas",
+    "hiddenSheets",
+    "PageRange",
+    "SinglePageSheets",
+    "Excel manual PASS"
+  ],
+  "permitted_layout_delta": "Взаиморасчёты column B OptimalWidth=True in memory only"
+}

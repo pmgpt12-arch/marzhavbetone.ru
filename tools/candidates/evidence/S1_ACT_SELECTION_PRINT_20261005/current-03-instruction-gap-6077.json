@@ -1,0 +1,15 @@
+{
+  "head": "6077a5d6cdba42cbef6f2452b799b5c118f8c5d2",
+  "path": "tools/candidates/s1-oplata-za-raboty/03-algoritm-dejstviy.docx",
+  "sha256": "0ba40d84824283333d6728b1a22878b432e59b5b0b42384309cee24b239e281c",
+  "print_instruction_matches": [
+    {
+      "paragraph": 153,
+      "text": "Приложение — лист «Взаиморасчёты» файла 04, только заполненные строки. Перед печатью или экспортом проверьте предпросмотр: даты и суммы должны быть видны целиком. Если вместо даты показаны ###, расширьте столбец «Дата» в рабочей копии. Выделите шапку таблицы (строка 4) и строки с операциями (с 5-й, колонки A–J), затем напечатайте или сохраните в PDF только выделенное: в Calc — «Файл → Экспорт в PDF → Выделение», в Excel — «Печать → Напечатать выделенный фрагмент». Свод справа (колонки L–M) прикладывать не нужно."
+    }
+  ],
+  "qualified_width_or_repeat_instruction_present": true,
+  "conclusion": "At exact6077 buyer03 already documents preview and widening date column in working copy. It does not document repeat row4 on multipage export. Repeat-header is factory usability improvement from tested new long scenario, not an explicitly promised native feature; do not assert all-pages headers are supplied until instruction is updated.",
+  "width_instruction_present": true,
+  "multipage_repeat_header_instruction_present": false
+}

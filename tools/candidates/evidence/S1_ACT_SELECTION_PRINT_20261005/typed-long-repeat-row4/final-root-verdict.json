@@ -1,0 +1,27 @@
+{
+  "status": "WORKING_COPY_MULTIPAGE_PRINT_VERIFIED",
+  "accepted_by": "root",
+  "codeproof_review": "Root read full as-run run.py/check_pdf_rows.py plus actual summary and visual scope; accepted qualified PASS.",
+  "raw_receipts_preserved": true,
+  "pdf_row_checker_fields": [
+    "A rownumber",
+    "B date",
+    "D document",
+    "E amount",
+    "F act identifier",
+    "G signed impact",
+    "H disputed amount",
+    "I row check",
+    "J running balance"
+  ],
+  "C_operation_type_scope": "Fixture inputs and root visual review; not separately asserted by per-cell PDF bbox checker.",
+  "headers": "All ten headers on all four pages verified in actual PDF text and root visual review.",
+  "qualified_layout_changes": [
+    "ColumnB OptimalWidth in disposable memory",
+    "Repeated title row4 in disposable memory"
+  ],
+  "original_native_path_pass": false,
+  "native_excel_manual_pass": false,
+  "source_workbook_saved": false,
+  "canonical04_sha256": "f735e85286952a2780d413aea7debbe7a7ceda24edf717d79b631a4aad8945d9"
+}

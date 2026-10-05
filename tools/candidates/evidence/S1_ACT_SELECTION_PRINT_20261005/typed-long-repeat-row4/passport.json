@@ -1,0 +1,20 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "Qualified long multipage selected-range export with working-copy B OptimalWidth and repeat header row4; verify all64operations and headers everypage",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "scope": "synthetic disposable proof only",
+  "forbidden": [
+    "canonical writes",
+    "store/save XLSX",
+    "setPrintAreas",
+    "hiddenSheets",
+    "PageRange",
+    "SinglePageSheets",
+    "Excel manual PASS"
+  ],
+  "permitted_layout_delta": [
+    "Взаиморасчёты B OptimalWidth=True",
+    "Взаиморасчёты setTitleRows(row4), setPrintTitleRows(True) in memory only"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "Воспроизводимое Calc API selection-export proof файла 04 без сохранения XLSX",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "scope": "synthetic disposable proof only",
+  "forbidden": [
+    "canonical writes",
+    "store/save XLSX",
+    "setPrintAreas",
+    "hiddenSheets",
+    "PageRange",
+    "SinglePageSheets",
+    "Excel manual PASS"
+  ]
+}
