@@ -1,0 +1,787 @@
+{
+  "observed_at": "2026-10-05T11:56:17.159751+00:00",
+  "execution_pattern": "one_shot",
+  "primary_result": "S1_doc09_normative_input_followup",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "source_sha": "a610c1524711f2179ba42c12f00692e4db7373a4",
+  "previous_frozen_input_commit": "dd0a85e43bf2fb8c3de42ede97c7c790db63d0a7",
+  "previous_frozen_not_modified": true,
+  "document": {
+    "path": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+    "blob_sha": "a7633759a9174d0e69291f480c1551e5d7439fe7",
+    "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+    "semantic_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+    "extracted_path": "tools/candidates/evidence/S1_LEGAL_INPUTS_20261005/09-pretenziya.extracted.txt",
+    "extracted_sha256": "a6cdd9b1f3360f4d041c067a2d6eed9d552702f3adf8d083a42868e2cc0f7315",
+    "source_sha": "a610c1524711f2179ba42c12f00692e4db7373a4",
+    "reference_candidates": [
+      {
+        "location": "paragraph:1",
+        "text": "Претензия об оплате принятых работ",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:2",
+        "text": "Файл 09. Досудебное требование. Претензионный порядок для денежных требований из договора установлен ч. 5 ст. 4 АПК РФ; срок, по истечении которого можно обращаться в суд, — из договора, а если его нет — из этой нормы, со дня направления претензии.",
+        "literal_references": [
+          "ч. 5 ст. 4 АПК РФ"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:3",
+        "text": "Важно, прочитайте до использования. Это рабочий шаблон, а не юридическая консультация и не гарантия взыскания. Система рассчитана на одну ситуацию: работы приняты заказчиком, срок оплаты истёк, оплаты нет или она частичная. Если работы не приняты, система не подходит: сначала нужна приёмка работ по договору. Приоритет всегда у условий вашего договора. Если заказчик удерживает оплату, заявляет зачёт, неустойку, недостатки или встречное требование, оспаривает подпись или объёмы, направил мотивированный отказ, работы сданы односторонним актом, в долге есть допработы без соглашения или есть признаки банкротства — это границы системы: откройте файл 01 и действуйте по строке своей границы. Ставок, сроков и размеров пошлин числом в тексте нет намеренно: они меняются, а файл сам не обновляется — берите их из названного источника на дату документа.",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:4",
+        "text": "Редакция-кандидат. Правовые ссылки этой редакции не прошли юридическую приёмку; перед применением сверьте их с действующей редакцией закона.",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:6",
+        "text": "Сумма долга — бесспорная, из реестра взаиморасчётов (файл 04), за вычетом всех оплат и зачтённого аванса. Спорные суммы (границы B2 и B5) в претензию без оценки специалиста не включайте; акты, оспоренные заказчиком (граница B4), — тоже.",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:7",
+        "text": "Сверка перед отправкой: {{СУММА_ДОЛГА}} = «Долг на последний день расчёта» файла 08 (лист «Расчёт») = «БЕССПОРНАЯ ЧАСТЬ» файла 04 (лист «Взаиморасчёты», ячейка M12) за вычетом актов, не вошедших в расчёт (файл 08, лист «Ввод»). Не совпадает или в файле 08 строка «Сверка с бесспорной частью файла 04» не «ок» — претензию не отправляйте: в расчёт попала спорная часть или общий долг.",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:8",
+        "text": "Расчёт процентов — из файла 08 со статусом «ГОТОВ». В поле {{СУММА_ПРОЦЕНТОВ}} перенесите «Проценты итого» с листа «Расчёт», в поле {{ДАТА_РАСЧЁТА}} — последний день расчёта с листа «Ввод». Расчёт приложите.",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:9",
+        "text": "Адрес — по свежей выписке ЕГРЮЛ; дубль — по адресу и каналу из договора.",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:10",
+        "text": "Если договор устанавливает неустойку за просрочку оплаты — выбор между неустойкой и процентами (п. 4 ст. 395 ГК РФ) согласуйте со специалистом.",
+        "literal_references": [
+          "п. 4 ст. 395 ГК РФ"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:11",
+        "text": "Проверка заказчика на признаки банкротства повторена в день отправки.",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:12",
+        "text": "Актов несколько — у каждого свой последний день срока оплаты: перенесите его в таблицу п. 1 из файла 04, лист «Долг по актам», колонка D.",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:13",
+        "text": "Входящие документы заказчика из «Реестра приложений» (файл 04): гарантийное письмо и подписанный заказчиком акт сверки приложите копией, если претензия на них ссылается; возражения заказчика не прикладывайте — они у него есть. Выбор отметьте в колонке «К претензии».",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:14",
+        "text": "Текст претензии",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:17",
+        "text": "Адрес (по выписке ЕГРЮЛ): {{АДРЕС_ЗАКАЗЧИКА}}; адрес для корреспонденции по договору: {{АДРЕС_ПО_ДОГОВОРУ}}",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:19",
+        "text": "ПРЕТЕНЗИЯ (досудебное требование об оплате выполненных работ)",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:20",
+        "text": "Между {{НАИМЕНОВАНИЕ_ЗАКАЗЧИКА}} (Заказчик) и {{НАИМЕНОВАНИЕ_СУБПОДРЯДЧИКА}} (Субподрядчик) заключён договор № {{НОМЕР_ДОГОВОРА}} от {{ДАТА_ДОГОВОРА}} (Договор) на выполнение {{ПРЕДМЕТ_ДОГОВОРА}} на объекте {{ОБЪЕКТ}}.",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:27",
+        "text": "Последний день срока оплаты",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:40",
+        "text": "2. Согласно п. {{ПУНКТ_ДОГОВОРА_ОБ_ОПЛАТЕ}} Договора [с учётом дополнительного соглашения № {{НОМЕР}} от {{ДАТА}} — если срок переносился] оплата производится {{СРОК_ОПЛАТЫ}}. Последний день срока оплаты по каждому акту указан в таблице п. 1; по всем актам срок истёк. С учётом оплат, перечисленных в таблице ниже, задолженность Заказчика на {{ДАТА_ДОКУМЕНТА}} составляет {{СУММА_ДОЛГА}} руб.",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:57",
+        "text": "Обязанность оплатить принятые работы установлена ст. 309, 310, 711, 746 Гражданского кодекса РФ и Договором.",
+        "literal_references": [
+          "ст. 309, 310, 711, 746"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:58",
+        "text": "3. На основании ст. 395 Гражданского кодекса РФ на сумму долга начисляются проценты за пользование чужими денежными средствами, размер которых определяется ключевой ставкой Банка России, действовавшей в соответствующие периоды. По состоянию на {{ДАТА_РАСЧЁТА}} проценты составляют {{СУММА_ПРОЦЕНТОВ}} руб. (расчёт — приложение 2) и продолжают начисляться по день фактической оплаты.",
+        "literal_references": [
+          "ст. 395"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:59",
+        "text": "4. Требуем в срок {{СРОК_ОТВЕТА}} с даты получения претензии: 1) оплатить задолженность {{СУММА_ДОЛГА}} руб.; 2) уплатить проценты по ст. 395 ГК РФ в сумме {{СУММА_ПРОЦЕНТОВ}} руб., рассчитанные по состоянию на {{ДАТА_РАСЧЁТА}}, а также проценты, начисленные после этой даты по день фактической оплаты. Реквизиты: {{БАНКОВСКИЕ_РЕКВИЗИТЫ}}.",
+        "literal_references": [
+          "ст. 395 ГК РФ"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:60",
+        "text": "При неисполнении требования Субподрядчик обратится в арбитражный суд с иском о взыскании задолженности, процентов и судебных расходов (ст. 110 АПК РФ).",
+        "literal_references": [
+          "ст. 110 АПК РФ"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:63",
+        "text": "Расчёт процентов по ст. 395 ГК РФ на {{ДАТА_РАСЧЁТА}} (файл 08, лист «Расчёт»).",
+        "literal_references": [
+          "ст. 395 ГК РФ"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:66",
+        "text": "[Если претензия на них ссылается] Копии документов Заказчика: гарантийное письмо, подписанный Заказчиком акт сверки — строки «Реестра приложений» с отметкой «К претензии».",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:69",
+        "text": "Направьте способом из файла 07. Опись вложения, чек, трек-номер — в файл 04, лист «Реестр передачи»: это будущее приложение к иску.",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:70",
+        "text": "Дату направления и срок ожидания — в лист «Контроль ответа» (файл 02).",
+        "literal_references": [],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:71",
+        "text": "Срок, который вы назначили заказчику, и срок, по истечении которого можно обращаться в суд, — разные сроки. Второй считается со дня направления претензии и определяется договором или ч. 5 ст. 4 АПК РФ; назначенный вами более короткий срок его не сокращает.",
+        "literal_references": [
+          "ч. 5 ст. 4 АПК РФ"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      }
+    ],
+    "literal_reference_count": 8,
+    "registry_mapping_status": "BLOCKED_REGISTRY_UNAVAILABLE",
+    "normative_verdict": "NOT_VERIFIED",
+    "literal_claims": [
+      {
+        "location": "paragraph:2",
+        "text": "Файл 09. Досудебное требование. Претензионный порядок для денежных требований из договора установлен ч. 5 ст. 4 АПК РФ; срок, по истечении которого можно обращаться в суд, — из договора, а если его нет — из этой нормы, со дня направления претензии.",
+        "literal_references": [
+          "ч. 5 ст. 4 АПК РФ"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:10",
+        "text": "Если договор устанавливает неустойку за просрочку оплаты — выбор между неустойкой и процентами (п. 4 ст. 395 ГК РФ) согласуйте со специалистом.",
+        "literal_references": [
+          "п. 4 ст. 395 ГК РФ"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:57",
+        "text": "Обязанность оплатить принятые работы установлена ст. 309, 310, 711, 746 Гражданского кодекса РФ и Договором.",
+        "literal_references": [
+          "ст. 309, 310, 711, 746"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:58",
+        "text": "3. На основании ст. 395 Гражданского кодекса РФ на сумму долга начисляются проценты за пользование чужими денежными средствами, размер которых определяется ключевой ставкой Банка России, действовавшей в соответствующие периоды. По состоянию на {{ДАТА_РАСЧЁТА}} проценты составляют {{СУММА_ПРОЦЕНТОВ}} руб. (расчёт — приложение 2) и продолжают начисляться по день фактической оплаты.",
+        "literal_references": [
+          "ст. 395"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:59",
+        "text": "4. Требуем в срок {{СРОК_ОТВЕТА}} с даты получения претензии: 1) оплатить задолженность {{СУММА_ДОЛГА}} руб.; 2) уплатить проценты по ст. 395 ГК РФ в сумме {{СУММА_ПРОЦЕНТОВ}} руб., рассчитанные по состоянию на {{ДАТА_РАСЧЁТА}}, а также проценты, начисленные после этой даты по день фактической оплаты. Реквизиты: {{БАНКОВСКИЕ_РЕКВИЗИТЫ}}.",
+        "literal_references": [
+          "ст. 395 ГК РФ"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:60",
+        "text": "При неисполнении требования Субподрядчик обратится в арбитражный суд с иском о взыскании задолженности, процентов и судебных расходов (ст. 110 АПК РФ).",
+        "literal_references": [
+          "ст. 110 АПК РФ"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:63",
+        "text": "Расчёт процентов по ст. 395 ГК РФ на {{ДАТА_РАСЧЁТА}} (файл 08, лист «Расчёт»).",
+        "literal_references": [
+          "ст. 395 ГК РФ"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      },
+      {
+        "location": "paragraph:71",
+        "text": "Срок, который вы назначили заказчику, и срок, по истечении которого можно обращаться в суд, — разные сроки. Второй считается со дня направления претензии и определяется договором или ч. 5 ст. 4 АПК РФ; назначенный вами более короткий срок его не сокращает.",
+        "literal_references": [
+          "ч. 5 ст. 4 АПК РФ"
+        ],
+        "classification": "OBSERVED_TEXT; EXPERT_REVIEW_NOT_PERFORMED"
+      }
+    ],
+    "source_status_by_literal_reference": [
+      {
+        "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+        "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+        "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+        "location": "paragraph:2",
+        "literal": "ч. 5 ст. 4 АПК РФ",
+        "proposed_norm_key": "apk-4",
+        "code": "АПК",
+        "article": "4",
+        "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+        "source_id": null,
+        "source_status": "NOT_VERIFIED_SOURCE_NOT_OBTAINED",
+        "normative_verdict": "NOT_VERIFIED"
+      },
+      {
+        "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+        "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+        "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+        "location": "paragraph:10",
+        "literal": "п. 4 ст. 395 ГК РФ",
+        "proposed_norm_key": "gk-395",
+        "code": "ГК",
+        "article": "395",
+        "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+        "source_id": "gk-395",
+        "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+        "normative_verdict": "NOT_VERIFIED"
+      },
+      {
+        "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+        "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+        "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+        "location": "paragraph:57",
+        "literal": "ст. 309, 310, 711, 746",
+        "proposed_norm_key": "gk-309",
+        "code": "ГК",
+        "article": "309",
+        "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+        "source_id": null,
+        "source_status": "NOT_VERIFIED_SOURCE_NOT_OBTAINED",
+        "normative_verdict": "NOT_VERIFIED"
+      },
+      {
+        "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+        "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+        "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+        "location": "paragraph:57",
+        "literal": "ст. 309, 310, 711, 746",
+        "proposed_norm_key": "gk-310",
+        "code": "ГК",
+        "article": "310",
+        "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+        "source_id": null,
+        "source_status": "NOT_VERIFIED_SOURCE_NOT_OBTAINED",
+        "normative_verdict": "NOT_VERIFIED"
+      },
+      {
+        "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+        "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+        "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+        "location": "paragraph:57",
+        "literal": "ст. 309, 310, 711, 746",
+        "proposed_norm_key": "gk-711",
+        "code": "ГК",
+        "article": "711",
+        "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+        "source_id": null,
+        "source_status": "NOT_VERIFIED_SOURCE_NOT_OBTAINED",
+        "normative_verdict": "NOT_VERIFIED"
+      },
+      {
+        "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+        "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+        "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+        "location": "paragraph:57",
+        "literal": "ст. 309, 310, 711, 746",
+        "proposed_norm_key": "gk-746",
+        "code": "ГК",
+        "article": "746",
+        "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+        "source_id": "gk-746",
+        "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+        "normative_verdict": "NOT_VERIFIED"
+      },
+      {
+        "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+        "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+        "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+        "location": "paragraph:58",
+        "literal": "ст. 395",
+        "proposed_norm_key": "gk-395",
+        "code": "ГК",
+        "article": "395",
+        "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+        "source_id": "gk-395",
+        "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+        "normative_verdict": "NOT_VERIFIED"
+      },
+      {
+        "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+        "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+        "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+        "location": "paragraph:59",
+        "literal": "ст. 395 ГК РФ",
+        "proposed_norm_key": "gk-395",
+        "code": "ГК",
+        "article": "395",
+        "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+        "source_id": "gk-395",
+        "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+        "normative_verdict": "NOT_VERIFIED"
+      },
+      {
+        "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+        "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+        "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+        "location": "paragraph:60",
+        "literal": "ст. 110 АПК РФ",
+        "proposed_norm_key": "apk-110",
+        "code": "АПК",
+        "article": "110",
+        "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+        "source_id": null,
+        "source_status": "NOT_VERIFIED_SOURCE_NOT_OBTAINED",
+        "normative_verdict": "NOT_VERIFIED"
+      },
+      {
+        "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+        "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+        "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+        "location": "paragraph:63",
+        "literal": "ст. 395 ГК РФ",
+        "proposed_norm_key": "gk-395",
+        "code": "ГК",
+        "article": "395",
+        "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+        "source_id": "gk-395",
+        "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+        "normative_verdict": "NOT_VERIFIED"
+      },
+      {
+        "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+        "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+        "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+        "location": "paragraph:71",
+        "literal": "ч. 5 ст. 4 АПК РФ",
+        "proposed_norm_key": "apk-4",
+        "code": "АПК",
+        "article": "4",
+        "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+        "source_id": null,
+        "source_status": "NOT_VERIFIED_SOURCE_NOT_OBTAINED",
+        "normative_verdict": "NOT_VERIFIED"
+      }
+    ],
+    "previous_file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+    "byte_changed_from_initial": false,
+    "buyer_snapshot_path": "tools/candidates/evidence/S1_LEGAL_FOLLOWUP_20261005/doc09/09-pretenziya.docx",
+    "text_snapshot_path": "tools/candidates/evidence/S1_LEGAL_FOLLOWUP_20261005/doc09/09-pretenziya.extracted.txt"
+  },
+  "literal_reference_map": [
+    {
+      "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+      "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+      "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+      "location": "paragraph:2",
+      "literal": "ч. 5 ст. 4 АПК РФ",
+      "proposed_norm_key": "apk-4",
+      "code": "АПК",
+      "article": "4",
+      "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+      "source_id": "apk-4",
+      "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+      "normative_verdict": "NOT_VERIFIED",
+      "source_sha256": "49f9dccef89e9543bbbd52e99225bc4b7301109d889ad633afe10f67b4ff9317"
+    },
+    {
+      "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+      "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+      "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+      "location": "paragraph:10",
+      "literal": "п. 4 ст. 395 ГК РФ",
+      "proposed_norm_key": "gk-395",
+      "code": "ГК",
+      "article": "395",
+      "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+      "source_id": "gk-395",
+      "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+      "normative_verdict": "NOT_VERIFIED",
+      "source_sha256": "32bbfef3a51c7ef5f6dad5ffe3421d15516fbd1f37d93fcbe9be29ae267f60c7"
+    },
+    {
+      "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+      "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+      "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+      "location": "paragraph:57",
+      "literal": "ст. 309, 310, 711, 746",
+      "proposed_norm_key": "gk-309",
+      "code": "ГК",
+      "article": "309",
+      "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+      "source_id": "gk-309",
+      "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+      "normative_verdict": "NOT_VERIFIED",
+      "source_sha256": "fd5ba0ea35d0fa1e8d20949120a74c5de18f55235217e0dc194c7482692be3fd"
+    },
+    {
+      "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+      "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+      "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+      "location": "paragraph:57",
+      "literal": "ст. 309, 310, 711, 746",
+      "proposed_norm_key": "gk-310",
+      "code": "ГК",
+      "article": "310",
+      "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+      "source_id": "gk-310",
+      "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+      "normative_verdict": "NOT_VERIFIED",
+      "source_sha256": "87dbf80c19eb661fae60006a15d4687fb3446a9966038ed568d0634576efeb38"
+    },
+    {
+      "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+      "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+      "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+      "location": "paragraph:57",
+      "literal": "ст. 309, 310, 711, 746",
+      "proposed_norm_key": "gk-711",
+      "code": "ГК",
+      "article": "711",
+      "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+      "source_id": "gk-711",
+      "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+      "normative_verdict": "NOT_VERIFIED",
+      "source_sha256": "d7403c50986a7bde95cd5a21f75266adeff68dc98b0c9223ac90b1a941ae44c3"
+    },
+    {
+      "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+      "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+      "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+      "location": "paragraph:57",
+      "literal": "ст. 309, 310, 711, 746",
+      "proposed_norm_key": "gk-746",
+      "code": "ГК",
+      "article": "746",
+      "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+      "source_id": "gk-746",
+      "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+      "normative_verdict": "NOT_VERIFIED",
+      "source_sha256": "1271d9e348fdae2e7475563baf888cb00cebe1c3ab59f87698ad318e7f43fd37"
+    },
+    {
+      "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+      "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+      "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+      "location": "paragraph:58",
+      "literal": "ст. 395",
+      "proposed_norm_key": "gk-395",
+      "code": "ГК",
+      "article": "395",
+      "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+      "source_id": "gk-395",
+      "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+      "normative_verdict": "NOT_VERIFIED",
+      "source_sha256": "32bbfef3a51c7ef5f6dad5ffe3421d15516fbd1f37d93fcbe9be29ae267f60c7"
+    },
+    {
+      "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+      "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+      "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+      "location": "paragraph:59",
+      "literal": "ст. 395 ГК РФ",
+      "proposed_norm_key": "gk-395",
+      "code": "ГК",
+      "article": "395",
+      "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+      "source_id": "gk-395",
+      "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+      "normative_verdict": "NOT_VERIFIED",
+      "source_sha256": "32bbfef3a51c7ef5f6dad5ffe3421d15516fbd1f37d93fcbe9be29ae267f60c7"
+    },
+    {
+      "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+      "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+      "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+      "location": "paragraph:60",
+      "literal": "ст. 110 АПК РФ",
+      "proposed_norm_key": "apk-110",
+      "code": "АПК",
+      "article": "110",
+      "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+      "source_id": "apk-110",
+      "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+      "normative_verdict": "NOT_VERIFIED",
+      "source_sha256": "3bcc47c8123bab92b3fdec760c0f9b4383e88bbb8efa539bc1370c148eaf02a8"
+    },
+    {
+      "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+      "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+      "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+      "location": "paragraph:63",
+      "literal": "ст. 395 ГК РФ",
+      "proposed_norm_key": "gk-395",
+      "code": "ГК",
+      "article": "395",
+      "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+      "source_id": "gk-395",
+      "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+      "normative_verdict": "NOT_VERIFIED",
+      "source_sha256": "32bbfef3a51c7ef5f6dad5ffe3421d15516fbd1f37d93fcbe9be29ae267f60c7"
+    },
+    {
+      "document": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+      "document_hash": "sha256:ff9f107db02abe71f5cabe8a51f310f1f96aee0534273a5ff66a80ba6c633d18",
+      "file_sha256": "6f38de258e254f54146ac86519a52b7cc8e6241a796cbe2426e14ec94ce7559d",
+      "location": "paragraph:71",
+      "literal": "ч. 5 ст. 4 АПК РФ",
+      "proposed_norm_key": "apk-4",
+      "code": "АПК",
+      "article": "4",
+      "mapping_class": "literal reference normalization; registry norm_id NOT_VERIFIED",
+      "source_id": "apk-4",
+      "source_status": "SECONDARY_TEXT_OBTAINED_NOT_ACCEPTED",
+      "normative_verdict": "NOT_VERIFIED",
+      "source_sha256": "49f9dccef89e9543bbbd52e99225bc4b7301109d889ad633afe10f67b4ff9317"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "gk-309",
+      "code": "ГК РФ",
+      "article": "309",
+      "url": "https://www.consultant.ru/document/cons_doc_LAW_5142/1cd43e51fbd4129343b325971a466ec5cd32a425/",
+      "source_class": "secondary",
+      "retrieved_at": "2026-10-05T11:56:17.159751+00:00",
+      "edition_as_displayed": [
+        "ред. от 10.06.2026"
+      ],
+      "edition_currentness": "NOT_VERIFIED",
+      "retrieval": "direct web open exact article URL; full captured legal body retained with line addresses",
+      "path": "tools/candidates/evidence/S1_LEGAL_FOLLOWUP_20261005/sources/secondary-gk-309.txt",
+      "sha256": "fd5ba0ea35d0fa1e8d20949120a74c5de18f55235217e0dc194c7482692be3fd",
+      "capture_path": "tools/candidates/evidence/S1_LEGAL_FOLLOWUP_20261005/sources/web-doc09-five-articles.capture.txt",
+      "capture_sha256": "6f30cbfc34235e98540421282ddf97a627841e4865878e744d3bb69ba69990d9",
+      "original_capture_sha256": "9c0cbea26863f946ceb19619397f0ead418a504be80a010f737c0d9dcdde0e92",
+      "captured_text_normalization": "trailing whitespace stripped; terminal newline",
+      "quote_obtained": true,
+      "legal_acceptance": "NOT_PERFORMED",
+      "end_of_legal_body_observed": true,
+      "edition_header_as_displayed": [
+        "L8: 【4†\"Гражданский кодекс Российской Федерации (часть первая)\" от 30.11.1994 N 51-ФЗ (ред. от 10.06.2026)】"
+      ]
+    },
+    {
+      "source_id": "gk-310",
+      "code": "ГК РФ",
+      "article": "310",
+      "url": "https://www.consultant.ru/document/cons_doc_LAW_5142/33c65ab7522b599d12e61cc848aebcd09e651f9c/",
+      "source_class": "secondary",
+      "retrieved_at": "2026-10-05T11:56:17.159751+00:00",
+      "edition_as_displayed": [
+        "ред. от 10.06.2026"
+      ],
+      "edition_currentness": "NOT_VERIFIED",
+      "retrieval": "direct web open exact article URL; full captured legal body retained with line addresses",
+      "path": "tools/candidates/evidence/S1_LEGAL_FOLLOWUP_20261005/sources/secondary-gk-310.txt",
+      "sha256": "87dbf80c19eb661fae60006a15d4687fb3446a9966038ed568d0634576efeb38",
+      "capture_path": "tools/candidates/evidence/S1_LEGAL_FOLLOWUP_20261005/sources/web-doc09-five-articles.capture.txt",
+      "capture_sha256": "6f30cbfc34235e98540421282ddf97a627841e4865878e744d3bb69ba69990d9",
+      "original_capture_sha256": "9c0cbea26863f946ceb19619397f0ead418a504be80a010f737c0d9dcdde0e92",
+      "captured_text_normalization": "trailing whitespace stripped; terminal newline",
+      "quote_obtained": true,
+      "legal_acceptance": "NOT_PERFORMED",
+      "end_of_legal_body_observed": true,
+      "edition_header_as_displayed": [
+        "L8: 【4†\"Гражданский кодекс Российской Федерации (часть первая)\" от 30.11.1994 N 51-ФЗ (ред. от 10.06.2026)】"
+      ]
+    },
+    {
+      "source_id": "gk-711",
+      "code": "ГК РФ",
+      "article": "711",
+      "url": "https://www.consultant.ru/document/cons_doc_LAW_9027/46561f5271883fcf47f3e9859d3a59eb56bfcd96/",
+      "source_class": "secondary",
+      "retrieved_at": "2026-10-05T11:56:17.159751+00:00",
+      "edition_as_displayed": [
+        "ред. от 24.06.2025"
+      ],
+      "edition_currentness": "NOT_VERIFIED",
+      "retrieval": "direct web open exact article URL; full captured legal body retained with line addresses",
+      "path": "tools/candidates/evidence/S1_LEGAL_FOLLOWUP_20261005/sources/secondary-gk-711.txt",
+      "sha256": "d7403c50986a7bde95cd5a21f75266adeff68dc98b0c9223ac90b1a941ae44c3",
+      "capture_path": "tools/candidates/evidence/S1_LEGAL_FOLLOWUP_20261005/sources/web-doc09-five-articles.capture.txt",
+      "capture_sha256": "6f30cbfc34235e98540421282ddf97a627841e4865878e744d3bb69ba69990d9",
+      "original_capture_sha256": "9c0cbea26863f946ceb19619397f0ead418a504be80a010f737c0d9dcdde0e92",
+      "captured_text_normalization": "trailing whitespace stripped; terminal newline",
+      "quote_obtained": true,
+      "legal_acceptance": "NOT_PERFORMED",
+      "end_of_legal_body_observed": true,
+      "edition_header_as_displayed": [
+        "L8: 【4†\"Гражданский кодекс Российской Федерации (часть вторая)\" от 26.01.1996 N 14-ФЗ (ред. от 24.06.2025, с изм. от 09.06.2026)】"
+      ]
+    },
+    {
+      "source_id": "apk-4",
+      "code": "АПК РФ",
+      "article": "4",
+      "url": "https://www.consultant.ru/document/cons_doc_LAW_37800/4d77fceae32b76a1cc26db3a1c64857d59045fdc/",
+      "source_class": "secondary",
+      "retrieved_at": "2026-10-05T11:56:17.159751+00:00",
+      "edition_as_displayed": [
+        "ред. от 15.12.2025"
+      ],
+      "edition_currentness": "NOT_VERIFIED",
+      "retrieval": "direct web open exact article URL; full captured legal body retained with line addresses",
+      "path": "tools/candidates/evidence/S1_LEGAL_FOLLOWUP_20261005/sources/secondary-apk-4.txt",
+      "sha256": "49f9dccef89e9543bbbd52e99225bc4b7301109d889ad633afe10f67b4ff9317",
+      "capture_path": "tools/candidates/evidence/S1_LEGAL_FOLLOWUP_20261005/sources/web-doc09-five-articles.capture.txt",
+      "capture_sha256": "6f30cbfc34235e98540421282ddf97a627841e4865878e744d3bb69ba69990d9",
+      "original_capture_sha256": "9c0cbea26863f946ceb19619397f0ead418a504be80a010f737c0d9dcdde0e92",
+      "captured_text_normalization": "trailing whitespace stripped; terminal newline",
+      "quote_obtained": true,
+      "legal_acceptance": "NOT_PERFORMED",
+      "end_of_legal_body_observed": true,
+      "edition_header_as_displayed": [
+        "L4: 【1†\"Арбитражный процессуальный кодекс Российской Федерации\" от 24.07.2002 N 95-ФЗ (ред. от 15.12.2025) (с изм. и доп., вступ. в силу с 01.01.2026)】"
+      ]
+    },
+    {
+      "source_id": "apk-110",
+      "code": "АПК РФ",
+      "article": "110",
+      "url": "https://www.consultant.ru/document/cons_doc_LAW_37800/128d3d933e1cf934ef23b4bef786513c9f544590/",
+      "source_class": "secondary",
+      "retrieved_at": "2026-10-05T11:56:17.159751+00:00",
+      "edition_as_displayed": [
+        "ред. от 15.12.2025"
+      ],
+      "edition_currentness": "NOT_VERIFIED",
+      "retrieval": "direct web open exact article URL; full captured legal body retained with line addresses",
+      "path": "tools/candidates/evidence/S1_LEGAL_FOLLOWUP_20261005/sources/secondary-apk-110.txt",
+      "sha256": "3bcc47c8123bab92b3fdec760c0f9b4383e88bbb8efa539bc1370c148eaf02a8",
+      "capture_path": "tools/candidates/evidence/S1_LEGAL_FOLLOWUP_20261005/sources/web-doc09-five-articles.capture.txt",
+      "capture_sha256": "6f30cbfc34235e98540421282ddf97a627841e4865878e744d3bb69ba69990d9",
+      "original_capture_sha256": "9c0cbea26863f946ceb19619397f0ead418a504be80a010f737c0d9dcdde0e92",
+      "captured_text_normalization": "trailing whitespace stripped; terminal newline",
+      "quote_obtained": true,
+      "legal_acceptance": "NOT_PERFORMED",
+      "end_of_legal_body_observed": true,
+      "edition_header_as_displayed": [
+        "L4: 【1†\"Арбитражный процессуальный кодекс Российской Федерации\" от 24.07.2002 N 95-ФЗ (ред. от 15.12.2025) (с изм. и доп., вступ. в силу с 01.01.2026)】"
+      ]
+    },
+    {
+      "source_id": "gk-395",
+      "code": "ГК РФ",
+      "article": "395",
+      "url": "https://www.consultant.ru/document/cons_doc_LAW_5142/93383099dc4f06165d8d4aac4eeb159db4f6da3d/",
+      "source_class": "secondary",
+      "retrieval": "web_tool_direct_open_text_extract; not raw publisher HTML",
+      "retrieved_at": "2026-10-05T11:44:17.454943+00:00",
+      "edition_as_displayed": "ГК1 red. 10.06.2026",
+      "path": "tools/candidates/evidence/S1_LEGAL_INPUTS_20261005/sources/secondary-gk-395.txt",
+      "sha256": "32bbfef3a51c7ef5f6dad5ffe3421d15516fbd1f37d93fcbe9be29ae267f60c7",
+      "capture_path": "tools/candidates/evidence/S1_LEGAL_INPUTS_20261005/sources/web-secondary-gk-four-articles.txt",
+      "capture_sha256": "85c66c708baafaa1ad3019b9e79177426e74b5d406387c8022705375de8d3518",
+      "quote_obtained": true,
+      "currentness": "NOT_VERIFIED",
+      "legal_acceptance": "NOT_PERFORMED",
+      "captured_text_normalization": "trailing whitespace removed; terminal newline; substantive text unchanged",
+      "original_capture_sha256": "b69d2c58bb952f7bcc32982cad5a92b5cf8ad52ef3c21bc0815c90895ab8b56f",
+      "reused_from_frozen_commit": "dd0a85e43bf2fb8c3de42ede97c7c790db63d0a7",
+      "reuse_note": "prior frozen source path; hash independently recomputed; not overwritten",
+      "edition_header_as_displayed": [
+        "L8: 【4†\"Гражданский кодекс Российской Федерации (часть первая)\" от 30.11.1994 N 51-ФЗ (ред. от 10.06.2026)】"
+      ]
+    },
+    {
+      "source_id": "gk-746",
+      "code": "ГК РФ",
+      "article": "746",
+      "url": "https://www.consultant.ru/document/cons_doc_LAW_9027/213b00ab7366c34225e24be2f360912884de054e/",
+      "source_class": "secondary",
+      "retrieval": "web_tool_direct_open_text_extract; not raw publisher HTML",
+      "retrieved_at": "2026-10-05T11:44:17.454943+00:00",
+      "edition_as_displayed": "header in capture; legal effective-currentness not verified",
+      "path": "tools/candidates/evidence/S1_LEGAL_INPUTS_20261005/sources/secondary-gk-746.txt",
+      "sha256": "1271d9e348fdae2e7475563baf888cb00cebe1c3ab59f87698ad318e7f43fd37",
+      "capture_path": "tools/candidates/evidence/S1_LEGAL_INPUTS_20261005/sources/web-secondary-gk-four-articles-b.txt",
+      "capture_sha256": "bc3ec30cafe4a54fc5872656eedafbc7e05fb804e611146c30225d80435384bb",
+      "quote_obtained": true,
+      "currentness": "NOT_VERIFIED",
+      "legal_acceptance": "NOT_PERFORMED",
+      "captured_text_normalization": "trailing whitespace removed; terminal newline; substantive text unchanged",
+      "original_capture_sha256": "f520f61fd3e90e0a873051e11353050f50ccf9abb63bd4fcf1aa435da01387b4",
+      "reused_from_frozen_commit": "dd0a85e43bf2fb8c3de42ede97c7c790db63d0a7",
+      "reuse_note": "prior frozen source path; hash independently recomputed; not overwritten",
+      "edition_header_as_displayed": [
+        "L8: 【4†\"Гражданский кодекс Российской Федерации (часть вторая)\" от 26.01.1996 N 14-ФЗ (ред. от 24.06.2025, с изм. от 09.06.2026)】"
+      ]
+    }
+  ],
+  "preparation_status": "VERIFIED_NARROW_INPUT_09",
+  "legal_acceptance": "NOT_PERFORMED",
+  "currentness": "NOT_VERIFIED",
+  "existing_registry": "UNAVAILABLE; no new registry introduced",
+  "remaining_gates": [
+    "independent applicability/exceptions check",
+    "official effective-edition confirmation or existing version-specific human-review evidence",
+    "implicit legal mechanisms beyond literal references",
+    "hash-bound results and reread if wording corrected"
+  ],
+  "source_route_policy": "No retries of prior blocked pravo routes; secondary direct article texts are working inputs only",
+  "body_capture_recovery": {
+    "observed": "web batch output-budget omitted APK110 body despite accessible page header",
+    "classification": "TOOL_OUTPUT_BUDGET_NOT_SOURCE_FAILURE",
+    "fix": "read APK110 alone from same direct URL; full body through end verified",
+    "gate": "each norm capture requires article heading, substantive paragraphs and observed body end before input admission"
+  }
+}
