@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "python3",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-current-citation-inventory-20261005/extract.py"
+  ],
+  "timeout_seconds": 45,
+  "exit": 0,
+  "stdout": "{\"status\": \"VERIFIED_FACTUAL_INVENTORY_PENDING_INDEPENDENT_ROOT_REVIEW\", \"source_sha\": \"a77422195c2c68281a7797ad99f9f6b70426d740\", \"buyer_files\": 11, \"text_units\": 42134, \"literal_occurrences\": 47, \"dedup_groups\": 24, \"unresolved_markers\": 23, \"old_map_rows\": 58, \"old_disposition_counts\": {\"CURRENT_LITERAL_RELOCATED\": 58}, \"current_hashes_changed_from_oldmap\": [\"tools/candidates/s1-oplata-za-raboty/01-karta-situacii-i-granic.docx\", \"tools/candidates/s1-oplata-za-raboty/02-proverka-i-kontrol-otveta.xlsx\", \"tools/candidates/s1-oplata-za-raboty/03-algoritm-dejstviy.docx\", \"tools/candidates/s1-oplata-za-raboty/08-raschet-procentov-395.xlsx\", \"tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx\", \"tools/candidates/s1-oplata-za-raboty/10-obrashchenie-v-sud.docx\"], \"02_08_reviewed_04_native_exact\": true, \"all_span_quote_locator_checks\": true, \"all11_current_gitbytes_unchanged\": true, \"model_calls\": 0, \"source_currentness\": \"NOT_VERIFIED\", \"human_legal\": \"NOT_PERFORMED\", \"executor\": {\"python\": \"3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]\", \"openpyxl\": \"3.1.2\"}}\nREADY /home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-current-citation-inventory-20261005\n",
+  "stderr": "/usr/lib/python3/dist-packages/openpyxl/worksheet/_reader.py:329: UserWarning: Data Validation extension is not supported and will be removed\n  warn(msg)\n"
+}

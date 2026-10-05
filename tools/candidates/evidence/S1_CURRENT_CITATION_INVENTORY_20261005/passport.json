@@ -1,0 +1,40 @@
+{
+  "execution_pattern": "one_shot",
+  "primary_result": "S1_current_factual_citation_inventory",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "parent": "SITE Issue291; root accepted composition a77422195c2c68281a7797ad99f9f6b70426d740",
+  "source_sha": "a77422195c2c68281a7797ad99f9f6b70426d740",
+  "worktree": "/home/denis/projects/marzhavbetone.ru/.worktrees/codex-s1-current-citation-inventory-20261005",
+  "run": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-current-citation-inventory-20261005",
+  "source_dir": "tools/candidates/s1-oplata-za-raboty",
+  "required_input_paths": [
+    "/home/denis/projects/marzhavbetone.ru/.worktrees/codex-s1-legal-inputs-20261005/tools/candidates/evidence/S1_LEGAL_INPUTS_20261005/literal-reference-map.json",
+    "/home/denis/projects/marzhavbetone.ru/.worktrees/codex-s1-legal-inputs-20261005/tools/candidates/evidence/S1_LEGAL_INPUTS_20261005/buyer-claims-index.json",
+    "/home/denis/projects/ai-business-os/docs/Normative_Contract.md",
+    "/home/denis/projects/ai-business-os/docs/Task_Setting_Protocol.md"
+  ],
+  "scope": "read exact11 buyer DOCX/XLSX/TXT without saving; output JSON/Markdown/hash manifest in own run/doc evidence only; source/product no modifications; no models/render/fullsuite/network/sourcecurrentnessjudgment",
+  "route": [
+    "verify exactcommit/buyerfiles11 currenthashes/oldmap+contract inputs",
+    "DOCX ZIP XML paragraph/table locators; XLSX read_only data_onlyFalse cell/formula; TXT physicalline",
+    "literalarticle/code regex; retain unmatched normative markers; exactnormalizeddedup retaining all locators",
+    "compare oldliteralbinding dispositions without inheriting normative verdict/sourceedition",
+    "verify sourcebytes+locators+quotes+dedupcoverage and inputhashmanifest; root proofreview before documentarygitcommit/push"
+  ],
+  "acceptance": [
+    "11 actualpinnedbuyerfiles each SHA256+Gitblob+sourceSHA; reviewed02/08native04 exact hashes",
+    "short literalquotes substrings of extracted source at exactparagraph/cell/line locator",
+    "allrefoccurrences retained in explicitgroups, unresolvedsyntax visible, oldmapdispositions explicit",
+    "no invented norm_id/registry/officialedition/PASS; currentnessNOTVERIFIED/humanlegalNOTPERFORMED",
+    "sourceworktree unchanged; command/output/hash evidence readable"
+  ],
+  "stop": "missingrequiredinput/incorrect11count/hash/locator mismatch or content mutation -> exact BLOCKED report; no fallback guess",
+  "executor": "Python only; no model calls",
+  "bounds": {
+    "seconds_per_process": 60,
+    "total_seconds": 300,
+    "api_usd": 0
+  },
+  "handoff": "root independentcoverage review before commit/push"
+}

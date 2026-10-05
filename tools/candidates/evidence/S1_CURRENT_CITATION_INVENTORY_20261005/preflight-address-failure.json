@@ -1,0 +1,11 @@
+{
+  "class": "INPUT_ADDRESS_SUBSTITUTION",
+  "wrong_expected_path": "04-akt-sverki.xlsx",
+  "actual_exact_git_path": "tools/candidates/s1-oplata-za-raboty/04-uchet-raschetov-i-otpravok.xlsx",
+  "source_sha": "a77422195c2c68281a7797ad99f9f6b70426d740",
+  "no_product_mutation": true,
+  "no_inventory_PASS_claimed": true,
+  "repair": "only expectedimmutable04inputbasename corrected from actualGit11filetree; citationparser unchanged",
+  "cause": "worksheet/logicalact name confused with physicalbuyerfilename",
+  "new_gate": "resolve expectedinputpath from actualGitls-tree+approvedfilenamehashmap before hashassertions"
+}
