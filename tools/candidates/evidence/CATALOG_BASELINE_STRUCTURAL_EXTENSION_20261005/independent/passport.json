@@ -1,0 +1,35 @@
+{
+  "task_id": "readonly-extension-independent-264d75",
+  "execution_pattern": "one_shot",
+  "primary_result": "independent_extension_binding_dedup_and_native_structure_facts",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "input_files": {
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-structural-extension-20261005/input-hashes.json": "7771bc15bfae652585622a9b166f3f125b3afbf24964a2aa1f398287f109197e",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-structural-extension-20261005/task-passports.json": "211d7728286bbe20907b2fb4ca7c904df51ca674882d3f754273a056a89dbf0d",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-structural-extension-20261005/adapter.py": "a1663681711ef866b1ebcfcdb4f63bfa6840af72ea1d95249ec3c471a166da66",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-structural-extension-20261005/execution-receipt.json": "4bc2458c38cf769c174bf923e1a2ad7b8065b425b6610531e2d82064ebba4944",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-structural-extension-20261005/unique-structural-facts.json": "68d2d6cb396c569480c2889f59a1979fa83008b1fed840479bcdf5a6a4b3eaf9",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-structural-extension-20261005/reuse-provenance.json": "5015242f089d87608b288b731beb570bb7fd4375b92eba5d25c4064b353d4262",
+    "/home/denis/projects/ai-business-os/docs/Normative_Contract.md": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+    "/home/denis/projects/ai-business-os/docs/Task_Setting_Protocol.md": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/readonly-pool-independent-20261005/verify.py": "a261dff2082ba5a39e54b8364bee20406a12ff7c7e8ef7a5eafd39c79360b86b",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/readonly-pool-independent-20261005/independent-review-receipt.json": "0c4aa8f3a1a60e91e5f6031d38b05244b828e9d2e24a398d87f554d7381749b6",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/readonly-pool-independent-20261005/independent-file-facts.json": "9f82fc47cf2cada2f6648acc79240a8161c116cc8bf366195e24fad3142d3263"
+  },
+  "scope": "84 path hashes/71 OOXML bindings/62 distinct hashes; accepted samehash firstpool reuse,61 new native ZIPs checked once; worksheet-rel actual coverage/DOCXmain present",
+  "duplicate_gate": "Own output absent; no repeat original1373run; exactsamehash proof reused with frozen provenance",
+  "route": "USD0 Python stdlib; author adapter read only, never executed",
+  "not_claimed": [
+    "accepted current buyer package",
+    "PHP delivery ZIP",
+    "XSD conformance",
+    "formula correctness",
+    "layout",
+    "legal/currentness/human acceptance",
+    "release readiness"
+  ],
+  "prepared_at": "2026-10-05T17:43:51.787406+00:00",
+  "actual_command": "python3 /home/denis/.local/state/claude-dispatcher/recovery-20261005/readonly-extension-independent-20261005/verify.py"
+}

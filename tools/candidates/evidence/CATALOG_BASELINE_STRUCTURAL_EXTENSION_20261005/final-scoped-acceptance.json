@@ -1,0 +1,33 @@
+{
+  "status": "ACCEPT_SCOPED_BASELINE_EXTENSION_FACTS",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "documentary_working_base": "caaa237ce83d895b2f1ea270e956db3642c2d36c",
+  "root_code_review": "Full125lineadapter/report/receiptsummary accepted; full110lineindependentreceipt2386checks0errors accepted finalscopedfacts",
+  "counts": {
+    "input_bindings": 84,
+    "OOXML_bindings": 71,
+    "distinct_OOXML_hashes": 62,
+    "new_unique_audits": 61,
+    "first42_reused_unique_hashes": 1,
+    "intra_extension_duplicate_bindings": 9,
+    "non_OOXML_NA": 13
+  },
+  "frozen_source_manifest_sha256": "7771bc15bfae652585622a9b166f3f125b3afbf24964a2aa1f398287f109197e",
+  "frozen_tasks_sha256": "211d7728286bbe20907b2fb4ca7c904df51ca674882d3f754273a056a89dbf0d",
+  "adapter_sha256": "a1663681711ef866b1ebcfcdb4f63bfa6840af72ea1d95249ec3c471a166da66",
+  "independent_receipt_sha256": "abb8df5416e0bd5c5926198002c8b14ddb8197d7df84c76a0cdac5297c05d3ea",
+  "source_bytes_unchanged": true,
+  "excluded_buyer_copies": 84,
+  "scope": "Baseline structural native facts only; not accepted current repackaging source or module completion",
+  "not_claimed": [
+    "accepted current buyer package",
+    "PHP delivery ZIP",
+    "XSD conformance",
+    "formula correctness",
+    "layout",
+    "legal/currentness/human acceptance",
+    "release readiness"
+  ],
+  "original_pending_stage_records_retained": true,
+  "api_usd": 0
+}

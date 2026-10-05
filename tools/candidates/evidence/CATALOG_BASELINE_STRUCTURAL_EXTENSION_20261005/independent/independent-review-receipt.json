@@ -1,0 +1,110 @@
+{
+  "status": "ACCEPT_SCOPED_BASELINE_EXTENSION_FACTS",
+  "execution_pattern": "one_shot",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "verified_at": "2026-10-05T17:46:35.531557+00:00",
+  "command": "python3 /home/denis/.local/state/claude-dispatcher/recovery-20261005/readonly-extension-independent-20261005/verify.py",
+  "elapsed_seconds": 1.1381526210170705,
+  "checks": 2386,
+  "error_count": 0,
+  "errors": [],
+  "all_path_bindings": 84,
+  "OOXML_bindings": 71,
+  "distinct_OOXML_hashes": 62,
+  "reused_first_independent_scope": 1,
+  "new_unique_native_reviews": 61,
+  "intra_extension_duplicate_bindings": 9,
+  "nonOOXML_hash_only": 13,
+  "modules": [
+    {
+      "sku": "p7",
+      "eligible": 13,
+      "docx": 6,
+      "xlsx": 3,
+      "OOXML": 9
+    },
+    {
+      "sku": "p10",
+      "eligible": 9,
+      "docx": 8,
+      "xlsx": 0,
+      "OOXML": 8
+    },
+    {
+      "sku": "p12",
+      "eligible": 20,
+      "docx": 16,
+      "xlsx": 3,
+      "OOXML": 19
+    },
+    {
+      "sku": "p13",
+      "eligible": 10,
+      "docx": 8,
+      "xlsx": 1,
+      "OOXML": 9
+    },
+    {
+      "sku": "t1",
+      "eligible": 6,
+      "docx": 4,
+      "xlsx": 1,
+      "OOXML": 5
+    },
+    {
+      "sku": "t2",
+      "eligible": 6,
+      "docx": 4,
+      "xlsx": 1,
+      "OOXML": 5
+    },
+    {
+      "sku": "t3",
+      "eligible": 5,
+      "docx": 4,
+      "xlsx": 0,
+      "OOXML": 4
+    },
+    {
+      "sku": "t4",
+      "eligible": 5,
+      "docx": 4,
+      "xlsx": 0,
+      "OOXML": 4
+    },
+    {
+      "sku": "t5",
+      "eligible": 5,
+      "docx": 4,
+      "xlsx": 0,
+      "OOXML": 4
+    },
+    {
+      "sku": "t6",
+      "eligible": 5,
+      "docx": 4,
+      "xlsx": 0,
+      "OOXML": 4
+    }
+  ],
+  "new_unique_docx": 52,
+  "new_unique_xlsx": 9,
+  "source_and_copy_bytes_unchanged": true,
+  "author_adapter_executed": false,
+  "first1373_review_not_reexecuted": true,
+  "scope": "Baseline observational facts only; copied fact original representative paths explicitly bound to current paths via fullSHA/provenance. All61 new native CRC/XML/contenttypes/internaltargets/DOCXmain/workbookworksheetcoverage facts independently checked once. No formal XSD/calculation/layout/currentness/legal/buyerpackage acceptance.",
+  "not_claimed": [
+    "accepted current buyer package",
+    "PHP delivery ZIP",
+    "XSD conformance",
+    "formula correctness",
+    "layout",
+    "legal/currentness/human acceptance",
+    "release readiness"
+  ],
+  "script_sha256": "8d4a9c5729134747d9d6fba2fdc70f9e3b0a2513976227a7e845953ecd2d84db",
+  "unique_facts_sha256": "1c44a550a99ed952a4bf45ce3b7d123bb61ac88122709f8be9bce322e3cb7d34",
+  "bindings_sha256": "b4f9fb3e5b4fdda7650a0ec83747c48a50afc5bf51c3cfc402b2b3a2fd5f8448",
+  "model_calls": 0,
+  "api_usd": 0
+}
