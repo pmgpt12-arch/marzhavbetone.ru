@@ -1,0 +1,31 @@
+{
+  "status": "READY_NATIVE_OOXML_PATCH",
+  "preflight": "PASS explicit identities and sheet signatures",
+  "inputs": {
+    "owner04_sha256": "70ca50cce2d5137997102cb9a81a8933ac431948dd2b472f428b4306316112ff",
+    "source": "f95cc76832234d0927b2300aee2bbb67cc9bd9f6"
+  },
+  "artifact": "Separate candidate04 + machine proof, original owner files never rewritten",
+  "allowed_semantic_changes": [
+    "Взаиморасчёты!A2",
+    "Взаиморасчёты!K4",
+    "Взаиморасчёты!I5:I504",
+    "new confirmation validation K5:K504"
+  ],
+  "format_rule": "Preserve every existing style and dimension except new K confirmation input; native XML including x14 preserved; no openpyxl save",
+  "acceptance": [
+    "500 accepted formulas exact",
+    "other existing values and formulas unchanged",
+    "all owner noncalculation sheet ZIP bytes unchanged",
+    "existing native validations preserved",
+    "formula literal limit 255",
+    "Calc B2 and L1c still pass"
+  ],
+  "failure_policy": "On XML/shared formula or style ambiguity stop and record; no generic rewriting",
+  "budget": {
+    "api_usd": 0,
+    "attempts": 1,
+    "seconds": 600
+  },
+  "dependency": "independent review required before source/product merge"
+}

@@ -1,0 +1,1 @@
+Candidate only: owner layout plus independently accepted S1 formulas. Static and actual Calc checks pass. Native Excel and canonical generator integration remain open. No buyer product replacement or publication.
