@@ -1,0 +1,225 @@
+{
+  "task_id": "readonly-ooxml-p4-264d75",
+  "execution_pattern": "one_shot",
+  "primary_result": "Exact p4 buyer-source OOXML integrity/schema factual inventory",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "module_dir": "08-pto-bez-zamechaniy",
+  "required_inputs": [
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/00-START-HERE.txt",
+      "relative_name": "00-START-HERE.txt",
+      "git_blob": "b71212d6a6ff7c600a7ce30b86a8b0ece1fa7d0c",
+      "sha256": "dd0ef850eec638332e14125920c86cf6892b8149c722d00f944dfde1ea1398bb",
+      "size": 4664,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/01-uvedomlenie-o-gotovnosti-id.docx",
+      "relative_name": "01-uvedomlenie-o-gotovnosti-id.docx",
+      "git_blob": "3c9403481e212c2338e36c2a5520cc9cbe24a7a9",
+      "sha256": "45e7e8e2578d5f0410e89dbd249bc9e13700e11dfcc16ce3962c8fc4d0b9a3df",
+      "size": 37326,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/02-akt-priemki-id.docx",
+      "relative_name": "02-akt-priemki-id.docx",
+      "git_blob": "ae1a795d83b00914e959e5fc8f954cba3d8510f5",
+      "sha256": "c335c4c229f48a91e3f7d4ee47590f814653f2aba7073b9f82eaeb129cacffb3",
+      "size": 37550,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/03-perechen-vozmozhnyh-zamechaniy.docx",
+      "relative_name": "03-perechen-vozmozhnyh-zamechaniy.docx",
+      "git_blob": "3cd3b6169070cc1500d2f9e721e044ecf80f820f",
+      "sha256": "98cde059fdb372ee4e4c9dde66bf5a2b571cd83e864af85059174b01cf354798",
+      "size": 38749,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/04-pismo-na-zamechaniya.docx",
+      "relative_name": "04-pismo-na-zamechaniya.docx",
+      "git_blob": "4f86f7c1844f45a42b2d696cc51f053b007df18a",
+      "sha256": "1e72d39d32e7d88ee0109523fdf1ca365e25eabba5624c9ac17000b3b9820e8c",
+      "size": 37416,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/05-sluzhebnaya-zapiska.docx",
+      "relative_name": "05-sluzhebnaya-zapiska.docx",
+      "git_blob": "829b9b84b70e61bd8c764ecfaab55830e771676c",
+      "sha256": "192dddac4e9f7aad3e65883e00fc610890039a32e3efc08562b3cdfa8977095f",
+      "size": 37520,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/06-reestr-zamechaniy.xlsx",
+      "relative_name": "06-reestr-zamechaniy.xlsx",
+      "git_blob": "57585585dd7775811e2f768d599496e9f8638cf3",
+      "sha256": "67f5d926de3daeda5c0f513bb504a2077ee47fd686ae0f178f033b03f90cf399",
+      "size": 5607,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/07-grafik-ustraneniya.xlsx",
+      "relative_name": "07-grafik-ustraneniya.xlsx",
+      "git_blob": "ebf19c37eeb924f4114e37fcf83a24b6fafee4bc",
+      "sha256": "de4ae435f82c5d1fc00420801cfc94ca5339d63039eb297aa16faae145b66403",
+      "size": 5449,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/08-algoritm-raboty-s-id.pdf",
+      "relative_name": "08-algoritm-raboty-s-id.pdf",
+      "git_blob": "0a8aa7a5b0d1eaa2132abd07a0e72d2ba03baa97",
+      "sha256": "77d584afea231df36189bcfc745673676711fbc572745bad191c19bc853b33cd",
+      "size": 46716,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/09-krasnye-flagi.docx",
+      "relative_name": "09-krasnye-flagi.docx",
+      "git_blob": "ad1e26b0c66d9b8a64edfca48864b25db59f4e9c",
+      "sha256": "8b8ebea2c0d7a961f3e0f7f09aa8c448b20160b98c12c260530ffe05b0bbab15",
+      "size": 38084,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/31-pyat-aktov-skrytyh-rabot.docx",
+      "relative_name": "31-pyat-aktov-skrytyh-rabot.docx",
+      "git_blob": "2fe502b4415d1b415b3e8ae3d84ee869cb74852d",
+      "sha256": "781207b42deea48c06407000c30447f6f118221aae88cb7f7ad39edd44f1514a",
+      "size": 38879,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/32-shablon-ispolnitelnoy-shemy.docx",
+      "relative_name": "32-shablon-ispolnitelnoy-shemy.docx",
+      "git_blob": "a6361e0ecc37c6d931b6cea6471df5be2443454b",
+      "sha256": "2a3d7f5a84a72ccd5f83e1162e52b3aaa30bd3ad27a3aaec3ff7ba5dbd68a0d5",
+      "size": 38772,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/33-akt-peredachi-komplekta-pto.docx",
+      "relative_name": "33-akt-peredachi-komplekta-pto.docx",
+      "git_blob": "a59c981337498c394e1f88b8c8af2131265d5529",
+      "sha256": "b398fc631824fde2e6934bd5c82c8a40dd5dd96b4022e653640bb4c551d7e866",
+      "size": 38704,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/34-sluzhebnaya-zapiska.docx",
+      "relative_name": "34-sluzhebnaya-zapiska.docx",
+      "git_blob": "a879ad4a82a08ce4d9c982ca115afa9bc1f58fed",
+      "sha256": "e74f2d9297a7950aa875ba6afec48907326b5c6b42e1f65dcbfab3cb55cabaef",
+      "size": 38779,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/35-obshiy-zhurnal-rabot.xlsx",
+      "relative_name": "35-obshiy-zhurnal-rabot.xlsx",
+      "git_blob": "e74f566c31cb996afee500d50aef89da7d1e0573",
+      "sha256": "5425a396854ba51b09c6c74ed20a117aa1aee1836c48cba6953afe7ee276e21a",
+      "size": 9202,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/36-vhodnoy-kontrol.xlsx",
+      "relative_name": "36-vhodnoy-kontrol.xlsx",
+      "git_blob": "89584be7242bac9a19b2ed0dd85f727344871467",
+      "sha256": "9b3fe1ead75a35457ed056cb0a6d8a0fb98392dc278a3070ddfd6473f6a5f053",
+      "size": 8947,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/37-reestr-pasportov.xlsx",
+      "relative_name": "37-reestr-pasportov.xlsx",
+      "git_blob": "1d15139dc9eb3c58be6f0824f25b38b2cb94d535",
+      "sha256": "e7be2bc817f8d37aa3b94ecc6e73975a4f5e232641a7d4f9cd8b354cadecdc63",
+      "size": 8966,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/38-reestr-id.xlsx",
+      "relative_name": "38-reestr-id.xlsx",
+      "git_blob": "0b3708d20ac95856bca3b5c1642097bbec441515",
+      "sha256": "7bf4f1836a5e6bcb804bde74a1f660173490031b8c7a1fca4129410b237b3f68",
+      "size": 9163,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/39-algoritm-zamechaniy.pdf",
+      "relative_name": "39-algoritm-zamechaniy.pdf",
+      "git_blob": "0647001529b96ad0015ce7f5bc5eb2032fa7fddf",
+      "sha256": "1e9f97f7eb94e326fd84660e6c5fbaf4279ee9259ddddc87fb002795be138ce8",
+      "size": 85575,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/40-ezhemesyachnaya-proverka.pdf",
+      "relative_name": "40-ezhemesyachnaya-proverka.pdf",
+      "git_blob": "392879b253b9ed8aec310b59dbf41bce0dace99a",
+      "sha256": "f1b6c85b9282634b6fa88c00cba11a6702bc00bf33361a9829591f496bd60ca2",
+      "size": 85357,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/41-akt-peredachi-ploshchadki-fronta.docx",
+      "relative_name": "41-akt-peredachi-ploshchadki-fronta.docx",
+      "git_blob": "ded1ead1d7a5ae550abacc91098ff74c026643b4",
+      "sha256": "210f8cf7bfb3c7385f59e1f4812598eb040fde6169b3a5467bf81a7cbcf2eb53",
+      "size": 11718,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/42-akt-vhodnogo-kontrolya-materialov.docx",
+      "relative_name": "42-akt-vhodnogo-kontrolya-materialov.docx",
+      "git_blob": "5b6007d91b36cbad99488bfb863ccf545855b5a8",
+      "sha256": "7fc46415ec51fd9f4adbd8a64220415b4fe5b1781fc07b2d0632608a85852732",
+      "size": 11798,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/08-pto-bez-zamechaniy/43-preduprezhdenie-po-st-716.docx",
+      "relative_name": "43-preduprezhdenie-po-st-716.docx",
+      "git_blob": "695365a26f14566d582b7537c536e71308ed7abd",
+      "sha256": "a0fb0b2277abb2175f01191cec95e37657dd4fe6190559bf16de55371a93ce29",
+      "size": 12083,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    }
+  ],
+  "contracts": {
+    "Task_Setting_Protocol.md": {
+      "path": "/home/denis/projects/ai-business-os/docs/Task_Setting_Protocol.md",
+      "sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686",
+      "bytes": 27997
+    },
+    "Normative_Contract.md": {
+      "path": "/home/denis/projects/ai-business-os/docs/Normative_Contract.md",
+      "sha256": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+      "bytes": 9359
+    }
+  },
+  "executor": "Python/CLI only, no model; proposed isolated pool max4",
+  "scope": "Read-only native DOCX/XLSX ZIP CRC/duplicate parts/internal relationships/content-types/cell-formula schema inventory; all member before/after hash proof; signal numeric #{2,} only, not rendered clipping verdict",
+  "duplicate_gate": "No existing exact output; bounded located reports do not claim this exact structural scope",
+  "output_dir": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/p4-readonly-ooxml-264d75",
+  "acceptance": "Exact manifest membership/inputhash; source bytes unchanged; evidence every file including nonOOXML applicability; deterministic structural observations independently reviewable",
+  "not_claimed": [
+    "accepted repackaging source",
+    "actual PHP ZIP proof",
+    "formula correctness",
+    "layout/readability",
+    "legal/financial/currentness/human acceptance",
+    "sale readiness"
+  ],
+  "stop": "Missing exact input or mismatch/duplicate proof; preserve factual evidence, do not repair products",
+  "api_usd": 0,
+  "status": "PROPOSED_READY_INPUTS_PENDING_ROOT_REVIEW_AND_DUPLICATE_GATE",
+  "scope_authorized_by_root": true,
+  "capacity_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-next-queue-20261005-recovery/capacity.json"
+}

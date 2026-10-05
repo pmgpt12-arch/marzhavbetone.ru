@@ -1,0 +1,172 @@
+{
+  "execution_pattern": "one_shot",
+  "primary_result": "P3_exact_302d_actual_PHP_ZIP_membership_hash_CRC_and_02_06_metadata",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "frozen_input_sha": "302d2e4d44bea16508b8e6e64211a2d10953aa51",
+  "usd": 0,
+  "llm_calls": 0,
+  "release_pass": false,
+  "sale_ready": false,
+  "body_legal_review": "NOT_PERFORMED",
+  "native_application_run": "NOT_PERFORMED",
+  "status": "VERIFIED_ACTUAL_PHP_ZIP_EXACT_ACCEPTED_INPUTS",
+  "timestamp_utc": "2026-10-05T16:09:17.297143+00:00",
+  "live_branch_before_after": "302d2e4d44bea16508b8e6e64211a2d10953aa51",
+  "actual_php": {
+    "catalog": {
+      "name": "Комплект «КС-2 без возврата: сдайте с первой попытки»",
+      "price": 199000,
+      "dir": "05-ks-bez-vozvrata",
+      "zip": "05-ks-bez-vozvrata.zip"
+    },
+    "zip_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-actual-zip-302d/isolated-delivery/05-ks-bez-vozvrata.zip",
+    "products_dir": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-actual-zip-302d/exact-source/products-storage",
+    "orders_dir": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-actual-zip-302d/isolated-orders",
+    "delivery_dir": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-actual-zip-302d/isolated-delivery",
+    "php": "8.3.6"
+  },
+  "run": {
+    "command": [
+      "timeout",
+      "--kill-after=5s",
+      "30s",
+      "php",
+      "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-actual-zip-302d/build.php"
+    ],
+    "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-actual-zip-302d",
+    "exit_code": 0,
+    "elapsed_seconds": 0.10248761100228876
+  },
+  "zip": {
+    "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-actual-zip-302d/isolated-delivery/05-ks-bez-vozvrata.zip",
+    "bytes": 320206,
+    "sha256": "1d7b108f84472976ffffcf73c0e7a5567d28f2d86583d0a7b025ac5b0c140bcc",
+    "members": 11,
+    "membership_exact": true,
+    "crc_all_valid": true,
+    "all_member_source_bytes_exact": true,
+    "service_template_files_absent": true
+  },
+  "members": [
+    {
+      "name": "00-START-HERE.txt",
+      "bytes": 4353,
+      "sha256": "a421d541c4fccba15c51e6822526eead7b10c97395f34dcd87740bfc956f4aac",
+      "source_equal": true,
+      "crc32": "34f5b797",
+      "crc_valid": true
+    },
+    {
+      "name": "01-proverochnyy-list-komplekta-ks.docx",
+      "bytes": 38483,
+      "sha256": "f331aa99522386fde96914e6e69ea582afe2e0c2bfb3c3c8a343a1e19c375129",
+      "source_equal": true,
+      "crc32": "001e2da4",
+      "crc_valid": true
+    },
+    {
+      "name": "02-reestr-prilozheniy.xlsx",
+      "bytes": 5472,
+      "sha256": "7d3a10560614401c36ef854cd3aead16961864479a9bfcb7d38dc78ab743c7f3",
+      "source_equal": true,
+      "crc32": "cbd70613",
+      "crc_valid": true
+    },
+    {
+      "name": "03-akt-skrytyh-rabot.docx",
+      "bytes": 55388,
+      "sha256": "f7b187afc8ecf28f77472f5b22e2ac63e63cb3cb3e4035f2f783974bdcf6db37",
+      "source_equal": true,
+      "crc32": "2744f688",
+      "crc_valid": true
+    },
+    {
+      "name": "04-protokol-vnutrenney-proverki.docx",
+      "bytes": 37655,
+      "sha256": "d8a78245c33de6c7bc7d480325484d656ccabdd95b7fa53837d9a46182fac176",
+      "source_equal": true,
+      "crc32": "032e4394",
+      "crc_valid": true
+    },
+    {
+      "name": "05-pismo-o-nedostatkah.docx",
+      "bytes": 37406,
+      "sha256": "aca9127579be18ae480e06b249798d2c7bd33e9500cc7354be2b1430c8729d7a",
+      "source_equal": true,
+      "crc32": "3232d980",
+      "crc_valid": true
+    },
+    {
+      "name": "06-zhurnal-peredachi.xlsx",
+      "bytes": 5406,
+      "sha256": "98f20a51a39c41d5cf0e0fd6766cbeb1e8906bbad087956b736b1482f18ab73d",
+      "source_equal": true,
+      "crc32": "e75985d6",
+      "crc_valid": true
+    },
+    {
+      "name": "07-sroki-hraneniya.docx",
+      "bytes": 37483,
+      "sha256": "28373a1b8aecce7eb2325b9dbdc90965508d82868cabcd55587e42a93db30f20",
+      "source_equal": true,
+      "crc32": "c0195a55",
+      "crc_valid": true
+    },
+    {
+      "name": "08-algoritm-proverki.pdf",
+      "bytes": 46027,
+      "sha256": "f93fa7661aca9dd0e40e9f3f6e7764fc147e5bca1b02d2c60cc0c8cf01053dd7",
+      "source_equal": true,
+      "crc32": "e6a02e1d",
+      "crc_valid": true
+    },
+    {
+      "name": "09-tipovye-oshibki.docx",
+      "bytes": 37796,
+      "sha256": "9f3ee6f09857e0a50f2efb6f99f07484c9b1cbb873427f91605f0f6791f49eda",
+      "source_equal": true,
+      "crc32": "45287e81",
+      "crc_valid": true
+    },
+    {
+      "name": "10-sravnitelnaya-tablica.docx",
+      "bytes": 38260,
+      "sha256": "5f2b9f1dcee86cfca5d061388f27cb1ad1a491dde76eaf105c50376121b320ef",
+      "source_equal": true,
+      "crc32": "76a5b7f3",
+      "crc_valid": true
+    }
+  ],
+  "native_02_06": [
+    {
+      "file": "02-reestr-prilozheniy.xlsx",
+      "raw_source_exact": true,
+      "accepted_sha256": "7d3a10560614401c36ef854cd3aead16961864479a9bfcb7d38dc78ab743c7f3",
+      "Application": "Microsoft Excel",
+      "producer_canonical_exact": true,
+      "AppVersion": "3.1",
+      "app_xml_sha256": "a119696698c47fc3958efe90866fe3b4c4d98aa8db176fc67a7fb4f3171d1323",
+      "app_xml_bytes": "<Properties xmlns=\"http://schemas.openxmlformats.org/officeDocument/2006/extended-properties\"><Application>Microsoft Excel</Application><AppVersion>3.1</AppVersion></Properties>"
+    },
+    {
+      "file": "06-zhurnal-peredachi.xlsx",
+      "raw_source_exact": true,
+      "accepted_sha256": "98f20a51a39c41d5cf0e0fd6766cbeb1e8906bbad087956b736b1482f18ab73d",
+      "Application": "Microsoft Excel",
+      "producer_canonical_exact": true,
+      "AppVersion": "3.1",
+      "app_xml_sha256": "a119696698c47fc3958efe90866fe3b4c4d98aa8db176fc67a7fb4f3171d1323",
+      "app_xml_bytes": "<Properties xmlns=\"http://schemas.openxmlformats.org/officeDocument/2006/extended-properties\"><Application>Microsoft Excel</Application><AppVersion>3.1</AppVersion></Properties>"
+    }
+  ],
+  "input_blob_count": 15,
+  "input_blobs_manifest": "input-blobs.json",
+  "source_before_after_exact": true,
+  "source_repository_edited": false,
+  "php_builder_calls": 1,
+  "general_tests_rerun": 0,
+  "Calc_Excel_calls": 0,
+  "merge_or_deploy": false,
+  "elapsed_seconds": 3.374101363995578
+}

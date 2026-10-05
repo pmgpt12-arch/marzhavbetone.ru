@@ -1,0 +1,478 @@
+{
+  "status": "PASS_ACTUAL_WORKING_COMPOSITION",
+  "at": "2026-10-05T17:23:54.362410+00:00",
+  "pr": 482,
+  "working_target": "claude/confident-planck-ok644n",
+  "accepted_input_sha": "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0",
+  "original_buyer_sha": "1be0493ae194b2647c4b22c98e9981b9c5e64a54",
+  "accepted_output_sha": "9f619a6832c5250e1605ab082f0d00d4fca29138",
+  "actual_merged_sha": "522edf4ff37c60138c02623f8227968ec4052687",
+  "merge_parents": [
+    "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0",
+    "9f619a6832c5250e1605ab082f0d00d4fca29138"
+  ],
+  "buyer_files_verified": 15,
+  "proof_files_verified": 50,
+  "SHA256SUMS_entries_verified": 48,
+  "buyers": [
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.docx",
+      "sha256": "bc2c155984286409f429349fdab25d343dbc4aaae4b9aa32e91a3e4debc335c4",
+      "size": 41543,
+      "merged_blob": "92851f94542f7a184ba7e773c44865c5f5e7c92a",
+      "base_blob": "92851f94542f7a184ba7e773c44865c5f5e7c92a",
+      "original_blob": "92851f94542f7a184ba7e773c44865c5f5e7c92a"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.pdf",
+      "sha256": "b7af857d6674754f242e1b3400ffe51d212f39dbe979bdf6e80f6663989e44ce",
+      "size": 62507,
+      "merged_blob": "91a7b7c73e67601e122d21a4b6257568d77821ed",
+      "base_blob": "91a7b7c73e67601e122d21a4b6257568d77821ed",
+      "original_blob": "91a7b7c73e67601e122d21a4b6257568d77821ed"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/00-START-HERE.txt",
+      "sha256": "34d4619b49bbeaf01608bf3d67a46bca7300321021bc47e4aa8c1f80254ae0f7",
+      "size": 4637,
+      "merged_blob": "007d2dbf1ec5b86efa34b823514d58b4bf550b1d",
+      "base_blob": "007d2dbf1ec5b86efa34b823514d58b4bf550b1d",
+      "original_blob": "007d2dbf1ec5b86efa34b823514d58b4bf550b1d"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/01-prikaz-na-dopobem.docx",
+      "sha256": "d32e671fa24b880ebb323d654cc9ec8417b9a915567c313d596adbaa2a6ac372",
+      "size": 37002,
+      "merged_blob": "6907f983f948b475c882f64db730ba14126dbe76",
+      "base_blob": "6907f983f948b475c882f64db730ba14126dbe76",
+      "original_blob": "6907f983f948b475c882f64db730ba14126dbe76"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/02-soglasovanie-obema.docx",
+      "sha256": "0702129e13bbeb35efd6064dcaf49495f9b2c0eccf213d8304324a6042ccf3e9",
+      "size": 38948,
+      "merged_blob": "3e8af7641a7adb629745f04e67de105adb0a7ad9",
+      "base_blob": "3e8af7641a7adb629745f04e67de105adb0a7ad9",
+      "original_blob": "3e8af7641a7adb629745f04e67de105adb0a7ad9"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/03-uvedomlenie-o-doprabotah.docx",
+      "sha256": "835a5e81107c5bdc41960050f95ebcc47cb450716aa67010b3dee51cbad6d062",
+      "size": 37140,
+      "merged_blob": "8518169ea84be60e80cef5a8fe4ef445fcec43d1",
+      "base_blob": "8518169ea84be60e80cef5a8fe4ef445fcec43d1",
+      "original_blob": "8518169ea84be60e80cef5a8fe4ef445fcec43d1"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/04-akt-skrytyh-rabot.docx",
+      "sha256": "f7abad79766e96938728a71577b24a6dfd70fe0313a4796cb6cc7adfc98d0c37",
+      "size": 39038,
+      "merged_blob": "aa1c1164f0da49cd58367ae632f0db73df72f767",
+      "base_blob": "aa1c1164f0da49cd58367ae632f0db73df72f767",
+      "original_blob": "aa1c1164f0da49cd58367ae632f0db73df72f767"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/05-izmenenie-srokov.docx",
+      "sha256": "3ca5e970ea0a551791579f6d4a86295de90eacdf09ed361ce2b981d4febf0d7e",
+      "size": 38943,
+      "merged_blob": "7c9eae79345087be3973d820da70f3ea6dceff4c",
+      "base_blob": "7c9eae79345087be3973d820da70f3ea6dceff4c",
+      "original_blob": "7c9eae79345087be3973d820da70f3ea6dceff4c"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/06-pismo-o-priostanovke.docx",
+      "sha256": "af10700f5d30610260f26927f24b591da4f30feaadcf4391756713b975609d99",
+      "size": 36983,
+      "merged_blob": "9572d443b6e0379df2ee6cf1211f70373d674387",
+      "base_blob": "9572d443b6e0379df2ee6cf1211f70373d674387",
+      "original_blob": "9572d443b6e0379df2ee6cf1211f70373d674387"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/07-raschet-stoimosti.xlsx",
+      "sha256": "b38587d98bf4e045d77e0411eb75576d03d5841efa04e2f3cf16e6038c628c80",
+      "size": 9775,
+      "merged_blob": "480da051eb8429c0d90efe04998ae85badf19a58",
+      "base_blob": "480da051eb8429c0d90efe04998ae85badf19a58",
+      "original_blob": "480da051eb8429c0d90efe04998ae85badf19a58"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/08-zhurnal-doprabot.xlsx",
+      "sha256": "0204f914ceb0c78ae78aeeeacd2a5a834318ea6327b20028775821e38b40edb7",
+      "size": 9424,
+      "merged_blob": "030373ad316e5dca6228fe0064154a6d399bdf73",
+      "base_blob": "030373ad316e5dca6228fe0064154a6d399bdf73",
+      "original_blob": "030373ad316e5dca6228fe0064154a6d399bdf73"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/09-checklist-fotofiksacii.pdf",
+      "sha256": "80590f62711cd55e405d3122eeeb33d6f1a44e1a5a19b56ee00e59c5a5f3a202",
+      "size": 86570,
+      "merged_blob": "6fb75e364f53c3e5d0d3075d1fb209d300c28c58",
+      "base_blob": "6fb75e364f53c3e5d0d3075d1fb209d300c28c58",
+      "original_blob": "6fb75e364f53c3e5d0d3075d1fb209d300c28c58"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/10-algoritm-doprabot.pdf",
+      "sha256": "1bc3c0ccd967b1e1ea6cfdba5f5b2bd75986a20453dc63a8ec8356e29be937e6",
+      "size": 86170,
+      "merged_blob": "79ae322c99561216c3a5a1104adc1a9ff82e367e",
+      "base_blob": "79ae322c99561216c3a5a1104adc1a9ff82e367e",
+      "original_blob": "79ae322c99561216c3a5a1104adc1a9ff82e367e"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/11-dopsoglashenie-obem-i-cena.docx",
+      "sha256": "6540bc6740189a2d6312cb287b1c84d810234ada960736f711dc3fc4a5b4f2c9",
+      "size": 37724,
+      "merged_blob": "094a73e1a89da153362b8a57bc99613f260ec825",
+      "base_blob": "094a73e1a89da153362b8a57bc99613f260ec825",
+      "original_blob": "094a73e1a89da153362b8a57bc99613f260ec825"
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/12-dopsoglashenie-sroki-doprabot.docx",
+      "sha256": "8bad81f8b2584878d9741084f4da1596f734c622929b72e470c7ad0eb14fbdca",
+      "size": 37673,
+      "merged_blob": "32252606b9f096a2a1df033ba74cbf97ce0f3301",
+      "base_blob": "32252606b9f096a2a1df033ba74cbf97ce0f3301",
+      "original_blob": "32252606b9f096a2a1df033ba74cbf97ce0f3301"
+    }
+  ],
+  "proof": [
+    {
+      "path": "tools/candidates/MB001_P2_CURRENT_CITATION_INVENTORY_2026-10-05.md",
+      "sha256": "33dbb681b489682f62242f32c0046cfaf9f11c4fdd8feb7bc99d694914ec1561",
+      "merged_blob": "cdd654dba16b737e225f459e739b673da639310b",
+      "accepted_blob": "cdd654dba16b737e225f459e739b673da639310b"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/READY.json",
+      "sha256": "1ac13094d2232e979ddc0831f649af13a76d279229ca549cf906aeea650d23cd",
+      "merged_blob": "328cd3313ed3c08096387306b2e23c4f27286d20",
+      "accepted_blob": "328cd3313ed3c08096387306b2e23c4f27286d20"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/SHA256SUMS",
+      "sha256": "5b8458a50d921f590e81569bdab32244da0a4f10cf8c27bb2c06ae05f8f0587f",
+      "merged_blob": "ec4a6eed7828f8494eb76a946dbcf4e6e7b53dc0",
+      "accepted_blob": "ec4a6eed7828f8494eb76a946dbcf4e6e7b53dc0"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/actual-membership-receipt-compact.json",
+      "sha256": "9c8acbafb0d5b20e9fe328a2255009211e596b1abb0a5b8850fdca58e98d79ef",
+      "merged_blob": "7ef92d7308c8eff83c0587b34123704f1b5187d0",
+      "accepted_blob": "7ef92d7308c8eff83c0587b34123704f1b5187d0"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/citation-inventory-report.md",
+      "sha256": "d9893e55e251db3d55fced81d7693338127c647e523885ff0e5cef7d474e922a",
+      "merged_blob": "8542dfb918a3db0a7028d87ad24f2df3147111b7",
+      "accepted_blob": "8542dfb918a3db0a7028d87ad24f2df3147111b7"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/citation-inventory.json",
+      "sha256": "f921e762a3185669cde8f336ff0dac00ca2784917059690dddf6201c4420eb3f",
+      "merged_blob": "5a879e85e6e434ad9d5a1e452c04994d0d75ec5c",
+      "accepted_blob": "5a879e85e6e434ad9d5a1e452c04994d0d75ec5c"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/citation-source-units.json",
+      "sha256": "6efdb7b4472b03ae68f470236417c3cd77dc5b545d83536e572fc86ccb85b868",
+      "merged_blob": "9c6fa62af9370b858227f83a35fd2905bfa60362",
+      "accepted_blob": "9c6fa62af9370b858227f83a35fd2905bfa60362"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/coordinator-acceptance.json",
+      "sha256": "0d1c8c0b64f448f0226ff42590e4f595a7ce632ad11d54a9dfc9c7f9c7f678a2",
+      "merged_blob": "ea4d3cde2cb9c2ec53b26b56c4231b23f6c0993b",
+      "accepted_blob": "ea4d3cde2cb9c2ec53b26b56c4231b23f6c0993b"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/documentary-input-binding.json",
+      "sha256": "0f5d541d32d37eab8ccfd57c00eaefd9025abc20a3cacc2ccc086c4c6730a67b",
+      "merged_blob": "05dd8e8d14c1829a39cbd2c8aad0e7ababd818ff",
+      "accepted_blob": "05dd8e8d14c1829a39cbd2c8aad0e7ababd818ff"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/executor-versions.json",
+      "sha256": "755021370a963b53c067787688ebea8727b2f0cadbb7aaaba765363ff2c287c0",
+      "merged_blob": "584566d4b2e0ad40b8b54c5eaa1a4c594b577885",
+      "accepted_blob": "584566d4b2e0ad40b8b54c5eaa1a4c594b577885"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/extract-command-output.json",
+      "sha256": "a211efefc9595fa764700ac15b7c3314e7dd1da48442ea380b1be50eadae32d1",
+      "merged_blob": "1d9056159d897f917cd2c7bc2e2f390a4a1d871c",
+      "accepted_blob": "1d9056159d897f917cd2c7bc2e2f390a4a1d871c"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/extract-commands.json",
+      "sha256": "e59b00860013281b77caffe8d52a6b5f7179935898e7b5299d638a4ebbb9b535",
+      "merged_blob": "f91404536a2f0c3900adee916fdfa4385b73ca33",
+      "accepted_blob": "f91404536a2f0c3900adee916fdfa4385b73ca33"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/extract-initial-command-output.json",
+      "sha256": "91cac1d145a27c7e17611e15fd766e95819f42bc69d67e2f5f868a9d11592ba4",
+      "merged_blob": "33d4c0dd4ac2f1444e686f36bff5211fa1c47696",
+      "accepted_blob": "33d4c0dd4ac2f1444e686f36bff5211fa1c47696"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/extract-initial-transplanted-checkpoint-failed.py",
+      "sha256": "d026af2b360d537b07089dc2e58716959b6dc748fd9f10059f2b8158d1269849",
+      "merged_blob": "b9c61887113e56fe3e58b593cccc182cfb5d8308",
+      "accepted_blob": "b9c61887113e56fe3e58b593cccc182cfb5d8308"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/extract.py",
+      "sha256": "b1ca49a5940ce6d1c3fb47af60036f9baf45585b47d1d6b766f040db38dc0f47",
+      "merged_blob": "ef164176447e5c7a4376d9a03aa19341c2e4bbcb",
+      "accepted_blob": "ef164176447e5c7a4376d9a03aa19341c2e4bbcb"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/author-artifact-pins-before-review.json",
+      "sha256": "b1fdcbfcaaf0792bdef0d0a588527f3f169f5282bab09e2193c4c4c6bd8a69ba",
+      "merged_blob": "17c71c66ce299c03a3de178cb47db45251cb5b5c",
+      "accepted_blob": "17c71c66ce299c03a3de178cb47db45251cb5b5c"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/config.json",
+      "sha256": "c1ac9bb1e78f3071ed09b459d793e86da49dc77f2b00303e8ccdc9fbff2c575d",
+      "merged_blob": "11b6d7dc4229387e8c72dd3d7c295e8f2762e9a6",
+      "accepted_blob": "11b6d7dc4229387e8c72dd3d7c295e8f2762e9a6"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/execution-output.txt",
+      "sha256": "eab054747407b6b23de813b01c53d0afcee1cb366cbfd8106be97358d3c4398e",
+      "merged_blob": "44f8c266655944be3af03a0debee9e92c9e0f697",
+      "accepted_blob": "44f8c266655944be3af03a0debee9e92c9e0f697"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/handoff.json",
+      "sha256": "7d8c3f9a56d43d81eb06bb6a327a7fce003ed5f05c02db5c10698813f6075b5d",
+      "merged_blob": "d3111694f1627dea4776a6f87be459bb1d8622f3",
+      "accepted_blob": "d3111694f1627dea4776a6f87be459bb1d8622f3"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/independent-broad-coverage.json",
+      "sha256": "50ae04097647f86be4bc28c10bdc4b1e6ae1a13dd3b56a51d97779dba1a3820f",
+      "merged_blob": "d39fd3b75281649b2fc4b01d88fb90fea9c5ccaa",
+      "accepted_blob": "d39fd3b75281649b2fc4b01d88fb90fea9c5ccaa"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/independent-check-details.json",
+      "sha256": "abc129af14dab065ebffdf1b4c15126c119800775e7a7ca32dbc7eb1e3d7af04",
+      "merged_blob": "63035220c994a2662dd270cf3c8e173f3a0352bc",
+      "accepted_blob": "63035220c994a2662dd270cf3c8e173f3a0352bc"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/independent-extra-native-text-units.json",
+      "sha256": "2495d5e638aeb9099c6bc491a2c0963f45b5228f7b241f8dcec5301c8c39d2e0",
+      "merged_blob": "bc2d384259f57e70b082d2b047e95bf734ba93b3",
+      "accepted_blob": "bc2d384259f57e70b082d2b047e95bf734ba93b3"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/independent-extra-part-hits.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "merged_blob": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "accepted_blob": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/independent-input-hashes.json",
+      "sha256": "5f46cf09a5e4730e956d624fc13c85d6ef25fbd8a5a77afd299d2f1907983491",
+      "merged_blob": "cc3ea4eb436bf978a21dac8a547620ebf50ff5ad",
+      "accepted_blob": "cc3ea4eb436bf978a21dac8a547620ebf50ff5ad"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/independent-pdf-extraction.json",
+      "sha256": "ae0941fb42213b6e2f7978ed91d2d20e123e71d84083621172743482e994f641",
+      "merged_blob": "49e47a47211d6f64a52b764209d5bcf798ab0b44",
+      "accepted_blob": "49e47a47211d6f64a52b764209d5bcf798ab0b44"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/independent-review-receipt.json",
+      "sha256": "a0da5a71a7f658837d9c05d08cb48b2aa501e4f68ba44a69fc7a5fa2178fa97b",
+      "merged_blob": "c3569fb7be05243659ef0c90ae393d7d78a5484f",
+      "accepted_blob": "c3569fb7be05243659ef0c90ae393d7d78a5484f"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/independent-review-report.md",
+      "sha256": "997694c48d1bee1e36f7cf2efef160145270cc8f067aa72e744f0348c95854fb",
+      "merged_blob": "ffcfcad3cf8b28ba5f37ce7f552d6486b1b91488",
+      "accepted_blob": "ffcfcad3cf8b28ba5f37ce7f552d6486b1b91488"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/independent-supplemental-scope-receipt.json",
+      "sha256": "42c37d9f5398a303bffab5d7a154b6e2281657a99ac5d05daf2293981e6bc8c2",
+      "merged_blob": "aa59d8b79a3a8aaa426df5cad7878abb19c6102f",
+      "accepted_blob": "aa59d8b79a3a8aaa426df5cad7878abb19c6102f"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/independent_review.py",
+      "sha256": "abb5d482cce90f32452ab4072ec1d75e59ddf7d8899fee3b2b74d0c87a076aff",
+      "merged_blob": "6fa3d21b463a5844daa1837e5e5879d9b759187a",
+      "accepted_blob": "6fa3d21b463a5844daa1837e5e5879d9b759187a"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/passport.json",
+      "sha256": "ae4bfd331f883a069cdff9f26da0f84e6979a9fbad27c885a9ef43f23a1908af",
+      "merged_blob": "1b6e6276296234aa6e86871a5eb4d22369fbad59",
+      "accepted_blob": "1b6e6276296234aa6e86871a5eb4d22369fbad59"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/independent/supplement_review.py",
+      "sha256": "1f9155a31d2d6c32a5668dbc73a02a0e3c3f2e0c47a85a27d02f30be3a7b3e39",
+      "merged_blob": "f566d886dd572c2071e83863c31b99563d47070b",
+      "accepted_blob": "f566d886dd572c2071e83863c31b99563d47070b"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/input-hashes.json",
+      "sha256": "a969af920a04ea3a96c1b04d6b677de408d79c33abe60e6ef27f949b5255a877",
+      "merged_blob": "c17acec95b8e30d85cf4935e0451560d6a2d49dc",
+      "accepted_blob": "c17acec95b8e30d85cf4935e0451560d6a2d49dc"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/normative_contract.md",
+      "sha256": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+      "merged_blob": "9118edf2d7815e1f5a9ddb165564fb879e73d3c3",
+      "accepted_blob": "9118edf2d7815e1f5a9ddb165564fb879e73d3c3"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/parser-adaptation-review-scaffolding-fix.diff",
+      "sha256": "a1063937328459bcf799375b1ebc14eb346b60dcdecac459fc6d9e43b95db344",
+      "merged_blob": "d2b515542c8bc20b1fb618d2eeca9648760b46f1",
+      "accepted_blob": "d2b515542c8bc20b1fb618d2eeca9648760b46f1"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/parser-adaptation.diff",
+      "sha256": "6af7db4f38ce4b0ccf2229594a5ed41a6a4bf54a7f81b4fd67c9f98b20b3a503",
+      "merged_blob": "02bf124c13a6a4910eb41eb045c8b833e311e36c",
+      "accepted_blob": "02bf124c13a6a4910eb41eb045c8b833e311e36c"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/parser-provenance.json",
+      "sha256": "dd861c38f15cbc01cbd2bece8754200a671f0985e6f1442ee12024a5560009dd",
+      "merged_blob": "b27c6f2afd6e9587cc33faeda36af70b6cb46f0a",
+      "accepted_blob": "b27c6f2afd6e9587cc33faeda36af70b6cb46f0a"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/passport.json",
+      "sha256": "6a9193e8baa3efe7f9f30d6070356d3e0799242bd3eb4d414ae833aefa33cf92",
+      "merged_blob": "a7f721762d0a1c38744afb779817b9756d01b2d8",
+      "accepted_blob": "a7f721762d0a1c38744afb779817b9756d01b2d8"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/pdf-00-INSTRUKCIYA-raw-pdftotext.txt",
+      "sha256": "91a19fc04e9c57be195ba8018b657ca6a35c898027da96912d454d6e6cb68d49",
+      "merged_blob": "98befb18c12bad11d7fd0d250b956767eaa1a2c2",
+      "accepted_blob": "98befb18c12bad11d7fd0d250b956767eaa1a2c2"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/pdf-09-checklist-fotofiksacii-raw-pdftotext.txt",
+      "sha256": "1f985d53f6c812a0e3c0afa7eee53c6c8967b80e551ec62c5ce8c60197bcb70d",
+      "merged_blob": "9081046910e27979caee5dabc0a11d75d7f4dcb1",
+      "accepted_blob": "9081046910e27979caee5dabc0a11d75d7f4dcb1"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/pdf-10-algoritm-doprabot-raw-pdftotext.txt",
+      "sha256": "0f4aae57a05a68fc5e253644d7758b5d81d26dcec6ca591d8870b8e0adf7342a",
+      "merged_blob": "78d76367a40f250ecd7678d7d25e6639e4e86581",
+      "accepted_blob": "78d76367a40f250ecd7678d7d25e6639e4e86581"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/pdfimages-00-INSTRUKCIYA.txt",
+      "sha256": "0fabc764e123f7f3acd3eaa47311e1c50317f8bbb5b50878e699f21534352e8e",
+      "merged_blob": "a804dff97a18be486773b97a4d34089c9865d7c5",
+      "accepted_blob": "a804dff97a18be486773b97a4d34089c9865d7c5"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/pdfimages-09-checklist-fotofiksacii.txt",
+      "sha256": "0fabc764e123f7f3acd3eaa47311e1c50317f8bbb5b50878e699f21534352e8e",
+      "merged_blob": "a804dff97a18be486773b97a4d34089c9865d7c5",
+      "accepted_blob": "a804dff97a18be486773b97a4d34089c9865d7c5"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/pdfimages-10-algoritm-doprabot.txt",
+      "sha256": "0fabc764e123f7f3acd3eaa47311e1c50317f8bbb5b50878e699f21534352e8e",
+      "merged_blob": "a804dff97a18be486773b97a4d34089c9865d7c5",
+      "accepted_blob": "a804dff97a18be486773b97a4d34089c9865d7c5"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/pdfinfo-00-INSTRUKCIYA.txt",
+      "sha256": "6fb98c23519244823e1a1d40490010af3bc8bf8b538c3e16a5222b984908e38e",
+      "merged_blob": "21288414f8191b3dc639e7e23e3a3eb747b9a2ba",
+      "accepted_blob": "21288414f8191b3dc639e7e23e3a3eb747b9a2ba"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/pdfinfo-09-checklist-fotofiksacii.txt",
+      "sha256": "77efa60e219c7c3c6203a928595e0d2f841dacef5e4d3115c2ebfb0d5af3b2f8",
+      "merged_blob": "d33e7f156da219d2a33f9c52ea632d01f7655c9e",
+      "accepted_blob": "d33e7f156da219d2a33f9c52ea632d01f7655c9e"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/pdfinfo-10-algoritm-doprabot.txt",
+      "sha256": "d847acf7b278f6605654199b6e13378e8d063aa9719451a5b69259fec82cd59d",
+      "merged_blob": "07cc9cac46746f4796449a9b59b73940a81a4903",
+      "accepted_blob": "07cc9cac46746f4796449a9b59b73940a81a4903"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/takeover-adaptation-failure.json",
+      "sha256": "5693c702f8293d2965281fd4eff3eb24a403a9535c8c92500a7d947530ce5248",
+      "merged_blob": "3f3b8789ac826b1c4b50611c397c60add46a7ab9",
+      "accepted_blob": "3f3b8789ac826b1c4b50611c397c60add46a7ab9"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/takeover-preflight.json",
+      "sha256": "6fd9a304cc0521291ce1d5bb28d73d59d71b4aa80c1c743581872284f8e8e6cf",
+      "merged_blob": "1712ba6b25ae9ae2b69aab87d32ed0f158fb21c5",
+      "accepted_blob": "1712ba6b25ae9ae2b69aab87d32ed0f158fb21c5"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/task_protocol.md",
+      "sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686",
+      "merged_blob": "62b458db9e1a1bef75d70817fab0d0bf39aef930",
+      "accepted_blob": "62b458db9e1a1bef75d70817fab0d0bf39aef930"
+    },
+    {
+      "path": "tools/candidates/evidence/P2_CURRENT_CITATION_INVENTORY_20261005/verification-receipt.json",
+      "sha256": "e04190f03b111d0e0563672aef4405e0b88b60137c1caf481e6a6bb541497bd3",
+      "merged_blob": "2f8a16bbfb715f1f52e8f25b7bc430d7b859bf66",
+      "accepted_blob": "2f8a16bbfb715f1f52e8f25b7bc430d7b859bf66"
+    }
+  ],
+  "runtime_dependencies_unchanged": [
+    {
+      "path": "products-config.php",
+      "merged_blob": "b537883bda1d120b5144c86e57456999ee32e1dd",
+      "base_blob": "b537883bda1d120b5144c86e57456999ee32e1dd",
+      "original_blob": "b537883bda1d120b5144c86e57456999ee32e1dd"
+    },
+    {
+      "path": "products-storage/build_paid_02_instrukciya.py",
+      "merged_blob": "2ebe40b4a8fb65bce651aac2d8749cf6e515e175",
+      "base_blob": "2ebe40b4a8fb65bce651aac2d8749cf6e515e175",
+      "original_blob": "2ebe40b4a8fb65bce651aac2d8749cf6e515e175"
+    }
+  ],
+  "frozen_contract_dependencies": [
+    {
+      "name": "normative_contract",
+      "frozen_sha256": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+      "expected": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+      "path_at_execution": "/home/denis/projects/ai-business-os/docs/Normative_Contract.md"
+    },
+    {
+      "name": "task_protocol",
+      "frozen_sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686",
+      "expected": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686",
+      "path_at_execution": "/home/denis/projects/ai-business-os/docs/Task_Setting_Protocol.md"
+    }
+  ],
+  "all15_buyerbytes_unchanged": true,
+  "all50_documentary_blobs_exact_accepted": true,
+  "actual_preserved_PHP_archive_sha256": "911a213ec92b4d981abb1f15aeb41e847fa801a505179811ac939a16e75ff30c",
+  "source_units": "server-only corpus225304bytes SHA bc0da5df2d003a6b8073e5e94d823cab776fe07830a14203848eb16af6af155f",
+  "no_extraction_or_test_or_build_or_render_reruns": true,
+  "model_calls": 0,
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "normative_verdict": "NOT_VERIFIED"
+}

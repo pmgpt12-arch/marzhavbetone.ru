@@ -1,0 +1,31 @@
+# Independent four-module factual snapshot QA
+
+{
+  "status": "ACCEPT_FACTUAL_FOUR_MODULE_SNAPSHOT",
+  "snapshot_utc": "2026-10-05T17:15:17.369372+00:00",
+  "reviewed_utc": "2026-10-05T17:20:20.743709+00:00",
+  "matrix_sha256": "8989b013c7de250c7964b8a3fdbf4b939817397b2fd44d1e646b02ab4714687d",
+  "md_sha256": "2590b064687d99f3488de8be07559fbb19e837a0f9153dbfa3349d902f206388",
+  "input_manifest_sha256": "76ca7543f4150ffd6b8ccccc9f7247f54004b7c10e44c0f60ffe5db846ad55e5",
+  "inputs_checked": 37,
+  "checks": 201,
+  "errors": [],
+  "scope": [
+    "S1",
+    "P2",
+    "P3",
+    "P5"
+  ],
+  "currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "release_owner_gate": "OPEN",
+  "limitation": "Accepted as exact 17:15 frozen snapshot. P3/P2 citation persistence shown PENDING; later merge/Draft receipts require separate refreshed snapshot, not retroactive update. No all-catalog readiness or approval by filename.",
+  "calls": {
+    "models": 0,
+    "tests": 0,
+    "extraction": 0,
+    "builds": 0,
+    "product_or_zip_mutations": 0,
+    "network": 0
+  }
+}

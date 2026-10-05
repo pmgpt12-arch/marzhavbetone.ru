@@ -1,0 +1,265 @@
+{
+  "observed": "2026-10-05T16:10:08.738425+00:00",
+  "merged_working_sha": "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0",
+  "accepted_source_sha": "76384a877b3ee7a7e4c6c1b0ee705b00faeba082",
+  "buyer_baseline_sha": "1be0493ae194b2647c4b22c98e9981b9c5e64a54",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "fetch",
+        "origin",
+        "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0:refs/task-inputs/p2p3-20261005/pr476merged"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "From https://github.com/pmgpt12-arch/marzhavbetone.ru\n * [new ref]         d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0 -> refs/task-inputs/p2p3-20261005/pr476merged\n"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "refs/task-inputs/p2p3-20261005/pr476merged"
+      ],
+      "exit": 0,
+      "stdout": "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--name-only",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54",
+        "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0"
+      ],
+      "exit": 0,
+      "stdout": "tools/candidates/MB001_P2_CURRENT_ZIP_APK_RECEIPT_2026-10-05.md\ntools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/SHA256SUMS\ntools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/apk-receipt.json\ntools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/apk.py\ntools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/coordinator-receipt.json\ntools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-build.php\ntools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-current-actual-php.zip\ntools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-receipt.json\ntools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2.py\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--exit-code",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54",
+        "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0",
+        "--",
+        "products-config.php",
+        "products-storage/02-dopraboty-bez-poter",
+        "products-storage/build_paid_02_instrukciya.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "76384a877b3ee7a7e4c6c1b0ee705b00faeba082:tools/candidates/MB001_P2_CURRENT_ZIP_APK_RECEIPT_2026-10-05.md"
+      ],
+      "exit": 0,
+      "stdout": "ac783f204719517b91f417f9da8f9860f301de79\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0:tools/candidates/MB001_P2_CURRENT_ZIP_APK_RECEIPT_2026-10-05.md"
+      ],
+      "exit": 0,
+      "stdout": "ac783f204719517b91f417f9da8f9860f301de79\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "76384a877b3ee7a7e4c6c1b0ee705b00faeba082:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/SHA256SUMS"
+      ],
+      "exit": 0,
+      "stdout": "23bbf74717640b6b99020d5a34312efaef7129c3\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/SHA256SUMS"
+      ],
+      "exit": 0,
+      "stdout": "23bbf74717640b6b99020d5a34312efaef7129c3\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "76384a877b3ee7a7e4c6c1b0ee705b00faeba082:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/apk-receipt.json"
+      ],
+      "exit": 0,
+      "stdout": "22224f480e87c17d43caa72b749badabfa10aa05\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/apk-receipt.json"
+      ],
+      "exit": 0,
+      "stdout": "22224f480e87c17d43caa72b749badabfa10aa05\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "76384a877b3ee7a7e4c6c1b0ee705b00faeba082:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/apk.py"
+      ],
+      "exit": 0,
+      "stdout": "5dac0b75d0d65feff7f41005988ba7a72fba0fa8\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/apk.py"
+      ],
+      "exit": 0,
+      "stdout": "5dac0b75d0d65feff7f41005988ba7a72fba0fa8\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "76384a877b3ee7a7e4c6c1b0ee705b00faeba082:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/coordinator-receipt.json"
+      ],
+      "exit": 0,
+      "stdout": "063b886c4777b88fa1229975f19afd212c58f754\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/coordinator-receipt.json"
+      ],
+      "exit": 0,
+      "stdout": "063b886c4777b88fa1229975f19afd212c58f754\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "76384a877b3ee7a7e4c6c1b0ee705b00faeba082:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-build.php"
+      ],
+      "exit": 0,
+      "stdout": "b369e0cbaf0ea50c5af17925fe0d4d8bada2a031\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-build.php"
+      ],
+      "exit": 0,
+      "stdout": "b369e0cbaf0ea50c5af17925fe0d4d8bada2a031\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "76384a877b3ee7a7e4c6c1b0ee705b00faeba082:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-current-actual-php.zip"
+      ],
+      "exit": 0,
+      "stdout": "0b94c13dc086f88c06bf90492009be3b37f92418\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-current-actual-php.zip"
+      ],
+      "exit": 0,
+      "stdout": "0b94c13dc086f88c06bf90492009be3b37f92418\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "76384a877b3ee7a7e4c6c1b0ee705b00faeba082:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-receipt.json"
+      ],
+      "exit": 0,
+      "stdout": "4897b6dc103a7a6ab781a794649f847391a65da1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-receipt.json"
+      ],
+      "exit": 0,
+      "stdout": "4897b6dc103a7a6ab781a794649f847391a65da1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "76384a877b3ee7a7e4c6c1b0ee705b00faeba082:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2.py"
+      ],
+      "exit": 0,
+      "stdout": "52df2a6db8ae7d3dcf48682bcfb2a6bfb8006bbf\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0:tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2.py"
+      ],
+      "exit": 0,
+      "stdout": "52df2a6db8ae7d3dcf48682bcfb2a6bfb8006bbf\n",
+      "stderr": ""
+    }
+  ],
+  "scope_verified": true,
+  "changed_paths": [
+    "tools/candidates/MB001_P2_CURRENT_ZIP_APK_RECEIPT_2026-10-05.md",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/SHA256SUMS",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/apk-receipt.json",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/apk.py",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/coordinator-receipt.json",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-build.php",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-current-actual-php.zip",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-receipt.json",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2.py"
+  ],
+  "buyer_config_generator_exact_unchanged": true,
+  "evidence_blobs": {
+    "tools/candidates/MB001_P2_CURRENT_ZIP_APK_RECEIPT_2026-10-05.md": "ac783f204719517b91f417f9da8f9860f301de79",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/SHA256SUMS": "23bbf74717640b6b99020d5a34312efaef7129c3",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/apk-receipt.json": "22224f480e87c17d43caa72b749badabfa10aa05",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/apk.py": "5dac0b75d0d65feff7f41005988ba7a72fba0fa8",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/coordinator-receipt.json": "063b886c4777b88fa1229975f19afd212c58f754",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-build.php": "b369e0cbaf0ea50c5af17925fe0d4d8bada2a031",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-current-actual-php.zip": "0b94c13dc086f88c06bf90492009be3b37f92418",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2-receipt.json": "4897b6dc103a7a6ab781a794649f847391a65da1",
+    "tools/candidates/evidence/P2_CURRENT_PHP_ZIP_AND_APK_20261005/p2.py": "52df2a6db8ae7d3dcf48682bcfb2a6bfb8006bbf"
+  },
+  "all9_report_evidence_blobs_equal_accepted": true,
+  "model_calls": 0,
+  "product_test_repeats": 0,
+  "status": "PASS_ACTUAL_MERGED_COMPOSITION"
+}

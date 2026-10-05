@@ -1,0 +1,31 @@
+{
+  "task_id": "readonly-pool-independent-264d75",
+  "execution_pattern": "one_shot",
+  "primary_result": "independent_targeted_OOXML_baseline_fact_review",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "frozen_input_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "input_files": {
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-next-queue-20261005-recovery/module-input-hashes.json": "7ef66ed269183a671269c033d80b4c85f06eff53a452b4e4cd3a3a15b8b4e08e",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-next-queue-20261005-recovery/next-atomic-passports.json": "e3e3a972d785ea579e207881b88e771fa41d038be52ac011092ef74a5f664f42",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-next-queue-20261005-recovery/ooxml_pool.py": "376ef3d1c38718537687d93b01d08416faed9e18c2817d6893f56d5e7e1633df",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-next-queue-20261005-recovery/pool-receipt.json": "6edbc647fe8b1b300a5de24705b3cd51a4d5522fc37726226f7d19c6cfceefc3",
+    "/home/denis/projects/ai-business-os/docs/Normative_Contract.md": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+    "/home/denis/projects/ai-business-os/docs/Task_Setting_Protocol.md": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686"
+  },
+  "route": "USD0 Python stdlib, independently implemented ZIP/XML checks; author script read only never executed",
+  "scope": "51 exact eligible source hashes and 42 OOXML ZIP CRC/duplicate entries/XML/content types/internal URI targets; actual main DOCX presence and workbook-linked worksheet coverage/counts; compare scoped author facts",
+  "not_claimed": [
+    "accepted buyer package",
+    "actual PHP delivery ZIP",
+    "formal XSD conformance",
+    "formula correctness",
+    "layout",
+    "legal/currentness/human acceptance",
+    "sale readiness"
+  ],
+  "duplicate_gate": "Own exact output absent before creation; author READY frozen, independent review required by root",
+  "prepared_at": "2026-10-05T17:25:36.232411+00:00",
+  "actual_command": "python3 /home/denis/.local/state/claude-dispatcher/recovery-20261005/readonly-pool-independent-20261005/verify.py",
+  "source_mutation": "none; outputs only isolated QA directory"
+}

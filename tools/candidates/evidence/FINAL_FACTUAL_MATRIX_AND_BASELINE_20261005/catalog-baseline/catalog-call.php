@@ -1,0 +1,1 @@
+<?php define('ORDERS_DIR',__DIR__.'/isolated-orders');define('DELIVERY_DIR',__DIR__.'/isolated-delivery');define('PRODUCTS_DIR',__DIR__.'/nonexistent-source');require __DIR__.'/products-config.php';echo json_encode(mvb_products(),JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);

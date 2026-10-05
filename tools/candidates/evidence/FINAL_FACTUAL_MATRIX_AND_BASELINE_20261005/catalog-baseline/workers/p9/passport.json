@@ -1,0 +1,121 @@
+{
+  "task_id": "readonly-ooxml-p9-264d75",
+  "execution_pattern": "one_shot",
+  "primary_result": "Exact p9 buyer-source OOXML integrity/schema factual inventory",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "module_dir": "11-bankrotstvo-genpodryadchika",
+  "required_inputs": [
+    {
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/00-START-HERE.txt",
+      "relative_name": "00-START-HERE.txt",
+      "git_blob": "a23d644ccf47747f5af183cca9c682aa4869e065",
+      "sha256": "8321609040b19c1a699fa80c0cfd3b9049c7b47f4742146f0e209c85b4a6c11b",
+      "size": 3955,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/01-slovar-poley-bankrotstvo.docx",
+      "relative_name": "01-slovar-poley-bankrotstvo.docx",
+      "git_blob": "b16b579bed2bd3cfe0cb1a14a5a4cb50cf7d18d2",
+      "sha256": "b29c0d3c864719f6d79a81edb60995acb844303f9cf1fb1b573d816c883f8814",
+      "size": 16334,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/02-algoritm-genpodryadchik-bankrotitsya.docx",
+      "relative_name": "02-algoritm-genpodryadchik-bankrotitsya.docx",
+      "git_blob": "cf2122384f97704c40b3906156ac6faae5ce52f7",
+      "sha256": "e8f2e4a95fd55f3c90f8adabc44b4bd4dd236b2d91c188a13ff7f3620b49f415",
+      "size": 16381,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/03-markery-do-bankrotstva.docx",
+      "relative_name": "03-markery-do-bankrotstva.docx",
+      "git_blob": "27fe257e83771d0caa1e4b956df3662f9a3fa3ef",
+      "sha256": "0f9f34188e814cdf8a2679cd11110f1a8e5ba2795d481a674900d70a00ac246d",
+      "size": 15617,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/04-reestr-dokumentov-i-dat-po-obektu.xlsx",
+      "relative_name": "04-reestr-dokumentov-i-dat-po-obektu.xlsx",
+      "git_blob": "e051264326a6de5bd4a2bc2238986a12c7b2431c",
+      "sha256": "53a0d61eecb3805ffdb87387d042e4a473dc665d0d262e548e44c130fd229a89",
+      "size": 31832,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/05-perechen-paketa-dlya-zayavleniya-trebovaniya.docx",
+      "relative_name": "05-perechen-paketa-dlya-zayavleniya-trebovaniya.docx",
+      "git_blob": "260bcb8fdafa222b59e38df5706e2e04904fb525",
+      "sha256": "b03adf9f8a522df5d2ca6dd8c7211c72ada086e2f6b4b5822ade260c1b51ef20",
+      "size": 16248,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "relative_name": "06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "git_blob": "4901941751d18586b1ab33a19ff3605c57cab1ec",
+      "sha256": "dc9fd7769956c2b1f60d6174f80cec5be77a1e5d9f0bc829316d4d754ae5e782",
+      "size": 15998,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/07-zapros-au-o-sostoyanii-raschetov.docx",
+      "relative_name": "07-zapros-au-o-sostoyanii-raschetov.docx",
+      "git_blob": "3ecaaaa98c9e269c83d19602eb68d0c00983980d",
+      "sha256": "41c518e2c55b9f0fe96b98e4dbf69fd8bbf7409d28d08bb503fa41d4c347ab68",
+      "size": 14650,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/08-zayavlenie-o-vklyuchenii-v-reestr-zagotovka.docx",
+      "relative_name": "08-zayavlenie-o-vklyuchenii-v-reestr-zagotovka.docx",
+      "git_blob": "46b222b100d8b48f6f91f0aad67c85cb68cdcb72",
+      "sha256": "ab4c2ea8605e83dda892135679a78bca4125f0a0617a350d8403a0388ebb2228",
+      "size": 17396,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/09-chto-delat-esli-srok-propushchen.docx",
+      "relative_name": "09-chto-delat-esli-srok-propushchen.docx",
+      "git_blob": "5baa7276b2a57f537d818d256c0ac315422deba9",
+      "sha256": "a859198dffd3c4335ae0f7acfb38d344b0df2bb17daecc24593082d3c0b8d1e9",
+      "size": 14867,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    }
+  ],
+  "contracts": {
+    "Task_Setting_Protocol.md": {
+      "path": "/home/denis/projects/ai-business-os/docs/Task_Setting_Protocol.md",
+      "sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686",
+      "bytes": 27997
+    },
+    "Normative_Contract.md": {
+      "path": "/home/denis/projects/ai-business-os/docs/Normative_Contract.md",
+      "sha256": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+      "bytes": 9359
+    }
+  },
+  "executor": "Python/CLI only, no model; proposed isolated pool max4",
+  "scope": "Read-only native DOCX/XLSX ZIP CRC/duplicate parts/internal relationships/content-types/cell-formula schema inventory; all member before/after hash proof; signal numeric #{2,} only, not rendered clipping verdict",
+  "duplicate_gate": "No existing exact output; bounded located reports do not claim this exact structural scope",
+  "output_dir": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/p9-readonly-ooxml-264d75",
+  "acceptance": "Exact manifest membership/inputhash; source bytes unchanged; evidence every file including nonOOXML applicability; deterministic structural observations independently reviewable",
+  "not_claimed": [
+    "accepted repackaging source",
+    "actual PHP ZIP proof",
+    "formula correctness",
+    "layout/readability",
+    "legal/financial/currentness/human acceptance",
+    "sale readiness"
+  ],
+  "stop": "Missing exact input or mismatch/duplicate proof; preserve factual evidence, do not repair products",
+  "api_usd": 0,
+  "status": "PROPOSED_READY_INPUTS_PENDING_ROOT_REVIEW_AND_DUPLICATE_GATE",
+  "scope_authorized_by_root": true,
+  "capacity_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-next-queue-20261005-recovery/capacity.json"
+}

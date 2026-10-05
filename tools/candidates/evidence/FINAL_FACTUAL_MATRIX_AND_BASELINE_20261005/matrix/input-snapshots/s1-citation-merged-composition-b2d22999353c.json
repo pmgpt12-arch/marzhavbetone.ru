@@ -1,0 +1,310 @@
+{
+  "status": "PASS_ACTUAL_WORKING_COMPOSITION",
+  "at": "2026-10-05T16:58:43.681780+00:00",
+  "pr": 479,
+  "source_sha": "a77422195c2c68281a7797ad99f9f6b70426d740",
+  "accepted_output_sha": "032625df169f595c1f06c9d69a0428e62448650f",
+  "actual_merged_sha": "1d44b6711084a8e5c0842947c8817ed358347058",
+  "working_target": "codex/mb001-independent-415-20261005",
+  "actual_merge_parents": [
+    "a77422195c2c68281a7797ad99f9f6b70426d740",
+    "032625df169f595c1f06c9d69a0428e62448650f"
+  ],
+  "buyer_files_verified": 11,
+  "documentary_files_verified": 34,
+  "SHA256SUMS_entries_verified": 32,
+  "buyers": [
+    {
+      "path": "tools/candidates/s1-oplata-za-raboty/00-START-HERE.txt",
+      "sha256": "5d0dea77ab296dff622abb6b6ceb768ed7110ada790d30ab2f681ffbd525c4ee",
+      "git_blob": "376e625dbab60ba02c687d960f07f7988e8095b1",
+      "baseline_blob": "376e625dbab60ba02c687d960f07f7988e8095b1",
+      "size": 12705
+    },
+    {
+      "path": "tools/candidates/s1-oplata-za-raboty/01-karta-situacii-i-granic.docx",
+      "sha256": "16efd41362254da91f34c8fee86807df9a6dc7cb031e40469adfcbc123765100",
+      "git_blob": "194d42de564180c584e2d6fd15e1f393ad84cb3d",
+      "baseline_blob": "194d42de564180c584e2d6fd15e1f393ad84cb3d",
+      "size": 43475
+    },
+    {
+      "path": "tools/candidates/s1-oplata-za-raboty/02-proverka-i-kontrol-otveta.xlsx",
+      "sha256": "5918714b4e4e95abc546e1fe7a43f515af50680ecf75352a2949a2ebecac47f0",
+      "git_blob": "1018d5e76e17a419fbec6338c9e19c8fbecb7bd3",
+      "baseline_blob": "1018d5e76e17a419fbec6338c9e19c8fbecb7bd3",
+      "size": 27364
+    },
+    {
+      "path": "tools/candidates/s1-oplata-za-raboty/03-algoritm-dejstviy.docx",
+      "sha256": "257f984b902c34a1965c41541e5a615ca162def0c8746441ec9b9f886583d908",
+      "git_blob": "fdd3456b79f82d3a870abedc0c273fd0e885a9c7",
+      "baseline_blob": "fdd3456b79f82d3a870abedc0c273fd0e885a9c7",
+      "size": 46225
+    },
+    {
+      "path": "tools/candidates/s1-oplata-za-raboty/04-uchet-raschetov-i-otpravok.xlsx",
+      "sha256": "f735e85286952a2780d413aea7debbe7a7ceda24edf717d79b631a4aad8945d9",
+      "git_blob": "37e1885de90d12bbc4c3adcd7baeeed29b29a911",
+      "baseline_blob": "37e1885de90d12bbc4c3adcd7baeeed29b29a911",
+      "size": 110781
+    },
+    {
+      "path": "tools/candidates/s1-oplata-za-raboty/05-peregovory-i-perenos-sroka.docx",
+      "sha256": "5536d8ce554aba459b358d2632ed749f318641cc14ea027bc1a031ae35359b56",
+      "git_blob": "eb34dd8750822f054d780553672bc27ec58fddac",
+      "baseline_blob": "eb34dd8750822f054d780553672bc27ec58fddac",
+      "size": 41752
+    },
+    {
+      "path": "tools/candidates/s1-oplata-za-raboty/06-uvedomlenie-o-prosrochke.docx",
+      "sha256": "f265450ce366e4a47200c83e22ddb69878050cdec226eece63682e23cb4864fa",
+      "git_blob": "11f1156c2eefc6c32157e4602d71845de63c78a9",
+      "baseline_blob": "11f1156c2eefc6c32157e4602d71845de63c78a9",
+      "size": 38106
+    },
+    {
+      "path": "tools/candidates/s1-oplata-za-raboty/07-otpravka-i-dokazatelstvo.docx",
+      "sha256": "cb5f72c95637c6692a8aa4aac55d32ca43baba3fe134d57de5e5c7b9f97445e1",
+      "git_blob": "279c621c900d852338b7887ce4e08542766c9cd1",
+      "baseline_blob": "279c621c900d852338b7887ce4e08542766c9cd1",
+      "size": 39449
+    },
+    {
+      "path": "tools/candidates/s1-oplata-za-raboty/08-raschet-procentov-395.xlsx",
+      "sha256": "e0ed0206c17f1b3638bba14dd472c3acad0da80c87dd640169e9c094dec266b4",
+      "git_blob": "0cabf395cfcd0d3624226c5311e39bb937e628a0",
+      "baseline_blob": "0cabf395cfcd0d3624226c5311e39bb937e628a0",
+      "size": 474471
+    },
+    {
+      "path": "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+      "sha256": "6f2f744ac79ed4620bfe66497fe6a76e3d025becfe2c2f41622903a835162eab",
+      "git_blob": "b2b8bad0a5767686514237a9fdc8704a1926cfcf",
+      "baseline_blob": "b2b8bad0a5767686514237a9fdc8704a1926cfcf",
+      "size": 41274
+    },
+    {
+      "path": "tools/candidates/s1-oplata-za-raboty/10-obrashchenie-v-sud.docx",
+      "sha256": "d8d0cafe7849bc523cd8a2c9cf1e5c7056cf75a9bfd0146c2c7cf1fc7bd3be55",
+      "git_blob": "32422aea076457b8f5c07301615d910d49aaa821",
+      "baseline_blob": "32422aea076457b8f5c07301615d910d49aaa821",
+      "size": 43007
+    }
+  ],
+  "documentary_files": [
+    {
+      "path": "tools/candidates/MB001_S1_CURRENT_CITATION_INVENTORY_2026-10-05.md",
+      "sha256": "1bf7dc9dad1373dfe0a447ffe636c7184230912e6029e5c27096753d699d088e",
+      "git_blob": "0e62867062a42b1e8d6a956c22a2574b2f893827",
+      "accepted_blob": "0e62867062a42b1e8d6a956c22a2574b2f893827"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/SHA256SUMS",
+      "sha256": "91819a544251cb7a1f7d6d27bbf4041fef2f6cacdf6cb0fc2570c81c43523b5e",
+      "git_blob": "9dfe3a455736e225cd1efc254ff4c3b29703e307",
+      "accepted_blob": "9dfe3a455736e225cd1efc254ff4c3b29703e307"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/citation-inventory.json",
+      "sha256": "5f2ac5ec7950ff21de17d8907fe2d6bd2973dc422f516426f76061d6b98f3c05",
+      "git_blob": "80f67536df3a1ad397a45b0f98ac0a228707315d",
+      "accepted_blob": "80f67536df3a1ad397a45b0f98ac0a228707315d"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/citation-source-units.json",
+      "sha256": "e81bdac5048257bb1790ef4fa767026cd7f286796c6892113878ec9d57a07687",
+      "git_blob": "f2790f25ea4f05342ed63ee0d5cb38dd83d2cfd2",
+      "accepted_blob": "f2790f25ea4f05342ed63ee0d5cb38dd83d2cfd2"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/coordinator-acceptance.json",
+      "sha256": "c1b365a7db58910c4141bb8cae28854d1c29f3ecc8a2dead33cfd7f8d35fbc92",
+      "git_blob": "fc776287ab17e84b3793f098697c5557efb95809",
+      "accepted_blob": "fc776287ab17e84b3793f098697c5557efb95809"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/documentary-input-binding.json",
+      "sha256": "71e1a01496d3fda254a81148b0b6e13f21707bfdb1b467e7e5c813d9a8eaeaf5",
+      "git_blob": "3420346bbaf7e07ad70293cf452ceb15d1b72f63",
+      "accepted_blob": "3420346bbaf7e07ad70293cf452ceb15d1b72f63"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/extract-command-output.json",
+      "sha256": "652d9851005d1b9fb0be1ec1375d54fc7409f07cf50fcc7833c00bda11233c15",
+      "git_blob": "e843b3654c8d7056b0751b0c8825ede67a00f52d",
+      "accepted_blob": "e843b3654c8d7056b0751b0c8825ede67a00f52d"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/extract-preflight-failed.py",
+      "sha256": "c16700ce177c83d5187dbceb432c4a8fd80cd58aeec8f1f70d2f8cbae4007b2c",
+      "git_blob": "06063beaaeea5ce72f366509d9533e2d01769f34",
+      "accepted_blob": "06063beaaeea5ce72f366509d9533e2d01769f34"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/extract.py",
+      "sha256": "e202c8502ae73d60b1ad07219770d440f76a665fa60d54de1ae20d75680415c0",
+      "git_blob": "c742a597b287369df7ddd889ef64ba9ced3c1326",
+      "accepted_blob": "c742a597b287369df7ddd889ef64ba9ced3c1326"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/freeze-receipt.json",
+      "sha256": "78bf40b3d0a4601d54eca9b846436be826ac54b50a68a8417c573c3ae2f2e0e2",
+      "git_blob": "106bf3912099322ec26ff9924960fee6090ae907",
+      "accepted_blob": "106bf3912099322ec26ff9924960fee6090ae907"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/author-artifact-pins-before-review.json",
+      "sha256": "89e12a57ab731263556493a6d615414c1136080ee25801fd20e71428905c50d0",
+      "git_blob": "a3110909019f4c14f6a3a31eb15e5c4b1e3e09fa",
+      "accepted_blob": "a3110909019f4c14f6a3a31eb15e5c4b1e3e09fa"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/checker-assumption-root-cause.json",
+      "sha256": "7fed41decbb56ff08e86c9327260ac91219e40cbc6136f0d68741f60d19137c7",
+      "git_blob": "9185407dba8c5c5e1095260347240df575533012",
+      "accepted_blob": "9185407dba8c5c5e1095260347240df575533012"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/handoff.json",
+      "sha256": "0b896b5a1a500a0633add01a2064264dc1d8c1b521f6a699b239d6fdb564a05f",
+      "git_blob": "1a9fdde21ce4ffea913c492f51ed7b2172584252",
+      "accepted_blob": "1a9fdde21ce4ffea913c492f51ed7b2172584252"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/independent-broad-coverage.json",
+      "sha256": "180080c46a075abb1ff43dc0c166e866e57aec06c51ea98d7755a92e66abebe7",
+      "git_blob": "5d4969904ee3a11f151f21b9517816cf2d3b700f",
+      "accepted_blob": "5d4969904ee3a11f151f21b9517816cf2d3b700f"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/independent-broad-token-hits.json",
+      "sha256": "6b8ba8bb387137f8d6c631c18de8104cd8353b5e818644cb9c25376009355432",
+      "git_blob": "53f6e90ab4cb95cfe4db19286804d0c5fa61beb3",
+      "accepted_blob": "53f6e90ab4cb95cfe4db19286804d0c5fa61beb3"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/independent-check-details.json",
+      "sha256": "0e6e89d4db9e6c478fbd0f574fd3729870418071bb189013bc4348d68340328c",
+      "git_blob": "8e71b4b830128cab030b2a39215a5217a96acab0",
+      "accepted_blob": "8e71b4b830128cab030b2a39215a5217a96acab0"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/independent-extra-part-hits.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "git_blob": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "accepted_blob": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/independent-input-hashes.json",
+      "sha256": "4f0707f4de0e498334370b900230874fb67348cef3192aa659adc3383eacf734",
+      "git_blob": "0bbcd87b4929800a058e023cf89fef84b553fa76",
+      "accepted_blob": "0bbcd87b4929800a058e023cf89fef84b553fa76"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/independent-registry-availability.json",
+      "sha256": "520e9f5c4f43bccc59cd1ce73e01d35b1885b53625f3df255ba7d0482bfc892f",
+      "git_blob": "30d2ab98875419f5eb79d3b5c4f8bc231f594e62",
+      "accepted_blob": "30d2ab98875419f5eb79d3b5c4f8bc231f594e62"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/independent-required-old-input-hashes.json",
+      "sha256": "d791cb428f2d2042fa73f4f35668d4cc0f11012e7a4a68d5ccd78f446f62c204",
+      "git_blob": "ebcc1b6db82f73b76bbef3f10bd9aab25b9a10d1",
+      "accepted_blob": "ebcc1b6db82f73b76bbef3f10bd9aab25b9a10d1"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/independent-review-receipt.json",
+      "sha256": "592dbb4a4e59f3cb4d34e9ef2d069f1260575f96bc71c856c2126a7f8a912367",
+      "git_blob": "2d771a8792775b9be3436580c2818fcc6f9a6d97",
+      "accepted_blob": "2d771a8792775b9be3436580c2818fcc6f9a6d97"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/independent-review-report.md",
+      "sha256": "0b8e7d557947fd480259ce97546a81a21259b61d210836eed41e6205dce39338",
+      "git_blob": "1d8f410fc2b77986dbd946028fdb28afb20364b4",
+      "accepted_blob": "1d8f410fc2b77986dbd946028fdb28afb20364b4"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/independent-visible-fragments.json",
+      "sha256": "4befb6ca3df0a804144a32748124832938a52e6f3a948da2c63b31117e47c1a4",
+      "git_blob": "6dc639e168229b947decea3902e3646ac154f5d1",
+      "accepted_blob": "6dc639e168229b947decea3902e3646ac154f5d1"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/initial-review-superseded-checker-assumption.json",
+      "sha256": "1fe95ee44022aa4298a10426b82d6220c55cf6514a3acb0705c02f96331f3791",
+      "git_blob": "afbfc7e6cee731afd6b37dcd21de3d24a34fdd74",
+      "accepted_blob": "afbfc7e6cee731afd6b37dcd21de3d24a34fdd74"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/passport.json",
+      "sha256": "4f5716edc6e7349195bfa65645e9e2c6c498fc9cf534c5c50d95cfb3b9563bcc",
+      "git_blob": "beb68c01bb454a8c464e5bf229740cb8312051f4",
+      "accepted_blob": "beb68c01bb454a8c464e5bf229740cb8312051f4"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/independent/review_inventory.py",
+      "sha256": "4e57fe3797632f71d3afd12f71bc22304a5a0fbeb43304f128643ca6246f24f8",
+      "git_blob": "49230b4b3ff68560fec5d6bc4659d587746fd824",
+      "accepted_blob": "49230b4b3ff68560fec5d6bc4659d587746fd824"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/input-hashes.json",
+      "sha256": "0af7f13f755910ef0cbaf7bd5ef687cf4d2e08a1c48d07db23dc214e2a92405a",
+      "git_blob": "16b4e3bf6c2b708178cc3cd48a6d308ebfc2f095",
+      "accepted_blob": "16b4e3bf6c2b708178cc3cd48a6d308ebfc2f095"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/normative_contract.md",
+      "sha256": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+      "git_blob": "9118edf2d7815e1f5a9ddb165564fb879e73d3c3",
+      "accepted_blob": "9118edf2d7815e1f5a9ddb165564fb879e73d3c3"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/old_buyer_claims_index.json",
+      "sha256": "b112f842881c332a34bbbfd071e4ae67e442762822c235f44a15de37c28adeb0",
+      "git_blob": "6b0311fe8d08d5cb57a05ab93505df84226aa29e",
+      "accepted_blob": "6b0311fe8d08d5cb57a05ab93505df84226aa29e"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/old_literal_reference_map.json",
+      "sha256": "0de39f147891d776f02fa1b7e36726d2f2a4184f64e9a1f712e7409aba8091e8",
+      "git_blob": "6d935b48ebb2fa6ecfb49850ab16bf1f1c2f8e7a",
+      "accepted_blob": "6d935b48ebb2fa6ecfb49850ab16bf1f1c2f8e7a"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/passport.json",
+      "sha256": "dc7ea06f863201843a5b1d12315ccf57cf2a39142f6f6a1a537015769688a7b5",
+      "git_blob": "a05e15d4e4428485b36a88d9164ee3205cec9d82",
+      "accepted_blob": "a05e15d4e4428485b36a88d9164ee3205cec9d82"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/preflight-address-failure.json",
+      "sha256": "188037faeca09932d3c56c7e52e077449a7529ddc80351f77d74cd45605bb6c5",
+      "git_blob": "1b2f348164a4623243b1a2a6a9f1cfeaacde26c3",
+      "accepted_blob": "1b2f348164a4623243b1a2a6a9f1cfeaacde26c3"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/task_protocol.md",
+      "sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686",
+      "git_blob": "62b458db9e1a1bef75d70817fab0d0bf39aef930",
+      "accepted_blob": "62b458db9e1a1bef75d70817fab0d0bf39aef930"
+    },
+    {
+      "path": "tools/candidates/evidence/S1_CURRENT_CITATION_INVENTORY_20261005/verification-receipt.json",
+      "sha256": "64e50c6969c6f847f9838fd756ce708194fd32e5eed4cf79adbca06c7b9fa0ed",
+      "git_blob": "097df3d6cea66661c273e201e35655dac4cf4ab2",
+      "accepted_blob": "097df3d6cea66661c273e201e35655dac4cf4ab2"
+    }
+  ],
+  "all11_buyerbytes_unchanged": true,
+  "all34_proofblobs_exact_accepted": true,
+  "parser_script_map_evidence_unchanged": true,
+  "full_19MB_intermediate": "server-only; manifest-bound, not committed",
+  "no_extraction_or_test_or_render_reruns": true,
+  "model_calls": 0,
+  "official_source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "normative_verdict": "NOT_VERIFIED"
+}
