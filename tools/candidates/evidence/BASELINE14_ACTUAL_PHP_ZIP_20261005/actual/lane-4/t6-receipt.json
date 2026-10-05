@@ -1,0 +1,57 @@
+{
+  "status": "PASS_ISOLATED_BASELINE_PHP_ZIP_BYTES",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "sku": "t6",
+  "actual_php": {
+    "sku": "t6",
+    "dir": "19-kvartiry-vmesto-deneg",
+    "zip_name": "19-kvartiry-vmesto-deneg.zip",
+    "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/next-baseline-delivery-queue-20261005/actual/lane-4/delivery/19-kvartiry-vmesto-deneg.zip",
+    "php_version": "8.3.6",
+    "zip_extension": "1.22.3"
+  },
+  "zip_sha256": "150e514f21cc124791d5955b41730a0c531f14f663909f02908a271e026c1f53",
+  "zip_bytes": 49450,
+  "members": [
+    {
+      "name": "01-poryadok-dnya-kogda-prosyat-podpisat.docx",
+      "sha256": "4bb6457a70077853dd22046909da82263382e424d758d61b64934c6b587758bb",
+      "bytes": 15801,
+      "crc32": "ca4c2322",
+      "source_git_blob": "382e163bd4391194fc992508c953a5abb4009432"
+    },
+    {
+      "name": "02-zapros-sostoyanie-escrow.docx",
+      "sha256": "91cbc0a573ce7e44df5f8fcb5c27fff40d2a9c11b44fa666b941400a73214971",
+      "bytes": 12763,
+      "crc32": "bbbfdc33",
+      "source_git_blob": "03d66e4302327f718f9f6b95fbb21fce1b2dc064"
+    },
+    {
+      "name": "03-zapros-status-obekta.docx",
+      "sha256": "17ac0a0195e295cb32ddfa1d1308652d8facf0defed43ce147d53a0fc2195c42",
+      "bytes": 12707,
+      "crc32": "671a78d2",
+      "source_git_blob": "64c21f1efc673cb539de6ee8ce0552b0e76ebeac"
+    },
+    {
+      "name": "00-START-HERE.txt",
+      "sha256": "d5095054fcf929c8b9bd1d241dbcacbd2f78f46f258d027a4bcfea28657b9a73",
+      "bytes": 3944,
+      "crc32": "723b9d76",
+      "source_git_blob": "b785f4125aea7db97191cf5213c11e7658805ec7"
+    },
+    {
+      "name": "04-slovar-poley-zaprosy.docx",
+      "sha256": "9c86ebe0a77d4817bfe8e021a8b7c7e64ad4b667850dc67d0ee86c337a44887b",
+      "bytes": 13888,
+      "crc32": "debad449",
+      "source_git_blob": "022074fb866a3ff1c5145ecfa8213ab4e3c37cb1"
+    }
+  ],
+  "count": 5,
+  "source_originals_preserved": true,
+  "CRC_failure_member": null,
+  "approved_delivery": false,
+  "sale_ready": false
+}

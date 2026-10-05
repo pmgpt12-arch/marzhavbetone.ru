@@ -1,0 +1,25 @@
+{
+  "status": "INDEPENDENT_BASELINE_ARCHIVE_ACCEPT_PENDING_ROOT_FINAL_DOCUMENTARY_REVIEW",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "archives": 14,
+  "member_bindings": 135,
+  "copied_source_files_including_metadata": 150,
+  "independent_checks": 1074,
+  "errors": 0,
+  "independent_receipt_sha256": "f550f20ab2e1658470fd93bcccb64d31a4db66ef16eefff86edf635bac5c55e8",
+  "supersedes_status_only": [
+    "actual/READY.json pending independent",
+    "actual-zip-report.md historical pending independent",
+    "compact-copy-receipt.json historical provisional"
+  ],
+  "exact_server_zip_paths_hashes_sizes": "author-summary.json and independent/actual-archive-facts.json",
+  "binary_runtime_SHA": "NOT_CAPTURED_NOT_CLAIMED",
+  "qualification": "Isolated cached baseline archive bytes only, not approved current repackaging/live delivery/formula/layout/manualExcel/legal/currentness/human/release/SaleReady",
+  "original229_server_manifest": "server-full-run-SHA256SUMS.json includes omitted server-onlysource/ZIP bytes, not Git inclusion list",
+  "source_snippet_git_representation": {
+    "encoding": "gzip lossless; rawserverrootapproval/229manifest unchanged",
+    "stored_path": "actual-config-source-snippet.txt.gz",
+    "decoded_sha256": "6ecee2d5a0b0cfff74a7be798f4794cda7a52ffac8a19f3f2bb39c1385fcb992",
+    "roundtrip_bytes_exact": true
+  }
+}

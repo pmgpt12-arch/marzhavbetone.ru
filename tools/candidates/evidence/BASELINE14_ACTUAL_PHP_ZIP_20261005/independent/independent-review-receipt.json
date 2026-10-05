@@ -1,0 +1,84 @@
+{
+  "status": "ACCEPT_ISOLATED_BASELINE_ACTUAL_PHP_ZIP_BYTES",
+  "execution_pattern": "one_shot",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "command": "python3 /home/denis/.local/state/claude-dispatcher/recovery-20261005/baseline14-zip-independent-20261005/verify.py",
+  "verified_at": "2026-10-05T18:11:47.363362+00:00",
+  "elapsed_seconds": 1.1835905509942677,
+  "checks": 1074,
+  "error_count": 0,
+  "errors": [],
+  "actual_archives": 14,
+  "actual_member_bindings": 135,
+  "copied_source_files_including_excluded_metadata": 150,
+  "lanes": [
+    {
+      "lane": 1,
+      "skus": [
+        "p4",
+        "t2",
+        "t3"
+      ],
+      "copied_source_file_count": 37,
+      "eligible_archive_members": 34
+    },
+    {
+      "lane": 2,
+      "skus": [
+        "p7",
+        "p8",
+        "p11"
+      ],
+      "copied_source_file_count": 35,
+      "eligible_archive_members": 31
+    },
+    {
+      "lane": 3,
+      "skus": [
+        "p9",
+        "p10",
+        "p12"
+      ],
+      "copied_source_file_count": 42,
+      "eligible_archive_members": 39
+    },
+    {
+      "lane": 4,
+      "skus": [
+        "p13",
+        "t1",
+        "t4",
+        "t5",
+        "t6"
+      ],
+      "copied_source_file_count": 36,
+      "eligible_archive_members": 31
+    }
+  ],
+  "captured_runtime_receipts": [
+    {
+      "PHP": "8.3.6",
+      "ZipArchive_extension": "1.22.3"
+    }
+  ],
+  "runtime_binary_SHA": "NOT_CAPTURED_NOT_CLAIMED",
+  "author_runner_executed_by_QA": false,
+  "PHP_calls_by_QA": 0,
+  "OOXML_or_citation_parser_calls_by_QA": 0,
+  "model_calls": 0,
+  "api_usd": 0,
+  "script_sha256": "7d14cc1eba47a9c83d4b1e6a0e90bf5761745040d0d2ad8c4208a485e34518ee",
+  "archive_facts_sha256": "7756fe8e0d1bce81fb0a973c6b774e80bd3120d0487f73db9d03626dca585835",
+  "member_facts_sha256": "b1aff1aca847764ed02e62fcdef573a9602930b81b5fd3736c12ab7d840b428d",
+  "source_copy_facts_sha256": "57487f168569f5db70df19557170b6e61143843cef7c8a24fec9907ddef33ac0",
+  "qualification": "Frozen cached baseline264d75 actual archives and exact bytes only; not approved current repackaging/live delivery/legal/formula/layout/manualExcel/release/SaleReady",
+  "not_claimed": [
+    "approved current repackaging source",
+    "live delivery",
+    "formal OOXML schema",
+    "formula correctness",
+    "layout",
+    "legal/currentness/human acceptance",
+    "release/SaleReady"
+  ]
+}
