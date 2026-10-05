@@ -1,0 +1,119 @@
+{
+  "frozen_input_sha": "14c5a562c93ad7f7c28aa73588d9ca2d8b35fea3",
+  "source_inputs_equal_git": true,
+  "http_base": "http://127.0.0.1:54535",
+  "debug_address": "127.0.0.1",
+  "debug_port": 50263,
+  "chrome_command": [
+    "/usr/bin/google-chrome",
+    "--headless=new",
+    "--no-sandbox",
+    "--disable-gpu",
+    "--hide-scrollbars",
+    "--disable-background-networking",
+    "--disable-component-update",
+    "--disable-sync",
+    "--disable-default-apps",
+    "--no-first-run",
+    "--metrics-recording-only",
+    "--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1",
+    "--user-data-dir=/tmp/pr283-cdp-profile-bbnajpin",
+    "--remote-debugging-address=127.0.0.1",
+    "--remote-debugging-port=50263",
+    "about:blank"
+  ],
+  "chrome_exit_code": 0,
+  "owned_chrome_process_stopped": true,
+  "server_closed": true,
+  "temporary_profile_removed": true,
+  "post_requests": 0,
+  "http_requests": [
+    {
+      "method": "GET",
+      "path": "/articles/ks-2-ks-3-podpisany-zakazchik-ne-oplachivaet.html"
+    },
+    {
+      "method": "GET",
+      "path": "/styles.css"
+    },
+    {
+      "method": "GET",
+      "path": "/article.css"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/ks-2-ks-3-podpisany-zakazchik-ne-oplachivaet.jpg"
+    },
+    {
+      "method": "GET",
+      "path": "/attribution.js"
+    },
+    {
+      "method": "GET",
+      "path": "/favicon.ico"
+    },
+    {
+      "method": "GET",
+      "path": "/articles/ks-2-ks-3-podpisany-zakazchik-ne-oplachivaet.html"
+    },
+    {
+      "method": "GET",
+      "path": "/attribution.js"
+    },
+    {
+      "method": "GET",
+      "path": "/articles/index.html"
+    },
+    {
+      "method": "GET",
+      "path": "/attribution.js"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/akty-skrytyh-rabot-kakie.jpg"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/akt-skrytyh-rabot-montazh.jpg"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/dopolnitelnye-raboty-v-stroitelstve.jpg"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/zakazchik-ne-oplachivaet-vypolnennye-raboty.jpg"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/dolg-zakryvali-na-sleduyushchem-obekte.jpg"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/dostraivali-za-metry-otkaz-v-zos.jpg"
+    },
+    {
+      "method": "GET",
+      "path": "/articles/index.html"
+    },
+    {
+      "method": "GET",
+      "path": "/attribution.js"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/pretenziya-za-chuzhuyu-kommunalku.jpg"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/vsyo-vklyucheno-v-cenu.jpg"
+    }
+  ],
+  "node_exit_code": 0,
+  "elapsed_seconds": 6.8668357449932955,
+  "port_closed_connect_ex": {
+    "54535": "111",
+    "50263": "111"
+  },
+  "temporary_profile_removed_verified": true
+}

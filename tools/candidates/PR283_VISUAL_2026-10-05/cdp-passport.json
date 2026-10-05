@@ -1,0 +1,56 @@
+{
+  "execution_pattern": "one_shot",
+  "primary_result": "PR283_true_CDP_viewport_visual_390_1440",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "frozen_input_sha": "14c5a562c93ad7f7c28aa73588d9ca2d8b35fea3",
+  "scope": [
+    "article+index card",
+    "390x900 and1440x1000 CSS viewport",
+    "Page.captureScreenshot",
+    "actual image inspection"
+  ],
+  "executor": "Existing Google Chrome + Node v22.23.2 built-in WebSocket; no package installation",
+  "preflight": {
+    "task_validity": "PASS: diagnostic delta fixes Chrome CLI minimum500 viewport via CDP emulation",
+    "atomicity": "PASS: one bounded browser session, four render targets",
+    "context": "PASS: sourceSHA, priorviewportreceipt, sourcecanon gates frozen",
+    "contract": "PASS: DOM viewport verified before capture; namedblock on mismatch",
+    "dependencies": "PASS: GoogleChrome installed; NodeglobalWebSocket observedfunction; priorHTTPstub available",
+    "tools_permissions": "PASS: only local ephemeral HTTP/CDP/tmpChromeprofile; no externalforms/events/merge/deploy"
+  },
+  "budget": {
+    "browser_runs": 1,
+    "overall_timeout_seconds": 100,
+    "command_timeout_seconds": 8,
+    "max_initial_readiness_seconds": 5,
+    "max_load_seconds_per_page": 8
+  },
+  "input_paths": [
+    "articles/ks-2-ks-3-podpisany-zakazchik-ne-oplachivaet.html",
+    "articles/index.html",
+    "assets/ks-2-ks-3-podpisany-zakazchik-ne-oplachivaet.jpg",
+    "styles.css",
+    "article.css",
+    "attribution.js"
+  ],
+  "acceptance": [
+    "frozen source files unchanged from14c5",
+    "Emulation.setDeviceMetricsOverride before navigation",
+    "Runtime DOM innerWidth/clientWidth/scrollWidth equals requested390 or1440",
+    "sourcecover decoded1672x941",
+    "fourPNG captured and actuallyviewed",
+    "HTTP bound127.0.0.1 and teardown confirmed",
+    "external requests and allnonGET/HEAD aborted; POST0",
+    "owner text/publication date remain separate reviewgates"
+  ],
+  "stop": [
+    "missingbuilt-inWebSocket",
+    "ChromeCDP cannotstart once",
+    "viewport mismatch after emulation",
+    "budget exhausted"
+  ],
+  "no_install": true,
+  "no_source_changes": true,
+  "no_publication": true
+}
