@@ -261,5 +261,16 @@ def main() -> int:
     return 1 if провал else 0
 
 
+
+
+def test_protocol_column_headers_repeat_on_printed_pages() -> None:
+    from docx import Document
+    from docx.oxml.ns import qn
+    tables = [t for t in Document(PROTOCOL).tables
+              if [c.text.strip() for c in t.rows[0].cells] ==
+              ["Редакция Заказчика", "Редакция Подрядчика"]]
+    assert len(tables) == 1, "protocol column header table missing or ambiguous"
+    assert tables[0].rows[0]._tr.find("./" + qn("w:trPr") + "/" + qn("w:tblHeader")) is not None, "protocol first row must repeat on printed pages"
+
 if __name__ == "__main__":
     sys.exit(main())
