@@ -1788,6 +1788,14 @@ def f10(out: Path):
     for section in doc.sections:
         section.page_width = Cm(21)
         section.page_height = Cm(29.7)
+    # Проверочный лист: целые строки и повторяемая шапка без изменений текста.
+    checklist = doc.tables[0]
+    for row in checklist.rows:
+        row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
+    checklist.rows[0]._tr.get_or_add_trPr().append(OxmlElement("w:tblHeader"))
+    for cell in checklist.rows[0].cells:
+        for paragraph in cell.paragraphs:
+            paragraph.paragraph_format.keep_with_next = True
     save(doc, out / "10-obrashchenie-v-sud.docx")
 
 

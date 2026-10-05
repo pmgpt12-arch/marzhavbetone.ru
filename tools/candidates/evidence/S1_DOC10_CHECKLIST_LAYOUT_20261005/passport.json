@@ -1,0 +1,9 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "устранить разрыв row7 checklist файла10 без уменьшения шрифта или изменения текста",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "base": "36c03150ac3b256621baaf144147cf490bfcf3f7",
+  "scope": "f10 first checklist table only; owner Excel, f01/f03, court body and appendix unchanged",
+  "gate": "two actual byte-equal builds; exact text/placeholders/12 checklist rows/18 appendices; format-only ZIP change; root all-page visual review before commit/push"
+}
