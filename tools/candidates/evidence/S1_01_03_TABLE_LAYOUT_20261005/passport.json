@@ -1,0 +1,17 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "01/03 table rows kept on one page and repeated headers; no text changes",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "base": "a261eee1b8d0c0d419b4c574eab1571e33a8ab39",
+  "scope": "f01/f03 localized docx table layout only",
+  "dependency": "01/03 independent content review remains separate",
+  "gates": [
+    "all text/placeholders/tablecells unchanged",
+    "all non-target buyer bytes unchanged",
+    "two rebuilds equal",
+    "render every page",
+    "root visual review before acceptance"
+  ],
+  "status": "PREPARATION_NOT_ACCEPTED"
+}
