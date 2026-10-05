@@ -1,0 +1,234 @@
+{
+  "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+  "units": [
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/07-algoritm-proverki-uderzhaniy.pdf",
+      "location": {
+        "kind": "pdf_page_text",
+        "physical_page": 1,
+        "extraction": "pdftotext -layout -enc UTF-8",
+        "offset_basis": "Unicode characters in exact page text, excludes form-feed separator"
+      },
+      "text": "  АЛГОРИТМ ПРОВЕРКИ ОБОСНОВАННОСТИ УДЕРЖАНИЙ\n\nШАГ 1. Зафиксируйте факт удержания\n - Дата удержания\n - Сумма\n - Основание (письмо, акт, устное сообщение)\n - Кто уполномочен принять решение об удержании\n\n\nШАГ 2. Проверьте договор\n - Предусмотрено ли удержание в договоре?\n - Какие условия должны быть соблюдены?\n - Требуется ли письменное согласование?\n\n\nШАГ 3. Проверьте документы заказчика\n - Есть ли акт с фиксацией недостатков?\n - Есть ли расчет ущерба?\n - Подписан ли акт ПОДРЯДЧИКОМ?\n\n\nШАГ 4. Оцените обоснованность\n - Если удерживают убытки (например, расходы на другого подрядчика): подтверждены ли\n  расчётом их размер и связь с вашим нарушением (ст. 15, 393 ГК РФ)?\n - Если удерживают неустойку (штраф, пени): предусмотрена ли она договором и\n  начислена ли за нарушение, за которое вы отвечаете (п. 2 ст. 330 ГК РФ)? Доказывать\n  убытки для неустойки заказчик не обязан (п. 1 ст. 330 ГК РФ).\n - Уменьшить неустойку вправе суд, если она явно несоразмерна последствиям нарушения;\n  если нарушитель — предприниматель, только по его заявлению, а договорную неустойку\n  — лишь в исключительных случаях, когда доказано, что взыскание в договорном размере\n  может привести к необоснованной выгоде заказчика (ст. 333 ГК РФ). Подробнее — файл\n  08, «Общий принцип оспаривания».\n\n\nШАГ 5. Составьте претензию\n - Если удержание неправомерно - требуйте возврата\n - Если сумма завышена - требуйте пересчета\n - Если документы отсутствуют - требуйте их предоставления\n\n\nШАГ 6. Отслеживайте сроки\n - Претензия: иск — по истечении 30 календарных дней со дня её направления, если иные\n  срок или порядок не установлены договором (ч. 5 ст. 4 АПК РФ). Проверьте\n  претензионный срок в договоре.\n - После отказа - иск в суд\n - Исковая давность: проверьте срок и день начала его течения по ст. 196 и 200 ГК РФ; для\n  пеней и процентов — также ст. 207 ГК РФ, для требований заказчика о качестве работ —\n  ст. 725 ГК РФ\n"
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/07-algoritm-proverki-uderzhaniy.pdf",
+      "location": {
+        "kind": "pdf_page_text",
+        "physical_page": 2,
+        "extraction": "pdftotext -layout -enc UTF-8",
+        "offset_basis": "Unicode characters in exact page text, excludes form-feed separator"
+      },
+      "text": "ШАГ 7. Рассчитайте полную сумму требований\n - Удержанная сумма\n + Пени по договору\n + Проценты по ст. 395 ГК РФ\n + Судебные расходы\n"
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/04-raschet-ubytkov.xlsx",
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Расчёт требования",
+        "cell": "A2",
+        "data_type": "s",
+        "value_mode": "stored_value"
+      },
+      "text": "Вводите данные только в жёлтые ячейки. Суммы — в рублях. Ставку в таблицах пеней и ст. 395 набирайте с клавиатуры: ячейка текстовая, 0,05 и 0,05% — это 0,05 % в день, 16 и 16% — 16 % годовых. Если в ячейке ставки число (вставка из другой таблицы, формула), знак % по нему не виден — строка не считается; наберите ставку заново с апострофом впереди: '0,05. Ставка пеней меньше 0,01 % в день и ключевая ставка меньше 1 % годовых не считаются. Процент штрафа в п. 2.2 — числом без знака %: 5 % — как 5. Даты — ДД.ММ.ГГГГ; первый и последний день периода входят в число дней. Период с другой базой или ставкой — отдельной строкой. Если в столбце «Проверка» есть сообщение, сумма по этой строке и итог раздела не считаются."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/04-raschet-ubytkov.xlsx",
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Расчёт требования",
+        "cell": "A25",
+        "data_type": "s",
+        "value_mode": "stored_value"
+      },
+      "text": "3. ПРОЦЕНТЫ ПО СТ. 395 ГК РФ: база × ключевая ставка / 100 / 365 × дни"
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/04-raschet-ubytkov.xlsx",
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Расчёт требования",
+        "cell": "A35",
+        "data_type": "s",
+        "value_mode": "stored_value"
+      },
+      "text": "Общая сумма этих строк не выводится: какие из них и от какой суммы включать в требование, определяется договором и законом. Перенесите в претензию только те строки, основание которых проверено."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/04-raschet-ubytkov.xlsx",
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Расчёт требования",
+        "cell": "A42",
+        "data_type": "s",
+        "value_mode": "stored_value"
+      },
+      "text": "Проценты по ст. 395 ГК РФ, руб."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/01-pretenziya-na-uderzhanie.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 28,
+        "nonempty_paragraph_ordinal": 19,
+        "xml_path": "/body[1]/p[28]"
+      },
+      "text": "   Согласно ст. 310 ГК РФ односторонний отказ от исполнения обязательства и одностороннее изменение его условий не допускаются, за исключением случаев, предусмотренных законом."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/01-pretenziya-na-uderzhanie.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 30,
+        "nonempty_paragraph_ordinal": 20,
+        "xml_path": "/body[1]/p[30]"
+      },
+      "text": "   Согласно п. 1 ст. 711 ГК РФ заказчик обязан уплатить подрядчику обусловленную цену после окончательной сдачи результатов работы при условии, что работа выполнена надлежащим образом и в согласованный срок. Порядок оплаты работ по договору строительного подряда установлен ст. 746 ГК РФ."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/01-pretenziya-na-uderzhanie.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 40,
+        "nonempty_paragraph_ordinal": 27,
+        "xml_path": "/body[1]/p[40]"
+      },
+      "text": "процентов по ст. 395 ГК РФ - [сумма] руб.,"
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/11-trebovanie-o-vozvrate-uderzhaniya.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 26,
+        "nonempty_paragraph_ordinal": 17,
+        "xml_path": "/body[1]/p[26]"
+      },
+      "text": "   - Пунктом [номер] Договора возврат удержания обусловлен: [событие по Договору — подписание акта приёмки законченного объекта / ввод объекта в эксплуатацию / истечение гарантийного срока / иное]."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/11-trebovanie-o-vozvrate-uderzhaniya.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 32,
+        "nonempty_paragraph_ordinal": 22,
+        "xml_path": "/body[1]/p[32]"
+      },
+      "text": "   Согласно ст. 309 ГК РФ обязательства должны исполняться надлежащим образом в соответствии с их условиями. Согласно ст. 310 ГК РФ односторонний отказ от исполнения обязательства не допускается, за исключением случаев, предусмотренных законом или иными правовыми актами; Договором такое право Заказчика в отношении возврата гарантийного удержания не предусмотрено."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/11-trebovanie-o-vozvrate-uderzhaniya.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 36,
+        "nonempty_paragraph_ordinal": 25,
+        "xml_path": "/body[1]/p[36]"
+      },
+      "text": "   В срок, установленный пунктом [номер] Договора [если срок Договором не установлен — в срок, предусмотренный п. 2 ст. 314 ГК РФ], перечислить сумму гарантийного удержания [сумма] руб. по реквизитам: [реквизиты]."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/11-trebovanie-o-vozvrate-uderzhaniya.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 38,
+        "nonempty_paragraph_ordinal": 26,
+        "xml_path": "/body[1]/p[38]"
+      },
+      "text": "   При неисполнении настоящего требования оставляем за собой право потребовать также уплаты процентов по ст. 395 ГК РФ и обратиться в арбитражный суд."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/02-pretenziya-na-shtraf.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 22,
+        "nonempty_paragraph_ordinal": 14,
+        "xml_path": "/body[1]/p[22]"
+      },
+      "text": "   - Основание (письмо, акт, приказ): _____."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/02-pretenziya-na-shtraf.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 27,
+        "nonempty_paragraph_ordinal": 18,
+        "xml_path": "/body[1]/p[27]"
+      },
+      "text": "   Согласно ст. 333 ГК РФ, если подлежащая уплате неустойка явно несоразмерна последствиям нарушения обязательства, суд вправе уменьшить неустойку. Если обязательство нарушено лицом, осуществляющим предпринимательскую деятельность, суд вправе уменьшить неустойку при условии заявления должника о таком уменьшении (п. 1 ст. 333 ГК РФ)."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/02-pretenziya-na-shtraf.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 29,
+        "nonempty_paragraph_ordinal": 19,
+        "xml_path": "/body[1]/p[29]"
+      },
+      "text": "   Согласно п. 2 ст. 333 ГК РФ уменьшение неустойки, определённой договором и подлежащей уплате лицом, осуществляющим предпринимательскую деятельность, допускается в исключительных случаях, если будет доказано, что взыскание неустойки в предусмотренном договором размере может привести к получению кредитором необоснованной выгоды."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/08-tipovye-osnovaniya.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 12,
+        "nonempty_paragraph_ordinal": 11,
+        "xml_path": "/body[1]/p[12]"
+      },
+      "text": "Проверьте каждое удержание по шести вопросам:1. Предусмотрено ли оно договором или законом.2. Подтверждено ли оно документами: актом, расчётом, перепиской.3. Если удерживают убытки (например, расходы на другого подрядчика) — подтверждены ли расчётом их размер и связь с вашим нарушением (ст. 15, 393 ГК РФ).4. Если удерживают неустойку (штраф, пени) — предусмотрена ли она договором и начислена ли за нарушение, за которое вы отвечаете (п. 2 ст. 330 ГК РФ). Доказывать убытки для неустойки заказчик не обязан (п. 1 ст. 330 ГК РФ). Уменьшить неустойку вправе суд, если она явно несоразмерна последствиям нарушения; если нарушитель — предприниматель, только по его заявлению, а договорную неустойку — лишь в исключительных случаях, когда доказано, что взыскание в договорном размере может привести к необоснованной выгоде заказчика (ст. 333 ГК РФ).5. Если удержание заявлено как зачёт — однородно ли встречное требование заказчика, наступил ли срок его исполнения и не запрещён ли зачёт законом или договором (ст. 410, 411 ГК РФ). По требованию с истёкшей исковой давностью зачёт не допускается (ст. 411, п. 3 ст. 199 ГК РФ); на какую дату проверять давность, уточните у юриста.6. Требует ли договор согласовать удержание с вами и было ли оно согласовано.Если хотя бы по одному вопросу ответ не в пользу заказчика — это довод против удержания. Исход спора зависит от договора и документов по объекту."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/03-vozrazhenie-na-zachet.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 21,
+        "nonempty_paragraph_ordinal": 13,
+        "xml_path": "/body[1]/p[21]"
+      },
+      "text": "   Согласно ст. 410 ГК РФ зачет встречных однородных требований допускается при заявлении одной стороны. Однако в договоре подряда стороны могут ограничить или исключить такое право (ст. 411 ГК РФ: зачёт не допускается в случаях, предусмотренных законом или договором)."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/03-vozrazhenie-na-zachet.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 28,
+        "nonempty_paragraph_ordinal": 18,
+        "xml_path": "/body[1]/p[28]"
+      },
+      "text": "   - Срок исполнения встречного требования Заказчика не наступил (ст. 410 ГК РФ)."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/03-vozrazhenie-na-zachet.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 29,
+        "nonempty_paragraph_ordinal": 19,
+        "xml_path": "/body[1]/p[29]"
+      },
+      "text": "   - [Только если встречное требование Заказчика не денежное (например, о передаче вещи или о безвозмездном устранении недостатков) и оставалось таким на дату заявления о зачёте; к неустойке, процентам и убыткам не применяется:] Встречное требование Заказчика не однородно с денежным требованием Подрядчика (ст. 410 ГК РФ)."
+    },
+    {
+      "document": "products-storage/07-uderzhaniya-shtrafy-zachety/03-vozrazhenie-na-zachet.docx",
+      "location": {
+        "kind": "docx_paragraph",
+        "part": "word/document.xml",
+        "global_paragraph_ordinal_including_empty": 30,
+        "nonempty_paragraph_ordinal": 20,
+        "xml_path": "/body[1]/p[30]"
+      },
+      "text": "   - Зачёт не допускается договором (п. [номер] Договора) или по встречному требованию Заказчика истёк срок исковой давности (ст. 411, п. 3 ст. 199 ГК РФ)."
+    }
+  ]
+}

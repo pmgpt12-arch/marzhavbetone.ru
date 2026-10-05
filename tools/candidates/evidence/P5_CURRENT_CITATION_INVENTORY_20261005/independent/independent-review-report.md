@@ -1,0 +1,50 @@
+# Independent factual citation inventory review
+
+{
+  "status": "ACCEPT_FACTUAL_INVENTORY",
+  "observed_utc": "2026-10-05T16:55:11.750261+00:00",
+  "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+  "inventory_sha256": "b523d29562215d388c8aeed9a32787f01d6dc1e45c3105c1a5bb5231a5e025e2",
+  "buyer_hashes_checked": 11,
+  "literal_occurrences_checked": 36,
+  "unresolved_markers_checked": 8,
+  "dedup_groups_checked": 22,
+  "independent_native_text_fragments": 396,
+  "independent_broad_signal_passages": 20,
+  "independent_broad_signal_tokens": 76,
+  "checks": 492,
+  "model_calls": 0,
+  "api_usd": 0,
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "normative_verdict": "NOT_VERIFIED",
+  "scope": "Independent factual input membership/hash, native locator/quote/span, observational code grammar and broad law/standard token coverage only. Not applicability/edition/currentness/semantic legal completeness or human acceptance."
+}
+
+Errors:
+[]
+
+PDF evidence limitations:
+[
+  {
+    "path": "products-storage/07-uderzhaniya-shtrafy-zachety/07-algoritm-proverki-uderzhaniy.pdf",
+    "source_sha256": "59aa358f436f4e975cd02c5e6432b3ea93f14f3dee09bd97ce6987a66fa91ee7",
+    "physical_pages": 2,
+    "raw_text_sha256": "df8e21b5347dc122e9641fe7a709265818380bc5cc8705c8aac22f2c559b9685",
+    "pages": [
+      {
+        "page": 1,
+        "characters": 1904,
+        "lines": 48,
+        "empty_or_image_only_text_scope": false
+      },
+      {
+        "page": 2,
+        "characters": 132,
+        "lines": 5,
+        "empty_or_image_only_text_scope": false
+      }
+    ],
+    "limitation": "Text layer only; images and visual reading order not independently examined; empty/image-only pages flagged."
+  }
+]

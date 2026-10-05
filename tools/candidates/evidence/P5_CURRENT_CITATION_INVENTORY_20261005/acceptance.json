@@ -1,0 +1,23 @@
+{
+  "status": "ACCEPT_FACTUAL_INVENTORY",
+  "scope": "Root code/factual scope and independent492locator/coverage checks; no legal/currentness verdict",
+  "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+  "inventory_sha256": "b523d29562215d388c8aeed9a32787f01d6dc1e45c3105c1a5bb5231a5e025e2",
+  "independent_receipt_sha256": "4a70398e74c8a8af09f0b0c3fab8df3337f5558eed505e0cd14c443461f22705",
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "server_only_files": [
+    {
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/source-text-units.json",
+      "sha256": "509812536700143e8d78bda6cd1501bc4a520f9474ae218b94ebf3e2e88be583",
+      "size": 187709
+    },
+    {
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-citation-inventory-independent-20261005/independent-visible-fragments.json",
+      "sha256": "d99c3a74c3162aa0b45934924ac4e256adda44b2bf5f7760a44d782b7398a038",
+      "bytes": 136424
+    }
+  ],
+  "frozen_SHA256SUMS_scope": "Original author-run manifest, including intentionally server-only full units; documentary files individually pinned separately",
+  "independent_original_failure": "Original checker case assumption failure retained; author map/script unchanged; independent checker corrected only"
+}

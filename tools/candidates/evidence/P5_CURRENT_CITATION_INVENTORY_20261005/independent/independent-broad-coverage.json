@@ -1,0 +1,966 @@
+[
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/07-algoritm-proverki-uderzhaniy.pdf",
+      "pdf",
+      1
+    ],
+    "text": "  АЛГОРИТМ ПРОВЕРКИ ОБОСНОВАННОСТИ УДЕРЖАНИЙ\n\nШАГ 1. Зафиксируйте факт удержания\n - Дата удержания\n - Сумма\n - Основание (письмо, акт, устное сообщение)\n - Кто уполномочен принять решение об удержании\n\n\nШАГ 2. Проверьте договор\n - Предусмотрено ли удержание в договоре?\n - Какие условия должны быть соблюдены?\n - Требуется ли письменное согласование?\n\n\nШАГ 3. Проверьте документы заказчика\n - Есть ли акт с фиксацией недостатков?\n - Есть ли расчет ущерба?\n - Подписан ли акт ПОДРЯДЧИКОМ?\n\n\nШАГ 4. Оцените обоснованность\n - Если удерживают убытки (например, расходы на другого подрядчика): подтверждены ли\n  расчётом их размер и связь с вашим нарушением (ст. 15, 393 ГК РФ)?\n - Если удерживают неустойку (штраф, пени): предусмотрена ли она договором и\n  начислена ли за нарушение, за которое вы отвечаете (п. 2 ст. 330 ГК РФ)? Доказывать\n  убытки для неустойки заказчик не обязан (п. 1 ст. 330 ГК РФ).\n - Уменьшить неустойку вправе суд, если она явно несоразмерна последствиям нарушения;\n  если нарушитель — предприниматель, только по его заявлению, а договорную неустойку\n  — лишь в исключительных случаях, когда доказано, что взыскание в договорном размере\n  может привести к необоснованной выгоде заказчика (ст. 333 ГК РФ). Подробнее — файл\n  08, «Общий принцип оспаривания».\n\n\nШАГ 5. Составьте претензию\n - Если удержание неправомерно - требуйте возврата\n - Если сумма завышена - требуйте пересчета\n - Если документы отсутствуют - требуйте их предоставления\n\n\nШАГ 6. Отслеживайте сроки\n - Претензия: иск — по истечении 30 календарных дней со дня её направления, если иные\n  срок или порядок не установлены договором (ч. 5 ст. 4 АПК РФ). Проверьте\n  претензионный срок в договоре.\n - После отказа - иск в суд\n - Исковая давность: проверьте срок и день начала его течения по ст. 196 и 200 ГК РФ; для\n  пеней и процентов — также ст. 207 ГК РФ, для требований заказчика о качестве работ —\n  ст. 725 ГК РФ\n",
+    "tokens": [
+      {
+        "token": "ст. 1",
+        "span": [
+          654,
+          659
+        ],
+        "overlapping_inventory_records": [
+          "ref-0001"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          666,
+          668
+        ],
+        "overlapping_inventory_records": [
+          "ref-0001"
+        ]
+      },
+      {
+        "token": "ст. 3",
+        "span": [
+          810,
+          815
+        ],
+        "overlapping_inventory_records": [
+          "ref-0002"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          818,
+          820
+        ],
+        "overlapping_inventory_records": [
+          "ref-0002"
+        ]
+      },
+      {
+        "token": "ст. 3",
+        "span": [
+          885,
+          890
+        ],
+        "overlapping_inventory_records": [
+          "ref-0003"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          893,
+          895
+        ],
+        "overlapping_inventory_records": [
+          "ref-0003"
+        ]
+      },
+      {
+        "token": "ст. 3",
+        "span": [
+          1210,
+          1215
+        ],
+        "overlapping_inventory_records": [
+          "ref-0004"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          1218,
+          1220
+        ],
+        "overlapping_inventory_records": [
+          "ref-0004"
+        ]
+      },
+      {
+        "token": "ст. 4",
+        "span": [
+          1625,
+          1630
+        ],
+        "overlapping_inventory_records": [
+          "ref-0005"
+        ]
+      },
+      {
+        "token": "АПК",
+        "span": [
+          1631,
+          1634
+        ],
+        "overlapping_inventory_records": [
+          "ref-0005"
+        ]
+      },
+      {
+        "token": "ст. 1",
+        "span": [
+          1776,
+          1781
+        ],
+        "overlapping_inventory_records": [
+          "ref-0006"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          1790,
+          1792
+        ],
+        "overlapping_inventory_records": [
+          "ref-0006"
+        ]
+      },
+      {
+        "token": "ст. 2",
+        "span": [
+          1829,
+          1834
+        ],
+        "overlapping_inventory_records": [
+          "ref-0007"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          1837,
+          1839
+        ],
+        "overlapping_inventory_records": [
+          "ref-0007"
+        ]
+      },
+      {
+        "token": "ст. 7",
+        "span": [
+          1890,
+          1895
+        ],
+        "overlapping_inventory_records": [
+          "ref-0008"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          1898,
+          1900
+        ],
+        "overlapping_inventory_records": [
+          "ref-0008"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/07-algoritm-proverki-uderzhaniy.pdf",
+      "pdf",
+      2
+    ],
+    "text": "ШАГ 7. Рассчитайте полную сумму требований\n - Удержанная сумма\n + Пени по договору\n + Проценты по ст. 395 ГК РФ\n + Судебные расходы\n",
+    "tokens": [
+      {
+        "token": "ст. 3",
+        "span": [
+          98,
+          103
+        ],
+        "overlapping_inventory_records": [
+          "ref-0009"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          106,
+          108
+        ],
+        "overlapping_inventory_records": [
+          "ref-0009"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/04-raschet-ubytkov.xlsx",
+      "xlsx",
+      "Расчёт требования",
+      "A2"
+    ],
+    "text": "Вводите данные только в жёлтые ячейки. Суммы — в рублях. Ставку в таблицах пеней и ст. 395 набирайте с клавиатуры: ячейка текстовая, 0,05 и 0,05% — это 0,05 % в день, 16 и 16% — 16 % годовых. Если в ячейке ставки число (вставка из другой таблицы, формула), знак % по нему не виден — строка не считается; наберите ставку заново с апострофом впереди: '0,05. Ставка пеней меньше 0,01 % в день и ключевая ставка меньше 1 % годовых не считаются. Процент штрафа в п. 2.2 — числом без знака %: 5 % — как 5. Даты — ДД.ММ.ГГГГ; первый и последний день периода входят в число дней. Период с другой базой или ставкой — отдельной строкой. Если в столбце «Проверка» есть сообщение, сумма по этой строке и итог раздела не считаются.",
+    "tokens": [
+      {
+        "token": "ст. 3",
+        "span": [
+          83,
+          88
+        ],
+        "overlapping_inventory_records": [
+          "ref-0010"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/04-raschet-ubytkov.xlsx",
+      "xlsx",
+      "Расчёт требования",
+      "A25"
+    ],
+    "text": "3. ПРОЦЕНТЫ ПО СТ. 395 ГК РФ: база × ключевая ставка / 100 / 365 × дни",
+    "tokens": [
+      {
+        "token": "СТ. 3",
+        "span": [
+          15,
+          20
+        ],
+        "overlapping_inventory_records": [
+          "ref-0011"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          23,
+          25
+        ],
+        "overlapping_inventory_records": [
+          "ref-0011"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/04-raschet-ubytkov.xlsx",
+      "xlsx",
+      "Расчёт требования",
+      "A35"
+    ],
+    "text": "Общая сумма этих строк не выводится: какие из них и от какой суммы включать в требование, определяется договором и законом. Перенесите в претензию только те строки, основание которых проверено.",
+    "tokens": [
+      {
+        "token": "законом",
+        "span": [
+          115,
+          122
+        ],
+        "overlapping_inventory_records": [
+          "marker-0001"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/04-raschet-ubytkov.xlsx",
+      "xlsx",
+      "Расчёт требования",
+      "A42"
+    ],
+    "text": "Проценты по ст. 395 ГК РФ, руб.",
+    "tokens": [
+      {
+        "token": "ст. 3",
+        "span": [
+          12,
+          17
+        ],
+        "overlapping_inventory_records": [
+          "ref-0012"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          20,
+          22
+        ],
+        "overlapping_inventory_records": [
+          "ref-0012"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/01-pretenziya-na-uderzhanie.docx",
+      "docx",
+      28
+    ],
+    "text": "   Согласно ст. 310 ГК РФ односторонний отказ от исполнения обязательства и одностороннее изменение его условий не допускаются, за исключением случаев, предусмотренных законом.",
+    "tokens": [
+      {
+        "token": "ст. 3",
+        "span": [
+          12,
+          17
+        ],
+        "overlapping_inventory_records": [
+          "ref-0013"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          20,
+          22
+        ],
+        "overlapping_inventory_records": [
+          "ref-0013"
+        ]
+      },
+      {
+        "token": "законом",
+        "span": [
+          168,
+          175
+        ],
+        "overlapping_inventory_records": [
+          "marker-0002"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/01-pretenziya-na-uderzhanie.docx",
+      "docx",
+      30
+    ],
+    "text": "   Согласно п. 1 ст. 711 ГК РФ заказчик обязан уплатить подрядчику обусловленную цену после окончательной сдачи результатов работы при условии, что работа выполнена надлежащим образом и в согласованный срок. Порядок оплаты работ по договору строительного подряда установлен ст. 746 ГК РФ.",
+    "tokens": [
+      {
+        "token": "ст. 7",
+        "span": [
+          17,
+          22
+        ],
+        "overlapping_inventory_records": [
+          "ref-0014"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          25,
+          27
+        ],
+        "overlapping_inventory_records": [
+          "ref-0014"
+        ]
+      },
+      {
+        "token": "ст. 7",
+        "span": [
+          274,
+          279
+        ],
+        "overlapping_inventory_records": [
+          "ref-0015"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          282,
+          284
+        ],
+        "overlapping_inventory_records": [
+          "ref-0015"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/01-pretenziya-na-uderzhanie.docx",
+      "docx",
+      40
+    ],
+    "text": "процентов по ст. 395 ГК РФ - [сумма] руб.,",
+    "tokens": [
+      {
+        "token": "ст. 3",
+        "span": [
+          13,
+          18
+        ],
+        "overlapping_inventory_records": [
+          "ref-0016"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          21,
+          23
+        ],
+        "overlapping_inventory_records": [
+          "ref-0016"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/11-trebovanie-o-vozvrate-uderzhaniya.docx",
+      "docx",
+      32
+    ],
+    "text": "   Согласно ст. 309 ГК РФ обязательства должны исполняться надлежащим образом в соответствии с их условиями. Согласно ст. 310 ГК РФ односторонний отказ от исполнения обязательства не допускается, за исключением случаев, предусмотренных законом или иными правовыми актами; Договором такое право Заказчика в отношении возврата гарантийного удержания не предусмотрено.",
+    "tokens": [
+      {
+        "token": "ст. 3",
+        "span": [
+          12,
+          17
+        ],
+        "overlapping_inventory_records": [
+          "ref-0017"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          20,
+          22
+        ],
+        "overlapping_inventory_records": [
+          "ref-0017"
+        ]
+      },
+      {
+        "token": "ст. 3",
+        "span": [
+          118,
+          123
+        ],
+        "overlapping_inventory_records": [
+          "ref-0018"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          126,
+          128
+        ],
+        "overlapping_inventory_records": [
+          "ref-0018"
+        ]
+      },
+      {
+        "token": "законом",
+        "span": [
+          236,
+          243
+        ],
+        "overlapping_inventory_records": [
+          "marker-0004"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/11-trebovanie-o-vozvrate-uderzhaniya.docx",
+      "docx",
+      36
+    ],
+    "text": "   В срок, установленный пунктом [номер] Договора [если срок Договором не установлен — в срок, предусмотренный п. 2 ст. 314 ГК РФ], перечислить сумму гарантийного удержания [сумма] руб. по реквизитам: [реквизиты].",
+    "tokens": [
+      {
+        "token": "ст. 3",
+        "span": [
+          116,
+          121
+        ],
+        "overlapping_inventory_records": [
+          "ref-0019"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          124,
+          126
+        ],
+        "overlapping_inventory_records": [
+          "ref-0019"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/11-trebovanie-o-vozvrate-uderzhaniya.docx",
+      "docx",
+      38
+    ],
+    "text": "   При неисполнении настоящего требования оставляем за собой право потребовать также уплаты процентов по ст. 395 ГК РФ и обратиться в арбитражный суд.",
+    "tokens": [
+      {
+        "token": "ст. 3",
+        "span": [
+          105,
+          110
+        ],
+        "overlapping_inventory_records": [
+          "ref-0020"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          113,
+          115
+        ],
+        "overlapping_inventory_records": [
+          "ref-0020"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/02-pretenziya-na-shtraf.docx",
+      "docx",
+      22
+    ],
+    "text": "   - Основание (письмо, акт, приказ): _____.",
+    "tokens": [
+      {
+        "token": "приказ",
+        "span": [
+          29,
+          35
+        ],
+        "overlapping_inventory_records": [
+          "marker-0005"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/02-pretenziya-na-shtraf.docx",
+      "docx",
+      27
+    ],
+    "text": "   Согласно ст. 333 ГК РФ, если подлежащая уплате неустойка явно несоразмерна последствиям нарушения обязательства, суд вправе уменьшить неустойку. Если обязательство нарушено лицом, осуществляющим предпринимательскую деятельность, суд вправе уменьшить неустойку при условии заявления должника о таком уменьшении (п. 1 ст. 333 ГК РФ).",
+    "tokens": [
+      {
+        "token": "ст. 3",
+        "span": [
+          12,
+          17
+        ],
+        "overlapping_inventory_records": [
+          "ref-0021"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          20,
+          22
+        ],
+        "overlapping_inventory_records": [
+          "ref-0021"
+        ]
+      },
+      {
+        "token": "ст. 3",
+        "span": [
+          319,
+          324
+        ],
+        "overlapping_inventory_records": [
+          "ref-0022"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          327,
+          329
+        ],
+        "overlapping_inventory_records": [
+          "ref-0022"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/02-pretenziya-na-shtraf.docx",
+      "docx",
+      29
+    ],
+    "text": "   Согласно п. 2 ст. 333 ГК РФ уменьшение неустойки, определённой договором и подлежащей уплате лицом, осуществляющим предпринимательскую деятельность, допускается в исключительных случаях, если будет доказано, что взыскание неустойки в предусмотренном договором размере может привести к получению кредитором необоснованной выгоды.",
+    "tokens": [
+      {
+        "token": "ст. 3",
+        "span": [
+          17,
+          22
+        ],
+        "overlapping_inventory_records": [
+          "ref-0023"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          25,
+          27
+        ],
+        "overlapping_inventory_records": [
+          "ref-0023"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/08-tipovye-osnovaniya.docx",
+      "docx",
+      12
+    ],
+    "text": "Проверьте каждое удержание по шести вопросам:1. Предусмотрено ли оно договором или законом.2. Подтверждено ли оно документами: актом, расчётом, перепиской.3. Если удерживают убытки (например, расходы на другого подрядчика) — подтверждены ли расчётом их размер и связь с вашим нарушением (ст. 15, 393 ГК РФ).4. Если удерживают неустойку (штраф, пени) — предусмотрена ли она договором и начислена ли за нарушение, за которое вы отвечаете (п. 2 ст. 330 ГК РФ). Доказывать убытки для неустойки заказчик не обязан (п. 1 ст. 330 ГК РФ). Уменьшить неустойку вправе суд, если она явно несоразмерна последствиям нарушения; если нарушитель — предприниматель, только по его заявлению, а договорную неустойку — лишь в исключительных случаях, когда доказано, что взыскание в договорном размере может привести к необоснованной выгоде заказчика (ст. 333 ГК РФ).5. Если удержание заявлено как зачёт — однородно ли встречное требование заказчика, наступил ли срок его исполнения и не запрещён ли зачёт законом или договором (ст. 410, 411 ГК РФ). По требованию с истёкшей исковой давностью зачёт не допускается (ст. 411, п. 3 ст. 199 ГК РФ); на какую дату проверять давность, уточните у юриста.6. Требует ли договор согласовать удержание с вами и было ли оно согласовано.Если хотя бы по одному вопросу ответ не в пользу заказчика — это довод против удержания. Исход спора зависит от договора и документов по объекту.",
+    "tokens": [
+      {
+        "token": "законом",
+        "span": [
+          83,
+          90
+        ],
+        "overlapping_inventory_records": [
+          "marker-0006"
+        ]
+      },
+      {
+        "token": "ст. 1",
+        "span": [
+          288,
+          293
+        ],
+        "overlapping_inventory_records": [
+          "ref-0024"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          300,
+          302
+        ],
+        "overlapping_inventory_records": [
+          "ref-0024"
+        ]
+      },
+      {
+        "token": "ст. 3",
+        "span": [
+          442,
+          447
+        ],
+        "overlapping_inventory_records": [
+          "ref-0025"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          450,
+          452
+        ],
+        "overlapping_inventory_records": [
+          "ref-0025"
+        ]
+      },
+      {
+        "token": "ст. 3",
+        "span": [
+          515,
+          520
+        ],
+        "overlapping_inventory_records": [
+          "ref-0026"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          523,
+          525
+        ],
+        "overlapping_inventory_records": [
+          "ref-0026"
+        ]
+      },
+      {
+        "token": "ст. 3",
+        "span": [
+          831,
+          836
+        ],
+        "overlapping_inventory_records": [
+          "ref-0027"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          839,
+          841
+        ],
+        "overlapping_inventory_records": [
+          "ref-0027"
+        ]
+      },
+      {
+        "token": "законом",
+        "span": [
+          985,
+          992
+        ],
+        "overlapping_inventory_records": [
+          "marker-0007"
+        ]
+      },
+      {
+        "token": "ст. 4",
+        "span": [
+          1008,
+          1013
+        ],
+        "overlapping_inventory_records": [
+          "ref-0028"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          1021,
+          1023
+        ],
+        "overlapping_inventory_records": [
+          "ref-0028"
+        ]
+      },
+      {
+        "token": "ст. 4",
+        "span": [
+          1094,
+          1099
+        ],
+        "overlapping_inventory_records": [
+          "ref-0029"
+        ]
+      },
+      {
+        "token": "ст. 1",
+        "span": [
+          1108,
+          1113
+        ],
+        "overlapping_inventory_records": [
+          "ref-0030"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          1116,
+          1118
+        ],
+        "overlapping_inventory_records": [
+          "ref-0030"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/03-vozrazhenie-na-zachet.docx",
+      "docx",
+      21
+    ],
+    "text": "   Согласно ст. 410 ГК РФ зачет встречных однородных требований допускается при заявлении одной стороны. Однако в договоре подряда стороны могут ограничить или исключить такое право (ст. 411 ГК РФ: зачёт не допускается в случаях, предусмотренных законом или договором).",
+    "tokens": [
+      {
+        "token": "ст. 4",
+        "span": [
+          12,
+          17
+        ],
+        "overlapping_inventory_records": [
+          "ref-0031"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          20,
+          22
+        ],
+        "overlapping_inventory_records": [
+          "ref-0031"
+        ]
+      },
+      {
+        "token": "ст. 4",
+        "span": [
+          183,
+          188
+        ],
+        "overlapping_inventory_records": [
+          "ref-0032"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          191,
+          193
+        ],
+        "overlapping_inventory_records": [
+          "ref-0032"
+        ]
+      },
+      {
+        "token": "законом",
+        "span": [
+          246,
+          253
+        ],
+        "overlapping_inventory_records": [
+          "marker-0008"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/03-vozrazhenie-na-zachet.docx",
+      "docx",
+      28
+    ],
+    "text": "   - Срок исполнения встречного требования Заказчика не наступил (ст. 410 ГК РФ).",
+    "tokens": [
+      {
+        "token": "ст. 4",
+        "span": [
+          66,
+          71
+        ],
+        "overlapping_inventory_records": [
+          "ref-0033"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          74,
+          76
+        ],
+        "overlapping_inventory_records": [
+          "ref-0033"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/03-vozrazhenie-na-zachet.docx",
+      "docx",
+      29
+    ],
+    "text": "   - [Только если встречное требование Заказчика не денежное (например, о передаче вещи или о безвозмездном устранении недостатков) и оставалось таким на дату заявления о зачёте; к неустойке, процентам и убыткам не применяется:] Встречное требование Заказчика не однородно с денежным требованием Подрядчика (ст. 410 ГК РФ).",
+    "tokens": [
+      {
+        "token": "ст. 4",
+        "span": [
+          308,
+          313
+        ],
+        "overlapping_inventory_records": [
+          "ref-0034"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          316,
+          318
+        ],
+        "overlapping_inventory_records": [
+          "ref-0034"
+        ]
+      }
+    ]
+  },
+  {
+    "native_key": [
+      "products-storage/07-uderzhaniya-shtrafy-zachety/03-vozrazhenie-na-zachet.docx",
+      "docx",
+      30
+    ],
+    "text": "   - Зачёт не допускается договором (п. [номер] Договора) или по встречному требованию Заказчика истёк срок исковой давности (ст. 411, п. 3 ст. 199 ГК РФ).",
+    "tokens": [
+      {
+        "token": "ст. 4",
+        "span": [
+          126,
+          131
+        ],
+        "overlapping_inventory_records": [
+          "ref-0035"
+        ]
+      },
+      {
+        "token": "ст. 1",
+        "span": [
+          140,
+          145
+        ],
+        "overlapping_inventory_records": [
+          "ref-0036"
+        ]
+      },
+      {
+        "token": "ГК",
+        "span": [
+          148,
+          150
+        ],
+        "overlapping_inventory_records": [
+          "ref-0036"
+        ]
+      }
+    ]
+  }
+]
