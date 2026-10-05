@@ -1,0 +1,16 @@
+{
+  "name": "build-1",
+  "command": [
+    "timeout",
+    "--kill-after=5s",
+    "120s",
+    "python3",
+    "tools/build_s1_candidate.py",
+    "--out",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/s1-final-verification/build-1"
+  ],
+  "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/s1-final-build-1",
+  "exact_head": "6077a5d6cdba42cbef6f2452b799b5c118f8c5d2",
+  "exit_code": 0,
+  "elapsed_seconds": 3.669942615000764
+}

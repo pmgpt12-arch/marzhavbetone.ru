@@ -1,0 +1,62 @@
+{
+  "execution_pattern": "one_shot",
+  "primary_result": "final_actual_merged_S1_full_tests_and_two_complete_rebuilds",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "status": "VERIFIED_PINNED_SNAPSHOT",
+  "frozen_input_sha": "6077a5d6cdba42cbef6f2452b799b5c118f8c5d2",
+  "prepared_base": "bf7f872494c317629e3c2b392f6e5ebd82a4a582",
+  "instruction_source": "4f86bf1aa88aef4b2b085d96ed998bd3ed70ba45",
+  "accepted_overlay_source": "d0d484b31945e39b93acc1fb6b4f5ac7333202ca",
+  "preflight": {
+    "task_validity": "PASS: final composed actual working tree verification, no source edit",
+    "atomicity": "PASS: single full suite + two actual builds + exact-byte/AST proof",
+    "context": "PASS: prior105PASSreceipt, owner04/correction02/08 registry and accepted source SHAs read",
+    "contract": "PASS: completebuild commands, isolatedoutput roots, exactSHA/sourcehygiene/assertedresults",
+    "dependencies": "WAIT: finalSHA only; pytest/openpyxl/docx/soffice available",
+    "tools_permissions": "PASS: DC remote device; no model API; no merge/publication"
+  },
+  "tests": [
+    "tools/test_s1_a4.py",
+    "tools/test_s1_candidate.py",
+    "tools/test_s1_court_appendices.py",
+    "tools/test_s1_court_clean_copy.py",
+    "tools/test_s1_notification_print.py",
+    "tools/test_s1_reviewed_excel_corrections.py",
+    "tools/test_s1_unique_fields.py",
+    "tools/test_approved_s1_excel.py"
+  ],
+  "test_timeout_seconds": 180,
+  "each_build_timeout_seconds": 120,
+  "worktree_strategy": "three detached trees at same final SHA because build CLI writes R.ROUTE_MAP within each tree even when --out supplied",
+  "expected_output_hashes": {
+    "04-uchet-raschetov-i-otpravok.xlsx": "f735e85286952a2780d413aea7debbe7a7ceda24edf717d79b631a4aad8945d9",
+    "02-proverka-i-kontrol-otveta.xlsx": "5918714b4e4e95abc546e1fe7a43f515af50680ecf75352a2949a2ebecac47f0",
+    "08-raschet-procentov-395.xlsx": "e0ed0206c17f1b3638bba14dd472c3acad0da80c87dd640169e9c094dec266b4"
+  },
+  "acceptance": [
+    "frozen final actual working SHA, no synthetic merge",
+    "105testspass once with namedwarnings/skips",
+    "two completefullbuild calls(actualall12builders)",
+    "everyoutputbyte equal both builds and accepted final tracked candidate",
+    "route map exact both builds and final tracked",
+    "owner04nativebyteexact",
+    "correction02/08exactacceptedhashes",
+    "all owner templates/hashregistry/approvedhelperbyteexactaccepted d0",
+    "globalRISKS ASTexactacceptedd0(new02text)",
+    "f01/f03/f10 ASTmatch expected accepted combination",
+    "source cleanliness after tests/builds",
+    "durable logs/manifest/proof"
+  ],
+  "stop": [
+    "finalSHA missing",
+    "source mismatch",
+    "test/build timeout or failure",
+    "byte/AST/hash mismatch"
+  ],
+  "no_model_calls": true,
+  "no_source_edits": true,
+  "no_merges": true,
+  "no_publication": true,
+  "preflight_dependency": "PASS_FINAL_WORKING_SHA_OBSERVED"
+}
