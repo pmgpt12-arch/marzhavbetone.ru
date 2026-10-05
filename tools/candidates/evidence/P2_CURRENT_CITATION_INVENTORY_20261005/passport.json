@@ -1,0 +1,34 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "P2_current_factual_citation_handoff_for_lawyer",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "source_sha": "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0",
+  "byte_equivalent_baseline": "1be0493ae194b2647c4b22c98e9981b9c5e64a54",
+  "scope": "15 actual PHP buyer members:9DOCX/3PDF/2XLSX/1TXT; literal factual inventory only",
+  "acceptance": [
+    "All15 source blobs andsha256 exact accepted archive/baseline",
+    "Every literal andmarker bound to exact source quote/span/locator",
+    "DOCX native paragraph XML/XPath; native XLSX stored values/formulas; PDF actualfilename/pagecharspan/physical lines; TXT physical lines",
+    "Lists/ranges/standards/fullcode/numeric№ signals retained unresolved; no normativeIDs fabricated",
+    "Independent broad law/technical token scan and root acceptance before Git commit/push"
+  ],
+  "dependencies": [
+    "accepted actual PHP ZIP membership receipt",
+    "Normative_Contract and Task_Setting_Protocol exact frozen inputs"
+  ],
+  "negative_cases": [
+    "Ambiguous or absent code remains unresolved",
+    "Numbered contractual references are signals not identified norms",
+    "Embedded media/noOCR and PDF layout limitations explicit",
+    "Officialsource edition/currentness and applicability unverified; human legal not performed"
+  ],
+  "prohibited": [
+    "Source/business/product changes",
+    "PHP rebuild/Calc/general tests/renders",
+    "LLM/model charges",
+    "Official lookup",
+    "Commit/push/PR before root and independent ACCEPT"
+  ],
+  "checkpoint": "Prepared exact15 inputs; extraction READY pending independent coverage feedback"
+}
