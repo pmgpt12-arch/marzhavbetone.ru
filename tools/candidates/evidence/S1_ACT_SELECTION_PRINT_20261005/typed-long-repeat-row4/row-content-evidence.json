@@ -1,0 +1,1730 @@
+[
+  {
+    "page": 1,
+    "operation": "LONG-OP-001",
+    "actual": {
+      "row_number": 1,
+      "date": "01.09.2026",
+      "document": "LONG-OP-001",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 10000.0
+    },
+    "expected": {
+      "row_number": 1,
+      "date": "01.09.2026",
+      "document": "LONG-OP-001",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 10000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-002",
+    "actual": {
+      "row_number": 2,
+      "date": "02.09.2026",
+      "document": "LONG-OP-002",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 9000.0
+    },
+    "expected": {
+      "row_number": 2,
+      "date": "02.09.2026",
+      "document": "LONG-OP-002",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 9000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-003",
+    "actual": {
+      "row_number": 3,
+      "date": "03.09.2026",
+      "document": "LONG-OP-003",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 29000.0
+    },
+    "expected": {
+      "row_number": 3,
+      "date": "03.09.2026",
+      "document": "LONG-OP-003",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 29000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-004",
+    "actual": {
+      "row_number": 4,
+      "date": "04.09.2026",
+      "document": "LONG-OP-004",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 27000.0
+    },
+    "expected": {
+      "row_number": 4,
+      "date": "04.09.2026",
+      "document": "LONG-OP-004",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 27000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-005",
+    "actual": {
+      "row_number": 5,
+      "date": "05.09.2026",
+      "document": "LONG-OP-005",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 37000.0
+    },
+    "expected": {
+      "row_number": 5,
+      "date": "05.09.2026",
+      "document": "LONG-OP-005",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 37000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-006",
+    "actual": {
+      "row_number": 6,
+      "date": "06.09.2026",
+      "document": "LONG-OP-006",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 36000.0
+    },
+    "expected": {
+      "row_number": 6,
+      "date": "06.09.2026",
+      "document": "LONG-OP-006",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 36000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-007",
+    "actual": {
+      "row_number": 7,
+      "date": "07.09.2026",
+      "document": "LONG-OP-007",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 56000.0
+    },
+    "expected": {
+      "row_number": 7,
+      "date": "07.09.2026",
+      "document": "LONG-OP-007",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 56000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-008",
+    "actual": {
+      "row_number": 8,
+      "date": "08.09.2026",
+      "document": "LONG-OP-008",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 54000.0
+    },
+    "expected": {
+      "row_number": 8,
+      "date": "08.09.2026",
+      "document": "LONG-OP-008",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 54000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-009",
+    "actual": {
+      "row_number": 9,
+      "date": "09.09.2026",
+      "document": "LONG-OP-009",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 64000.0
+    },
+    "expected": {
+      "row_number": 9,
+      "date": "09.09.2026",
+      "document": "LONG-OP-009",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 64000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-010",
+    "actual": {
+      "row_number": 10,
+      "date": "10.09.2026",
+      "document": "LONG-OP-010",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 63000.0
+    },
+    "expected": {
+      "row_number": 10,
+      "date": "10.09.2026",
+      "document": "LONG-OP-010",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 63000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-011",
+    "actual": {
+      "row_number": 11,
+      "date": "11.09.2026",
+      "document": "LONG-OP-011",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 83000.0
+    },
+    "expected": {
+      "row_number": 11,
+      "date": "11.09.2026",
+      "document": "LONG-OP-011",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 83000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-012",
+    "actual": {
+      "row_number": 12,
+      "date": "12.09.2026",
+      "document": "LONG-OP-012",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 81000.0
+    },
+    "expected": {
+      "row_number": 12,
+      "date": "12.09.2026",
+      "document": "LONG-OP-012",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 81000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-013",
+    "actual": {
+      "row_number": 13,
+      "date": "13.09.2026",
+      "document": "LONG-OP-013",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 91000.0
+    },
+    "expected": {
+      "row_number": 13,
+      "date": "13.09.2026",
+      "document": "LONG-OP-013",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 91000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-014",
+    "actual": {
+      "row_number": 14,
+      "date": "14.09.2026",
+      "document": "LONG-OP-014",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 90000.0
+    },
+    "expected": {
+      "row_number": 14,
+      "date": "14.09.2026",
+      "document": "LONG-OP-014",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 90000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-015",
+    "actual": {
+      "row_number": 15,
+      "date": "15.09.2026",
+      "document": "LONG-OP-015",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 110000.0
+    },
+    "expected": {
+      "row_number": 15,
+      "date": "15.09.2026",
+      "document": "LONG-OP-015",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 110000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-016",
+    "actual": {
+      "row_number": 16,
+      "date": "16.09.2026",
+      "document": "LONG-OP-016",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 108000.0
+    },
+    "expected": {
+      "row_number": 16,
+      "date": "16.09.2026",
+      "document": "LONG-OP-016",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 108000
+    },
+    "pass": true
+  },
+  {
+    "page": 1,
+    "operation": "LONG-OP-017",
+    "actual": {
+      "row_number": 17,
+      "date": "17.09.2026",
+      "document": "LONG-OP-017",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 118000.0
+    },
+    "expected": {
+      "row_number": 17,
+      "date": "17.09.2026",
+      "document": "LONG-OP-017",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 118000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-018",
+    "actual": {
+      "row_number": 18,
+      "date": "18.09.2026",
+      "document": "LONG-OP-018",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 117000.0
+    },
+    "expected": {
+      "row_number": 18,
+      "date": "18.09.2026",
+      "document": "LONG-OP-018",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 117000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-019",
+    "actual": {
+      "row_number": 19,
+      "date": "19.09.2026",
+      "document": "LONG-OP-019",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 137000.0
+    },
+    "expected": {
+      "row_number": 19,
+      "date": "19.09.2026",
+      "document": "LONG-OP-019",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 137000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-020",
+    "actual": {
+      "row_number": 20,
+      "date": "20.09.2026",
+      "document": "LONG-OP-020",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 135000.0
+    },
+    "expected": {
+      "row_number": 20,
+      "date": "20.09.2026",
+      "document": "LONG-OP-020",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 135000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-021",
+    "actual": {
+      "row_number": 21,
+      "date": "21.09.2026",
+      "document": "LONG-OP-021",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 145000.0
+    },
+    "expected": {
+      "row_number": 21,
+      "date": "21.09.2026",
+      "document": "LONG-OP-021",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 145000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-022",
+    "actual": {
+      "row_number": 22,
+      "date": "22.09.2026",
+      "document": "LONG-OP-022",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 144000.0
+    },
+    "expected": {
+      "row_number": 22,
+      "date": "22.09.2026",
+      "document": "LONG-OP-022",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 144000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-023",
+    "actual": {
+      "row_number": 23,
+      "date": "23.09.2026",
+      "document": "LONG-OP-023",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 164000.0
+    },
+    "expected": {
+      "row_number": 23,
+      "date": "23.09.2026",
+      "document": "LONG-OP-023",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 164000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-024",
+    "actual": {
+      "row_number": 24,
+      "date": "24.09.2026",
+      "document": "LONG-OP-024",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 162000.0
+    },
+    "expected": {
+      "row_number": 24,
+      "date": "24.09.2026",
+      "document": "LONG-OP-024",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 162000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-025",
+    "actual": {
+      "row_number": 25,
+      "date": "25.09.2026",
+      "document": "LONG-OP-025",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 172000.0
+    },
+    "expected": {
+      "row_number": 25,
+      "date": "25.09.2026",
+      "document": "LONG-OP-025",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 172000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-026",
+    "actual": {
+      "row_number": 26,
+      "date": "26.09.2026",
+      "document": "LONG-OP-026",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 171000.0
+    },
+    "expected": {
+      "row_number": 26,
+      "date": "26.09.2026",
+      "document": "LONG-OP-026",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 171000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-027",
+    "actual": {
+      "row_number": 27,
+      "date": "27.09.2026",
+      "document": "LONG-OP-027",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 191000.0
+    },
+    "expected": {
+      "row_number": 27,
+      "date": "27.09.2026",
+      "document": "LONG-OP-027",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 191000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-028",
+    "actual": {
+      "row_number": 28,
+      "date": "28.09.2026",
+      "document": "LONG-OP-028",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 189000.0
+    },
+    "expected": {
+      "row_number": 28,
+      "date": "28.09.2026",
+      "document": "LONG-OP-028",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 189000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-029",
+    "actual": {
+      "row_number": 29,
+      "date": "29.09.2026",
+      "document": "LONG-OP-029",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 199000.0
+    },
+    "expected": {
+      "row_number": 29,
+      "date": "29.09.2026",
+      "document": "LONG-OP-029",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 199000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-030",
+    "actual": {
+      "row_number": 30,
+      "date": "30.09.2026",
+      "document": "LONG-OP-030",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 198000.0
+    },
+    "expected": {
+      "row_number": 30,
+      "date": "30.09.2026",
+      "document": "LONG-OP-030",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 198000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-031",
+    "actual": {
+      "row_number": 31,
+      "date": "01.10.2026",
+      "document": "LONG-OP-031",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 218000.0
+    },
+    "expected": {
+      "row_number": 31,
+      "date": "01.10.2026",
+      "document": "LONG-OP-031",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 218000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-032",
+    "actual": {
+      "row_number": 32,
+      "date": "02.10.2026",
+      "document": "LONG-OP-032",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 216000.0
+    },
+    "expected": {
+      "row_number": 32,
+      "date": "02.10.2026",
+      "document": "LONG-OP-032",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 216000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-033",
+    "actual": {
+      "row_number": 33,
+      "date": "03.10.2026",
+      "document": "LONG-OP-033",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 226000.0
+    },
+    "expected": {
+      "row_number": 33,
+      "date": "03.10.2026",
+      "document": "LONG-OP-033",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 226000
+    },
+    "pass": true
+  },
+  {
+    "page": 2,
+    "operation": "LONG-OP-034",
+    "actual": {
+      "row_number": 34,
+      "date": "04.10.2026",
+      "document": "LONG-OP-034",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 225000.0
+    },
+    "expected": {
+      "row_number": 34,
+      "date": "04.10.2026",
+      "document": "LONG-OP-034",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 225000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-035",
+    "actual": {
+      "row_number": 35,
+      "date": "05.10.2026",
+      "document": "LONG-OP-035",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 245000.0
+    },
+    "expected": {
+      "row_number": 35,
+      "date": "05.10.2026",
+      "document": "LONG-OP-035",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 245000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-036",
+    "actual": {
+      "row_number": 36,
+      "date": "06.10.2026",
+      "document": "LONG-OP-036",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 243000.0
+    },
+    "expected": {
+      "row_number": 36,
+      "date": "06.10.2026",
+      "document": "LONG-OP-036",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 243000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-037",
+    "actual": {
+      "row_number": 37,
+      "date": "07.10.2026",
+      "document": "LONG-OP-037",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 253000.0
+    },
+    "expected": {
+      "row_number": 37,
+      "date": "07.10.2026",
+      "document": "LONG-OP-037",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 253000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-038",
+    "actual": {
+      "row_number": 38,
+      "date": "08.10.2026",
+      "document": "LONG-OP-038",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 252000.0
+    },
+    "expected": {
+      "row_number": 38,
+      "date": "08.10.2026",
+      "document": "LONG-OP-038",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 252000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-039",
+    "actual": {
+      "row_number": 39,
+      "date": "09.10.2026",
+      "document": "LONG-OP-039",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 272000.0
+    },
+    "expected": {
+      "row_number": 39,
+      "date": "09.10.2026",
+      "document": "LONG-OP-039",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 272000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-040",
+    "actual": {
+      "row_number": 40,
+      "date": "10.10.2026",
+      "document": "LONG-OP-040",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 270000.0
+    },
+    "expected": {
+      "row_number": 40,
+      "date": "10.10.2026",
+      "document": "LONG-OP-040",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 270000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-041",
+    "actual": {
+      "row_number": 41,
+      "date": "11.10.2026",
+      "document": "LONG-OP-041",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 280000.0
+    },
+    "expected": {
+      "row_number": 41,
+      "date": "11.10.2026",
+      "document": "LONG-OP-041",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 280000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-042",
+    "actual": {
+      "row_number": 42,
+      "date": "12.10.2026",
+      "document": "LONG-OP-042",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 279000.0
+    },
+    "expected": {
+      "row_number": 42,
+      "date": "12.10.2026",
+      "document": "LONG-OP-042",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 279000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-043",
+    "actual": {
+      "row_number": 43,
+      "date": "13.10.2026",
+      "document": "LONG-OP-043",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 299000.0
+    },
+    "expected": {
+      "row_number": 43,
+      "date": "13.10.2026",
+      "document": "LONG-OP-043",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 299000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-044",
+    "actual": {
+      "row_number": 44,
+      "date": "14.10.2026",
+      "document": "LONG-OP-044",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 297000.0
+    },
+    "expected": {
+      "row_number": 44,
+      "date": "14.10.2026",
+      "document": "LONG-OP-044",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 297000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-045",
+    "actual": {
+      "row_number": 45,
+      "date": "15.10.2026",
+      "document": "LONG-OP-045",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 307000.0
+    },
+    "expected": {
+      "row_number": 45,
+      "date": "15.10.2026",
+      "document": "LONG-OP-045",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 307000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-046",
+    "actual": {
+      "row_number": 46,
+      "date": "16.10.2026",
+      "document": "LONG-OP-046",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 306000.0
+    },
+    "expected": {
+      "row_number": 46,
+      "date": "16.10.2026",
+      "document": "LONG-OP-046",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 306000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-047",
+    "actual": {
+      "row_number": 47,
+      "date": "17.10.2026",
+      "document": "LONG-OP-047",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 326000.0
+    },
+    "expected": {
+      "row_number": 47,
+      "date": "17.10.2026",
+      "document": "LONG-OP-047",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 326000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-048",
+    "actual": {
+      "row_number": 48,
+      "date": "18.10.2026",
+      "document": "LONG-OP-048",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 324000.0
+    },
+    "expected": {
+      "row_number": 48,
+      "date": "18.10.2026",
+      "document": "LONG-OP-048",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 324000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-049",
+    "actual": {
+      "row_number": 49,
+      "date": "19.10.2026",
+      "document": "LONG-OP-049",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 334000.0
+    },
+    "expected": {
+      "row_number": 49,
+      "date": "19.10.2026",
+      "document": "LONG-OP-049",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 334000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-050",
+    "actual": {
+      "row_number": 50,
+      "date": "20.10.2026",
+      "document": "LONG-OP-050",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 333000.0
+    },
+    "expected": {
+      "row_number": 50,
+      "date": "20.10.2026",
+      "document": "LONG-OP-050",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 333000
+    },
+    "pass": true
+  },
+  {
+    "page": 3,
+    "operation": "LONG-OP-051",
+    "actual": {
+      "row_number": 51,
+      "date": "21.10.2026",
+      "document": "LONG-OP-051",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 353000.0
+    },
+    "expected": {
+      "row_number": 51,
+      "date": "21.10.2026",
+      "document": "LONG-OP-051",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 353000
+    },
+    "pass": true
+  },
+  {
+    "page": 4,
+    "operation": "LONG-OP-052",
+    "actual": {
+      "row_number": 52,
+      "date": "22.10.2026",
+      "document": "LONG-OP-052",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 351000.0
+    },
+    "expected": {
+      "row_number": 52,
+      "date": "22.10.2026",
+      "document": "LONG-OP-052",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 351000
+    },
+    "pass": true
+  },
+  {
+    "page": 4,
+    "operation": "LONG-OP-053",
+    "actual": {
+      "row_number": 53,
+      "date": "23.10.2026",
+      "document": "LONG-OP-053",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 361000.0
+    },
+    "expected": {
+      "row_number": 53,
+      "date": "23.10.2026",
+      "document": "LONG-OP-053",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 361000
+    },
+    "pass": true
+  },
+  {
+    "page": 4,
+    "operation": "LONG-OP-054",
+    "actual": {
+      "row_number": 54,
+      "date": "24.10.2026",
+      "document": "LONG-OP-054",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 360000.0
+    },
+    "expected": {
+      "row_number": 54,
+      "date": "24.10.2026",
+      "document": "LONG-OP-054",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 360000
+    },
+    "pass": true
+  },
+  {
+    "page": 4,
+    "operation": "LONG-OP-055",
+    "actual": {
+      "row_number": 55,
+      "date": "25.10.2026",
+      "document": "LONG-OP-055",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 380000.0
+    },
+    "expected": {
+      "row_number": 55,
+      "date": "25.10.2026",
+      "document": "LONG-OP-055",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 380000
+    },
+    "pass": true
+  },
+  {
+    "page": 4,
+    "operation": "LONG-OP-056",
+    "actual": {
+      "row_number": 56,
+      "date": "26.10.2026",
+      "document": "LONG-OP-056",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 378000.0
+    },
+    "expected": {
+      "row_number": 56,
+      "date": "26.10.2026",
+      "document": "LONG-OP-056",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 378000
+    },
+    "pass": true
+  },
+  {
+    "page": 4,
+    "operation": "LONG-OP-057",
+    "actual": {
+      "row_number": 57,
+      "date": "27.10.2026",
+      "document": "LONG-OP-057",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 388000.0
+    },
+    "expected": {
+      "row_number": 57,
+      "date": "27.10.2026",
+      "document": "LONG-OP-057",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 388000
+    },
+    "pass": true
+  },
+  {
+    "page": 4,
+    "operation": "LONG-OP-058",
+    "actual": {
+      "row_number": 58,
+      "date": "28.10.2026",
+      "document": "LONG-OP-058",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 387000.0
+    },
+    "expected": {
+      "row_number": 58,
+      "date": "28.10.2026",
+      "document": "LONG-OP-058",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 387000
+    },
+    "pass": true
+  },
+  {
+    "page": 4,
+    "operation": "LONG-OP-059",
+    "actual": {
+      "row_number": 59,
+      "date": "29.10.2026",
+      "document": "LONG-OP-059",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 407000.0
+    },
+    "expected": {
+      "row_number": 59,
+      "date": "29.10.2026",
+      "document": "LONG-OP-059",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 407000
+    },
+    "pass": true
+  },
+  {
+    "page": 4,
+    "operation": "LONG-OP-060",
+    "actual": {
+      "row_number": 60,
+      "date": "30.10.2026",
+      "document": "LONG-OP-060",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 405000.0
+    },
+    "expected": {
+      "row_number": 60,
+      "date": "30.10.2026",
+      "document": "LONG-OP-060",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 405000
+    },
+    "pass": true
+  },
+  {
+    "page": 4,
+    "operation": "LONG-OP-061",
+    "actual": {
+      "row_number": 61,
+      "date": "31.10.2026",
+      "document": "LONG-OP-061",
+      "amount": 10000.0,
+      "act_id": "TEST-A",
+      "impact": 10000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 415000.0
+    },
+    "expected": {
+      "row_number": 61,
+      "date": "31.10.2026",
+      "document": "LONG-OP-061",
+      "amount": 10000,
+      "act_id": "TEST-A",
+      "impact": 10000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 415000
+    },
+    "pass": true
+  },
+  {
+    "page": 4,
+    "operation": "LONG-OP-062",
+    "actual": {
+      "row_number": 62,
+      "date": "01.11.2026",
+      "document": "LONG-OP-062",
+      "amount": 1000.0,
+      "act_id": "TEST-A",
+      "impact": -1000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 414000.0
+    },
+    "expected": {
+      "row_number": 62,
+      "date": "01.11.2026",
+      "document": "LONG-OP-062",
+      "amount": 1000,
+      "act_id": "TEST-A",
+      "impact": -1000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 414000
+    },
+    "pass": true
+  },
+  {
+    "page": 4,
+    "operation": "LONG-OP-063",
+    "actual": {
+      "row_number": 63,
+      "date": "02.11.2026",
+      "document": "LONG-OP-063",
+      "amount": 20000.0,
+      "act_id": "TEST-B",
+      "impact": 20000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 434000.0
+    },
+    "expected": {
+      "row_number": 63,
+      "date": "02.11.2026",
+      "document": "LONG-OP-063",
+      "amount": 20000,
+      "act_id": "TEST-B",
+      "impact": 20000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 434000
+    },
+    "pass": true
+  },
+  {
+    "page": 4,
+    "operation": "LONG-OP-064",
+    "actual": {
+      "row_number": 64,
+      "date": "03.11.2026",
+      "document": "LONG-OP-064",
+      "amount": 2000.0,
+      "act_id": "TEST-B",
+      "impact": -2000.0,
+      "disputed": 0.0,
+      "check": "ок",
+      "running_balance": 432000.0
+    },
+    "expected": {
+      "row_number": 64,
+      "date": "03.11.2026",
+      "document": "LONG-OP-064",
+      "amount": 2000,
+      "act_id": "TEST-B",
+      "impact": -2000,
+      "disputed": 0,
+      "check": "ок",
+      "running_balance": 432000
+    },
+    "pass": true
+  }
+]
