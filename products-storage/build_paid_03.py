@@ -1531,6 +1531,9 @@ def build_protocol(path: Path) -> None:
     para(doc, "", indent=False)
     parties_preamble(doc, "настоящий протокол разногласий")
     table = grid(doc, 1 + len(PROTOCOL), 2)
+    # Keep the owner of each column visible on every printed page.
+    header = OxmlElement("w:tblHeader")
+    table.rows[0]._tr.get_or_add_trPr().append(header)
     cell_paragraphs(table.rows[0].cells[0], ["Редакция Заказчика"], bold=True,
                     align=WD_ALIGN_PARAGRAPH.CENTER)
     cell_paragraphs(table.rows[0].cells[1], ["Редакция Подрядчика"],
