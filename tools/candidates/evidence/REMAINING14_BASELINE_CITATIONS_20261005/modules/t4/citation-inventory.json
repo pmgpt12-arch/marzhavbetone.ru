@@ -1,0 +1,3303 @@
+{
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "source_status": "CACHED_CONFIGURED_BASELINE_NOT_ACCEPTED_DELIVERY",
+  "sku": "t4",
+  "execution_pattern": "iterative",
+  "primary_result": "baseline_literal_source_index_for_future_lawyer",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "documents": [
+    {
+      "path": "products-storage/18-genpodryadchik-bankrotitsya/00-START-HERE.txt",
+      "relative_name": "00-START-HERE.txt",
+      "git_blob": "38b81b093ded38ee3b61d6fcc359a813473e5344",
+      "sha256": "d220195270205afbbe434a45d4e26bed46feac3464eef0b30e45853994f02fd1",
+      "size": 4443,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "d220195270205afbbe434a45d4e26bed46feac3464eef0b30e45853994f02fd1",
+        "suffix": ".txt",
+        "worker_pid": 1973488,
+        "limitations": [],
+        "text_units": 50,
+        "elapsed_seconds": 9.884400060400367e-05
+      },
+      "native_corpus_key": "d220195270205afbbe434a45d4e26bed46feac3464eef0b30e45853994f02fd1",
+      "text_units": 50
+    },
+    {
+      "path": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "relative_name": "01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "git_blob": "2d410bd2007773ac4e4c78e26dc6802d2e81b937",
+      "sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "size": 18512,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+        "suffix": ".docx",
+        "worker_pid": 1973488,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 117,
+        "elapsed_seconds": 0.04139824502635747
+      },
+      "native_corpus_key": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "text_units": 117
+    },
+    {
+      "path": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "relative_name": "02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "git_blob": "4deb6cb576a557f5a2413b7c82bc4d0358b85d59",
+      "sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "size": 15997,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 89,
+        "elapsed_seconds": 0.03167673101415858
+      },
+      "native_corpus_key": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "text_units": 89
+    },
+    {
+      "path": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "relative_name": "03-chto-delat-esli-srok-propushchen.docx",
+      "git_blob": "2226075199ac8edee596ce74ac87aedcd5bc1ed3",
+      "sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "size": 14866,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 96,
+        "elapsed_seconds": 0.02939541102387011
+      },
+      "native_corpus_key": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "text_units": 96
+    },
+    {
+      "path": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "relative_name": "04-slovar-poley-bankrotstvo-vhod.docx",
+      "git_blob": "a68bb9edf9d9c7b643ae67bd9a7c347865e478fd",
+      "sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "size": 16099,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+        "suffix": ".docx",
+        "worker_pid": 1973488,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 119,
+        "elapsed_seconds": 0.05849579500500113
+      },
+      "native_corpus_key": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "text_units": 119
+    }
+  ],
+  "parser": {
+    "article_regex": "(?<![А-Яа-яA-Za-z])(?:(?:пп?|пункт(?:а|ы|ов|у|ом)?|ч|част(?:ь|и|ью)|абз|абзац(?:а|ы|ев)?)\\.?\\s*\\d+(?:\\.\\d+)?\\s*){0,4}(?:ст\\.|стать(?:я|и|ю|е|ей|ями))\\s*\\d+(?:\\.\\d+)?(?:\\s*(?:,|и|–|-)\\s*\\d+(?:\\.\\d+)?)*(?:\\s*(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)(?:\\s*РФ)?)?",
+    "law_marker_regex": "\\b(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)\\b|\\bст\\.\\s*\\d|\\bстать(?:я|и|ю|е|ей|ями)\\b|Пленум|Верховн\\w*\\s+[Сс]уд\\w*|[Фф]едеральн\\w*\\s+закон\\w*|[Пп]риказ\\w*|[Пп]остановлен\\w*|\\bзакон(?:а|у|ом|е|ы|ов|ам|ами|ах)?\\b|[Пп]оложени\\w*|\\bкодекс\\w*|Минстро\\w*|Ростехнадзор\\w*",
+    "standard_regex": "(?<!\\w)(?:ГОСТ(?:\\s+Р)?|СП|СНиП|ФСБУ|СанПиН|СН|ВСН|РД)\\b(?:\\s+\\d[\\d./–-]*)?|\\b\\d+\\s*[-–]\\s*ФЗ\\b",
+    "numbered_reference_regex": "№\\s*\\d+(?:[./–-]\\d+)*(?:/[A-Za-zА-Яа-я]+)?",
+    "full_code_name_regex": "\\b(?:Гражданск\\w*|Градостроительн\\w*|Налогов\\w*|Трудов\\w*|Земельн\\w*|Жилищн\\w*|Семейн\\w*|Бюджетн\\w*|Уголовн\\w*|Арбитражн\\w*|Гражданск\\w*[- ]процессуальн\\w*)\\s+(?:процессуальн\\w*\\s+)?кодекс\\w*(?:\\s+(?:РФ|Российск\\w*\\s+Федераци\\w*))?",
+    "code_binding": "Explicit abbreviation or unique abbreviation in same unit; PDF physical line only; full names retained raw without semantic resolution",
+    "lists_ranges": "As written; not expanded into norms"
+  },
+  "literal_occurrences": [
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:24",
+      "native_unit_index": 24,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[16]",
+        "global_paragraph_ordinal_including_empty": 26,
+        "nonempty_paragraph_ordinal": 24
+      },
+      "span": [
+        57,
+        62
+      ],
+      "short_quote": "квалифицирует требование: реестровое или текущий платёж (ст. 5 Закона о банкротстве), какая очередь, как учитываются финансовые санкции;",
+      "quote_span": [
+        0,
+        136
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0001",
+      "literal": "ст. 5",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "5"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:35",
+      "native_unit_index": 35,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[27]",
+        "global_paragraph_ordinal_including_empty": 37,
+        "nonempty_paragraph_ordinal": 35
+      },
+      "span": [
+        13,
+        30
+      ],
+      "short_quote": "Наблюдение — пункт 1 статьи 71 Закона о банкротстве. Обратите внимание, для чего этот срок установлен: для целей участия в первом ",
+      "quote_span": [
+        0,
+        130
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0002",
+      "literal": "пункт 1 статьи 71",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "71"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:36",
+      "native_unit_index": 36,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[28]",
+        "global_paragraph_ordinal_including_empty": 38,
+        "nonempty_paragraph_ordinal": 36
+      },
+      "span": [
+        26,
+        44
+      ],
+      "short_quote": "Конкурсное производство — пункт 1 статьи 142. По истечении этого срока реестр закрывается, и заявленное после закрытия удовлетворяется за счёт и",
+      "quote_span": [
+        0,
+        144
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0003",
+      "literal": "пункт 1 статьи 142",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "142"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:37",
+      "native_unit_index": 37,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[29]",
+        "global_paragraph_ordinal_including_empty": 39,
+        "nonempty_paragraph_ordinal": 37
+      },
+      "span": [
+        21,
+        31
+      ],
+      "short_quote": "Внешнее управление — статья 100, и срока в ней нет: пункт 1 говорит, что кредиторы вправе предъявить требования в любой момент в хо",
+      "quote_span": [
+        0,
+        131
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0004",
+      "literal": "статья 100",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "100"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:38",
+      "native_unit_index": 38,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[30]",
+        "global_paragraph_ordinal_including_empty": 40,
+        "nonempty_paragraph_ordinal": 38
+      },
+      "span": [
+        99,
+        108
+      ],
+      "short_quote": "Сведения включаются в ЕФРСБ и опубликовываются в официальном издании (статья 28), и даты этих двух действий совпадают не всегда. Срок идёт от даты опубликования в официальном изда",
+      "quote_span": [
+        29,
+        208
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0005",
+      "literal": "статья 28",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "28"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:70",
+      "native_unit_index": 70,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[4]/tr[2]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 74,
+        "nonempty_paragraph_ordinal": 70
+      },
+      "span": [
+        0,
+        17
+      ],
+      "short_quote": "Пункт 1 статьи 71 — срок есть",
+      "quote_span": [
+        0,
+        29
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0006",
+      "literal": "Пункт 1 статьи 71",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "71"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:73",
+      "native_unit_index": 73,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[4]/tr[3]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 77,
+        "nonempty_paragraph_ordinal": 73
+      },
+      "span": [
+        0,
+        18
+      ],
+      "short_quote": "Пункт 1 статьи 100 — срока нет",
+      "quote_span": [
+        0,
+        30
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0007",
+      "literal": "Пункт 1 статьи 100",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "100"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:76",
+      "native_unit_index": 76,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[4]/tr[4]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 80,
+        "nonempty_paragraph_ordinal": 76
+      },
+      "span": [
+        0,
+        18
+      ],
+      "short_quote": "Пункт 1 статьи 142 — срок есть",
+      "quote_span": [
+        0,
+        30
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0008",
+      "literal": "Пункт 1 статьи 142",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "142"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:97",
+      "native_unit_index": 97,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[68]",
+        "global_paragraph_ordinal_including_empty": 102,
+        "nonempty_paragraph_ordinal": 97
+      },
+      "span": [
+        143,
+        161
+      ],
+      "short_quote": "рок, установленный для целей участия в первом собрании кредиторов: по пункту 7 статьи 71 требование рассматривается судом после введения следующей процедуры, то есть оно не пропало. Заявля",
+      "quote_span": [
+        73,
+        261
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0009",
+      "literal": "пункту 7 статьи 71",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "71"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:29",
+      "native_unit_index": 29,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[21]",
+        "global_paragraph_ordinal_including_empty": 31,
+        "nonempty_paragraph_ordinal": 29
+      },
+      "span": [
+        57,
+        62
+      ],
+      "short_quote": "квалифицирует требование: реестровое или текущий платёж (ст. 5 Закона о банкротстве), какая очередь, как учитываются финансовые санкции;",
+      "quote_span": [
+        0,
+        136
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0010",
+      "literal": "ст. 5",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "5"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:40",
+      "native_unit_index": 40,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[32]",
+        "global_paragraph_ordinal_including_empty": 42,
+        "nonempty_paragraph_ordinal": 40
+      },
+      "span": [
+        13,
+        30
+      ],
+      "short_quote": "Наблюдение — пункт 1 статьи 71 Закона о банкротстве. Обратите внимание, для чего этот срок установлен: для целей участия в первом ",
+      "quote_span": [
+        0,
+        130
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0011",
+      "literal": "пункт 1 статьи 71",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "71"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:41",
+      "native_unit_index": 41,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[33]",
+        "global_paragraph_ordinal_including_empty": 43,
+        "nonempty_paragraph_ordinal": 41
+      },
+      "span": [
+        26,
+        44
+      ],
+      "short_quote": "Конкурсное производство — пункт 1 статьи 142. По истечении этого срока реестр закрывается, и заявленное после закрытия удовлетворяется за счёт и",
+      "quote_span": [
+        0,
+        144
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0012",
+      "literal": "пункт 1 статьи 142",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "142"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:42",
+      "native_unit_index": 42,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[34]",
+        "global_paragraph_ordinal_including_empty": 44,
+        "nonempty_paragraph_ordinal": 42
+      },
+      "span": [
+        21,
+        31
+      ],
+      "short_quote": "Внешнее управление — статья 100, и срока в ней нет: пункт 1 говорит, что кредиторы вправе предъявить требования в любой момент в хо",
+      "quote_span": [
+        0,
+        131
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0013",
+      "literal": "статья 100",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "100"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:43",
+      "native_unit_index": 43,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[35]",
+        "global_paragraph_ordinal_including_empty": 45,
+        "nonempty_paragraph_ordinal": 43
+      },
+      "span": [
+        99,
+        108
+      ],
+      "short_quote": "Сведения включаются в ЕФРСБ и опубликовываются в официальном издании (статья 28), и даты этих двух действий совпадают не всегда. Срок идёт от даты опубликования в официальном изда",
+      "quote_span": [
+        29,
+        208
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0014",
+      "literal": "статья 28",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "28"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:62",
+      "native_unit_index": 62,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[56]",
+        "global_paragraph_ordinal_including_empty": 66,
+        "nonempty_paragraph_ordinal": 62
+      },
+      "span": [
+        59,
+        72
+      ],
+      "short_quote": "Финансовые санкции [неустойка по договору либо проценты по ст. 395 ГК РФ — оставить нужное] исчислены отдельно и составляют {{СУММА_ФИНАНСОВЫХ_САНКЦИЙ}}. Начисление прекращ",
+      "quote_span": [
+        0,
+        172
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0015",
+      "literal": "ст. 395 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "395"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:62",
+      "native_unit_index": 62,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[56]",
+        "global_paragraph_ordinal_including_empty": 66,
+        "nonempty_paragraph_ordinal": 62
+      },
+      "span": [
+        308,
+        314
+      ],
+      "short_quote": "е санкции за неисполнение денежных обязательств не начисляются в силу ст. 63 Федерального закона «О несостоятельности (банкротстве)». Расчёт прилагается.",
+      "quote_span": [
+        238,
+        391
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0016",
+      "literal": "ст. 63",
+      "code": "ГК",
+      "code_binding": "one_explicit_code_in_same_native_text_unit",
+      "articles_as_written": [
+        "63"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:11",
+      "native_unit_index": 11,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[1]/tc[1]/p[2]",
+        "global_paragraph_ordinal_including_empty": 12,
+        "nonempty_paragraph_ordinal": 11
+      },
+      "span": [
+        182,
+        189
+      ],
+      "short_quote": "читывается за реестром и удовлетворяется после реестровых требований (ст. 142 Закона о банкротстве), то есть на практике чаще всего не удовлетворяется вовсе.",
+      "quote_span": [
+        112,
+        269
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0017",
+      "literal": "ст. 142",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "142"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:25",
+      "native_unit_index": 25,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[16]",
+        "global_paragraph_ordinal_including_empty": 27,
+        "nonempty_paragraph_ordinal": 25
+      },
+      "span": [
+        57,
+        62
+      ],
+      "short_quote": "квалифицирует требование: реестровое или текущий платёж (ст. 5 Закона о банкротстве), какая очередь, как учитываются финансовые санкции;",
+      "quote_span": [
+        0,
+        136
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0018",
+      "literal": "ст. 5",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "5"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:43",
+      "native_unit_index": 43,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[35]",
+        "global_paragraph_ordinal_including_empty": 46,
+        "nonempty_paragraph_ordinal": 43
+      },
+      "span": [
+        189,
+        196
+      ],
+      "short_quote": "стве считается от публикации сведений о признании должника банкротом (ст. 142 Закона о банкротстве) — то есть пропуск срока в предыдущей процедуре не всегда означает, что всё ко",
+      "quote_span": [
+        119,
+        296
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0019",
+      "literal": "ст. 142",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "142"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:45",
+      "native_unit_index": 45,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[37]",
+        "global_paragraph_ordinal_including_empty": 48,
+        "nonempty_paragraph_ordinal": 45
+      },
+      "span": [
+        118,
+        123
+      ],
+      "short_quote": "явления о признании должника банкротом, относятся к текущим платежам (ст. 5 Закона о банкротстве). Текущие платежи в реестр не включаются, и срок закрытия реестра к ним отноше",
+      "quote_span": [
+        48,
+        223
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0020",
+      "literal": "ст. 5",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "5"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:59",
+      "native_unit_index": 59,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[2]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 63,
+        "nonempty_paragraph_ordinal": 59
+      },
+      "span": [
+        71,
+        78
+      ],
+      "short_quote": "ребование учитывается за реестром и удовлетворяется после реестровых (ст. 142 Закона о банкротстве). Шанс невелик, но статус кредитора даёт доступ к информации и к процедуре",
+      "quote_span": [
+        1,
+        174
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0021",
+      "literal": "ст. 142",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "142"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:62",
+      "native_unit_index": 62,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[3]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 66,
+        "nonempty_paragraph_ordinal": 62
+      },
+      "span": [
+        106,
+        118
+      ],
+      "short_quote": "ый акт по вашему требованию ещё не был вынесен или не вступил в силу, п. 4 ст. 142 Закона о банкротстве отводит на предъявление отдельный срок после закрытия реестра, и требование не",
+      "quote_span": [
+        36,
+        218
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0022",
+      "literal": "п. 4 ст. 142",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "142"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:31",
+      "native_unit_index": 31,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[5]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 32,
+        "nonempty_paragraph_ordinal": 31
+      },
+      "span": [
+        119,
+        130
+      ],
+      "short_quote": "ающую порядок предъявления требований в вашей процедуре: наблюдение — п. 1 ст. 71, конкурсное производство — п. 1 ст. 142, внешнее управление — п. 1 ст. 100. Подставляется ссылка, а",
+      "quote_span": [
+        49,
+        230
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0023",
+      "literal": "п. 1 ст. 71",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "71"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:31",
+      "native_unit_index": 31,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[5]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 32,
+        "nonempty_paragraph_ordinal": 31
+      },
+      "span": [
+        158,
+        170
+      ],
+      "short_quote": " вашей процедуре: наблюдение — п. 1 ст. 71, конкурсное производство — п. 1 ст. 142, внешнее управление — п. 1 ст. 100. Подставляется ссылка, а не величина срока. У внешнего управлени",
+      "quote_span": [
+        88,
+        270
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0024",
+      "literal": "п. 1 ст. 142",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "142"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:31",
+      "native_unit_index": 31,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[5]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 32,
+        "nonempty_paragraph_ordinal": 31
+      },
+      "span": [
+        193,
+        205
+      ],
+      "short_quote": " ст. 71, конкурсное производство — п. 1 ст. 142, внешнее управление — п. 1 ст. 100. Подставляется ссылка, а не величина срока. У внешнего управления срока в статье нет вовсе — требов",
+      "quote_span": [
+        123,
+        305
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0025",
+      "literal": "п. 1 ст. 100",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "100"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:107",
+      "native_unit_index": 107,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[6]/tr[6]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 113,
+        "nonempty_paragraph_ordinal": 107
+      },
+      "span": [
+        39,
+        52
+      ],
+      "short_quote": "Неустойка по договору либо проценты по ст. 395 ГК РФ — что-то одно, по вашему договору. Считается не по дату письма: начисление финансовых санкций за не",
+      "quote_span": [
+        0,
+        152
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0026",
+      "literal": "ст. 395 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "395"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:107",
+      "native_unit_index": 107,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[6]/tr[6]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 113,
+        "nonempty_paragraph_ordinal": 107
+      },
+      "span": [
+        201,
+        207
+      ],
+      "short_quote": "ансовых санкций за неисполнение денежных обязательств прекращается по ст. 63 Закона о банкротстве, и до этой даты расчёт и ведётся. Расчёт идёт приложением, а не строкой в пись",
+      "quote_span": [
+        131,
+        307
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0027",
+      "literal": "ст. 63",
+      "code": "ГК",
+      "code_binding": "one_explicit_code_in_same_native_text_unit",
+      "articles_as_written": [
+        "63"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:110",
+      "native_unit_index": 110,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[6]/tr[7]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 116,
+        "nonempty_paragraph_ordinal": 110
+      },
+      "span": [
+        67,
+        73
+      ],
+      "short_quote": "Дата, на которой останавливается начисление финансовых санкций. По ст. 63 Закона о банкротстве это дата вынесения определения о введении наблюдения. Величины в файлах компле",
+      "quote_span": [
+        0,
+        173
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0028",
+      "literal": "ст. 63",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "63"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:111",
+      "native_unit_index": 111,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[6]/tr[7]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 117,
+        "nonempty_paragraph_ordinal": 111
+      },
+      "span": [
+        73,
+        79
+      ],
+      "short_quote": "ебный акт о введении процедуры из карточки дела; действующая редакция ст. 63",
+      "quote_span": [
+        3,
+        79
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0029",
+      "literal": "ст. 63",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "63"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:115",
+      "native_unit_index": 115,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[25]",
+        "global_paragraph_ordinal_including_empty": 122,
+        "nonempty_paragraph_ordinal": 115
+      },
+      "span": [
+        13,
+        30
+      ],
+      "short_quote": "Наблюдение — пункт 1 статьи 71 Закона о банкротстве. Обратите внимание, для чего этот срок установлен: для целей участия в первом ",
+      "quote_span": [
+        0,
+        130
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0030",
+      "literal": "пункт 1 статьи 71",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "71"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:116",
+      "native_unit_index": 116,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[26]",
+        "global_paragraph_ordinal_including_empty": 123,
+        "nonempty_paragraph_ordinal": 116
+      },
+      "span": [
+        26,
+        44
+      ],
+      "short_quote": "Конкурсное производство — пункт 1 статьи 142. По истечении этого срока реестр закрывается, и заявленное после закрытия удовлетворяется за счёт и",
+      "quote_span": [
+        0,
+        144
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0031",
+      "literal": "пункт 1 статьи 142",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "142"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:117",
+      "native_unit_index": 117,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[27]",
+        "global_paragraph_ordinal_including_empty": 124,
+        "nonempty_paragraph_ordinal": 117
+      },
+      "span": [
+        21,
+        31
+      ],
+      "short_quote": "Внешнее управление — статья 100, и срока в ней нет: пункт 1 говорит, что кредиторы вправе предъявить требования в любой момент в хо",
+      "quote_span": [
+        0,
+        131
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0032",
+      "literal": "статья 100",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "100"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:118",
+      "native_unit_index": 118,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[28]",
+        "global_paragraph_ordinal_including_empty": 125,
+        "nonempty_paragraph_ordinal": 118
+      },
+      "span": [
+        99,
+        108
+      ],
+      "short_quote": "Сведения включаются в ЕФРСБ и опубликовываются в официальном издании (статья 28), и даты этих двух действий совпадают не всегда. Срок идёт от даты опубликования в официальном изда",
+      "quote_span": [
+        29,
+        208
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t4-ref-0033",
+      "literal": "статья 28",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "28"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    }
+  ],
+  "deduplicated_groups": [
+    {
+      "group_id": "t4-group-001",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 5",
+      "code": null,
+      "articles_as_written": [
+        "5"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0001",
+        "t4-ref-0010",
+        "t4-ref-0018",
+        "t4-ref-0020"
+      ]
+    },
+    {
+      "group_id": "t4-group-002",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "пункт 1 статьи 71",
+      "code": null,
+      "articles_as_written": [
+        "71"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0002",
+        "t4-ref-0006",
+        "t4-ref-0011",
+        "t4-ref-0030"
+      ]
+    },
+    {
+      "group_id": "t4-group-003",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "пункт 1 статьи 142",
+      "code": null,
+      "articles_as_written": [
+        "142"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0003",
+        "t4-ref-0008",
+        "t4-ref-0012",
+        "t4-ref-0031"
+      ]
+    },
+    {
+      "group_id": "t4-group-004",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статья 100",
+      "code": null,
+      "articles_as_written": [
+        "100"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0004",
+        "t4-ref-0013",
+        "t4-ref-0032"
+      ]
+    },
+    {
+      "group_id": "t4-group-005",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статья 28",
+      "code": null,
+      "articles_as_written": [
+        "28"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0005",
+        "t4-ref-0014",
+        "t4-ref-0033"
+      ]
+    },
+    {
+      "group_id": "t4-group-006",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "Пункт 1 статьи 100",
+      "code": null,
+      "articles_as_written": [
+        "100"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0007"
+      ]
+    },
+    {
+      "group_id": "t4-group-007",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "пункту 7 статьи 71",
+      "code": null,
+      "articles_as_written": [
+        "71"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0009"
+      ]
+    },
+    {
+      "group_id": "t4-group-008",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 395 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "395"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0015",
+        "t4-ref-0026"
+      ]
+    },
+    {
+      "group_id": "t4-group-009",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 63",
+      "code": "ГК",
+      "articles_as_written": [
+        "63"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0016",
+        "t4-ref-0027"
+      ]
+    },
+    {
+      "group_id": "t4-group-010",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 142",
+      "code": null,
+      "articles_as_written": [
+        "142"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0017",
+        "t4-ref-0019",
+        "t4-ref-0021"
+      ]
+    },
+    {
+      "group_id": "t4-group-011",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "п. 4 ст. 142",
+      "code": null,
+      "articles_as_written": [
+        "142"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0022"
+      ]
+    },
+    {
+      "group_id": "t4-group-012",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "п. 1 ст. 71",
+      "code": null,
+      "articles_as_written": [
+        "71"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0023"
+      ]
+    },
+    {
+      "group_id": "t4-group-013",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "п. 1 ст. 142",
+      "code": null,
+      "articles_as_written": [
+        "142"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0024"
+      ]
+    },
+    {
+      "group_id": "t4-group-014",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "п. 1 ст. 100",
+      "code": null,
+      "articles_as_written": [
+        "100"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0025"
+      ]
+    },
+    {
+      "group_id": "t4-group-015",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 63",
+      "code": null,
+      "articles_as_written": [
+        "63"
+      ],
+      "occurrence_ids": [
+        "t4-ref-0028",
+        "t4-ref-0029"
+      ]
+    }
+  ],
+  "unresolved_legal_and_standard_markers": [
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:6",
+      "native_unit_index": 6,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[1]/tr[1]/tc[1]/p[4]",
+        "global_paragraph_ordinal_including_empty": 6,
+        "nonempty_paragraph_ordinal": 6
+      },
+      "span": [
+        46,
+        51
+      ],
+      "short_quote": "Пропущенный срок восстанавливается не всегда: закон допускает это лишь в отдельных случаях, и решает вопрос суд, а не заявитель.",
+      "quote_span": [
+        0,
+        128
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0001",
+      "marker": "закон",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:24",
+      "native_unit_index": 24,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[16]",
+        "global_paragraph_ordinal_including_empty": 26,
+        "nonempty_paragraph_ordinal": 24
+      },
+      "span": [
+        63,
+        69
+      ],
+      "short_quote": "квалифицирует требование: реестровое или текущий платёж (ст. 5 Закона о банкротстве), какая очередь, как учитываются финансовые санкции;",
+      "quote_span": [
+        0,
+        136
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0002",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:26",
+      "native_unit_index": 26,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[18]",
+        "global_paragraph_ordinal_including_empty": 28,
+        "nonempty_paragraph_ordinal": 26
+      },
+      "span": [
+        32,
+        38
+      ],
+      "short_quote": "оспаривание сделок (глава III.1 Закона о банкротстве) и субсидиарная ответственность (глава III.2) — целиком;",
+      "quote_span": [
+        0,
+        109
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0003",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:31",
+      "native_unit_index": 31,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[23]",
+        "global_paragraph_ordinal_including_empty": 33,
+        "nonempty_paragraph_ordinal": 31
+      },
+      "span": [
+        80,
+        86
+      ],
+      "short_quote": "т сроков числом. Срок вы проверяете по действующей редакции названной статьи на дату подачи.",
+      "quote_span": [
+        10,
+        102
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0004",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:34",
+      "native_unit_index": 34,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[26]",
+        "global_paragraph_ordinal_including_empty": 36,
+        "nonempty_paragraph_ordinal": 34
+      },
+      "span": [
+        164,
+        170
+      ],
+      "short_quote": ", считается от даты публикации сведений и меняется вместе с редакцией закона, а скачанный файл не обновляется. Величину вы смотрите сами — в действующей редакции названной ниже",
+      "quote_span": [
+        94,
+        270
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0005",
+      "marker": "закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:34",
+      "native_unit_index": 34,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[26]",
+        "global_paragraph_ordinal_including_empty": 36,
+        "nonempty_paragraph_ordinal": 34
+      },
+      "span": [
+        271,
+        277
+      ],
+      "short_quote": "ся. Величину вы смотрите сами — в действующей редакции названной ниже статьи, на дату подачи.",
+      "quote_span": [
+        201,
+        294
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0006",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:35",
+      "native_unit_index": 35,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[27]",
+        "global_paragraph_ordinal_including_empty": 37,
+        "nonempty_paragraph_ordinal": 35
+      },
+      "span": [
+        31,
+        37
+      ],
+      "short_quote": "Наблюдение — пункт 1 статьи 71 Закона о банкротстве. Обратите внимание, для чего этот срок установлен: для целей участия в первом собрани",
+      "quote_span": [
+        0,
+        137
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0007",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:35",
+      "native_unit_index": 35,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[27]",
+        "global_paragraph_ordinal_including_empty": 37,
+        "nonempty_paragraph_ordinal": 35
+      },
+      "span": [
+        203,
+        209
+      ],
+      "short_quote": "рании кредиторов. Требования, предъявленные позже, по пункту 7 той же статьи рассматриваются судом после введения следующей за наблюдением процедуры. То есть пропуск этого срок",
+      "quote_span": [
+        133,
+        309
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0008",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:36",
+      "native_unit_index": 36,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[28]",
+        "global_paragraph_ordinal_including_empty": 38,
+        "nonempty_paragraph_ordinal": 36
+      },
+      "span": [
+        220,
+        226
+      ],
+      "short_quote": "ва, оставшегося после расчётов с включёнными в реестр (пункт 4 той же статьи). Здесь пропуск стоит дорого, и здесь он и означает то, чего обычно боятся.",
+      "quote_span": [
+        150,
+        302
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0009",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:37",
+      "native_unit_index": 37,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[29]",
+        "global_paragraph_ordinal_including_empty": 39,
+        "nonempty_paragraph_ordinal": 37
+      },
+      "span": [
+        171,
+        177
+      ],
+      "short_quote": "требования в любой момент в ходе внешнего управления. Не ищите в этой статье величину — её там не должно быть, и её отсутствие не означает, что тянуть безопасно.",
+      "quote_span": [
+        101,
+        262
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0010",
+      "marker": "статье",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:53",
+      "native_unit_index": 53,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[3]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 56,
+        "nonempty_paragraph_ordinal": 53
+      },
+      "span": [
+        129,
+        135
+      ],
+      "short_quote": "тстве. Издание назначено распоряжением Правительства РФ от 21.07.2008 № 1049-р — проверьте на свою дату, назначение может смениться",
+      "quote_span": [
+        59,
+        190
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0011",
+      "marker": "№ 1049",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:67",
+      "native_unit_index": 67,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[4]/tr[1]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 71,
+        "nonempty_paragraph_ordinal": 67
+      },
+      "span": [
+        6,
+        12
+      ],
+      "short_quote": "Норма Закона о банкротстве",
+      "quote_span": [
+        0,
+        26
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0012",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:71",
+      "native_unit_index": 71,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[4]/tr[2]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 75,
+        "nonempty_paragraph_ordinal": 71
+      },
+      "span": [
+        96,
+        102
+      ],
+      "short_quote": "участия в первом собрании кредиторов. Пропустили — по пункту 7 той же статьи требование рассмотрят после введения следующей процедуры: вы теряете участие в собрании, но не треб",
+      "quote_span": [
+        26,
+        202
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0013",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:74",
+      "native_unit_index": 74,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[4]/tr[3]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 78,
+        "nonempty_paragraph_ordinal": 74
+      },
+      "span": [
+        104,
+        110
+      ],
+      "short_quote": "ания в любой момент в ходе внешнего управления. Величины срока в этой статье нет и искать её там не нужно; тянуть при этом всё равно незачем — процедура сменится",
+      "quote_span": [
+        34,
+        195
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0014",
+      "marker": "статье",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:77",
+      "native_unit_index": 77,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[4]/tr[4]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 81,
+        "nonempty_paragraph_ordinal": 77
+      },
+      "span": [
+        166,
+        172
+      ],
+      "short_quote": "ва, оставшегося после расчётов с включёнными в реестр (пункт 4 той же статьи), то есть чаще всего не удовлетворяется",
+      "quote_span": [
+        96,
+        212
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0015",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:78",
+      "native_unit_index": 78,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[49]",
+        "global_paragraph_ordinal_including_empty": 83,
+        "nonempty_paragraph_ordinal": 78
+      },
+      "span": [
+        57,
+        63
+      ],
+      "short_quote": "В поле нормы о сроке уведомления подставляется ссылка на статью вашей строки, а не величина срока.",
+      "quote_span": [
+        0,
+        98
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0016",
+      "marker": "статью",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:79",
+      "native_unit_index": 79,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[50]",
+        "global_paragraph_ordinal_including_empty": 84,
+        "nonempty_paragraph_ordinal": 79
+      },
+      "span": [
+        75,
+        81
+      ],
+      "short_quote": "ину срока там, где он есть, смотрите в действующей редакции выбранной статьи на сегодняшнюю дату. В этом файле её нет числом намеренно: редакция меняется, а скачанный файл не о",
+      "quote_span": [
+        5,
+        181
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0017",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:84",
+      "native_unit_index": 84,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[55]",
+        "global_paragraph_ordinal_including_empty": 89,
+        "nonempty_paragraph_ordinal": 84
+      },
+      "span": [
+        62,
+        68
+      ],
+      "short_quote": "Запишите одной строкой: дата публикации, источник, процедура, статья, по которой считали, и дата, до которой требование должно быть заявлено. Строка нужна не для отчётн",
+      "quote_span": [
+        0,
+        168
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0018",
+      "marker": "статья",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:102",
+      "native_unit_index": 102,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[74]",
+        "global_paragraph_ordinal_including_empty": 108,
+        "nonempty_paragraph_ordinal": 102
+      },
+      "span": [
+        153,
+        159
+      ],
+      "short_quote": "елки, совершённые в преддверии банкротства, оспариваются (глава III.1 Закона о банкротстве); полученное по ним возвращается в конкурсную массу, а ваше требование к этому момент",
+      "quote_span": [
+        83,
+        259
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0019",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "file_sha256": "48db897f287b53bebb382a8969904f9ef4ce85a1e49cd8a569b0e7df95f69047",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx:106",
+      "native_unit_index": 106,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[78]",
+        "global_paragraph_ordinal_including_empty": 112,
+        "nonempty_paragraph_ordinal": 106
+      },
+      "span": [
+        47,
+        52
+      ],
+      "short_quote": "Не считать, что «мы не знали» продлевает срок. Закон допускает восстановление лишь в отдельных случаях, и решает вопрос суд, а не заявитель.",
+      "quote_span": [
+        0,
+        140
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0020",
+      "marker": "Закон",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:6",
+      "native_unit_index": 6,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[1]/tr[1]/tc[1]/p[4]",
+        "global_paragraph_ordinal_including_empty": 6,
+        "nonempty_paragraph_ordinal": 6
+      },
+      "span": [
+        46,
+        51
+      ],
+      "short_quote": "Пропущенный срок восстанавливается не всегда: закон допускает это лишь в отдельных случаях, и решает вопрос суд, а не заявитель.",
+      "quote_span": [
+        0,
+        128
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0021",
+      "marker": "закон",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:29",
+      "native_unit_index": 29,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[21]",
+        "global_paragraph_ordinal_including_empty": 31,
+        "nonempty_paragraph_ordinal": 29
+      },
+      "span": [
+        63,
+        69
+      ],
+      "short_quote": "квалифицирует требование: реестровое или текущий платёж (ст. 5 Закона о банкротстве), какая очередь, как учитываются финансовые санкции;",
+      "quote_span": [
+        0,
+        136
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0022",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:31",
+      "native_unit_index": 31,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[23]",
+        "global_paragraph_ordinal_including_empty": 33,
+        "nonempty_paragraph_ordinal": 31
+      },
+      "span": [
+        32,
+        38
+      ],
+      "short_quote": "оспаривание сделок (глава III.1 Закона о банкротстве) и субсидиарная ответственность (глава III.2) — целиком;",
+      "quote_span": [
+        0,
+        109
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0023",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:36",
+      "native_unit_index": 36,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[28]",
+        "global_paragraph_ordinal_including_empty": 38,
+        "nonempty_paragraph_ordinal": 36
+      },
+      "span": [
+        80,
+        86
+      ],
+      "short_quote": "т сроков числом. Срок вы проверяете по действующей редакции названной статьи на дату подачи.",
+      "quote_span": [
+        10,
+        102
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0024",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:39",
+      "native_unit_index": 39,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[31]",
+        "global_paragraph_ordinal_including_empty": 41,
+        "nonempty_paragraph_ordinal": 39
+      },
+      "span": [
+        164,
+        170
+      ],
+      "short_quote": ", считается от даты публикации сведений и меняется вместе с редакцией закона, а скачанный файл не обновляется. Величину вы смотрите сами — в действующей редакции названной ниже",
+      "quote_span": [
+        94,
+        270
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0025",
+      "marker": "закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:39",
+      "native_unit_index": 39,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[31]",
+        "global_paragraph_ordinal_including_empty": 41,
+        "nonempty_paragraph_ordinal": 39
+      },
+      "span": [
+        271,
+        277
+      ],
+      "short_quote": "ся. Величину вы смотрите сами — в действующей редакции названной ниже статьи, на дату подачи.",
+      "quote_span": [
+        201,
+        294
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0026",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:40",
+      "native_unit_index": 40,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[32]",
+        "global_paragraph_ordinal_including_empty": 42,
+        "nonempty_paragraph_ordinal": 40
+      },
+      "span": [
+        31,
+        37
+      ],
+      "short_quote": "Наблюдение — пункт 1 статьи 71 Закона о банкротстве. Обратите внимание, для чего этот срок установлен: для целей участия в первом собрани",
+      "quote_span": [
+        0,
+        137
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0027",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:40",
+      "native_unit_index": 40,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[32]",
+        "global_paragraph_ordinal_including_empty": 42,
+        "nonempty_paragraph_ordinal": 40
+      },
+      "span": [
+        203,
+        209
+      ],
+      "short_quote": "рании кредиторов. Требования, предъявленные позже, по пункту 7 той же статьи рассматриваются судом после введения следующей за наблюдением процедуры. То есть пропуск этого срок",
+      "quote_span": [
+        133,
+        309
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0028",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:41",
+      "native_unit_index": 41,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[33]",
+        "global_paragraph_ordinal_including_empty": 43,
+        "nonempty_paragraph_ordinal": 41
+      },
+      "span": [
+        220,
+        226
+      ],
+      "short_quote": "ва, оставшегося после расчётов с включёнными в реестр (пункт 4 той же статьи). Здесь пропуск стоит дорого, и здесь он и означает то, чего обычно боятся.",
+      "quote_span": [
+        150,
+        302
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0029",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:42",
+      "native_unit_index": 42,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[34]",
+        "global_paragraph_ordinal_including_empty": 44,
+        "nonempty_paragraph_ordinal": 42
+      },
+      "span": [
+        171,
+        177
+      ],
+      "short_quote": "требования в любой момент в ходе внешнего управления. Не ищите в этой статье величину — её там не должно быть, и её отсутствие не означает, что тянуть безопасно.",
+      "quote_span": [
+        101,
+        262
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0030",
+      "marker": "статье",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:62",
+      "native_unit_index": 62,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[56]",
+        "global_paragraph_ordinal_including_empty": 66,
+        "nonempty_paragraph_ordinal": 62
+      },
+      "span": [
+        315,
+        334
+      ],
+      "short_quote": "ии за неисполнение денежных обязательств не начисляются в силу ст. 63 Федерального закона «О несостоятельности (банкротстве)». Расчёт прилагается.",
+      "quote_span": [
+        245,
+        391
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0031",
+      "marker": "Федерального закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:63",
+      "native_unit_index": 63,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[57]",
+        "global_paragraph_ordinal_including_empty": 67,
+        "nonempty_paragraph_ordinal": 63
+      },
+      "span": [
+        185,
+        191
+      ],
+      "short_quote": ", установленном {{НОРМА_О_СРОКЕ}} Федерального закона от 26.10.2002 № 127-ФЗ «О несостоятельности (банкротстве)». Настоящее уведомление направляется в порядке информирования и ",
+      "quote_span": [
+        115,
+        291
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0032",
+      "marker": "127-ФЗ",
+      "classification": "UNRESOLVED_STANDARD_OR_OTHER_NORMATIVE_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:63",
+      "native_unit_index": 63,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[57]",
+        "global_paragraph_ordinal_including_empty": 67,
+        "nonempty_paragraph_ordinal": 63
+      },
+      "span": [
+        149,
+        168
+      ],
+      "short_quote": "ОВАНИЕ_АРБИТРАЖНОГО_СУДА}} в порядке, установленном {{НОРМА_О_СРОКЕ}} Федерального закона от 26.10.2002 № 127-ФЗ «О несостоятельности (банкротстве)». Настоящее уведомление направляется в по",
+      "quote_span": [
+        79,
+        268
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0033",
+      "marker": "Федерального закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "file_sha256": "997fb26c598395b7bb8205aa9f21058bc70c2c8af2ea6add9694275dfd4de74f",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx:63",
+      "native_unit_index": 63,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[57]",
+        "global_paragraph_ordinal_including_empty": 67,
+        "nonempty_paragraph_ordinal": 63
+      },
+      "span": [
+        183,
+        188
+      ],
+      "short_quote": "ке, установленном {{НОРМА_О_СРОКЕ}} Федерального закона от 26.10.2002 № 127-ФЗ «О несостоятельности (банкротстве)». Настоящее уведомление направляется в порядке информирования",
+      "quote_span": [
+        113,
+        288
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0034",
+      "marker": "№ 127",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:6",
+      "native_unit_index": 6,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[1]/tr[1]/tc[1]/p[4]",
+        "global_paragraph_ordinal_including_empty": 6,
+        "nonempty_paragraph_ordinal": 6
+      },
+      "span": [
+        46,
+        51
+      ],
+      "short_quote": "Пропущенный срок восстанавливается не всегда: закон допускает это лишь в отдельных случаях, и решает вопрос суд, а не заявитель.",
+      "quote_span": [
+        0,
+        128
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0035",
+      "marker": "закон",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:11",
+      "native_unit_index": 11,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[1]/tc[1]/p[2]",
+        "global_paragraph_ordinal_including_empty": 12,
+        "nonempty_paragraph_ordinal": 11
+      },
+      "span": [
+        190,
+        196
+      ],
+      "short_quote": "ся за реестром и удовлетворяется после реестровых требований (ст. 142 Закона о банкротстве), то есть на практике чаще всего не удовлетворяется вовсе.",
+      "quote_span": [
+        120,
+        269
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0036",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:12",
+      "native_unit_index": 12,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[1]/tc[1]/p[3]",
+        "global_paragraph_ordinal_including_empty": 13,
+        "nonempty_paragraph_ordinal": 12
+      },
+      "span": [
+        21,
+        26
+      ],
+      "short_quote": "Восстановление срока закон допускает лишь в отдельных случаях, и решает вопрос суд. «Мы не знали» само по себе основанием не я",
+      "quote_span": [
+        0,
+        126
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0037",
+      "marker": "закон",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:25",
+      "native_unit_index": 25,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[16]",
+        "global_paragraph_ordinal_including_empty": 27,
+        "nonempty_paragraph_ordinal": 25
+      },
+      "span": [
+        63,
+        69
+      ],
+      "short_quote": "квалифицирует требование: реестровое или текущий платёж (ст. 5 Закона о банкротстве), какая очередь, как учитываются финансовые санкции;",
+      "quote_span": [
+        0,
+        136
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0038",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:27",
+      "native_unit_index": 27,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[18]",
+        "global_paragraph_ordinal_including_empty": 29,
+        "nonempty_paragraph_ordinal": 27
+      },
+      "span": [
+        32,
+        38
+      ],
+      "short_quote": "оспаривание сделок (глава III.1 Закона о банкротстве) и субсидиарная ответственность (глава III.2) — целиком;",
+      "quote_span": [
+        0,
+        109
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0039",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:32",
+      "native_unit_index": 32,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[23]",
+        "global_paragraph_ordinal_including_empty": 34,
+        "nonempty_paragraph_ordinal": 32
+      },
+      "span": [
+        80,
+        86
+      ],
+      "short_quote": "т сроков числом. Срок вы проверяете по действующей редакции названной статьи на дату подачи.",
+      "quote_span": [
+        10,
+        102
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0040",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:40",
+      "native_unit_index": 40,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[32]",
+        "global_paragraph_ordinal_including_empty": 43,
+        "nonempty_paragraph_ordinal": 40
+      },
+      "span": [
+        26,
+        32
+      ],
+      "short_quote": "срок посчитан по редакции закона, которая уже изменилась.",
+      "quote_span": [
+        0,
+        57
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0041",
+      "marker": "закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:43",
+      "native_unit_index": 43,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[35]",
+        "global_paragraph_ordinal_including_empty": 46,
+        "nonempty_paragraph_ordinal": 43
+      },
+      "span": [
+        197,
+        203
+      ],
+      "short_quote": "тается от публикации сведений о признании должника банкротом (ст. 142 Закона о банкротстве) — то есть пропуск срока в предыдущей процедуре не всегда означает, что всё кончено. ",
+      "quote_span": [
+        127,
+        303
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0042",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:45",
+      "native_unit_index": 45,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[37]",
+        "global_paragraph_ordinal_including_empty": 48,
+        "nonempty_paragraph_ordinal": 45
+      },
+      "span": [
+        124,
+        130
+      ],
+      "short_quote": "я о признании должника банкротом, относятся к текущим платежам (ст. 5 Закона о банкротстве). Текущие платежи в реестр не включаются, и срок закрытия реестра к ним отношения не ",
+      "quote_span": [
+        54,
+        230
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0043",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:59",
+      "native_unit_index": 59,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[2]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 63,
+        "nonempty_paragraph_ordinal": 59
+      },
+      "span": [
+        79,
+        85
+      ],
+      "short_quote": "е учитывается за реестром и удовлетворяется после реестровых (ст. 142 Закона о банкротстве). Шанс невелик, но статус кредитора даёт доступ к информации и к процедуре",
+      "quote_span": [
+        9,
+        174
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0044",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:62",
+      "native_unit_index": 62,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[3]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 66,
+        "nonempty_paragraph_ordinal": 62
+      },
+      "span": [
+        119,
+        125
+      ],
+      "short_quote": "ему требованию ещё не был вынесен или не вступил в силу, п. 4 ст. 142 Закона о банкротстве отводит на предъявление отдельный срок после закрытия реестра, и требование не станов",
+      "quote_span": [
+        49,
+        225
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0045",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:65",
+      "native_unit_index": 65,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[4]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 69,
+        "nonempty_paragraph_ordinal": 65
+      },
+      "span": [
+        0,
+        5
+      ],
+      "short_quote": "Закон допускает восстановление лишь в отдельных случаях; решает суд. Основания и перспективы оценивает юр",
+      "quote_span": [
+        0,
+        105
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0046",
+      "marker": "Закон",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:82",
+      "native_unit_index": 82,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[52]",
+        "global_paragraph_ordinal_including_empty": 87,
+        "nonempty_paragraph_ordinal": 82
+      },
+      "span": [
+        147,
+        153
+      ],
+      "short_quote": "пное, платёж от третьего лица. Такие сделки оспариваются (глава III.1 Закона о банкротстве), полученное возвращается в конкурсную массу, и вы окажетесь в худшем положении, чем ",
+      "quote_span": [
+        77,
+        253
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0047",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "file_sha256": "7fb4661783e1a000267a298c91ea88ab864750b7abb04c7fc63622a325d0a802",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx:82",
+      "native_unit_index": 82,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[52]",
+        "global_paragraph_ordinal_including_empty": 87,
+        "nonempty_paragraph_ordinal": 82
+      },
+      "span": [
+        238,
+        247
+      ],
+      "short_quote": ", полученное возвращается в конкурсную массу, и вы окажетесь в худшем положении, чем были.",
+      "quote_span": [
+        168,
+        258
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0048",
+      "marker": "положении",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:6",
+      "native_unit_index": 6,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[1]/tr[1]/tc[1]/p[4]",
+        "global_paragraph_ordinal_including_empty": 6,
+        "nonempty_paragraph_ordinal": 6
+      },
+      "span": [
+        46,
+        51
+      ],
+      "short_quote": "Пропущенный срок восстанавливается не всегда: закон допускает это лишь в отдельных случаях, и решает вопрос суд, а не заявитель.",
+      "quote_span": [
+        0,
+        128
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0049",
+      "marker": "закон",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:31",
+      "native_unit_index": 31,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[5]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 32,
+        "nonempty_paragraph_ordinal": 31
+      },
+      "span": [
+        10,
+        16
+      ],
+      "short_quote": "Ссылка на статью Закона о банкротстве, устанавливающую порядок предъявления требований в вашей процедуре: наблюдение",
+      "quote_span": [
+        0,
+        116
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0050",
+      "marker": "статью",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:31",
+      "native_unit_index": 31,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[5]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 32,
+        "nonempty_paragraph_ordinal": 31
+      },
+      "span": [
+        17,
+        23
+      ],
+      "short_quote": "Ссылка на статью Закона о банкротстве, устанавливающую порядок предъявления требований в вашей процедуре: наблюдение — п. 1",
+      "quote_span": [
+        0,
+        123
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0051",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:31",
+      "native_unit_index": 31,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[5]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 32,
+        "nonempty_paragraph_ordinal": 31
+      },
+      "span": [
+        280,
+        286
+      ],
+      "short_quote": "ставляется ссылка, а не величина срока. У внешнего управления срока в статье нет вовсе — требования предъявляются в любой момент в ходе процедуры, и это не опечатка",
+      "quote_span": [
+        210,
+        374
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0052",
+      "marker": "статье",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:32",
+      "native_unit_index": 32,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[5]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 33,
+        "nonempty_paragraph_ordinal": 32
+      },
+      "span": [
+        67,
+        73
+      ],
+      "short_quote": "шаг 3 файла «Порядок первого дня» и действующая редакция названной статьи",
+      "quote_span": [
+        0,
+        73
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0053",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:107",
+      "native_unit_index": 107,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[6]/tr[6]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 113,
+        "nonempty_paragraph_ordinal": 107
+      },
+      "span": [
+        208,
+        214
+      ],
+      "short_quote": " санкций за неисполнение денежных обязательств прекращается по ст. 63 Закона о банкротстве, и до этой даты расчёт и ведётся. Расчёт идёт приложением, а не строкой в письме",
+      "quote_span": [
+        138,
+        309
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0054",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:110",
+      "native_unit_index": 110,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[6]/tr[7]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 116,
+        "nonempty_paragraph_ordinal": 110
+      },
+      "span": [
+        74,
+        80
+      ],
+      "short_quote": ", на которой останавливается начисление финансовых санкций. По ст. 63 Закона о банкротстве это дата вынесения определения о введении наблюдения. Величины в файлах комплекта нет",
+      "quote_span": [
+        4,
+        180
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0055",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:113",
+      "native_unit_index": 113,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[23]",
+        "global_paragraph_ordinal_including_empty": 120,
+        "nonempty_paragraph_ordinal": 113
+      },
+      "span": [
+        77,
+        83
+      ],
+      "short_quote": "го срока и ни одной ставки числом. Поле нормы о сроке — это ссылка на статью, а не величина.",
+      "quote_span": [
+        7,
+        99
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0056",
+      "marker": "статью",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:114",
+      "native_unit_index": 114,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[24]",
+        "global_paragraph_ordinal_including_empty": 121,
+        "nonempty_paragraph_ordinal": 114
+      },
+      "span": [
+        164,
+        170
+      ],
+      "short_quote": ", считается от даты публикации сведений и меняется вместе с редакцией закона, а скачанный файл не обновляется. Величину вы смотрите сами — в действующей редакции названной ниже",
+      "quote_span": [
+        94,
+        270
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0057",
+      "marker": "закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:114",
+      "native_unit_index": 114,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[24]",
+        "global_paragraph_ordinal_including_empty": 121,
+        "nonempty_paragraph_ordinal": 114
+      },
+      "span": [
+        271,
+        277
+      ],
+      "short_quote": "ся. Величину вы смотрите сами — в действующей редакции названной ниже статьи, на дату подачи.",
+      "quote_span": [
+        201,
+        294
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0058",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:115",
+      "native_unit_index": 115,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[25]",
+        "global_paragraph_ordinal_including_empty": 122,
+        "nonempty_paragraph_ordinal": 115
+      },
+      "span": [
+        31,
+        37
+      ],
+      "short_quote": "Наблюдение — пункт 1 статьи 71 Закона о банкротстве. Обратите внимание, для чего этот срок установлен: для целей участия в первом собрани",
+      "quote_span": [
+        0,
+        137
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0059",
+      "marker": "Закона",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:115",
+      "native_unit_index": 115,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[25]",
+        "global_paragraph_ordinal_including_empty": 122,
+        "nonempty_paragraph_ordinal": 115
+      },
+      "span": [
+        203,
+        209
+      ],
+      "short_quote": "рании кредиторов. Требования, предъявленные позже, по пункту 7 той же статьи рассматриваются судом после введения следующей за наблюдением процедуры. То есть пропуск этого срок",
+      "quote_span": [
+        133,
+        309
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0060",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:116",
+      "native_unit_index": 116,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[26]",
+        "global_paragraph_ordinal_including_empty": 123,
+        "nonempty_paragraph_ordinal": 116
+      },
+      "span": [
+        220,
+        226
+      ],
+      "short_quote": "ва, оставшегося после расчётов с включёнными в реестр (пункт 4 той же статьи). Здесь пропуск стоит дорого, и здесь он и означает то, чего обычно боятся.",
+      "quote_span": [
+        150,
+        302
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0061",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t4",
+      "document": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "file_sha256": "ce17554a875307c42a7c742c53a2da5e7c0e4928bb6d2aed0e30c12f1edccdbc",
+      "unit_id": "t4:products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx:117",
+      "native_unit_index": 117,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[27]",
+        "global_paragraph_ordinal_including_empty": 124,
+        "nonempty_paragraph_ordinal": 117
+      },
+      "span": [
+        171,
+        177
+      ],
+      "short_quote": "требования в любой момент в ходе внешнего управления. Не ищите в этой статье величину — её там не должно быть, и её отсутствие не означает, что тянуть безопасно.",
+      "quote_span": [
+        101,
+        262
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t4-marker-0062",
+      "marker": "статье",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    }
+  ],
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "normative_verdict": "NOT_VERIFIED",
+  "membership": "SOURCE_ELIGIBLE_DRY_INVENTORY_NOT_ACTUAL_PHP_ZIP",
+  "scope_limit": "Native textual lexical scope only, not legal completeness/layout/formula/sale/currentacceptedrepackaging"
+}

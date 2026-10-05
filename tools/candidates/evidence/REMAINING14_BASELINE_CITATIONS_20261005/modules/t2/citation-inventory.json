@@ -1,0 +1,503 @@
+{
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "source_status": "CACHED_CONFIGURED_BASELINE_NOT_ACCEPTED_DELIVERY",
+  "sku": "t2",
+  "execution_pattern": "iterative",
+  "primary_result": "baseline_literal_source_index_for_future_lawyer",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "documents": [
+    {
+      "path": "products-storage/14-peredacha-id-pod-podpis/00-START-HERE.txt",
+      "relative_name": "00-START-HERE.txt",
+      "git_blob": "5ea96d3acd5e1edbdb6b898eda98588dfbb47295",
+      "sha256": "8f04207a3ec88f7d4d874570d06374a9510f02d7f0f914a5edb58d0f159bb591",
+      "size": 4126,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "8f04207a3ec88f7d4d874570d06374a9510f02d7f0f914a5edb58d0f159bb591",
+        "suffix": ".txt",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "text_units": 49,
+        "elapsed_seconds": 0.00010240598930977285
+      },
+      "native_corpus_key": "8f04207a3ec88f7d4d874570d06374a9510f02d7f0f914a5edb58d0f159bb591",
+      "text_units": 49
+    },
+    {
+      "path": "products-storage/14-peredacha-id-pod-podpis/01-slovar-poley.docx",
+      "relative_name": "01-slovar-poley.docx",
+      "git_blob": "36aa5139402b14d07fa4b2bf35ef240f242c4a33",
+      "sha256": "6865323e4fd03dc896863e1ddfd651a25100cb95a9e40b9b3afbaccba4a8cf3e",
+      "size": 14393,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "6865323e4fd03dc896863e1ddfd651a25100cb95a9e40b9b3afbaccba4a8cf3e",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 103,
+        "elapsed_seconds": 0.046586192009272054
+      },
+      "native_corpus_key": "6865323e4fd03dc896863e1ddfd651a25100cb95a9e40b9b3afbaccba4a8cf3e",
+      "text_units": 103
+    },
+    {
+      "path": "products-storage/14-peredacha-id-pod-podpis/02-soprovoditelnoe-pismo-peredachi.docx",
+      "relative_name": "02-soprovoditelnoe-pismo-peredachi.docx",
+      "git_blob": "1f6adffadf75905196ff257f5b7b453cb045b040",
+      "sha256": "b3439ccd4d3d5ed3337e34fb87254ac230643b5343e10a6097aae8ee668aad7e",
+      "size": 13391,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "b3439ccd4d3d5ed3337e34fb87254ac230643b5343e10a6097aae8ee668aad7e",
+        "suffix": ".docx",
+        "worker_pid": 1973485,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 48,
+        "elapsed_seconds": 0.011639343982096761
+      },
+      "native_corpus_key": "b3439ccd4d3d5ed3337e34fb87254ac230643b5343e10a6097aae8ee668aad7e",
+      "text_units": 48
+    },
+    {
+      "path": "products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx",
+      "relative_name": "03-opis-peredavaemogo-komplekta.xlsx",
+      "git_blob": "9afb20be9341a0b1f83c9fe1ddbe76c704d4f1c0",
+      "sha256": "503dca1963948d393e488edfa645e923c4652d1de879d79da4fcd61889003467",
+      "size": 20579,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "503dca1963948d393e488edfa645e923c4652d1de879d79da4fcd61889003467",
+        "suffix": ".xlsx",
+        "worker_pid": 1973485,
+        "limitations": [],
+        "read_sheets": [
+          {
+            "sheet": "Опись",
+            "part": "xl/worksheets/sheet1.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Как заполнять",
+            "part": "xl/worksheets/sheet2.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Виды",
+            "part": "xl/worksheets/sheet3.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Пример заполнения",
+            "part": "xl/worksheets/sheet4.xml",
+            "state": "visible"
+          }
+        ],
+        "read_mode": "native ZIP/XML; stored values/formulas/caches only",
+        "text_units": 253,
+        "elapsed_seconds": 0.3537078169756569
+      },
+      "native_corpus_key": "503dca1963948d393e488edfa645e923c4652d1de879d79da4fcd61889003467",
+      "text_units": 253
+    },
+    {
+      "path": "products-storage/14-peredacha-id-pod-podpis/04-akt-priema-peredachi-id.docx",
+      "relative_name": "04-akt-priema-peredachi-id.docx",
+      "git_blob": "a518c7fde737e8c1d304f6f566e0139c354f53db",
+      "sha256": "da0a70f15cc62609a519f67973ec86617855269f98a50fa4c3a54ecb5db7a3e0",
+      "size": 13245,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "da0a70f15cc62609a519f67973ec86617855269f98a50fa4c3a54ecb5db7a3e0",
+        "suffix": ".docx",
+        "worker_pid": 1973488,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 43,
+        "elapsed_seconds": 0.010445288004120812
+      },
+      "native_corpus_key": "da0a70f15cc62609a519f67973ec86617855269f98a50fa4c3a54ecb5db7a3e0",
+      "text_units": 43
+    },
+    {
+      "path": "products-storage/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx",
+      "relative_name": "05-poryadok-peredachi-id.docx",
+      "git_blob": "28ae7768f1a74086ff00a91a1e279704237b3551",
+      "sha256": "81cf3898828ae89ebcc019e3f180f551d578914ca22004b2c8366a7fe6e458c0",
+      "size": 15251,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "81cf3898828ae89ebcc019e3f180f551d578914ca22004b2c8366a7fe6e458c0",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 86,
+        "elapsed_seconds": 0.023024134017759934
+      },
+      "native_corpus_key": "81cf3898828ae89ebcc019e3f180f551d578914ca22004b2c8366a7fe6e458c0",
+      "text_units": 86
+    }
+  ],
+  "parser": {
+    "article_regex": "(?<![А-Яа-яA-Za-z])(?:(?:пп?|пункт(?:а|ы|ов|у|ом)?|ч|част(?:ь|и|ью)|абз|абзац(?:а|ы|ев)?)\\.?\\s*\\d+(?:\\.\\d+)?\\s*){0,4}(?:ст\\.|стать(?:я|и|ю|е|ей|ями))\\s*\\d+(?:\\.\\d+)?(?:\\s*(?:,|и|–|-)\\s*\\d+(?:\\.\\d+)?)*(?:\\s*(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)(?:\\s*РФ)?)?",
+    "law_marker_regex": "\\b(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)\\b|\\bст\\.\\s*\\d|\\bстать(?:я|и|ю|е|ей|ями)\\b|Пленум|Верховн\\w*\\s+[Сс]уд\\w*|[Фф]едеральн\\w*\\s+закон\\w*|[Пп]риказ\\w*|[Пп]остановлен\\w*|\\bзакон(?:а|у|ом|е|ы|ов|ам|ами|ах)?\\b|[Пп]оложени\\w*|\\bкодекс\\w*|Минстро\\w*|Ростехнадзор\\w*",
+    "standard_regex": "(?<!\\w)(?:ГОСТ(?:\\s+Р)?|СП|СНиП|ФСБУ|СанПиН|СН|ВСН|РД)\\b(?:\\s+\\d[\\d./–-]*)?|\\b\\d+\\s*[-–]\\s*ФЗ\\b",
+    "numbered_reference_regex": "№\\s*\\d+(?:[./–-]\\d+)*(?:/[A-Za-zА-Яа-я]+)?",
+    "full_code_name_regex": "\\b(?:Гражданск\\w*|Градостроительн\\w*|Налогов\\w*|Трудов\\w*|Земельн\\w*|Жилищн\\w*|Семейн\\w*|Бюджетн\\w*|Уголовн\\w*|Арбитражн\\w*|Гражданск\\w*[- ]процессуальн\\w*)\\s+(?:процессуальн\\w*\\s+)?кодекс\\w*(?:\\s+(?:РФ|Российск\\w*\\s+Федераци\\w*))?",
+    "code_binding": "Explicit abbreviation or unique abbreviation in same unit; PDF physical line only; full names retained raw without semantic resolution",
+    "lists_ranges": "As written; not expanded into norms"
+  },
+  "literal_occurrences": [
+    {
+      "sku": "t2",
+      "document": "products-storage/14-peredacha-id-pod-podpis/01-slovar-poley.docx",
+      "file_sha256": "6865323e4fd03dc896863e1ddfd651a25100cb95a9e40b9b3afbaccba4a8cf3e",
+      "unit_id": "t2:products-storage/14-peredacha-id-pod-podpis/01-slovar-poley.docx:37",
+      "native_unit_index": 37,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[8]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 38,
+        "nonempty_paragraph_ordinal": 37
+      },
+      "span": [
+        41,
+        55
+      ],
+      "short_quote": "выписка ЕГРЮЛ; для иска они обязательны (ст. 125 АПК РФ)",
+      "quote_span": [
+        0,
+        56
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "t2-ref-0001",
+      "literal": "ст. 125 АПК РФ",
+      "code": "АПК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "125"
+      ],
+      "ranges_or_variants": []
+    }
+  ],
+  "deduplicated_groups": [
+    {
+      "group_id": "t2-group-001",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 125 АПК РФ",
+      "code": "АПК",
+      "articles_as_written": [
+        "125"
+      ],
+      "occurrence_ids": [
+        "t2-ref-0001"
+      ]
+    }
+  ],
+  "unresolved_legal_and_standard_markers": [
+    {
+      "sku": "t2",
+      "document": "products-storage/14-peredacha-id-pod-podpis/01-slovar-poley.docx",
+      "file_sha256": "6865323e4fd03dc896863e1ddfd651a25100cb95a9e40b9b3afbaccba4a8cf3e",
+      "unit_id": "t2:products-storage/14-peredacha-id-pod-podpis/01-slovar-poley.docx:95",
+      "native_unit_index": 95,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[16]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 97,
+        "nonempty_paragraph_ordinal": 95
+      },
+      "span": [
+        14,
+        20
+      ],
+      "short_quote": "доверенность, приказ, пункт договора об уполномоченных лицах",
+      "quote_span": [
+        0,
+        60
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t2-marker-0001",
+      "marker": "приказ",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t2",
+      "document": "products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx",
+      "file_sha256": "503dca1963948d393e488edfa645e923c4652d1de879d79da4fcd61889003467",
+      "unit_id": "t2:products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx:213",
+      "native_unit_index": 213,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Пример заполнения",
+        "cell": "D5",
+        "part": "xl/worksheets/sheet4.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[4]/c[4]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        0,
+        4
+      ],
+      "short_quote": "№ 12 от 14.04.2026",
+      "quote_span": [
+        0,
+        18
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t2-marker-0002",
+      "marker": "№ 12",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t2",
+      "document": "products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx",
+      "file_sha256": "503dca1963948d393e488edfa645e923c4652d1de879d79da4fcd61889003467",
+      "unit_id": "t2:products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx:214",
+      "native_unit_index": 214,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Пример заполнения",
+        "cell": "E5",
+        "part": "xl/worksheets/sheet4.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[4]/c[5]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        4,
+        7
+      ],
+      "short_quote": "акт № 4 от 30.04.2026",
+      "quote_span": [
+        0,
+        21
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t2-marker-0003",
+      "marker": "№ 4",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t2",
+      "document": "products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx",
+      "file_sha256": "503dca1963948d393e488edfa645e923c4652d1de879d79da4fcd61889003467",
+      "unit_id": "t2:products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx:222",
+      "native_unit_index": 222,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Пример заполнения",
+        "cell": "E6",
+        "part": "xl/worksheets/sheet4.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[5]/c[5]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        4,
+        7
+      ],
+      "short_quote": "акт № 4 от 30.04.2026",
+      "quote_span": [
+        0,
+        21
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t2-marker-0004",
+      "marker": "№ 4",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t2",
+      "document": "products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx",
+      "file_sha256": "503dca1963948d393e488edfa645e923c4652d1de879d79da4fcd61889003467",
+      "unit_id": "t2:products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx:229",
+      "native_unit_index": 229,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Пример заполнения",
+        "cell": "D7",
+        "part": "xl/worksheets/sheet4.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[6]/c[4]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        8,
+        13
+      ],
+      "short_quote": "паспорт № 218 от 12.04.2026",
+      "quote_span": [
+        0,
+        27
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t2-marker-0005",
+      "marker": "№ 218",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t2",
+      "document": "products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx",
+      "file_sha256": "503dca1963948d393e488edfa645e923c4652d1de879d79da4fcd61889003467",
+      "unit_id": "t2:products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx:230",
+      "native_unit_index": 230,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Пример заполнения",
+        "cell": "E7",
+        "part": "xl/worksheets/sheet4.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[6]/c[5]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        4,
+        7
+      ],
+      "short_quote": "акт № 4 от 30.04.2026",
+      "quote_span": [
+        0,
+        21
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t2-marker-0006",
+      "marker": "№ 4",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t2",
+      "document": "products-storage/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx",
+      "file_sha256": "81cf3898828ae89ebcc019e3f180f551d578914ca22004b2c8366a7fe6e458c0",
+      "unit_id": "t2:products-storage/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx:86",
+      "native_unit_index": 86,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[66]",
+        "global_paragraph_ordinal_including_empty": 92,
+        "nonempty_paragraph_ordinal": 86
+      },
+      "span": [
+        228,
+        234
+      ],
+      "short_quote": "редакции требований к составу и ведению исполнительной документации — приказ Минстроя № 344/пр и относящиеся к нему своды правил; открывайте действующую редакцию на дату переда",
+      "quote_span": [
+        158,
+        334
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t2-marker-0007",
+      "marker": "приказ",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t2",
+      "document": "products-storage/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx",
+      "file_sha256": "81cf3898828ae89ebcc019e3f180f551d578914ca22004b2c8366a7fe6e458c0",
+      "unit_id": "t2:products-storage/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx:86",
+      "native_unit_index": 86,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[66]",
+        "global_paragraph_ordinal_including_empty": 92,
+        "nonempty_paragraph_ordinal": 86
+      },
+      "span": [
+        235,
+        243
+      ],
+      "short_quote": "и требований к составу и ведению исполнительной документации — приказ Минстроя № 344/пр и относящиеся к нему своды правил; открывайте действующую редакцию на дату передачи, а не ",
+      "quote_span": [
+        165,
+        343
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t2-marker-0008",
+      "marker": "Минстроя",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "t2",
+      "document": "products-storage/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx",
+      "file_sha256": "81cf3898828ae89ebcc019e3f180f551d578914ca22004b2c8366a7fe6e458c0",
+      "unit_id": "t2:products-storage/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx:86",
+      "native_unit_index": 86,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[66]",
+        "global_paragraph_ordinal_including_empty": 92,
+        "nonempty_paragraph_ordinal": 86
+      },
+      "span": [
+        244,
+        252
+      ],
+      "short_quote": "ний к составу и ведению исполнительной документации — приказ Минстроя № 344/пр и относящиеся к нему своды правил; открывайте действующую редакцию на дату передачи, а не пересказ.",
+      "quote_span": [
+        174,
+        352
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "t2-marker-0009",
+      "marker": "№ 344/пр",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    }
+  ],
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "normative_verdict": "NOT_VERIFIED",
+  "membership": "SOURCE_ELIGIBLE_DRY_INVENTORY_NOT_ACTUAL_PHP_ZIP",
+  "scope_limit": "Native textual lexical scope only, not legal completeness/layout/formula/sale/currentacceptedrepackaging"
+}

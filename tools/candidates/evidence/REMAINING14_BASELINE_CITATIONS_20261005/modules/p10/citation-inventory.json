@@ -1,0 +1,2355 @@
+{
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "source_status": "CACHED_CONFIGURED_BASELINE_NOT_ACCEPTED_DELIVERY",
+  "sku": "p10",
+  "execution_pattern": "iterative",
+  "primary_result": "baseline_literal_source_index_for_future_lawyer",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "documents": [
+    {
+      "path": "products-storage/15-otvet-na-pretenziyu-baza/00-START-HERE.txt",
+      "relative_name": "00-START-HERE.txt",
+      "git_blob": "297ab6b9eedba74e832bc57b1aca0da0a02ebe37",
+      "sha256": "aafb73fd29d9d8ebb48d0bd17d676e806493e528348eb5e110b9f55573e5066d",
+      "size": 4781,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "aafb73fd29d9d8ebb48d0bd17d676e806493e528348eb5e110b9f55573e5066d",
+        "suffix": ".txt",
+        "worker_pid": 1973486,
+        "limitations": [],
+        "text_units": 57,
+        "elapsed_seconds": 0.0001058120105881244
+      },
+      "native_corpus_key": "aafb73fd29d9d8ebb48d0bd17d676e806493e528348eb5e110b9f55573e5066d",
+      "text_units": 57
+    },
+    {
+      "path": "products-storage/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx",
+      "relative_name": "30-slovar-poley-oborona.docx",
+      "git_blob": "acf82be5c4b28c0968f872e629bc15e7559977a7",
+      "sha256": "97f31975475e67a9d92edcb4c38c7858814aa718edef6ef61ed0767ac91200ee",
+      "size": 22277,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "97f31975475e67a9d92edcb4c38c7858814aa718edef6ef61ed0767ac91200ee",
+        "suffix": ".docx",
+        "worker_pid": 1973486,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 290,
+        "elapsed_seconds": 0.43207056500250474
+      },
+      "native_corpus_key": "97f31975475e67a9d92edcb4c38c7858814aa718edef6ef61ed0767ac91200ee",
+      "text_units": 290
+    },
+    {
+      "path": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "relative_name": "31-algoritm-pri-navyazannoy-vine.docx",
+      "git_blob": "6ff9646351a4c9cedd38db0680fc7aa2f1c49b28",
+      "sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "size": 14457,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 70,
+        "elapsed_seconds": 0.01542529501602985
+      },
+      "native_corpus_key": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "text_units": 70
+    },
+    {
+      "path": "products-storage/15-otvet-na-pretenziyu-baza/33-motivirovannyy-otvet-na-pretenziyu.docx",
+      "relative_name": "33-motivirovannyy-otvet-na-pretenziyu.docx",
+      "git_blob": "a400b06a3b40b6b207b781ae3787fbfef96eca7f",
+      "sha256": "31ef49851df2755c3b14648f344dfa2b0e6f6aa5d7ccdaeebd706ea538c685c3",
+      "size": 14132,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "31ef49851df2755c3b14648f344dfa2b0e6f6aa5d7ccdaeebd706ea538c685c3",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 54,
+        "elapsed_seconds": 0.01671251200605184
+      },
+      "native_corpus_key": "31ef49851df2755c3b14648f344dfa2b0e6f6aa5d7ccdaeebd706ea538c685c3",
+      "text_units": 54
+    },
+    {
+      "path": "products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "relative_name": "34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "git_blob": "eff11056c1dde698105143a96b71772598bdca69",
+      "sha256": "71b4ed805dab0b1ab2b09b8e35f4c8c6c0b0b2f54673593978f2822a18d12340",
+      "size": 13167,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "71b4ed805dab0b1ab2b09b8e35f4c8c6c0b0b2f54673593978f2822a18d12340",
+        "suffix": ".docx",
+        "worker_pid": 1973485,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 35,
+        "elapsed_seconds": 0.005625913996482268
+      },
+      "native_corpus_key": "71b4ed805dab0b1ab2b09b8e35f4c8c6c0b0b2f54673593978f2822a18d12340",
+      "text_units": 35
+    },
+    {
+      "path": "products-storage/15-otvet-na-pretenziyu-baza/36-otvet-na-garantiynuyu-pretenziyu.docx",
+      "relative_name": "36-otvet-na-garantiynuyu-pretenziyu.docx",
+      "git_blob": "bc183ff6882b708cb5102023b7e642bb9d4fb147",
+      "sha256": "9985024891ced3fac1ab9591f65f6adbaadfbfad374c8d634568089e630eb344",
+      "size": 12613,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "9985024891ced3fac1ab9591f65f6adbaadfbfad374c8d634568089e630eb344",
+        "suffix": ".docx",
+        "worker_pid": 1973485,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 35,
+        "elapsed_seconds": 0.005331932014087215
+      },
+      "native_corpus_key": "9985024891ced3fac1ab9591f65f6adbaadfbfad374c8d634568089e630eb344",
+      "text_units": 35
+    },
+    {
+      "path": "products-storage/15-otvet-na-pretenziyu-baza/39-vozrazhenie-na-zachet-uderzhanie.docx",
+      "relative_name": "39-vozrazhenie-na-zachet-uderzhanie.docx",
+      "git_blob": "8f19a189d4c5e47213068161d083ac625db4a000",
+      "sha256": "6d3b2eb3280ddc5c68418a50bb421979a128f328b3f0e25963ab2d6bf461d092",
+      "size": 12666,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "6d3b2eb3280ddc5c68418a50bb421979a128f328b3f0e25963ab2d6bf461d092",
+        "suffix": ".docx",
+        "worker_pid": 1973488,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 37,
+        "elapsed_seconds": 0.007743107998976484
+      },
+      "native_corpus_key": "6d3b2eb3280ddc5c68418a50bb421979a128f328b3f0e25963ab2d6bf461d092",
+      "text_units": 37
+    },
+    {
+      "path": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "relative_name": "43-pamyatka-kto-komu-otvechaet.docx",
+      "git_blob": "e252d975663d9d33f8a0e03b974e42bb9ad36ec4",
+      "sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "size": 17537,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+        "suffix": ".docx",
+        "worker_pid": 1973485,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 113,
+        "elapsed_seconds": 0.04651230500894599
+      },
+      "native_corpus_key": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "text_units": 113
+    },
+    {
+      "path": "products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "relative_name": "44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "git_blob": "e3962e146a56995cd89170b19643c36abd4d8a4e",
+      "sha256": "48b2749e4179870d877f9b5694b3b36f7c2d0345dc66a314308932d3bc167a06",
+      "size": 15538,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "48b2749e4179870d877f9b5694b3b36f7c2d0345dc66a314308932d3bc167a06",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 66,
+        "elapsed_seconds": 0.02301033298135735
+      },
+      "native_corpus_key": "48b2749e4179870d877f9b5694b3b36f7c2d0345dc66a314308932d3bc167a06",
+      "text_units": 66
+    }
+  ],
+  "parser": {
+    "article_regex": "(?<![А-Яа-яA-Za-z])(?:(?:пп?|пункт(?:а|ы|ов|у|ом)?|ч|част(?:ь|и|ью)|абз|абзац(?:а|ы|ев)?)\\.?\\s*\\d+(?:\\.\\d+)?\\s*){0,4}(?:ст\\.|стать(?:я|и|ю|е|ей|ями))\\s*\\d+(?:\\.\\d+)?(?:\\s*(?:,|и|–|-)\\s*\\d+(?:\\.\\d+)?)*(?:\\s*(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)(?:\\s*РФ)?)?",
+    "law_marker_regex": "\\b(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)\\b|\\bст\\.\\s*\\d|\\bстать(?:я|и|ю|е|ей|ями)\\b|Пленум|Верховн\\w*\\s+[Сс]уд\\w*|[Фф]едеральн\\w*\\s+закон\\w*|[Пп]риказ\\w*|[Пп]остановлен\\w*|\\bзакон(?:а|у|ом|е|ы|ов|ам|ами|ах)?\\b|[Пп]оложени\\w*|\\bкодекс\\w*|Минстро\\w*|Ростехнадзор\\w*",
+    "standard_regex": "(?<!\\w)(?:ГОСТ(?:\\s+Р)?|СП|СНиП|ФСБУ|СанПиН|СН|ВСН|РД)\\b(?:\\s+\\d[\\d./–-]*)?|\\b\\d+\\s*[-–]\\s*ФЗ\\b",
+    "numbered_reference_regex": "№\\s*\\d+(?:[./–-]\\d+)*(?:/[A-Za-zА-Яа-я]+)?",
+    "full_code_name_regex": "\\b(?:Гражданск\\w*|Градостроительн\\w*|Налогов\\w*|Трудов\\w*|Земельн\\w*|Жилищн\\w*|Семейн\\w*|Бюджетн\\w*|Уголовн\\w*|Арбитражн\\w*|Гражданск\\w*[- ]процессуальн\\w*)\\s+(?:процессуальн\\w*\\s+)?кодекс\\w*(?:\\s+(?:РФ|Российск\\w*\\s+Федераци\\w*))?",
+    "code_binding": "Explicit abbreviation or unique abbreviation in same unit; PDF physical line only; full names retained raw without semantic resolution",
+    "lists_ranges": "As written; not expanded into norms"
+  },
+  "literal_occurrences": [
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:26",
+      "native_unit_index": 26,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[2]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 28,
+        "nonempty_paragraph_ordinal": 26
+      },
+      "span": [
+        0,
+        22
+      ],
+      "short_quote": "ст. 706, 15, 393 ГК РФ: убытки не постулируются; запросить первичную претензию заказчика и доказательства эпизода; провери",
+      "quote_span": [
+        0,
+        122
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0001",
+      "literal": "ст. 706, 15, 393 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "706",
+        "15",
+        "393"
+      ],
+      "ranges_or_variants": [
+        "LIST_OR_RANGE_RETAINED_AS_ONE_LITERAL_NOT_SPLIT_INTO_NORMS"
+      ]
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:29",
+      "native_unit_index": 29,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[3]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 31,
+        "nonempty_paragraph_ordinal": 29
+      },
+      "span": [
+        13,
+        26
+      ],
+      "short_quote": "контррасчёт; ст. 333 ГК РФ о снижении несоразмерной неустойки; каждый «подпункт» штрафа проверить на реальность обязанности",
+      "quote_span": [
+        0,
+        123
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0002",
+      "literal": "ст. 333 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "333"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:32",
+      "native_unit_index": 32,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[4]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 34,
+        "nonempty_paragraph_ordinal": 32
+      },
+      "span": [
+        0,
+        13
+      ],
+      "short_quote": "ст. 753 ГК РФ; при уклонении от приёмки — односторонний акт по правилам файла «Алгоритм действий при задержке опл",
+      "quote_span": [
+        0,
+        113
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0003",
+      "literal": "ст. 753 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "753"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:35",
+      "native_unit_index": 35,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[5]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 37,
+        "nonempty_paragraph_ordinal": 35
+      },
+      "span": [
+        0,
+        13
+      ],
+      "short_quote": "ст. 720 ГК РФ: осмотр с участием подрядчика; акт без надлежащего вызова оспаривается как недопустимое доказательс",
+      "quote_span": [
+        0,
+        113
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0004",
+      "literal": "ст. 720 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "720"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:38",
+      "native_unit_index": 38,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[6]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 40,
+        "nonempty_paragraph_ordinal": 38
+      },
+      "span": [
+        94,
+        112
+      ],
+      "short_quote": "иксация при сдаче, акты допуска смежников; требование к причинителю — ст. 15, 1064 ГК РФ; про риск до приёмки — раздел «Отдельно про риск до приёмки» ниже",
+      "quote_span": [
+        24,
+        178
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0005",
+      "literal": "ст. 15, 1064 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "15",
+        "1064"
+      ],
+      "ranges_or_variants": [
+        "LIST_OR_RANGE_RETAINED_AS_ONE_LITERAL_NOT_SPLIT_INTO_NORMS"
+      ]
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:41",
+      "native_unit_index": 41,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[7]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 43,
+        "nonempty_paragraph_ordinal": 41
+      },
+      "span": [
+        0,
+        13
+      ],
+      "short_quote": "ст. 755 ГК РФ: основания освобождения есть, но бремя доказывания на нас — без экспертизы не спорить, а назначать ",
+      "quote_span": [
+        0,
+        113
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0006",
+      "literal": "ст. 755 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "755"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:43",
+      "native_unit_index": 43,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[8]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 45,
+        "nonempty_paragraph_ordinal": 43
+      },
+      "span": [
+        47,
+        60
+      ],
+      "short_quote": "Предупреждали ли мы письменно о непригодности (ст. 716 ГК РФ)?",
+      "quote_span": [
+        0,
+        62
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0007",
+      "literal": "ст. 716 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "716"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:44",
+      "native_unit_index": 44,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[8]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 46,
+        "nonempty_paragraph_ordinal": 44
+      },
+      "span": [
+        44,
+        57
+      ],
+      "short_quote": "если предупреждали — ответственность снята (ст. 723 ГК РФ); если нет — честно оценить позицию до эскалации: право ссылаться утрачено",
+      "quote_span": [
+        0,
+        132
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0008",
+      "literal": "ст. 723 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "723"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:54",
+      "native_unit_index": 54,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[28]",
+        "global_paragraph_ordinal_including_empty": 57,
+        "nonempty_paragraph_ordinal": 54
+      },
+      "span": [
+        304,
+        317
+      ],
+      "short_quote": " об участии и привести своего специалиста. Судебная — по ходатайству (ст. 82 АПК РФ); вопросы эксперту и кандидатуры экспертных организаций готовить заранее, а не в заседании.",
+      "quote_span": [
+        234,
+        409
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0009",
+      "literal": "ст. 82 АПК РФ",
+      "code": "АПК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "82"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:58",
+      "native_unit_index": 58,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[32]",
+        "global_paragraph_ordinal_including_empty": 61,
+        "nonempty_paragraph_ordinal": 58
+      },
+      "span": [
+        35,
+        48
+      ],
+      "short_quote": "2. Проверить конструкцию: зачёт по ст. 410 ГК РФ, договорное удержание или сальдирование — возражения разные, это вопрос юристу.",
+      "quote_span": [
+        0,
+        128
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0010",
+      "literal": "ст. 410 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "410"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:59",
+      "native_unit_index": 59,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[33]",
+        "global_paragraph_ordinal_including_empty": 62,
+        "nonempty_paragraph_ordinal": 59
+      },
+      "span": [
+        46,
+        59
+      ],
+      "short_quote": "3. Контррасчёт и заявление о несоразмерности (ст. 333 ГК РФ) — удержание само по себе права на снижение не отменяет.",
+      "quote_span": [
+        0,
+        116
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0011",
+      "literal": "ст. 333 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "333"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:62",
+      "native_unit_index": 62,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[36]",
+        "global_paragraph_ordinal_including_empty": 65,
+        "nonempty_paragraph_ordinal": 62
+      },
+      "span": [
+        50,
+        68
+      ],
+      "short_quote": "До приёмки риск случайной гибели — на подрядчике (ст. 705, 741 ГК РФ), и промежуточные акты КС-2 без выделенных в договоре этапов риск не переносят. Поэтому: (а) этапир",
+      "quote_span": [
+        0,
+        168
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0012",
+      "literal": "ст. 705, 741 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "705",
+        "741"
+      ],
+      "ranges_or_variants": [
+        "LIST_OR_RANGE_RETAINED_AS_ONE_LITERAL_NOT_SPLIT_INTO_NORMS"
+      ]
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:70",
+      "native_unit_index": 70,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[44]",
+        "global_paragraph_ordinal_including_empty": 73,
+        "nonempty_paragraph_ordinal": 70
+      },
+      "span": [
+        58,
+        76
+      ],
+      "short_quote": "Сроки ответа на претензию, сроки обнаружения недостатков (ст. 724, 756 ГК РФ), исковая давность — установлены законом и договором; проверяйте их в действующей редакции или у юр",
+      "quote_span": [
+        0,
+        176
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0013",
+      "literal": "ст. 724, 756 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "724",
+        "756"
+      ],
+      "ranges_or_variants": [
+        "LIST_OR_RANGE_RETAINED_AS_ONE_LITERAL_NOT_SPLIT_INTO_NORMS"
+      ]
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/33-motivirovannyy-otvet-na-pretenziyu.docx",
+      "file_sha256": "31ef49851df2755c3b14648f344dfa2b0e6f6aa5d7ccdaeebd706ea538c685c3",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/33-motivirovannyy-otvet-na-pretenziyu.docx:38",
+      "native_unit_index": 38,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[36]",
+        "global_paragraph_ordinal_including_empty": 41,
+        "nonempty_paragraph_ordinal": 38
+      },
+      "span": [
+        68,
+        81
+      ],
+      "short_quote": "3) заявляем о явной несоразмерности начисленной суммы последствиям (ст. 333 ГК РФ) — {{ОБОСНОВАНИЕ_НЕСОРАЗМЕРНОСТИ}}.",
+      "quote_span": [
+        0,
+        117
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0014",
+      "literal": "ст. 333 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "333"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "file_sha256": "71b4ed805dab0b1ab2b09b8e35f4c8c6c0b0b2f54673593978f2822a18d12340",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx:10",
+      "native_unit_index": 10,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[6]",
+        "global_paragraph_ordinal_including_empty": 11,
+        "nonempty_paragraph_ordinal": 10
+      },
+      "span": [
+        158,
+        182
+      ],
+      "short_quote": " основание удержания или встречного иска. Правовая опора возражения — пункт 1 статьи 720 ГК РФ: осмотр и приёмка результата работ ведутся с участием подрядчика, — и договорный порядок фиксации н",
+      "quote_span": [
+        88,
+        282
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0015",
+      "literal": "пункт 1 статьи 720 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "720"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "file_sha256": "71b4ed805dab0b1ab2b09b8e35f4c8c6c0b0b2f54673593978f2822a18d12340",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx:11",
+      "native_unit_index": 11,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[7]",
+        "global_paragraph_ordinal_including_empty": 12,
+        "nonempty_paragraph_ordinal": 11
+      },
+      "span": [
+        300,
+        310
+      ],
+      "short_quote": "акой акт только при извещении способом с подтверждением получения» ни статья 720, ни статья 753 ГК РФ не содержат, и вес этого довода в вашем деле оценивает суд, а не шаблон.",
+      "quote_span": [
+        230,
+        404
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0016",
+      "literal": "статья 720",
+      "code": "ГК",
+      "code_binding": "one_explicit_code_in_same_native_text_unit",
+      "articles_as_written": [
+        "720"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "file_sha256": "71b4ed805dab0b1ab2b09b8e35f4c8c6c0b0b2f54673593978f2822a18d12340",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx:11",
+      "native_unit_index": 11,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[7]",
+        "global_paragraph_ordinal_including_empty": 12,
+        "nonempty_paragraph_ordinal": 11
+      },
+      "span": [
+        315,
+        331
+      ],
+      "short_quote": " при извещении способом с подтверждением получения» ни статья 720, ни статья 753 ГК РФ не содержат, и вес этого довода в вашем деле оценивает суд, а не шаблон.",
+      "quote_span": [
+        245,
+        404
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0017",
+      "literal": "статья 753 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "753"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "file_sha256": "71b4ed805dab0b1ab2b09b8e35f4c8c6c0b0b2f54673593978f2822a18d12340",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx:12",
+      "native_unit_index": 12,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[8]",
+        "global_paragraph_ordinal_including_empty": 13,
+        "nonempty_paragraph_ordinal": 12
+      },
+      "span": [
+        11,
+        27
+      ],
+      "short_quote": "Отдельно о статье 753 ГК РФ, на которую в спорах ссылаются обе стороны: её пункт об одностороннем акте писан о сдаче-приёмке ре",
+      "quote_span": [
+        0,
+        127
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0018",
+      "literal": "статье 753 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "753"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "file_sha256": "71b4ed805dab0b1ab2b09b8e35f4c8c6c0b0b2f54673593978f2822a18d12340",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx:14",
+      "native_unit_index": 14,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[10]",
+        "global_paragraph_ordinal_including_empty": 15,
+        "nonempty_paragraph_ordinal": 14
+      },
+      "span": [
+        321,
+        345
+      ],
+      "short_quote": "чика признавало бы акт о недостатках, в законе нет. Ближайшая норма — пункт 3 статьи 158 ГК РФ: молчание признаётся выражением воли совершить сделку в случаях, предусмотренных законом или соглаш",
+      "quote_span": [
+        251,
+        445
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0019",
+      "literal": "пункт 3 статьи 158 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "158"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/36-otvet-na-garantiynuyu-pretenziyu.docx",
+      "file_sha256": "9985024891ced3fac1ab9591f65f6adbaadfbfad374c8d634568089e630eb344",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/36-otvet-na-garantiynuyu-pretenziyu.docx:10",
+      "native_unit_index": 10,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[6]",
+        "global_paragraph_ordinal_including_empty": 11,
+        "nonempty_paragraph_ordinal": 10
+      },
+      "span": [
+        300,
+        313
+      ],
+      "short_quote": "её — износом, неправильной эксплуатацией, чужим ремонтом — должен он (ст. 755 ГК РФ). Поэтому задача документа — не спорить словами (при презумпции против нас это проигрыш), а перевес",
+      "quote_span": [
+        230,
+        413
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0020",
+      "literal": "ст. 755 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "755"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/39-vozrazhenie-na-zachet-uderzhanie.docx",
+      "file_sha256": "6d3b2eb3280ddc5c68418a50bb421979a128f328b3f0e25963ab2d6bf461d092",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/39-vozrazhenie-na-zachet-uderzhanie.docx:9",
+      "native_unit_index": 9,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[5]",
+        "global_paragraph_ordinal_including_empty": 10,
+        "nonempty_paragraph_ordinal": 9
+      },
+      "span": [
+        239,
+        252
+      ],
+      "short_quote": "согласие рискует правом на судебное снижение несоразмерной неустойки (ст. 333 ГК РФ).",
+      "quote_span": [
+        169,
+        254
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0021",
+      "literal": "ст. 333 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "333"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/39-vozrazhenie-na-zachet-uderzhanie.docx",
+      "file_sha256": "6d3b2eb3280ddc5c68418a50bb421979a128f328b3f0e25963ab2d6bf461d092",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/39-vozrazhenie-na-zachet-uderzhanie.docx:19",
+      "native_unit_index": 19,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[15]",
+        "global_paragraph_ordinal_including_empty": 20,
+        "nonempty_paragraph_ordinal": 19
+      },
+      "span": [
+        74,
+        90
+      ],
+      "short_quote": "т 3 — переговорный довод, а не порок зачёта. Условия зачёта названы в статье 410 ГК РФ, и бесспорности требования среди них нет: сам по себе спор зачёту не мешает. Пункт работает тем, чт",
+      "quote_span": [
+        4,
+        190
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0022",
+      "literal": "статье 410 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "410"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/39-vozrazhenie-na-zachet-uderzhanie.docx",
+      "file_sha256": "6d3b2eb3280ddc5c68418a50bb421979a128f328b3f0e25963ab2d6bf461d092",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/39-vozrazhenie-na-zachet-uderzhanie.docx:34",
+      "native_unit_index": 34,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[32]",
+        "global_paragraph_ordinal_including_empty": 37,
+        "nonempty_paragraph_ordinal": 34
+      },
+      "span": [
+        82,
+        95
+      ],
+      "short_quote": "о явной несоразмерности начисленной неустойки последствиям нарушения (ст. 333 ГК РФ): {{КРАТКОЕ_ОБОСНОВАНИЕ}}.",
+      "quote_span": [
+        12,
+        122
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0023",
+      "literal": "ст. 333 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "333"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "file_sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx:15",
+      "native_unit_index": 15,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[11]",
+        "global_paragraph_ordinal_including_empty": 17,
+        "nonempty_paragraph_ordinal": 15
+      },
+      "span": [
+        46,
+        64
+      ],
+      "short_quote": "Из этого следует распределение, установленное п. 3 ст. 706 ГК РФ:",
+      "quote_span": [
+        0,
+        65
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0024",
+      "literal": "п. 3 ст. 706 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "706"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "file_sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx:16",
+      "native_unit_index": 16,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[12]",
+        "global_paragraph_ordinal_including_empty": 18,
+        "nonempty_paragraph_ordinal": 16
+      },
+      "span": [
+        117,
+        129
+      ],
+      "short_quote": "сполнения субподрядчиком отвечает генеральный подрядчик — по правилам п. 1 ст. 313 и ст. 403 ГК РФ;",
+      "quote_span": [
+        47,
+        146
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0025",
+      "literal": "п. 1 ст. 313",
+      "code": "ГК",
+      "code_binding": "one_explicit_code_in_same_native_text_unit",
+      "articles_as_written": [
+        "313"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "file_sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx:16",
+      "native_unit_index": 16,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[12]",
+        "global_paragraph_ordinal_including_empty": 18,
+        "nonempty_paragraph_ordinal": 16
+      },
+      "span": [
+        132,
+        145
+      ],
+      "short_quote": "дрядчиком отвечает генеральный подрядчик — по правилам п. 1 ст. 313 и ст. 403 ГК РФ;",
+      "quote_span": [
+        62,
+        146
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0026",
+      "literal": "ст. 403 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "403"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "file_sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx:27",
+      "native_unit_index": 27,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[2]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 30,
+        "nonempty_paragraph_ordinal": 27
+      },
+      "span": [
+        84,
+        102
+      ],
+      "short_quote": "оронами документ, порождающий ваше обязательство перед предъявителем (ст. 307, 420 ГК РФ)",
+      "quote_span": [
+        14,
+        103
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0027",
+      "literal": "ст. 307, 420 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "307",
+        "420"
+      ],
+      "ranges_or_variants": [
+        "LIST_OR_RANGE_RETAINED_AS_ONE_LITERAL_NOT_SPLIT_INTO_NORMS"
+      ]
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "file_sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx:31",
+      "native_unit_index": 31,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[3]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 34,
+        "nonempty_paragraph_ordinal": 31
+      },
+      "span": [
+        62,
+        75
+      ],
+      "short_quote": "Пункт с точным номером; для договора в пользу третьего лица — ст. 430 ГК РФ",
+      "quote_span": [
+        0,
+        75
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0028",
+      "literal": "ст. 430 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "430"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "file_sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx:33",
+      "native_unit_index": 33,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[4]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 36,
+        "nonempty_paragraph_ordinal": 33
+      },
+      "span": [
+        117,
+        132
+      ],
+      "short_quote": "глашение о переводе прав и обязанностей, о замене стороны в договоре (ст. 392.3 ГК РФ), о прямых расчётах",
+      "quote_span": [
+        47,
+        152
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0029",
+      "literal": "ст. 392.3 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "392.3"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "file_sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx:39",
+      "native_unit_index": 39,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[5]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 42,
+        "nonempty_paragraph_ordinal": 39
+      },
+      "span": [
+        59,
+        72
+      ],
+      "short_quote": "Договор уступки или уведомление первоначального кредитора (ст. 382 ГК РФ). До представления доказательств перехода права должник вправе не исполнять новому кредитору (ст. 3",
+      "quote_span": [
+        0,
+        172
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0030",
+      "literal": "ст. 382 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "382"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "file_sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx:39",
+      "native_unit_index": 39,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[5]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 42,
+        "nonempty_paragraph_ordinal": 39
+      },
+      "span": [
+        167,
+        180
+      ],
+      "short_quote": "ательств перехода права должник вправе не исполнять новому кредитору (ст. 385 ГК РФ); возражения против первоначального кредитора сохраняются (ст. 386 ГК РФ)",
+      "quote_span": [
+        97,
+        254
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0031",
+      "literal": "ст. 385 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "385"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "file_sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx:39",
+      "native_unit_index": 39,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[5]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 42,
+        "nonempty_paragraph_ordinal": 39
+      },
+      "span": [
+        240,
+        253
+      ],
+      "short_quote": " 385 ГК РФ); возражения против первоначального кредитора сохраняются (ст. 386 ГК РФ)",
+      "quote_span": [
+        170,
+        254
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0032",
+      "literal": "ст. 386 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "386"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "file_sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx:43",
+      "native_unit_index": 43,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[3]/tr[6]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 46,
+        "nonempty_paragraph_ordinal": 43
+      },
+      "span": [
+        0,
+        18
+      ],
+      "short_quote": "ст. 1064, 15 ГК РФ; требование не связано с нарушением договора, заключённого с генеральным подрядчиком",
+      "quote_span": [
+        0,
+        103
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0033",
+      "literal": "ст. 1064, 15 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "1064",
+        "15"
+      ],
+      "ranges_or_variants": [
+        "LIST_OR_RANGE_RETAINED_AS_ONE_LITERAL_NOT_SPLIT_INTO_NORMS"
+      ]
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "file_sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx:49",
+      "native_unit_index": 49,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[23]",
+        "global_paragraph_ordinal_including_empty": 53,
+        "nonempty_paragraph_ordinal": 49
+      },
+      "span": [
+        271,
+        284
+      ],
+      "short_quote": "апрямую, заказчик платит. Это исполнение обязательства третьим лицом (ст. 313 ГК РФ): плательщик стороной вашего договора не становится, сколько бы раз платёж ни повторился. Проверьте",
+      "quote_span": [
+        201,
+        384
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0034",
+      "literal": "ст. 313 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "313"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "file_sha256": "48b2749e4179870d877f9b5694b3b36f7c2d0345dc66a314308932d3bc167a06",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx:35",
+      "native_unit_index": 35,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[33]",
+        "global_paragraph_ordinal_including_empty": 39,
+        "nonempty_paragraph_ordinal": 35
+      },
+      "span": [
+        501,
+        519
+      ],
+      "short_quote": " исполнения обязательств субподрядчиком несёт генеральный подрядчик — п. 3 ст. 706 ГК РФ, п. 1 ст. 313 и ст. 403 ГК РФ; заказчик и субподрядчик не вправе предъявлять друг другу требования,",
+      "quote_span": [
+        431,
+        619
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0035",
+      "literal": "п. 3 ст. 706 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "706"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "file_sha256": "48b2749e4179870d877f9b5694b3b36f7c2d0345dc66a314308932d3bc167a06",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx:35",
+      "native_unit_index": 35,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[33]",
+        "global_paragraph_ordinal_including_empty": 39,
+        "nonempty_paragraph_ordinal": 35
+      },
+      "span": [
+        521,
+        533
+      ],
+      "short_quote": "ьств субподрядчиком несёт генеральный подрядчик — п. 3 ст. 706 ГК РФ, п. 1 ст. 313 и ст. 403 ГК РФ; заказчик и субподрядчик не вправе предъявлять друг другу требования, связанные с н",
+      "quote_span": [
+        451,
+        633
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0036",
+      "literal": "п. 1 ст. 313",
+      "code": "ГК",
+      "code_binding": "one_explicit_code_in_same_native_text_unit",
+      "articles_as_written": [
+        "313"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "file_sha256": "48b2749e4179870d877f9b5694b3b36f7c2d0345dc66a314308932d3bc167a06",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx:35",
+      "native_unit_index": 35,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[33]",
+        "global_paragraph_ordinal_including_empty": 39,
+        "nonempty_paragraph_ordinal": 35
+      },
+      "span": [
+        536,
+        549
+      ],
+      "short_quote": "иком несёт генеральный подрядчик — п. 3 ст. 706 ГК РФ, п. 1 ст. 313 и ст. 403 ГК РФ; заказчик и субподрядчик не вправе предъявлять друг другу требования, связанные с нарушением догово",
+      "quote_span": [
+        466,
+        649
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0037",
+      "literal": "ст. 403 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "403"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "file_sha256": "48b2749e4179870d877f9b5694b3b36f7c2d0345dc66a314308932d3bc167a06",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx:39",
+      "native_unit_index": 39,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[37]",
+        "global_paragraph_ordinal_including_empty": 43,
+        "nonempty_paragraph_ordinal": 39
+      },
+      "span": [
+        61,
+        76
+      ],
+      "short_quote": "— трёхстороннее соглашение либо соглашение о замене стороны (ст. 392.3 ГК РФ);",
+      "quote_span": [
+        0,
+        78
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0038",
+      "literal": "ст. 392.3 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "392.3"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "file_sha256": "48b2749e4179870d877f9b5694b3b36f7c2d0345dc66a314308932d3bc167a06",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx:40",
+      "native_unit_index": 40,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[38]",
+        "global_paragraph_ordinal_including_empty": 44,
+        "nonempty_paragraph_ordinal": 40
+      },
+      "span": [
+        170,
+        183
+      ],
+      "short_quote": "перехода права мы вправе не исполнять обязательство новому кредитору (ст. 385 ГК РФ);",
+      "quote_span": [
+        100,
+        185
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0039",
+      "literal": "ст. 385 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "385"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "file_sha256": "48b2749e4179870d877f9b5694b3b36f7c2d0345dc66a314308932d3bc167a06",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx:41",
+      "native_unit_index": 41,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[39]",
+        "global_paragraph_ordinal_including_empty": 45,
+        "nonempty_paragraph_ordinal": 41
+      },
+      "span": [
+        81,
+        99
+      ],
+      "short_quote": "ИМЕНИМО}} если требование заявлено как требование о возмещении вреда (ст. 1064, 15 ГК РФ) — обстоятельства причинения вреда, дата, место и документы фиксации.",
+      "quote_span": [
+        11,
+        169
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p10-ref-0040",
+      "literal": "ст. 1064, 15 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "1064",
+        "15"
+      ],
+      "ranges_or_variants": [
+        "LIST_OR_RANGE_RETAINED_AS_ONE_LITERAL_NOT_SPLIT_INTO_NORMS"
+      ]
+    }
+  ],
+  "deduplicated_groups": [
+    {
+      "group_id": "p10-group-001",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 706, 15, 393 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "706",
+        "15",
+        "393"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0001"
+      ]
+    },
+    {
+      "group_id": "p10-group-002",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 333 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "333"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0002",
+        "p10-ref-0011",
+        "p10-ref-0014",
+        "p10-ref-0021",
+        "p10-ref-0023"
+      ]
+    },
+    {
+      "group_id": "p10-group-003",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 753 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "753"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0003"
+      ]
+    },
+    {
+      "group_id": "p10-group-004",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 720 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "720"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0004"
+      ]
+    },
+    {
+      "group_id": "p10-group-005",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 15, 1064 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "15",
+        "1064"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0005"
+      ]
+    },
+    {
+      "group_id": "p10-group-006",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 755 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "755"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0006",
+        "p10-ref-0020"
+      ]
+    },
+    {
+      "group_id": "p10-group-007",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 716 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "716"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0007"
+      ]
+    },
+    {
+      "group_id": "p10-group-008",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 723 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "723"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0008"
+      ]
+    },
+    {
+      "group_id": "p10-group-009",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 82 АПК РФ",
+      "code": "АПК",
+      "articles_as_written": [
+        "82"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0009"
+      ]
+    },
+    {
+      "group_id": "p10-group-010",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 410 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "410"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0010"
+      ]
+    },
+    {
+      "group_id": "p10-group-011",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 705, 741 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "705",
+        "741"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0012"
+      ]
+    },
+    {
+      "group_id": "p10-group-012",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 724, 756 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "724",
+        "756"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0013"
+      ]
+    },
+    {
+      "group_id": "p10-group-013",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "пункт 1 статьи 720 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "720"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0015"
+      ]
+    },
+    {
+      "group_id": "p10-group-014",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статья 720",
+      "code": "ГК",
+      "articles_as_written": [
+        "720"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0016"
+      ]
+    },
+    {
+      "group_id": "p10-group-015",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статья 753 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "753"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0017"
+      ]
+    },
+    {
+      "group_id": "p10-group-016",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статье 753 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "753"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0018"
+      ]
+    },
+    {
+      "group_id": "p10-group-017",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "пункт 3 статьи 158 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "158"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0019"
+      ]
+    },
+    {
+      "group_id": "p10-group-018",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статье 410 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "410"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0022"
+      ]
+    },
+    {
+      "group_id": "p10-group-019",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "п. 3 ст. 706 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "706"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0024",
+        "p10-ref-0035"
+      ]
+    },
+    {
+      "group_id": "p10-group-020",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "п. 1 ст. 313",
+      "code": "ГК",
+      "articles_as_written": [
+        "313"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0025",
+        "p10-ref-0036"
+      ]
+    },
+    {
+      "group_id": "p10-group-021",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 403 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "403"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0026",
+        "p10-ref-0037"
+      ]
+    },
+    {
+      "group_id": "p10-group-022",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 307, 420 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "307",
+        "420"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0027"
+      ]
+    },
+    {
+      "group_id": "p10-group-023",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 430 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "430"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0028"
+      ]
+    },
+    {
+      "group_id": "p10-group-024",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 392.3 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "392.3"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0029",
+        "p10-ref-0038"
+      ]
+    },
+    {
+      "group_id": "p10-group-025",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 382 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "382"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0030"
+      ]
+    },
+    {
+      "group_id": "p10-group-026",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 385 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "385"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0031",
+        "p10-ref-0039"
+      ]
+    },
+    {
+      "group_id": "p10-group-027",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 386 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "386"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0032"
+      ]
+    },
+    {
+      "group_id": "p10-group-028",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 1064, 15 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "1064",
+        "15"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0033",
+        "p10-ref-0040"
+      ]
+    },
+    {
+      "group_id": "p10-group-029",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 313 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "313"
+      ],
+      "occurrence_ids": [
+        "p10-ref-0034"
+      ]
+    }
+  ],
+  "unresolved_legal_and_standard_markers": [
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx",
+      "file_sha256": "97f31975475e67a9d92edcb4c38c7858814aa718edef6ef61ed0767ac91200ee",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx:43",
+      "native_unit_index": 43,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[9]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 45,
+        "nonempty_paragraph_ordinal": 43
+      },
+      "span": [
+        16,
+        23
+      ],
+      "short_quote": "журнал допуска, приказы, пропуска",
+      "quote_span": [
+        0,
+        33
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p10-marker-0001",
+      "marker": "приказы",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx",
+      "file_sha256": "97f31975475e67a9d92edcb4c38c7858814aa718edef6ef61ed0767ac91200ee",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx:160",
+      "native_unit_index": 160,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[21]",
+        "global_paragraph_ordinal_including_empty": 164,
+        "nonempty_paragraph_ordinal": 160
+      },
+      "span": [
+        86,
+        92
+      ],
+      "short_quote": "омплекте не назван числом намеренно: сроки живут в вашем договоре и в законе, а закон меняется, скачанный файл — нет. Каждое поле срока заполняется из названного источника.",
+      "quote_span": [
+        16,
+        188
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p10-marker-0002",
+      "marker": "законе",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx",
+      "file_sha256": "97f31975475e67a9d92edcb4c38c7858814aa718edef6ef61ed0767ac91200ee",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx:160",
+      "native_unit_index": 160,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[21]",
+        "global_paragraph_ordinal_including_empty": 164,
+        "nonempty_paragraph_ordinal": 160
+      },
+      "span": [
+        96,
+        101
+      ],
+      "short_quote": "е назван числом намеренно: сроки живут в вашем договоре и в законе, а закон меняется, скачанный файл — нет. Каждое поле срока заполняется из названного источника.",
+      "quote_span": [
+        26,
+        188
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p10-marker-0003",
+      "marker": "закон",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx",
+      "file_sha256": "97f31975475e67a9d92edcb4c38c7858814aa718edef6ef61ed0767ac91200ee",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx:220",
+      "native_unit_index": 220,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[9]/tr[4]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 226,
+        "nonempty_paragraph_ordinal": 220
+      },
+      "span": [
+        14,
+        20
+      ],
+      "short_quote": "доверенность, приказ, договор со специалистом",
+      "quote_span": [
+        0,
+        45
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p10-marker-0004",
+      "marker": "приказ",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx",
+      "file_sha256": "97f31975475e67a9d92edcb4c38c7858814aa718edef6ef61ed0767ac91200ee",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx:267",
+      "native_unit_index": 267,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[10]/tr[8]/tc[1]/p[1]",
+        "global_paragraph_ordinal_including_empty": 273,
+        "nonempty_paragraph_ordinal": 267
+      },
+      "span": [
+        121,
+        138
+      ],
+      "short_quote": " {{НАИМЕНОВАНИЕ_ИСТЦА}}, {{НАИМЕНОВАНИЕ_ОТВЕТЧИКА}}, {{ПРОЦЕССУАЛЬНОЕ_ПОЛОЖЕНИЕ_СТОРОНЫ}}",
+      "quote_span": [
+        51,
+        140
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p10-marker-0005",
+      "marker": "ПОЛОЖЕНИЕ_СТОРОНЫ",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "file_sha256": "eb75fbd34616a2500412378a69abd69b0734e1473e0c6d90762da3027e893314",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx:70",
+      "native_unit_index": 70,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[44]",
+        "global_paragraph_ordinal_including_empty": 73,
+        "nonempty_paragraph_ordinal": 70
+      },
+      "span": [
+        110,
+        117
+      ],
+      "short_quote": "ения недостатков (ст. 724, 756 ГК РФ), исковая давность — установлены законом и договором; проверяйте их в действующей редакции или у юриста. В файл они не записаны намеренно: з",
+      "quote_span": [
+        40,
+        217
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p10-marker-0006",
+      "marker": "законом",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "file_sha256": "71b4ed805dab0b1ab2b09b8e35f4c8c6c0b0b2f54673593978f2822a18d12340",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx:14",
+      "native_unit_index": 14,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[10]",
+        "global_paragraph_ordinal_including_empty": 15,
+        "nonempty_paragraph_ordinal": 14
+      },
+      "span": [
+        291,
+        297
+      ],
+      "short_quote": "а, по которому молчание подрядчика признавало бы акт о недостатках, в законе нет. Ближайшая норма — пункт 3 статьи 158 ГК РФ: молчание признаётся выражением воли совершить сдел",
+      "quote_span": [
+        221,
+        397
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p10-marker-0007",
+      "marker": "законе",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "file_sha256": "71b4ed805dab0b1ab2b09b8e35f4c8c6c0b0b2f54673593978f2822a18d12340",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx:14",
+      "native_unit_index": 14,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[10]",
+        "global_paragraph_ordinal_including_empty": 15,
+        "nonempty_paragraph_ordinal": 14
+      },
+      "span": [
+        427,
+        434
+      ],
+      "short_quote": "ризнаётся выражением воли совершить сделку в случаях, предусмотренных законом или соглашением сторон. Она писана о форме сделок, а признание акта — вопрос оценки доказательств, ",
+      "quote_span": [
+        357,
+        534
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p10-marker-0008",
+      "marker": "законом",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "file_sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx:18",
+      "native_unit_index": 18,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[14]",
+        "global_paragraph_ordinal_including_empty": 20,
+        "nonempty_paragraph_ordinal": 18
+      },
+      "span": [
+        183,
+        190
+      ],
+      "short_quote": "х каждым из них с генеральным подрядчиком, — если иное не установлено законом или договором.",
+      "quote_span": [
+        113,
+        205
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p10-marker-0009",
+      "marker": "законом",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "file_sha256": "c9d2aae22463c123c1bf39b57aab4b7fa54912bde3b2b51694b9ef41eb337c72",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx:113",
+      "native_unit_index": 113,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[73]",
+        "global_paragraph_ordinal_including_empty": 121,
+        "nonempty_paragraph_ordinal": 113
+      },
+      "span": [
+        107,
+        114
+      ],
+      "short_quote": "ружения недостатков, гарантийные сроки и исковая давность установлены законом и договором и в памятку не записаны. Проверять в действующей редакции или у представителя.",
+      "quote_span": [
+        37,
+        205
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p10-marker-0010",
+      "marker": "законом",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "file_sha256": "48b2749e4179870d877f9b5694b3b36f7c2d0345dc66a314308932d3bc167a06",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx:35",
+      "native_unit_index": 35,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[33]",
+        "global_paragraph_ordinal_including_empty": 39,
+        "nonempty_paragraph_ordinal": 35
+      },
+      "span": [
+        732,
+        739
+      ],
+      "short_quote": "ных каждым из них с генеральным подрядчиком, если иное не установлено законом или договором.",
+      "quote_span": [
+        662,
+        754
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p10-marker-0011",
+      "marker": "законом",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "file_sha256": "48b2749e4179870d877f9b5694b3b36f7c2d0345dc66a314308932d3bc167a06",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx:58",
+      "native_unit_index": 58,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[58]",
+        "global_paragraph_ordinal_including_empty": 64,
+        "nonempty_paragraph_ordinal": 58
+      },
+      "span": [
+        194,
+        197
+      ],
+      "short_quote": "ееся {{ОПИСАНИЕ_ДЕФЕКТА_ИЗ_ПРЕТЕНЗИИ}}. Копия требования — приложение № 1.",
+      "quote_span": [
+        124,
+        198
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p10-marker-0012",
+      "marker": "№ 1",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p10",
+      "document": "products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "file_sha256": "48b2749e4179870d877f9b5694b3b36f7c2d0345dc66a314308932d3bc167a06",
+      "unit_id": "p10:products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx:59",
+      "native_unit_index": 59,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[59]",
+        "global_paragraph_ordinal_including_empty": 65,
+        "nonempty_paragraph_ordinal": 59
+      },
+      "span": [
+        82,
+        85
+      ],
+      "short_quote": "равлен исх. № {{НОМЕР_ОТВЕТА}} от {{ДАТА_ОТВЕТА}}, копия — приложение № 2. Требование по существу нами не рассматривалось: у адресанта запрошен документ, обосновывающий прав",
+      "quote_span": [
+        12,
+        185
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p10-marker-0013",
+      "marker": "№ 2",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    }
+  ],
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "normative_verdict": "NOT_VERIFIED",
+  "membership": "SOURCE_ELIGIBLE_DRY_INVENTORY_NOT_ACTUAL_PHP_ZIP",
+  "scope_limit": "Native textual lexical scope only, not legal completeness/layout/formula/sale/currentacceptedrepackaging"
+}

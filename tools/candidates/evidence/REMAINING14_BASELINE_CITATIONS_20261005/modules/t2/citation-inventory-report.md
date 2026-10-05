@@ -1,0 +1,25 @@
+# t2 cached baseline factual citation index
+
+264d75a06d59de82602dc1bcef347913c44cc648; source_currentness NOT_VERIFIED; human_legal NOT_PERFORMED; no accepted delivery or legal completeness claim.
+
+|Source file|SHA256|Text units|
+|---|---|---|
+|00-START-HERE.txt|8f04207a3ec88f7d4d874570d06374a9510f02d7f0f914a5edb58d0f159bb591|49|
+|01-slovar-poley.docx|6865323e4fd03dc896863e1ddfd651a25100cb95a9e40b9b3afbaccba4a8cf3e|103|
+|02-soprovoditelnoe-pismo-peredachi.docx|b3439ccd4d3d5ed3337e34fb87254ac230643b5343e10a6097aae8ee668aad7e|48|
+|03-opis-peredavaemogo-komplekta.xlsx|503dca1963948d393e488edfa645e923c4652d1de879d79da4fcd61889003467|253|
+|04-akt-priema-peredachi-id.docx|da0a70f15cc62609a519f67973ec86617855269f98a50fa4c3a54ecb5db7a3e0|43|
+|05-poryadok-peredachi-id.docx|81cf3898828ae89ebcc019e3f180f551d578914ca22004b2c8366a7fe6e458c0|86|
+
+Article literals: 1; lexical groups (not norms): 1; raw unresolved markers (not defects): 9.
+
+- t2-ref-0001 · products-storage/14-peredacha-id-pod-podpis/01-slovar-poley.docx · {"kind": "docx_xml_paragraph", "part": "word/document.xml", "xml_path": "/document/body[1]/tbl[2]/tr[8]/tc[3]/p[1]", "global_paragraph_ordinal_including_empty": 38, "nonempty_paragraph_ordinal": 37} · "ст. 125 АПК РФ" · "выписка ЕГРЮЛ; для иска они обязательны (ст. 125 АПК РФ)"
+- t2-marker-0001 · products-storage/14-peredacha-id-pod-podpis/01-slovar-poley.docx · {"kind": "docx_xml_paragraph", "part": "word/document.xml", "xml_path": "/document/body[1]/tbl[3]/tr[16]/tc[3]/p[1]", "global_paragraph_ordinal_including_empty": 97, "nonempty_paragraph_ordinal": 95} · UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER · "доверенность, приказ, пункт договора об уполномоченных лицах"
+- t2-marker-0002 · products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx · {"kind": "xlsx_cell", "sheet": "Пример заполнения", "cell": "D5", "part": "xl/worksheets/sheet4.xml", "xml_path": "/worksheet/sheetData[1]/row[4]/c[4]", "data_type": "inlineStr", "value_mode": "stored_inline_string"} · UNRESOLVED_NUMBERED_REFERENCE_SIGNAL · "№ 12 от 14.04.2026"
+- t2-marker-0003 · products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx · {"kind": "xlsx_cell", "sheet": "Пример заполнения", "cell": "E5", "part": "xl/worksheets/sheet4.xml", "xml_path": "/worksheet/sheetData[1]/row[4]/c[5]", "data_type": "inlineStr", "value_mode": "stored_inline_string"} · UNRESOLVED_NUMBERED_REFERENCE_SIGNAL · "акт № 4 от 30.04.2026"
+- t2-marker-0004 · products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx · {"kind": "xlsx_cell", "sheet": "Пример заполнения", "cell": "E6", "part": "xl/worksheets/sheet4.xml", "xml_path": "/worksheet/sheetData[1]/row[5]/c[5]", "data_type": "inlineStr", "value_mode": "stored_inline_string"} · UNRESOLVED_NUMBERED_REFERENCE_SIGNAL · "акт № 4 от 30.04.2026"
+- t2-marker-0005 · products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx · {"kind": "xlsx_cell", "sheet": "Пример заполнения", "cell": "D7", "part": "xl/worksheets/sheet4.xml", "xml_path": "/worksheet/sheetData[1]/row[6]/c[4]", "data_type": "inlineStr", "value_mode": "stored_inline_string"} · UNRESOLVED_NUMBERED_REFERENCE_SIGNAL · "паспорт № 218 от 12.04.2026"
+- t2-marker-0006 · products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx · {"kind": "xlsx_cell", "sheet": "Пример заполнения", "cell": "E7", "part": "xl/worksheets/sheet4.xml", "xml_path": "/worksheet/sheetData[1]/row[6]/c[5]", "data_type": "inlineStr", "value_mode": "stored_inline_string"} · UNRESOLVED_NUMBERED_REFERENCE_SIGNAL · "акт № 4 от 30.04.2026"
+- t2-marker-0007 · products-storage/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx · {"kind": "docx_xml_paragraph", "part": "word/document.xml", "xml_path": "/document/body[1]/p[66]", "global_paragraph_ordinal_including_empty": 92, "nonempty_paragraph_ordinal": 86} · UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER · "редакции требований к составу и ведению исполнительной документации — приказ Минстроя № 344/пр и относящиеся к нему своды правил; открывайте действующую редакцию на дату переда"
+- t2-marker-0008 · products-storage/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx · {"kind": "docx_xml_paragraph", "part": "word/document.xml", "xml_path": "/document/body[1]/p[66]", "global_paragraph_ordinal_including_empty": 92, "nonempty_paragraph_ordinal": 86} · UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER · "и требований к составу и ведению исполнительной документации — приказ Минстроя № 344/пр и относящиеся к нему своды правил; открывайте действующую редакцию на дату передачи, а не "
+- t2-marker-0009 · products-storage/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx · {"kind": "docx_xml_paragraph", "part": "word/document.xml", "xml_path": "/document/body[1]/p[66]", "global_paragraph_ordinal_including_empty": 92, "nonempty_paragraph_ordinal": 86} · UNRESOLVED_NUMBERED_REFERENCE_SIGNAL · "ний к составу и ведению исполнительной документации — приказ Минстроя № 344/пр и относящиеся к нему своды правил; открывайте действующую редакцию на дату передачи, а не пересказ."

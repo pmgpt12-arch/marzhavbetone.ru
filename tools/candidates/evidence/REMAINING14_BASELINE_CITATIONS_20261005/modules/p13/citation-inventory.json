@@ -1,0 +1,420 @@
+{
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "source_status": "CACHED_CONFIGURED_BASELINE_NOT_ACCEPTED_DELIVERY",
+  "sku": "p13",
+  "execution_pattern": "iterative",
+  "primary_result": "baseline_literal_source_index_for_future_lawyer",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "documents": [
+    {
+      "path": "products-storage/16-chto-v-smete-ne-oplatyat/00-START-HERE.txt",
+      "relative_name": "00-START-HERE.txt",
+      "git_blob": "1e810fec1e586132497f38bf47bcc3f5956070a4",
+      "sha256": "21d7e3dd2311e7e963f350707f81773b6ce8ca689167ef11523ac92be551823c",
+      "size": 4025,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "21d7e3dd2311e7e963f350707f81773b6ce8ca689167ef11523ac92be551823c",
+        "suffix": ".txt",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "text_units": 52,
+        "elapsed_seconds": 9.961400064639747e-05
+      },
+      "native_corpus_key": "21d7e3dd2311e7e963f350707f81773b6ce8ca689167ef11523ac92be551823c",
+      "text_units": 52
+    },
+    {
+      "path": "products-storage/16-chto-v-smete-ne-oplatyat/60-slovar-poley-smeta.docx",
+      "relative_name": "60-slovar-poley-smeta.docx",
+      "git_blob": "44fdb94b80a893f9635fcbdba6db5a51d5b90a5f",
+      "sha256": "0eb6e34cb422ec60b83eeb330b3a08ebb98b74401be40a79b3c85d13c9e384b4",
+      "size": 40490,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "0eb6e34cb422ec60b83eeb330b3a08ebb98b74401be40a79b3c85d13c9e384b4",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml"
+        ],
+        "text_units": 110,
+        "elapsed_seconds": 0.016860506002558395
+      },
+      "native_corpus_key": "0eb6e34cb422ec60b83eeb330b3a08ebb98b74401be40a79b3c85d13c9e384b4",
+      "text_units": 110
+    },
+    {
+      "path": "products-storage/16-chto-v-smete-ne-oplatyat/61-algoritm-proverki-smety.docx",
+      "relative_name": "61-algoritm-proverki-smety.docx",
+      "git_blob": "dde892b71a321e9ac29def62e57a6f56ef45a353",
+      "sha256": "e818cef3aef271efa364b26565d5ef5e78d524adf29ac0fa3bcee57b4254d632",
+      "size": 41548,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "e818cef3aef271efa364b26565d5ef5e78d524adf29ac0fa3bcee57b4254d632",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml"
+        ],
+        "text_units": 63,
+        "elapsed_seconds": 0.00506890399265103
+      },
+      "native_corpus_key": "e818cef3aef271efa364b26565d5ef5e78d524adf29ac0fa3bcee57b4254d632",
+      "text_units": 63
+    },
+    {
+      "path": "products-storage/16-chto-v-smete-ne-oplatyat/62-chek-list-vypadayushchih-zatrat.docx",
+      "relative_name": "62-chek-list-vypadayushchih-zatrat.docx",
+      "git_blob": "f4e36c57d2c3c4608896c112e2b25b29889bf7d7",
+      "sha256": "3b7d9341a7b435a0abdbb6a7bc4e15050a656d326dfb1ef5789c5a3f72770cd7",
+      "size": 41020,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "3b7d9341a7b435a0abdbb6a7bc4e15050a656d326dfb1ef5789c5a3f72770cd7",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml"
+        ],
+        "text_units": 94,
+        "elapsed_seconds": 0.008236444991780445
+      },
+      "native_corpus_key": "3b7d9341a7b435a0abdbb6a7bc4e15050a656d326dfb1ef5789c5a3f72770cd7",
+      "text_units": 94
+    },
+    {
+      "path": "products-storage/16-chto-v-smete-ne-oplatyat/63-reestr-zatrat-po-obektu.xlsx",
+      "relative_name": "63-reestr-zatrat-po-obektu.xlsx",
+      "git_blob": "cdc446a19dcdc397e03ed917349568ee99df6698",
+      "sha256": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2",
+      "size": 11364,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2",
+        "suffix": ".xlsx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_sheets": [
+          {
+            "sheet": "Реестр затрат",
+            "part": "xl/worksheets/sheet1.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Как заполнять",
+            "part": "xl/worksheets/sheet2.xml",
+            "state": "visible"
+          }
+        ],
+        "read_mode": "native ZIP/XML; stored values/formulas/caches only",
+        "text_units": 188,
+        "elapsed_seconds": 0.0954735089908354
+      },
+      "native_corpus_key": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2",
+      "text_units": 188
+    },
+    {
+      "path": "products-storage/16-chto-v-smete-ne-oplatyat/64-zapros-o-vklyuchenii-zatrat.docx",
+      "relative_name": "64-zapros-o-vklyuchenii-zatrat.docx",
+      "git_blob": "0edf8933ca8ce6ec2c0602be9f32bc60d2d08df4",
+      "sha256": "69c9c18bb45547ee6db04e72a7dfecfc0033439ee36b610dea3220a9ffeeab16",
+      "size": 39950,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "69c9c18bb45547ee6db04e72a7dfecfc0033439ee36b610dea3220a9ffeeab16",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml"
+        ],
+        "text_units": 51,
+        "elapsed_seconds": 0.0051564550085458905
+      },
+      "native_corpus_key": "69c9c18bb45547ee6db04e72a7dfecfc0033439ee36b610dea3220a9ffeeab16",
+      "text_units": 51
+    },
+    {
+      "path": "products-storage/16-chto-v-smete-ne-oplatyat/65-protokol-raznoglasiy-po-smete.docx",
+      "relative_name": "65-protokol-raznoglasiy-po-smete.docx",
+      "git_blob": "cab6da965973b985cbc4f904c2c5a64b31dd27fd",
+      "sha256": "9b3da528d642d1a820472804275645cfb889148077d981b09001fc1ee07f1ed6",
+      "size": 40353,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "9b3da528d642d1a820472804275645cfb889148077d981b09001fc1ee07f1ed6",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml"
+        ],
+        "text_units": 60,
+        "elapsed_seconds": 0.007182758999988437
+      },
+      "native_corpus_key": "9b3da528d642d1a820472804275645cfb889148077d981b09001fc1ee07f1ed6",
+      "text_units": 60
+    },
+    {
+      "path": "products-storage/16-chto-v-smete-ne-oplatyat/66-pamyatka-nakladnye-i-smetnaya-pribyl.docx",
+      "relative_name": "66-pamyatka-nakladnye-i-smetnaya-pribyl.docx",
+      "git_blob": "f551e659ef97d768707b5977b157783b87a22d62",
+      "sha256": "85ea0db5b49df5270d6640cf31f7cf3352f674993c6c8ee6952812b113d173cc",
+      "size": 40644,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "85ea0db5b49df5270d6640cf31f7cf3352f674993c6c8ee6952812b113d173cc",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml"
+        ],
+        "text_units": 54,
+        "elapsed_seconds": 0.003723986999830231
+      },
+      "native_corpus_key": "85ea0db5b49df5270d6640cf31f7cf3352f674993c6c8ee6952812b113d173cc",
+      "text_units": 54
+    },
+    {
+      "path": "products-storage/16-chto-v-smete-ne-oplatyat/67-pamyatka-zimnee-udorozhanie-i-vzis.docx",
+      "relative_name": "67-pamyatka-zimnee-udorozhanie-i-vzis.docx",
+      "git_blob": "1d92f9546c45a4c84af60fea312092ea231b8b74",
+      "sha256": "3d8814d3251f41cd2b64ca10a10e64257b0cdd97bd273eaceb4c757377516f88",
+      "size": 40014,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "3d8814d3251f41cd2b64ca10a10e64257b0cdd97bd273eaceb4c757377516f88",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml"
+        ],
+        "text_units": 37,
+        "elapsed_seconds": 0.0018027949845418334
+      },
+      "native_corpus_key": "3d8814d3251f41cd2b64ca10a10e64257b0cdd97bd273eaceb4c757377516f88",
+      "text_units": 37
+    },
+    {
+      "path": "products-storage/16-chto-v-smete-ne-oplatyat/68-pamyatka-musor-transport-nepredvidennye.docx",
+      "relative_name": "68-pamyatka-musor-transport-nepredvidennye.docx",
+      "git_blob": "7acea201851d418fbc056d362691dac0ad333149",
+      "sha256": "154bdf1fcbffd3b9e1b82357f41b08c46fbba3fa42400dcf03be25957cb0c8ba",
+      "size": 40053,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "154bdf1fcbffd3b9e1b82357f41b08c46fbba3fa42400dcf03be25957cb0c8ba",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml"
+        ],
+        "text_units": 56,
+        "elapsed_seconds": 0.00406234001275152
+      },
+      "native_corpus_key": "154bdf1fcbffd3b9e1b82357f41b08c46fbba3fa42400dcf03be25957cb0c8ba",
+      "text_units": 56
+    }
+  ],
+  "parser": {
+    "article_regex": "(?<![А-Яа-яA-Za-z])(?:(?:пп?|пункт(?:а|ы|ов|у|ом)?|ч|част(?:ь|и|ью)|абз|абзац(?:а|ы|ев)?)\\.?\\s*\\d+(?:\\.\\d+)?\\s*){0,4}(?:ст\\.|стать(?:я|и|ю|е|ей|ями))\\s*\\d+(?:\\.\\d+)?(?:\\s*(?:,|и|–|-)\\s*\\d+(?:\\.\\d+)?)*(?:\\s*(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)(?:\\s*РФ)?)?",
+    "law_marker_regex": "\\b(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)\\b|\\bст\\.\\s*\\d|\\bстать(?:я|и|ю|е|ей|ями)\\b|Пленум|Верховн\\w*\\s+[Сс]уд\\w*|[Фф]едеральн\\w*\\s+закон\\w*|[Пп]риказ\\w*|[Пп]остановлен\\w*|\\bзакон(?:а|у|ом|е|ы|ов|ам|ами|ах)?\\b|[Пп]оложени\\w*|\\bкодекс\\w*|Минстро\\w*|Ростехнадзор\\w*",
+    "standard_regex": "(?<!\\w)(?:ГОСТ(?:\\s+Р)?|СП|СНиП|ФСБУ|СанПиН|СН|ВСН|РД)\\b(?:\\s+\\d[\\d./–-]*)?|\\b\\d+\\s*[-–]\\s*ФЗ\\b",
+    "numbered_reference_regex": "№\\s*\\d+(?:[./–-]\\d+)*(?:/[A-Za-zА-Яа-я]+)?",
+    "full_code_name_regex": "\\b(?:Гражданск\\w*|Градостроительн\\w*|Налогов\\w*|Трудов\\w*|Земельн\\w*|Жилищн\\w*|Семейн\\w*|Бюджетн\\w*|Уголовн\\w*|Арбитражн\\w*|Гражданск\\w*[- ]процессуальн\\w*)\\s+(?:процессуальн\\w*\\s+)?кодекс\\w*(?:\\s+(?:РФ|Российск\\w*\\s+Федераци\\w*))?",
+    "code_binding": "Explicit abbreviation or unique abbreviation in same unit; PDF physical line only; full names retained raw without semantic resolution",
+    "lists_ranges": "As written; not expanded into norms"
+  },
+  "literal_occurrences": [],
+  "deduplicated_groups": [],
+  "unresolved_legal_and_standard_markers": [
+    {
+      "sku": "p13",
+      "document": "products-storage/16-chto-v-smete-ne-oplatyat/64-zapros-o-vklyuchenii-zatrat.docx",
+      "file_sha256": "69c9c18bb45547ee6db04e72a7dfecfc0033439ee36b610dea3220a9ffeeab16",
+      "unit_id": "p13:products-storage/16-chto-v-smete-ne-oplatyat/64-zapros-o-vklyuchenii-zatrat.docx:18",
+      "native_unit_index": 18,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[17]",
+        "global_paragraph_ordinal_including_empty": 23,
+        "nonempty_paragraph_ordinal": 18
+      },
+      "span": [
+        174,
+        177
+      ],
+      "short_quote": "дельными позициями указанного расчёта. Перечень приведён в приложении № 1 к настоящему запросу.",
+      "quote_span": [
+        104,
+        199
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p13-marker-0001",
+      "marker": "№ 1",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p13",
+      "document": "products-storage/16-chto-v-smete-ne-oplatyat/64-zapros-o-vklyuchenii-zatrat.docx",
+      "file_sha256": "69c9c18bb45547ee6db04e72a7dfecfc0033439ee36b610dea3220a9ffeeab16",
+      "unit_id": "p13:products-storage/16-chto-v-smete-ne-oplatyat/64-zapros-o-vklyuchenii-zatrat.docx:25",
+      "native_unit_index": 25,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[25]",
+        "global_paragraph_ordinal_including_empty": 31,
+        "nonempty_paragraph_ordinal": 25
+      },
+      "span": [
+        11,
+        14
+      ],
+      "short_quote": "Приложение № 1: перечень затрат, не учтённых сметным расчётом, на ___ л.",
+      "quote_span": [
+        0,
+        72
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p13-marker-0002",
+      "marker": "№ 1",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p13",
+      "document": "products-storage/16-chto-v-smete-ne-oplatyat/64-zapros-o-vklyuchenii-zatrat.docx",
+      "file_sha256": "69c9c18bb45547ee6db04e72a7dfecfc0033439ee36b610dea3220a9ffeeab16",
+      "unit_id": "p13:products-storage/16-chto-v-smete-ne-oplatyat/64-zapros-o-vklyuchenii-zatrat.docx:29",
+      "native_unit_index": 29,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[31]",
+        "global_paragraph_ordinal_including_empty": 37,
+        "nonempty_paragraph_ordinal": 29
+      },
+      "span": [
+        11,
+        14
+      ],
+      "short_quote": "Приложение № 1. Перечень затрат, не учтённых сметным расчётом",
+      "quote_span": [
+        0,
+        61
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p13-marker-0003",
+      "marker": "№ 1",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p13",
+      "document": "products-storage/16-chto-v-smete-ne-oplatyat/65-protokol-raznoglasiy-po-smete.docx",
+      "file_sha256": "9b3da528d642d1a820472804275645cfb889148077d981b09001fc1ee07f1ed6",
+      "unit_id": "p13:products-storage/16-chto-v-smete-ne-oplatyat/65-protokol-raznoglasiy-po-smete.docx:44",
+      "native_unit_index": 44,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[24]",
+        "global_paragraph_ordinal_including_empty": 79,
+        "nonempty_paragraph_ordinal": 44
+      },
+      "span": [
+        18,
+        27
+      ],
+      "short_quote": "4. Заключительные положения",
+      "quote_span": [
+        0,
+        27
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p13-marker-0004",
+      "marker": "положения",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p13",
+      "document": "products-storage/16-chto-v-smete-ne-oplatyat/67-pamyatka-zimnee-udorozhanie-i-vzis.docx",
+      "file_sha256": "3d8814d3251f41cd2b64ca10a10e64257b0cdd97bd273eaceb4c757377516f88",
+      "unit_id": "p13:products-storage/16-chto-v-smete-ne-oplatyat/67-pamyatka-zimnee-udorozhanie-i-vzis.docx:16",
+      "native_unit_index": 16,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[12]",
+        "global_paragraph_ordinal_including_empty": 18,
+        "nonempty_paragraph_ordinal": 16
+      },
+      "span": [
+        62,
+        72
+      ],
+      "short_quote": "☐  Совпадает ли температурная зона в расчёте с фактическим расположением объекта.",
+      "quote_span": [
+        0,
+        81
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p13-marker-0005",
+      "marker": "положением",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p13",
+      "document": "products-storage/16-chto-v-smete-ne-oplatyat/68-pamyatka-musor-transport-nepredvidennye.docx",
+      "file_sha256": "154bdf1fcbffd3b9e1b82357f41b08c46fbba3fa42400dcf03be25957cb0c8ba",
+      "unit_id": "p13:products-storage/16-chto-v-smete-ne-oplatyat/68-pamyatka-musor-transport-nepredvidennye.docx:2",
+      "native_unit_index": 2,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[2]",
+        "global_paragraph_ordinal_including_empty": 2,
+        "nonempty_paragraph_ordinal": 2
+      },
+      "span": [
+        4,
+        10
+      ],
+      "short_quote": "Три статьи, о которых в смете чаще всего не написано ничего, а на площадке они возникают у всех. Каждая провер",
+      "quote_span": [
+        0,
+        110
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p13-marker-0006",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    }
+  ],
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "normative_verdict": "NOT_VERIFIED",
+  "membership": "SOURCE_ELIGIBLE_DRY_INVENTORY_NOT_ACTUAL_PHP_ZIP",
+  "scope_limit": "Native textual lexical scope only, not legal completeness/layout/formula/sale/currentacceptedrepackaging"
+}
