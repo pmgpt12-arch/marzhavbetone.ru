@@ -1,0 +1,36 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "factual remaining gates per current exact S1/P2/P3/P5 module, grounded only in accepted technical receipts",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "parent": "root independent parallel final gates collection",
+  "scope": "read-only existing module receipts/reviews/merge/citation statuses; JSON+MD+exact manifest only; no products/source/currentness checks/LLM/tests/merges",
+  "inputs": [
+    {
+      "path": "/home/denis/projects/ai-business-os/docs/Normative_Contract.md",
+      "sha256": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+      "line_count": 142,
+      "runtime_copy_same": true,
+      "repo_head": "79dd869b2f4bea4482d62bef046367f1b42ce4c1"
+    },
+    {
+      "path": "/home/denis/projects/ai-business-os/docs/Task_Setting_Protocol.md",
+      "sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686",
+      "line_count": 279,
+      "runtime_copy_same": true,
+      "repo_head": "79dd869b2f4bea4482d62bef046367f1b42ce4c1"
+    }
+  ],
+  "executor": "server Python and readonly Git blobs; no model or paid APIs",
+  "limits": "small indexed receipts; large source units excluded openly; preserve full40SHA and artifact hashes; NOT_VERIFIED stays open",
+  "decisions": "user autonomous useful parallel work; rolling merges only after accepted scope; publication/prices/SKU/payment require release owner gate",
+  "route": [
+    "read contracts",
+    "collect exact accepted facts/receipt hashes",
+    "compose matrix with distinct implementation/acceptance/merge/release states",
+    "validate allclaims reference inputs and SHA syntax",
+    "root review; no commit/push before review"
+  ],
+  "acceptance": "four module rows; exact receipt manifest; no unproved PASS or upgraded normative/owner/human acceptance",
+  "stop": "missing authoritative input keeps that field NOT_VERIFIED; no dependent acceptance; independently ready collection continues"
+}

@@ -1,0 +1,45 @@
+{
+  "observed": "2026-10-05T16:09:06.146007+00:00",
+  "number": 476,
+  "state": "closed",
+  "merged": true,
+  "merged_at": "2026-10-05T16:07:56Z",
+  "merge_commit_sha": "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0",
+  "head_sha": "76384a877b3ee7a7e4c6c1b0ee705b00faeba082",
+  "base_ref": "claude/confident-planck-ok644n",
+  "base_sha": "1be0493ae194b2647c4b22c98e9981b9c5e64a54",
+  "readback_transport": "gh api REST pulls476; mutation not repeated",
+  "preceding_postmerge_read_error": "gh pr view GraphQL timeout15s after successful mergeexit0",
+  "premerge_actual_checks": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-05T16:04:10Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/37337754724/job/111856743543",
+      "name": "Публичный релиз",
+      "startedAt": "2026-10-05T16:03:39Z",
+      "status": "COMPLETED",
+      "workflowName": "Проверки"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-05T16:07:49Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/37337754596/job/111856740927",
+      "name": "render",
+      "startedAt": "2026-10-05T16:03:03Z",
+      "status": "COMPLETED",
+      "workflowName": "Проверки рендером"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-05T16:03:30Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/37337754724/job/111856743844",
+      "name": "Внутренний контур (не блокирует)",
+      "startedAt": "2026-10-05T16:03:04Z",
+      "status": "COMPLETED",
+      "workflowName": "Проверки"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "status": "ACCEPT_SCOPED_BASELINE_STRUCTURAL_FACTS",
+  "root_final_review": "Root full independent receipt read,1373checks0errors, final scoped facts ACCEPT",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "counts": {
+    "all_source_members": 51,
+    "OOXML": 42,
+    "DOCX": 33,
+    "XLSX": 9,
+    "non_OOXML_NA": 9
+  },
+  "script_sha256": "376ef3d1c38718537687d93b01d08416faed9e18c2817d6893f56d5e7e1633df",
+  "independent_script_sha256": "a261dff2082ba5a39e54b8364bee20406a12ff7c7e8ef7a5eafd39c79360b86b",
+  "independent_receipt_sha256": "0c4aa8f3a1a60e91e5f6031d38b05244b828e9d2e24a398d87f554d7381749b6",
+  "all_inputs_before_after_unchanged": true,
+  "scope": "Read-only native structural baseline observations, no accepted repackaging/module completion/formula/layout/legal/currentness/release verdict",
+  "supersedes_status_only": [
+    "root-code-acceptance.json pending independent QA",
+    "bundle-scope.json pending QA; retained original snapshots"
+  ],
+  "excluded_source_bytes": "All51 buyer binary/text copies excluded explicitly, exact frozen per-file Gitblobs/full source SHA256s preserved in module-input-hashes and worker receipts",
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "not_claimed": [
+    "accepted buyer package",
+    "actual PHP delivery ZIP",
+    "formal XSD conformance",
+    "formula correctness",
+    "layout",
+    "legal/currentness/human acceptance",
+    "sale readiness"
+  ],
+  "api_usd": 0,
+  "verified_at_utc": "2026-10-05T17:30:11.272212+00:00"
+}

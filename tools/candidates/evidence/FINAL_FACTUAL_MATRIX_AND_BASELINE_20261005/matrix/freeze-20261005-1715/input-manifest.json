@@ -1,0 +1,392 @@
+{
+  "observed_utc": "2026-10-05T17:15:17.369372+00:00",
+  "inputs": [
+    {
+      "id": "handoff",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/handoff-20261005-parallel-verified.json",
+      "sha256": "9dfe96ebfbee287a6f20217e6c79b8e5c0682fb9f39c4611d7c9287192a4e65e",
+      "bytes": 5420,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/handoff-9dfe96ebfbee.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "s1-full6077",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/s1-final-verification/final-proof.json",
+      "sha256": "99f0e287189599ef904c5d080828f07a51fef46975334779f8bbfafd0c95508a",
+      "bytes": 10212,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/s1-full6077-99f0e2871895.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "s1-composition-a774",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-multipage-print-instructions-20261005/actual-merged-composition.json",
+      "sha256": "d60453ddf492c34d8c39c5053f85a838e0486f23b8290d521aae5d394cdff35e",
+      "bytes": 59010,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/s1-composition-a774-d60453ddf492.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "s1-narrow-header",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-multipage-print-instructions-20261005/receipt.json",
+      "sha256": "837be2ba10592383a6d1757e158f59e286bc038242b7a3b32ae21cc884913f0a",
+      "bytes": 579,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/s1-narrow-header-837be2ba1059.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "s1-header-visual",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-multipage-print-instructions-20261005/root-visual-receipt.json",
+      "sha256": "f28cfe5b767e2bd0d7a37c52f2309f7c6c8fc4882e0f1e58874a010949c2343c",
+      "bytes": 1887,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/s1-header-visual-f28cfe5b767e.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "s1-citation-review",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-legal-inventory-independent-20261005-2315/independent-review-receipt.json",
+      "sha256": "592dbb4a4e59f3cb4d34e9ef2d069f1260575f96bc71c856c2126a7f8a912367",
+      "bytes": 1168,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/s1-citation-review-592dbb4a4e59.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "s1-citation-extraction",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-current-citation-inventory-20261005/verification-receipt.json",
+      "sha256": "64e50c6969c6f847f9838fd756ce708194fd32e5eed4cf79adbca06c7b9fa0ed",
+      "bytes": 1164,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/s1-citation-extraction-64e50c6969c6.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "s1-citation-freeze",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-current-citation-inventory-20261005/freeze-receipt.json",
+      "sha256": "78bf40b3d0a4601d54eca9b846436be826ac54b50a68a8417c573c3ae2f2e0e2",
+      "bytes": 1531,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/s1-citation-freeze-78bf40b3d0a4.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "s1-citation-merged-composition",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-current-citation-inventory-20261005/pr479-actual-composition-receipt.json",
+      "sha256": "b2d22999353c90b0848d997fd57fc8d4022cf9fe259180ebb96d699abdb95fae",
+      "bytes": 16197,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/s1-citation-merged-composition-b2d22999353c.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p2-actual-php",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/next-packaging-qa-20261005/p2/receipt.json",
+      "sha256": "e33bad7384ae53f2e672f19a137f893f9b8e50e8f8a7d9ec0a617bbbaa35da0a",
+      "bytes": 41926,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p2-actual-php-e33bad7384ae.json",
+      "consumed_fields": [
+        "status",
+        "source_sha",
+        "count",
+        "archive_sha256",
+        "member_hashes",
+        "crc_failure_member",
+        "source_immutable",
+        "boundary"
+      ],
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p2-composition476",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/next-packaging-qa-20261005/pr476-actual-composition-receipt.json",
+      "sha256": "9004a32d84fda2290e7b88e59c05714a25dcb851629ffdc05b0dab8da45a3e20",
+      "bytes": 9785,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p2-composition476-9004a32d84fd.json",
+      "consumed_fields": [
+        "merged_working_sha",
+        "buyer_baseline_sha",
+        "buyer_config_generator_exact_unchanged",
+        "all9_report_evidence_blobs_equal_accepted",
+        "status"
+      ],
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p2-merge476",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/next-packaging-qa-20261005/pr476-actual-merged-receipt.json",
+      "sha256": "26cfd97f01577b5f45db889548276d10be9409368925860b3d59db53073df1ea",
+      "bytes": 1789,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p2-merge476-26cfd97f0157.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p3-actual-php",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-actual-zip-302d/receipt.json",
+      "sha256": "4bc256fc277226e6ba131f34f5ff7d028d242fef15aa7bf0efc00cfbad9ea016",
+      "bytes": 6439,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p3-actual-php-4bc256fc2772.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p3-composition478",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-actual-zip-302d/actual-merged-composition-478.json",
+      "sha256": "0c7d9f3d45a3c7a19be102baa00477b35bf4f63cd6c4615d3c2051cd02b56633",
+      "bytes": 7713,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p3-composition478-0c7d9f3d45a3.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p3-producer35",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p3-actual-merged-verification-20261005-2043.json",
+      "sha256": "33b36fee92925066d8a2cff22f52a2758be7637f046d2d66af129b2040cfcede",
+      "bytes": 230,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p3-producer35-33b36fee9292.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p3-citation-current-independent",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p3-citation-inventory-independent-20261005/independent-review-receipt.json",
+      "sha256": "a63953b03b5ad6ebee6d0decfd2e510218a3e950dab7896e5cd4e5e0a86a9a4d",
+      "bytes": 1548,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p3-citation-current-independent-a63953b03b5a.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p3-citation-refined-ready",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/READY.json",
+      "sha256": "539db0d41de2dfc56d6b026c68627b9faff2e241cc8794eea330260baa31f82a",
+      "bytes": 1424,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p3-citation-refined-ready-539db0d41de2.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p3-citation-refined-verification",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/verification-receipt.json",
+      "sha256": "cd5a2ec59467056a95f7fbfc2d710cab3bf4eea8e62b9d5f5e2a3405af7ddf24",
+      "bytes": 1165,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p3-citation-refined-verification-cd5a2ec59467.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p3-citation-numeric-delta",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/numeric-coverage-delta.json",
+      "sha256": "58716137f01cd665c612ae5424ed68c07defa55d3f9fb74d7ea8b111cfb33904",
+      "bytes": 12755,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p3-citation-numeric-delta-58716137f01c.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p5-actual-php",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-actual-php-zip-20261005/receipt.json",
+      "sha256": "105953b6c8c3a4d835a66ad531cc2f2dcc77b8089308b68a34ddf8cb884b69d4",
+      "bytes": 5802,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p5-actual-php-105953b6c8c3.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p5-composition474",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-actual-php-zip-20261005/actual-merged-composition-474.json",
+      "sha256": "bf2d54d902142f7433c42217fab75b4a75cddf8f44d93b955d6e7beabaff0ecf",
+      "bytes": 6829,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p5-composition474-bf2d54d90214.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p5-native16",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-actual-merged-verification-20261005-2040.json",
+      "sha256": "fedd641c860b55fac30fd99a5b41dab5ebbd03771bee8bd85b0f6e660f0a73d9",
+      "bytes": 285,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p5-native16-fedd641c860b.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p5-citation-independent",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-citation-inventory-independent-20261005/independent-review-receipt.json",
+      "sha256": "4a70398e74c8a8af09f0b0c3fab8df3337f5558eed505e0cd14c443461f22705",
+      "bytes": 1715,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p5-citation-independent-4a70398e74c8.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p5-citation-ready",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/READY.json",
+      "sha256": "7c09361cf972f92b69ae7f33c11d90ed1f4e8310da9792478fb0c163b362e952",
+      "bytes": 541,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p5-citation-ready-7c09361cf972.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p5-citation-extraction",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/verification-receipt.json",
+      "sha256": "e69bae04d89b75af02c187bbfb715589916c34d683b1d11584e12713dd19ab39",
+      "bytes": 951,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p5-citation-extraction-e69bae04d89b.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p5-citation-draft480",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/documentary-pr.json",
+      "sha256": "fa8d24a335ce7e64e6fe863c57f1e9ee34ec2408edc235a8f40742b2108f49a2",
+      "bytes": 3374,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p5-citation-draft480-fa8d24a335ce.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p5-citation-composition480",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/actual-merged-composition-480.json",
+      "sha256": "95ec1a8e894b9f7596b7cff794c7effb797ee492b8b593dfe29ff7fd82c401f3",
+      "bytes": 15168,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p5-citation-composition480-95ec1a8e894b.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "coordinator-recent-observations",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/coordinator-observations.json",
+      "sha256": "e23f9f71e2803e46c03de5bb657f9b89266da16de178761543ebcf0fb3762e04",
+      "bytes": 664,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/coordinator-recent-observations-e23f9f71e280.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "contract-0",
+      "path": "/home/denis/projects/ai-business-os/docs/Normative_Contract.md",
+      "sha256": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+      "repo_head": "79dd869b2f4bea4482d62bef046367f1b42ce4c1",
+      "consumed_fields": "full contract; runtime copy identical"
+    },
+    {
+      "id": "contract-1",
+      "path": "/home/denis/projects/ai-business-os/docs/Task_Setting_Protocol.md",
+      "sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686",
+      "repo_head": "79dd869b2f4bea4482d62bef046367f1b42ce4c1",
+      "consumed_fields": "full contract; runtime copy identical"
+    },
+    {
+      "id": "s1-excel-lineage-record",
+      "git_source_sha": "a77422195c2c68281a7797ad99f9f6b70426d740",
+      "path": "tools/templates/s1-reviewed-corrections/corrections.json",
+      "sha256": "3c3263e99b22532b6cc35bcb3cc61e2f0a9e4c2d6e82b0a7997714093be86e09",
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/s1-reviewed-corrections-record.json"
+    },
+    {
+      "id": "p2-existing-stop-report",
+      "git_source_sha": "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0",
+      "path": "tools/candidates/MB001_R2_P2_FORMS_R3.md",
+      "sha256": "03ff85af2885e053985084c2223684db61521d4c7a97826900076e449f9fe148",
+      "consumed_fields": "existing STOP-P2-R3-1/2/3; no body reinterpretation"
+    },
+    {
+      "id": "p2-citation-independent",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-citation-inventory-independent-20261005/independent-review-receipt.json",
+      "sha256": "a0da5a71a7f658837d9c05d08cb48b2aa501e4f68ba44a69fc7a5fa2178fa97b",
+      "bytes": 3450,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p2-citation-independent-a0da5a71a7f6.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p2-citation-independent-supplement",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-citation-inventory-independent-20261005/independent-supplemental-scope-receipt.json",
+      "sha256": "42c37d9f5398a303bffab5d7a154b6e2281657a99ac5d05daf2293981e6bc8c2",
+      "bytes": 7263,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p2-citation-independent-supplement-42c37d9f5398.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p2-citation-ready",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/READY.json",
+      "sha256": "1ac13094d2232e979ddc0831f649af13a76d279229ca549cf906aeea650d23cd",
+      "bytes": 947,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p2-citation-ready-1ac13094d223.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p2-citation-extraction",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/verification-receipt.json",
+      "sha256": "e04190f03b111d0e0563672aef4405e0b88b60137c1caf481e6a6bb541497bd3",
+      "bytes": 2594,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p2-citation-extraction-e04190f03b11.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    },
+    {
+      "id": "p3-citation-draft481",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/draft-pr.json",
+      "sha256": "5d53d32135f17e38c9dbc7e5f568b5cc39b904235447bb8405950e7b7c1f3ae2",
+      "bytes": 440,
+      "exact_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/parallel-final-gates-20261005/input-snapshots/p3-citation-draft481-5d53d32135f1.json",
+      "consumed_fields": "structured receipt fields",
+      "large_raw_fields_excluded": false
+    }
+  ],
+  "excluded_large_units": [
+    {
+      "kind": "P2full_source_units",
+      "sha256": "bc0da5df2d003a6b8073e5e94d823cab776fe07830a14203848eb16af6af155f",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/source-text-units.json",
+      "reason": "full raw units excluded; READY pins hash"
+    },
+    {
+      "kind": "S1full_source_units",
+      "receipt": "s1-citation-freeze",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-current-citation-inventory-20261005/source-text-units.json",
+      "size": 19243696,
+      "sha256": "c0b1c724a04ee226d469671fa54bdd91e11e3a99647b98c799d58fda3d3ff029",
+      "git_policy": "not committed; reproduciblefullcell/formulainventory intermediate"
+    },
+    {
+      "kind": "P3full_source_units",
+      "sha256": "6d896e84b33921de3a607144eb6a921e831a2b95c6e777e59082f98dcdfa31af",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/source-text-units.json",
+      "reason": "large raw units excluded; READY receipt pins hash"
+    },
+    {
+      "kind": "P5full_source_units",
+      "receipt": "p5-citation-extraction",
+      "details": {
+        "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/source-text-units.json",
+        "sha256": "509812536700143e8d78bda6cd1501bc4a520f9474ae218b94ebf3e2e88be583",
+        "size": 187709
+      },
+      "reason": "large raw units excluded"
+    },
+    {
+      "kind": "raw_API_bodies",
+      "input": "p2-actual-php",
+      "field": "commands[].stdout",
+      "reason": "large historical PR/user/body metadata excluded from matrix; original receipt hash retained"
+    },
+    {
+      "kind": "buyer_DOCX_XLSX_PDF_ZIP",
+      "reason": "not recopied/extracted/retested; accepted receipts provide byte/hash lineage"
+    },
+    {
+      "kind": "S1full_build_outputs",
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/s1-final-verification",
+      "reason": "server-only build-1/build-2; original receipt/manifest authority; no rerun"
+    }
+  ]
+}
