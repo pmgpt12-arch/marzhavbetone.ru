@@ -290,6 +290,52 @@ def test_r026_usage_section():
         assert phrase in usage, phrase[:60]
 
 
+# MB001 P3, печать (приёмка PR #383, C-1): строка участника или подписанта не
+# рвётся между страницами. Запрет задаётся в _grid для каждой строки — значит,
+# для всех таблиц всех пяти форм; любая новая таблица формы проходит тот же путь.
+def test_form_rows_do_not_split_across_pages():
+    for number, nodes in enumerate(forms(), 1):
+        for table in (n for n in nodes if n.tag == f"{W}tbl"):
+            torn = [text_of(tr)[:40] for tr in table.findall(f"{W}tr")
+                    if tr.find(f"{W}trPr/{W}cantSplit") is None]
+            assert not torn, f"форма {number}: строки без cantSplit: {torn}"
+
+
+def italic_notes(nodes: list[ET.Element]) -> list[str]:
+    """Отдельные абзацы формы, набранные курсивом целиком (подсказки комплекта)."""
+    def italic(run: ET.Element) -> bool:
+        flag = run.find(f"{W}rPr/{W}i")    # _para пишет <w:i w:val="0"/> и для прямого
+        return flag is not None and flag.get(f"{W}val", "true") not in ("0", "false")
+
+    notes = []
+    for node in nodes:
+        runs = [r for r in node.findall(f"{W}r") if text_of(r).strip()]
+        if node.tag == f"{W}p" and runs and all(italic(r) for r in runs):
+            notes.append(text_of(node).strip())
+    return notes
+
+
+# C-2: «Как пользоваться» прямо говорит, что из формы печатается, а что
+# удаляется. Гейт: каждый курсивный абзац между первой таблицей и таблицей
+# подписей — либо пояснение в скобках под строкой, либо назван в указании.
+def test_usage_says_which_notes_leave_the_signed_act():
+    text = buyer_text(KIT / "03-akt-skrytyh-rabot.docx")
+    usage = text[text.index("Как пользоваться формами"):]
+    rule = usage[usage.index("Перед печатью для подписания."):]
+    named = [q.rstrip("…") for q in re.findall(r"«([^»]+)»", rule)]
+    for phrase in ("от таблицы «Объект капитального строительства» до таблицы "
+                   "«Подписи» включительно",
+                   "«Если есть замечания (в образец акта не входит)»"):
+        assert phrase in rule, phrase
+    for number, nodes in enumerate(forms(), 1):
+        first = next(i for i, n in enumerate(nodes) if n.tag == f"{W}tbl")
+        signed = max(i for i, n in enumerate(nodes) if n.tag == f"{W}tbl"
+                     and cells(n)[0][:3] == ["Представитель", "Должность, Ф. И. О.", "Подпись"])
+        notes = [s for s in italic_notes(nodes[first:signed]) if not s.startswith("(")]
+        unnamed = [s[:50] for s in notes if not any(s.startswith(q) for q in named)]
+        assert notes and not unnamed, f"форма {number}: не названы в указании: {unnamed}"
+
+
 # MB001-R2-P3-T3: покупательские формулировки о статусе форм АОСР.
 # Основание — PR #316 (MB001_R026_P3_AOSR_NORMATIVE_VERIFICATION.md): для АОСР
 # есть только рекомендуемый образец; «типовая форма» читается как утверждённая,
