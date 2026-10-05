@@ -1,0 +1,52 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "P3_current_factual_citation_handoff_for_lawyer",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "purpose": "Exact factual citations and unresolved lexical variants with reproducible source locators, for human lawyer handoff",
+  "parent": "Root accepted P3 actual ZIP/current PR478 composition; Issue291 continuing technical preparation",
+  "frozen_input_sha": "7cdf72d77ade7a377e0f01ca68fee3d233152832",
+  "buyer_files": 11,
+  "inputs": "input-hashes.json; all buyers from actual PHP membership receipt, not guessed catalog paths",
+  "contract_hashes": {
+    "Normative_Contract.md": {
+      "source_path": "/home/denis/projects/ai-business-os/docs/Normative_Contract.md",
+      "sha256": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+      "bytes": 9359
+    },
+    "Task_Setting_Protocol.md": {
+      "source_path": "/home/denis/projects/ai-business-os/docs/Task_Setting_Protocol.md",
+      "sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686",
+      "bytes": 27997
+    }
+  },
+  "scope": "Own isolated local report/JSON/as-run script/compact source units only; source readonly, no commit/push/PR before root independent review",
+  "executor": "Python standard library XML/ZIP and installed Poppler pdftotext/pdfinfo/pdfimages; USD0, no model call",
+  "route": [
+    "pin exact11 Git bytes/membership/contracts and inspect existing S1 script reference without modifying or old-map reuse",
+    "extract native source units: DOCX XML paragraphs/parts, XLSX stored cells/formulas readonly, TXT physical lines, PDF raw pdftotext page with spans/line locator",
+    "literal citation grammar + unresolved legalmarkers; preserve variants/ranges as written; explicit code bindings, groups not norms",
+    "verify every quote/span/source locator and no input mutation; freeze hashes/map/script/report and send root for independent coverage review"
+  ],
+  "acceptance": [
+    "all11 buyer hashes/blobSHAs frozen",
+    "every exact raw quote/charspan maps to exact source unit",
+    "PDF page number and physical line range retained; never infer code from whole page; images/empty text limitations flagged",
+    "normative IDs null; currentness NOT_VERIFIED/human legal NOT_PERFORMED",
+    "all literal occurrences retained by groups and unresolved variants not converted to defects",
+    "no products/generaltests/Calc/PHP rebuild/models executed",
+    "Every observed numeric № locator explicit as unresolved signal, full literal suffix retained; all10 gaps independently identified in prior review now mapped, no number→norm/step inference"
+  ],
+  "bounds": {
+    "per_process_seconds": 60,
+    "total_seconds": 300,
+    "usd": 0
+  },
+  "stop": "missing source/contract/tool or SHA/span/membership mismatch -> bounded BLOCKED with evidence; no guesses",
+  "handoff": "READY hashes and actual script/map/report to root BEFORE Git commit/push/PR",
+  "publication_release": false,
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "refinement_reason": "Own observed lexical falsepositive: law stem закон matched закончена; restrict grammatical word endings and retain normative Положения signals; v1 preserved, no product/test/build repeat; independent coverage exposed10 unbound numeric № locators, add all raw numbered markers without product or legal judgment",
+  "verified_checkpoint": "v1-lexical-overmatch contains exact first actual script/map/receipt/hash/report; v2-numbered-coverage-failure and independent-review-v2.json retain rejected frozen map and exact coverage errors"
+}

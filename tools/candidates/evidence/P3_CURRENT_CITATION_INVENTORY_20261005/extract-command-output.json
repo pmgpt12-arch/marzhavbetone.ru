@@ -1,0 +1,30 @@
+{
+  "final_actual_invocation": "timeout --kill-after=5s 60s python3 /home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005/extract.py",
+  "first_output": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[Reading 3 new lines (total: 3 lines)]\n\n{\"status\": \"READY_FACTUAL_INVENTORY_PENDING_ROOT_INDEPENDENT_REVIEW\", \"source_sha\": \"7cdf72d77ade7a377e0f01ca68fee3d233152832\", \"buyer_files\": 11, \"source_text_units\": 808, \"literal_occurrences\": 15, \"groups_not_norms\": 2, \"unresolved_markers_not_defects\": 18, \"standard_or_other_marker_count\": 3, \"compact_source_units\": 20, \"pdf_pages\": [{\"page\": 1, \"text_sha256\": \"7c5c3b4d520b7e97621352ccb84eea7b08518cdee35a6f20787184928ba4155e\", \"characters\": 856, \"physical_lines\": 47, \"text_empty\": false}], \"all_spans_quotes_line_locators_exact\": true, \"all11_inputs_unchanged\": true, \"extract_script_sha256\": \"4c66f46806583dc7c78a40e884b05d667af8cd5655eb08b01c52e13756d07446\", \"map_sha256\": \"602e2c609f7b1bbbd3f93490336a1afe5958a24e1e5618b3d417953611f5cd30\", \"elapsed_seconds\": 1.2548060519911814, \"model_calls\": 0, \"PHP_build_calls\": 0, \"general_tests_calls\": 0, \"Calc_calls\": 0, \"source_currentness\": \"NOT_VERIFIED\", \"human_legal\": \"NOT_PERFORMED\", \"git_commit_push_PR\": \"NOT_PERFORMED\"}\nREADY /home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005\n\n✅ Process completed with exit code 0 (runtime: 1.46s)"
+      },
+      {
+        "type": "text",
+        "text": "\n[executed on device: ai-workstation (eb65b02a-1358-4bbd-809c-26ab6d8df1dd)]"
+      }
+    ],
+    "isError": false
+  },
+  "final_output": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[Reading 3 new lines (total: 3 lines)]\n\n{\"status\": \"READY_FACTUAL_INVENTORY_PENDING_ROOT_INDEPENDENT_REVIEW\", \"source_sha\": \"7cdf72d77ade7a377e0f01ca68fee3d233152832\", \"buyer_files\": 11, \"source_text_units\": 808, \"literal_occurrences\": 15, \"groups_not_norms\": 2, \"unresolved_markers_not_defects\": 24, \"standard_or_other_marker_count\": 3, \"compact_source_units\": 21, \"pdf_pages\": [{\"page\": 1, \"text_sha256\": \"7c5c3b4d520b7e97621352ccb84eea7b08518cdee35a6f20787184928ba4155e\", \"characters\": 856, \"physical_lines\": 47, \"text_empty\": false}], \"all_spans_quotes_line_locators_exact\": true, \"all11_inputs_unchanged\": true, \"extract_script_sha256\": \"9969dad428dc303cf52efe9edfeaf97568d15c16edf66064873eec34309165e0\", \"map_sha256\": \"b6008170293cf8ea2d3a96dcd988c7cee71f1245f17ba6e715a80ee8800b18ed\", \"elapsed_seconds\": 0.9606487800192554, \"model_calls\": 0, \"PHP_build_calls\": 0, \"general_tests_calls\": 0, \"Calc_calls\": 0, \"source_currentness\": \"NOT_VERIFIED\", \"human_legal\": \"NOT_PERFORMED\", \"git_commit_push_PR\": \"NOT_PERFORMED\"}\nREADY /home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/p3-current-citation-inventory-20261005\n\n✅ Process completed with exit code 0 (runtime: 1.16s)"
+      },
+      {
+        "type": "text",
+        "text": "\n[executed on device: ai-workstation (eb65b02a-1358-4bbd-809c-26ab6d8df1dd)]"
+      }
+    ],
+    "isError": false
+  },
+  "refinement": "law-word boundary after observed lexical overmatch; v1 preserved, actual iterative passport; no product or general test rerun"
+}
