@@ -1,0 +1,18 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_buyer_can_find_copy_boundaries_in_03_and_10a _______________
+
+    def test_buyer_can_find_copy_boundaries_in_03_and_10a():
+        a = text_of(section(Document(N10),'Раздел А.'))
+        algorithm = Document(ROOT/'03-algoritm-dejstviy.docx')
+        pars = [p.text for p in algorithm.paragraphs]
+        i = next(i for i,t in enumerate(pars) if t.startswith('Шаг 12.'))
+        assert 'чистую копию' in '\n'.join(pars[i:])
+        for need in ('Сохраните','В Арбитражный суд','подписи с датой','PDF','разделы В и Г','Исходный файл 10'):
+>           assert need in a
+E           AssertionError: assert 'Сохраните' in '№\nПроверка\nГде подтверждается\n☐\n1\nПретензия направлена, доказательство направления есть\nФайл 04, «Реестр переда...не столько же, сколько в реестре строк с «Да» в колонке «К иску», и число листов в каждой строке совпадает с реестром.'
+
+tools/test_s1_court_clean_copy.py:50: AssertionError
+=========================== short test summary info ============================
+FAILED tools/test_s1_court_clean_copy.py::test_buyer_can_find_copy_boundaries_in_03_and_10a
+1 failed, 2 deselected in 0.20s
