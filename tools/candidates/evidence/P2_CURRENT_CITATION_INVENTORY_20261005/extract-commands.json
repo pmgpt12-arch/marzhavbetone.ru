@@ -1,0 +1,116 @@
+[
+  {
+    "command": [
+      "pdfinfo",
+      "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/buyer-inputs/00-INSTRUKCIYA.pdf"
+    ],
+    "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery",
+    "exit_code": 0,
+    "elapsed_seconds": 0.03182477501104586,
+    "stdout_sha256": "6fb98c23519244823e1a1d40490010af3bc8bf8b538c3e16a5222b984908e38e",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "pdfimages",
+      "-list",
+      "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/buyer-inputs/00-INSTRUKCIYA.pdf"
+    ],
+    "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery",
+    "exit_code": 0,
+    "elapsed_seconds": 0.04437108998536132,
+    "stdout_sha256": "0fabc764e123f7f3acd3eaa47311e1c50317f8bbb5b50878e699f21534352e8e",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "pdftotext",
+      "-layout",
+      "-enc",
+      "UTF-8",
+      "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/buyer-inputs/00-INSTRUKCIYA.pdf",
+      "-"
+    ],
+    "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery",
+    "exit_code": 0,
+    "elapsed_seconds": 0.052131870994344354,
+    "stdout_sha256": "91a19fc04e9c57be195ba8018b657ca6a35c898027da96912d454d6e6cb68d49",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "pdfinfo",
+      "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/buyer-inputs/09-checklist-fotofiksacii.pdf"
+    ],
+    "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery",
+    "exit_code": 0,
+    "elapsed_seconds": 0.031514009984675795,
+    "stdout_sha256": "77efa60e219c7c3c6203a928595e0d2f841dacef5e4d3115c2ebfb0d5af3b2f8",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "pdfimages",
+      "-list",
+      "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/buyer-inputs/09-checklist-fotofiksacii.pdf"
+    ],
+    "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery",
+    "exit_code": 0,
+    "elapsed_seconds": 0.03395951498532668,
+    "stdout_sha256": "0fabc764e123f7f3acd3eaa47311e1c50317f8bbb5b50878e699f21534352e8e",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "pdftotext",
+      "-layout",
+      "-enc",
+      "UTF-8",
+      "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/buyer-inputs/09-checklist-fotofiksacii.pdf",
+      "-"
+    ],
+    "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery",
+    "exit_code": 0,
+    "elapsed_seconds": 0.035244587023044005,
+    "stdout_sha256": "1f985d53f6c812a0e3c0afa7eee53c6c8967b80e551ec62c5ce8c60197bcb70d",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "pdfinfo",
+      "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/buyer-inputs/10-algoritm-doprabot.pdf"
+    ],
+    "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery",
+    "exit_code": 0,
+    "elapsed_seconds": 0.032302441977662966,
+    "stdout_sha256": "d847acf7b278f6605654199b6e13378e8d063aa9719451a5b69259fec82cd59d",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "pdfimages",
+      "-list",
+      "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/buyer-inputs/10-algoritm-doprabot.pdf"
+    ],
+    "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery",
+    "exit_code": 0,
+    "elapsed_seconds": 0.03435931398416869,
+    "stdout_sha256": "0fabc764e123f7f3acd3eaa47311e1c50317f8bbb5b50878e699f21534352e8e",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "pdftotext",
+      "-layout",
+      "-enc",
+      "UTF-8",
+      "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/buyer-inputs/10-algoritm-doprabot.pdf",
+      "-"
+    ],
+    "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery",
+    "exit_code": 0,
+    "elapsed_seconds": 0.0355706230038777,
+    "stdout_sha256": "0f4aae57a05a68fc5e253644d7758b5d81d26dcec6ca591d8870b8e0adf7342a",
+    "stderr": ""
+  }
+]

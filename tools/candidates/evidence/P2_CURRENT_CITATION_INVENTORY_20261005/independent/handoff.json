@@ -1,0 +1,85 @@
+{
+  "status": "ACCEPT_FACTUAL_INVENTORY",
+  "run": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-citation-inventory-independent-20261005",
+  "compact_files": [
+    {
+      "name": "passport.json",
+      "bytes": 1636,
+      "sha256": "ae4bfd331f883a069cdff9f26da0f84e6979a9fbad27c885a9ef43f23a1908af"
+    },
+    {
+      "name": "config.json",
+      "bytes": 540,
+      "sha256": "c1ac9bb1e78f3071ed09b459d793e86da49dc77f2b00303e8ccdc9fbff2c575d"
+    },
+    {
+      "name": "independent_review.py",
+      "bytes": 15665,
+      "sha256": "abb5d482cce90f32452ab4072ec1d75e59ddf7d8899fee3b2b74d0c87a076aff"
+    },
+    {
+      "name": "supplement_review.py",
+      "bytes": 4389,
+      "sha256": "1f9155a31d2d6c32a5668dbc73a02a0e3c3f2e0c47a85a27d02f30be3a7b3e39"
+    },
+    {
+      "name": "author-artifact-pins-before-review.json",
+      "bytes": 1263,
+      "sha256": "b1fdcbfcaaf0792bdef0d0a588527f3f169f5282bab09e2193c4c4c6bd8a69ba"
+    },
+    {
+      "name": "independent-input-hashes.json",
+      "bytes": 4265,
+      "sha256": "5f46cf09a5e4730e956d624fc13c85d6ef25fbd8a5a77afd299d2f1907983491"
+    },
+    {
+      "name": "independent-pdf-extraction.json",
+      "bytes": 2128,
+      "sha256": "ae0941fb42213b6e2f7978ed91d2d20e123e71d84083621172743482e994f641"
+    },
+    {
+      "name": "independent-extra-part-hits.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "independent-extra-native-text-units.json",
+      "bytes": 2583,
+      "sha256": "2495d5e638aeb9099c6bc491a2c0963f45b5228f7b241f8dcec5301c8c39d2e0"
+    },
+    {
+      "name": "independent-supplemental-scope-receipt.json",
+      "bytes": 7263,
+      "sha256": "42c37d9f5398a303bffab5d7a154b6e2281657a99ac5d05daf2293981e6bc8c2"
+    },
+    {
+      "name": "independent-check-details.json",
+      "bytes": 19838,
+      "sha256": "abc129af14dab065ebffdf1b4c15126c119800775e7a7ca32dbc7eb1e3d7af04"
+    },
+    {
+      "name": "independent-broad-coverage.json",
+      "bytes": 1756,
+      "sha256": "50ae04097647f86be4bc28c10bdc4b1e6ae1a13dd3b56a51d97779dba1a3820f"
+    },
+    {
+      "name": "independent-review-receipt.json",
+      "bytes": 3450,
+      "sha256": "a0da5a71a7f658837d9c05d08cb48b2aa501e4f68ba44a69fc7a5fa2178fa97b"
+    },
+    {
+      "name": "independent-review-report.md",
+      "bytes": 3881,
+      "sha256": "997694c48d1bee1e36f7cf2efef160145270cc8f067aa72e744f0348c95854fb"
+    },
+    {
+      "name": "execution-output.txt",
+      "bytes": 2639,
+      "sha256": "eab054747407b6b23de813b01c53d0afcee1cb366cbfd8106be97358d3c4398e"
+    }
+  ],
+  "source_text_server_only": "independent-visible-fragments.json",
+  "model_calls": 0,
+  "usd": 0,
+  "scope": "Factual inventory only; zero article literals is not legal completeness verdict; currentness/applicability NOT_VERIFIED/human NOT_PERFORMED"
+}

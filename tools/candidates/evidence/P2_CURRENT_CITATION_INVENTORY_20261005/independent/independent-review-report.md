@@ -1,0 +1,96 @@
+# Independent P2 factual citation inventory review
+
+{
+  "status": "ACCEPT_FACTUAL_INVENTORY",
+  "observed_utc": "2026-10-05T17:08:50.802818+00:00",
+  "source_sha": "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0",
+  "inventory_sha256": "f921e762a3185669cde8f336ff0dac00ca2784917059690dddf6201c4420eb3f",
+  "buyer_hashes_checked": 15,
+  "literal_occurrences_checked": 0,
+  "unresolved_markers_checked": 4,
+  "dedup_groups_checked": 0,
+  "independent_native_text_fragments": 444,
+  "independent_broad_signal_passages": 4,
+  "independent_broad_signal_tokens": 4,
+  "pdfs": [
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/09-checklist-fotofiksacii.pdf",
+      "source_sha256": "80590f62711cd55e405d3122eeeb33d6f1a44e1a5a19b56ee00e59c5a5f3a202",
+      "physical_pages": 1,
+      "raw_text_sha256": "1f985d53f6c812a0e3c0afa7eee53c6c8967b80e551ec62c5ce8c60197bcb70d",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 722,
+          "lines": 36,
+          "empty_or_image_only_text_scope": false
+        }
+      ],
+      "limitation": "Text layer only; images and visual reading order not independently examined; empty/image-only pages flagged."
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/10-algoritm-doprabot.pdf",
+      "source_sha256": "1bc3c0ccd967b1e1ea6cfdba5f5b2bd75986a20453dc63a8ec8356e29be937e6",
+      "physical_pages": 1,
+      "raw_text_sha256": "0f4aae57a05a68fc5e253644d7758b5d81d26dcec6ca591d8870b8e0adf7342a",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 804,
+          "lines": 42,
+          "empty_or_image_only_text_scope": false
+        }
+      ],
+      "limitation": "Text layer only; images and visual reading order not independently examined; empty/image-only pages flagged."
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.pdf",
+      "source_sha256": "b7af857d6674754f242e1b3400ffe51d212f39dbe979bdf6e80f6663989e44ce",
+      "physical_pages": 4,
+      "raw_text_sha256": "91a19fc04e9c57be195ba8018b657ca6a35c898027da96912d454d6e6cb68d49",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 2970,
+          "lines": 49,
+          "empty_or_image_only_text_scope": false
+        },
+        {
+          "page": 2,
+          "characters": 3256,
+          "lines": 52,
+          "empty_or_image_only_text_scope": false
+        },
+        {
+          "page": 3,
+          "characters": 3028,
+          "lines": 49,
+          "empty_or_image_only_text_scope": false
+        },
+        {
+          "page": 4,
+          "characters": 392,
+          "lines": 10,
+          "empty_or_image_only_text_scope": false
+        }
+      ],
+      "limitation": "Text layer only; images and visual reading order not independently examined; empty/image-only pages flagged."
+    }
+  ],
+  "checks": 137,
+  "errors": [],
+  "model_calls": 0,
+  "api_usd": 0,
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "normative_verdict": "NOT_VERIFIED",
+  "scope": "Independent factual input membership/hash, native locator/quote/span, observational code grammar and broad law/standard token coverage only. Not applicability/edition/currentness/semantic legal completeness or human acceptance.",
+  "additional_native_xml_text_units": 6,
+  "total_independent_native_text_units": 450,
+  "supplemental_scope_receipt": "independent-supplemental-scope-receipt.json",
+  "supplemental_checks": 18,
+  "supplemental_errors": [],
+  "pdf_page_hashes_checked": 6
+}
+
+444 native body/cell/formula/TXT/PDF-page units plus six separately extracted header/footer units cover all 450 text units. No extra law/standard signal in those six units. All six PDF page-text hashes/character/line counts independently match frozen map metadata. Generic Приказ and Заключительные положения are raw markers, not identified norms.
