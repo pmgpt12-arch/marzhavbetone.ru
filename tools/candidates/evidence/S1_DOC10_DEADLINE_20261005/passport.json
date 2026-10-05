@@ -1,0 +1,19 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "doc10 checklist deadline matches already reviewed A2; no claim body changes",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "base": "a261eee1b8d0c0d419b4c574eab1571e33a8ab39",
+  "scope": "one checklist string in f10, actual doc10, evidence",
+  "gates": [
+    "before source exact",
+    "two rebuilds",
+    "12 checklist and18 attachment rows preserved",
+    "claim body placeholders preserved",
+    "other10 buyers unchanged",
+    "existing court tests",
+    "render pages",
+    "independent reread before merge"
+  ],
+  "legal_acceptance": "NOT_PERFORMED"
+}
