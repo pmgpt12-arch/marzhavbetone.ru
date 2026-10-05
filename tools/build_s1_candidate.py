@@ -35,7 +35,10 @@ import s1_route as R                                        # noqa: E402
 
 try:
     import openpyxl
+    from openpyxl.formatting.rule import Rule
     from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
+    from openpyxl.styles.differential import DifferentialStyle
+    from openpyxl.styles.numbers import NumberFormat
     from openpyxl.utils import get_column_letter
     from openpyxl.worksheet.datavalidation import DataValidation
     from docx import Document
@@ -217,6 +220,10 @@ BOX = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 WRAP = Alignment(wrap_text=True, vertical="top")
 DATE = "DD.MM.YYYY"
 MONEY = "#,##0.00"
+# Ставка, % годовых: число без знака «%». Ввод «21%» Calc превращает в 0,21
+# и ставит ячейке процентный формат; повторный ввод «21» хранит 21, но формат
+# остаётся («2100,00%»), а ссылки на ячейку его наследуют (F-2, #376).
+RATE = "0.00##"
 
 
 def new_wb():
@@ -273,6 +280,21 @@ def fit_height(ws, row, text, first_col: int, last_col: int):
     width = sum(ws.column_dimensions[get_column_letter(i)].width or 8.43 for i in range(first_col, last_col + 1))
     lines = max(1, -(-int(len(str(text)) * 1.15) // int(width)))
     ws.row_dimensions[row].height = max(ws.row_dimensions[row].height or 0, 15 * lines + 3)
+
+
+def самое_длинное(formula: str) -> str:
+    """Самое длинное сообщение формулы: строковые литералы, склеенные через
+    «&…&», с вставкой вместо числа (FIXED суммы до миллиарда)."""
+    parts = list(re.finditer(r'"((?:[^"]|"")*)"', formula))
+    best, cur = "", ""
+    for i, m in enumerate(parts):
+        cur += m.group(1).replace('""', '"')
+        between = formula[m.end():parts[i + 1].start()] if i + 1 < len(parts) else ""
+        if re.fullmatch(r'&[^"]*&', between):
+            cur += "999 999 999,99"
+            continue
+        best, cur = max(best, cur, key=len), ""
+    return best
 
 
 def fit_banners(ws, last_col: int, rows=(1, 2)):
@@ -1161,6 +1183,14 @@ def f08(out: Path):
         vv[a].number_format = DATE
     inputs(vv, f"A{RATE_FIRST}:B{RATE_LAST}")
     boxed(vv, f"C{RATE_FIRST}:C{RATE_LAST}")
+    # F-2: формат ячейки ставки ввод «21%» меняет, условный формат — нет:
+    # число в B показывается без «%» при любом формате самой ячейки
+    for r in range(RATE_FIRST, RATE_LAST + 1):
+        vv[f"B{r}"].number_format = RATE
+    vv.conditional_formatting.add(
+        f"B{RATE_FIRST}:B{RATE_LAST}",
+        Rule(type="expression", formula=[f"ISNUMBER(B{RATE_FIRST})"],
+             dxf=DifferentialStyle(numFmt=NumberFormat(numFmtId=300, formatCode=RATE))))
     vv["F10"] = "Периоды без начисления (если применимо)"
     vv["F10"].font = BOLD
     for i, h in enumerate(["С", "По (включительно)", "Проверка"]):
@@ -1277,6 +1307,7 @@ def f08(out: Path):
             dd[f"G{r}"] = (f'=IF(A{r}="","",IF(OR(B{r}<>B{r - 1},C{r}<>C{r - 1},E{r}<>E{r - 1}),'
                            f'G{r - 1}+1,G{r - 1}))')
         dd[f"A{r}"].number_format = DATE
+        dd[f"B{r}"].number_format = RATE
     dday = lambda col: f"'По дням'!${col}${DAY_FIRST}:${col}${DAY_LAST}"  # noqa: E731
     # периоды ставки: пустые строки — нули (0 дней пересечения), чтобы
     # SUMPRODUCT на листе «Интервалы» считал без ошибок
@@ -1388,6 +1419,9 @@ def f08(out: Path):
         pv.cell(row=i, column=1, value=i - 1)
         pv.cell(row=i, column=2, value=t)
         pv.cell(row=i, column=3, value=f)
+        # F-1 (#376): высота строки — под самое длинное сообщение, иначе
+        # третья строка сообщения печатается поверх следующей проверки
+        fit_height(pv, i, самое_длинное(f), 3, 3)
     boxed(pv, f"A2:C{1 + len(checks)}")
     st_row = len(checks) + 3
     pv.cell(row=st_row, column=2, value="СТАТУС РАСЧЁТА").font = BOLD
@@ -1431,6 +1465,7 @@ def f08(out: Path):
         rs[f"J{r}"] = f'=IF(K{r}="","",INDEX({iv_("H")},{m}))'
         for col in "CD":
             rs[f"{col}{r}"].number_format = DATE
+        rs[f"G{r}"].number_format = RATE
         for col in "FIJ":
             rs[f"{col}{r}"].number_format = MONEY
     boxed(rs, f"A7:J{последняя}")
