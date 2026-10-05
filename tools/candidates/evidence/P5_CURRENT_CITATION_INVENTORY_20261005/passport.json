@@ -1,0 +1,150 @@
+{
+  "execution_pattern": "one_shot",
+  "primary_result": "P5 exact-current factual citation inventory for lawyer handoff",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "parent": "MB001 autonomous parallel preparation; no release/legal gate waived",
+  "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+  "scope": "Read-only all 11 actual buyer files; own isolated outputs only",
+  "inputs": [
+    {
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/07-algoritm-proverki-uderzhaniy.pdf",
+      "name": "07-algoritm-proverki-uderzhaniy.pdf",
+      "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+      "git_blob": "f1cdf83370b3d67d8812761c7d50415e0d0114f6",
+      "sha256": "59aa358f436f4e975cd02c5e6432b3ea93f14f3dee09bd97ce6987a66fa91ee7",
+      "size": 49649,
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/exact-buyers/07-algoritm-proverki-uderzhaniy.pdf"
+    },
+    {
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/04-raschet-ubytkov.xlsx",
+      "name": "04-raschet-ubytkov.xlsx",
+      "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+      "git_blob": "4216e8089b250bf87701cf8d4cdbecba4f143d62",
+      "sha256": "20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31",
+      "size": 15127,
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/exact-buyers/04-raschet-ubytkov.xlsx"
+    },
+    {
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/01-pretenziya-na-uderzhanie.docx",
+      "name": "01-pretenziya-na-uderzhanie.docx",
+      "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+      "git_blob": "8ab6da7ebee9c8b5d8a44c77fb0c58ba643e829a",
+      "sha256": "8011d569caabfb13ee0fcdd89ed53f84e935bf5f60f7b81422d668f1afd199fd",
+      "size": 37972,
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/exact-buyers/01-pretenziya-na-uderzhanie.docx"
+    },
+    {
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/11-trebovanie-o-vozvrate-uderzhaniya.docx",
+      "name": "11-trebovanie-o-vozvrate-uderzhaniya.docx",
+      "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+      "git_blob": "82846ea6f8bcde4ff5122fd04062b71ac0b9704c",
+      "sha256": "ff6902613525ebdea12147ca1efb9f9b5446f7dc32244d0c6d2d7af86a2f494f",
+      "size": 38446,
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/exact-buyers/11-trebovanie-o-vozvrate-uderzhaniya.docx"
+    },
+    {
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/05-reestr-uderzhaniy.xlsx",
+      "name": "05-reestr-uderzhaniy.xlsx",
+      "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+      "git_blob": "fc171e56c2bd97389b6d3500bdbc42f1d0049201",
+      "sha256": "db0d99f745e460b29654c3079483103e1bcc39d65ad9e8c36d002288ed5df9ae",
+      "size": 10851,
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/exact-buyers/05-reestr-uderzhaniy.xlsx"
+    },
+    {
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/02-pretenziya-na-shtraf.docx",
+      "name": "02-pretenziya-na-shtraf.docx",
+      "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+      "git_blob": "06791b539671dd8d8c9a41942bef30adf7765065",
+      "sha256": "932c9863b9e842c9324c1e597953ea1113d92c61e23ec91b55695c85cd994596",
+      "size": 37960,
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/exact-buyers/02-pretenziya-na-shtraf.docx"
+    },
+    {
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/08-tipovye-osnovaniya.docx",
+      "name": "08-tipovye-osnovaniya.docx",
+      "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+      "git_blob": "d93b346fd59805ebbcf147600bc9602bb7c3653f",
+      "sha256": "a2281f6cc825846152271f79e2734b485f9295a1d5fd0a7f2bd3a730ce45f179",
+      "size": 38557,
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/exact-buyers/08-tipovye-osnovaniya.docx"
+    },
+    {
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/10-konsultaciya-po-delu.docx",
+      "name": "10-konsultaciya-po-delu.docx",
+      "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+      "git_blob": "b219bf51e49f89221c0db9ab470d5e92fa8fb573",
+      "sha256": "b7be831e7080428a9c6d1aced10a2439a976976a6737647baa17916fcce3852b",
+      "size": 37917,
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/exact-buyers/10-konsultaciya-po-delu.docx"
+    },
+    {
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/00-START-HERE.txt",
+      "name": "00-START-HERE.txt",
+      "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+      "git_blob": "16ef880e7a318fefd4314a54fce55f508c610ce3",
+      "sha256": "faa353564bd4b15a64757c7a4ae1ce596000abd60a5214917dddf2eb3161a64a",
+      "size": 4305,
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/exact-buyers/00-START-HERE.txt"
+    },
+    {
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/03-vozrazhenie-na-zachet.docx",
+      "name": "03-vozrazhenie-na-zachet.docx",
+      "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+      "git_blob": "e58f095058e7de01003590892f9fd24036d2aaf9",
+      "sha256": "b9739bf9910ebaff28b638cc3d75b1d5ab45d6820b0605970788ac4cd520e866",
+      "size": 38010,
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/exact-buyers/03-vozrazhenie-na-zachet.docx"
+    },
+    {
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/06-grafik-vozmeshcheniya.xlsx",
+      "name": "06-grafik-vozmeshcheniya.xlsx",
+      "source_sha": "29e137c2d8822e0a3b0b2cf80a6443d33b3726c3",
+      "git_blob": "5d4a342501c75753cdb4d1093f0195d50d93c886",
+      "sha256": "f28f7502a5e852045012949f292ea4583f5026945730b02b08fcd32e2c33f4bb",
+      "size": 5590,
+      "local_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-current-citation-inventory-20261005/exact-buyers/06-grafik-vozmeshcheniya.xlsx"
+    }
+  ],
+  "required_sources": {
+    "normative_contract": {
+      "path": "/home/denis/projects/ai-business-os/docs/Normative_Contract.md",
+      "sha256": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+      "bytes": 9359
+    },
+    "task_protocol": {
+      "path": "/home/denis/projects/ai-business-os/docs/Task_Setting_Protocol.md",
+      "sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686",
+      "bytes": 27997
+    }
+  },
+  "reference_parser_sha256": "e202c8502ae73d60b1ad07219770d440f76a665fa60d54de1ae20d75680415c0",
+  "reference_parser_reuse": "article/marker regex and locator schema approach only; no S1 old maps imported",
+  "dependencies": {
+    "actual_php_receipt": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p5-actual-php-zip-20261005/receipt.json",
+    "receipt_sha256": "105953b6c8c3a4d835a66ad531cc2f2dcc77b8089308b68a34ddf8cb884b69d4",
+    "native04_05_exact": true
+  },
+  "executor": "Python3/openpyxl read_only/OOXML/pdftotext, API USD0, no LLM",
+  "route": [
+    "pin inputs and passport",
+    "extract exact paragraphs/cells/TXT lines/PDF physical pages",
+    "record raw literal spans and unresolved legal markers",
+    "selfcheck exact all locators and hashes",
+    "freeze READY for independent root coverage review"
+  ],
+  "acceptance": "11/11 exact members; raw quote spans replay; no inferred whole-page code; ranges retained; no legal verdict or invented norm IDs",
+  "stop": "missing/mismatched exact input or tool; preserve logs and no source writes",
+  "outputs": [
+    "citation-inventory.json",
+    "source-text-units.json (server only)",
+    "input-hashes.json",
+    "verification-receipt.json",
+    "citation-inventory-report.md",
+    "SHA256SUMS"
+  ],
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "api_usd": 0
+}
