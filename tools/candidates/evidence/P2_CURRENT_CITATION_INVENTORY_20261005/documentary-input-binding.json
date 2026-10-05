@@ -1,0 +1,25 @@
+{
+  "source_sha": "d5cef2f2b5da0763ebfe0b5f2278462e1853f9b0",
+  "root_run": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery",
+  "frozen_READY_sha256": "1ac13094d2232e979ddc0831f649af13a76d279229ca549cf906aeea650d23cd",
+  "full_server_only_intermediate": [
+    {
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-current-citation-inventory-20261005-recovery/source-text-units.json",
+      "size": 225304,
+      "sha256": "bc0da5df2d003a6b8073e5e94d823cab776fe07830a14203848eb16af6af155f",
+      "reason": "complete formulas/text retained server-only; actualGit pins+script+compactcitationunits committed"
+    }
+  ],
+  "buyer_originals": "server-only buyer-inputs; reproduce using15input-hashes.json exactGit source/blob",
+  "source_product_changes": false,
+  "independent_review": "ACCEPT_FACTUAL_INVENTORY",
+  "commit_push": "NOT_PERFORMED",
+  "independent_server_only": [
+    {
+      "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/p2-citation-inventory-independent-20261005/independent-visible-fragments.json",
+      "bytes": 127560,
+      "sha256": "3649be850d32dda27a85ac371874a5c6618b9d94803401a6cf46310120ff6850",
+      "reason": "Complete native corpus server-only; compactcoverage/receipts/scripts asrun committed"
+    }
+  ]
+}

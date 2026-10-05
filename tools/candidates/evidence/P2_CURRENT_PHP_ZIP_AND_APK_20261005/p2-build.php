@@ -1,0 +1,2 @@
+<?php
+define('ORDERS_DIR',__DIR__.'/orders');define('PRODUCTS_DIR',__DIR__.'/products-storage');define('DELIVERY_DIR',__DIR__.'/orders/delivery');require __DIR__.'/products-config.php';if(!class_exists('ZipArchive')){exit(10);} $path=mvb_build_product_zip('p2');if(!$path){exit(11);}echo $path;
