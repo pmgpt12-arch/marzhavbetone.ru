@@ -1,0 +1,24 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "doc09 A2/C1/C2/C3 source-backed narrow correction",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "base": "6a1297dcacbff5eae9b2314c662451c7327a0a30",
+  "independent_review_sha": "2d1e3340f578f104ccb9c03684c4b7dae0bda155",
+  "scope": [
+    "tools/build_s1_candidate.py f09 only",
+    "tools/candidates/s1-oplata-za-raboty/09-pretenziya.docx",
+    "report and render evidence"
+  ],
+  "gate": [
+    "exact before semantic hash",
+    "two f09 rebuild byte equality",
+    "all other buyer and owner Excel bytes unchanged",
+    "existing relevant tests",
+    "every rendered page inspected",
+    "independent reread before acceptance"
+  ],
+  "legal_acceptance": "NOT_PERFORMED",
+  "currentness": "NOT_VERIFIED",
+  "remaining_related_scope": "01/03 analogous wording requires separately scoped correction, not changed here"
+}
