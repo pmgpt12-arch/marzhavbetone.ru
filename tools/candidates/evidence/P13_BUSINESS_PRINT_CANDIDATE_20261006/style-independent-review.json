@@ -1,0 +1,75 @@
+{
+  "verdict": "ACCEPT_STYLE_ONLY_WITH_PRINT_STOP",
+  "reviewer": "independent agent /root/owner_receipt_review",
+  "reviewed_at_utc": "2026-10-06T07:03:01.630579+00:00",
+  "pr": 494,
+  "head": "20188af5a9dd391d41256aac2118f0e632722d4a",
+  "observed_base": "60f002e2d9844a96c47bdbf9fca3a89abb03920d",
+  "scope": "P13 separate candidate style-only OOXML overlay and evidence; actual product source not replaced",
+  "source_candidate_reference_sha256": [
+    "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2",
+    "643ec9ffd2ab6d3285445ae3d2dfc93db470ef4661db41f30d5fedbb1d3df968",
+    "93252d5711cbbd33e682b3f9400fe6ee9aa9ed02c49cf8302ae89976ffc20d77"
+  ],
+  "checks": {
+    "changed_cells": 544,
+    "changed_parts": [
+      "xl/worksheets/sheet1.xml",
+      "xl/worksheets/sheet2.xml",
+      "xl/styles.xml"
+    ],
+    "nonstyle_native_worksheet_XML": "EXACT after removing only c/@s",
+    "other_ZIP_parts": "BYTE_EXACT",
+    "original_style_records": "EXACT",
+    "new_xfs_numfmt_protection_nonstyle": "EXACT",
+    "values_formulas_numberformats_cellprotection": "EXACT",
+    "all_544_font_fill_border_alignment_components": "Exact reference role components; summary font preserves target font with exact reference graphite color",
+    "role_basis": "Source labels and actual Как заполнять instructions; profit_input explicitly required; formula outputs verified; not fill/protection alone",
+    "actual_retained_Calc_fixture_values": [
+      {
+        "name": "p13-positive",
+        "sum": 45000,
+        "ratio": 0.75
+      },
+      {
+        "name": "p13-zero-profit",
+        "sum": 45000,
+        "ratio": null
+      }
+    ],
+    "Calc_output_formulas": "SUM/IF both retained in both outputs",
+    "all_10_remote_Git_objects_SHA_size": "MATCH",
+    "archive_CRC_and_all_members_local": "PASS"
+  },
+  "visual_review": {
+    "candidate_pages_viewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "reference_page1_viewed": true,
+    "palette": "Graphite white/lightfixed,cream inputs,greyoutputs and instructions consistent with exactreference components",
+    "print_gate": "STOP_HORIZONTAL_SPLIT",
+    "fact": "Eight PDF pages split register horizontally into A:C/D:G/H:J groups and split instruction labels/page7 from guidance/page8; source print settings preserved",
+    "baseline_PDF_compared": false,
+    "all_pages_acceptance": "NOT_PASSED"
+  },
+  "limitations": [
+    "Native Microsoft Excel UI/print/owner acceptance pending",
+    "Full product readiness/SaleReady not accepted",
+    "No legal/currentness acceptance",
+    "Four Calc checks cover existing positive and zero-profit fixtures only",
+    "Separate explicitly scoped print-layout task required before print acceptance",
+    "Git compare against observed advanced base returned diverged; content scope is ten added evidence paths; parent must perform current-base/CI/composition gates before merge"
+  ],
+  "author_branch_edits_by_reviewer": false,
+  "server_calls": 0,
+  "model_api_calls": 0,
+  "merge_performed": false,
+  "remarks": []
+}
