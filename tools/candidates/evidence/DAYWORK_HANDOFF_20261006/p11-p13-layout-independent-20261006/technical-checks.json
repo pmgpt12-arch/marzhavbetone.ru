@@ -1,0 +1,42 @@
+{
+  "tasks": [
+    {
+      "label": "p11",
+      "source_sha256": "a195a5db3960c9187cebebce240ddcb966b96e52b555122b9102ffac1fa50a7f",
+      "pages": 3,
+      "source_units": 50,
+      "missing_units": [],
+      "manifest_entries": 11,
+      "status": "SCOPED_LOCAL_LAYOUT_EVIDENCE_READY_FOR_INDEPENDENT_REVIEW",
+      "passport_matches_queue": true
+    },
+    {
+      "label": "p13",
+      "source_sha256": "3b7d9341a7b435a0abdbb6a7bc4e15050a656d326dfb1ef5789c5a3f72770cd7",
+      "pages": 5,
+      "source_units": 93,
+      "missing_units": [
+        {
+          "locator": "word/document.xml/paragraph:16",
+          "source_text": "☐  Бытовка, раздевалка, помещение для приёма пищи: кто ставит, кто содержит, кто платит за размещение."
+        }
+      ],
+      "manifest_entries": 14,
+      "status": "STOP_P13_MISSING_CHECKBOX_NO_RETRY",
+      "passport_matches_queue": true
+    }
+  ],
+  "archive": {
+    "sha256": "0ebee35f1f5dde612edf3eee660f64bc69a52062815a06b7d03554e8f3280172",
+    "git_blob": "67ea5e442c08fdf1ec15a3c76a872ff52ba20d08",
+    "size": 5181830,
+    "members": 60,
+    "crc": "PASS"
+  },
+  "queue_sha256": "90f963eced63a7cb566c7ce1aaecccf54e82406f77a81395333449a0798c9b39",
+  "xml_source_recomputation": "Both source-text.json lists independently recomputed from original DOCX XML and matched exactly",
+  "visual_inspection": "All8 pages viewed; confirmed checkbox absent before Бытовка on P13page1; P11 final item alone page3; no clipping/overlap seen",
+  "root_cause": "UNRESOLVED_LOCAL_RENDERER_OR_FONT_BEHAVIOR; source retains checkbox; not a confirmed source or Microsoft Word defect",
+  "source_changes": false,
+  "model_api_calls": 0
+}
