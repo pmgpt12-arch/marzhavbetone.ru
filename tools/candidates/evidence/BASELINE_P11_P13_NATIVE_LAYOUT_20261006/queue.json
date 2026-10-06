@@ -1,0 +1,476 @@
+{
+  "observed_utc": "2026-10-06T06:44:54.401951+00:00",
+  "tasks": [
+    {
+      "task_id": "p8-native-docx-layout-264d75-20261006",
+      "parent": "MB001 product repackaging; owner parallel directive 2026-10-06 13:41+07",
+      "business_goal": "Find exact buyer document layout/text-loss blockers before product repackaging without changing buyer source",
+      "execution_pattern": "one_shot",
+      "primary_result": "Bounded native Writer PDF layout/text coverage evidence for one exact buyer document",
+      "feedback_loop_required": false,
+      "checkpoint_policy": "verified_only",
+      "scope": {
+        "read_only_input": "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/10-avans-usloviya-i-pribyl/04-algoritm-peregovorov-ob-avanse.docx",
+        "write_only_output": "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p8",
+        "excluded": [
+          "source/product changes",
+          "legal/financial semantic verdict",
+          "current law acceptance",
+          "paid inference",
+          "server operation",
+          "release/merge/deploy",
+          "Excel restyle"
+        ]
+      },
+      "required_inputs": [
+        {
+          "path": "products-storage/10-avans-usloviya-i-pribyl/04-algoritm-peregovorov-ob-avanse.docx",
+          "relative_name": "04-algoritm-peregovorov-ob-avanse.docx",
+          "git_blob": "110e4964e7e6d0d7965eb679f76b442f1bd9b8aa",
+          "sha256": "5c87fb5bafec34400b6167307b609d5db71e97c240b76ffeea4a656893fd44c6",
+          "size": 15495,
+          "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+          "local_path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/10-avans-usloviya-i-pribyl/04-algoritm-peregovorov-ob-avanse.docx",
+          "observed_sha256": "5c87fb5bafec34400b6167307b609d5db71e97c240b76ffeea4a656893fd44c6",
+          "observed_git_blob": "110e4964e7e6d0d7965eb679f76b442f1bd9b8aa"
+        }
+      ],
+      "source_status": "CACHED_CONFIGURED_BASELINE_NOT_ACCEPTED_CURRENT_REPACKAGING",
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "dependencies": [
+        {
+          "path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/tools/candidates/evidence/REMAINING14_BASELINE_CITATIONS_20261005/input-hashes.json",
+          "sha256": "2c85425e09b79abd4ab20886ca091be3645caa4ce07f66ae32b41a0600cde924",
+          "acceptance": "135 source bindings recorded; this task separately reverified exact selected source bytes"
+        }
+      ],
+      "executor": {
+        "tool": "Python3 + soffice + pdftotext + pdftoppm + Pillow + PyMuPDF",
+        "model": null,
+        "api_budget_usd": 0,
+        "timeout_per_subprocess_seconds": 45,
+        "overall_task_seconds": 180,
+        "automatic_retries": 0,
+        "profile": "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p8/profile"
+      },
+      "preflight": {
+        "task_validity": "PASS layout gate not closed by prior OOXML/PHP/citation receipts",
+        "atomicity": "PASS one exact source document",
+        "context": "PASS exact local bytes SHA256 and Git blob checked",
+        "contract": "PASS cached canonical Task_Setting_Protocol read; AGENTS/CLAUDE absent locally and HEAD tree, no invented content",
+        "dependencies": "PASS exact source binding; no delivery acceptance inferred",
+        "tools_permissions": "PASS installed required CLI; read-only source/local artifacts",
+        "duplicate_gate": "No local Writer/PDF layout receipt found for selected filenames; historical structural/PHP/citation evidence reused, not rerun; root must exclude any currently running identical task",
+        "concurrency_capacity": "9 logical CPUs, MemAvailable 9586636kB, low observed load; max2 Writer jobs in this lane; recheck before launch"
+      },
+      "route": [
+        "SHA256/Git blob preflight",
+        "Render original unchanged source once with dedicated Writer profile",
+        "Extract PDF text and page PNG once",
+        "PIL.verify/load every PNG; enumerate every nonempty DOCX paragraph/table cell including headers/footers",
+        "Verify normalized text coverage and source hash before/after",
+        "Inspect every rendered page; preserve factual layout observations and limitations",
+        "Write manifest + receipt then independent review before Git merge"
+      ],
+      "outputs": [
+        "passport.json",
+        "source-text.json",
+        "render.pdf",
+        "pdf-text.txt",
+        "page-*.png",
+        "text-coverage.json",
+        "receipt.json",
+        "observations.json",
+        "SHA256SUMS"
+      ],
+      "done": [
+        "Correct source SHA before/after",
+        "One bounded conversion exit0 plus nonempty actual PDF",
+        "Every declared page PNG valid/readable",
+        "All native text units checked with exact locator; unresolved coverage mismatch blocks acceptance",
+        "Every page visually inspected",
+        "Actual command outputs/time/version retained",
+        "Independent scope-specific acceptance before merge"
+      ],
+      "STOP": [
+        "Missing/mismatched source",
+        "Existing exact layout accepted/running proof",
+        "Subprocess timeout/nonzero",
+        "Invalid PNG; preserve no blind retry",
+        "Text loss or expanding scope",
+        "No legal/Word/SaleReady acceptance may be claimed"
+      ],
+      "status": "READY_FOR_ROOT_DUPLICATE_AND_RESOURCE_GATE"
+    },
+    {
+      "task_id": "p9-native-docx-layout-264d75-20261006",
+      "parent": "MB001 product repackaging; owner parallel directive 2026-10-06 13:41+07",
+      "business_goal": "Find exact buyer document layout/text-loss blockers before product repackaging without changing buyer source",
+      "execution_pattern": "one_shot",
+      "primary_result": "Bounded native Writer PDF layout/text coverage evidence for one exact buyer document",
+      "feedback_loop_required": false,
+      "checkpoint_policy": "verified_only",
+      "scope": {
+        "read_only_input": "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/11-bankrotstvo-genpodryadchika/06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+        "write_only_output": "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p9",
+        "excluded": [
+          "source/product changes",
+          "legal/financial semantic verdict",
+          "current law acceptance",
+          "paid inference",
+          "server operation",
+          "release/merge/deploy",
+          "Excel restyle"
+        ]
+      },
+      "required_inputs": [
+        {
+          "path": "products-storage/11-bankrotstvo-genpodryadchika/06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+          "relative_name": "06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+          "git_blob": "4901941751d18586b1ab33a19ff3605c57cab1ec",
+          "sha256": "dc9fd7769956c2b1f60d6174f80cec5be77a1e5d9f0bc829316d4d754ae5e782",
+          "size": 15998,
+          "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+          "local_path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/11-bankrotstvo-genpodryadchika/06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+          "observed_sha256": "dc9fd7769956c2b1f60d6174f80cec5be77a1e5d9f0bc829316d4d754ae5e782",
+          "observed_git_blob": "4901941751d18586b1ab33a19ff3605c57cab1ec"
+        }
+      ],
+      "source_status": "CACHED_CONFIGURED_BASELINE_NOT_ACCEPTED_CURRENT_REPACKAGING",
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "dependencies": [
+        {
+          "path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/tools/candidates/evidence/REMAINING14_BASELINE_CITATIONS_20261005/input-hashes.json",
+          "sha256": "2c85425e09b79abd4ab20886ca091be3645caa4ce07f66ae32b41a0600cde924",
+          "acceptance": "135 source bindings recorded; this task separately reverified exact selected source bytes"
+        }
+      ],
+      "executor": {
+        "tool": "Python3 + soffice + pdftotext + pdftoppm + Pillow + PyMuPDF",
+        "model": null,
+        "api_budget_usd": 0,
+        "timeout_per_subprocess_seconds": 45,
+        "overall_task_seconds": 180,
+        "automatic_retries": 0,
+        "profile": "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p9/profile"
+      },
+      "preflight": {
+        "task_validity": "PASS layout gate not closed by prior OOXML/PHP/citation receipts",
+        "atomicity": "PASS one exact source document",
+        "context": "PASS exact local bytes SHA256 and Git blob checked",
+        "contract": "PASS cached canonical Task_Setting_Protocol read; AGENTS/CLAUDE absent locally and HEAD tree, no invented content",
+        "dependencies": "PASS exact source binding; no delivery acceptance inferred",
+        "tools_permissions": "PASS installed required CLI; read-only source/local artifacts",
+        "duplicate_gate": "No local Writer/PDF layout receipt found for selected filenames; historical structural/PHP/citation evidence reused, not rerun; root must exclude any currently running identical task",
+        "concurrency_capacity": "9 logical CPUs, MemAvailable 9586636kB, low observed load; max2 Writer jobs in this lane; recheck before launch"
+      },
+      "route": [
+        "SHA256/Git blob preflight",
+        "Render original unchanged source once with dedicated Writer profile",
+        "Extract PDF text and page PNG once",
+        "PIL.verify/load every PNG; enumerate every nonempty DOCX paragraph/table cell including headers/footers",
+        "Verify normalized text coverage and source hash before/after",
+        "Inspect every rendered page; preserve factual layout observations and limitations",
+        "Write manifest + receipt then independent review before Git merge"
+      ],
+      "outputs": [
+        "passport.json",
+        "source-text.json",
+        "render.pdf",
+        "pdf-text.txt",
+        "page-*.png",
+        "text-coverage.json",
+        "receipt.json",
+        "observations.json",
+        "SHA256SUMS"
+      ],
+      "done": [
+        "Correct source SHA before/after",
+        "One bounded conversion exit0 plus nonempty actual PDF",
+        "Every declared page PNG valid/readable",
+        "All native text units checked with exact locator; unresolved coverage mismatch blocks acceptance",
+        "Every page visually inspected",
+        "Actual command outputs/time/version retained",
+        "Independent scope-specific acceptance before merge"
+      ],
+      "STOP": [
+        "Missing/mismatched source",
+        "Existing exact layout accepted/running proof",
+        "Subprocess timeout/nonzero",
+        "Invalid PNG; preserve no blind retry",
+        "Text loss or expanding scope",
+        "No legal/Word/SaleReady acceptance may be claimed"
+      ],
+      "status": "READY_FOR_ROOT_DUPLICATE_AND_RESOURCE_GATE"
+    },
+    {
+      "task_id": "p11-native-docx-layout-264d75-20261006",
+      "parent": "MB001 product repackaging; owner parallel directive 2026-10-06 13:41+07",
+      "business_goal": "Find exact buyer document layout/text-loss blockers before product repackaging without changing buyer source",
+      "execution_pattern": "one_shot",
+      "primary_result": "Bounded native Writer PDF layout/text coverage evidence for one exact buyer document",
+      "feedback_loop_required": false,
+      "checkpoint_policy": "verified_only",
+      "scope": {
+        "read_only_input": "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+        "write_only_output": "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p11",
+        "excluded": [
+          "source/product changes",
+          "legal/financial semantic verdict",
+          "current law acceptance",
+          "paid inference",
+          "server operation",
+          "release/merge/deploy",
+          "Excel restyle"
+        ]
+      },
+      "required_inputs": [
+        {
+          "path": "products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+          "relative_name": "52-chek-list-raschet-metrami.docx",
+          "git_blob": "22d1f3e17fc8d845d399f8b9b50d2fceb757a3e0",
+          "sha256": "a195a5db3960c9187cebebce240ddcb966b96e52b555122b9102ffac1fa50a7f",
+          "size": 12118,
+          "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+          "local_path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+          "observed_sha256": "a195a5db3960c9187cebebce240ddcb966b96e52b555122b9102ffac1fa50a7f",
+          "observed_git_blob": "22d1f3e17fc8d845d399f8b9b50d2fceb757a3e0"
+        }
+      ],
+      "source_status": "CACHED_CONFIGURED_BASELINE_NOT_ACCEPTED_CURRENT_REPACKAGING",
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "dependencies": [
+        {
+          "path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/tools/candidates/evidence/REMAINING14_BASELINE_CITATIONS_20261005/input-hashes.json",
+          "sha256": "2c85425e09b79abd4ab20886ca091be3645caa4ce07f66ae32b41a0600cde924",
+          "acceptance": "135 source bindings recorded; this task separately reverified exact selected source bytes"
+        }
+      ],
+      "executor": {
+        "tool": "Python3 + soffice + pdftotext + pdftoppm + Pillow + PyMuPDF",
+        "model": null,
+        "api_budget_usd": 0,
+        "timeout_per_subprocess_seconds": 45,
+        "overall_task_seconds": 180,
+        "automatic_retries": 0,
+        "profile": "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p11/profile"
+      },
+      "preflight": {
+        "task_validity": "PASS layout gate not closed by prior OOXML/PHP/citation receipts",
+        "atomicity": "PASS one exact source document",
+        "context": "PASS exact local bytes SHA256 and Git blob checked",
+        "contract": "PASS cached canonical Task_Setting_Protocol read; AGENTS/CLAUDE absent locally and HEAD tree, no invented content",
+        "dependencies": "PASS exact source binding; no delivery acceptance inferred",
+        "tools_permissions": "PASS installed required CLI; read-only source/local artifacts",
+        "duplicate_gate": "No local Writer/PDF layout receipt found for selected filenames; historical structural/PHP/citation evidence reused, not rerun; root must exclude any currently running identical task",
+        "concurrency_capacity": "9 logical CPUs, MemAvailable 9586636kB, low observed load; max2 Writer jobs in this lane; recheck before launch"
+      },
+      "route": [
+        "SHA256/Git blob preflight",
+        "Render original unchanged source once with dedicated Writer profile",
+        "Extract PDF text and page PNG once",
+        "PIL.verify/load every PNG; enumerate every nonempty DOCX paragraph/table cell including headers/footers",
+        "Verify normalized text coverage and source hash before/after",
+        "Inspect every rendered page; preserve factual layout observations and limitations",
+        "Write manifest + receipt then independent review before Git merge"
+      ],
+      "outputs": [
+        "passport.json",
+        "source-text.json",
+        "render.pdf",
+        "pdf-text.txt",
+        "page-*.png",
+        "text-coverage.json",
+        "receipt.json",
+        "observations.json",
+        "SHA256SUMS"
+      ],
+      "done": [
+        "Correct source SHA before/after",
+        "One bounded conversion exit0 plus nonempty actual PDF",
+        "Every declared page PNG valid/readable",
+        "All native text units checked with exact locator; unresolved coverage mismatch blocks acceptance",
+        "Every page visually inspected",
+        "Actual command outputs/time/version retained",
+        "Independent scope-specific acceptance before merge"
+      ],
+      "STOP": [
+        "Missing/mismatched source",
+        "Existing exact layout accepted/running proof",
+        "Subprocess timeout/nonzero",
+        "Invalid PNG; preserve no blind retry",
+        "Text loss or expanding scope",
+        "No legal/Word/SaleReady acceptance may be claimed"
+      ],
+      "status": "READY_FOR_ROOT_DUPLICATE_AND_RESOURCE_GATE"
+    },
+    {
+      "task_id": "p13-native-docx-layout-264d75-20261006",
+      "parent": "MB001 product repackaging; owner parallel directive 2026-10-06 13:41+07",
+      "business_goal": "Find exact buyer document layout/text-loss blockers before product repackaging without changing buyer source",
+      "execution_pattern": "one_shot",
+      "primary_result": "Bounded native Writer PDF layout/text coverage evidence for one exact buyer document",
+      "feedback_loop_required": false,
+      "checkpoint_policy": "verified_only",
+      "scope": {
+        "read_only_input": "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/16-chto-v-smete-ne-oplatyat/62-chek-list-vypadayushchih-zatrat.docx",
+        "write_only_output": "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p13",
+        "excluded": [
+          "source/product changes",
+          "legal/financial semantic verdict",
+          "current law acceptance",
+          "paid inference",
+          "server operation",
+          "release/merge/deploy",
+          "Excel restyle"
+        ]
+      },
+      "required_inputs": [
+        {
+          "path": "products-storage/16-chto-v-smete-ne-oplatyat/62-chek-list-vypadayushchih-zatrat.docx",
+          "relative_name": "62-chek-list-vypadayushchih-zatrat.docx",
+          "git_blob": "f4e36c57d2c3c4608896c112e2b25b29889bf7d7",
+          "sha256": "3b7d9341a7b435a0abdbb6a7bc4e15050a656d326dfb1ef5789c5a3f72770cd7",
+          "size": 41020,
+          "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+          "local_path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/16-chto-v-smete-ne-oplatyat/62-chek-list-vypadayushchih-zatrat.docx",
+          "observed_sha256": "3b7d9341a7b435a0abdbb6a7bc4e15050a656d326dfb1ef5789c5a3f72770cd7",
+          "observed_git_blob": "f4e36c57d2c3c4608896c112e2b25b29889bf7d7"
+        }
+      ],
+      "source_status": "CACHED_CONFIGURED_BASELINE_NOT_ACCEPTED_CURRENT_REPACKAGING",
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "dependencies": [
+        {
+          "path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/tools/candidates/evidence/REMAINING14_BASELINE_CITATIONS_20261005/input-hashes.json",
+          "sha256": "2c85425e09b79abd4ab20886ca091be3645caa4ce07f66ae32b41a0600cde924",
+          "acceptance": "135 source bindings recorded; this task separately reverified exact selected source bytes"
+        }
+      ],
+      "executor": {
+        "tool": "Python3 + soffice + pdftotext + pdftoppm + Pillow + PyMuPDF",
+        "model": null,
+        "api_budget_usd": 0,
+        "timeout_per_subprocess_seconds": 45,
+        "overall_task_seconds": 180,
+        "automatic_retries": 0,
+        "profile": "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p13/profile"
+      },
+      "preflight": {
+        "task_validity": "PASS layout gate not closed by prior OOXML/PHP/citation receipts",
+        "atomicity": "PASS one exact source document",
+        "context": "PASS exact local bytes SHA256 and Git blob checked",
+        "contract": "PASS cached canonical Task_Setting_Protocol read; AGENTS/CLAUDE absent locally and HEAD tree, no invented content",
+        "dependencies": "PASS exact source binding; no delivery acceptance inferred",
+        "tools_permissions": "PASS installed required CLI; read-only source/local artifacts",
+        "duplicate_gate": "No local Writer/PDF layout receipt found for selected filenames; historical structural/PHP/citation evidence reused, not rerun; root must exclude any currently running identical task",
+        "concurrency_capacity": "9 logical CPUs, MemAvailable 9586636kB, low observed load; max2 Writer jobs in this lane; recheck before launch"
+      },
+      "route": [
+        "SHA256/Git blob preflight",
+        "Render original unchanged source once with dedicated Writer profile",
+        "Extract PDF text and page PNG once",
+        "PIL.verify/load every PNG; enumerate every nonempty DOCX paragraph/table cell including headers/footers",
+        "Verify normalized text coverage and source hash before/after",
+        "Inspect every rendered page; preserve factual layout observations and limitations",
+        "Write manifest + receipt then independent review before Git merge"
+      ],
+      "outputs": [
+        "passport.json",
+        "source-text.json",
+        "render.pdf",
+        "pdf-text.txt",
+        "page-*.png",
+        "text-coverage.json",
+        "receipt.json",
+        "observations.json",
+        "SHA256SUMS"
+      ],
+      "done": [
+        "Correct source SHA before/after",
+        "One bounded conversion exit0 plus nonempty actual PDF",
+        "Every declared page PNG valid/readable",
+        "All native text units checked with exact locator; unresolved coverage mismatch blocks acceptance",
+        "Every page visually inspected",
+        "Actual command outputs/time/version retained",
+        "Independent scope-specific acceptance before merge"
+      ],
+      "STOP": [
+        "Missing/mismatched source",
+        "Existing exact layout accepted/running proof",
+        "Subprocess timeout/nonzero",
+        "Invalid PNG; preserve no blind retry",
+        "Text loss or expanding scope",
+        "No legal/Word/SaleReady acceptance may be claimed"
+      ],
+      "status": "READY_FOR_ROOT_DUPLICATE_AND_RESOURCE_GATE"
+    }
+  ],
+  "parallel_groups": [
+    [
+      "p11-native-docx-layout-264d75-20261006",
+      "p13-native-docx-layout-264d75-20261006"
+    ],
+    [
+      "p8-native-docx-layout-264d75-20261006",
+      "p9-native-docx-layout-264d75-20261006"
+    ]
+  ],
+  "conflict_policy": "Read-only common repository allowed; exclusive distinct output/profile directory each; no branch edits by this lane",
+  "model_routes": {
+    "deterministic": "All proposed native layout work Python/CLI; model unnecessary",
+    "free": "Only later constrained assistance from verified locators e.g. sort existing observations, never acceptance; source packet + JSON schema + one API call 30sec + free route + no paid fallback",
+    "strong": "Separate official/legal/financial verdict task requires exact decision input and sources; layout receipts cannot close it"
+  },
+  "blocked": [
+    {
+      "task": "Apply approved Excel business design to other products",
+      "missing": "REFERENCE_RETRIEVED_DEPENDENCY_IN_PROGRESS: exact approved XLSX at excel-design-reference-20261006/P1_04_Uchet_Business_Design_v1.xlsx SHA256 93252d5711cbbd33e682b3f9400fe6ee9aa9ed02c49cf8302ae89976ffc20d77; contract/reference acceptance handled by separate root lane",
+      "next": "Wait for reference contract acceptance then dispatch design-only units"
+    },
+    {
+      "task": "Full sale readiness",
+      "missing": "Current official norms / expert legal-financial acceptance / delivery scope and release owner gates"
+    }
+  ],
+  "completed_do_not_repeat": [
+    "P4 original01 and P9 glossary01 native render",
+    "P8 calculator02 and P13 calculator63 fixture Calc",
+    "Owner02/08 wording acceptance",
+    "135 baseline citation bindings",
+    "14 actual PHP buyer ZIP proof",
+    "P4/P8/P9/P11 OOXML integrity inventory"
+  ],
+  "historical_matrix_warning": "2026-10-05 matrix owner02/08 PENDING is stale; parent reported owner acceptance merged PR487 at e66432d9612c00389101587e472bfb49a958c60e; this queue does not refetch Git or fabricate a new matrix verdict",
+  "canonical_contracts": [
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/tools/candidates/evidence/FINAL_FACTUAL_MATRIX_AND_BASELINE_20261005/catalog-baseline/canonical-contracts/Task_Setting_Protocol.md",
+      "sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686"
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/tools/candidates/evidence/FINAL_FACTUAL_MATRIX_AND_BASELINE_20261005/catalog-baseline/canonical-contracts/Normative_Contract.md",
+      "sha256": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb"
+    }
+  ],
+  "durable_handoff": "Parent must persist this repo-related artifact through Git; this lane writes dedicated scratch only per assignment",
+  "executed_lane_results": [
+    {
+      "sku": "p11",
+      "status": "SCOPED_LOCAL_LAYOUT_EVIDENCE_READY_FOR_INDEPENDENT_REVIEW",
+      "pages": 3,
+      "units_checked": 50,
+      "unmatched": 0,
+      "source_sha256": "a195a5db3960c9187cebebce240ddcb966b96e52b555122b9102ffac1fa50a7f",
+      "directory": "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p11"
+    },
+    {
+      "sku": "p13",
+      "status": "STOP_P13_MISSING_CHECKBOX_NO_RETRY",
+      "pages": 5,
+      "units_checked": 93,
+      "unmatched": 1,
+      "source_sha256": "3b7d9341a7b435a0abdbb6a7bc4e15050a656d326dfb1ef5789c5a3f72770cd7",
+      "directory": "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p13"
+    }
+  ]
+}
