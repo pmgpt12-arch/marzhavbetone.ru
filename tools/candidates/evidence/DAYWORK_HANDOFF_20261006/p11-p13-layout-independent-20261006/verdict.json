@@ -1,0 +1,127 @@
+{
+  "verdict": "ACCEPT_EVIDENCE_WITH_P13_STOP",
+  "reviewer": "independent agent /root/owner_receipt_review",
+  "reviewed_at_utc": "2026-10-06T06:50:12.351022+00:00",
+  "repository": "pmgpt12-arch/marzhavbetone.ru",
+  "pr": 490,
+  "head": "90dc3dd66a9536e87e7223964c525833e08aa3f2",
+  "base": "e66432d9612c00389101587e472bfb49a958c60e",
+  "scope": "Preservation of baseline P11/P13 local layout evidence, including failed P13 text coverage; no product PASS inferred",
+  "diff": {
+    "added_evidence_paths": 14,
+    "modified_or_removed_existing_paths": 0,
+    "source_products_unchanged": true
+  },
+  "remote_byte_identity": {
+    "method": "Exact head recursive Git tree SHA1/size vs independently computed local Git object digest",
+    "passed_artifacts": 14,
+    "entries": [
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/archive-receipt.json",
+        "blob": "b51ca87669b511c6ade504b23b3a61751fa1a13f",
+        "size": 269
+      },
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/evidence.zip",
+        "blob": "67ea5e442c08fdf1ec15a3c76a872ff52ba20d08",
+        "size": 5181830
+      },
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/execution-summary.json",
+        "blob": "159c99b0d71b654b044a8ffdcc9afa1ce0b8d1d7",
+        "size": 650
+      },
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/p11/SHA256SUMS",
+        "blob": "22dbe67c2c4dbddaff6055efbb5e54d433318724",
+        "size": 904
+      },
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/p11/observations.json",
+        "blob": "af49a5f184ee10e5b488085c60da10fc6a832c16",
+        "size": 1253
+      },
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/p11/receipt.json",
+        "blob": "12180c7fc33434aa9a6618fae95ac4255761e5ce",
+        "size": 3826
+      },
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/p11/text-coverage.json",
+        "blob": "356f8b2660959dee57109e1685cfdca9a39e136f",
+        "size": 14179
+      },
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/p13/SHA256SUMS",
+        "blob": "f8e9e716cf32852da5fca43cf9e8fdef66c4d823",
+        "size": 1152
+      },
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/p13/glyph-diagnostic.json",
+        "blob": "76ff2ecc4fc0809024160e5af4a2468ee88e06f7",
+        "size": 15795
+      },
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/p13/observations.json",
+        "blob": "7e884b3049c2360466a8e827f3adceb35f7af434",
+        "size": 2394
+      },
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/p13/receipt.json",
+        "blob": "98cbe0a699731e60ea36ca14796db7aad1efafe6",
+        "size": 4296
+      },
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/p13/text-coverage.json",
+        "blob": "6d02188504acec32fe084f22260dcfc65e54ff21",
+        "size": 23990
+      },
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/passport.json",
+        "blob": "7c4e0e9a5dfac97b5fe820e6351abd91fa69d21b",
+        "size": 584
+      },
+      {
+        "path": "tools/candidates/evidence/BASELINE_P11_P13_NATIVE_LAYOUT_20261006/queue.json",
+        "blob": "a95426ef599df5916f061d6b043ad898a9a792db",
+        "size": 24969
+      }
+    ]
+  },
+  "archive": {
+    "sha256": "0ebee35f1f5dde612edf3eee660f64bc69a52062815a06b7d03554e8f3280172",
+    "git_blob": "67ea5e442c08fdf1ec15a3c76a872ff52ba20d08",
+    "size": 5181830,
+    "members": 60,
+    "crc": "PASS"
+  },
+  "previous_archive_sha256": "b988a95734824771fcfd206ce7e890e59314373f5f979e111014e13b8de67e6b superseded by author adding glyph diagnostic and refreshed dependencies; not accepted as current archive",
+  "results": {
+    "p11": "3 pages;50 source units;0 unmatched;layout observation final item alone page3",
+    "p13": "5 pages;93 source units;1 unmatched paragraph16 intact source U+2610 absent from PDF and PNG;STOP retained",
+    "all_8_pages_independently_viewed": true,
+    "png_verification": "PASS",
+    "source_XML_units_independently_recomputed": "Both exact source-text lists match original DOCX XML; hashes match passports and receipts",
+    "legal_or_financial_semantic_verdict": "NOT_PERFORMED"
+  },
+  "p13_classification": {
+    "fact": "CONFIRMED_LOCAL_RENDER_MISSING_CHECKBOX",
+    "root_cause": "UNRESOLVED_RENDERER_OR_FONT_BEHAVIOR",
+    "source_defect_confirmed": false,
+    "native_Word_defect_confirmed": false,
+    "coverage_gate": "BLOCKED; must retain checkbox in exact matching; no automatic retry"
+  },
+  "limitations": [
+    "Local LibreOfficeDev26.8alpha differs from native Word/server24.2",
+    "Original source/cached baseline is not accepted current repackaging",
+    "No legal/currentness/human acceptance/SaleReady",
+    "Full GitHub archive binary not downloaded; cryptographic identity established through remote object digest and local SHA256/CRC",
+    "Normalized containment does not certify reading order or semantic correctness"
+  ],
+  "technical_checks_sha256": "8c15169c128875bbec7ff15e847e95ea44c9fb6c1f965488454244d394ee912d",
+  "remarks": [],
+  "source_or_author_branch_edits": false,
+  "merge_performed": false,
+  "server_calls": 0,
+  "model_api_calls": 0
+}
