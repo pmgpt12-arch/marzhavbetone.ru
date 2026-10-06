@@ -1,0 +1,307 @@
+{
+  "source_commit": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "started_utc": "2026-10-06T04:50:06.542438+00:00",
+  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "inputs": [
+    {
+      "source_path": "products-storage/08-pto-bez-zamechaniy/01-uvedomlenie-o-gotovnosti-id.docx",
+      "local_path": "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/01-uvedomlenie-o-gotovnosti-id.docx",
+      "git_blob": "3c9403481e212c2338e36c2a5520cc9cbe24a7a9",
+      "size_bytes": 37326,
+      "sha256": "45e7e8e2578d5f0410e89dbd249bc9e13700e11dfcc16ce3962c8fc4d0b9a3df",
+      "sha_before": "45e7e8e2578d5f0410e89dbd249bc9e13700e11dfcc16ce3962c8fc4d0b9a3df",
+      "sha_after": "45e7e8e2578d5f0410e89dbd249bc9e13700e11dfcc16ce3962c8fc4d0b9a3df"
+    },
+    {
+      "source_path": "products-storage/11-bankrotstvo-genpodryadchika/01-slovar-poley-bankrotstvo.docx",
+      "local_path": "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/01-slovar-poley-bankrotstvo.docx",
+      "git_blob": "b16b579bed2bd3cfe0cb1a14a5a4cb50cf7d18d2",
+      "size_bytes": 16334,
+      "sha256": "b29c0d3c864719f6d79a81edb60995acb844303f9cf1fb1b573d816c883f8814",
+      "sha_before": "b29c0d3c864719f6d79a81edb60995acb844303f9cf1fb1b573d816c883f8814",
+      "sha_after": "b29c0d3c864719f6d79a81edb60995acb844303f9cf1fb1b573d816c883f8814"
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-original-profile",
+        "--headless",
+        "--convert-to",
+        "pdf",
+        "--outdir",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-original",
+        "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/01-uvedomlenie-o-gotovnosti-id.docx"
+      ],
+      "rc": 0,
+      "stdout": "convert /workspace/scratch/f25d74acc3f7/local-baseline-preflight/01-uvedomlenie-o-gotovnosti-id.docx as a Writer document -> /workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-original/01-uvedomlenie-o-gotovnosti-id.pdf using filter : writer_pdf_Export\n",
+      "stderr": "",
+      "elapsed_s": 0.5894760859955568,
+      "utc": "2026-10-06T04:50:07.269889+00:00"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-original/01-uvedomlenie-o-gotovnosti-id.pdf",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-original/pdf-text.txt"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_s": 0.0160702300054254,
+      "utc": "2026-10-06T04:50:07.286357+00:00"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-scale-to",
+        "1600",
+        "-png",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-original/01-uvedomlenie-o-gotovnosti-id.pdf",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-original/page"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_s": 0.2989990759961074,
+      "utc": "2026-10-06T04:50:07.585640+00:00"
+    },
+    {
+      "argv": [
+        "pdfinfo",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-original/01-uvedomlenie-o-gotovnosti-id.pdf"
+      ],
+      "rc": 0,
+      "stdout": "Author:          python-docx\nCreator:         Writer\nProducer:        LibreOfficeDev 26.8.0.0.alpha0 (X86_64)\nCreationDate:    Mon Oct  5 21:50:07 2026 PDT\nCustom Metadata: no\nMetadata Stream: yes\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           2\nEncrypted:       no\nPage size:       612 x 792 pts (letter)\nPage rot:        0\nFile size:       35773 bytes\nOptimized:       no\nPDF version:     1.7\n",
+      "stderr": "",
+      "elapsed_s": 0.01317581799958134,
+      "utc": "2026-10-06T04:50:07.599132+00:00"
+    },
+    {
+      "argv": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original-profile",
+        "--headless",
+        "--convert-to",
+        "pdf",
+        "--outdir",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original",
+        "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/01-slovar-poley-bankrotstvo.docx"
+      ],
+      "rc": 0,
+      "stdout": "convert /workspace/scratch/f25d74acc3f7/local-baseline-preflight/01-slovar-poley-bankrotstvo.docx as a Writer document -> /workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/01-slovar-poley-bankrotstvo.pdf using filter : writer_pdf_Export\n",
+      "stderr": "",
+      "elapsed_s": 0.3571876509959111,
+      "utc": "2026-10-06T04:50:07.956698+00:00"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/01-slovar-poley-bankrotstvo.pdf",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/pdf-text.txt"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_s": 0.016691256998456083,
+      "utc": "2026-10-06T04:50:07.973801+00:00"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-scale-to",
+        "1600",
+        "-png",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/01-slovar-poley-bankrotstvo.pdf",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/page"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_s": 1.550644094000745,
+      "utc": "2026-10-06T04:50:09.524739+00:00"
+    },
+    {
+      "argv": [
+        "pdfinfo",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/01-slovar-poley-bankrotstvo.pdf"
+      ],
+      "rc": 0,
+      "stdout": "Author:          Un-named\nCreator:         Writer\nProducer:        LibreOfficeDev 26.8.0.0.alpha0 (X86_64)\nCreationDate:    Mon Oct  5 21:50:07 2026 PDT\nCustom Metadata: no\nMetadata Stream: yes\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           7\nEncrypted:       no\nPage size:       595.304 x 841.89 pts (A4)\nPage rot:        0\nFile size:       169342 bytes\nOptimized:       no\nPDF version:     1.7\n",
+      "stderr": "",
+      "elapsed_s": 0.01354675699985819,
+      "utc": "2026-10-06T04:50:09.538644+00:00"
+    },
+    {
+      "argv": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-filled-profile",
+        "--headless",
+        "--convert-to",
+        "pdf",
+        "--outdir",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-filled",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-fictional-filled.docx"
+      ],
+      "rc": 0,
+      "stdout": "convert /workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-fictional-filled.docx as a Writer document -> /workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-filled/p4-fictional-filled.pdf using filter : writer_pdf_Export\n",
+      "stderr": "",
+      "elapsed_s": 0.3596374110056786,
+      "utc": "2026-10-06T04:50:09.898653+00:00"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-filled/p4-fictional-filled.pdf",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-filled/pdf-text.txt"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_s": 0.009686240002338309,
+      "utc": "2026-10-06T04:50:09.908760+00:00"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-scale-to",
+        "1600",
+        "-png",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-filled/p4-fictional-filled.pdf",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-filled/page"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_s": 0.3508244900003774,
+      "utc": "2026-10-06T04:50:10.259878+00:00"
+    },
+    {
+      "argv": [
+        "pdfinfo",
+        "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-filled/p4-fictional-filled.pdf"
+      ],
+      "rc": 0,
+      "stdout": "Author:          python-docx\nCreator:         Writer\nProducer:        LibreOfficeDev 26.8.0.0.alpha0 (X86_64)\nCreationDate:    Mon Oct  5 21:50:09 2026 PDT\nCustom Metadata: no\nMetadata Stream: yes\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           2\nEncrypted:       no\nPage size:       612 x 792 pts (letter)\nPage rot:        0\nFile size:       36959 bytes\nOptimized:       no\nPDF version:     1.7\n",
+      "stderr": "",
+      "elapsed_s": 0.013510247998056002,
+      "utc": "2026-10-06T04:50:10.273833+00:00"
+    }
+  ],
+  "scenario": {
+    "p4": "Fictional party names and document inventory replace placeholders in copy only; existing legal text untouched. Signature line intentionally remains blank.",
+    "p9": "Glossary is guidance, not a submission form. All literal token definitions retained; replacing them would defeat the instructional purpose."
+  },
+  "finished_utc": "2026-10-06T04:50:10.274369+00:00",
+  "artifacts": [
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-fictional-filled.docx",
+      "sha256": "cf2012c0fd11dffc25e8918a4fdc7953096bcad0377ea5ebaf11b0c97e9f1025",
+      "size": 37463
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-filled/p4-fictional-filled.pdf",
+      "sha256": "771d19475a0b8df0365a7ba8ca052c4431f32c50fec6417025f83c89b32913ad",
+      "size": 36959
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-filled/page-1.png",
+      "sha256": "febf1f3e7bad493dd9bb5f44570782b6a754e8661247b6021b3d6fc593663fc8",
+      "size": 142273
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-filled/page-2.png",
+      "sha256": "64477018ee95018aeaf73236028f6c28a1aff8d2127a262d1bf2e410180919e7",
+      "size": 68076
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-filled/pdf-text.txt",
+      "sha256": "3f6f0d77cb1d5416bedea015998a44517da1002d3a888dcd3c52785cedda5e48",
+      "size": 2043
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-original/01-uvedomlenie-o-gotovnosti-id.pdf",
+      "sha256": "a70205a1ef08222555f781ee1a07f6e80bed8938c20a6b064c0194632037d062",
+      "size": 35773
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-original/page-1.png",
+      "sha256": "2df807720bd0abbe90defb743210c4153234db68203553e4edd92331a55acf1a",
+      "size": 110537
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-original/page-2.png",
+      "sha256": "ec29212fc7d9e559ffbcea04cff897fae0c161efe525128c24f9d2bd1a97afa5",
+      "size": 59113
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-original/pdf-text.txt",
+      "sha256": "9260af9a594659232280616be05e74814652e54369dcbb6219efa8a33a4d8ba3",
+      "size": 1677
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p4-original-source-text.txt",
+      "sha256": "254c577d9e530f91adc08207619a2ad22d4879dec394a59a4a3aed659ff99994",
+      "size": 1591
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/01-slovar-poley-bankrotstvo.pdf",
+      "sha256": "6aa9810093bb105dcbea2575ef754cefd46093f59f43691002e26c468c4c1edf",
+      "size": 169342
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/page-1.png",
+      "sha256": "9ae99fe7e049b7d3243d6cdc2cb266c7ebb91f8027a90f7c1e9e76ac0102d34c",
+      "size": 291924
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/page-2.png",
+      "sha256": "3565811f4f2449c6a739ea03c4a019f16f93b86cad8ba5384366f21f18e1a519",
+      "size": 24612
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/page-3.png",
+      "sha256": "b4776ea9aed2dd2f15f2014d18b945785c1c59d25582a5e2f3c69fc00f6d5ae7",
+      "size": 267461
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/page-4.png",
+      "sha256": "32ce3fbc150cf1d9aa14ff9b609c1660e9705c522f3caaea89ff29e644b86223",
+      "size": 150807
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/page-5.png",
+      "sha256": "13c6c0f3ca577e6517915b5123a2a77b3c1531671dcf64bc675b5d828782c90a",
+      "size": 262080
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/page-6.png",
+      "sha256": "5aff099ee8f5a397a320e6673c5a8d4f3177e701cacbe48d7ef5beb4d70af1a1",
+      "size": 173361
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/page-7.png",
+      "sha256": "ec10df49bdef340d5500f1e95ee5a2c12452ac6f06659c7d59af938bf3f5e47b",
+      "size": 181628
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/pdf-text.txt",
+      "sha256": "d367d172831e97d3af21585dcd5abc4a257bb0947d8f7f26773139689f1b54e3",
+      "size": 19578
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original-source-text.txt",
+      "sha256": "45fe98c0b27414b76511b6ae65b8068573108a4a39e673e6ccafcb8e946a3ecd",
+      "size": 16073
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/render.py",
+      "sha256": "0eae449ec4ceaaa86411282768ecc964064fc904e1d9fcb64db182ac28eb7591",
+      "size": 4649
+    }
+  ]
+}
