@@ -1,0 +1,38 @@
+{
+  "task_id": "p13-checkbox-rootcause-20261006",
+  "execution_pattern": "one_shot",
+  "primary_result": "Causal comparison of retained source/XML and PDF glyph paths; no rerender",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "scope": "Read retained P13 paragraph16 and neighbors/PDF/PNG; dedicated outputs only",
+  "inputs": [
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/16-chto-v-smete-ne-oplatyat/62-chek-list-vypadayushchih-zatrat.docx",
+      "sha256": "3b7d9341a7b435a0abdbb6a7bc4e15050a656d326dfb1ef5789c5a3f72770cd7"
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p13/62-chek-list-vypadayushchih-zatrat.pdf",
+      "sha256": "5ec03877361f539d5095c4a6bc9e8651000ef9516a50ffd6003a62b406b48a62"
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p13/page-1.png",
+      "sha256": "78c55311679fbda050bcd3b06a5939d8b39087036c891e97d89a7e047a25f864"
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p13/glyph-diagnostic.json",
+      "sha256": "e21dfc4bd3e4c1a73d5610fe0ca07dee6f16ea9feebb328b459e19f602db1946"
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/tools/candidates/evidence/FINAL_FACTUAL_MATRIX_AND_BASELINE_20261005/catalog-baseline/canonical-contracts/Task_Setting_Protocol.md",
+      "sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686"
+    }
+  ],
+  "budget": {
+    "maximum_seconds": 300,
+    "api_usd": 0,
+    "model_calls": 0,
+    "rerenders": 0
+  },
+  "acceptance": "Preserve exact facts/font/bbox/control count; distinguish inference/hypothesis/unresolved; source/PDF before after hashes equal",
+  "STOP": "Scope growth, missing byte inputs, proposed fix requires separate candidate task"
+}

@@ -1,0 +1,44 @@
+{
+  "classification": "LOCAL_DOCX_TO_PDF_FONT_FALLBACK_EXPORT_GLYPH_LOSS",
+  "observed_fact": [
+    "Four compared source checkbox paragraphs share exact no-rPr/no-pPr structure; no bookmarks, hyperlinks or lists override the affected run",
+    "First affected PDF line uses Caladea-Regular punctuation/spacing and NotoSerif-Regular Cyrillic; next checkbox lines use DejaVuSans for checkbox and Cyrillic",
+    "First line has no U2610 PDF texttrace glyph and no vector drawing at expected checkbox region; neighbors have DejaVuSans glyph17 U2610 at x90.1",
+    "First Cyrillic Б appears at x90.1 where neighbors place checkbox, following ы at x104.741; visible displacement supports export/shaping loss rather than pdftotext-only extraction",
+    "NotoSerif subset ToUnicode contains no U2610; DejaVuSans subset contains U2610 mapping <11>",
+    "Source checkbox count=62; actual PDF mapped checkbox count=61"
+  ],
+  "root_cause": "UNRESOLVED_EXACT_MECHANISM",
+  "inference": "Loss occurs upstream of PDF extraction in the local font fallback/shaping/export path; source paragraph formatting mismatch, clipping or a merely wrong extraction map is unsupported by retained facts",
+  "hypotheses": [
+    "First occurrence fallback initialization/segmentation may pick a run font without the checkbox glyph",
+    "PDF export glyph stream may omit the first unsupported font fallback symbol"
+  ],
+  "not_proven": [
+    "Which LibreOffice component caused loss",
+    "Reproducibility on server LibreOffice24.2 or native Word",
+    "Whether concurrency affected shared global font cache"
+  ],
+  "minimal_next_candidate": {
+    "scope": "Only a disposable copy of source paragraph16 first checkbox glyph in separate run with explicit DejaVu Sans rFonts; all following text/style/source unchanged",
+    "reason": "Same retained PDF successfully embeds/renders U2610 from DejaVuSans for adjacent identical source paragraphs",
+    "not_executed": true,
+    "required_validation": [
+      "Compare original/candidate DOCX runs and confirm only checkbox font declaration changed",
+      "One bounded candidate render under explicit new test hypothesis, no retries",
+      "Strict U2610-aware normalized text match all93 units",
+      "Source62 PDF62 checkbox count; check affected control glyph/Б word placement visually",
+      "No native Word/server compatibility claim without those renders"
+    ]
+  },
+  "negative_gate": {
+    "normalization": "Whitespace and soft hyphen only; never remove U2610 or replace it with generic square",
+    "test_cases": [
+      "Original source paragraph16 vs retained PDF must FAIL",
+      "Neighbors paragraph17/18 must PASS",
+      "Fixture losing checkbox with all words identical must FAIL",
+      "Fixture correct checkbox and whitespace differences must PASS"
+    ]
+  },
+  "status": "CAUSAL_BOUNDARY_NARROWED_EXACT_ROOT_CAUSE_UNRESOLVED"
+}
