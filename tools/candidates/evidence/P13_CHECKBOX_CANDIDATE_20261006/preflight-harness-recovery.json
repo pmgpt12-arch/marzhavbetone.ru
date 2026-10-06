@@ -1,0 +1,11 @@
+{
+  "failure": "ZipInfo reused for writestr mutated source archive in-memory header offsets; subsequent z.read rejected overlapped entry",
+  "class": "LOCAL_HARNESS_MUTABLE_METADATA_ALIASING",
+  "source_bytes_changed": false,
+  "writer_calls_before_failure": 0,
+  "fix": "copy.copy(ZipInfo) before candidate writestr",
+  "gate": "Source part bytes and candidate part bytes independently re-read from newly opened ZIP; changedpart allowlist before any Writer launch",
+  "new_hypothesis": "Separate ZipInfo objects preserve original read offsets; no model/runtime retry",
+  "additional_false_negative": "Inclusive canonicalization includes unrelated ancestor namespace declarations lost by deepcopy; exclusive C14N matches exact restored paragraph",
+  "additional_gate": "Use exclusive C14N for scope-local XML element comparison; compare all text and unchanged ZIP parts independently"
+}
