@@ -1,0 +1,55 @@
+{
+  "goal": "Один проверяемый контракт визуального эталона для безопасного переноса согласованного оформления",
+  "parent_requirements": "Директива владельца 06.10.2026; параллельные изолированные задачи переупаковки; сохранить расчётную и пользовательскую логику",
+  "scope": {
+    "write": "tools/candidates/evidence/APPROVED_EXCEL_DESIGN_CONTRACT_20261006/ ONLY",
+    "excluded": [
+      "product editing",
+      "main",
+      "deploy",
+      "legal acceptance",
+      "self merge"
+    ],
+    "model_calls": 0,
+    "cost_usd": 0
+  },
+  "inputs": {
+    "reference_library_id": "libfile_b61f0d4293648191b05c951f04497af3",
+    "reference_sha256": "93252d5711cbbd33e682b3f9400fe6ee9aa9ed02c49cf8302ae89976ffc20d77",
+    "base_commit": "e66432d9612c00389101587e472bfb49a958c60e",
+    "protocol_path": "mb001-daywork/tools/candidates/evidence/FINAL_FACTUAL_MATRIX_AND_BASELINE_20261005/catalog-baseline/canonical-contracts/Task_Setting_Protocol.md",
+    "protocol_sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686"
+  },
+  "decisions": {
+    "owner": "Денис",
+    "date": "2026-10-06",
+    "statement": "Этот вариант намного лучше, применяем такое оформление"
+  },
+  "dependencies": "Canonical reference locally available and SHA bound; accepted working base confirmed by GitHub API",
+  "executor": "Python 3.12 + openpyxl 3.1.5 + ZIP/XML; no model",
+  "execution_pattern": "one_shot",
+  "primary_result": "Grounded style contract tied to owner-approved source bytes",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "none",
+  "route": [
+    "read protocol and source",
+    "extract style/layout/semantic metadata",
+    "run bounded in-memory negative gates",
+    "save only evidence in isolated branch",
+    "read back blob hashes and draft PR head"
+  ],
+  "acceptance": "Source SHA unchanged; ZIP CRC passes; all 8 gate cases pass; style references resolve; durable source blob SHA correct; exact output paths and branch verified",
+  "stop": [
+    "missing input",
+    "SHA mismatch",
+    "target scope growth",
+    "GitHub write/readback failure"
+  ],
+  "status": "LOCAL_VERIFIED_PENDING_DURABLE_READBACK",
+  "handoff": {
+    "next_task": "One target role map and style-only candidate",
+    "next_readiness": "BLOCKED_MISSING_EXACT_TARGET_SHA_AND_INDEPENDENT_CONTRACT_REVIEW",
+    "product_acceptance": "NOT_CLAIMED",
+    "sale_ready": false
+  }
+}
