@@ -1,0 +1,35 @@
+{
+  "verdict": "ACCEPT_EVIDENCE_EXACT_MECHANISM_UNRESOLVED",
+  "head": "e5398fa4f639800f8cde59740a96e0225d686631",
+  "pr": 495,
+  "reviewer": "independent agent /root/owner_receipt_review",
+  "reviewed_at_utc": "2026-10-06T07:07:02.582975+00:00",
+  "scope": "Retained original P13 XML/PDF causal-boundary evidence only; no rerender or product fix",
+  "checks": {
+    "only_added_evidence_paths": 7,
+    "all_7_remote_objects_byte_identity": "GitSHA1 andsize exact",
+    "input_hashes_and_manifest": "EXACT",
+    "source62_PDF61_checkboxes": "CONFIRMED",
+    "paragraph16_17_18_19_plain_formatting_identical": "CONFIRMED; no run/paragraph overrides/bookmarks/hyperlinks/listmetadata",
+    "first_physical_line_fonts": "NotoSerif-Regular Cyrillic and Caladea-Regular spaces/punctuation; continuation line switches to DejaVuSans",
+    "adjacent_checkbox_glyphs": "DejaVuSans successful U2610",
+    "first_checkbox_region": "No PDFtexttraceU2610 and no vector drawing; PNGcrop visibly missing checkbox",
+    "ToUnicode_subsets": "NotoSerif noU2610; DejaVuSansU2610mapping confirmed",
+    "negative_gate_cases_passed": 4,
+    "source_or_PDF_changes": false
+  },
+  "conclusion": "Evidence supports local fallback/shaping/export path loss upstream of extraction. Exact mechanism UNRESOLVED; font selection boundary narrows inquiry but does not prove responsible component. No original source or native Word defect established.",
+  "proposal": "Separate disposable-copy explicit-checkbox-font experiment is justified; not executed by thisreview",
+  "limitations": [
+    "No reproducibility proof across LibreOffice versions or Word",
+    "No concurrency/fontcache causal verdict",
+    "Glyphcount/ToUnicode facts alone do not establish root cause",
+    "No productPASS/legal/currentness/Word/SaleReady"
+  ],
+  "remarks": [],
+  "model_api_calls": 0,
+  "server_calls": 0,
+  "rerenders": 0,
+  "author_branch_edits": false,
+  "merge_performed": false
+}
