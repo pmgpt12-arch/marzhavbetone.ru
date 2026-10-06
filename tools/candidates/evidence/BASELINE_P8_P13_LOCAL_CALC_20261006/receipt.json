@@ -1,0 +1,67 @@
+{
+  "status": "NUMERIC_FIXTURE_PASS",
+  "checks": 780,
+  "failed": [],
+  "commands": [
+    {
+      "command": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f25d74acc3f7/baseline-calc-local/p8-profile",
+        "--headless",
+        "--convert-to",
+        "xlsx:Calc MS Excel 2007 XML",
+        "--outdir",
+        "/workspace/scratch/f25d74acc3f7/baseline-calc-local/p8-output",
+        "/workspace/scratch/f25d74acc3f7/baseline-calc-local/fixtures/p8-four-month.xlsx"
+      ],
+      "started_monotonic": 47091.733914877,
+      "returncode": 0,
+      "stdout": "convert /workspace/scratch/f25d74acc3f7/baseline-calc-local/fixtures/p8-four-month.xlsx as a Calc document -> /workspace/scratch/f25d74acc3f7/baseline-calc-local/p8-output/p8-four-month.xlsx using filter : Calc MS Excel 2007 XML\n",
+      "stderr": "",
+      "status": "PROCESS_EXITED",
+      "duration_seconds": 10.165345552006329
+    },
+    {
+      "command": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f25d74acc3f7/baseline-calc-local/p13-profile",
+        "--headless",
+        "--convert-to",
+        "xlsx:Calc MS Excel 2007 XML",
+        "--outdir",
+        "/workspace/scratch/f25d74acc3f7/baseline-calc-local/p13-output",
+        "/workspace/scratch/f25d74acc3f7/baseline-calc-local/fixtures/p13-positive.xlsx",
+        "/workspace/scratch/f25d74acc3f7/baseline-calc-local/fixtures/p13-zero-profit.xlsx"
+      ],
+      "started_monotonic": 47091.734110746,
+      "returncode": 0,
+      "stdout": "convert /workspace/scratch/f25d74acc3f7/baseline-calc-local/fixtures/p13-positive.xlsx as a Calc document -> /workspace/scratch/f25d74acc3f7/baseline-calc-local/p13-output/p13-positive.xlsx using filter : Calc MS Excel 2007 XML\nconvert /workspace/scratch/f25d74acc3f7/baseline-calc-local/fixtures/p13-zero-profit.xlsx as a Calc document -> /workspace/scratch/f25d74acc3f7/baseline-calc-local/p13-output/p13-zero-profit.xlsx using filter : Calc MS Excel 2007 XML\n",
+      "stderr": "",
+      "status": "PROCESS_EXITED",
+      "duration_seconds": 19.627481249000994
+    }
+  ],
+  "source_preservation": [
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/02-kalkulyator-usloviy-avansa.xlsx",
+      "before": "079535ecc577dc0a7396cb6d122e5060e6121fa60d9d024763c153fd2bf304ec",
+      "after": "079535ecc577dc0a7396cb6d122e5060e6121fa60d9d024763c153fd2bf304ec",
+      "unchanged": true
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/63-reestr-zatrat-po-obektu.xlsx",
+      "before": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2",
+      "after": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2",
+      "unchanged": true
+    }
+  ],
+  "duration_seconds": 19.678352775001258,
+  "api_usd": 0,
+  "claims_excluded": [
+    "Full visual PASS",
+    "Legal/currentness/human review",
+    "Microsoft Excel compatibility PASS",
+    "SaleReady",
+    "Any product source edit"
+  ]
+}

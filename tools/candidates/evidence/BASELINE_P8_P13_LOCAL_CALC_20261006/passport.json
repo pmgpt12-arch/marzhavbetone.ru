@@ -1,0 +1,33 @@
+{
+  "execution_pattern": "iterative",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "source_commit": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "inputs": [
+    {
+      "source_path": "products-storage/10-avans-usloviya-i-pribyl/02-kalkulyator-usloviy-avansa.xlsx",
+      "local_path": "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/02-kalkulyator-usloviy-avansa.xlsx",
+      "git_blob": "a14b9526de77461f1f4f4806802ba72425d16f07",
+      "size_bytes": 36515,
+      "sha256": "079535ecc577dc0a7396cb6d122e5060e6121fa60d9d024763c153fd2bf304ec"
+    },
+    {
+      "source_path": "products-storage/16-chto-v-smete-ne-oplatyat/63-reestr-zatrat-po-obektu.xlsx",
+      "local_path": "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/63-reestr-zatrat-po-obektu.xlsx",
+      "git_blob": "cdc446a19dcdc397e03ed917349568ee99df6698",
+      "size_bytes": 11364,
+      "sha256": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2"
+    }
+  ],
+  "api_spend_usd": 0,
+  "runtime": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "server_runtime": "LibreOffice 24.2.7.2; local version differs",
+  "duplicate_gate": {
+    "scope": "Limited search only; not global absence",
+    "parent_confirmed": "Accepted78934/cached264/recovery gap-qualification no matched exactSHA+Calc scenario proof; catalog-next-queue.md and BASELINE14_ACTUAL_PHP_ZIP next-work-report leave Calc unclosed. Four-month A30/B0 prepared passports never executed.",
+    "local_checked": "local-baseline-preflight manifest and inputs; no numeric Calc fixture proof; sparse mb001-daywork tools directory absent."
+  },
+  "timeout_per_calc_seconds": 45,
+  "overall_seconds": 180,
+  "scope": "Scenario copies only; original source and formulas untouched. Numeric fixture acceptance only; no visual/legal/currentness/Excel/release acceptance."
+}

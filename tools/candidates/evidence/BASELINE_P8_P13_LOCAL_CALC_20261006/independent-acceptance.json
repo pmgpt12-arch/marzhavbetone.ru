@@ -1,0 +1,18 @@
+{
+  "status": "INDEPENDENT_NUMERIC_EVIDENCE_ACCEPTED",
+  "supersedes_checkpoint": "archive-receipt.json independent_acceptance NOT_RETRIEVED_YET",
+  "scope": "Restricted numerical cached Calc fixture evidence P8/P13 only",
+  "reviewer": "baseline_calc_independent; not author",
+  "review_sha256": "5f8b24cf88a929c75c6c833a1842b336a5952b1e54fb5b1bb679718f2299fe1a",
+  "report_sha256": "4fd8619524f893552b0fc2494ae13eaf3c3a4fcea8bba5de03149fcdbc40e4c5",
+  "authored_archive_sha256": "9d78ff8ac5fd43aa240f1b0e8b33e2e6ef257f1f5f5f74f90958e5285d970f47",
+  "artifact_bindings_match": true,
+  "no_calc_rerun": true,
+  "limitations": [
+    "No Calc rerun; historical execution verified through bound command logs and output metadata, not independently re-executed.",
+    "Current raw input SHAs match recorded before and after; historical temporal state cannot be recreated.",
+    "P13 designated D/F/G/I context inputs are present in run_calc.py but omitted from fixtures.json; their exact values were independently checked.",
+    "No PDF/layout/legal/currentness/human Excel/Microsoft Excel compatibility/SaleReady acceptance.",
+    "No network, OpenRouter, DC, Git writes or GitHub comments used by reviewer."
+  ]
+}

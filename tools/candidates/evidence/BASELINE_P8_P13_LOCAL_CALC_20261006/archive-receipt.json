@@ -1,0 +1,36 @@
+{
+  "status": "ARCHIVE_VERIFIED",
+  "created_at": "2026-10-06T06:44:09.347124+00:00",
+  "base_sha": "e66432d9612c00389101587e472bfb49a958c60e",
+  "source_commit": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "archive": {
+    "path": "evidence.zip",
+    "size_bytes": 157297,
+    "sha256": "9d78ff8ac5fd43aa240f1b0e8b33e2e6ef257f1f5f5f74f90958e5285d970f47",
+    "members": 21
+  },
+  "acceptance": [
+    "20 authored manifest entries exact SHA256 and size",
+    "21 archive members exact byte equality and CRC",
+    "2 original sources current SHA256 equal passport pins"
+  ],
+  "independent_acceptance": "NOT_RETRIEVED_YET",
+  "scope": "Numeric Calc fixtures and archival preservation only; no product edits, Excel visual/native Excel/legal/release acceptance",
+  "model_api_calls": 0,
+  "claims_excluded": [
+    "SaleReady",
+    "Microsoft Excel compatibility",
+    "full visual PASS",
+    "legal/currentness acceptance"
+  ],
+  "task_passport": {
+    "primary_result": "Durable exact archive of completed P8/P13 local Calc scenario evidence",
+    "execution_pattern": "one_shot",
+    "feedback_loop_required": false,
+    "checkpoint_policy": "none",
+    "scope": "tools/candidates/evidence/BASELINE_P8_P13_LOCAL_CALC_20261006/",
+    "executor": "Python standard library + GitHub APIs",
+    "acceptance": "local SHA/member checks then exact remote blob/readback",
+    "stop": "Missing input or hash mismatch; no blind native git push retry"
+  }
+}

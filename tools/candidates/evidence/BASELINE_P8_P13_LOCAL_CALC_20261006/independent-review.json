@@ -1,0 +1,260 @@
+{
+  "verdict": "ACCEPT",
+  "scope": "Restricted numerical cached Calc fixture evidence P8/P13 only",
+  "reviewer": "baseline_calc_independent; not author",
+  "execution_pattern": "one_shot",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "none",
+  "source_commit": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "fresh_read_only_reverification": true,
+  "verification_command": "python - (inline stdlib/openpyxl independent verifier; no execution of run_calc.py; no Calc rerun)",
+  "verification_exit_code": 0,
+  "manifest": {
+    "path": "/workspace/scratch/f25d74acc3f7/baseline-calc-local/artifact-manifest.json",
+    "sha256": "45a535a29ca329d151499e5f3bf7e504f33ce53273f8facc8cf5a9a52fc1bd58",
+    "members_verified": 20,
+    "full_membership_verified": true
+  },
+  "artifact_bindings": [
+    {
+      "relative_path": "02-kalkulyator-usloviy-avansa.xlsx.cells.txt",
+      "size_bytes": 158212,
+      "sha256": "90a0ab708dfc0ae7633ff51b40353dc3cdc7aee52775ed6b11ebd324fd9f98d6"
+    },
+    {
+      "relative_path": "63-reestr-zatrat-po-obektu.xlsx.cells.txt",
+      "size_bytes": 9288,
+      "sha256": "69940f8b86d7856625f3a336eab0e4814fc4ec4fdef018b22e730b351ceb3c6d"
+    },
+    {
+      "relative_path": "REPORT.md",
+      "size_bytes": 6934,
+      "sha256": "a1390f22d3578cf5a648fba709edb83fb3eb04c8450251e8c3490cb4643872b7"
+    },
+    {
+      "relative_path": "actual.json",
+      "size_bytes": 11622,
+      "sha256": "dc0859d0ea4998db157a84c2ac78ff887ff1ba1be3a6e8a5fa6b96c5e05a3010"
+    },
+    {
+      "relative_path": "checks.json",
+      "size_bytes": 108773,
+      "sha256": "4bd73d49e34b87e9976fbc2599692b62e124e22c49510b5b43fee2831e13f2e3"
+    },
+    {
+      "relative_path": "expected.json",
+      "size_bytes": 13820,
+      "sha256": "477c58ec8971b74448ff5c258a60b416dc5b17054c38543603e02659d1887c09"
+    },
+    {
+      "relative_path": "fixtures/p13-positive.xlsx",
+      "size_bytes": 11498,
+      "sha256": "368a01ea65e7eca3fa2dbeeed0c91ed71804c19f7d97ef0cb5aea677fe686b9c"
+    },
+    {
+      "relative_path": "fixtures/p13-zero-profit.xlsx",
+      "size_bytes": 11495,
+      "sha256": "22ffdd54ff8a47d3a3909425fc1bfe6d294bdce29435cff411c1c065caf672c4"
+    },
+    {
+      "relative_path": "fixtures/p8-four-month.xlsx",
+      "size_bytes": 39366,
+      "sha256": "bce50b5ffcc4c2b6ef8d184e410e06f3389b23b12719a7f8b1db2120981d0a86"
+    },
+    {
+      "relative_path": "fixtures.json",
+      "size_bytes": 2083,
+      "sha256": "b48d5bd9cf40c7f021fb4be52dcf4558d82c0e107afa2f4e7a8dc2ae83ed4a59"
+    },
+    {
+      "relative_path": "formula-and-error-proof.json",
+      "size_bytes": 736,
+      "sha256": "bcb74ac82ea68565c08ea1d0e1978ec9faa64ec6cff3b375366fd50a7eb6fb4a"
+    },
+    {
+      "relative_path": "p13-command.json",
+      "size_bytes": 1097,
+      "sha256": "9175868aa46311dc5ea80ac77698f38d7f8712e881d9f6ec6105163eb5056807"
+    },
+    {
+      "relative_path": "p13-output/p13-positive.xlsx",
+      "size_bytes": 12575,
+      "sha256": "5929c109a01d61c01a0e5bfbfdec566e21ccd6a0f0bab465ccbde64d41233ecc"
+    },
+    {
+      "relative_path": "p13-output/p13-zero-profit.xlsx",
+      "size_bytes": 12575,
+      "sha256": "006a7b68b53b4c40f1c952f89a697e892f3a08877f5b221eee790099c237b418"
+    },
+    {
+      "relative_path": "p8-command.json",
+      "size_bytes": 773,
+      "sha256": "c72303fa12a673d9f0b5a6faea34c28ad6f565da09255478a8368b3a6e2552eb"
+    },
+    {
+      "relative_path": "p8-output/p8-four-month.xlsx",
+      "size_bytes": 41420,
+      "sha256": "cad00dde1a351c16951b31fcc8fa3095465e0c5d06df2a37e68245683def8bfd"
+    },
+    {
+      "relative_path": "passport.json",
+      "size_bytes": 1884,
+      "sha256": "5ff7cbca6606ae89fb4a9f7ba123e43c15551c623bcb3d96816dd07763e1e003"
+    },
+    {
+      "relative_path": "receipt.json",
+      "size_bytes": 3004,
+      "sha256": "1d0eecb1cf062de5030199e1391eaa6deb0a8388c317ce909e7240216e7974cf"
+    },
+    {
+      "relative_path": "run_calc.py",
+      "size_bytes": 7727,
+      "sha256": "912cb8a9063b93e093f46530e7854dba4e375349b52341fe49627025092afaff"
+    },
+    {
+      "relative_path": "source-preservation.json",
+      "size_bytes": 601,
+      "sha256": "dd203e901f720fc98f999627bacb89e1ae8bbb0dc69a7df7c60235a23438d710"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/02-kalkulyator-usloviy-avansa.xlsx",
+      "sha256": "079535ecc577dc0a7396cb6d122e5060e6121fa60d9d024763c153fd2bf304ec"
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/63-reestr-zatrat-po-obektu.xlsx",
+      "sha256": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2"
+    }
+  ],
+  "formula_preservation": [
+    {
+      "fixture": "p8-four-month",
+      "formula_count": 1178,
+      "designated_input_differences": 104
+    },
+    {
+      "fixture": "p13-positive",
+      "formula_count": 2,
+      "designated_input_differences": 16
+    },
+    {
+      "fixture": "p13-zero-profit",
+      "formula_count": 2,
+      "designated_input_differences": 16
+    }
+  ],
+  "cached_expected_comparisons": 780,
+  "cached_nonempty_cells_scanned": 1848,
+  "cached_error_cells": 0,
+  "independent_p8_ledgers": [
+    {
+      "profile": "Профиль А",
+      "commission": 900.0,
+      "retention": 5000.0,
+      "total_cost": 85900.0,
+      "max_cash_gap": 36400.0,
+      "max_gap_month": 3,
+      "negative_months": 3,
+      "closing_balance": 14100.0,
+      "first_six_balances": [
+        100.0,
+        -17400.0,
+        -36400.0,
+        -16900.0,
+        9100.0,
+        14100.0
+      ]
+    },
+    {
+      "profile": "Профиль Б",
+      "commission": 0.0,
+      "retention": 5000.0,
+      "total_cost": 85000.0,
+      "max_cash_gap": 56500.0,
+      "max_gap_month": 3,
+      "negative_months": 4,
+      "closing_balance": 15000.0,
+      "first_six_balances": [
+        -29000.0,
+        -43500.0,
+        -56500.0,
+        -28000.0,
+        10000.0,
+        15000.0
+      ]
+    }
+  ],
+  "independent_p13_arithmetic": [
+    {
+      "fixture": "p13-positive",
+      "sum": 45000,
+      "ratio_cached": 0.75
+    },
+    {
+      "fixture": "p13-zero-profit",
+      "sum": 45000,
+      "ratio_cached": null
+    }
+  ],
+  "recorded_calc_commands": [
+    {
+      "command": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f25d74acc3f7/baseline-calc-local/p8-profile",
+        "--headless",
+        "--convert-to",
+        "xlsx:Calc MS Excel 2007 XML",
+        "--outdir",
+        "/workspace/scratch/f25d74acc3f7/baseline-calc-local/p8-output",
+        "/workspace/scratch/f25d74acc3f7/baseline-calc-local/fixtures/p8-four-month.xlsx"
+      ],
+      "started_monotonic": 47091.733914877,
+      "returncode": 0,
+      "stdout": "convert /workspace/scratch/f25d74acc3f7/baseline-calc-local/fixtures/p8-four-month.xlsx as a Calc document -> /workspace/scratch/f25d74acc3f7/baseline-calc-local/p8-output/p8-four-month.xlsx using filter : Calc MS Excel 2007 XML\n",
+      "stderr": "",
+      "status": "PROCESS_EXITED",
+      "duration_seconds": 10.165345552006329
+    },
+    {
+      "command": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f25d74acc3f7/baseline-calc-local/p13-profile",
+        "--headless",
+        "--convert-to",
+        "xlsx:Calc MS Excel 2007 XML",
+        "--outdir",
+        "/workspace/scratch/f25d74acc3f7/baseline-calc-local/p13-output",
+        "/workspace/scratch/f25d74acc3f7/baseline-calc-local/fixtures/p13-positive.xlsx",
+        "/workspace/scratch/f25d74acc3f7/baseline-calc-local/fixtures/p13-zero-profit.xlsx"
+      ],
+      "started_monotonic": 47091.734110746,
+      "returncode": 0,
+      "stdout": "convert /workspace/scratch/f25d74acc3f7/baseline-calc-local/fixtures/p13-positive.xlsx as a Calc document -> /workspace/scratch/f25d74acc3f7/baseline-calc-local/p13-output/p13-positive.xlsx using filter : Calc MS Excel 2007 XML\nconvert /workspace/scratch/f25d74acc3f7/baseline-calc-local/fixtures/p13-zero-profit.xlsx as a Calc document -> /workspace/scratch/f25d74acc3f7/baseline-calc-local/p13-output/p13-zero-profit.xlsx using filter : Calc MS Excel 2007 XML\n",
+      "stderr": "",
+      "status": "PROCESS_EXITED",
+      "duration_seconds": 19.627481249000994
+    }
+  ],
+  "output_producer_metadata": [
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-calc-local/p8-output/p8-four-month.xlsx",
+      "producer": "LibreOfficeDev/26.8.0.0.alpha0$Linux_X86_64 LibreOffice_project/2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-calc-local/p13-output/p13-positive.xlsx",
+      "producer": "LibreOfficeDev/26.8.0.0.alpha0$Linux_X86_64 LibreOffice_project/2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-calc-local/p13-output/p13-zero-profit.xlsx",
+      "producer": "LibreOfficeDev/26.8.0.0.alpha0$Linux_X86_64 LibreOffice_project/2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+    }
+  ],
+  "limitations": [
+    "No Calc rerun; historical execution verified through bound command logs and output metadata, not independently re-executed.",
+    "Current raw input SHAs match recorded before and after; historical temporal state cannot be recreated.",
+    "P13 designated D/F/G/I context inputs are present in run_calc.py but omitted from fixtures.json; their exact values were independently checked.",
+    "No PDF/layout/legal/currentness/human Excel/Microsoft Excel compatibility/SaleReady acceptance.",
+    "No network, OpenRouter, DC, Git writes or GitHub comments used by reviewer."
+  ]
+}
