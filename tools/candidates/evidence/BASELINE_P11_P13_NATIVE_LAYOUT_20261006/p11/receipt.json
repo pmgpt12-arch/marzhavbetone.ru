@@ -1,0 +1,109 @@
+{
+  "task_id": "p11-native-docx-layout-264d75-20261006",
+  "source": {
+    "path": "products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+    "relative_name": "52-chek-list-raschet-metrami.docx",
+    "git_blob": "22d1f3e17fc8d845d399f8b9b50d2fceb757a3e0",
+    "sha256": "a195a5db3960c9187cebebce240ddcb966b96e52b555122b9102ffac1fa50a7f",
+    "size": 12118,
+    "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+    "local_path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+    "observed_sha256": "a195a5db3960c9187cebebce240ddcb966b96e52b555122b9102ffac1fa50a7f",
+    "observed_git_blob": "22d1f3e17fc8d845d399f8b9b50d2fceb757a3e0"
+  },
+  "source_before": "a195a5db3960c9187cebebce240ddcb966b96e52b555122b9102ffac1fa50a7f",
+  "started_utc": "2026-10-06T06:45:27.061337+00:00",
+  "commands": [
+    {
+      "argv": [
+        "soffice",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5\n\n",
+      "stderr": "",
+      "seconds": 0.12990203499794006
+    },
+    {
+      "argv": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p11/profile",
+        "--headless",
+        "--convert-to",
+        "pdf",
+        "--outdir",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p11",
+        "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx"
+      ],
+      "exit_code": 0,
+      "stdout": "convert /workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx as a Writer document -> /workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p11/52-chek-list-raschet-metrami.pdf using filter : writer_pdf_Export\n",
+      "stderr": "",
+      "seconds": 0.3127257800006191
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p11/52-chek-list-raschet-metrami.pdf",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p11/pdf-text.txt"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "seconds": 0.015055367999593727
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-scale-to",
+        "1600",
+        "-png",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p11/52-chek-list-raschet-metrami.pdf",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p11/page"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "seconds": 0.7039855250041
+    }
+  ],
+  "status": "SCOPED_LOCAL_LAYOUT_EVIDENCE_READY_FOR_INDEPENDENT_REVIEW",
+  "source_writes": 0,
+  "api_usd": 0,
+  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "pages": 3,
+  "png_validation": [
+    {
+      "path": "page-1.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "format": "PNG",
+      "sha256": "13b9390c4c1b3fbb36b529c0cf3c7ca9d0944055d3af53291eaff80199b887f0"
+    },
+    {
+      "path": "page-2.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "format": "PNG",
+      "sha256": "cd9ee516b3b51387a60702836a62dc4e3e8cbd8441e5812190cbf1c9de5034a2"
+    },
+    {
+      "path": "page-3.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "format": "PNG",
+      "sha256": "0c9618c455ac8da7cc66f34755ef43949a9fb842fc914f04689b7bc008eb4024"
+    }
+  ],
+  "units_checked": 50,
+  "unmatched_count": 0,
+  "source_after": "a195a5db3960c9187cebebce240ddcb966b96e52b555122b9102ffac1fa50a7f",
+  "finished_utc": "2026-10-06T06:45:28.305869+00:00",
+  "visual_review": "VISUAL_REVIEW_COMPLETE_WITH_FINDINGS"
+}

@@ -1,0 +1,127 @@
+{
+  "task_id": "p13-native-docx-layout-264d75-20261006",
+  "source": {
+    "path": "products-storage/16-chto-v-smete-ne-oplatyat/62-chek-list-vypadayushchih-zatrat.docx",
+    "relative_name": "62-chek-list-vypadayushchih-zatrat.docx",
+    "git_blob": "f4e36c57d2c3c4608896c112e2b25b29889bf7d7",
+    "sha256": "3b7d9341a7b435a0abdbb6a7bc4e15050a656d326dfb1ef5789c5a3f72770cd7",
+    "size": 41020,
+    "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+    "local_path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/16-chto-v-smete-ne-oplatyat/62-chek-list-vypadayushchih-zatrat.docx",
+    "observed_sha256": "3b7d9341a7b435a0abdbb6a7bc4e15050a656d326dfb1ef5789c5a3f72770cd7",
+    "observed_git_blob": "f4e36c57d2c3c4608896c112e2b25b29889bf7d7"
+  },
+  "source_before": "3b7d9341a7b435a0abdbb6a7bc4e15050a656d326dfb1ef5789c5a3f72770cd7",
+  "started_utc": "2026-10-06T06:45:27.062199+00:00",
+  "commands": [
+    {
+      "argv": [
+        "soffice",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5\n\n",
+      "stderr": "",
+      "seconds": 0.1237980849982705
+    },
+    {
+      "argv": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p13/profile",
+        "--headless",
+        "--convert-to",
+        "pdf",
+        "--outdir",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p13",
+        "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/16-chto-v-smete-ne-oplatyat/62-chek-list-vypadayushchih-zatrat.docx"
+      ],
+      "exit_code": 0,
+      "stdout": "convert /workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/16-chto-v-smete-ne-oplatyat/62-chek-list-vypadayushchih-zatrat.docx as a Writer document -> /workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p13/62-chek-list-vypadayushchih-zatrat.pdf using filter : writer_pdf_Export\n",
+      "stderr": "",
+      "seconds": 0.3986348820035346
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p13/62-chek-list-vypadayushchih-zatrat.pdf",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p13/pdf-text.txt"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "seconds": 0.019606086003477685
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-scale-to",
+        "1600",
+        "-png",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p13/62-chek-list-vypadayushchih-zatrat.pdf",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p13/page"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "seconds": 1.3675367120013107
+    }
+  ],
+  "status": "STOP_P13_MISSING_CHECKBOX_NO_RETRY",
+  "source_writes": 0,
+  "api_usd": 0,
+  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "pages": 5,
+  "png_validation": [
+    {
+      "path": "page-1.png",
+      "size": [
+        1237,
+        1600
+      ],
+      "format": "PNG",
+      "sha256": "78c55311679fbda050bcd3b06a5939d8b39087036c891e97d89a7e047a25f864"
+    },
+    {
+      "path": "page-2.png",
+      "size": [
+        1237,
+        1600
+      ],
+      "format": "PNG",
+      "sha256": "3924ca96580e9996ac739c0f552a30301750626a5abd530db3a2dc912396b3cf"
+    },
+    {
+      "path": "page-3.png",
+      "size": [
+        1237,
+        1600
+      ],
+      "format": "PNG",
+      "sha256": "050a4b2341aa471da3754e2cef0bb236afd1ca51394592cf179a4044fccaf7ae"
+    },
+    {
+      "path": "page-4.png",
+      "size": [
+        1237,
+        1600
+      ],
+      "format": "PNG",
+      "sha256": "d251ff8c32ae0c58cbb2e12618a1bfd95107af5173acbdf009b45e7bd10a5f31"
+    },
+    {
+      "path": "page-5.png",
+      "size": [
+        1237,
+        1600
+      ],
+      "format": "PNG",
+      "sha256": "8dfcb83cfb12a7a3c9d62823ae502228f067beeda4133391f617d791018b0c97"
+    }
+  ],
+  "units_checked": 93,
+  "unmatched_count": 1,
+  "source_after": "3b7d9341a7b435a0abdbb6a7bc4e15050a656d326dfb1ef5789c5a3f72770cd7",
+  "finished_utc": "2026-10-06T06:45:29.093350+00:00",
+  "visual_review": "BLOCKED_EXACT_TEXT_COVERAGE_FINDING_PRESERVED"
+}
