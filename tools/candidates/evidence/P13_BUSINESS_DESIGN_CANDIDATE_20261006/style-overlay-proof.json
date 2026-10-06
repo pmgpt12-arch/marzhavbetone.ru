@@ -1,0 +1,48 @@
+{
+  "status": "NATIVE_STYLE_ONLY_PRESERVATION_PASS",
+  "source_sha256": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2",
+  "candidate_sha256": "643ec9ffd2ab6d3285445ae3d2dfc93db470ef4661db41f30d5fedbb1d3df968",
+  "reference_sha256": "93252d5711cbbd33e682b3f9400fe6ee9aa9ed02c49cf8302ae89976ffc20d77",
+  "applied_cells": 544,
+  "checks": [
+    {
+      "part": "docProps/app.xml",
+      "exact_bytes": true
+    },
+    {
+      "part": "docProps/core.xml",
+      "exact_bytes": true
+    },
+    {
+      "part": "xl/theme/theme1.xml",
+      "exact_bytes": true
+    },
+    {
+      "part": "xl/worksheets/sheet1.xml",
+      "non_style_xml_exact": true
+    },
+    {
+      "part": "xl/worksheets/sheet2.xml",
+      "non_style_xml_exact": true
+    },
+    {
+      "part": "_rels/.rels",
+      "exact_bytes": true
+    },
+    {
+      "part": "xl/workbook.xml",
+      "exact_bytes": true
+    },
+    {
+      "part": "xl/_rels/workbook.xml.rels",
+      "exact_bytes": true
+    },
+    {
+      "part": "[Content_Types].xml",
+      "exact_bytes": true
+    }
+  ],
+  "no_new_cells": true,
+  "numformat_protection_semantics_same": true,
+  "source_unchanged": true
+}
