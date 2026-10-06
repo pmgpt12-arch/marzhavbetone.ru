@@ -1,0 +1,80 @@
+{
+  "status": "NATIVE_STYLE_ONLY_PRESERVATION_PASS",
+  "source_sha256": "079535ecc577dc0a7396cb6d122e5060e6121fa60d9d024763c153fd2bf304ec",
+  "candidate_sha256": "fb57a77325aec6a998a7161cbdb218369ce87f63c92426ef9f27b967c19434da",
+  "reference_sha256": "93252d5711cbbd33e682b3f9400fe6ee9aa9ed02c49cf8302ae89976ffc20d77",
+  "applied_cells": 1280,
+  "checks": [
+    {
+      "part": "docProps/app.xml",
+      "exact_bytes": true
+    },
+    {
+      "part": "docProps/core.xml",
+      "exact_bytes": true
+    },
+    {
+      "part": "xl/theme/theme1.xml",
+      "exact_bytes": true
+    },
+    {
+      "part": "xl/worksheets/sheet1.xml",
+      "non_style_xml_exact": true
+    },
+    {
+      "part": "xl/comments/comment1.xml",
+      "exact_bytes": true
+    },
+    {
+      "part": "xl/drawings/commentsDrawing1.vml",
+      "exact_bytes": true
+    },
+    {
+      "part": "xl/worksheets/_rels/sheet1.xml.rels",
+      "non_style_xml_exact": true
+    },
+    {
+      "part": "xl/worksheets/sheet2.xml",
+      "non_style_xml_exact": true
+    },
+    {
+      "part": "xl/worksheets/sheet3.xml",
+      "non_style_xml_exact": true
+    },
+    {
+      "part": "xl/worksheets/sheet4.xml",
+      "non_style_xml_exact": true
+    },
+    {
+      "part": "xl/worksheets/sheet5.xml",
+      "non_style_xml_exact": true
+    },
+    {
+      "part": "xl/worksheets/sheet6.xml",
+      "non_style_xml_exact": true
+    },
+    {
+      "part": "xl/worksheets/sheet7.xml",
+      "non_style_xml_exact": true
+    },
+    {
+      "part": "_rels/.rels",
+      "exact_bytes": true
+    },
+    {
+      "part": "xl/workbook.xml",
+      "exact_bytes": true
+    },
+    {
+      "part": "xl/_rels/workbook.xml.rels",
+      "exact_bytes": true
+    },
+    {
+      "part": "[Content_Types].xml",
+      "exact_bytes": true
+    }
+  ],
+  "no_new_cells": true,
+  "numformat_protection_semantics_same": true,
+  "source_unchanged": true
+}
