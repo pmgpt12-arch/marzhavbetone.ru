@@ -1,0 +1,47 @@
+{
+  "status": "LOCAL_CANDIDATE_GLYPH_GATE_PASS_PENDING_INDEPENDENT_REVIEW",
+  "pages_visually_inspected": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "observed_fact": "First checkbox is visible, Бытовка word no longer shows spurious initial gap; all62 checkbox symbols and93native text units present. No clipped or overlapping content observed. Pagecount remains5.",
+  "limits": "Local LibreOfficeDev26.8 only. Exact internal causal mechanism remains unresolved; candidate changes no source or semantic text. Native Word/server/layout acceptance must remain separately scoped.",
+  "unchanged_pages": [
+    {
+      "page": "page-1.png",
+      "pixel_equal": false,
+      "pixel_difference_bbox": [
+        182,
+        1277,
+        994,
+        1380
+      ]
+    },
+    {
+      "page": "page-2.png",
+      "pixel_equal": true,
+      "pixel_difference_bbox": null
+    },
+    {
+      "page": "page-3.png",
+      "pixel_equal": true,
+      "pixel_difference_bbox": null
+    },
+    {
+      "page": "page-4.png",
+      "pixel_equal": true,
+      "pixel_difference_bbox": null
+    },
+    {
+      "page": "page-5.png",
+      "pixel_equal": true,
+      "pixel_difference_bbox": null
+    }
+  ],
+  "source_changed": false,
+  "writer_calls": 1,
+  "api_usd": 0
+}
