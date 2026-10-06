@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "status": "OWNER_REVIEW_ACCEPTED_NO_REMARKS",
+  "owner_statement": {
+    "text": "Проверил, замечаний нет",
+    "received_at": "2026-10-06T08:49:09+07:00",
+    "scope": "Два исправленных Excel-файла из отправленного архива; проверка владельцем в настоящем Excel"
+  },
+  "reviewed_archive": {
+    "name": "Excel_wording_review_2026-10-05.zip",
+    "library_file_id": "libfile_53b204c5eb0c8191b861c4adebed5273"
+  },
+  "source": {
+    "repository": "pmgpt12-arch/marzhavbetone.ru",
+    "commit": "78934a7198263d5123bda20e2081ffe2ffbc3ef1",
+    "reference": "tools/candidates/evidence/S1_EXCEL_WORDING_OVERLAY_20261005/actual-build-proof.json"
+  },
+  "accepted_files": [
+    {
+      "path": "tools/candidates/s1-oplata-za-raboty/02-proverka-i-kontrol-otveta.xlsx",
+      "sha256": "5918714b4e4e95abc546e1fe7a43f515af50680ecf75352a2949a2ebecac47f0",
+      "git_blob": "1018d5e76e17a419fbec6338c9e19c8fbecb7bd3",
+      "size_bytes": 27364
+    },
+    {
+      "path": "tools/candidates/s1-oplata-za-raboty/08-raschet-procentov-395.xlsx",
+      "sha256": "e0ed0206c17f1b3638bba14dd472c3acad0da80c87dd640169e9c094dec266b4",
+      "git_blob": "0cabf395cfcd0d3624226c5311e39bb937e628a0",
+      "size_bytes": 474471
+    }
+  ],
+  "verification": {
+    "environment": "ChatGPT execution workspace; not ai-workstation",
+    "method": "GitHub exact-commit base64 download; Git blob SHA-1 and raw SHA-256/size independently recomputed with Python",
+    "source_bytes_changed": false,
+    "model_api_calls": 0
+  },
+  "existing_server_receipt": {
+    "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/owner-excel-review-20261006/s1-02-08-owner-acceptance.json",
+    "sha256": "172fdadab5996b003aa8b873e3b53ef0c0ef21ca5946d803858b918ad479c307",
+    "verification": "Сохранение было подтверждено в предшествующей сессии; повторное чтение сервера в этой задаче не выполнялось"
+  },
+  "boundaries": {
+    "official_currentness": "NOT_VERIFIED",
+    "human_legal": "NOT_PERFORMED",
+    "full_product_acceptance": "NOT_CLAIMED",
+    "release": "NOT_AUTHORIZED_BY_THIS_RECEIPT",
+    "sale_ready": false,
+    "new_business_design_acceptance": "NOT_COVERED",
+    "approval_invalidated_if_reviewed_bytes_change": true
+  },
+  "task_passport": {
+    "primary_result": "Точная документальная запись приёмки владельцем двух SHA-bound Excel-файлов",
+    "execution_pattern": "one_shot",
+    "feedback_loop_required": false,
+    "checkpoint_policy": "none",
+    "scope": "Только новый receipt; существующие исторические proof/receipt и продуктовые файлы не изменять",
+    "acceptance": "Два Git blob и SHA256/size совпадают с точной базой и actual-build-proof; цитата/время решения присутствуют; release/legal/design gates остаются открыты",
+    "stop": "Несовпадение hash/архива/входа; комментарий владельца не распространяется на другие bytes"
+  }
+}
