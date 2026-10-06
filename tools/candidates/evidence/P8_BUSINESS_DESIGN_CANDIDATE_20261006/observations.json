@@ -1,0 +1,68 @@
+{
+  "status": "STYLE_ONLY_NUMERIC_CANDIDATE_READY_PRINT_STOP",
+  "pages_overview_inspected": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "detail_pages_inspected": [
+    1,
+    25,
+    29
+  ],
+  "native_style_preservation": "PASS all nonstyle worksheet XML and native print/layout settings exact source",
+  "numeric": "776 expected checks PASS; all 1178 Calc formulas equal accepted retained Calc output; raw candidate formulas exact source",
+  "legend": "Source input blue, reference green, status red and color legend text retained; input fill reference muted yellow-gold",
+  "findings": [
+    {
+      "id": "P8-PRINT-01",
+      "class": "FULL_NATIVE_PRINT_READABILITY_NOT_ACCEPTED",
+      "observed_fact": "Native default PDF is 31 pages. Source widths/print settings retained. Wide sheets split horizontally: Условия pages1–4, profiles 8 pages each, comparison 3 pages, guidance 2 pages. Headers/instructions fragmented across pages; unsuitable as compact buyer handout.",
+      "attribution": "Not attributed to style overlay: print settings unchanged, no original native PDF baseline rendered in this task.",
+      "next_task": "Separate print/layout candidate scope with print fit and content preservation gates"
+    },
+    {
+      "id": "P8-TEXT-01",
+      "class": "PDF_SENTENCE_COVERAGE_UNRESOLVED",
+      "observed_fact": "225 static strings checked; 26 normalized sentence containment mismatches. Horizontal pagination/extraction reading order may cause mismatch; native XML exact but full PDF text coverage not accepted.",
+      "next_task": "Inspect 26 exact locators in separate print scope; keep gate"
+    }
+  ],
+  "limits": [
+    "Full print acceptance STOP",
+    "Native Excel owner review pending",
+    "Legal/financial/currentness not covered",
+    "SaleReady false",
+    "Full compact summary not implemented"
+  ],
+  "source_changed": false,
+  "api_usd": 0
+}
