@@ -1,0 +1,259 @@
+{
+  "verdict": "ACCEPT_HISTORICAL_HANDOFF_EVIDENCE",
+  "reviewed_at_utc": "2026-10-06T07:00:34.614830+00:00",
+  "repository": "pmgpt12-arch/marzhavbetone.ru",
+  "pr": 493,
+  "head": "ac18a6d1a499e31300e76de0e6c23a8024e45445",
+  "working_base": "9fa5bcd0e7e6c8a11be41c7642f8ffc74e50cb92",
+  "execution_pattern": "one_shot",
+  "primary_result": "PR493_exact_head_independent_handoff_review",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "checks": [
+    {
+      "check": "exact_API_head_base",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "actual_PR_three_dot10added0modified0removed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "merge_base_proven_actual",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "GitHub_testmerge_two_correct_parents",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "testmerge_preserves_all_existing_base_paths",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "reviewer_byte_identity_tools/candidates/evidence/DAYWORK_HANDOFF_20261006/docx-review/remote-entries.json",
+      "passed": true,
+      "detail": {
+        "source": "/workspace/scratch/f25d74acc3f7/docx-persistence-independent-20261006/remote-entries.json",
+        "sha256": "241045b350d499ba6181b89674825601c8577b72c84e3491b98a3e105624f6ae",
+        "git_blob": "6c60035a666a23fc2ccb94ab3788debf4808e451"
+      }
+    },
+    {
+      "check": "reviewer_byte_identity_tools/candidates/evidence/DAYWORK_HANDOFF_20261006/docx-review/technical-checks.json",
+      "passed": true,
+      "detail": {
+        "source": "/workspace/scratch/f25d74acc3f7/docx-persistence-independent-20261006/technical-checks.json",
+        "sha256": "2839aea3cbf42b904c1279f8fd70b30f3ec180f9c1ec6e444a6e9b788f2ec6ec",
+        "git_blob": "ebba0599a34be44656f5c0127742a537f06d2f9c"
+      }
+    },
+    {
+      "check": "reviewer_byte_identity_tools/candidates/evidence/DAYWORK_HANDOFF_20261006/docx-review/verdict.json",
+      "passed": true,
+      "detail": {
+        "source": "/workspace/scratch/f25d74acc3f7/docx-persistence-independent-20261006/verdict.json",
+        "sha256": "7abb8a9c1c09ea484795930dff26041bafdcd3d52ae942aeed22aaccf6dbd8d3",
+        "git_blob": "fde64bfac921c3a04069915abb6dcaae598c4bfd"
+      }
+    },
+    {
+      "check": "reviewer_byte_identity_tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p11-p13-layout-independent-20261006/remote-entries.json",
+      "passed": true,
+      "detail": {
+        "source": "/workspace/scratch/f25d74acc3f7/p11-p13-layout-independent-20261006/remote-entries.json",
+        "sha256": "f09f0be978b50664ddc070e0fae1dffc236eae22baca7dbc2c80155b44e80e14",
+        "git_blob": "dc43fbb03e3846f32a4490119eb38a72494782af"
+      }
+    },
+    {
+      "check": "reviewer_byte_identity_tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p11-p13-layout-independent-20261006/technical-checks.json",
+      "passed": true,
+      "detail": {
+        "source": "/workspace/scratch/f25d74acc3f7/p11-p13-layout-independent-20261006/technical-checks.json",
+        "sha256": "8c15169c128875bbec7ff15e847e95ea44c9fb6c1f965488454244d394ee912d",
+        "git_blob": "33285333719502f4b64b6defdf8e9b307888a46f"
+      }
+    },
+    {
+      "check": "reviewer_byte_identity_tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p11-p13-layout-independent-20261006/verdict.json",
+      "passed": true,
+      "detail": {
+        "source": "/workspace/scratch/f25d74acc3f7/p11-p13-layout-independent-20261006/verdict.json",
+        "sha256": "f0a9c130529435cdf8aafc3031be10c14ca81609f789fd3db7bfafd0498208b9",
+        "git_blob": "3f1302f1c08f88a1ae7a794702530a799b329241"
+      }
+    },
+    {
+      "check": "reviewer_byte_identity_tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p8-p9-layout-independent-20261006/observations.json",
+      "passed": true,
+      "detail": {
+        "source": "/workspace/scratch/f25d74acc3f7/p8-p9-layout-independent-20261006/observations.json",
+        "sha256": "defa7a21bcd84cd5d56333033ca20c0e0cf5a0b0e2b6835218d3177734b58dca",
+        "git_blob": "0696a6c9fb895bb7d4fadcce34c9e27429237677"
+      }
+    },
+    {
+      "check": "reviewer_byte_identity_tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p8-p9-layout-independent-20261006/review.json",
+      "passed": true,
+      "detail": {
+        "source": "/workspace/scratch/f25d74acc3f7/p8-p9-layout-independent-20261006/review.json",
+        "sha256": "27cf168f2ea0e8c07c7b48875492cdf4e4be27162f248756e9ffc0c7669d2063",
+        "git_blob": "d3f759a13facb1f861363ddaedaee2f2a2a84d2e"
+      }
+    },
+    {
+      "check": "actual_remote_identity_tools/candidates/evidence/DAYWORK_HANDOFF_20261006/handoff.json",
+      "passed": true,
+      "detail": {
+        "sha256": "9a29881f4ec7d731f80bee70b1b6168df83752f90e961cd721ae53fc32f510e7",
+        "blob": "fa6d47c0c711f536d3ae9000c6eceeae6933807c",
+        "bytes": 2822
+      }
+    },
+    {
+      "check": "actual_remote_identity_tools/candidates/evidence/DAYWORK_HANDOFF_20261006/github-parallel-runs-20261006-1354.jpg",
+      "passed": true,
+      "detail": {
+        "sha256": "97437fe84eeb689971ffbcb6cb091cfa0f2717cb80e30d8da88037bde56262a1",
+        "blob": "e373998dd4529d69378a249611f9510709f69469",
+        "bytes": 120267
+      }
+    },
+    {
+      "check": "actual_API_merged_PR488",
+      "passed": true,
+      "detail": {
+        "source_head": "5e1996ea20c13f679c8d0de5299384d50571dfc1",
+        "merge_sha": "d1253839512daf9cd8bca71beef0d2426c766ea8",
+        "merged_at": "2026-10-06T06:50:14Z"
+      }
+    },
+    {
+      "check": "actual_API_merged_PR489",
+      "passed": true,
+      "detail": {
+        "source_head": "c6ab38ffe008666215369011d227c44574b50702",
+        "merge_sha": "9fa5bcd0e7e6c8a11be41c7642f8ffc74e50cb92",
+        "merged_at": "2026-10-06T06:52:38Z"
+      }
+    },
+    {
+      "check": "checkpoint_run_identity_37426119509",
+      "passed": true,
+      "detail": {
+        "run_id": 37426119509,
+        "head": "a6da16cbde8310505b40fc8f601ac64ea94738fc",
+        "repository": "pmgpt12-arch/ai-business-os",
+        "run_number": 8,
+        "fresh_status": "completed",
+        "fresh_conclusion": "failure",
+        "url": "https://github.com/pmgpt12-arch/ai-business-os/actions/runs/37426119509"
+      }
+    },
+    {
+      "check": "checkpoint_run_identity_37426345581",
+      "passed": true,
+      "detail": {
+        "run_id": 37426345581,
+        "head": "fac379d6b001881ff4549dc9e06e8e4ce98acb60",
+        "repository": "pmgpt12-arch/ai-business-os",
+        "run_number": 9,
+        "fresh_status": "completed",
+        "fresh_conclusion": "failure",
+        "url": "https://github.com/pmgpt12-arch/ai-business-os/actions/runs/37426345581"
+      }
+    },
+    {
+      "check": "simultaneous_observed_checkpoint_corresponds_to_actual_run_numbers8and9",
+      "passed": true,
+      "detail": {
+        "actual_API_possible_execution_overlap_utc": [
+          "2026-10-06T06:53:40Z",
+          "2026-10-06T06:55:17Z"
+        ],
+        "screenshot_actual_viewed": true,
+        "screenshot": "reviewed-screenshot.jpg",
+        "visible": "ai-business-os / Прогон команды #8 and #9 both In progress, P8/P13 branch prefixes",
+        "limitation": "API updated_at are terminal metadata bounds, not model inference overlap; screenshot contains no visible run IDs or absolute UTC clock"
+      }
+    },
+    {
+      "check": "RUNNING_is_explicit_checkpoint_not_current_fact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "P13_STOP_explicit_and_qualified",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "no_global_product_legal_currentness_release_acceptance",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "passed_checks": 23,
+  "failed_checks": 0,
+  "preserved_reviewer_files": 8,
+  "actual_changed_paths": 10,
+  "existing_files_changed_in_PR": 0,
+  "source_products_changed": false,
+  "merge_performed": false,
+  "screenshot_actually_viewed": true,
+  "historical_checkpoint_accepted": true,
+  "fresh_run_facts": [
+    {
+      "repository": "pmgpt12-arch/ai-business-os",
+      "run_id": 37426119509,
+      "head": "a6da16cbde8310505b40fc8f601ac64ea94738fc",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/pmgpt12-arch/ai-business-os/actions/runs/37426119509"
+    },
+    {
+      "repository": "pmgpt12-arch/ai-business-os",
+      "run_id": 37426345581,
+      "head": "fac379d6b001881ff4549dc9e06e8e4ce98acb60",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/pmgpt12-arch/ai-business-os/actions/runs/37426345581"
+    }
+  ],
+  "remarks": [],
+  "followup_metadata_revision_expected": "Root will explicitly add per-run repository/URL and terminal status, keeping the simultaneous RUNNING screenshot as historical evidence; fresh final handoff not accepted by this old-head review.",
+  "scope": "Preservation and historical factual handoff only; no source/Calc/render/model/product/legal/release acceptance rerun or new claim",
+  "negative_review_rule": {
+    "rule": "Do not classify absent files on an older feature branch as PR deletions from two-tree diff. Inspect merge-base/three-dot actual PR file statuses and test-merge preservation.",
+    "initial_false_alarm_disclosed": true,
+    "two_tree_comparison": {
+      "added": 10,
+      "removed": 9
+    },
+    "actual_PR_three_dot": {
+      "added": 10,
+      "modified": 0,
+      "removed": 0
+    },
+    "GitHub_testmerge": {
+      "sha": "5d68b7ad8e890765c30b359bd773f5beadcdb414",
+      "added": 10,
+      "modified": 0,
+      "removed": 0,
+      "working_branch_mutation": false
+    },
+    "corrected_classification": "NORMAL_OLDER_BRANCH_WITH_BASE_ADVANCEMENT_NOT_FILE_DELETION"
+  },
+  "artifact_hashes": {
+    "api-evidence.json": "a72c7a83bf53adfc2a2c1da301af0cec61e1df5b0e3f94f18d58d3e1e4b6dab0",
+    "reviewer-byte-identities.json": "deb99d6b5f8875d9f7a11b9cee48efef498b51b20b2b5db9dee930b4a1d38c57",
+    "reviewed-screenshot.jpg": "97437fe84eeb689971ffbcb6cb091cfa0f2717cb80e30d8da88037bde56262a1",
+    "passport.json": "93a0f701bcfeae65cda474d9bf887d3e61ad962a2f77314bcecc25c2d59768f5"
+  }
+}
