@@ -1,0 +1,1576 @@
+{
+  "verdict": "ACCEPT_PRINT_SCOPE_ONLY",
+  "author_pr": 496,
+  "author_head": "467b942c632cb00c431ae1c3d1394ce2b5249dfb",
+  "dependency": {
+    "pr": 494,
+    "head": "20188af5a9dd391d41256aac2118f0e632722d4a",
+    "style_acceptance": "ACCEPT_STYLE_ONLY_WITH_PRINT_STOP"
+  },
+  "observations": {
+    "native_part_checks": [
+      {
+        "part": "docProps/app.xml",
+        "nonprint_preservation": "PASS"
+      },
+      {
+        "part": "docProps/core.xml",
+        "nonprint_preservation": "PASS"
+      },
+      {
+        "part": "xl/theme/theme1.xml",
+        "nonprint_preservation": "PASS"
+      },
+      {
+        "part": "xl/worksheets/sheet1.xml",
+        "nonprint_preservation": "PASS"
+      },
+      {
+        "part": "xl/worksheets/sheet2.xml",
+        "nonprint_preservation": "PASS"
+      },
+      {
+        "part": "xl/styles.xml",
+        "nonprint_preservation": "PASS"
+      },
+      {
+        "part": "_rels/.rels",
+        "nonprint_preservation": "PASS"
+      },
+      {
+        "part": "xl/workbook.xml",
+        "nonprint_preservation": "PASS"
+      },
+      {
+        "part": "xl/_rels/workbook.xml.rels",
+        "nonprint_preservation": "PASS"
+      },
+      {
+        "part": "[Content_Types].xml",
+        "nonprint_preservation": "PASS"
+      }
+    ],
+    "literal_cell_coverage": [
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A1",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B1",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C1",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "D1",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "E1",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "F1",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "G1",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "H1",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "I1",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "J1",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A2",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B2",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C2",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A3",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B3",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C3",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A4",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B4",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C4",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A5",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B5",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C5",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A6",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B6",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C6",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A7",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B7",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C7",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A8",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B8",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C8",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A9",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B9",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C9",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A10",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B10",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C10",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A11",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B11",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C11",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A12",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B12",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C12",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A13",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B13",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C13",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A14",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B14",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C14",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A15",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B15",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C15",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A16",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B16",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C16",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A17",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B17",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C17",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A18",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B18",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C18",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A19",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B19",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C19",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A20",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B20",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C20",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A21",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B21",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C21",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A22",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B22",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C22",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A23",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B23",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C23",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A24",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B24",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C24",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A25",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B25",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C25",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A26",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B26",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C26",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A27",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B27",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C27",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A28",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B28",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C28",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A29",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B29",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C29",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A30",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B30",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C30",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A31",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B31",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C31",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A32",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B32",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C32",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A33",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B33",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C33",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A34",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B34",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C34",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A35",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B35",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C35",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A36",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B36",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C36",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A37",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B37",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C37",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A38",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B38",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C38",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A39",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B39",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C39",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A40",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B40",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C40",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A41",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B41",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C41",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A42",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B42",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C42",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A43",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B43",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C43",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A44",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B44",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C44",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A45",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B45",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C45",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A46",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B46",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C46",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A47",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B47",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C47",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A48",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B48",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C48",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A49",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B49",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C49",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A50",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B50",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C50",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A51",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B51",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C51",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "A52",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "B52",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C52",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C54",
+        "engines": [
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C55",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Реестр затрат",
+        "cell": "C56",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "A1",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "B1",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "A2",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "B2",
+        "engines": [
+          "PyMuPDF"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "A3",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "B3",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "A4",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "B4",
+        "engines": [
+          "PyMuPDF"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "A5",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "B5",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "A6",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "B6",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "A7",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "B7",
+        "engines": [
+          "PyMuPDF"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "A8",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "B8",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "A9",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      },
+      {
+        "sheet": "Как заполнять",
+        "cell": "B9",
+        "engines": [
+          "PyMuPDF",
+          "Poppler-layout"
+        ]
+      }
+    ],
+    "literal_cells": 184,
+    "pages": 3,
+    "minimum_font_size": 8.704999923706055,
+    "outside_bboxes": 0,
+    "png_bindings": [
+      {
+        "page": 1,
+        "sha256": "f1f678e37c8e0a9abd62f6a630d1c6f6768c51dabd71e9dc08c5216c42f78f44",
+        "pixel_equality_existing_pdf": true
+      },
+      {
+        "page": 2,
+        "sha256": "7d65dd7e157676a7f6f5691e9af41dd7a6a709ab7710c4f0fae09d4ffa59d15b",
+        "pixel_equality_existing_pdf": true
+      },
+      {
+        "page": 3,
+        "sha256": "6e5d3ec21f4ef3f3f722a4e6bc5ca0de71cf9c49bdc57dc67263a6305aa49c6d",
+        "pixel_equality_existing_pdf": true
+      }
+    ],
+    "manifest_members": 18,
+    "candidate_sha256": "2262235a4f2d3513bed99c58a261053181bf5510af684e9a22453ac529c63e52",
+    "source_sha256": "643ec9ffd2ab6d3285445ae3d2dfc93db470ef4661db41f30d5fedbb1d3df968",
+    "pdf_sha256": "a812aedf08f301ecbab3f60b96635ca3b2929aec2174ad96ace2b07090614eb3",
+    "office_reruns": 0,
+    "model_api_calls": 0
+  },
+  "source_print_native_changes": "Only declared pageSetup/pageSetUpPr/printArea/printTitles. All10ZIPparts nonprint bytes/nativeXML preserved; styles.xml exact. Existing cells/formulas/cache/text/protection/validation/dimensions unaffected.",
+  "pages_visually_reviewed": [
+    {
+      "page": 1,
+      "observation": "A3 landscape full10column registry51rows, no horizontal split or visible clipping; original header spacing compact."
+    },
+    {
+      "page": 2,
+      "observation": "A3 landscape repeated10column header plus summary. Deliberate vertical continuation, no horizontal split. Large unused space follows summary."
+    },
+    {
+      "page": 3,
+      "observation": "A4 landscape instruction labels and complete body together; readable, no overlap/clipping observed."
+    }
+  ],
+  "actual_checks": "python3 p13-print-independent-20261006/verify.py exit0; independent XML/ZIP, dualPDF extractors184cells, font>=8.705, bboxesinside, actualPNGpixels equal same existingPDF, finalhash manifests and archive CRC",
+  "render_scope": "One recordedsofficePDF export9.576s timeout45 in dedicatedprofile; noOffice/Calc rerun by reviewer",
+  "claims_excluded": [
+    "Native Microsoft Excel approval",
+    "legal/currentness",
+    "SaleReady",
+    "source/product replacement"
+  ],
+  "required_handoff": "Native Excel owner review remains pending; A3 paper required for registry print. Stackedstyledependency merge/CI beforeprintPRmerge.",
+  "model_api_calls": 0
+}

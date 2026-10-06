@@ -1,0 +1,228 @@
+{
+  "verdict": "ACCEPT",
+  "scope": "Predispatch code and task-route compatibility only; real inference/quality not accepted",
+  "candidate_heads": {
+    "p8": "230a7147e91d60b68403144f3d62b755ae707ba6",
+    "p13": "69c819459d9253cb255cb1ce2d58a3410ff97f70"
+  },
+  "bindings": [
+    {
+      "path": "tools/compare_models.py",
+      "sha256": "8c9c3b8c24f09bb9079a81a0caa4764d56d913c86634bb92ff6de3d98b2f23f7",
+      "git_blob": "607387c4953b140b0f1a86a58cfa47f6d5616302"
+    },
+    {
+      "path": ".github/workflows/run.yml",
+      "sha256": "d417ab2704b7d9d300d60b720d31c00058bf1226284e92c86703cb6b227cd8bf",
+      "git_blob": "6126cae552ae43f16b5b6a368044b05431f3dcdd"
+    },
+    {
+      "path": "tests/test_compare_atomic.py",
+      "sha256": "57198ee83b2cdecd0050f0c97647a132b6b4980fe3cfddc5e18b1d81069f4329",
+      "git_blob": "780abd7b93aad44904b7e9acd050b2b096f65429"
+    },
+    {
+      "path": "docs/reports/cloud-atomic-inputs/p8-wording-v2.json",
+      "sha256": "b206a482f5751a50c64025f8f3dc5b282308b975ec1c7fdf51fdb54a6019b875",
+      "git_blob": "f2485d216ee8a718d790b21e8271a7be6a8814b9"
+    },
+    {
+      "path": "docs/reports/cloud-atomic-inputs/p13-wording-v2.json",
+      "sha256": "676d9a7e8c77e2d646a33ae1ff75e3bd261486f0b2cc2303c4a6179b487ac9dd",
+      "git_blob": "87416894d2936732436e4dbc612962dcbcfbc147"
+    }
+  ],
+  "actual_offline_tests": [
+    {
+      "scenario": "success",
+      "exit_code": 0,
+      "model_calls": 1,
+      "status": "STRUCTURAL_PASS_REVIEW_REQUIRED",
+      "test": "PASS"
+    },
+    {
+      "scenario": "missing_key",
+      "exit_code": 1,
+      "model_calls": 0,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "paid",
+      "exit_code": 1,
+      "model_calls": 0,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "missing_route",
+      "exit_code": 1,
+      "model_calls": 0,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "specialist",
+      "exit_code": 1,
+      "model_calls": 0,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "not_text",
+      "exit_code": 1,
+      "model_calls": 0,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "missing_reasoning_param",
+      "exit_code": 1,
+      "model_calls": 0,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "missing_json_param",
+      "exit_code": 1,
+      "model_calls": 0,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "mandatory_reasoning",
+      "exit_code": 1,
+      "model_calls": 0,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "unknown_reasoning",
+      "exit_code": 1,
+      "model_calls": 0,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "catalogue_timeout",
+      "exit_code": 1,
+      "model_calls": 0,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "inference_timeout",
+      "exit_code": 1,
+      "model_calls": 1,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "http429",
+      "exit_code": 1,
+      "model_calls": 1,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "malformed",
+      "exit_code": 1,
+      "model_calls": 1,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "empty_length",
+      "exit_code": 1,
+      "model_calls": 1,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "schema_fail",
+      "exit_code": 1,
+      "model_calls": 1,
+      "status": "STOP_DO_NOT_RETRY",
+      "test": "PASS"
+    },
+    {
+      "scenario": "existing_receipt",
+      "exit_code": 2,
+      "model_calls": 0,
+      "status": "EXISTING_RECEIPT_DO_NOT_RETRY",
+      "test": "PASS"
+    }
+  ],
+  "observed_test_command": "python3 cloud-atomic-v2-independent-20261006/verify.py",
+  "exit_code": 0,
+  "network_model_calls": 0,
+  "remote_readback": "P8 six code/workflow/test/passport/route blobs exact local; P13 source/tests/passport same exact blobs/content",
+  "recovery_hypothesis": "Prior automatic router picked task-incompatible specialist routes or exhausted final-output allocation; pin exact general text instruction route and disable optional reasoning, require JSON parameters. No model capability exclusion inferred.",
+  "route_selection_evidence": {
+    "observed_at": "2026-10-06T07:00:08.914017+00:00",
+    "observation_time_precision": "recorded after retrieval",
+    "source": "https://openrouter.ai/api/v1/models",
+    "model": {
+      "id": "google/gemma-4-26b-a4b-it:free",
+      "name": "Google: Gemma 4 26B A4B (free)",
+      "pricing": {
+        "prompt": "0",
+        "completion": "0"
+      },
+      "architecture": {
+        "input_modalities": [
+          "image",
+          "text",
+          "video"
+        ],
+        "output_modalities": [
+          "text"
+        ]
+      },
+      "supported_parameters": [
+        "include_reasoning",
+        "max_tokens",
+        "reasoning",
+        "response_format",
+        "seed",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_p"
+      ],
+      "reasoning": {
+        "mandatory": false,
+        "default_enabled": false
+      }
+    },
+    "selection_reason": "Instruction-tuned general text output; exact free model; documented disableable reasoning and JSON-format parameters. Metadata proves task compatibility only, not actual inference quality.",
+    "documentation": {
+      "reasoning": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+      "provider": "https://openrouter.ai/docs/guides/routing/provider-selection"
+    },
+    "require_fresh_runtime_catalogue_check": true,
+    "previous_attempts": "Both genericrouter calls rejected. LingSante healthfocused reasoningtokensfilledbudget; NemotronContentSafety returned safetyclassification."
+  },
+  "confirmed": [
+    "Both unchanged SHA-bound source and4labels reused from independent source check",
+    "Version2 identifiers/outputs separate; no original receipt overwrite",
+    "Existing receipt gate zero catalogue/inference calls and no mutation",
+    "Free fresh catalogue gate, exact ID, textoutput, parametersupport, optionalreasoning before inference",
+    "No paid fallback; provider max_price0 and requireparameters/allowfallbacksfalse",
+    "One inference max30s/max_tokens1400; all original bounds unchanged",
+    "Raw response/served model/usage preserved; structuralPASS leaves semanticREQUIRED",
+    "Mandatory fullrepo gates and existing workflow concurrency unchanged"
+  ],
+  "limitations": [
+    "Fresh catalogue runtime is authoritative; snapshot task compatibility does not prove model output quality",
+    "Full pytest/content_factory checks must pass on runner before inference",
+    "Every model result needs independent language acceptance; no product source edit or financial/legal acceptance",
+    "No repeated attempt on timeout/UNKNOWN; preserve logs/receipt and classify before nexttask"
+  ],
+  "task_passport": {
+    "primary_result": "Independent routefix review for two bounded v2 tasks",
+    "execution_pattern": "one_shot",
+    "feedback_loop_required": false,
+    "checkpoint_policy": "none"
+  }
+}

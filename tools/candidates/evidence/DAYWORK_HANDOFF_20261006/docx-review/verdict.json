@@ -1,0 +1,58 @@
+{
+  "verdict": "ACCEPT",
+  "reviewer": "independent agent /root/owner_receipt_review",
+  "reviewed_at_utc": "2026-10-06T06:47:01.101050+00:00",
+  "repository": "pmgpt12-arch/marzhavbetone.ru",
+  "pr": 488,
+  "head": "5e1996ea20c13f679c8d0de5299384d50571dfc1",
+  "base": "e66432d9612c00389101587e472bfb49a958c60e",
+  "scope": "Documentary preservation of exact cached P4/P9 local Writer render evidence; not product acceptance or release",
+  "diff": {
+    "added_paths": 7,
+    "all_under": "tools/candidates/evidence/BASELINE_P4_P9_LOCAL_RENDER_20261006/",
+    "modified_existing_paths": 0,
+    "removed_paths": 0,
+    "product_changes": false
+  },
+  "technical_checks_file": "technical-checks.json",
+  "technical_checks_sha256": "2839aea3cbf42b904c1279f8fd70b30f3ec180f9c1ec6e444a6e9b788f2ec6ec",
+  "remote_blob_identity_passed": 7,
+  "archive": {
+    "members": 33,
+    "manifest_entries": 32,
+    "crc": "PASS",
+    "sha256": "82e6812e2fa0e351e15a7eec6ad1abc24c5a7ed5e5a82a6d65914d25ef46e7d1",
+    "remote_git_blob": "5ca6268a7f4514c2529246e670027d4cf5e3b7af"
+  },
+  "text_coverage": {
+    "pages": 11,
+    "source_units": 213,
+    "unmatched": 0,
+    "method": "Independent source paragraph/table-cell locator and text recomputation, normalized matching against retained PDF extraction, PDF page counts"
+  },
+  "visual_review": {
+    "all_11_good_png_pages_viewed": true,
+    "p9_page3_recovered_png_viewed": true,
+    "clipping_or_overlap_observed": false,
+    "documented_findings_confirmed": [
+      "P4 inventory crosses page boundary; spare space on final page",
+      "P9 page2 has two lines and large empty remainder",
+      "P9 long literal field tokens wrap inside words",
+      "P9 page4 repeated table heading visible"
+    ],
+    "recovery": "Retained original truncated PNG fails verification; recovered image verifies and has recorded exact SHA256; no new conversion performed"
+  },
+  "limitations": [
+    "Native Microsoft Word rendering not accepted",
+    "LibreOfficeDev26.8alpha0 differs from server24.2",
+    "Legal/currentness/human legal acceptance not performed",
+    "Full repackaged product readiness and SaleReady not accepted",
+    "Normalized text containment is not a guarantee of reading order or legal correctness",
+    "Archive binary not freshly downloaded from GitHub; byte identity established by Git blob SHA1 and size against exact remote tree, plus local SHA256 and CRC"
+  ],
+  "remarks": [],
+  "author_branch_edits": false,
+  "server_calls": 0,
+  "model_api_calls": 0,
+  "merge_performed": false
+}

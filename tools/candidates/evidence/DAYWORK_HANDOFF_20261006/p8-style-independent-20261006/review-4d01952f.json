@@ -1,0 +1,40 @@
+{
+  "verdict": "ACCEPT_STYLE_ONLY_WITH_PRINT_TEXT_STOP",
+  "pr": 498,
+  "head": "4d01952ffa6f692e254f8f84b3d9451fbc93866d",
+  "base": "6615f70cdd9afd7d54297c190adb49adeebc9731",
+  "scope": "P8 candidate/evidence checkpoint only; no source promotion or full product acceptance.",
+  "candidate_sha256": "fb57a77325aec6a998a7161cbdb218369ce87f63c92426ef9f27b967c19434da",
+  "source_sha256": "079535ecc577dc0a7396cb6d122e5060e6121fa60d9d024763c153fd2bf304ec",
+  "archive_sha256": "6decbfa1f3809bfcc197b85a58427544935a0b6c07f56ba1031bf36ede5fe950",
+  "archive_bytes": 1595946,
+  "independent_checks": {
+    "fresh_GitHub_head_exact": true,
+    "diff_only12_added_evidence_paths": true,
+    "all12_Git_blob_SHA1_sizes_local_exact": true,
+    "archive_CRC35_members_local_exact_SHA256SUMS34": true,
+    "native_preservation": "Expanded-name XML tree comparison after removing only cell @s: all7 sheets structure/text/attributes identical; other ZIP parts byte identical. Original style prefixes and remaining style elements exact. Namespace declaration serialization differs harmlessly.",
+    "roles": "1280 existing cells/26 roles grounded in actual instructions, formulas and validation; all components match raw reference XML or preserved target fonts/alignment.338 unmapped styles exact.",
+    "numeric": "776 expectations independently match accepted P8 baseline and retained actual Calc output values, all pass.",
+    "formulas": "1178 retained actual output formulas independently equal accepted actual same-runtime baseline. Raw candidate formulas/caches exact source.586 quote normalization differences versus source documented.",
+    "legend": {
+      "recomputed_font_matches": 313,
+      "absent_raw_cells_default_style0": 14,
+      "scope": "Literal yellow input/blue entry/black calculation/green link/red check legend and all unmapped status style/text preserved."
+    },
+    "visual": "Personally viewed all31 pages via four overview PNGs and full pages1,5,25,28,29. Palette clear. Horizontal fragmentation confirmed: scenarios/labels separate, instructions/legend split28/29, headings clipped at edges.",
+    "bounded_exports": "Retained receipts one Calc and one PDF command each45sec bound exit0; no reviewer rerender."
+  },
+  "stop_gates": {
+    "PRINT_STOP": "31 pages horizontally fragmented. No readable printable-product acceptance.",
+    "TEXT_STOP": "26/225 static sentence containment checks unresolved. No extractor relaxation or complete physical coverage claim.",
+    "native_Excel": "pending owner review of candidate",
+    "legal_financial_currentness": "pending",
+    "SALE_READY": "not granted"
+  },
+  "reviewer_operations": "Read-only GitHub/Python/XML/hash/retained output/image checks; no server/DC/model API calls, author edits or rerender.",
+  "supporting_artifacts": [
+    "baseline-checks.json",
+    "remote-entries-4d01952f.json"
+  ]
+}
