@@ -27,10 +27,10 @@
   },
   "dependencies": "Canonical reference locally available and SHA bound; accepted working base confirmed by GitHub API",
   "executor": "Python 3.12 + openpyxl 3.1.5 + ZIP/XML; no model",
-  "execution_pattern": "one_shot",
+  "execution_pattern": "iterative",
   "primary_result": "Grounded style contract tied to owner-approved source bytes",
-  "feedback_loop_required": false,
-  "checkpoint_policy": "none",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
   "route": [
     "read protocol and source",
     "extract style/layout/semantic metadata",
@@ -38,14 +38,14 @@
     "save only evidence in isolated branch",
     "read back blob hashes and draft PR head"
   ],
-  "acceptance": "Source SHA unchanged; ZIP CRC passes; all 8 gate cases pass; style references resolve; durable source blob SHA correct; exact output paths and branch verified",
+  "acceptance": "Source SHA unchanged; ZIP CRC passes; all 9 gate cases pass; style references resolve; durable source blob SHA correct; exact output paths and branch verified",
   "stop": [
     "missing input",
     "SHA mismatch",
     "target scope growth",
     "GitHub write/readback failure"
   ],
-  "status": "LOCAL_VERIFIED_PENDING_DURABLE_READBACK",
+  "status": "LOCAL_VERIFIED_PENDING_INDEPENDENT_REVIEW",
   "handoff": {
     "next_task": "One target role map and style-only candidate",
     "next_readiness": "BLOCKED_MISSING_EXACT_TARGET_SHA_AND_INDEPENDENT_CONTRACT_REVIEW",

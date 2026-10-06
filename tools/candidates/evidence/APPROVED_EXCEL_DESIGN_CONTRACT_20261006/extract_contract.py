@@ -46,6 +46,13 @@ def main():
         parts = [{'path': n, 'bytes': len(z.read(n)), 'sha256': sha(z.read(n))} for n in z.namelist()]
         assert len(parts) == len({v['path'] for v in parts})
         styles_xml = z.read('xl/styles.xml')
+        relationships = {n.attrib['Id']: n.attrib['Target'] for n in ET.fromstring(z.read('xl/_rels/workbook.xml.rels'))}
+        native_styles = {}
+        for sheet in ET.fromstring(z.read('xl/workbook.xml')).find('s:sheets', NS):
+            target = relationships[sheet.attrib['{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id']]
+            part = target.lstrip('/') if target.startswith('/') else 'xl/'+target
+            native_styles[sheet.attrib['name']] = {n.attrib['r']:int(n.attrib.get('s','0'))
+                for n in ET.fromstring(z.read(part)).findall('s:sheetData/s:row/s:c', NS)}
         styles_root = ET.fromstring(styles_xml)
         styles = {k: [ET.tostring(c, encoding='unicode') for c in node]
                   for k in ['fonts','fills','borders','cellXfs','cellStyleXfs','numFmts','dxfs','cellStyles']
@@ -53,7 +60,8 @@ def main():
     sheets=[]
     for s in w:
         styles_by_id=collections.defaultdict(list)
-        for c in s._cells.values(): styles_by_id[str(c.style_id)].append(c.coordinate)
+        for coord, style_id in native_styles[s.title].items(): styles_by_id[str(style_id)].append(coord)
+        assert all(0 <= int(i) < len(styles['cellXfs']) for i in styles_by_id)
         sheets.append({'name': s.title, 'dimensions': s.calculate_dimension(),
           'max_row': s.max_row, 'max_column': s.max_column,
           'populated_cells': sum(c.value is not None for c in s._cells.values()),
@@ -85,6 +93,7 @@ def main():
     baseline=invariants(w)
     checks=[]
     checks.append({'case':'unmodified_reference','passed':invariants(w)==baseline})
+    checks.append({'case':'native_style_references_resolve','passed':all(0 <= i < len(styles['cellXfs']) for sm in native_styles.values() for i in sm.values())})
     mutations=[('formula_loss',lambda q:setattr(q['Взаиморасчёты']['G5'],'value',0)),
        ('validation_loss',lambda q:setattr(q['Взаиморасчёты'].data_validations,'dataValidation',[])),
        ('sheet_protection_changed',lambda q:setattr(q['Взаиморасчёты'].protection,'sheet',True)),
@@ -106,6 +115,7 @@ def main():
         'reference':ref,'extraction':{'tool':'Python openpyxl + ZIP/XML','openpyxl':openpyxl.__version__,
          'read_only_reference':True,'zip_crc':'PASS','duplicate_zip_members':False,'model_calls':0},
         'styles_xml_sha256':sha(styles_xml),'style_tables':styles,'sheets':sheets,'grounded_role_samples':roles,
+        'coordinate_style_origin':'Raw native worksheet c/@s; default 0. Openpyxl may synthesize merged-cell border styles; those must never be presented as native style IDs.',
         'rules':{'semantic_roles':'Require exact target sheet/ranges/formulas/validations from target evidence; do not infer input/output by fill or protection.',
          'style_ids':'Local to this reference; copy actual style components into target, not numeric style IDs.',
          'colors':'Retain exact RGB/theme/index/tint objects; do not replace theme-based colors with guessed RGB.',
