@@ -1,0 +1,87 @@
+{
+  "head": "5e1996ea20c13f679c8d0de5299384d50571dfc1",
+  "base": "e66432d9612c00389101587e472bfb49a958c60e",
+  "remote_blob_identity": [
+    {
+      "path": "tools/candidates/evidence/BASELINE_P4_P9_LOCAL_RENDER_20261006/REPORT.md",
+      "blob": "0e68fc7d74a6ce083485ce09f36b08a4c7ccafdc",
+      "sha256": "d23d75fc59d828fb5ed8de61ab0c053c4905f1b38dade426b6b2dbe18e53a619",
+      "size": 2123
+    },
+    {
+      "path": "tools/candidates/evidence/BASELINE_P4_P9_LOCAL_RENDER_20261006/SHA256SUMS",
+      "blob": "a556ac5b6997fa196e782666623e8177feeff003",
+      "sha256": "d2f1e2b57350c14b5ea7ef6b73425e167fec73db9e9f74d370e952040866abe7",
+      "size": 2883
+    },
+    {
+      "path": "tools/candidates/evidence/BASELINE_P4_P9_LOCAL_RENDER_20261006/evidence.zip",
+      "blob": "5ca6268a7f4514c2529246e670027d4cf5e3b7af",
+      "sha256": "82e6812e2fa0e351e15a7eec6ad1abc24c5a7ed5e5a82a6d65914d25ef46e7d1",
+      "size": 1949901
+    },
+    {
+      "path": "tools/candidates/evidence/BASELINE_P4_P9_LOCAL_RENDER_20261006/observations.json",
+      "blob": "8d0ff7922a4e76bca8cacafd702fe396ccafc025",
+      "sha256": "f5db9d8e048ae03604046063116030c85ec64734541577f30bc4c0a4c708918b",
+      "size": 3824
+    },
+    {
+      "path": "tools/candidates/evidence/BASELINE_P4_P9_LOCAL_RENDER_20261006/page3-recovery.json",
+      "blob": "726cf53249c822128c87098fe164347c12180537",
+      "sha256": "92711640c0f5e5d9288cfe23d9f332ea04a8146e8c1af327015a4b331d911e0f",
+      "size": 1407
+    },
+    {
+      "path": "tools/candidates/evidence/BASELINE_P4_P9_LOCAL_RENDER_20261006/run.json",
+      "blob": "394cdada4e7768b4f206752c9e9c83b55f110e1e",
+      "sha256": "64655641afb7606ca76dd325c07a329b4bee767d9878dec3acfc41ebfda93181",
+      "size": 13603
+    },
+    {
+      "path": "tools/candidates/evidence/BASELINE_P4_P9_LOCAL_RENDER_20261006/text-coverage.json",
+      "blob": "b4fd427f4e5fdaa71e0a8985879d3435efe23416",
+      "sha256": "5f0a2eec9c0f99a286e07ec372da552726ea784d95b2f71acfbef3059a5f75f6",
+      "size": 46650
+    }
+  ],
+  "archive_sha256": "82e6812e2fa0e351e15a7eec6ad1abc24c5a7ed5e5a82a6d65914d25ef46e7d1",
+  "archive_members": 33,
+  "manifest_entries": 32,
+  "CRC": "PASS",
+  "source_integrity": [
+    {
+      "source": "products-storage/08-pto-bez-zamechaniy/01-uvedomlenie-o-gotovnosti-id.docx",
+      "sha256": "45e7e8e2578d5f0410e89dbd249bc9e13700e11dfcc16ce3962c8fc4d0b9a3df",
+      "blob": "3c9403481e212c2338e36c2a5520cc9cbe24a7a9"
+    },
+    {
+      "source": "products-storage/11-bankrotstvo-genpodryadchika/01-slovar-poley-bankrotstvo.docx",
+      "sha256": "b29c0d3c864719f6d79a81edb60995acb844303f9cf1fb1b573d816c883f8814",
+      "blob": "b16b579bed2bd3cfe0cb1a14a5a4cb50cf7d18d2"
+    }
+  ],
+  "coverage": [
+    {
+      "label": "p4-original",
+      "pages": 2,
+      "units": 20,
+      "unmatched": 0
+    },
+    {
+      "label": "p9-original",
+      "pages": 7,
+      "units": 173,
+      "unmatched": 0
+    },
+    {
+      "label": "p4-filled",
+      "pages": 2,
+      "units": 20,
+      "unmatched": 0
+    }
+  ],
+  "good_pngs": 11,
+  "retained_failed_png": "expected truncated",
+  "recovery_sha256": "b4776ea9aed2dd2f15f2014d18b945785c1c59d25582a5e2f3c69fc00f6d5ae7"
+}
