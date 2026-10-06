@@ -1,0 +1,101 @@
+{
+  "source_sha256": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2",
+  "reference_sha256": "93252d5711cbbd33e682b3f9400fe6ee9aa9ed02c49cf8302ae89976ffc20d77",
+  "contract_head": "6d1f6979b24d8d7331f29bd2d306de6a1bab3eb1",
+  "status": "PREPARED_WAITING_INDEPENDENT_CONTRACT_ACCEPT",
+  "roles": [
+    {
+      "sheet": "Реестр затрат",
+      "range": "A1:J1",
+      "role": "table_header",
+      "basis": "Actual column labels row1",
+      "reference": "Взаиморасчёты!B4"
+    },
+    {
+      "sheet": "Реестр затрат",
+      "range": "A2:C52",
+      "role": "fixed_catalog",
+      "basis": "Prepopulated row number/section/cost labels; no formulas",
+      "reference_components": {
+        "font": "Взаиморасчёты!B5",
+        "fill": "Акт сверки!A1",
+        "border": "Взаиморасчёты!B5",
+        "alignment": "Взаиморасчёты!B5"
+      }
+    },
+    {
+      "sheet": "Реестр затрат",
+      "range": "D2:J52",
+      "role": "user_entry",
+      "basis": "Exact «Как заполнять» A2:B7 describes these columns; H values used by existing SUM",
+      "reference": "Взаиморасчёты!B5"
+    },
+    {
+      "sheet": "Реестр затрат",
+      "range": "H55",
+      "role": "profit_input",
+      "basis": "C55 label and «Как заполнять» B8 explicitly require user entry",
+      "reference": "Взаиморасчёты!B5"
+    },
+    {
+      "sheet": "Реестр затрат",
+      "range": "H54 H56",
+      "role": "formula_output",
+      "basis": "Native formulas SUM(H2:H52) and IF(H55=0,\"\",H54/H55)",
+      "reference": "Взаиморасчёты!G5"
+    },
+    {
+      "sheet": "Реестр затрат",
+      "range": "C54 C55 C56",
+      "role": "summary_label",
+      "basis": "Actual output/input labels",
+      "reference_components": {
+        "font": "TARGET existing font, color-only FF27333D",
+        "fill": "Акт сверки!A1",
+        "border": "Взаиморасчёты!B5",
+        "alignment": "Взаиморасчёты!A2"
+      }
+    },
+    {
+      "sheet": "Как заполнять",
+      "range": "A1:B1",
+      "role": "table_header",
+      "basis": "Actual labels Графа/Что вписать",
+      "reference": "Взаиморасчёты!B4"
+    },
+    {
+      "sheet": "Как заполнять",
+      "range": "A2:A9",
+      "role": "instruction_label",
+      "basis": "Labels cross-reference entry columns and calculation/purpose",
+      "reference_components": {
+        "font": "Взаиморасчёты!B5",
+        "fill": "Акт сверки!A1",
+        "border": "Взаиморасчёты!B5",
+        "alignment": "Взаиморасчёты!A2"
+      }
+    },
+    {
+      "sheet": "Как заполнять",
+      "range": "B2:B9",
+      "role": "instructions",
+      "basis": "Exact supplied user guidance, not rewritten",
+      "reference": "Взаиморасчёты!A2"
+    }
+  ],
+  "unchanged": [
+    "A53:J53 spacer",
+    "unmapped existing cells",
+    "column widths",
+    "row heights",
+    "page setup/margins/area/options/titles",
+    "numberformats",
+    "formulas",
+    "constants/text",
+    "validations including absent states",
+    "cell/sheet protection",
+    "conditional logic"
+  ],
+  "no_new_summary_or_formula": true,
+  "no_semantic_role_from_color": true
+}
