@@ -1,0 +1,138 @@
+{
+  "task_id": "p8-native-docx-layout-264d75-20261006",
+  "pid": 5,
+  "started_utc": "2026-10-06T06:46:17.928322+00:00",
+  "source": {
+    "path": "products-storage/10-avans-usloviya-i-pribyl/04-algoritm-peregovorov-ob-avanse.docx",
+    "relative_name": "04-algoritm-peregovorov-ob-avanse.docx",
+    "git_blob": "110e4964e7e6d0d7965eb679f76b442f1bd9b8aa",
+    "sha256": "5c87fb5bafec34400b6167307b609d5db71e97c240b76ffeea4a656893fd44c6",
+    "size": 15495,
+    "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+    "local_path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/10-avans-usloviya-i-pribyl/04-algoritm-peregovorov-ob-avanse.docx",
+    "observed_sha256": "5c87fb5bafec34400b6167307b609d5db71e97c240b76ffeea4a656893fd44c6",
+    "observed_git_blob": "110e4964e7e6d0d7965eb679f76b442f1bd9b8aa"
+  },
+  "commands": [
+    {
+      "argv": [
+        "soffice",
+        "--version"
+      ],
+      "pid": 8,
+      "returncode": 0,
+      "stdout": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5\n\n",
+      "stderr": "",
+      "elapsed_seconds": 0.0967372829982196
+    },
+    {
+      "argv": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p8/profile",
+        "--headless",
+        "--convert-to",
+        "pdf",
+        "--outdir",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p8",
+        "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/10-avans-usloviya-i-pribyl/04-algoritm-peregovorov-ob-avanse.docx"
+      ],
+      "pid": 43,
+      "returncode": 0,
+      "stdout": "convert /workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/10-avans-usloviya-i-pribyl/04-algoritm-peregovorov-ob-avanse.docx as a Writer document -> /workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p8/04-algoritm-peregovorov-ob-avanse.pdf using filter : writer_pdf_Export\n",
+      "stderr": "",
+      "elapsed_seconds": 0.33434874200611375
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p8/render.pdf",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p8/pdf-text.txt"
+      ],
+      "pid": 82,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.015087851003045216
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-scale-to",
+        "1600",
+        "-png",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p8/render.pdf",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p8/page"
+      ],
+      "pid": 88,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 1.3680417979994672
+    }
+  ],
+  "status": "STOP",
+  "api_calls": 0,
+  "runtime_version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "pages": 7,
+  "png_validation": [
+    {
+      "name": "page-1.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "valid": true
+    },
+    {
+      "name": "page-2.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "valid": true
+    },
+    {
+      "name": "page-3.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "valid": true
+    },
+    {
+      "name": "page-4.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "valid": true
+    },
+    {
+      "name": "page-5.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "valid": true
+    },
+    {
+      "name": "page-6.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "valid": true
+    },
+    {
+      "name": "page-7.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "valid": true
+    }
+  ],
+  "error": "AssertionError('TEXT_COVERAGE_MISMATCH')",
+  "finished_utc": "2026-10-06T06:46:19.913016+00:00"
+}
