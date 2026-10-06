@@ -1,0 +1,32 @@
+{
+  "reused_builder": "/workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/build_style_candidate.py",
+  "sha256": "232b1194a980def8e2e46fd74a9bf49034e5e8a5dbcb94d415e78a5b7a09707b",
+  "adaptations": [
+    {
+      "old": "SOURCE=ROOT.parent/'local-baseline-preflight/63-reestr-zatrat-po-obektu.xlsx'",
+      "new": "SOURCE=ROOT.parent/'local-baseline-preflight/02-kalkulyator-usloviy-avansa.xlsx'"
+    },
+    {
+      "old": "roots={'Реестр затрат':E.fromstring(a.read('xl/worksheets/sheet1.xml')),\n               'Как заполнять':E.fromstring(a.read('xl/worksheets/sheet2.xml'))}",
+      "new": "roots={name:E.fromstring(a.read(f'xl/worksheets/sheet{index}.xml')) for index,name in enumerate(openpyxl.load_workbook(SOURCE).sheetnames,1)}"
+    },
+    {
+      "old": "if addr.startswith('TARGET'):",
+      "new": "if addr=='TARGET preservefont':\n                    node=copy.deepcopy(ts[group][int(old.get(attribute,'0'))])\n                elif addr.startswith('TARGET'):"
+    },
+    {
+      "old": "alignment=ref_xf(components['alignment']).find('s:alignment',NS)",
+      "new": "alignment=old.find('s:alignment',NS) if components['alignment']=='TARGET preservealignment' else ref_xf(components['alignment']).find('s:alignment',NS)"
+    },
+    {
+      "old": "out=ROOT/'63-reestr-zatrat-po-obektu-Business_Design_candidate.xlsx'",
+      "new": "out=ROOT/'02-kalkulyator-usloviy-avansa-Business_Design_candidate.xlsx'"
+    },
+    {
+      "old": "b.writestr(info,changes.get(info.filename,a.read(info.filename)))",
+      "new": "b.writestr(copy.copy(info),changes.get(info.filename,a.read(info.filename)))"
+    }
+  ],
+  "framework_added": false,
+  "only_scope_adapters_and_ZipInfo_noalias_gate": true
+}

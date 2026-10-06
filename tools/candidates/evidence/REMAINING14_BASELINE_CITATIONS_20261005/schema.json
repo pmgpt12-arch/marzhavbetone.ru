@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "input_binding": [
+    "sku",
+    "source_sha",
+    "path",
+    "git_blob",
+    "sha256"
+  ],
+  "text_unit": [
+    "native_unit_index",
+    "location",
+    "text",
+    "content_sha256"
+  ],
+  "module_occurrence": [
+    "occurrence_id",
+    "sku",
+    "document",
+    "file_sha256",
+    "unit_id",
+    "location",
+    "span",
+    "literal",
+    "short_quote",
+    "quote_span",
+    "code",
+    "code_binding",
+    "articles_as_written",
+    "ranges_or_variants",
+    "registry_norm_id:null",
+    "normative_verdict:NOT_VERIFIED"
+  ],
+  "module_marker": [
+    "marker_id",
+    "same_exact_input_and_native_locator",
+    "raw_marker",
+    "classification",
+    "span",
+    "short_quote",
+    "quote_span",
+    "registry_norm_id:null"
+  ],
+  "dedup_scope": "Unique input fullSHA/nativecontext reuse only; citations have independent perSKU/path IDs; module groups are lexical forms not norms",
+  "baseline_boundary": "Configured source eligibility inferred by priorinventory policy; NOactual PHPZIP/currentacceptedbuyer/currentness/legal/render/CalcPASS"
+}

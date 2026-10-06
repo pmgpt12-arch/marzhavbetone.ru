@@ -1,0 +1,58 @@
+{
+  "status": "TEXT_READABILITY_GEOMETRY_PASS",
+  "source_sha256": "643ec9ffd2ab6d3285445ae3d2dfc93db470ef4661db41f30d5fedbb1d3df968",
+  "candidate_sha256": "2262235a4f2d3513bed99c58a261053181bf5510af684e9a22453ac529c63e52",
+  "pdf_sha256": "a812aedf08f301ecbab3f60b96635ca3b2929aec2174ad96ace2b07090614eb3",
+  "literal_cells_checked": 184,
+  "missing_literals": [],
+  "pages": 3,
+  "page_dimensions_points": [
+    [
+      1190.5511474609375,
+      841.8897705078125
+    ],
+    [
+      1190.5511474609375,
+      841.8897705078125
+    ],
+    [
+      841.8897705078125,
+      595.303955078125
+    ]
+  ],
+  "minimum_font_size_points": 8.704999923706055,
+  "text_bbox_outside_pages": [],
+  "preservation": [
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/63-reestr-zatrat-po-obektu-Business_Design_candidate.xlsx",
+      "before": "643ec9ffd2ab6d3285445ae3d2dfc93db470ef4661db41f30d5fedbb1d3df968",
+      "after": "643ec9ffd2ab6d3285445ae3d2dfc93db470ef4661db41f30d5fedbb1d3df968",
+      "unchanged": true
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/p13-business-print-candidate-20261006/63-reestr-zatrat-po-obektu-Business_Print_candidate.xlsx",
+      "before": "2262235a4f2d3513bed99c58a261053181bf5510af684e9a22453ac529c63e52",
+      "after": "2262235a4f2d3513bed99c58a261053181bf5510af684e9a22453ac529c63e52",
+      "unchanged": true
+    }
+  ],
+  "all_pages_png": [
+    "page-1.png",
+    "page-2.png",
+    "page-3.png"
+  ],
+  "visual_inspection": {
+    "status": "AUTHOR_ALL_3_PAGES_VIEWED",
+    "horizontal_registry_split_removed": true,
+    "instruction_labels_and_text_same_page": true,
+    "known_limitation": "Registry 51rows page1 and summary page2; A3 paper required for >=8pt fit; nativeExcel notchecked"
+  },
+  "model_calls": 0,
+  "no_paid_api": true,
+  "text_extractor": "Dual exact whole-cell extraction: PyMuPDF OR Poppler pdftotext -layout; mixed-font C54 colon and interleaved-label instructions classified TEXT_EXTRACTOR_READING_ORDER, no rerender",
+  "claims_excluded": [
+    "native Microsoft Excel approval",
+    "legal/currentness",
+    "SaleReady"
+  ]
+}

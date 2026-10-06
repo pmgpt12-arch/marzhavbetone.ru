@@ -1,0 +1,24 @@
+{
+  "name": "tests",
+  "command": [
+    "timeout",
+    "--kill-after=5s",
+    "180s",
+    "python3",
+    "-m",
+    "pytest",
+    "-q",
+    "tools/test_s1_a4.py",
+    "tools/test_s1_candidate.py",
+    "tools/test_s1_court_appendices.py",
+    "tools/test_s1_court_clean_copy.py",
+    "tools/test_s1_notification_print.py",
+    "tools/test_s1_reviewed_excel_corrections.py",
+    "tools/test_s1_unique_fields.py",
+    "tools/test_approved_s1_excel.py"
+  ],
+  "cwd": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/mechanical/s1-final-tests",
+  "exact_head": "6077a5d6cdba42cbef6f2452b799b5c118f8c5d2",
+  "exit_code": 0,
+  "elapsed_seconds": 105.38450045301579
+}

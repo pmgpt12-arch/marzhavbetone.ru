@@ -1,0 +1,107 @@
+{
+  "execution_pattern": "one_shot",
+  "primary_result": "final_actual_merged_S1_full_tests_and_two_complete_rebuilds",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "actual_working_head": "6077a5d6cdba42cbef6f2452b799b5c118f8c5d2",
+  "accepted_overlay_source": "d0d484b31945e39b93acc1fb6b4f5ac7333202ca",
+  "timestamp_utc": "2026-10-05T15:54:47.517035+00:00",
+  "status": "EXECUTING",
+  "llm_api_calls": 0,
+  "source_edits": false,
+  "merge_or_deploy": false,
+  "ast_checks": [
+    {
+      "name": "f01",
+      "accepted_source": "3f22f63cbbd838d6b7cef1c01f2d8863f82dbaad",
+      "ast_equal": true
+    },
+    {
+      "name": "f03",
+      "accepted_source": "4f86bf1aa88aef4b2b085d96ed998bd3ed70ba45",
+      "ast_equal": true
+    },
+    {
+      "name": "f10",
+      "accepted_source": "c19c63ac56e9217c8c544ba9b1c68b5700a25324",
+      "ast_equal": true
+    },
+    {
+      "name": "f02",
+      "accepted_source": "d0d484b31945e39b93acc1fb6b4f5ac7333202ca",
+      "ast_equal": true
+    },
+    {
+      "name": "f08",
+      "accepted_source": "d0d484b31945e39b93acc1fb6b4f5ac7333202ca",
+      "ast_equal": true
+    },
+    {
+      "name": "RISKS",
+      "accepted_source": "d0d484b31945e39b93acc1fb6b4f5ac7333202ca",
+      "ast_equal": true
+    }
+  ],
+  "accepted_helper_template_registry_bytes": [
+    {
+      "path": "tools/approved_s1_excel.py",
+      "sha256": "055a0ca79c22d7bfc8778017062515ab3fbdca23090a56e962e27d1c8c782bdc",
+      "byte_exact": true
+    },
+    {
+      "path": "tools/candidates/evidence/S1_EXCEL_WORDING_OVERLAY_20261005/accepted-review-with-coordinator-addendum.md",
+      "sha256": "9ebc3d408fdf214acbf49b23526db6b7c394fe6a308ca28e3f0a369b173b620a",
+      "byte_exact": true
+    },
+    {
+      "path": "tools/s1_interest.py",
+      "sha256": "9f165ced8b312d3f3aab6e7c34909ab633ad495b824bfff6576d081cae46137e",
+      "byte_exact": true
+    },
+    {
+      "path": "tools/s1_route.py",
+      "sha256": "bc1a8dbac79924f914eb3ee515d725b1df5ae577d226f5f8a354d2750508a677",
+      "byte_exact": true
+    },
+    {
+      "path": "tools/templates/s1-owner-excel/02-proverka-i-kontrol-otveta.xlsx",
+      "sha256": "0a5c75b2816b93b6da4c0cfa395a5d9e5989ad6a2c44ce1edd70c8b3a7376fcc",
+      "byte_exact": true
+    },
+    {
+      "path": "tools/templates/s1-owner-excel/04-uchet-raschetov-i-otpravok.xlsx",
+      "sha256": "f735e85286952a2780d413aea7debbe7a7ceda24edf717d79b631a4aad8945d9",
+      "byte_exact": true
+    },
+    {
+      "path": "tools/templates/s1-owner-excel/08-raschet-procentov-395.xlsx",
+      "sha256": "9c2b69043ce6c09924236abfb0808659d0b739347e22aa9796b400440def3d92",
+      "byte_exact": true
+    },
+    {
+      "path": "tools/templates/s1-owner-excel/README.md",
+      "sha256": "1b52ab4323bac519b42e07e40b03c7b46ea0bab8a4d01233b2dec052139822a4",
+      "byte_exact": true
+    },
+    {
+      "path": "tools/templates/s1-owner-excel/approved-sha256.json",
+      "sha256": "c72115ec10c08c3085871a4f4785df1f72b99d1413831484e5566350677f7a92",
+      "byte_exact": true
+    },
+    {
+      "path": "tools/templates/s1-reviewed-corrections/02-proverka-i-kontrol-otveta.xlsx",
+      "sha256": "5918714b4e4e95abc546e1fe7a43f515af50680ecf75352a2949a2ebecac47f0",
+      "byte_exact": true
+    },
+    {
+      "path": "tools/templates/s1-reviewed-corrections/08-raschet-procentov-395.xlsx",
+      "sha256": "e0ed0206c17f1b3638bba14dd472c3acad0da80c87dd640169e9c094dec266b4",
+      "byte_exact": true
+    },
+    {
+      "path": "tools/templates/s1-reviewed-corrections/corrections.json",
+      "sha256": "3c3263e99b22532b6cc35bcb3cc61e2f0a9e4c2d6e82b0a7997714093be86e09",
+      "byte_exact": true
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "status": "COMPLETE_LOCAL_VISUAL_OBSERVATION_WITH_FINDINGS",
+  "runtime_limitation": "LibreOfficeDev26.8alpha0 local renderer differs from ai-workstation LibreOffice24.2; not Microsoft Word acceptance.",
+  "source_commit": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "source_integrity": [
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/01-uvedomlenie-o-gotovnosti-id.docx",
+      "sha256": "45e7e8e2578d5f0410e89dbd249bc9e13700e11dfcc16ce3962c8fc4d0b9a3df",
+      "before_equals_after": true
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/01-slovar-poley-bankrotstvo.docx",
+      "sha256": "b29c0d3c864719f6d79a81edb60995acb844303f9cf1fb1b573d816c883f8814",
+      "before_equals_after": true
+    }
+  ],
+  "inspected_utc": "2026-10-06T04:51:53.429240+00:00",
+  "pages_visually_inspected": {
+    "p4-original": [
+      1,
+      2
+    ],
+    "p4-filled": [
+      1,
+      2
+    ],
+    "p9-original": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "findings": [
+    {
+      "id": "P4-V01",
+      "scope": "Original pages1–2; filled pages1–2",
+      "severity": "MINOR_READABILITY",
+      "finding": "Document inventory wraps across page boundary (one item on next page original, two in filled scenario). All text remains visible; no overlap/truncation. Large heading and blank paragraphs produce 2-page letter. Not a missing-content defect."
+    },
+    {
+      "id": "P9-V01",
+      "scope": "Page2",
+      "severity": "PAGINATION_OBSERVATION",
+      "finding": "Page2 contains only the final two lines of source-information bullet, then large empty remainder before Parties table begins page3. No content lost; no claimed functional block."
+    },
+    {
+      "id": "P9-V02",
+      "scope": "Pages3–6 first/second table columns",
+      "severity": "COPY_READABILITY_RISK",
+      "finding": "Long {{FIELD_NAME}} tokens wrap inside words; all characters retained in normalized PDF text. Exact examples {{НАИМЕНОВАНИЕ_КРЕДИТОРА}} and {{ДАТА_ОПРЕДЕЛЕНИЯ}} wrap across lines, latter closing braces alone. Manual copying/transcription may be harder, but no clipping/overlap detected."
+    },
+    {
+      "id": "ART-V01",
+      "scope": "Initial p9 page3 PNG",
+      "severity": "RECOVERED_ARTIFACT_FAILURE",
+      "finding": "Initial PNG truncated at 196608 bytes despite pdftoppm rc0. Original failed file preserved. Parent-authorized single extraction from unchanged PDF using20sec timeout passed PIL.verify and visual review; no second LibreOffice conversion."
+    }
+  ],
+  "text_coverage_summary": [
+    {
+      "label": "p4-original",
+      "units": 20,
+      "unmatched_count": 0
+    },
+    {
+      "label": "p9-original",
+      "units": 173,
+      "unmatched_count": 0
+    },
+    {
+      "label": "p4-filled",
+      "units": 20,
+      "unmatched_count": 0
+    }
+  ],
+  "duplicate_gate": {
+    "search": "rg exact two SHA strings in local mb001-daywork .md/.json",
+    "result": "No matches in limited local checkout; not global absence of accepted proofs."
+  },
+  "not_verified": [
+    "legal source currentness",
+    "normative/legal correctness",
+    "human legal acceptance",
+    "Microsoft Word rendering",
+    "full repackaged product readiness",
+    "SaleReady"
+  ],
+  "api_spend_usd": 0,
+  "source_edits": false,
+  "git_writes": false,
+  "coverage_method": {
+    "p4-original": "Poppler pdftotext -layout normalized whitespace; PyMuPDF natural extraction separates punctuation spans and cannot preserve source reading order",
+    "p4-filled": "Poppler pdftotext -layout normalized whitespace",
+    "p9-original": "PyMuPDF natural cell extraction normalized whitespace; all paragraphs and table cells individually matched"
+  },
+  "inspection_tool": "functions.view_image"
+}

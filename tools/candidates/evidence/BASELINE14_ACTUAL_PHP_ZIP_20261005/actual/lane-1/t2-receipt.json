@@ -1,0 +1,64 @@
+{
+  "status": "PASS_ISOLATED_BASELINE_PHP_ZIP_BYTES",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "sku": "t2",
+  "actual_php": {
+    "sku": "t2",
+    "dir": "14-peredacha-id-pod-podpis",
+    "zip_name": "14-peredacha-id-pod-podpis.zip",
+    "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/next-baseline-delivery-queue-20261005/actual/lane-1/delivery/14-peredacha-id-pod-podpis.zip",
+    "php_version": "8.3.6",
+    "zip_extension": "1.22.3"
+  },
+  "zip_sha256": "03701a9a98924037264adc80e347aceff129da9856099610bce10328667c995a",
+  "zip_bytes": 68622,
+  "members": [
+    {
+      "name": "01-slovar-poley.docx",
+      "sha256": "6865323e4fd03dc896863e1ddfd651a25100cb95a9e40b9b3afbaccba4a8cf3e",
+      "bytes": 14393,
+      "crc32": "dc1b7b16",
+      "source_git_blob": "36aa5139402b14d07fa4b2bf35ef240f242c4a33"
+    },
+    {
+      "name": "04-akt-priema-peredachi-id.docx",
+      "sha256": "da0a70f15cc62609a519f67973ec86617855269f98a50fa4c3a54ecb5db7a3e0",
+      "bytes": 13245,
+      "crc32": "11006a84",
+      "source_git_blob": "a518c7fde737e8c1d304f6f566e0139c354f53db"
+    },
+    {
+      "name": "02-soprovoditelnoe-pismo-peredachi.docx",
+      "sha256": "b3439ccd4d3d5ed3337e34fb87254ac230643b5343e10a6097aae8ee668aad7e",
+      "bytes": 13391,
+      "crc32": "e627e4bf",
+      "source_git_blob": "1f6adffadf75905196ff257f5b7b453cb045b040"
+    },
+    {
+      "name": "03-opis-peredavaemogo-komplekta.xlsx",
+      "sha256": "503dca1963948d393e488edfa645e923c4652d1de879d79da4fcd61889003467",
+      "bytes": 20579,
+      "crc32": "e3a1aac5",
+      "source_git_blob": "9afb20be9341a0b1f83c9fe1ddbe76c704d4f1c0"
+    },
+    {
+      "name": "00-START-HERE.txt",
+      "sha256": "8f04207a3ec88f7d4d874570d06374a9510f02d7f0f914a5edb58d0f159bb591",
+      "bytes": 4126,
+      "crc32": "bafd8559",
+      "source_git_blob": "5ea96d3acd5e1edbdb6b898eda98588dfbb47295"
+    },
+    {
+      "name": "05-poryadok-peredachi-id.docx",
+      "sha256": "81cf3898828ae89ebcc019e3f180f551d578914ca22004b2c8366a7fe6e458c0",
+      "bytes": 15251,
+      "crc32": "e80d2563",
+      "source_git_blob": "28ae7768f1a74086ff00a91a1e279704237b3551"
+    }
+  ],
+  "count": 6,
+  "source_originals_preserved": true,
+  "CRC_failure_member": null,
+  "approved_delivery": false,
+  "sale_ready": false
+}

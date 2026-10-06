@@ -1,0 +1,68 @@
+{
+  "status": "FAIL_ACT_DATE_READABILITY",
+  "contract_root_cause": "Untyped Python tuple in PropertyValue.Value did not marshal FilterData as required []com.sun.star.beans.PropertyValue. Explicit uno.Any restored selection-only export (19 pages -> 1 page).",
+  "contract_rule": "typed-property-contract-before-export",
+  "verified_evidence": {
+    "initial_pages": [
+      19,
+      19
+    ],
+    "typed_pages": 1,
+    "typed_range": "A4:J6",
+    "typed_selection_implementation": "ScCellRangeObj",
+    "typed_unexpected_tokens": [],
+    "actual_png_reviewed": "typed-filterdata/one-act-page-1.png",
+    "visual_observation": "B5 and B6 render ### instead of dates; all ten headers visible.",
+    "hash_marks": [
+      "###",
+      "###"
+    ],
+    "date_native_styles": {
+      "B5": {
+        "cell_attrs": {
+          "r": "B5",
+          "s": "5"
+        },
+        "style": {
+          "numFmtId": "164",
+          "fontId": "3",
+          "fillId": "3",
+          "borderId": "1",
+          "xfId": "0",
+          "applyNumberFormat": "1",
+          "applyFont": "1",
+          "applyFill": "1",
+          "applyBorder": "1",
+          "applyAlignment": "1"
+        },
+        "format": "dd\\.mm\\.yyyy",
+        "font": "<ns0:font xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"><ns0:sz val=\"11\" /><ns0:color rgb=\"FF1F4E79\" /><ns0:name val=\"Calibri\" /><ns0:family val=\"2\" /><ns0:charset val=\"204\" /></ns0:font>"
+      },
+      "B6": {
+        "cell_attrs": {
+          "r": "B6",
+          "s": "5"
+        },
+        "style": {
+          "numFmtId": "164",
+          "fontId": "3",
+          "fillId": "3",
+          "borderId": "1",
+          "xfId": "0",
+          "applyNumberFormat": "1",
+          "applyFont": "1",
+          "applyFill": "1",
+          "applyBorder": "1",
+          "applyAlignment": "1"
+        },
+        "format": "dd\\.mm\\.yyyy",
+        "font": "<ns0:font xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"><ns0:sz val=\"11\" /><ns0:color rgb=\"FF1F4E79\" /><ns0:name val=\"Calibri\" /><ns0:family val=\"2\" /><ns0:charset val=\"204\" /></ns0:font>"
+      }
+    }
+  },
+  "checker_learning": "Consecutive full header text in pdftotext -layout is not a valid header-presence test when neighboring column wrapping interleaves lines. Scan #{2,}, not only ####.",
+  "next_step": "Do not repeat unchanged export or alter canonical. Establish narrow disposable-only date-format/column-width diagnostic with root authorization if wanted; owner Excel print behavior remains unverified.",
+  "two_act_typed_run": "NOT_RUN_ONE_ACT_FAILED",
+  "excel_manual_pass": false,
+  "canonical_write": false
+}

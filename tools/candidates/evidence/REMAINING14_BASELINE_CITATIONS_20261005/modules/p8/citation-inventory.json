@@ -1,0 +1,2812 @@
+{
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "source_status": "CACHED_CONFIGURED_BASELINE_NOT_ACCEPTED_DELIVERY",
+  "sku": "p8",
+  "execution_pattern": "iterative",
+  "primary_result": "baseline_literal_source_index_for_future_lawyer",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "documents": [
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/00-START-HERE.txt",
+      "relative_name": "00-START-HERE.txt",
+      "git_blob": "233765ff76e2e6cdc0e3ba79a06bb1f202fad870",
+      "sha256": "ef7db5577247d6e81eb14a3f2fed53fa9ddc19486d9c35f9ac331a1221dcd0c3",
+      "size": 4341,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "ef7db5577247d6e81eb14a3f2fed53fa9ddc19486d9c35f9ac331a1221dcd0c3",
+        "suffix": ".txt",
+        "worker_pid": 1973486,
+        "limitations": [],
+        "text_units": 54,
+        "elapsed_seconds": 0.00010443400242365897
+      },
+      "native_corpus_key": "ef7db5577247d6e81eb14a3f2fed53fa9ddc19486d9c35f9ac331a1221dcd0c3",
+      "text_units": 54
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/01-slovar-poley-avans.docx",
+      "relative_name": "01-slovar-poley-avans.docx",
+      "git_blob": "fd3b1c4246d3d30576869472032ae765e126147e",
+      "sha256": "d2d73adb91dd3fee18a617f83a845d220dae3d8ec31a4c5bed5901cd9d645801",
+      "size": 21352,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "d2d73adb91dd3fee18a617f83a845d220dae3d8ec31a4c5bed5901cd9d645801",
+        "suffix": ".docx",
+        "worker_pid": 1973486,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 283,
+        "elapsed_seconds": 0.3286662810132839
+      },
+      "native_corpus_key": "d2d73adb91dd3fee18a617f83a845d220dae3d8ec31a4c5bed5901cd9d645801",
+      "text_units": 283
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/02-kalkulyator-usloviy-avansa.xlsx",
+      "relative_name": "02-kalkulyator-usloviy-avansa.xlsx",
+      "git_blob": "a14b9526de77461f1f4f4806802ba72425d16f07",
+      "sha256": "079535ecc577dc0a7396cb6d122e5060e6121fa60d9d024763c153fd2bf304ec",
+      "size": 36515,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "079535ecc577dc0a7396cb6d122e5060e6121fa60d9d024763c153fd2bf304ec",
+        "suffix": ".xlsx",
+        "worker_pid": 1973485,
+        "limitations": [],
+        "read_sheets": [
+          {
+            "sheet": "Условия",
+            "part": "xl/worksheets/sheet1.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "График КС",
+            "part": "xl/worksheets/sheet2.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Профиль А",
+            "part": "xl/worksheets/sheet3.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Профиль Б",
+            "part": "xl/worksheets/sheet4.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Сравнение",
+            "part": "xl/worksheets/sheet5.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Как читать",
+            "part": "xl/worksheets/sheet6.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Пример заполнения",
+            "part": "xl/worksheets/sheet7.xml",
+            "state": "visible"
+          }
+        ],
+        "read_mode": "native ZIP/XML; stored values/formulas/caches only",
+        "text_units": 1525,
+        "elapsed_seconds": 0.4564727740071248
+      },
+      "native_corpus_key": "079535ecc577dc0a7396cb6d122e5060e6121fa60d9d024763c153fd2bf304ec",
+      "text_units": 1525
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/03-razbor-chetyrekh-usloviy-avansa.docx",
+      "relative_name": "03-razbor-chetyrekh-usloviy-avansa.docx",
+      "git_blob": "1e235315c66f4ee4b5983094333c28c2b18bdd72",
+      "sha256": "8c02c3a89b635d7783491e33ceb8e93b7907117ae883a527d317ec63d27ccd03",
+      "size": 16171,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "8c02c3a89b635d7783491e33ceb8e93b7907117ae883a527d317ec63d27ccd03",
+        "suffix": ".docx",
+        "worker_pid": 1973488,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 94,
+        "elapsed_seconds": 0.02881252599763684
+      },
+      "native_corpus_key": "8c02c3a89b635d7783491e33ceb8e93b7907117ae883a527d317ec63d27ccd03",
+      "text_units": 94
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/04-algoritm-peregovorov-ob-avanse.docx",
+      "relative_name": "04-algoritm-peregovorov-ob-avanse.docx",
+      "git_blob": "110e4964e7e6d0d7965eb679f76b442f1bd9b8aa",
+      "sha256": "5c87fb5bafec34400b6167307b609d5db71e97c240b76ffeea4a656893fd44c6",
+      "size": 15495,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "5c87fb5bafec34400b6167307b609d5db71e97c240b76ffeea4a656893fd44c6",
+        "suffix": ".docx",
+        "worker_pid": 1973488,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 121,
+        "elapsed_seconds": 0.05235298999468796
+      },
+      "native_corpus_key": "5c87fb5bafec34400b6167307b609d5db71e97c240b76ffeea4a656893fd44c6",
+      "text_units": 121
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/05-protokol-raznoglasiy-avansovye-punkty.docx",
+      "relative_name": "05-protokol-raznoglasiy-avansovye-punkty.docx",
+      "git_blob": "0ecde74c6772d65cd9a329d9b5a9400ba704c025",
+      "sha256": "311baf9f60287029304cc6bbc9253854cd48f1db2a3f57dbda2a9a3e920fe64d",
+      "size": 15939,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "311baf9f60287029304cc6bbc9253854cd48f1db2a3f57dbda2a9a3e920fe64d",
+        "suffix": ".docx",
+        "worker_pid": 1973488,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 79,
+        "elapsed_seconds": 0.02768792799906805
+      },
+      "native_corpus_key": "311baf9f60287029304cc6bbc9253854cd48f1db2a3f57dbda2a9a3e920fe64d",
+      "text_units": 79
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx",
+      "relative_name": "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx",
+      "git_blob": "74f69bf4ef2893b7d0a1491233223ea51fe75cab",
+      "sha256": "89dfbacf0b88523b5c4b63eab744a73b6547260ece1fe32e848b5120bd0e2beb",
+      "size": 15219,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "89dfbacf0b88523b5c4b63eab744a73b6547260ece1fe32e848b5120bd0e2beb",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 71,
+        "elapsed_seconds": 0.021343149011954665
+      },
+      "native_corpus_key": "89dfbacf0b88523b5c4b63eab744a73b6547260ece1fe32e848b5120bd0e2beb",
+      "text_units": 71
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "relative_name": "07-trebovanie-o-vyplate-avansa.docx",
+      "git_blob": "a314e202708e4c497ee75c65765532abf4b6baaf",
+      "sha256": "3200445017a48c7a92254d76e4c9ad64d397cd5562dd52d6a94d4d907ff1d60c",
+      "size": 15441,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "3200445017a48c7a92254d76e4c9ad64d397cd5562dd52d6a94d4d907ff1d60c",
+        "suffix": ".docx",
+        "worker_pid": 1973488,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 67,
+        "elapsed_seconds": 0.019834402977721766
+      },
+      "native_corpus_key": "3200445017a48c7a92254d76e4c9ad64d397cd5562dd52d6a94d4d907ff1d60c",
+      "text_units": 67
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "relative_name": "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "git_blob": "ae19223eda28b22c1ec0a3a5fad1d3a1a7013b2d",
+      "sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "size": 17946,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+        "suffix": ".docx",
+        "worker_pid": 1973487,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 127,
+        "elapsed_seconds": 0.053538910986389965
+      },
+      "native_corpus_key": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "text_units": 127
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "relative_name": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "git_blob": "48f9b3e32379e8a97cececa3dda4f73812fde745",
+      "sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "size": 29881,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+        "suffix": ".xlsx",
+        "worker_pid": 1973488,
+        "limitations": [],
+        "read_sheets": [
+          {
+            "sheet": "Как читать",
+            "part": "xl/worksheets/sheet1.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Договор и аванс",
+            "part": "xl/worksheets/sheet2.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Выполнено",
+            "part": "xl/worksheets/sheet3.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Встречное",
+            "part": "xl/worksheets/sheet4.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Сальдо",
+            "part": "xl/worksheets/sheet5.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Акт сверки",
+            "part": "xl/worksheets/sheet6.xml",
+            "state": "visible"
+          },
+          {
+            "sheet": "Пример заполнения",
+            "part": "xl/worksheets/sheet7.xml",
+            "state": "visible"
+          }
+        ],
+        "read_mode": "native ZIP/XML; stored values/formulas/caches only",
+        "text_units": 465,
+        "elapsed_seconds": 0.1245505319966469
+      },
+      "native_corpus_key": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "text_units": 465
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "relative_name": "10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "git_blob": "2741ed42767ad21023aecdfe7d4bcaa8ff911476",
+      "sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "size": 18775,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+      "native_metadata": {
+        "sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+        "suffix": ".docx",
+        "worker_pid": 1973486,
+        "limitations": [],
+        "read_xml_parts": [
+          "word/document.xml",
+          "word/footnotes.xml",
+          "word/endnotes.xml",
+          "word/comments.xml"
+        ],
+        "text_units": 99,
+        "elapsed_seconds": 0.0440112559881527
+      },
+      "native_corpus_key": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "text_units": 99
+    }
+  ],
+  "parser": {
+    "article_regex": "(?<![А-Яа-яA-Za-z])(?:(?:пп?|пункт(?:а|ы|ов|у|ом)?|ч|част(?:ь|и|ью)|абз|абзац(?:а|ы|ев)?)\\.?\\s*\\d+(?:\\.\\d+)?\\s*){0,4}(?:ст\\.|стать(?:я|и|ю|е|ей|ями))\\s*\\d+(?:\\.\\d+)?(?:\\s*(?:,|и|–|-)\\s*\\d+(?:\\.\\d+)?)*(?:\\s*(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)(?:\\s*РФ)?)?",
+    "law_marker_regex": "\\b(?:ГрК|ГК|АПК|НК|ГПК|ТК|КоАП|БК|СК|ЗК|ЖК)\\b|\\bст\\.\\s*\\d|\\bстать(?:я|и|ю|е|ей|ями)\\b|Пленум|Верховн\\w*\\s+[Сс]уд\\w*|[Фф]едеральн\\w*\\s+закон\\w*|[Пп]риказ\\w*|[Пп]остановлен\\w*|\\bзакон(?:а|у|ом|е|ы|ов|ам|ами|ах)?\\b|[Пп]оложени\\w*|\\bкодекс\\w*|Минстро\\w*|Ростехнадзор\\w*",
+    "standard_regex": "(?<!\\w)(?:ГОСТ(?:\\s+Р)?|СП|СНиП|ФСБУ|СанПиН|СН|ВСН|РД)\\b(?:\\s+\\d[\\d./–-]*)?|\\b\\d+\\s*[-–]\\s*ФЗ\\b",
+    "numbered_reference_regex": "№\\s*\\d+(?:[./–-]\\d+)*(?:/[A-Za-zА-Яа-я]+)?",
+    "full_code_name_regex": "\\b(?:Гражданск\\w*|Градостроительн\\w*|Налогов\\w*|Трудов\\w*|Земельн\\w*|Жилищн\\w*|Семейн\\w*|Бюджетн\\w*|Уголовн\\w*|Арбитражн\\w*|Гражданск\\w*[- ]процессуальн\\w*)\\s+(?:процессуальн\\w*\\s+)?кодекс\\w*(?:\\s+(?:РФ|Российск\\w*\\s+Федераци\\w*))?",
+    "code_binding": "Explicit abbreviation or unique abbreviation in same unit; PDF physical line only; full names retained raw without semantic resolution",
+    "lists_ranges": "As written; not expanded into norms"
+  },
+  "literal_occurrences": [
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/01-slovar-poley-avans.docx",
+      "file_sha256": "d2d73adb91dd3fee18a617f83a845d220dae3d8ec31a4c5bed5901cd9d645801",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/01-slovar-poley-avans.docx:36",
+      "native_unit_index": 36,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[8]/tc[3]/p[1]",
+        "global_paragraph_ordinal_including_empty": 37,
+        "nonempty_paragraph_ordinal": 36
+      },
+      "span": [
+        41,
+        55
+      ],
+      "short_quote": "выписка ЕГРЮЛ; для иска они обязательны (ст. 125 АПК РФ)",
+      "quote_span": [
+        0,
+        56
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0001",
+      "literal": "ст. 125 АПК РФ",
+      "code": "АПК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "125"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "file_sha256": "3200445017a48c7a92254d76e4c9ad64d397cd5562dd52d6a94d4d907ff1d60c",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx:40",
+      "native_unit_index": 40,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[38]",
+        "global_paragraph_ordinal_including_empty": 43,
+        "nonempty_paragraph_ordinal": 40
+      },
+      "span": [
+        45,
+        63
+      ],
+      "short_quote": "На основании изложенного и в соответствии со статьями 309 и 310 Гражданского кодекса Российской Федерации, устанавливающими обязанность надлежащего исполнения обяз",
+      "quote_span": [
+        0,
+        163
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0002",
+      "literal": "статьями 309 и 310",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "309",
+        "310"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING",
+        "LIST_OR_RANGE_RETAINED_AS_ONE_LITERAL_NOT_SPLIT_INTO_NORMS"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:10",
+      "native_unit_index": 10,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[6]",
+        "global_paragraph_ordinal_including_empty": 11,
+        "nonempty_paragraph_ordinal": 10
+      },
+      "span": [
+        245,
+        254
+      ],
+      "short_quote": " это распределяется по устоявшейся практике — правило процессуальное (статья 65 Арбитражного процессуального кодекса РФ), а не норма о подряде, и как оно ляжет в вашем деле, оцени",
+      "quote_span": [
+        175,
+        354
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0003",
+      "literal": "статья 65",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "65"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:32",
+      "native_unit_index": 32,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[6]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 34,
+        "nonempty_paragraph_ordinal": 32
+      },
+      "span": [
+        77,
+        90
+      ],
+      "short_quote": " самостоятельная сделка: для него достаточно заявления одной стороны (ст. 410 ГК РФ), и допускается он не во всех случаях (ст. 411 ГК РФ). Свои последствия, в том числе налоговые, а п",
+      "quote_span": [
+        7,
+        190
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0004",
+      "literal": "ст. 410 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "410"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:32",
+      "native_unit_index": 32,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/tbl[2]/tr[6]/tc[2]/p[1]",
+        "global_paragraph_ordinal_including_empty": 34,
+        "nonempty_paragraph_ordinal": 32
+      },
+      "span": [
+        130,
+        143
+      ],
+      "short_quote": "я одной стороны (ст. 410 ГК РФ), и допускается он не во всех случаях (ст. 411 ГК РФ). Свои последствия, в том числе налоговые, а при банкротстве второй стороны — риск оспаривания. Офо",
+      "quote_span": [
+        60,
+        243
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0005",
+      "literal": "ст. 411 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "411"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:100",
+      "native_unit_index": 100,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[39]",
+        "global_paragraph_ordinal_including_empty": 104,
+        "nonempty_paragraph_ordinal": 100
+      },
+      "span": [
+        211,
+        229
+      ],
+      "short_quote": "отдельный документ, а не «акт, на который не ответили»: механизм даёт пункт 4 статьи 753 Гражданского кодекса РФ, а вес такого акта в вашем деле оценивает юрист.",
+      "quote_span": [
+        141,
+        302
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0006",
+      "literal": "пункт 4 статьи 753",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "753"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:123",
+      "native_unit_index": 123,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[63]",
+        "global_paragraph_ordinal_including_empty": 128,
+        "nonempty_paragraph_ordinal": 123
+      },
+      "span": [
+        70,
+        80
+      ],
+      "short_quote": "Судьбу неотработанной части при расторжении договора обсуждают вокруг статьи 453 Гражданского кодекса РФ о последствиях расторжения и главы 60 того же кодекса о неосновательном обо",
+      "quote_span": [
+        0,
+        180
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0007",
+      "literal": "статьи 453",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "453"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:123",
+      "native_unit_index": 123,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[63]",
+        "global_paragraph_ordinal_including_empty": 128,
+        "nonempty_paragraph_ordinal": 123
+      },
+      "span": [
+        258,
+        268
+      ],
+      "short_quote": " последствия отказа заказчика от исполнения договора подряда — вокруг статьи 717, отказа из-за нарушений подрядчика — вокруг статьи 715; значение акта, от подписания которого сторо",
+      "quote_span": [
+        188,
+        368
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0008",
+      "literal": "статьи 717",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "717"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:123",
+      "native_unit_index": 123,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[63]",
+        "global_paragraph_ordinal_including_empty": 128,
+        "nonempty_paragraph_ordinal": 123
+      },
+      "span": [
+        313,
+        323
+      ],
+      "short_quote": "дряда — вокруг статьи 717, отказа из-за нарушений подрядчика — вокруг статьи 715; значение акта, от подписания которого сторона уклонилась, — вокруг пункта 4 статьи 753, он же опис",
+      "quote_span": [
+        243,
+        423
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0009",
+      "literal": "статьи 715",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "715"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:123",
+      "native_unit_index": 123,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[63]",
+        "global_paragraph_ordinal_including_empty": 128,
+        "nonempty_paragraph_ordinal": 123
+      },
+      "span": [
+        392,
+        411
+      ],
+      "short_quote": "5; значение акта, от подписания которого сторона уклонилась, — вокруг пункта 4 статьи 753, он же описывает, как появляется односторонний акт: при отказе от подписания в акте делается отметк",
+      "quote_span": [
+        322,
+        511
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0010",
+      "literal": "пункта 4 статьи 753",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "753"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:124",
+      "native_unit_index": 124,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[64]",
+        "global_paragraph_ordinal_including_empty": 129,
+        "nonempty_paragraph_ordinal": 124
+      },
+      "span": [
+        76,
+        86
+      ],
+      "short_quote": "оворки, из-за которых эти статьи читают не глядя и ошибаются. Первая: статья 717 начинается словами «если иное не предусмотрено договором подряда». Договор вправе установить свой п",
+      "quote_span": [
+        6,
+        186
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0011",
+      "literal": "статья 717",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "717"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:124",
+      "native_unit_index": 124,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[64]",
+        "global_paragraph_ordinal_including_empty": 129,
+        "nonempty_paragraph_ordinal": 124
+      },
+      "span": [
+        334,
+        350
+      ],
+      "short_quote": "постоянно — смотреть надо сначала свой договор, потом кодекс. Вторая: статьи 715 и 717 — общие правила о подряде и применяются к строительному подряду, пока правила о нём не устанавливаю",
+      "quote_span": [
+        264,
+        450
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0012",
+      "literal": "статьи 715 и 717",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "715",
+        "717"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING",
+        "LIST_OR_RANGE_RETAINED_AS_ONE_LITERAL_NOT_SPLIT_INTO_NORMS"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:124",
+      "native_unit_index": 124,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[64]",
+        "global_paragraph_ordinal_including_empty": 129,
+        "nonempty_paragraph_ordinal": 124
+      },
+      "span": [
+        463,
+        473
+      ],
+      "short_quote": "строительному подряду, пока правила о нём не устанавливают другого, а статья 753 — правило именно строительного подряда. Какая норма работает в вашем случае, определяет юрист.",
+      "quote_span": [
+        393,
+        568
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0013",
+      "literal": "статья 753",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "753"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:5",
+      "native_unit_index": 5,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A5",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[4]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        224,
+        233
+      ],
+      "short_quote": "я бремя доказывания по устоявшейся практике (процессуальное правило — статья 65 Арбитражного процессуального кодекса РФ, а не норма о подряде); как оно ляжет в вашем деле, оценива",
+      "quote_span": [
+        154,
+        333
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0014",
+      "literal": "статья 65",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "65"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:21",
+      "native_unit_index": 21,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A21",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[20]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        122,
+        140
+      ],
+      "short_quote": "онне», и он не то же самое, что «передан, не подписан». Механизм даёт пункт 4 статьи 753 Гражданского кодекса РФ: сдача и приёмка оформляются актом, подписанным обеими сторонами, а при отк",
+      "quote_span": [
+        52,
+        240
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0015",
+      "literal": "пункт 4 статьи 753",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "753"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:24",
+      "native_unit_index": 24,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A24",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[23]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        70,
+        80
+      ],
+      "short_quote": "Судьбу неотработанной части при расторжении договора обсуждают вокруг статьи 453 Гражданского кодекса РФ о последствиях расторжения и главы 60 того же кодекса о неосновательном обо",
+      "quote_span": [
+        0,
+        180
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0016",
+      "literal": "статьи 453",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "453"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:24",
+      "native_unit_index": 24,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A24",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[23]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        258,
+        268
+      ],
+      "short_quote": " последствия отказа заказчика от исполнения договора подряда — вокруг статьи 717, отказа из-за нарушений подрядчика — вокруг статьи 715; значение акта, от подписания которого сторо",
+      "quote_span": [
+        188,
+        368
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0017",
+      "literal": "статьи 717",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "717"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:24",
+      "native_unit_index": 24,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A24",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[23]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        313,
+        323
+      ],
+      "short_quote": "дряда — вокруг статьи 717, отказа из-за нарушений подрядчика — вокруг статьи 715; значение акта, от подписания которого сторона уклонилась, — вокруг пункта 4 статьи 753. Здесь назв",
+      "quote_span": [
+        243,
+        423
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0018",
+      "literal": "статьи 715",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "715"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:24",
+      "native_unit_index": 24,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A24",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[23]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        392,
+        411
+      ],
+      "short_quote": "5; значение акта, от подписания которого сторона уклонилась, — вокруг пункта 4 статьи 753. Здесь названо, вокруг чего идёт разговор, а не то, чем он кончится: применимость каждой из них к в",
+      "quote_span": [
+        322,
+        511
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0019",
+      "literal": "пункта 4 статьи 753",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "753"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:25",
+      "native_unit_index": 25,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A25",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[24]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        76,
+        86
+      ],
+      "short_quote": "оворки, из-за которых эти статьи читают не глядя и ошибаются. Первая: статья 717 начинается словами «если иное не предусмотрено договором подряда» — договор может установить свой п",
+      "quote_span": [
+        6,
+        186
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0020",
+      "literal": "статья 717",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "717"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:25",
+      "native_unit_index": 25,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A25",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[24]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        306,
+        322
+      ],
+      "short_quote": "ается постоянно. Сначала смотрите свой договор, потом кодекс. Вторая: статьи 715 и 717 — общие правила о подряде, к строительному подряду они применяются, пока правила о нём не устанавли",
+      "quote_span": [
+        236,
+        422
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0021",
+      "literal": "статьи 715 и 717",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "715",
+        "717"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING",
+        "LIST_OR_RANGE_RETAINED_AS_ONE_LITERAL_NOT_SPLIT_INTO_NORMS"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:25",
+      "native_unit_index": 25,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A25",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[24]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        436,
+        446
+      ],
+      "short_quote": "подряду они применяются, пока правила о нём не устанавливают другого; статья 753 — правило именно строительного подряда. Какая норма работает в вашем случае, определяет юрист.",
+      "quote_span": [
+        366,
+        541
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0022",
+      "literal": "статья 753",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "753"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:221",
+      "native_unit_index": 221,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Выполнено",
+        "cell": "A57",
+        "part": "xl/worksheets/sheet3.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[54]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        375,
+        385
+      ],
+      "short_quote": "амостоятельная сделка (для зачёта достаточно заявления одной стороны, статья 410 Гражданского кодекса РФ), и он допускается не во всех случаях (статья 411 того же кодекса). Порядок",
+      "quote_span": [
+        305,
+        485
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0023",
+      "literal": "статья 410",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "410"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:221",
+      "native_unit_index": 221,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Выполнено",
+        "cell": "A57",
+        "part": "xl/worksheets/sheet3.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[54]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        449,
+        459
+      ],
+      "short_quote": "ья 410 Гражданского кодекса РФ), и он допускается не во всех случаях (статья 411 того же кодекса). Порядок оформления обсуждайте с юристом.",
+      "quote_span": [
+        379,
+        518
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0024",
+      "literal": "статья 411",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "411"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:334",
+      "native_unit_index": 334,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Сальдо",
+        "cell": "C21",
+        "part": "xl/worksheets/sheet5.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[16]/c[3]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        34,
+        59
+      ],
+      "short_quote": "отдельно от предыдущей строки: по пункту 4 статьи 753 ГК РФ это документы разного веса. Что даёт односторонний акт в вашем деле, оценивает юрист — см. лист «Ка",
+      "quote_span": [
+        0,
+        159
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0025",
+      "literal": "пункту 4 статьи 753 ГК РФ",
+      "code": "ГК",
+      "code_binding": "explicit_literal",
+      "articles_as_written": [
+        "753"
+      ],
+      "ranges_or_variants": []
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "file_sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx:13",
+      "native_unit_index": 13,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[9]",
+        "global_paragraph_ordinal_including_empty": 14,
+        "nonempty_paragraph_ordinal": 13
+      },
+      "span": [
+        294,
+        306
+      ],
+      "short_quote": "этими документами. Обратите внимание, чего закон здесь НЕ говорит: по статье 165.1 Гражданского кодекса РФ юридически значимое сообщение влечёт последствия с момента доставки и счита",
+      "quote_span": [
+        224,
+        406
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0026",
+      "literal": "статье 165.1",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "165.1"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "file_sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx:19",
+      "native_unit_index": 19,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[15]",
+        "global_paragraph_ordinal_including_empty": 20,
+        "nonempty_paragraph_ordinal": 19
+      },
+      "span": [
+        132,
+        142
+      ],
+      "short_quote": " самостоятельная сделка: для него достаточно заявления одной стороны (статья 410 Гражданского кодекса РФ), и допускается он не во всех случаях (статья 411 того же кодекса). У него ",
+      "quote_span": [
+        62,
+        242
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0027",
+      "literal": "статья 410",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "410"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "file_sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx:19",
+      "native_unit_index": 19,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[15]",
+        "global_paragraph_ordinal_including_empty": 20,
+        "nonempty_paragraph_ordinal": 19
+      },
+      "span": [
+        206,
+        216
+      ],
+      "short_quote": "ья 410 Гражданского кодекса РФ), и допускается он не во всех случаях (статья 411 того же кодекса). У него свои последствия, в том числе налоговые, а при банкротстве второй стороны ",
+      "quote_span": [
+        136,
+        316
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "occurrence_id": "p8-ref-0028",
+      "literal": "статья 411",
+      "code": null,
+      "code_binding": "UNRESOLVED_NO_OR_MULTIPLE_EXPLICIT_CODE",
+      "articles_as_written": [
+        "411"
+      ],
+      "ranges_or_variants": [
+        "UNRESOLVED_CODE_BINDING"
+      ]
+    }
+  ],
+  "deduplicated_groups": [
+    {
+      "group_id": "p8-group-001",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 125 АПК РФ",
+      "code": "АПК",
+      "articles_as_written": [
+        "125"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0001"
+      ]
+    },
+    {
+      "group_id": "p8-group-002",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статьями 309 и 310",
+      "code": null,
+      "articles_as_written": [
+        "309",
+        "310"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0002"
+      ]
+    },
+    {
+      "group_id": "p8-group-003",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статья 65",
+      "code": null,
+      "articles_as_written": [
+        "65"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0003",
+        "p8-ref-0014"
+      ]
+    },
+    {
+      "group_id": "p8-group-004",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 410 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "410"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0004"
+      ]
+    },
+    {
+      "group_id": "p8-group-005",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "ст. 411 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "411"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0005"
+      ]
+    },
+    {
+      "group_id": "p8-group-006",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "пункт 4 статьи 753",
+      "code": null,
+      "articles_as_written": [
+        "753"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0006",
+        "p8-ref-0015"
+      ]
+    },
+    {
+      "group_id": "p8-group-007",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статьи 453",
+      "code": null,
+      "articles_as_written": [
+        "453"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0007",
+        "p8-ref-0016"
+      ]
+    },
+    {
+      "group_id": "p8-group-008",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статьи 717",
+      "code": null,
+      "articles_as_written": [
+        "717"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0008",
+        "p8-ref-0017"
+      ]
+    },
+    {
+      "group_id": "p8-group-009",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статьи 715",
+      "code": null,
+      "articles_as_written": [
+        "715"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0009",
+        "p8-ref-0018"
+      ]
+    },
+    {
+      "group_id": "p8-group-010",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "пункта 4 статьи 753",
+      "code": null,
+      "articles_as_written": [
+        "753"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0010",
+        "p8-ref-0019"
+      ]
+    },
+    {
+      "group_id": "p8-group-011",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статья 717",
+      "code": null,
+      "articles_as_written": [
+        "717"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0011",
+        "p8-ref-0020"
+      ]
+    },
+    {
+      "group_id": "p8-group-012",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статьи 715 и 717",
+      "code": null,
+      "articles_as_written": [
+        "715",
+        "717"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0012",
+        "p8-ref-0021"
+      ]
+    },
+    {
+      "group_id": "p8-group-013",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статья 753",
+      "code": null,
+      "articles_as_written": [
+        "753"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0013",
+        "p8-ref-0022"
+      ]
+    },
+    {
+      "group_id": "p8-group-014",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статья 410",
+      "code": null,
+      "articles_as_written": [
+        "410"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0023",
+        "p8-ref-0027"
+      ]
+    },
+    {
+      "group_id": "p8-group-015",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статья 411",
+      "code": null,
+      "articles_as_written": [
+        "411"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0024",
+        "p8-ref-0028"
+      ]
+    },
+    {
+      "group_id": "p8-group-016",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "пункту 4 статьи 753 ГК РФ",
+      "code": "ГК",
+      "articles_as_written": [
+        "753"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0025"
+      ]
+    },
+    {
+      "group_id": "p8-group-017",
+      "registry_norm_id": null,
+      "group_is_not_norm": true,
+      "literal_normalized": "статье 165.1",
+      "code": null,
+      "articles_as_written": [
+        "165.1"
+      ],
+      "occurrence_ids": [
+        "p8-ref-0026"
+      ]
+    }
+  ],
+  "unresolved_legal_and_standard_markers": [
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/01-slovar-poley-avans.docx",
+      "file_sha256": "d2d73adb91dd3fee18a617f83a845d220dae3d8ec31a4c5bed5901cd9d645801",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/01-slovar-poley-avans.docx:263",
+      "native_unit_index": 263,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[33]",
+        "global_paragraph_ordinal_including_empty": 269,
+        "nonempty_paragraph_ordinal": 263
+      },
+      "span": [
+        105,
+        113
+      ],
+      "short_quote": "ются вслед за ключевой ставкой и политикой конкретного банка. Сроки в кодексах правятся. Условия договоров у всех свои. Файл, который вы скачали, не обновляется сам — и шаблон с ",
+      "quote_span": [
+        35,
+        213
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0001",
+      "marker": "кодексах",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "file_sha256": "3200445017a48c7a92254d76e4c9ad64d397cd5562dd52d6a94d4d907ff1d60c",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx:38",
+      "native_unit_index": 38,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[36]",
+        "global_paragraph_ordinal_including_empty": 41,
+        "nonempty_paragraph_ordinal": 38
+      },
+      "span": [
+        188,
+        197
+      ],
+      "short_quote": "в, мобилизация, привлечение персонала и техники. [Опишите фактическое положение коротко и проверяемо: что не закуплено, что не мобилизовано. Оценок без фактов лучше избегать: пись",
+      "quote_span": [
+        118,
+        297
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0002",
+      "marker": "положение",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "file_sha256": "3200445017a48c7a92254d76e4c9ad64d397cd5562dd52d6a94d4d907ff1d60c",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx:40",
+      "native_unit_index": 40,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[38]",
+        "global_paragraph_ordinal_including_empty": 43,
+        "nonempty_paragraph_ordinal": 40
+      },
+      "span": [
+        64,
+        105
+      ],
+      "short_quote": "На основании изложенного и в соответствии со статьями 309 и 310 Гражданского кодекса Российской Федерации, устанавливающими обязанность надлежащего исполнения обязательств и недопустимость одностороннего о",
+      "quote_span": [
+        0,
+        205
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0003",
+      "marker": "Гражданского кодекса Российской Федерации",
+      "classification": "UNRESOLVED_FULL_CODE_NAME",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "file_sha256": "3200445017a48c7a92254d76e4c9ad64d397cd5562dd52d6a94d4d907ff1d60c",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx:40",
+      "native_unit_index": 40,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[38]",
+        "global_paragraph_ordinal_including_empty": 43,
+        "nonempty_paragraph_ordinal": 40
+      },
+      "span": [
+        77,
+        84
+      ],
+      "short_quote": "вании изложенного и в соответствии со статьями 309 и 310 Гражданского кодекса Российской Федерации, устанавливающими обязанность надлежащего исполнения обязательств и недопустим",
+      "quote_span": [
+        7,
+        184
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0004",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "file_sha256": "3200445017a48c7a92254d76e4c9ad64d397cd5562dd52d6a94d4d907ff1d60c",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx:45",
+      "native_unit_index": 45,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[43]",
+        "global_paragraph_ordinal_including_empty": 48,
+        "nonempty_paragraph_ordinal": 45
+      },
+      "span": [
+        227,
+        250
+      ],
+      "short_quote": "оговором финансирования обсуждается применительно к статьям 328 и 719 Гражданского кодекса РФ, однако его применение зависит от текста вашего договора — встречаются прямые запреты приостановки ",
+      "quote_span": [
+        157,
+        350
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0005",
+      "marker": "Гражданского кодекса РФ",
+      "classification": "UNRESOLVED_FULL_CODE_NAME",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "file_sha256": "3200445017a48c7a92254d76e4c9ad64d397cd5562dd52d6a94d4d907ff1d60c",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx:45",
+      "native_unit_index": 45,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[43]",
+        "global_paragraph_ordinal_including_empty": 48,
+        "nonempty_paragraph_ordinal": 45
+      },
+      "span": [
+        240,
+        247
+      ],
+      "short_quote": "нсирования обсуждается применительно к статьям 328 и 719 Гражданского кодекса РФ, однако его применение зависит от текста вашего договора — встречаются прямые запреты приостанов",
+      "quote_span": [
+        170,
+        347
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0006",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:10",
+      "native_unit_index": 10,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[6]",
+        "global_paragraph_ordinal_including_empty": 11,
+        "nonempty_paragraph_ordinal": 10
+      },
+      "span": [
+        255,
+        294
+      ],
+      "short_quote": "еделяется по устоявшейся практике — правило процессуальное (статья 65 Арбитражного процессуального кодекса РФ), а не норма о подряде, и как оно ляжет в вашем деле, оценивает юрист. Практический вывод от этого ",
+      "quote_span": [
+        185,
+        394
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0007",
+      "marker": "Арбитражного процессуального кодекса РФ",
+      "classification": "UNRESOLVED_FULL_CODE_NAME",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:10",
+      "native_unit_index": 10,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[6]",
+        "global_paragraph_ordinal_including_empty": 11,
+        "nonempty_paragraph_ordinal": 10
+      },
+      "span": [
+        284,
+        291
+      ],
+      "short_quote": "тике — правило процессуальное (статья 65 Арбитражного процессуального кодекса РФ), а не норма о подряде, и как оно ляжет в вашем деле, оценивает юрист. Практический вывод от это",
+      "quote_span": [
+        214,
+        391
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0008",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:100",
+      "native_unit_index": 100,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[39]",
+        "global_paragraph_ordinal_including_empty": 104,
+        "nonempty_paragraph_ordinal": 100
+      },
+      "span": [
+        230,
+        253
+      ],
+      "short_quote": " а не «акт, на который не ответили»: механизм даёт пункт 4 статьи 753 Гражданского кодекса РФ, а вес такого акта в вашем деле оценивает юрист.",
+      "quote_span": [
+        160,
+        302
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0009",
+      "marker": "Гражданского кодекса РФ",
+      "classification": "UNRESOLVED_FULL_CODE_NAME",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:100",
+      "native_unit_index": 100,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[39]",
+        "global_paragraph_ordinal_including_empty": 104,
+        "nonempty_paragraph_ordinal": 100
+      },
+      "span": [
+        243,
+        250
+      ],
+      "short_quote": "а который не ответили»: механизм даёт пункт 4 статьи 753 Гражданского кодекса РФ, а вес такого акта в вашем деле оценивает юрист.",
+      "quote_span": [
+        173,
+        302
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0010",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:122",
+      "native_unit_index": 122,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[62]",
+        "global_paragraph_ordinal_including_empty": 127,
+        "nonempty_paragraph_ordinal": 122
+      },
+      "span": [
+        4,
+        10
+      ],
+      "short_quote": "Про статьи",
+      "quote_span": [
+        0,
+        10
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0011",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:123",
+      "native_unit_index": 123,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[63]",
+        "global_paragraph_ordinal_including_empty": 128,
+        "nonempty_paragraph_ordinal": 123
+      },
+      "span": [
+        81,
+        104
+      ],
+      "short_quote": "работанной части при расторжении договора обсуждают вокруг статьи 453 Гражданского кодекса РФ о последствиях расторжения и главы 60 того же кодекса о неосновательном обогащении; последствия отк",
+      "quote_span": [
+        11,
+        204
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0012",
+      "marker": "Гражданского кодекса РФ",
+      "classification": "UNRESOLVED_FULL_CODE_NAME",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:123",
+      "native_unit_index": 123,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[63]",
+        "global_paragraph_ordinal_including_empty": 128,
+        "nonempty_paragraph_ordinal": 123
+      },
+      "span": [
+        94,
+        101
+      ],
+      "short_quote": "сти при расторжении договора обсуждают вокруг статьи 453 Гражданского кодекса РФ о последствиях расторжения и главы 60 того же кодекса о неосновательном обогащении; последствия ",
+      "quote_span": [
+        24,
+        201
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0013",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:123",
+      "native_unit_index": 123,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[63]",
+        "global_paragraph_ordinal_including_empty": 128,
+        "nonempty_paragraph_ordinal": 123
+      },
+      "span": [
+        151,
+        158
+      ],
+      "short_quote": "Гражданского кодекса РФ о последствиях расторжения и главы 60 того же кодекса о неосновательном обогащении; последствия отказа заказчика от исполнения договора подряда — вокруг ",
+      "quote_span": [
+        81,
+        258
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0014",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:124",
+      "native_unit_index": 124,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[64]",
+        "global_paragraph_ordinal_including_empty": 129,
+        "nonempty_paragraph_ordinal": 124
+      },
+      "span": [
+        32,
+        38
+      ],
+      "short_quote": "Две оговорки, из-за которых эти статьи читают не глядя и ошибаются. Первая: статья 717 начинается словами «если иное не предусмотрено дого",
+      "quote_span": [
+        0,
+        138
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0015",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "file_sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx:124",
+      "native_unit_index": 124,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[64]",
+        "global_paragraph_ordinal_including_empty": 129,
+        "nonempty_paragraph_ordinal": 124
+      },
+      "span": [
+        318,
+        324
+      ],
+      "short_quote": "вие встречается постоянно — смотреть надо сначала свой договор, потом кодекс. Вторая: статьи 715 и 717 — общие правила о подряде и применяются к строительному подряду, пока пра",
+      "quote_span": [
+        248,
+        424
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0016",
+      "marker": "кодекс",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:5",
+      "native_unit_index": 5,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A5",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[4]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        234,
+        273
+      ],
+      "short_quote": "казывания по устоявшейся практике (процессуальное правило — статья 65 Арбитражного процессуального кодекса РФ, а не норма о подряде); как оно ляжет в вашем деле, оценивает юрист. Пока цифры нет на бумаге, ваше",
+      "quote_span": [
+        164,
+        373
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0017",
+      "marker": "Арбитражного процессуального кодекса РФ",
+      "classification": "UNRESOLVED_FULL_CODE_NAME",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:5",
+      "native_unit_index": 5,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A5",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[4]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        263,
+        270
+      ],
+      "short_quote": "тике (процессуальное правило — статья 65 Арбитражного процессуального кодекса РФ, а не норма о подряде); как оно ляжет в вашем деле, оценивает юрист. Пока цифры нет на бумаге, в",
+      "quote_span": [
+        193,
+        370
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0018",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:5",
+      "native_unit_index": 5,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A5",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[4]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        407,
+        416
+      ],
+      "short_quote": "рист. Пока цифры нет на бумаге, ваше письмо остаётся просьбой войти в положение.",
+      "quote_span": [
+        337,
+        417
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0019",
+      "marker": "положение",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:21",
+      "native_unit_index": 21,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A21",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[20]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        141,
+        164
+      ],
+      "short_quote": "е самое, что «передан, не подписан». Механизм даёт пункт 4 статьи 753 Гражданского кодекса РФ: сдача и приёмка оформляются актом, подписанным обеими сторонами, а при отказе одной из сторон от п",
+      "quote_span": [
+        71,
+        264
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0020",
+      "marker": "Гражданского кодекса РФ",
+      "classification": "UNRESOLVED_FULL_CODE_NAME",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:21",
+      "native_unit_index": 21,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A21",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[20]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        154,
+        161
+      ],
+      "short_quote": "«передан, не подписан». Механизм даёт пункт 4 статьи 753 Гражданского кодекса РФ: сдача и приёмка оформляются актом, подписанным обеими сторонами, а при отказе одной из сторон о",
+      "quote_span": [
+        84,
+        261
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0021",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:23",
+      "native_unit_index": 23,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A23",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[22]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        4,
+        10
+      ],
+      "short_quote": "Про статьи",
+      "quote_span": [
+        0,
+        10
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0022",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:24",
+      "native_unit_index": 24,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A24",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[23]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        81,
+        104
+      ],
+      "short_quote": "работанной части при расторжении договора обсуждают вокруг статьи 453 Гражданского кодекса РФ о последствиях расторжения и главы 60 того же кодекса о неосновательном обогащении; последствия отк",
+      "quote_span": [
+        11,
+        204
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0023",
+      "marker": "Гражданского кодекса РФ",
+      "classification": "UNRESOLVED_FULL_CODE_NAME",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:24",
+      "native_unit_index": 24,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A24",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[23]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        94,
+        101
+      ],
+      "short_quote": "сти при расторжении договора обсуждают вокруг статьи 453 Гражданского кодекса РФ о последствиях расторжения и главы 60 того же кодекса о неосновательном обогащении; последствия ",
+      "quote_span": [
+        24,
+        201
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0024",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:24",
+      "native_unit_index": 24,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A24",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[23]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        151,
+        158
+      ],
+      "short_quote": "Гражданского кодекса РФ о последствиях расторжения и главы 60 того же кодекса о неосновательном обогащении; последствия отказа заказчика от исполнения договора подряда — вокруг ",
+      "quote_span": [
+        81,
+        258
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0025",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:25",
+      "native_unit_index": 25,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A25",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[24]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        32,
+        38
+      ],
+      "short_quote": "Две оговорки, из-за которых эти статьи читают не глядя и ошибаются. Первая: статья 717 начинается словами «если иное не предусмотрено дого",
+      "quote_span": [
+        0,
+        138
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0026",
+      "marker": "статьи",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:25",
+      "native_unit_index": 25,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Как читать",
+        "cell": "A25",
+        "part": "xl/worksheets/sheet1.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[24]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        290,
+        296
+      ],
+      "short_quote": "то «иное» встречается постоянно. Сначала смотрите свой договор, потом кодекс. Вторая: статьи 715 и 717 — общие правила о подряде, к строительному подряду они применяются, пока ",
+      "quote_span": [
+        220,
+        396
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0027",
+      "marker": "кодекс",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:221",
+      "native_unit_index": 221,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Выполнено",
+        "cell": "A57",
+        "part": "xl/worksheets/sheet3.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[54]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        386,
+        409
+      ],
+      "short_quote": "ная сделка (для зачёта достаточно заявления одной стороны, статья 410 Гражданского кодекса РФ), и он допускается не во всех случаях (статья 411 того же кодекса). Порядок оформления обсуждайте с",
+      "quote_span": [
+        316,
+        509
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0028",
+      "marker": "Гражданского кодекса РФ",
+      "classification": "UNRESOLVED_FULL_CODE_NAME",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:221",
+      "native_unit_index": 221,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Выполнено",
+        "cell": "A57",
+        "part": "xl/worksheets/sheet3.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[54]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        399,
+        406
+      ],
+      "short_quote": "ля зачёта достаточно заявления одной стороны, статья 410 Гражданского кодекса РФ), и он допускается не во всех случаях (статья 411 того же кодекса). Порядок оформления обсуждайт",
+      "quote_span": [
+        329,
+        506
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0029",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:221",
+      "native_unit_index": 221,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Выполнено",
+        "cell": "A57",
+        "part": "xl/worksheets/sheet3.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[54]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        468,
+        475
+      ],
+      "short_quote": " кодекса РФ), и он допускается не во всех случаях (статья 411 того же кодекса). Порядок оформления обсуждайте с юристом.",
+      "quote_span": [
+        398,
+        518
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0030",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:441",
+      "native_unit_index": 441,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Пример заполнения",
+        "cell": "A12",
+        "part": "xl/worksheets/sheet7.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[10]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        5,
+        8
+      ],
+      "short_quote": "КС-2 № 1, подписан обеими сторонами",
+      "quote_span": [
+        0,
+        35
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0031",
+      "marker": "№ 1",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:443",
+      "native_unit_index": 443,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Пример заполнения",
+        "cell": "A13",
+        "part": "xl/worksheets/sheet7.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[11]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        5,
+        8
+      ],
+      "short_quote": "КС-2 № 2, подписан обеими сторонами",
+      "quote_span": [
+        0,
+        35
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0032",
+      "marker": "№ 2",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "file_sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx:445",
+      "native_unit_index": 445,
+      "location": {
+        "kind": "xlsx_cell",
+        "sheet": "Пример заполнения",
+        "cell": "A14",
+        "part": "xl/worksheets/sheet7.xml",
+        "xml_path": "/worksheet/sheetData[1]/row[12]/c[1]",
+        "data_type": "inlineStr",
+        "value_mode": "stored_inline_string"
+      },
+      "span": [
+        5,
+        8
+      ],
+      "short_quote": "КС-2 № 3, передан, не подписан",
+      "quote_span": [
+        0,
+        30
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0033",
+      "marker": "№ 3",
+      "classification": "UNRESOLVED_NUMBERED_REFERENCE_SIGNAL",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "file_sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx:13",
+      "native_unit_index": 13,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[9]",
+        "global_paragraph_ordinal_including_empty": 14,
+        "nonempty_paragraph_ordinal": 13
+      },
+      "span": [
+        307,
+        330
+      ],
+      "short_quote": "тами. Обратите внимание, чего закон здесь НЕ говорит: по статье 165.1 Гражданского кодекса РФ юридически значимое сообщение влечёт последствия с момента доставки и считается доставленным даже т",
+      "quote_span": [
+        237,
+        430
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0034",
+      "marker": "Гражданского кодекса РФ",
+      "classification": "UNRESOLVED_FULL_CODE_NAME",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "file_sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx:13",
+      "native_unit_index": 13,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[9]",
+        "global_paragraph_ordinal_including_empty": 14,
+        "nonempty_paragraph_ordinal": 13
+      },
+      "span": [
+        267,
+        272
+      ],
+      "short_quote": "иске, и подтверждается она этими документами. Обратите внимание, чего закон здесь НЕ говорит: по статье 165.1 Гражданского кодекса РФ юридически значимое сообщение влечёт посл",
+      "quote_span": [
+        197,
+        372
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0035",
+      "marker": "закон",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "file_sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx:13",
+      "native_unit_index": 13,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[9]",
+        "global_paragraph_ordinal_including_empty": 14,
+        "nonempty_paragraph_ordinal": 13
+      },
+      "span": [
+        320,
+        327
+      ],
+      "short_quote": "е внимание, чего закон здесь НЕ говорит: по статье 165.1 Гражданского кодекса РФ юридически значимое сообщение влечёт последствия с момента доставки и считается доставленным даж",
+      "quote_span": [
+        250,
+        427
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0036",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "file_sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx:13",
+      "native_unit_index": 13,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[9]",
+        "global_paragraph_ordinal_including_empty": 14,
+        "nonempty_paragraph_ordinal": 13
+      },
+      "span": [
+        525,
+        530
+      ],
+      "short_quote": "ресату по зависящим от него обстоятельствам. То есть риск неполучения закон относит на получателя — и «мы письма не видели» позицией не является. У самой нормы есть оговорка, ",
+      "quote_span": [
+        455,
+        630
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0037",
+      "marker": "закон",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "file_sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx:13",
+      "native_unit_index": 13,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[9]",
+        "global_paragraph_ordinal_including_empty": 14,
+        "nonempty_paragraph_ordinal": 13
+      },
+      "span": [
+        697,
+        704
+      ],
+      "short_quote": "а, пункт 2: правила пункта 1 применяются, «если иное не предусмотрено законом или условиями сделки либо не следует из обычая или из практики, установившейся во взаимоотношениях ",
+      "quote_span": [
+        627,
+        804
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0038",
+      "marker": "законом",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "file_sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx:19",
+      "native_unit_index": 19,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[15]",
+        "global_paragraph_ordinal_including_empty": 20,
+        "nonempty_paragraph_ordinal": 19
+      },
+      "span": [
+        143,
+        166
+      ],
+      "short_quote": "льная сделка: для него достаточно заявления одной стороны (статья 410 Гражданского кодекса РФ), и допускается он не во всех случаях (статья 411 того же кодекса). У него свои последствия, в том ",
+      "quote_span": [
+        73,
+        266
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0039",
+      "marker": "Гражданского кодекса РФ",
+      "classification": "UNRESOLVED_FULL_CODE_NAME",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "file_sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx:19",
+      "native_unit_index": 19,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[15]",
+        "global_paragraph_ordinal_including_empty": 20,
+        "nonempty_paragraph_ordinal": 19
+      },
+      "span": [
+        156,
+        163
+      ],
+      "short_quote": " для него достаточно заявления одной стороны (статья 410 Гражданского кодекса РФ), и допускается он не во всех случаях (статья 411 того же кодекса). У него свои последствия, в т",
+      "quote_span": [
+        86,
+        263
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0040",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    },
+    {
+      "sku": "p8",
+      "document": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "file_sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "unit_id": "p8:products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx:19",
+      "native_unit_index": 19,
+      "location": {
+        "kind": "docx_xml_paragraph",
+        "part": "word/document.xml",
+        "xml_path": "/document/body[1]/p[15]",
+        "global_paragraph_ordinal_including_empty": 20,
+        "nonempty_paragraph_ordinal": 19
+      },
+      "span": [
+        225,
+        232
+      ],
+      "short_quote": " кодекса РФ), и допускается он не во всех случаях (статья 411 того же кодекса). У него свои последствия, в том числе налоговые, а при банкротстве второй стороны — свои риски осп",
+      "quote_span": [
+        155,
+        332
+      ],
+      "registry_norm_id": null,
+      "normative_verdict": "NOT_VERIFIED",
+      "marker_id": "p8-marker-0041",
+      "marker": "кодекса",
+      "classification": "UNRESOLVED_OR_NON_ARTICLE_LEGAL_MARKER",
+      "reason": "Raw lexical signal only; not normative identity, edition, applicability, currentness, legal completeness or defect"
+    }
+  ],
+  "source_currentness": "NOT_VERIFIED",
+  "human_legal": "NOT_PERFORMED",
+  "normative_verdict": "NOT_VERIFIED",
+  "membership": "SOURCE_ELIGIBLE_DRY_INVENTORY_NOT_ACTUAL_PHP_ZIP",
+  "scope_limit": "Native textual lexical scope only, not legal completeness/layout/formula/sale/currentacceptedrepackaging"
+}

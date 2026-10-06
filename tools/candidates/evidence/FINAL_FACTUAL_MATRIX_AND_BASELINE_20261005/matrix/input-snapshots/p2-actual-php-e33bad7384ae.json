@@ -1,0 +1,370 @@
+{
+  "observed": "2026-10-05T15:56:22.963603+00:00",
+  "commands": [
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/pmgpt12-arch/marzhavbetone.ru/pulls/312"
+      ],
+      "exit": 0,
+      "stdout": "{\"url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/pulls/312\",\"id\":4670757992,\"node_id\":\"PR_kwDOTjWlxs8AAAABFmYcaA\",\"html_url\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/312\",\"diff_url\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/312.diff\",\"patch_url\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/312.patch\",\"issue_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/issues/312\",\"number\":312,\"state\":\"open\",\"locked\":false,\"title\":\"MB001-R2-P2: инструкция покупательского комплекта P2 — два случая, фактический состав, границы\",\"user\":{\"login\":\"pmgpt12-arch\",\"id\":236229700,\"node_id\":\"U_kgDODhSURA\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/236229700?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/pmgpt12-arch\",\"html_url\":\"https://github.com/pmgpt12-arch\",\"followers_url\":\"https://api.github.com/users/pmgpt12-arch/followers\",\"following_url\":\"https://api.github.com/users/pmgpt12-arch/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/pmgpt12-arch/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/pmgpt12-arch/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/pmgpt12-arch/subscriptions\",\"organizations_url\":\"https://api.github.com/users/pmgpt12-arch/orgs\",\"repos_url\":\"https://api.github.com/users/pmgpt12-arch/repos\",\"events_url\":\"https://api.github.com/users/pmgpt12-arch/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/pmgpt12-arch/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"body\":\"Closes #305 · основание — #300 (P2-01 BLOCKER, P2-04/X-07), #293 (строка p2)\\n\\n**STOP / REVIEW_REQUIRED.** Не менялись цены, SKU, другие товары (включая историческую копию в `04-polnyy-komplekt-pto`), оплата, выдача, редиректы, деплой, CI.\\n\\n## Проблема\\n`00-START-HERE.txt` велит открыть первым `00-INSTRUKCIYA.pdf` и обещает в нём два случая. В архиве лежал общий шаблон под прежним именем «Допработы без потерь». В нём были файлы 01–10 без 11 и 12, фразы из инструкции P7 и ни одного из двух случаев; DOCX и PDF расходились. Генератора у файла в репозитории не было.\\n\\n## Что изменено\\n- `products-storage/build_paid_02_instrukciya.py` — **новый** генератор. Одна модель содержания → DOCX и PDF (встроен Liberation Sans). Сборка воспроизводима: два прогона дают один sha256.\\n- `00-INSTRUKCIYA.docx/.pdf` — текущее имя товара. Случай А «Работы ещё не начаты» и случай Б «Работы уже выполнены без подписанных бумаг» — пошагово по файлам. Таблица всех 15 файлов архива, раздел «Чего комплект не делает», подготовка документа к отправке. Ссылок на нормы и обещаний результата нет.\\n- `00-START-HERE.txt` §2 называет случаи так же, как заголовки инструкции; §3 дополнен файлами 05–08.\\n- `00-PISMO-POSLE-POKUPKI.txt` (служебный, в архив не входит) — текущее имя.\\n- `products/p2-dopolnitelnye-raboty.html` — «15 файлов в Word, Excel и PDF» (3 места).\\n- `tools/test_p2_kit_instruction.py` — регрессионный тест, 7 проверок.\\n- `tools/candidates/MB001_R2_P2_KIT_INSTRUCTION.md` — отчёт.\\n\\n## Проверки\\n- Новый тест на `main` b89f081: **5 провалов из 7** (прежнее имя и общий шаблон, неполный состав, нет двух случаев, PDF ≠ DOCX, страница без PDF). На ветке — 7/7. Реальной ссылки на отсутствующий файл на `main` нет, поэтому детектор проверен на подложенном тексте.\\n- Writer: 9/9 DOCX P2 открыты и сконвертированы. Calc: 2/2 XLSX пересчитаны, ошибок 0. Рендер инструкции просмотрен.\\n- Архив: реальный `mvb_build_product_zip('p2')` даёт 15 файлов, новая инструкция внутри совпадает с исходником по sha256. Воспроизводимая сборка: два прогона → `f6ef7961…08dc`.\\n- `run_checks.py --class public` — PASS 39/39. `check_packages` — 0 расхождений. Пять pytest-файлов — 18 passed. Все `tools/test_*.py` по одному: результаты такие же, как на `main`, плюс новый тест.\\n- Новый тест в CI не зарегистрирован: для этого нужна правка `ci_checks.yaml`, а CI-конфигурацию задача менять запрещает.\\n\\n---\\n\\n## R3: очистка покупательских форм P2 01–06 (коммиты `faba7f4`, `82a051e`)\\n\\nОтчёт: `tools/candidates/MB001_R2_P2_FORMS_R3.md` — Baseline с фразами и выводом теста, таблица решений по реквизитам, цепочка «ошибка → правило → тест», состав ZIP и sha256, все STOP.\\n\\n**Порядок работы.** Сначала Baseline, затем тест `tools/test_p2_forms_buyer_text.py` (коммит `faba7f4`). Прогон на неизменённой голове `0bc99fc`: **6 failed, 5 passed, 6 xfailed**. Только после этого менялись документы.\\n\\n**Изменено**\\n- `01-prikaz-na-dopobem.docx`, `03-uvedomlenie-o-doprabotah.docx`, `06-pismo-o-priostanovke.docx` — удалены только элементы Baseline:\\n  - строка-подсказка;\\n  - чек-лист «Контроль перед использованием»;\\n  - оговорка «Важно: шаблон не заменяет…»;\\n  - в 06 — указание «Основание и допустимость приостановки обязательно проверить…» (в инструкции оно уже есть, шаг А7);\\n  - колонтитулы «МАРЖА В БЕТОНЕ / РАБОЧИЙ ШАБЛОН» и «версия 21.07.2026 • marzhavbetone.ru».\\n\\n  По таблице решений добавлены поля «Дата», «Подпись», «Расшифровка подписи». Юридический текст не менялся. Генератора у форм нет — исходник сам DOCX.\\n- `build_paid_02_instrukciya.py` → `00-INSTRUKCIYA.docx/.pdf`: в §6 синхронизирован состав — где остались подсказки (02, 04, 05, 11, 12) и колонтитулы (02, 04, 05).\\n- `products/p2-dopolnitelnye-raboty.html` — **вне перечня scope, производное**. Предпросмотр генерирует `build_preview.py --write` из форм. Витрина цитировала удалённую фразу 06, и блокирующая проверка `build_preview` падала.\\n- Прежнее имя «Допработы без потерь» в формах 01–06 и во всём архиве не найдено (0 совпадений). В тесте оставлено сторожем.\\n\\n**STOP (файлы не изменены, в тесте `xfail(strict=True, raises=AssertionError)`)**\\n- **STOP-P2-R3-1 — 02.** В случае А форма идёт приложением к допсоглашению 11, в случае Б — вложением к уведомлению 03. Состав подписей в этих случаях разный.\\n- **STOP-P2-R3-2 — 04.** Форма и подписанты акта заданы требованиями, проектом и системой заказчика.\\n- **STOP-P2-R3-3 — 05.** Форма называется «Соглашение / уведомление»: подписывают либо обе стороны, либо только отправитель.\\n\\n**Проверки R3**\\n- Новый тест после правки: 11 passed, 6 xfailed.\\n- Без PHP тест падает (16 errors), а не пропускается.\\n- Отрицательная проверка: в 03 вернул подсказку → тест упал; файл восстановлен до коммита.\\n- Очистка 02 без решения → `XPASS(strict)` → FAILED; файл восстановлен.\\n- Реальный PHP-сборщик, два прогона: 15 файлов, состав и содержимое совпадают, служебных файлов нет, каждый файл равен исходнику.\\n- Генератор инструкции, два прогона: sha256 совпали.\\n- `soffice --headless` → PDF для 01, 03, 06 и инструкции. Первая и последняя страницы отрисованы и просмотрены: текст читается, служебного текста нет.\\n- Calc не применялся: XLSX не менялись.\\n- `run_checks.py --class public`: PASS 39/39. `check_packages`: 0 расхождений. Тесты P2 и выдачи: 29 passed, 6 xfailed.\\n\\n**CI на `82a051e`** (проверен один раз после push): «Публичный релиз» — success, «Внутренний контур (не блокирует)» — success, render — success.\\n\\nНе сделано: 02, 04, 05 (STOP); фраза инструкции §6 «подписные блоки добавьте по своему договору» не уточнена — для этого нужна новая формулировка; 11 и 12 вне задачи; тест не зарегистрирован в CI; проверка в Microsoft Word не проводилась.\\n\\nНе сделано (отчёт R2, §6): START-HERE §7 с именем и ценой P1 (B-11); нормативная сверка отдельным исполнителем.\\n\\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\\n\\nhttps://claude.ai/code/session_01QnQFnxQ9snexojTK8CKhyp\\n\\n---\\n_Generated by [Claude Code](https://claude.ai/code/session_01QnQFnxQ9snexojTK8CKhyp)_\",\"created_at\":\"2026-09-29T00:02:38Z\",\"updated_at\":\"2026-10-05T02:16:13Z\",\"closed_at\":null,\"merged_at\":null,\"merge_commit_sha\":\"dc592ea1dd8e08a10940a7f2c98123ffaa205cc7\",\"assignees\":[],\"requested_reviewers\":[],\"requested_teams\":[],\"labels\":[],\"milestone\":null,\"draft\":true,\"commits_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/pulls/312/commits\",\"review_comments_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/pulls/312/comments\",\"review_comment_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/pulls/comments{/number}\",\"comments_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/issues/312/comments\",\"statuses_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/statuses/1be0493ae194b2647c4b22c98e9981b9c5e64a54\",\"head\":{\"label\":\"pmgpt12-arch:claude/confident-planck-ok644n\",\"ref\":\"claude/confident-planck-ok644n\",\"sha\":\"1be0493ae194b2647c4b22c98e9981b9c5e64a54\",\"user\":{\"login\":\"pmgpt12-arch\",\"id\":236229700,\"node_id\":\"U_kgDODhSURA\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/236229700?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/pmgpt12-arch\",\"html_url\":\"https://github.com/pmgpt12-arch\",\"followers_url\":\"https://api.github.com/users/pmgpt12-arch/followers\",\"following_url\":\"https://api.github.com/users/pmgpt12-arch/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/pmgpt12-arch/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/pmgpt12-arch/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/pmgpt12-arch/subscriptions\",\"organizations_url\":\"https://api.github.com/users/pmgpt12-arch/orgs\",\"repos_url\":\"https://api.github.com/users/pmgpt12-arch/repos\",\"events_url\":\"https://api.github.com/users/pmgpt12-arch/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/pmgpt12-arch/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"repo\":{\"id\":1312138694,\"node_id\":\"R_kgDOTjWlxg\",\"name\":\"marzhavbetone.ru\",\"full_name\":\"pmgpt12-arch/marzhavbetone.ru\",\"private\":false,\"owner\":{\"login\":\"pmgpt12-arch\",\"id\":236229700,\"node_id\":\"U_kgDODhSURA\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/236229700?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/pmgpt12-arch\",\"html_url\":\"https://github.com/pmgpt12-arch\",\"followers_url\":\"https://api.github.com/users/pmgpt12-arch/followers\",\"following_url\":\"https://api.github.com/users/pmgpt12-arch/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/pmgpt12-arch/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/pmgpt12-arch/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/pmgpt12-arch/subscriptions\",\"organizations_url\":\"https://api.github.com/users/pmgpt12-arch/orgs\",\"repos_url\":\"https://api.github.com/users/pmgpt12-arch/repos\",\"events_url\":\"https://api.github.com/users/pmgpt12-arch/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/pmgpt12-arch/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"html_url\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru\",\"description\":null,\"fork\":false,\"url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru\",\"forks_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/forks\",\"keys_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/teams\",\"hooks_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/hooks\",\"issue_events_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/events\",\"assignees_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/tags\",\"blobs_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/languages\",\"stargazers_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/stargazers\",\"contributors_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/contributors\",\"subscribers_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/subscribers\",\"subscription_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/subscription\",\"commits_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/merges\",\"archive_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/downloads\",\"issues_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/deployments\",\"created_at\":\"2026-07-25T16:32:48Z\",\"updated_at\":\"2026-10-05T13:31:04Z\",\"pushed_at\":\"2026-10-05T15:50:38Z\",\"git_url\":\"git://github.com/pmgpt12-arch/marzhavbetone.ru.git\",\"ssh_url\":\"git@github.com:pmgpt12-arch/marzhavbetone.ru.git\",\"clone_url\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru.git\",\"svn_url\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru\",\"homepage\":null,\"size\":241725,\"stargazers_count\":0,\"watchers_count\":0,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":false,\"has_wiki\":false,\"has_pages\":false,\"has_discussions\":false,\"forks_count\":0,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":106,\"license\":null,\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"has_pull_requests\":true,\"pull_request_creation_policy\":\"all\",\"topics\":[],\"visibility\":\"public\",\"forks\":0,\"open_issues\":106,\"watchers\":0,\"default_branch\":\"main\"}},\"base\":{\"label\":\"pmgpt12-arch:main\",\"ref\":\"main\",\"sha\":\"b89f081fe94249231896bcf40b8a188824ac9301\",\"user\":{\"login\":\"pmgpt12-arch\",\"id\":236229700,\"node_id\":\"U_kgDODhSURA\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/236229700?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/pmgpt12-arch\",\"html_url\":\"https://github.com/pmgpt12-arch\",\"followers_url\":\"https://api.github.com/users/pmgpt12-arch/followers\",\"following_url\":\"https://api.github.com/users/pmgpt12-arch/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/pmgpt12-arch/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/pmgpt12-arch/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/pmgpt12-arch/subscriptions\",\"organizations_url\":\"https://api.github.com/users/pmgpt12-arch/orgs\",\"repos_url\":\"https://api.github.com/users/pmgpt12-arch/repos\",\"events_url\":\"https://api.github.com/users/pmgpt12-arch/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/pmgpt12-arch/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"repo\":{\"id\":1312138694,\"node_id\":\"R_kgDOTjWlxg\",\"name\":\"marzhavbetone.ru\",\"full_name\":\"pmgpt12-arch/marzhavbetone.ru\",\"private\":false,\"owner\":{\"login\":\"pmgpt12-arch\",\"id\":236229700,\"node_id\":\"U_kgDODhSURA\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/236229700?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/pmgpt12-arch\",\"html_url\":\"https://github.com/pmgpt12-arch\",\"followers_url\":\"https://api.github.com/users/pmgpt12-arch/followers\",\"following_url\":\"https://api.github.com/users/pmgpt12-arch/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/pmgpt12-arch/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/pmgpt12-arch/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/pmgpt12-arch/subscriptions\",\"organizations_url\":\"https://api.github.com/users/pmgpt12-arch/orgs\",\"repos_url\":\"https://api.github.com/users/pmgpt12-arch/repos\",\"events_url\":\"https://api.github.com/users/pmgpt12-arch/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/pmgpt12-arch/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"html_url\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru\",\"description\":null,\"fork\":false,\"url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru\",\"forks_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/forks\",\"keys_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/teams\",\"hooks_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/hooks\",\"issue_events_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/events\",\"assignees_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/tags\",\"blobs_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/languages\",\"stargazers_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/stargazers\",\"contributors_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/contributors\",\"subscribers_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/subscribers\",\"subscription_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/subscription\",\"commits_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/merges\",\"archive_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/downloads\",\"issues_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/deployments\",\"created_at\":\"2026-07-25T16:32:48Z\",\"updated_at\":\"2026-10-05T13:31:04Z\",\"pushed_at\":\"2026-10-05T15:50:38Z\",\"git_url\":\"git://github.com/pmgpt12-arch/marzhavbetone.ru.git\",\"ssh_url\":\"git@github.com:pmgpt12-arch/marzhavbetone.ru.git\",\"clone_url\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru.git\",\"svn_url\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru\",\"homepage\":null,\"size\":241725,\"stargazers_count\":0,\"watchers_count\":0,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":false,\"has_wiki\":false,\"has_pages\":false,\"has_discussions\":false,\"forks_count\":0,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":106,\"license\":null,\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"has_pull_requests\":true,\"pull_request_creation_policy\":\"all\",\"topics\":[],\"visibility\":\"public\",\"forks\":0,\"open_issues\":106,\"watchers\":0,\"default_branch\":\"main\"}},\"_links\":{\"self\":{\"href\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/pulls/312\"},\"html\":{\"href\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/312\"},\"issue\":{\"href\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/issues/312\"},\"comments\":{\"href\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/issues/312/comments\"},\"review_comments\":{\"href\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/pulls/312/comments\"},\"review_comment\":{\"href\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/pulls/comments{/number}\"},\"commits\":{\"href\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/pulls/312/commits\"},\"statuses\":{\"href\":\"https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/statuses/1be0493ae194b2647c4b22c98e9981b9c5e64a54\"}},\"author_association\":\"OWNER\",\"auto_merge\":null,\"assignee\":null,\"active_lock_reason\":null,\"merged\":false,\"mergeable\":true,\"rebaseable\":true,\"mergeable_state\":\"clean\",\"merged_by\":null,\"comments\":0,\"review_comments\":0,\"maintainer_can_modify\":false,\"commits\":15,\"additions\":2022,\"deletions\":16,\"changed_files\":31}",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "refs/task-inputs/p2p3-20261005/pr312"
+      ],
+      "exit": 0,
+      "stdout": "1be0493ae194b2647c4b22c98e9981b9c5e64a54\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "cat-file",
+        "-t",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54"
+      ],
+      "exit": 0,
+      "stdout": "commit\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54",
+        "products-storage/02-dopraboty-bez-poter"
+      ],
+      "exit": 0,
+      "stdout": "products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.docx\nproducts-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.pdf\nproducts-storage/02-dopraboty-bez-poter/00-PISMO-POSLE-POKUPKI.txt\nproducts-storage/02-dopraboty-bez-poter/00-START-HERE.txt\nproducts-storage/02-dopraboty-bez-poter/01-prikaz-na-dopobem.docx\nproducts-storage/02-dopraboty-bez-poter/02-soglasovanie-obema.docx\nproducts-storage/02-dopraboty-bez-poter/03-uvedomlenie-o-doprabotah.docx\nproducts-storage/02-dopraboty-bez-poter/04-akt-skrytyh-rabot.docx\nproducts-storage/02-dopraboty-bez-poter/05-izmenenie-srokov.docx\nproducts-storage/02-dopraboty-bez-poter/06-pismo-o-priostanovke.docx\nproducts-storage/02-dopraboty-bez-poter/07-raschet-stoimosti.xlsx\nproducts-storage/02-dopraboty-bez-poter/08-zhurnal-doprabot.xlsx\nproducts-storage/02-dopraboty-bez-poter/09-checklist-fotofiksacii.pdf\nproducts-storage/02-dopraboty-bez-poter/10-algoritm-doprabot.pdf\nproducts-storage/02-dopraboty-bez-poter/11-dopsoglashenie-obem-i-cena.docx\nproducts-storage/02-dopraboty-bez-poter/12-dopsoglashenie-sroki-doprabot.docx\nproducts-storage/02-dopraboty-bez-poter/MANIFEST.md\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.docx"
+      ],
+      "exit": 0,
+      "stdout": "92851f94542f7a184ba7e773c44865c5f5e7c92a\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.pdf"
+      ],
+      "exit": 0,
+      "stdout": "91a7b7c73e67601e122d21a4b6257568d77821ed\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/00-PISMO-POSLE-POKUPKI.txt"
+      ],
+      "exit": 0,
+      "stdout": "ed65ab1ee507e671ce8ca0ed3bb805f7bc8662d3\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/00-START-HERE.txt"
+      ],
+      "exit": 0,
+      "stdout": "007d2dbf1ec5b86efa34b823514d58b4bf550b1d\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/01-prikaz-na-dopobem.docx"
+      ],
+      "exit": 0,
+      "stdout": "6907f983f948b475c882f64db730ba14126dbe76\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/02-soglasovanie-obema.docx"
+      ],
+      "exit": 0,
+      "stdout": "3e8af7641a7adb629745f04e67de105adb0a7ad9\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/03-uvedomlenie-o-doprabotah.docx"
+      ],
+      "exit": 0,
+      "stdout": "8518169ea84be60e80cef5a8fe4ef445fcec43d1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/04-akt-skrytyh-rabot.docx"
+      ],
+      "exit": 0,
+      "stdout": "aa1c1164f0da49cd58367ae632f0db73df72f767\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/05-izmenenie-srokov.docx"
+      ],
+      "exit": 0,
+      "stdout": "7c9eae79345087be3973d820da70f3ea6dceff4c\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/06-pismo-o-priostanovke.docx"
+      ],
+      "exit": 0,
+      "stdout": "9572d443b6e0379df2ee6cf1211f70373d674387\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/07-raschet-stoimosti.xlsx"
+      ],
+      "exit": 0,
+      "stdout": "480da051eb8429c0d90efe04998ae85badf19a58\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/08-zhurnal-doprabot.xlsx"
+      ],
+      "exit": 0,
+      "stdout": "030373ad316e5dca6228fe0064154a6d399bdf73\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/09-checklist-fotofiksacii.pdf"
+      ],
+      "exit": 0,
+      "stdout": "6fb75e364f53c3e5d0d3075d1fb209d300c28c58\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/10-algoritm-doprabot.pdf"
+      ],
+      "exit": 0,
+      "stdout": "79ae322c99561216c3a5a1104adc1a9ff82e367e\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/11-dopsoglashenie-obem-i-cena.docx"
+      ],
+      "exit": 0,
+      "stdout": "094a73e1a89da153362b8a57bc99613f260ec825\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/12-dopsoglashenie-sroki-doprabot.docx"
+      ],
+      "exit": 0,
+      "stdout": "32252606b9f096a2a1df033ba74cbf97ce0f3301\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/denis/projects/marzhavbetone.ru",
+        "rev-parse",
+        "1be0493ae194b2647c4b22c98e9981b9c5e64a54:products-storage/02-dopraboty-bez-poter/MANIFEST.md"
+      ],
+      "exit": 0,
+      "stdout": "600fcf356bd341cde5b143ce9b1cd5afb7c4f5b4\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "php",
+        "/home/denis/.local/state/claude-dispatcher/recovery-20261004/next-packaging-qa-20261005/p2/build.php"
+      ],
+      "exit": 0,
+      "stdout": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/next-packaging-qa-20261005/p2/orders/delivery/02-dopy-ne-v-podarok.zip",
+      "stderr": ""
+    }
+  ],
+  "status": "PASS_CURRENT_ACTUAL_PHP_ZIP",
+  "execution_pattern": "one_shot",
+  "primary_result": "P2_CURRENT_PHP_ZIP_PAYLOAD",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "source_sha": "1be0493ae194b2647c4b22c98e9981b9c5e64a54",
+  "catalog_dir": "02-dopraboty-bez-poter",
+  "source_files": {
+    "products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.docx": {
+      "sha256": "bc2c155984286409f429349fdab25d343dbc4aaae4b9aa32e91a3e4debc335c4",
+      "blob": "92851f94542f7a184ba7e773c44865c5f5e7c92a"
+    },
+    "products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.pdf": {
+      "sha256": "b7af857d6674754f242e1b3400ffe51d212f39dbe979bdf6e80f6663989e44ce",
+      "blob": "91a7b7c73e67601e122d21a4b6257568d77821ed"
+    },
+    "products-storage/02-dopraboty-bez-poter/00-PISMO-POSLE-POKUPKI.txt": {
+      "sha256": "0360ac7c4db1bcd350a370e1da4fa9bcf0e8ea1b0cc83b6d0b0c718a93d3b6c6",
+      "blob": "ed65ab1ee507e671ce8ca0ed3bb805f7bc8662d3"
+    },
+    "products-storage/02-dopraboty-bez-poter/00-START-HERE.txt": {
+      "sha256": "34d4619b49bbeaf01608bf3d67a46bca7300321021bc47e4aa8c1f80254ae0f7",
+      "blob": "007d2dbf1ec5b86efa34b823514d58b4bf550b1d"
+    },
+    "products-storage/02-dopraboty-bez-poter/01-prikaz-na-dopobem.docx": {
+      "sha256": "d32e671fa24b880ebb323d654cc9ec8417b9a915567c313d596adbaa2a6ac372",
+      "blob": "6907f983f948b475c882f64db730ba14126dbe76"
+    },
+    "products-storage/02-dopraboty-bez-poter/02-soglasovanie-obema.docx": {
+      "sha256": "0702129e13bbeb35efd6064dcaf49495f9b2c0eccf213d8304324a6042ccf3e9",
+      "blob": "3e8af7641a7adb629745f04e67de105adb0a7ad9"
+    },
+    "products-storage/02-dopraboty-bez-poter/03-uvedomlenie-o-doprabotah.docx": {
+      "sha256": "835a5e81107c5bdc41960050f95ebcc47cb450716aa67010b3dee51cbad6d062",
+      "blob": "8518169ea84be60e80cef5a8fe4ef445fcec43d1"
+    },
+    "products-storage/02-dopraboty-bez-poter/04-akt-skrytyh-rabot.docx": {
+      "sha256": "f7abad79766e96938728a71577b24a6dfd70fe0313a4796cb6cc7adfc98d0c37",
+      "blob": "aa1c1164f0da49cd58367ae632f0db73df72f767"
+    },
+    "products-storage/02-dopraboty-bez-poter/05-izmenenie-srokov.docx": {
+      "sha256": "3ca5e970ea0a551791579f6d4a86295de90eacdf09ed361ce2b981d4febf0d7e",
+      "blob": "7c9eae79345087be3973d820da70f3ea6dceff4c"
+    },
+    "products-storage/02-dopraboty-bez-poter/06-pismo-o-priostanovke.docx": {
+      "sha256": "af10700f5d30610260f26927f24b591da4f30feaadcf4391756713b975609d99",
+      "blob": "9572d443b6e0379df2ee6cf1211f70373d674387"
+    },
+    "products-storage/02-dopraboty-bez-poter/07-raschet-stoimosti.xlsx": {
+      "sha256": "b38587d98bf4e045d77e0411eb75576d03d5841efa04e2f3cf16e6038c628c80",
+      "blob": "480da051eb8429c0d90efe04998ae85badf19a58"
+    },
+    "products-storage/02-dopraboty-bez-poter/08-zhurnal-doprabot.xlsx": {
+      "sha256": "0204f914ceb0c78ae78aeeeacd2a5a834318ea6327b20028775821e38b40edb7",
+      "blob": "030373ad316e5dca6228fe0064154a6d399bdf73"
+    },
+    "products-storage/02-dopraboty-bez-poter/09-checklist-fotofiksacii.pdf": {
+      "sha256": "80590f62711cd55e405d3122eeeb33d6f1a44e1a5a19b56ee00e59c5a5f3a202",
+      "blob": "6fb75e364f53c3e5d0d3075d1fb209d300c28c58"
+    },
+    "products-storage/02-dopraboty-bez-poter/10-algoritm-doprabot.pdf": {
+      "sha256": "1bc3c0ccd967b1e1ea6cfdba5f5b2bd75986a20453dc63a8ec8356e29be937e6",
+      "blob": "79ae322c99561216c3a5a1104adc1a9ff82e367e"
+    },
+    "products-storage/02-dopraboty-bez-poter/11-dopsoglashenie-obem-i-cena.docx": {
+      "sha256": "6540bc6740189a2d6312cb287b1c84d810234ada960736f711dc3fc4a5b4f2c9",
+      "blob": "094a73e1a89da153362b8a57bc99613f260ec825"
+    },
+    "products-storage/02-dopraboty-bez-poter/12-dopsoglashenie-sroki-doprabot.docx": {
+      "sha256": "8bad81f8b2584878d9741084f4da1596f734c622929b72e470c7ad0eb14fbdca",
+      "blob": "32252606b9f096a2a1df033ba74cbf97ce0f3301"
+    },
+    "products-storage/02-dopraboty-bez-poter/MANIFEST.md": {
+      "sha256": "eb47be2cda06f4ae8ac244fb62a52747acc8f92a36a12d29d8e01c6460aee9f4",
+      "blob": "600fcf356bd341cde5b143ce9b1cd5afb7c4f5b4"
+    }
+  },
+  "prior_receipt_source": "82a051e42056a8455bb885d6005965dca4adde00",
+  "prior_receipt_equivalent": false,
+  "archive": "/home/denis/.local/state/claude-dispatcher/recovery-20261004/next-packaging-qa-20261005/p2/orders/delivery/02-dopy-ne-v-podarok.zip",
+  "archive_sha256": "911a213ec92b4d981abb1f15aeb41e847fa801a505179811ac939a16e75ff30c",
+  "crc_failure_member": null,
+  "member_hashes": {
+    "11-dopsoglashenie-obem-i-cena.docx": "6540bc6740189a2d6312cb287b1c84d810234ada960736f711dc3fc4a5b4f2c9",
+    "08-zhurnal-doprabot.xlsx": "0204f914ceb0c78ae78aeeeacd2a5a834318ea6327b20028775821e38b40edb7",
+    "02-soglasovanie-obema.docx": "0702129e13bbeb35efd6064dcaf49495f9b2c0eccf213d8304324a6042ccf3e9",
+    "09-checklist-fotofiksacii.pdf": "80590f62711cd55e405d3122eeeb33d6f1a44e1a5a19b56ee00e59c5a5f3a202",
+    "07-raschet-stoimosti.xlsx": "b38587d98bf4e045d77e0411eb75576d03d5841efa04e2f3cf16e6038c628c80",
+    "01-prikaz-na-dopobem.docx": "d32e671fa24b880ebb323d654cc9ec8417b9a915567c313d596adbaa2a6ac372",
+    "05-izmenenie-srokov.docx": "3ca5e970ea0a551791579f6d4a86295de90eacdf09ed361ce2b981d4febf0d7e",
+    "04-akt-skrytyh-rabot.docx": "f7abad79766e96938728a71577b24a6dfd70fe0313a4796cb6cc7adfc98d0c37",
+    "03-uvedomlenie-o-doprabotah.docx": "835a5e81107c5bdc41960050f95ebcc47cb450716aa67010b3dee51cbad6d062",
+    "06-pismo-o-priostanovke.docx": "af10700f5d30610260f26927f24b591da4f30feaadcf4391756713b975609d99",
+    "10-algoritm-doprabot.pdf": "1bc3c0ccd967b1e1ea6cfdba5f5b2bd75986a20453dc63a8ec8356e29be937e6",
+    "00-START-HERE.txt": "34d4619b49bbeaf01608bf3d67a46bca7300321021bc47e4aa8c1f80254ae0f7",
+    "00-INSTRUKCIYA.docx": "bc2c155984286409f429349fdab25d343dbc4aaae4b9aa32e91a3e4debc335c4",
+    "00-INSTRUKCIYA.pdf": "b7af857d6674754f242e1b3400ffe51d212f39dbe979bdf6e80f6663989e44ce",
+    "12-dopsoglashenie-sroki-doprabot.docx": "8bad81f8b2584878d9741084f4da1596f734c622929b72e470c7ad0eb14fbdca"
+  },
+  "source_immutable": true,
+  "count": 15,
+  "boundary": "packaging only; no source/main/live/sku/payment/form/email/model changes; legal Word Excel release unchanged"
+}

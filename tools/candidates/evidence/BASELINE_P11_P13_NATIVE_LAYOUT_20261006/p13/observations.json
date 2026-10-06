@@ -1,0 +1,47 @@
+{
+  "status": "BLOCKED_EXACT_TEXT_COVERAGE_FINDING_PRESERVED",
+  "observed_utc": "2026-10-06T06:46:43.655623+00:00",
+  "task_id": "p13-native-docx-layout-264d75-20261006",
+  "source_sha256": "3b7d9341a7b435a0abdbb6a7bc4e15050a656d326dfb1ef5789c5a3f72770cd7",
+  "source_before_after_equal": true,
+  "pages_visually_inspected": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "png_validation": "All declared page PNG verify/load passed",
+  "native_text_units_checked": 93,
+  "unmatched_count": 1,
+  "findings": [
+    {
+      "id": "P13-GLYPH-01",
+      "class": "RENDERED_GLYPH_OR_TEXT_TRANSFORMATION",
+      "observed_fact": "Source paragraph16 begins checkbox U+2610 then Бытовка. Rendered page1 first checklist line visibly has no checkbox and letters/spaces changed to Б ытовка. PDF text also lacks U+2610; all words retained after whitespace-only normalization. Other checkboxes visible.",
+      "severity": "LAYOUT_TEXT_COVERAGE_GATE_FAILED",
+      "root_cause": "UNRESOLVED_RENDERER_OR_FONT_BEHAVIOR; raw source run contains intact checkbox and text; no source corruption inferred",
+      "hypothesis": "Native renderer/font substitution may drop or transform first glyph; not confirmed",
+      "rule": "Do not discard checklist/control glyphs during source-to-PDF coverage normalization; every paragraph mismatch remains blocking until classified and resolved",
+      "gate": "Exact whitespace-only text matching plus visual inspection prevents successful process exit or nonempty PDF from being declared complete"
+    },
+    {
+      "id": "P13-PAGINATION-01",
+      "class": "READABILITY_PAGINATION",
+      "observed_fact": "Section1 has three items at page1 bottom; continuation begins page2. Page5 contains final checkbox plus итог прохода table and concluding paragraph, then large blank remainder. No clipped or overlapping table/text observed on all5 pages.",
+      "severity": "LAYOUT_OBSERVATION"
+    }
+  ],
+  "runtime_limitation": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5; distinct from native Microsoft Word/server render; no Word acceptance claimed",
+  "not_verified": [
+    "Legal/financial semantics",
+    "official source currentness",
+    "human legal acceptance",
+    "SaleReady",
+    "accepted repackaged source",
+    "Microsoft Word compatibility"
+  ],
+  "source_writes": 0,
+  "api_usd": 0,
+  "automatic_retries": 0
+}

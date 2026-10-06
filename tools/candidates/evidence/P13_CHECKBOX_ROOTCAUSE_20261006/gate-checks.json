@@ -1,0 +1,26 @@
+[
+  {
+    "case": "original_missing",
+    "actual": false,
+    "expected": false,
+    "pass": true
+  },
+  {
+    "case": "neighbor_present",
+    "actual": true,
+    "expected": true,
+    "pass": true
+  },
+  {
+    "case": "fixture_missing",
+    "actual": false,
+    "expected": false,
+    "pass": true
+  },
+  {
+    "case": "fixture_whitespace",
+    "actual": true,
+    "expected": true,
+    "pass": true
+  }
+]

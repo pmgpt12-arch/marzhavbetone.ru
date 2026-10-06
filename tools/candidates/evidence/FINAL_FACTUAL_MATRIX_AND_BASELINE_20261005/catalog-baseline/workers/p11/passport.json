@@ -1,0 +1,97 @@
+{
+  "task_id": "readonly-ooxml-p11-264d75",
+  "execution_pattern": "one_shot",
+  "primary_result": "Exact p11 buyer-source OOXML integrity/schema factual inventory",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "module_dir": "13-raschet-metrami",
+  "required_inputs": [
+    {
+      "path": "products-storage/13-raschet-metrami/00-START-HERE.txt",
+      "relative_name": "00-START-HERE.txt",
+      "git_blob": "a51eef5e288a9322c50f9230e68faa4f0c26af3d",
+      "sha256": "0842d9dcbfe60a0e05d531681b02f670e6723e1d76d53a75433ce76ff67d06fa",
+      "size": 3594,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+      "relative_name": "50-slovar-poley-raschet-metrami.docx",
+      "git_blob": "d8d681746569b31581e95aa6ba467fca0a9c2702",
+      "sha256": "f80f23ea0b096f8f4626552465125cf728c1947d78447e19d089354406058349",
+      "size": 13717,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/13-raschet-metrami/51-algoritm-raschet-metrami.pdf",
+      "relative_name": "51-algoritm-raschet-metrami.pdf",
+      "git_blob": "86688bd4af7188fd6d24d342b3b5bf6f984dac09",
+      "sha256": "b104471e26c0c00214452cc999cdcbddcaa2f2e978c11657acb9556e1646baf4",
+      "size": 63067,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+      "relative_name": "52-chek-list-raschet-metrami.docx",
+      "git_blob": "22d1f3e17fc8d845d399f8b9b50d2fceb757a3e0",
+      "sha256": "a195a5db3960c9187cebebce240ddcb966b96e52b555122b9102ffac1fa50a7f",
+      "size": 12118,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/13-raschet-metrami/53-zapros-status-obekta.docx",
+      "relative_name": "53-zapros-status-obekta.docx",
+      "git_blob": "ee35ac5ead9c03ed5938fbf310c1fa7844205120",
+      "sha256": "89183de06f06e349ee5e9bf4ef7aba220a485a631c1067045ca2ffdebfa696d3",
+      "size": 12707,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/13-raschet-metrami/54-zapros-sostoyanie-escrow.docx",
+      "relative_name": "54-zapros-sostoyanie-escrow.docx",
+      "git_blob": "8ac202a5bf2d9312ef140c9fb4fa55b9957b278c",
+      "sha256": "90f20f6d4e151418edd16a2ea21c49453c248b28e4f379eb63c829e8e91846f1",
+      "size": 12763,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf",
+      "relative_name": "55-pamyatka-punkt-ustupki-escrow.pdf",
+      "git_blob": "cb2edfbad6114eac4e857b6c9162aa1580111534",
+      "sha256": "c8fe766b86f25d2390d7f2aace58adda4a2cf2803195007aa2362dc3cbc9f35b",
+      "size": 59892,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    }
+  ],
+  "contracts": {
+    "Task_Setting_Protocol.md": {
+      "path": "/home/denis/projects/ai-business-os/docs/Task_Setting_Protocol.md",
+      "sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686",
+      "bytes": 27997
+    },
+    "Normative_Contract.md": {
+      "path": "/home/denis/projects/ai-business-os/docs/Normative_Contract.md",
+      "sha256": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+      "bytes": 9359
+    }
+  },
+  "executor": "Python/CLI only, no model; proposed isolated pool max4",
+  "scope": "Read-only native DOCX/XLSX ZIP CRC/duplicate parts/internal relationships/content-types/cell-formula schema inventory; all member before/after hash proof; signal numeric #{2,} only, not rendered clipping verdict",
+  "duplicate_gate": "No existing exact output; bounded located reports do not claim this exact structural scope",
+  "output_dir": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/p11-readonly-ooxml-264d75",
+  "acceptance": "Exact manifest membership/inputhash; source bytes unchanged; evidence every file including nonOOXML applicability; deterministic structural observations independently reviewable",
+  "not_claimed": [
+    "accepted repackaging source",
+    "actual PHP ZIP proof",
+    "formula correctness",
+    "layout/readability",
+    "legal/financial/currentness/human acceptance",
+    "sale readiness"
+  ],
+  "stop": "Missing exact input or mismatch/duplicate proof; preserve factual evidence, do not repair products",
+  "api_usd": 0,
+  "status": "PROPOSED_READY_INPUTS_PENDING_ROOT_REVIEW_AND_DUPLICATE_GATE",
+  "scope_authorized_by_root": true,
+  "capacity_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-next-queue-20261005-recovery/capacity.json"
+}

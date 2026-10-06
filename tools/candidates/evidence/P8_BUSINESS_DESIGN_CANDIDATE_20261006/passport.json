@@ -1,0 +1,64 @@
+{
+  "task_id": "p8-business-design-style-candidate-20261006",
+  "execution_pattern": "iterative",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "primary_result": "One P8 native style-only candidate with semantic role map, raw preservation and numeric regression evidence",
+  "source": {
+    "path": "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/02-kalkulyator-usloviy-avansa.xlsx",
+    "sha256": "079535ecc577dc0a7396cb6d122e5060e6121fa60d9d024763c153fd2bf304ec",
+    "source_commit": "264d75a06d59de82602dc1bcef347913c44cc648"
+  },
+  "design_contract": {
+    "PR": 491,
+    "head": "6d1f6979b24d8d7331f29bd2d306de6a1bab3eb1",
+    "merge_sha": "de979fcc055d6a908896f4eb2a2948fec1d5f0b2",
+    "verdict": "ACCEPT",
+    "scope": "Native reference metadata, not P8 acceptance"
+  },
+  "scope": "Dedicated candidate/evidence only; product source unchanged; existing title/header/input/calculated cell font/fill/border/alignment overlay; no compactsummary/newcells/formula/text/protection/numfmt/print changes",
+  "tools": "Reuse exact P13 native ZIP style overlay builder with only target sheet/path and preserve targetfont/alignment adapters; Python + boundedCalc/PDF",
+  "budgets": {
+    "api_usd": 0,
+    "subprocess_timeout_seconds": 45,
+    "Calc_executions": 1,
+    "PDF_executions": 1,
+    "automatic_retries": 0
+  },
+  "dependencies": [
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/baseline-calc-local/checks.json",
+      "sha256": "4bd73d49e34b87e9976fbc2599692b62e124e22c49510b5b43fee2831e13f2e3",
+      "scope": "Previously accepted P8 4month fixture expected numeric values; reuse unchanged"
+    }
+  ],
+  "preflight": {
+    "task": "PASS onecandidate/source",
+    "atomicity": "PASS style-onlyoneworkbook",
+    "context": "PASS exactsource + approvedreference + mergedcontract + actualnative instructions examined",
+    "contract": "PASS ownerbusinessdesign and P8 retainedcolorlegend reconciled by targetfont preservation",
+    "dependencies": "PASS recorded scopedbaseline fixture evidence, not wholeproductacceptance",
+    "tools_permissions": "LocalCLIavailable; dedicatedprofiles; no API/server"
+  },
+  "DONE": [
+    "Source/referencehashbeforeafter",
+    "Nonstyle nativeXML + values/formula/cache/protection/validation/conditionalformat/numfmt/print exact",
+    "Everyappliedrole grounded in actualinstructions/formula",
+    "Existing P8 fictional4month expectednumbers allpass and all1178formulas retained",
+    "PDF actualboundedoutput inspect; report anylegibility limits, not nativeExcelacceptance",
+    "IndependentQA beforeworkingmerge"
+  ],
+  "STOP": [
+    "Unknownrole ormissingcell",
+    "Rawpreservation mismatch",
+    "Timeout/nonzero",
+    "Numericregression",
+    "Print/readabilitymismatch; preserve partialartifact no blindretry"
+  ],
+  "not_claimed": [
+    "Full compactsummary/layoutredesign",
+    "NativeExcel/Word rendering",
+    "Legal/financial/currentnessacceptance",
+    "SaleReady"
+  ]
+}

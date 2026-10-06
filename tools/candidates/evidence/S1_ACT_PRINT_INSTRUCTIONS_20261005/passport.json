@@ -1,0 +1,10 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "инструкция03 добавляет проверку читаемости дат перед печатью выбранного диапазона приложения04",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "base": "486981310e231a5d5f2b739bcf9ee80069a32d78",
+  "scope": "one existing f03 paragraph only; original04/owner templates unchanged",
+  "gate": "two byte-equal rebuilds; one-paragraph textdiff; unchanged other buyers; focused assembly tests; pixel comparison all pages; root changed-page visual review",
+  "limitations": "synthetic selected-range disposable-copy evidence; no native original print/manual Excel/multi-page acceptance"
+}

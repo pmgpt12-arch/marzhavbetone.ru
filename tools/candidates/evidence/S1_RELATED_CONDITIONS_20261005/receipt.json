@@ -1,0 +1,42 @@
+{
+  "status": "TESTED_RENDERED_PREPARATION_NOT_ACCEPTED",
+  "tests": ".............................................................            [100%]\n=============================== warnings summary ===============================\ntools/test_s1_candidate.py::test_libreoffice_прогон\ntools/test_s1_candidate.py::test_допработы_выход_B5_маршрут\ntools/test_s1_candidate.py::test_н2_детальная_проверка_называет_ситуацию_В\ntools/test_s1_candidate.py::test_н3_детальная_проверка_не_теряет_вторую_границу\n  /usr/lib/python3/dist-packages/openpyxl/worksheet/_reader.py:329: UserWarning: Data Validation extension is not supported and will be removed\n    warn(msg)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n61 passed, 4 warnings in 92.77s (0:01:32)\n",
+  "other_buyers_and_manifest_byte_equal": [
+    "MANIFEST.md",
+    "04-uchet-raschetov-i-otpravok.xlsx",
+    "05-peregovory-i-perenos-sroka.docx",
+    "08-raschet-procentov-395.xlsx",
+    "06-uvedomlenie-o-prosrochke.docx",
+    "07-otpravka-i-dokazatelstvo.docx",
+    "10-obrashchenie-v-sud.docx",
+    "09-pretenziya.docx",
+    "02-proverka-i-kontrol-otveta.xlsx",
+    "00-START-HERE.txt"
+  ],
+  "render_pages": [
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/01-karta-situacii-i-granic-1.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/01-karta-situacii-i-granic-2.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/01-karta-situacii-i-granic-3.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/01-karta-situacii-i-granic-4.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/01-karta-situacii-i-granic-5.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/01-karta-situacii-i-granic-6.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/03-algoritm-dejstviy-01.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/03-algoritm-dejstviy-02.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/03-algoritm-dejstviy-03.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/03-algoritm-dejstviy-04.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/03-algoritm-dejstviy-05.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/03-algoritm-dejstviy-06.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/03-algoritm-dejstviy-07.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/03-algoritm-dejstviy-08.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/03-algoritm-dejstviy-09.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/03-algoritm-dejstviy-10.png",
+    "/home/denis/.local/state/claude-dispatcher/recovery-20261004/s1-related-conditions-20261005-2045/render/03-algoritm-dejstviy-11.png"
+  ],
+  "visual_review": "PENDING root/independent inspection of every page",
+  "legal_acceptance": "NOT_PERFORMED",
+  "currentness": "NOT_VERIFIED",
+  "remaining_scope": [
+    "02 native text legal correction, 10 deadline correction, 08 wording assessment, doc09 N1 nonblocking pointer refinement"
+  ],
+  "dependency_doc09": "accepted PR461 merge7ed276675e10a8fff903e5b81ceafc27f9ea1ef1"
+}

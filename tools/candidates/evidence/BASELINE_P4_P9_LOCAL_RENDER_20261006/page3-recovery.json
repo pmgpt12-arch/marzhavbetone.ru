@@ -1,0 +1,44 @@
+{
+  "failed_path": "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/page-3.png",
+  "size": 196608,
+  "sha256": "22d9083614957c850ead22705d8e77d7aad6fff78a4df4e2b7781777b26d85a5",
+  "signature_hex": "89504e470d0a1a0a",
+  "original_command": {
+    "argv": [
+      "pdftoppm",
+      "-scale-to",
+      "1600",
+      "-png",
+      "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/01-slovar-poley-bankrotstvo.pdf",
+      "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/page"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": "",
+    "elapsed_s": 1.550644094000745,
+    "utc": "2026-10-06T04:50:09.524739+00:00"
+  },
+  "verify": "Truncated File Read",
+  "cause": "PNG stream truncated at 196608 bytes. Original pdftoppm returned exit0; cause of incomplete output not established.",
+  "recovery_command": {
+    "argv": [
+      "pdftoppm",
+      "-f",
+      "3",
+      "-l",
+      "3",
+      "-singlefile",
+      "-scale-to",
+      "1600",
+      "-png",
+      "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/01-slovar-poley-bankrotstvo.pdf",
+      "/workspace/scratch/f25d74acc3f7/baseline-docx-local/p9-original/page-3-recovered"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": "",
+    "elapsed_s": 0.31943833800323773
+  },
+  "recovery_verify": "PASS",
+  "recovery_sha256": "b4776ea9aed2dd2f15f2014d18b945785c1c59d25582a5e2f3c69fc00f6d5ae7"
+}

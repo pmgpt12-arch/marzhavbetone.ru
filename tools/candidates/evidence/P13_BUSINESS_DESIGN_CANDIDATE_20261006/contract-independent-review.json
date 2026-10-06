@@ -1,0 +1,85 @@
+{
+  "verdict": "ACCEPT",
+  "reviewer": "independent agent /root/owner_receipt_review",
+  "reviewed_at_utc": "2026-10-06T06:56:17.626527+00:00",
+  "pr": 491,
+  "head": "6d1f6979b24d8d7331f29bd2d306de6a1bab3eb1",
+  "base": "e66432d9612c00389101587e472bfb49a958c60e",
+  "scope": "Exact approved reference style contract and preservation evidence only; no target application",
+  "reference_sha256": "93252d5711cbbd33e682b3f9400fe6ee9aa9ed02c49cf8302ae89976ffc20d77",
+  "source_reference_unchanged": true,
+  "diff": {
+    "only_added_evidence_paths": 9,
+    "modified_or_removed_existing_paths": 0,
+    "target_products_changed": false
+  },
+  "checks": {
+    "sheets": 6,
+    "native_cellXfs": 411,
+    "native_coordinate_maps": "All six exact raw XML maps matched",
+    "formula_and_blank_style_counters": "All six matched independently counted raw native c/@s classified by XML f/v/is",
+    "synthetic_ids_remaining": 0,
+    "injected_style_ID411": "Rejected by exhaustive gate over all three style maps",
+    "negative_invariant_cases": [
+      [
+        "unmodified_reference",
+        true
+      ],
+      [
+        "formula_loss",
+        true
+      ],
+      [
+        "validation_loss",
+        true
+      ],
+      [
+        "sheet_protection_changed",
+        true
+      ],
+      [
+        "cell_protection_changed",
+        true
+      ],
+      [
+        "status_formula_changed",
+        true
+      ],
+      [
+        "print_area_changed",
+        true
+      ],
+      [
+        "input_number_format_changed",
+        true
+      ]
+    ],
+    "baseline_and_native_style_references": "PASS; 9 total original checks confirmed",
+    "snapshot_matches_actual_reference_invariants": true,
+    "compressed_snapshot_matches_uncompressed_bytes": true,
+    "all_9_remote_Git_blob_SHA_and_sizes_match_local_bytes": true,
+    "all_8_SHA256SUMS_entries_match": true,
+    "ZIP_CRC": "PASS"
+  },
+  "prior_review": {
+    "head": "79eaf7c071198bf83c57912bd5b7a737480cb6d3",
+    "verdict": "REVISE",
+    "finding": "Synthetic IDs411-413 remained in formula/blank counters",
+    "resolution": "Author corrected all counters to native XML mapping; independently verified on new head",
+    "preserved_file": "review-oldhead-revise.json"
+  },
+  "contract_boundaries": "Style IDs local to reference; semantic roles require target content/formula/validation proof, not colors or protection; widths/heights target mapping required; no new summary/formulas in transfer task",
+  "limitations": [
+    "Target formula correctness not verified",
+    "No target styling applied by this contract",
+    "No native Excel/Calc render or recalculation performed",
+    "No legal/currentness/human legal/release/SaleReady acceptance",
+    "Snapshot is openpyxl semantic view, not exhaustive native OOXML preservation; target transfer must keep raw unsupported parts",
+    "Remote byte identity checked cryptographically with Git object SHA and size; no fresh binary download required"
+  ],
+  "remarks": [],
+  "author_branch_edits_by_reviewer": false,
+  "merge_performed": false,
+  "server_calls": 0,
+  "model_api_calls": 0
+}

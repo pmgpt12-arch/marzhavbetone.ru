@@ -1,0 +1,24 @@
+{
+  "execution_pattern": "iterative",
+  "primary_result": "воспроизводимая сборка 02/08 с двумя проверяемыми текстовыми overlays и сохраненной owner lineage",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "base": "beffff4dd6f4abaee625e4aff32dab11fd9c1a0b",
+  "scope": [
+    "approved_s1_excel.py",
+    "RISKS[14][2]",
+    "f08 A12",
+    "correction artifacts/record",
+    "narrow tests/evidence"
+  ],
+  "gates": [
+    "independent exact review before activation",
+    "owner bytes/hash registry unchanged",
+    "one shared string/one cell per artifact",
+    "all other ZIP parts exact",
+    "all values/formulas/DV/scoped names guarded",
+    "two actual rebuilds/full S1 tests after acceptance",
+    "root review before commit/push"
+  ],
+  "status": "SOURCE_PREPARATION_PENDING_REVIEW"
+}

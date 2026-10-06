@@ -1,0 +1,141 @@
+{
+  "status": "FAIL_TEXT_GATE",
+  "synthetic": true,
+  "excel_manual_pass": false,
+  "source_before": "f735e85286952a2780d413aea7debbe7a7ceda24edf717d79b631a4aad8945d9",
+  "runs": [
+    {
+      "name": "one-act",
+      "range": "A4:J6",
+      "actual_i": [
+        "ок",
+        "ок"
+      ],
+      "actual_j": [
+        100000.0,
+        75000.0
+      ],
+      "actual_m10": 75000.0,
+      "formula_gate": true,
+      "actual_range": {
+        "Sheet": 0,
+        "StartColumn": 0,
+        "EndColumn": 9,
+        "StartRow": 3,
+        "EndRow": 5
+      },
+      "export_properties": {
+        "FilterName": "calc_pdf_Export",
+        "FilterData": [
+          "Selection=currentSelection"
+        ]
+      },
+      "pdf_sha256": "8776741c8b8c1e65602a4c4d529676bcff0d29fd7398d70bd0a505b3be160569",
+      "pages": 19,
+      "headers": {
+        "№": true,
+        "Дата": true,
+        "Тип операции": true,
+        "Документ (№, дата)": true,
+        "Сумма, руб.": true,
+        "Акт (идентификатор, как в «Долг по актам»)": false,
+        "Влияние на общий долг": true,
+        "Спорная сумма (границы B2, B5)": false,
+        "Проверка строки": true,
+        "Общий долг нарастающим итогом": false
+      },
+      "fixture_tokens": {
+        "КС-2 № TEST-A": true,
+        "TEST-A": true,
+        "100000": true,
+        "ПП № TEST-PAY-A": true,
+        "25000": true
+      },
+      "unexpected_tokens": [
+        "Сверка с авансом",
+        "Начислено по актам",
+        "ОБЩИЙ ДОЛГ ПО ДАННЫМ СУБПОДРЯДЧИКА",
+        "Реестр передачи",
+        "Реестр приложений",
+        "Переносить в файл 08"
+      ],
+      "has_hash_marks": false,
+      "text_gate": false,
+      "visual_gate": "NOT_REVIEWED",
+      "status": "EXPORTED_TEXT_CHECKED"
+    },
+    {
+      "name": "two-acts",
+      "range": "A4:J8",
+      "actual_i": [
+        "ок",
+        "ок",
+        "ок",
+        "ок"
+      ],
+      "actual_j": [
+        100000.0,
+        75000.0,
+        275000.0,
+        225000.0
+      ],
+      "actual_m10": 225000.0,
+      "formula_gate": true,
+      "actual_range": {
+        "Sheet": 0,
+        "StartColumn": 0,
+        "EndColumn": 9,
+        "StartRow": 3,
+        "EndRow": 7
+      },
+      "export_properties": {
+        "FilterName": "calc_pdf_Export",
+        "FilterData": [
+          "Selection=currentSelection"
+        ]
+      },
+      "pdf_sha256": "c0b5769a6922bc8b7c4783bace31ba187482289403b047290f9db616cada2627",
+      "pages": 19,
+      "headers": {
+        "№": true,
+        "Дата": true,
+        "Тип операции": true,
+        "Документ (№, дата)": true,
+        "Сумма, руб.": true,
+        "Акт (идентификатор, как в «Долг по актам»)": false,
+        "Влияние на общий долг": true,
+        "Спорная сумма (границы B2, B5)": false,
+        "Проверка строки": true,
+        "Общий долг нарастающим итогом": false
+      },
+      "fixture_tokens": {
+        "КС-2 № TEST-A": true,
+        "TEST-A": true,
+        "100000": true,
+        "ПП № TEST-PAY-A": true,
+        "25000": true,
+        "КС-2 № TEST-B": true,
+        "TEST-B": true,
+        "200000": true,
+        "ПП № TEST-PAY-B": true,
+        "50000": true
+      },
+      "unexpected_tokens": [
+        "Сверка с авансом",
+        "Начислено по актам",
+        "ОБЩИЙ ДОЛГ ПО ДАННЫМ СУБПОДРЯДЧИКА",
+        "Реестр передачи",
+        "Реестр приложений",
+        "Переносить в файл 08"
+      ],
+      "has_hash_marks": false,
+      "text_gate": false,
+      "visual_gate": "NOT_REVIEWED",
+      "status": "EXPORTED_TEXT_CHECKED"
+    }
+  ],
+  "copy_before": "f735e85286952a2780d413aea7debbe7a7ceda24edf717d79b631a4aad8945d9",
+  "source_after": "f735e85286952a2780d413aea7debbe7a7ceda24edf717d79b631a4aad8945d9",
+  "copy_after": "f735e85286952a2780d413aea7debbe7a7ceda24edf717d79b631a4aad8945d9",
+  "native_preserved": true
+}

@@ -1,0 +1,51 @@
+{
+  "objective": "Один style-only P13 candidate на основе согласованного эталона с сохранением вычислений/ввода/печати",
+  "execution_pattern": "iterative",
+  "primary_result": "One P13 costregistry design candidate + preservation/Calc/render proof",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "scope": "p13-business-design-candidate-20261006",
+  "source": {
+    "path": "local-baseline-preflight/63-reestr-zatrat-po-obektu.xlsx",
+    "sha256": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2",
+    "source_commit": "264d75a06d59de82602dc1bcef347913c44cc648"
+  },
+  "design_contract": {
+    "pr": 491,
+    "head": "6d1f6979b24d8d7331f29bd2d306de6a1bab3eb1",
+    "acceptance": "INDEPENDENT_ACCEPT"
+  },
+  "preflight": {
+    "task_validity": "PASS",
+    "atomicity": "PASS",
+    "context": "PASS source and label-defined roles",
+    "contract": "PASS",
+    "dependencies": "PASS",
+    "tools": "Python/openpyxl/native ZIP plus Calc available",
+    "concurrency": "dedicated output and profile; no overlapping products"
+  },
+  "bounds": {
+    "calc_timeout_seconds": 45,
+    "pdf_timeout_seconds": 45,
+    "model_calls": 0,
+    "api_cost_usd": 0,
+    "blind_retries": false
+  },
+  "acceptance": [
+    "source unchanged",
+    "all nonstyle OOXML semantics exact after stripping cell style indices",
+    "styles numfmt/protection unchanged",
+    "existing P13 fixtures 45000/.75 and 45000/blank after actual Calc",
+    "render no invented full-print acceptance; inspect known limitations",
+    "independent QA before merge"
+  ],
+  "stop": [
+    "missing accepted contract",
+    "source SHA mismatch",
+    "formula/input/validation/protection/status/print changed",
+    "Calc timeout/error",
+    "unresolved cell-role ambiguity"
+  ],
+  "release": false,
+  "main": false
+}

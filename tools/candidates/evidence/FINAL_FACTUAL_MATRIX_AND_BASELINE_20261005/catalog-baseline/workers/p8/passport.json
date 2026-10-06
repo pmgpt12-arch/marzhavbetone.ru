@@ -1,0 +1,129 @@
+{
+  "task_id": "readonly-ooxml-p8-264d75",
+  "execution_pattern": "one_shot",
+  "primary_result": "Exact p8 buyer-source OOXML integrity/schema factual inventory",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "module_dir": "10-avans-usloviya-i-pribyl",
+  "required_inputs": [
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/00-START-HERE.txt",
+      "relative_name": "00-START-HERE.txt",
+      "git_blob": "233765ff76e2e6cdc0e3ba79a06bb1f202fad870",
+      "sha256": "ef7db5577247d6e81eb14a3f2fed53fa9ddc19486d9c35f9ac331a1221dcd0c3",
+      "size": 4341,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/01-slovar-poley-avans.docx",
+      "relative_name": "01-slovar-poley-avans.docx",
+      "git_blob": "fd3b1c4246d3d30576869472032ae765e126147e",
+      "sha256": "d2d73adb91dd3fee18a617f83a845d220dae3d8ec31a4c5bed5901cd9d645801",
+      "size": 21352,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/02-kalkulyator-usloviy-avansa.xlsx",
+      "relative_name": "02-kalkulyator-usloviy-avansa.xlsx",
+      "git_blob": "a14b9526de77461f1f4f4806802ba72425d16f07",
+      "sha256": "079535ecc577dc0a7396cb6d122e5060e6121fa60d9d024763c153fd2bf304ec",
+      "size": 36515,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/03-razbor-chetyrekh-usloviy-avansa.docx",
+      "relative_name": "03-razbor-chetyrekh-usloviy-avansa.docx",
+      "git_blob": "1e235315c66f4ee4b5983094333c28c2b18bdd72",
+      "sha256": "8c02c3a89b635d7783491e33ceb8e93b7907117ae883a527d317ec63d27ccd03",
+      "size": 16171,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/04-algoritm-peregovorov-ob-avanse.docx",
+      "relative_name": "04-algoritm-peregovorov-ob-avanse.docx",
+      "git_blob": "110e4964e7e6d0d7965eb679f76b442f1bd9b8aa",
+      "sha256": "5c87fb5bafec34400b6167307b609d5db71e97c240b76ffeea4a656893fd44c6",
+      "size": 15495,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/05-protokol-raznoglasiy-avansovye-punkty.docx",
+      "relative_name": "05-protokol-raznoglasiy-avansovye-punkty.docx",
+      "git_blob": "0ecde74c6772d65cd9a329d9b5a9400ba704c025",
+      "sha256": "311baf9f60287029304cc6bbc9253854cd48f1db2a3f57dbda2a9a3e920fe64d",
+      "size": 15939,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx",
+      "relative_name": "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx",
+      "git_blob": "74f69bf4ef2893b7d0a1491233223ea51fe75cab",
+      "sha256": "89dfbacf0b88523b5c4b63eab744a73b6547260ece1fe32e848b5120bd0e2beb",
+      "size": 15219,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "relative_name": "07-trebovanie-o-vyplate-avansa.docx",
+      "git_blob": "a314e202708e4c497ee75c65765532abf4b6baaf",
+      "sha256": "3200445017a48c7a92254d76e4c9ad64d397cd5562dd52d6a94d4d907ff1d60c",
+      "size": 15441,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "relative_name": "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "git_blob": "ae19223eda28b22c1ec0a3a5fad1d3a1a7013b2d",
+      "sha256": "5db029ced839c2855c291780b883f6ad081af8f996dabf6638d33cb8d4e31e2f",
+      "size": 17946,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "relative_name": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "git_blob": "48f9b3e32379e8a97cececa3dda4f73812fde745",
+      "sha256": "6c8af65460763328ca4a0d4593437fb545f7285632b63edbf951d526d1f5fd9a",
+      "size": 29881,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    },
+    {
+      "path": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "relative_name": "10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "git_blob": "2741ed42767ad21023aecdfe7d4bcaa8ff911476",
+      "sha256": "61825b360dcf9bb1ff01b4628b57ee2234d91b4d81927e4aa70a1486274a8bf3",
+      "size": 18775,
+      "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648"
+    }
+  ],
+  "contracts": {
+    "Task_Setting_Protocol.md": {
+      "path": "/home/denis/projects/ai-business-os/docs/Task_Setting_Protocol.md",
+      "sha256": "337fe8864579a95dd4af53e44ad036016145a4be82aac5560e535a09fa56e686",
+      "bytes": 27997
+    },
+    "Normative_Contract.md": {
+      "path": "/home/denis/projects/ai-business-os/docs/Normative_Contract.md",
+      "sha256": "cc7daf5d6515035576adb4854ce4523a4cd9b4b2ab95cebef63c4104d1fb99bb",
+      "bytes": 9359
+    }
+  },
+  "executor": "Python/CLI only, no model; proposed isolated pool max4",
+  "scope": "Read-only native DOCX/XLSX ZIP CRC/duplicate parts/internal relationships/content-types/cell-formula schema inventory; all member before/after hash proof; signal numeric #{2,} only, not rendered clipping verdict",
+  "duplicate_gate": "No existing exact output; bounded located reports do not claim this exact structural scope",
+  "output_dir": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/p8-readonly-ooxml-264d75",
+  "acceptance": "Exact manifest membership/inputhash; source bytes unchanged; evidence every file including nonOOXML applicability; deterministic structural observations independently reviewable",
+  "not_claimed": [
+    "accepted repackaging source",
+    "actual PHP ZIP proof",
+    "formula correctness",
+    "layout/readability",
+    "legal/financial/currentness/human acceptance",
+    "sale readiness"
+  ],
+  "stop": "Missing exact input or mismatch/duplicate proof; preserve factual evidence, do not repair products",
+  "api_usd": 0,
+  "status": "PROPOSED_READY_INPUTS_PENDING_ROOT_REVIEW_AND_DUPLICATE_GATE",
+  "scope_authorized_by_root": true,
+  "capacity_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/catalog-next-queue-20261005-recovery/capacity.json"
+}

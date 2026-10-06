@@ -1,0 +1,131 @@
+{
+  "task_id": "p9-native-docx-layout-264d75-20261006",
+  "pid": 5,
+  "started_utc": "2026-10-06T06:46:17.928388+00:00",
+  "source": {
+    "path": "products-storage/11-bankrotstvo-genpodryadchika/06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+    "relative_name": "06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+    "git_blob": "4901941751d18586b1ab33a19ff3605c57cab1ec",
+    "sha256": "dc9fd7769956c2b1f60d6174f80cec5be77a1e5d9f0bc829316d4d754ae5e782",
+    "size": 15998,
+    "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+    "local_path": "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/11-bankrotstvo-genpodryadchika/06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+    "observed_sha256": "dc9fd7769956c2b1f60d6174f80cec5be77a1e5d9f0bc829316d4d754ae5e782",
+    "observed_git_blob": "4901941751d18586b1ab33a19ff3605c57cab1ec"
+  },
+  "commands": [
+    {
+      "argv": [
+        "soffice",
+        "--version"
+      ],
+      "pid": 9,
+      "returncode": 0,
+      "stdout": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5\n\n",
+      "stderr": "",
+      "elapsed_seconds": 0.09229950799635844
+    },
+    {
+      "argv": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p9/profile",
+        "--headless",
+        "--convert-to",
+        "pdf",
+        "--outdir",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p9",
+        "/workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/11-bankrotstvo-genpodryadchika/06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx"
+      ],
+      "pid": 39,
+      "returncode": 0,
+      "stdout": "convert /workspace/scratch/f25d74acc3f7/mb001-daywork/products-storage/11-bankrotstvo-genpodryadchika/06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx as a Writer document -> /workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p9/06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.pdf using filter : writer_pdf_Export\n",
+      "stderr": "",
+      "elapsed_seconds": 0.3227391379987239
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p9/render.pdf",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p9/pdf-text.txt"
+      ],
+      "pid": 80,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.014942171997972764
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-scale-to",
+        "1600",
+        "-png",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p9/render.pdf",
+        "/workspace/scratch/f25d74acc3f7/daywork-next-queue-20261006/p9/page"
+      ],
+      "pid": 81,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 1.529946970003948
+    }
+  ],
+  "status": "MECHANICAL_PASS_VISUAL_REVIEW_PENDING",
+  "api_calls": 0,
+  "runtime_version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "pages": 6,
+  "png_validation": [
+    {
+      "name": "page-1.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "valid": true
+    },
+    {
+      "name": "page-2.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "valid": true
+    },
+    {
+      "name": "page-3.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "valid": true
+    },
+    {
+      "name": "page-4.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "valid": true
+    },
+    {
+      "name": "page-5.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "valid": true
+    },
+    {
+      "name": "page-6.png",
+      "size": [
+        1132,
+        1600
+      ],
+      "valid": true
+    }
+  ],
+  "source_sha_after": "dc9fd7769956c2b1f60d6174f80cec5be77a1e5d9f0bc829316d4d754ae5e782",
+  "text_units": 89,
+  "finished_utc": "2026-10-06T06:46:20.022879+00:00"
+}

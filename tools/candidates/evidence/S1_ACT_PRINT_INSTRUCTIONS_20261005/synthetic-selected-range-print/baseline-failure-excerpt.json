@@ -1,0 +1,29 @@
+{
+  "origin": "s1-act-selection-print-20261005-2230/typed-filterdata",
+  "baseline_status": "FAIL",
+  "baseline_runs": [
+    {
+      "name": "one-act",
+      "pages": 1,
+      "has_hash_marks": false,
+      "date_tokens": null,
+      "text_gate": false,
+      "status": "EXPORTED_TEXT_CHECKED"
+    }
+  ],
+  "actual_visual_review": {
+    "status": "FAIL_VISUAL_DATE_READABILITY",
+    "reviewed_pages": [
+      "one-act-page-1.png"
+    ],
+    "hash_marks_actual": [
+      "###",
+      "###"
+    ],
+    "headers_visually_present": 10,
+    "original_receipt_preserved": true,
+    "native_preserved": true,
+    "excel_manual_pass": false
+  },
+  "qualification": "Original receipt has_hash_marks=False did not prove date readability: actual visual review found ###. Preserve failed history unchanged; no original native print PASS."
+}

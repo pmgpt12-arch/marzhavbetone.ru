@@ -84,7 +84,18 @@ def sheet_xml(book: Path, title: str) -> str:
 
 
 def formulas(book: Path, title: str) -> list[str]:
-    return [html.unescape(f) for f in re.findall(r"<f>([^<]*)</f>", sheet_xml(book, title))]
+    # Excel shares formula bodies; the OOXML reader expands them by cell.
+    import openpyxl
+    import warnings
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", message=".*extension is not supported.*")
+        wb = openpyxl.load_workbook(book, read_only=True)
+    try:
+        return [cell.value[1:] for row in wb[title].iter_rows() for cell in row
+                if isinstance(cell.value, str) and cell.value.startswith("=")]
+    finally:
+        wb.close()
+
 
 
 def delivered() -> list[Path]:
@@ -341,8 +352,13 @@ def test_система_не_обещает_решить_граничные_си
         assert not m, f"{f.name}: обещание «{m.group(0)}»"
     for f in delivered():
         if f.suffix == ".docx":
-            assert "не юридическая консультация" in docx_text(f), (
-                f"{f.name}: нет блока «Важно»")
+            if f.name == "06-uvedomlenie-o-prosrochke.docx":
+                guidance = docx_text(C / "03-algoritm-dejstviy.docx")
+                assert "не юридическая консультация" in guidance
+                assert "относятся и к файлу 06" in guidance, "03: не указан охват предупреждения для 06"
+            else:
+                assert "не юридическая консультация" in docx_text(f), (
+                    f"{f.name}: нет блока «Важно»")
 
 
 def test_формы_содержат_рабочую_табличную_часть() -> None:
@@ -383,6 +399,10 @@ def test_взаиморасчёты_требуют_отнесения_к_акт�
     assert "распределите его документально" in вз.lower() or "Распределите его документально" in вз, (
         "нет требования распределить платёж документально")
     assert "двойной учёт аванса" in вз, "реестр не ловит одну сумму как «Оплату» и как «Зачёт аванса»"
+    # PR418 F-1: «Оплата», равная зачёту аванса, при других документе и дате — сверка покупателем
+    assert "нужна сверка с авансом" in вз and f'K5<>"{АВАНС_СВЕРЕН}"' in вз, "равная авансу оплата проходит без сверки"
+    assert re.search(r'sqref="K5:K504"[^>]*>\s*<formula1>"' + re.escape(АВАНС_СВЕРЕН),
+                     html.unescape(sheet_xml(book, "Взаиморасчёты"))), "в колонке K нет списка для подтверждения сверки"
     assert "'Долг по актам'!$B$5:$B$34" in вз, "акт строки не сверяется со листом «Долг по актам»"
     assert 'COUNTIF(I5:I504,"БЛОК*")' in вз, "строки с БЛОК не блокируют итог свода"
     # итог свода заблокирован именно строками с БЛОК, а не только счётчиками
@@ -848,13 +868,20 @@ def test_libreoffice_прогон() -> None:
 
 # ── сценарии приёмки A–C в LibreOffice (D — прогон выше) ──
 
+# подтверждение покупателя в колонке K «Взаиморасчётов»: «Оплата», равная
+# зачёту аванса, — отдельный платёж. Дословно, а не из генератора.
+АВАНС_СВЕРЕН = "Отдельный платёж — не сам аванс (сверено с выпиской банка)"
+
+
 def заполнить_08(src: Path, dst: Path, операции, акты):
     import openpyxl
     wb = openpyxl.load_workbook(src)
     vz = wb["Взаиморасчёты"]
-    for i, (d, t, doc, s, act) in enumerate(операции):
+    for i, (d, t, doc, s, act, *сверка) in enumerate(операции):
         vz[f"B{5 + i}"], vz[f"C{5 + i}"], vz[f"D{5 + i}"] = d, t, doc
         vz[f"E{5 + i}"], vz[f"F{5 + i}"] = s, act
+        if сверка:
+            vz[f"K{5 + i}"] = сверка[0]
     da = wb["Долг по актам"]
     for i, (aid, doc, срок) in enumerate(акты):
         da[f"B{5 + i}"], da[f"C{5 + i}"], da[f"D{5 + i}"] = aid, doc, срок
@@ -883,11 +910,17 @@ def сценарии_приёмки():
             (date(2026, 6, 30), "Начисление по акту", "КС-2 № 1 от 30.06.2026", 1_200_000, АКТ_A[0]),
             (date(2026, 5, 15), "Зачёт аванса по договору", "п/п № 100 от 15.05.2026", 200_000, АКТ_A[0]),
             (date(2026, 7, 10), "Оплата", "п/п № 210 от 10.07.2026", 300_000, АКТ_A[0]),
-            (date(2026, 8, 20), "Оплата", "п/п № 415 от 20.08.2026", 200_000, АКТ_A[0]),
+            # отдельный платёж, равный авансу: покупатель сверил его с выпиской
+            (date(2026, 8, 20), "Оплата", "п/п № 415 от 20.08.2026", 200_000, АКТ_A[0], АВАНС_СВЕРЕН),
         ]
         # тот же аванс введён и «Оплатой»: тот же документ, сумма и дата
         C_ДВОЙНОЙ = C_ОПЕРАЦИИ + [
             (date(2026, 5, 15), "Оплата", "п/п № 100 от 15.05.2026", 200_000, АКТ_A[0])]
+        # PR418 F-1: тот же аванс «Оплатой» с другим документом и датой
+        C_ДВОЙНОЙ_ДРУГОЙ = C_ОПЕРАЦИИ + [
+            (date(2026, 5, 14), "Оплата", "п/п 99 (аванс)", 200_000, АКТ_A[0])]
+        # равный авансу платёж без сверки: не «ГОТОВ», пока покупатель не подтвердит
+        C_БЕЗ_СВЕРКИ = C_ОПЕРАЦИИ[:3] + [C_ОПЕРАЦИИ[3][:5]]
         C_АКТЫ = [(АКТ_A[0], "КС-2 № 1 от 30.06.2026", date(2026, 7, 30))]
         книги = {
             "A": заполнить_395(b395, tmp / "a.xlsx", [АКТ_A], КОНЕЦ, СТАВКА, ОПЛАТА_A),
@@ -907,6 +940,8 @@ def сценарии_приёмки():
                                        extra=lambda wb: wb["Интервалы"].__setitem__("F2", 1250.72)),
             "C": заполнить_08(b08, tmp / "c.xlsx", C_ОПЕРАЦИИ, C_АКТЫ),
             "C_двойной": заполнить_08(b08, tmp / "cd.xlsx", C_ДВОЙНОЙ, C_АКТЫ),
+            "C_двойной_другой": заполнить_08(b08, tmp / "cdd.xlsx", C_ДВОЙНОЙ_ДРУГОЙ, C_АКТЫ),
+            "C_без_сверки": заполнить_08(b08, tmp / "cbs.xlsx", C_БЕЗ_СВЕРКИ, C_АКТЫ),
             # S1-02Б: тот же сценарий с удержанием 50 000 — акт сверки
             "C_удержание": заполнить_08(b08, tmp / "cu.xlsx", C_ОПЕРАЦИИ + [
                 (date(2026, 8, 25), "Удержание", "письмо исх. № 77 от 25.08.2026", 50_000, АКТ_A[0])], C_АКТЫ),
@@ -1027,6 +1062,18 @@ def test_libreoffice_сценарий_C_двойной_учёт_аванса() -
         assert not isinstance(да[c].value, (int, float)), f"при двойном авансе {c} к переносу {да[c].value}"
     assert str(да["N5"].value).startswith("БЛОК") and "двойной учёт аванса" in str(да["N5"].value), да["N5"].value
     assert да["O5"].value in (None, ""), f"акт помечен к переносу: {да['O5'].value}"
+    # PR418 F-1: другой документ и дата — по полям дубль не отличить, нужна сверка;
+    # тот же равный платёж без подтверждения тоже не «ГОТОВ»
+    for k, строка in (("C_двойной_другой", 9), ("C_без_сверки", 8)):
+        вз = кн[k]["Взаиморасчёты"]
+        assert isinstance(вз["M10"].value, str) and "ЗАБЛОКИРОВАН" in вз["M10"].value, (
+            f"{k}: итог {вз['M10'].value} выдан без сверки с авансом")
+        assert str(вз[f"I{строка}"].value).startswith("БЛОК: нужна сверка с авансом"), (k, вз[f"I{строка}"].value)
+        assert АВАНС_СВЕРЕН in str(вз[f"I{строка}"].value), "строка не говорит, что выбрать после сверки"
+        assert str(кн[k]["Акт сверки"]["C3"].value).startswith("НЕ ГОТОВ"), (k, кн[k]["Акт сверки"]["C3"].value)
+        assert кн[k]["Акт сверки"]["F43"].value == "НЕ ГОТОВ", (k, кн[k]["Акт сверки"]["F43"].value)
+        assert not isinstance(кн[k]["Долг по актам"]["J5"].value, (int, float)), (k, "бесспорный долг к переносу")
+    assert кн["C"]["Акт сверки"]["C3"].value == "ГОТОВ", кн["C"]["Акт сверки"]["C3"].value
 
 
 def test_сборка_воспроизводима() -> None:
@@ -1329,8 +1376,10 @@ def test_реакции_на_сверку_письмо_допработы() -> N
     нет = [р for р in РЕАКЦИИ_ND6 if р not in реакции]
     assert not нет, f"в «Контроле ответа» нет реакций: {нет}"
     # список выбора в «Контроле ответа» покрывает все реакции
-    dv = re.search(r"<formula1>Справочник!\$A\$(\d+):\$A\$(\d+)</formula1>",
-                   html.unescape(sheet_xml(ПРОВЕРКА_02, "Контроль ответа")))
+    import approved_s1_excel as owner_excel
+    rules = owner_excel._native_validations(ПРОВЕРКА_02.read_bytes())
+    dv = re.fullmatch(r"Справочник!\$A\$(\d+):\$A\$(\d+)",
+                      rules[("Контроль ответа", "F5")][3])
     assert dv and int(dv.group(2)) - int(dv.group(1)) + 1 == len(реакции), "список выбора реакций короче справочника"
     for р, шаг in реакции.items():
         assert ШАГ_ИЛИ_ГРАНИЦА.search(шаг), f"реакция «{р}» не называет следующего шага: {шаг}"
@@ -1479,8 +1528,10 @@ def test_н5_даты_просрочки_по_каждому_акту() -> None:
 def test_н6_выгрузка_взаиморасчётов_печатается() -> None:
     fj = формула(КНИГА_УЧЁТА, "Взаиморасчёты", "J6")
     assert '""' in fj, f"нарастающий итог печатается в пустых строках: {fj}"
-    т = docx_text(C / "06-uvedomlenie-o-prosrochke.docx")
-    assert "выгрузка из файла 04" not in т and "выделен" in т.lower(), "06 не говорит, как сделать приложение-реестр"
+    letter = docx_text(C / "06-uvedomlenie-o-prosrochke.docx")
+    guidance = docx_text(C / "03-algoritm-dejstviy.docx")
+    assert "выгрузка из файла 04" not in letter
+    assert "выделен" in guidance.lower() and "Как подготовить приложение" in guidance, "03: потеряна инструкция подготовки реестра для 06"
 
 
 def test_н8_подтверждение_шага_12_называет_опись() -> None:
@@ -1848,6 +1899,33 @@ def test_libreoffice_печать_ставки_после_повторного_�
         assert re.search(r"\b21[,.]00\b", текст) and re.search(r"\b19[,.]00\b", текст), "ставка 21 / 19 не напечатана"
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
+
+
+
+def test_литералы_формул_совместимы_с_Excel() -> None:
+    """Сторож класса: отдельная строковая константа формулы не длиннее 255."""
+    def размеры(формула):
+        строки = re.findall(r'"((?:[^"]|"")*)"', формула)
+        return [len(строка.replace('""', '"').encode("utf-16-le")) // 2
+                for строка in строки]
+    assert размеры('="' + 'a' * 255 + '"') == [255]
+    assert размеры('="' + 'a' * 256 + '"') == [256]
+    assert размеры('="' + 'a' * 128 + '"&"' + 'a' * 128 + '"') == [128, 128]
+    assert размеры('="a""b"') == [3]
+    for номер in ("02-", "04-", "08-"):
+        файлы = list(C.glob(номер + "*.xlsx"))
+        assert len(файлы) == 1
+        import xml.etree.ElementTree as ET
+        ns = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
+        with zipfile.ZipFile(файлы[0]) as архив:
+            for имя in архив.namelist():
+                if not (имя.startswith("xl/worksheets/") and имя.endswith(".xml")):
+                    continue
+                for ячейка in ET.fromstring(архив.read(имя)).findall(".//m:c", ns):
+                    формула = ячейка.find("m:f", ns)
+                    if формула is not None and формула.text:
+                        assert all(n <= 255 for n in размеры(формула.text)), (
+                            файлы[0].name, имя, ячейка.get("r"), размеры(формула.text))
 
 
 def main() -> int:

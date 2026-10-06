@@ -1,0 +1,12 @@
+........................................................................ [ 68%]
+.................................                                        [100%]
+=============================== warnings summary ===============================
+tools/test_s1_candidate.py::test_libreoffice_прогон
+tools/test_s1_candidate.py::test_допработы_выход_B5_маршрут
+tools/test_s1_candidate.py::test_н2_детальная_проверка_называет_ситуацию_В
+tools/test_s1_candidate.py::test_н3_детальная_проверка_не_теряет_вторую_границу
+  /usr/lib/python3/dist-packages/openpyxl/worksheet/_reader.py:329: UserWarning: Data Validation extension is not supported and will be removed
+    warn(msg)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+105 passed, 4 warnings in 104.36s (0:01:44)

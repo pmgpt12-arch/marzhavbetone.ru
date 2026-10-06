@@ -1,0 +1,36 @@
+# Independent final four-module factual delta QA
+
+{
+  "status": "ACCEPT_FINAL_FACTUAL_FOUR_MODULE_DELTA",
+  "baseline_review_receipt_sha256": "df8b4378f9f71befddd903f2b0002abbef7369dbb1f98924d889f4fc192f50de",
+  "historical_baseline_matrix_sha256": "8989b013c7de250c7964b8a3fdbf4b939817397b2fd44d1e646b02ab4714687d",
+  "final_matrix_sha256": "b257d043b54cf4f9611c049e4f677cb1cd9b9d8eaebc49427c88b4c023632cd4",
+  "final_md_sha256": "6668e104d69a0efe3278a10fed1724d71760476e865d51788715dafe73147800",
+  "final_input_manifest_sha256": "584b2c4a2fb19f604d00c406ab4f408934de39576581d2d81f2078fdc8751c2e",
+  "final_snapshot_utc": "2026-10-05T17:25:34.283576+00:00",
+  "observed_utc": "2026-10-05T17:28:58.056932+00:00",
+  "prior37_input_pins_unchanged": true,
+  "added_receipt_ids": [
+    "p2-citation-composition482",
+    "p2-citation-merge482",
+    "p3-citation-composition481"
+  ],
+  "working_citation_merges": {
+    "S1": "1d44b6711084a8e5c0842947c8817ed358347058",
+    "P2": "522edf4ff37c60138c02623f8227968ec4052687",
+    "P3": "f7dee1009923f4dc0cc5bc277fe3d5253cc2f7a1",
+    "P5": "7123d44353b9a3d21c29851b10e9addc6080360d"
+  },
+  "checks": 158,
+  "errors": [],
+  "qualified_scope": "Only four-module factual evidence persistence update. All substantive open owner/STOP/normative-currentness/human/legal/release gates unchanged. Historical1715 acceptance retained. No approval by filename or allcatalog/sale/manualExcel/legalPASS.",
+  "calls": {
+    "models": 0,
+    "tests": 0,
+    "CI": 0,
+    "extraction": 0,
+    "builds": 0,
+    "product_or_source_mutations": 0,
+    "network": 0
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "objective": "Убрать горизонтальный разрыв реестра и инструкций P13 без изменения logic/input/style semantics",
+  "execution_pattern": "iterative",
+  "primary_result": "One print-only P13 candidate with all-pages render/readability/textcoverage proof",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "source": {
+    "path": "p13-business-design-candidate-20261006/63-reestr-zatrat-po-obektu-Business_Design_candidate.xlsx",
+    "sha256": "643ec9ffd2ab6d3285445ae3d2dfc93db470ef4661db41f30d5fedbb1d3df968",
+    "pr": 494,
+    "head": "20188af5a9dd391d41256aac2118f0e632722d4a"
+  },
+  "dependency": "INDEPENDENT_STYLE_ONLY_ACCEPT_WITH_PRINT_STOP",
+  "scope": {
+    "output": "p13-business-print-candidate-20261006",
+    "allowed": [
+      "printAreas",
+      "pageSetup paperSize orientation fitToWidth1 fitToHeight0",
+      "sheetPr pageSetUpPr fitToPage",
+      "printTitles header row1"
+    ],
+    "forbidden": [
+      "source overwrite",
+      "formulas/constants/text",
+      "cell styles",
+      "validation/protection",
+      "widths/rowheights",
+      "main/deploy"
+    ]
+  },
+  "justification": "Actual style checkpoint PDF8A4 pages separates table horizontally and instruction labels/body; unchanged source default settings cannot serve final print acceptance",
+  "print_contract": {
+    "Реестр затрат": {
+      "area": "A1:J56",
+      "paper": "A3",
+      "orientation": "landscape",
+      "fitToWidth": 1,
+      "fitToHeight": 0,
+      "reason": "10 existing columns total224 character widths, A4 fit risks unreadable smaller than8pt; A3 landscape selected before execution for legibility"
+    },
+    "Как заполнять": {
+      "area": "A1:B9",
+      "paper": "A4",
+      "orientation": "landscape",
+      "fitToWidth": 1,
+      "fitToHeight": 0,
+      "reason": "Keep exact label/instruction pairs on same page; existing120 char widths fit A4 landscape"
+    }
+  },
+  "acceptance": [
+    "exact source SHA unchanged",
+    "all nonprint XML/native ZIP parts unchanged",
+    "formula/numberformat/protection/input roles/styles unchanged",
+    "one bounded PDF render45s uniqueprofile",
+    "every PDF page inspected",
+    "all 184 source literal cells accounted in PDF whitespace-normalized text check; formula outputs separately identified",
+    "all nonempty body text spans>=8pt",
+    "no horizontalsplit table/instructions",
+    "independent QA beforemerge/nativeExcel gate preserved"
+  ],
+  "stop": [
+    "missing style ACCEPT",
+    "SHA mismatch",
+    "nonprint change",
+    "timeout/Calcerror",
+    "textcoverage failure",
+    "fontsize<8pt",
+    "visualclip"
+  ],
+  "model_calls": 0,
+  "budget_usd": 0,
+  "status": "READY",
+  "literal_cells_expected": 184
+}

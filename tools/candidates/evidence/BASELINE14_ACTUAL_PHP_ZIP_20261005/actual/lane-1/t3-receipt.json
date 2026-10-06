@@ -1,0 +1,57 @@
+{
+  "status": "PASS_ISOLATED_BASELINE_PHP_ZIP_BYTES",
+  "source_sha": "264d75a06d59de82602dc1bcef347913c44cc648",
+  "sku": "t3",
+  "actual_php": {
+    "sku": "t3",
+    "dir": "17-odnostoronniy-akt-i-zachet",
+    "zip_name": "17-odnostoronniy-akt-i-zachet.zip",
+    "path": "/home/denis/.local/state/claude-dispatcher/recovery-20261005/next-baseline-delivery-queue-20261005/actual/lane-1/delivery/17-odnostoronniy-akt-i-zachet.zip",
+    "php_version": "8.3.6",
+    "zip_extension": "1.22.3"
+  },
+  "zip_sha256": "c0bc05cb2894de450fa940ad798a2e4420629fbcc0ea4762c3104ff0036452de",
+  "zip_bytes": 49929,
+  "members": [
+    {
+      "name": "04-slovar-poley.docx",
+      "sha256": "1ec75edac6b52ba83dd24f30b34098f2a72663088d507111a9057af9ffa36e08",
+      "bytes": 15098,
+      "crc32": "06342f08",
+      "source_git_blob": "9f510c0fdbd87f1cc9d789307d7f6a04dc199680"
+    },
+    {
+      "name": "03-vozrazhenie-na-zachet-uderzhanie.docx",
+      "sha256": "6d3b2eb3280ddc5c68418a50bb421979a128f328b3f0e25963ab2d6bf461d092",
+      "bytes": 12666,
+      "crc32": "66f7e00a",
+      "source_git_blob": "8f19a189d4c5e47213068161d083ac625db4a000"
+    },
+    {
+      "name": "02-vozrazhenie-na-odnostoronniy-akt.docx",
+      "sha256": "955d2feca957b3e0614a0d9a496d4c76d37546f2fe7be8fbc1ca961c1c149860",
+      "bytes": 13166,
+      "crc32": "4e1d0bcb",
+      "source_git_blob": "bf70684ea38fa9585139d0353c023dee623ddc13"
+    },
+    {
+      "name": "01-poryadok-pervogo-dnya.docx",
+      "sha256": "d85e5c6d016867e4da753891e2d8efb5cbf9a626d85682cec6c6636f4921453e",
+      "bytes": 14661,
+      "crc32": "939ecc5b",
+      "source_git_blob": "abad6d7f879e14dddbe01bc1ca9e359b4f3d2e31"
+    },
+    {
+      "name": "00-START-HERE.txt",
+      "sha256": "9a4b746a06ba09a498d5b8e62c3698f58a88e79e41397f39199cd754734ef5d7",
+      "bytes": 3927,
+      "crc32": "99aa4ccb",
+      "source_git_blob": "05488f8a8fd2334b4777d977e953f567c71e0463"
+    }
+  ],
+  "count": 5,
+  "source_originals_preserved": true,
+  "CRC_failure_member": null,
+  "approved_delivery": false,
+  "sale_ready": false
+}

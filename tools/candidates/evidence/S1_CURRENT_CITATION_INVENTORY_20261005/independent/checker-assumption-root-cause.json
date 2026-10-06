@@ -1,0 +1,16 @@
+{
+  "classification": "INDEPENDENT_CHECKER_INVALID_SET_EQUALITY_ASSUMPTION",
+  "initial_false_mismatch_rows": [
+    6,
+    8,
+    9,
+    29,
+    40,
+    43
+  ],
+  "root_cause": "Checker incorrectly required exact-literal occurrence IDs to have identical locations to broader substring text matches; these fields intentionally describe different sets.",
+  "rule": "Validate each inventory field against its stated scope; never require equality between exact and substring result sets.",
+  "author_map_changed": false,
+  "initial_receipt_preserved": "initial-review-superseded-checker-assumption.json",
+  "gate": "Independently derive exact-literal IDs and all substring locations from native source fragments separately; verify every declared locator and literal."
+}

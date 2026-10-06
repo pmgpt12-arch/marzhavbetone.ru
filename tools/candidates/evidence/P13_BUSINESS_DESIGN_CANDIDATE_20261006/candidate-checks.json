@@ -1,0 +1,115 @@
+{
+  "status": "CALC_FIXTURES_PASS_PDF_CREATED",
+  "runtime": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "candidate_sha256": "643ec9ffd2ab6d3285445ae3d2dfc93db470ef4661db41f30d5fedbb1d3df968",
+  "checks": [
+    {
+      "fixture": "p13-positive",
+      "cell": "H54",
+      "expected": 45000,
+      "actual": 45000,
+      "passed": true
+    },
+    {
+      "fixture": "p13-positive",
+      "cell": "H56",
+      "expected": 0.75,
+      "actual": 0.75,
+      "passed": true
+    },
+    {
+      "fixture": "p13-zero-profit",
+      "cell": "H54",
+      "expected": 45000,
+      "actual": 45000,
+      "passed": true
+    },
+    {
+      "fixture": "p13-zero-profit",
+      "cell": "H56",
+      "expected": "",
+      "actual": null,
+      "passed": true
+    }
+  ],
+  "preservation": [
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/local-baseline-preflight/63-reestr-zatrat-po-obektu.xlsx",
+      "sha256_before": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2",
+      "sha256_after": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2",
+      "unchanged": true
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/63-reestr-zatrat-po-obektu-Business_Design_candidate.xlsx",
+      "sha256_before": "643ec9ffd2ab6d3285445ae3d2dfc93db470ef4661db41f30d5fedbb1d3df968",
+      "sha256_after": "643ec9ffd2ab6d3285445ae3d2dfc93db470ef4661db41f30d5fedbb1d3df968",
+      "unchanged": true
+    },
+    {
+      "path": "/workspace/scratch/f25d74acc3f7/excel-design-reference-20261006/P1_04_Uchet_Business_Design_v1.xlsx",
+      "sha256_before": "93252d5711cbbd33e682b3f9400fe6ee9aa9ed02c49cf8302ae89976ffc20d77",
+      "sha256_after": "93252d5711cbbd33e682b3f9400fe6ee9aa9ed02c49cf8302ae89976ffc20d77",
+      "unchanged": true
+    }
+  ],
+  "commands": {
+    "calc": {
+      "command": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/calc-profile",
+        "--headless",
+        "--convert-to",
+        "xlsx:Calc MS Excel 2007 XML",
+        "--outdir",
+        "/workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/calc-output",
+        "/workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/fixtures/p13-positive.xlsx",
+        "/workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/fixtures/p13-zero-profit.xlsx"
+      ],
+      "timeout": 45,
+      "isolated_profile": "/workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/calc-profile",
+      "returncode": 0,
+      "stdout": "convert /workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/fixtures/p13-positive.xlsx as a Calc document -> /workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/calc-output/p13-positive.xlsx using filter : Calc MS Excel 2007 XML\nconvert /workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/fixtures/p13-zero-profit.xlsx as a Calc document -> /workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/calc-output/p13-zero-profit.xlsx using filter : Calc MS Excel 2007 XML\n",
+      "stderr": "",
+      "duration_seconds": 18.754166775994236
+    },
+    "pdf": {
+      "command": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/pdf-profile",
+        "--headless",
+        "--convert-to",
+        "pdf",
+        "--outdir",
+        "/workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/pdf-output",
+        "/workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/63-reestr-zatrat-po-obektu-Business_Design_candidate.xlsx",
+        "/workspace/scratch/f25d74acc3f7/excel-design-reference-20261006/P1_04_Uchet_Business_Design_v1.xlsx"
+      ],
+      "timeout": 45,
+      "isolated_profile": "/workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/pdf-profile",
+      "returncode": 0,
+      "stdout": "convert /workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/63-reestr-zatrat-po-obektu-Business_Design_candidate.xlsx as a Calc document -> /workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/pdf-output/63-reestr-zatrat-po-obektu-Business_Design_candidate.pdf using filter : calc_pdf_Export\nconvert /workspace/scratch/f25d74acc3f7/excel-design-reference-20261006/P1_04_Uchet_Business_Design_v1.xlsx as a Calc document -> /workspace/scratch/f25d74acc3f7/p13-business-design-candidate-20261006/pdf-output/P1_04_Uchet_Business_Design_v1.pdf using filter : calc_pdf_Export\n",
+      "stderr": "",
+      "duration_seconds": 18.770282901998144
+    }
+  },
+  "pdfs": [
+    {
+      "name": "63-reestr-zatrat-po-obektu-Business_Design_candidate.pdf",
+      "sha256": "83a77ae48bfd72a0d5e8a8593d915de063127bf573c04ccd402e930551d1bb0f",
+      "bytes": 102498
+    },
+    {
+      "name": "P1_04_Uchet_Business_Design_v1.pdf",
+      "sha256": "8efcd23557c3462c84d6a8842c778ce67bb3574c2396eb982afcf9b20037d4e3",
+      "bytes": 681373
+    }
+  ],
+  "claims_excluded": [
+    "native Excel rendering acceptance",
+    "full print acceptance",
+    "legal/currentness",
+    "SaleReady"
+  ],
+  "model_calls": 0,
+  "cost_usd": 0
+}
