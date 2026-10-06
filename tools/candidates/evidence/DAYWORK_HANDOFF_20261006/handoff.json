@@ -1,7 +1,12 @@
 {
   "observed_date": "2026-10-06",
+  "observed_at_utc": "2026-10-06T07:15:52.876Z",
+  "execution_pattern": "one_shot",
+  "primary_result": "Daywork accepted-scope and final cloud terminal checkpoint handoff",
+  "feedback_loop_required": false,
+  "checkpoint_policy": "verified_only",
   "owner_directive": "Parallel independent passported tasks; persist and merge accepted units",
-  "scope": "Working branches only; no site release, server or source product changes",
+  "scope": "Working-branch documentary checkpoint only; no source products/main/deploy/server changes",
   "accepted_merges": [
     {
       "pr": 487,
@@ -9,65 +14,312 @@
       "scope": "Owner02/08 wording receipt"
     },
     {
+      "repository": "pmgpt12-arch/marzhavbetone.ru",
       "pr": 488,
+      "url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/488",
+      "head": "5e1996ea20c13f679c8d0de5299384d50571dfc1",
       "sha": "d1253839512daf9cd8bca71beef0d2426c766ea8",
-      "scope": "P4/P9 exact baseline local DOCX evidence",
-      "independent": "docx-review/verdict.json"
+      "merged_at": "2026-10-06T06:50:14Z",
+      "state": "MERGED",
+      "accepted_scope": "P4/P9 cached local DOCX evidence preservation only",
+      "independent_review": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/docx-review/verdict.json"
     },
     {
+      "repository": "pmgpt12-arch/marzhavbetone.ru",
       "pr": 489,
+      "url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/489",
+      "head": "c6ab38ffe008666215369011d227c44574b50702",
       "sha": "9fa5bcd0e7e6c8a11be41c7642f8ffc74e50cb92",
-      "scope": "P8/P13 restricted numerical Calc scenarios",
-      "comparisons": 780,
-      "errors": 0
-    }
-  ],
-  "pending_units": [
+      "merged_at": "2026-10-06T06:52:38Z",
+      "state": "MERGED",
+      "accepted_scope": "Restricted P8/P13 numerical Calc scenarios (780 comparisons,0 errors); no full formula/product acceptance",
+      "independent_review": "tools/candidates/evidence/BASELINE_P8_P13_LOCAL_CALC_20261006/independent-acceptance.json"
+    },
     {
+      "repository": "pmgpt12-arch/marzhavbetone.ru",
       "pr": 490,
+      "url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/490",
       "head": "90dc3dd66a9536e87e7223964c525833e08aa3f2",
-      "review": "ACCEPT_EVIDENCE_WITH_P13_STOP",
-      "open_gate": "P13 checkbox absent in actual local PDF/PNG, source XML intact; root cause unresolved; product not accepted"
+      "sha": "8772e800da2e188674844d00eb42818580c4efff",
+      "merged_at": "2026-10-06T06:57:45Z",
+      "state": "MERGED",
+      "accepted_scope": "P11/P13 cached native layout evidence with original P13 missing-checkbox STOP",
+      "independent_review": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p11-p13-layout-independent-20261006/verdict.json"
     },
     {
-      "pr": 492,
-      "head": "253c49bf7b1712c7843878af848a57f7245bbcb7",
-      "review": "ACCEPT_EVIDENCE_ONLY",
-      "pages": 13,
-      "text_units": 210,
-      "unresolved_loss": 0
-    },
-    {
+      "repository": "pmgpt12-arch/marzhavbetone.ru",
       "pr": 491,
+      "url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/491",
       "head": "6d1f6979b24d8d7331f29bd2d306de6a1bab3eb1",
-      "state": "INDEPENDENT_REVIEW_IN_PROGRESS",
-      "reference_sha256": "93252d5711cbbd33e682b3f9400fe6ee9aa9ed02c49cf8302ae89976ffc20d77"
+      "sha": "de979fcc055d6a908896f4eb2a2948fec1d5f0b2",
+      "merged_at": "2026-10-06T07:05:56Z",
+      "state": "MERGED",
+      "accepted_scope": "Exact owner-approved Excel style contract and preservation proof",
+      "independent_review": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/excel-design-independent-20261006/review.json"
+    },
+    {
+      "repository": "pmgpt12-arch/marzhavbetone.ru",
+      "pr": 492,
+      "url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/492",
+      "head": "253c49bf7b1712c7843878af848a57f7245bbcb7",
+      "sha": "60f002e2d9844a96c47bdbf9fca3a89abb03920d",
+      "merged_at": "2026-10-06T06:58:23Z",
+      "state": "MERGED",
+      "accepted_scope": "P8/P9 cached native DOCX evidence (13pages/210units) with layout limitations",
+      "independent_review": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p8-p9-layout-independent-20261006/review.json"
+    },
+    {
+      "repository": "pmgpt12-arch/marzhavbetone.ru",
+      "pr": 494,
+      "url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/494",
+      "head": "20188af5a9dd391d41256aac2118f0e632722d4a",
+      "sha": "ac6e36cdce7f1da21f72222c6f2d5c8740fb7908",
+      "merged_at": "2026-10-06T07:10:48Z",
+      "state": "MERGED",
+      "accepted_scope": "Separate P13 style-only candidate; historical horizontal print STOP preserved",
+      "independent_review": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p13-style-independent-20261006/review.json"
+    },
+    {
+      "repository": "pmgpt12-arch/marzhavbetone.ru",
+      "pr": 495,
+      "url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/495",
+      "head": "e5398fa4f639800f8cde59740a96e0225d686631",
+      "sha": "72c1904e8dcd11ad9a49da905905474ed1f71ced",
+      "merged_at": "2026-10-06T07:10:57Z",
+      "state": "MERGED",
+      "accepted_scope": "Original P13 glyph loss causal-boundary evidence; exact mechanism remains UNRESOLVED",
+      "independent_review": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p13-rootcause-independent-20261006/review-e5398fa4.json"
+    },
+    {
+      "repository": "pmgpt12-arch/marzhavbetone.ru",
+      "pr": 496,
+      "url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/496",
+      "head": "467b942c632cb00c431ae1c3d1394ce2b5249dfb",
+      "sha": "6ec117f51a287d278e871dca85b18dc963ca8398",
+      "merged_at": "2026-10-06T07:14:08Z",
+      "state": "MERGED",
+      "accepted_scope": "Separate P13 print-only candidate: actual3pages and scoped native/formula preservation; native Excel owner review pending",
+      "independent_review": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p13-print-independent-20261006/review.json"
+    },
+    {
+      "repository": "pmgpt12-arch/marzhavbetone.ru",
+      "pr": 497,
+      "url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/497",
+      "head": "92cf41f7a8d37c1df95965356f57e195ca753888",
+      "sha": "6615f70cdd9afd7d54297c190adb49adeebc9731",
+      "merged_at": "2026-10-06T07:14:12Z",
+      "state": "MERGED",
+      "accepted_scope": "Separate explicit-font P13 DOCX candidate: actual62controls/93units restored locally; original mechanism/native Word/product acceptance unresolved",
+      "independent_review": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p13-checkbox-independent-20261006/review-92cf41f7.json"
     }
   ],
+  "pending_units": [],
   "observed_cloud_runs": [
     {
+      "repository": "pmgpt12-arch/ai-business-os",
       "run_id": 37426119509,
-      "head": "a6da16cbde8310505b40fc8f601ac64ea94738fc",
+      "run_url": "https://github.com/pmgpt12-arch/ai-business-os/actions/runs/37426119509",
+      "run_number": 8,
+      "version": 1,
       "task": "p8-wording",
-      "state": "RUNNING",
-      "model_quality_acceptance": "REQUIRED"
+      "executed_head": "a6da16cbde8310505b40fc8f601ac64ea94738fc",
+      "workflow_state": "completed",
+      "workflow_conclusion": "failure",
+      "last_API_updated_at": "2026-10-06T06:55:17Z",
+      "model_quality_acceptance": "NOT_ACCEPTED",
+      "automatic_retry_performed": false,
+      "result_classification": "TASK_ROUTE_MISMATCH",
+      "classification_source": "Root reviewed original V1 receipts; historical model outputs rejected for task incompatibility",
+      "api_usd": 0,
+      "cost_scope": "Root reviewed V1 actual receipt; not inferred from later V2 failure"
     },
     {
+      "repository": "pmgpt12-arch/ai-business-os",
       "run_id": 37426345581,
-      "head": "fac379d6b001881ff4549dc9e06e8e4ce98acb60",
+      "run_url": "https://github.com/pmgpt12-arch/ai-business-os/actions/runs/37426345581",
+      "run_number": 9,
+      "version": 1,
       "task": "p13-wording",
-      "state": "RUNNING",
-      "model_quality_acceptance": "REQUIRED"
+      "executed_head": "fac379d6b001881ff4549dc9e06e8e4ce98acb60",
+      "workflow_state": "completed",
+      "workflow_conclusion": "failure",
+      "last_API_updated_at": "2026-10-06T06:56:18Z",
+      "model_quality_acceptance": "NOT_ACCEPTED",
+      "automatic_retry_performed": false,
+      "result_classification": "TASK_ROUTE_MISMATCH",
+      "classification_source": "Root reviewed original V1 receipts; historical model outputs rejected for task incompatibility",
+      "api_usd": 0,
+      "cost_scope": "Root reviewed V1 actual receipt; not inferred from later V2 failure"
+    },
+    {
+      "repository": "pmgpt12-arch/ai-business-os",
+      "run_id": 37427683303,
+      "run_url": "https://github.com/pmgpt12-arch/ai-business-os/actions/runs/37427683303",
+      "run_number": 10,
+      "version": 2,
+      "task": "p8-wording-v2",
+      "executed_head": "5a5d6583aeeb7f2e6ce453cfa78573f393a8cee2",
+      "workflow_state": "completed",
+      "workflow_conclusion": "failure",
+      "last_API_updated_at": "2026-10-06T07:10:25Z",
+      "model_quality_acceptance": "NOT_ACCEPTED",
+      "automatic_retry_performed": false,
+      "durable_summary": {
+        "repository": "pmgpt12-arch/ai-business-os",
+        "head": "fe0565da61ebe1b7d558cf586ce91c8eeb96cfd9",
+        "path": "docs/reports/cloud-atomic-p8-wording-v2/execution-summary.json",
+        "git_blob": "4cb6b3d03aba525572c3238906d4182654a4ccbd"
+      },
+      "result": "NOT_ACCEPTED_PROVIDER_RATE_LIMIT",
+      "error": "HTTP429 Too Many Requests",
+      "result_classification": "PROVIDER_API_RATE_LIMIT",
+      "exact_rate_limit_scope": "UNKNOWN: error body/headers not captured; cannot attribute provider vs model vs account",
+      "served_model": "NOT_VERIFIED",
+      "usage_cost": "NOT_VERIFIED_NO_SUCCESS_RESPONSE",
+      "model_calls": 1,
+      "mandatory_tests": {
+        "passed": 1864,
+        "skipped": 74,
+        "failed": 0
+      },
+      "schema_validation": {
+        "checked": 7413,
+        "violations": 0
+      },
+      "elapsed_seconds": 0.237,
+      "receipt_blob_sha": "500f3d039394590616ad07cdf353630f09e8e33f",
+      "requested_model": "google/gemma-4-26b-a4b-it:free",
+      "accepted_wording_outputs": 0
+    },
+    {
+      "repository": "pmgpt12-arch/ai-business-os",
+      "run_id": 37427911423,
+      "run_url": "https://github.com/pmgpt12-arch/ai-business-os/actions/runs/37427911423",
+      "run_number": 11,
+      "version": 2,
+      "task": "p13-wording-v2",
+      "executed_head": "086171f8ae6d309e35951610a85723c6f174aa93",
+      "workflow_state": "completed",
+      "workflow_conclusion": "failure",
+      "last_API_updated_at": "2026-10-06T07:12:59Z",
+      "model_quality_acceptance": "NOT_ACCEPTED",
+      "automatic_retry_performed": false,
+      "durable_summary": {
+        "repository": "pmgpt12-arch/ai-business-os",
+        "head": "f1a47a17365dbfd25c2e6b4d4cce8caff95fee21",
+        "path": "docs/reports/cloud-atomic-p13-wording-v2/execution-summary.json",
+        "git_blob": "7cb7050a4e70de7b712e29db2e41c75641c20610"
+      },
+      "result": "NOT_ACCEPTED_PROVIDER_RATE_LIMIT",
+      "error": "HTTP429 Too Many Requests",
+      "result_classification": "PROVIDER_API_RATE_LIMIT",
+      "exact_rate_limit_scope": "UNKNOWN: error body/headers not captured; cannot attribute provider vs model vs account",
+      "served_model": "NOT_VERIFIED",
+      "usage_cost": "NOT_VERIFIED_NO_SUCCESS_RESPONSE",
+      "model_calls": 1,
+      "mandatory_tests": {
+        "passed": 1864,
+        "skipped": 74,
+        "failed": 0
+      },
+      "schema_validation": {
+        "checked": 7413,
+        "violations": 0
+      },
+      "elapsed_seconds": 0.189,
+      "receipt_blob_sha": "f65ddad3655445711780ec1b46bc23cb9a98c0d3",
+      "requested_model": "google/gemma-4-26b-a4b-it:free",
+      "accepted_wording_outputs": 0
     }
   ],
-  "isolation": "Separate branches, output directories, branch-specific concurrency for two compare-models jobs; four Writer processes used distinct profiles",
-  "bounded_model_policy": "One free call per task,30s API,60s outer,no paid fallback or retry; full pytest/validate gates before inference",
-  "next_task": {
-    "task": "P13 one-book approved business design candidate",
-    "state": "ROLE_MAP_PREPARED_WAITING_STYLE_CONTRACT_ACCEPT",
-    "source_sha256": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2",
-    "gate": "Native formulas/input/protection/validation/status/number formats/print signatures preserved + actual Calc fixtures + visual independent review"
+  "cloud_executor_state": "Mandatory tests, validation, bounded execution, isolation and durable receipts verified; model output/quality NOT_ACCEPTED",
+  "historical_parallel_checkpoints": [
+    {
+      "version": 1,
+      "screenshot": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/github-parallel-runs-20261006-1354.jpg",
+      "sha256": "97437fe84eeb689971ffbcb6cb091cfa0f2717cb80e30d8da88037bde56262a1",
+      "run_ids": [
+        37426119509,
+        37426345581
+      ],
+      "observed": "Both workflows In progress in immutable screenshot #8/#9; historic only"
+    },
+    {
+      "version": 2,
+      "screenshot": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/github-parallel-v2-20261006-1410.jpg",
+      "sha256": "7c0ae4a687943fbfd1e3325b684092e70454655d9374fada36ded43f4587d317",
+      "bytes": 122561,
+      "run_ids": [
+        37427683303,
+        37427911423
+      ],
+      "observed": "Both workflows In progress in immutable screenshot #10/#11 around07:10UTC (root checkpoint estimate); not terminal state or model-quality acceptance"
+    }
+  ],
+  "preserved_history": {
+    "old_handoff_head": "ac18a6d1a499e31300e76de0e6c23a8024e45445",
+    "old_handoff_path": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/handoff.json",
+    "old_handoff_blob": "fa6d47c0c711f536d3ae9000c6eceeae6933807c",
+    "old_independent_review": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/independent-historical-review.json",
+    "old_independent_review_scope": "Old ac18 historical snapshot only; existing8reviewer files unchanged; this final metadata has separate review",
+    "v1_receipts": "Retained original V1 receipt history in ai-business-os; V2 uses separate identifiers/output directories"
   },
-  "remaining": "Legal/currentness/native Office and full product/release acceptance remain separate",
-  "snapshot_warning": "RUNNING observations are checkpoints, re-read actual GitHub state before continuation"
+  "new_preserved_reviews": [
+    {
+      "path": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p13-rootcause-independent-20261006/review-e5398fa4.json",
+      "original_local_path": "/workspace/scratch/f25d74acc3f7/p13-rootcause-independent-20261006/review-e5398fa4.json",
+      "sha256": "aff913b7a6c4fc2076c0f568455fdf7cca34c67f454932ddc9743d580802431f",
+      "bytes": 1941
+    },
+    {
+      "path": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/cloud-atomic-v2-independent-20261006/review.json",
+      "original_local_path": "/workspace/scratch/f25d74acc3f7/cloud-atomic-v2-independent-20261006/review.json",
+      "sha256": "bbf7f093fddd2246ada37eca3357124b99701cab2a917a4779eb396aaabf5938",
+      "bytes": 7401
+    },
+    {
+      "path": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p13-print-independent-20261006/review.json",
+      "original_local_path": "/workspace/scratch/f25d74acc3f7/p13-print-independent-20261006/review.json",
+      "sha256": "68963e295620edaf6a61f82ff66a1b89adca8a0f228ab85da48120a11f714227",
+      "bytes": 33981
+    },
+    {
+      "path": "tools/candidates/evidence/DAYWORK_HANDOFF_20261006/p13-checkbox-independent-20261006/review-92cf41f7.json",
+      "original_local_path": "/workspace/scratch/f25d74acc3f7/p13-checkbox-independent-20261006/review-92cf41f7.json",
+      "sha256": "c84848588699fb735c293fb9a23b8b1d0b054a6677c9d694d6a38170d399f3ca",
+      "bytes": 2260
+    }
+  ],
+  "p13_open_gates": {
+    "original_checkbox_loss": "Exact original local glyph-loss mechanism remains UNRESOLVED; no original DOCX or native Word defect established",
+    "original_P13_layout_acceptance": "STOP remains for exact original missing-checkbox output; PR497 restores candidate only",
+    "style_checkpoint_print_STOP": "Historical PR494 horizontal split STOP retained; subsequent separate PR496 candidate print scope accepted",
+    "native_Microsoft_Excel": "OWNER_REVIEW_PENDING",
+    "native_Microsoft_Word": "NOT_ACCEPTED",
+    "legal_currentness_human_review": "NOT_PERFORMED",
+    "full_product_and_SaleReady": "NOT_ACCEPTED"
+  },
+  "owner_review_artifact": {
+    "filename": "P13_Excel_review_2026-10-06.zip",
+    "bytes": 62409,
+    "sha256": "ef6650caada441072df341fcaa85d4a4afb979b0ea91bbbcb9308873b9f6ae34",
+    "library_file_id": "libfile_d00def1884f881918b35712cd402a89c",
+    "library_version": 0,
+    "candidate_sha256": "2262235a4f2d3513bed99c58a261053181bf5510af684e9a22453ac529c63e52",
+    "pdf_sha256": "a812aedf08f301ecbab3f60b96635ca3b2929aec2174ad96ace2b07090614eb3",
+    "print_review_sha256": "68963e295620edaf6a61f82ff66a1b89adca8a0f228ab85da48120a11f714227",
+    "owner_native_Excel_acceptance": "PENDING",
+    "binary_duplicated_in_Git": false
+  },
+  "next_task": {
+    "task": "Separate P8 style candidate",
+    "state": "PREPARATION_OR_EXECUTION_IN_PROGRESS_RESULT_NOT_ACCEPTED",
+    "assigned_worker": "next_atomic_queue",
+    "source_sha256": "079535ecc577dc0a7396cb6d122e5060e6121fa60d9d024763c153fd2bf304ec",
+    "scope": "Separate folder/branch; reuse accepted style contract/framework; preservation/Calc/print/independent gates required",
+    "blocks_current_handoff": false
+  },
+  "bounded_model_policy": "No paid fallback, retry or extra model requests; both V2 rejected HTTP429 attempts retained. Rate-limit scope/provider/account attribution and successful-response usage cost unknown; do not infer model capability exclusion or API cost0 from rejected V2 calls.",
+  "remaining": "Legal/currentness/native Office owner review and full product/release acceptance remain separate",
+  "snapshot_warning": "Statuses are timestamped checkpoints; re-read actual repository/run/PR state before continuation. Historical RUNNING screenshots must not be read as fresh runtime state."
 }
