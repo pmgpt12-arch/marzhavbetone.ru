@@ -47,12 +47,17 @@ def main():
         assert len(parts) == len({v['path'] for v in parts})
         styles_xml = z.read('xl/styles.xml')
         relationships = {n.attrib['Id']: n.attrib['Target'] for n in ET.fromstring(z.read('xl/_rels/workbook.xml.rels'))}
-        native_styles = {}
+        native_styles = {}; native_formula_styles = {}; native_blank_styles = {}
         for sheet in ET.fromstring(z.read('xl/workbook.xml')).find('s:sheets', NS):
             target = relationships[sheet.attrib['{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id']]
             part = target.lstrip('/') if target.startswith('/') else 'xl/'+target
-            native_styles[sheet.attrib['name']] = {n.attrib['r']:int(n.attrib.get('s','0'))
-                for n in ET.fromstring(z.read(part)).findall('s:sheetData/s:row/s:c', NS)}
+            nodes = ET.fromstring(z.read(part)).findall('s:sheetData/s:row/s:c', NS)
+            name = sheet.attrib['name']
+            native_styles[name] = {n.attrib['r']:int(n.attrib.get('s','0')) for n in nodes}
+            native_formula_styles[name] = dict(collections.Counter(int(n.attrib.get('s','0'))
+                for n in nodes if n.find('s:f',NS) is not None))
+            native_blank_styles[name] = dict(collections.Counter(int(n.attrib.get('s','0'))
+                for n in nodes if all(n.find('s:'+tag,NS) is None for tag in ['f','v','is'])))
         styles_root = ET.fromstring(styles_xml)
         styles = {k: [ET.tostring(c, encoding='unicode') for c in node]
                   for k in ['fonts','fills','borders','cellXfs','cellStyleXfs','numFmts','dxfs','cellStyles']
@@ -62,12 +67,14 @@ def main():
         styles_by_id=collections.defaultdict(list)
         for coord, style_id in native_styles[s.title].items(): styles_by_id[str(style_id)].append(coord)
         assert all(0 <= int(i) < len(styles['cellXfs']) for i in styles_by_id)
+        assert all(0 <= int(i) < len(styles['cellXfs'])
+            for counter in [native_formula_styles[s.title], native_blank_styles[s.title]] for i in counter)
         sheets.append({'name': s.title, 'dimensions': s.calculate_dimension(),
           'max_row': s.max_row, 'max_column': s.max_column,
           'populated_cells': sum(c.value is not None for c in s._cells.values()),
           'formula_count': sum(c.data_type == 'f' for c in s._cells.values()),
-          'formula_styles': dict(collections.Counter(c.style_id for c in s._cells.values() if c.data_type == 'f')),
-          'blank_styles': dict(collections.Counter(c.style_id for c in s._cells.values() if c.value is None)),
+          'formula_styles': native_formula_styles[s.title],
+          'blank_styles': native_blank_styles[s.title],
           'styles_by_id_coordinates': dict(styles_by_id),
           'column_dimensions': {k: xml(v) for k,v in s.column_dimensions.items()},
           'row_dimensions': {str(k): dict(v) for k,v in s.row_dimensions.items()},
@@ -93,7 +100,9 @@ def main():
     baseline=invariants(w)
     checks=[]
     checks.append({'case':'unmodified_reference','passed':invariants(w)==baseline})
-    checks.append({'case':'native_style_references_resolve','passed':all(0 <= i < len(styles['cellXfs']) for sm in native_styles.values() for i in sm.values())})
+    checks.append({'case':'native_style_references_resolve','passed':
+        all(0 <= i < len(styles['cellXfs']) for sm in native_styles.values() for i in sm.values())
+        and all(0 <= i < len(styles['cellXfs']) for maps in [native_formula_styles,native_blank_styles] for sm in maps.values() for i in sm)})
     mutations=[('formula_loss',lambda q:setattr(q['Взаиморасчёты']['G5'],'value',0)),
        ('validation_loss',lambda q:setattr(q['Взаиморасчёты'].data_validations,'dataValidation',[])),
        ('sheet_protection_changed',lambda q:setattr(q['Взаиморасчёты'].protection,'sheet',True)),

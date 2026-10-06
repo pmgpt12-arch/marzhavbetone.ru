@@ -36,3 +36,5 @@
 ## Предотвращение ошибки происхождения metadata
 
 Завершающий gate выявил, что openpyxl материализует границы объединённых ячеек и регистрирует 3 synthetic style IDs (411–413), отсутствующих в исходном cellXfs. Класс: LOSS_OF_NATIVE_METADATA_ORIGIN. Правило: карта coordinate/style извлекается только из raw worksheet c/@s, не из in-memory style_id merged cells. Реализованный gate проверяет каждый native ID относительно actual cellXfs (411 записей). После исправления все ссылки разрешаются. Первая версия контракта не использовалась для изменения продукта.
+
+Независимая QA заметила оставшиеся in-memory counters formula_styles/blank_styles. Оба поля также исправлены на raw native XML (f presence / no f,v,is). Gate проверяет координатную карту и оба counters; synthetic 411 при контрольной инъекции отклонён.
