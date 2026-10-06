@@ -1,0 +1,73 @@
+{
+  "observed_date": "2026-10-06",
+  "owner_directive": "Parallel independent passported tasks; persist and merge accepted units",
+  "scope": "Working branches only; no site release, server or source product changes",
+  "accepted_merges": [
+    {
+      "pr": 487,
+      "sha": "e66432d9612c00389101587e472bfb49a958c60e",
+      "scope": "Owner02/08 wording receipt"
+    },
+    {
+      "pr": 488,
+      "sha": "d1253839512daf9cd8bca71beef0d2426c766ea8",
+      "scope": "P4/P9 exact baseline local DOCX evidence",
+      "independent": "docx-review/verdict.json"
+    },
+    {
+      "pr": 489,
+      "sha": "9fa5bcd0e7e6c8a11be41c7642f8ffc74e50cb92",
+      "scope": "P8/P13 restricted numerical Calc scenarios",
+      "comparisons": 780,
+      "errors": 0
+    }
+  ],
+  "pending_units": [
+    {
+      "pr": 490,
+      "head": "90dc3dd66a9536e87e7223964c525833e08aa3f2",
+      "review": "ACCEPT_EVIDENCE_WITH_P13_STOP",
+      "open_gate": "P13 checkbox absent in actual local PDF/PNG, source XML intact; root cause unresolved; product not accepted"
+    },
+    {
+      "pr": 492,
+      "head": "253c49bf7b1712c7843878af848a57f7245bbcb7",
+      "review": "ACCEPT_EVIDENCE_ONLY",
+      "pages": 13,
+      "text_units": 210,
+      "unresolved_loss": 0
+    },
+    {
+      "pr": 491,
+      "head": "6d1f6979b24d8d7331f29bd2d306de6a1bab3eb1",
+      "state": "INDEPENDENT_REVIEW_IN_PROGRESS",
+      "reference_sha256": "93252d5711cbbd33e682b3f9400fe6ee9aa9ed02c49cf8302ae89976ffc20d77"
+    }
+  ],
+  "observed_cloud_runs": [
+    {
+      "run_id": 37426119509,
+      "head": "a6da16cbde8310505b40fc8f601ac64ea94738fc",
+      "task": "p8-wording",
+      "state": "RUNNING",
+      "model_quality_acceptance": "REQUIRED"
+    },
+    {
+      "run_id": 37426345581,
+      "head": "fac379d6b001881ff4549dc9e06e8e4ce98acb60",
+      "task": "p13-wording",
+      "state": "RUNNING",
+      "model_quality_acceptance": "REQUIRED"
+    }
+  ],
+  "isolation": "Separate branches, output directories, branch-specific concurrency for two compare-models jobs; four Writer processes used distinct profiles",
+  "bounded_model_policy": "One free call per task,30s API,60s outer,no paid fallback or retry; full pytest/validate gates before inference",
+  "next_task": {
+    "task": "P13 one-book approved business design candidate",
+    "state": "ROLE_MAP_PREPARED_WAITING_STYLE_CONTRACT_ACCEPT",
+    "source_sha256": "b7b1e9377095d0d8b28213401a66bdb868817584c677f38edcda94380ce477c2",
+    "gate": "Native formulas/input/protection/validation/status/number formats/print signatures preserved + actual Calc fixtures + visual independent review"
+  },
+  "remaining": "Legal/currentness/native Office and full product/release acceptance remain separate",
+  "snapshot_warning": "RUNNING observations are checkpoints, re-read actual GitHub state before continuation"
+}
