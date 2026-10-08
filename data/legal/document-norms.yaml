@@ -48,7 +48,7 @@ documents:
   - path: products-storage/01-zakrytie-rabot/11-slovar-poley.docx
     generator: projects/marzha_v_betone/product/build/00-slovar.js
     legally_significant: true
-    norms: [gk-746, gk-711, gk-191, gk-193, gk-395, apk-4-5, apk-125-126, nk-333-21, apk-35, apk-37]
+    norms: [gk-746, gk-711, gk-191, gk-193, gk-395, apk-4-5, apk-125-126, nk-333-21, apk-35, apk-37, gk-330, apk-103]
     mechanisms:
       - определение первого дня просрочки
       - состав базы долга
@@ -57,7 +57,7 @@ documents:
   - path: products-storage/01-zakrytie-rabot/12-pretenziya-na-neoplatu-po-ks-2.docx
     generator: projects/marzha_v_betone/product/build/01-pretenziya.js
     legally_significant: true
-    norms: [gk-711, gk-746, gk-753, gk-395, gk-314, gk-193, apk-4-5, apk-128-148, nk-333-40, apk-110, gk-202, gk-309, gk-310]
+    norms: [gk-711, gk-746, gk-753, gk-395, gk-314, gk-193, apk-4-5, apk-128-148, nk-333-40, apk-110, gk-202, gk-309, gk-310, gk-330, apk-129]
     # Атрибутивные ссылки: документ называет акт, но юридический вывод на
     # нём не стоит. Объявляются здесь, а не умалчиваются: проверка полноты
     # обязана видеть каждую правовую ссылку, и разница между «опора» и
@@ -86,7 +86,7 @@ documents:
     # полноты этого не поймала и поймать не могла: номера статей в тексте не
     # названы, последствия сформулированы прозой. Нашёл проверяющий,
     # остановившись на нехватке нормы вместо того, чтобы додумать.
-    norms: [apk-4-5, gk-395, apk-128-148]
+    norms: [apk-4-5, gk-395, apk-128-148, apk-129, gk-330, apk-110]
     mechanisms:
       # Механизм переписан 16.08.2026: решением владельца документ сделан
       # явным досудебным требованием, и прежняя запись «письмо, не
