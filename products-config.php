@@ -132,7 +132,7 @@ function mvb_products(): array
     return [
         'p1' => [
             'name'  => 'Комплект «Акты выполненных работ, КС-2 и КС-3: закрытие и взыскание оплаты»',
-            'price' => 249000,
+            'price' => 2990000,
             'dir'   => '01-zakrytie-rabot',
             'zip'   => '01-ks-podpisany-deneg-net.zip',
         ],
