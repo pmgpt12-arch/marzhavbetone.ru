@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # по которой её можно проверить.
 PAID_KEY = "p1"
 PAID_NAME = "Акты выполненных работ, КС-2 и КС-3: закрытие и взыскание оплаты"
-PAID_PRICE = "2 490 ₽"
+PAID_PRICE = "29 900 ₽"
 PAID_URL = "https://marzhavbetone.ru/products/p1-oplata-po-ks2.html"
 
 thin_border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
