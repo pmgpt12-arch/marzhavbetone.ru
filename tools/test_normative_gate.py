@@ -279,11 +279,14 @@ def m_result_misses_norm(tmp: Path) -> None:
     """
     m_all_green(tmp)
     path = tmp / "data/legal/document-norms.yaml"
-    s = path.read_text(encoding="utf-8")
-    # Норма реестра, которой в этом документе нет: добавленная в mapping,
-    # она обязана попасть в «не покрыто сверкой».
-    assert "gk-330" not in s.split("norms: [gk-746")[1].split("]")[0]
-    path.write_text(s.replace("norms: [gk-746", "norms: [gk-330, gk-746", 1),
+    mapping = yaml.safe_load(path.read_text(encoding="utf-8"))
+    norms = yaml.safe_load((tmp / "data/legal/norms.yaml").read_text("utf-8"))
+    declared = {norm["norm_id"] for norm in norms["norms"]}
+    document = next(item for item in mapping["documents"]
+                    if declared - set(item["norms"]))
+    extra = sorted(declared - set(document["norms"]))[0]
+    document["norms"].append(extra)
+    path.write_text(yaml.safe_dump(mapping, allow_unicode=True, sort_keys=False),
                     encoding="utf-8")
 
 
