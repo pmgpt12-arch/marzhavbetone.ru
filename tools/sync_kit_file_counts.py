@@ -229,7 +229,8 @@ def главная(argv=None) -> int:
     # них — описания товаров в разметке каталога. Для поисковика это то же
     # обещание, что и на странице.
     for файл in sorted(КОРЕНЬ.glob("**/*.html")):
-        if ".git" in файл.parts or "products-storage" in файл.parts:
+        if (".git" in файл.parts or "products-storage" in файл.parts
+                or ("data" in файл.parts and "legal" in файл.parts)):
             continue
         текст = файл.read_text(encoding="utf-8")
         если_менять = False
@@ -284,7 +285,8 @@ def главная(argv=None) -> int:
 
     # 3. Страницы: любое «N файлов», у которого нашёлся однозначный хозяин.
     for файл in sorted(КОРЕНЬ.glob("**/*.html")):
-        if ".git" in файл.parts or "products-storage" in файл.parts:
+        if (".git" in файл.parts or "products-storage" in файл.parts
+                or ("data" in файл.parts and "legal" in файл.parts)):
             continue
         текст = файл.read_text(encoding="utf-8")
         свой = None
