@@ -12,7 +12,7 @@ path = BASE / "00-INSTRUKCIYA.docx"
 doc = Document(path)
 table = doc.tables[0]
 rows = [
-    ("11-slovar-poley.docx", "Перед заполнением шаблонов: значения полей и источники данных", "Проверены исходные данные для заполнения"),
+    ("11-slovar-poley.docx", "Для заполнения форм: значения полей и источники данных", "Проверены исходные данные для заполнения"),
     ("12-pretenziya-na-neoplatu-po-ks-2.docx", "После проверки приёмки, срока оплаты и претензионного порядка", "Адаптированная претензия с приложениями"),
     ("13-uvedomlenie-o-prosrochke-oplaty.docx", "При наступлении просрочки оплаты по договору", "Адаптированное уведомление и доказательство отправки"),
     ("14-raschet-procentov-395-gk.xlsx", "Для расчёта процентов по ст. 395 ГК РФ по периодам", "Проверенный расчёт с исходными данными"),
@@ -37,6 +37,8 @@ short_rows = {
     "09-checklist-peredachi.pdf": ("Перед передачей комплекта", "Отмеченные проверки и пробелы"),
 }
 for row in table.rows:
+    if row.cells[0].text == "11-slovar-poley.docx":
+        row.cells[1].text = "Для заполнения форм: значения полей и источники данных"
     if row.cells[0].text in short_rows:
         row.cells[1].text, row.cells[2].text = short_rows[row.cells[0].text]
     if row.cells[0].text == "10-sroki-hraneniya.pdf":
@@ -66,7 +68,10 @@ for paragraph in doc.paragraphs:
     replacement = note if paragraph.text == old_note else criteria if paragraph.text.startswith("Пакет внедрён, когда") else None
     if paragraph.text == "Не отправляйте документ с квадратными скобками и подсказками.":
         replacement = ("Заполните поля в квадратных и двойных фигурных скобках, затем удалите обозначения полей и подсказки. "
-                       "Не отправляйте незаполненный шаблон.")
+                       "Проверьте заполненную форму перед отправкой.")
+    if paragraph.text.startswith("Заполните поля в квадратных и двойных фигурных скобках"):
+        replacement = ("Заполните поля в квадратных и двойных фигурных скобках, затем удалите обозначения полей и подсказки. "
+                       "Проверьте заполненную форму перед отправкой.")
     if replacement is not None:
         if paragraph.text.startswith("Пакет внедрён, когда"):
             criteria_found += 1
@@ -84,6 +89,9 @@ if not any(p.text == note for p in doc.paragraphs):
             p.insert_paragraph_before(note, style="List Bullet")
             break
 for section in doc.sections:
+    for p in section.header.paragraphs:
+        for run in p.runs:
+            run.text = run.text.replace("РАБОЧИЙ ШАБЛОН", "ФОРМЫ И ПОРЯДОК")
     for p in section.footer.paragraphs:
         if "версия 21.07.2026" in p.text:
             for run in p.runs:
