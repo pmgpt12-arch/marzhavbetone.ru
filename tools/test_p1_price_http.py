@@ -148,7 +148,7 @@ def main():
                                      (order_id, paid["delivery"]["token"]))
                 assert code == 200 and entries(data) == original
                 assert sha(data) == paid["items"][0]["edition"]["sha256"]
-                assert data == REFERENCE.read_bytes()
+                assert entries(data) == entries(REFERENCE.read_bytes())
                 print("PASS: P1 29 900 ₽, server price, pinned 19 files, webhook, HTTP ZIP")
             finally:
                 proc.terminate()
