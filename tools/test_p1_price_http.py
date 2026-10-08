@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PRICE = 2990000
 SOURCE = ROOT / "products-storage/01-zakrytie-rabot"
-REFERENCE = ROOT / "tools/reports/p1-final-delivery-20261008/final-6febd610/new-download.zip"
+REFERENCE = ROOT / "tools/reports/p1-final-delivery-20261008/p1-value-edition.zip"
 EXCLUDE = {".htaccess", "00-PISMO-POSLE-POKUPKI.txt", "MANIFEST.md"}
 
 
@@ -53,7 +53,7 @@ def main():
     original = files(SOURCE)
     assert len(original) == 19
     assert entries(REFERENCE.read_bytes()) == original
-    assert sha(REFERENCE.read_bytes()) == "6febd610f5739be90c298cb6b02d555ffafd7ac04aafc0d52fa2b05189c663c4"
+    assert sha(REFERENCE.read_bytes()) == "e8c933147d9c0db3079e66c6e1137251d85c6ac339e31613617f49011304f653"
     with tempfile.TemporaryDirectory(prefix="p1-price-http-") as td:
         base = Path(td)
         web, masters, orders = base / "web", base / "masters", base / "orders"

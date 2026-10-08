@@ -57,7 +57,7 @@ jobs:
       # тесты инструментов, включённые в публичный гейт. python-docx читает
       # таблицу состава P1 в test_p1_delivery_alignment.
       - name: Поставить зависимости проверок
-        run: python3 -m pip install --quiet pillow pyyaml pytest python-docx
+        run: python3 -m pip install --quiet pillow pyyaml pytest python-docx pymupdf
 
       - name: Проверки публичного контура
         run: python3 tools/run_checks.py --class public
