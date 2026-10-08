@@ -1,7 +1,9 @@
 ```yaml
 document: products-storage/01-zakrytie-rabot/13-uvedomlenie-o-prosrochke-oplaty.docx
-document_hash: sha256:c98727eaf8b30694e31e5c8783aee012b088712886bf81da8af5a088adeab02d
-generator_hash: sha256:5ec4c7717520f7d2ac08e5429cd2ca1dd833d398b230800f8aef2eb782bd64c6
+document_hash: sha256:8f3566b5f132cae1b85a666250bfd1c4af32fffdd63dceae1e5b782b81a81de6
+generator_hash: sha256:0d14d45bf257a5863aa5234d3fa52b922a5dd749f3623589635d75ea72ece71b
+raw_document_hash: sha256:6f73237e36ee70cf8aab727aa6a962e559e05cc9e41de671c981f969f412663b
+reviewed_container_hash: sha256:2f8e291f6029ae1f67d4d5ea3825401ee40b47642a698213bf333ac30dad0a45
 checked_at: 2026-10-08
 checker: normative-checker
 sources:
@@ -28,3 +30,7 @@ escalation_reason: null
 Тексты и редакции подтверждённых норм: P1_legal_freshness_consolidated_receipt_2026-10-08.json и P1_APK129_current_quote_2026-10-08.json. Файлы первичных источников: P1_durable_source_manifest_2026-10-08.json. Source hash связывает exact evidence, но для not_verified он не удостоверяет актуальность. Отсутствие доступа классифицировано как зависимость, не как юридический FAIL.
 
 Для закрытия NOT_VERIFIED нужны текущие официальные тексты/редакции, сохранённое проверяемое evidence и новая сверка этого hash. Human-review закрывает только отдельную юридическую эскалацию и не заменяет официальный текст/evidence.
+
+Narrow grammar delta: прочитан новый generated13 /workspace/scratch/d88c71a3c278/p1-docx-source/grammar13/02-Уведомление-о-просрочке-оплаты.docx, raw SHA256 2f8e291f6029ae1f67d4d5ea3825401ee40b47642a698213bf333ac30dad0a45. По реальной инструкции применён целый penalty-абзац; получено «начисляется неустойка / начисленной неустойки / её начисление». Interest-ветка: «начисляются проценты / начисленных процентов / их начисление». Предупреждение о суде согласовано с каждой веткой. Полный paragraph diff: ровно одна инструкция, остальные юридические/досудебные положения неизменны. Нормативный PASS прежних6 источников повторно связан с новым SEM; новой сети и полного прогона не было. Receipt: P1_13_grammar_generated_acceptance_2026-10-08.json.
+
+Окончательная root-сборка: выдаваемый raw sha256:6f73237e36ee70cf8aab727aa6a962e559e05cc9e41de671c981f969f412663b; receipt /tmp/p1-root-grammar13-final-20261008/root-rebuild-receipt.json. Обе выдаваемые копии побайтно равны. SEM совпал с independently accepted generated13; source02 и lib неизменны. Локальный прочитанный контейнер sha256:2f8e291f6029ae1f67d4d5ea3825401ee40b47642a698213bf333ac30dad0a45 и его путь grammar13 сохранены для аудита. Обновлена только привязка контейнера13; другие8 результатов неизменны, новой нормативной сверки или сети не было.

@@ -381,10 +381,10 @@ results:
   scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой ставки/пошлины,
     верстки или SALE_READY.
 - document: products-storage/01-zakrytie-rabot/13-uvedomlenie-o-prosrochke-oplaty.docx
-  document_hash: sha256:c98727eaf8b30694e31e5c8783aee012b088712886bf81da8af5a088adeab02d
+  document_hash: sha256:8f3566b5f132cae1b85a666250bfd1c4af32fffdd63dceae1e5b782b81a81de6
   generator: projects/marzha_v_betone/product/build/02-uvedomlenie.js
-  generator_hash: sha256:5ec4c7717520f7d2ac08e5429cd2ca1dd833d398b230800f8aef2eb782bd64c6
-  raw_document_hash: sha256:19f460448ebb9946605fa1a8180f3f10139c89c9d2d19caa31633c0cf1ce506f
+  generator_hash: sha256:0d14d45bf257a5863aa5234d3fa52b922a5dd749f3623589635d75ea72ece71b
+  raw_document_hash: sha256:6f73237e36ee70cf8aab727aa6a962e559e05cc9e41de671c981f969f412663b
   checked_at: '2026-10-08'
   checker: normative-checker
   reviewer: p1_legal_freshness
@@ -443,9 +443,16 @@ results:
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: Независимый перечит окончательного текста и принятых исправлений выполнен. Исторический PASS не перенесён.
+  recheck: 'Узкая независимая проверка готового13 после одной grammar-инструкции: обе оперативные ветки грамматически согласованы.
+    Остальные формулировки и 6 проверенных источников неизменны.'
   scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой ставки/пошлины,
     верстки или SALE_READY.
+  reviewed_container_location: /workspace/scratch/d88c71a3c278/p1-docx-source/grammar13/02-Уведомление-о-просрочке-оплаты.docx
+  targeted_review_receipt: P1_13_grammar_generated_acceptance_2026-10-08.json
+  reviewed_container_hash: sha256:2f8e291f6029ae1f67d4d5ea3825401ee40b47642a698213bf333ac30dad0a45
+  root_rebuild_receipt: /tmp/p1-root-grammar13-final-20261008/root-rebuild-receipt.json
+  delivered_container_binding: Root rebuilt from identical generator/lib; same accepted semantic hash; both delivered copies
+    byte-equal;18 other files unchanged.
 - document: products-storage/01-zakrytie-rabot/14-raschet-procentov-395-gk.xlsx
   document_hash: sha256:4ca6d9b9cfa4393cfcfe93d29467e95f1f02c9e24cac7332ca166664fea11a7a
   generator: projects/marzha_v_betone/product/build/03-raschet.py

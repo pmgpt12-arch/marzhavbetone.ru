@@ -1,0 +1,124 @@
+{
+  "decision": "ACCEPT buyer routes; full258b plus exact single13 accepted delta",
+  "new_zip": "/tmp/p1-final-release-20261008/orders/delivery/p1-6febd610f5739be90c298cb6b02d555ffafd7ac04aafc0d52fa2b05189c663c4.zip",
+  "new_zip_sha256": "6febd610f5739be90c298cb6b02d555ffafd7ac04aafc0d52fa2b05189c663c4",
+  "archive_sha_match": true,
+  "site_content_head": "3015b88228ed38ea04a4e3013122d1d4a72fd6e2",
+  "source_bound_head": "bf40c826c3eb09352aa611c8d35258d7b720f16b",
+  "names_same": true,
+  "count": 19,
+  "changed_members": [
+    "13-uvedomlenie-o-prosrochke-oplaty.docx"
+  ],
+  "all_other18_same": true,
+  "new13_raw_sha256": "6f73237e36ee70cf8aab727aa6a962e559e05cc9e41de671c981f969f412663b",
+  "new13_body_text_sha256": "718201dbcee70b383a28e55f5af906289dc7f5acdda51a052dd5dc04e524e895",
+  "new13_accepted_body_match": true,
+  "member_manifest_checks": [
+    {
+      "file": "00-INSTRUKCIYA.docx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "00-INSTRUKCIYA.pdf",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "00-START-HERE.txt",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "01-ks-2.docx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "02-ks-3.docx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "03-akt-vypolnennyh-rabot.docx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "04-akt-priemki.docx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "05-peredatochnyy-akt.docx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "06-zhurnal-obemov.xlsx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "07-reestr-zamechaniy.xlsx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "08-reestr-peredachi.xlsx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "09-checklist-peredachi.pdf",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "10-sroki-hraneniya.pdf",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "11-slovar-poley.docx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "12-pretenziya-na-neoplatu-po-ks-2.docx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "13-uvedomlenie-o-prosrochke-oplaty.docx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "14-raschet-procentov-395-gk.xlsx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "15-algoritm-pri-zaderzhke-oplaty.docx",
+      "match": true,
+      "size_match": true
+    },
+    {
+      "file": "16-iskovoe-zayavlenie-o-vzyskanii.docx",
+      "match": true,
+      "size_match": true
+    }
+  ],
+  "normative_freshness_conclusion": false,
+  "sale_ready_conclusion": false,
+  "acceptance_basis": {
+    "full_three_routes_archive_sha256": "258b6a6556a32a06ebf947b3d1b2a98857d04457490e93920d9a3ce22f8d236f",
+    "baseline_report": "P1_Final_Three_Routes_Acceptance_258b_20261008.md",
+    "single_document_delta": "13 instruction grammar; accepted body text exact match",
+    "two_branch_receipt": "p1-docx-source/grammar13/independent/receipt.json",
+    "source13_generator_sha256": "0d14d45bf257a5863aa5234d3fa52b922a5dd749f3623589635d75ea72ece71b",
+    "rerun_scope": "Archive/member bytes and new13 body binding; no unnecessary full route rerun"
+  }
+}
