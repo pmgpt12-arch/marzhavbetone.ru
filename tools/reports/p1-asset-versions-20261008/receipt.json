@@ -1,0 +1,295 @@
+{
+  "base": "6b5bc4e17041e2df960a5f2f612bbbcbca09d8e8",
+  "decision": "ACCEPT cache tokens only",
+  "actual_failed_public_ci": "37762993407 on root6b5bc4e; failure retained by parent",
+  "hash_contract": "tools/asset_versions.py SHA1(content) first8",
+  "correct_version": "6f1c826e",
+  "css_sha256": "820ffea43d9773492a6e568e105963b4c2cfbbbb6fe769a95946cc79f0ee3e99",
+  "css_byte_unchanged": true,
+  "changed_html_count": 34,
+  "old_db34_count": 33,
+  "old_820_count": 1,
+  "before_check_rc": 1,
+  "write_rc": 0,
+  "write_stdout": "проставлено: 34 ссылок в 34 файлах",
+  "after_check_rc": 0,
+  "after_check_stdout": "версии на месте, менять нечего",
+  "tool_run_evidence": "Actual DC process1437951 printed --write0 and --check0; subsequent normalization script exception repaired here without rerunning checks.",
+  "diff_check_rc": 0,
+  "files": [
+    {
+      "file": "demo/algoritm-pri-zaderzhke-oplaty.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "9fe8c914a13e28bcd809e3295e20a4ad20de762ad25d31c573fb88a0b5e29304",
+      "new_sha256": "1c37de98c4b75ff1f7867b84658e1658ecc384120d090dd47f9084daf5bd8ed3"
+    },
+    {
+      "file": "demo/obshchiy-princip-osparivaniya-uderzhaniy.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "cda3b1cea32c565fc24d2ca62811df8050e4294a5b8ab02531505b78e030ce08",
+      "new_sha256": "d6759431e3cf5c06e3c04e15acf7ab40a8e5dbfe244da3ef539b26ea570bbc8e"
+    },
+    {
+      "file": "demo/pretenziya-na-neoplatu.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "b22995712088bc8456f6c9b11c8a32a7bd1235d5e04c142128e4be77339c4cc8",
+      "new_sha256": "f3b332434dacf6422eff8756c772e90cf7c9ce00b58610cca88d0b59051d4d4c"
+    },
+    {
+      "file": "demo/strategiya-otveta-na-zamechaniya.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "a00d9643d2aedeac61b794dc108727688732fedc551791414d5d287be3743cfc",
+      "new_sha256": "31ea116da9fd380a14f5a8df634d0d85f1defcb7178e77889e1b1ebc058d0e50"
+    },
+    {
+      "file": "materialy/akt-skrytyh-rabot.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "f996f6c4e783a03cf753c231406f260eee376fc4a90be2cefa58a217464187d2",
+      "new_sha256": "701d61fb1f02345613e07043009e985412d0896981719e34a7aeb6a116bdc726"
+    },
+    {
+      "file": "materialy/avans.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "95db8baeb25c0e2ef6400ef9e212d0716c6f9a6dbc817662d98d4592440ea2ed",
+      "new_sha256": "011a0e758725b55b69d5a9678209427e67e270c90da4e3c32e4980ff09f9feb9"
+    },
+    {
+      "file": "materialy/bankrotstvo.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "e2f3da1803013d25d4122953eb1cac8a3a09003af8918da0c92f11971457c6cd",
+      "new_sha256": "5ae2c1fcda4e8ad1362eb685732f1585d3be29c7ea66beef56ba2b0e8d384a8f"
+    },
+    {
+      "file": "materialy/dengi.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "da8859cc75962cee5fcb89419fff9351cf613ff460a4b7d7a3f3e0d02888f7b1",
+      "new_sha256": "e4bf69aae5271402140b77f08e88d4adc0c6a16844b76adfbefa18130304b326"
+    },
+    {
+      "file": "materialy/dogovor.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "2fd79f5de52d4074bd7dd8249cdfc3df9814da59bb23e390f6eeee97bc344e8f",
+      "new_sha256": "5b768d3f78d046a662fcda634178311236ec45c0d67b6ff77565cdfa84111616"
+    },
+    {
+      "file": "materialy/dop-raboty.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "26ce423e7f1d1560402bc23773451d9c5c4a086531e2e58992fc85f228a970ac",
+      "new_sha256": "88d913a6d6487992b2847efbed32bac363f0ce0b2a43c80c2f2d8a43752ce07c"
+    },
+    {
+      "file": "materialy/index.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "23acf8d9265578e97c29c503fb10ce15e7aa140fda4fea6877d3f0b0c6fb1c14",
+      "new_sha256": "e3391eca8ffac511ace7165ae626778f8a9e98a31d5da9729e009b7794712b84"
+    },
+    {
+      "file": "materialy/ispolnitelnaya-dokumentaciya.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "ffba5bf936e4a4d1aa13dcc641c6176e022528a9cd9c4c1fe4882530fad37bb3",
+      "new_sha256": "cbb19a252cc2ce16f7a53f9d2d2ddb4e742be0261606abc2c1f07f35f2b4db7a"
+    },
+    {
+      "file": "materialy/raschet-metrami.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "0a2cbfde03d407d8f3d27438d8d3cd73652e4917bf9f314b98fda15e2bf8f5c8",
+      "new_sha256": "5447ee1088818a0f76361bb5c513effa37371266b2781efbaa1e47fcb5a473d3"
+    },
+    {
+      "file": "materialy/uderzhaniya.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "b71ea300cce954992074acf5651a7b982ea2e4c9df4d75e13f1113fc31603043",
+      "new_sha256": "6a6d96d11e2d0837c185e6a097a1f4ff43fd1a77e9f236a5bb967919b1ffc032"
+    },
+    {
+      "file": "materialy/vozvrat-ks.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "73e6ca261b5a0ee38e1c887b852e11ad544a54c6c2168a4a4e04069c826db537",
+      "new_sha256": "eaca85baf05e0a0778600dd7167527eb169c3c5755afdd82629779d1067e3a27"
+    },
+    {
+      "file": "products/p1-oplata-po-ks2.html",
+      "old_token": "820ffea4",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "385937fc93dfe15c36f8a98d3fcf4a865fd0eefc9e3cef87f78a016235cf1489",
+      "new_sha256": "13f48e573a36ba9ac23a062f853ff76ffa029b8e55c980021f85f5bad386d173"
+    },
+    {
+      "file": "products/p10-otvet-na-pretenziyu.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "478a1bbe24f9cffda1f26cd7cf6e1aef04e6a3ae4429a0492a99a943a508b281",
+      "new_sha256": "9f09ff1dea0dd913e06b021b3020e56fd11c294a580dd2ac127d9901105c2e28"
+    },
+    {
+      "file": "products/p11-raschet-metrami.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "72ed885f806319728c78cd8f7ae32a00bb29c646f98afb898d18137b118bd41a",
+      "new_sha256": "41e317d795b94bfffe77072cdfa3fa45f3ad1f099f5ef89fe49060645974c246"
+    },
+    {
+      "file": "products/p12-spor-s-summoy.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "342dcf883021f2cfaf6872e7db5f0933c2a8b420f849346fce2521c63a9a7eb6",
+      "new_sha256": "7dc553a3ff524319d81d80de3881a78154903267ddb30291939e54906aaa6c0c"
+    },
+    {
+      "file": "products/p13-chto-v-smete-ne-oplatyat.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "11dbd4cd556ad85d62fba2f98dee467c78f1d3c8807c3cd16e16041541d3d51f",
+      "new_sha256": "11d032e90c3ba92fb38aa7d60f376f5c9435eb5c4be4b3b47e33f81c6c451036"
+    },
+    {
+      "file": "products/p2-dopolnitelnye-raboty.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "3d932af1e1aa397fb6e941401cff7212d81c7293444f68bdf9eea06491802fdc",
+      "new_sha256": "44e286663dadb99c97d03629c7f314f2409d0e9acdd9f2b089f225d48b9a7a4e"
+    },
+    {
+      "file": "products/p3-shablony-ks2-ks3.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "88024c6da4b7a8315df7e3733eb46276b639a5bcf04ca8b5579f7eda6b98a226",
+      "new_sha256": "70b01827b9bb332194e1418d382920e3b72a6b35ff531debc3e37f1aef6f9237"
+    },
+    {
+      "file": "products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "f5c66477e089a5e9799ac232ee90dc38d8c3326df909feacaa702bad2a8b9005",
+      "new_sha256": "d4182ce1f356a6bb0cee4f772577307f61f07099672d5b916946f92a765354a9"
+    },
+    {
+      "file": "products/p5-shtrafy-uderzhaniya.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "9f578237494da485129f626fee8963ee6854541afefccf50a70f8d0fe13247a9",
+      "new_sha256": "b37d85e0456f596b843b1f6cf4cef56982639823707212e5e154a3e76369b49a"
+    },
+    {
+      "file": "products/p7-dogovor-podryada.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "ac8ee0ddc11ac3210af774cd8f8703c454a1e5a1ce187e9855d9cdc6b496e358",
+      "new_sha256": "9ec919accc8c943f3eb5e8fb2c98894e4cdeb9f05309c8ccd7f82db2bc3fbbda"
+    },
+    {
+      "file": "products/p8-avans-po-dogovoru-subpodryada.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "65307962c3e1957cba6828c5609d8fa169681be6fdeda8089ff918a0f6ef0d4a",
+      "new_sha256": "aa536378b0ae6012817d6abb15dec9940a4fb8f57098fb676a44f62763da68c2"
+    },
+    {
+      "file": "products/p9-bankrotstvo-genpodryadchika.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "85d02f48cb4ad0391bc4869362c9c198b5c5a242da64ad910c67044a0c369128",
+      "new_sha256": "617d9e39194da79177c37229e23fe550e42469bc0793feb14d2300bd19e3df6e"
+    },
+    {
+      "file": "products/t1-pervyy-shag-pri-neoplate.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "9b4de76f7265047fb04d6c204c5e0d06c23b435027576aff0a3be0c00b0d0c29",
+      "new_sha256": "748ce7eba1d1823500af79ed15b1b656f20ff132e4e2c4da77ac30a4dc4f13b7"
+    },
+    {
+      "file": "products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "fc1630ca2f841607b499e1f75983f3fe2d48d48a3f73752e518905dd0d3b2cb4",
+      "new_sha256": "8b4b13c3b7ecb539d2c9db689d8932556ac08bc439623aedccad8a280e55d430"
+    },
+    {
+      "file": "products/t3-odnostoronniy-akt-i-zachet.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "771720160c3548de45e61bc611d68d9359c596f60a753a3b37598b0a3ad41dc5",
+      "new_sha256": "e3f4675202f28bf6a6fb2af8d2ce75d964dda08ae50ca13ba3d55441697931a1"
+    },
+    {
+      "file": "products/t4-genpodryadchik-bankrotitsya.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "25f39a0ae92bf7b25a5c8599c04edba41e84ae69ab80620745d0fdea13081e05",
+      "new_sha256": "2023dfe159c21b6622984799623276f55c0551f95ea568577fddce1ddae0379a"
+    },
+    {
+      "file": "products/t5-trebuyut-vernut-avans.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "1ab977f751dff8870139a6d263a3bde30a24b68ee572da20b8f9ab63f538f7e9",
+      "new_sha256": "aa555a63355f93fb65811dcdf674cc71cb2547629f5e6591325890e8cfc90938"
+    },
+    {
+      "file": "products/t6-kvartiry-vmesto-deneg.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "630a0f542e92ab47d222f62703b59f4e7a6b8a939415107c74af1c14695c3a7b",
+      "new_sha256": "563ead20bc4fe8567e3caed6d7495c2d12c8cd71890ecaa988949a4c40d67611"
+    },
+    {
+      "file": "test-pokupka.html",
+      "old_token": "db34aef2",
+      "new_token": "6f1c826e",
+      "normalized_byte_identical": true,
+      "old_sha256": "72a28c410dbe7b1241662bfa518847256b9097652b2231e737a8265c3ad24fc4",
+      "new_sha256": "70096112e8b22047b5c038ea780f52a0e840f1c97695d91adf067f5d383c7428"
+    }
+  ],
+  "render_repeated": false,
+  "content_style_sku_data_changes": false
+}
