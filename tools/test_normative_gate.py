@@ -157,7 +157,7 @@ def m_missing_mapping(tmp: Path) -> None:
 
 
 def m_secondary_passes(tmp: Path) -> None:
-    """Доказательство вторичное — полного PASS оно не даёт."""
+    """Вторичный источник вне принятого списка полного PASS не даёт."""
     seed_evidence(tmp, source_class="secondary")
     p = tmp / "data/legal/normative-results.yaml"
     p.write_text(p.read_text(encoding="utf-8")
@@ -322,12 +322,39 @@ def m_all_green(tmp: Path) -> None:
                     encoding="utf-8")
 
 
+def m_trusted_sps_green(tmp: Path) -> None:
+    """Прочитанные КонсультантПлюс и Гарант достаточны без второго источника."""
+    seed_evidence(tmp, source_class="secondary")
+    for i, path in enumerate(sorted((tmp / "data/legal/evidence").glob("*.yaml"))):
+        evidence = yaml.safe_load(path.read_text(encoding="utf-8"))
+        evidence["official_url"] = (
+            "https://www.consultant.ru/document/cons_doc_LAW_9027/"
+            if i % 2 else "https://base.garant.ru/12345/"
+        )
+        path.write_text(yaml.safe_dump(evidence, allow_unicode=True, sort_keys=False),
+                        encoding="utf-8")
+    m_all_green(tmp)
+
+
+def m_deceptive_host_red(tmp: Path) -> None:
+    """Схожее имя домена не делает источник доверенным."""
+    seed_evidence(tmp, source_class="secondary")
+    for path in (tmp / "data/legal/evidence").glob("*.yaml"):
+        evidence = yaml.safe_load(path.read_text(encoding="utf-8"))
+        evidence["official_url"] = "https://consultant.ru.evil.example/document"
+        path.write_text(yaml.safe_dump(evidence, allow_unicode=True, sort_keys=False),
+                        encoding="utf-8")
+    m_all_green(tmp)
+
+
 CASES = [
     ("1. изменён юридический текст DOCX", m_docx_text, True),
     ("2. изменена формула XLSX", m_xlsx_formula, True),
     ("3. подставлен результат прежней версии", m_stale_result, True),
     ("4. документ выпал из реестра", m_missing_mapping, True),
-    ("5. вторичное доказательство получает PASS", m_secondary_passes, True),
+    ("5. неизвестный вторичный источник не получает PASS", m_secondary_passes, True),
+    ("5а. КонсультантПлюс и Гарант достаточны", m_trusted_sps_green, False),
+    ("5б. похожий домен отклоняется", m_deceptive_host_red, True),
     ("6. вернулось утверждение о вычитке юристом", m_lawyer_claim, True),
     ("7. вердикт NOT_VERIFIED", m_verdict_fail, True),
     ("8. изменилось доказательство нормы", m_evidence_changed, True),

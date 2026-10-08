@@ -1,0 +1,93 @@
+{
+  "base": "0e6290d98a37e75917794403bf732662db3eb227",
+  "widths": [
+    {
+      "width": 1366,
+      "height": 768,
+      "before_fit_bottom": 1185.296875,
+      "after_fit_bottom": 1145.296875,
+      "before_buy_bottom": 556.875,
+      "after_buy_bottom": 544.875,
+      "text_unchanged": true,
+      "after_check_failures": {},
+      "phone_screenshot_byte_identical": null
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "before_fit_bottom": 1190.078125,
+      "after_fit_bottom": 1150.078125,
+      "before_buy_bottom": 560.375,
+      "after_buy_bottom": 548.375,
+      "text_unchanged": true,
+      "after_check_failures": {},
+      "phone_screenshot_byte_identical": null
+    },
+    {
+      "width": 1600,
+      "height": 900,
+      "before_fit_bottom": 1192.84375,
+      "after_fit_bottom": 1152.84375,
+      "before_buy_bottom": 560.375,
+      "after_buy_bottom": 548.375,
+      "text_unchanged": true,
+      "after_check_failures": {},
+      "phone_screenshot_byte_identical": null
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "before_fit_bottom": 1264.5625,
+      "after_fit_bottom": 1224.5625,
+      "before_buy_bottom": 560.375,
+      "after_buy_bottom": 548.375,
+      "text_unchanged": true,
+      "after_check_failures": {},
+      "phone_screenshot_byte_identical": null
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "before_fit_bottom": 2170.890625,
+      "after_fit_bottom": 2170.890625,
+      "before_buy_bottom": 853.625,
+      "after_buy_bottom": 853.625,
+      "text_unchanged": true,
+      "after_check_failures": {},
+      "phone_screenshot_byte_identical": true
+    }
+  ],
+  "all_after_checks_clear": true,
+  "all_visible_text_unchanged": true,
+  "diff_check": 0,
+  "source_sha256": {
+    "product.css": "820ffea43d9773492a6e568e105963b4c2cfbbbb6fe769a95946cc79f0ee3e99",
+    "products/p1-oplata-po-ks2.html": "385937fc93dfe15c36f8a98d3fcf4a865fd0eefc9e3cef87f78a016235cf1489"
+  },
+  "root_review": "Root independently reviewed exact two-file diff, comparison receipt, after1366+390 actual PNG; ACCEPT before commit.",
+  "runtime": "Node22 native CDP, existing cached Chromium1234; no test/threshold changes",
+  "evidence_sources": {
+    "before-receipt.json": {
+      "sha256": "fb233f8358451b18eee11a707468c692bdf2d3c7d6a99603ad8abed7957780bc",
+      "temporary_path": "/tmp/p1-hero-layout-qa/before-receipt.json"
+    },
+    "after-receipt.json": {
+      "sha256": "20fbe069777143be167ff65bd376ea78fc9eadc960be607f18c3bd8c448442b2",
+      "temporary_path": "/tmp/p1-hero-layout-qa/after-receipt.json"
+    },
+    "targeted_cdp.js": {
+      "sha256": "4359f4934cd8fac4c4297bf2a1ad8d023af7c781dfe274a2b13bf047c5d1d8aa",
+      "temporary_path": "/tmp/p1-hero-layout-qa/targeted_cdp.js"
+    },
+    "checks.json": {
+      "sha256": "64e0d395a6391ea0024b4fa6c447e6e4ca15ba657b90c48d62cbeb81fee45461",
+      "temporary_path": "/tmp/p1-hero-layout-qa/checks.json"
+    }
+  },
+  "screenshots": {
+    "before-1366.png": "697c1222460f7d866f6e84a93a4e7c4a1b199d61d917a53baa54e651868ec734",
+    "after-1366.png": "dd708c392841a267dbfc7ac024dcd37001f11711b8698c35ac23699ba21358b3",
+    "before-390.png": "dd0f2e67d41b9bde37271d963f9176935e43dff8a18559292884cabcc6ac689b",
+    "after-390.png": "dd0f2e67d41b9bde37271d963f9176935e43dff8a18559292884cabcc6ac689b"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "scope": "isolated actual frozen 19 P1 files only",
+  "content_head": "fd25ffa87c37068bad99be2bf4af57790dfd8e1f",
+  "scratch": "/tmp/p1-actual-release-integration-20261008/p1-actual-integration-wz3xv1l7",
+  "head_observed_start": "ea05d91175e3e5edfab8604edabb37020900341c",
+  "runtime_sha256": {
+    "payment.php": "394f003be37dd2904e9b20fea733392e87859fb2dc9a4b16f61642a205317929",
+    "products-config.php": "99eb98ce6e4fedaf365ffe6e0e6f4e232db56a9a75b07fb665be958f71869271",
+    "webhook.php": "c8d758c1234e47466b212dbe91ddd3466aa24b64f6d50ecd669a16bc6655cb2d",
+    "download.php": "bd6380b155ac95ed8e73c7fb2a587a3903e0d85658ce4de3154b74306d7a78f8"
+  },
+  "frozen_edition": {
+    "zip": "p1-258b6a6556a32a06ebf947b3d1b2a98857d04457490e93920d9a3ce22f8d236f.zip",
+    "sha256": "258b6a6556a32a06ebf947b3d1b2a98857d04457490e93920d9a3ce22f8d236f"
+  },
+  "new_source_sha256": {
+    "00-INSTRUKCIYA.docx": "85f5a807b8e6414c5ec532c2a87a3ad88c46fb64059b8cd0245d02e8f9058528",
+    "00-INSTRUKCIYA.pdf": "e26446ea9d9e461bb9bfd211b689d63d03fca9b17d36e24356ea31cfd708382e",
+    "00-START-HERE.txt": "2258d6c4af3815506cf238310ccc80e907ff11b3eec0af12ddd3d617423b46a5",
+    "01-ks-2.docx": "e54c9e707d73800de919aefafa5ad3f768e10249b2830daa6985167b8700fc1c",
+    "02-ks-3.docx": "5dc04dd63abcbfb7d55e9a0f35392448a4260f451c399d8c134313ac1f97aa54",
+    "03-akt-vypolnennyh-rabot.docx": "02a5783c62f0f61dc6e1c9b1434270c7b2bd9d41ce1bda48904876da870ccf37",
+    "04-akt-priemki.docx": "912667ce81270742d360a044598cd6a38981aeb02c664a83840ae931c0f7b7df",
+    "05-peredatochnyy-akt.docx": "efec6b849504b741a4636c0dedd4d053faee20b688563239551ae8e8f0a2e5b8",
+    "06-zhurnal-obemov.xlsx": "a0fb929ec0bc7a83cf6e0ea52b1f264ed06e69cf8e9d3e3ac2a3261cc2da80ff",
+    "07-reestr-zamechaniy.xlsx": "9b47e172016f3cc6b375d67a243a244ef1c260e3fa0384a8af7493596a7d54ad",
+    "08-reestr-peredachi.xlsx": "94977e989b1e729e255146d84ac978176919cfc7613958adb8359f6c316c66b3",
+    "09-checklist-peredachi.pdf": "1c846373f8fc8881628c7971d160768dd404a62b82f06998dd1597620f4da25b",
+    "10-sroki-hraneniya.pdf": "c567ba4c12c9e36d03f5076e8c2f00b33d6e510dfcbe4b11be4d8e5996321841",
+    "11-slovar-poley.docx": "c125190e86b05ec2c9fa80c80501bd36f9187b4923fb913da13df7847790b2cc",
+    "12-pretenziya-na-neoplatu-po-ks-2.docx": "3eaa8efce718b06ec9266a9e26113453e99fe0d776f06f344ed79dcbb8b86f0c",
+    "13-uvedomlenie-o-prosrochke-oplaty.docx": "19f460448ebb9946605fa1a8180f3f10139c89c9d2d19caa31633c0cf1ce506f",
+    "14-raschet-procentov-395-gk.xlsx": "0e3fd94bcb4023652d40de96c22890ef494f0d089d565b1ef6017374c19923fe",
+    "15-algoritm-pri-zaderzhke-oplaty.docx": "dca4f4fb94dcea7fdc5264f5eb0f1d2268324e981a0e550be5d25454bb0bd84b",
+    "16-iskovoe-zayavlenie-o-vzyskanii.docx": "ae69e655f17271578392692c3931de0d0cfb198c63fae685ac74c402262357bd"
+  },
+  "synthetic_prior_source_sha256": {
+    "00-INSTRUKCIYA.docx": "85f5a807b8e6414c5ec532c2a87a3ad88c46fb64059b8cd0245d02e8f9058528",
+    "00-INSTRUKCIYA.pdf": "e26446ea9d9e461bb9bfd211b689d63d03fca9b17d36e24356ea31cfd708382e",
+    "00-START-HERE.txt": "2258d6c4af3815506cf238310ccc80e907ff11b3eec0af12ddd3d617423b46a5",
+    "01-ks-2.docx": "55bbfffbda21beab547f83ba5c32a25855e1191421cacf792d43384fd7fe0e46",
+    "02-ks-3.docx": "5dc04dd63abcbfb7d55e9a0f35392448a4260f451c399d8c134313ac1f97aa54",
+    "03-akt-vypolnennyh-rabot.docx": "02a5783c62f0f61dc6e1c9b1434270c7b2bd9d41ce1bda48904876da870ccf37",
+    "04-akt-priemki.docx": "912667ce81270742d360a044598cd6a38981aeb02c664a83840ae931c0f7b7df",
+    "05-peredatochnyy-akt.docx": "efec6b849504b741a4636c0dedd4d053faee20b688563239551ae8e8f0a2e5b8",
+    "06-zhurnal-obemov.xlsx": "a0fb929ec0bc7a83cf6e0ea52b1f264ed06e69cf8e9d3e3ac2a3261cc2da80ff",
+    "07-reestr-zamechaniy.xlsx": "9b47e172016f3cc6b375d67a243a244ef1c260e3fa0384a8af7493596a7d54ad",
+    "08-reestr-peredachi.xlsx": "94977e989b1e729e255146d84ac978176919cfc7613958adb8359f6c316c66b3",
+    "09-checklist-peredachi.pdf": "1c846373f8fc8881628c7971d160768dd404a62b82f06998dd1597620f4da25b",
+    "10-sroki-hraneniya.pdf": "c567ba4c12c9e36d03f5076e8c2f00b33d6e510dfcbe4b11be4d8e5996321841",
+    "11-slovar-poley.docx": "c125190e86b05ec2c9fa80c80501bd36f9187b4923fb913da13df7847790b2cc",
+    "12-pretenziya-na-neoplatu-po-ks-2.docx": "3eaa8efce718b06ec9266a9e26113453e99fe0d776f06f344ed79dcbb8b86f0c",
+    "13-uvedomlenie-o-prosrochke-oplaty.docx": "19f460448ebb9946605fa1a8180f3f10139c89c9d2d19caa31633c0cf1ce506f",
+    "14-raschet-procentov-395-gk.xlsx": "0e3fd94bcb4023652d40de96c22890ef494f0d089d565b1ef6017374c19923fe",
+    "15-algoritm-pri-zaderzhke-oplaty.docx": "dca4f4fb94dcea7fdc5264f5eb0f1d2268324e981a0e550be5d25454bb0bd84b",
+    "16-iskovoe-zayavlenie-o-vzyskanii.docx": "ae69e655f17271578392692c3931de0d0cfb198c63fae685ac74c402262357bd"
+  },
+  "checks": [
+    {
+      "name": "synthetic prior checkout pins actual 19-file content before payment API; forged edition/price ignored",
+      "pass": true
+    },
+    {
+      "name": "new checkout pins frozen release ZIP exactly at P1 249000 kopeks",
+      "pass": true
+    },
+    {
+      "name": "real webhook uses authoritative local API and keeps prior/new pins after source change",
+      "pass": true
+    },
+    {
+      "name": "old actual HTTP ZIP has exactly its 19 source SHA256 entries",
+      "pass": true
+    },
+    {
+      "name": "new actual HTTP ZIP has exactly its 19 source SHA256 entries",
+      "pass": true
+    },
+    {
+      "name": "new HTTP response bytes equal frozen root runtime ZIP",
+      "pass": true
+    },
+    {
+      "name": "callback replay preserves issued token/edition/expiry/download count",
+      "pass": true
+    },
+    {
+      "name": "missing pinned edition denies without rebuilding from new sources or consuming download",
+      "pass": true
+    },
+    {
+      "name": "corrupt pinned edition denies without consuming download",
+      "pass": true
+    },
+    {
+      "name": "all original 19 sources and runtime files remained unchanged",
+      "pass": true
+    }
+  ],
+  "production_inventory": "BLOCKED: production access/path/orders inventory and authoritative historical ZIP remain unverified; synthetic OLD is not a historical archive",
+  "network": "loopback mock API/HTTP only; example.invalid confirmation URL not visited",
+  "mail": "PHP sendmail_path=/bin/false; buyer email empty; no email sent",
+  "api_audits": [
+    {
+      "pin_present_before_api": true,
+      "sku": "p1",
+      "price_kopeks": 249000
+    },
+    {
+      "pin_present_before_api": true,
+      "sku": "p1",
+      "price_kopeks": 249000
+    }
+  ],
+  "synthetic_prior_edition": {
+    "zip": "p1-e19ac5a83ceb3bd7015a53f9e093ce113d5b8bb5edfb9785429f15b4f8592505.zip",
+    "sha256": "e19ac5a83ceb3bd7015a53f9e093ce113d5b8bb5edfb9785429f15b4f8592505"
+  },
+  "actual_new_edition": {
+    "zip": "p1-258b6a6556a32a06ebf947b3d1b2a98857d04457490e93920d9a3ce22f8d236f.zip",
+    "sha256": "258b6a6556a32a06ebf947b3d1b2a98857d04457490e93920d9a3ce22f8d236f"
+  },
+  "head_observed_end": "ea05d91175e3e5edfab8604edabb37020900341c"
+}

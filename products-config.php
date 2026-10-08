@@ -132,7 +132,7 @@ function mvb_products(): array
     return [
         'p1' => [
             'name'  => 'Комплект «Акты выполненных работ, КС-2 и КС-3: закрытие и взыскание оплаты»',
-            'price' => 249000,
+            'price' => 2990000,
             'dir'   => '01-zakrytie-rabot',
             'zip'   => '01-ks-podpisany-deneg-net.zip',
         ],
@@ -453,6 +453,94 @@ function mvb_product_sources_newer_than(string $sourceDir, int $zipMtime): bool
     return false;
 }
 
+/**
+ * P1: неизменяемое издание. Хешируется сам ZIP, а не время правки мастеров.
+ * Снимок фиксируется до создания платежа. Исходники читаются повторно:
+ * изменение состава во время сборки отменяет снимок.
+ */
+function mvb_capture_p1_edition(): ?array
+{
+    $product = mvb_products()['p1'];
+    $source = PRODUCTS_DIR . '/' . $product['dir'];
+    if (!is_dir($source)) {
+        return null;
+    }
+    $lock = @fopen(DELIVERY_DIR . '/.p1-edition.lock', 'c');
+    if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) {
+        if ($lock) fclose($lock);
+        return null;
+    }
+    $stage = null;
+    try {
+        $read = static function () use ($source): array {
+            $files = [];
+            $iterator = new RecursiveIteratorIterator(
+                new RecursiveDirectoryIterator($source, FilesystemIterator::SKIP_DOTS)
+            );
+            foreach ($iterator as $file) {
+                if (!$file->isFile()
+                    || in_array($file->getBasename(), ['.htaccess', '00-PISMO-POSLE-POKUPKI.txt', 'MANIFEST.md'], true)) {
+                    continue;
+                }
+                $relative = substr($file->getPathname(), strlen($source) + 1);
+                $bytes = @file_get_contents($file->getPathname());
+                if ($bytes === false) throw new RuntimeException('cannot read edition source');
+                $files[$relative] = $bytes;
+            }
+            ksort($files, SORT_STRING);
+            return $files;
+        };
+        $files = $read();
+        if (!$files) return null;
+        $stage = tempnam(DELIVERY_DIR, '.p1-stage-');
+        if ($stage === false) return null;
+        $zip = new ZipArchive();
+        if ($zip->open($stage, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) return null;
+        foreach ($files as $name => $bytes) {
+            if (!$zip->addFromString($name, $bytes)
+                || !$zip->setMtimeName($name, 315532800)) {
+                $zip->close();
+                return null;
+            }
+        }
+        if (!$zip->close() || $read() !== $files) return null;
+        $sha = hash_file('sha256', $stage);
+        if ($sha === false) return null;
+        $edition = ['zip' => 'p1-' . $sha . '.zip', 'sha256' => $sha];
+        $destination = DELIVERY_DIR . '/' . $edition['zip'];
+        if (is_file($destination)) {
+            // Не заменять испорченный исторический снимок новой сборкой.
+            if (mvb_p1_edition_path($edition) === null) return null;
+        } elseif (!@rename($stage, $destination)) {
+            return null;
+        }
+        return $edition;
+    } catch (Throwable $error) {
+        return null;
+    } finally {
+        if (is_string($stage) && is_file($stage)) @unlink($stage);
+        flock($lock, LOCK_UN);
+        fclose($lock);
+    }
+}
+
+/** Без восстановления из текущих мастеров: повреждение снимает доступ. */
+function mvb_p1_edition_path($edition): ?string
+{
+    if (!is_array($edition)) return null;
+    $sha = $edition['sha256'] ?? '';
+    $name = $edition['zip'] ?? '';
+    if (!is_string($sha) || !preg_match('/^[a-f0-9]{64}$/D', $sha)
+        || !is_string($name) || $name !== 'p1-' . $sha . '.zip') {
+        return null;
+    }
+    $path = DELIVERY_DIR . '/' . $name;
+    if (!is_file($path) || !hash_equals($sha, (string)@hash_file('sha256', $path))) {
+        return null;
+    }
+    return $path;
+}
+
 function mvb_build_product_zip(string $sku): ?string
 {
     $catalog = mvb_products();
@@ -529,6 +617,7 @@ function mvb_prepare_delivery(array &$order): array
     // Считаем ВСЕ позиции, а не падаем на первой: лог должен назвать каждый
     // sku, который надо починить, иначе разбор пойдёт по одному за заход.
     $items = [];
+    $editions = is_array($existing['editions'] ?? null) ? $existing['editions'] : [];
     $links = [];
     $missing = [];
     foreach ($positions as $position) {
@@ -541,15 +630,33 @@ function mvb_prepare_delivery(array &$order): array
             ];
             continue;
         }
-        $zipPath = mvb_build_product_zip($product['sku']);
+        $sku = $product['sku'];
+        $issued = $existing['items'][$sku] ?? null;
+        $edition = $sku === 'p1' ? ($existing['editions'][$sku] ?? ($position['edition'] ?? null)) : null;
+        if ($sku === 'p1' && $issued !== null) {
+            // Повторный callback не меняет уже выданное издание.
+            $zipPath = is_string($issued) && basename($issued) === $issued
+                ? DELIVERY_DIR . '/' . $issued : null;
+            if (!is_string($zipPath) || !is_file($zipPath)) $zipPath = null;
+            if ($edition !== null && (mvb_p1_edition_path($edition) !== $zipPath)) {
+                $zipPath = null;
+            }
+        } elseif ($sku === 'p1') {
+            // Legacy без издания требует отдельной миграции до публикации.
+            $zipPath = mvb_p1_edition_path($edition);
+        } else {
+            $zipPath = mvb_build_product_zip($sku);
+        }
         if (!$zipPath) {
             $missing[] = [
                 'sku'    => $product['sku'],
-                'reason' => 'архив не собрался',
+                'reason' => $sku === 'p1' && $issued === null && $edition === null
+                    ? 'издание P1 не зафиксировано; требуется миграция' : 'архив не собрался',
             ];
             continue;
         }
         $items[$product['sku']] = basename($zipPath);
+        if ($sku === 'p1' && $edition !== null) $editions[$sku] = $edition;
         $links[] = [
             'sku'  => $product['sku'],
             'name' => $product['name'],
@@ -574,6 +681,7 @@ function mvb_prepare_delivery(array &$order): array
             ?? date('c', time() + DELIVERY_TTL_DAYS * 86400)),
         'downloads'  => (int)($existing['downloads'] ?? 0),
         'items'      => $items,
+        'editions'   => $editions,
     ] + $existing;   // прежние поля (email_sent_at и прочие) не теряются
 
     return ['links' => $links, 'missing' => []];
