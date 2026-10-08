@@ -21,6 +21,7 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+from xml.etree import ElementTree
 
 import yaml
 from pathlib import Path
@@ -124,6 +125,9 @@ def mutation(name: str, apply, seed: bool = True) -> tuple[bool, str]:
         tmp = sandbox(Path(d))
         if seed:
             seed_evidence(tmp)
+        m_all_green(tmp)
+        baseline_code, baseline_out = run(tmp)
+        assert baseline_code == 0, f"песочница до мутации не зелёная: {baseline_out}"
         apply(tmp)
         code, out = run(tmp)
         return code != 0, out
@@ -132,7 +136,18 @@ def mutation(name: str, apply, seed: bool = True) -> tuple[bool, str]:
 # ── мутации ────────────────────────────────────────────────────────────
 
 def m_docx_text(tmp: Path) -> None:
-    edit_docx(tmp / DOCX, "НАПРАВЛЕНИЯ".encode(), "ПОЛУЧЕНИЯ".encode())
+    path = tmp / DOCX
+    with zipfile.ZipFile(path) as archive:
+        items = {name: archive.read(name) for name in archive.namelist()}
+    root = ElementTree.fromstring(items["word/document.xml"])
+    node = next(node for node in root.iter(
+        "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}t")
+        if node.text)
+    node.text += " НОРМАТИВНАЯ МУТАЦИЯ"
+    items["word/document.xml"] = ElementTree.tostring(root, encoding="utf-8")
+    with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as archive:
+        for name, data in items.items():
+            archive.writestr(name, data)
 
 
 def m_xlsx_formula(tmp: Path) -> None:
@@ -236,9 +251,10 @@ def m_lawyer_claim(tmp: Path) -> None:
 
 def m_verdict_fail(tmp: Path) -> None:
     p = tmp / "data/legal/normative-results.yaml"
-    p.write_text(p.read_text(encoding="utf-8")
-                 .replace("verdict: PASS_WITH_CORRECTIONS",
-                          "verdict: NOT_VERIFIED", 1), encoding="utf-8")
+    data = yaml.safe_load(p.read_text(encoding="utf-8"))
+    data["results"][0]["verdict"] = "NOT_VERIFIED"
+    p.write_text(yaml.safe_dump(data, allow_unicode=True, sort_keys=False),
+                 encoding="utf-8")
 
 
 def m_all_official(tmp: Path) -> None:
