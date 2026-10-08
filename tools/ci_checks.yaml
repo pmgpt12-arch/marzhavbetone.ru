@@ -280,6 +280,13 @@
   зачем: описание перехода T1/P1 соответствует фактическому пересечению DOCX после пересборки комплекта
   требует: []
   решение: ''
+- id: test_no_refund_sales_disclaimer
+  команда: python3 tools/test_no_refund_sales_disclaimer.py
+  класс: public
+  блокирует: true
+  зачем: коммерческие страницы не возвращают дисклеймер о возврате, помощь со скачиванием доступна
+  требует: []
+  решение: ''
 - id: test_p1_delivery_alignment
   команда: python3 tools/test_p1_delivery_alignment.py
   класс: public
