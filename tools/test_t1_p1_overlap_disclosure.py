@@ -43,7 +43,9 @@ def main() -> None:
     assert note_match, "нет оговорки T1/P1"
     note = note_match.group(1).lower()
     assert "акты выполненных работ, кс-2 и кс-3" in note
-    assert f"{len(t1)} рабочих" in note or (len(t1) == 5 and "пять рабочих" in note)
+    working = sum(f.suffix.lower() in {".docx", ".xlsx"} and not f.name.startswith("00-")
+                  for f in source_dir("t1").iterdir())
+    assert f"{working} рабочих" in note or (working == 5 and "пять рабочих" in note)
     if exact == 0:
         assert "дословных повторов нет" in note
         assert "совпадают дословно" not in note
