@@ -64,6 +64,9 @@ criteria = ("Пакет внедрён, когда по каждому объё�
 criteria_found = 0
 for paragraph in doc.paragraphs:
     replacement = note if paragraph.text == old_note else criteria if paragraph.text.startswith("Пакет внедрён, когда") else None
+    if paragraph.text == "Не отправляйте документ с квадратными скобками и подсказками.":
+        replacement = ("Заполните поля в квадратных и двойных фигурных скобках, затем удалите обозначения полей и подсказки. "
+                       "Не отправляйте незаполненный шаблон.")
     if replacement is not None:
         if paragraph.text.startswith("Пакет внедрён, когда"):
             criteria_found += 1
