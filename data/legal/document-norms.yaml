@@ -78,7 +78,7 @@ documents:
   - path: products-storage/01-zakrytie-rabot/12-pretenziya-na-neoplatu-po-ks-2.docx
     generator: projects/marzha_v_betone/product/build/01-pretenziya.js
     legally_significant: true
-    norms: [gk-711, gk-746, gk-753, gk-395, gk-314, gk-193, apk-4-5, apk-128-148, nk-333-40, apk-110, gk-202, gk-309, gk-310, gk-330, apk-129]
+    norms: [gk-711, gk-746, gk-753, gk-395, gk-314, gk-193, apk-4-5, apk-128-148, nk-333-40, apk-110, gk-202, gk-309, gk-310, gk-330, apk-129, apk-125-126]
     # Атрибутивные ссылки: документ называет акт, но юридический вывод на
     # нём не стоит. Объявляются здесь, а не умалчиваются: проверка полноты
     # обязана видеть каждую правовую ссылку, и разница между «опора» и
@@ -128,7 +128,7 @@ documents:
   - path: products-storage/01-zakrytie-rabot/15-algoritm-pri-zaderzhke-oplaty.docx
     generator: projects/marzha_v_betone/product/build/04-algoritm.js
     legally_significant: true
-    norms: [gk-328, gk-719, gk-753, gk-196-200, apk-4-5, fz-127-7, gk-395, nk-333-21, plenum-54-57, fz-229-8]
+    norms: [gk-328, gk-719, gk-753, gk-196-200, apk-4-5, fz-127-7, gk-395, nk-333-21, plenum-54-57, fz-229-8, gk-330]
     mechanisms:
       - право приостановить встречное исполнение
       - банкротная развилка и реестр публикации намерения
