@@ -123,7 +123,7 @@ def invocation(env):
     return ['ssh', '-i', str(Path.home() / '.ssh/deploy_key'), '-p', ssh_port,
             '-o', 'IdentitiesOnly=yes', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes',
             '-o', 'ConnectTimeout=20', '-o', 'ConnectionAttempts=1',
-            user + '@' + host, 'python3 - ' + shlex.quote(site)]
+            user + '@' + host, 'python3 -B - ' + shlex.quote(site)]
 
 
 def main():

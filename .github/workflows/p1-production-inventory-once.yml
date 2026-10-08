@@ -13,6 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
+  RUN_LEGAL_SOURCE_BATCH: 'false'
   SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
   SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
 
@@ -61,5 +62,19 @@ jobs:
         with:
           name: p1-production-inventory-anonymous-20261008
           path: inventory-output/P1_inventory_report.json
+          if-no-files-found: error
+          retention-days: 7
+      - name: Optional single official-source batch after separate root review
+        if: env.RUN_LEGAL_SOURCE_BATCH == 'true'
+        env:
+          INVENTORY_HOST: ${{ secrets.DEPLOY_HOST }}
+          INVENTORY_USER: ${{ secrets.DEPLOY_USER }}
+        run: python3 tools/p1_host_legal_batch.py
+      - name: Preserve optional official-source bytes and bounded receipt
+        if: always() && env.RUN_LEGAL_SOURCE_BATCH == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1-official-source-one-batch-20261008
+          path: legal-source-output/
           if-no-files-found: error
           retention-days: 7

@@ -51,7 +51,7 @@ class TransportTests(unittest.TestCase):
         self.assertIn('BatchMode=yes', command)
         self.assertIn('StrictHostKeyChecking=yes', command)
         self.assertIn('ConnectionAttempts=1', command)
-        self.assertEqual(command[-1], "python3 - 'www/site;$(touch SHOULD_NEVER_EXECUTE)'")
+        self.assertEqual(command[-1], "python3 -B - 'www/site;$(touch SHOULD_NEVER_EXECUTE)'")
         for key, value in [('INVENTORY_HOST', '-oInjected'), ('INVENTORY_USER', 'user@evil'),
                            ('SSH_PORT', '0'), ('SITE_PATH', 'path\ncommand')]:
             changed = dict(env, **{key: value})
@@ -76,7 +76,7 @@ class TransportTests(unittest.TestCase):
             finally:
                 os.chdir(old)
 
-    def test_workflow_is_branch_creation_only_no_deploy_dispatch_or_legal_fetch(self):
+    def test_workflow_is_branch_creation_only_no_deploy_dispatch_and_optional_default_disabled(self):
         workflow = (TOOLS.parent / '.github/workflows/p1-production-inventory-once.yml').read_text()
         self.assertIn('branches: [codex/p1-production-inventory-20261008]', workflow)
         self.assertIn('github.event.created == true', workflow)
@@ -84,6 +84,8 @@ class TransportTests(unittest.TestCase):
         self.assertIn('persist-credentials: false', workflow)
         for forbidden in ['workflow_dispatch:', 'schedule:', 'pull_request:', 'rsync', 'scp ', 'curl ', 'source-probe']:
             self.assertNotIn(forbidden, workflow)
+        self.assertIn("RUN_LEGAL_SOURCE_BATCH: 'false'", workflow)
+        self.assertIn("if: env.RUN_LEGAL_SOURCE_BATCH == 'true'", workflow)
         self.assertIn("secrets.DEPLOY_PATH || 'www/marzhavbetone.ru'", workflow)
 
 
