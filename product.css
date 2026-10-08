@@ -35,6 +35,15 @@
 .fit-signs li{position:relative;padding:7px 0 7px 24px;font-size:16px;line-height:1.5;color:#55585b}
 .fit-signs li::before{content:"/";position:absolute;left:2px;top:7px;color:var(--orange);font-weight:900}
 
+/* P1: компактнее промежутки первого блока на десктопе.
+   Текст и кегль сохранены; на 1366×768 блок применения укладывается
+   в первые 1,5 экрана. Мобильная вёрстка использует прежние отступы. */
+@media(min-width:1100px){
+  .product-landing--p1 > .section:first-child > .lead{margin-bottom:20px}
+  .product-landing--p1 .product-hero{margin-top:20px}
+  .product-landing--p1 .product-fit{margin-top:14px;padding-top:14px}
+}
+
 /* Порядок применения комплекта — нумерованные шаги. */
 .steps{margin:26px 0 0;padding:0 0 0 24px;max-width:70ch;color:#55585b;font-size:16px;line-height:1.6}
 .steps li{margin:0 0 12px;padding-left:6px}
