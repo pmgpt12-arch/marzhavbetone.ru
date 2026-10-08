@@ -73,13 +73,33 @@ $reserve = mvb_with_order_lock_strict($orderFile, function (array &$locked) use 
         return ['deny' => [404, 'Этот материал не входит в ваш заказ.']];
     }
 
+    $edition = $delivery['editions'][$sku] ?? null;
+    if ($sku === 'p1' && $edition === null) {
+        foreach (($locked['items'] ?? []) as $position) {
+            if (($position['sku'] ?? '') === $sku && isset($position['edition'])) {
+                $edition = $position['edition'];
+                break;
+            }
+        }
+    }
+    if ($edition !== null) {
+        $pinnedPath = mvb_p1_edition_path($edition);
+        if ($pinnedPath === null || basename($pinnedPath) !== $delivery['items'][$sku]) {
+            return ['deny' => [500, 'Файл временно недоступен. Напишите нам — проверим комплект.']];
+        }
+    }
+    // Legacy P1 без снимка также нельзя восстанавливать из новой редакции.
+    if ($sku === 'p1' && !is_file(DELIVERY_DIR . '/' . basename((string)$delivery['items'][$sku]))) {
+        return ['deny' => [500, 'Файл временно недоступен. Напишите нам — проверим комплект.']];
+    }
+
     // Резерв: счётчик растёт здесь, до отдачи файла. Не отданный архив
     // возвращает резерв обратно (см. ниже) — потерять скачивание покупателя
     // из-за нашей ошибки нельзя.
     $locked['delivery']['downloads'] = (int)($delivery['downloads'] ?? 0) + 1;
     $locked['delivery']['last_download_at'] = date('c');
 
-    return ['zip' => basename((string)$delivery['items'][$sku])];
+    return ['zip' => basename((string)$delivery['items'][$sku]), 'pinned' => $edition !== null];
 });
 
 // Блокировку не взяли или заказ не читается как массив. Отвечать 200 и
@@ -94,7 +114,7 @@ if (isset($decision['deny'])) {
 }
 
 $zipPath = DELIVERY_DIR . '/' . $decision['zip'];
-if (!is_file($zipPath)) {
+if (!is_file($zipPath) && !$decision['pinned'] && $sku !== 'p1') {
     // Архив мог быть очищен — пересобираем из исходников. Вне блокировки:
     // сборка идёт по диску и держать на ней заказ незачем.
     $zipPath = mvb_build_product_zip($sku) ?? '';
@@ -110,7 +130,8 @@ if ($zipPath === '' || !is_file($zipPath)) {
 }
 
 header('Content-Type: application/zip');
-header('Content-Disposition: attachment; filename="' . basename($zipPath) . '"');
+$downloadName = $decision['pinned'] ? (mvb_products()[$sku]['zip'] ?? basename($zipPath)) : basename($zipPath);
+header('Content-Disposition: attachment; filename="' . $downloadName . '"');
 header('Content-Length: ' . filesize($zipPath));
 header('X-Content-Type-Options: nosniff');
 readfile($zipPath);

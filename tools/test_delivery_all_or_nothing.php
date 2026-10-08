@@ -72,7 +72,9 @@ function заказ(array $skus, string $id): array
     $каталог = mvb_products();
     $items = [];
     foreach ($skus as $sku) {
-        $items[] = ['sku' => $sku, 'name' => $каталог[$sku]['name'], 'price' => $каталог[$sku]['price']];
+        $position = ['sku' => $sku, 'name' => $каталог[$sku]['name'], 'price' => $каталог[$sku]['price']];
+        if ($sku === 'p1') $position['edition'] = mvb_capture_p1_edition();
+        $items[] = $position;
     }
     return ['id' => $id, 'status' => 'paid', 'items' => $items,
             'total' => array_sum(array_column($items, 'price'))];
@@ -112,7 +114,7 @@ $ссылки2 = mvb_deliver_and_notify($починенный);
 
 // --- Случай 3: служебные файлы в архив не попали --------------------------
 $архив = new ZipArchive();
-$архив->open(DELIVERY_DIR . '/' . $каталог[ЦЕЛЫЙ]['zip']);
+$архив->open(DELIVERY_DIR . '/' . $починенный['delivery']['items'][ЦЕЛЫЙ]);
 $внутри = [];
 for ($i = 0; $i < $архив->numFiles; $i++) { $внутри[] = $архив->getNameIndex($i); }
 $архив->close();
