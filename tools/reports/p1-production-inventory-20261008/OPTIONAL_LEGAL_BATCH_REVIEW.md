@@ -1,6 +1,6 @@
-# Separate disabled proposal: one official-source batch from established hosting
+# Separate explicitly reviewed-once implementation: one official-source batch from established hosting
 
-**Not pushed or executed.** `RUN_LEGAL_SOURCE_BATCH: 'false'` is the default. Root may enable it once before the exact feature branch is first created, after reviewing this committed diff. No dispatch, later push retry, schedule, model call, fallback URL or crawler is provided. This optional step is separate from the production order inventory and must not be treated as evidence of historical order/archive authority.
+**Not pushed or executed.** The original proposal default was `RUN_LEGAL_SOURCE_BATCH: 'false'`. This exact reviewed-once tree is enabled only with tested ROOT_PRE_RUN_REVIEW.md approval assertions; root independently reviews it before initial push. The disabled proposal remains a test fixture. See FAILED_PRE_ACCESS_RUN.md for the prior test-only failure. No dispatch, later push retry, schedule, model call, fallback URL or crawler is provided. This optional step is separate from the production order inventory and must not be treated as evidence of historical order/archive authority.
 
 The hypothesis is whether the already authorized hosting network can retrieve five known official URLs where the prior home network returned errors/partial evidence. Existing `curl` CLI is required; absence yields `CURL_CLI_UNAVAILABLE`, without install. Reviewed Python source arrives over the same established SSH stdin; host temporary files and bytecode caches are disabled. Curl writes body stdout and headers `/dev/stderr` into SSH process pipes. Only runner artifacts are written. No body, headers, credential, host path or raw SSH diagnostic is logged.
 

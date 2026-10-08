@@ -2,14 +2,14 @@ name: One-shot read-only P1 production inventory
 
 on:
   push:
-    branches: [codex/p1-production-inventory-20261008]
+    branches: [codex/p1-production-inventory-reviewed-20261008]
     paths: [.github/workflows/p1-production-inventory-once.yml]
 
 permissions:
   contents: read
 
 concurrency:
-  group: p1-production-inventory-20261008-once
+  group: p1-production-inventory-reviewed-20261008-once
   cancel-in-progress: false
 
 env:
@@ -19,7 +19,7 @@ env:
 
 jobs:
   inventory:
-    if: github.ref == 'refs/heads/codex/p1-production-inventory-20261008' && github.event.created == true
+    if: github.ref == 'refs/heads/codex/p1-production-inventory-reviewed-20261008' && github.event.created == true
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:

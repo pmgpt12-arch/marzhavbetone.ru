@@ -14,6 +14,25 @@ import p1_production_inventory as I
 import run_p1_inventory_ssh as T
 sys.path.pop(0)
 SECRET = 'DO_NOT_LOG_HOST_USER_KEY_PATH_OR_ORDER_ID'
+REVIEW_BRANCH = 'codex/p1-production-inventory-reviewed-20261008'
+REVIEW_TOKENS = (
+    'ROOT_APPROVAL_STATUS: APPROVED_ONCE',
+    'ROOT_APPROVAL_BRANCH: ' + REVIEW_BRANCH,
+    'ROOT_APPROVAL_IMPLEMENTATION: 4c787439170e211d967920a2517c758b4d1a8c81',
+    'ROOT_APPROVAL_MAX_PRODUCTION_ATTEMPTS: 1',
+    'ROOT_APPROVAL_LEGAL_BATCH: EXACT_FIVE_KNOWN_URLS_ONCE',
+)
+
+
+def optional_gate_valid(workflow, review):
+    disabled = "RUN_LEGAL_SOURCE_BATCH: 'false'" in workflow
+    enabled = "RUN_LEGAL_SOURCE_BATCH: 'true'" in workflow
+    if disabled == enabled:
+        return False
+    if disabled:
+        return True
+    return all(token in review.splitlines() for token in REVIEW_TOKENS)
+
 
 
 class TransportTests(unittest.TestCase):
@@ -76,15 +95,23 @@ class TransportTests(unittest.TestCase):
             finally:
                 os.chdir(old)
 
-    def test_workflow_is_branch_creation_only_no_deploy_dispatch_and_optional_default_disabled(self):
+    def test_workflow_is_branch_creation_only_enabled_requires_exact_once_root_review(self):
         workflow = (TOOLS.parent / '.github/workflows/p1-production-inventory-once.yml').read_text()
-        self.assertIn('branches: [codex/p1-production-inventory-20261008]', workflow)
+        self.assertIn('branches: [codex/p1-production-inventory-reviewed-20261008]', workflow)
         self.assertIn('github.event.created == true', workflow)
         self.assertIn('timeout-minutes: 5', workflow)
         self.assertIn('persist-credentials: false', workflow)
         for forbidden in ['workflow_dispatch:', 'schedule:', 'pull_request:', 'rsync', 'scp ', 'curl ', 'source-probe']:
             self.assertNotIn(forbidden, workflow)
-        self.assertIn("RUN_LEGAL_SOURCE_BATCH: 'false'", workflow)
+        review = (TOOLS / 'reports/p1-production-inventory-20261008/ROOT_PRE_RUN_REVIEW.md').read_text()
+        self.assertIn("RUN_LEGAL_SOURCE_BATCH: 'true'", workflow)
+        self.assertTrue(optional_gate_valid(workflow, review))
+        self.assertFalse(optional_gate_valid(workflow, ''))
+        for token in REVIEW_TOKENS:
+            self.assertFalse(optional_gate_valid(workflow, review.replace(token, '')))
+        disabled_fixture = workflow.replace("RUN_LEGAL_SOURCE_BATCH: 'true'", "RUN_LEGAL_SOURCE_BATCH: 'false'")
+        self.assertTrue(optional_gate_valid(disabled_fixture, ''))
+        self.assertFalse(optional_gate_valid(workflow.replace("RUN_LEGAL_SOURCE_BATCH: 'true'", "RUN_LEGAL_SOURCE_BATCH: 'maybe'"), review))
         self.assertIn("if: env.RUN_LEGAL_SOURCE_BATCH == 'true'", workflow)
         self.assertIn("secrets.DEPLOY_PATH || 'www/marzhavbetone.ru'", workflow)
 
