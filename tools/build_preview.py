@@ -140,7 +140,7 @@ def fragments(folder: Path) -> list[dict]:
     return out
 
 
-def block(items: list[dict], count: int) -> str:
+def block(items: list[dict], count: int, sku: str) -> str:
     rows = "".join(
         '\n        <article class="preview-item">'
         f'\n          <p class="preview-file">{html.escape(i["file"])}</p>'
@@ -149,13 +149,14 @@ def block(items: list[dict], count: int) -> str:
         '\n        </article>' for i in items)
     tail = (f"Здесь {len(items)} документа из {count}" if count > len(items)
             else f"Здесь все {count} документа комплекта")
+    inside = ('содержание форм' if sku == 'p1' else 'тело шаблонов')
     return (
         '\n      <div class="kit-preview">'
         '\n        <h3 class="preview-head">Как это выглядит внутри</h3>'
         '\n        <p class="preview-note">Первые строки самих файлов комплекта — '
         'заголовок документа и строка, которой он себя объясняет. Не описание '
         f'для витрины: текст читается из файлов при сборке страницы. {tail}; '
-        'тело шаблонов, формулировки требований и расчёты открываются после '
+        f'{inside}, формулировки требований и расчёты открываются после '
         'покупки.</p>'
         f'{rows}'
         '\n      </div>\n')
@@ -181,7 +182,7 @@ def render(path: Path, dirs: dict[str, str]) -> tuple[str, str]:
     new = BLOCK.sub("", text)
     if not ANCHOR.search(new):
         return text, f"{sku}: не найден раздел «Что входит»"
-    new = ANCHOR.sub(lambda m: m.group(1) + block(items, count), new, count=1)
+    new = ANCHOR.sub(lambda m: m.group(1) + block(items, count, sku), new, count=1)
     if new == text:
         return text, ""
     return new, ("предпросмотр обновлён" if BEGIN in text else "предпросмотр поставлен")

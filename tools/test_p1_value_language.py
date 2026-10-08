@@ -7,6 +7,10 @@ import re
 
 BASE = Path(__file__).resolve().parents[1] / 'products-storage/01-zakrytie-rabot'
 FORBIDDEN = [
+    r'шаблон\w*',
+    r'юрист\w*',
+    r'типов\w*',
+    r'юридическ\w*\s+консультац\w*',
     r'важно, прочитайте до использования',
     r'это типовой шаблон, а не',
     r'не юридическая консультация',
@@ -42,5 +46,8 @@ files = [p for p in BASE.iterdir() if p.suffix.lower() in {'.docx', '.pdf', '.xl
 assert len(files) == 20, len(files)
 failures = [(p.name, phrase) for p in files for phrase in FORBIDDEN
             if re.search(phrase, text_of(p), re.I)]
+page = (BASE.parents[1] / 'products/p1-oplata-po-ks2.html').read_text()
+failures += [('products/p1-oplata-po-ks2.html', phrase) for phrase in FORBIDDEN
+             if re.search(phrase, page, re.I)]
 assert not failures, failures
-print(f'P1 value language PASS: {len(files)} buyer-facing files')
+print(f'P1 value language PASS: {len(files)} buyer-facing files and product page')
