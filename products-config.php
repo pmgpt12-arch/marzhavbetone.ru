@@ -632,8 +632,8 @@ function mvb_prepare_delivery(array &$order): array
         }
         $sku = $product['sku'];
         $issued = $existing['items'][$sku] ?? null;
-        $edition = $existing['editions'][$sku] ?? ($position['edition'] ?? null);
-        if ($issued !== null) {
+        $edition = $sku === 'p1' ? ($existing['editions'][$sku] ?? ($position['edition'] ?? null)) : null;
+        if ($sku === 'p1' && $issued !== null) {
             // Повторный callback не меняет уже выданное издание.
             $zipPath = is_string($issued) && basename($issued) === $issued
                 ? DELIVERY_DIR . '/' . $issued : null;

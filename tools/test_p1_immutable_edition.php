@@ -133,6 +133,34 @@ echo json_encode(["id"=>"mock_".$id,"status"=>"pending","confirmation"=>["confir
         mvb_true(empty($legacy['delivery']['editions']), 'invented legacy delivery pin');
         mvb_equal(file_get_contents(DELIVERY_DIR . '/' . $legacyZip), $oldBytes, 'legacy ZIP replaced');
     });
+    mvb_check('non-P1 issued cache still rebuilds after master update; unrelated edition metadata ignored', function () use ($masters, $orders, $sitePort) {
+        $dir = $masters . '/' . mvb_products()['p3']['dir'];
+        mkdir($dir, 0755, true);
+        file_put_contents($dir . '/buyer.txt', 'P3_OLD');
+        $path = mvb_build_product_zip('p3');
+        $order = ['id' => 'order_20261008_000003_other', 'status' => 'paid',
+            'items' => [['sku' => 'p3', 'edition' => ['zip' => 'unrelated', 'sha256' => 'unrelated']]],
+            'delivery' => ['token' => 'p3-token', 'items' => ['p3' => basename($path)],
+                'editions' => ['p3' => ['zip' => 'unrelated', 'sha256' => 'unrelated']]]];
+        $past = time() - 3600;
+        touch($path, $past);
+        file_put_contents($dir . '/buyer.txt', 'P3_NEW');
+        touch($dir . '/buyer.txt', $past + 60);
+        clearstatcache();
+        $result = mvb_prepare_delivery($order);
+        mvb_equal($result['missing'], [], 'non-P1 metadata denied callback');
+        $zip = new ZipArchive();
+        $zip->open($path);
+        mvb_equal($zip->getFromName('buyer.txt'), 'P3_NEW', 'non-P1 rebuild behavior changed');
+        $zip->close();
+        mvb_equal($order['delivery']['token'], 'p3-token', 'non-P1 token changed');
+        file_put_contents($orders . '/' . $order['id'] . '.json', json_encode($order));
+        $ch = curl_init("http://127.0.0.1:{$sitePort}/download.php?o=" . $order['id'] . '&t=p3-token&f=p3');
+        curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 3]);
+        $body = curl_exec($ch); $code = curl_getinfo($ch, CURLINFO_HTTP_CODE); curl_close($ch);
+        mvb_equal($code, 200, 'non-P1 metadata denied download');
+        mvb_equal($body, file_get_contents($path), 'non-P1 download bytes');
+    });
     $unissued = ['id' => 'order_20261008_000002_legacy', 'status' => 'paid', 'items' => [['sku' => 'p1']]];
     $before = $unissued; $r = mvb_prepare_delivery($unissued);
     mvb_check('unissued legacy without original edition fails closed', function () use ($r, $unissued, $before) {

@@ -73,7 +73,7 @@ $reserve = mvb_with_order_lock_strict($orderFile, function (array &$locked) use 
         return ['deny' => [404, 'Этот материал не входит в ваш заказ.']];
     }
 
-    $edition = $delivery['editions'][$sku] ?? null;
+    $edition = $sku === 'p1' ? ($delivery['editions'][$sku] ?? null) : null;
     if ($sku === 'p1' && $edition === null) {
         foreach (($locked['items'] ?? []) as $position) {
             if (($position['sku'] ?? '') === $sku && isset($position['edition'])) {
