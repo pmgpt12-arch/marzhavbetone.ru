@@ -1,0 +1,65 @@
+name: One-shot read-only P1 production inventory
+
+on:
+  push:
+    branches: [codex/p1-production-inventory-20261008]
+    paths: [.github/workflows/p1-production-inventory-once.yml]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: p1-production-inventory-20261008-once
+  cancel-in-progress: false
+
+env:
+  SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+  SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
+
+jobs:
+  inventory:
+    if: github.ref == 'refs/heads/codex/p1-production-inventory-20261008' && github.event.created == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run hardened scratch tests before host access
+        run: python3 -m unittest discover -s tools/tests -p 'test_p1_production_inventory*.py' -q
+      - name: Establish the same known hosting access without logging settings
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "$KEY" ] || [ -z "$HOST" ] || [ -z "$USER" ]; then
+            echo 'Required established hosting access is unavailable; inventory is unknown.'
+            exit 1
+          fi
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          if ! ssh-keyscan -T 10 -p "$SSH_PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null; then
+            echo 'Established host key unavailable; no inventory attempted.'
+            exit 1
+          fi
+      - name: Single read-only scoped inventory attempt
+        env:
+          INVENTORY_HOST: ${{ secrets.DEPLOY_HOST }}
+          INVENTORY_USER: ${{ secrets.DEPLOY_USER }}
+        run: python3 tools/run_p1_inventory_ssh.py
+      - name: Preserve only schema-validated anonymous report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1-production-inventory-anonymous-20261008
+          path: inventory-output/P1_inventory_report.json
+          if-no-files-found: error
+          retention-days: 7
