@@ -273,6 +273,13 @@
   зачем: заголовки и акценты Word-файлов P1 остаются в утверждённой палитре
   требует: []
   решение: ''
+- id: test_t1_p1_overlap_disclosure
+  команда: python3 tools/test_t1_p1_overlap_disclosure.py
+  класс: public
+  блокирует: true
+  зачем: описание перехода T1/P1 соответствует фактическому пересечению DOCX после пересборки комплекта
+  требует: []
+  решение: ''
 - id: test_p1_delivery_alignment
   команда: python3 tools/test_p1_delivery_alignment.py
   класс: public
