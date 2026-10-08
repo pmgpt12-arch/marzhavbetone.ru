@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Synchronize the P1 quick-start instruction with its delivered files."""
 from pathlib import Path
+import subprocess
+import tempfile
 from docx import Document
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -54,7 +56,25 @@ for i, row in enumerate(table.rows):
             para.paragraph_format.space_after = Pt(0)
             for run in para.runs:
                 run.font.size = Pt(9)
-note = "Сверьте правовые нормы на дату использования: исходная проверка расширения проведена 16.08.2026; ставки, сроки и реквизиты уточняйте по делу."
+old_note = "Сверьте правовые нормы на дату использования: исходная проверка расширения проведена 16.08.2026; ставки, сроки и реквизиты уточняйте по делу."
+note = "Сверьте правовые нормы и реквизиты на дату использования; ставки, сроки и порядок берите из источников, указанных в соответствующем файле."
+criteria = ("Пакет внедрён, когда по каждому объёму зафиксированы основание, факт выполнения и доказательства в журнале 06, "
+            "суммы согласованы в формах 01–03, состав и передача отмечены в 05 и 08, замечания отражены в 07. "
+            "Срок оплаты берите из договора и проверяйте по словарю 11. Частичные оплаты сверяйте с банковскими выписками перед расчётом в 14.")
+criteria_found = 0
+for paragraph in doc.paragraphs:
+    replacement = note if paragraph.text == old_note else criteria if paragraph.text.startswith("Пакет внедрён, когда") else None
+    if replacement is not None:
+        if paragraph.text.startswith("Пакет внедрён, когда"):
+            criteria_found += 1
+        if paragraph.runs:
+            paragraph.runs[0].text = replacement
+            for run in paragraph.runs[1:]:
+                run.text = ""
+        else:
+            paragraph.add_run(replacement)
+assert criteria_found == 1, "Inspect the instruction before replacing its implementation criterion"
+
 if not any(p.text == note for p in doc.paragraphs):
     for p in doc.paragraphs:
         if p.text == "Структура папки объекта":
@@ -65,6 +85,18 @@ for section in doc.sections:
         if "версия 21.07.2026" in p.text:
             for run in p.runs:
                 run.text = run.text.replace("версия 21.07.2026", "редакция 08.10.2026")
-doc.save(path)
-(MIRROR / path.name).write_bytes(path.read_bytes())
-print("P1 instruction:",len(table.rows)-1,"listed deliverables")
+# Stage both navigation formats before replacing delivered copies.
+with tempfile.TemporaryDirectory(prefix="p1-instruction-") as temporary:
+    stage = Path(temporary)
+    staged_docx = stage / path.name
+    doc.save(staged_docx)
+    subprocess.run([
+        "libreoffice", "-env:UserInstallation=" + (stage / "profile").as_uri(),
+        "--headless", "--convert-to", "pdf", "--outdir", str(stage), str(staged_docx),
+    ], check=True, timeout=30, capture_output=True)
+    staged_pdf = stage / path.with_suffix(".pdf").name
+    assert staged_pdf.is_file(), "Instruction PDF export did not produce an artifact"
+    for destination in (BASE, MIRROR):
+        (destination / path.name).write_bytes(staged_docx.read_bytes())
+        (destination / staged_pdf.name).write_bytes(staged_pdf.read_bytes())
+print("P1 instruction:",len(table.rows)-1,"listed deliverables; DOCX/PDF synchronized")
