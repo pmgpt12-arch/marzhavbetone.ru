@@ -101,6 +101,19 @@ foreach ($items as $item) {
         'price' => $product['price'],
     ];
 }
+// Издание P1 фиксируется до заказа и обращения к кассе.
+// Клиентское поле edition не используется: снимок создаёт сервер.
+foreach ($validatedItems as &$position) {
+    if ($position['sku'] !== 'p1') continue;
+    $edition = mvb_capture_p1_edition();
+    if ($edition === null) {
+        http_response_code(503);
+        echo json_encode(['ok' => false, 'message' => 'Комплект временно недоступен. Повторите заказ позднее.'], JSON_UNESCAPED_UNICODE);
+        exit;
+    }
+    $position['edition'] = $edition;
+}
+unset($position);
 $items = $validatedItems;
 
 if ($total <= 0) {
