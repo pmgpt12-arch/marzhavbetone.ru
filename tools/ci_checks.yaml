@@ -21,6 +21,13 @@
 #
 # Прогон: python3 tools/run_checks.py --class public
 проверки:
+- id: test_p1_immutable_edition
+  команда: php tools/test_p1_immutable_edition.php
+  класс: public
+  блокирует: true
+  зачем: заказ P1 закрепляет своё издание до оплаты и сохраняет его после изменения мастеров
+  требует: []
+  решение: ''
 - id: test_web_exposure
   команда: python3 tools/test_web_exposure.py
   класс: public
