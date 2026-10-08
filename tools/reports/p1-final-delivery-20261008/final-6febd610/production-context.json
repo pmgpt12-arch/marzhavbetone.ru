@@ -1,0 +1,20 @@
+{
+  "evidence_status": "PARENT_REPORTED_PARTIAL_PRODUCTION_CONTEXT_NOT_INDEPENDENTLY_INSPECTED_BY_THIS_UNIT",
+  "workflow_run": "37754706198",
+  "reported_production_order_files_retrieved": 16,
+  "reported_aggregates": {
+    "paid_test_purchases": 7,
+    "paid_test_purchases_total_rub": 7,
+    "unpaid_purchases": 1
+  },
+  "unknown": [
+    "per-P1 pending/paid legacy counts without edition",
+    "per-order fixed edition/pin status",
+    "authoritative original ZIP belonging to any historical order"
+  ],
+  "limits": [
+    "Do not infer zero real P1 purchases from product-name groups or aggregates",
+    "Do not reconstruct historical orders from current masters",
+    "Raw technical run receipt unchanged; its access uncertainty is qualified by newer parent-reported access evidence"
+  ]
+}
