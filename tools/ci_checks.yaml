@@ -235,7 +235,35 @@
   команда: python3 tools/check_storefront_claims.py
   класс: public
   блокирует: true
-  зачем: страница товара не обещает проверки, которой нет в его файлах
+  зачем: страница и выдача P1 не обещают внешнего результата спора
+  требует: []
+  решение: ''
+- id: test_p1_outcome_claims
+  команда: python3 tools/test_p1_outcome_claims.py
+  класс: public
+  блокирует: true
+  зачем: регрессия обещаний результата в карточке и документах P1
+  требует: []
+  решение: ''
+- id: test_p1_print_layout
+  команда: python3 tools/test_p1_print_layout.py
+  класс: public
+  блокирует: true
+  зачем: четыре Excel-файла P1 и их зеркала печатают листы по ширине страницы
+  требует: []
+  решение: ''
+- id: test_p1_docx_palette
+  команда: python3 tools/test_p1_docx_palette.py
+  класс: public
+  блокирует: true
+  зачем: заголовки и акценты Word-файлов P1 остаются в утверждённой палитре
+  требует: []
+  решение: ''
+- id: test_p1_delivery_alignment
+  команда: python3 tools/test_p1_delivery_alignment.py
+  класс: public
+  блокирует: true
+  зачем: инструкция перечисляет шестнадцать файлов P1, а зеркала выдачи совпадают
   требует: []
   решение: ''
 - id: test_products_dir
