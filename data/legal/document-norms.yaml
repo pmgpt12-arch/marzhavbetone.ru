@@ -17,8 +17,8 @@
 # держится хешами в `product/legal/artifact-bindings.yaml` (ai-business-os).
 
 meta:
-  updated: 2026-08-15
-  phase: P0 — комплект P1, документы 11–16
+  updated: 2026-10-08
+  phase: P1 — фактические формы 01–05 и юридические документы 11–16
 
 scope:
   - path: products-storage/01-zakrytie-rabot
@@ -27,24 +27,45 @@ scope:
 out_of_scope:
   - path: products-storage/01-zakrytie-rabot/00-INSTRUKCIYA.docx
     reason: инструкция по применению комплекта, правовых утверждений не несёт
-  - path: products-storage/01-zakrytie-rabot/01-ks-2.docx
-    reason: P0 покрывает 11–16; формы закрытия работ — следующий этап
   - path: products-storage/01-zakrytie-rabot/02-ks-3.docx
-    reason: P0 покрывает 11–16; формы закрытия работ — следующий этап
-  - path: products-storage/01-zakrytie-rabot/03-akt-vypolnennyh-rabot.docx
-    reason: P0 покрывает 11–16; формы закрытия работ — следующий этап
-  - path: products-storage/01-zakrytie-rabot/04-akt-priemki.docx
-    reason: P0 покрывает 11–16; формы закрытия работ — следующий этап
+    reason: >-
+      Фактическая договорная справка о стоимости по подтверждённым актам; прямо не является суммой задолженности, не удостоверяет приёмку и не заявляет автоматического права на оплату или статуса утверждённой унифицированной формы.
   - path: products-storage/01-zakrytie-rabot/05-peredatochnyy-akt.docx
-    reason: P0 покрывает 11–16; формы закрытия работ — следующий этап
+    reason: >-
+      Фактический акт получения перечисленных документов; прямо исключает удостоверение приёмки работ, их объёма, качества или суммы задолженности. Нормативных сроков, обязательности формы или автоматических последствий не заявляет.
   - path: products-storage/01-zakrytie-rabot/06-zhurnal-obemov.xlsx
-    reason: P0 покрывает 11–16; журналы и реестры — следующий этап
+    reason: Операционный журнал фактических объёмов; накопление ведётся отдельно по каждой позиции, расчёт оплаты и правовые последствия не устанавливает.
   - path: products-storage/01-zakrytie-rabot/07-reestr-zamechaniy.xlsx
-    reason: P0 покрывает 11–16; журналы и реестры — следующий этап
+    reason: Операционный реестр замечаний и подтверждений их закрытия; сам по себе не удостоверяет приёмку работ или право на оплату.
   - path: products-storage/01-zakrytie-rabot/08-reestr-peredachi.xlsx
-    reason: P0 покрывает 11–16; журналы и реестры — следующий этап
+    reason: Операционный реестр отправки и получения документов по выбранному каналу; автоматического подтверждения приёмки работ или взыскания не заявляет.
 
 documents:
+  - path: products-storage/01-zakrytie-rabot/01-ks-2.docx
+    generator: projects/marzha_v_betone/product/build/p1-closing-forms.js
+    legally_significant: true
+    norms:
+    - gk-753
+    mechanisms:
+    - фиксация сдачи и приёмки конкретного результата строительных работ, принятого
+      объёма и фактических замечаний
+  - path: products-storage/01-zakrytie-rabot/03-akt-vypolnennyh-rabot.docx
+    generator: projects/marzha_v_betone/product/build/p1-closing-forms.js
+    legally_significant: true
+    norms:
+    - gk-753
+    mechanisms:
+    - фиксация сдачи и приёмки конкретного результата строительных работ, принятого
+      объёма и фактических замечаний
+  - path: products-storage/01-zakrytie-rabot/04-akt-priemki.docx
+    generator: projects/marzha_v_betone/product/build/p1-closing-forms.js
+    legally_significant: true
+    norms:
+    - gk-753
+    mechanisms:
+    - фиксация сдачи и приёмки конкретного результата строительных работ, принятого
+      объёма и фактических замечаний
+
   - path: products-storage/01-zakrytie-rabot/11-slovar-poley.docx
     generator: projects/marzha_v_betone/product/build/00-slovar.js
     legally_significant: true
@@ -115,7 +136,7 @@ documents:
   - path: products-storage/01-zakrytie-rabot/16-iskovoe-zayavlenie-o-vzyskanii.docx
     generator: projects/marzha_v_betone/product/build/05-isk.js
     legally_significant: true
-    norms: [gk-711, gk-746, gk-753, gk-395, apk-4-5, apk-125-126, apk-128-148, nk-333-21, apk-27, apk-28, apk-35, apk-37, apk-103, apk-110, gk-309, gk-310, gk-330]
+    norms: [gk-711, gk-746, gk-753, gk-395, apk-4-5, apk-125-126, apk-128-148, nk-333-21, apk-27, apk-28, apk-35, apk-37, apk-103, apk-110, gk-309, gk-310, gk-330, apk-129]
     mechanisms:
       - состав искового заявления и приложений
       - сведения о примирении и об обеспечительных мерах
