@@ -27,14 +27,15 @@ import hashlib
 import re
 import unicodedata
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 EVIDENCE_DIR = ROOT / "data" / "legal" / "evidence"
 
-# Классы источника. Официальным считается только текст, прочитанный у
-# официального публикатора; всё остальное полного PASS не даёт.
+# Решение владельца от 08.10.2026: прочитанный текст КонсультантПлюс,
+# Гаранта или государственного публикатора достаточен без второго источника.
 OFFICIAL = "official"
 SECONDARY = "secondary"
 NOT_VERIFIED = "not_verified"
@@ -87,10 +88,19 @@ def verify(norm_id: str) -> tuple[str | None, str]:
         return None, (f"хеш доказательства пересчитан и не сошёлся "
                       f"({actual[7:19]} против {str(stored)[7:19]}) — "
                       "файл правили мимо инструмента")
-    if data.get("source_class") != OFFICIAL:
-        return actual, (f"класс источника {data.get('source_class') or 'не объявлен'}"
-                        " — полного PASS не даёт")
-    return actual, ""
+    source_class = data.get("source_class")
+    if source_class == OFFICIAL:
+        return actual, ""
+    if source_class == SECONDARY:
+        url = data.get("source_url") or data.get("official_url") or ""
+        host = (urlsplit(url).hostname or "").lower()
+        trusted = ("consultant.ru", "garant.ru")
+        if urlsplit(url).scheme == "https" and any(
+            host == domain or host.endswith("." + domain) for domain in trusted
+        ):
+            return actual, ""
+    return actual, (f"класс/адрес источника {source_class or 'не объявлен'} "
+                    "не отвечает принятому правилу достаточности")
 
 
 def write(norm_id: str, *, official_url: str, edition_marker: str, text: str,
