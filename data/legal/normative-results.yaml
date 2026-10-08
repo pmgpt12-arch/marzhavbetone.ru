@@ -1,11 +1,12 @@
 meta:
   updated: '2026-10-08'
-  task: P1_FINAL_EXACT_ARTIFACT_NORMATIVE_2026_10_08
+  task: P1_FINAL_ACCEPTED_SOURCES_2026_10_08
   scope: 9 окончательных юридически значимых документов; все final semantic hashes связаны с actual root receipts
-  evidence: 21 исходная группа и новый АПК129 подтверждены текущими полными официальными текстами. Остальные нормы NOT_VERIFIED;
-    исторический PASS не переносится.
+  evidence: Нормы прочитаны на КонсультантПлюс и сайте ВС по правилу владельца 08.10.2026; результаты привязаны
+    к final semantic hashes.
   source_manifest: P1_durable_source_manifest_2026-10-08.json
-  limitations: Human-review не заменяет официальные источники. Никакой полной SALE_READY/вычитки юристом.
+  limitations: Нормативная сверка не является вычиткой юристом. Индивидуальный договор и расчёты на дату обращения
+    проверяет покупатель.
 results:
 - document: products-storage/01-zakrytie-rabot/01-ks-2.docx
   document_hash: sha256:e46dc1016b40dec40781175cb1d87d5fcf489a0fcf2aee33a12cc492ab1c38d1
@@ -18,27 +19,21 @@ results:
   task: P1_FINAL_EXACT_ARTIFACT_NORMATIVE_2026_10_08
   norms_checked:
   - norm_id: gk-753
-    source_hash: sha256:3addb79c003fa0e15b3150d7353f6559707ff7b1792931ad42a447b94f9848b7
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
-  verdict: NOT_VERIFIED
-  issues:
-  - id: CURRENT-01
-    severity: material
-    claim: Актуальность необходимых официальных норм на 08.10.2026
-    norm_id: gk-753
-    why: 'ACCESS/DEPENDENCY: не подтверждены текущие официальные тексты/редакции: gk-753'
+    source_hash: sha256:c2003cc8858044118a3d988f0bf1f00276df9799cdbe7fc466398d632975c604
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/6b2d751a0d605616a9a1012cb7c7fbac1b6d84b3/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
+  verdict: PASS
+  issues: []
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: Независимый перечит окончательного текста и принятых исправлений выполнен. Исторический PASS не перенесён.
-  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой ставки/пошлины,
-    верстки или SALE_READY.
+  recheck: Перечит применимых положений и финального архива 6feb; расхождений не выявлено.
+  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
+    ставки/пошлины, верстки или SALE_READY.
 - document: products-storage/01-zakrytie-rabot/03-akt-vypolnennyh-rabot.docx
   document_hash: sha256:cf5df86cf10d899c2e8ef57ab25649767c8467d0042aa9aaad0bbfe8c857b2ed
   generator: projects/marzha_v_betone/product/build/p1-closing-forms.js
@@ -50,27 +45,21 @@ results:
   task: P1_FINAL_EXACT_ARTIFACT_NORMATIVE_2026_10_08
   norms_checked:
   - norm_id: gk-753
-    source_hash: sha256:3addb79c003fa0e15b3150d7353f6559707ff7b1792931ad42a447b94f9848b7
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
-  verdict: NOT_VERIFIED
-  issues:
-  - id: CURRENT-03
-    severity: material
-    claim: Актуальность необходимых официальных норм на 08.10.2026
-    norm_id: gk-753
-    why: 'ACCESS/DEPENDENCY: не подтверждены текущие официальные тексты/редакции: gk-753'
+    source_hash: sha256:c2003cc8858044118a3d988f0bf1f00276df9799cdbe7fc466398d632975c604
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/6b2d751a0d605616a9a1012cb7c7fbac1b6d84b3/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
+  verdict: PASS
+  issues: []
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: Независимый перечит окончательного текста и принятых исправлений выполнен. Исторический PASS не перенесён.
-  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой ставки/пошлины,
-    верстки или SALE_READY.
+  recheck: Перечит применимых положений и финального архива 6feb; расхождений не выявлено.
+  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
+    ставки/пошлины, верстки или SALE_READY.
 - document: products-storage/01-zakrytie-rabot/04-akt-priemki.docx
   document_hash: sha256:77e9cca4e930c106847b99523b5644ef7f9e415d35c4fe13f2bf52cb0714b00c
   generator: projects/marzha_v_betone/product/build/p1-closing-forms.js
@@ -82,27 +71,21 @@ results:
   task: P1_FINAL_EXACT_ARTIFACT_NORMATIVE_2026_10_08
   norms_checked:
   - norm_id: gk-753
-    source_hash: sha256:3addb79c003fa0e15b3150d7353f6559707ff7b1792931ad42a447b94f9848b7
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
-  verdict: NOT_VERIFIED
-  issues:
-  - id: CURRENT-04
-    severity: material
-    claim: Актуальность необходимых официальных норм на 08.10.2026
-    norm_id: gk-753
-    why: 'ACCESS/DEPENDENCY: не подтверждены текущие официальные тексты/редакции: gk-753'
+    source_hash: sha256:c2003cc8858044118a3d988f0bf1f00276df9799cdbe7fc466398d632975c604
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/6b2d751a0d605616a9a1012cb7c7fbac1b6d84b3/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
+  verdict: PASS
+  issues: []
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: Независимый перечит окончательного текста и принятых исправлений выполнен. Исторический PASS не перенесён.
-  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой ставки/пошлины,
-    верстки или SALE_READY.
+  recheck: Перечит применимых положений и финального архива 6feb; расхождений не выявлено.
+  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
+    ставки/пошлины, верстки или SALE_READY.
 - document: products-storage/01-zakrytie-rabot/11-slovar-poley.docx
   document_hash: sha256:e6be105901473d4c47fe807b390c2ac8dd4700103637fb79f83df095ffcc5a3f
   generator: projects/marzha_v_betone/product/build/00-slovar.js
@@ -114,23 +97,21 @@ results:
   task: P1_FINAL_EXACT_ARTIFACT_NORMATIVE_2026_10_08
   norms_checked:
   - norm_id: gk-746
-    source_hash: sha256:8234d40258be23cd694a17f85a31430d3183d43aa1f8e43f34b0c51ee381239f
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:30bccfcf469410e8aec868275b6186af9d37d247f8460eaf31eda4f5fd3136f1
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/213b00ab7366c34225e24be2f360912884de054e/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: gk-711
-    source_hash: sha256:8f6513bfebeb20b673b0772594deb336d8d665aae11936745cbc137afea91049
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:beb146d66d840f56a3e8c71be39c74e5eafd338efc6df033d3d0b7eed06bb932
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/46561f5271883fcf47f3e9859d3a59eb56bfcd96/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: gk-191
     source_hash: sha256:464ff087a2d3d945f54b36c7e6c3ad38fd5b17f7c19a2a50d30ce852f5f2cac0
     source_class: official
@@ -172,14 +153,13 @@ results:
     verdict: подтверждена
     note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
   - norm_id: nk-333-21
-    source_hash: sha256:9bbc4147e29d9ac82f3715096f20626d14cbc1a361c3a19f160e040f70b6abac
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102067058
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:59a4e95e4f901220dda2c6a53a7b7a6122767cff766f2dfd07802f41e9d867eb
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_28165/fd44625defd599290366d418d3be13d277f1515d/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: apk-35
     source_hash: sha256:e5bada3501190b2b8dbab9ade625a9dadc38a2ba9f461368cbad1d20b65a60c4
     source_class: official
@@ -212,19 +192,14 @@ results:
     current_edition_verified: true
     verdict: подтверждена
     note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  verdict: NOT_VERIFIED
-  issues:
-  - id: CURRENT-11
-    severity: material
-    claim: Актуальность необходимых официальных норм на 08.10.2026
-    norm_id: gk-746
-    why: 'ACCESS/DEPENDENCY: не подтверждены текущие официальные тексты/редакции: gk-746, gk-711, nk-333-21'
+  verdict: PASS
+  issues: []
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: Независимый перечит окончательного текста и принятых исправлений выполнен. Исторический PASS не перенесён.
-  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой ставки/пошлины,
-    верстки или SALE_READY.
+  recheck: Перечит применимых положений и финального архива 6feb; расхождений не выявлено.
+  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
+    ставки/пошлины, верстки или SALE_READY.
 - document: products-storage/01-zakrytie-rabot/12-pretenziya-na-neoplatu-po-ks-2.docx
   document_hash: sha256:a153d78cf294791007c2ae200331195a54dd39639c88e535199deb6750235a1b
   generator: projects/marzha_v_betone/product/build/01-pretenziya.js
@@ -236,32 +211,29 @@ results:
   task: P1_FINAL_EXACT_ARTIFACT_NORMATIVE_2026_10_08
   norms_checked:
   - norm_id: gk-711
-    source_hash: sha256:8f6513bfebeb20b673b0772594deb336d8d665aae11936745cbc137afea91049
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:beb146d66d840f56a3e8c71be39c74e5eafd338efc6df033d3d0b7eed06bb932
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/46561f5271883fcf47f3e9859d3a59eb56bfcd96/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: gk-746
-    source_hash: sha256:8234d40258be23cd694a17f85a31430d3183d43aa1f8e43f34b0c51ee381239f
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:30bccfcf469410e8aec868275b6186af9d37d247f8460eaf31eda4f5fd3136f1
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/213b00ab7366c34225e24be2f360912884de054e/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: gk-753
-    source_hash: sha256:3addb79c003fa0e15b3150d7353f6559707ff7b1792931ad42a447b94f9848b7
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:c2003cc8858044118a3d988f0bf1f00276df9799cdbe7fc466398d632975c604
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/6b2d751a0d605616a9a1012cb7c7fbac1b6d84b3/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: gk-395
     source_hash: sha256:07ae25b8650a6efb592a911c1ae0c8ff2ff876dfb8da065293113f120ac338bd
     source_class: official
@@ -303,14 +275,13 @@ results:
     verdict: подтверждена
     note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
   - norm_id: nk-333-40
-    source_hash: sha256:9c91f155ecf4f6a42f54806cc6960b5c9cf6cbd08aa10c9ae7e6ff829ca5ddb7
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102067058
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:5b84ae5eaa6f7039023a9fb78acee271009da504fbd69921b625d840240d34aa
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_28165/7c55dda6b9038640682d24714009aefa6689594c/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: apk-110
     source_hash: sha256:f4204c910a45b86d889d836ffe5c334efb6a2105d093e59fe624a29fc120f815
     source_class: official
@@ -367,19 +338,14 @@ results:
     current_edition_verified: true
     verdict: подтверждена
     note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  verdict: NOT_VERIFIED
-  issues:
-  - id: CURRENT-12
-    severity: material
-    claim: Актуальность необходимых официальных норм на 08.10.2026
-    norm_id: gk-711
-    why: 'ACCESS/DEPENDENCY: не подтверждены текущие официальные тексты/редакции: gk-711, gk-746, gk-753, nk-333-40'
+  verdict: PASS
+  issues: []
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: Независимый перечит окончательного текста и принятых исправлений выполнен. Исторический PASS не перенесён.
-  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой ставки/пошлины,
-    верстки или SALE_READY.
+  recheck: Перечит применимых положений и финального архива 6feb; расхождений не выявлено.
+  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
+    ставки/пошлины, верстки или SALE_READY.
 - document: products-storage/01-zakrytie-rabot/13-uvedomlenie-o-prosrochke-oplaty.docx
   document_hash: sha256:8f3566b5f132cae1b85a666250bfd1c4af32fffdd63dceae1e5b782b81a81de6
   generator: projects/marzha_v_betone/product/build/02-uvedomlenie.js
@@ -443,16 +409,16 @@ results:
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: 'Узкая независимая проверка готового13 после одной grammar-инструкции: обе оперативные ветки грамматически согласованы.
-    Остальные формулировки и 6 проверенных источников неизменны.'
-  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой ставки/пошлины,
-    верстки или SALE_READY.
+  recheck: 'Узкая независимая проверка готового13 после одной grammar-инструкции: обе оперативные ветки грамматически
+    согласованы. Остальные формулировки и 6 проверенных источников неизменны.'
+  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
+    ставки/пошлины, верстки или SALE_READY.
   reviewed_container_location: /workspace/scratch/d88c71a3c278/p1-docx-source/grammar13/02-Уведомление-о-просрочке-оплаты.docx
   targeted_review_receipt: P1_13_grammar_generated_acceptance_2026-10-08.json
   reviewed_container_hash: sha256:2f8e291f6029ae1f67d4d5ea3825401ee40b47642a698213bf333ac30dad0a45
   root_rebuild_receipt: /tmp/p1-root-grammar13-final-20261008/root-rebuild-receipt.json
-  delivered_container_binding: Root rebuilt from identical generator/lib; same accepted semantic hash; both delivered copies
-    byte-equal;18 other files unchanged.
+  delivered_container_binding: Root rebuilt from identical generator/lib; same accepted semantic hash; both delivered
+    copies byte-equal;18 other files unchanged.
 - document: products-storage/01-zakrytie-rabot/14-raschet-procentov-395-gk.xlsx
   document_hash: sha256:4ca6d9b9cfa4393cfcfe93d29467e95f1f02c9e24cac7332ca166664fea11a7a
   generator: projects/marzha_v_betone/product/build/03-raschet.py
@@ -488,13 +454,13 @@ results:
     verdict: подтверждена
     note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
   - norm_id: ppvs-7-2016
-    source_hash: sha256:497ad663e265c9f3db9120a57f7ea8f3d3369a4a11cc0af2e3bc5f66452093f6
-    source_class: not_verified
-    source_used: https://vsrf.ru/media-proxy/upload/iblock/021/0211e9ae21e6d77ac6ce9494b752844f.pdf
+    source_hash: sha256:5bc520551af066d966d3f2b377d609f458b8b5b5f2dd734573e20450b56beedf
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_195783/29d7e0afc76f7474e190fee812d2ce51d65d1a40/
     quote_obtained: true
-    current_edition_verified: false
-    verdict: не найдена
-    note: Официальная цитата прочитана, но полная актуальная редакция не установлена; не означает отсутствие нормы.
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: gk-319
     source_hash: sha256:e867e3c2b8e8081acc332734b0936e3b8c1d445328227acf3e88224c747a75bd
     source_class: official
@@ -504,34 +470,29 @@ results:
     verdict: подтверждена
     note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
   - norm_id: ppvs-7-2016-49
-    source_hash: sha256:3103024e011fa468ce6ee75b9ffd9f4213b24ca8074f5ac34123af96a3f12b4c
-    source_class: not_verified
-    source_used: https://vsrf.ru/media-proxy/upload/iblock/021/0211e9ae21e6d77ac6ce9494b752844f.pdf
+    source_hash: sha256:2996e9a7dee4270f4546972a495d0d906460a569d831169d20f210e1e7b4f63c
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_195783/29d7e0afc76f7474e190fee812d2ce51d65d1a40/
     quote_obtained: true
-    current_edition_verified: false
-    verdict: не найдена
-    note: Официальная цитата прочитана, но полная актуальная редакция не установлена; не означает отсутствие нормы.
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: plenum-54-37
-    source_hash: sha256:1699e59e2e54509a69723ea0f38aac6151e68ccdfd330e617d4cb9ce5d095630
-    source_class: not_verified
-    source_used: https://vsrf.ru/documents/all/8524/
+    source_hash: sha256:a1a4a616878f7c0b10c227580589af3d852bb6a0c98e754f2abd164a8a421cba
+    source_class: official
+    source_used: https://www.vsrf.ru/documents/all/8524
     quote_obtained: true
-    current_edition_verified: false
-    verdict: не найдена
-    note: Официальная цитата прочитана, но полная актуальная редакция не установлена; не означает отсутствие нормы.
-  verdict: NOT_VERIFIED
-  issues:
-  - id: CURRENT-14
-    severity: material
-    claim: Актуальность необходимых официальных норм на 08.10.2026
-    norm_id: ppvs-7-2016
-    why: 'ACCESS/DEPENDENCY: не подтверждены текущие официальные тексты/редакции: ppvs-7-2016, ppvs-7-2016-49, plenum-54-37'
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
+  verdict: PASS
+  issues: []
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: Независимый перечит окончательного текста и принятых исправлений выполнен. Исторический PASS не перенесён.
-  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой ставки/пошлины,
-    верстки или SALE_READY.
+  recheck: Перечит применимых положений и финального архива 6feb; расхождений не выявлено.
+  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
+    ставки/пошлины, верстки или SALE_READY.
 - document: products-storage/01-zakrytie-rabot/15-algoritm-pri-zaderzhke-oplaty.docx
   document_hash: sha256:2f0d7b36f7fb9e2c9edf9579af000817b3a67e40894a75ace5949102cd946cb8
   generator: projects/marzha_v_betone/product/build/04-algoritm.js
@@ -551,23 +512,21 @@ results:
     verdict: подтверждена
     note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
   - norm_id: gk-719
-    source_hash: sha256:64fbfc1a96e2496634448694e152d5e98419a408a5b1aef8972c7c04635d63aa
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:ad71e59f27bd0b2f742d89cc73745e09d328277aa80bbd3e429355b24984705c
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/3a590316d2440dd63f7510f9238f24357b93bf61/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: gk-753
-    source_hash: sha256:3addb79c003fa0e15b3150d7353f6559707ff7b1792931ad42a447b94f9848b7
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:c2003cc8858044118a3d988f0bf1f00276df9799cdbe7fc466398d632975c604
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/6b2d751a0d605616a9a1012cb7c7fbac1b6d84b3/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: gk-196-200
     source_hash: sha256:8091b6e68da357e550817f01ed1bf995fa876ccd4f61a122dfcdde156ea93b24
     source_class: official
@@ -585,14 +544,13 @@ results:
     verdict: подтверждена
     note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
   - norm_id: fz-127-7
-    source_hash: sha256:98c23588fc9bdfa76b4d38ea25317c12e0cf5eaab1419cff7dc12b7c9fd39735
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:436a3f14cb4af55764b9b7af367b44142ea6c4b6996ccd0d8d21dd7468700556
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_39331/7bfbd798d41c90791dfc0fe4dc91d70a1d54c580/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: gk-395
     source_hash: sha256:07ae25b8650a6efb592a911c1ae0c8ff2ff876dfb8da065293113f120ac338bd
     source_class: official
@@ -602,23 +560,21 @@ results:
     verdict: подтверждена
     note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
   - norm_id: nk-333-21
-    source_hash: sha256:9bbc4147e29d9ac82f3715096f20626d14cbc1a361c3a19f160e040f70b6abac
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102067058
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:59a4e95e4f901220dda2c6a53a7b7a6122767cff766f2dfd07802f41e9d867eb
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_28165/fd44625defd599290366d418d3be13d277f1515d/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: plenum-54-57
-    source_hash: sha256:6b25fc2f5eea86c326bf5f9ab0cfbfe006fcf9aebcf585f5bf235e6f1248b572
-    source_class: not_verified
-    source_used: https://vsrf.ru/documents/own/8524/
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:1f9d9a9d5ba7085b3c44493b6928c2b50bc3bbcfa1dc6da314df1c97c4e397a7
+    source_class: official
+    source_used: https://www.vsrf.ru/documents/all/8524
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: fz-229-8
     source_hash: sha256:6b04f4e3e7e53eafcde7da591d411fed73f0fed06f6cd7585ff8d7f3e9a6d1e6
     source_class: official
@@ -635,19 +591,14 @@ results:
     current_edition_verified: true
     verdict: подтверждена
     note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  verdict: NOT_VERIFIED
-  issues:
-  - id: CURRENT-15
-    severity: material
-    claim: Актуальность необходимых официальных норм на 08.10.2026
-    norm_id: gk-719
-    why: 'ACCESS/DEPENDENCY: не подтверждены текущие официальные тексты/редакции: gk-719, gk-753, fz-127-7, nk-333-21, plenum-54-57'
+  verdict: PASS
+  issues: []
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: Независимый перечит окончательного текста и принятых исправлений выполнен. Исторический PASS не перенесён.
-  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой ставки/пошлины,
-    верстки или SALE_READY.
+  recheck: Перечит применимых положений и финального архива 6feb; расхождений не выявлено.
+  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
+    ставки/пошлины, верстки или SALE_READY.
 - document: products-storage/01-zakrytie-rabot/16-iskovoe-zayavlenie-o-vzyskanii.docx
   document_hash: sha256:a945169a8e89dfc7dd2900adf3eda736ad600fbe284e555dbdf97ba1a2f57903
   generator: projects/marzha_v_betone/product/build/05-isk.js
@@ -659,32 +610,29 @@ results:
   task: P1_FINAL_EXACT_ARTIFACT_NORMATIVE_2026_10_08
   norms_checked:
   - norm_id: gk-711
-    source_hash: sha256:8f6513bfebeb20b673b0772594deb336d8d665aae11936745cbc137afea91049
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:beb146d66d840f56a3e8c71be39c74e5eafd338efc6df033d3d0b7eed06bb932
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/46561f5271883fcf47f3e9859d3a59eb56bfcd96/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: gk-746
-    source_hash: sha256:8234d40258be23cd694a17f85a31430d3183d43aa1f8e43f34b0c51ee381239f
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:30bccfcf469410e8aec868275b6186af9d37d247f8460eaf31eda4f5fd3136f1
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/213b00ab7366c34225e24be2f360912884de054e/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: gk-753
-    source_hash: sha256:3addb79c003fa0e15b3150d7353f6559707ff7b1792931ad42a447b94f9848b7
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102039276
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:c2003cc8858044118a3d988f0bf1f00276df9799cdbe7fc466398d632975c604
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/6b2d751a0d605616a9a1012cb7c7fbac1b6d84b3/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: gk-395
     source_hash: sha256:07ae25b8650a6efb592a911c1ae0c8ff2ff876dfb8da065293113f120ac338bd
     source_class: official
@@ -718,14 +666,13 @@ results:
     verdict: подтверждена
     note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
   - norm_id: nk-333-21
-    source_hash: sha256:9bbc4147e29d9ac82f3715096f20626d14cbc1a361c3a19f160e040f70b6abac
-    source_class: not_verified
-    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102067058
-    quote_obtained: false
-    current_edition_verified: false
-    verdict: не найдена
-    note: Текущий полный официальный текст не получен; source_hash исторический, не доказательство свежести. Ошибка доступа
-      не означает неверность нормы.
+    source_hash: sha256:59a4e95e4f901220dda2c6a53a7b7a6122767cff766f2dfd07802f41e9d867eb
+    source_class: secondary
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_28165/fd44625defd599290366d418d3be13d277f1515d/
+    quote_obtained: true
+    current_edition_verified: true
+    verdict: подтверждена
+    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: apk-27
     source_hash: sha256:b3a1e46aec2e1127e4d3366196b4c838026a7aa77a50a839735d6721762cf3cc
     source_class: official
@@ -806,17 +753,12 @@ results:
     current_edition_verified: true
     verdict: подтверждена
     note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  verdict: NOT_VERIFIED
-  issues:
-  - id: CURRENT-16
-    severity: material
-    claim: Актуальность необходимых официальных норм на 08.10.2026
-    norm_id: gk-711
-    why: 'ACCESS/DEPENDENCY: не подтверждены текущие официальные тексты/редакции: gk-711, gk-746, gk-753, nk-333-21'
+  verdict: PASS
+  issues: []
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: Независимый перечит окончательного текста и принятых исправлений выполнен. Исторический PASS не перенесён.
-  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой ставки/пошлины,
-    верстки или SALE_READY.
+  recheck: Перечит применимых положений и финального архива 6feb; расхождений не выявлено.
+  scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
+    ставки/пошлины, верстки или SALE_READY.
   binding_status: FINAL; root sequential render confirmed no source or semantic change
