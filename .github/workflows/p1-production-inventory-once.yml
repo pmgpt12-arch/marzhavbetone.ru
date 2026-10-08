@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  RUN_LEGAL_SOURCE_BATCH: 'false'
+  RUN_LEGAL_SOURCE_BATCH: 'true'
   SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
   SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
 
