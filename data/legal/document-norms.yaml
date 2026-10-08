@@ -1,0 +1,132 @@
+# Какой документ от каких норм зависит, и чем он собирается.
+#
+# Прямой индекс живёт здесь; обратный — «норма изменилась, какие документы
+# задеты» — строится кодом (`tools/normative_scope.py`) и вторым файлом не
+# дублируется: два перечня одного и того же разъезжаются на первой правке.
+#
+# `scope` объявляет, где гейт вообще смотрит, а `out_of_scope` — что внутри
+# этой области сознательно не покрыто и почему. Смысл разделения в том,
+# чтобы новый файл, положенный в покрытую папку, не остался незамеченным:
+# он не попадёт ни в `documents`, ни в `out_of_scope`, и гейт покраснеет.
+# Именно так дефект D-06 и жил — шесть документов продавались без сверки, и
+# ни одна проверка про них не знала.
+#
+# `generator` — канонический источник документа. Правка собранного файла
+# поверх выдачи теряется при следующей сборке (это класс дефекта D-05),
+# поэтому источником считается генератор, а связка «генератор → артефакт»
+# держится хешами в `product/legal/artifact-bindings.yaml` (ai-business-os).
+
+meta:
+  updated: 2026-08-15
+  phase: P0 — комплект P1, документы 11–16
+
+scope:
+  - path: products-storage/01-zakrytie-rabot
+    patterns: ["*.docx", "*.xlsx"]
+
+out_of_scope:
+  - path: products-storage/01-zakrytie-rabot/00-INSTRUKCIYA.docx
+    reason: инструкция по применению комплекта, правовых утверждений не несёт
+  - path: products-storage/01-zakrytie-rabot/01-ks-2.docx
+    reason: P0 покрывает 11–16; формы закрытия работ — следующий этап
+  - path: products-storage/01-zakrytie-rabot/02-ks-3.docx
+    reason: P0 покрывает 11–16; формы закрытия работ — следующий этап
+  - path: products-storage/01-zakrytie-rabot/03-akt-vypolnennyh-rabot.docx
+    reason: P0 покрывает 11–16; формы закрытия работ — следующий этап
+  - path: products-storage/01-zakrytie-rabot/04-akt-priemki.docx
+    reason: P0 покрывает 11–16; формы закрытия работ — следующий этап
+  - path: products-storage/01-zakrytie-rabot/05-peredatochnyy-akt.docx
+    reason: P0 покрывает 11–16; формы закрытия работ — следующий этап
+  - path: products-storage/01-zakrytie-rabot/06-zhurnal-obemov.xlsx
+    reason: P0 покрывает 11–16; журналы и реестры — следующий этап
+  - path: products-storage/01-zakrytie-rabot/07-reestr-zamechaniy.xlsx
+    reason: P0 покрывает 11–16; журналы и реестры — следующий этап
+  - path: products-storage/01-zakrytie-rabot/08-reestr-peredachi.xlsx
+    reason: P0 покрывает 11–16; журналы и реестры — следующий этап
+
+documents:
+  - path: products-storage/01-zakrytie-rabot/11-slovar-poley.docx
+    generator: projects/marzha_v_betone/product/build/00-slovar.js
+    legally_significant: true
+    norms: [gk-746, gk-711, gk-191, gk-193, gk-395, apk-4-5, apk-125-126, nk-333-21, apk-35, apk-37]
+    mechanisms:
+      - определение первого дня просрочки
+      - состав базы долга
+      - источник срока ответа на претензию
+
+  - path: products-storage/01-zakrytie-rabot/12-pretenziya-na-neoplatu-po-ks-2.docx
+    generator: projects/marzha_v_betone/product/build/01-pretenziya.js
+    legally_significant: true
+    norms: [gk-711, gk-746, gk-753, gk-395, gk-314, gk-193, apk-4-5, apk-128-148, nk-333-40, apk-110, gk-202, gk-309, gk-310]
+    # Атрибутивные ссылки: документ называет акт, но юридический вывод на
+    # нём не стоит. Объявляются здесь, а не умалчиваются: проверка полноты
+    # обязана видеть каждую правовую ссылку, и разница между «опора» и
+    # «происхождение формы» должна быть записана, а не подразумеваться.
+    attributive_references:
+      - ref: ГОСКОМСТАТ:100
+        reason: >-
+          Документ говорит «Формы введены постановлением Госкомстата России
+          от 11.11.1999 № 100» и тут же — «с переходом на необязательность
+          унифицированных форм договор может предусматривать собственные
+          формы». Это указание происхождения формы и прямой отказ от
+          утверждения об обязательности. Право требовать оплату,
+          досудебный порядок и проценты — выводы претензии — на этот акт
+          не опираются ни одним звеном.
+    mechanisms:
+      - обязательный досудебный порядок и точка отсчёта срока ожидания
+      - соотношение процентов по ст. 395 и договорной неустойки
+
+  - path: products-storage/01-zakrytie-rabot/13-uvedomlenie-o-prosrochke-oplaty.docx
+    generator: projects/marzha_v_betone/product/build/02-uvedomlenie.js
+    legally_significant: true
+    # apk-128-148 внесена 16.08.2026 узким заходом, а не сплошным разбором:
+    # документ называет последствия несоблюдения досудебного порядка
+    # («возвращение искового заявления», «оставление иска без рассмотрения»),
+    # а ч. 5 ст. 4 АПК РФ последствий не устанавливает вовсе. Проверка
+    # полноты этого не поймала и поймать не могла: номера статей в тексте не
+    # названы, последствия сформулированы прозой. Нашёл проверяющий,
+    # остановившись на нехватке нормы вместо того, чтобы додумать.
+    norms: [apk-4-5, gk-395, apk-128-148]
+    mechanisms:
+      # Механизм переписан 16.08.2026: решением владельца документ сделан
+      # явным досудебным требованием, и прежняя запись «письмо, не
+      # запускающее досудебный порядок» стала описывать документ, которого
+      # больше нет. Расхождение реестра с текстом нашла пересверка, не код.
+      - >-
+        досудебное требование по ч. 5 ст. 4 АПК РФ: единый срок исполнения,
+        оговорка о непрекращении начисления процентов
+
+  - path: products-storage/01-zakrytie-rabot/14-raschet-procentov-395-gk.xlsx
+    generator: projects/marzha_v_betone/product/build/03-raschet.py
+    legally_significant: true
+    norms: [gk-395, gk-191, gk-193, ppvs-7-2016, gk-319]
+    mechanisms:
+      - порядок расчёта процентов по ключевой ставке с разбивкой по периодам
+      - учёт частичных оплат в основном долге
+
+  - path: products-storage/01-zakrytie-rabot/15-algoritm-pri-zaderzhke-oplaty.docx
+    generator: projects/marzha_v_betone/product/build/04-algoritm.js
+    legally_significant: true
+    norms: [gk-328, gk-719, gk-753, gk-196-200, apk-4-5, fz-127-7, gk-395, nk-333-21, plenum-54-57, fz-229-8]
+    mechanisms:
+      - право приостановить встречное исполнение
+      - банкротная развилка и реестр публикации намерения
+
+  - path: products-storage/01-zakrytie-rabot/16-iskovoe-zayavlenie-o-vzyskanii.docx
+    generator: projects/marzha_v_betone/product/build/05-isk.js
+    legally_significant: true
+    norms: [gk-711, gk-746, gk-753, gk-395, apk-4-5, apk-125-126, apk-128-148, nk-333-21, apk-27, apk-28, apk-35, apk-37, apk-103, apk-110, gk-309, gk-310, gk-330]
+    mechanisms:
+      - состав искового заявления и приложений
+      - сведения о примирении и об обеспечительных мерах
+
+# Пользовательские точки, на которые распространяется запрет неподтверждённого
+# утверждения о вычитке юристом. Перечень закрытый и связан с P1: сплошного
+# скана линейки здесь нет намеренно — он вышел бы за объём P0.
+# Выдаваемые документы проверяются на этот запрет автоматически — они
+# перечислены в `documents` выше. Здесь только точки, которые покупатель
+# видит помимо файлов. MANIFEST.md сюда не входит: сборка архива его
+# исключает (`products-config.php`, `mvb_build_product_zip`), покупателю он
+# не уходит, и историческая цитата в нём claim'ом не является.
+customer_facing:
+  - products/p1-oplata-po-ks2.html
