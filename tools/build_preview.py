@@ -149,7 +149,7 @@ def block(items: list[dict], count: int, sku: str) -> str:
         '\n        </article>' for i in items)
     tail = (f"Здесь {len(items)} документа из {count}" if count > len(items)
             else f"Здесь все {count} документа комплекта")
-    inside = ('содержание форм' if sku == 'p1' else 'тело шаблонов')
+    inside = ('содержание форм' if sku in ('p1', 'p2') else 'тело шаблонов')
     return (
         '\n      <div class="kit-preview">'
         '\n        <h3 class="preview-head">Как это выглядит внутри</h3>'
