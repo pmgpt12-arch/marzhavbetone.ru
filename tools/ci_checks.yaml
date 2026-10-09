@@ -711,8 +711,8 @@
     и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
 - id: test_normative_gate
   команда: python3 tools/test_normative_gate.py
-  класс: internal
-  блокирует: false
+  класс: public
+  блокирует: true
   зачем: мутации нормативного гейта
   требует:
   - data/legal/norms.yaml
@@ -720,8 +720,8 @@
     и пойдёт сама, если файл вернётся; восстанавливать данные ради теста не нужно.'
 - id: normative_gate
   команда: python3 tools/normative_gate.py
-  класс: internal
-  блокирует: false
+  класс: public
+  блокирует: true
   зачем: нормативный гейт
   требует:
   - data/legal/document-norms.yaml

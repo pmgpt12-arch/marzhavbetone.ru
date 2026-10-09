@@ -1,0 +1,266 @@
+{
+  "document": "products-storage/01-zakrytie-rabot/15-algoritm-pri-zaderzhke-oplaty.docx",
+  "previous_document_hash": "sha256:966133a3b61096e93527a2958c819e9d0de0533cf9d347bb05df983bf3219965",
+  "document_hash": "sha256:49ff8cf920445cfbc00e5e995253df956db69ca7a97f266c9438c5b8202e90d1",
+  "previous_ref": "46c428f89d1dbbb7322bc3c09710557cca8acc57",
+  "current_ref": "e144338f50bd8708026a447be5c980487958469a",
+  "previous_review": {
+    "issue": "pmgpt12-arch/marzhavbetone.ru#511",
+    "report": "tools/reports/p1-acceptance-recovery-20261009/15-first-review-finding.yaml",
+    "verdict": "FAIL",
+    "finding": "I-1 по CP-11",
+    "note": "Отчёт #511 относится к промежуточному хэшу 966133a3… и остаётся в силе для него. Этот перечит его не заменяет и не повторяет: он проверяет только новую редакцию CP-11 на хэше 49ff8cf9…."
+  },
+  "accepted_baseline": {
+    "document_hash": "sha256:2f0d7b36f7fb9e2c9edf9579af000817b3a67e40894a75ace5949102cd946cb8",
+    "ref": "a601955c289e8b0d3462f851d5ef907aede1cfc9",
+    "evidence_package": "tools/reports/p1-acceptance-recovery-20261009/sources/15-full-evidence.yaml"
+  },
+  "checked_at": "2026-10-09",
+  "checker": "normative-checker",
+  "executor_model": "anthropic/claude-opus-5.5",
+  "issue": "pmgpt12-arch/marzhavbetone.ru#516",
+  "parent": "pmgpt12-arch/marzhavbetone.ru#291, PR #506",
+  "verdict": "PASS",
+  "changed_positions": [
+    {
+      "id": "CP-11",
+      "location": "Последний абзац документа, исковая давность",
+      "old": "Затягивание само по себе тоже риск. Общий срок исковой давности установлен Гражданским кодексом РФ (глава 12, ст. 196); его продолжительность и порядок исчисления для вашего случая проверьте в актуальной редакции закона и договоре — в этот файл число не записано намеренно.",
+      "new": "Затягивание само по себе тоже риск. Общий срок исковой давности установлен Гражданским кодексом РФ (глава 12, ст. 196); его продолжительность проверьте в актуальной редакции закона. По обязательству с определённым сроком исполнения начало течения давности определите после окончания срока оплаты по договору (п. 2 ст. 200 ГК РФ). Число в этот файл намеренно не записано.",
+      "verdict": "подтверждена",
+      "reason": "Находка I-1 из #511 устранена. Источники теперь разделены. Продолжительность срока отнесена только к закону, а договор назван только как источник срока оплаты. Это соответствует сохранённому тексту п. 1 ст. 196 ГК РФ: норма сама устанавливает общий срок и отсылает к ст. 200 только для дня, с которого он считается. Оговорки «если иное не предусмотрено договором» в ней нет. Второе предложение передаёт п. 2 ст. 200 ГК РФ без усиления: «по обязательствам с определенным сроком исполнения течение срока исковой давности начинается по окончании срока исполнения». Для долга по оплате срок исполнения и есть срок оплаты, а его по шагу 0 документа берут из договора. Фраза ограничена обязательствами с определённым сроком исполнения. Правила второго предложения п. 2 ст. 200 (срок не определён или определён моментом востребования) и общее правило п. 1 ст. 200 документ себе не приписывает, а значит, не изменяет их. Адрес нормы указан верно: п. 2 ст. 200. Новый текст не ссылается на ст. 198 ГК РФ и не опирается на неё, поэтому полный текст ст. 198 для этой фразы не нужен. В отчёте выводов о ст. 198 нет. Числа срока давности в документе нет, Р-009 соблюдён. В абзаце нет запрещённых для покупательского файла формулировок и отсылок к сторонней проверке. Новой правовой конструкции и нового механизма тоже нет: ст. 196 и ст. 200 входят в уже связанную с документом норму gk-196-200.",
+      "norm_ids": ["gk-196-200"]
+    }
+  ],
+  "inherited_unchanged_positions": [
+    {
+      "id": "CP-1",
+      "location": "Вводный блок до раздела А",
+      "norm_ids": ["gk-753"],
+      "verdict_in_previous_review": "подтверждена",
+      "basis": "Текст не изменился относительно 966133a3…; принята позиция из #511."
+    },
+    {
+      "id": "CP-2",
+      "location": "Вводный блок до раздела А, второй абзац",
+      "norm_ids": [],
+      "verdict_in_previous_review": "подтверждена",
+      "basis": "Текст не изменился относительно 966133a3…; принята позиция из #511."
+    },
+    {
+      "id": "CP-3",
+      "location": "Шаг 1, развилка",
+      "norm_ids": [],
+      "verdict_in_previous_review": "подтверждена",
+      "basis": "Текст не изменился относительно 966133a3…; принята позиция из #511."
+    },
+    {
+      "id": "CP-4",
+      "location": "Шаг 2, развилка при банкротстве",
+      "norm_ids": ["fz-127-7"],
+      "verdict_in_previous_review": "подтверждена",
+      "basis": "Текст не изменился относительно 966133a3…; принята позиция из #511."
+    },
+    {
+      "id": "CP-5",
+      "location": "Шаг 3а, первый абзац, последнее предложение",
+      "norm_ids": ["gk-328", "gk-719"],
+      "verdict_in_previous_review": "подтверждена",
+      "basis": "Текст не изменился относительно 966133a3…; принята позиция из #511."
+    },
+    {
+      "id": "CP-6",
+      "location": "Шаг 3а, второй абзац, последнее предложение",
+      "norm_ids": ["gk-328", "gk-719", "plenum-54-57"],
+      "verdict_in_previous_review": "подтверждена",
+      "basis": "Текст не изменился относительно 966133a3…; принята позиция из #511."
+    },
+    {
+      "id": "CP-7",
+      "location": "Шаг 4, абзац после госпошлины",
+      "norm_ids": [],
+      "verdict_in_previous_review": "подтверждена",
+      "basis": "Текст не изменился относительно 966133a3…; принята позиция из #511."
+    },
+    {
+      "id": "CP-8",
+      "location": "Шаг 6, результат шага",
+      "norm_ids": ["fz-127-7", "fz-229-8"],
+      "verdict_in_previous_review": "подтверждена",
+      "basis": "Текст не изменился относительно 966133a3…; принята позиция из #511."
+    },
+    {
+      "id": "CP-9",
+      "location": "Раздел Б, заголовок перечня",
+      "norm_ids": ["gk-753"],
+      "verdict_in_previous_review": "подтверждена",
+      "basis": "Текст не изменился относительно 966133a3…; принята позиция из #511."
+    },
+    {
+      "id": "CP-10",
+      "location": "Раздел Б, заключительный абзац",
+      "norm_ids": ["gk-753"],
+      "verdict_in_previous_review": "подтверждена",
+      "basis": "Текст не изменился относительно 966133a3…; принята позиция из #511."
+    },
+    {
+      "id": "baseline-legal-positions",
+      "location": "Неизменённые правовые позиции принятой редакции 2f0d7b36…: шаги 0–4 и 6, раздел Б, контрольная линия времени, первая часть последнего абзаца «Общий срок исковой давности установлен Гражданским кодексом РФ (глава 12, ст. 196)»",
+      "norm_ids": ["gk-395", "apk-4-5", "fz-127-7", "gk-330", "gk-328", "gk-719", "plenum-54-57", "nk-333-21", "fz-229-8", "gk-753", "gk-196-200"],
+      "verdict_in_previous_review": "подтверждена",
+      "basis": "Перечень inherited_unchanged_positions из #511 переносится без изменений: текст этих позиций и source_hash их норм прежние. Первая часть последнего абзаца сохранена дословно и соответствует сохранённому заголовку и п. 1 ст. 196 ГК РФ. Номер главы 12 в сохранённом тексте не виден, но эта часть не менялась и подтверждена в принятой сверке."
+    }
+  ],
+  "norms_checked": [
+    {
+      "norm_id": "gk-196-200",
+      "verdict": "подтверждена",
+      "source_hash": "sha256:8091b6e68da357e550817f01ed1bf995fa876ccd4f61a122dfcdde156ea93b24",
+      "source_used": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239",
+      "source_class": "official",
+      "quote_obtained": true,
+      "evidence_file": "data/legal/evidence/gk-196-200.yaml",
+      "retrieved_at": "2026-08-16",
+      "use_in_this_recheck": "Прочитан сохранённый полный текст ст. 196 и ст. 200 по source_hash. Применены п. 1 ст. 196 и п. 2 ст. 200. Последняя редакция ст. 196 в тексте — ФЗ от 10.06.2026 № 167-ФЗ. Ст. 198 в сохранённом тексте нет, выводы на ней не строятся."
+    },
+    {
+      "norm_id": "gk-328",
+      "verdict": "подтверждена",
+      "source_hash": "sha256:d665aecc72e98ba800d67b794b9193de63370cb6fe2be6a64d20d28de90c41ab",
+      "source_used": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239",
+      "source_class": "official",
+      "quote_obtained": true,
+      "evidence_file": "data/legal/evidence/gk-328.yaml",
+      "retrieved_at": "2026-08-16",
+      "use_in_this_recheck": "Наследуется по CP-5 и CP-6: текст позиций и source_hash прежние."
+    },
+    {
+      "norm_id": "gk-719",
+      "verdict": "подтверждена",
+      "source_hash": "sha256:ad71e59f27bd0b2f742d89cc73745e09d328277aa80bbd3e429355b24984705c",
+      "source_used": "https://www.consultant.ru/document/cons_doc_LAW_9027/3a590316d2440dd63f7510f9238f24357b93bf61/",
+      "source_class": "secondary",
+      "quote_obtained": true,
+      "evidence_file": "data/legal/evidence/gk-719.yaml",
+      "retrieved_at": "2026-10-08",
+      "edition_marker": "ГК РФ ч. II, ред. 24.06.2025, с изм. 09.06.2026; прочитано 08.10.2026",
+      "use_in_this_recheck": "Наследуется по CP-5 и CP-6: текст позиций и source_hash прежние."
+    },
+    {
+      "norm_id": "gk-753",
+      "verdict": "подтверждена",
+      "source_hash": "sha256:c2003cc8858044118a3d988f0bf1f00276df9799cdbe7fc466398d632975c604",
+      "source_used": "https://www.consultant.ru/document/cons_doc_LAW_9027/6b2d751a0d605616a9a1012cb7c7fbac1b6d84b3/",
+      "source_class": "secondary",
+      "quote_obtained": true,
+      "evidence_file": "data/legal/evidence/gk-753.yaml",
+      "retrieved_at": "2026-10-08",
+      "edition_marker": "ГК РФ ч. II, ред. 24.06.2025, с изм. 09.06.2026; прочитано 08.10.2026",
+      "use_in_this_recheck": "Наследуется по CP-1, CP-9 и CP-10: текст позиций и source_hash прежние."
+    },
+    {
+      "norm_id": "apk-4-5",
+      "verdict": "подтверждена",
+      "source_hash": "sha256:6603e670456f0ab3a8ec287c3626d56613e7623428a3c7ba937c8b0cc1a67d44",
+      "source_used": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219",
+      "source_class": "official",
+      "quote_obtained": true,
+      "evidence_file": "data/legal/evidence/apk-4-5.yaml",
+      "retrieved_at": "2026-08-16",
+      "edition_marker": "ред. от 15.12.2025, действует с 01.01.2026",
+      "use_in_this_recheck": "Наследуется по неизменённым шагам 1, 3 и контрольной линии времени."
+    },
+    {
+      "norm_id": "fz-127-7",
+      "verdict": "подтверждена",
+      "source_hash": "sha256:436a3f14cb4af55764b9b7af367b44142ea6c4b6996ccd0d8d21dd7468700556",
+      "source_used": "https://www.consultant.ru/document/cons_doc_LAW_39331/7bfbd798d41c90791dfc0fe4dc91d70a1d54c580/",
+      "source_class": "secondary",
+      "quote_obtained": true,
+      "evidence_file": "data/legal/evidence/fz-127-7.yaml",
+      "retrieved_at": "2026-10-08",
+      "edition_marker": "127-ФЗ, ред. 04.08.2026; будущие изменения с 27.07.2027 не применены; прочитано 08.10.2026",
+      "use_in_this_recheck": "Наследуется по CP-4, CP-8 и неизменённому шагу 2."
+    },
+    {
+      "norm_id": "gk-395",
+      "verdict": "подтверждена",
+      "source_hash": "sha256:07ae25b8650a6efb592a911c1ae0c8ff2ff876dfb8da065293113f120ac338bd",
+      "source_used": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239",
+      "source_class": "official",
+      "quote_obtained": true,
+      "evidence_file": "data/legal/evidence/gk-395.yaml",
+      "retrieved_at": "2026-08-16",
+      "edition_marker": "ред. ФЗ от 03.07.2016 № 315-ФЗ",
+      "use_in_this_recheck": "Наследуется по неизменённым шагам 0 и 3."
+    },
+    {
+      "norm_id": "nk-333-21",
+      "verdict": "подтверждена",
+      "source_hash": "sha256:59a4e95e4f901220dda2c6a53a7b7a6122767cff766f2dfd07802f41e9d867eb",
+      "source_used": "https://www.consultant.ru/document/cons_doc_LAW_28165/fd44625defd599290366d418d3be13d277f1515d/",
+      "source_class": "secondary",
+      "quote_obtained": true,
+      "evidence_file": "data/legal/evidence/nk-333-21.yaml",
+      "retrieved_at": "2026-10-08",
+      "edition_marker": "НК РФ ч. II, ред. 04.08.2026, изменения вступили 01.10.2026; прочитано 08.10.2026",
+      "use_in_this_recheck": "Наследуется по неизменённому шагу 4; размер пошлины остаётся в поле."
+    },
+    {
+      "norm_id": "plenum-54-57",
+      "verdict": "подтверждена",
+      "source_hash": "sha256:1f9d9a9d5ba7085b3c44493b6928c2b50bc3bbcfa1dc6da314df1c97c4e397a7",
+      "source_used": "https://www.vsrf.ru/documents/all/8524",
+      "source_class": "official",
+      "quote_obtained": true,
+      "evidence_file": "data/legal/evidence/plenum-54-57.yaml",
+      "retrieved_at": "2026-10-08",
+      "edition_marker": "Пленум ВС РФ № 54, применимый пункт на сайте ВС; прочитано 08.10.2026",
+      "use_in_this_recheck": "Наследуется по CP-6 и неизменённому шагу 3а."
+    },
+    {
+      "norm_id": "fz-229-8",
+      "verdict": "подтверждена",
+      "source_hash": "sha256:6b04f4e3e7e53eafcde7da591d411fed73f0fed06f6cd7585ff8d7f3e9a6d1e6",
+      "source_used": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102117007",
+      "source_class": "official",
+      "quote_obtained": true,
+      "evidence_file": "data/legal/evidence/fz-229-8.yaml",
+      "retrieved_at": "2026-08-16",
+      "use_in_this_recheck": "Наследуется по CP-8 и неизменённому шагу 6."
+    },
+    {
+      "norm_id": "gk-330",
+      "verdict": "подтверждена",
+      "source_hash": "sha256:8c4714b2a6784a22607a162b1b5d63dcbc4063219d64100b963a096e80a9edb3",
+      "source_used": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239",
+      "source_class": "official",
+      "quote_obtained": true,
+      "evidence_file": "data/legal/evidence/gk-330.yaml",
+      "retrieved_at": "2026-08-16",
+      "use_in_this_recheck": "Наследуется по неизменённому шагу 3."
+    }
+  ],
+  "issues": [],
+  "corrections": [
+    {
+      "issue": "I-1 из #511",
+      "applied_in": "pmgpt12-arch/ai-business-os@7cf1472c8d2f48567ededc3d9ac83a64347a6601, build/04-algoritm.js",
+      "status": "устранено в тексте документа на хэше 49ff8cf9…"
+    }
+  ],
+  "escalation_required": false,
+  "escalation_reason": null,
+  "verification": {
+    "semantic_hash_command": "python3 tools/semantic_hash.py products-storage/01-zakrytie-rabot/15-algoritm-pri-zaderzhke-oplaty.docx",
+    "semantic_hash_output": "sha256:49ff8cf920445cfbc00e5e995253df956db69ca7a97f266c9438c5b8202e90d1",
+    "raw_sha256": "570f0a29e536671669c59a1853124639d92360144f83e46b7ce10d0a6e2c2572",
+    "matches_issue_hash": true,
+    "unchanged_text_proof": "Хэш считается как sha256 от текстовых узлов w:t, соединённых переводом строки. Перечень узлов из context/15-algoritm-pri-zaderzhke-oplaty.txt даёт sha256 966133a3…, то есть точно промежуточную версию. Тот же перечень, в котором заменён только последний узел — на исправленный абзац из context/15-correction.txt, — даёт 49ff8cf9…, то есть точно текущую версию. Значит, весь текст документа, кроме абзаца CP-11, совпадает с версией, проверенной в #511. Правка разрывов страниц в генераторе текст не изменила.",
+    "intermediate_on_branch": "Версия документа в bb774739db03148842a7f64550eae66361b3496b на этой ветке даёт тот же смысловой хэш 966133a3…, что и 46c428f из #511.",
+    "evidence_hashes": "Все 11 source_hash совпадают с source_text_hash в sources/15-full-evidence.yaml, с previous_accepted_result этого пакета, с отчётом #511 и с data/legal/evidence/*.yaml. python3 tools/normative_scope.py --today 2026-10-09: просроченных норм нет, у всех 33 норм годное доказательство.",
+    "new_sources_fetched": "нет; использованы только сохранённые полные тексты; ст. 198 ГК РФ не получена и не использована"
+  },
+  "acceptance_note": "Адресный перечит исправленного абзаца CP-11 документа 15 на смысловом хэше 49ff8cf9…. Находка I-1 из #511 устранена. Продолжительность общего срока исковой давности теперь отнесена только к закону: это соответствует п. 1 ст. 196 ГК РФ. Начало течения привязано к окончанию срока оплаты по договору для обязательства с определённым сроком исполнения: это соответствует п. 2 ст. 200 ГК РФ. Обе нормы проверены по сохранённому официальному тексту gk-196-200 с source_hash 8091b6e6…. Новых утверждений, чисел и ссылок на ст. 198 ГК РФ нет. Смысловым хэшем доказано, что остальной текст совпадает с версией 966133a3… из #511, поэтому подтверждённые там позиции CP-1–CP-10 и неизменённые правовые позиции принятой редакции 2f0d7b36… наследуются без изменений. Все 11 source_hash совпадают с полными evidence, quote_obtained = true по всем нормам. Противоречий в прочитанных источниках нет, нового механизма нет, эскалация не нужна. Вердикт PASS относится только к хэшу 49ff8cf9…. Отчёт #511 с вердиктом FAIL для 966133a3… остаётся в силе для той версии. Это внутренний технический отчёт: он не утверждает вычитку юристом и не заменяет human-review.yaml. Реестр data/legal/normative-results.yaml этим заходом не изменён."
+}
