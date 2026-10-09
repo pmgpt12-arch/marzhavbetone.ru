@@ -606,165 +606,148 @@ results:
   scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
     ставки/пошлины, верстки или SALE_READY.
 - document: products-storage/01-zakrytie-rabot/16-iskovoe-zayavlenie-o-vzyskanii.docx
-  document_hash: sha256:a945169a8e89dfc7dd2900adf3eda736ad600fbe284e555dbdf97ba1a2f57903
+  document_hash: sha256:6f3c7539c22db12d2d3413686c1aef05bd9f735ca2b6146f1a3d680ef7646e29
   generator: projects/marzha_v_betone/product/build/05-isk.js
   generator_hash: sha256:4e57f23ace827f96003d936e070bf06b7be3e572db14d4282195912b646e092e
-  raw_document_hash: sha256:ae69e655f17271578392692c3931de0d0cfb198c63fae685ac74c402262357bd
-  checked_at: '2026-10-08'
+  raw_document_hash: sha256:3d76c4673166f1e6269fc397db48d06d8633c802804212073f0fd6f903aa3d2e
+  checked_at: '2026-10-09'
   checker: normative-checker
-  reviewer: p1_legal_freshness
-  task: P1_FINAL_EXACT_ARTIFACT_NORMATIVE_2026_10_08
+  reviewer: OpenRouter/anthropic/claude-opus-5.5
+  task: 'GitHub issue #507'
   norms_checked:
-  - norm_id: gk-711
-    source_hash: sha256:beb146d66d840f56a3e8c71be39c74e5eafd338efc6df033d3d0b7eed06bb932
-    source_class: secondary
-    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/46561f5271883fcf47f3e9859d3a59eb56bfcd96/
-    quote_obtained: true
-    current_edition_verified: true
-    verdict: подтверждена
-    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
-  - norm_id: gk-746
-    source_hash: sha256:30bccfcf469410e8aec868275b6186af9d37d247f8460eaf31eda4f5fd3136f1
-    source_class: secondary
-    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/213b00ab7366c34225e24be2f360912884de054e/
-    quote_obtained: true
-    current_edition_verified: true
-    verdict: подтверждена
-    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
-  - norm_id: gk-753
-    source_hash: sha256:c2003cc8858044118a3d988f0bf1f00276df9799cdbe7fc466398d632975c604
-    source_class: secondary
-    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/6b2d751a0d605616a9a1012cb7c7fbac1b6d84b3/
-    quote_obtained: true
-    current_edition_verified: true
-    verdict: подтверждена
-    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
   - norm_id: gk-395
     source_hash: sha256:07ae25b8650a6efb592a911c1ae0c8ff2ff876dfb8da065293113f120ac338bd
+    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
     source_class: official
-    source_used: http://pravo.gov.ru/proxy/ips/?docview&page=1&print=1&nd=102033239&rdk=157&&empire=
     quote_obtained: true
-    current_edition_verified: true
     verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  - norm_id: apk-4-5
-    source_hash: sha256:6603e670456f0ab3a8ec287c3626d56613e7623428a3c7ba937c8b0cc1a67d44
-    source_class: official
-    source_used: http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102079219&page=all&rdk=89
-    quote_obtained: true
-    current_edition_verified: true
-    verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  - norm_id: apk-125-126
-    source_hash: sha256:607a4103328f7a67401283a8cfe2b68893cb6c19dffadacd7e92100c1b7c4d30
-    source_class: official
-    source_used: http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102079219&page=all&rdk=89
-    quote_obtained: true
-    current_edition_verified: true
-    verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  - norm_id: apk-128-148
-    source_hash: sha256:5ab245b1975ce0794aaa5595c88088d4fa12e607e23d34c37bea8932e9b9628e
-    source_class: official
-    source_used: http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102079219&page=all&rdk=89
-    quote_obtained: true
-    current_edition_verified: true
-    verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  - norm_id: nk-333-21
-    source_hash: sha256:59a4e95e4f901220dda2c6a53a7b7a6122767cff766f2dfd07802f41e9d867eb
-    source_class: secondary
-    source_used: https://www.consultant.ru/document/cons_doc_LAW_28165/fd44625defd599290366d418d3be13d277f1515d/
-    quote_obtained: true
-    current_edition_verified: true
-    verdict: подтверждена
-    note: Применимый текст прочитан 08.10.2026; источник и редакция сохранены в evidence.
+    scope: delta C-1
   - norm_id: apk-27
     source_hash: sha256:b3a1e46aec2e1127e4d3366196b4c838026a7aa77a50a839735d6721762cf3cc
+    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
     source_class: official
-    source_used: http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102079219&page=all&rdk=89
     quote_obtained: true
-    current_edition_verified: true
     verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
+    scope: delta C-2 (условие сохранено дословно)
   - norm_id: apk-28
     source_hash: sha256:bbb7beb7079b0138124cf130275d903f8246a398f4da09384620452c7cccafcc
+    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
     source_class: official
-    source_used: http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102079219&page=all&rdk=89
     quote_obtained: true
-    current_edition_verified: true
     verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  - norm_id: apk-35
-    source_hash: sha256:e5bada3501190b2b8dbab9ade625a9dadc38a2ba9f461368cbad1d20b65a60c4
+    scope: delta C-2 (условие сохранено дословно)
+  - norm_id: apk-4-5
+    source_hash: sha256:6603e670456f0ab3a8ec287c3626d56613e7623428a3c7ba937c8b0cc1a67d44
+    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
     source_class: official
-    source_used: http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102079219&page=all&rdk=89
     quote_obtained: true
-    current_edition_verified: true
     verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  - norm_id: apk-37
-    source_hash: sha256:803b02c99e6e770221639289494473522f4eb47e145d4b9ad6748bce7fd8d225
+    scope: delta C-2, C-4 (ч. 5 ст. 4)
+  - norm_id: gk-753
+    source_hash: sha256:c2003cc8858044118a3d988f0bf1f00276df9799cdbe7fc466398d632975c604
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/6b2d751a0d605616a9a1012cb7c7fbac1b6d84b3/
+    source_class: secondary
+    quote_obtained: true
+    verdict: подтверждена
+    scope: delta C-2, C-3 (п. 4 ст. 753)
+  - norm_id: apk-125-126
+    source_hash: sha256:607a4103328f7a67401283a8cfe2b68893cb6c19dffadacd7e92100c1b7c4d30
+    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
     source_class: official
-    source_used: http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102079219&page=all&rdk=89
     quote_obtained: true
-    current_edition_verified: true
     verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  - norm_id: apk-103
-    source_hash: sha256:b427064c0a4b88b083abf95d33057d742d97b4a0437fd9cce9be715333b8dcc3
+    scope: delta C-4
+  - norm_id: apk-128-148
+    source_hash: sha256:5ab245b1975ce0794aaa5595c88088d4fa12e607e23d34c37bea8932e9b9628e
+    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
     source_class: official
-    source_used: http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102079219&page=all&rdk=89
     quote_obtained: true
-    current_edition_verified: true
     verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  - norm_id: apk-110
-    source_hash: sha256:f4204c910a45b86d889d836ffe5c334efb6a2105d093e59fe624a29fc120f815
-    source_class: official
-    source_used: http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102079219&page=all&rdk=89
-    quote_obtained: true
-    current_edition_verified: true
-    verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  - norm_id: gk-309
-    source_hash: sha256:63ae9f33e88a92bd41c8bc45058b1ade42aa6d92bc0fb6e568e5af783bfab17d
-    source_class: official
-    source_used: http://pravo.gov.ru/proxy/ips/?docview&page=1&print=1&nd=102033239&rdk=157&&empire=
-    quote_obtained: true
-    current_edition_verified: true
-    verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  - norm_id: gk-310
-    source_hash: sha256:1fce76406728a24d7860cbcbc9bd55faf5c22f3fd8c7eddd300a3e5efa147b4f
-    source_class: official
-    source_used: http://pravo.gov.ru/proxy/ips/?docview&page=1&print=1&nd=102033239&rdk=157&&empire=
-    quote_obtained: true
-    current_edition_verified: true
-    verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
-  - norm_id: gk-330
-    source_hash: sha256:8c4714b2a6784a22607a162b1b5d63dcbc4063219d64100b963a096e80a9edb3
-    source_class: official
-    source_used: http://pravo.gov.ru/proxy/ips/?docview&page=1&print=1&nd=102033239&rdk=157&&empire=
-    quote_obtained: true
-    current_edition_verified: true
-    verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
+    scope: delta C-4 (ч. 1 ст. 128, п. 2 ч. 1 ст. 148)
   - norm_id: apk-129
     source_hash: sha256:77c6756834469e8b99a136cecf0a13a501356ceb7d1d79f14816f6ae59185262
-    source_class: official
     source_used: http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102079219&page=all&rdk=89
+    source_class: official
     quote_obtained: true
-    current_edition_verified: true
     verdict: подтверждена
-    note: Полный официальный текст прочитан в этом заходе; источник и редакция сопоставлены.
+    scope: delta C-4 (п. 4, 5 ч. 1 ст. 129)
+  - norm_id: nk-333-21
+    source_hash: sha256:59a4e95e4f901220dda2c6a53a7b7a6122767cff766f2dfd07802f41e9d867eb
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_28165/fd44625defd599290366d418d3be13d277f1515d/
+    source_class: secondary
+    quote_obtained: true
+    verdict: подтверждена
+    scope: delta C-5 (пп. 1 п. 1 ст. 333.21)
+  - norm_id: gk-711
+    source_hash: sha256:beb146d66d840f56a3e8c71be39c74e5eafd338efc6df033d3d0b7eed06bb932
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/46561f5271883fcf47f3e9859d3a59eb56bfcd96/
+    source_class: secondary
+    quote_obtained: true
+    verdict: подтверждена
+    scope: inherited; evidence hash confirmed
+  - norm_id: gk-746
+    source_hash: sha256:30bccfcf469410e8aec868275b6186af9d37d247f8460eaf31eda4f5fd3136f1
+    source_used: https://www.consultant.ru/document/cons_doc_LAW_9027/213b00ab7366c34225e24be2f360912884de054e/
+    source_class: secondary
+    quote_obtained: true
+    verdict: подтверждена
+    scope: inherited; evidence hash confirmed
+  - norm_id: apk-35
+    source_hash: sha256:e5bada3501190b2b8dbab9ade625a9dadc38a2ba9f461368cbad1d20b65a60c4
+    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
+    source_class: official
+    quote_obtained: true
+    verdict: подтверждена
+    scope: inherited; evidence hash confirmed
+  - norm_id: apk-37
+    source_hash: sha256:803b02c99e6e770221639289494473522f4eb47e145d4b9ad6748bce7fd8d225
+    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
+    source_class: official
+    quote_obtained: true
+    verdict: подтверждена
+    scope: inherited; evidence hash confirmed
+  - norm_id: apk-103
+    source_hash: sha256:b427064c0a4b88b083abf95d33057d742d97b4a0437fd9cce9be715333b8dcc3
+    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
+    source_class: official
+    quote_obtained: true
+    verdict: подтверждена
+    scope: inherited; evidence hash confirmed
+  - norm_id: apk-110
+    source_hash: sha256:f4204c910a45b86d889d836ffe5c334efb6a2105d093e59fe624a29fc120f815
+    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102079219
+    source_class: official
+    quote_obtained: true
+    verdict: подтверждена
+    scope: inherited; evidence hash confirmed
+  - norm_id: gk-309
+    source_hash: sha256:63ae9f33e88a92bd41c8bc45058b1ade42aa6d92bc0fb6e568e5af783bfab17d
+    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    source_class: official
+    quote_obtained: true
+    verdict: подтверждена
+    scope: inherited; evidence hash confirmed
+  - norm_id: gk-310
+    source_hash: sha256:1fce76406728a24d7860cbcbc9bd55faf5c22f3fd8c7eddd300a3e5efa147b4f
+    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    source_class: official
+    quote_obtained: true
+    verdict: подтверждена
+    scope: inherited; evidence hash confirmed
+  - norm_id: gk-330
+    source_hash: sha256:8c4714b2a6784a22607a162b1b5d63dcbc4063219d64100b963a096e80a9edb3
+    source_used: http://pravo.gov.ru/proxy/ips/?docbody=&nd=102033239
+    source_class: official
+    quote_obtained: true
+    verdict: подтверждена
+    scope: inherited; evidence hash confirmed
   verdict: PASS
   issues: []
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: Перечит применимых положений и финального архива 6feb; расхождений не выявлено.
+  recheck: tools/reports/p1-acceptance-recovery-20261009/16-normative-recheck.yaml
   scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
     ставки/пошлины, верстки или SALE_READY.
   binding_status: FINAL; root sequential render confirmed no source or semantic change
+  previous_document_hash: sha256:a945169a8e89dfc7dd2900adf3eda736ad600fbe284e555dbdf97ba1a2f57903
