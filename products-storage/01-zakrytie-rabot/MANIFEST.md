@@ -19,12 +19,12 @@
 ### Закрытие работ
 - `00-INSTRUKCIYA.docx` — Word
 - `00-INSTRUKCIYA.pdf` — PDF
-- `01-ks-2.docx` — Word: форма КС-2
-- `02-ks-3.docx` — Word: форма КС-3
+- `01-ks-2.docx` — Word: унифицированная форма КС-2, Госкомстат № 100, ОКУД 0322005
+- `02-ks-3.docx` — Word: унифицированная форма КС-3, Госкомстат № 100, ОКУД 0322001
 - `03-akt-vypolnennyh-rabot.docx` — Word: акт выполненных работ
 - `04-akt-priemki.docx` — Word: акт приемки
 - `05-peredatochnyy-akt.docx` — Word: передаточный акт
-- `06-zhurnal-obemov.xlsx` — Excel: журнал объемов
+- `06-zhurnal-obemov.xlsx` — Excel: операционный журнал объемов, не КС-6а
 - `07-reestr-zamechaniy.xlsx` — Excel: реестр замечаний
 - `08-reestr-peredachi.xlsx` — Excel: реестр передачи
 - `09-checklist-peredachi.pdf` — PDF: чек-лист передачи
@@ -52,3 +52,5 @@
 ## Ценовая гипотеза
 14 900–19 900 ₽ — гипотеза от 23.07.2026, действующая цена в
 `products-config.php`
+
+Формы 01–02 применяются по договору и учетной политике; остальные файлы — рабочие и договорные документы, не утвержденные государственные формы.
