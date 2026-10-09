@@ -136,17 +136,30 @@ def make_document() -> Document:
     normal.font.size = Pt(10.5)
     normal.font.color.rgb = GRAPHITE
     normal.paragraph_format.space_after = Pt(5)
-    for style_name in ["Title", "Heading 1"]:
-        style = doc.styles[style_name]
-        style.font.name = "Times New Roman"
-        style.font.color.rgb = GRAPHITE if style_name == "Title" else GOLD
-        style.font.size = Pt(17 if style_name == "Title" else 12)
-        style.font.bold = True
-        style.paragraph_format.space_before = Pt(9 if style_name == "Heading 1" else 0)
-        style.paragraph_format.space_after = Pt(5)
+    heading_style = doc.styles["Heading 1"]
+    heading_style.font.name = "Times New Roman"
+    heading_style.font.color.rgb = GOLD
+    heading_style.font.size = Pt(12)
+    heading_style.font.bold = True
+    heading_style.paragraph_format.space_before = Pt(9)
+    heading_style.paragraph_format.space_after = Pt(5)
 
+    title_style = doc.styles["Title"]
+    title_style.font.name = "Times New Roman"
+    title_style.font.size = Pt(17)
+    title_style.font.bold = True
+    title_style.font.color.rgb = RGBColor(0, 0, 0)
+    title_style.paragraph_format.space_after = Pt(9)
+    border = title_style.element.get_or_add_pPr().find(qn("w:pBdr"))
+    if border is not None:
+        title_style.element.get_or_add_pPr().remove(border)
     title = doc.add_paragraph(style="Title")
-    title.add_run("Согласование объёма дополнительных работ")
+    title.paragraph_format.space_after = Pt(9)
+    title_run = title.add_run("Согласование объёма дополнительных работ")
+    title_run.bold = True
+    title_run.font.name = "Times New Roman"
+    title_run.font.size = Pt(17)
+    title_run.font.color.rgb = RGBColor(0, 0, 0)
     title.alignment = WD_ALIGN_PARAGRAPH.LEFT
     body(doc, "Заполните данные объекта и выберите один маршрут. Для направления заказчику сохраните экземпляр и подтверждение доставки; после ответа зафиксируйте решение по позициям.")
 
