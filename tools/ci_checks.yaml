@@ -231,6 +231,13 @@
   зачем: цена берётся из одного места
   требует: []
   решение: ''
+- id: test_official_forms
+  команда: python3 tools/test_official_forms.py
+  класс: public
+  блокирует: true
+  зачем: КС-2, КС-3 и АОСР сохраняют реквизиты госформ, а архивы и зеркала совпадают
+  требует: []
+  решение: ''
 - id: test_p1_price_http
   команда: python3 tools/test_p1_price_http.py
   класс: public
