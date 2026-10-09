@@ -58,6 +58,8 @@ for email_path in email_paths:
     email = text_of(email_path)
     if CANONICAL not in email or 'Допработы без потерь' in email:
         failures.append((str(email_path.relative_to(BASE.parents[1])), 'canonical product name'))
+    if '00-INSTRUKCIYA.pdf' not in email or '00_Инструкция.pdf' in email:
+        failures.append((str(email_path.relative_to(BASE.parents[1])), 'delivered instruction filename'))
     failures += [(str(email_path.relative_to(BASE.parents[1])), phrase) for phrase in FORBIDDEN
                  if re.search(phrase, email, re.I)]
 
