@@ -53,7 +53,7 @@ def main():
     original = files(SOURCE)
     assert len(original) == 19
     assert entries(REFERENCE.read_bytes()) == original
-    assert sha(REFERENCE.read_bytes()) == "bbca391514e80607c190d0c15ff8d7b9e5d9ac54a7c1e71a4fdaabf18b821ad6"
+    assert sha(REFERENCE.read_bytes()) == "b0bbf5badac93bdb897d7749aaac23b8d08e53893a0bbed46daedd8c63577ae6"
     with tempfile.TemporaryDirectory(prefix="p1-price-http-") as td:
         base = Path(td)
         web, masters, orders = base / "web", base / "masters", base / "orders"

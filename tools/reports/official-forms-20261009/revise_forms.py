@@ -33,7 +33,7 @@ def add_table(d, heads, empty=3, widths=None):
                 for run in p.runs:
                     run.font.name='Arial'; run.font.size=Pt(8 if len(heads)>6 else 9)
                     if i==0: run.font.bold=True
-            if i==0: shade(c,'E8EEF4')
+            if i==0: shade(c,'F2EFE9')
     t.rows[0]._tr.get_or_add_trPr().append(OxmlElement('w:tblHeader'))
     return t
 
