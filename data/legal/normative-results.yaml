@@ -17,14 +17,14 @@ meta:
   label_delta_proof: tools/reports/p1-acceptance-recovery-20261009/01-03-delta-inheritance.json
 results:
 - document: products-storage/01-zakrytie-rabot/01-ks-2.docx
-  document_hash: sha256:120d09b5aac61859dffe8c4cf2807a459ad438a74f609deac2cfa9f9dd974c59
-  generator: projects/marzha_v_betone/product/build/p1-closing-forms.js
-  generator_hash: sha256:776497b52a2ad7d737172c647099a4a2bdcc93c064f1a6a026b6e5ef0220ec28
-  raw_document_hash: sha256:5ba873778a44267a2822f66e85a954306162c6ea74c02b331176f6efdfca543e
-  checked_at: '2026-10-08'
+  document_hash: sha256:2d45e19bfbb8d38f7a435962127bae5effc4fa07267f56520d40fa5756ac38b7
+  generator: tools/reports/official-forms-20261009/revise_forms.py
+  generator_hash: sha256:768fd91bf566f752c0c5ed26ba09e787e45a2571185a95dda8c3ebaf5462d47c
+  raw_document_hash: sha256:24508159b482af1881e5b186a27c7c28306e921c77ac01417a070e367c1a07b4
+  checked_at: '2026-10-09'
   checker: normative-checker
   reviewer: p1_legal_freshness
-  task: P1_FINAL_EXACT_ARTIFACT_NORMATIVE_2026_10_08
+  task: OFFICIAL_FORMS_2026_10_09
   norms_checked:
   - norm_id: gk-753
     source_hash: sha256:c2003cc8858044118a3d988f0bf1f00276df9799cdbe7fc466398d632975c604
@@ -39,14 +39,14 @@ results:
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: Принятая нормативная сверка 08.10 наследуется после детерминированного сравнения всех частей; правовая
-    часть не менялась. См. non_normative_delta_review.
+  recheck: >-
+    Структура и реквизиты формы КС-2 сверены с постановлением Госкомстата № 100: ОКУД 0322005, восемь граф, роли заказчика и подрядчика, их подписи. Статья 753 ГК РФ в сохранённом источнике допускает оформление сдачи и приёмки актом; новая пустая форма не утверждает возникновение долга, автоматическую приёмку или последствия отказа от подписи. Это новый смысловой хеш, прежний PASS не наследуется без этого адресного перечита.
   scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
     ставки/пошлины, верстки или SALE_READY.
-  previous_document_hash: sha256:e46dc1016b40dec40781175cb1d87d5fcf489a0fcf2aee33a12cc492ab1c38d1
-  non_normative_delta_review: tools/reports/p1-acceptance-recovery-20261009/01-03-delta-inheritance.json
-  generator_ref: pmgpt12-arch/ai-business-os@abeb0bdbf11f60d254dea087fd744868a3baa739
-  source_generation_receipt: tools/reports/p1-acceptance-recovery-20261009/source-generation-reproduction.json
+  previous_document_hash: sha256:120d09b5aac61859dffe8c4cf2807a459ad438a74f609deac2cfa9f9dd974c59
+  non_normative_delta_review: tools/reports/official-forms-20261009/FORM-PROVENANCE.md
+  generator_ref: tools/reports/official-forms-20261009/revise_forms.py
+  source_generation_receipt: tools/reports/official-forms-20261009/FORM-PROVENANCE.md
 - document: products-storage/01-zakrytie-rabot/03-akt-vypolnennyh-rabot.docx
   document_hash: sha256:fbae2bf19cc41f7ce0278b8ef145a7029ae73d8477e80dd51bb171ad96e08b51
   generator: projects/marzha_v_betone/product/build/p1-closing-forms.js

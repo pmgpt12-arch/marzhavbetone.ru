@@ -12,11 +12,11 @@
 - `01-prikaz-na-dopobem.docx` — Word: письменное поручение на дополнительные работы
 - `02-soglasovanie-obema.docx` — Word: согласование объема
 - `03-uvedomlenie-o-doprabotah.docx` — Word: уведомление о допработах
-- `04-akt-skrytyh-rabot.docx` — Word: акт скрытых работ
+- `04-akt-skrytyh-rabot.docx` — Word: рекомендуемый образец АОСР, приложение № 3 к приказу Минстроя № 344/пр
 - `05-izmenenie-srokov.docx` — Word: изменение сроков
 - `06-pismo-o-priostanovke.docx` — Word: письмо о приостановке
 - `07-raschet-stoimosti.xlsx` — Excel: расчет стоимости
-- `08-zhurnal-doprabot.xlsx` — Excel: журнал допработ
+- `08-zhurnal-doprabot.xlsx` — Excel: операционный журнал допработ, не КС-6а
 - `09-checklist-fotofiksacii.pdf` — PDF: чек-лист фотофиксации
 - `10-algoritm-doprabot.pdf` — PDF: алгоритм допработ
 - `11-dopsoglashenie-obem-i-cena.docx` — Word: допсоглашение об изменении объёма и цены — обещано бесплатным материалом «за границей бесплатного»
@@ -30,3 +30,5 @@
 
 ## Выпуск
 Текущий комплект: два маршрута, 15 файлов для покупателя. Цена задаётся единым каталогом сайта.
+
+Только файл 04 опирается на рекомендуемый образец Минстроя. Остальные файлы — рабочие и договорные формы комплекта.

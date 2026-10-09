@@ -26,10 +26,10 @@ scope:
 
 out_of_scope:
   - path: products-storage/01-zakrytie-rabot/00-INSTRUKCIYA.docx
-    reason: инструкция по применению комплекта, правовых утверждений не несёт
+    reason: инструкция с указанием происхождения КС-2 и КС-3 и правил применения; официальный статус и графы проверяет tools/test_official_forms.py, договорные выводы не устанавливает
   - path: products-storage/01-zakrytie-rabot/02-ks-3.docx
     reason: >-
-      Фактическая договорная справка о стоимости по подтверждённым актам; прямо не является суммой задолженности, не удостоверяет приёмку и не заявляет автоматического права на оплату или статуса утверждённой унифицированной формы.
+      Унифицированная форма № КС-3 по постановлению Госкомстата № 100. Таблица стоимости и затрат; не устанавливает сумму задолженности, автоматическое право на оплату или самостоятельную приёмку. Происхождение и структуру проверяет tools/test_official_forms.py.
   - path: products-storage/01-zakrytie-rabot/05-peredatochnyy-akt.docx
     reason: >-
       Фактический акт получения перечисленных документов; прямо исключает удостоверение приёмки работ, их объёма, качества или суммы задолженности. Нормативных сроков, обязательности формы или автоматических последствий не заявляет.
@@ -42,7 +42,7 @@ out_of_scope:
 
 documents:
   - path: products-storage/01-zakrytie-rabot/01-ks-2.docx
-    generator: projects/marzha_v_betone/product/build/p1-closing-forms.js
+    generator: tools/reports/official-forms-20261009/revise_forms.py
     legally_significant: true
     norms:
     - gk-753
