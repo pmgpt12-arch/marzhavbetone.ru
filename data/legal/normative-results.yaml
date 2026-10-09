@@ -9,10 +9,10 @@ meta:
     проверяет покупатель.
 results:
 - document: products-storage/01-zakrytie-rabot/01-ks-2.docx
-  document_hash: sha256:e46dc1016b40dec40781175cb1d87d5fcf489a0fcf2aee33a12cc492ab1c38d1
+  document_hash: sha256:120d09b5aac61859dffe8c4cf2807a459ad438a74f609deac2cfa9f9dd974c59
   generator: projects/marzha_v_betone/product/build/p1-closing-forms.js
   generator_hash: sha256:d001466d361ef36c19a9614f60d19864558d385d066c620332c4fe8dbaada7fb
-  raw_document_hash: sha256:e54c9e707d73800de919aefafa5ad3f768e10249b2830daa6985167b8700fc1c
+  raw_document_hash: sha256:5ba873778a44267a2822f66e85a954306162c6ea74c02b331176f6efdfca543e
   checked_at: '2026-10-08'
   checker: normative-checker
   reviewer: p1_legal_freshness
@@ -31,14 +31,17 @@ results:
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: Перечит применимых положений и финального архива 6feb; расхождений не выявлено.
+  recheck: Принятая нормативная сверка 08.10 наследуется после детерминированного сравнения всех частей; правовая
+    часть не менялась. См. non_normative_delta_review.
   scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
     ставки/пошлины, верстки или SALE_READY.
+  previous_document_hash: sha256:e46dc1016b40dec40781175cb1d87d5fcf489a0fcf2aee33a12cc492ab1c38d1
+  non_normative_delta_review: tools/reports/p1-acceptance-recovery-20261009/01-03-delta-inheritance.json
 - document: products-storage/01-zakrytie-rabot/03-akt-vypolnennyh-rabot.docx
-  document_hash: sha256:cf5df86cf10d899c2e8ef57ab25649767c8467d0042aa9aaad0bbfe8c857b2ed
+  document_hash: sha256:fbae2bf19cc41f7ce0278b8ef145a7029ae73d8477e80dd51bb171ad96e08b51
   generator: projects/marzha_v_betone/product/build/p1-closing-forms.js
   generator_hash: sha256:d001466d361ef36c19a9614f60d19864558d385d066c620332c4fe8dbaada7fb
-  raw_document_hash: sha256:02a5783c62f0f61dc6e1c9b1434270c7b2bd9d41ce1bda48904876da870ccf37
+  raw_document_hash: sha256:2a8d73e99f94fffab9c9c07ecb5c8131f4a07983519ceb436313946b77324cb7
   checked_at: '2026-10-08'
   checker: normative-checker
   reviewer: p1_legal_freshness
@@ -57,9 +60,12 @@ results:
   corrections: []
   escalation_required: false
   escalation_reason: null
-  recheck: Перечит применимых положений и финального архива 6feb; расхождений не выявлено.
+  recheck: Принятая нормативная сверка 08.10 наследуется после детерминированного сравнения всех частей; правовая
+    часть не менялась. См. non_normative_delta_review.
   scope_limit: Только указанный документ и перечисленные нормы. Без вычитки юристом, индивидуального договора, числовой
     ставки/пошлины, верстки или SALE_READY.
+  previous_document_hash: sha256:cf5df86cf10d899c2e8ef57ab25649767c8467d0042aa9aaad0bbfe8c857b2ed
+  non_normative_delta_review: tools/reports/p1-acceptance-recovery-20261009/01-03-delta-inheritance.json
 - document: products-storage/01-zakrytie-rabot/04-akt-priemki.docx
   document_hash: sha256:77e9cca4e930c106847b99523b5644ef7f9e415d35c4fe13f2bf52cb0714b00c
   generator: projects/marzha_v_betone/product/build/p1-closing-forms.js
