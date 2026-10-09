@@ -138,7 +138,7 @@ function mvb_products(): array
         ],
         'p2' => [
             'name'  => 'Комплект «Дополнительные работы: как получить оплату»',
-            'price' => 249000,
+            'price' => 1990000,
             'dir'   => '02-dopraboty-bez-poter',
             'zip'   => '02-dopy-ne-v-podarok.zip',
         ],
