@@ -63,6 +63,8 @@ note = "Сверьте правовые нормы и реквизиты на д
 criteria = ("Пакет внедрён, когда по каждому объёму зафиксированы основание, факт выполнения и доказательства в журнале 06, "
             "суммы согласованы в формах 01–03, состав и передача отмечены в 05 и 08, замечания отражены в 07. "
             "Срок оплаты берите из договора и проверяйте по словарю 11. Частичные оплаты сверяйте с банковскими выписками перед расчётом в 14.")
+old_referral = "Спорные юридические формулировки согласуйте с профильным специалистом."
+referral_action = "Сопоставьте формулировки с условиями договора и подтверждающими документами объекта."
 criteria_found = 0
 for paragraph in doc.paragraphs:
     replacement = note if paragraph.text == old_note else criteria if paragraph.text.startswith("Пакет внедрён, когда") else None
@@ -72,6 +74,8 @@ for paragraph in doc.paragraphs:
     if paragraph.text.startswith("Заполните поля в квадратных и двойных фигурных скобках"):
         replacement = ("Заполните поля в квадратных и двойных фигурных скобках, затем удалите обозначения полей и подсказки. "
                        "Проверьте заполненную форму перед отправкой.")
+    if paragraph.text == old_referral:
+        replacement = referral_action
     if replacement is not None:
         if paragraph.text.startswith("Пакет внедрён, когда"):
             criteria_found += 1
