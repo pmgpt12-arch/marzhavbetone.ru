@@ -3,8 +3,9 @@ import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 from docx import Document
-from docx.shared import Pt, RGBColor, Inches
+from docx.shared import Pt, RGBColor, Inches, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.table import WD_TABLE_ALIGNMENT
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
@@ -18,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # по которой её можно проверить.
 PAID_KEY = "p2"
 PAID_NAME = "Дополнительные работы: как получить оплату"
-PAID_PRICE = "2 490 ₽"
+PAID_PRICE = "19 900 ₽"
 PAID_URL = "https://marzhavbetone.ru/products/p2-dopolnitelnye-raboty.html"
 
 thin_border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
@@ -59,15 +60,44 @@ def create_excel(filepath, sheet_name="Лист1", headers=None, rows=None, col_
 
 def create_word_doc(filepath, title, sections):
     doc = Document()
-    title_para = doc.add_heading(title, level=0)
+    section = doc.sections[0]
+    section.top_margin = Cm(1.8)
+    section.bottom_margin = Cm(1.8)
+    section.left_margin = Cm(2.0)
+    section.right_margin = Cm(2.0)
+    normal = doc.styles["Normal"]
+    normal.font.name = "Arial"
+    normal.font.size = Pt(10)
+    normal.font.color.rgb = RGBColor(54, 60, 65)
+    normal.paragraph_format.space_after = Pt(6)
+    for name, size, color in (("Title", 17, (41, 46, 51)),
+                              ("Heading 1", 11, (41, 46, 51))):
+        style = doc.styles[name]
+        style.font.name = "Arial"
+        style.font.size = Pt(size)
+        style.font.bold = True
+        style.font.color.rgb = RGBColor(*color)
+        style.paragraph_format.space_before = Pt(11)
+        style.paragraph_format.space_after = Pt(5)
+    footer = section.footer.paragraphs[0]
+    footer.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    run = footer.add_run("МАРЖА В БЕТОНЕ  •  marzhavbetone.ru")
+    run.font.name = "Arial"
+    run.font.size = Pt(8)
+    run.font.color.rgb = RGBColor(128, 111, 78)
+    title_para = doc.add_paragraph()
     title_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    doc.add_paragraph()
+    title_run = title_para.add_run(title)
+    title_run.font.name = "Arial"
+    title_run.font.size = Pt(17)
+    title_run.font.bold = True
+    title_run.font.color.rgb = RGBColor(41, 46, 51)
     
     for section in sections:
         if "heading" in section:
             doc.add_heading(section["heading"], level=1)
         
-        if "text" in section:
+        if section.get("text"):
             doc.add_paragraph(section["text"])
         
         if "bullet" in section:
@@ -79,6 +109,7 @@ def create_word_doc(filepath, title, sections):
             if table_data:
                 table = doc.add_table(rows=len(table_data), cols=len(table_data[0]))
                 table.style = 'Table Grid'
+                table.alignment = WD_TABLE_ALIGNMENT.CENTER
                 for i, row_data in enumerate(table_data):
                     for j, cell_text in enumerate(row_data):
                         table.cell(i, j).text = str(cell_text)
@@ -133,17 +164,15 @@ def build_free_02():
                  "Сделаны ли фотофиксации 'до' начала допработ?"
              ]},
             {"heading": "Если ответ 'НЕТ' хотя бы на один вопрос",
-             "text": "Риск неоплаты допработ резко возрастает. Рекомендуем остановиться и зафиксировать условия в письменном виде. Используйте схему фиксации поручения и шаблон уведомления из этого комплекта."},
-            {"heading": "⚠️ Что этот материал НЕ закрывает",
+             "text": "Риск неоплаты допработ резко возрастает. Рекомендуем остановиться и зафиксировать условия в письменном виде. Используйте схему фиксации поручения и форму уведомления из этого комплекта."},
+            {"heading": "Следующий шаг — оформить условия",
              "bullet": [
-                 "Составление юридически корректного допсоглашения с расчетом стоимости",
-                 "Пересмотр календарного плана с учетом допработ и простоев",
-                 "Работа с претензиями заказчика о качестве допработ",
-                 "Взыскание неоплаченных допработ через суд (особенно при отсутствии письменных документов)",
-                 "Фотофиксация: полный регламент с привязкой к актам скрытых работ"
+                 "Зафиксируйте поручение и согласуйте конкретный объём работ.",
+                 "Рассчитайте стоимость и отразите влияние на сроки.",
+                 "Сохраните переписку, фото и документы передачи результата."
              ]},
             {"heading": "🔗 Переход к полному комплекту",
-             "text": f"Комплект «{PAID_NAME}» включает: готовые допсоглашения (объем, сроки, цена), калькулятор стоимости, алгоритм согласования с заказчиком, шаблоны писем о приостановке работ.\n\nСтоимость: {PAID_PRICE}\nСтраница комплекта: {PAID_URL}"},
+             "text": f"Комплект «{PAID_NAME}» включает: формы поручения, согласования объёма, расчёт стоимости, журнал и соглашения о цене и сроке.\n\nСтоимость: {PAID_PRICE}\nСтраница комплекта: {PAID_URL}"},
         ]
     )
     
@@ -159,7 +188,7 @@ def build_free_02():
                  "СЛУЖЕБНАЯ ЗАПИСКА. В тот же день составьте служебную записку руководителю объекта с описанием: кто, когда, что просил, в каком присутствии. Подпишите у руководителя.",
                  "ЖУРНАЛ РАБОТ. Внесите запись в общий журнал работ: 'Получено устное поручение от [ФИО] на [описание работ]. Ожидается письменное подтверждение.'",
                  "ФОТОФИКСАЦИЯ. Сделайте фото состояния объекта ДО начала допработ с привязкой к дате (включите геолокацию на телефоне).",
-                 "УВЕДОМЛЕНИЕ. Направьте заказчику официальное письмо с уведомлением о получении поручения (шаблон - в этом комплекте)."
+                 "УВЕДОМЛЕНИЕ. Направьте заказчику официальное письмо с уведомлением о получении поручения (форма — в этом наборе)."
              ]},
             {"heading": "Что НЕЛЬЗЯ делать",
              "bullet": [
@@ -169,15 +198,15 @@ def build_free_02():
                  "Отправлять КС-2 по допработам до подписания соглашения об изменении цены"
              ]},
             {"heading": "Когда устное поручение уже выполнено, а документов нет",
-             "text": "Ситуация сложная, но не безнадежная. В полном комплекте есть алгоритм восстановления документальной базы: через переписку, свидетельские показания, экспертизу объемов."},
+             "text": "Ситуация сложная, но не безнадежная. Соберите сохранившуюся переписку и документы по фактически выполненному объёму. Комплект помогает систематизировать материалы и оформить дальнейшее согласование."},
             {"heading": "🔗 Переход к полному комплекту",
-             "text": f"Комплект «{PAID_NAME}» включает: готовые допсоглашения, калькулятор стоимости, регламент фотофиксации, алгоритм согласования, шаблоны писем о приостановке.\n\nСтоимость: {PAID_PRICE}\nСтраница комплекта: {PAID_URL}"},
+             "text": f"Комплект «{PAID_NAME}» включает: формы поручения, уведомления, расчёт стоимости, журнал и соглашения о цене и сроке.\n\nСтоимость: {PAID_PRICE}\nСтраница комплекта: {PAID_URL}"},
         ]
     )
     
     create_word_doc(
         os.path.join(folder, "03-shablon-uvedomleniya.docx"),
-        "ШАБЛОН УВЕДОМЛЕНИЯ о получении поручения на дополнительные работы",
+        "ФОРМА УВЕДОМЛЕНИЯ о получении поручения на дополнительные работы",
         [
             {"text": "[На бланке организации]"},
             {"text": ""},
@@ -212,25 +241,19 @@ def build_free_02():
                 "порядка оплаты."
             ]},
             {"text": ""},
-            {"text": "До получения письменного соглашения о дополнительных работах мы не вправе приступить к их выполнению, поскольку это может привести к невозможности согласования стоимости и сроков."},
+            {"text": "До согласования условий просим подтвердить порядок дальнейших действий. Начало работ и уведомление о возможной приостановке оформляются с учётом договора и фактических обстоятельств."},
             {"text": ""},
-            {"text": "В случае неполучения подтверждения в указанный срок оставляем за собой право отказаться от выполнения указанных работ без последствий по договору."},
+            {"text": "Если ответ не поступит в указанный срок, повторно согласуем с вами порядок выполнения, цену и влияние на сроки основного договора."},
             {"text": ""},
             {"text": "Генеральный директор _________________ [ФИО]"},
             {"text": "М.П."},
             {"text": ""},
             {"text": ""},
-            {"text": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"},
-            {"heading": "💡 Как использовать этот шаблон",
-             "numbered": [
-                 "Отправьте сразу после получения устного поручения (в тот же день).",
-                 "Отправляйте заказным письмом с уведомлением о вручении.",
-                 "Сохраняйте квитанцию - это доказательство, что вы действовали добросовестно.",
-                 "Если заказчик не отвечает - работы не начинайте. Это ваше право и защита.",
-                 "Для срочных работ (авария, безопасность) - фотофиксируйте и уведомляйте параллельно."
-             ]},
+            {"heading": "Как направить уведомление",
+             "text": "Направьте по согласованному в договоре каналу связи и сохраните подтверждение отправки и получения. При необходимости используйте также бумажное письмо."
+            },
             {"heading": "🔗 Переход к полному комплекту",
-             "text": f"Комплект «{PAID_NAME}» включает: готовые допсоглашения, калькулятор стоимости, регламент фотофиксации, алгоритм согласования.\n\nСтоимость: {PAID_PRICE}\nСтраница комплекта: {PAID_URL}"},
+             "text": f"Комплект «{PAID_NAME}» включает: формы фиксации поручения и объёма, расчёт стоимости, журнал и соглашения о цене и сроке.\n\nСтоимость: {PAID_PRICE}\nСтраница комплекта: {PAID_URL}"},
         ]
     )
     
