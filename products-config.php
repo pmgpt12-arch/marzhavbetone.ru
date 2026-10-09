@@ -925,7 +925,7 @@ function mvb_delivery_email(array $order, array $links): string
     $body .= "   в том порядке, в котором их применяют.\n";
     $body .= "4. Адаптируйте документы под свой договор и объект.\n\n";
     $body .= "Важно:\n";
-    $body .= "- шаблоны редактируются в Microsoft Word и Excel;\n";
+    $body .= "- документы редактируются в Microsoft Word и Excel;\n";
     $body .= "- PDF-файлы используются как чек-листы и алгоритмы;\n";
     $body .= "- для спорных ситуаций нужна проверка профильного специалиста.\n\n";
     $body .= "Вопросы: " . ADMIN_EMAIL . "\n\n";
