@@ -65,8 +65,21 @@
       "next_stage": "CRITICAL_PATH: exact executor admission; normative + 3-stage buyer/calculation/Office acceptance",
       "evidence": [
         "PR #576 mail accepted; #569 remains Draft",
-        "New route-A candidate ZIP cb3aae752db4bed41cbc0493997135021f00b2570f88d7a72f7c10650d08d5a4"
-      ]
+        "New route-A candidate ZIP cb3aae752db4bed41cbc0493997135021f00b2570f88d7a72f7c10650d08d5a4",
+        "PR579 controls:7/7 ArtifactTool +7/7 Calc fixtures at6b259f6; arithmetic/scope only",
+        "PR579 protection/print4cbc1fa: independent PASS_MECHANICAL;2 actual PDF/10pages, print-scope PASS;UI and filled scenario OPEN"
+      ],
+      "candidate_sha": "4cbc1faea3477fe9116ea09ce25dbd7115043c72",
+      "candidate_archive_sha256": "31cd3823097d550bbf3c3855a528933032e02f6900590625542e7f867fafbb0e",
+      "subchecks": {
+        "arithmetic_zero_blank": "PASS_LIMITED_SCOPE",
+        "native_formula_protection_structure": "PASS_MECHANICAL_UI_OPEN",
+        "blank_form_print": "PASS_ACTUAL_CALC_10_PAGES",
+        "numeric_stop_validation": "OPEN",
+        "filled_form_print": "OPEN",
+        "normative_acceptance": "OPEN",
+        "independent_buyer_acceptance": "OPEN"
+      }
     },
     {
       "sku": "P3",
