@@ -39,7 +39,7 @@ jobs:
       # отвечают кодом 2 «не запускалась», а не «прошла».
       - name: Поставить playwright с хромиумом
         run: |
-          python3 -m pip install --quiet playwright
+          python3 -m pip install --quiet playwright pillow
           python3 -m playwright install --with-deps chromium
 
       # Карта сайта и фид собираются при выкладке, а проверки на них

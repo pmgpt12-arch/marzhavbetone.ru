@@ -2,8 +2,10 @@
 """Browser gate for product hero images; detects missing and zero-width images."""
 from __future__ import annotations
 import argparse
+import io
 import json
 import sys
+from PIL import Image, ImageStat
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -68,17 +70,42 @@ def main() -> int:
                                     timeout=5000)
                             except Exception:
                                 pass
+                            # Loaded width alone does not prove actual painted pixels.
+                            page.evaluate("""async () => {
+                              const img=document.querySelector('.product-hero img');
+                              await img.decode();
+                              await new Promise(resolve => requestAnimationFrame(
+                                () => requestAnimationFrame(resolve)));
+                            }""")
                             observed=page.evaluate(CHECK_JS)
+                            painted=image.screenshot(timeout=7000)
+                            rgb=Image.open(io.BytesIO(painted)).convert('RGB')
+                            ww,hh=rgb.size
+                            center=rgb.crop((ww//12,hh//12,ww-ww//12,hh-hh//12))
+                            paint_stddev=sum(ImageStat.Stat(center).stddev[:3])/3
+                            observed['paint_stddev']=round(paint_stddev,2)
+                            if paint_stddev<9.0:
+                                issues.append(f'{rel}@{viewport}: HERO_VISUALLY_EMPTY stddev={paint_stddev:.2f}')
                             receipts.append({'page':rel,'viewport':viewport,**observed})
                             if not observed['ok']:
                                 issues.append(f"{rel}@{viewport}: {observed['reason']}")
                             if path.name=='p1-oplata-po-ks2.html' and observed['ok']:
                                 if args.screenshots_dir:
+                                    image.screenshot(path=str(args.screenshots_dir /
+                                        f'p1-{viewport}-image.png'))
                                     page.screenshot(path=str(args.screenshots_dir/
                                         f'p1-{viewport}-hero.png'))
                                     page.evaluate('window.scrollTo(0,0)')
                                     page.screenshot(path=str(args.screenshots_dir/
                                         f'p1-{viewport}-firstscreen.png'))
+                                # Pixel gate detects a completely blank rendering.
+                                page.evaluate("() => document.querySelector('.product-hero img').style.filter='brightness(0)'")
+                                dark=Image.open(io.BytesIO(image.screenshot())).convert('RGB')
+                                dw,dh=dark.size
+                                dark=dark.crop((dw//12,dh//12,dw-dw//12,dh-dh//12))
+                                if sum(ImageStat.Stat(dark).stddev[:3])/3>=9.0:
+                                    issues.append('NEGATIVE_GATE_FAILED: visually empty')
+                                page.evaluate("() => document.querySelector('.product-hero img').style.filter=''")
                                 # A missing node and zero geometric width MUST fail the gate.
                                 page.evaluate("() => {document.querySelector('.product-hero img').style.transform='scaleX(0)'}")
                                 mutated=page.evaluate(CHECK_JS)
