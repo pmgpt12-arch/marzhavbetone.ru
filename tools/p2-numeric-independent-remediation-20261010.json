@@ -1,35 +1,43 @@
 {
   "source_issue": 582,
   "source_pr": 581,
-  "remediation_of_pr": 583,
-  "previous_fail_head_sha": "6b0990bee84bfc13cb0585ad1e3284124c78dba2",
-  "previous_fail_preserved": true,
+  "failed_evidence": {
+    "pr": 583,
+    "head_sha": "6b0990bee84bfc13cb0585ad1e3284124c78dba2",
+    "status": "FAIL",
+    "preservation": "PR583 remains unchanged FAIL evidence. This remediation does not supersede, rewrite, or modify PR583; it separately closes only the missing C08-C11 evidence gap."
+  },
   "candidate_head_sha": "3d3409eaa606c5747cc3a20f3738ccb9bca94b4f",
   "diff_base_sha": "fd2a2b3688180989a6a8ac653eba0c8b2bcc958e",
   "scope": "STRUCTURAL_PRESERVATION_ONLY",
   "verdict": "PASS",
-  "verdict_reason": "C08-C11 independently completed against frozen candidate bytes; supersedes only PR583 evidence insufficiency and does not rewrite that FAIL artifact.",
-  "no_paid_api": true,
-  "model_calls": 0,
+  "verdict_reason": "C08-C11 were independently completed against the frozen candidate bytes. The result is limited to structural validation and preservation and does not alter the prior FAIL evidence in PR583.",
   "document_hashes": {
     "accepted_print_input": {
-      "07-raschet-stoimosti.xlsx": "00ff8043c0281ade1076d76285f853d53cd06ae995fdfacece533ca843bb7f3d",
-      "08-zhurnal-doprabot.xlsx": "f50e316cd8e0ecb43343803112b0228f1e6584bd27fa13426c4af72972049950"
+      "tools/reports/portfolio-20261010/p2-print/07-raschet-stoimosti.xlsx": "00ff8043c0281ade1076d76285f853d53cd06ae995fdfacece533ca843bb7f3d",
+      "tools/reports/portfolio-20261010/p2-print/08-zhurnal-doprabot.xlsx": "f50e316cd8e0ecb43343803112b0228f1e6584bd27fa13426c4af72972049950"
     },
     "candidate": {
-      "07-raschet-stoimosti.xlsx": "f2ed0b234111a717eded1d214ddc9c60eb113be51c51c09a75f7d7a641d47134",
-      "08-zhurnal-doprabot.xlsx": "f18c1e71dced81ebe6fe4f95d978a3dada5d04c4778bdbdd1bd15a1f1c7f27e2"
+      "tools/p2-numeric-validation-20261010/07-raschet-stoimosti.xlsx": "f2ed0b234111a717eded1d214ddc9c60eb113be51c51c09a75f7d7a641d47134",
+      "tools/p2-numeric-validation-20261010/08-zhurnal-doprabot.xlsx": "f18c1e71dced81ebe6fe4f95d978a3dada5d04c4778bdbdd1bd15a1f1c7f27e2"
     },
     "author_support": {
-      "build.py": "d1d5a0cb17687083369d671ad62f644313ce091ff5e03c17dfef8d3c5f31d733",
-      "test_numeric_validation.py": "579c140c4ae2259db4c328df4342178d56cd1201f9b18841d9dc437c4af95fd4",
-      "receipt.json": "605a9173ac37dedc33ebe05272c8c49b834b3c2a22c8ad021441465d10bee24b"
+      "tools/p2-numeric-validation-20261010/build.py": "d1d5a0cb17687083369d671ad62f644313ce091ff5e03c17dfef8d3c5f31d733",
+      "tools/p2-numeric-validation-20261010/test_numeric_validation.py": "579c140c4ae2259db4c328df4342178d56cd1201f9b18841d9dc437c4af95fd4",
+      "tools/p2-numeric-validation-20261010/receipt.json": "605a9173ac37dedc33ebe05272c8c49b834b3c2a22c8ad021441465d10bee24b"
     }
+  },
+  "execution_policy": {
+    "model_calls": 0,
+    "no_paid_api": true,
+    "github_modified": false,
+    "temporary_mutations_only": true
   },
   "checks": [
     {
       "id": "C08_numeric_rules_and_500_cells",
       "status": "PASS",
+      "expected": "07 has exactly three custom rules D4:D103, E4:E103, H4:H103. 08 retains three prior list rules and has custom F4:F103 and G4:G103, total five validation elements. All 500 numeric input cells are unique and non-overlapping. Each custom rule uses a relative OR(ISBLANK(top-left),ISNUMBER(top-left)) formula with allowBlank=1, errorStyle=stop, showErrorMessage=1 and no operator or formula2.",
       "actual": {
         "07": {
           "validation_count": 3,
@@ -38,6 +46,11 @@
             "D4:D103",
             "E4:E103",
             "H4:H103"
+          ],
+          "formulas": [
+            "OR(ISBLANK(D4),ISNUMBER(D4))",
+            "OR(ISBLANK(E4),ISNUMBER(E4))",
+            "OR(ISBLANK(H4),ISNUMBER(H4))"
           ]
         },
         "08": {
@@ -46,6 +59,10 @@
           "ranges": [
             "F4:F103",
             "G4:G103"
+          ],
+          "formulas": [
+            "OR(ISBLANK(F4),ISNUMBER(F4))",
+            "OR(ISBLANK(G4),ISNUMBER(G4))"
           ],
           "list_count": 3,
           "list_ranges": [
@@ -56,126 +73,204 @@
         },
         "total_numeric_cells": 500,
         "unique_nonoverlap": true,
-        "rule": "OR(ISBLANK(top-left),ISNUMBER(top-left)); relative reference; allowBlank=1; errorStyle=stop; showErrorMessage=1; no operator/formula2"
-      }
+        "attributes": {
+          "type": "custom",
+          "allowBlank": "1",
+          "errorStyle": "stop",
+          "showErrorMessage": "1",
+          "operator": null,
+          "formula2": null
+        },
+        "formula_semantics": "Blank, zero, positive and negative numeric values satisfy the rule. Text and boolean values do not satisfy ISNUMBER. No magnitude, sign, or percentage policy was added."
+      },
+      "evidence": "Independent stdlib zipfile and ElementTree extraction of both exact candidate XLSX files; all sqref ranges were expanded and checked for count, uniqueness, overlap, attributes and formula references. Existing 08 list validations were compared against the frozen print input."
     },
     {
       "id": "C09_sheet1_and_package_preservation",
       "status": "PASS",
+      "expected": "Only the complete dataValidations element changes. Sheet data, formulas, cached values, cell styles, unlocked input styles, sheet protection, conditional formatting, print settings and all other ZIP parts remain byte-preserved. The register sheet remains A3 and the instruction sheet remains A4.",
       "actual": {
         "07": {
           "source_sheet1_sha256": "0571a9e84102887d3e89567e27864967b6fe9478287f060e3cec7a2e722b7f73",
           "candidate_sheet1_sha256": "65e94c199f004923c37e8f8e07de6e5c49ef9565bfadcba02439dfa279ebb7e0",
-          "stripped_source_and_candidate_sha256": "0571a9e84102887d3e89567e27864967b6fe9478287f060e3cec7a2e722b7f73",
+          "sheet1_without_complete_dataValidations_source_sha256": "0571a9e84102887d3e89567e27864967b6fe9478287f060e3cec7a2e722b7f73",
+          "sheet1_without_complete_dataValidations_candidate_sha256": "0571a9e84102887d3e89567e27864967b6fe9478287f060e3cec7a2e722b7f73",
           "sheetData_sha256": "9a2db2c058f5c7c7397dc660285e9366250ed5ce6cca2147e96b6d996f81eebd",
           "sheetProtection_sha256": "d5ccc3afeb0f9d531421fbaacacbcf070a0f6fb34b74a463673ddb81d681c774",
           "conditionalFormatting": {
             "count": 3,
             "sha256": "ff17d441d53bfcf65873dd27d8e6d008c4f50e480b0b47d4128bc938a39aa82a"
           },
-          "formula_cache_manifest": {
+          "formula_and_cache_manifest": {
             "cells": 204,
             "formula_cells": 202,
             "sha256": "ec55967d88ed6cc5109f97649dd9de4cd09a70e2f57eb41d45202f1eff8ecc49"
           },
           "unlocked_input_cells": 300,
+          "all_target_input_styles_locked": "0",
           "print": {
-            "register": "A3 landscape paperSize=8",
-            "instruction": "A4 landscape paperSize=9",
-            "areas": [
-              "'Реестр'!$A$1:$J$104",
-              "'Инструкция'!$A$1:$A$3"
-            ],
-            "titles": "'Реестр'!$1:$3"
+            "register": {
+              "paper": "A3",
+              "paperSize": "8",
+              "orientation": "landscape",
+              "fitToWidth": "1",
+              "fitToHeight": "0",
+              "area": "'Реестр'!$A$1:$J$104",
+              "titles": "'Реестр'!$1:$3"
+            },
+            "instruction": {
+              "paper": "A4",
+              "paperSize": "9",
+              "orientation": "landscape",
+              "fitToWidth": "1",
+              "fitToHeight": "0",
+              "area": "'Инструкция'!$A$1:$A$3"
+            }
+          },
+          "other_part_sha256": {
+            "xl/workbook.xml": "74273e58aabc18c09212c43cf6892695913381d63815b0d7dbfdba92f0eb0231",
+            "xl/styles.xml": "eef68e4c02d8766024efe3b8a927ec4a409d56f5f58d73a4a70d53f637c47bef",
+            "xl/theme/theme1.xml": "7462bc37f2517dfc1a740a59f6cba368105fd6a649b053a28e853e378ba10930",
+            "xl/sharedStrings.xml": "188ef751ff00440752511a2b19781b8f4c4f53a52560765fc3c0cbef1fb25e4f",
+            "xl/worksheets/sheet2.xml": "00c2b8fd54c1f37e15238331c67f6a53263dc7be62322afd158e2551ac2b4a5a",
+            "_rels/.rels": "932a9aab86006e3432e77d274157bdeb23835712e0f5a8bceae502ba829f65d3",
+            "xl/_rels/workbook.xml.rels": "ec37285d90a8d74cd81d2e473a7d0eef93a455196d2462694d52bcbb7028f00f",
+            "[Content_Types].xml": "365886599e31d35a8bae7391e52929c61c3c2e87b6e8b3de16f08b075a504e81"
           }
         },
         "08": {
           "source_sheet1_sha256": "1aca0d7c7308af4475f5d4ecc4b71be06a078fc9271ebcfb7bf05eb5227d4590",
           "candidate_sheet1_sha256": "41b5b08355128156ff9a5c3fc949bd021675de580b35c08a753bc55cdf9b2613",
-          "stripped_source_and_candidate_sha256": "908bdb88be39b2b7fa27157144a6e07c4c73e818a78be603a23771ea186fad88",
+          "sheet1_without_complete_dataValidations_source_sha256": "908bdb88be39b2b7fa27157144a6e07c4c73e818a78be603a23771ea186fad88",
+          "sheet1_without_complete_dataValidations_candidate_sha256": "908bdb88be39b2b7fa27157144a6e07c4c73e818a78be603a23771ea186fad88",
           "sheetData_sha256": "4b7196776a9bdf4b5387d311742262099e1d8e4a18af98a73674dace068cb4ec",
           "sheetProtection_sha256": "d5ccc3afeb0f9d531421fbaacacbcf070a0f6fb34b74a463673ddb81d681c774",
           "conditionalFormatting": {
             "count": 4,
             "sha256": "a1a67a784072fbd6199ab5ee17f2c1e440e5cb43587ebc7c2bbd7735d3279eee"
           },
-          "formula_cache_manifest": {
+          "formula_and_cache_manifest": {
             "cells": 1,
             "formula_cells": 0,
             "sha256": "2cd259c2c492ce483bb9c9cb77c898f834d6899298cd8bb2a573c4a54d181575"
           },
           "unlocked_input_cells": 200,
+          "all_target_input_styles_locked": "0",
           "print": {
-            "register": "A3 landscape paperSize=8",
-            "instruction": "A4 landscape paperSize=9",
-            "areas": [
-              "'Реестр'!$A$1:$L$103",
-              "'Инструкция'!$A$1:$A$3"
-            ],
-            "titles": "'Реестр'!$1:$3"
+            "register": {
+              "paper": "A3",
+              "paperSize": "8",
+              "orientation": "landscape",
+              "fitToWidth": "1",
+              "fitToHeight": "0",
+              "area": "'Реестр'!$A$1:$L$103",
+              "titles": "'Реестр'!$1:$3"
+            },
+            "instruction": {
+              "paper": "A4",
+              "paperSize": "9",
+              "orientation": "landscape",
+              "fitToWidth": "1",
+              "fitToHeight": "0",
+              "area": "'Инструкция'!$A$1:$A$3"
+            }
+          },
+          "other_part_sha256": {
+            "xl/workbook.xml": "6345404f44f43d838e60caaba0ece83606ad6c64bf7c35ab5d45fe4c426a1ccb",
+            "xl/styles.xml": "ea74855d381cfb38dade2c05a9eab061dc577a84e2cb6a77ecfb68052f6a6919",
+            "xl/theme/theme1.xml": "7462bc37f2517dfc1a740a59f6cba368105fd6a649b053a28e853e378ba10930",
+            "xl/sharedStrings.xml": "188ef751ff00440752511a2b19781b8f4c4f53a52560765fc3c0cbef1fb25e4f",
+            "xl/worksheets/sheet2.xml": "4ca13d80dee6db6a4541abda90cce804215f1b9b9ce0c6436d8b83047c810b29",
+            "_rels/.rels": "7104b7495e4e09de14cd361bb09b7fe9630620df8cbce6b3660fc4679a49e91d",
+            "xl/_rels/workbook.xml.rels": "5fca34ff52c86784d50e087b0138a0f85be38d2823c12b3176cf6928a54c0036",
+            "[Content_Types].xml": "365886599e31d35a8bae7391e52929c61c3c2e87b6e8b3de16f08b075a504e81"
           }
         },
         "other_zip_parts_byte_identical": true,
-        "styles_byte_identical": true,
-        "all_target_input_styles_have_locked_0": true
-      }
+        "styles_byte_identical": true
+      },
+      "evidence": "For each frozen input/candidate pair, package entry names and order were equal and xl/worksheets/sheet1.xml was the only changed part. Removing the complete dataValidations element produced byte-identical sheet1 bytes. Element and package hashes above were calculated from actual extracted bytes. All 500 target cell style references resolve to cellXfs with protection locked=0."
     },
     {
       "id": "C10_independent_negative_mutations",
       "status": "PASS",
+      "expected": "An independent checker must reject temporary copies containing a wrong-column validation reference, a missing final row 103, errorStyle=warning, a damaged existing formula, damaged sheet protection, and a damaged existing list validation.",
       "actual": [
         {
           "mutation": "wrong_column_reference",
-          "temp_sha256": "c4f124668a207f35348d7e77113c9ac51858879b37f33561158026508f406ebd",
-          "detected": "numeric formula mismatch"
+          "temporary_xlsx_sha256": "c4f124668a207f35348d7e77113c9ac51858879b37f33561158026508f406ebd",
+          "detected": true,
+          "reason": "numeric formula mismatch"
         },
         {
           "mutation": "missing_row_103",
-          "temp_sha256": "9b5d603272a5902e7c0e8279e4d74d43f88f7e4d925b06e50386cd1b19ad47d6",
-          "detected": "numeric range mismatch D4:D102 != D4:D103"
+          "temporary_xlsx_sha256": "9b5d603272a5902e7c0e8279e4d74d43f88f7e4d925b06e50386cd1b19ad47d6",
+          "detected": true,
+          "reason": "numeric range mismatch D4:D102 != D4:D103"
         },
         {
           "mutation": "errorStyle_warning",
-          "temp_sha256": "785f3010977308a4d317b23feb8ec5be7c95de6d127e86afc519341ec09e983f",
-          "detected": "errorStyle warning != stop"
+          "temporary_xlsx_sha256": "785f3010977308a4d317b23feb8ec5be7c95de6d127e86afc519341ec09e983f",
+          "detected": true,
+          "reason": "numeric errorStyle mismatch warning != stop"
         },
         {
           "mutation": "damaged_formula",
-          "temp_sha256": "175ea4468c2eaa4b7b820fcfd73b4acaebfae84eb9daa33feed21cbec3de3f70",
-          "detected": "sheet1 outside dataValidations changed"
+          "temporary_xlsx_sha256": "175ea4468c2eaa4b7b820fcfd73b4acaebfae84eb9daa33feed21cbec3de3f70",
+          "detected": true,
+          "reason": "sheet1 bytes outside complete dataValidations changed"
         },
         {
           "mutation": "damaged_protection",
-          "temp_sha256": "0f3fe82648084ec6807456d7bc75fd354a13ec61ea04eb0baab257f2e654f01e",
-          "detected": "sheet1 outside dataValidations changed"
+          "temporary_xlsx_sha256": "0f3fe82648084ec6807456d7bc75fd354a13ec61ea04eb0baab257f2e654f01e",
+          "detected": true,
+          "reason": "sheet1 bytes outside complete dataValidations changed"
         },
         {
           "mutation": "damaged_list",
-          "temp_sha256": "65b10d83fe77b5207619bed8ea062067bf0ad218c321eb967bb80ea1112e4ba4",
-          "detected": "legacy list validations changed"
+          "temporary_xlsx_sha256": "65b10d83fe77b5207619bed8ea062067bf0ad218c321eb967bb80ea1112e4ba4",
+          "detected": true,
+          "reason": "legacy list validations changed"
         }
-      ]
+      ],
+      "evidence": "Six mutated XLSX files were created under a Python TemporaryDirectory from exact candidate bytes, checked, hashed, and removed automatically. The missing-row and damaged-list mutations were applied specifically inside the complete dataValidations element."
     },
     {
       "id": "C11_author_tests",
       "status": "PASS_CORROBORATION_ONLY",
-      "actual": "python3 -B -m unittest discover -s $TMP/tools/p2-numeric-validation-20261010 -p test_numeric_validation.py -v; exit 0; 14/14; 0.081s"
+      "expected": "Run the exact 14 author tests only as corroboration after independent C08-C10 checks.",
+      "actual": {
+        "command": "python3 -B -m unittest discover -s $TMP/tools/p2-numeric-validation-20261010 -p test_numeric_validation.py -v",
+        "exit_code": 0,
+        "tests_run": 14,
+        "tests_passed": 14,
+        "duration_seconds": 0.081
+      },
+      "evidence": "Exact build.py, test_numeric_validation.py, receipt.json and four frozen XLSX inputs/candidates were materialized in a TemporaryDirectory. unittest reported Ran 14 tests and OK. Exact support-file SHA256 values are recorded in document_hashes.author_support."
     },
     {
-      "id": "exact_head_workflows_pr583",
+      "id": "PR583_exact_head_workflows",
       "status": "PASS_CORROBORATION_ONLY",
-      "actual": "6b0990bee84bfc13cb0585ad1e3284124c78dba2: tests 38051451806 SUCCESS; render 38051451749 SUCCESS"
+      "expected": "Inspect, but do not use CI as substantive acceptance.",
+      "actual": {
+        "head_sha": "6b0990bee84bfc13cb0585ad1e3284124c78dba2",
+        "tests_run_id": 38051451806,
+        "tests_conclusion": "success",
+        "render_run_id": 38051451749,
+        "render_conclusion": "success"
+      },
+      "evidence": "GitHub exact-head workflow and job metadata; treated only as corroboration because PR583's tracked verdict remains FAIL."
     }
   ],
   "detected_issues": [],
   "unverified": [
     "native Microsoft Excel typed-entry behavior",
-    "native Microsoft Excel paste/clipboard behavior",
+    "native Microsoft Excel paste and clipboard behavior",
     "filled-sheet visual and print verification",
     "normative or legal sufficiency",
     "whole-product acceptance",
-    "archive or delivery acceptance",
-    "release, merge, publication or deployment"
+    "archive or actual delivery acceptance",
+    "merge, release, publication, deployment, price, SKU and payment behavior"
   ],
-  "next_step": "Keep PR583 unchanged as FAIL evidence. Independently review this exact JSON/diff; this PASS does not authorize merge or release."
+  "next_step": "Keep PR583 unchanged as FAIL evidence. Review this new isolated remediation artifact and its exact diff independently. This limited PASS is not authorization to merge, release, publish or deploy."
 }
