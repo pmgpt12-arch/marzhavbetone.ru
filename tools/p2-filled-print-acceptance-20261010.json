@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0",
+  "unit": "P2_FILLED_PRINT_ACCEPTANCE",
+  "generated_at_utc": "2026-10-10T15:10:03Z",
+  "status": "FAIL",
+  "checkpoint_policy": "verified_only",
+  "scope": "temporary_filled_copies_calc_and_print_only",
+  "source": {
+    "repository": "pmgpt12-arch/marzhavbetone.ru",
+    "candidate_head": "3d3409eaa606c5747cc3a20f3738ccb9bca94b4f",
+    "base_pr": 581,
+    "files": [
+      {
+        "path": "tools/p2-numeric-validation-20261010/07-raschet-stoimosti.xlsx",
+        "sha256": "f2ed0b234111a717eded1d214ddc9c60eb113be51c51c09a75f7d7a641d47134"
+      },
+      {
+        "path": "tools/p2-numeric-validation-20261010/08-zhurnal-doprabot.xlsx",
+        "sha256": "f18c1e71dced81ebe6fe4f95d978a3dada5d04c4778bdbdd1bd15a1f1c7f27e2"
+      }
+    ],
+    "source_hashes_after_test": {
+      "07-raschet-stoimosti.xlsx": "f2ed0b234111a717eded1d214ddc9c60eb113be51c51c09a75f7d7a641d47134",
+      "08-zhurnal-doprabot.xlsx": "f18c1e71dced81ebe6fe4f95d978a3dada5d04c4778bdbdd1bd15a1f1c7f27e2"
+    },
+    "source_modified": false
+  },
+  "scenario": {
+    "description": "25 plausible long-data rows placed near the top, middle and bottom of the 100-row registers",
+    "selected_rows": [4, 5, 6, 7, 8, 25, 26, 27, 28, 29, 48, 49, 50, 51, 52, 72, 73, 74, 75, 76, 99, 100, 101, 102, 103],
+    "builder_sha256": "a805ba70a09bd7e7623c7693ed1ae2a0c907eb88f5933e051088af6c2c2c00e5",
+    "builder_report_sha256": "6c09def588ac04c187c3c653499648571d9aeae5acf5a15516876418393e8820",
+    "source_inspection_sha256": "e06c5a28e2362cfd5469958ce551072299ef944e438d05ae70e4c3794eff9c24",
+    "artifact_tool_operation": "edit",
+    "temporary_outputs_only": true
+  },
+  "calculation_checks": {
+    "status": "PASS",
+    "formula_error_matches": {
+      "07": 0,
+      "08": 0
+    },
+    "file_07_expected_grand_total": 10101094.65625,
+    "file_07_actual_grand_total": 10101094.65625,
+    "file_07_actual_sum_before_coefficient": 9452288.75,
+    "file_08_list_values_used": {
+      "approval": ["К согласованию", "Согласовано", "Не согласовано"],
+      "execution": ["Не начато", "В работе", "Выполнено"],
+      "boolean": ["Нет", "Да"]
+    }
+  },
+  "temporary_artifacts": {
+    "07_filled_xlsx_sha256": "cdd3e9849ef3f5194724eff0aac2bc3b7250da88e23dbbc11de14c972056cbf8",
+    "08_filled_xlsx_sha256": "98fccc9af4fadf9b08d227b7c5a56f743677efaadbf3e38902769a0005110238",
+    "07_pdf_sha256": "882e3745a51f8660f8f701b5d2a998907a2e728686873d56e17b061949b93f3c",
+    "08_pdf_sha256": "003a3ff987b28eb2580b3133acf1e7c06ff0289e6f27966e8dc3cfb2cc7f982a",
+    "libreoffice": "LibreOfficeDev 26.8.0.0.alpha0 (X86_64)",
+    "conversion_exit_codes": {
+      "07": 0,
+      "08": 0
+    },
+    "pdf_pages": {
+      "07": 9,
+      "08": 9
+    }
+  },
+  "print_visual_acceptance": {
+    "status": "FAIL",
+    "findings": [
+      {
+        "id": "FP-01",
+        "severity": "release_blocking",
+        "files": ["07-raschet-stoimosti-filled.xlsx", "08-zhurnal-doprabot-filled.xlsx"],
+        "evidence_pages": {
+          "07": [1, 5],
+          "08": [1, 5]
+        },
+        "finding": "Each register is split into separate horizontal page bands: 07 prints A:F apart from G:J, and 08 prints A:G apart from H:L. One logical record cannot be reviewed as one printed row."
+      },
+      {
+        "id": "FP-02",
+        "severity": "release_blocking",
+        "files": ["07-raschet-stoimosti-filled.xlsx", "08-zhurnal-doprabot-filled.xlsx"],
+        "evidence_pages": {
+          "07": [1, 5],
+          "08": [1, 5]
+        },
+        "finding": "Plausible long values are clipped or overlap adjacent row boundaries because populated rows retain insufficient fixed height. This affects work descriptions, source/grounds and comments/evidence fields."
+      }
+    ],
+    "instruction_pages": {
+      "07_page": 9,
+      "08_page": 9,
+      "status": "not_the_failure_driver"
+    }
+  },
+  "diagnosis": {
+    "task_validity": "PASS",
+    "atomicity": "PASS",
+    "context": "PASS_EXACT_HEAD_AND_SHA",
+    "contract": "PASS_TEMPORARY_FILLED_PRINT_SCENARIO",
+    "dependencies": "PASS",
+    "schema_tools": "PASS",
+    "runtime_harness": "PASS_CONVERSION_EXIT_0_AND_RENDERED_PAGES",
+    "provider_api": "NOT_APPLICABLE",
+    "model_capability": "NOT_APPLICABLE",
+    "root_cause_class": "PRODUCT_PRINT_LAYOUT",
+    "hypothesis_for_narrow_correction": "Set a single-page-wide print scale/orientation for each register and increase or auto-fit populated row heights while preserving formulas, validations and the white/graphite/gold design. Then rerun the identical 25-row scenario."
+  },
+  "acceptance_boundaries": {
+    "accepted": [
+      "temporary populated values",
+      "07 formula recalculation and expected total",
+      "zero formula-error matches",
+      "LibreOffice PDF conversion and page rendering",
+      "reproducible print-layout failure"
+    ],
+    "not_accepted": [
+      "filled print usability",
+      "native Microsoft Excel UI, typed-entry or paste behavior",
+      "legal or normative content",
+      "archive composition",
+      "source replacement",
+      "release or publication"
+    ],
+    "model_calls": 0,
+    "no_paid_api": true
+  },
+  "next_step": "Prepare a separate isolated correction candidate for print scaling and row-height behavior, preserving source lineage; repeat this exact scenario before any merge or release claim."
+}
+
