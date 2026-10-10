@@ -1,0 +1,111 @@
+{
+  "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+  "target_name": "Система оформления и получения оплаты за дополнительные работы",
+  "target_price_rub": 24900,
+  "source_commit": "96c674f676fbdfbdec02f43977ae6c2961e25106",
+  "source_route_a_zip_sha256": "cb3aae752db4bed41cbc0493997135021f00b2570f88d7a72f7c10650d08d5a4",
+  "zip": "P2_CONTROLS_CANDIDATE_2026-10-10.zip",
+  "sha256": "1a709ad0b0e27f3bc367144a80cef5c292762c6e40b16e06ee8aab77aeabce11",
+  "bytes": 513764,
+  "members": [
+    {
+      "name": "00-INSTRUKCIYA.docx",
+      "sha256": "6561dbcd43a8ac7d57094eb206f2efdfc0667dfd704c161839d9ecd9d13090e7",
+      "bytes": 41812,
+      "changed_from_route_a": false
+    },
+    {
+      "name": "00-INSTRUKCIYA.pdf",
+      "sha256": "d997b51acd69933a5e2761d291987d29f56ad60d5a5a933384588d5436e7dfcb",
+      "bytes": 102648,
+      "changed_from_route_a": false
+    },
+    {
+      "name": "00-START-HERE.txt",
+      "sha256": "ffd45c0ddb86c0d5013abaeec73a8486093b27077dee67df3e9cfe6a6bbc9bfa",
+      "bytes": 4840,
+      "changed_from_route_a": false
+    },
+    {
+      "name": "01-prikaz-na-dopobem.docx",
+      "sha256": "eeb3fc1ba3278ef8e4dcd4a2763a7099000f794398d3671dedd8936c57fa1f88",
+      "bytes": 38682,
+      "changed_from_route_a": false
+    },
+    {
+      "name": "02-soglasovanie-obema.docx",
+      "sha256": "ef3a48ed8e5de2c7a644e4890a98617f76b273629240bf2ef0d53863a319aeec",
+      "bytes": 39401,
+      "changed_from_route_a": false
+    },
+    {
+      "name": "03-uvedomlenie-o-doprabotah.docx",
+      "sha256": "58b091ab72a4012916a4319e3fee915d082d44ee8b6d9f9c960a4b0c8f495ce5",
+      "bytes": 38920,
+      "changed_from_route_a": false
+    },
+    {
+      "name": "04-akt-skrytyh-rabot.docx",
+      "sha256": "cf769ace49643dfedfe156f229ebb7c5aed82426e82e6fc262899d9f3699fe80",
+      "bytes": 38594,
+      "changed_from_route_a": false
+    },
+    {
+      "name": "05-izmenenie-srokov.docx",
+      "sha256": "c723d3e22a7da625fd6d2c7229d27b19bfa6f9e6e724e95a9c0edf37b3427607",
+      "bytes": 38442,
+      "changed_from_route_a": false
+    },
+    {
+      "name": "06-pismo-o-priostanovke.docx",
+      "sha256": "dee186cb860b9746ed082dd5b0a6f0bd928243eb6810953b06e9c07bdaf05e60",
+      "bytes": 38658,
+      "changed_from_route_a": false
+    },
+    {
+      "name": "07-raschet-stoimosti.xlsx",
+      "sha256": "fcdcf34c6bf536dc71f1e76414f5c8b13072627d861dad4e845fd6498321f33e",
+      "bytes": 12209,
+      "changed_from_route_a": true
+    },
+    {
+      "name": "08-zhurnal-doprabot.xlsx",
+      "sha256": "d8675876c76eccdf31058b5d5020383c63e19e9ee0e1c98f1f6c22d7e63ea381",
+      "bytes": 10313,
+      "changed_from_route_a": true
+    },
+    {
+      "name": "09-checklist-fotofiksacii.pdf",
+      "sha256": "8b39f541ba67078adacfc3f8335f37c1853cde3c2ba49af43b52b60424eb05b7",
+      "bytes": 52530,
+      "changed_from_route_a": false
+    },
+    {
+      "name": "10-algoritm-doprabot.pdf",
+      "sha256": "8f78d3cfeb3111be5e2e2dc4652e765c00c634fdc44ce3ce57d9c419dbeab620",
+      "bytes": 52165,
+      "changed_from_route_a": false
+    },
+    {
+      "name": "11-dopsoglashenie-obem-i-cena.docx",
+      "sha256": "6af0ba91ec0569b0717bd185aab2f2d4fc49478edf43106ea161c12e4e0b85a2",
+      "bytes": 38792,
+      "changed_from_route_a": false
+    },
+    {
+      "name": "12-dopsoglashenie-sroki-doprabot.docx",
+      "sha256": "47a2703cdf296518e1d3b9acca0cb13c445ec0bc111b57c735d36a7a25287344",
+      "bytes": 38504,
+      "changed_from_route_a": false
+    }
+  ],
+  "status": "CANDIDATE_NOT_PRODUCT_OR_RELEASE_ACCEPTED",
+  "open_gates": [
+    "numeric input stop validation",
+    "sheet formula protection",
+    "native UI typed/paste validation",
+    "print setup and native A4 QA",
+    "full normative and independent buyer acceptance",
+    "target name and gated commercial release"
+  ]
+}
