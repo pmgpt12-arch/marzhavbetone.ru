@@ -1,0 +1,141 @@
+{
+  "source_issue": 582,
+  "parent_issue": 291,
+  "decision_issue": 578,
+  "author_issue": 580,
+  "source_pr": 581,
+  "date": "2026-10-10",
+  "base_branch": "codex/p2-numeric-validation-580-20261010",
+  "head_sha": "3d3409eaa606c5747cc3a20f3738ccb9bca94b4f",
+  "diff_base_sha": "fd2a2b3688180989a6a8ac653eba0c8b2bcc958e",
+  "document_hashes": {
+    "candidate": {
+      "tools/p2-numeric-validation-20261010/07-raschet-stoimosti.xlsx": "f2ed0b234111a717eded1d214ddc9c60eb113be51c51c09a75f7d7a641d47134",
+      "tools/p2-numeric-validation-20261010/08-zhurnal-doprabot.xlsx": "f18c1e71dced81ebe6fe4f95d978a3dada5d04c4778bdbdd1bd15a1f1c7f27e2"
+    },
+    "accepted_print_input": {
+      "tools/reports/portfolio-20261010/p2-print/07-raschet-stoimosti.xlsx": "00ff8043c0281ade1076d76285f853d53cd06ae995fdfacece533ca843bb7f3d",
+      "tools/reports/portfolio-20261010/p2-print/08-zhurnal-doprabot.xlsx": "f50e316cd8e0ecb43343803112b0228f1e6584bd27fa13426c4af72972049950"
+    },
+    "author_support_files_read_only": {
+      "tools/p2-numeric-validation-20261010/build.py": "d1d5a0cb17687083369d671ad62f644313ce091ff5e03c17dfef8d3c5f31d733",
+      "tools/p2-numeric-validation-20261010/receipt.json": "605a9173ac37dedc33ebe05272c8c49b834b3c2a22c8ad021441465d10bee24b",
+      "tools/p2-numeric-validation-20261010/test_numeric_validation.py": "579c140c4ae2259db4c328df4342178d56cd1201f9b18841d9dc437c4af95fd4"
+    }
+  },
+  "verdict": "FAIL",
+  "verdict_reason": "BLOCKED_INSUFFICIENT_INDEPENDENT_EVIDENCE. В кандидатах дефектов не найдено. Но ядро проверки не выполнено: в песочнице исполнителя все средства распаковки ZIP требуют разрешения (unzip, zipinfo, busybox unzip, python3, gawk). Поэтому содержимое xl/worksheets/sheet1.xml не прочитано: правила, 500 полей, errorStyle, формулы, защита, CF, печать и списки 08 не проверены. Собственные отрицательные проверки на временных копиях тоже не выполнены. Подтверждены только входы, diff и сохранность всех частей ZIP, кроме sheet1. Этого мало для PASS.",
+  "scope": "STRUCTURAL_PRESERVATION_ONLY",
+  "checks": [
+    {
+      "id": "C01_head_sha",
+      "status": "PASS",
+      "expected": "3d3409eaa606c5747cc3a20f3738ccb9bca94b4f",
+      "actual": "3d3409eaa606c5747cc3a20f3738ccb9bca94b4f",
+      "evidence": "git rev-parse HEAD в worktree issue-582; рабочее дерево чистое до записи этого файла"
+    },
+    {
+      "id": "C02_four_document_sha256",
+      "status": "PASS",
+      "expected": "07 f2ed0b23…, 08 f18c1e71…, print 07 00ff8043…, print 08 f50e316c…",
+      "actual": "все четыре SHA-256 совпали побайтно с замороженными значениями",
+      "evidence": "sha256sum по четырём путям"
+    },
+    {
+      "id": "C03_exact_diff_vs_fd2a2b3",
+      "status": "PASS",
+      "expected": "только авторские файлы #580; print-входы не тронуты",
+      "actual": "git diff --name-status fd2a2b3..HEAD: ровно 5 файлов, все со статусом A, все в tools/p2-numeric-validation-20261010/ (07, 08, build.py, receipt.json, test_numeric_validation.py), +401 строка. Print-входы в fd2a2b3 и HEAD имеют одни и те же blob: 07 b152dfc50c748d2847b07e39b376df11286ae62d, 08 3b7447a265ba2d39d51328114bc8e9fe8d8d1741",
+      "evidence": "git diff --stat/--name-status; git rev-parse fd2a2b3:<path>; git ls-files -s"
+    },
+    {
+      "id": "C04_zip_directory_07",
+      "status": "PASS",
+      "expected": "те же части, порядок, метод и время; изменена только xl/worksheets/sheet1.xml",
+      "actual": "9 записей в одном порядке: workbook.xml, styles.xml, theme1.xml, sharedStrings.xml, sheet1.xml, sheet2.xml, _rels/.rels, workbook.xml.rels, [Content_Types].xml. Метод 8 (deflate), DOS-время 0x5d4a/0x10f9 у всех. CRC-32 и размеры 8 частей совпали. sheet1.xml: CRC d717e1ae → bcd9917a, распакованный размер 49931 → 51096 (+1165), сжатый 6696 → 6989 (+293). Размер файла 12442 → 12735 (+293). Смещения следующих записей сдвинуты ровно на +293; размер центрального каталога 0x249 не изменился",
+      "evidence": "ручной разбор записей PK\\x01\\x02 из od -t x1 последних 760 байт обоих файлов"
+    },
+    {
+      "id": "C05_zip_directory_08",
+      "status": "PASS",
+      "expected": "те же части, порядок, метод и время; изменена только xl/worksheets/sheet1.xml",
+      "actual": "9 записей в том же порядке, метод 8, DOS-время 0x5d4a/0x10f9. CRC-32 и размеры 8 частей совпали. sheet1.xml: CRC d599e3ef → c3828b3a, распакованный размер 42690 → 43434 (+744), сжатый 4929 → 5139 (+210). Размер файла 10671 → 10881 (+210). Смещения следующих записей сдвинуты на +210; размер центрального каталога 0x249 не изменился",
+      "evidence": "ручной разбор записей PK\\x01\\x02 из od -t x1 последних 760 байт обоих файлов"
+    },
+    {
+      "id": "C06_byte_identity_outside_sheet1_entry",
+      "status": "PASS",
+      "expected": "байты всех прочих частей ZIP идентичны",
+      "actual": "07: байты 1–3199 совпали (все части до sheet1 и локальный заголовок sheet1 до CRC); имя и длины в локальном заголовке sheet1 совпали (28 байт с позиции 3211); 1900 байт частей после sheet1 совпали (вход с 9935, кандидат с 10228). 08: байты 1–3149 совпали; 28 байт с 3161 совпали; 1946 байт после sheet1 совпали (вход с 8118, кандидат с 8328). Контроль: сдвиг окна на 1 байт даёт расхождение с первого байта",
+      "evidence": "cmp -n / cmp -i SKIP1:SKIP2 -n LEN; контроль cmp -i 9934:10228"
+    },
+    {
+      "id": "C07_sheet1_size_delta_consistency",
+      "status": "CONSISTENT_NOT_PROOF",
+      "expected": "прирост sheet1 равен вставленным узлам dataValidation и ничему больше",
+      "actual": "Длина одной донорской записи после ET.tostring (с xmlns по умолчанию) — 372 байта. 08: +744 = 2 × 372 (count 3→5 той же длины). 07: +1165 = 3 × 372 + 49, где 49 — контейнер <p:dataValidations count=\"3\"></p:dataValidations> с двухсимвольным префиксом, например x:",
+      "evidence": "printf | wc -c по строкам из build.py; дельты распакованных размеров из C04/C05. Совпадение размеров — признак, а не доказательство: содержимое и позиция вставки не прочитаны"
+    },
+    {
+      "id": "C08_numeric_rules_and_500_cells",
+      "status": "NOT_VERIFIED",
+      "expected": "07: ровно 3 записи D4:D103, E4:E103, H4:H103. 08: 3 прежних списка + F4:F103, G4:G103, всего 5, count=5. type=custom, formula1 OR(ISBLANK(<верх-лево>),ISNUMBER(<верх-лево>)) с относительной ссылкой своей колонки, errorStyle=stop, allowBlank=1, showErrorMessage=1, без formula2 и operator; 500 ячеек без пересечений",
+      "actual": "не прочитано: sheet1.xml сжат deflate, распаковка заблокирована",
+      "evidence": "отказы песочницы: unzip, zipinfo, busybox unzip, python3, gawk — 'requires approval'"
+    },
+    {
+      "id": "C09_sheet1_preservation_outside_dataValidations",
+      "status": "NOT_VERIFIED",
+      "expected": "байты sheet1 вне dataValidations идентичны: sheetData (формулы и кеши), атрибуты s= незаблокированных вводов, sheetProtection, conditionalFormatting, printOptions/pageMargins/pageSetup (A3/A4), списки 08",
+      "actual": "не прочитано по той же причине",
+      "evidence": "косвенно подтверждено только то, что живёт вне sheet1 (C06): styles.xml (флаги locked и dxf для CF), workbook.xml (определённые имена и защита книги), sheet2.xml, sharedStrings.xml, rels, [Content_Types].xml — побайтно без изменений"
+    },
+    {
+      "id": "C10_own_negative_mutations",
+      "status": "NOT_VERIFIED",
+      "expected": "на временных копиях обнаружены: ссылка правила на чужую колонку, пропущенная строка 103, errorStyle=warning, порча формулы, защиты и списка",
+      "actual": "не выполнено: создать изменённую копию XLSX нечем, разрешённых средств записи ZIP нет. Выполнен только контроль чувствительности cmp (C06)",
+      "evidence": "те же отказы песочницы"
+    },
+    {
+      "id": "C11_author_tests",
+      "status": "NOT_RUN",
+      "expected": "14 авторских тестов — вспомогательное доказательство",
+      "actual": "не запускались: python3 требует разрешения. Прочитаны статически",
+      "evidence": "test_numeric_validation.py, sha256 579c140c…"
+    },
+    {
+      "id": "C12_static_review_generator",
+      "status": "STATIC_ONLY",
+      "expected": "донорские правила соответствуют спецификации и не вводят новой политики",
+      "actual": "В build.py DONOR: 5 записей type=custom, errorStyle=stop, allowBlank=1, showErrorMessage=1, formula1 ссылается на верхнюю ячейку своей колонки, formula2 и operator нет, то есть нет ограничений величины, знака и процентов. По семантике ISNUMBER текст и boolean числом не считаются. Сборка кладёт байты всех прочих частей и проверяет, что изменилась только sheet1. Это проверка генератора, а не байтов кандидата",
+      "evidence": "build.py, sha256 d1d5a0cb…, строки 32, 57–98, 123–141"
+    }
+  ],
+  "detected_issues": [],
+  "observations": [
+    "По C07 донорские записи сериализованы с собственным xmlns по умолчанию, а контейнер в 07, судя по размерам, с префиксом. Для XML это допустимо (то же пространство имён), но поведение нативного Excel на такой разметке не проверено."
+  ],
+  "blockers": [
+    "Песочница исполнителя: распаковка и запись ZIP (unzip, zipinfo, busybox unzip, python3 stdlib zipfile, gawk) требуют разрешения, которого в прогоне нет. Без неё C08–C11 невыполнимы.",
+    "Стандарт языка и P0 фабрики (/home/denis/.config/ai-business-os/Marzha_Communication_Standard.md, Marzha_Factory_P0.md) недоступны для чтения из песочницы. Языковая сверка текста этого файла по стандарту не выполнена."
+  ],
+  "unverified": [
+    "содержимое dataValidations в sheet1 обоих кандидатов (C08)",
+    "сохранность байтов sheet1 вне dataValidations: формулы, кеши, защита, незаблокированные вводы, CF, печать A3/A4, списки 08 (C09)",
+    "собственные отрицательные проверки на временных копиях (C10)",
+    "прогон 14 авторских тестов (C11)",
+    "нативный ввод в Microsoft Excel и вставка из буфера обмена: XML и движок такой проверки не заменяют",
+    "заполненная печать",
+    "независимая продуктовая и нормативная приёмка всей P2",
+    "релиз",
+    "сверка текста по стандарту языка проекта (файл недоступен)"
+  ],
+  "executor_runtime": {
+    "model_id_reported_by_runtime": "anthropic/claude-opus-5.5",
+    "cost": "UNKNOWN",
+    "network_used": false,
+    "candidates_modified": false
+  },
+  "next_step": "Координатору этот результат как PASS не учитывать: HOLD сохраняется, #579/#581 в live не сливать. Повторить одну независимую проверку в контуре, где в worktree разрешены распаковка и запись ZIP во временный каталог (unzip или python3 stdlib zipfile), и закрыть C08–C11. C01–C07 при тех же SHA повторно проверять не нужно."
+}
