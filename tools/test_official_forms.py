@@ -40,6 +40,54 @@ def check():
                 assert '344/пр' in text and 'Рекомендуемый образец' in text
                 assert all(f'{i}. ' in text for i in range(1,8))
                 assert 'Приложения' in text and 'Подписи представителей' in text
+    check_repackaged_forms()
     print('official form structure, inventory, mirrors and archives: PASS')
 
+
+def normalized(text):
+    import re
+    return re.sub(r'\s+', ' ', text).strip()
+
+def check_repackaged_forms():
+    import json
+    source_dir=ROOT/'tools/reports/repackage-20261010'
+    official=normalized(' '.join(json.loads((source_dir/'aosr-source.json').read_text())))
+    for slug,name in [('05-ks-bez-vozvrata','03-akt-skrytyh-rabot.docx'),('08-pto-bez-zamechaniy','31-pyat-aktov-skrytyh-rabot.docx')]:
+        text,_=body((ROOT/'products-storage'/slug/name).read_bytes())
+        text=normalized(text)
+        assert text.count(official)==5,(slug,'five complete AOSR forms required')
+        assert text.count('(фамилия, инициалы) (подпись)')==25,(slug,'signature blocks')
+        assert 'Подписи всех трех сторон обязательны' not in text
+        assert '[Шаблон' not in text
+    path=ROOT/'products-storage/08-pto-bez-zamechaniy/35-obshiy-zhurnal-rabot.xlsx'
+    ns={'s':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
+    with ZipFile(path) as z:
+        wb=ET.fromstring(z.read('xl/workbook.xml'))
+        names=[x.attrib['name'] for x in wb.findall('s:sheets/s:sheet',ns)]
+        assert names==['Титульный лист']+[f'Раздел {i}' for i in range(1,7)],names
+        shared=[]
+        if 'xl/sharedStrings.xml' in z.namelist():
+            shared=[normalized(''.join(x.itertext())) for x in ET.fromstring(z.read('xl/sharedStrings.xml')).findall('s:si',ns)]
+        values=[]
+        for filename in z.namelist():
+            if not filename.startswith('xl/worksheets/sheet') or not filename.endswith('.xml'):continue
+            xml=ET.fromstring(z.read(filename))
+            for cell in xml.findall('.//s:c',ns):
+                if cell.attrib.get('t')=='s':
+                    v=cell.find('s:v',ns)
+                    if v is not None:values.append(shared[int(v.text)])
+                elif cell.attrib.get('t')=='str':
+                    v=cell.find('s:v',ns)
+                    if v is not None:values.append(normalized(v.text or ''))
+                elif cell.attrib.get('t')=='inlineStr':
+                    values.append(normalized(''.join(cell.find('s:is',ns).itertext())))
+        source=json.loads((source_dir/'journal-source.json').read_text())
+        for line,text in source:
+            if ' | ' in text and text.lstrip().startswith('№'):
+                for label in text.split('|'):
+                    assert normalized(label) in values,('1026/pr missing header',line,label)
+        assert any('1026/пр' in v for v in values)
+        assert not any('Рабочий журнал производства работ' in v for v in values)
+
 if __name__=='__main__':check()
+
