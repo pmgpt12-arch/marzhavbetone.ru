@@ -1,0 +1,322 @@
+{
+  "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+  "as_of": "2026-10-10",
+  "parent_issue": 291,
+  "source_issue": 578,
+  "base_sha": "b85a2e716d501cbc54c840f58027ecfd6a60964b",
+  "completed_products": 0,
+  "count": 13,
+  "qualification": "OPEN means full current-target gate not evidenced; historical limited-scope PASS is preserved and is not revoked",
+  "consolidation": {
+    "T1": "P1",
+    "T4": "P9",
+    "T5": "P8",
+    "T6": "P11",
+    "P12": "P5"
+  },
+  "products": [
+    {
+      "sku": "P1",
+      "name": "Система получения оплаты за выполненные работы",
+      "target_price_rub": 29900,
+      "category": "основной",
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+      "source_issue": 578,
+      "completion": "NOT_ACCEPTED",
+      "gates": {
+        "G1": "OPEN",
+        "G2": "OPEN",
+        "G3": "OPEN",
+        "G4": "OPEN",
+        "G5": "OPEN",
+        "G6": "OPEN",
+        "G7": "OPEN",
+        "G8": "OPEN"
+      },
+      "publication": "EXISTING_CATALOG_NOT_TARGET_RELEASE",
+      "release_sha": null,
+      "next_stage": "Residual name/route/provenance/independent/release; no repeated unchanged tests",
+      "evidence": [
+        "PR #506 merged; #575 structural/archive only",
+        "main b85a2e716d501cbc54c840f58027ecfd6a60964b",
+        "ZIP b0bbf5badac93bdb897d7749aaac23b8d08e53893a0bbed46daedd8c63577ae6"
+      ]
+    },
+    {
+      "sku": "P2",
+      "name": "Система оформления и получения оплаты за дополнительные работы",
+      "target_price_rub": 24900,
+      "category": "основной",
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+      "source_issue": 578,
+      "completion": "NOT_ACCEPTED",
+      "gates": {
+        "G1": "OPEN",
+        "G2": "OPEN",
+        "G3": "OPEN",
+        "G4": "OPEN",
+        "G5": "OPEN",
+        "G6": "OPEN",
+        "G7": "OPEN",
+        "G8": "OPEN"
+      },
+      "publication": "EXISTING_CATALOG_NOT_TARGET_RELEASE",
+      "release_sha": null,
+      "next_stage": "CRITICAL_PATH: exact executor admission; normative + 3-stage buyer/calculation/Office acceptance",
+      "evidence": [
+        "PR #576 mail accepted; #569 remains Draft",
+        "New route-A candidate ZIP cb3aae752db4bed41cbc0493997135021f00b2570f88d7a72f7c10650d08d5a4"
+      ]
+    },
+    {
+      "sku": "P3",
+      "name": "Система подготовки и проверки документов КС-2 и КС-3 перед сдачей",
+      "target_price_rub": 17900,
+      "category": "основной",
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+      "source_issue": 578,
+      "completion": "NOT_ACCEPTED",
+      "gates": {
+        "G1": "OPEN",
+        "G2": "OPEN",
+        "G3": "OPEN",
+        "G4": "OPEN",
+        "G5": "OPEN",
+        "G6": "OPEN",
+        "G7": "OPEN",
+        "G8": "OPEN"
+      },
+      "publication": "EXISTING_CATALOG_NOT_TARGET_RELEASE",
+      "release_sha": null,
+      "next_stage": "Independent preparation only; product work after P2",
+      "evidence": [
+        "Draft #577 at 12360c6cf78631959a48800834decfee01bc3611; FAIL_MERGE / CONDITIONAL_CONTENT_PASS",
+        "Existing #329 / Draft #336; target boundary superseded by #578"
+      ]
+    },
+    {
+      "sku": "P4",
+      "name": "Система ведения, проверки и передачи исполнительной документации",
+      "target_price_rub": 24900,
+      "category": "основной",
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+      "source_issue": 578,
+      "completion": "NOT_ACCEPTED",
+      "gates": {
+        "G1": "OPEN",
+        "G2": "OPEN",
+        "G3": "OPEN",
+        "G4": "OPEN",
+        "G5": "OPEN",
+        "G6": "OPEN",
+        "G7": "OPEN",
+        "G8": "OPEN"
+      },
+      "publication": "EXISTING_CATALOG_NOT_TARGET_RELEASE",
+      "release_sha": null,
+      "next_stage": "Independent preparation only; product work after P2",
+      "evidence": [
+        "Draft #577 at 12360c6cf78631959a48800834decfee01bc3611; FAIL_MERGE / CONDITIONAL_CONTENT_PASS",
+        "Existing #329 / Draft #336; target boundary superseded by #578"
+      ]
+    },
+    {
+      "sku": "P5 + P12",
+      "name": "Система защиты подрядчика от претензий, штрафов, удержаний и зачётов",
+      "target_price_rub": 29900,
+      "category": "основной",
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+      "source_issue": 578,
+      "completion": "NOT_ACCEPTED",
+      "gates": {
+        "G1": "OPEN",
+        "G2": "OPEN",
+        "G3": "OPEN",
+        "G4": "OPEN",
+        "G5": "OPEN",
+        "G6": "OPEN",
+        "G7": "OPEN",
+        "G8": "OPEN"
+      },
+      "publication": "EXISTING_CATALOG_NOT_TARGET_RELEASE",
+      "release_sha": null,
+      "next_stage": "AFTER_PREVIOUS_PRODUCT_ACCEPTANCE"
+    },
+    {
+      "sku": "P7",
+      "name": "Система проверки и согласования договора субподряда",
+      "target_price_rub": 24900,
+      "category": "основной",
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+      "source_issue": 578,
+      "completion": "NOT_ACCEPTED",
+      "gates": {
+        "G1": "OPEN",
+        "G2": "OPEN",
+        "G3": "OPEN",
+        "G4": "OPEN",
+        "G5": "OPEN",
+        "G6": "OPEN",
+        "G7": "OPEN",
+        "G8": "OPEN"
+      },
+      "publication": "EXISTING_CATALOG_NOT_TARGET_RELEASE",
+      "release_sha": null,
+      "next_stage": "AFTER_PREVIOUS_PRODUCT_ACCEPTANCE"
+    },
+    {
+      "sku": "P8",
+      "name": "Система управления авансами и расчётами по договору подряда",
+      "target_price_rub": 24900,
+      "category": "основной",
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+      "source_issue": 578,
+      "completion": "NOT_ACCEPTED",
+      "gates": {
+        "G1": "OPEN",
+        "G2": "OPEN",
+        "G3": "OPEN",
+        "G4": "OPEN",
+        "G5": "OPEN",
+        "G6": "OPEN",
+        "G7": "OPEN",
+        "G8": "OPEN"
+      },
+      "publication": "EXISTING_CATALOG_NOT_TARGET_RELEASE",
+      "release_sha": null,
+      "next_stage": "AFTER_PREVIOUS_PRODUCT_ACCEPTANCE"
+    },
+    {
+      "sku": "P9",
+      "name": "Система защиты требований подрядчика при банкротстве генподрядчика",
+      "target_price_rub": 24900,
+      "category": "основной",
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+      "source_issue": 578,
+      "completion": "NOT_ACCEPTED",
+      "gates": {
+        "G1": "OPEN",
+        "G2": "OPEN",
+        "G3": "OPEN",
+        "G4": "OPEN",
+        "G5": "OPEN",
+        "G6": "OPEN",
+        "G7": "OPEN",
+        "G8": "OPEN"
+      },
+      "publication": "EXISTING_CATALOG_NOT_TARGET_RELEASE",
+      "release_sha": null,
+      "next_stage": "AFTER_PREVIOUS_PRODUCT_ACCEPTANCE"
+    },
+    {
+      "sku": "P10",
+      "name": "Система подготовки ответа на претензию заказчика",
+      "target_price_rub": 17900,
+      "category": "основной",
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+      "source_issue": 578,
+      "completion": "NOT_ACCEPTED",
+      "gates": {
+        "G1": "OPEN",
+        "G2": "OPEN",
+        "G3": "OPEN",
+        "G4": "OPEN",
+        "G5": "OPEN",
+        "G6": "OPEN",
+        "G7": "OPEN",
+        "G8": "OPEN"
+      },
+      "publication": "EXISTING_CATALOG_NOT_TARGET_RELEASE",
+      "release_sha": null,
+      "next_stage": "AFTER_PREVIOUS_PRODUCT_ACCEPTANCE"
+    },
+    {
+      "sku": "P11",
+      "name": "Система проверки расчётов недвижимостью и уступки прав",
+      "target_price_rub": 24900,
+      "category": "основной",
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+      "source_issue": 578,
+      "completion": "NOT_ACCEPTED",
+      "gates": {
+        "G1": "OPEN",
+        "G2": "OPEN",
+        "G3": "OPEN",
+        "G4": "OPEN",
+        "G5": "OPEN",
+        "G6": "OPEN",
+        "G7": "OPEN",
+        "G8": "OPEN"
+      },
+      "publication": "EXISTING_CATALOG_NOT_TARGET_RELEASE",
+      "release_sha": null,
+      "next_stage": "AFTER_PREVIOUS_PRODUCT_ACCEPTANCE"
+    },
+    {
+      "sku": "P13",
+      "name": "Система проверки сметной документации и выявления неоплачиваемых затрат",
+      "target_price_rub": 17900,
+      "category": "основной",
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+      "source_issue": 578,
+      "completion": "NOT_ACCEPTED",
+      "gates": {
+        "G1": "OPEN",
+        "G2": "OPEN",
+        "G3": "OPEN",
+        "G4": "OPEN",
+        "G5": "OPEN",
+        "G6": "OPEN",
+        "G7": "OPEN",
+        "G8": "OPEN"
+      },
+      "publication": "EXISTING_CATALOG_NOT_TARGET_RELEASE",
+      "release_sha": null,
+      "next_stage": "AFTER_PREVIOUS_PRODUCT_ACCEPTANCE"
+    },
+    {
+      "sku": "T2",
+      "name": "Система документального подтверждения передачи исполнительной документации",
+      "target_price_rub": 9900,
+      "category": "узкое решение",
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+      "source_issue": 578,
+      "completion": "NOT_ACCEPTED",
+      "gates": {
+        "G1": "OPEN",
+        "G2": "OPEN",
+        "G3": "OPEN",
+        "G4": "OPEN",
+        "G5": "OPEN",
+        "G6": "OPEN",
+        "G7": "OPEN",
+        "G8": "OPEN"
+      },
+      "publication": "EXISTING_CATALOG_NOT_TARGET_RELEASE",
+      "release_sha": null,
+      "next_stage": "AFTER_PREVIOUS_PRODUCT_ACCEPTANCE"
+    },
+    {
+      "sku": "T3",
+      "name": "Система подготовки возражений на односторонний акт или зачёт",
+      "target_price_rub": 14900,
+      "category": "узкое решение",
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+      "source_issue": 578,
+      "completion": "NOT_ACCEPTED",
+      "gates": {
+        "G1": "OPEN",
+        "G2": "OPEN",
+        "G3": "OPEN",
+        "G4": "OPEN",
+        "G5": "OPEN",
+        "G6": "OPEN",
+        "G7": "OPEN",
+        "G8": "OPEN"
+      },
+      "publication": "EXISTING_CATALOG_NOT_TARGET_RELEASE",
+      "release_sha": null,
+      "next_stage": "AFTER_PREVIOUS_PRODUCT_ACCEPTANCE"
+    }
+  ]
+}
