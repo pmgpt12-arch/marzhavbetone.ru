@@ -55,6 +55,21 @@ jobs:
       - name: Десктоп — 1366, 1440, 1600, 1920
         run: python3 tools/check_desktop.py
 
+      # Любое отсутствующее, не загруженное или нулевой ширины главное
+      # изображение товара — FAIL. Покрытие: все активные страницы товаров,
+      # плюс P1 desktop/mobile и отрицательные DOM-тесты удаления/width=0.
+      - name: Превью товаров — визуальная загрузка и ненулевая ширина
+        run: python3 tools/check_product_preview_images.py --screenshots-dir "$RUNNER_TEMP/product-previews"
+
+      - name: Снимки P1 для визуальной приёмки
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: product-p1-first-screen
+          path: ${{ runner.temp }}/product-previews/
+          if-no-files-found: ignore
+          retention-days: 7
+
       # Корзина проверяется кликом, а не чтением разметки: связь страницы
       # товара с кассой держится значениями `data-sku` и `data-price`, и
       # разойтись они могут молча. Сайт здесь отдаётся встроенным сервером
