@@ -1,0 +1,181 @@
+{
+  "source_issue": 582,
+  "source_pr": 581,
+  "remediation_of_pr": 583,
+  "previous_fail_head_sha": "6b0990bee84bfc13cb0585ad1e3284124c78dba2",
+  "previous_fail_preserved": true,
+  "candidate_head_sha": "3d3409eaa606c5747cc3a20f3738ccb9bca94b4f",
+  "diff_base_sha": "fd2a2b3688180989a6a8ac653eba0c8b2bcc958e",
+  "scope": "STRUCTURAL_PRESERVATION_ONLY",
+  "verdict": "PASS",
+  "verdict_reason": "C08-C11 independently completed against frozen candidate bytes; supersedes only PR583 evidence insufficiency and does not rewrite that FAIL artifact.",
+  "no_paid_api": true,
+  "model_calls": 0,
+  "document_hashes": {
+    "accepted_print_input": {
+      "07-raschet-stoimosti.xlsx": "00ff8043c0281ade1076d76285f853d53cd06ae995fdfacece533ca843bb7f3d",
+      "08-zhurnal-doprabot.xlsx": "f50e316cd8e0ecb43343803112b0228f1e6584bd27fa13426c4af72972049950"
+    },
+    "candidate": {
+      "07-raschet-stoimosti.xlsx": "f2ed0b234111a717eded1d214ddc9c60eb113be51c51c09a75f7d7a641d47134",
+      "08-zhurnal-doprabot.xlsx": "f18c1e71dced81ebe6fe4f95d978a3dada5d04c4778bdbdd1bd15a1f1c7f27e2"
+    },
+    "author_support": {
+      "build.py": "d1d5a0cb17687083369d671ad62f644313ce091ff5e03c17dfef8d3c5f31d733",
+      "test_numeric_validation.py": "579c140c4ae2259db4c328df4342178d56cd1201f9b18841d9dc437c4af95fd4",
+      "receipt.json": "605a9173ac37dedc33ebe05272c8c49b834b3c2a22c8ad021441465d10bee24b"
+    }
+  },
+  "checks": [
+    {
+      "id": "C08_numeric_rules_and_500_cells",
+      "status": "PASS",
+      "actual": {
+        "07": {
+          "validation_count": 3,
+          "numeric_cells": 300,
+          "ranges": [
+            "D4:D103",
+            "E4:E103",
+            "H4:H103"
+          ]
+        },
+        "08": {
+          "validation_count": 5,
+          "numeric_cells": 200,
+          "ranges": [
+            "F4:F103",
+            "G4:G103"
+          ],
+          "list_count": 3,
+          "list_ranges": [
+            "H4:H103",
+            "I4:I103",
+            "K4:L103"
+          ]
+        },
+        "total_numeric_cells": 500,
+        "unique_nonoverlap": true,
+        "rule": "OR(ISBLANK(top-left),ISNUMBER(top-left)); relative reference; allowBlank=1; errorStyle=stop; showErrorMessage=1; no operator/formula2"
+      }
+    },
+    {
+      "id": "C09_sheet1_and_package_preservation",
+      "status": "PASS",
+      "actual": {
+        "07": {
+          "source_sheet1_sha256": "0571a9e84102887d3e89567e27864967b6fe9478287f060e3cec7a2e722b7f73",
+          "candidate_sheet1_sha256": "65e94c199f004923c37e8f8e07de6e5c49ef9565bfadcba02439dfa279ebb7e0",
+          "stripped_source_and_candidate_sha256": "0571a9e84102887d3e89567e27864967b6fe9478287f060e3cec7a2e722b7f73",
+          "sheetData_sha256": "9a2db2c058f5c7c7397dc660285e9366250ed5ce6cca2147e96b6d996f81eebd",
+          "sheetProtection_sha256": "d5ccc3afeb0f9d531421fbaacacbcf070a0f6fb34b74a463673ddb81d681c774",
+          "conditionalFormatting": {
+            "count": 3,
+            "sha256": "ff17d441d53bfcf65873dd27d8e6d008c4f50e480b0b47d4128bc938a39aa82a"
+          },
+          "formula_cache_manifest": {
+            "cells": 204,
+            "formula_cells": 202,
+            "sha256": "ec55967d88ed6cc5109f97649dd9de4cd09a70e2f57eb41d45202f1eff8ecc49"
+          },
+          "unlocked_input_cells": 300,
+          "print": {
+            "register": "A3 landscape paperSize=8",
+            "instruction": "A4 landscape paperSize=9",
+            "areas": [
+              "'Реестр'!$A$1:$J$104",
+              "'Инструкция'!$A$1:$A$3"
+            ],
+            "titles": "'Реестр'!$1:$3"
+          }
+        },
+        "08": {
+          "source_sheet1_sha256": "1aca0d7c7308af4475f5d4ecc4b71be06a078fc9271ebcfb7bf05eb5227d4590",
+          "candidate_sheet1_sha256": "41b5b08355128156ff9a5c3fc949bd021675de580b35c08a753bc55cdf9b2613",
+          "stripped_source_and_candidate_sha256": "908bdb88be39b2b7fa27157144a6e07c4c73e818a78be603a23771ea186fad88",
+          "sheetData_sha256": "4b7196776a9bdf4b5387d311742262099e1d8e4a18af98a73674dace068cb4ec",
+          "sheetProtection_sha256": "d5ccc3afeb0f9d531421fbaacacbcf070a0f6fb34b74a463673ddb81d681c774",
+          "conditionalFormatting": {
+            "count": 4,
+            "sha256": "a1a67a784072fbd6199ab5ee17f2c1e440e5cb43587ebc7c2bbd7735d3279eee"
+          },
+          "formula_cache_manifest": {
+            "cells": 1,
+            "formula_cells": 0,
+            "sha256": "2cd259c2c492ce483bb9c9cb77c898f834d6899298cd8bb2a573c4a54d181575"
+          },
+          "unlocked_input_cells": 200,
+          "print": {
+            "register": "A3 landscape paperSize=8",
+            "instruction": "A4 landscape paperSize=9",
+            "areas": [
+              "'Реестр'!$A$1:$L$103",
+              "'Инструкция'!$A$1:$A$3"
+            ],
+            "titles": "'Реестр'!$1:$3"
+          }
+        },
+        "other_zip_parts_byte_identical": true,
+        "styles_byte_identical": true,
+        "all_target_input_styles_have_locked_0": true
+      }
+    },
+    {
+      "id": "C10_independent_negative_mutations",
+      "status": "PASS",
+      "actual": [
+        {
+          "mutation": "wrong_column_reference",
+          "temp_sha256": "c4f124668a207f35348d7e77113c9ac51858879b37f33561158026508f406ebd",
+          "detected": "numeric formula mismatch"
+        },
+        {
+          "mutation": "missing_row_103",
+          "temp_sha256": "9b5d603272a5902e7c0e8279e4d74d43f88f7e4d925b06e50386cd1b19ad47d6",
+          "detected": "numeric range mismatch D4:D102 != D4:D103"
+        },
+        {
+          "mutation": "errorStyle_warning",
+          "temp_sha256": "785f3010977308a4d317b23feb8ec5be7c95de6d127e86afc519341ec09e983f",
+          "detected": "errorStyle warning != stop"
+        },
+        {
+          "mutation": "damaged_formula",
+          "temp_sha256": "175ea4468c2eaa4b7b820fcfd73b4acaebfae84eb9daa33feed21cbec3de3f70",
+          "detected": "sheet1 outside dataValidations changed"
+        },
+        {
+          "mutation": "damaged_protection",
+          "temp_sha256": "0f3fe82648084ec6807456d7bc75fd354a13ec61ea04eb0baab257f2e654f01e",
+          "detected": "sheet1 outside dataValidations changed"
+        },
+        {
+          "mutation": "damaged_list",
+          "temp_sha256": "65b10d83fe77b5207619bed8ea062067bf0ad218c321eb967bb80ea1112e4ba4",
+          "detected": "legacy list validations changed"
+        }
+      ]
+    },
+    {
+      "id": "C11_author_tests",
+      "status": "PASS_CORROBORATION_ONLY",
+      "actual": "python3 -B -m unittest discover -s $TMP/tools/p2-numeric-validation-20261010 -p test_numeric_validation.py -v; exit 0; 14/14; 0.081s"
+    },
+    {
+      "id": "exact_head_workflows_pr583",
+      "status": "PASS_CORROBORATION_ONLY",
+      "actual": "6b0990bee84bfc13cb0585ad1e3284124c78dba2: tests 38051451806 SUCCESS; render 38051451749 SUCCESS"
+    }
+  ],
+  "detected_issues": [],
+  "unverified": [
+    "native Microsoft Excel typed-entry behavior",
+    "native Microsoft Excel paste/clipboard behavior",
+    "filled-sheet visual and print verification",
+    "normative or legal sufficiency",
+    "whole-product acceptance",
+    "archive or delivery acceptance",
+    "release, merge, publication or deployment"
+  ],
+  "next_step": "Keep PR583 unchanged as FAIL evidence. Independently review this exact JSON/diff; this PASS does not authorize merge or release."
+}
