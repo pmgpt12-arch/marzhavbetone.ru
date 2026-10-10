@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-10",
+  "objective": "Repackage all remaining active paid products using approved P1/P2 style and government forms where applicable",
+  "base_commit": "600c86aab355c3ed87d87a4a6af708d613468e4b",
+  "completed_atomic_changes": [
+    "P3 five complete AOSR forms preserving full source text",
+    "P4 five complete AOSR forms preserving full source text",
+    "P4 general journal official title and six sections",
+    "Expanded official-forms CI gate; missing-clause mutation rejected"
+  ],
+  "product_release_done": false,
+  "production_updated": false,
+  "next_atomic_task": "Verify journal native A4 printing; correct P3 checklist, storage, terminology and unsupported marketing claims before archive release",
+  "sources": [
+    "https://publication.pravo.gov.ru/document/0001202306010019",
+    "https://publication.pravo.gov.ru/document/0001202507220009",
+    "https://publication.pravo.gov.ru/Document/View/0001202212300009"
+  ],
+  "observed_defects": {
+    "p3": [
+      "01: accountant and chief engineer signatures stated as mandatory for KS-2",
+      "01/02: wrong KS-11 and KS-4 terminology",
+      "07: blanket archival periods and unrelated 2019 list references",
+      "09: unsupported assumptions about certificates and accountant signature",
+      "10: unsupported return-rate percentages, payback and file capabilities"
+    ],
+    "p4": [
+      "35 original was only internal production log, replaced with official structure; A4 print QA pending",
+      "32 is a scheme card rather than a drafted executive drawing",
+      "41/42/43 generic disclaimers conflict with owner-approved product language",
+      "Need 00-INSTRUKCIYA DOCX and synchronized PDF, full per-file audit and style"
+    ]
+  }
+}
