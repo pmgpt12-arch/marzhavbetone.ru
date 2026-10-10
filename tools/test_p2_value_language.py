@@ -49,5 +49,23 @@ failures = [(p.name, phrase) for p in files for phrase in FORBIDDEN
 page = (BASE.parents[1] / 'products/p2-dopolnitelnye-raboty.html').read_text()
 failures += [('products/p2-dopolnitelnye-raboty.html', phrase) for phrase in FORBIDDEN
              if re.search(phrase, page, re.I)]
+CANONICAL = 'Дополнительные работы: как получить оплату'
+email_paths = [
+    BASE / '00-PISMO-POSLE-POKUPKI.txt',
+    BASE.parent / '04-polnyy-komplekt-pto/01-30-bazovye-pakety/02-dopraboty-bez-poter/00-PISMO-POSLE-POKUPKI.txt',
+]
+for email_path in email_paths:
+    email = text_of(email_path)
+    if CANONICAL not in email or 'Допработы без потерь' in email:
+        failures.append((str(email_path.relative_to(BASE.parents[1])), 'canonical product name'))
+    if '00-INSTRUKCIYA.pdf' not in email or '00_Инструкция.pdf' in email:
+        failures.append((str(email_path.relative_to(BASE.parents[1])), 'delivered instruction filename'))
+    failures += [(str(email_path.relative_to(BASE.parents[1])), phrase) for phrase in FORBIDDEN
+                 if re.search(phrase, email, re.I)]
+
+config = (BASE.parents[1] / 'products-config.php').read_text()
+assert '$body .= "- документы редактируются в Microsoft Word и Excel;\\n";' in config
+assert '$body .= "- шаблоны редактируются в Microsoft Word и Excel;\\n";' not in config
+
 assert not failures, failures
-print(f'P2 value language PASS: {len(files)} buyer-facing files and product page')
+print(f'P2 value language PASS: {len(files)} buyer-facing files, mirrored email, runtime email and product page')
