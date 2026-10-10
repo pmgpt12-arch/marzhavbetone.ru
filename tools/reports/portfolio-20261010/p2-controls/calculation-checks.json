@@ -1,0 +1,49 @@
+{
+  "engine": "artifact-tool",
+  "cases": [
+    {
+      "name": "positive",
+      "actual": 575,
+      "expected": 575,
+      "pass": true
+    },
+    {
+      "name": "blank_coefficient",
+      "actual": 500,
+      "expected": 500,
+      "pass": true
+    },
+    {
+      "name": "zero",
+      "actual": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "zero_coefficient",
+      "actual": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "blank_quantity",
+      "actual": "",
+      "expected": "",
+      "pass": true
+    },
+    {
+      "name": "negative_preserved",
+      "actual": -400,
+      "expected": -400,
+      "pass": true
+    },
+    {
+      "name": "last_input_row_103",
+      "actual": 600,
+      "expected": 600,
+      "pass": true
+    }
+  ],
+  "not_native_excel": true,
+  "negative_semantics": "preserved existing calculation; subject approval remains open"
+}
