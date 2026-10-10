@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0",
+  "unit": "P2_FILLED_PRINT_CORRECTION_INDEPENDENT_ACCEPTANCE_V2",
+  "reviewed_at_utc": "2026-10-10T16:41:11Z",
+  "status": "PASS_INDEPENDENT_V2_SCOPE_ONLY",
+  "checkpoint_policy": "verified_only",
+  "scope": "STRUCTURAL_NUMERIC_AND_RENDERED_PDF_SCOPE_ONLY",
+  "reviewed_root_receipt": {
+    "path": "correction-output/correction-acceptance-v2.json",
+    "sha256": "d09d737bfd7cccfce02b41ca7fd50686c4b3e10071750a7d9a1b148b96098b35",
+    "status_claim": "PASS_ROOT_V2_PENDING_INDEPENDENT"
+  },
+  "superseded_evidence_preserved": {
+    "path": "correction-output/independent-acceptance.json",
+    "sha256": "a0895d7bc3b74d2d37d0776564b790d6afa834ef171e7588adbe4e4a3bab6b5c",
+    "status": "FAIL_INDEPENDENT_VISUAL_ACCEPTANCE",
+    "disposition": "Preserved unchanged as evidence of the v1 A4 portrait instruction-page clipping. This v2 PASS applies only to the new exact v2 artifacts and does not erase or rewrite the prior FAIL."
+  },
+  "source_lineage": {
+    "candidate_head": "3d3409eaa606c5747cc3a20f3738ccb9bca94b4f",
+    "base_pr": 581,
+    "failure_passport_pr": 594,
+    "source_hashes": {
+      "07-raschet-stoimosti.xlsx": "f2ed0b234111a717eded1d214ddc9c60eb113be51c51c09a75f7d7a641d47134",
+      "08-zhurnal-doprabot.xlsx": "f18c1e71dced81ebe6fe4f95d978a3dada5d04c4778bdbdd1bd15a1f1c7f27e2"
+    },
+    "status": "PASS_UNCHANGED"
+  },
+  "reviewed_artifact_hashes": {
+    "corrected_source_candidates": {
+      "correction-output/07-raschet-stoimosti-v2.xlsx": "d751c8c6326da23b39a4024ec9548ed9b88ed357b7158980c6930897fd7e808f",
+      "correction-output/08-zhurnal-doprabot-v2.xlsx": "d9f6b1d94eb04dbb5283572c6446926f9d424753deb50f6a517a2f75278cc20c"
+    },
+    "filled_inputs": {
+      "correction-output/07-raschet-stoimosti-filled.xlsx": "ff6de5b47350506dbe60ac6452e520290a6b467a05230c5e87a083be5dda845f",
+      "correction-output/08-zhurnal-doprabot-filled.xlsx": "1f797698368fd088839c14576c2fc3981c9c6b76252e3b58a0933bf2730ff850"
+    },
+    "filled_v2_outputs": {
+      "correction-output/07-raschet-stoimosti-filled-print-v2.xlsx": "7cbe6ec4dc4d81913104f6c46188dce15a439e58ad835a118b6e2e88ab7c8021",
+      "correction-output/08-zhurnal-doprabot-filled-print-v2.xlsx": "291d733047a4e80b137a06a079783a485fcd784505c63aef4599dccfb3bf0f4a"
+    },
+    "scenario_evidence": {
+      "correction-output/builder-report.json": "6c09def588ac04c187c3c653499648571d9aeae5acf5a15516876418393e8820"
+    },
+    "pdf_outputs": {
+      "correction-output/final-v2-pdf/07-raschet-stoimosti-filled-print-v2.pdf": "6eca6e46ecd0cc5caaf38018b823f26501200e39b7346dbea86f7d0b12d6b0b9",
+      "correction-output/final-v2-pdf/08-zhurnal-doprabot-filled-print-v2.pdf": "700007f3d0518eef4b87c714987f694098b05274f96293de40dcee7a2b4b6381"
+    },
+    "page_pngs_07": {
+      "final-v2-pages07/page-1.png": "d502827c79d9369c6a84c5d177b34fdf64c59093d77c708b995963b6bebec9e0",
+      "final-v2-pages07/page-2.png": "4ea036071f4bd3df2e3dedf47ec20f26f27e3661c06b7ef26f2df90fdc1317d7",
+      "final-v2-pages07/page-3.png": "8780b524c8b38c0f3356065e6393a1532bd1d6aa974cd23f92c3c716e9efe413",
+      "final-v2-pages07/page-4-rerender.png": "3926b55dd3ebfaed2a94035b8481e117d75e282344c2112cf24c68c9c6b51e6c",
+      "final-v2-pages07/page-5.png": "365c6d17781f25b51b55a6af3e937412ab9e7ac797a5359958b00c5ec72d9333",
+      "final-v2-pages07/page-6.png": "580e1999a0834fd8ecc8ae22eae6d9763e222a14f05c3a0ef07dc791c00673da",
+      "final-v2-pages07/page-7.png": "a4c9628b654b0ad75df149c2f4b1c306e1ef62aa6f95c37d799aee8481c1f327",
+      "final-v2-pages07/page-8.png": "ecc4536b983355729666903a7c034cbf20703597be6e5b569bfbe55362ef051a"
+    },
+    "page_pngs_08": {
+      "final-v2-pages08/page-1-rerender.png": "eae40cb126e1058cf3bbd1631eb83d855c9c736db867e76d45a023561a03d903",
+      "final-v2-pages08/page-2.png": "ceae927b49a1ab98dc6e9490549bf5dc5979f3db440afb7673e61395c77b6814",
+      "final-v2-pages08/page-3.png": "67ea9b0c159db365e3959cbf70255b7095498f4a412dfc73c6545ae9716ed623",
+      "final-v2-pages08/page-4.png": "43ed79850a0e17d5e34cbb79d51e8e13e76b6de2d46c833499c740bb003f0772",
+      "final-v2-pages08/page-5.png": "300a1c74b572c89f8fe9feafe55e2a1770621159947f8bbab52f78b256e724df"
+    },
+    "contact_sheets": {
+      "correction-output/final-v2-contact07.png": "d5fc0a9356c5c5f5e6697b3e6580909bd1af8e3020fadc7e132411ed00ef0819",
+      "correction-output/final-v2-contact08.png": "b75d7db7eb3f95d60e48b2fe608843c374cc6249fbf8696095582458cfd64fd7"
+    }
+  },
+  "checks": {
+    "hash_inventory": {
+      "status": "PASS",
+      "files_verified": 26,
+      "details": "Both original sources, both corrected candidates, two filled inputs, two filled-v2 outputs, builder report, two PDFs, all 13 listed current page PNGs and both contact sheets match the v2 receipt exactly."
+    },
+    "source_candidate_ooxml_scope": {
+      "status": "PASS",
+      "changed_zip_members": {
+        "07": [
+          "xl/worksheets/sheet1.xml",
+          "xl/worksheets/sheet2.xml"
+        ],
+        "08": [
+          "xl/worksheets/sheet1.xml",
+          "xl/worksheets/sheet2.xml"
+        ]
+      },
+      "allowed_changes": [
+        "sheet1: remove fitToPage, set A3 landscape explicit scale 120 for 07 / 60 for 08 with 300 DPI, and remove ht/customHeight from rows 4:103",
+        "sheet2: remove fitToPage, set A4 landscape scale 100 with 300 DPI, and remove ht/customHeight from instruction row 3"
+      ],
+      "details": "After independently restoring only those allowed print and row-height changes, each source and candidate worksheet tree is identical. ZIP membership/order and every unrelated ZIP member are byte-identical."
+    },
+    "filled_v2_ooxml_scope": {
+      "status": "PASS",
+      "changed_zip_members": {
+        "07": [
+          "xl/worksheets/sheet1.xml",
+          "xl/worksheets/sheet2.xml"
+        ],
+        "08": [
+          "xl/worksheets/sheet1.xml",
+          "xl/worksheets/sheet2.xml"
+        ]
+      },
+      "details": "After normalizing only the same sheet1/sheet2 print and row-height fields, the filled input and v2 output worksheet trees are identical; all unrelated ZIP members are byte-identical."
+    },
+    "semantic_preservation": {
+      "status": "PASS",
+      "formula_counts": {
+        "07_sheet1": 202,
+        "08_sheet1": 0
+      },
+      "data_validation_counts": {
+        "07_sheet1": 3,
+        "08_sheet1": 5
+      },
+      "details": "Cell values, formulas and style assignments, dataValidations, sheetProtection, conditionalFormatting and non-print worksheet semantics are exact before/after on both sheets."
+    },
+    "numeric_scenario": {
+      "status": "PASS",
+      "selected_rows": [4, 5, 6, 7, 8, 25, 26, 27, 28, 29, 48, 49, 50, 51, 52, 72, 73, 74, 75, 76, 99, 100, 101, 102, 103],
+      "row_count": 25,
+      "recomputed_sum_F": "9452288.750",
+      "recomputed_total_I": "10101094.65625",
+      "cached_total_I104": "10101094.65625",
+      "formula_error_cells": {
+        "07": [],
+        "08": []
+      },
+      "details": "The total was independently recomputed from D*E*(H or 1); the 25 selected rows and cell/formula semantics are unchanged from the accepted scenario."
+    },
+    "pdf_identity_and_geometry": {
+      "status": "PASS",
+      "07": {
+        "pages": 8,
+        "register_pages": "1-7, 1190.551181 x 841.889764 points",
+        "instruction_page": "8, 841.889764 x 595.303937 points"
+      },
+      "08": {
+        "pages": 5,
+        "register_pages": "1-4, 1190.551181 x 841.889764 points",
+        "instruction_page": "5, 841.889764 x 595.303937 points"
+      }
+    },
+    "independent_bbox_check": {
+      "status": "PASS",
+      "out_of_bounds_words": 0,
+      "07_instruction_page": {
+        "width_points": 841.889764,
+        "height_points": 595.303937,
+        "min_x_points": 51.392,
+        "max_x_points": 639.224102,
+        "min_y_points": 54.773462,
+        "max_y_points": 132.889437
+      },
+      "08_instruction_page": {
+        "width_points": 841.889764,
+        "height_points": 595.303937,
+        "min_x_points": 51.392,
+        "max_x_points": 654.093398,
+        "min_y_points": 54.773462,
+        "max_y_points": 132.917437
+      },
+      "details": "Independent pdftotext -bbox-layout parsing verified xMin/yMin >= 0 and xMax/yMax within the page box for every word on all 13 PDF pages."
+    },
+    "visual_all_pages": {
+      "status": "PASS",
+      "pages_inspected": 13,
+      "contact_sheets_inspected": 2,
+      "details": "All seven 07 register pages and four 08 register pages retain one horizontal band with all columns visible and no observed text clipping or overlap. Both remediated instruction pages are complete on A4 landscape with clear margins and no clipping or overlap. No horizontal split was observed."
+    }
+  },
+  "detected_issues": [],
+  "accepted": [
+    "exact v2 source, candidate, filled workbook, PDF, PNG and contact-sheet identity",
+    "narrow sheet1/sheet2 print and auto-height OOXML corrections",
+    "formula, value, validation, protection, conditional-formatting, style and unrelated-ZIP-member preservation",
+    "identical 25-row scenario, exact recomputed 07 total and zero formula-error cells",
+    "all 13 rendered pages within bounds, without observed clipping, overlap or horizontal split"
+  ],
+  "not_accepted": [
+    "native Microsoft Excel typed, paste, UI or print behavior",
+    "legal or normative content",
+    "archive composition or actual archive bytes",
+    "source replacement",
+    "product or release acceptance",
+    "merge or publication",
+    "price, SKU, payment, checkout or delivery"
+  ],
+  "model_calls": 0,
+  "no_paid_api": true,
+  "merge_performed": false,
+  "publication_performed": false,
+  "next_step": "This exact v2 correction is independently accepted only for the recorded structural, numeric and rendered-PDF scope. Any Draft PR must retain these exact hashes and still pass its own diff, CI and scope review; do not infer native Excel, legal, archive, source-replacement, product or release acceptance."
+}

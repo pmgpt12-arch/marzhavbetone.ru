@@ -1,0 +1,430 @@
+{
+  "schema_version": "1.0",
+  "unit": "P2_FILLED_PRINT_CORRECTION_ACCEPTANCE_V2",
+  "generated_at_utc": "2026-10-10T16:38:39Z",
+  "status": "PASS_ROOT_V2_PENDING_INDEPENDENT",
+  "checkpoint_policy": "verified_only",
+  "supersedes_failed_attempt": {
+    "receipt": "correction-output/independent-acceptance.json",
+    "sha256": "a0895d7bc3b74d2d37d0776564b790d6afa834ef171e7588adbe4e4a3bab6b5c",
+    "status": "FAIL_INDEPENDENT_VISUAL_ACCEPTANCE",
+    "remediation": "explicit A4 landscape scale 100 and auto-height instruction row 3"
+  },
+  "source": {
+    "candidate_head": "3d3409eaa606c5747cc3a20f3738ccb9bca94b4f",
+    "base_pr": 581,
+    "failure_passport_pr": 594,
+    "source_hashes_after_test": {
+      "07-raschet-stoimosti.xlsx": "f2ed0b234111a717eded1d214ddc9c60eb113be51c51c09a75f7d7a641d47134",
+      "08-zhurnal-doprabot.xlsx": "f18c1e71dced81ebe6fe4f95d978a3dada5d04c4778bdbdd1bd15a1f1c7f27e2"
+    },
+    "source_files_unchanged": true
+  },
+  "corrected_source_candidates": [
+    {
+      "source": "07-raschet-stoimosti.xlsx",
+      "candidate": "correction-output/07-raschet-stoimosti-v2.xlsx",
+      "source_sha256": "f2ed0b234111a717eded1d214ddc9c60eb113be51c51c09a75f7d7a641d47134",
+      "candidate_sha256": "d751c8c6326da23b39a4024ec9548ed9b88ed357b7158980c6930897fd7e808f",
+      "changed_zip_members": [
+        "xl/worksheets/sheet1.xml",
+        "xl/worksheets/sheet2.xml"
+      ],
+      "page_setup": {
+        "paperSize": "8",
+        "orientation": "landscape",
+        "scale": "120",
+        "horizontalDpi": "300",
+        "verticalDpi": "300"
+      },
+      "rows_4_103_auto_height": true,
+      "instruction_page_setup": {
+        "paperSize": "9",
+        "orientation": "landscape",
+        "scale": "100",
+        "horizontalDpi": "300",
+        "verticalDpi": "300"
+      },
+      "instruction_row_3_auto_height": true,
+      "formula_count": 202,
+      "data_validation_count": 3,
+      "sheet_protection_present": true,
+      "cell_style_assignment_sha256": "a67a484c40f27c137aba63c26917af35cf4e52087fe2923abb6d27a044657e29",
+      "semantic_preservation": "PASS"
+    },
+    {
+      "source": "08-zhurnal-doprabot.xlsx",
+      "candidate": "correction-output/08-zhurnal-doprabot-v2.xlsx",
+      "source_sha256": "f18c1e71dced81ebe6fe4f95d978a3dada5d04c4778bdbdd1bd15a1f1c7f27e2",
+      "candidate_sha256": "d9f6b1d94eb04dbb5283572c6446926f9d424753deb50f6a517a2f75278cc20c",
+      "changed_zip_members": [
+        "xl/worksheets/sheet1.xml",
+        "xl/worksheets/sheet2.xml"
+      ],
+      "page_setup": {
+        "paperSize": "8",
+        "orientation": "landscape",
+        "scale": "60",
+        "horizontalDpi": "300",
+        "verticalDpi": "300"
+      },
+      "rows_4_103_auto_height": true,
+      "instruction_page_setup": {
+        "paperSize": "9",
+        "orientation": "landscape",
+        "scale": "100",
+        "horizontalDpi": "300",
+        "verticalDpi": "300"
+      },
+      "instruction_row_3_auto_height": true,
+      "formula_count": 0,
+      "data_validation_count": 5,
+      "sheet_protection_present": true,
+      "cell_style_assignment_sha256": "cadc4816da433c607b2473e1d12b846cf9d4b01795b0d72c143e89ebce64332c",
+      "semantic_preservation": "PASS"
+    }
+  ],
+  "identical_scenario": {
+    "selected_rows": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      25,
+      26,
+      27,
+      28,
+      29,
+      48,
+      49,
+      50,
+      51,
+      52,
+      72,
+      73,
+      74,
+      75,
+      76,
+      99,
+      100,
+      101,
+      102,
+      103
+    ],
+    "expected_07_total": 10101094.65625,
+    "actual_07_total": 10101094.65625,
+    "formula_error_matches": {
+      "07": 0,
+      "08": 0
+    },
+    "builder_report_sha256": "6c09def588ac04c187c3c653499648571d9aeae5acf5a15516876418393e8820",
+    "status": "PASS_UNCHANGED_FROM_PRIOR_INDEPENDENT_GATE"
+  },
+  "filled_print_patch_preservation": {
+    "07": {
+      "before_sha256": "ff6de5b47350506dbe60ac6452e520290a6b467a05230c5e87a083be5dda845f",
+      "after_sha256": "7cbe6ec4dc4d81913104f6c46188dce15a439e58ad835a118b6e2e88ab7c8021",
+      "changed_zip_members": [
+        "xl/worksheets/sheet1.xml",
+        "xl/worksheets/sheet2.xml"
+      ],
+      "register_page_setup": {
+        "paperSize": "8",
+        "orientation": "landscape",
+        "scale": "120",
+        "horizontalDpi": "300",
+        "verticalDpi": "300"
+      },
+      "instruction_page_setup": {
+        "paperSize": "9",
+        "orientation": "landscape",
+        "scale": "100",
+        "horizontalDpi": "300",
+        "verticalDpi": "300"
+      },
+      "content_semantics_preserved": true
+    },
+    "08": {
+      "before_sha256": "1f797698368fd088839c14576c2fc3981c9c6b76252e3b58a0933bf2730ff850",
+      "after_sha256": "291d733047a4e80b137a06a079783a485fcd784505c63aef4599dccfb3bf0f4a",
+      "changed_zip_members": [
+        "xl/worksheets/sheet1.xml",
+        "xl/worksheets/sheet2.xml"
+      ],
+      "register_page_setup": {
+        "paperSize": "8",
+        "orientation": "landscape",
+        "scale": "60",
+        "horizontalDpi": "300",
+        "verticalDpi": "300"
+      },
+      "instruction_page_setup": {
+        "paperSize": "9",
+        "orientation": "landscape",
+        "scale": "100",
+        "horizontalDpi": "300",
+        "verticalDpi": "300"
+      },
+      "content_semantics_preserved": true
+    }
+  },
+  "libreoffice_export": {
+    "version": "LibreOfficeDev 26.8.0.0.alpha0 (X86_64)",
+    "exit_codes": {
+      "07": 0,
+      "08": 0
+    },
+    "07": {
+      "sha256": "6eca6e46ecd0cc5caaf38018b823f26501200e39b7346dbea86f7d0b12d6b0b9",
+      "pages": 8
+    },
+    "08": {
+      "sha256": "700007f3d0518eef4b87c714987f694098b05274f96293de40dcee7a2b4b6381",
+      "pages": 5
+    }
+  },
+  "visual_acceptance": {
+    "status": "PASS_ROOT_REVIEW",
+    "all_pdf_pages_rendered_and_inspected": true,
+    "single_horizontal_page_band": {
+      "07_register": true,
+      "08_register": true
+    },
+    "long_text_clipping_or_overlap": {
+      "07": false,
+      "08": false
+    },
+    "instruction_pages": {
+      "07": "A4 landscape; complete text visible",
+      "08": "A4 landscape; complete text visible"
+    },
+    "bbox_layout": {
+      "07": [
+        {
+          "page": 1,
+          "width_points": 1190.551181,
+          "height_points": 841.889764,
+          "min_x_points": 51.568,
+          "max_x_points": 1003.502496,
+          "min_y_points": 54.921339,
+          "max_y_points": 670.059452,
+          "all_word_boxes_within_page": true
+        },
+        {
+          "page": 2,
+          "width_points": 1190.551181,
+          "height_points": 841.889764,
+          "min_x_points": 122.389,
+          "max_x_points": 1004.114904,
+          "min_y_points": 55.056524,
+          "max_y_points": 735.675452,
+          "all_word_boxes_within_page": true
+        },
+        {
+          "page": 3,
+          "width_points": 1190.551181,
+          "height_points": 841.889764,
+          "min_x_points": 115.722,
+          "max_x_points": 1004.114904,
+          "min_y_points": 55.056524,
+          "max_y_points": 447.766452,
+          "all_word_boxes_within_page": true
+        },
+        {
+          "page": 4,
+          "width_points": 1190.551181,
+          "height_points": 841.889764,
+          "min_x_points": 115.722,
+          "max_x_points": 1004.114904,
+          "min_y_points": 55.056524,
+          "max_y_points": 719.858452,
+          "all_word_boxes_within_page": true
+        },
+        {
+          "page": 5,
+          "width_points": 1190.551181,
+          "height_points": 841.889764,
+          "min_x_points": 115.722,
+          "max_x_points": 1003.502496,
+          "min_y_points": 342.931524,
+          "max_y_points": 749.044452,
+          "all_word_boxes_within_page": true
+        },
+        {
+          "page": 6,
+          "width_points": 1190.551181,
+          "height_points": 841.889764,
+          "min_x_points": 115.722,
+          "max_x_points": 1004.114904,
+          "min_y_points": 55.056524,
+          "max_y_points": 311.669452,
+          "all_word_boxes_within_page": true
+        },
+        {
+          "page": 7,
+          "width_points": 1190.551181,
+          "height_points": 841.889764,
+          "min_x_points": 115.722,
+          "max_x_points": 1004.114904,
+          "min_y_points": 55.056524,
+          "max_y_points": 741.390452,
+          "all_word_boxes_within_page": true
+        },
+        {
+          "page": 8,
+          "width_points": 841.889764,
+          "height_points": 595.303937,
+          "min_x_points": 51.392,
+          "max_x_points": 639.224102,
+          "min_y_points": 54.773462,
+          "max_y_points": 132.889437,
+          "all_word_boxes_within_page": true
+        }
+      ],
+      "08": [
+        {
+          "page": 1,
+          "width_points": 1190.551181,
+          "height_points": 841.889764,
+          "min_x_points": 50.99,
+          "max_x_points": 593.277688,
+          "min_y_points": 54.521004,
+          "max_y_points": 761.281608,
+          "all_word_boxes_within_page": true
+        },
+        {
+          "page": 2,
+          "width_points": 1190.551181,
+          "height_points": 841.889764,
+          "min_x_points": 83.066,
+          "max_x_points": 574.148944,
+          "min_y_points": 54.486144,
+          "max_y_points": 684.898608,
+          "all_word_boxes_within_page": true
+        },
+        {
+          "page": 3,
+          "width_points": 1190.551181,
+          "height_points": 841.889764,
+          "min_x_points": 83.066,
+          "max_x_points": 574.148944,
+          "min_y_points": 126.480144,
+          "max_y_points": 786.197608,
+          "all_word_boxes_within_page": true
+        },
+        {
+          "page": 4,
+          "width_points": 1190.551181,
+          "height_points": 841.889764,
+          "min_x_points": 83.066,
+          "max_x_points": 574.148944,
+          "min_y_points": 57.836144,
+          "max_y_points": 257.593608,
+          "all_word_boxes_within_page": true
+        },
+        {
+          "page": 5,
+          "width_points": 841.889764,
+          "height_points": 595.303937,
+          "min_x_points": 51.392,
+          "max_x_points": 654.093398,
+          "min_y_points": 54.773462,
+          "max_y_points": 132.917437,
+          "all_word_boxes_within_page": true
+        }
+      ]
+    },
+    "07_page_pngs": [
+      {
+        "page": 1,
+        "path": "correction-output/final-v2-pages07/page-1.png",
+        "sha256": "d502827c79d9369c6a84c5d177b34fdf64c59093d77c708b995963b6bebec9e0"
+      },
+      {
+        "page": 2,
+        "path": "correction-output/final-v2-pages07/page-2.png",
+        "sha256": "4ea036071f4bd3df2e3dedf47ec20f26f27e3661c06b7ef26f2df90fdc1317d7"
+      },
+      {
+        "page": 3,
+        "path": "correction-output/final-v2-pages07/page-3.png",
+        "sha256": "8780b524c8b38c0f3356065e6393a1532bd1d6aa974cd23f92c3c716e9efe413"
+      },
+      {
+        "page": 4,
+        "path": "correction-output/final-v2-pages07/page-4-rerender.png",
+        "sha256": "3926b55dd3ebfaed2a94035b8481e117d75e282344c2112cf24c68c9c6b51e6c"
+      },
+      {
+        "page": 5,
+        "path": "correction-output/final-v2-pages07/page-5.png",
+        "sha256": "365c6d17781f25b51b55a6af3e937412ab9e7ac797a5359958b00c5ec72d9333"
+      },
+      {
+        "page": 6,
+        "path": "correction-output/final-v2-pages07/page-6.png",
+        "sha256": "580e1999a0834fd8ecc8ae22eae6d9763e222a14f05c3a0ef07dc791c00673da"
+      },
+      {
+        "page": 7,
+        "path": "correction-output/final-v2-pages07/page-7.png",
+        "sha256": "a4c9628b654b0ad75df149c2f4b1c306e1ef62aa6f95c37d799aee8481c1f327"
+      },
+      {
+        "page": 8,
+        "path": "correction-output/final-v2-pages07/page-8.png",
+        "sha256": "ecc4536b983355729666903a7c034cbf20703597be6e5b569bfbe55362ef051a"
+      }
+    ],
+    "08_page_pngs": [
+      {
+        "page": 1,
+        "path": "correction-output/final-v2-pages08/page-1-rerender.png",
+        "sha256": "eae40cb126e1058cf3bbd1631eb83d855c9c736db867e76d45a023561a03d903"
+      },
+      {
+        "page": 2,
+        "path": "correction-output/final-v2-pages08/page-2.png",
+        "sha256": "ceae927b49a1ab98dc6e9490549bf5dc5979f3db440afb7673e61395c77b6814"
+      },
+      {
+        "page": 3,
+        "path": "correction-output/final-v2-pages08/page-3.png",
+        "sha256": "67ea9b0c159db365e3959cbf70255b7095498f4a412dfc73c6545ae9716ed623"
+      },
+      {
+        "page": 4,
+        "path": "correction-output/final-v2-pages08/page-4.png",
+        "sha256": "43ed79850a0e17d5e34cbb79d51e8e13e76b6de2d46c833499c740bb003f0772"
+      },
+      {
+        "page": 5,
+        "path": "correction-output/final-v2-pages08/page-5.png",
+        "sha256": "300a1c74b572c89f8fe9feafe55e2a1770621159947f8bbab52f78b256e724df"
+      }
+    ],
+    "contact_sheets": {
+      "07_sha256": "d5fc0a9356c5c5f5e6697b3e6580909bd1af8e3020fadc7e132411ed00ef0819",
+      "08_sha256": "b75d7db7eb3f95d60e48b2fe608843c374cc6249fbf8696095582458cfd64fd7"
+    }
+  },
+  "accepted": [
+    "narrow page setup and row auto-height corrections on register and instruction sheets",
+    "preservation of formulas, values, validations, protection, styles and unrelated ZIP members",
+    "identical 25-row scenario, exact 07 total and zero formula errors",
+    "all register pages in a single horizontal band without clipping or overlap",
+    "both instruction pages fully within A4 landscape bounds without clipping"
+  ],
+  "not_accepted": [
+    "native Microsoft Excel typed, paste, UI or print behavior",
+    "legal or normative content",
+    "archive composition",
+    "source replacement",
+    "product or release acceptance",
+    "publication, price, SKU, checkout or delivery"
+  ],
+  "model_calls": 0,
+  "no_paid_api": true,
+  "next_step": "Repeat independent exact-hash structural and all-page visual acceptance; only then prepare a Draft PR without merge or release."
+}
