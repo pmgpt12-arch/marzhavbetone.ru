@@ -1,0 +1,59 @@
+{
+  "source_issue": 580,
+  "parent_issue": 291,
+  "base_sha": "fd2a2b3688180989a6a8ac653eba0c8b2bcc958e",
+  "definition_origin": "Python artifact_tool range.data_validation export",
+  "definition_sha256": "705fa774fc2c4bcfe98828416a0d5a363cce90c0375b6e1a67c096804834afa8",
+  "scope": "STRUCTURAL_VALIDATION_AND_PRESERVATION_ONLY",
+  "numeric_input_cells": 500,
+  "files": [
+    {
+      "file": "07-raschet-stoimosti.xlsx",
+      "input_sha256": "00ff8043c0281ade1076d76285f853d53cd06ae995fdfacece533ca843bb7f3d",
+      "output_sha256": "f2ed0b234111a717eded1d214ddc9c60eb113be51c51c09a75f7d7a641d47134",
+      "new_numeric_ranges": [
+        "D4:D103",
+        "E4:E103",
+        "H4:H103"
+      ],
+      "changed_parts": [
+        "xl/worksheets/sheet1.xml"
+      ],
+      "formula": "OR(ISBLANK(relative_top_left),ISNUMBER(relative_top_left))",
+      "allows": [
+        "blank",
+        "zero",
+        "negative",
+        "positive"
+      ]
+    },
+    {
+      "file": "08-zhurnal-doprabot.xlsx",
+      "input_sha256": "f50e316cd8e0ecb43343803112b0228f1e6584bd27fa13426c4af72972049950",
+      "output_sha256": "f18c1e71dced81ebe6fe4f95d978a3dada5d04c4778bdbdd1bd15a1f1c7f27e2",
+      "new_numeric_ranges": [
+        "F4:F103",
+        "G4:G103"
+      ],
+      "changed_parts": [
+        "xl/worksheets/sheet1.xml"
+      ],
+      "formula": "OR(ISBLANK(relative_top_left),ISNUMBER(relative_top_left))",
+      "allows": [
+        "blank",
+        "zero",
+        "negative",
+        "positive"
+      ]
+    }
+  ],
+  "not_verified": [
+    "native Microsoft Excel typed input",
+    "clipboard paste handling",
+    "filled form printing",
+    "independent product acceptance",
+    "normative acceptance",
+    "release"
+  ],
+  "next_step": "Independent exact-SHA review; native Excel and buyer gates remain open"
+}

@@ -58,8 +58,12 @@ def patch_sheet(source: bytes, ranges: tuple[str, ...]) -> bytes:
     """Replace/add only the validation span; preserve all surrounding bytes."""
     text = source.decode("utf-8")
     root = ET.fromstring(source)
-    if root.tag != f"{{{NS}}}worksheet" or not re.search(r"<worksheet\b", text):
-        raise ValueError("Expected the pinned default-namespace worksheet")
+    opening = re.search(r"<(?P<prefix>[A-Za-z_][\w.-]*:)?worksheet\b", text)
+    if root.tag != f"{{{NS}}}worksheet" or opening is None:
+        raise ValueError("Expected the pinned worksheet namespace")
+    prefix = opening.group("prefix") or ""
+    dv_pattern = re.compile(r"<" + re.escape(prefix) + r"dataValidations\b[^>]*>.*?</" + re.escape(prefix) + r"dataValidations>", re.S)
+    closing = f"</{prefix}dataValidations>"
     existing = root.find(f"{{{NS}}}dataValidations")
     donors = [entry for entry in ET.fromstring(DONOR)
               if entry.attrib["sqref"] in ranges]
@@ -67,7 +71,7 @@ def patch_sheet(source: bytes, ranges: tuple[str, ...]) -> bytes:
         raise ValueError("Donor/range mismatch")
     donor_text = "".join(ET.tostring(entry, encoding="unicode") for entry in donors)
     if existing is not None:
-        matches = list(DV_RE.finditer(text))
+        matches = list(dv_pattern.finditer(text))
         if len(matches) != 1:
             raise ValueError("Unexpected source validation representation")
         if any(entry.attrib.get("sqref") in ranges for entry in existing):
@@ -79,15 +83,14 @@ def patch_sheet(source: bytes, ranges: tuple[str, ...]) -> bytes:
         old = match.group()
         updated = re.sub(r'\bcount="\d+"', f'count="{old_count + len(donors)}"',
                          old, count=1)
-        updated = updated.replace("</dataValidations>",
-                                  donor_text + "</dataValidations>")
+        updated = updated.replace(closing, donor_text + closing)
         result = text[:match.start()] + updated + text[match.end():]
     else:
-        block = f'<dataValidations count="{len(donors)}">' + donor_text + "</dataValidations>"
+        block = f'<{prefix}dataValidations count="{len(donors)}">' + donor_text + closing
         later = next((c.tag.rsplit("}", 1)[-1] for c in root
                       if c.tag.rsplit("}", 1)[-1] in LATER_TAGS), None)
-        token = re.search(r"<" + re.escape(later) + r"\b", text) if later else None
-        at = token.start() if token else text.rfind("</worksheet>")
+        token = re.search(r"<" + re.escape(prefix + later) + r"\b", text) if later else None
+        at = token.start() if token else text.rfind(f"</{prefix}worksheet>")
         if at < 0:
             raise ValueError("No insertion point")
         result = text[:at] + block + text[at:]

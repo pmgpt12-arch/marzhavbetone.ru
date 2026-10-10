@@ -31,7 +31,7 @@ def read_parts(path: Path) -> dict[str, bytes]:
 
 
 def strip_validations(xml: bytes) -> bytes:
-    return re.sub(rb"<dataValidations\b[^>]*>.*?</dataValidations>", b"", xml, flags=re.S)
+    return re.sub(rb"<(?:[A-Za-z_][\w.-]*:)?dataValidations\b[^>]*>.*?</(?:[A-Za-z_][\w.-]*:)?dataValidations>", b"", xml, flags=re.S)
 
 
 class ValidationAcceptance(unittest.TestCase):
@@ -164,6 +164,17 @@ class ValidationAcceptance(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Pinned input hash mismatch"):
                 build.build(fake_root, output)
             self.assertFalse(output.exists())
+
+    def test_14_default_and_prefixed_namespace_regression(self):
+        for prefix in ("", "x:", "main:"):
+            namespace = f'xmlns:{prefix[:-1]}="{build.NS}"' if prefix else f'xmlns="{build.NS}"'
+            source = f'<{prefix}worksheet {namespace}><{prefix}sheetData/><{prefix}pageSetup/></{prefix}worksheet>'.encode()
+            output = build.patch_sheet(source, ("D4:D103", "E4:E103", "H4:H103"))
+            self.assertEqual(strip_validations(output), source)
+            self.assertEqual(len(ET.fromstring(output).find("m:dataValidations", N)), 3)
+            output2 = build.patch_sheet(output, ("F4:F103", "G4:G103"))
+            self.assertEqual(strip_validations(output2), source)
+            self.assertEqual(len(ET.fromstring(output2).find("m:dataValidations", N)), 5)
 
 
 if __name__ == "__main__":
