@@ -60,24 +60,11 @@ def выдаваемые() -> list[Path]:
 
 
 def кириллические_функции(книга: Path) -> list[str]:
-    """Формулы книги, где имя функции записано кириллицей."""
-    найдено = []
-    with zipfile.ZipFile(книга) as z:
-        листы = [n for n in z.namelist()
-                 if re.match(r"xl/worksheets/sheet\d+\.xml$", n)]
-        for лист in листы:
-            xml = z.read(лист).decode("utf-8", "replace")
-            for m in ФОРМУЛА.finditer(xml):
-                # openpyxl пишет кириллицу числовыми ссылками —
-                # <f>&#1057;&#1059;&#1052;&#1052;(E2:E20)</f>. Первая
-                # редакция этой проверки искала по сырому XML, не нашла в
-                # нём ни одной русской буквы и зеленела на том самом
-                # дефекте, ради которого написана.
-                формула = html.unescape(m.group(1))
-                if ИМЯ_ФУНКЦИИ.search(СТРОКОВЫЙ_ЛИТЕРАЛ.sub("", формула)):
-                    найдено.append(формула)
-    return найдено
-
+    """Проверяет формулы из OOXML независимо от XML-префикса (<f>, <x:f>)."""
+    return [
+        формула for формула in формулы_книги(книга)
+        if ИМЯ_ФУНКЦИИ.search(СТРОКОВЫЙ_ЛИТЕРАЛ.sub("", формула))
+    ]
 
 def test_каждый_выдаваемый_pdf_несёт_встроенный_шрифт() -> None:
     файлы = [f for f in выдаваемые() if f.suffix.lower() == ".pdf"]
@@ -103,24 +90,54 @@ def test_ни_одна_выдаваемая_книга_не_зовёт_функ�
 
 
 def формулы_книги(книга: Path) -> list[str]:
-    """Извлекает Excel-формулы, включая XML-экранированные символы."""
+    """Извлекает формулы через XML parser, независимо от namespace-префикса.
+
+    Регулярное выражение <f> пропускало формулы <x:f>, из-за чего тест
+    мог давать ложный PASS/FAIL на одном и том же XLSX.
+    """
+    from xml.etree import ElementTree as ET
+
     формулы = []
     with zipfile.ZipFile(книга) as z:
         for лист in z.namelist():
-            if re.match(r"xl/worksheets/sheet\d+\.xml$", лист):
-                xml = z.read(лист).decode("utf-8", "replace")
-                формулы.extend(html.unescape(m.group(1)) for m in ФОРМУЛА.finditer(xml))
+            if not re.fullmatch(r"xl/worksheets/sheet\d+\.xml", лист):
+                continue
+            root = ET.fromstring(z.read(лист))
+            for node in root.iter():
+                if node.tag.rsplit("}", 1)[-1] == "f" and node.text is not None:
+                    формулы.append(node.text)
     return формулы
 
+def test_бесплатный_калькулятор_пени_согласован_с_вводом_процента() -> None:
+    """При вводе 0,1% Excel хранит 0,001: повторное /100 недопустимо.
 
-def test_бесплатный_калькулятор_пени_переводит_проценты_в_долю() -> None:
-    """Подсказка «0,1%» должна дать 0,001, а не 0,1 в формуле Excel."""
+    Проверяются исходный XLSX и оба генератора, чтобы исключить регрессию
+    при будущей пересборке.
+    """
     книга = STORAGE / "00-free-ks-podpisany-deneg-net" / "02-kalkulyator-sroka-oplaty.xlsx"
-    формулы = [формула.replace(" ", "") for формула in формулы_книги(книга)]
-    assert any("B11*B10*B8/100" in формула for формула in формулы), (
-        "калькулятор пени не переводит процентную ставку в десятичную долю")
+    ожидаемая = (
+        'IF(OR(NOT(ISNUMBER(B8)),NOT(ISNUMBER(B10)),'
+        'NOT(ISNUMBER(B11))),"",B8*B10*B11)'
+    )
+    assert ожидаемая in формулы_книги(книга), (
+        "калькулятор должен использовать процентную долю без повторного /100"
+    )
+    with zipfile.ZipFile(книга) as z:
+        sheet = z.read("xl/worksheets/sheet1.xml").decode("utf-8")
+    assert "Введите договорную ставку как процент, например 0,1%." in sheet, (
+        "подсказка к ставке должна требовать ввод со знаком %"
+    )
 
-
+    for имя in ("build_free_01.py", "build_all.py"):
+        скрипт = (STORAGE / имя).read_text(encoding="utf-8")
+        строки = скрипт.splitlines()
+        matches = [v for v in строки if '["Начисленные пени"' in v]
+        assert len(matches) == 1, f"{имя}: ожидалась одна формула пеней"
+        assert "B8*B10*B11" in matches[0] and "/100" not in matches[0], (
+            f"{имя}: повторное деление процента либо другая формула"
+        )
+        assert any("Введите договорную ставку как процент, например 0,1%." in v
+                   for v in строки), f"{имя}: несовместимая подсказка к вводу"
 
 def test_исторические_архивы_проверкой_не_охвачены() -> None:
     """Страховка от обратного дефекта: если однажды выдача начнёт считаться
