@@ -85,6 +85,17 @@ def read_source(commit: str, path: str) -> bytes:
     return out
 
 
+def assert_source_tree(commit: str) -> None:
+    actual = str(git("rev-parse", f"{commit}^{{tree}}")).strip()
+    if actual != SOURCE_TREE:
+        raise DiscoveryError(f"source tree drift: expected={SOURCE_TREE}, actual={actual}")
+
+
+def assert_control_input_equal(name: str, source: bytes, head: bytes) -> None:
+    if source != head:
+        raise DiscoveryError(f"HEAD control-input drift: {name}")
+
+
 def sitemap_routes(xml_bytes: bytes) -> dict[str, str]:
     root = ET.fromstring(xml_bytes)
     routes: dict[str, str] = {}
@@ -141,9 +152,14 @@ def validate_entries(entries: list[dict[str, object]], candidates: set[str]) -> 
 
 
 def build_report(commit: str = SOURCE_COMMIT) -> dict[str, object]:
+    assert_source_tree(commit)
     files = source_files(commit)
     assert_head_candidates_match_source(files, source_files("HEAD"))
-    indexed = sitemap_routes(read_source(commit, "sitemap.xml"))
+    source_sitemap = read_source(commit, "sitemap.xml")
+    assert_control_input_equal(
+        "sitemap.xml", source_sitemap, read_source("HEAD", "sitemap.xml")
+    )
+    indexed = sitemap_routes(source_sitemap)
     missing = sorted(set(indexed) - set(files))
     if missing:
         raise DiscoveryError(f"sitemap source missing: {missing}")

@@ -43,6 +43,10 @@ class SiteRouteDiscoveryTests(unittest.TestCase):
         with self.assertRaises(mod.DiscoveryError):
             mod.assert_head_candidates_match_source(source, head)
 
+    def test_sitemap_only_drift_fails(self):
+        with self.assertRaises(mod.DiscoveryError):
+            mod.assert_control_input_equal("sitemap.xml", b"<a/>", b"<b/>")
+
     def test_missing_candidate_fails(self):
         entries = copy.deepcopy(self.report["entries"])
         entries.pop()
