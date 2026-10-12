@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "RUNNING",
+  "status": "PASS_TRANSPORT_AND_CONTAINER_INTEGRITY_ONLY",
   "unit": "mb001-p2-canonical-office-transport-qualification-20261012",
   "started_at": "2026-10-12T17:12:00Z",
   "checkpoint_policy": "verified_only",
@@ -60,5 +60,33 @@
     "no_source_replacement_deploy_publication_delivery_or_release",
     "report_evidence_not_nominated_and_historical_mirrors_excluded"
   ],
-  "next_step": "qualify exact binary transport; only after PASS prepare a separate native Word review package against these same nominated hashes"
+  "next_step": "qualify exact binary transport; only after PASS prepare a separate native Word review package against these same nominated hashes",
+  "completed_at": "2026-10-12T17:26:00Z",
+  "accepted_candidate_head": "144cfe775d726dfe21a1eb3ca481e6d89f22333c",
+  "evidence": {
+    "run_id": 38284111607,
+    "job_id": 114928225527,
+    "artifact_id": 11761978180,
+    "artifact_zip_sha256": "0f690aa75aeaf0142eadbab07d0a9ad46c4090bd09aa62ef2ddb80e0c8931e45",
+    "report_sha256": "00213b6ef8bc8dca0fc42f5e54cec17a6e3843d21079d80de5cd52286719ef28",
+    "manifest_sha256": "8fe6bd840f9da47b0228cf488ca304dc48ee5b5824216c533a9dbe3864f87a44",
+    "receipt_sha256": "674c953662f3198ebf949e4aa82ee52975a49bc23a6f4e53c09c12e86fd83a8b",
+    "exit_code_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "exit_code": 0,
+    "tests": "9/9 PASS"
+  },
+  "acceptance_result": {
+    "exact_registry_nomination_accepted": true,
+    "github_binary_transport_accepted": true,
+    "docx_container_integrity_accepted": true,
+    "content_accepted": false,
+    "legal_accepted": false,
+    "native_word_accepted": false,
+    "visual_accepted": false,
+    "source_replacement_accepted": false,
+    "deploy_accepted": false,
+    "publication_accepted": false,
+    "delivery_accepted": false,
+    "release_accepted": false
+  }
 }
