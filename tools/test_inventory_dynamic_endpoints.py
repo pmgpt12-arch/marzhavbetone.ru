@@ -66,6 +66,22 @@ class InventoryTests(unittest.TestCase):
                 "method": "UNSPECIFIED",
             }])
 
+    def test_server_references_are_not_client_call_sites(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "config.php").write_text("<?php $x = 'webhook.php';\n", encoding="utf-8")
+            self.assertEqual(target.client_call_sites(root, target.EXPECTED_ENDPOINTS), [])
+            self.assertEqual(target.server_source_references(root, target.EXPECTED_ENDPOINTS), [{
+                "endpoint": "webhook.php",
+                "source_path": "config.php",
+                "line": 1,
+                "method": "UNSPECIFIED",
+            }])
+
+    def test_execution_environment_records_exact_evidence_head(self):
+        with mock.patch.dict("os.environ", {"EVIDENCE_HEAD_SHA": "abc123"}, clear=True):
+            self.assertEqual(target.execution_environment(), {"evidence_head_sha": "abc123"})
+
     def test_atomic_json_leaves_no_temporary_file(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "report.json"
@@ -81,6 +97,7 @@ class InventoryTests(unittest.TestCase):
                 "source_report": {"path": "source.json", "sha256": "a" * 64},
                 "endpoints": [{"path": "event.php", "bytes": 3, "sha256": "b" * 64}],
                 "client_call_sites": [],
+                "server_source_references": [],
             }
             target.write_evidence(output, report)
             receipt = json.loads((output / "receipt.json").read_text())
