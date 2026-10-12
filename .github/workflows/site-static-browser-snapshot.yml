@@ -1,0 +1,56 @@
+name: Static browser snapshot
+
+on:
+  pull_request:
+    paths:
+      - '**/*.html'
+      - '**/*.php'
+      - '**/*.css'
+      - '**/*.js'
+      - '**/*.svg'
+      - '**/*.png'
+      - '**/*.jpg'
+      - '**/*.jpeg'
+      - '**/*.webp'
+      - '**/*.ico'
+      - 'tools/capture_static_browser_snapshot.py'
+      - 'tools/test_static_browser_snapshot.py'
+      - 'tools/reports/site-static-content-snapshot-20261012/report.json'
+      - '.github/workflows/site-static-browser-snapshot.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install browser harness
+        run: |
+          python3 -m pip install --quiet playwright pillow
+          python3 -m playwright install --with-deps chromium
+
+      - name: Verify deterministic contract tests
+        run: python3 -m unittest tools/test_static_browser_snapshot.py
+
+      - name: Capture exact 88-page package
+        run: >-
+          python3 tools/capture_static_browser_snapshot.py
+          --output browser-snapshot-artifact
+
+      - name: Upload evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-browser-snapshot-${{ github.run_id }}-${{ github.run_attempt }}
+          path: browser-snapshot-artifact/
+          if-no-files-found: error
+          retention-days: 14
