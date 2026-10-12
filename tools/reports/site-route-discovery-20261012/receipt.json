@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "unit": "site-route-discovery-20261012",
+  "status": "PASS_DISCOVERY_SCOPE_ONLY",
+  "checkpoint_policy": "verified_only",
+  "source_commit": "03ce64f607c43bd6a1443ad2d1088c07697c22ba",
+  "source_tree": "e9a7e8cb6cbf91f1a1c21c5e0cf468970d70c5e4",
+  "command": [
+    "python3 tools/discover_site_routes.py --check",
+    "python3 -m unittest tools.test_site_route_discovery"
+  ],
+  "fingerprints": {
+    "report_sha256": "37febeca4e5c6c8a4f21e5d7ec1534b5fe61bd8a9ba994cd93bc0bf7e71933cb",
+    "generator_sha256": "0a54534b53d703ff83c687dfba964dedd510a29a0c31f61db7bffea5cb25238d",
+    "tests_sha256": "fce5da90503d4e5acdafb20f0763298af8fdb74debe2758e1d30bfe12dc97912",
+    "workflow_sha256": "f728601ba9fd0a7f087fb9267c1700fc21377112ccabbde3ae5d11f93a4848f6"
+  },
+  "observed": {
+    "candidate_count": 116,
+    "sitemap_route_count": 84,
+    "public_route_count": 98,
+    "non_route_count": 18
+  },
+  "model_calls": 0,
+  "accepted_scope": [
+    "route_discovery_hash_identity"
+  ],
+  "acceptance_evidence": {
+    "reviewed_artifact_head": "3fb933a95707e85c9619216e3cb0b40d1c3baf3c",
+    "dedicated_workflow_run": 38250950288,
+    "main_checks_run": 38250950488,
+    "independent_verdict": "PASS_DISCOVERY_SCOPE_ONLY"
+  },
+  "excluded_acceptance": [
+    "content",
+    "render",
+    "legal",
+    "deploy",
+    "release"
+  ],
+  "next_step": "exact-head CI, independent route-discovery review, then full source-dependency/render/visible-content snapshot"
+}
