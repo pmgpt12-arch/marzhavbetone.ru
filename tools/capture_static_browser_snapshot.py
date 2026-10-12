@@ -120,36 +120,42 @@ def make_contact_sheets(output: Path, manifest: list[dict]) -> list[dict]:
     results = []
     for viewport in VIEWPORTS:
         rows = [item for item in manifest if item["viewport"] == viewport]
-        for part, offset in enumerate(range(0, len(rows), 44), start=1):
-            chunk = rows[offset:offset + 44]
-            columns, tile_w, tile_h, label_h = 4, 320, 180, 38
-            row_count = (len(chunk) + columns - 1) // columns
-            sheet = Image.new("RGB", (columns * tile_w, row_count * (tile_h + label_h)), "white")
-            draw = ImageDraw.Draw(sheet)
-            for index, item in enumerate(chunk):
-                image_path = output / item["relative_path"]
-                with Image.open(image_path) as source:
-                    thumb = ImageOps.contain(source.convert("RGB"), (tile_w - 8, tile_h - 8))
-                x = (index % columns) * tile_w
-                y = (index // columns) * (tile_h + label_h)
-                sheet.paste(thumb, (x + 4, y + 4))
-                label = item["public_route"]
-                if len(label) > 48:
-                    label = label[:45] + "..."
-                draw.text((x + 5, y + tile_h + 4), label, fill="black")
-                draw.text((x + 5, y + tile_h + 20), item["sha256"][:16], fill="#555555")
-            relative = Path("contact-sheets") / f"{viewport}-part-{part}.jpg"
-            destination = output / relative
-            destination.parent.mkdir(parents=True, exist_ok=True)
-            sheet.save(destination, format="JPEG", quality=86, optimize=True)
-            results.append({
-                "viewport": viewport,
-                "part": part,
-                "pages": len(chunk),
-                "relative_path": relative.as_posix(),
-                "sha256": sha256_file(destination),
-                "bytes": destination.stat().st_size,
-            })
+        for sheet_kind in ("first-fold", "full-page"):
+            for part, offset in enumerate(range(0, len(rows), 44), start=1):
+                chunk = rows[offset:offset + 44]
+                columns, tile_w, tile_h, label_h = 4, 320, 180, 38
+                row_count = (len(chunk) + columns - 1) // columns
+                sheet = Image.new("RGB", (columns * tile_w, row_count * (tile_h + label_h)), "white")
+                draw = ImageDraw.Draw(sheet)
+                for index, item in enumerate(chunk):
+                    image_path = output / item["relative_path"]
+                    with Image.open(image_path) as source:
+                        rendered = source.convert("RGB")
+                        if sheet_kind == "first-fold":
+                            fold_height = min(rendered.height, VIEWPORTS[viewport]["height"])
+                            rendered = rendered.crop((0, 0, rendered.width, fold_height))
+                        thumb = ImageOps.contain(rendered, (tile_w - 8, tile_h - 8))
+                    x = (index % columns) * tile_w
+                    y = (index // columns) * (tile_h + label_h)
+                    sheet.paste(thumb, (x + 4, y + 4))
+                    label = item["public_route"]
+                    if len(label) > 48:
+                        label = label[:45] + "..."
+                    draw.text((x + 5, y + tile_h + 4), label, fill="black")
+                    draw.text((x + 5, y + tile_h + 20), item["sha256"][:16], fill="#555555")
+                relative = Path("contact-sheets") / f"{sheet_kind}-{viewport}-part-{part}.jpg"
+                destination = output / relative
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                sheet.save(destination, format="JPEG", quality=86, optimize=True)
+                results.append({
+                    "kind": sheet_kind,
+                    "viewport": viewport,
+                    "part": part,
+                    "pages": len(chunk),
+                    "relative_path": relative.as_posix(),
+                    "sha256": sha256_file(destination),
+                    "bytes": destination.stat().st_size,
+                })
     return results
 
 
@@ -171,6 +177,9 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
         "github_run_id": os.getenv("GITHUB_RUN_ID"),
         "github_run_attempt": os.getenv("GITHUB_RUN_ATTEMPT"),
         "github_sha": os.getenv("GITHUB_SHA"),
+        "github_ref": os.getenv("GITHUB_REF"),
+        "github_head_ref": os.getenv("GITHUB_HEAD_REF"),
+        "evidence_head_sha": os.getenv("EVIDENCE_HEAD_SHA"),
     }
     status = "FAIL_BROWSER_RENDER_SNAPSHOT"
     fatal_error = None
@@ -317,8 +326,11 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
                 browser = None
 
         expected_captures = EXPECTED_PAGE_COUNT * len(VIEWPORTS)
+        expected_contact_sheets = len(VIEWPORTS) * 4
         contact_sheets = make_contact_sheets(output, manifest) if manifest else []
-        if len(manifest) == expected_captures and not failures and len(contact_sheets) == 4:
+        if os.getenv("GITHUB_ACTIONS") == "true" and not environment["evidence_head_sha"]:
+            failures.append({"scope": "lineage", "reasons": ["missing_evidence_head_sha"]})
+        if len(manifest) == expected_captures and not failures and len(contact_sheets) == expected_contact_sheets:
             status = "PASS_BROWSER_RENDER_SNAPSHOT_ONLY"
     except Exception as exc:
         fatal_error = repr(exc)
