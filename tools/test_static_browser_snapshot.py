@@ -4,6 +4,7 @@ import hashlib
 import json
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 from tools import capture_static_browser_snapshot as target
@@ -106,6 +107,20 @@ class ContractTests(unittest.TestCase):
         self.assertFalse(route.continued)
         self.assertEqual(route.fulfilled["status"], 204)
         self.assertEqual(observed[0]["disposition"], "inert_204_stub_not_executed")
+
+    def test_socket_failure_still_leaves_failure_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            report = root / "report.json"
+            report.write_text("{}", encoding="utf-8")
+            output = root / "evidence"
+            with mock.patch.object(target, "validate_source_report", return_value=sample_report()):
+                with mock.patch.object(target, "free_port", side_effect=OSError("no socket")):
+                    result, exit_code = target.capture(root, report, output)
+            self.assertEqual(exit_code, 1)
+            self.assertEqual(result["status"], "FAIL_BROWSER_RENDER_SNAPSHOT")
+            receipt = json.loads((output / "receipt.json").read_text())
+            self.assertEqual(receipt["status"], "FAIL_BROWSER_RENDER_SNAPSHOT")
 
 
 if __name__ == "__main__":

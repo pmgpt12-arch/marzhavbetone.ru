@@ -193,7 +193,7 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
     raw = b""
     source = None
     log_path = output / "php-server.log"
-    port = free_port()
+    port = None
     server = None
     browser = None
     manifest: list[dict] = []
@@ -214,6 +214,7 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
     try:
         raw = report_path.read_bytes()
         source = validate_source_report(raw)
+        port = free_port()
         try:
             from playwright.sync_api import sync_playwright
         except ImportError as exc:
