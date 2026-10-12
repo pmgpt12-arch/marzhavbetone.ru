@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "status": "RUNNING",
+  "unit": "mb001-app-script-http-runtime-contract-20261012",
+  "started_at": "2026-10-12T16:10:00Z",
+  "checkpoint_policy": "verified_only",
+  "base_commit": "8125e68a4c6d83332deceeb32a57b39383b28962",
+  "branch": "codex/mb001-app-script-http-runtime-contract-20261012",
+  "accepted_predecessor": {
+    "unit": "mb001-app-script-wrapper-source-contract-20261012",
+    "accepted_head": "c59938e6c095426a1c0e5e5a6536d328bd1fd1e3",
+    "merge_commit": "8125e68a4c6d83332deceeb32a57b39383b28962",
+    "report_sha256": "bea20349ede3700a51bd155b745ea2bc9749de2e35762105d0fd6474e6e8341a"
+  },
+  "inputs": {
+    "app-script.php": {
+      "bytes": 239,
+      "sha256": "7ba0130cbe199fe0018da9c5cf5794ef35b968906fa6b007d86b8640bd0e5461"
+    },
+    "app.js": {
+      "bytes": 17061,
+      "sha256": "365806f60b6cda2c00c93e11d66f653654b75b7e6192dc701c7da56439d6b187"
+    }
+  },
+  "executor": {
+    "type": "deterministic_local_php_builtin_server",
+    "bind": "127.0.0.1",
+    "outbound_network": false,
+    "model_calls": 0,
+    "paid_api_calls": 0
+  },
+  "acceptance": [
+    "exact_predecessor_and_source_fingerprints",
+    "bounded_php_server_startup_and_shutdown",
+    "two_local_http_gets_status_200",
+    "response_body_byte_identical_to_app_js_on_both_requests",
+    "content_type_javascript_utf8",
+    "cache_control_no_cache_no_store_must_revalidate",
+    "pragma_no_cache",
+    "expires_zero",
+    "atomic_report_manifest_receipt_exit_and_failure_evidence",
+    "independent_exact_head_review_and_ci"
+  ],
+  "limitations": [
+    "local_github_runner_php_runtime_only",
+    "no_production_php_or_proxy_configuration",
+    "no_public_reachability_or_cdn_cache_acceptance",
+    "no_runtime_security_acceptance",
+    "no_deploy_publication_delivery_or_release"
+  ],
+  "next_step": "implement bounded localhost harness and negative regressions; do not deploy or call public endpoints"
+}
