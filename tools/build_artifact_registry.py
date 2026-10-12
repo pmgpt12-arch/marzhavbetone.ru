@@ -30,9 +30,9 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def root_facts(repo: Path, rel: str) -> dict[str, object]:
-    tree_sha = git(repo, "rev-parse", f"HEAD:{rel}")
-    output = git(repo, "ls-tree", "-r", "--long", "HEAD", "--", rel)
+def root_facts(repo: Path, commit: str, rel: str) -> dict[str, object]:
+    tree_sha = git(repo, "rev-parse", f"{commit}:{rel}")
+    output = git(repo, "ls-tree", "-r", "--long", commit, "--", rel)
     rows = [line for line in output.splitlines() if line]
     sizes = []
     for row in rows:
@@ -74,11 +74,10 @@ def validate_shape(data: dict) -> None:
 
 def reconcile(data: dict, repo: Path, check: bool) -> bool:
     changed = False
-    head = git(repo, "rev-parse", "HEAD")
-    if head != data["generated_from_commit"]:
-        raise RegistryError(f"checkout {head} != registry commit {data['generated_from_commit']}")
+    source_commit = data["generated_from_commit"]
+    git(repo, "cat-file", "-e", f"{source_commit}^{{commit}}")
     for source in data["product_sources"]:
-        actual = root_facts(repo, source["relative_root"])
+        actual = root_facts(repo, source_commit, source["relative_root"])
         for key, value in actual.items():
             if source.get(key) != value:
                 if check:
@@ -86,15 +85,18 @@ def reconcile(data: dict, repo: Path, check: bool) -> bool:
                 source[key] = value
                 changed = True
     for artifact in data["artifacts"]:
-        if artifact["commit"] != head:
-            continue
-        path = repo / artifact["relative_path"]
-        if not path.is_file():
-            raise RegistryError(f"missing artifact: {artifact['relative_path']}")
+        object_spec = f"{artifact['commit']}:{artifact['relative_path']}"
+        try:
+            blob = git(repo, "rev-parse", object_spec)
+            payload = subprocess.check_output(["git", "-C", str(repo), "show", object_spec])
+        except subprocess.CalledProcessError:
+            if artifact["role"] == "report_evidence_not_nominated":
+                continue
+            raise RegistryError(f"missing git object: {object_spec}")
         actual = {
-            "git_blob": git(repo, "hash-object", artifact["relative_path"]),
-            "sha256": sha256(path),
-            "bytes": path.stat().st_size,
+            "git_blob": blob,
+            "sha256": hashlib.sha256(payload).hexdigest(),
+            "bytes": len(payload),
         }
         for key, value in actual.items():
             if artifact.get(key) != value:
