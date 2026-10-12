@@ -1,0 +1,49 @@
+name: P2 instruction A4 copy candidate
+
+on:
+  pull_request:
+    paths:
+      - products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.docx
+      - tools/build_p2_instruction_a4_candidate.py
+      - tools/test_build_p2_instruction_a4_candidate.py
+      - tools/reports/p2-instruction-a4-copy-remediation-20261012/passport.json
+      - .github/workflows/p2-instruction-a4-copy-remediation.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify exact checked-out head
+        run: test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+      - name: Unit and regression tests
+        working-directory: tools
+        run: python -m unittest -v test_build_p2_instruction_a4_candidate.py
+      - name: Build exact candidate and evidence
+        run: |
+          python tools/build_p2_instruction_a4_candidate.py \
+            --input products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.docx \
+            --output "$RUNNER_TEMP/p2-a4/00-INSTRUKCIYA-a4-candidate.docx" \
+            --report "$RUNNER_TEMP/p2-a4/build-report.json"
+          python -m json.tool "$RUNNER_TEMP/p2-a4/build-report.json" >/dev/null
+          sha256sum "$RUNNER_TEMP/p2-a4/00-INSTRUKCIYA-a4-candidate.docx" \
+            "$RUNNER_TEMP/p2-a4/build-report.json" > "$RUNNER_TEMP/p2-a4/SHA256SUMS"
+      - name: Upload copy-only candidate evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-instruction-a4-copy-candidate-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/p2-a4/
+          if-no-files-found: error
+          retention-days: 30
