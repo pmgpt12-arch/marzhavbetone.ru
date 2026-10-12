@@ -59,6 +59,26 @@ def source_files(commit: str) -> dict[str, dict[str, object]]:
     return result
 
 
+def assert_head_candidates_match_source(
+    source: dict[str, dict[str, object]], head: dict[str, dict[str, object]]
+) -> None:
+    def fingerprint(files: dict[str, dict[str, object]]) -> dict[str, tuple[object, ...]]:
+        return {
+            path: (meta["blob_sha"], meta["bytes"], meta["mode"])
+            for path, meta in files.items()
+        }
+    if fingerprint(source) != fingerprint(head):
+        missing = sorted(set(source) - set(head))
+        extra = sorted(set(head) - set(source))
+        changed = sorted(
+            path for path in set(source) & set(head)
+            if fingerprint(source)[path] != fingerprint(head)[path]
+        )
+        raise DiscoveryError(
+            f"HEAD candidate drift: missing={missing}, extra={extra}, changed={changed}"
+        )
+
+
 def read_source(commit: str, path: str) -> bytes:
     out = git("show", f"{commit}:{path}", text=False)
     assert isinstance(out, bytes)
@@ -122,6 +142,7 @@ def validate_entries(entries: list[dict[str, object]], candidates: set[str]) -> 
 
 def build_report(commit: str = SOURCE_COMMIT) -> dict[str, object]:
     files = source_files(commit)
+    assert_head_candidates_match_source(files, source_files("HEAD"))
     indexed = sitemap_routes(read_source(commit, "sitemap.xml"))
     missing = sorted(set(indexed) - set(files))
     if missing:

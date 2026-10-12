@@ -37,6 +37,12 @@ class SiteRouteDiscoveryTests(unittest.TestCase):
         with self.assertRaises(mod.DiscoveryError):
             mod.classify("archive/old.html", {})
 
+    def test_head_candidate_drift_fails(self):
+        source = {"index.html": {"blob_sha": "a", "bytes": 1, "mode": "100644"}}
+        head = {"index.html": {"blob_sha": "b", "bytes": 1, "mode": "100644"}}
+        with self.assertRaises(mod.DiscoveryError):
+            mod.assert_head_candidates_match_source(source, head)
+
     def test_missing_candidate_fails(self):
         entries = copy.deepcopy(self.report["entries"])
         entries.pop()
