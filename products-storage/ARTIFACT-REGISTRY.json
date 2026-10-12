@@ -8,6 +8,13 @@
     "issue": 578,
     "target_product_count": 13
   },
+  "coverage": {
+    "target_skus": {"registered": 13, "expected": 13},
+    "runtime_roots": {"registered": 19, "expected": 19},
+    "root_files": {"registered": 218},
+    "file_sha256_records": {"registered": 4, "expected": 218, "percent": 1.83},
+    "qualification": "root identity complete; file-level SHA-256 inventory partial"
+  },
   "allowed_roles": [
     "canonical_master",
     "nominated_candidate",
