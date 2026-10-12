@@ -1,0 +1,55 @@
+name: Site app-script wrapper source contract
+
+on:
+  pull_request:
+    paths:
+      - app-script.php
+      - app.js
+      - tools/check_app_script_wrapper_contract.py
+      - tools/test_app_script_wrapper_contract.py
+      - tools/reports/site-app-script-wrapper-source-contract-20261012/passport.json
+      - .github/workflows/site-app-script-wrapper-source-contract.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  wrapper-source-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run contract regressions
+        run: python -m unittest tools.test_app_script_wrapper_contract -v
+
+      - name: Verify source-only wrapper contract
+        id: contract
+        shell: bash
+        env:
+          EVIDENCE_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set +e
+          python tools/check_app_script_wrapper_contract.py \
+            --output tools/reports/site-app-script-wrapper-source-contract-20261012
+          status=$?
+          printf '%s\n' "$status" > tools/reports/site-app-script-wrapper-source-contract-20261012/exit.code
+          exit "$status"
+
+      - name: Upload source-contract evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-app-script-wrapper-source-contract-${{ github.run_id }}-${{ github.run_attempt }}
+          path: tools/reports/site-app-script-wrapper-source-contract-20261012/
+          if-no-files-found: error
+          retention-days: 30
