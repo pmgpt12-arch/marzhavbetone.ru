@@ -37,6 +37,17 @@ def spec_for(path: str, data: bytes, registry_id: str = "R1") -> dict[str, objec
     }
 
 
+def make_registry(root: Path, specs: tuple[dict[str, object], ...], *, drift: bool = False) -> bytes:
+    records = [subject.expected_registry_record(spec) for spec in specs]
+    if drift:
+        records[0]["office_status"] = "PASS"
+    path = root / subject.REGISTRY_PATH
+    path.parent.mkdir(parents=True, exist_ok=True)
+    data = (json.dumps({"registry_status": "ACTIVE_PARTIAL_SEED", "artifacts": records}, indent=2) + "\n").encode()
+    path.write_bytes(data)
+    return data
+
+
 class QualificationTests(unittest.TestCase):
     def test_valid_container_passes(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -82,7 +93,11 @@ class QualificationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             out = root / "out"
-            with mock.patch.object(subject, "INPUTS", (spec_for("missing.docx", b"x"),) * 2):
+            specs = (spec_for("missing.docx", b"x", "R1"), spec_for("missing2.docx", b"y", "R2"))
+            registry = make_registry(root, specs)
+            with mock.patch.object(subject, "INPUTS", specs), mock.patch.object(
+                subject, "EXPECTED_REGISTRY_BLOB", subject.git_blob_sha1(registry)
+            ):
                 code = subject.run(root, out)
             self.assertEqual(code, 1)
             report = json.loads((out / "report.json").read_text())
@@ -101,8 +116,12 @@ class QualificationTests(unittest.TestCase):
                 rel = f"input-{index}.docx"
                 data = make_docx(root / rel)
                 specs.append(spec_for(rel, data, f"R{index}"))
+            specs_tuple = tuple(specs)
+            registry = make_registry(root, specs_tuple)
             out = root / "out"
-            with mock.patch.object(subject, "INPUTS", tuple(specs)):
+            with mock.patch.object(subject, "INPUTS", specs_tuple), mock.patch.object(
+                subject, "EXPECTED_REGISTRY_BLOB", subject.git_blob_sha1(registry)
+            ):
                 code = subject.run(root, out)
             self.assertEqual(code, 0)
             report = json.loads((out / "report.json").read_text())
@@ -120,11 +139,25 @@ class QualificationTests(unittest.TestCase):
     def test_exact_head_mismatch_writes_failure(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            with mock.patch.dict("os.environ", {"GITHUB_SHA": "actual"}):
+            specs = (spec_for("a.docx", b"x", "R1"), spec_for("b.docx", b"y", "R2"))
+            registry = make_registry(root, specs)
+            with mock.patch.object(subject, "INPUTS", specs), mock.patch.object(
+                subject, "EXPECTED_REGISTRY_BLOB", subject.git_blob_sha1(registry)
+            ), mock.patch.object(subject, "checked_out_head", return_value="actual"):
                 code = subject.run(root, root / "out", expected_head="expected")
             self.assertEqual(code, 1)
             report = json.loads((root / "out/report.json").read_text())
             self.assertIn("exact-head mismatch", report["failure"]["message"])
+
+    def test_registry_drift_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            specs = (spec_for("a.docx", b"x", "R1"), spec_for("b.docx", b"y", "R2"))
+            registry = make_registry(root, specs, drift=True)
+            with mock.patch.object(subject, "INPUTS", specs), mock.patch.object(
+                subject, "EXPECTED_REGISTRY_BLOB", subject.git_blob_sha1(registry)
+            ), self.assertRaisesRegex(ValueError, "records do not exactly match"):
+                subject.qualify_registry(root)
 
 
 if __name__ == "__main__":
