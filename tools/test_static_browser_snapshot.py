@@ -64,6 +64,49 @@ class ContractTests(unittest.TestCase):
         )
         self.assertEqual(target.dynamic_disposition("/styles.css", excluded), "not_dynamic")
 
+    def test_invalid_source_still_leaves_failure_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            report = root / "bad-report.json"
+            report.write_text("{}", encoding="utf-8")
+            output = root / "evidence"
+            result, exit_code = target.capture(root, report, output)
+            self.assertEqual(exit_code, 1)
+            self.assertEqual(result["status"], "FAIL_BROWSER_RENDER_SNAPSHOT")
+            self.assertTrue((output / "report.json").exists())
+            self.assertTrue((output / "manifest.json").exists())
+            self.assertTrue((output / "receipt.json").exists())
+            self.assertEqual(
+                json.loads((output / "receipt.json").read_text())["checkpoint_policy"],
+                "verified_only",
+            )
+
+    def test_route_handler_uses_playwright_two_argument_contract(self):
+        class Request:
+            url = "http://127.0.0.1/event.php"
+            method = "POST"
+
+        class Route:
+            continued = False
+            fulfilled = None
+
+            def continue_(self):
+                self.continued = True
+
+            def fulfill(self, **kwargs):
+                self.fulfilled = kwargs
+
+        observed = []
+        route = Route()
+        handler = target.make_dynamic_route_handler(
+            {"/event.php", "/app-script.php"},
+            observed,
+        )
+        handler(route, Request())
+        self.assertFalse(route.continued)
+        self.assertEqual(route.fulfilled["status"], 204)
+        self.assertEqual(observed[0]["disposition"], "inert_204_stub_not_executed")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -122,6 +122,26 @@ def dynamic_disposition(path: str, excluded: set[str]) -> str:
     return "inert_204_stub_not_executed"
 
 
+def make_dynamic_route_handler(excluded: set[str], observed: list[dict]):
+    def handler(route_object, request) -> None:
+        parsed = urlparse(request.url)
+        disposition = dynamic_disposition(parsed.path, excluded)
+        if disposition == "not_dynamic":
+            route_object.continue_()
+            return
+        observed.append({
+            "path": parsed.path,
+            "method": request.method,
+            "disposition": disposition,
+        })
+        if disposition == "allowed_render_dependency_not_accepted":
+            route_object.continue_()
+            return
+        route_object.fulfill(status=204, body="", content_type="text/plain")
+
+    return handler
+
+
 def make_contact_sheets(output: Path, manifest: list[dict]) -> list[dict]:
     from PIL import Image, ImageDraw, ImageOps
 
@@ -169,9 +189,9 @@ def make_contact_sheets(output: Path, manifest: list[dict]) -> list[dict]:
 
 def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
     started = dt.datetime.now(dt.timezone.utc).isoformat()
-    raw = report_path.read_bytes()
-    source = validate_source_report(raw)
     output.mkdir(parents=True, exist_ok=True)
+    raw = b""
+    source = None
     log_path = output / "php-server.log"
     port = free_port()
     server = None
@@ -192,6 +212,8 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
     status = "FAIL_BROWSER_RENDER_SNAPSHOT"
     fatal_error = None
     try:
+        raw = report_path.read_bytes()
+        source = validate_source_report(raw)
         try:
             from playwright.sync_api import sync_playwright
         except ImportError as exc:
@@ -252,29 +274,7 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
                         page.on("requestfailed", on_request_failed)
                         page.on("response", on_response)
 
-                        def isolate_dynamic(route_object, target=seen_dynamic):
-                            request = route_object.request
-                            parsed = urlparse(request.url)
-                            disposition = dynamic_disposition(parsed.path, excluded)
-                            if disposition == "not_dynamic":
-                                route_object.continue_()
-                                return
-                            if disposition == "allowed_render_dependency_not_accepted":
-                                target.append({
-                                    "path": parsed.path,
-                                    "method": request.method,
-                                    "disposition": disposition,
-                                })
-                                route_object.continue_()
-                                return
-                            target.append({
-                                "path": parsed.path,
-                                "method": request.method,
-                                "disposition": disposition,
-                            })
-                            route_object.fulfill(status=204, body="", content_type="text/plain")
-
-                        page.route("**/*", isolate_dynamic)
+                        page.route("**/*", make_dynamic_route_handler(excluded, seen_dynamic))
                         try:
                             response = page.goto(base + route, wait_until="load", timeout=15000)
                             page.evaluate("document.fonts && document.fonts.ready")
@@ -391,7 +391,10 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
         "scope": "accepted_static_pages_browser_render_only",
         "started_at": started,
         "finished_at": dt.datetime.now(dt.timezone.utc).isoformat(),
-        "source_report": {"path": report_path.relative_to(root).as_posix(), "sha256": sha256_bytes(raw)},
+        "source_report": {
+            "path": report_path.relative_to(root).as_posix(),
+            "sha256": sha256_bytes(raw) if raw else None,
+        },
         "environment": environment,
         "viewports": VIEWPORTS,
         "counts": {
