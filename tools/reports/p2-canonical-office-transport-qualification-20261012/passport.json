@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "status": "PASS_TRANSPORT_AND_CONTAINER_INTEGRITY_ONLY",
+  "unit": "mb001-p2-canonical-office-transport-qualification-20261012",
+  "started_at": "2026-10-12T17:12:00Z",
+  "checkpoint_policy": "verified_only",
+  "base_commit": "d954f1c889a6ec2b78801d99fe79947e08bcc780",
+  "branch": "codex/mb001-p2-canonical-office-transport-qualification-20261012",
+  "source_nomination": {
+    "registry_path": "products-storage/ARTIFACT-REGISTRY.json",
+    "registry_git_blob": "5a431138f4d157ed42fbd6ff034c40c515c4422b",
+    "registry_status": "ACTIVE_PARTIAL_SEED",
+    "nomination_source": "issue:600",
+    "qualification": "two records are canonical_master; content/Office/release acceptance remains open"
+  },
+  "inputs": [
+    {
+      "registry_id": "P2-CANON-00-INSTR-B85",
+      "target_sku": "P2",
+      "runtime_sku": "p2",
+      "relative_path": "products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.docx",
+      "nomination_commit": "b85a2e716d501cbc54c840f58027ecfd6a60964b",
+      "git_blob": "6e7b67117feedb7d978c5971f142b5782fc097c8",
+      "sha256": "a27ffb94bb47a66743fe01d188055813159a04117d09514db8f8aeef9c14f609",
+      "bytes": 41800,
+      "format": "docx",
+      "role": "canonical_master"
+    },
+    {
+      "registry_id": "P2-CANON-03-UVD-B85",
+      "target_sku": "P2",
+      "runtime_sku": "p2",
+      "relative_path": "products-storage/02-dopraboty-bez-poter/03-uvedomlenie-o-doprabotah.docx",
+      "nomination_commit": "b85a2e716d501cbc54c840f58027ecfd6a60964b",
+      "git_blob": "e5f82e0d1220c82aaecd990cc011b7c0ca974491",
+      "sha256": "7360634f99b3b7f288c394bc88140cc84f92d6a0a2786b7816d8c2bc23a5ae16",
+      "bytes": 38881,
+      "format": "docx",
+      "role": "canonical_master"
+    }
+  ],
+  "executor": {
+    "type": "github_contents_read_only_binary_transport",
+    "writes_to_sources": false,
+    "outbound_destination": "github_only",
+    "model_calls": 0,
+    "paid_api_calls": 0
+  },
+  "acceptance": [
+    "retrieve_exact_two_nominated_blobs_at_nomination_commit",
+    "downloaded_bytes_and_sha256_match_registry",
+    "docx_zip_container_opens_and_contains_required_ooxml_members",
+    "create_atomic_transport_report_manifest_receipt_with_input_output_hashes",
+    "preserve_files_read_only_and_separate_from_review_outputs"
+  ],
+  "limitations": [
+    "transport_and_container_integrity_only",
+    "no_content_legal_or_office_behavior_acceptance",
+    "no_visual_or_native_word_acceptance",
+    "no_source_replacement_deploy_publication_delivery_or_release",
+    "report_evidence_not_nominated_and_historical_mirrors_excluded"
+  ],
+  "next_step": "qualify exact binary transport; only after PASS prepare a separate native Word review package against these same nominated hashes",
+  "completed_at": "2026-10-12T17:26:00Z",
+  "accepted_candidate_head": "144cfe775d726dfe21a1eb3ca481e6d89f22333c",
+  "evidence": {
+    "run_id": 38284111607,
+    "job_id": 114928225527,
+    "artifact_id": 11761978180,
+    "artifact_zip_sha256": "0f690aa75aeaf0142eadbab07d0a9ad46c4090bd09aa62ef2ddb80e0c8931e45",
+    "report_sha256": "00213b6ef8bc8dca0fc42f5e54cec17a6e3843d21079d80de5cd52286719ef28",
+    "manifest_sha256": "8fe6bd840f9da47b0228cf488ca304dc48ee5b5824216c533a9dbe3864f87a44",
+    "receipt_sha256": "674c953662f3198ebf949e4aa82ee52975a49bc23a6f4e53c09c12e86fd83a8b",
+    "exit_code_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "exit_code": 0,
+    "tests": "9/9 PASS"
+  },
+  "acceptance_result": {
+    "exact_registry_nomination_accepted": true,
+    "github_binary_transport_accepted": true,
+    "docx_container_integrity_accepted": true,
+    "content_accepted": false,
+    "legal_accepted": false,
+    "native_word_accepted": false,
+    "visual_accepted": false,
+    "source_replacement_accepted": false,
+    "deploy_accepted": false,
+    "publication_accepted": false,
+    "delivery_accepted": false,
+    "release_accepted": false
+  }
+}
