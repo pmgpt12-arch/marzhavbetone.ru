@@ -74,10 +74,9 @@ def validate_shape(data: dict) -> None:
 
 def reconcile(data: dict, repo: Path, check: bool) -> bool:
     changed = False
-    source_commit = data["generated_from_commit"]
-    git(repo, "cat-file", "-e", f"{source_commit}^{{commit}}")
+    checkout_ref = "HEAD"
     for source in data["product_sources"]:
-        actual = root_facts(repo, source_commit, source["relative_root"])
+        actual = root_facts(repo, checkout_ref, source["relative_root"])
         for key, value in actual.items():
             if source.get(key) != value:
                 if check:
@@ -85,7 +84,8 @@ def reconcile(data: dict, repo: Path, check: bool) -> bool:
                 source[key] = value
                 changed = True
     for artifact in data["artifacts"]:
-        object_spec = f"{artifact['commit']}:{artifact['relative_path']}"
+        verify_ref = checkout_ref if artifact["role"] == "canonical_master" else artifact["commit"]
+        object_spec = f"{verify_ref}:{artifact['relative_path']}"
         try:
             blob = git(repo, "rev-parse", object_spec)
             payload = subprocess.check_output(["git", "-C", str(repo), "show", object_spec])
