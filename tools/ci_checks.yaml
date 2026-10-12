@@ -98,6 +98,25 @@
   зачем: фид Дзена собирается из статей
   требует: []
   решение: ''
+- id: check_artifact_registry
+  команда: python3 tools/build_artifact_registry.py --check
+  класс: public
+  блокирует: true
+  зачем: проверки используют только зарегистрированные product roots и точные blob/SHA-256
+  требует:
+  - products-storage/ARTIFACT-REGISTRY.json
+  - tools/build_artifact_registry.py
+  решение: ''
+- id: test_artifact_registry
+  команда: python3 -m unittest tools/test_artifact_registry.py -v
+  класс: public
+  блокирует: true
+  зачем: fail-closed роли, покрытие 13 target SKU и SHA/tree drift не обходятся
+  требует:
+  - products-storage/ARTIFACT-REGISTRY.json
+  - tools/build_artifact_registry.py
+  - tools/test_artifact_registry.py
+  решение: ''
 - id: check_packages
   команда: python3 tools/check_packages.py
   класс: public

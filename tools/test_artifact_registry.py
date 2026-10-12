@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+import copy
+import importlib.util
+import json
+import subprocess
+import unittest
+from unittest import mock
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+SPEC = importlib.util.spec_from_file_location("artifact_registry", Path(__file__).with_name("build_artifact_registry.py"))
+MODULE = importlib.util.module_from_spec(SPEC)
+assert SPEC.loader
+SPEC.loader.exec_module(MODULE)
+BASE = json.loads((ROOT / "products-storage/ARTIFACT-REGISTRY.json").read_text(encoding="utf-8"))
+
+
+class RegistryShapeTests(unittest.TestCase):
+    def test_seed_is_valid(self):
+        MODULE.validate_shape(copy.deepcopy(BASE))
+
+    def test_duplicate_registry_id_fails(self):
+        data = copy.deepcopy(BASE)
+        data["artifacts"].append(copy.deepcopy(data["artifacts"][0]))
+        with self.assertRaises(MODULE.RegistryError):
+            MODULE.validate_shape(data)
+
+    def test_missing_target_fails(self):
+        data = copy.deepcopy(BASE)
+        data["product_sources"] = [row for row in data["product_sources"] if row.get("target_sku") != "T3"]
+        with self.assertRaises(MODULE.RegistryError):
+            MODULE.validate_shape(data)
+
+    def test_report_cannot_be_canonical(self):
+        data = copy.deepcopy(BASE)
+        data["artifacts"][2]["role"] = "canonical_master"
+        with self.assertRaises(MODULE.RegistryError):
+            MODULE.validate_shape(data)
+
+    def test_non_nominated_report_is_blocked(self):
+        data = copy.deepcopy(BASE)
+        data["artifacts"][2]["release_status"] = "OPEN"
+        with self.assertRaises(MODULE.RegistryError):
+            MODULE.validate_shape(data)
+
+    def test_unknown_role_fails(self):
+        data = copy.deepcopy(BASE)
+        data["artifacts"][0]["role"] = "accepted_somewhere_else"
+        with self.assertRaises(MODULE.RegistryError):
+            MODULE.validate_shape(data)
+
+    def test_coverage_drift_fails(self):
+        data = copy.deepcopy(BASE)
+        data["coverage"]["file_sha256_records"]["registered"] = 218
+        with self.assertRaises(MODULE.RegistryError):
+            MODULE.validate_shape(data)
+
+    def test_runtime_root_count_fails_even_when_coverage_is_reconciled(self):
+        data = copy.deepcopy(BASE)
+        data["product_sources"] = [row for row in data["product_sources"] if row.get("runtime_sku") != "test1"]
+        root_files = sum(int(row.get("file_count", 0)) for row in data["product_sources"])
+        data["coverage"]["runtime_roots"] = {"registered": len(data["product_sources"]), "expected": 19}
+        data["coverage"]["root_files"] = root_files
+        data["coverage"]["file_sha256_records"]["expected"] = root_files
+        data["coverage"]["file_sha256_records"]["percent"] = round(
+            100 * len(data["artifacts"]) / root_files, 2
+        )
+        with self.assertRaises(MODULE.RegistryError):
+            MODULE.validate_shape(data)
+
+    def test_missing_report_object_fails(self):
+        data = {
+            "product_sources": [],
+            "artifacts": [copy.deepcopy(BASE["artifacts"][2])],
+        }
+        missing = subprocess.CalledProcessError(128, ["git", "rev-parse"])
+        with mock.patch.object(MODULE, "git", side_effect=missing):
+            with self.assertRaises(MODULE.RegistryError):
+                MODULE.reconcile(data, ROOT, True)
+
+    def test_checkout_matches_seed(self):
+        try:
+            subprocess.check_call(["git", "-C", str(ROOT), "rev-parse", "--git-dir"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except subprocess.CalledProcessError:
+            self.skipTest("not running in a git checkout")
+        self.assertFalse(MODULE.reconcile(copy.deepcopy(BASE), ROOT, True))
+
+
+if __name__ == "__main__":
+    unittest.main()
