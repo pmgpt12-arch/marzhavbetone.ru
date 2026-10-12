@@ -52,6 +52,8 @@ def validate_shape(data: dict) -> None:
     if targets != EXPECTED_TARGETS:
         raise RegistryError(f"target coverage mismatch: {sorted(targets ^ EXPECTED_TARGETS)}")
     runtime = [row.get("runtime_sku") for row in data.get("product_sources", [])]
+    if len(runtime) != 19:
+        raise RegistryError(f"runtime root count mismatch: {len(runtime)} != 19")
     if len(runtime) != len(set(runtime)):
         raise RegistryError("duplicate runtime_sku")
     ids = [row.get("registry_id") for row in data.get("artifacts", [])]
@@ -103,10 +105,8 @@ def reconcile(data: dict, repo: Path, check: bool) -> bool:
         try:
             blob = git(repo, "rev-parse", object_spec)
             payload = subprocess.check_output(["git", "-C", str(repo), "show", object_spec])
-        except subprocess.CalledProcessError:
-            if artifact["role"] == "report_evidence_not_nominated":
-                continue
-            raise RegistryError(f"missing git object: {object_spec}")
+        except subprocess.CalledProcessError as exc:
+            raise RegistryError(f"missing git object: {object_spec}") from exc
         actual = {
             "git_blob": blob,
             "sha256": hashlib.sha256(payload).hexdigest(),

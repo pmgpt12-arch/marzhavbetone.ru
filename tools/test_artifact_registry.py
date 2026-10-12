@@ -4,6 +4,7 @@ import importlib.util
 import json
 import subprocess
 import unittest
+from unittest import mock
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,6 +54,29 @@ class RegistryShapeTests(unittest.TestCase):
         data["coverage"]["file_sha256_records"]["registered"] = 218
         with self.assertRaises(MODULE.RegistryError):
             MODULE.validate_shape(data)
+
+    def test_runtime_root_count_fails_even_when_coverage_is_reconciled(self):
+        data = copy.deepcopy(BASE)
+        data["product_sources"] = [row for row in data["product_sources"] if row.get("runtime_sku") != "test1"]
+        root_files = sum(int(row.get("file_count", 0)) for row in data["product_sources"])
+        data["coverage"]["runtime_roots"] = {"registered": len(data["product_sources"]), "expected": 19}
+        data["coverage"]["root_files"] = root_files
+        data["coverage"]["file_sha256_records"]["expected"] = root_files
+        data["coverage"]["file_sha256_records"]["percent"] = round(
+            100 * len(data["artifacts"]) / root_files, 2
+        )
+        with self.assertRaises(MODULE.RegistryError):
+            MODULE.validate_shape(data)
+
+    def test_missing_report_object_fails(self):
+        data = {
+            "product_sources": [],
+            "artifacts": [copy.deepcopy(BASE["artifacts"][2])],
+        }
+        missing = subprocess.CalledProcessError(128, ["git", "rev-parse"])
+        with mock.patch.object(MODULE, "git", side_effect=missing):
+            with self.assertRaises(MODULE.RegistryError):
+                MODULE.reconcile(data, ROOT, True)
 
     def test_checkout_matches_seed(self):
         try:
