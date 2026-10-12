@@ -57,6 +57,20 @@ def validate_shape(data: dict) -> None:
     ids = [row.get("registry_id") for row in data.get("artifacts", [])]
     if len(ids) != len(set(ids)) or any(not value for value in ids):
         raise RegistryError("missing or duplicate registry_id")
+    coverage = data.get("coverage", {})
+    expected_coverage = {
+        "target_skus": {"registered": len(targets), "expected": len(EXPECTED_TARGETS)},
+        "runtime_roots": {"registered": len(runtime), "expected": 19},
+        "root_files": {"registered": sum(int(row.get("file_count", 0)) for row in data.get("product_sources", []))},
+        "file_sha256_records": {
+            "registered": len(ids),
+            "expected": sum(int(row.get("file_count", 0)) for row in data.get("product_sources", [])),
+            "percent": round(100 * len(ids) / sum(int(row.get("file_count", 0)) for row in data.get("product_sources", [])), 2),
+        },
+    }
+    for key, value in expected_coverage.items():
+        if coverage.get(key) != value:
+            raise RegistryError(f"coverage drift {key}: {coverage.get(key)} != {value}")
     for row in [*data.get("product_sources", []), *data.get("artifacts", [])]:
         if row.get("role") not in ALLOWED_ROLES:
             raise RegistryError(f"invalid role: {row.get('role')}")
