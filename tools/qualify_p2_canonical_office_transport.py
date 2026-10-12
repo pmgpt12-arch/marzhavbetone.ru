@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 import os
+import subprocess
 import sys
 import tempfile
 import traceback
@@ -31,6 +32,8 @@ REQUIRED_MEMBERS = {
     "docProps/app.xml",
 }
 FORBIDDEN_MEMBERS = {"EncryptedPackage", "EncryptionInfo", "word/vbaProject.bin"}
+REGISTRY_PATH = "products-storage/ARTIFACT-REGISTRY.json"
+EXPECTED_REGISTRY_BLOB = "5a431138f4d157ed42fbd6ff034c40c515c4422b"
 INPUTS = (
     {
         "registry_id": "P2-CANON-00-INSTR-B85",
@@ -49,6 +52,25 @@ INPUTS = (
         "git_blob": "e5f82e0d1220c82aaecd990cc011b7c0ca974491",
     },
 )
+
+
+def expected_registry_record(spec: dict[str, object]) -> dict[str, object]:
+    return {
+        "registry_id": spec["registry_id"],
+        "target_sku": "P2",
+        "runtime_sku": "p2",
+        "relative_path": spec["path"],
+        "commit": spec["nomination_commit"],
+        "git_blob": spec["git_blob"],
+        "sha256": spec["sha256"],
+        "bytes": spec["bytes"],
+        "format": "docx",
+        "role": "canonical_master",
+        "nomination_source": "issue:600",
+        "content_status": "OPEN",
+        "office_status": "OPEN",
+        "release_status": "OPEN",
+    }
 
 
 def sha256_bytes(data: bytes) -> str:
@@ -83,6 +105,43 @@ def atomic_write(path: Path, data: bytes) -> None:
         except FileNotFoundError:
             pass
         raise
+
+
+def qualify_registry(root: Path) -> dict[str, object]:
+    path = root / REGISTRY_PATH
+    data = path.read_bytes()
+    actual_blob = git_blob_sha1(data)
+    if actual_blob != EXPECTED_REGISTRY_BLOB:
+        raise ValueError(f"registry git_blob mismatch: {actual_blob} != {EXPECTED_REGISTRY_BLOB}")
+    registry = json.loads(data)
+    if registry.get("registry_status") != "ACTIVE_PARTIAL_SEED":
+        raise ValueError(f"registry status mismatch: {registry.get('registry_status')}")
+    artifacts = registry.get("artifacts")
+    if not isinstance(artifacts, list):
+        raise ValueError("registry artifacts must be a list")
+    nominated = [
+        item for item in artifacts
+        if isinstance(item, dict) and item.get("target_sku") == "P2" and item.get("role") == "canonical_master"
+    ]
+    expected = [expected_registry_record(spec) for spec in INPUTS]
+    if nominated != expected:
+        raise ValueError("registry P2 canonical_master records do not exactly match the accepted nomination contract")
+    return {
+        "relative_path": REGISTRY_PATH,
+        "bytes": len(data),
+        "sha256": sha256_bytes(data),
+        "git_blob": actual_blob,
+        "registry_status": registry["registry_status"],
+        "record_count": len(nominated),
+        "record_ids": [item["registry_id"] for item in nominated],
+        "status": "PASS",
+    }
+
+
+def checked_out_head(root: Path) -> str:
+    return subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=root, check=True, capture_output=True, text=True, timeout=10
+    ).stdout.strip()
 
 
 def qualify_docx(root: Path, spec: dict[str, object]) -> dict[str, object]:
@@ -172,13 +231,15 @@ def run(root: Path, out_dir: Path, expected_head: str | None = None) -> int:
         "started_at": started,
         "checkpoint_policy": "verified_only",
         "source_nomination": {
-            "registry": "products-storage/ARTIFACT-REGISTRY.json",
+            "registry": REGISTRY_PATH,
+            "expected_registry_git_blob": EXPECTED_REGISTRY_BLOB,
             "registry_status": "ACTIVE_PARTIAL_SEED",
             "nomination_source": "issue:600",
             "record_count": 2,
         },
         "execution": {
-            "github_sha": os.environ.get("GITHUB_SHA"),
+            "github_event_sha": os.environ.get("GITHUB_SHA"),
+            "checked_out_head": None,
             "expected_head": expected_head,
             "python": sys.version.split()[0],
             "model_calls": 0,
@@ -208,8 +269,13 @@ def run(root: Path, out_dir: Path, expected_head: str | None = None) -> int:
     try:
         if len(INPUTS) != 2 or len({item["registry_id"] for item in INPUTS}) != 2:
             raise ValueError("input contract must contain exactly two unique nominated records")
-        actual_head = os.environ.get("GITHUB_SHA")
-        if expected_head and actual_head and expected_head != actual_head:
+        registry_check = qualify_registry(root)
+        report["registry_check"] = registry_check
+        actual_head = checked_out_head(root) if expected_head else None
+        execution = report["execution"]
+        assert isinstance(execution, dict)
+        execution["checked_out_head"] = actual_head
+        if expected_head and expected_head != actual_head:
             raise ValueError(f"exact-head mismatch: {actual_head} != {expected_head}")
         report["checks"] = [qualify_docx(root, spec) for spec in INPUTS]
         report["status"] = STATUS_PASS
