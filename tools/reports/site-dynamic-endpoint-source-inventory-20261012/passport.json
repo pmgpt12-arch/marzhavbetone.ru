@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "RUNNING",
+  "unit": "mb001-dynamic-endpoint-source-inventory-20261012",
+  "started_at": "2026-10-12T15:11:31.016Z",
+  "checkpoint_policy": "verified_only",
+  "base_commit": "df77626d351b23fe9fa9cc107c4a53ab97a365a8",
+  "branch": "codex/mb001-dynamic-endpoint-source-inventory-20261012",
+  "inputs": {
+    "source_report": {
+      "path": "tools/reports/site-static-content-snapshot-20261012/report.json",
+      "sha256": "029e2d0763775a05afd8f6fa86c01a6c9fe94af67e597602e4b3779edfaeecbb"
+    },
+    "excluded_dynamic_endpoints": [
+      "app-script.php",
+      "check-payment.php",
+      "contact.php",
+      "download.php",
+      "event.php",
+      "get/index.php",
+      "ig-webhook.php",
+      "lead.php",
+      "payment.php",
+      "webhook.php"
+    ],
+    "accepted_prior_head": "9fab96b066417a90d1b7fa565aafeec7fadd0f37",
+    "accepted_prior_artifact_zip_sha256": "fd0899237d519110ca7647255005088c96cd87c16cfa3e1792784f8448a92b41"
+  },
+  "executor": {
+    "type": "deterministic_python",
+    "model_calls": 0,
+    "paid_api_calls": 0,
+    "network_execution": false
+  },
+  "command": [
+    "python",
+    "tools/inventory_dynamic_endpoints.py",
+    "--root",
+    ".",
+    "--source-report",
+    "tools/reports/site-static-content-snapshot-20261012/report.json",
+    "--output",
+    "tools/reports/site-dynamic-endpoint-source-inventory-20261012"
+  ],
+  "acceptance": [
+    "exact_source_report_sha_and_10_path_set",
+    "source_existence_blob_sha256_bytes",
+    "deterministic_client_call_sites",
+    "static_indicator_classification_with_evidence",
+    "atomic_report_manifest_receipt",
+    "independent_exact_head_review_and_ci"
+  ],
+  "limitations": [
+    "no_runtime_behavior",
+    "no_credentials_or_values",
+    "no_payment_correctness",
+    "no_webhook_authenticity",
+    "no_security_or_legal_acceptance",
+    "no_live_deploy_publication_delivery_or_release"
+  ],
+  "next_step": "implement scanner and tests in this branch; do not execute endpoints"
+}
