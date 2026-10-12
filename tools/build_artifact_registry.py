@@ -60,16 +60,19 @@ def validate_shape(data: dict) -> None:
     if len(ids) != len(set(ids)) or any(not value for value in ids):
         raise RegistryError("missing or duplicate registry_id")
     coverage = data.get("coverage", {})
+    source_roots = tuple(row["relative_root"] + "/" for row in data["product_sources"])
+    source_count = sum(any(a.get("relative_path", "").startswith(root) for root in source_roots) for a in data["artifacts"]) 
     expected_coverage = {
         "target_skus": {"registered": len(targets), "expected": len(EXPECTED_TARGETS)},
         "runtime_roots": {"registered": len(runtime), "expected": 19},
         "root_files": {"registered": sum(int(row.get("file_count", 0)) for row in data.get("product_sources", []))},
         "file_sha256_records": {
-            "registered": len(ids),
+            "registered": source_count,
             "expected": sum(int(row.get("file_count", 0)) for row in data.get("product_sources", [])),
-            "percent": round(100 * len(ids) / sum(int(row.get("file_count", 0)) for row in data.get("product_sources", [])), 2),
+            "percent": round(100 * source_count / sum(int(row.get("file_count", 0)) for row in data.get("product_sources", [])), 2),
         },
     }
+    expected_coverage["file_sha256_records"]["qualification"] = "218 root files SHA inventoried; 2 report candidates tracked separately; no product acceptance"
     for key, value in expected_coverage.items():
         if coverage.get(key) != value:
             raise RegistryError(f"coverage drift {key}: {coverage.get(key)} != {value}")
