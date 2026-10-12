@@ -122,6 +122,60 @@ class ContractTests(unittest.TestCase):
             receipt = json.loads((output / "receipt.json").read_text())
             self.assertEqual(receipt["status"], "FAIL_BROWSER_RENDER_SNAPSHOT")
 
+    def test_lazy_images_are_visited_waited_and_verified_before_capture(self):
+        class Image:
+            def __init__(self):
+                self.scrolled = False
+                self.evaluated = False
+
+            def scroll_into_view_if_needed(self, timeout):
+                self.scrolled = timeout == 2500
+
+            def evaluate(self, script, timeout):
+                self.evaluated = "img.complete" in script and timeout == 2500
+
+        class Locator:
+            def __init__(self, images):
+                self.images = images
+
+            def count(self):
+                return len(self.images)
+
+            def nth(self, index):
+                return self.images[index]
+
+            def evaluate_all(self, script):
+                self.script = script
+                return [
+                    {"src": "one.jpg", "complete": True, "naturalWidth": 800},
+                    {"src": "two.jpg", "complete": True, "naturalWidth": 640},
+                ]
+
+        class Page:
+            def __init__(self):
+                self.images = [Image(), Image()]
+                self.image_locator = Locator(self.images)
+                self.returned_to_top = False
+                self.waited = False
+
+            def locator(self, selector):
+                self.selector = selector
+                return self.image_locator
+
+            def evaluate(self, script):
+                self.returned_to_top = script == "window.scrollTo(0, 0)"
+
+            def wait_for_timeout(self, timeout):
+                self.waited = timeout == 250
+
+        page = Page()
+        result = target.materialize_lazy_images(page)
+        self.assertEqual(result, {"count": 2, "materialized": 2, "unresolved": []})
+        self.assertEqual(page.selector, 'img[loading="lazy"]')
+        self.assertTrue(all(image.scrolled and image.evaluated for image in page.images))
+        self.assertTrue(page.returned_to_top)
+        self.assertTrue(page.waited)
+
 
 if __name__ == "__main__":
     unittest.main()

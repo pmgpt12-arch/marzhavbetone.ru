@@ -142,6 +142,47 @@ def make_dynamic_route_handler(excluded: set[str], observed: list[dict]):
     return handler
 
 
+def materialize_lazy_images(page, settle_timeout_ms: int = 2500) -> dict:
+    """Bring every native lazy image into view and verify it resolved.
+
+    Playwright's full-page screenshot expands the capture surface but does not
+    itself guarantee that native ``loading=lazy`` images ever enter the
+    viewport.  Visit each image in document order, wait for load/error with a
+    bounded timeout, then restore the first fold before collecting metrics and
+    the screenshot.
+    """
+    lazy_images = page.locator('img[loading="lazy"]')
+    count = lazy_images.count()
+    for index in range(count):
+        image = lazy_images.nth(index)
+        image.scroll_into_view_if_needed(timeout=settle_timeout_ms)
+        image.evaluate(
+            """(img, timeoutMs) => new Promise((resolve) => {
+              const done = () => resolve();
+              if (img.complete) { done(); return; }
+              img.addEventListener('load', done, {once: true});
+              img.addEventListener('error', done, {once: true});
+              setTimeout(done, timeoutMs);
+            })""",
+            settle_timeout_ms,
+        )
+    page.evaluate("window.scrollTo(0, 0)")
+    page.wait_for_timeout(250)
+    states = page.locator('img[loading="lazy"]').evaluate_all(
+        """images => images.map(img => ({
+          src: img.currentSrc || img.src || '',
+          complete: img.complete,
+          naturalWidth: img.naturalWidth
+        }))"""
+    )
+    unresolved = [item for item in states if not item["complete"] or item["naturalWidth"] <= 0]
+    return {
+        "count": len(states),
+        "materialized": len(states) - len(unresolved),
+        "unresolved": unresolved,
+    }
+
+
 def make_contact_sheets(output: Path, manifest: list[dict]) -> list[dict]:
     from PIL import Image, ImageDraw, ImageOps
 
@@ -279,7 +320,7 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
                         try:
                             response = page.goto(base + route, wait_until="load", timeout=15000)
                             page.evaluate("document.fonts && document.fonts.ready")
-                            page.wait_for_timeout(250)
+                            lazy_images = materialize_lazy_images(page)
                             title = page.title()
                             h1 = page.locator("h1").all_inner_texts()
                             h1 = [normalized_text(value) for value in h1]
@@ -313,6 +354,8 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
                                 "console_errors": console_errors,
                                 "page_errors": page_errors,
                                 "failed_or_bad_requests": effective_request_failures,
+                                "lazy_images": lazy_images,
+                                "lazy_images_materialized": not lazy_images["unresolved"],
                             }
                             reasons = []
                             if checks["navigation_status"] != 200:
@@ -326,6 +369,8 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
                                 reasons.append("page_errors")
                             if effective_request_failures:
                                 reasons.append("failed_or_bad_requests")
+                            if not checks["lazy_images_materialized"]:
+                                reasons.append("lazy_images_not_materialized")
                             screenshot_rel = Path("screenshots") / viewport_name / f"{source_page['route_registry_id']}.jpg"
                             screenshot_path = output / screenshot_rel
                             screenshot_path.parent.mkdir(parents=True, exist_ok=True)
