@@ -1,0 +1,27 @@
+name: Site route discovery
+
+on:
+  pull_request:
+    paths:
+      - 'sitemap.xml'
+      - '**/*.html'
+      - '**/*.php'
+      - 'tools/discover_site_routes.py'
+      - 'tools/test_site_route_discovery.py'
+      - 'tools/reports/site-route-discovery-20261012/report.json'
+      - '.github/workflows/site-route-discovery.yml'
+  workflow_dispatch:
+
+jobs:
+  discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python3 tools/discover_site_routes.py --check
+      - run: python3 -m unittest tools.test_site_route_discovery

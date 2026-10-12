@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "unit": "site-route-discovery-20261012",
+  "status": "CANDIDATE_PENDING_CI_AND_INDEPENDENT_REVIEW",
+  "checkpoint_policy": "verified_only",
+  "source_commit": "03ce64f607c43bd6a1443ad2d1088c07697c22ba",
+  "source_tree": "e9a7e8cb6cbf91f1a1c21c5e0cf468970d70c5e4",
+  "command": [
+    "python3 tools/discover_site_routes.py --check",
+    "python3 -m unittest tools.test_site_route_discovery"
+  ],
+  "fingerprints": {
+    "report_sha256": "37febeca4e5c6c8a4f21e5d7ec1534b5fe61bd8a9ba994cd93bc0bf7e71933cb",
+    "generator_sha256": "781a2d729674b96e00e500bf58012a7d8759011925fd56fd320730bb7433dbbe",
+    "tests_sha256": "435be5536dcd14580a32c812decfe8bf3231b9d751441394c69f34c47dc58590",
+    "workflow_sha256": "ed2f564bb913f9f685481b50fce81b4167a1513e60af5831c26303741c40a313"
+  },
+  "observed": {
+    "candidate_count": 116,
+    "sitemap_route_count": 84,
+    "public_route_count": 98,
+    "non_route_count": 18
+  },
+  "model_calls": 0,
+  "accepted_scope": [],
+  "excluded_acceptance": [
+    "content",
+    "render",
+    "legal",
+    "deploy",
+    "release"
+  ],
+  "next_step": "exact-head CI, independent route-discovery review, then full source-dependency/render/visible-content snapshot"
+}
