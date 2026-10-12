@@ -46,7 +46,8 @@ INDICATORS = {
     "database": ("PDO(", "mysqli_"),
     "signature_check": ("hash_hmac(", "signature", "сигнатур"),
 }
-TEXT_SUFFIXES = {".html", ".htm", ".js", ".php"}
+CLIENT_SUFFIXES = {".html", ".htm", ".js"}
+SERVER_SUFFIXES = {".php"}
 IGNORED_SOURCE_PARTS = {
     ".git",
     ".github",
@@ -114,11 +115,15 @@ def infer_method(lines: list[str], line_index: int) -> str:
     return "UNSPECIFIED"
 
 
-def client_call_sites(root: Path, endpoints: tuple[str, ...]) -> list[dict]:
+def source_references(
+    root: Path,
+    endpoints: tuple[str, ...],
+    suffixes: set[str],
+) -> list[dict]:
     endpoint_set = set(endpoints)
     sites = []
     for path in sorted(root.rglob("*")):
-        if not path.is_file() or path.suffix.lower() not in TEXT_SUFFIXES:
+        if not path.is_file() or path.suffix.lower() not in suffixes:
             continue
         relative = path.relative_to(root).as_posix()
         if relative in endpoint_set or any(part in IGNORED_SOURCE_PARTS for part in path.relative_to(root).parts):
@@ -139,8 +144,22 @@ def client_call_sites(root: Path, endpoints: tuple[str, ...]) -> list[dict]:
     return sites
 
 
+def client_call_sites(root: Path, endpoints: tuple[str, ...]) -> list[dict]:
+    return source_references(root, endpoints, CLIENT_SUFFIXES)
+
+
+def server_source_references(root: Path, endpoints: tuple[str, ...]) -> list[dict]:
+    return source_references(root, endpoints, SERVER_SUFFIXES)
+
+
 def execution_environment() -> dict[str, str]:
-    names = ("GITHUB_SHA", "GITHUB_REF", "GITHUB_RUN_ID", "GITHUB_RUN_ATTEMPT")
+    names = (
+        "EVIDENCE_HEAD_SHA",
+        "GITHUB_SHA",
+        "GITHUB_REF",
+        "GITHUB_RUN_ID",
+        "GITHUB_RUN_ATTEMPT",
+    )
     return {name.lower(): os.environ[name] for name in names if os.environ.get(name)}
 
 
@@ -170,9 +189,11 @@ def build_inventory(root: Path, source_report_path: Path) -> dict:
         "counts": {
             "endpoints": len(endpoints),
             "client_call_sites": 0,
+            "server_source_references": 0,
         },
         "endpoints": endpoints,
         "client_call_sites": [],
+        "server_source_references": [],
         "acceptance_limits": {
             "source_inventory_accepted": True,
             "runtime_behavior_accepted": False,
@@ -196,6 +217,7 @@ def build_manifest(report: dict) -> dict:
             for item in report.get("endpoints", [])
         ],
         "client_call_sites": report.get("client_call_sites", []),
+        "server_source_references": report.get("server_source_references", []),
     }
 
 
@@ -232,9 +254,12 @@ def main() -> int:
         previous_handlers[signum] = signal.signal(signum, interrupted)
     try:
         report = build_inventory(root, source_report)
-        sites = client_call_sites(root, EXPECTED_ENDPOINTS)
-        report["client_call_sites"] = sites
-        report["counts"]["client_call_sites"] = len(sites)
+        client_sites = client_call_sites(root, EXPECTED_ENDPOINTS)
+        server_references = server_source_references(root, EXPECTED_ENDPOINTS)
+        report["client_call_sites"] = client_sites
+        report["server_source_references"] = server_references
+        report["counts"]["client_call_sites"] = len(client_sites)
+        report["counts"]["server_source_references"] = len(server_references)
         write_evidence(output, report)
     except BaseException as error:
         failure = {
@@ -242,9 +267,10 @@ def main() -> int:
             "status": "FAIL_NOT_VERIFIED",
             "error": {"class": type(error).__name__, "message": str(error)},
             "execution_environment": execution_environment(),
-            "counts": {"endpoints": 0, "client_call_sites": 0},
+            "counts": {"endpoints": 0, "client_call_sites": 0, "server_source_references": 0},
             "endpoints": [],
             "client_call_sites": [],
+            "server_source_references": [],
             "acceptance_limits": {
                 "source_inventory_accepted": False,
                 "runtime_behavior_accepted": False,
