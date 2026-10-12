@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "FAIL_NOT_VERIFIED",
+  "unit": "mb001-dynamic-endpoint-source-inventory-20261012",
+  "checkpoint_policy": "verified_only",
+  "attempts": [
+    {
+      "head_sha": "ae10d1b961b679df9294ec4e494ba64fc46dbf61",
+      "run_id": 38269219756,
+      "artifact_id": 11755444424,
+      "artifact_zip_sha256": "98b895bcc01bf20cbd3764d9bfeaf4880340406111b8219bb5bd32c35cfcd00d",
+      "classification": ["CONTEXT", "CONTRACT", "SCHEMA"],
+      "facts": [
+        "workflow evidence used synthetic merge checkout instead of exact PR head",
+        "server PHP references were labeled client_call_sites"
+      ]
+    },
+    {
+      "head_sha": "d79219c57472c9f437302a83995c1fbebde6bc04",
+      "run_id": 38269637402,
+      "artifact_id": 11756635772,
+      "artifact_zip_sha256": "53169b1e05a2400802a65d4f1f54033c64702c6dd88e7104c6b3a5436ef44e59",
+      "classification": ["CONTRACT", "SCHEMA"],
+      "facts": [
+        "exact-head binding and client/server partition passed",
+        "raw comments and URL literals were still labeled client_call_sites",
+        "method was only a bounded nearby-text hint"
+      ],
+      "independent_review": "FAIL_NOT_ACCEPTED"
+    }
+  ],
+  "changed_hypothesis": [
+    "name both partitions source references",
+    "name method evidence nearby_method_hint",
+    "retain comments and literals as references without claiming execution",
+    "regression forbids call-site language in emitted records"
+  ],
+  "model_calls": 0,
+  "paid_api_calls": 0,
+  "endpoint_execution": false,
+  "next_step": "produce one artifact from the changed fingerprint and independently review it"
+}
