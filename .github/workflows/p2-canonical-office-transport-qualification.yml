@@ -1,0 +1,49 @@
+name: P2 canonical Office transport qualification
+
+on:
+  pull_request:
+    paths:
+      - products-storage/ARTIFACT-REGISTRY.json
+      - products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.docx
+      - products-storage/02-dopraboty-bez-poter/03-uvedomlenie-o-doprabotah.docx
+      - tools/qualify_p2_canonical_office_transport.py
+      - tools/test_qualify_p2_canonical_office_transport.py
+      - tools/reports/p2-canonical-office-transport-qualification-20261012/passport.json
+      - .github/workflows/p2-canonical-office-transport-qualification.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit and regression tests
+        working-directory: tools
+        run: python -m unittest -v test_qualify_p2_canonical_office_transport.py
+      - name: Qualify exact nominated repository bytes
+        run: |
+          set +e
+          python tools/qualify_p2_canonical_office_transport.py \
+            --root "$GITHUB_WORKSPACE" \
+            --out-dir "$RUNNER_TEMP/p2-canonical-office-transport-qualification" \
+            --expected-head "$GITHUB_SHA"
+          rc=$?
+          test "$(cat "$RUNNER_TEMP/p2-canonical-office-transport-qualification/exit.code")" = "$rc"
+          exit "$rc"
+      - name: Upload qualification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-canonical-office-transport-qualification-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/p2-canonical-office-transport-qualification/
+          if-no-files-found: error
+          retention-days: 30
