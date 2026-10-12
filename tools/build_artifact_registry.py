@@ -45,6 +45,15 @@ def root_facts(repo: Path, commit: str, rel: str) -> dict[str, object]:
 def validate_shape(data: dict) -> None:
     if data.get("schema_version") != 1:
         raise RegistryError("unsupported schema_version")
+    inventory = data.get("file_inventory", {})
+    if set(inventory) != {"path", "source_commit", "sha256", "files", "bytes"}:
+        raise RegistryError("missing or invalid file_inventory reference")
+    if inventory.get("path") != "products-storage/ARTIFACT-INVENTORY.json":
+        raise RegistryError("invalid file_inventory path")
+    if not isinstance(inventory.get("sha256"), str) or len(inventory["sha256"]) != 64:
+        raise RegistryError("invalid file_inventory sha256")
+    if inventory.get("files") != 218 or inventory.get("bytes") != 5_097_868:
+        raise RegistryError("file_inventory totals drift")
     roles = set(data.get("allowed_roles", []))
     if roles != ALLOWED_ROLES:
         raise RegistryError("allowed_roles drift")
@@ -65,10 +74,11 @@ def validate_shape(data: dict) -> None:
         "runtime_roots": {"registered": len(runtime), "expected": 19},
         "root_files": {"registered": sum(int(row.get("file_count", 0)) for row in data.get("product_sources", []))},
         "file_sha256_records": {
-            "registered": len(ids),
+            "registered": sum(int(row.get("file_count", 0)) for row in data.get("product_sources", [])),
             "expected": sum(int(row.get("file_count", 0)) for row in data.get("product_sources", [])),
-            "percent": round(100 * len(ids) / sum(int(row.get("file_count", 0)) for row in data.get("product_sources", [])), 2),
+            "percent": 100.0,
         },
+        "nomination_artifact_records": {"registered": len(ids)},
     }
     for key, value in expected_coverage.items():
         if coverage.get(key) != value:

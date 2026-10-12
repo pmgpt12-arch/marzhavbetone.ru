@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "status": "GENERATED_CANDIDATE_NOT_INDEPENDENTLY_ACCEPTED",
+  "issue": 602,
+  "source_commit": "7dace97709e6bf40c270edea22eb517fd115ad7f",
+  "generator_candidate_head": "0ddbe879171b30c6013da092311102f63db0b3d6",
+  "generation_run_id": 38248423049,
+  "generation_job_id": 114808104466,
+  "command": "python3 tools/build_artifact_inventory.py --emit --source-commit 7dace97709e6bf40c270edea22eb517fd115ad7f",
+  "exit_code": 0,
+  "inventory_path": "products-storage/ARTIFACT-INVENTORY.json",
+  "inventory_sha256": "f9ea9acb1c39826599787ebdc9372765863a48b8f812eb14c41a39d12627da5f",
+  "files": 218,
+  "bytes": 5097868,
+  "runtime_roots": 19,
+  "target_skus": 13,
+  "roles": {
+    "historical_mirror": 216,
+    "canonical_master": 2
+  },
+  "formats": {
+    "docx": 131,
+    "md": 19,
+    "pdf": 17,
+    "txt": 21,
+    "xlsx": 30
+  },
+  "model_calls": 0,
+  "checkpoint_policy": "verified_only",
+  "limitations": [
+    "hash snapshot only; no content/legal/native Office/archive/delivery/release acceptance",
+    "product artifacts, roles outside two existing canonical nominations, prices, SKU, payment, live and deploy are unchanged",
+    "final exact-head CI and independent review remain required"
+  ]
+}

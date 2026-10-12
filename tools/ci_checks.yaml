@@ -770,3 +770,24 @@
   требует: []
   решение: 'BUILD CANDIDATE (#263): кандидат не адресован ни одним sku и покупателю не выдаётся. Прогон
     LibreOffice в CI пропускается строкой ПРОПУСК — в раннере нет soffice и openpyxl.'
+
+- id: check_artifact_inventory
+  команда: python3 tools/build_artifact_inventory.py --check
+  класс: public
+  блокирует: true
+  зачем: полный fail-closed blob/SHA-256/bytes gate для 218 product-root файлов
+  требует:
+  - products-storage/ARTIFACT-REGISTRY.json
+  - products-storage/ARTIFACT-INVENTORY.json
+  - tools/build_artifact_inventory.py
+  решение: ''
+- id: test_artifact_inventory
+  команда: python3 tools/test_artifact_inventory.py
+  класс: public
+  блокирует: true
+  зачем: отрицательные сценарии полного пофайлового реестра
+  требует:
+  - products-storage/ARTIFACT-REGISTRY.json
+  - products-storage/ARTIFACT-INVENTORY.json
+  - tools/build_artifact_inventory.py
+  решение: ''

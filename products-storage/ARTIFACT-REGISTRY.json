@@ -3,6 +3,13 @@
   "registry_status": "ACTIVE_PARTIAL_SEED",
   "generated_from_commit": "b85a2e716d501cbc54c840f58027ecfd6a60964b",
   "control_issue": 600,
+  "file_inventory": {
+    "path": "products-storage/ARTIFACT-INVENTORY.json",
+    "source_commit": "7dace97709e6bf40c270edea22eb517fd115ad7f",
+    "sha256": "f9ea9acb1c39826599787ebdc9372765863a48b8f812eb14c41a39d12627da5f",
+    "files": 218,
+    "bytes": 5097868
+  },
   "portfolio_decision": {
     "id": "MB001-PRICE-PORTFOLIO-2026-10-10",
     "issue": 578,
@@ -12,8 +19,9 @@
     "target_skus": {"registered": 13, "expected": 13},
     "runtime_roots": {"registered": 19, "expected": 19},
     "root_files": {"registered": 218},
-    "file_sha256_records": {"registered": 4, "expected": 218, "percent": 1.83},
-    "qualification": "root identity complete; file-level SHA-256 inventory partial"
+    "file_sha256_records": {"registered": 218, "expected": 218, "percent": 100.0},
+    "nomination_artifact_records": {"registered": 4},
+    "qualification": "root identity and file-level SHA-256 inventory complete; content/Office/release acceptance remains open"
   },
   "allowed_roles": [
     "canonical_master",

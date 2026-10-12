@@ -51,7 +51,7 @@ class RegistryShapeTests(unittest.TestCase):
 
     def test_coverage_drift_fails(self):
         data = copy.deepcopy(BASE)
-        data["coverage"]["file_sha256_records"]["registered"] = 218
+        data["coverage"]["file_sha256_records"]["registered"] = 217
         with self.assertRaises(MODULE.RegistryError):
             MODULE.validate_shape(data)
 
