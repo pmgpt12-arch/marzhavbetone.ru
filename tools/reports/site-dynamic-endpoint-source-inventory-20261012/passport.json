@@ -3,6 +3,7 @@
   "status": "RUNNING",
   "unit": "mb001-dynamic-endpoint-source-inventory-20261012",
   "started_at": "2026-10-12T15:11:31.016Z",
+  "updated_at": "2026-10-12T15:30:00Z",
   "checkpoint_policy": "verified_only",
   "base_commit": "df77626d351b23fe9fa9cc107c4a53ab97a365a8",
   "branch": "codex/mb001-dynamic-endpoint-source-inventory-20261012",
@@ -45,12 +46,28 @@
   "acceptance": [
     "exact_source_report_sha_and_10_path_set",
     "source_existence_blob_sha256_bytes",
-    "deterministic_client_call_sites",
-    "static_indicator_classification_with_evidence",
-    "atomic_report_manifest_receipt",
+    "deterministic_client_and_server_source_references",
+    "nearby_method_hint_not_execution_claim",
+    "static_indicator_classification_with_line_evidence",
+    "atomic_report_manifest_receipt_and_failure_evidence",
     "independent_exact_head_review_and_ci"
   ],
+  "attempts": [
+    {
+      "run_id": 38269219756,
+      "artifact_id": 11755444424,
+      "status": "FAIL_NOT_VERIFIED",
+      "reason": "synthetic_merge_ref_and_client_server_partition_missing"
+    },
+    {
+      "run_id": 38269637402,
+      "artifact_id": 11756635772,
+      "status": "FAIL_NOT_VERIFIED",
+      "reason": "call_site_and_method_labels_overclaimed_raw_source_references"
+    }
+  ],
   "limitations": [
+    "source_references_are_not_execution_or_reachability_proof",
     "no_runtime_behavior",
     "no_credentials_or_values",
     "no_payment_correctness",
@@ -58,5 +75,5 @@
     "no_security_or_legal_acceptance",
     "no_live_deploy_publication_delivery_or_release"
   ],
-  "next_step": "implement scanner and tests in this branch; do not execute endpoints"
+  "next_step": "run changed exact-head source-reference schema once, then independent review; do not execute endpoints"
 }
