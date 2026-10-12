@@ -114,6 +114,14 @@ def canonical_value(page) -> str | None:
     }""")
 
 
+def dynamic_disposition(path: str, excluded: set[str]) -> str:
+    if path not in excluded:
+        return "not_dynamic"
+    if path == "/app-script.php":
+        return "allowed_render_dependency_not_accepted"
+    return "inert_204_stub_not_executed"
+
+
 def make_contact_sheets(output: Path, manifest: list[dict]) -> list[dict]:
     from PIL import Image, ImageDraw, ImageOps
 
@@ -170,7 +178,7 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
     browser = None
     manifest: list[dict] = []
     failures: list[dict] = []
-    deferred_dynamic_requests: list[dict] = []
+    dynamic_requests_observed: list[dict] = []
     environment = {
         "python": platform.python_version(),
         "platform": platform.platform(),
@@ -227,7 +235,7 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
                         page_errors: list[str] = []
                         failed_requests: list[dict] = []
                         bad_responses: list[dict] = []
-                        seen_deferred: list[str] = []
+                        seen_dynamic: list[dict] = []
 
                         page.on("console", lambda msg, target=console_errors: target.append(msg.text) if msg.type == "error" else None)
                         page.on("pageerror", lambda exc, target=page_errors: target.append(str(exc)))
@@ -243,6 +251,30 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
 
                         page.on("requestfailed", on_request_failed)
                         page.on("response", on_response)
+
+                        def isolate_dynamic(route_object, target=seen_dynamic):
+                            request = route_object.request
+                            parsed = urlparse(request.url)
+                            disposition = dynamic_disposition(parsed.path, excluded)
+                            if disposition == "not_dynamic":
+                                route_object.continue_()
+                                return
+                            if disposition == "allowed_render_dependency_not_accepted":
+                                target.append({
+                                    "path": parsed.path,
+                                    "method": request.method,
+                                    "disposition": disposition,
+                                })
+                                route_object.continue_()
+                                return
+                            target.append({
+                                "path": parsed.path,
+                                "method": request.method,
+                                "disposition": disposition,
+                            })
+                            route_object.fulfill(status=204, body="", content_type="text/plain")
+
+                        page.route("**/*", isolate_dynamic)
                         try:
                             response = page.goto(base + route, wait_until="load", timeout=15000)
                             page.evaluate("document.fonts && document.fonts.ready")
@@ -258,12 +290,13 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
                               renderedText: document.body ? document.body.innerText : ''
                             })""")
                             overflow = metrics["scrollWidth"] - metrics["clientWidth"]
-                            for item in failed_requests + bad_responses:
-                                if item.get("path") in excluded and item.get("path") != "/app-script.php":
-                                    seen_deferred.append(item["path"])
-                            deferred_dynamic_requests.extend(
-                                {"public_route": route, "viewport": viewport_name, "path": item}
-                                for item in sorted(set(seen_deferred))
+                            dynamic_requests_observed.extend(
+                                {
+                                    "public_route": route,
+                                    "viewport": viewport_name,
+                                    **item,
+                                }
+                                for item in seen_dynamic
                             )
                             effective_request_failures = [
                                 item for item in failed_requests + bad_responses
@@ -367,9 +400,18 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
             "actual_captures": len(manifest),
             "failed_captures": len(failures),
             "contact_sheets": len(contact_sheets),
+            "dynamic_requests_observed": len(dynamic_requests_observed),
+            "dynamic_requests_stubbed": sum(
+                item["disposition"] == "inert_204_stub_not_executed"
+                for item in dynamic_requests_observed
+            ),
+            "dynamic_render_dependencies_allowed": sum(
+                item["disposition"] == "allowed_render_dependency_not_accepted"
+                for item in dynamic_requests_observed
+            ),
         },
         "failures": failures,
-        "deferred_dynamic_requests": deferred_dynamic_requests,
+        "dynamic_requests_observed": dynamic_requests_observed,
         "acceptance_limits": {
             "browser_render_snapshot_accepted": status.startswith("PASS_"),
             "dynamic_endpoints_accepted": False,

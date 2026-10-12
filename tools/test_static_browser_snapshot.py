@@ -52,6 +52,18 @@ class ContractTests(unittest.TestCase):
             self.assertEqual(json.loads(path.read_text()), {"status": "PASS"})
             self.assertFalse(path.with_suffix(".json.tmp").exists())
 
+    def test_dynamic_scope_is_stubbed_except_render_dependency(self):
+        excluded = {"/event.php", "/payment.php", "/app-script.php"}
+        self.assertEqual(
+            target.dynamic_disposition("/event.php", excluded),
+            "inert_204_stub_not_executed",
+        )
+        self.assertEqual(
+            target.dynamic_disposition("/app-script.php", excluded),
+            "allowed_render_dependency_not_accepted",
+        )
+        self.assertEqual(target.dynamic_disposition("/styles.css", excluded), "not_dynamic")
+
 
 if __name__ == "__main__":
     unittest.main()
