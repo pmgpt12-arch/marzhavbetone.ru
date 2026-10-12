@@ -124,9 +124,13 @@ class ContractTests(unittest.TestCase):
 
     def test_lazy_images_are_visited_waited_and_verified_before_capture(self):
         class Image:
-            def __init__(self):
+            def __init__(self, visible=True):
+                self.visible = visible
                 self.scrolled = False
                 self.evaluated = False
+
+            def is_visible(self):
+                return self.visible
 
             def scroll_into_view_if_needed(self, timeout):
                 self.scrolled = timeout == 2500
@@ -147,13 +151,14 @@ class ContractTests(unittest.TestCase):
             def evaluate_all(self, script):
                 self.script = script
                 return [
-                    {"src": "one.jpg", "complete": True, "naturalWidth": 800},
-                    {"src": "two.jpg", "complete": True, "naturalWidth": 640},
+                    {"src": "one.jpg", "complete": True, "naturalWidth": 800, "visible": True},
+                    {"src": "two.jpg", "complete": True, "naturalWidth": 640, "visible": True},
+                    {"src": "hidden.jpg", "complete": False, "naturalWidth": 0, "visible": False},
                 ]
 
         class Page:
             def __init__(self):
-                self.images = [Image(), Image()]
+                self.images = [Image(), Image(), Image(visible=False)]
                 self.image_locator = Locator(self.images)
                 self.returned_to_top = False
                 self.waited = False
@@ -170,9 +175,14 @@ class ContractTests(unittest.TestCase):
 
         page = Page()
         result = target.materialize_lazy_images(page)
-        self.assertEqual(result, {"count": 2, "materialized": 2, "unresolved": []})
+        self.assertEqual(
+            result,
+            {"count": 3, "visible": 2, "hidden": 1, "materialized": 2, "unresolved": []},
+        )
         self.assertEqual(page.selector, 'img[loading="lazy"]')
-        self.assertTrue(all(image.scrolled and image.evaluated for image in page.images))
+        self.assertTrue(all(image.scrolled and image.evaluated for image in page.images[:2]))
+        self.assertFalse(page.images[2].scrolled)
+        self.assertFalse(page.images[2].evaluated)
         self.assertTrue(page.returned_to_top)
         self.assertTrue(page.waited)
 

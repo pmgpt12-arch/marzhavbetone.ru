@@ -153,8 +153,12 @@ def materialize_lazy_images(page, settle_timeout_ms: int = 2500) -> dict:
     """
     lazy_images = page.locator('img[loading="lazy"]')
     count = lazy_images.count()
+    hidden = 0
     for index in range(count):
         image = lazy_images.nth(index)
+        if not image.is_visible():
+            hidden += 1
+            continue
         image.scroll_into_view_if_needed(timeout=settle_timeout_ms)
         image.evaluate(
             """(img, timeoutMs) => new Promise((resolve) => {
@@ -172,13 +176,19 @@ def materialize_lazy_images(page, settle_timeout_ms: int = 2500) -> dict:
         """images => images.map(img => ({
           src: img.currentSrc || img.src || '',
           complete: img.complete,
-          naturalWidth: img.naturalWidth
+          naturalWidth: img.naturalWidth,
+          visible: !!(img.getClientRects().length &&
+            getComputedStyle(img).visibility !== 'hidden' &&
+            getComputedStyle(img).display !== 'none')
         }))"""
     )
-    unresolved = [item for item in states if not item["complete"] or item["naturalWidth"] <= 0]
+    visible = [item for item in states if item["visible"]]
+    unresolved = [item for item in visible if not item["complete"] or item["naturalWidth"] <= 0]
     return {
         "count": len(states),
-        "materialized": len(states) - len(unresolved),
+        "visible": len(visible),
+        "hidden": hidden,
+        "materialized": len(visible) - len(unresolved),
         "unresolved": unresolved,
     }
 
