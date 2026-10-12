@@ -22,6 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - uses: actions/setup-python@v5
         with:
@@ -35,7 +36,7 @@ jobs:
           python tools/qualify_p2_canonical_office_transport.py \
             --root "$GITHUB_WORKSPACE" \
             --out-dir "$RUNNER_TEMP/p2-canonical-office-transport-qualification" \
-            --expected-head "$GITHUB_SHA"
+            --expected-head "${{ github.event.pull_request.head.sha || github.sha }}"
           rc=$?
           test "$(cat "$RUNNER_TEMP/p2-canonical-office-transport-qualification/exit.code")" = "$rc"
           exit "$rc"
