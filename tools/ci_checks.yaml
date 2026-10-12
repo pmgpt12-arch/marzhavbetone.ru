@@ -770,3 +770,13 @@
   требует: []
   решение: 'BUILD CANDIDATE (#263): кандидат не адресован ни одним sku и покупателю не выдаётся. Прогон
     LibreOffice в CI пропускается строкой ПРОПУСК — в раннере нет soffice и openpyxl.'
+
+- id: emit_artifact_inventory_candidate
+  команда: python3 tools/build_artifact_inventory.py --emit --source-commit 7dace97709e6bf40c270edea22eb517fd115ad7f
+  класс: public
+  блокирует: true
+  зачем: одноразовый детерминированный вывод кандидата inventory 218/218 для issue 602
+  требует:
+  - products-storage/ARTIFACT-REGISTRY.json
+  - tools/build_artifact_inventory.py
+  решение: 'PRE-MERGE GENERATION ONLY: результат должен быть сохранён отдельным коммитом, затем эта команда заменяется на --check и negative tests.'
