@@ -35,23 +35,23 @@ class InventoryTests(unittest.TestCase):
         self.assertEqual(result["response_header"], [3])
         self.assertNotIn("email", json.dumps(result))
 
-    def test_client_call_sites_infer_post_without_excerpt(self):
+    def test_client_source_references_add_hint_without_excerpt(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "app.js").write_text(
                 "fetch('/event.php', {\n  method: 'POST',\n  body: '{}'\n});\n",
                 encoding="utf-8",
             )
-            sites = target.client_call_sites(root, target.EXPECTED_ENDPOINTS)
+            sites = target.client_source_references(root, target.EXPECTED_ENDPOINTS)
             self.assertEqual(sites, [{
                 "endpoint": "event.php",
                 "source_path": "app.js",
                 "line": 1,
-                "method": "POST",
+                "nearby_method_hint": "POST",
             }])
             self.assertNotIn("body", json.dumps(sites))
 
-    def test_client_call_sites_ignore_evidence_and_product_archives(self):
+    def test_client_source_references_ignore_evidence_and_product_archives(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "app.js").write_text("fetch('/event.php')\n", encoding="utf-8")
@@ -59,24 +59,32 @@ class InventoryTests(unittest.TestCase):
             (root / "tools" / "note.php").write_text("event.php\n", encoding="utf-8")
             (root / "products-storage").mkdir()
             (root / "products-storage" / "note.html").write_text("event.php\n", encoding="utf-8")
-            self.assertEqual(target.client_call_sites(root, target.EXPECTED_ENDPOINTS), [{
+            self.assertEqual(target.client_source_references(root, target.EXPECTED_ENDPOINTS), [{
                 "endpoint": "event.php",
                 "source_path": "app.js",
                 "line": 1,
-                "method": "UNSPECIFIED",
+                "nearby_method_hint": "UNSPECIFIED",
             }])
 
     def test_server_references_are_not_client_call_sites(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "config.php").write_text("<?php $x = 'webhook.php';\n", encoding="utf-8")
-            self.assertEqual(target.client_call_sites(root, target.EXPECTED_ENDPOINTS), [])
+            self.assertEqual(target.client_source_references(root, target.EXPECTED_ENDPOINTS), [])
             self.assertEqual(target.server_source_references(root, target.EXPECTED_ENDPOINTS), [{
                 "endpoint": "webhook.php",
                 "source_path": "config.php",
                 "line": 1,
-                "method": "UNSPECIFIED",
+                "nearby_method_hint": "UNSPECIFIED",
             }])
+
+    def test_comment_is_only_a_source_reference_not_a_call_claim(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "attribution.js").write_text("// sends to event.php\n", encoding="utf-8")
+            references = target.client_source_references(root, target.EXPECTED_ENDPOINTS)
+            self.assertEqual(references[0]["endpoint"], "event.php")
+            self.assertNotIn("call", json.dumps(references))
 
     def test_execution_environment_records_exact_evidence_head(self):
         with mock.patch.dict("os.environ", {"EVIDENCE_HEAD_SHA": "abc123"}, clear=True):
@@ -96,7 +104,7 @@ class InventoryTests(unittest.TestCase):
                 "status": "PASS_SOURCE_INVENTORY_ONLY",
                 "source_report": {"path": "source.json", "sha256": "a" * 64},
                 "endpoints": [{"path": "event.php", "bytes": 3, "sha256": "b" * 64}],
-                "client_call_sites": [],
+                "client_source_references": [],
                 "server_source_references": [],
             }
             target.write_evidence(output, report)
