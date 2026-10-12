@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "registry_status": "ACTIVE_PARTIAL_SEED",
+  "generated_from_commit": "b85a2e716d501cbc54c840f58027ecfd6a60964b",
+  "control_issue": 600,
+  "portfolio_decision": {
+    "id": "MB001-PRICE-PORTFOLIO-2026-10-10",
+    "issue": 578,
+    "target_product_count": 13
+  },
+  "allowed_roles": [
+    "canonical_master",
+    "nominated_candidate",
+    "historical_mirror",
+    "report_evidence_not_nominated"
+  ],
+  "product_sources": [
+    {"target_sku":"P1","runtime_sku":"p1","relative_root":"products-storage/01-zakrytie-rabot","git_tree_sha":"d472c04bbb1d345ac466301a65ef51cb5addd0f2","file_count":21,"bytes":555458,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P1","runtime_sku":"t1","relative_root":"products-storage/09-pervyy-shag-pri-neoplate","git_tree_sha":"d586c3e22d3208db9d070a01e4f844ef614e8ba3","file_count":7,"bytes":92526,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P2","runtime_sku":"p2","relative_root":"products-storage/02-dopraboty-bez-poter","git_tree_sha":"1877a5b18a17884d3754711137d2c6f41d051208","file_count":17,"bytes":589667,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P3","runtime_sku":"p3","relative_root":"products-storage/05-ks-bez-vozvrata","git_tree_sha":"369c68698a358be4098ea779f9b5c660623ae8aa","file_count":12,"bytes":326645,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P4","runtime_sku":"p4","relative_root":"products-storage/08-pto-bez-zamechaniy","git_tree_sha":"0ff3b4d9485bcc046d2bed9629928ce3a96545b6","file_count":24,"bytes":693885,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P5+P12","runtime_sku":"p5","relative_root":"products-storage/07-uderzhaniya-shtrafy-zachety","git_tree_sha":"336c5af32f57fc65d81f83052276ce30f6d0c276","file_count":12,"bytes":299785,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P5+P12","runtime_sku":"p12","relative_root":"products-storage/12-otvet-na-pretenziyu","git_tree_sha":"4eb7c34cf8f6ccc75bd0e2ca89d7c00babe967bd","file_count":21,"bytes":345774,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P7","runtime_sku":"p7","relative_root":"products-storage/03-dogovor-podryada","git_tree_sha":"be6d292ddef670169816cbec5c4f25a85d61410c","file_count":15,"bytes":528642,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P8","runtime_sku":"p8","relative_root":"products-storage/10-avans-usloviya-i-pribyl","git_tree_sha":"08896ef8d5f5a4313cd47f6b195b7cb92e090404","file_count":12,"bytes":232385,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P8","runtime_sku":"t5","relative_root":"products-storage/20-trebuyut-vernut-avans","git_tree_sha":"cbbd35e216908e6c36d23ba7f70cd6ef12fc5a16","file_count":6,"bytes":95147,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P9","runtime_sku":"p9","relative_root":"products-storage/11-bankrotstvo-genpodryadchika","git_tree_sha":"8e7b41b09ccfa5a108e49a1bb1a8b8e8071ee3ad","file_count":11,"bytes":178020,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P9","runtime_sku":"t4","relative_root":"products-storage/18-genpodryadchik-bankrotitsya","git_tree_sha":"08fd1f5c3f34bbad6907511e4c88cff9024709d9","file_count":6,"bytes":84866,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P10","runtime_sku":"p10","relative_root":"products-storage/15-otvet-na-pretenziyu-baza","git_tree_sha":"b1481c961266e0c9edbcd4a6e265600840d5f72a","file_count":10,"bytes":132710,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P11","runtime_sku":"p11","relative_root":"products-storage/13-raschet-metrami","git_tree_sha":"64522b4b06800efc9589d15ae8d2f0c250fb16aa","file_count":8,"bytes":181816,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P11","runtime_sku":"t6","relative_root":"products-storage/19-kvartiry-vmesto-deneg","git_tree_sha":"690eff7e8c22dd85ab06528a37499c5dd4abcc91","file_count":6,"bytes":76902,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"P13","runtime_sku":"p13","relative_root":"products-storage/16-chto-v-smete-ne-oplatyat","git_tree_sha":"c73eb4aeeed2870d7be9d90616804a50bae8bac9","file_count":11,"bytes":348443,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"T2","runtime_sku":"t2","relative_root":"products-storage/14-peredacha-id-pod-podpis","git_tree_sha":"e86225172947212ad42407cd94822ea61d50cb34","file_count":7,"bytes":89688,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":"T3","runtime_sku":"t3","relative_root":"products-storage/17-odnostoronniy-akt-i-zachet","git_tree_sha":"103273911830f6a89288f9bc60a93ec7c186e997","file_count":6,"bytes":72456,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
+    {"target_sku":null,"runtime_sku":"test1","relative_root":"products-storage/00-free-ks-podpisany-deneg-net","git_tree_sha":"71e6169b06def6057396ef508004308ddcb5f2b1","file_count":6,"bytes":173053,"role":"historical_mirror","release_status":"TECHNICAL_TEST_NOT_PORTFOLIO"}
+  ],
+  "artifacts": [
+    {
+      "registry_id": "P2-CANON-00-INSTR-B85",
+      "target_sku": "P2",
+      "runtime_sku": "p2",
+      "relative_path": "products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.docx",
+      "commit": "b85a2e716d501cbc54c840f58027ecfd6a60964b",
+      "git_blob": "6e7b67117feedb7d978c5971f142b5782fc097c8",
+      "sha256": "a27ffb94bb47a66743fe01d188055813159a04117d09514db8f8aeef9c14f609",
+      "bytes": 41800,
+      "format": "docx",
+      "role": "canonical_master",
+      "nomination_source": "issue:600",
+      "content_status": "OPEN",
+      "office_status": "OPEN",
+      "release_status": "OPEN"
+    },
+    {
+      "registry_id": "P2-CANON-03-UVD-B85",
+      "target_sku": "P2",
+      "runtime_sku": "p2",
+      "relative_path": "products-storage/02-dopraboty-bez-poter/03-uvedomlenie-o-doprabotah.docx",
+      "commit": "b85a2e716d501cbc54c840f58027ecfd6a60964b",
+      "git_blob": "e5f82e0d1220c82aaecd990cc011b7c0ca974491",
+      "sha256": "7360634f99b3b7f288c394bc88140cc84f92d6a0a2786b7816d8c2bc23a5ae16",
+      "bytes": 38881,
+      "format": "docx",
+      "role": "canonical_master",
+      "nomination_source": "issue:600",
+      "content_status": "OPEN",
+      "office_status": "OPEN",
+      "release_status": "OPEN"
+    },
+    {
+      "registry_id": "P2-REPORT-00-INSTR-PR581",
+      "target_sku": "P2",
+      "runtime_sku": "p2",
+      "relative_path": "tools/reports/portfolio-20261010/candidate/00-INSTRUKCIYA.docx",
+      "commit": "3d3409eaa606c5747cc3a20f3738ccb9bca94b4f",
+      "git_blob": "bdb62383a876de29645130e98be529be1649276b",
+      "sha256": "6561dbcd43a8ac7d57094eb206f2efdfc0667dfd704c161839d9ecd9d13090e7",
+      "bytes": 41812,
+      "format": "docx",
+      "role": "report_evidence_not_nominated",
+      "nomination_source": "issue:600",
+      "content_status": "NOT_NOMINATED",
+      "office_status": "EVIDENCE_ONLY",
+      "release_status": "BLOCKED"
+    },
+    {
+      "registry_id": "P2-REPORT-03-UVD-PR581",
+      "target_sku": "P2",
+      "runtime_sku": "p2",
+      "relative_path": "tools/reports/portfolio-20261010/candidate/03-uvedomlenie-o-doprabotah.docx",
+      "commit": "3d3409eaa606c5747cc3a20f3738ccb9bca94b4f",
+      "git_blob": "a86fcc14782e766ae0843321c14b882f35f0ee03",
+      "sha256": "58b091ab72a4012916a4319e3fee915d082d44ee8b6d9f9c960a4b0c8f495ce5",
+      "bytes": 38920,
+      "format": "docx",
+      "role": "report_evidence_not_nominated",
+      "nomination_source": "issue:600",
+      "content_status": "NOT_NOMINATED",
+      "office_status": "EVIDENCE_ONLY",
+      "release_status": "BLOCKED"
+    }
+  ],
+  "server_masters": [],
+  "open_blocks": [
+    "02-AKT intended legal function and exact contract-document list not nominated",
+    "00-PISMO-POSLE-POKUPKI missing for runtime roots 08,14,17,18,19,20",
+    "folder 06 has no nominated SKU"
+  ]
+}
