@@ -106,7 +106,7 @@ def source_indicators(text: str) -> dict[str, list[int]]:
     return result
 
 
-def infer_method(lines: list[str], line_index: int) -> str:
+def nearby_method_hint(lines: list[str], line_index: int) -> str:
     window = "\n".join(lines[max(0, line_index - 5):line_index + 6]).lower()
     if "method" in window and "post" in window:
         return "POST"
@@ -139,12 +139,12 @@ def source_references(
                         "endpoint": endpoint,
                         "source_path": relative,
                         "line": index + 1,
-                        "method": infer_method(lines, index),
+                        "nearby_method_hint": nearby_method_hint(lines, index),
                     })
     return sites
 
 
-def client_call_sites(root: Path, endpoints: tuple[str, ...]) -> list[dict]:
+def client_source_references(root: Path, endpoints: tuple[str, ...]) -> list[dict]:
     return source_references(root, endpoints, CLIENT_SUFFIXES)
 
 
@@ -188,11 +188,11 @@ def build_inventory(root: Path, source_report_path: Path) -> dict:
         "execution_environment": execution_environment(),
         "counts": {
             "endpoints": len(endpoints),
-            "client_call_sites": 0,
+            "client_source_references": 0,
             "server_source_references": 0,
         },
         "endpoints": endpoints,
-        "client_call_sites": [],
+        "client_source_references": [],
         "server_source_references": [],
         "acceptance_limits": {
             "source_inventory_accepted": True,
@@ -216,7 +216,7 @@ def build_manifest(report: dict) -> dict:
             {"path": item["path"], "bytes": item["bytes"], "sha256": item["sha256"]}
             for item in report.get("endpoints", [])
         ],
-        "client_call_sites": report.get("client_call_sites", []),
+        "client_source_references": report.get("client_source_references", []),
         "server_source_references": report.get("server_source_references", []),
     }
 
@@ -254,11 +254,11 @@ def main() -> int:
         previous_handlers[signum] = signal.signal(signum, interrupted)
     try:
         report = build_inventory(root, source_report)
-        client_sites = client_call_sites(root, EXPECTED_ENDPOINTS)
+        client_references = client_source_references(root, EXPECTED_ENDPOINTS)
         server_references = server_source_references(root, EXPECTED_ENDPOINTS)
-        report["client_call_sites"] = client_sites
+        report["client_source_references"] = client_references
         report["server_source_references"] = server_references
-        report["counts"]["client_call_sites"] = len(client_sites)
+        report["counts"]["client_source_references"] = len(client_references)
         report["counts"]["server_source_references"] = len(server_references)
         write_evidence(output, report)
     except BaseException as error:
@@ -267,9 +267,9 @@ def main() -> int:
             "status": "FAIL_NOT_VERIFIED",
             "error": {"class": type(error).__name__, "message": str(error)},
             "execution_environment": execution_environment(),
-            "counts": {"endpoints": 0, "client_call_sites": 0, "server_source_references": 0},
+            "counts": {"endpoints": 0, "client_source_references": 0, "server_source_references": 0},
             "endpoints": [],
-            "client_call_sites": [],
+            "client_source_references": [],
             "server_source_references": [],
             "acceptance_limits": {
                 "source_inventory_accepted": False,
