@@ -2,6 +2,7 @@
 import copy
 import importlib.util
 import json
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -46,6 +47,13 @@ class RegistryShapeTests(unittest.TestCase):
         data["artifacts"][0]["role"] = "accepted_somewhere_else"
         with self.assertRaises(MODULE.RegistryError):
             MODULE.validate_shape(data)
+
+    def test_checkout_matches_seed(self):
+        try:
+            subprocess.check_call(["git", "-C", str(ROOT), "rev-parse", "--git-dir"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except subprocess.CalledProcessError:
+            self.skipTest("not running in a git checkout")
+        self.assertFalse(MODULE.reconcile(copy.deepcopy(BASE), ROOT, True))
 
 
 if __name__ == "__main__":
