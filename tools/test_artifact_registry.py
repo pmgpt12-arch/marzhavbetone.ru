@@ -33,13 +33,13 @@ class RegistryShapeTests(unittest.TestCase):
 
     def test_report_cannot_be_canonical(self):
         data = copy.deepcopy(BASE)
-        data["artifacts"][2]["role"] = "canonical_master"
+        next(a for a in data["artifacts"] if a["relative_path"].startswith("tools/reports/"))["role"] = "canonical_master"
         with self.assertRaises(MODULE.RegistryError):
             MODULE.validate_shape(data)
 
     def test_non_nominated_report_is_blocked(self):
         data = copy.deepcopy(BASE)
-        data["artifacts"][2]["release_status"] = "OPEN"
+        next(a for a in data["artifacts"] if a["relative_path"].startswith("tools/reports/"))["release_status"] = "OPEN"
         with self.assertRaises(MODULE.RegistryError):
             MODULE.validate_shape(data)
 
@@ -51,7 +51,7 @@ class RegistryShapeTests(unittest.TestCase):
 
     def test_coverage_drift_fails(self):
         data = copy.deepcopy(BASE)
-        data["coverage"]["file_sha256_records"]["registered"] = 218
+        data["coverage"]["file_sha256_records"]["registered"] = 217
         with self.assertRaises(MODULE.RegistryError):
             MODULE.validate_shape(data)
 
