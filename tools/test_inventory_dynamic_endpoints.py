@@ -51,12 +51,69 @@ class InventoryTests(unittest.TestCase):
             }])
             self.assertNotIn("body", json.dumps(sites))
 
+    def test_client_call_sites_ignore_evidence_and_product_archives(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "app.js").write_text("fetch('/event.php')\n", encoding="utf-8")
+            (root / "tools").mkdir()
+            (root / "tools" / "note.php").write_text("event.php\n", encoding="utf-8")
+            (root / "products-storage").mkdir()
+            (root / "products-storage" / "note.html").write_text("event.php\n", encoding="utf-8")
+            self.assertEqual(target.client_call_sites(root, target.EXPECTED_ENDPOINTS), [{
+                "endpoint": "event.php",
+                "source_path": "app.js",
+                "line": 1,
+                "method": "UNSPECIFIED",
+            }])
+
     def test_atomic_json_leaves_no_temporary_file(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "report.json"
             target.atomic_json(path, {"status": "PASS"})
             self.assertEqual(json.loads(path.read_text()), {"status": "PASS"})
             self.assertFalse(path.with_suffix(".json.tmp").exists())
+
+    def test_write_evidence_hashes_report_and_manifest(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            report = {
+                "status": "PASS_SOURCE_INVENTORY_ONLY",
+                "source_report": {"path": "source.json", "sha256": "a" * 64},
+                "endpoints": [{"path": "event.php", "bytes": 3, "sha256": "b" * 64}],
+                "client_call_sites": [],
+            }
+            target.write_evidence(output, report)
+            receipt = json.loads((output / "receipt.json").read_text())
+            self.assertEqual(
+                receipt["report_sha256"],
+                hashlib.sha256((output / "report.json").read_bytes()).hexdigest(),
+            )
+            self.assertEqual(
+                receipt["manifest_sha256"],
+                hashlib.sha256((output / "manifest.json").read_bytes()).hexdigest(),
+            )
+            self.assertFalse(list(output.glob("*.tmp")))
+
+    def test_failure_evidence_is_not_accepted(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            output = root / "out"
+            with mock.patch(
+                "sys.argv",
+                [
+                    "inventory_dynamic_endpoints.py",
+                    "--root", str(root),
+                    "--source-report", "missing.json",
+                    "--output", str(output),
+                ],
+            ):
+                self.assertEqual(target.main(), 2)
+            report = json.loads((output / "report.json").read_text())
+            receipt = json.loads((output / "receipt.json").read_text())
+            self.assertEqual(report["status"], "FAIL_NOT_VERIFIED")
+            self.assertEqual(receipt["status"], "FAIL_NOT_VERIFIED")
+            self.assertFalse(report["acceptance_limits"]["source_inventory_accepted"])
+            self.assertTrue((output / "manifest.json").is_file())
 
 
 if __name__ == "__main__":
