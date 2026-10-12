@@ -156,6 +156,86 @@ def build_inventory(registry: dict, repo: Path, source_commit: str) -> dict:
     }
 
 
+
+def validate_inventory(data: dict, registry: dict) -> None:
+    if data.get("schema_version") != 1:
+        raise InventoryError("unsupported schema_version")
+    files = data.get("files")
+    if not isinstance(files, list) or len(files) != EXPECTED_FILES:
+        raise InventoryError(f"file count mismatch: {len(files) if isinstance(files, list) else 'invalid'}")
+    paths = [row.get("relative_path") for row in files]
+    ids = [row.get("registry_id") for row in files]
+    if len(paths) != len(set(paths)) or any(not path for path in paths):
+        raise InventoryError("missing or duplicate path")
+    if len(ids) != len(set(ids)) or any(not registry_id for registry_id in ids):
+        raise InventoryError("missing or duplicate registry_id")
+    if paths != sorted(paths, key=lambda value: value.encode("utf-8")):
+        raise InventoryError("inventory is not deterministically sorted")
+
+    roots = [row["relative_root"] + "/" for row in registry.get("product_sources", [])]
+    canonical_paths = {
+        row["relative_path"]
+        for row in registry.get("artifacts", [])
+        if row.get("role") == "canonical_master"
+    }
+    required = {
+        "registry_id", "target_sku", "runtime_sku", "relative_path", "commit",
+        "git_blob", "sha256", "bytes", "format", "role", "nomination_source",
+        "content_status", "office_status", "release_status",
+    }
+    for row in files:
+        if set(row) != required:
+            raise InventoryError(f"row schema drift: {row.get('relative_path')}")
+        path = row["relative_path"]
+        if path.startswith("tools/reports/"):
+            raise InventoryError(f"report path is not a product-root file: {path}")
+        if not any(path.startswith(root) for root in roots):
+            raise InventoryError(f"path escapes registered roots: {path}")
+        if row["role"] not in ALLOWED_ROLES:
+            raise InventoryError(f"unknown role: {row['role']}")
+        if row["role"] == "canonical_master" and path not in canonical_paths:
+            raise InventoryError(f"unregistered canonical role: {path}")
+        if row["role"] == "historical_mirror" and path in canonical_paths:
+            raise InventoryError(f"canonical path downgraded: {path}")
+        if not isinstance(row["bytes"], int) or row["bytes"] < 0:
+            raise InventoryError(f"invalid bytes: {path}")
+        if not isinstance(row["git_blob"], str) or len(row["git_blob"]) != 40:
+            raise InventoryError(f"invalid git blob: {path}")
+        if not isinstance(row["sha256"], str) or len(row["sha256"]) != 64:
+            raise InventoryError(f"invalid sha256: {path}")
+
+    total_bytes = sum(row["bytes"] for row in files)
+    target_skus = {row["target_sku"] for row in files if row.get("target_sku")}
+    expected_coverage = {
+        "target_skus": {"registered": len(target_skus), "expected": 13},
+        "runtime_roots": {"registered": len(registry.get("product_sources", [])), "expected": EXPECTED_ROOTS},
+        "files": {"registered": len(files), "expected": EXPECTED_FILES, "percent": 100.0},
+        "bytes": {"registered": total_bytes, "expected": EXPECTED_BYTES},
+    }
+    if data.get("coverage") != expected_coverage:
+        raise InventoryError("coverage drift")
+    if total_bytes != EXPECTED_BYTES:
+        raise InventoryError(f"portfolio byte total mismatch: {total_bytes}")
+
+
+def ensure_matches(actual: dict, expected: dict) -> None:
+    if serialized(actual) != serialized(expected):
+        raise InventoryError("inventory drift")
+
+
+def validate_registry_reference(registry: dict, data: dict, text: str) -> None:
+    reference = registry.get("file_inventory", {})
+    digest = hashlib.sha256(text.encode("utf-8")).hexdigest()
+    expected = {
+        "path": "products-storage/ARTIFACT-INVENTORY.json",
+        "source_commit": data["source_commit"],
+        "sha256": digest,
+        "files": EXPECTED_FILES,
+        "bytes": EXPECTED_BYTES,
+    }
+    if reference != expected:
+        raise InventoryError(f"registry inventory reference drift: {reference} != {expected}")
+
 def serialized(data: dict) -> str:
     return json.dumps(data, ensure_ascii=False, indent=2) + "\n"
 
@@ -200,7 +280,9 @@ def main() -> int:
         if not source_commit:
             raise InventoryError("--source-commit is required before the first snapshot")
         data = build_inventory(registry, repo, source_commit)
+        validate_inventory(data, registry)
         text = serialized(data)
+        validate_registry_reference(registry, data, text)
         if args.emit:
             print("ARTIFACT_INVENTORY_JSON_BEGIN")
             print(text, end="")
@@ -208,11 +290,12 @@ def main() -> int:
         elif args.check:
             if current is None:
                 raise InventoryError(f"missing inventory: {args.inventory}")
-            if serialized(current) != text:
-                raise InventoryError("inventory drift")
+            validate_inventory(current, registry)
+            ensure_matches(current, data)
+            digest = hashlib.sha256(text.encode("utf-8")).hexdigest()
             print(
                 f"ARTIFACT_INVENTORY_PASS files={len(data['files'])} "
-                f"bytes={data['coverage']['bytes']['registered']}"
+                f"bytes={data['coverage']['bytes']['registered']} sha256={digest}"
             )
         else:
             atomic_write(inventory_path, text)
