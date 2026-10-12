@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import os
+import signal
 from pathlib import Path
 
 EXPECTED_REPORT_SHA256 = "029e2d0763775a05afd8f6fa86c01a6c9fe94af67e597602e4b3779edfaeecbb"
@@ -45,7 +46,18 @@ INDICATORS = {
     "database": ("PDO(", "mysqli_"),
     "signature_check": ("hash_hmac(", "signature", "сигнатур"),
 }
-TEXT_SUFFIXES = {".html", ".htm", ".js", ".php", ".css", ".json", ".md"}
+TEXT_SUFFIXES = {".html", ".htm", ".js", ".php"}
+IGNORED_SOURCE_PARTS = {
+    ".git",
+    ".github",
+    ".worktrees",
+    "node_modules",
+    "product-packages",
+    "products-storage",
+    "tests",
+    "tools",
+    "vendor",
+}
 
 
 def sha256_bytes(value: bytes) -> str:
@@ -109,7 +121,7 @@ def client_call_sites(root: Path, endpoints: tuple[str, ...]) -> list[dict]:
         if not path.is_file() or path.suffix.lower() not in TEXT_SUFFIXES:
             continue
         relative = path.relative_to(root).as_posix()
-        if relative in endpoint_set or relative.startswith("tools/reports/"):
+        if relative in endpoint_set or any(part in IGNORED_SOURCE_PARTS for part in path.relative_to(root).parts):
             continue
         try:
             lines = path.read_text(encoding="utf-8").splitlines()
@@ -125,6 +137,11 @@ def client_call_sites(root: Path, endpoints: tuple[str, ...]) -> list[dict]:
                         "method": infer_method(lines, index),
                     })
     return sites
+
+
+def execution_environment() -> dict[str, str]:
+    names = ("GITHUB_SHA", "GITHUB_REF", "GITHUB_RUN_ID", "GITHUB_RUN_ATTEMPT")
+    return {name.lower(): os.environ[name] for name in names if os.environ.get(name)}
 
 
 def build_inventory(root: Path, source_report_path: Path) -> dict:
@@ -149,6 +166,7 @@ def build_inventory(root: Path, source_report_path: Path) -> dict:
             "path": source_report_path.relative_to(root).as_posix(),
             "sha256": sha256_bytes(raw),
         },
+        "execution_environment": execution_environment(),
         "counts": {
             "endpoints": len(endpoints),
             "client_call_sites": 0,
@@ -168,6 +186,38 @@ def build_inventory(root: Path, source_report_path: Path) -> dict:
     }
 
 
+def build_manifest(report: dict) -> dict:
+    return {
+        "schema_version": 1,
+        "status": report["status"],
+        "source_report": report.get("source_report"),
+        "endpoint_sources": [
+            {"path": item["path"], "bytes": item["bytes"], "sha256": item["sha256"]}
+            for item in report.get("endpoints", [])
+        ],
+        "client_call_sites": report.get("client_call_sites", []),
+    }
+
+
+def write_evidence(output: Path, report: dict) -> None:
+    manifest = build_manifest(report)
+    atomic_json(output / "report.json", report)
+    atomic_json(output / "manifest.json", manifest)
+    receipt = {
+        "status": report["status"],
+        "report_sha256": sha256_bytes((output / "report.json").read_bytes()),
+        "manifest_sha256": sha256_bytes((output / "manifest.json").read_bytes()),
+        "checkpoint_policy": "verified_only",
+        "model_calls": 0,
+        "paid_api_calls": 0,
+    }
+    atomic_json(output / "receipt.json", receipt)
+
+
+def interrupted(signum: int, _frame: object) -> None:
+    raise InterruptedError(f"signal {signum}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
@@ -177,19 +227,41 @@ def main() -> int:
     root = args.root.resolve()
     source_report = args.source_report if args.source_report.is_absolute() else root / args.source_report
     output = args.output if args.output.is_absolute() else root / args.output
-    report = build_inventory(root, source_report)
-    sites = client_call_sites(root, EXPECTED_ENDPOINTS)
-    report["client_call_sites"] = sites
-    report["counts"]["client_call_sites"] = len(sites)
-    atomic_json(output / "report.json", report)
-    receipt = {
-        "status": report["status"],
-        "report_sha256": sha256_bytes((output / "report.json").read_bytes()),
-        "checkpoint_policy": "verified_only",
-        "model_calls": 0,
-        "paid_api_calls": 0,
-    }
-    atomic_json(output / "receipt.json", receipt)
+    previous_handlers = {}
+    for signum in (signal.SIGINT, signal.SIGTERM):
+        previous_handlers[signum] = signal.signal(signum, interrupted)
+    try:
+        report = build_inventory(root, source_report)
+        sites = client_call_sites(root, EXPECTED_ENDPOINTS)
+        report["client_call_sites"] = sites
+        report["counts"]["client_call_sites"] = len(sites)
+        write_evidence(output, report)
+    except BaseException as error:
+        failure = {
+            "schema_version": 1,
+            "status": "FAIL_NOT_VERIFIED",
+            "error": {"class": type(error).__name__, "message": str(error)},
+            "execution_environment": execution_environment(),
+            "counts": {"endpoints": 0, "client_call_sites": 0},
+            "endpoints": [],
+            "client_call_sites": [],
+            "acceptance_limits": {
+                "source_inventory_accepted": False,
+                "runtime_behavior_accepted": False,
+                "payment_accepted": False,
+                "webhook_accepted": False,
+                "security_accepted": False,
+                "legal_accepted": False,
+                "deploy_accepted": False,
+                "release_accepted": False,
+            },
+        }
+        write_evidence(output, failure)
+        print(json.dumps(failure["error"], ensure_ascii=False))
+        return 2
+    finally:
+        for signum, handler in previous_handlers.items():
+            signal.signal(signum, handler)
     print(json.dumps(report["counts"], ensure_ascii=False))
     return 0
 
