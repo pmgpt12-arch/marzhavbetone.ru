@@ -48,6 +48,12 @@ class RegistryShapeTests(unittest.TestCase):
         with self.assertRaises(MODULE.RegistryError):
             MODULE.validate_shape(data)
 
+    def test_coverage_drift_fails(self):
+        data = copy.deepcopy(BASE)
+        data["coverage"]["file_sha256_records"]["registered"] = 218
+        with self.assertRaises(MODULE.RegistryError):
+            MODULE.validate_shape(data)
+
     def test_checkout_matches_seed(self):
         try:
             subprocess.check_call(["git", "-C", str(ROOT), "rev-parse", "--git-dir"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
