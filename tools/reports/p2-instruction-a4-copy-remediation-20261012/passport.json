@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "unit_id": "mb001-p2-instruction-a4-copy-remediation-20261012",
+  "created_at_utc": "2026-10-12T17:50:00Z",
+  "status": "READY_FOR_EXACT_HEAD_CI",
+  "checkpoint_policy": "verified_only",
+  "base_commit": "1df555befc6d319d14b011a2283a1fd6b3cab1fd",
+  "source": {
+    "path": "products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.docx",
+    "sha256": "a27ffb94bb47a66743fe01d188055813159a04117d09514db8f8aeef9c14f609",
+    "page_size_twips": [12240, 15840]
+  },
+  "candidate_contract": {
+    "page_size_twips": [11906, 16838],
+    "changed_zip_members": ["word/document.xml"],
+    "source_replacement": false,
+    "binary_delivery": "GitHub Actions artifact only"
+  },
+  "local_evidence": {
+    "script_sha256": "b0e4f03655fa3a3a039198d4450273fcb5d70978851d8e76ec0f8efb117a4234",
+    "candidate_sha256": "512fd4e671f0941c3ea74f456510e82f8619c9d58565014a03785071bc738e9b",
+    "build_report_sha256": "cf608015275e5f9df2a2f2a4cd1f4a62a26c5248f42699c0c812ffb756b97fed",
+    "rendered_pdf_sha256": "d14c1c3ef75a834c78453a04edaf971f0c764f20e4a3da855b26fdbd1b8d905b",
+    "page_png_sha256": [
+      "55a7116694b13a6ebdd1c5ac06287e646a5e60ca26d1b0820db1c88622d774d7",
+      "4cedadab246563df0d8d554f9017f34c3917249ef2921ba64d68b2fc607047cf",
+      "06d2e265dbd998922385b99899b662ac4b0005fae34eae49c097c234fe36154e",
+      "1d2a6eea7df5f1bcde95f098ef6cddf540296c62b80b92ad68931a292eee3fbe"
+    ],
+    "render_page_count": 4,
+    "render_page_format": "A4",
+    "manual_all_page_inspection": "PASS_VISUAL_LAYOUT_CANDIDATE_ONLY"
+  },
+  "not_accepted": [
+    "native Microsoft Word behavior",
+    "content correctness",
+    "legal correctness",
+    "source replacement",
+    "release",
+    "publication",
+    "delivery"
+  ],
+  "model_calls": 0,
+  "paid_api_calls": 0,
+  "next_step": "Run exact-head unit/build workflow, download and hash the candidate artifact, then obtain independent read-only review."
+}

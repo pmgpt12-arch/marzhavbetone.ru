@@ -18,6 +18,11 @@ import unicodedata
 from pathlib import Path
 from urllib.parse import urlsplit
 
+try:
+    from tools.build_artifact_registry import registry_identity_sha256
+except ModuleNotFoundError:
+    from build_artifact_registry import registry_identity_sha256
+
 ROOT = Path(__file__).resolve().parent.parent
 REPORT = ROOT / "tools/reports/site-static-content-snapshot-20261012/report.json"
 RECEIPT = ROOT / "tools/reports/site-static-content-snapshot-20261012/receipt.json"
@@ -29,8 +34,8 @@ CONTENT_SOURCE_TREE = "e9a7e8cb6cbf91f1a1c21c5e0cf468970d70c5e4"
 ACCEPTED_DISCOVERY_MERGE = "4c93fe4ae680c88f2ca82a65ec6fd380b0248af6"
 ROUTE_REPORT_BLOB = "5f779a82995515b3a2b1c687771823c82439130d"
 ROUTE_REPORT_SHA256 = "37febeca4e5c6c8a4f21e5d7ec1534b5fe61bd8a9ba994cd93bc0bf7e71933cb"
-ARTIFACT_REGISTRY_BLOB = "e5de5559cf76b0913587f95d0550a9c8633fe21f"
-ARTIFACT_REGISTRY_SHA256 = "5a6c3788f68b9cdc4ea91fee830945987b403f8f1655c31dd834740f301e0745"
+ARTIFACT_REGISTRY_BLOB = "5a431138f4d157ed42fbd6ff034c40c515c4422b"
+ARTIFACT_REGISTRY_SHA256 = "080238747ee7e32fe72efaa9a62f911f670ad76354f0e972482a8fa4602195fc"
 SNAPSHOT_DATE = "2026-10-12"
 CANONICAL_EXCEPTIONS = ["404.html", "fail.html", "success.html", "test-pokupka.html"]
 
@@ -101,6 +106,29 @@ def assert_pinned_input(path: Path, expected_blob: str, expected_sha256: str) ->
     if sha256(data) != expected_sha256:
         raise SnapshotError(f"pinned input SHA-256 drift: {rel}")
     return data
+
+
+
+def validate_registry_identity(actual, accepted):
+    if registry_identity_sha256(actual) != registry_identity_sha256(accepted):
+        raise SnapshotError("artifact registry identity drift outside change_history")
+
+
+def assert_pinned_registry_identity():
+    """Keep the historical snapshot lineage while checking current product identity.
+
+    The current raw registry hash changes when audit history is appended.  The
+    accepted source snapshot remains byte-exact; only change_history is excluded
+    from the live identity comparison. No source paths, prices, SKU, nominations,
+    inventory hashes, roles or statuses are excluded.
+    """
+    relative = ARTIFACT_REGISTRY.relative_to(ROOT).as_posix()
+    baseline = read_source(CONTENT_SOURCE_COMMIT, relative)
+    blob = hashlib.sha1(b"blob " + str(len(baseline)).encode() + b"\0" + baseline).hexdigest()
+    if blob != ARTIFACT_REGISTRY_BLOB or sha256(baseline) != ARTIFACT_REGISTRY_SHA256:
+        raise SnapshotError("accepted registry baseline drift")
+    validate_registry_identity(json.loads(ARTIFACT_REGISTRY.read_bytes()), json.loads(baseline))
+    return baseline
 
 
 def decode_entity(match: re.Match[str]) -> str:
@@ -255,9 +283,7 @@ def build_report() -> dict[str, object]:
     route_bytes = assert_pinned_input(
         ROUTE_REPORT, ROUTE_REPORT_BLOB, ROUTE_REPORT_SHA256
     )
-    registry_bytes = assert_pinned_input(
-        ARTIFACT_REGISTRY, ARTIFACT_REGISTRY_BLOB, ARTIFACT_REGISTRY_SHA256
-    )
+    registry_bytes = assert_pinned_registry_identity()
     route_report = json.loads(route_bytes)
     registry = json.loads(registry_bytes)
     if route_report["source_commit"] != CONTENT_SOURCE_COMMIT:

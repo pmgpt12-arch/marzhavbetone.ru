@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "RUNNING",
+  "unit": "mb001-app-script-wrapper-source-contract-20261012",
+  "started_at": "2026-10-12T15:36:00Z",
+  "checkpoint_policy": "verified_only",
+  "base_commit": "84736214181f4cd74150d5e066373857562bf7cc",
+  "branch": "codex/mb001-app-script-wrapper-source-contract-20261012",
+  "inputs": {
+    "accepted_inventory_report_sha256": "be4181ebd84b78f2fa83b7feb7df27f7f0bd955faaebf6b1de55cc719c72cf48",
+    "app-script.php": {
+      "bytes": 239,
+      "sha256": "7ba0130cbe199fe0018da9c5cf5794ef35b968906fa6b007d86b8640bd0e5461",
+      "git_blob_sha": "ba59c30aec36d76b70d1d7c3d52e87c6b62a4ee8"
+    },
+    "app.js": {
+      "bytes": 17061,
+      "sha256": "365806f60b6cda2c00c93e11d66f653654b75b7e6192dc701c7da56439d6b187",
+      "git_blob_sha": "b26f4aeb2f9706522c0088f2ec774af3cd7434d0"
+    }
+  },
+  "executor": {
+    "type": "deterministic_python_source_lexer",
+    "endpoint_execution": false,
+    "network_execution": false,
+    "model_calls": 0,
+    "paid_api_calls": 0
+  },
+  "acceptance": [
+    "exact_source_hashes_and_bytes",
+    "accepted_inventory_lineage",
+    "allowed_header_statements_only",
+    "single_local_readfile_app_js_delegation",
+    "no_request_environment_outbound_or_file_write_constructs",
+    "atomic_report_manifest_receipt_and_failure_evidence",
+    "independent_exact_head_review_and_ci"
+  ],
+  "limitations": [
+    "source_wrapper_contract_only",
+    "no_http_or_runtime_byte_equivalence",
+    "no_php_configuration_or_cache_behavior",
+    "no_reachability_or_security_acceptance",
+    "no_deploy_publication_delivery_or_release"
+  ],
+  "next_step": "implement scanner and regression tests; do not execute app-script.php"
+}

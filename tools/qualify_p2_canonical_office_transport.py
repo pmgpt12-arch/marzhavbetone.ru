@@ -21,6 +21,13 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 
+try:
+    from tools.build_artifact_registry import registry_identity_sha256
+except ModuleNotFoundError:
+    from build_artifact_registry import registry_identity_sha256
+
+EXPECTED_REGISTRY_IDENTITY_SHA256 = '53488a9b8cd8c238a78cb676da56066fc6f8b0900d554b32b5e2c427be43cb3c'
+
 STATUS_PASS = "PASS_TRANSPORT_AND_CONTAINER_INTEGRITY_ONLY"
 STATUS_FAIL = "FAIL_NOT_VERIFIED"
 REQUIRED_MEMBERS = {
@@ -33,7 +40,7 @@ REQUIRED_MEMBERS = {
 }
 FORBIDDEN_MEMBERS = {"EncryptedPackage", "EncryptionInfo", "word/vbaProject.bin"}
 REGISTRY_PATH = "products-storage/ARTIFACT-REGISTRY.json"
-EXPECTED_REGISTRY_BLOB = "e5de5559cf76b0913587f95d0550a9c8633fe21f"
+EXPECTED_REGISTRY_BLOB = "5a431138f4d157ed42fbd6ff034c40c515c4422b"
 INPUTS = (
     {
         "registry_id": "P2-CANON-00-INSTR-B85",
@@ -111,9 +118,9 @@ def qualify_registry(root: Path) -> dict[str, object]:
     path = root / REGISTRY_PATH
     data = path.read_bytes()
     actual_blob = git_blob_sha1(data)
-    if actual_blob != EXPECTED_REGISTRY_BLOB:
-        raise ValueError(f"registry git_blob mismatch: {actual_blob} != {EXPECTED_REGISTRY_BLOB}")
     registry = json.loads(data)
+    if actual_blob != EXPECTED_REGISTRY_BLOB and registry_identity_sha256(registry) != EXPECTED_REGISTRY_IDENTITY_SHA256:
+        raise ValueError("registry identity mismatch outside separately validated change_history")
     if registry.get("registry_status") != "ACTIVE_PARTIAL_SEED":
         raise ValueError(f"registry status mismatch: {registry.get('registry_status')}")
     artifacts = registry.get("artifacts")

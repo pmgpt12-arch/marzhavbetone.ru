@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "unit_id": "mb001-p2-canonical-docx-visual-review-20261012",
+  "created_at_utc": "2026-10-12T17:46:43Z",
+  "checkpoint_policy": "verified_only",
+  "repository": "pmgpt12-arch/marzhavbetone.ru",
+  "base_commit": "1df555befc6d319d14b011a2283a1fd6b3cab1fd",
+  "route": "GitHub exact merged files -> local hash/ZIP verification -> documents skill render_docx.py -> LibreOfficeDev PDF -> Poppler PNG -> manual all-page inspection",
+  "renderer": {
+    "script": "/root/.codex/skills/builtins/documents/render_docx.py",
+    "script_sha256": "876d5993324e2faaaa96a68a4f7504642e9a07e6df265b385b2baa03b231369e",
+    "libreoffice": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51",
+    "inspection": "all_pages_original_resolution"
+  },
+  "inputs": [
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.docx",
+      "sha256": "a27ffb94bb47a66743fe01d188055813159a04117d09514db8f8aeef9c14f609",
+      "git_blob": "6e7b67117feedb7d978c5971f142b5782fc097c8",
+      "bytes": 41800
+    },
+    {
+      "path": "products-storage/02-dopraboty-bez-poter/03-uvedomlenie-o-doprabotah.docx",
+      "sha256": "7360634f99b3b7f288c394bc88140cc84f92d6a0a2786b7816d8c2bc23a5ae16",
+      "git_blob": "e5f82e0d1220c82aaecd990cc011b7c0ca974491",
+      "bytes": 38881
+    }
+  ],
+  "results": [
+    {
+      "input": "00-INSTRUKCIYA.docx",
+      "status": "PASS_RENDERABILITY_WITH_OPEN_PAGE_FORMAT_CONSISTENCY",
+      "pdf_sha256": "ae1743765cc9fdbba69db7fdb02b53536e1c62594ce65296f1ee72c22ef45f86",
+      "page_count": 4,
+      "page_size_points": [612, 792],
+      "page_format": "Letter",
+      "page_png_sha256": [
+        "f32fb9ed8e7670b5ca0b281ad72e0393818e5103bd06a6bd4fd1e04654608b31",
+        "5c2c8117179043172d3c128697691dfb13a07504b5db7033c2f715f62b5331c9",
+        "f5db9c97d230e663a0cb63c5c730340b4efefaff5adb0f1ca6fb45a33aa07a57",
+        "c389e2e4f7a4a19dd4385be201e8faf998bb55d6f78f481445e2b7d337df479e"
+      ],
+      "visual_findings": "No clipping, overlap, missing glyphs, stranded list marker, or unreadable table observed. List paragraphs 3-5 and 37-42 are distinct OOXML paragraphs and render on distinct baselines. Letter format remains inconsistent with companion file and is not accepted as final print-format choice."
+    },
+    {
+      "input": "03-uvedomlenie-o-doprabotah.docx",
+      "status": "PASS_RENDERABILITY_ONLY",
+      "pdf_sha256": "c050c4e54dd1d072b85f4580a00d1de45c7e742604ba6a7596e96e01ac159c12",
+      "page_count": 1,
+      "page_size_points": [595.304, 841.89],
+      "page_format": "A4",
+      "page_png_sha256": [
+        "6181dae7a2588278e4015388bb6593abaae8aa07010a553d749ed66bf4bb890b"
+      ],
+      "visual_findings": "No clipping, overlap, missing glyphs, or visibly broken layout observed."
+    }
+  ],
+  "rejected_hypothesis": {
+    "status": "NOT_ACCEPTED",
+    "description": "A python-docx A4 copy rendered cleanly but rewrote the package more broadly than an evidence-preserving page-size-only correction permits.",
+    "candidate_docx_sha256": "e2f95a1a732dcdbb60962f59e5a3617319e0f8177bcb56f890dc4c7bffa0befa",
+    "candidate_pdf_sha256": "639d46d4ebc1cfe6e3524c27194204ad3eacb70aa72102e6b1618ffc5f6da19d",
+    "model_calls": 0,
+    "source_mutations": 0
+  },
+  "acceptance_scope": "LibreOffice/Poppler renderability and manual layout inspection only",
+  "not_accepted": [
+    "native Microsoft Word behavior",
+    "content correctness",
+    "legal correctness",
+    "final print-format choice",
+    "source replacement",
+    "release",
+    "publication",
+    "delivery"
+  ],
+  "next_step": "Create a deterministic copy-only A4 candidate by changing only w:pgSz in word/document.xml, prove all other ZIP members unchanged and paragraph text equal, then render and independently inspect every page before any source replacement decision."
+}

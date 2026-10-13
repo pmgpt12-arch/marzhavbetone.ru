@@ -1,0 +1,101 @@
+{
+  "status": "PASS_REGISTRY_PROVENANCE_REUSE_AND_RAW_EVIDENCE_STORAGE_ONLY",
+  "created_utc": "2026-10-13T02:19:48.214403+00:00",
+  "base_commit": "478fbc1d2a8f474ca4ca088a2af1f89a5c0d4c74",
+  "registry_sha256": "650d7af42b4baaf7fedc886043b8b912591b796f0b842e7115e66bf5c4a68c16",
+  "history_records": 4,
+  "archive_files": 28,
+  "unit_tests_passed": 38,
+  "checks": [
+    {
+      "id": "unit",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tools/test_artifact_registry.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log_path": "tools/candidates/registry-history-review-20261013/unit.log",
+      "log_sha256": "36d9b0b996b1ec0e8f403debbe9b78feea4c379ce2ed485d8c76ee2dcdf56633"
+    },
+    {
+      "id": "registry",
+      "command": [
+        "python3",
+        "tools/build_artifact_registry.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log_path": "tools/candidates/registry-history-review-20261013/registry.log",
+      "log_sha256": "63c2c8d32a25b3026998458fc948c4af03c4d9d188ffb8256bce1f9c5d2bc693"
+    },
+    {
+      "id": "inventory",
+      "command": [
+        "python3",
+        "tools/build_artifact_inventory.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log_path": "tools/candidates/registry-history-review-20261013/inventory.log",
+      "log_sha256": "7f88910fd9f2f80be7a088eaeacfb06417ba07a1c6e5c5bfe670a068203da516"
+    },
+    {
+      "id": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log_path": "tools/candidates/registry-history-review-20261013/diff.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "reuse_demonstrations": [
+    {
+      "decision": "REUSE_VERIFIED_RESULT",
+      "record_id": "P2-INSTRUCTION-NATIVE-VISUAL-20261013",
+      "gate_id": "native_open_export",
+      "actual_input_sha256": "0f3882fae04bd8bf32a9c368abc24e6d4c1c41fad5d008d37bfc522098148b11",
+      "changed_dimensions": [],
+      "job_id": "p2-instruction-style-word-20261013-v1",
+      "do_not_launch_duplicate": true,
+      "accepted_scope": "Exact DOCX native Word open/export; delivered PDF hash matched",
+      "next_atomic_task": "Do not rerun this Word job. Continue unresolved product-level normative/content/buyer gates and synchronized DOCX/PDF package",
+      "g1_g8_status": "NOT_FULLY_ACCEPTED",
+      "release_status": "BLOCKED",
+      "demonstration_scope": "stored contract/environment supplied as fixture; no new native job; not a live environment attestation"
+    },
+    {
+      "decision": "BLOCK_KNOWN_FAILURE",
+      "record_id": "P1-395-V3-NATIVE-FAIL-20261013",
+      "gate_id": "native_open_export",
+      "actual_input_sha256": "f7bd3a6fc8cfbb9e478448b2d217c6c4e3b667a5548f421373a7816978e5874e",
+      "changed_dimensions": [],
+      "job_id": "p1-395-editorial-native-20261013-v1",
+      "do_not_launch_duplicate": true,
+      "accepted_scope": null,
+      "next_atomic_task": "Do not rerun this failed SHA; use metadata-repaired descendant",
+      "g1_g8_status": "NOT_FULLY_ACCEPTED",
+      "release_status": "BLOCKED",
+      "demonstration_scope": "stored contract/environment supplied as fixture; no new native job; not a live environment attestation"
+    }
+  ],
+  "baseline_file_inventory_unchanged": true,
+  "product_source_mutations": 0,
+  "new_native_jobs": 0,
+  "new_model_calls": 0,
+  "full_product_acceptance": "0/13; no new G1-G8 acceptance",
+  "release": "BLOCKED",
+  "scope_note": "Feature is in this Draft branch; unmodified legacy executors are not automatically wired to the reuse preflight.",
+  "validator_sha256": "7c0e1609e6f148efa61d449b048d2024b6f55b1a989109a25c317fed17288813",
+  "test_source_sha256": "4633259c128665393a8d562fbd4361e5b02c9a965d025d3547dc7e61ae6ec2ff",
+  "raw_evidence_count": 28,
+  "raw_evidence_worktree_and_index_match": true,
+  "staged_diff_check_exit": 0,
+  "recovery_receipt": "tools/candidates/registry-history-review-20261013/publication-recovery.json",
+  "recovery_receipt_sha256": "f492753d996ca8497abc775c8831855ef0a135f72d47f8d53f35c4bcc407e793"
+}
