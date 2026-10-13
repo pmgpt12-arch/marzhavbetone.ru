@@ -16,11 +16,25 @@
     "target_product_count": 13
   },
   "coverage": {
-    "target_skus": {"registered": 13, "expected": 13},
-    "runtime_roots": {"registered": 19, "expected": 19},
-    "root_files": {"registered": 218},
-    "file_sha256_records": {"registered": 218, "expected": 218, "percent": 100.0},
-    "nomination_artifact_records": {"registered": 4},
+    "target_skus": {
+      "registered": 13,
+      "expected": 13
+    },
+    "runtime_roots": {
+      "registered": 19,
+      "expected": 19
+    },
+    "root_files": {
+      "registered": 218
+    },
+    "file_sha256_records": {
+      "registered": 218,
+      "expected": 218,
+      "percent": 100.0
+    },
+    "nomination_artifact_records": {
+      "registered": 5
+    },
     "qualification": "root identity and file-level SHA-256 inventory complete; content/Office/release acceptance remains open"
   },
   "allowed_roles": [
@@ -30,25 +44,196 @@
     "report_evidence_not_nominated"
   ],
   "product_sources": [
-    {"target_sku":"P1","runtime_sku":"p1","relative_root":"products-storage/01-zakrytie-rabot","git_tree_sha":"d472c04bbb1d345ac466301a65ef51cb5addd0f2","file_count":21,"bytes":555458,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P1","runtime_sku":"t1","relative_root":"products-storage/09-pervyy-shag-pri-neoplate","git_tree_sha":"d586c3e22d3208db9d070a01e4f844ef614e8ba3","file_count":7,"bytes":92526,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P2","runtime_sku":"p2","relative_root":"products-storage/02-dopraboty-bez-poter","git_tree_sha":"1877a5b18a17884d3754711137d2c6f41d051208","file_count":17,"bytes":589667,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P3","runtime_sku":"p3","relative_root":"products-storage/05-ks-bez-vozvrata","git_tree_sha":"369c68698a358be4098ea779f9b5c660623ae8aa","file_count":12,"bytes":326645,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P4","runtime_sku":"p4","relative_root":"products-storage/08-pto-bez-zamechaniy","git_tree_sha":"0ff3b4d9485bcc046d2bed9629928ce3a96545b6","file_count":24,"bytes":693885,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P5+P12","runtime_sku":"p5","relative_root":"products-storage/07-uderzhaniya-shtrafy-zachety","git_tree_sha":"336c5af32f57fc65d81f83052276ce30f6d0c276","file_count":12,"bytes":299785,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P5+P12","runtime_sku":"p12","relative_root":"products-storage/12-otvet-na-pretenziyu","git_tree_sha":"4eb7c34cf8f6ccc75bd0e2ca89d7c00babe967bd","file_count":21,"bytes":345774,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P7","runtime_sku":"p7","relative_root":"products-storage/03-dogovor-podryada","git_tree_sha":"be6d292ddef670169816cbec5c4f25a85d61410c","file_count":15,"bytes":528642,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P8","runtime_sku":"p8","relative_root":"products-storage/10-avans-usloviya-i-pribyl","git_tree_sha":"08896ef8d5f5a4313cd47f6b195b7cb92e090404","file_count":12,"bytes":232385,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P8","runtime_sku":"t5","relative_root":"products-storage/20-trebuyut-vernut-avans","git_tree_sha":"cbbd35e216908e6c36d23ba7f70cd6ef12fc5a16","file_count":6,"bytes":95147,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P9","runtime_sku":"p9","relative_root":"products-storage/11-bankrotstvo-genpodryadchika","git_tree_sha":"8e7b41b09ccfa5a108e49a1bb1a8b8e8071ee3ad","file_count":11,"bytes":178020,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P9","runtime_sku":"t4","relative_root":"products-storage/18-genpodryadchik-bankrotitsya","git_tree_sha":"08fd1f5c3f34bbad6907511e4c88cff9024709d9","file_count":6,"bytes":84866,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P10","runtime_sku":"p10","relative_root":"products-storage/15-otvet-na-pretenziyu-baza","git_tree_sha":"b1481c961266e0c9edbcd4a6e265600840d5f72a","file_count":10,"bytes":132710,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P11","runtime_sku":"p11","relative_root":"products-storage/13-raschet-metrami","git_tree_sha":"64522b4b06800efc9589d15ae8d2f0c250fb16aa","file_count":8,"bytes":181816,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P11","runtime_sku":"t6","relative_root":"products-storage/19-kvartiry-vmesto-deneg","git_tree_sha":"690eff7e8c22dd85ab06528a37499c5dd4abcc91","file_count":6,"bytes":76902,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"P13","runtime_sku":"p13","relative_root":"products-storage/16-chto-v-smete-ne-oplatyat","git_tree_sha":"c73eb4aeeed2870d7be9d90616804a50bae8bac9","file_count":11,"bytes":348443,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"T2","runtime_sku":"t2","relative_root":"products-storage/14-peredacha-id-pod-podpis","git_tree_sha":"e86225172947212ad42407cd94822ea61d50cb34","file_count":7,"bytes":89688,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":"T3","runtime_sku":"t3","relative_root":"products-storage/17-odnostoronniy-akt-i-zachet","git_tree_sha":"103273911830f6a89288f9bc60a93ec7c186e997","file_count":6,"bytes":72456,"role":"historical_mirror","release_status":"EXISTING_CATALOG_NOT_TARGET_RELEASE"},
-    {"target_sku":null,"runtime_sku":"test1","relative_root":"products-storage/00-free-ks-podpisany-deneg-net","git_tree_sha":"71e6169b06def6057396ef508004308ddcb5f2b1","file_count":6,"bytes":173053,"role":"historical_mirror","release_status":"TECHNICAL_TEST_NOT_PORTFOLIO"}
+    {
+      "target_sku": "P1",
+      "runtime_sku": "p1",
+      "relative_root": "products-storage/01-zakrytie-rabot",
+      "git_tree_sha": "d472c04bbb1d345ac466301a65ef51cb5addd0f2",
+      "file_count": 21,
+      "bytes": 555458,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P1",
+      "runtime_sku": "t1",
+      "relative_root": "products-storage/09-pervyy-shag-pri-neoplate",
+      "git_tree_sha": "d586c3e22d3208db9d070a01e4f844ef614e8ba3",
+      "file_count": 7,
+      "bytes": 92526,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P2",
+      "runtime_sku": "p2",
+      "relative_root": "products-storage/02-dopraboty-bez-poter",
+      "git_tree_sha": "1877a5b18a17884d3754711137d2c6f41d051208",
+      "file_count": 17,
+      "bytes": 589667,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P3",
+      "runtime_sku": "p3",
+      "relative_root": "products-storage/05-ks-bez-vozvrata",
+      "git_tree_sha": "369c68698a358be4098ea779f9b5c660623ae8aa",
+      "file_count": 12,
+      "bytes": 326645,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P4",
+      "runtime_sku": "p4",
+      "relative_root": "products-storage/08-pto-bez-zamechaniy",
+      "git_tree_sha": "0ff3b4d9485bcc046d2bed9629928ce3a96545b6",
+      "file_count": 24,
+      "bytes": 693885,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P5+P12",
+      "runtime_sku": "p5",
+      "relative_root": "products-storage/07-uderzhaniya-shtrafy-zachety",
+      "git_tree_sha": "336c5af32f57fc65d81f83052276ce30f6d0c276",
+      "file_count": 12,
+      "bytes": 299785,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P5+P12",
+      "runtime_sku": "p12",
+      "relative_root": "products-storage/12-otvet-na-pretenziyu",
+      "git_tree_sha": "4eb7c34cf8f6ccc75bd0e2ca89d7c00babe967bd",
+      "file_count": 21,
+      "bytes": 345774,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P7",
+      "runtime_sku": "p7",
+      "relative_root": "products-storage/03-dogovor-podryada",
+      "git_tree_sha": "be6d292ddef670169816cbec5c4f25a85d61410c",
+      "file_count": 15,
+      "bytes": 528642,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P8",
+      "runtime_sku": "p8",
+      "relative_root": "products-storage/10-avans-usloviya-i-pribyl",
+      "git_tree_sha": "08896ef8d5f5a4313cd47f6b195b7cb92e090404",
+      "file_count": 12,
+      "bytes": 232385,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P8",
+      "runtime_sku": "t5",
+      "relative_root": "products-storage/20-trebuyut-vernut-avans",
+      "git_tree_sha": "cbbd35e216908e6c36d23ba7f70cd6ef12fc5a16",
+      "file_count": 6,
+      "bytes": 95147,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P9",
+      "runtime_sku": "p9",
+      "relative_root": "products-storage/11-bankrotstvo-genpodryadchika",
+      "git_tree_sha": "8e7b41b09ccfa5a108e49a1bb1a8b8e8071ee3ad",
+      "file_count": 11,
+      "bytes": 178020,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P9",
+      "runtime_sku": "t4",
+      "relative_root": "products-storage/18-genpodryadchik-bankrotitsya",
+      "git_tree_sha": "08fd1f5c3f34bbad6907511e4c88cff9024709d9",
+      "file_count": 6,
+      "bytes": 84866,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P10",
+      "runtime_sku": "p10",
+      "relative_root": "products-storage/15-otvet-na-pretenziyu-baza",
+      "git_tree_sha": "b1481c961266e0c9edbcd4a6e265600840d5f72a",
+      "file_count": 10,
+      "bytes": 132710,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P11",
+      "runtime_sku": "p11",
+      "relative_root": "products-storage/13-raschet-metrami",
+      "git_tree_sha": "64522b4b06800efc9589d15ae8d2f0c250fb16aa",
+      "file_count": 8,
+      "bytes": 181816,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P11",
+      "runtime_sku": "t6",
+      "relative_root": "products-storage/19-kvartiry-vmesto-deneg",
+      "git_tree_sha": "690eff7e8c22dd85ab06528a37499c5dd4abcc91",
+      "file_count": 6,
+      "bytes": 76902,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "P13",
+      "runtime_sku": "p13",
+      "relative_root": "products-storage/16-chto-v-smete-ne-oplatyat",
+      "git_tree_sha": "c73eb4aeeed2870d7be9d90616804a50bae8bac9",
+      "file_count": 11,
+      "bytes": 348443,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "T2",
+      "runtime_sku": "t2",
+      "relative_root": "products-storage/14-peredacha-id-pod-podpis",
+      "git_tree_sha": "e86225172947212ad42407cd94822ea61d50cb34",
+      "file_count": 7,
+      "bytes": 89688,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": "T3",
+      "runtime_sku": "t3",
+      "relative_root": "products-storage/17-odnostoronniy-akt-i-zachet",
+      "git_tree_sha": "103273911830f6a89288f9bc60a93ec7c186e997",
+      "file_count": 6,
+      "bytes": 72456,
+      "role": "historical_mirror",
+      "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+    },
+    {
+      "target_sku": null,
+      "runtime_sku": "test1",
+      "relative_root": "products-storage/00-free-ks-podpisany-deneg-net",
+      "git_tree_sha": "71e6169b06def6057396ef508004308ddcb5f2b1",
+      "file_count": 6,
+      "bytes": 173053,
+      "role": "historical_mirror",
+      "release_status": "TECHNICAL_TEST_NOT_PORTFOLIO"
+    }
   ],
   "artifacts": [
     {
@@ -114,6 +299,1335 @@
       "content_status": "NOT_NOMINATED",
       "office_status": "EVIDENCE_ONLY",
       "release_status": "BLOCKED"
+    },
+    {
+      "registry_id": "P1-CAND-395-NATIVE-HEADER-20261013",
+      "target_sku": "P1",
+      "runtime_sku": "p1",
+      "relative_path": "tools/candidates/p1-395-content-20261012/14-raschet-procentov-395-gk.xlsx",
+      "commit": "61c8191e5d8818b8ae472a2b03016eb88c44e859",
+      "git_blob": "257271d7ca1a51c932be051e838b56c445327a1e",
+      "sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+      "bytes": 20192,
+      "format": "xlsx",
+      "role": "nominated_candidate",
+      "nomination_source": "issue:600#issuecomment-6136555404",
+      "content_status": "PASS_EDITORIAL_ONLY_FULL_CONTENT_OPEN",
+      "office_status": "PASS_NATIVE_OPEN_EXPORT_ONLY",
+      "release_status": "BLOCKED",
+      "change_record": {
+        "schema_version": 1,
+        "captured_utc": "2026-10-13T02:11:22.706475+00:00",
+        "provenance": {
+          "repository": "pmgpt12-arch/marzhavbetone.ru",
+          "branch": "codex/mb001-p1-395-content-candidate-20261012",
+          "source_product_commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+          "parent_issue": 291,
+          "registry_issue": 600,
+          "qa_issue": 597,
+          "price_decision_issue": 578,
+          "pr": 610,
+          "nomination_comment_id": 6136555404,
+          "capture_type": "evidence_only_no_product_change",
+          "capture_script_sha256": "0ffcc0954e6576ac238d53fcd8df3f75e957ed848a444dc085decfdcd3ddca93",
+          "coordinator": "ChatGPT; deterministic capture, no external model calls",
+          "latest_compatible_evidence_commit": "61c8191e5d8818b8ae472a2b03016eb88c44e859"
+        },
+        "identities": {
+          "source": {
+            "repository_path": "products-storage/01-zakrytie-rabot/14-raschet-procentov-395-gk.xlsx",
+            "commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+            "git_blob": "aeffa0960e794ac103f1a1d0436a7c004f54d5e3",
+            "sha256": "0e3fd94bcb4023652d40de96c22890ef494f0d089d565b1ef6017374c19923fe",
+            "bytes": 20273
+          },
+          "candidate": {
+            "repository_path": "tools/candidates/p1-395-content-20261012/14-raschet-procentov-395-gk.xlsx",
+            "commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+            "git_blob": "257271d7ca1a51c932be051e838b56c445327a1e",
+            "sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+            "bytes": 20192
+          },
+          "existing_receipt": {
+            "repository_path": "tools/candidates/p1-395-content-20261012/receipt.json",
+            "commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+            "git_blob": "adf86d68521160b9764f498fd308b3e8fc3f1cec",
+            "sha256": "1fd54434c6575872553063e00dcb1d5ac2656368b249f0b6527081a19f70a255",
+            "bytes": 2343
+          },
+          "validation_script_before_registry_extension": {
+            "repository_path": "tools/test_p1_395_editorial_candidate.py",
+            "commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+            "git_blob": "e19b0f011bbb73561f2ca5a0c269c5238ffb1efd",
+            "sha256": "5f9d1811ec6fd64f4e0c25d0d07d8620a16accb7691dd251b49ff06ea5da8b81",
+            "bytes": 11615
+          },
+          "ci_config": {
+            "repository_path": "tools/ci_checks.yaml",
+            "commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+            "git_blob": "445d558be11130cb4603762a7aa6e10dc9ec74af",
+            "sha256": "a4c255931bf3145be68b379e817f7656c3f2902edc300a323a549d42a11beca7",
+            "bytes": 42770
+          }
+        },
+        "lineage": [
+          {
+            "registry_id": "P1-CAND-395-PR610-V3",
+            "sha256": "f7bd3a6fc8cfbb9e478448b2d217c6c4e3b667a5548f421373a7816978e5874e",
+            "verdict": "NATIVE_OPEN_FAIL",
+            "role": "superseded_for_next_qa"
+          },
+          {
+            "registry_id": "P1-CAND-395-COREXML-20261013",
+            "sha256": "044d9aa899b2278c9fe6c525f4b54e3f8ea07d4b12d755a8df145741756ee8c2",
+            "verdict": "NATIVE_OPEN_EXPORT_PASS_HEADER_CLIPPED",
+            "role": "superseded_for_next_qa"
+          },
+          {
+            "registry_id": "P1-CAND-395-NATIVE-HEADER-20261013",
+            "sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+            "verdict": "NATIVE_OPEN_EXPORT_AND_HEADER_PASS_LIMITED",
+            "role": "current_nominated_candidate"
+          }
+        ],
+        "addressable_edits": [
+          {
+            "kind": "cell_text",
+            "sheet": "Входные данные",
+            "part": "xl/worksheets/sheet1.xml",
+            "cell": "A47",
+            "before": "В этой таблице учитывайте только сумму оплаты, направленную на погашение основного долга. По ст. 319 ГК РФ при недостаточности платежа сначала погашаются издержки кредитора по получению исполнения и проценты, являющиеся платой за пользование денежными средствами, затем основной долг. Проценты за просрочку по ст. 395 ГК РФ погашаются после основного долга (п. 49 постановления Пленума ВС РФ от 24.03.2016 № 7). Соглашением сторон можно изменить очередность только требований, названных в ст. 319 ГК РФ (п. 37 постановления Пленума ВС РФ от 22.11.2016 № 54). Если платёж распределяется между несколькими обязательствами или включает иные требования, уточните сумму погашения основного долга с юристом. База долга уменьшается со дня, следующего за датой оплаты; в день оплаты проценты начисляются на прежнюю сумму.",
+            "after": "В этой таблице учитывайте только сумму оплаты, направленную на погашение основного долга. По ст. 319 ГК РФ при недостаточности платежа сначала погашаются издержки кредитора по получению исполнения и проценты, являющиеся платой за пользование денежными средствами, затем основной долг. Проценты за просрочку по ст. 395 ГК РФ погашаются после основного долга (п. 49 постановления Пленума ВС РФ от 24.03.2016 № 7). Соглашением сторон можно изменить очередность только требований, названных в ст. 319 ГК РФ (п. 37 постановления Пленума ВС РФ от 22.11.2016 № 54). Если платёж распределяется между несколькими обязательствами или включает иные требования, выделите сумму погашения основного долга по документам расчётов. База долга уменьшается со дня, следующего за датой оплаты; в день оплаты проценты начисляются на прежнюю сумму.",
+            "style_id_before": "5",
+            "style_id_after": "5"
+          },
+          {
+            "kind": "cell_text",
+            "sheet": "Расчёт",
+            "part": "xl/worksheets/sheet2.xml",
+            "cell": "A48",
+            "before": "Число дней в году берётся фактическое — 365 или 366. Формула считает по фактическому числу дней; норму, которая устанавливала бы иной знаменатель, этот расчёт не применяет. Если для вашего спора знаменатель принципиален, сверьте его с юристом по действующей практике на дату расчёта.",
+            "after": "Число дней в году берётся фактическое — 365 или 366. Формула считает по фактическому числу дней; норму, которая устанавливала бы иной знаменатель, этот расчёт не применяет. Если порядок расчёта требует иного знаменателя, зафиксируйте его основание и применимость на дату расчёта.",
+            "style_id_before": "5",
+            "style_id_after": "5"
+          },
+          {
+            "kind": "cell_text",
+            "sheet": "Итог для документа",
+            "part": "xl/worksheets/sheet3.xml",
+            "cell": "A15",
+            "before": "Что это не заменяет",
+            "after": "Условия применения расчёта",
+            "style_id_before": "3",
+            "style_id_after": "3"
+          },
+          {
+            "kind": "cell_text",
+            "sheet": "Итог для документа",
+            "part": "xl/worksheets/sheet3.xml",
+            "cell": "A16",
+            "before": "— Выбор между процентами по ст. 395 и договорной неустойкой. Если договором установлена неустойка за просрочку оплаты, по общему правилу взыскивается она (п. 4 ст. 395 ГК РФ) — выбор согласуйте с юристом.",
+            "after": "— Сопоставьте условия договора об ответственности за просрочку оплаты с п. 4 ст. 395 ГК РФ. Если предусмотрена договорная неустойка, по общему правилу применяется она, если иное не установлено законом или договором.",
+            "style_id_before": "5",
+            "style_id_after": "5"
+          },
+          {
+            "kind": "cell_text",
+            "sheet": "Итог для документа",
+            "part": "xl/worksheets/sheet3.xml",
+            "cell": "A17",
+            "before": "— Учёт мораторных периодов, банкротства должника и иных оснований приостановки начисления. При таких обстоятельствах расчёт корректирует юрист.",
+            "after": "— Проверьте наличие мораториев, процедур банкротства и иных оснований ограничения начисления; при необходимости скорректируйте расчётный период и исходные данные.",
+            "style_id_before": "5",
+            "style_id_after": "5"
+          },
+          {
+            "kind": "cell_text",
+            "sheet": "Итог для документа",
+            "part": "xl/worksheets/sheet3.xml",
+            "cell": "A18",
+            "before": "— Заключение специалиста. Суд проверяет расчёт сам; эта таблица — рабочий инструмент истца, а не доказательство само по себе.",
+            "after": "— Подготовьте расчёт и подтверждающие документы: договор, акты, сведения об оплате, период просрочки и применённые ставки.",
+            "style_id_before": "5",
+            "style_id_after": "5"
+          },
+          {
+            "kind": "cell_text",
+            "sheet": "Итог для документа",
+            "part": "xl/worksheets/sheet3.xml",
+            "cell": "A19",
+            "before": "— Юридическую консультацию и вычитку юристом. Нормативная сверка сопоставляет формулировки и порядок со статьями закона и не заменяет проверку обстоятельств вашего спора.",
+            "after": "— Сверьте применимые условия договора, фактические обстоятельства и нормативные основания начисления процентов.",
+            "style_id_before": "5",
+            "style_id_after": "5"
+          },
+          {
+            "kind": "core_timestamp",
+            "part": "docProps/core.xml",
+            "element": "{http://purl.org/dc/terms/}created",
+            "before": "2026-10-08T08:12:16+00:00Z",
+            "after": "2026-10-08T08:12:16Z"
+          },
+          {
+            "kind": "core_timestamp",
+            "part": "docProps/core.xml",
+            "element": "{http://purl.org/dc/terms/}modified",
+            "before": "2026-10-08T08:12:16+00:00Z",
+            "after": "2026-10-08T08:12:16Z"
+          },
+          {
+            "kind": "row_height",
+            "sheet": "Пример заполнения",
+            "part": "xl/worksheets/sheet4.xml",
+            "row": 15,
+            "attribute": "ht",
+            "before": "38",
+            "after": "54",
+            "unit": "pt",
+            "observed_defect": "native PDF page 5 G15 heading clipped before this change"
+          }
+        ],
+        "package_components": [
+          {
+            "part": "docProps/app.xml",
+            "before_sha256": "a119696698c47fc3958efe90866fe3b4c4d98aa8db176fc67a7fb4f3171d1323",
+            "after_sha256": "a119696698c47fc3958efe90866fe3b4c4d98aa8db176fc67a7fb4f3171d1323",
+            "before_bytes": 177,
+            "after_bytes": 177,
+            "changed": false,
+            "before_crc32": "0cc15a46",
+            "after_crc32": "0cc15a46",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "docProps/core.xml",
+            "before_sha256": "af526b9e5731799699631b8499ad0919c7585939e42c97c1295a81dc541879b4",
+            "after_sha256": "67822e1cb124a0f18baf25baa916a83b13574fe9b40f22be792a4bf3315240fe",
+            "before_bytes": 567,
+            "after_bytes": 555,
+            "changed": true,
+            "before_crc32": "3f86ea56",
+            "after_crc32": "02d3aec1",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "xl/theme/theme1.xml",
+            "before_sha256": "d15e8ebf78ef7b9720839d7ae8fdc81a7df5bc24706d8e137df61a5683c358d9",
+            "after_sha256": "d15e8ebf78ef7b9720839d7ae8fdc81a7df5bc24706d8e137df61a5683c358d9",
+            "before_bytes": 10140,
+            "after_bytes": 10140,
+            "changed": false,
+            "before_crc32": "239c5c99",
+            "after_crc32": "239c5c99",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "xl/worksheets/sheet1.xml",
+            "before_sha256": "2315a4050a3e46f36899445ea2da855e69481db08bf3bb4b841c4369ccf4d604",
+            "after_sha256": "79447cee0b18750954a106a24da7fcc0e083d20a5677a175cc50079dc6549cc2",
+            "before_bytes": 15465,
+            "after_bytes": 15550,
+            "changed": true,
+            "before_crc32": "5d72c353",
+            "after_crc32": "bde7072b",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "xl/comments/comment1.xml",
+            "before_sha256": "c0c246261c6d67819f256e2832e059734a93246da198b53f2f89c30b1fe4ae86",
+            "after_sha256": "c0c246261c6d67819f256e2832e059734a93246da198b53f2f89c30b1fe4ae86",
+            "before_bytes": 482,
+            "after_bytes": 482,
+            "changed": false,
+            "before_crc32": "290103a4",
+            "after_crc32": "290103a4",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "xl/drawings/commentsDrawing1.vml",
+            "before_sha256": "350b6ab4dd05502ee65cf3b64cca9252e54944b163a00870074ff77f1d37e7c3",
+            "after_sha256": "350b6ab4dd05502ee65cf3b64cca9252e54944b163a00870074ff77f1d37e7c3",
+            "before_bytes": 1214,
+            "after_bytes": 1214,
+            "changed": false,
+            "before_crc32": "608b9181",
+            "after_crc32": "608b9181",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "xl/worksheets/_rels/sheet1.xml.rels",
+            "before_sha256": "e2d28d8e38b35f1729aa1d52a0dcd52d78a4abb684cdb284d4d991dec8dbc165",
+            "after_sha256": "e2d28d8e38b35f1729aa1d52a0dcd52d78a4abb684cdb284d4d991dec8dbc165",
+            "before_bytes": 405,
+            "after_bytes": 405,
+            "changed": false,
+            "before_crc32": "abc824f3",
+            "after_crc32": "abc824f3",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "xl/worksheets/sheet2.xml",
+            "before_sha256": "cf2677de2d0a2dab358b78a3b59b7f2b7e91f09960d4d838849cdf0cce23b5b0",
+            "after_sha256": "3a206e70826785c3efad341de5af6e3509f81c911a7074226b51724477dba420",
+            "before_bytes": 100005,
+            "after_bytes": 99989,
+            "changed": true,
+            "before_crc32": "9868546c",
+            "after_crc32": "9c53a10e",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "xl/worksheets/sheet3.xml",
+            "before_sha256": "362d9ba8d72b90fe8bba8c6dc97633386339b5e3eebc1e30d886cc2ef5198c6e",
+            "after_sha256": "261f8176ca54f0bf7252612d140e72c0c39f95adf6054bc809a015ee726291b6",
+            "before_bytes": 10626,
+            "after_bytes": 10553,
+            "changed": true,
+            "before_crc32": "cccbad46",
+            "after_crc32": "22bb686c",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "xl/worksheets/sheet4.xml",
+            "before_sha256": "8eb99603adc6833cac5327cd7e41b7864684c1a3516e1e9071165109b3bec96c",
+            "after_sha256": "db47b0f0196cbda39efe47f5c06826584ffa758d60a3b247b4c4378b3ffbb974",
+            "before_bytes": 8306,
+            "after_bytes": 8306,
+            "changed": true,
+            "before_crc32": "babe328a",
+            "after_crc32": "4d1ba5af",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "xl/styles.xml",
+            "before_sha256": "340c304819c4a1d1103faf1c4816e58c01c92db73a8032f8f0c18da7e533113a",
+            "after_sha256": "340c304819c4a1d1103faf1c4816e58c01c92db73a8032f8f0c18da7e533113a",
+            "before_bytes": 6354,
+            "after_bytes": 6354,
+            "changed": false,
+            "before_crc32": "1e7b21d1",
+            "after_crc32": "1e7b21d1",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "_rels/.rels",
+            "before_sha256": "c545941ba36c15fcdce4ae4568c663f3ced1a2226ad5082d3fd66b178bfac11a",
+            "after_sha256": "c545941ba36c15fcdce4ae4568c663f3ced1a2226ad5082d3fd66b178bfac11a",
+            "before_bytes": 531,
+            "after_bytes": 531,
+            "changed": false,
+            "before_crc32": "1cbb8a97",
+            "after_crc32": "1cbb8a97",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "xl/workbook.xml",
+            "before_sha256": "ce7c5bac6409da06d8a6758c0ef1e7eb11665aecdc81713fbc84407a2c3b24e1",
+            "after_sha256": "ce7c5bac6409da06d8a6758c0ef1e7eb11665aecdc81713fbc84407a2c3b24e1",
+            "before_bytes": 1178,
+            "after_bytes": 1178,
+            "changed": false,
+            "before_crc32": "655f2a39",
+            "after_crc32": "655f2a39",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "xl/_rels/workbook.xml.rels",
+            "before_sha256": "ab22e25bdbbd461cf03d0d9e971a0c4558219dbc10d9e46a68c419dee94b2a81",
+            "after_sha256": "ab22e25bdbbd461cf03d0d9e971a0c4558219dbc10d9e46a68c419dee94b2a81",
+            "before_bytes": 939,
+            "after_bytes": 939,
+            "changed": false,
+            "before_crc32": "eec56501",
+            "after_crc32": "eec56501",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          },
+          {
+            "part": "[Content_Types].xml",
+            "before_sha256": "f3220af39bdbc4fadf7afbfd1d84a12c7057f5fada1c37194cbef7f602d4ea9b",
+            "after_sha256": "f3220af39bdbc4fadf7afbfd1d84a12c7057f5fada1c37194cbef7f602d4ea9b",
+            "before_bytes": 1615,
+            "after_bytes": 1615,
+            "changed": false,
+            "before_crc32": "14a8aad9",
+            "after_crc32": "14a8aad9",
+            "zip_compression_before": 8,
+            "zip_compression_after": 8
+          }
+        ],
+        "preserved_invariants": [
+          {
+            "sheet": "Входные данные",
+            "part": "xl/worksheets/sheet1.xml",
+            "formulas_before": 0,
+            "formulas_after": 0,
+            "formula_signature_before": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "formula_signature_after": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "formula_addresses": [],
+            "cell_count_before": 80,
+            "cell_count_after": 80,
+            "dimension": {
+              "ref": "A1:C47"
+            },
+            "layout_before": [
+              "<ns0:sheetPr xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"><ns0:outlinePr summaryBelow=\"1\" summaryRight=\"1\" /><ns0:pageSetUpPr fitToPage=\"1\" /></ns0:sheetPr>",
+              "<ns0:pageMargins xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" left=\"0.7\" right=\"0.7\" top=\"0.75\" bottom=\"0.75\" header=\"0.3\" footer=\"0.3\" />",
+              "<ns0:pageSetup xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" orientation=\"portrait\" paperSize=\"9\" fitToHeight=\"0\" fitToWidth=\"1\" />"
+            ],
+            "layout_after": [
+              "<ns0:sheetPr xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"><ns0:outlinePr summaryBelow=\"1\" summaryRight=\"1\" /><ns0:pageSetUpPr fitToPage=\"1\" /></ns0:sheetPr>",
+              "<ns0:pageMargins xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" left=\"0.7\" right=\"0.7\" top=\"0.75\" bottom=\"0.75\" header=\"0.3\" footer=\"0.3\" />",
+              "<ns0:pageSetup xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" orientation=\"portrait\" paperSize=\"9\" fitToHeight=\"0\" fitToWidth=\"1\" />"
+            ],
+            "validation_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "sheet_protection_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "sheet": "Расчёт",
+            "part": "xl/worksheets/sheet2.xml",
+            "formulas_before": 243,
+            "formulas_after": 243,
+            "formula_signature_before": "1faf960033ddea249803f71eca8da855635332184508477c70ad8e64cd80874b",
+            "formula_signature_after": "1faf960033ddea249803f71eca8da855635332184508477c70ad8e64cd80874b",
+            "formula_addresses": [
+              "C4",
+              "D4",
+              "E4",
+              "F4",
+              "G4",
+              "H4",
+              "C5",
+              "D5",
+              "E5",
+              "F5",
+              "G5",
+              "H5",
+              "C6",
+              "D6",
+              "E6",
+              "F6",
+              "G6",
+              "H6",
+              "C7",
+              "D7",
+              "E7",
+              "F7",
+              "G7",
+              "H7",
+              "C8",
+              "D8",
+              "E8",
+              "F8",
+              "G8",
+              "H8",
+              "C9",
+              "D9",
+              "E9",
+              "F9",
+              "G9",
+              "H9",
+              "C10",
+              "D10",
+              "E10",
+              "F10",
+              "G10",
+              "H10",
+              "C11",
+              "D11",
+              "E11",
+              "F11",
+              "G11",
+              "H11",
+              "C12",
+              "D12",
+              "E12",
+              "F12",
+              "G12",
+              "H12",
+              "C13",
+              "D13",
+              "E13",
+              "F13",
+              "G13",
+              "H13",
+              "C14",
+              "D14",
+              "E14",
+              "F14",
+              "G14",
+              "H14",
+              "C15",
+              "D15",
+              "E15",
+              "F15",
+              "G15",
+              "H15",
+              "C16",
+              "D16",
+              "E16",
+              "F16",
+              "G16",
+              "H16",
+              "C17",
+              "D17",
+              "E17",
+              "F17",
+              "G17",
+              "H17",
+              "C18",
+              "D18",
+              "E18",
+              "F18",
+              "G18",
+              "H18",
+              "C19",
+              "D19",
+              "E19",
+              "F19",
+              "G19",
+              "H19",
+              "C20",
+              "D20",
+              "E20",
+              "F20",
+              "G20",
+              "H20",
+              "C21",
+              "D21",
+              "E21",
+              "F21",
+              "G21",
+              "H21",
+              "C22",
+              "D22",
+              "E22",
+              "F22",
+              "G22",
+              "H22",
+              "C23",
+              "D23",
+              "E23",
+              "F23",
+              "G23",
+              "H23",
+              "C24",
+              "D24",
+              "E24",
+              "F24",
+              "G24",
+              "H24",
+              "C25",
+              "D25",
+              "E25",
+              "F25",
+              "G25",
+              "H25",
+              "C26",
+              "D26",
+              "E26",
+              "F26",
+              "G26",
+              "H26",
+              "C27",
+              "D27",
+              "E27",
+              "F27",
+              "G27",
+              "H27",
+              "C28",
+              "D28",
+              "E28",
+              "F28",
+              "G28",
+              "H28",
+              "C29",
+              "D29",
+              "E29",
+              "F29",
+              "G29",
+              "H29",
+              "C30",
+              "D30",
+              "E30",
+              "F30",
+              "G30",
+              "H30",
+              "C31",
+              "D31",
+              "E31",
+              "F31",
+              "G31",
+              "H31",
+              "C32",
+              "D32",
+              "E32",
+              "F32",
+              "G32",
+              "H32",
+              "C33",
+              "D33",
+              "E33",
+              "F33",
+              "G33",
+              "H33",
+              "C34",
+              "D34",
+              "E34",
+              "F34",
+              "G34",
+              "H34",
+              "C35",
+              "D35",
+              "E35",
+              "F35",
+              "G35",
+              "H35",
+              "C36",
+              "D36",
+              "E36",
+              "F36",
+              "G36",
+              "H36",
+              "C37",
+              "D37",
+              "E37",
+              "F37",
+              "G37",
+              "H37",
+              "C38",
+              "D38",
+              "E38",
+              "F38",
+              "G38",
+              "H38",
+              "C39",
+              "D39",
+              "E39",
+              "F39",
+              "G39",
+              "H39",
+              "C40",
+              "D40",
+              "E40",
+              "F40",
+              "G40",
+              "H40",
+              "C41",
+              "D41",
+              "E41",
+              "F41",
+              "G41",
+              "H41",
+              "C42",
+              "D42",
+              "E42",
+              "F42",
+              "G42",
+              "H42",
+              "C43",
+              "D43",
+              "E43",
+              "F43",
+              "G43",
+              "H43",
+              "G45",
+              "H45",
+              "G46"
+            ],
+            "cell_count_before": 338,
+            "cell_count_after": 338,
+            "dimension": {
+              "ref": "A1:H51"
+            },
+            "layout_before": [
+              "<ns0:sheetPr xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"><ns0:outlinePr summaryBelow=\"1\" summaryRight=\"1\" /><ns0:pageSetUpPr fitToPage=\"1\" /></ns0:sheetPr>",
+              "<ns0:pageMargins xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" left=\"0.7\" right=\"0.7\" top=\"0.75\" bottom=\"0.75\" header=\"0.3\" footer=\"0.3\" />",
+              "<ns0:pageSetup xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" orientation=\"landscape\" paperSize=\"9\" fitToHeight=\"0\" fitToWidth=\"1\" />"
+            ],
+            "layout_after": [
+              "<ns0:sheetPr xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"><ns0:outlinePr summaryBelow=\"1\" summaryRight=\"1\" /><ns0:pageSetUpPr fitToPage=\"1\" /></ns0:sheetPr>",
+              "<ns0:pageMargins xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" left=\"0.7\" right=\"0.7\" top=\"0.75\" bottom=\"0.75\" header=\"0.3\" footer=\"0.3\" />",
+              "<ns0:pageSetup xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" orientation=\"landscape\" paperSize=\"9\" fitToHeight=\"0\" fitToWidth=\"1\" />"
+            ],
+            "validation_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "sheet_protection_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "sheet": "Итог для документа",
+            "part": "xl/worksheets/sheet3.xml",
+            "formulas_before": 8,
+            "formulas_after": 8,
+            "formula_signature_before": "93c45dc4dd31dc0ed624bebd4e55208a96f89ae9e4a40e6b1ecdd812166056f3",
+            "formula_signature_after": "93c45dc4dd31dc0ed624bebd4e55208a96f89ae9e4a40e6b1ecdd812166056f3",
+            "formula_addresses": [
+              "B4",
+              "B5",
+              "B6",
+              "B7",
+              "B8",
+              "B9",
+              "B10",
+              "B11"
+            ],
+            "cell_count_before": 25,
+            "cell_count_after": 25,
+            "dimension": {
+              "ref": "A1:B19"
+            },
+            "layout_before": [
+              "<ns0:sheetPr xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"><ns0:outlinePr summaryBelow=\"1\" summaryRight=\"1\" /><ns0:pageSetUpPr fitToPage=\"1\" /></ns0:sheetPr>",
+              "<ns0:pageMargins xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" left=\"0.7\" right=\"0.7\" top=\"0.75\" bottom=\"0.75\" header=\"0.3\" footer=\"0.3\" />",
+              "<ns0:pageSetup xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" orientation=\"portrait\" paperSize=\"9\" fitToHeight=\"0\" fitToWidth=\"1\" />"
+            ],
+            "layout_after": [
+              "<ns0:sheetPr xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"><ns0:outlinePr summaryBelow=\"1\" summaryRight=\"1\" /><ns0:pageSetUpPr fitToPage=\"1\" /></ns0:sheetPr>",
+              "<ns0:pageMargins xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" left=\"0.7\" right=\"0.7\" top=\"0.75\" bottom=\"0.75\" header=\"0.3\" footer=\"0.3\" />",
+              "<ns0:pageSetup xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" orientation=\"portrait\" paperSize=\"9\" fitToHeight=\"0\" fitToWidth=\"1\" />"
+            ],
+            "validation_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "sheet_protection_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "sheet": "Пример заполнения",
+            "part": "xl/worksheets/sheet4.xml",
+            "formulas_before": 0,
+            "formulas_after": 0,
+            "formula_signature_before": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "formula_signature_after": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "formula_addresses": [],
+            "cell_count_before": 42,
+            "cell_count_after": 42,
+            "dimension": {
+              "ref": "A1:H19"
+            },
+            "layout_before": [
+              "<ns0:sheetPr xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"><ns0:outlinePr summaryBelow=\"1\" summaryRight=\"1\" /><ns0:pageSetUpPr fitToPage=\"1\" /></ns0:sheetPr>",
+              "<ns0:pageMargins xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" left=\"0.7\" right=\"0.7\" top=\"0.75\" bottom=\"0.75\" header=\"0.3\" footer=\"0.3\" />",
+              "<ns0:pageSetup xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" orientation=\"landscape\" paperSize=\"9\" fitToHeight=\"0\" fitToWidth=\"1\" />"
+            ],
+            "layout_after": [
+              "<ns0:sheetPr xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"><ns0:outlinePr summaryBelow=\"1\" summaryRight=\"1\" /><ns0:pageSetUpPr fitToPage=\"1\" /></ns0:sheetPr>",
+              "<ns0:pageMargins xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" left=\"0.7\" right=\"0.7\" top=\"0.75\" bottom=\"0.75\" header=\"0.3\" footer=\"0.3\" />",
+              "<ns0:pageSetup xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" orientation=\"landscape\" paperSize=\"9\" fitToHeight=\"0\" fitToWidth=\"1\" />"
+            ],
+            "validation_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "sheet_protection_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "evidence_files": [
+          {
+            "role": "CURRENT_RECEIPT",
+            "absolute_path": "/home/denis/projects/mb001-p1-395-copy-correction-20261012/tools/candidates/p1-395-content-20261012/receipt.json",
+            "sha256": "1fd54434c6575872553063e00dcb1d5ac2656368b249f0b6527081a19f70a255",
+            "bytes": 2343,
+            "available_at_capture": true,
+            "repository_path": "tools/candidates/p1-395-content-20261012/receipt.json",
+            "commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+            "git_blob": "adf86d68521160b9764f498fd308b3e8fc3f1cec"
+          },
+          {
+            "role": "NATIVE_VISUAL_REVIEW",
+            "absolute_path": "/home/denis/projects/mb001-p1-395-copy-correction-20261012/tools/candidates/p1-395-content-20261012/qa-native-header-20261013.json",
+            "sha256": "4b5f4ffe0e070f4ba1be7aa38d70342aab63e01a09c2da1368a87bd237596b97",
+            "bytes": 2969,
+            "available_at_capture": true,
+            "repository_path": "tools/candidates/p1-395-content-20261012/qa-native-header-20261013.json",
+            "commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+            "git_blob": "881015a3159d4ef362dd2b126f8d91ec1ce11b37"
+          },
+          {
+            "role": "NATIVE_EXCEL_REPORT",
+            "absolute_path": "/home/denis/projects/mb001-p1-395-copy-correction-20261012/tools/candidates/p1-395-content-20261012/native-header-report-20261013.xml",
+            "sha256": "fe9e667f78272437c78757d0f3d985f3ad465ee3fb7906a7e4338e3d21dd21ff",
+            "bytes": 823,
+            "available_at_capture": true,
+            "repository_path": "tools/candidates/p1-395-content-20261012/native-header-report-20261013.xml",
+            "commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+            "git_blob": "13ed7780e7933eb1cab1b13c3b6938ba620fae2b"
+          },
+          {
+            "role": "NATIVE_PDF",
+            "absolute_path": "/home/denis/projects/mb001-p1-395-copy-correction-20261012/tools/candidates/p1-395-content-20261012/native-header-preview-20261013.pdf",
+            "sha256": "c080a7f04c960fce60d5be0c2ff109088508ca03255a2085f9128406f6e76306",
+            "bytes": 213436,
+            "available_at_capture": true,
+            "repository_path": "tools/candidates/p1-395-content-20261012/native-header-preview-20261013.pdf",
+            "commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+            "git_blob": "8fe777885d1f2d129462300c7f3d8ce053620214"
+          },
+          {
+            "role": "HISTORICAL_EDITORIAL_NOT_CURRENT",
+            "absolute_path": "/home/denis/projects/mb001-p1-395-copy-correction-20261012/tools/candidates/p1-395-content-20261012/editorial-v3-20261013.json",
+            "sha256": "275b80e657ce003634a0c88f6f3b5f3df7fb890ddd21a8abcef128bd831b76d4",
+            "bytes": 1244,
+            "available_at_capture": true,
+            "repository_path": "tools/candidates/p1-395-content-20261012/editorial-v3-20261013.json",
+            "commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+            "git_blob": "91a03f60c1590dff4906c69295a66e769a52c001"
+          },
+          {
+            "role": "HISTORICAL_PRE_NATIVE_NOT_CURRENT",
+            "absolute_path": "/home/denis/projects/mb001-p1-395-copy-correction-20261012/tools/candidates/p1-395-content-20261012/qa-v3-20261013.json",
+            "sha256": "d3c5ab2ef307dbfe064e25e71210b03f9f72caaa25ae11c4a103f2501e80d2b2",
+            "bytes": 1726,
+            "available_at_capture": true,
+            "repository_path": "tools/candidates/p1-395-content-20261012/qa-v3-20261013.json",
+            "commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+            "git_blob": "378c24f0bf4f4f6acddd4d2228cfade6662d14f2"
+          },
+          {
+            "role": "METADATA_ONLY_BUILD",
+            "absolute_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/report.json",
+            "sha256": "de789bdae2285d10d0e731f8000d459b83e0a76d61f287bb2e9863af76e444b2",
+            "bytes": 988,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "METADATA_ONLY_INDEPENDENT_VERIFICATION",
+            "absolute_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/independent-native-verification.json",
+            "sha256": "5cb172616a7c8aaac57a16456a2a6dd76ab951afc8aa7f8f93de706e570e8ce1",
+            "bytes": 3679,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "HEADER_ONLY_BUILD",
+            "absolute_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/native-header-candidate.json",
+            "sha256": "18a3a61ec82f2a0b6366cd3eaa9d2f4febd7426701d1eb7b195749510e6d0f90",
+            "bytes": 1476,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "HEADER_NATIVE_RETURN",
+            "absolute_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/native-header-result.json",
+            "sha256": "8d1809208c616d596f983f3891f0d73434cfa6973bde9ec469c9cd86eff736b3",
+            "bytes": 2199,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "VERIFIER_AT_CAPTURE",
+            "absolute_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/verify_native_checkpoint.py",
+            "sha256": "0e34136ddc32d96043c421fc7d26c547d275273d5fbc446d2d9d802102ca5b5a",
+            "bytes": 5825,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "HEADER_REPAIR_SCRIPT",
+            "absolute_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/fix_native_header.py",
+            "sha256": "bf629499169a88f4853f28dc390fe6b136678ace7d7fb53249c5f3f8b6da4e15",
+            "bytes": 4323,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "NATIVE_ONESHOT_SCRIPT",
+            "absolute_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/native_header_once.py",
+            "sha256": "f33397dd092658361832f7ba6adfaa616a69dff051da83f1bfb0f6bc8c5b6d15",
+            "bytes": 5194,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "METADATA_REPAIR_SCRIPT",
+            "absolute_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/build.py",
+            "sha256": "12b2379d580bce3cb6625a8d8e478d9ca9e72ddea25960990d439e5056ddd193",
+            "bytes": 3705,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "NATIVE_INPUT_MANIFEST",
+            "absolute_path": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/native/p1-395-native-header-20261013-v1/job.xml",
+            "sha256": "6dac3139fc3e1abfb94cc3abc682c4a00488b552521fd28415b2e159a1713cf3",
+            "bytes": 267,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "NATIVE_DERIVED_XLSX",
+            "absolute_path": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/results/native/p1-395-native-header-20261013-v1/p1395header-filled.xlsx",
+            "sha256": "772bccc1a2549ce264d3b8582a2e99eb4f7c1ed0ab385aade32f8055439bdfcf",
+            "bytes": 21572,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "HISTORICAL_OPEN_FAILURE",
+            "absolute_path": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/results/native/p1-395-editorial-native-20261013-v1/report.xml",
+            "sha256": "dd9ea253b3c532e0dffcbf38f582b47353815e771f8242dd1c05e32567f76508",
+            "bytes": 2720,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "REVIEWED_NATIVE_PAGE_1",
+            "absolute_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/native-header-page-review/page-1.png",
+            "sha256": "888a5c287742aa9dc93569d32f80ab51283567e32398d7a58bf80560553e84d6",
+            "bytes": 134883,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "REVIEWED_NATIVE_PAGE_2",
+            "absolute_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/native-header-page-review/page-2.png",
+            "sha256": "613c3c237f0cdc96769193834e1ed66ddf516617a201036ea0c14b0e0d43be36",
+            "bytes": 48231,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "REVIEWED_NATIVE_PAGE_3",
+            "absolute_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/native-header-page-review/page-3.png",
+            "sha256": "01818faefef3f09f049044ee7867c0bd2e85a8587e18979bf83c516e625fdeff",
+            "bytes": 44941,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "REVIEWED_NATIVE_PAGE_4",
+            "absolute_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/native-header-page-review/page-4.png",
+            "sha256": "2231819215d00bf545047259e073cf464f0726782ddc3129d86abc5025fbaba5",
+            "bytes": 171092,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "REVIEWED_NATIVE_PAGE_5",
+            "absolute_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/native-header-page-review/page-5.png",
+            "sha256": "2f598bf09716576f97b91fb0cf5d5903ab5c3503fa310dab49c180c8ef47e073",
+            "bytes": 120838,
+            "available_at_capture": true,
+            "repository_path": null,
+            "commit": null,
+            "git_blob": null
+          },
+          {
+            "role": "DERIVED_SCOPE_NARROWED_REPORT_NOT_RAW_LAPTOP_BYTES",
+            "absolute_path": "/home/denis/projects/mb001-p1-395-copy-correction-20261012/tools/candidates/p1-395-content-20261012/native-header-report-20261013.xml",
+            "repository_path": "tools/candidates/p1-395-content-20261012/native-header-report-20261013.xml",
+            "commit": "61c8191e5d8818b8ae472a2b03016eb88c44e859",
+            "git_blob": "348063a5564f5b6f1672d625124e942f82526736",
+            "sha256": "4e89ad0e0c4ba5349bf092564959f22988173405edf40c28c815f179ccd48f87",
+            "bytes": 837,
+            "available_at_capture": true
+          },
+          {
+            "role": "QA_UPDATED_TO_DERIVED_REPORT",
+            "absolute_path": "/home/denis/projects/mb001-p1-395-copy-correction-20261012/tools/candidates/p1-395-content-20261012/qa-native-header-20261013.json",
+            "repository_path": "tools/candidates/p1-395-content-20261012/qa-native-header-20261013.json",
+            "commit": "61c8191e5d8818b8ae472a2b03016eb88c44e859",
+            "git_blob": "2883beb1dbd8259618b421de31608296352dba97",
+            "sha256": "585fdadefb07f943712b8ef1369c538fa8f273fb41d33bd5df96184fcfd33a6d",
+            "bytes": 2969,
+            "available_at_capture": true
+          }
+        ],
+        "execution_history": {
+          "native_job_id": "p1-395-native-header-20261013-v1",
+          "native_manifest_xml": "<?xml version='1.0' encoding='UTF-8'?>\n<job id=\"p1-395-native-header-20261013-v1\"><file name=\"p1-395-native-header.xlsx\" tag=\"p1395header\" sha256=\"8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34\" sheet=\"Расчёт\" protect_contents=\"false\" /></job>",
+          "native_manifest_sha256": "6dac3139fc3e1abfb94cc3abc682c4a00488b552521fd28415b2e159a1713cf3",
+          "native_manifest_file": {
+            "name": "p1-395-native-header.xlsx",
+            "tag": "p1395header",
+            "sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+            "sheet": "Расчёт",
+            "protect_contents": "false"
+          },
+          "native_report_attributes": {
+            "status": "PASS",
+            "scope": "NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed",
+            "job": "p1-395-native-header-20261013-v1",
+            "excel_version": "16.0",
+            "excel_build": "4324"
+          },
+          "native_checks": [
+            {
+              "name": "p1395header:input_sha",
+              "pass": "True",
+              "expected": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+              "actual": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34"
+            },
+            {
+              "name": "p1395header:sheet_protected",
+              "pass": "True",
+              "expected": "False",
+              "actual": "False"
+            },
+            {
+              "name": "p1395header:pdf_export",
+              "pass": "True",
+              "expected": "%PDF-",
+              "actual": "bytes=213436"
+            },
+            {
+              "name": "p1395header:source_unchanged",
+              "pass": "True",
+              "expected": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+              "actual": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34"
+            }
+          ],
+          "native_completion_record": {
+            "job_id": "p1-395-native-header-20261013-v1",
+            "candidate_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+            "status": "NATIVE_OPEN_EXPORT_PASS_VISUAL_PENDING",
+            "utc": "2026-10-13T01:52:58.063203+00:00",
+            "scope": "NATIVE_EXCEL_OPEN_AND_PRINT_HEADER_REVIEW_ONLY",
+            "numeric_legal_buyer_G1_G8": "OPEN",
+            "release": "BLOCKED",
+            "native_report_sha256": "fe9e667f78272437c78757d0f3d985f3ad465ee3fb7906a7e4338e3d21dd21ff",
+            "native_report_status": "PASS",
+            "excel_version": "16.0",
+            "excel_build": "4324",
+            "checks": [
+              {
+                "name": "p1395header:input_sha",
+                "pass": "True",
+                "expected": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+                "actual": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34"
+              },
+              {
+                "name": "p1395header:sheet_protected",
+                "pass": "True",
+                "expected": "False",
+                "actual": "False"
+              },
+              {
+                "name": "p1395header:pdf_export",
+                "pass": "True",
+                "expected": "%PDF-",
+                "actual": "bytes=213436"
+              },
+              {
+                "name": "p1395header:source_unchanged",
+                "pass": "True",
+                "expected": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+                "actual": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34"
+              }
+            ],
+            "outputs": [
+              {
+                "path": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/results/native/p1-395-native-header-20261013-v1/report.xml",
+                "sha256": "fe9e667f78272437c78757d0f3d985f3ad465ee3fb7906a7e4338e3d21dd21ff",
+                "bytes": 823
+              },
+              {
+                "path": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/results/native/p1-395-native-header-20261013-v1/p1395header-filled.xlsx",
+                "sha256": "772bccc1a2549ce264d3b8582a2e99eb4f7c1ed0ab385aade32f8055439bdfcf",
+                "bytes": 21572
+              },
+              {
+                "path": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/results/native/p1-395-native-header-20261013-v1/p1395header-filled.pdf",
+                "sha256": "c080a7f04c960fce60d5be0c2ff109088508ca03255a2085f9128406f6e76306",
+                "bytes": 213436
+              }
+            ]
+          },
+          "native_attempts_for_this_sha": 1,
+          "native_wait_budget_seconds": 150,
+          "native_process_timeout_seconds": 180,
+          "commands": [
+            {
+              "command": "python3 tools/test_p1_395_editorial_candidate.py",
+              "cwd": "/home/denis/projects/mb001-p1-395-copy-correction-20261012",
+              "exit_code": 0,
+              "source": "verified step recorded in registry comment 6136555404",
+              "original_stdout_path": null,
+              "original_stdout_reason": "original stdout was returned by MCP, not persisted as a standalone file"
+            },
+            {
+              "command": "python3 tools/run_checks.py --class public --only test_p1_395_editorial_candidate",
+              "cwd": "/home/denis/projects/mb001-p1-395-copy-correction-20261012",
+              "exit_code": 0,
+              "tests": 1,
+              "passed": 1,
+              "skipped": 0,
+              "source": "registry comment 6136555404"
+            },
+            {
+              "command": "pdftoppm -r 130 -png <native PDF> <page prefix>",
+              "exact_input": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/results/native/p1-395-native-header-20261013-v1/p1395header-filled.pdf",
+              "exact_output_prefix": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/native-header-page-review/page",
+              "exit_code": 0,
+              "scope": "rasterization only; human visual verdict in committed QA JSON"
+            }
+          ],
+          "github_actions_at_product_commit": [
+            {
+              "id": 38334801731,
+              "name": "Проверки",
+              "commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+              "status": "completed",
+              "conclusion": "success",
+              "source": "GitHub fetch_commit_workflow_runs at registry capture"
+            },
+            {
+              "id": 38334801846,
+              "name": "Проверки рендером",
+              "commit": "18294273b42d5359a86a6ad797f50577d39fc858",
+              "status": "completed",
+              "conclusion": "success",
+              "source": "GitHub fetch_commit_workflow_runs at registry capture"
+            }
+          ],
+          "external_model_calls_for_capture": 0,
+          "native_jobs_submitted_for_capture": 0
+        },
+        "runtime": {
+          "native_application": "Microsoft Excel",
+          "native_version": "16.0",
+          "native_build": "4324",
+          "native_application_source": "exact committed native report",
+          "native_os_version": null,
+          "native_os_version_reason": "not returned by this native report; Windows 7 known historically but not reverified here",
+          "actual_deployed_agent_sha256": null,
+          "actual_deployed_agent_sha256_reason": "not instrumented in this historical run; do not infer from server copy",
+          "native_source_ip": "192.168.1.140",
+          "controller_host_observed_now": "ai-workstation",
+          "controller_python_observed_now": "3.12.3",
+          "controller_os_observed_now": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+          "native_locale": null,
+          "locale_reason": "not instrumented in native report",
+          "pdf_renderer": "pdftoppm",
+          "raster_dpi": 130,
+          "renderer_executable_version_at_original_run": null,
+          "renderer_version_reason": "not captured at original render; preserve existing raster hashes"
+        },
+        "verification_scopes": [
+          {
+            "scope": "NATIVE_OPEN_EXPORT_ONLY",
+            "status": "PASS",
+            "candidate_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+            "contract": {
+              "sheet": "Расчёт",
+              "protect_contents": false,
+              "expected_checks": [
+                "input_sha",
+                "sheet_protected",
+                "pdf_export",
+                "source_unchanged"
+              ]
+            },
+            "evidence_sha256": [
+              "fe9e667f78272437c78757d0f3d985f3ad465ee3fb7906a7e4338e3d21dd21ff",
+              "c080a7f04c960fce60d5be0c2ff109088508ca03255a2085f9128406f6e76306"
+            ],
+            "environment": {
+              "application": "Excel",
+              "version": "16.0",
+              "build": "4324"
+            },
+            "reuse_key_sha256": "9bf926020dc3cddf217ad8a77ec0e7bb5148d98797f4f367b2f963093e6407c4"
+          },
+          {
+            "scope": "VISUAL_HEADER_FIX_ONLY_WITH_OPEN_PAGINATION",
+            "status": "PASS_LIMITED",
+            "candidate_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+            "contract": {
+              "reviewed_pages": 5,
+              "changed_page": 5,
+              "page_1_to_4_pixel_identical": true,
+              "g15_header_fully_visible": true,
+              "pagination_accepted": false
+            },
+            "evidence_sha256": [
+              "c080a7f04c960fce60d5be0c2ff109088508ca03255a2085f9128406f6e76306",
+              "2f598bf09716576f97b91fb0cf5d5903ab5c3503fa310dab49c180c8ef47e073"
+            ],
+            "environment": {
+              "renderer": "pdftoppm",
+              "dpi": 130
+            },
+            "reuse_key_sha256": "d9dc18b5b34a777ae89102f05ef16ab85d604bdcb1d7fc81118245bbb5b354a7"
+          },
+          {
+            "scope": "EDITORIAL_AND_OOXML_EXACT_DELTA",
+            "status": "PASS",
+            "candidate_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+            "contract": {
+              "text_cells": 7,
+              "core_timestamps": 2,
+              "row_heights": 1,
+              "formulas_preserved": 251,
+              "changed_package_parts": 5
+            },
+            "evidence_sha256": [
+              "4b5f4ffe0e070f4ba1be7aa38d70342aab63e01a09c2da1368a87bd237596b97"
+            ],
+            "environment": {
+              "method": "XML/ZIP exact source comparison"
+            },
+            "reuse_key_sha256": "ffcb0fa06f5751f1e3965e1d934bcf3c0101fe8e50243f2b5faae359df08e21c"
+          }
+        ],
+        "block_history": [
+          {
+            "id": "P1_CORE_TIMESTAMP",
+            "observed": "V3 exact SHA Workbooks.Open 0x800A03EC",
+            "class": "OOXML metadata interoperability",
+            "remedy": "two core.xml +00:00Z to Z substitutions",
+            "result": "metadata-only candidate native open/export PASS; source preserved",
+            "root_cause_scope": "controlled minimal correction associated with recovery; not a general diagnosis for every 0x800A03EC"
+          },
+          {
+            "id": "P1_HEADER_HEIGHT",
+            "observed": "native PDF page 5 G15 heading visibly clipped",
+            "class": "native print row dimension",
+            "remedy": "sheet4 row15 ht38 to54 only",
+            "result": "new exact native PDF page5 fully visible; first4 page PNGs identical",
+            "regression_gate": "valid_height rejects 38"
+          },
+          {
+            "id": "P1_STALE_RECEIPT",
+            "observed": "old receipt candidate SHA and changed-part list differed from v3",
+            "class": "evidence integrity",
+            "remedy": "version-bound receipt plus fail-closed regression",
+            "result": "current receipt/native report/PDF SHA checks PASS"
+          },
+          {
+            "id": "P1_QA_SKIP",
+            "observed": "requires-list runner may skip missing artifacts as NO_DATA",
+            "class": "test admission/coverage",
+            "remedy": "existing P1 gate requires [] and directly requires actual files",
+            "result": "1/1 run, 0 skipped in exact product commit"
+          }
+        ],
+        "reuse_policy": {
+          "key_fields": [
+            "candidate_sha256",
+            "scope",
+            "contract",
+            "evidence_sha256",
+            "environment"
+          ],
+          "metadata_only_new_commit_invalidates_native": false,
+          "same_sha_new_session_requires_native_replay": false,
+          "unknowns_do_not_become_verified": true,
+          "closed_scopes_must_not_be_promoted": true,
+          "revalidate_on": [
+            "artifact SHA changes",
+            "acceptance contract changes",
+            "required runtime version changes",
+            "referenced evidence missing or hash mismatch",
+            "new test vectors or previously open scope",
+            "time-sensitive normative source changes"
+          ],
+          "do_not_repeat": [
+            "previous editorial replacements",
+            "core.xml normalization on unchanged final SHA",
+            "header row correction on unchanged final SHA",
+            "native open/export for the same scope and Excel16.0 build4324",
+            "native page rasterization/review if recorded PDF and raster SHA match"
+          ],
+          "blocked_or_pending_action": "read existing job/result state; do not create a duplicate job",
+          "reuse_decision": "reuse the 3 closed limited scopes when fingerprints match; numeric/complete layout/legal/buyer/G1-G8 remain open"
+        },
+        "next_step": {
+          "target_sku": "P1",
+          "candidate_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+          "primary_result": "native numeric scenarios with explicit populated inputs and expected outputs",
+          "excluded_repeat": "native open-only test",
+          "other_open": [
+            "compact print pagination",
+            "normative/currentness review",
+            "independent buyer G1-G8",
+            "canonical replacement and separately authorized release"
+          ]
+        },
+        "unknowns": {
+          "original_native_worker_binary_hash": "not returned",
+          "original_native_os_build": "not returned",
+          "original_render_program_version": "not recorded",
+          "historical_standalone_stdout_logs": "not fully persisted",
+          "independent_full_G1_G8": "not performed; never inferred from this record"
+        },
+        "product_acceptance": {
+          "accepted_products": 0,
+          "total_products": 13,
+          "g1_g8_status": "OPEN",
+          "individual_gates": {
+            "G1": "NOT_ACCEPTED_BY_THIS_CHANGE_RECORD",
+            "G2": "NOT_ACCEPTED_BY_THIS_CHANGE_RECORD",
+            "G3": "NOT_ACCEPTED_BY_THIS_CHANGE_RECORD",
+            "G4": "NOT_ACCEPTED_BY_THIS_CHANGE_RECORD",
+            "G5": "NOT_ACCEPTED_BY_THIS_CHANGE_RECORD",
+            "G6": "NOT_ACCEPTED_BY_THIS_CHANGE_RECORD",
+            "G7": "NOT_ACCEPTED_BY_THIS_CHANGE_RECORD",
+            "G8": "NOT_ACCEPTED_BY_THIS_CHANGE_RECORD"
+          },
+          "release": "BLOCKED"
+        },
+        "concurrent_evidence_reconciliation": {
+          "detected_remote_head": "61c8191e5d8818b8ae472a2b03016eb88c44e859",
+          "capture_started_at_head": "18294273b42d5359a86a6ad797f50577d39fc858",
+          "class": "concurrent metadata update, not product regression",
+          "action": "preserve original and normalized reports under distinct immutable commit/SHA references; merge the additional scope guard",
+          "raw_native_report_sha256": "fe9e667f78272437c78757d0f3d985f3ad465ee3fb7906a7e4338e3d21dd21ff",
+          "derived_scope_narrowed_report_sha256": "4e89ad0e0c4ba5349bf092564959f22988173405edf40c28c815f179ccd48f87",
+          "derivation": {
+            "element": "report",
+            "attribute": "scope",
+            "before": "NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed",
+            "after": "NATIVE_OPEN_EXPORT_AND_HEADER_REPAIR_ONLY; numeric scenarios, UI typing/paste, legal/buyer acceptance not performed",
+            "all_other_report_bytes_identical": true
+          },
+          "same_candidate_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+          "native_replay_needed": false,
+          "native_replays_performed": 0,
+          "reconciled_utc": "2026-10-13T02:15:55.557505+00:00",
+          "prior_capture_snapshot": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/registry-concurrency-capture",
+          "prior_capture_registry_sha256": "cc333f8be9ee24f7c29d93cd924410a2d2c6218ecd9729b3773eafe19dea2924",
+          "prior_validation_report": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/registry-enrichment-validation.json",
+          "prior_validation_sha256": "a344914ad2d752ec531a4769ee113c7852459bf4c4f5511cfadf1d6863c50230"
+        }
+      }
     }
   ],
   "server_masters": [],
@@ -121,5 +1635,35 @@
     "02-AKT intended legal function and exact contract-document list not nominated",
     "00-PISMO-POSLE-POKUPKI missing for runtime roots 08,14,17,18,19,20",
     "folder 06 has no nominated SKU"
-  ]
+  ],
+  "change_capture_policy": {
+    "version": 1,
+    "directive": "Owner 2026-10-13: maximize verifiable change parameters to avoid repeated work",
+    "required_groups": [
+      "provenance",
+      "identities",
+      "lineage",
+      "addressable_edits",
+      "package_components",
+      "preserved_invariants",
+      "evidence_files",
+      "execution_history",
+      "runtime",
+      "verification_scopes",
+      "block_history",
+      "reuse_policy",
+      "next_step",
+      "unknowns"
+    ],
+    "capture_rule": "Capture every measurable relevant value; unavailable values are null with a reason, not guessed",
+    "history_rule": "Append revisions and references; do not erase failures or promote historical evidence to current",
+    "reuse_rule": "Same artifact bytes + same verified scope/contract + applicable environment + available matching evidence permits reuse, not new product acceptance",
+    "rerun_rule": "Require an explicit changed dependency, invalidated evidence, new scope, freshness requirement or diagnosed recovery; commit-only/doc-only changes do not require rerunning native Office",
+    "queue_rule": "Match existing job id/input SHA; inspect late results before any resubmission; pending means reconcile, not duplicate",
+    "security_rule": "No passwords, tokens, cookies, private keys or raw secret config in the registry",
+    "status_rule": "Every PASS is scope-limited; full product requires independent G1-G8 acceptance",
+    "integration_state": "Recorded in existing machine registry and checked by P1 gate; not a claim of portfolio-wide automatic scheduler deduplication",
+    "immutable_evidence_rule": "Read evidence from recorded commit:path, not from a newer same-name worktree file; raw machine reports are immutable, derived wording must retain raw SHA and derivation.",
+    "concurrency_rule": "Before publishing compare remote HEAD. On drift preserve local capture, inspect exact diff, rebind metadata only when product SHA is unchanged; no native replay for evidence-only changes."
+  }
 }

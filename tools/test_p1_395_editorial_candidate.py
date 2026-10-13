@@ -11,6 +11,7 @@ import io
 import json
 import re
 import sys
+import subprocess
 import zipfile
 from pathlib import Path
 from xml.etree import ElementTree as ET
@@ -124,6 +125,32 @@ def verify_receipt(record, qa, source_parts, candidate_parts, changed_parts):
     assert record.get("scope")=="EDITORIAL_METADATA_NATIVE_OPEN_EXPORT_HEADER_ONLY_NOT_PRODUCT_ACCEPTANCE", "RECEIPT_SCOPE_DRIFT"
     assert record.get("production_modified") is False, "RECEIPT_PRODUCTION_MISCLAIM"
 
+def verify_registry_change_record(row, source_parts, candidate_parts):
+    assert row.get("registry_id")=="P1-CAND-395-NATIVE-HEADER-20261013", "REGISTRY_ID_DRIFT"
+    assert row.get("sha256")==CANDIDATE_SHA and row.get("bytes")==CANDIDATE.stat().st_size, "REGISTRY_SHA_DRIFT"
+    assert row.get("role")=="nominated_candidate" and row.get("release_status")=="BLOCKED", "REGISTRY_ROLE_OR_RELEASE_DRIFT"
+    rec=row["change_record"]
+    required=("provenance","identities","lineage","addressable_edits","package_components","preserved_invariants","evidence_files","execution_history","runtime","verification_scopes","block_history","reuse_policy","next_step","unknowns")
+    assert all(k in rec for k in required), "REGISTRY_MISSING_GROUP"
+    assert len(rec["addressable_edits"])==10, "REGISTRY_EDIT_COUNT"
+    assert len(rec["package_components"])==15, "REGISTRY_COMPONENT_COUNT"
+    for part in rec["package_components"]:
+        assert part["before_sha256"]==sha(source_parts[part["part"]]), "REGISTRY_SOURCE_COMPONENT_DRIFT"
+        assert part["after_sha256"]==sha(candidate_parts[part["part"]]), "REGISTRY_TARGET_COMPONENT_DRIFT"
+    assert rec["execution_history"].get("commands"), "REGISTRY_MISSING_COMMANDS"
+    assert rec["execution_history"]["native_jobs_submitted_for_capture"]==0, "REGISTRY_REPEATED_NATIVE_CAPTURE"
+    for proof in rec["evidence_files"]:
+        if proof.get("repository_path"):
+            ref=proof.get("commit")
+            assert ref and re.fullmatch(r"[a-f0-9]{40}",ref), "REGISTRY_EVIDENCE_COMMIT_MISSING"
+            data=subprocess.run(["git","-C",str(ROOT),"show",ref+":"+proof["repository_path"]],capture_output=True,check=True,timeout=10).stdout
+            assert sha(data)==proof["sha256"] and len(data)==proof["bytes"], "REGISTRY_EVIDENCE_DRIFT"
+    for scope in rec["verification_scopes"]:
+        payload={k:scope[k] for k in ("scope","candidate_sha256","contract","evidence_sha256","environment")}
+        key=sha(json.dumps(payload,ensure_ascii=False,sort_keys=True,separators=(",",":")).encode("utf-8"))
+        assert scope["candidate_sha256"]==CANDIDATE_SHA and scope["reuse_key_sha256"]==key, "REGISTRY_REUSE_KEY_DRIFT"
+    assert rec["product_acceptance"]["accepted_products"]==0 and rec["product_acceptance"]["g1_g8_status"]=="OPEN", "REGISTRY_FALSE_PRODUCT_ACCEPTANCE"
+
 def run():
     h0,old=inspect_zip(SOURCE)
     h1,new=inspect_zip(CANDIDATE)
@@ -181,8 +208,21 @@ def run():
             pass
         else:
             raise AssertionError("RECEIPT_NEGATIVE_GATE_NOT_DETECTED:"+label)
+    registry=json.loads((ROOT/"products-storage/ARTIFACT-REGISTRY.json").read_text(encoding="utf-8"))
+    entries=[x for x in registry["artifacts"] if x.get("registry_id")=="P1-CAND-395-NATIVE-HEADER-20261013"]
+    assert len(entries)==1, "REGISTRY_NOMINATION_MISSING_OR_DUPLICATE"
+    verify_registry_change_record(entries[0],old,new)
+    for label in ("stale_sha","evidence_drift","missing_commands","false_acceptance"):
+        bad=copy.deepcopy(entries[0])
+        if label=="stale_sha":bad["sha256"]="0"*64
+        elif label=="evidence_drift":bad["change_record"]["evidence_files"][0]["sha256"]="0"*64
+        elif label=="missing_commands":bad["change_record"]["execution_history"]["commands"]=[]
+        else:bad["change_record"]["product_acceptance"]["accepted_products"]=1
+        try:verify_registry_change_record(bad,old,new)
+        except AssertionError:pass
+        else:raise AssertionError("REGISTRY_NEGATIVE_NOT_DETECTED:"+label)
     print("P1_395_EDITORIAL_CANDIDATE_PASS: 7 exact corrected cells, 251/251 formulas, "
-          "15 ZIP parts, native evidence bound, 9 negative cases detected; "
+          "15 ZIP parts, native evidence bound, 13 negative cases detected; "
           "not native numeric scenarios/legal/buyer/G1-G8")
     return 0
 
