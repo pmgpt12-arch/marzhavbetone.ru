@@ -796,11 +796,6 @@
   команда: python3 tools/test_p1_395_editorial_candidate.py
   класс: public
   блокирует: true
-  зачем: 'P1 395 ГК: OOXML-лексика всех листов, 251 формула, ровно 7 изменённых ячеек, отрицательные мутации; кандидат, не приёмка'
-  требует:
-  - tools/candidates/p1-395-content-20261012/14-raschet-procentov-395-gk.xlsx
-  - tools/candidates/p1-395-content-20261012/editorial-v3-20261013.json
-  - tools/candidates/p1-395-content-20261012/qa-v3-20261013.json
-  - tools/candidates/p1-395-content-20261012/receipt.json
-  - tools/test_p1_395_editorial_candidate.py
+  зачем: 'P1 395 ГК: OOXML-лексика, 251 формула, core.xml/высота строки, exact native receipts, 9 отрицательных мутаций; не приёмка продукта'
+  требует: []
   решение: 'Адресная регрессия к PR #610: старый test_p1_value_language читал числовые XML-сущности как строку и не обнаруживал видимые слова «юрист» и «Что это не заменяет». Не распространять PASS на native Excel, право или G1–G8.'
