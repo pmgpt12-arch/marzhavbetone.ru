@@ -217,8 +217,18 @@ class RegistryChangeHistoryTests(unittest.TestCase):
         data=self.history();record=copy.deepcopy(data['change_history']['records'][-1]);record['record_id']='new-record'
         with self.assertRaises(MODULE.RegistryError):MODULE.append_change_record(data,record,'0'*64)
 
+    @staticmethod
+    def record_with_job(data):
+        return next(r for r in data['change_history']['records'] if any(g.get('job_id') for g in r['gates']))
+
+    def test_job_fixture_selection_ignores_no_job_tail(self):
+        data=self.history()
+        expected=self.record_with_job(data)['record_id']
+        data['change_history']['records'].append({'record_id':'unrelated-static-tail','gates':[{'job_id':None}]})
+        self.assertEqual(self.record_with_job(data)['record_id'],expected)
+
     def test_same_job_and_fingerprint_cannot_be_recorded_twice(self):
-        data=self.history();record=copy.deepcopy(data['change_history']['records'][-1]);record['record_id']='duplicate-execution'
+        data=self.history();record=copy.deepcopy(self.record_with_job(data));record['record_id']='duplicate-execution'
         with self.assertRaises(MODULE.RegistryError):MODULE.append_change_record(data,record,data['change_history']['head_record_sha256'])
 
     def test_open_print_gate_not_converted_to_pass(self):

@@ -310,8 +310,8 @@
   "change_history": {
     "schema_version": 1,
     "append_only": true,
-    "record_count": 8,
-    "head_record_sha256": "162535c02a44281b73a70dd8d7e6b24a39f98cdbc38cfb21619924fdf0a5e727",
+    "record_count": 9,
+    "head_record_sha256": "5a2bde8ca6a1d833f1274e3d6cc68f53f2e7c225835c49abaa3f2c6a58033515",
     "records": [
       {
         "record_id": "P1-395-V3-NATIVE-FAIL-20261013",
@@ -29595,6 +29595,384 @@
         "release_status": "BLOCKED",
         "previous_record_sha256": "e06f56dc4cf6c0130e1c7adcaf375c7c8db8b983f968eafe2ce6ed4a60997f28",
         "record_sha256": "162535c02a44281b73a70dd8d7e6b24a39f98cdbc38cfb21619924fdf0a5e727"
+      },
+      {
+        "record_id": "P1-395-OWNER-EDITORIAL-20261013",
+        "registry_id": "P1-CAND-395-OWNER-EDITORIAL-20261013",
+        "parent_registry_id": "P1-CAND-395-NATIVE-HEADER-20261013",
+        "target_sku": "P1",
+        "runtime_sku": "p1",
+        "role": "nominated_candidate",
+        "recorded_at_utc": "2026-10-13T10:48:39.644922+00:00",
+        "origin": {
+          "repository": "pmgpt12-arch/marzhavbetone.ru",
+          "parent_issue": 291,
+          "control_registry_issue": 600,
+          "pr": 610,
+          "source_commit": "e1d2e76e2f88e9c685856846425c3c0695359473",
+          "decision_source": "https://github.com/pmgpt12-arch/marzhavbetone.ru/issues/291#issuecomment-6143718030"
+        },
+        "input": {
+          "actual_read_path": "/home/denis/projects/mb001-p1-395-copy-correction-20261012/tools/candidates/p1-395-content-20261012/14-raschet-procentov-395-gk.xlsx",
+          "sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+          "bytes": 20192,
+          "format": "xlsx",
+          "archive_path": "tools/candidates/registry-history-evidence/8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34.xlsx",
+          "git_blob_sha1": "257271d7ca1a51c932be051e838b56c445327a1e",
+          "snapshot": {
+            "sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+            "bytes": 20192,
+            "capture_method": "read-only ZIP/XML hash inventory; text delta and preservation verified separately",
+            "zip_parts": [
+              {
+                "path": "docProps/app.xml",
+                "sha256": "a119696698c47fc3958efe90866fe3b4c4d98aa8db176fc67a7fb4f3171d1323",
+                "bytes": 177,
+                "crc32": "0cc15a46"
+              },
+              {
+                "path": "docProps/core.xml",
+                "sha256": "67822e1cb124a0f18baf25baa916a83b13574fe9b40f22be792a4bf3315240fe",
+                "bytes": 555,
+                "crc32": "02d3aec1"
+              },
+              {
+                "path": "xl/theme/theme1.xml",
+                "sha256": "d15e8ebf78ef7b9720839d7ae8fdc81a7df5bc24706d8e137df61a5683c358d9",
+                "bytes": 10140,
+                "crc32": "239c5c99"
+              },
+              {
+                "path": "xl/worksheets/sheet1.xml",
+                "sha256": "79447cee0b18750954a106a24da7fcc0e083d20a5677a175cc50079dc6549cc2",
+                "bytes": 15550,
+                "crc32": "bde7072b"
+              },
+              {
+                "path": "xl/comments/comment1.xml",
+                "sha256": "c0c246261c6d67819f256e2832e059734a93246da198b53f2f89c30b1fe4ae86",
+                "bytes": 482,
+                "crc32": "290103a4"
+              },
+              {
+                "path": "xl/drawings/commentsDrawing1.vml",
+                "sha256": "350b6ab4dd05502ee65cf3b64cca9252e54944b163a00870074ff77f1d37e7c3",
+                "bytes": 1214,
+                "crc32": "608b9181"
+              },
+              {
+                "path": "xl/worksheets/_rels/sheet1.xml.rels",
+                "sha256": "e2d28d8e38b35f1729aa1d52a0dcd52d78a4abb684cdb284d4d991dec8dbc165",
+                "bytes": 405,
+                "crc32": "abc824f3"
+              },
+              {
+                "path": "xl/worksheets/sheet2.xml",
+                "sha256": "3a206e70826785c3efad341de5af6e3509f81c911a7074226b51724477dba420",
+                "bytes": 99989,
+                "crc32": "9c53a10e"
+              },
+              {
+                "path": "xl/worksheets/sheet3.xml",
+                "sha256": "261f8176ca54f0bf7252612d140e72c0c39f95adf6054bc809a015ee726291b6",
+                "bytes": 10553,
+                "crc32": "22bb686c"
+              },
+              {
+                "path": "xl/worksheets/sheet4.xml",
+                "sha256": "db47b0f0196cbda39efe47f5c06826584ffa758d60a3b247b4c4378b3ffbb974",
+                "bytes": 8306,
+                "crc32": "4d1ba5af"
+              },
+              {
+                "path": "xl/styles.xml",
+                "sha256": "340c304819c4a1d1103faf1c4816e58c01c92db73a8032f8f0c18da7e533113a",
+                "bytes": 6354,
+                "crc32": "1e7b21d1"
+              },
+              {
+                "path": "_rels/.rels",
+                "sha256": "c545941ba36c15fcdce4ae4568c663f3ced1a2226ad5082d3fd66b178bfac11a",
+                "bytes": 531,
+                "crc32": "1cbb8a97"
+              },
+              {
+                "path": "xl/workbook.xml",
+                "sha256": "ce7c5bac6409da06d8a6758c0ef1e7eb11665aecdc81713fbc84407a2c3b24e1",
+                "bytes": 1178,
+                "crc32": "655f2a39"
+              },
+              {
+                "path": "xl/_rels/workbook.xml.rels",
+                "sha256": "ab22e25bdbbd461cf03d0d9e971a0c4558219dbc10d9e46a68c419dee94b2a81",
+                "bytes": 939,
+                "crc32": "eec56501"
+              },
+              {
+                "path": "[Content_Types].xml",
+                "sha256": "f3220af39bdbc4fadf7afbfd1d84a12c7057f5fada1c37194cbef7f602d4ea9b",
+                "bytes": 1615,
+                "crc32": "14a8aad9"
+              }
+            ]
+          }
+        },
+        "output": {
+          "actual_read_path": "/home/denis/projects/mb001-p1-395-copy-correction-20261012/tools/candidates/p1-395-owner-editorial-20261013/14-raschet-procentov-395-gk.xlsx",
+          "sha256": "d29a0fd17baa090d6d98443c984cf33109316ffda8a346e8ea5a7e74ae85b52d",
+          "bytes": 20443,
+          "format": "xlsx",
+          "archive_path": "tools/candidates/registry-history-evidence/d29a0fd17baa090d6d98443c984cf33109316ffda8a346e8ea5a7e74ae85b52d.xlsx",
+          "git_blob_sha1": "a9376c22054f50120032d5a0ad754307d39e7f06",
+          "snapshot": {
+            "sha256": "d29a0fd17baa090d6d98443c984cf33109316ffda8a346e8ea5a7e74ae85b52d",
+            "bytes": 20443,
+            "capture_method": "read-only ZIP/XML hash inventory; text delta and preservation verified separately",
+            "zip_parts": [
+              {
+                "path": "docProps/app.xml",
+                "sha256": "a119696698c47fc3958efe90866fe3b4c4d98aa8db176fc67a7fb4f3171d1323",
+                "bytes": 177,
+                "crc32": "0cc15a46"
+              },
+              {
+                "path": "docProps/core.xml",
+                "sha256": "67822e1cb124a0f18baf25baa916a83b13574fe9b40f22be792a4bf3315240fe",
+                "bytes": 555,
+                "crc32": "02d3aec1"
+              },
+              {
+                "path": "xl/theme/theme1.xml",
+                "sha256": "d15e8ebf78ef7b9720839d7ae8fdc81a7df5bc24706d8e137df61a5683c358d9",
+                "bytes": 10140,
+                "crc32": "239c5c99"
+              },
+              {
+                "path": "xl/worksheets/sheet1.xml",
+                "sha256": "3407799e6ff94dcb78a64573451f15b5eaf11968c85b8b80d386a07dec4f1906",
+                "bytes": 15051,
+                "crc32": "73721cd7"
+              },
+              {
+                "path": "xl/comments/comment1.xml",
+                "sha256": "c0c246261c6d67819f256e2832e059734a93246da198b53f2f89c30b1fe4ae86",
+                "bytes": 482,
+                "crc32": "290103a4"
+              },
+              {
+                "path": "xl/drawings/commentsDrawing1.vml",
+                "sha256": "350b6ab4dd05502ee65cf3b64cca9252e54944b163a00870074ff77f1d37e7c3",
+                "bytes": 1214,
+                "crc32": "608b9181"
+              },
+              {
+                "path": "xl/worksheets/_rels/sheet1.xml.rels",
+                "sha256": "e2d28d8e38b35f1729aa1d52a0dcd52d78a4abb684cdb284d4d991dec8dbc165",
+                "bytes": 405,
+                "crc32": "abc824f3"
+              },
+              {
+                "path": "xl/worksheets/sheet2.xml",
+                "sha256": "911413ac2eed6f6221a861b7a850597fa96aada8abc1988871fb8353ca988719",
+                "bytes": 97852,
+                "crc32": "43b27717"
+              },
+              {
+                "path": "xl/worksheets/sheet3.xml",
+                "sha256": "c088e4ee9e659f7a58b7e46e74cb18f18cccd094c09e8e1d6fc5c9bda5b8a3db",
+                "bytes": 9704,
+                "crc32": "bc551841"
+              },
+              {
+                "path": "xl/worksheets/sheet4.xml",
+                "sha256": "772b36ed759e095bb05cfede4667da59819181232d0f9cf422417c542e242949",
+                "bytes": 7604,
+                "crc32": "03789793"
+              },
+              {
+                "path": "xl/styles.xml",
+                "sha256": "6230f8bc31322431beef0ab96b34117d186968afddd3e12ca72d186c3e029aec",
+                "bytes": 6330,
+                "crc32": "865b3a6f"
+              },
+              {
+                "path": "_rels/.rels",
+                "sha256": "c545941ba36c15fcdce4ae4568c663f3ced1a2226ad5082d3fd66b178bfac11a",
+                "bytes": 531,
+                "crc32": "1cbb8a97"
+              },
+              {
+                "path": "xl/workbook.xml",
+                "sha256": "3002a9019833dd60b128953f27bed59d09c9ac103302df261063eaca45598b03",
+                "bytes": 1271,
+                "crc32": "9025212e"
+              },
+              {
+                "path": "xl/_rels/workbook.xml.rels",
+                "sha256": "ab22e25bdbbd461cf03d0d9e971a0c4558219dbc10d9e46a68c419dee94b2a81",
+                "bytes": 939,
+                "crc32": "eec56501"
+              },
+              {
+                "path": "[Content_Types].xml",
+                "sha256": "f3220af39bdbc4fadf7afbfd1d84a12c7057f5fada1c37194cbef7f602d4ea9b",
+                "bytes": 1615,
+                "crc32": "14a8aad9"
+              }
+            ]
+          }
+        },
+        "delta": {
+          "text_changes": [
+            {
+              "part": "xl/worksheets/sheet1.xml",
+              "cell": "A2",
+              "before": "Заполните ячейки со светло-золотистой заливкой. Остальные ячейки содержат подписи и формулы.",
+              "after": "Заполните ячейки с бежевой заливкой."
+            },
+            {
+              "part": "xl/worksheets/sheet2.xml",
+              "cell": "A2",
+              "before": "Заполняются только колонки A и B со светло-золотистой заливкой: разбейте срок просрочки по датам смены ставки и по датам частичных оплат. Остальное считается само. Колонка «Проверка» подскажет, если период разбит неверно.",
+              "after": "Заполните столбцы A и B: разбейте срок просрочки по датам смены ставки и по датам частичных оплат. Столбец «Проверка» подскажет, если период разбит неверно."
+            },
+            {
+              "part": "xl/worksheets/sheet2.xml",
+              "cell": "A51",
+              "before": "Сверьте итог с независимым расчётом процентов по ст. 395 ГК РФ, например в справочно-правовой системе. При расхождении проверьте ставки, даты, базу долга, разбивку периодов и округление в обоих расчётах. Колонка «Проверка» должна быть пустой во всех заполненных строках.",
+              "after": "Сверьте итог с независимым расчётом процентов по ст. 395 ГК РФ, например в справочно-правовой системе. При расхождении проверьте ставки, даты, базу долга, разбивку периодов и округление в обоих расчётах. Столбец «Проверка» должен быть пустым во всех заполненных строках."
+            },
+            {
+              "part": "xl/worksheets/sheet3.xml",
+              "cell": "A2",
+              "before": "Значения подставляются сами. Лист печатается как приложение «Расчёт взыскиваемой суммы» — судьи ждут расчёт в разбивке по периодам, поэтому печатайте вместе с листом «Расчёт».",
+              "after": "Печатайте лист как приложение «Расчёт взыскиваемой суммы» вместе с листом «Расчёт», содержащим разбивку по периодам."
+            },
+            {
+              "part": "xl/worksheets/sheet4.xml",
+              "cell": "A19",
+              "before": "Обратите внимание: период разбит на две строки по дате смены ставки. Если бы просрочка пересекала 31 декабря, разбить пришлось бы и там — колонка «Проверка» об этом напомнит.",
+              "after": "Обратите внимание: период разбит на две строки по дате смены ставки. Если бы просрочка пересекала 31 декабря, разбить пришлось бы и там — столбец «Проверка» об этом напомнит."
+            }
+          ],
+          "checks": {
+            "formulas_preserved": 251,
+            "text_cells_changed": 5,
+            "italic_active": 0,
+            "print_area": "'Расчёт'!$A$1:$H$46",
+            "all_other_cells_values_dimensions_preserved": true,
+            "notes_outside_print_preserved": true,
+            "changed_zip_parts": [
+              "xl/worksheets/sheet1.xml",
+              "xl/worksheets/sheet2.xml",
+              "xl/worksheets/sheet3.xml",
+              "xl/worksheets/sheet4.xml",
+              "xl/styles.xml",
+              "xl/workbook.xml"
+            ],
+            "unchanged_zip_parts": 9,
+            "source_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+            "output_sha256": "d29a0fd17baa090d6d98443c984cf33109316ffda8a346e8ea5a7e74ae85b52d"
+          },
+          "italic_font_definitions_removed": 2,
+          "print_area": "'Расчёт'!$A$1:$H$46"
+        },
+        "execution": {
+          "executor": "coordinator deterministic Python ZIP/XML delta; text authored with artifact_tool",
+          "model_calls": 0,
+          "native_jobs": 0,
+          "script_sha256": "1dae7b0b88df4be463030ade5ff6e48251f9012cad9c0a2000a48b4f3137ac69",
+          "test_path": "tools/test_p1_395_owner_editorial.py",
+          "test_sha256": "336ea11403dfb316de0bbc53e1ff2ff16657ef02965227bbc363207e98385824",
+          "negative_cases": 8
+        },
+        "evidence": [
+          {
+            "actual_read_path": "/home/denis/projects/mb001-p1-395-copy-correction-20261012/tools/candidates/p1-395-owner-editorial-20261013/receipt.json",
+            "sha256": "fda8b96dc0805c35fe0a1e344bf751c6ad2f7715fe9b9c2b22dbff20cf83ddca",
+            "bytes": 5656,
+            "format": "json",
+            "archive_path": "tools/candidates/registry-history-evidence/fda8b96dc0805c35fe0a1e344bf751c6ad2f7715fe9b9c2b22dbff20cf83ddca.json",
+            "git_blob_sha1": "fc416471c6b4ca39b693093cd5ea6f912ac89436",
+            "snapshot": {
+              "sha256": "fda8b96dc0805c35fe0a1e344bf751c6ad2f7715fe9b9c2b22dbff20cf83ddca",
+              "bytes": 5656,
+              "capture_method": "read-only ZIP/XML hash inventory; text delta and preservation verified separately"
+            },
+            "evidence_id": "owner-editorial-receipt",
+            "kind": "owner-editorial-static-acceptance"
+          }
+        ],
+        "gates": [
+          {
+            "gate_id": "owner_editorial_static_delta",
+            "status": "PASS",
+            "subject_sha256": "d29a0fd17baa090d6d98443c984cf33109316ffda8a346e8ea5a7e74ae85b52d",
+            "scope": "Owner text, no italics, exact print-range configuration and formula/value preservation only; native visual and full product acceptance excluded",
+            "accepted_scope_only": true,
+            "contract": {
+              "decision_id": "MB001-EDITORIAL-OWNER-20261013",
+              "text_cells": 5,
+              "italic": false,
+              "print_area": "'Расчёт'!$A$1:$H$46",
+              "formulas_preserved": 251,
+              "no_other_content_edits": true
+            },
+            "environment": {
+              "application": "Python ZIP/XML verifier",
+              "python": "3.12.3"
+            },
+            "dependencies": {
+              "source_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+              "policy_sha256": "8fda8f6a51895dca62d824be29b0ab71d29917d3c8c031e93b075aea77e6324f"
+            },
+            "evidence_ids": [
+              "owner-editorial-receipt"
+            ],
+            "job_id": null,
+            "contract_sha256": "cdc1093efa100cbe68b13af391d67137dd3e33dc8c3a1c159648bacb5444f0bd",
+            "environment_fingerprint": "cc405cf8b26559fdfdfc45ce2456e8ce3b24913314860f19dc766f137c70c608",
+            "dependency_fingerprint": "d4d7160ae114951d53ae95b06108604d5bca34acd57e766e6880815b38d63fe9",
+            "fingerprint": "260e6062a4954dc83ad0bba9be29d3259154665e92c44d41ffbcd07745104bc6"
+          }
+        ],
+        "resume": {
+          "do_not_repeat_job_ids": [
+            "p1-395-native-header-20261013-v1",
+            "p1-395-numeric-four-20261013-v1"
+          ],
+          "next_atomic_task": "New-SHA native open/export and visual review when transport admission is verified; continue remaining substantive/UI/buyer gates, not one-page compaction. Other-document editorial rollout is not yet performed.",
+          "invalidation_triggers": [
+            "subject SHA change",
+            "owner rule change",
+            "missing evidence"
+          ],
+          "open_findings": [
+            {
+              "id": "P1-NATIVE-VISUAL-OWNER-EDITION",
+              "status": "OPEN"
+            },
+            {
+              "id": "PORTFOLIO-EDITORIAL-ROLLOUT",
+              "status": "OPEN",
+              "detail": "One compound read-only bulk inventory call was blocked by OpenAI before execution because its safety status could not be determined. No equivalent retry or bulk write was performed."
+            }
+          ],
+          "g1_g8_status": "OPEN"
+        },
+        "unknowns": [
+          {
+            "parameter": "native visual for the new SHA",
+            "value": null
+          },
+          {
+            "parameter": "all other files updated",
+            "value": false
+          }
+        ],
+        "release_status": "BLOCKED",
+        "previous_record_sha256": "162535c02a44281b73a70dd8d7e6b24a39f98cdbc38cfb21619924fdf0a5e727",
+        "record_sha256": "5a2bde8ca6a1d833f1274e3d6cc68f53f2e7c225835c49abaa3f2c6a58033515"
       }
     ],
     "policy": {
