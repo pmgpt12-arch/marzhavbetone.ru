@@ -1,0 +1,99 @@
+{
+  "id": "P11-00-54-ANCHOR-REPAIR-20261014",
+  "source_commit": "4348dbef03d028ccb8257bb88527fdd68811dcb4",
+  "parent_issue": 291,
+  "buyer_issue": 597,
+  "source_review_id": 5507097044,
+  "scope": "TWO_BUYER_FILES_ONLY",
+  "candidate_root": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami",
+  "files": [
+    {
+      "name": "54-zapros-sostoyanie-escrow.docx",
+      "before_sha256": "4a2c642ba4d069b60f650386bbf6e88c9c8015acd32a9d76117762ec77f4a312",
+      "after_sha256": "f0bd1a1d9a16c23c272122e764c9414c848fcc9ea35af121d4e28b3154f680cc",
+      "bytes": 11651,
+      "git_blob_sha1": "c579803cebc072b5d42f1f0e4bd01cfbe95b8ec4"
+    },
+    {
+      "name": "00-START-HERE.txt",
+      "before_sha256": "d124d19bc978b430cd5c3ba931d8a15048016308d8c85a013ce30c21394ea32b",
+      "after_sha256": "1141927c5cb30b8c4ba2ca69949d560e8591ff27d263b9ae598c930315545210",
+      "bytes": 4069,
+      "git_blob_sha1": "5340dc4cf0bd91d22bb20a3ee155d99dedf72721"
+    }
+  ],
+  "changes": {
+    "54": [
+      "Move existing legal point into original point 3; remove duplicate numbering",
+      "Restore outgoing reply deadline, postal address and email",
+      "Preserve legal explanation verbatim as normal paragraph; restore When applies heading"
+    ],
+    "00": [
+      "Escrow request 54 at step 2; status request 53 at step 3",
+      "Field dictionary before filling; memo at step 2",
+      "Correct DOCX/PDF formats; remove nonexistent Excel and misleading numeric order"
+    ]
+  },
+  "checks": {
+    "static_positive_passed": 12,
+    "negative_mutations_detected": 12,
+    "zip_crc": "PASS",
+    "zip_members_total": 14,
+    "zip_members_unchanged": 13,
+    "changed_part": "word/document.xml",
+    "all_other_xml_bytes_unchanged": "PASS",
+    "deterministic_rebuild": "PASS",
+    "regression_command": "python tools/test_p11_00_54_regression.py --root .",
+    "regression_sha256": "42abbf38587f8718f01fa5e7d725ecff314be8856fb7e57ebad720461a8533da",
+    "mandatory_ci_integration": "NOT_ADDED"
+  },
+  "render": {
+    "engine": "LibreOffice via render_docx.py, not Microsoft Word",
+    "input_sha256": "f0bd1a1d9a16c23c272122e764c9414c848fcc9ea35af121d4e28b3154f680cc",
+    "pdf_sha256": "32413cfd2441f4a13c32818ee02e47242313508fa948befa9816df487cdf57be",
+    "pages": 3,
+    "page_char_counts": [
+      1877,
+      1173,
+      3040
+    ],
+    "page_review": {
+      "1": "readable; no clipping; source blue headings/italic retained",
+      "2": "numbering 1/2/3 and reply clause visible, signatures present; no clipping",
+      "3": "legal text normal body, restored heading visible, guide fits one page"
+    },
+    "verdict": "PASS_CHANGED_LAYOUT_ONLY_SOURCE_STYLE_RESIDUAL",
+    "style_residual": "Existing blue headings and italic explanatory runs retained; premium style acceptance not granted",
+    "page_png_sha256": {
+      "page-1.png": "e475450f1635666a582dec9dece0c02e021d9f838116d7d378a108af21acac64",
+      "page-2.png": "4956c02b606c743ec7284303c75024e83a67e7a61763af6a26ef8b5b0947e467",
+      "page-3.png": "6dda99457040da5f790c248d02531cdbbd41a1e900cba68ae2d5d3c04e2515ac"
+    }
+  },
+  "root_cause": "Wrong paragraph selected by positional replacement; use unique exact text anchors, then outgoing-only contract checks.",
+  "native_word_new_sha": "NOT_RUN_DC_OFFLINE",
+  "independent_buyer": "PENDING",
+  "G1_G8": "OPEN",
+  "release": "HOLD",
+  "old_office_jobs_rerun": 0,
+  "paid_model_calls": 0,
+  "protected_state_changed": false,
+  "history": "Prior receipts retained; old 00/54 SHA entries in p11-seven-current-gate-v2.json are historical and do not certify current pair.",
+  "remaining": [
+    "New SHA native Word open/export",
+    "Independent buyer delta review",
+    "Normative transfer-act and red-flag findings F02/F03",
+    "Target P11+T6 nomination/release manifest",
+    "Full G1-G8"
+  ],
+  "execution_issues": [
+    {
+      "class": "HARNESS_MUTATION_TARGET",
+      "detail": "First negative test replaced preamble reference rather than actual guide heading; corrected to exact >heading< anchor; 12/12 negative mutations now detected."
+    },
+    {
+      "class": "TRANSPORT_SERIALIZATION",
+      "detail": "First binary upload had mismatched blob hash 171edc98b12557474b31586f3dc1dec3578ef3f9; never attached to any tree/ref. Exact generated payload verified by matching blob c579803cebc072b5d42f1f0e4bd01cfbe95b8ec4."
+    }
+  ]
+}
