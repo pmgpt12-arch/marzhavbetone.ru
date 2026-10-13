@@ -18,6 +18,11 @@ import unicodedata
 from pathlib import Path
 from urllib.parse import urlsplit
 
+try:
+    from tools.build_artifact_registry import registry_identity_sha256
+except ModuleNotFoundError:
+    from build_artifact_registry import registry_identity_sha256
+
 ROOT = Path(__file__).resolve().parent.parent
 REPORT = ROOT / "tools/reports/site-static-content-snapshot-20261012/report.json"
 RECEIPT = ROOT / "tools/reports/site-static-content-snapshot-20261012/receipt.json"
@@ -101,6 +106,29 @@ def assert_pinned_input(path: Path, expected_blob: str, expected_sha256: str) ->
     if sha256(data) != expected_sha256:
         raise SnapshotError(f"pinned input SHA-256 drift: {rel}")
     return data
+
+
+
+def validate_registry_identity(actual, accepted):
+    if registry_identity_sha256(actual) != registry_identity_sha256(accepted):
+        raise SnapshotError("artifact registry identity drift outside change_history")
+
+
+def assert_pinned_registry_identity():
+    """Keep the historical snapshot lineage while checking current product identity.
+
+    The current raw registry hash changes when audit history is appended.  The
+    accepted source snapshot remains byte-exact; only change_history is excluded
+    from the live identity comparison. No source paths, prices, SKU, nominations,
+    inventory hashes, roles or statuses are excluded.
+    """
+    relative = ARTIFACT_REGISTRY.relative_to(ROOT).as_posix()
+    baseline = read_source(CONTENT_SOURCE_COMMIT, relative)
+    blob = hashlib.sha1(b"blob " + str(len(baseline)).encode() + b"\0" + baseline).hexdigest()
+    if blob != ARTIFACT_REGISTRY_BLOB or sha256(baseline) != ARTIFACT_REGISTRY_SHA256:
+        raise SnapshotError("accepted registry baseline drift")
+    validate_registry_identity(json.loads(ARTIFACT_REGISTRY.read_bytes()), json.loads(baseline))
+    return baseline
 
 
 def decode_entity(match: re.Match[str]) -> str:
@@ -255,9 +283,7 @@ def build_report() -> dict[str, object]:
     route_bytes = assert_pinned_input(
         ROUTE_REPORT, ROUTE_REPORT_BLOB, ROUTE_REPORT_SHA256
     )
-    registry_bytes = assert_pinned_input(
-        ARTIFACT_REGISTRY, ARTIFACT_REGISTRY_BLOB, ARTIFACT_REGISTRY_SHA256
-    )
+    registry_bytes = assert_pinned_registry_identity()
     route_report = json.loads(route_bytes)
     registry = json.loads(registry_bytes)
     if route_report["source_commit"] != CONTENT_SOURCE_COMMIT:

@@ -1,0 +1,30 @@
+{
+  "status": "PASS_SINGLE_ROW_DIMENSION_REPAIR_ONLY",
+  "registry_id": "P1-CAND-395-NATIVE-HEADER-20261013",
+  "parent_registry_id": "P1-CAND-395-COREXML-20261013",
+  "source_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/14-raschet-procentov-395-gk-corexml-compat.xlsx",
+  "source_sha256": "044d9aa899b2278c9fe6c525f4b54e3f8ea07d4b12d755a8df145741756ee8c2",
+  "candidate_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/14-raschet-procentov-395-gk-native-header.xlsx",
+  "candidate_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+  "candidate_bytes": 20192,
+  "defect": "Native Excel 2016 PDF page 5 clips top of example sheet G15 heading",
+  "source_native_pdf_sha256": "9e1f23e459fb2c4465c99e95fd2743f0ca6ff7f2400612f6fd4cb73165b146d0",
+  "changed_zip_parts": [
+    "xl/worksheets/sheet4.xml"
+  ],
+  "only_edit": {
+    "worksheet": "Пример заполнения",
+    "row": 15,
+    "height_before_pt": 38,
+    "height_after_pt": 54
+  },
+  "other_zip_payloads_identical": 14,
+  "all_cell_text_values_formulas_styles_validation_and_protection_unchanged": true,
+  "formula_count": 251,
+  "negative_old_height_detected": true,
+  "native_office": "PENDING_NEW_SHA",
+  "visual": "PENDING_NEW_SHA",
+  "normative_buyer_G1_G8": "OPEN",
+  "release": "BLOCKED",
+  "source_mutations": 0
+}

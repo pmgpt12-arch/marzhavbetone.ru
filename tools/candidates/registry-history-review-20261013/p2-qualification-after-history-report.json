@@ -1,0 +1,116 @@
+{
+  "acceptance": {
+    "content_accepted": false,
+    "delivery_accepted": false,
+    "deploy_accepted": false,
+    "docx_container_integrity_accepted": true,
+    "exact_registry_nomination_accepted": true,
+    "github_binary_transport_accepted": true,
+    "legal_accepted": false,
+    "native_word_accepted": false,
+    "publication_accepted": false,
+    "release_accepted": false,
+    "source_replacement_accepted": false,
+    "visual_accepted": false
+  },
+  "checkpoint_policy": "verified_only",
+  "checks": [
+    {
+      "actual": {
+        "bytes": 41800,
+        "git_blob": "6e7b67117feedb7d978c5971f142b5782fc097c8",
+        "sha256": "a27ffb94bb47a66743fe01d188055813159a04117d09514db8f8aeef9c14f609"
+      },
+      "duplicate_members": [],
+      "expected": {
+        "bytes": 41800,
+        "git_blob": "6e7b67117feedb7d978c5971f142b5782fc097c8",
+        "sha256": "a27ffb94bb47a66743fe01d188055813159a04117d09514db8f8aeef9c14f609"
+      },
+      "forbidden_members_present": [],
+      "nomination_commit": "b85a2e716d501cbc54c840f58027ecfd6a60964b",
+      "registry_id": "P2-CANON-00-INSTR-B85",
+      "relative_path": "products-storage/02-dopraboty-bez-poter/00-INSTRUKCIYA.docx",
+      "required_members_present": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "docProps/app.xml",
+        "docProps/core.xml",
+        "word/document.xml",
+        "word/styles.xml"
+      ],
+      "status": "PASS",
+      "xml_member_count": 16,
+      "xml_well_formed_check": "PASS",
+      "zip_crc_check": "PASS",
+      "zip_member_count": 17
+    },
+    {
+      "actual": {
+        "bytes": 38881,
+        "git_blob": "e5f82e0d1220c82aaecd990cc011b7c0ca974491",
+        "sha256": "7360634f99b3b7f288c394bc88140cc84f92d6a0a2786b7816d8c2bc23a5ae16"
+      },
+      "duplicate_members": [],
+      "expected": {
+        "bytes": 38881,
+        "git_blob": "e5f82e0d1220c82aaecd990cc011b7c0ca974491",
+        "sha256": "7360634f99b3b7f288c394bc88140cc84f92d6a0a2786b7816d8c2bc23a5ae16"
+      },
+      "forbidden_members_present": [],
+      "nomination_commit": "b85a2e716d501cbc54c840f58027ecfd6a60964b",
+      "registry_id": "P2-CANON-03-UVD-B85",
+      "relative_path": "products-storage/02-dopraboty-bez-poter/03-uvedomlenie-o-doprabotah.docx",
+      "required_members_present": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "docProps/app.xml",
+        "docProps/core.xml",
+        "word/document.xml",
+        "word/styles.xml"
+      ],
+      "status": "PASS",
+      "xml_member_count": 16,
+      "xml_well_formed_check": "PASS",
+      "zip_crc_check": "PASS",
+      "zip_member_count": 17
+    }
+  ],
+  "execution": {
+    "checked_out_head": "4295a711b903932731b40e134d38d38d38135195",
+    "expected_head": "4295a711b903932731b40e134d38d38d38135195",
+    "github_event_sha": null,
+    "model_calls": 0,
+    "paid_api_calls": 0,
+    "python": "3.12.3"
+  },
+  "finished_at": "2026-10-13T02:30:09.188080+00:00",
+  "limitations": [
+    "transport and OOXML container integrity only",
+    "no content, legal, visual, native Word, source replacement, deploy, publication, delivery, or release acceptance"
+  ],
+  "registry_check": {
+    "bytes": 610040,
+    "git_blob": "2b5ce1087b63b28524030819ae3a1b7f3be7c6f5",
+    "record_count": 2,
+    "record_ids": [
+      "P2-CANON-00-INSTR-B85",
+      "P2-CANON-03-UVD-B85"
+    ],
+    "registry_status": "ACTIVE_PARTIAL_SEED",
+    "relative_path": "products-storage/ARTIFACT-REGISTRY.json",
+    "sha256": "650d7af42b4baaf7fedc886043b8b912591b796f0b842e7115e66bf5c4a68c16",
+    "status": "PASS"
+  },
+  "schema_version": 1,
+  "source_nomination": {
+    "expected_registry_git_blob": "5a431138f4d157ed42fbd6ff034c40c515c4422b",
+    "nomination_source": "issue:600",
+    "record_count": 2,
+    "registry": "products-storage/ARTIFACT-REGISTRY.json",
+    "registry_status": "ACTIVE_PARTIAL_SEED"
+  },
+  "started_at": "2026-10-13T02:30:08.962519+00:00",
+  "status": "PASS_TRANSPORT_AND_CONTAINER_INTEGRITY_ONLY",
+  "unit": "mb001-p2-canonical-office-transport-qualification-20261012"
+}

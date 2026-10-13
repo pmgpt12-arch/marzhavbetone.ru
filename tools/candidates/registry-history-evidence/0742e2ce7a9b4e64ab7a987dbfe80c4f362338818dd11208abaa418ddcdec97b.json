@@ -1,0 +1,26 @@
+{
+  "status": "PASS_NATIVE_WORD_PDF_LEXICAL_STRUCTURE_ONLY",
+  "job": "p2-instruction-style-word-20261013-v1",
+  "input_sha256": "0f3882fae04bd8bf32a9c368abc24e6d4c1c41fad5d008d37bfc522098148b11",
+  "native_pdf_sha256": "e5e61bc7d38772bd8407681a82e76794383e92426a7b85191201cad9f23aed57",
+  "report_sha256": "96817d2e85093dd2b26c04f930e183bc9dde4695f08ba142b1345f0688ffb6c1",
+  "pages": 4,
+  "format": "A4",
+  "text_chars_per_page": [
+    2617,
+    2828,
+    2854,
+    2425
+  ],
+  "minimum_page_text_chars": 2425,
+  "hits": [],
+  "scope": "extractable-text, obvious banned/stale phrases and page metadata only",
+  "does_not_check": [
+    "actual on-screen layout glyphs/crop/clipping",
+    "legal correctness",
+    "independent buyer G1-G8",
+    "canonical source replacement",
+    "release"
+  ],
+  "release": "BLOCKED"
+}

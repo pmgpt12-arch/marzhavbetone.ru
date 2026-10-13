@@ -1,0 +1,56 @@
+{
+  "job_id": "p1-395-native-header-20261013-v1",
+  "candidate_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+  "status": "NATIVE_OPEN_EXPORT_PASS_VISUAL_PENDING",
+  "utc": "2026-10-13T01:52:58.063203+00:00",
+  "scope": "NATIVE_EXCEL_OPEN_AND_PRINT_HEADER_REVIEW_ONLY",
+  "numeric_legal_buyer_G1_G8": "OPEN",
+  "release": "BLOCKED",
+  "native_report_sha256": "fe9e667f78272437c78757d0f3d985f3ad465ee3fb7906a7e4338e3d21dd21ff",
+  "native_report_status": "PASS",
+  "excel_version": "16.0",
+  "excel_build": "4324",
+  "checks": [
+    {
+      "name": "p1395header:input_sha",
+      "pass": "True",
+      "expected": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+      "actual": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34"
+    },
+    {
+      "name": "p1395header:sheet_protected",
+      "pass": "True",
+      "expected": "False",
+      "actual": "False"
+    },
+    {
+      "name": "p1395header:pdf_export",
+      "pass": "True",
+      "expected": "%PDF-",
+      "actual": "bytes=213436"
+    },
+    {
+      "name": "p1395header:source_unchanged",
+      "pass": "True",
+      "expected": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+      "actual": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/results/native/p1-395-native-header-20261013-v1/report.xml",
+      "sha256": "fe9e667f78272437c78757d0f3d985f3ad465ee3fb7906a7e4338e3d21dd21ff",
+      "bytes": 823
+    },
+    {
+      "path": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/results/native/p1-395-native-header-20261013-v1/p1395header-filled.xlsx",
+      "sha256": "772bccc1a2549ce264d3b8582a2e99eb4f7c1ed0ab385aade32f8055439bdfcf",
+      "bytes": 21572
+    },
+    {
+      "path": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/results/native/p1-395-native-header-20261013-v1/p1395header-filled.pdf",
+      "sha256": "c080a7f04c960fce60d5be0c2ff109088508ca03255a2085f9128406f6e76306",
+      "bytes": 213436
+    }
+  ]
+}
