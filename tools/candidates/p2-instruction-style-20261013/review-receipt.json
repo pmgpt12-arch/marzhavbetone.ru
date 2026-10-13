@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "scope": "P2 instruction copy only: exact 13-paragraph business-language correction",
+  "parent_sha256": "0bb84800a2bac43b50f4521db4e6397963f76377aea350b42ea4cc6bc8cf2eb4",
+  "candidate_sha256": "0f3882fae04bd8bf32a9c368abc24e6d4c1c41fad5d008d37bfc522098148b11",
+  "pdf_preview_sha256": "b57be3f02a1765526b49662c45434cb7910f1271a38186660599a6aecba945b9",
+  "base_git_head": "478fbc1d2a8f474ca4ca088a2af1f89a5c0d4c74",
+  "changed_paragraph_numbers": [
+    2,
+    4,
+    5,
+    6,
+    7,
+    11,
+    16,
+    19,
+    20,
+    22,
+    24,
+    25,
+    93
+  ],
+  "source_paragraphs": 97,
+  "new_paragraphs": 97,
+  "package_members": 17,
+  "unchanged_member_payloads": 16,
+  "cross_file_references_preserved": true,
+  "pdf_pages": 4,
+  "pdf_paper": "A4",
+  "visual_review": "4-page contact-sheet independently viewed; no obvious clipping or missing page; native Word still needed",
+  "status": "PASS_P2_STRUCTURAL_EDITORIAL_STATIC_PREVIEW_ONLY",
+  "known_entrypoint_block": "canonical 00-INSTRUKCIYA.pdf still stale until exact native acceptance and controlled replacement",
+  "office_gate": "NOT_PERFORMED_ON_THIS_SHA; last laptop poll 2026-10-13T07:18:02+07:00",
+  "other_open_gates": [
+    "full normative/legal",
+    "buyer acceptance",
+    "all forms and XLSX inside P2",
+    "consistent DOCX/PDF package",
+    "release G1-G8"
+  ],
+  "production_changed": false,
+  "price_sku_payment_vpn_changed": false
+}

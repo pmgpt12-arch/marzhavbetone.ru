@@ -327,6 +327,18 @@
   зачем: тексты покупательского пакета P1 показывают ценность и порядок действий без обесценивающих оговорок
   требует: []
   решение: ''
+- id: test_p2_instruction_style_candidate
+  команда: python3 tools/test_p2_instruction_style_candidate.py
+  класс: public
+  блокирует: true
+  зачем: P2 instruction exact buyer language, 13 changed paragraphs, 17 OOXML parts, A4 and negative lexical mutations
+  требует:
+  - tools/candidates/p2-instruction-style-20261013/00-INSTRUKCIYA.docx
+  - tools/candidates/p2-instruction-style-20261013/00-INSTRUKCIYA-parent.docx
+  - tools/candidates/p2-instruction-style-20261013/00-INSTRUKCIYA-preview.pdf
+  - tools/candidates/p2-instruction-style-20261013/review-receipt.json
+  - tools/test_p2_instruction_style_candidate.py
+  решение: 'Stage-only copy gate; no native Word, legal, buyer, G1–G8 or release acceptance.'
 - id: test_products_dir
   команда: php tools/test_products_dir.php
   класс: public
