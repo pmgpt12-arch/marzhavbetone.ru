@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "registry_id": "P1-CAND-395-NATIVE-HEADER-20261013",
+  "status": "HEADER_CLIPPING_FIXED_PRINT_PAGINATION_OPEN",
+  "verified_utc": "2026-10-13T02:01:29.228882+00:00",
+  "input_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+  "native_pdf_sha256": "c080a7f04c960fce60d5be0c2ff109088508ca03255a2085f9128406f6e76306",
+  "native_report_sha256": "fe9e667f78272437c78757d0f3d985f3ad465ee3fb7906a7e4338e3d21dd21ff",
+  "pages_reviewed": 5,
+  "closed_findings": [
+    "Example sheet G15 heading is visible after row height 38 to 54 pt"
+  ],
+  "open_findings": [
+    {
+      "id": "P1-PRINT-ORPHAN-NOTES",
+      "severity": "PRINT_LAYOUT_REVIEW_REQUIRED",
+      "page": 3,
+      "description": "Two explanatory paragraphs from calculation sheet spill to an otherwise empty landscape page; final print layout not accepted."
+    }
+  ],
+  "page_images": [
+    {
+      "name": "page-1.png",
+      "sha256": "888a5c287742aa9dc93569d32f80ab51283567e32398d7a58bf80560553e84d6"
+    },
+    {
+      "name": "page-2.png",
+      "sha256": "613c3c237f0cdc96769193834e1ed66ddf516617a201036ea0c14b0e0d43be36"
+    },
+    {
+      "name": "page-3.png",
+      "sha256": "01818faefef3f09f049044ee7867c0bd2e85a8587e18979bf83c516e625fdeff"
+    },
+    {
+      "name": "page-4.png",
+      "sha256": "2231819215d00bf545047259e073cf464f0726782ddc3129d86abc5025fbaba5"
+    },
+    {
+      "name": "page-5.png",
+      "sha256": "2f598bf09716576f97b91fb0cf5d5903ab5c3503fa310dab49c180c8ef47e073"
+    }
+  ],
+  "native_open_export": "PASS_EXACT_SHA",
+  "numeric_scenarios": "NOT_PERFORMED_BY_THIS_JOB",
+  "normative_buyer_G1_G8": "OPEN",
+  "release": "BLOCKED",
+  "new_office_jobs_submitted": 0,
+  "document_mutations": 0
+}

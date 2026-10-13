@@ -1,0 +1,47 @@
+{
+  "status": "RESOLVED_PRESERVING_ORIGINAL_EVIDENCE_BYTES",
+  "failed_attempt": {
+    "process_pid": 949600,
+    "exit_code": 1,
+    "command": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "observed_error": "trailing whitespace reported in immutable original Office XML reports",
+    "classification": "QA_CONTRACT_RAW_EVIDENCE_AS_SOURCE_TEXT",
+    "source": "observed completed tool process; no historical Office job failed here"
+  },
+  "root_cause": "text-style whitespace check was applied to raw Office evidence that must remain byte-identical",
+  "repair": {
+    "path": "tools/candidates/registry-history-evidence/.gitattributes",
+    "scope": "this evidence directory only",
+    "attributes": "-text -diff for content-addressed snapshots; attribute file remains text",
+    "reports_normalized": false,
+    "sha256_verified_in_worktree_and_git_index": 28
+  },
+  "gate_checks": {
+    "git_check_attr": "tools/candidates/registry-history-evidence/dd9ea253b3c532e0dffcbf38f582b47353815e771f8242dd1c05e32567f76508.xml: text: unset\ntools/candidates/registry-history-evidence/dd9ea253b3c532e0dffcbf38f582b47353815e771f8242dd1c05e32567f76508.xml: diff: unset\n",
+    "git_diff_cached_check_exit": 0,
+    "unit_tests_passed": 38,
+    "registry_check_exit": 0
+  },
+  "repeat_policy": {
+    "document_builders_reexecuted": false,
+    "native_office_jobs_resubmitted": 0,
+    "new_model_calls": 0,
+    "only_changed_acceptance_contract_rechecked": true
+  },
+  "resolved_at_utc": "2026-10-13T02:24:33.265587+00:00",
+  "additional_authored_helper_fix": {
+    "cause": "extra blank line at EOF in authored test-helper copy, not Office evidence",
+    "before_sha256": "d7bc177b88fcf9332e19ea881f17b65684fb5e61649f185766763d115cb5c4a4",
+    "after_sha256": "cf11fee09b25b300ab7f64d62541c28e6ee958a2fdfb886b40d80a15a6044c03",
+    "path": "tools/candidates/registry-history-review-20261013/registry_history_tests_20261013.py",
+    "only_trailing_newlines_changed": true,
+    "original_helper_unchanged": true,
+    "logic_changed": false,
+    "failed_process_pid": 951908
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "status": "PASS_METADATA_ONLY_AND_NATIVE_OPEN_EXPORT_EXACT_SHA",
+  "registry_id": "P1-CAND-395-COREXML-20261013",
+  "parent_registry_id": "P1-CAND-395-PR610-V3",
+  "job_id": "p1-395-corexml-native-20261013-v1",
+  "verified_utc": "2026-10-13T01:46:44.044561+00:00",
+  "source_path": "/home/denis/projects/mb001-p1-395-copy-correction-20261012/tools/candidates/p1-395-content-20261012/14-raschet-procentov-395-gk.xlsx",
+  "source_sha256": "f7bd3a6fc8cfbb9e478448b2d217c6c4e3b667a5548f421373a7816978e5874e",
+  "candidate_path": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-corexml-compat-20261013/14-raschet-procentov-395-gk-corexml-compat.xlsx",
+  "candidate_sha256": "044d9aa899b2278c9fe6c525f4b54e3f8ea07d4b12d755a8df145741756ee8c2",
+  "candidate_bytes": 20191,
+  "changed_zip_parts": [
+    "docProps/core.xml"
+  ],
+  "other_zip_payloads_unchanged": 14,
+  "formulas_unchanged": 251,
+  "valid_timestamps": [
+    "2026-10-08T08:12:16Z",
+    "2026-10-08T08:12:16Z"
+  ],
+  "excel_version": "16.0",
+  "excel_build": "4324",
+  "native_checks": [
+    {
+      "name": "p1395core:input_sha",
+      "pass": "True",
+      "expected": "044d9aa899b2278c9fe6c525f4b54e3f8ea07d4b12d755a8df145741756ee8c2",
+      "actual": "044d9aa899b2278c9fe6c525f4b54e3f8ea07d4b12d755a8df145741756ee8c2"
+    },
+    {
+      "name": "p1395core:sheet_protected",
+      "pass": "True",
+      "expected": "False",
+      "actual": "False"
+    },
+    {
+      "name": "p1395core:pdf_export",
+      "pass": "True",
+      "expected": "%PDF-",
+      "actual": "bytes=213430"
+    },
+    {
+      "name": "p1395core:source_unchanged",
+      "pass": "True",
+      "expected": "044d9aa899b2278c9fe6c525f4b54e3f8ea07d4b12d755a8df145741756ee8c2",
+      "actual": "044d9aa899b2278c9fe6c525f4b54e3f8ea07d4b12d755a8df145741756ee8c2"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/results/native/p1-395-corexml-native-20261013-v1/report.xml",
+      "sha256": "fcb439a5065d0bb4846deceaa5d8cc9a66f679a9fe251df09e9062cb581bf0a5",
+      "bytes": 816,
+      "received_from": "192.168.1.140"
+    },
+    {
+      "path": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/results/native/p1-395-corexml-native-20261013-v1/p1395core-filled.xlsx",
+      "sha256": "1a0b6b8a061436bc9da3db2f7566f6a3f96f1254d963a900ad82161737d41fd5",
+      "bytes": 21572,
+      "received_from": "192.168.1.140"
+    },
+    {
+      "path": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/results/native/p1-395-corexml-native-20261013-v1/p1395core-filled.pdf",
+      "sha256": "9e1f23e459fb2c4465c99e95fd2743f0ca6ff7f2400612f6fd4cb73165b146d0",
+      "bytes": 213430,
+      "received_from": "192.168.1.140"
+    }
+  ],
+  "pdf_metadata": "Creator:         Microsoft® Excel® 2016\nProducer:        Microsoft® Excel® 2016\nCreationDate:    Tue Oct 13 08:41:47 2026 +07\nModDate:         Tue Oct 13 08:41:47 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           5\nEncrypted:       no\nPage size:       595.32 x 841.92 pts (A4)\nPage rot:        0\nFile size:       213430 bytes\nOptimized:       no\nPDF version:     1.5\n",
+  "verification_script_sha256": "0e34136ddc32d96043c421fc7d26c547d275273d5fbc446d2d9d802102ca5b5a",
+  "numeric_scenarios": "NOT_PERFORMED_BY_THIS_NATIVE_JOB",
+  "visual_review": "OPEN",
+  "normative_buyer_G1_G8": "OPEN",
+  "release": "BLOCKED",
+  "source_mutations": 0,
+  "office_jobs_submitted": 0
+}
