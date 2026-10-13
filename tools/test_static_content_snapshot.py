@@ -95,5 +95,28 @@ class StaticContentSnapshotTests(unittest.TestCase):
         mod.validate_exact_paths(recorded, derived, "dependencies")
 
 
+
+class RegistryIdentityProjectionTests(unittest.TestCase):
+    def accepted(self):
+        import json
+        return json.loads(mod.read_source(mod.CONTENT_SOURCE_COMMIT,"products-storage/ARTIFACT-REGISTRY.json"))
+
+    def test_history_only_append_preserves_static_identity(self):
+        data=self.accepted();new=copy.deepcopy(data);new["change_history"]={"added":"audit only"}
+        mod.validate_registry_identity(new,data)
+
+    def test_changed_nomination_fails_with_history_present(self):
+        data=self.accepted();new=copy.deepcopy(data);new["change_history"]={};new["artifacts"][0]["sha256"]="0"*64
+        with self.assertRaises(mod.SnapshotError):mod.validate_registry_identity(new,data)
+
+    def test_changed_portfolio_decision_still_fails(self):
+        data=self.accepted();new=copy.deepcopy(data);new["change_history"]={};new["portfolio_decision"]["target_product_count"]=12
+        with self.assertRaises(mod.SnapshotError):mod.validate_registry_identity(new,data)
+
+    def test_extra_non_history_key_still_fails(self):
+        data=self.accepted();new=copy.deepcopy(data);new["unexpected_release_override"]=True
+        with self.assertRaises(mod.SnapshotError):mod.validate_registry_identity(new,data)
+
+
 if __name__ == "__main__":
     unittest.main()

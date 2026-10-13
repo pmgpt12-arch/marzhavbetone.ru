@@ -160,5 +160,31 @@ class QualificationTests(unittest.TestCase):
                 subject.qualify_registry(root)
 
 
+
+class RegistryHistoryQualificationTests(unittest.TestCase):
+    def check_with_mutation(self, mutation, expect_pass):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary)
+            specs=(spec_for("a.docx",b"a","R1"),spec_for("b.docx",b"b","R2"))
+            baseline=make_registry(root,specs)
+            identity=subject.registry_identity_sha256(json.loads(baseline))
+            data=json.loads(baseline);data["change_history"]={"audit_note":"new metadata only"}
+            mutation(data)
+            (root/subject.REGISTRY_PATH).write_text(json.dumps(data))
+            with mock.patch.object(subject,"INPUTS",specs),mock.patch.object(subject,"EXPECTED_REGISTRY_IDENTITY_SHA256",identity):
+                if expect_pass:self.assertEqual(subject.qualify_registry(root)["status"],"PASS")
+                else:
+                    with self.assertRaises(ValueError):subject.qualify_registry(root)
+
+    def test_history_only_append_preserves_nomination(self):
+        self.check_with_mutation(lambda d: None,True)
+
+    def test_history_cannot_hide_document_sha_change(self):
+        self.check_with_mutation(lambda d:d["artifacts"][0].update(sha256="0"*64),False)
+
+    def test_history_cannot_hide_unknown_registry_field(self):
+        self.check_with_mutation(lambda d:d.update(unapproved_scope="changed"),False)
+
+
 if __name__ == "__main__":
     unittest.main()

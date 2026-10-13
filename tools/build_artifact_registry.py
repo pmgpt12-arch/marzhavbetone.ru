@@ -165,6 +165,14 @@ def stable_digest(value):
     return hashlib.sha256(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
 
 
+
+def registry_identity_sha256(data):
+    """All accepted registry fields except the separately validated change_history log."""
+    if not isinstance(data, dict):
+        raise RegistryError("registry identity must be an object")
+    return stable_digest({k: v for k, v in data.items() if k != "change_history"})
+
+
 def change_record_digest(record):
     return stable_digest({k: v for k, v in record.items() if k != "record_sha256"})
 
