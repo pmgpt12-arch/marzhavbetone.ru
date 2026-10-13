@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "unit_id": "mb001-p1-395-exact-head-ci-remediation-20261013",
+  "created_at_utc": "2026-10-13T03:00:00Z",
+  "status": "READY_FOR_EXACT_HEAD_CI",
+  "checkpoint_policy": "verified_only",
+  "parent_head": "67d35e2bb16ca05b3e023685dc98732aab46abe3",
+  "input_fingerprint": {
+    "artifact_registry": {
+      "git_blob": "e5de5559cf76b0913587f95d0550a9c8633fe21f",
+      "sha256": "5a6c3788f68b9cdc4ea91fee830945987b403f8f1655c31dd834740f301e0745"
+    },
+    "p1_candidate_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+    "failed_runs": [
+      {
+        "run_id": 38336111382,
+        "job_id": 115096439578,
+        "class": "DEPENDENCY_PIN_DRIFT",
+        "fact": "static snapshot rejected intentional ARTIFACT-REGISTRY blob drift"
+      },
+      {
+        "run_id": 38336111419,
+        "job_id": 115096439595,
+        "class": "DEPENDENCY_STALE_BASE",
+        "fact": "raw PR head lacked accepted P2 qualification harness from main"
+      }
+    ]
+  },
+  "remediation": {
+    "office_or_product_rerun": false,
+    "model_calls": 0,
+    "paid_api_calls": 0,
+    "static_snapshot": "update only accepted registry blob/SHA pins plus derived report/receipt hash chain; page/dependency payload remains unchanged",
+    "p2_transport": "sync accepted main qualifier/test/passport into raw head and bind qualifier/passport to current additive registry blob; exact P2 nomination records unchanged"
+  },
+  "acceptance": [
+    "exact-head generic and render checks remain green",
+    "static snapshot exact-head check passes with unchanged 88 pages/63 dependencies/47 CTA occurrences/0 unknown SKUs",
+    "P2 transport qualification exact-head check passes and remains transport/container-only",
+    "no Office/model/product-byte rerun"
+  ],
+  "limitations": [
+    "no numeric scenario, legal, buyer, G1-G8, canonical replacement, deploy, publication, delivery, or release acceptance",
+    "PR remains Draft/HOLD"
+  ],
+  "next_step": "wait for exact-head workflows; inspect actual logs and artifacts; do not merge while product gates remain open"
+}
