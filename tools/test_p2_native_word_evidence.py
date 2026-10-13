@@ -32,8 +32,17 @@ def verify(data):
     require(len(pages)==4 and {p['name'] for p in pages}=={'page-%d.png'%i for i in range(1,5)},'PAGE_REVIEW_COVERAGE')
     require(all(len(p.get('sha256',''))==64 for p in pages),'PAGE_REVIEW_HASH_MISSING')
     require(v.get('release')=='BLOCKED' and 'independent buyer G1-G8' in v.get('not_accepted',[]),'FALSE_PRODUCT_ACCEPTANCE')
+    rec=json.loads(data['review-receipt.json'])
+    require(rec.get('schema_version')==2 and rec.get('candidate_sha256')==SHA,'STALE_REVIEW_RECEIPT')
+    require(rec.get('status')=='PASS_P2_STRUCTURAL_EDITORIAL_AND_NATIVE_WORD_LAYOUT_ONLY','RECEIPT_SCOPE_DRIFT')
+    require(rec.get('office_gate')=='PASS_NATIVE_WORD_OPEN_EXPORT_AND_VISUAL_LAYOUT_ONLY','RECEIPT_OFFICE_GATE_DRIFT')
+    require(rec.get('native_job_id')==JOB and rec.get('native_pdf_sha256')==PDF,'RECEIPT_NATIVE_EVIDENCE_DRIFT')
+    require(rec.get('native_report_sha256')==sha(data['native-word-report.xml']),'RECEIPT_REPORT_HASH_DRIFT')
+    entry=json.loads(data['entrypoint-text-qa.json'])
+    require('native Word' not in entry.get('remaining',[]),'STALE_ENTRYPOINT_QA')
+    require('controlled canonical instruction DOCX/PDF replacement' in entry.get('remaining',[]),'ENTRYPOINT_REPLACEMENT_GATE_MISSING')
 def main():
-    names=['00-INSTRUKCIYA.docx','00-INSTRUKCIYA-native-word.pdf','native-word-job.xml','native-word-report.xml','native-word-visual-review.json']
+    names=['00-INSTRUKCIYA.docx','00-INSTRUKCIYA-native-word.pdf','native-word-job.xml','native-word-report.xml','native-word-visual-review.json','review-receipt.json','entrypoint-text-qa.json']
     data={n:(D/n).read_bytes() for n in names}
     verify(data)
     negatives=[]
@@ -51,7 +60,7 @@ def main():
         try: verify(bad)
         except ValueError as e: negatives.append(str(e))
         else: raise RuntimeError('NEGATIVE_NOT_DETECTED_%d'%k)
-    print('P2_NATIVE_WORD_EVIDENCE_PASS: exact DOCX/PDF/native report; 4 pages; 6/6 negative cases; not legal/buyer/G1-G8')
+    print('P2_NATIVE_WORD_EVIDENCE_PASS: exact DOCX/PDF/native report; 4 pages; 6/6 artifact mutations plus active-receipt gates; not legal/buyer/G1-G8')
     print(json.dumps(negatives))
 if __name__=='__main__':
     try: main()

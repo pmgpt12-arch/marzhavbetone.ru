@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "scope": "P2 instruction copy only: exact 13-paragraph business-language correction",
   "parent_sha256": "0bb84800a2bac43b50f4521db4e6397963f76377aea350b42ea4cc6bc8cf2eb4",
   "candidate_sha256": "0f3882fae04bd8bf32a9c368abc24e6d4c1c41fad5d008d37bfc522098148b11",
@@ -27,17 +27,21 @@
   "cross_file_references_preserved": true,
   "pdf_pages": 4,
   "pdf_paper": "A4",
-  "visual_review": "4-page contact-sheet independently viewed; no obvious clipping or missing page; native Word still needed",
-  "status": "PASS_P2_STRUCTURAL_EDITORIAL_STATIC_PREVIEW_ONLY",
-  "known_entrypoint_block": "canonical 00-INSTRUKCIYA.pdf still stale until exact native acceptance and controlled replacement",
-  "office_gate": "NOT_PERFORMED_ON_THIS_SHA; last laptop poll 2026-10-13T07:18:02+07:00",
+  "visual_review": "4-page native Word output independently reviewed; no clipping, missing glyphs, table overflow or overlap",
+  "status": "PASS_P2_STRUCTURAL_EDITORIAL_AND_NATIVE_WORD_LAYOUT_ONLY",
+  "known_entrypoint_block": "canonical 00-INSTRUKCIYA.pdf remains stale until controlled canonical DOCX/PDF replacement",
+  "office_gate": "PASS_NATIVE_WORD_OPEN_EXPORT_AND_VISUAL_LAYOUT_ONLY",
   "other_open_gates": [
     "full normative/legal",
     "buyer acceptance",
     "all forms and XLSX inside P2",
-    "consistent DOCX/PDF package",
+    "controlled canonical DOCX/PDF replacement",
     "release G1-G8"
   ],
   "production_changed": false,
-  "price_sku_payment_vpn_changed": false
+  "price_sku_payment_vpn_changed": false,
+  "native_job_id": "p2-instruction-style-word-20261013-v1",
+  "native_pdf_sha256": "e5e61bc7d38772bd8407681a82e76794383e92426a7b85191201cad9f23aed57",
+  "native_report_sha256": "96817d2e85093dd2b26c04f930e183bc9dde4695f08ba142b1345f0688ffb6c1",
+  "native_visual_review_path": "tools/candidates/p2-instruction-style-20261013/native-word-visual-review.json"
 }
