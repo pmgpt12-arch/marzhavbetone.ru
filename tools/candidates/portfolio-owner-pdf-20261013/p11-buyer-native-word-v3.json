@@ -1,0 +1,38 @@
+{
+  "utc": "2026-10-13T15:42:35.395192+00:00",
+  "job": "p11-buyer-two-word-compact-20261013-v1",
+  "job_xml_sha256": "939b2aa1cf2db1b510b229af830e081ccd6a77a5144886f2974dfbb6de433d59",
+  "report_sha256": "7d6ad0fa0f11b91b3f53075d297f7aeb62fecfa239162d582dd9dfaff7eff04e",
+  "files": [
+    {
+      "name": "52-chek-list-raschet-metrami.docx",
+      "input_sha256": "d7a392aa4c7982c9da3b8c73dae88a7e5e29059b07469f755e01aeb180a17112",
+      "pdf_sha256": "61cf2413d0f2348d5632197aa78396d628bf0e7093de5e31febee303858b6eff",
+      "pages": 2,
+      "last_page_chars": 1930,
+      "status": "PASS_NATIVE_WORD_OPEN_EXPORT_PAGINATION_ONLY"
+    },
+    {
+      "name": "54-zapros-sostoyanie-escrow.docx",
+      "input_sha256": "4ab1c0c3a8b2f5f84f6dfa6668b6701c3153a1714dfcc3f20314a3a916e463a4",
+      "pdf_sha256": "1369fe12d646ae4a399d564af84dea392444c7e5c644176c0fa8f8e3cce2d0c1",
+      "pages": 3,
+      "last_page_chars": 2622,
+      "status": "PASS_NATIVE_WORD_OPEN_EXPORT_PAGINATION_ONLY"
+    }
+  ],
+  "previous_jobs": [
+    {
+      "id": "p11-buyer-two-word-20261013-v1",
+      "result": "PASS_OPEN_EXPORT_BUT_ORPHAN_PAGES"
+    },
+    {
+      "id": "p11-buyer-two-word-layout-20261013-v1",
+      "result": "PASS_OPEN_EXPORT_BUT_ORPHAN_PAGES"
+    }
+  ],
+  "scope": "EXACT_NEW_SHA_NATIVE_WORD_AND_PAGINATION_ONLY",
+  "normative_independent": "OPEN",
+  "buyer_independent": "OPEN",
+  "product_G1_G8": "HOLD"
+}
