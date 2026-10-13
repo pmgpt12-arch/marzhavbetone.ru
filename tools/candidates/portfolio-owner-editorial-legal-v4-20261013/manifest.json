@@ -1,0 +1,1384 @@
+{
+  "input_commit": "9e13d10dc5d5bbcff827a35ddada91c18140e7f8",
+  "records": [
+    {
+      "source": "products-storage/01-zakrytie-rabot/14-raschet-procentov-395-gk.xlsx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/01-zakrytie-rabot/14-raschet-procentov-395-gk.xlsx",
+      "input_sha256": "6ac2a86ac7a4888c3db3d43af2cbf025d14650b11f8380ad6c000a475d5a24c9",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/01-zakrytie-rabot/14-raschet-procentov-395-gk.xlsx",
+      "output_sha256": "f03da1aaf34c0fa95ca797ebf1062257df75cdecdfa83c33a3b04a7596048a52",
+      "changes": [
+        {
+          "part": "xl/worksheets/sheet3.xml",
+          "before": "— Юридическую консультацию и вычитку юристом. Нормативная сверка сопоставляет формулировки и порядок со статьями закона и не заменяет проверку обстоятельств вашего спора.",
+          "after": "Нормативная сверка сопоставляет порядок расчёта с применимыми нормами. Условия договора и обстоятельства спора проверяются отдельно."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/08-pto-bez-zamechaniy/41-akt-peredachi-ploshchadki-fronta.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/08-pto-bez-zamechaniy/41-akt-peredachi-ploshchadki-fronta.docx",
+      "input_sha256": "086f36ab8a088793c718752460a96b1ace597558b0656cfcd8be80f848bba838",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/08-pto-bez-zamechaniy/41-akt-peredachi-ploshchadki-fronta.docx",
+      "output_sha256": "33da9ac4951ffeab1ee6af8ce91c89874bd500669cace51b4fb1536462d43053",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это форма акта передачи фронта работ по договору субподряда, а не юридическая консультация.",
+          "after": "Форма акта передачи фронта работ по договору субподряда."
+        },
+        {
+          "part": "word/document.xml",
+          "before": "Не заменяет юридическую консультацию по спору, который уже идёт.",
+          "after": ""
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/08-pto-bez-zamechaniy/42-akt-vhodnogo-kontrolya-materialov.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/08-pto-bez-zamechaniy/42-akt-vhodnogo-kontrolya-materialov.docx",
+      "input_sha256": "3252245a155e71085c6a904ad1a65a834693a0dae22ffef2c6bef036516cde63",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/08-pto-bez-zamechaniy/42-akt-vhodnogo-kontrolya-materialov.docx",
+      "output_sha256": "612e7d3d7f96ad9edea2f9240d555ab2d6728d6238fdf4b24e1842f9ca39b814",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Не заменяет юридическую консультацию по спору, который уже идёт.",
+          "after": ""
+        },
+        {
+          "part": "word/document.xml",
+          "before": "Это форма акта входного контроля давальческих материалов, а не юридическая консультация.",
+          "after": "Форма акта входного контроля давальческих материалов."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/08-pto-bez-zamechaniy/43-preduprezhdenie-po-st-716.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/08-pto-bez-zamechaniy/43-preduprezhdenie-po-st-716.docx",
+      "input_sha256": "69c064ac0ae62a6d412ad988e8bf0d9f00b3b9808fa95770d35a54f6609e8181",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/08-pto-bez-zamechaniy/43-preduprezhdenie-po-st-716.docx",
+      "output_sha256": "358fdd0e2a73b383219e4ef7052bbdd9d898f3fb5b813dd91859de1224d1710a",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это форма письма-предупреждения о непригодности материала, документации или указаний, а не юридическая консультация.",
+          "after": "Форма предупреждения о непригодности материала, документации или указаний."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/09-pervyy-shag-pri-neoplate/01-slovar-poley.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/09-pervyy-shag-pri-neoplate/01-slovar-poley.docx",
+      "input_sha256": "e88145f2d7606c720792ac095f22dc902dd6c65d7a4fc235a7682ee5f1d52171",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/09-pervyy-shag-pri-neoplate/01-slovar-poley.docx",
+      "output_sha256": "fd9e8775d5e0b3c948a97e47c554031d8f668cb15d65c2d84227d6669dbabd46",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это форма, а не юридическая консультация и не гарантия взыскания. Он рассчитан на типовую ситуацию: работы приняты, акты подписаны обеими сторонами без замечаний, встречных требований нет.",
+          "after": "Применяется, когда работы приняты, акты подписаны обеими сторонами без замечаний и отсутствуют встречные требования."
+        },
+        {
+          "part": "word/document.xml",
+          "before": "Типовая редакция сверена с текстом действующих норм 16.08.2026. Нормативная сверка — это сопоставление формулировок, сроков и порядка со статьями закона; юридической консультацией и вычиткой юристом она не является. Форма не заменяет консультацию по конкретной ситуации: выводы зависят от условий вашего договора, состава подписанных документов и обстоятельств спора, и приоритет всегда у договора. Если заказчик оспаривает объёмы или качество, заявляет зачёт, если акты подписаны неуполномоченным лицом или в картотеке арбитражных дел появилось дело о банкротстве должника — типовой текст создаёт ложную уверенность. В этих случаях обращайтесь к юристу до отправки.",
+          "after": "Перед отправкой сверьте форму с договором, подписанными документами и действующими нормами. Если заказчик оспаривает объёмы или качество, заявляет зачёт, полномочия подписанта спорны либо должник находится в процедуре банкротства, требуется отдельная правовая оценка."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/09-pervyy-shag-pri-neoplate/02-uvedomlenie-o-prosrochke-oplaty.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/09-pervyy-shag-pri-neoplate/02-uvedomlenie-o-prosrochke-oplaty.docx",
+      "input_sha256": "36065cfddcf62cbbf91441f6e61f3ce5c30916f78a1ca0d36ef213c00848c62b",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/09-pervyy-shag-pri-neoplate/02-uvedomlenie-o-prosrochke-oplaty.docx",
+      "output_sha256": "d91bf3a60639097e45960d9cb797f543d269d1912bbc2f4fcd1aa3e1333847f0",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это форма, а не юридическая консультация и не гарантия взыскания. Он рассчитан на типовую ситуацию: работы приняты, акты подписаны обеими сторонами без замечаний, встречных требований нет.",
+          "after": "Применяется, когда работы приняты, акты подписаны обеими сторонами без замечаний и отсутствуют встречные требования."
+        },
+        {
+          "part": "word/document.xml",
+          "before": "Типовая редакция сверена с текстом действующих норм 16.08.2026. Нормативная сверка — это сопоставление формулировок, сроков и порядка со статьями закона; юридической консультацией и вычиткой юристом она не является. Форма не заменяет консультацию по конкретной ситуации: выводы зависят от условий вашего договора, состава подписанных документов и обстоятельств спора, и приоритет всегда у договора. Если заказчик оспаривает объёмы или качество, заявляет зачёт, если акты подписаны неуполномоченным лицом или в картотеке арбитражных дел появилось дело о банкротстве должника — типовой текст создаёт ложную уверенность. В этих случаях обращайтесь к юристу до отправки.",
+          "after": "Перед отправкой сверьте форму с договором, подписанными документами и действующими нормами. Если заказчик оспаривает объёмы или качество, заявляет зачёт, полномочия подписанта спорны либо должник находится в процедуре банкротства, требуется отдельная правовая оценка."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/09-pervyy-shag-pri-neoplate/03-pretenziya-na-neoplatu-po-ks-2.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/09-pervyy-shag-pri-neoplate/03-pretenziya-na-neoplatu-po-ks-2.docx",
+      "input_sha256": "99a85b515c39326d93f7df2787f4414beaaa5ac3eec70a7d83dca48cb97fca78",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/09-pervyy-shag-pri-neoplate/03-pretenziya-na-neoplatu-po-ks-2.docx",
+      "output_sha256": "0da5c6d26aaf3d3459b121b989acb3c340813dee012b92b3f36616c1b7786cb0",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это форма, а не юридическая консультация и не гарантия взыскания. Он рассчитан на типовую ситуацию: работы приняты, акты подписаны обеими сторонами без замечаний, встречных требований нет.",
+          "after": "Применяется, когда работы приняты, акты подписаны обеими сторонами без замечаний и отсутствуют встречные требования."
+        },
+        {
+          "part": "word/document.xml",
+          "before": "Типовая редакция сверена с текстом действующих норм 16.08.2026. Нормативная сверка — это сопоставление формулировок, сроков и порядка со статьями закона; юридической консультацией и вычиткой юристом она не является. Форма не заменяет консультацию по конкретной ситуации: выводы зависят от условий вашего договора, состава подписанных документов и обстоятельств спора, и приоритет всегда у договора. Если заказчик оспаривает объёмы или качество, заявляет зачёт, если акты подписаны неуполномоченным лицом или в картотеке арбитражных дел появилось дело о банкротстве должника — типовой текст создаёт ложную уверенность. В этих случаях обращайтесь к юристу до отправки.",
+          "after": "Перед отправкой сверьте форму с договором, подписанными документами и действующими нормами. Если заказчик оспаривает объёмы или качество, заявляет зачёт, полномочия подписанта спорны либо должник находится в процедуре банкротства, требуется отдельная правовая оценка."
+        },
+        {
+          "part": "word/document.xml",
+          "before": "Не заменяет юридическую консультацию. Если заказчик заявляет встречные требования, зачёт или находится в предбанкротном состоянии — к юристу до отправки.",
+          "after": "При встречных требованиях, зачёте или признаках банкротства заказчика проверьте правовую позицию до отправки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/09-pervyy-shag-pri-neoplate/04-raschet-procentov-395-gk.xlsx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/09-pervyy-shag-pri-neoplate/04-raschet-procentov-395-gk.xlsx",
+      "input_sha256": "0c58b735eaa16e481b768410ddb9dd36f280d5d204864111577570b0f526616a",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/09-pervyy-shag-pri-neoplate/04-raschet-procentov-395-gk.xlsx",
+      "output_sha256": "16c1e3764db4b6057db80f31e204d35a7cd4c1f761d5cb07efa5163263594ec0",
+      "changes": [
+        {
+          "part": "xl/worksheets/sheet3.xml",
+          "before": "— Юридическую консультацию и вычитку юристом. Порядок расчёта сверен с текстом действующих норм 16.08.2026: нормативная сверка сопоставляет формулировки и порядок со статьями закона и правовой позиции по вашему спору не оценивает.",
+          "after": "Порядок расчёта сверен с применимыми нормами на 16.08.2026. Для конкретного спора проверьте условия договора и правовую позицию отдельно."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/09-pervyy-shag-pri-neoplate/05-algoritm-pri-zaderzhke-oplaty.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/09-pervyy-shag-pri-neoplate/05-algoritm-pri-zaderzhke-oplaty.docx",
+      "input_sha256": "5f0c41f40f6070c749fe7e1dce934299fd5a4152182256b31412b814d0e77773",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/09-pervyy-shag-pri-neoplate/05-algoritm-pri-zaderzhke-oplaty.docx",
+      "output_sha256": "5bb566aa747c46b93c84a824baf2636c99bf9e984a845e68ce3b18002730db2b",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это форма, а не юридическая консультация и не гарантия взыскания. Он рассчитан на типовую ситуацию: работы приняты, акты подписаны обеими сторонами без замечаний, встречных требований нет.",
+          "after": "Применяется, когда работы приняты, акты подписаны обеими сторонами без замечаний и отсутствуют встречные требования."
+        },
+        {
+          "part": "word/document.xml",
+          "before": "Типовая редакция сверена с текстом действующих норм 16.08.2026. Нормативная сверка — это сопоставление формулировок, сроков и порядка со статьями закона; юридической консультацией и вычиткой юристом она не является. Форма не заменяет консультацию по конкретной ситуации: выводы зависят от условий вашего договора, состава подписанных документов и обстоятельств спора, и приоритет всегда у договора. Если заказчик оспаривает объёмы или качество, заявляет зачёт, если акты подписаны неуполномоченным лицом или в картотеке арбитражных дел появилось дело о банкротстве должника — типовой текст создаёт ложную уверенность. В этих случаях обращайтесь к юристу до отправки.",
+          "after": "Перед отправкой сверьте форму с договором, подписанными документами и действующими нормами. Если заказчик оспаривает объёмы или качество, заявляет зачёт, полномочия подписанта спорны либо должник находится в процедуре банкротства, требуется отдельная правовая оценка."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/10-avans-usloviya-i-pribyl/01-slovar-poley-avans.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/10-avans-usloviya-i-pribyl/01-slovar-poley-avans.docx",
+      "input_sha256": "952728a81d0d65c8a731d263d595dba4e10f79b994c875a7917565e2a967515b",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/10-avans-usloviya-i-pribyl/01-slovar-poley-avans.docx",
+      "output_sha256": "6a6a15e03358a1e7386e175662be6e5ee24d2a5ee35fe297b8310268efe6d4cf",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это расчётный и переговорный инструмент, а не юридическая консультация и не гарантия того, что условия аванса удастся изменить или что возвращать аванс не придётся. Генподрядчик вправе не согласиться ни на один пункт. Комплект даёт аргумент и цифру, а не рычаг.",
+          "after": "Расчёт показывает финансовые последствия условий аванса и аргументы для переговоров. Изменение условий требует согласия генподрядчика."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/10-avans-usloviya-i-pribyl/02-kalkulyator-usloviy-avansa.xlsx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/10-avans-usloviya-i-pribyl/02-kalkulyator-usloviy-avansa.xlsx",
+      "input_sha256": "9734df4cfda992bc8a635c890e610c93f6d945a57e13c00da3433fe4ddb0d49e",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/10-avans-usloviya-i-pribyl/02-kalkulyator-usloviy-avansa.xlsx",
+      "output_sha256": "193e2340ff3849c7f2cfb12238a997459f775768ca316d8794ca1c0b996a9b4c",
+      "changes": [
+        {
+          "part": "xl/worksheets/sheet1.xml",
+          "before": "Это расчётный и переговорный инструмент, а не юридическая консультация и не гарантия того, что условия аванса удастся изменить. Генподрядчик вправе не согласиться ни на один пункт: файл даёт аргумент и цифру, а не рычаг. Расчёт рассчитан на типовую ситуацию: договор обсуждается либо уже подписан, спора о выполненных объёмах и качестве нет. Сюда не применять: возврат неотработанного аванса при расторжении, требование генподрядчика вернуть аванс, зачёт, дело о банкротстве генподрядчика, налоговые последствия аванса — НДС и момент признания дохода. Это не расчёт, а спор или учёт: там нужен юрист или бухгалтер, а не таблица.",
+          "after": "Расчёт применяется при обсуждении или исполнении договора без спора об объёмах и качестве. Возврат аванса при расторжении, зачёт, банкротство и налоговые последствия рассматриваются отдельно; по этим вопросам проверьте договор и применимые нормы."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/10-avans-usloviya-i-pribyl/03-razbor-chetyrekh-usloviy-avansa.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/10-avans-usloviya-i-pribyl/03-razbor-chetyrekh-usloviy-avansa.docx",
+      "input_sha256": "b52f2163e9cd213099f468ef9a40df85fd8f5266dc95c270b257232b78606b6c",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/10-avans-usloviya-i-pribyl/03-razbor-chetyrekh-usloviy-avansa.docx",
+      "output_sha256": "cfd5d3ee100f3f3c651df7cc936b0b0d02b13cc9f2bc41f11aee03397de6e597",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это расчётный и переговорный инструмент, а не юридическая консультация и не гарантия того, что условия аванса удастся изменить или что возвращать аванс не придётся. Генподрядчик вправе не согласиться ни на один пункт. Комплект даёт аргумент и цифру, а не рычаг.",
+          "after": "Расчёт показывает финансовые последствия условий аванса и аргументы для переговоров. Изменение условий требует согласия генподрядчика."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/10-avans-usloviya-i-pribyl/04-algoritm-peregovorov-ob-avanse.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/10-avans-usloviya-i-pribyl/04-algoritm-peregovorov-ob-avanse.docx",
+      "input_sha256": "5969b225930a78d4c74c314187ca3d0928d4722aca60ab59b628816b2e09dd17",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/10-avans-usloviya-i-pribyl/04-algoritm-peregovorov-ob-avanse.docx",
+      "output_sha256": "dcecdeff761bcf5ba6fa044f4856d419a66f1d42d3dbff1f1df9aae99391116c",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это расчётный и переговорный инструмент, а не юридическая консультация и не гарантия того, что условия аванса удастся изменить или что возвращать аванс не придётся. Генподрядчик вправе не согласиться ни на один пункт. Комплект даёт аргумент и цифру, а не рычаг.",
+          "after": "Расчёт показывает финансовые последствия условий аванса и аргументы для переговоров. Изменение условий требует согласия генподрядчика."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/10-avans-usloviya-i-pribyl/05-protokol-raznoglasiy-avansovye-punkty.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/10-avans-usloviya-i-pribyl/05-protokol-raznoglasiy-avansovye-punkty.docx",
+      "input_sha256": "00aea8f03688f63960226c38f8aa708de8e0225a2715f56e27f85eee5b716dfb",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/10-avans-usloviya-i-pribyl/05-protokol-raznoglasiy-avansovye-punkty.docx",
+      "output_sha256": "13482695a4e61cfeff89e22373751592f82dbc86da172517a8040389be86cf8c",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это расчётный и переговорный инструмент, а не юридическая консультация и не гарантия того, что условия аванса удастся изменить или что возвращать аванс не придётся. Генподрядчик вправе не согласиться ни на один пункт. Комплект даёт аргумент и цифру, а не рычаг.",
+          "after": "Расчёт показывает финансовые последствия условий аванса и аргументы для переговоров. Изменение условий требует согласия генподрядчика."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/10-avans-usloviya-i-pribyl/06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/10-avans-usloviya-i-pribyl/06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx",
+      "input_sha256": "eb7ad40a7525ed8eda43b9ccc94a1d0c33fee907bbea49e1c7ea87d1ef2abf2d",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/10-avans-usloviya-i-pribyl/06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx",
+      "output_sha256": "0d1fe2fe811ddad44d5aee02ecf4d1e013b33a132d6bf3182cde28a3ae4e6a39",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это расчётный и переговорный инструмент, а не юридическая консультация и не гарантия того, что условия аванса удастся изменить или что возвращать аванс не придётся. Генподрядчик вправе не согласиться ни на один пункт. Комплект даёт аргумент и цифру, а не рычаг.",
+          "after": "Расчёт показывает финансовые последствия условий аванса и аргументы для переговоров. Изменение условий требует согласия генподрядчика."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "input_sha256": "fc2e529bbac5ec049de3c90f3efb4f24fa84fc31e290882dfd51d39b004f0a2f",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "output_sha256": "ca4eb1ffe29adb62ce3d167dde645bacbc83883db78bd144d4141b37e9b74728",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это расчётный и переговорный инструмент, а не юридическая консультация и не гарантия того, что условия аванса удастся изменить или что возвращать аванс не придётся. Генподрядчик вправе не согласиться ни на один пункт. Комплект даёт аргумент и цифру, а не рычаг.",
+          "after": "Расчёт показывает финансовые последствия условий аванса и аргументы для переговоров. Изменение условий требует согласия генподрядчика."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "input_sha256": "55ec95a2b4f84a5346f7dffdaf9bb5d6cf5bf0101f01778ee9bc7e546aca2075",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "output_sha256": "1e99f62cdf243780aa604ae5127a16f1c94b978aceae291cfd80ddc18d32b2b5",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это расчётный и переговорный инструмент, а не юридическая консультация и не гарантия того, что условия аванса удастся изменить или что возвращать аванс не придётся. Генподрядчик вправе не согласиться ни на один пункт. Комплект даёт аргумент и цифру, а не рычаг.",
+          "after": "Расчёт показывает финансовые последствия условий аванса и аргументы для переговоров. Изменение условий требует согласия генподрядчика."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "input_sha256": "44cabd922c80c101c22feda601ab1746642a1afe8deeaea60fe1c5c86e13a123",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "output_sha256": "71ba1202c915366164932d328174aeb8abc5997ae026002e7d8e2a0de46b341b",
+      "changes": [
+        {
+          "part": "xl/worksheets/sheet1.xml",
+          "before": "Не квалифицирует отношения сторон, не оценивает перспективу спора и не предсказывает, чем кончится дело. Не заменяет юриста и не является юридической консультацией. Основание прекращения договора вы вводите как факт из документов, а не как правовую позицию: какие последствия оно влечёт, оценивает юрист по вашему договору и вашей переписке.",
+          "after": "Основание прекращения договора вносится по документам. Его правовые последствия определяются условиями договора, перепиской и обстоятельствами спора."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "input_sha256": "dbe369faa4517d227adf0bd98e8a084738e705b8f5a648245b22110cae67b589",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "output_sha256": "322f7df7f8eb8465e3fc57d10fe059ab97be994061ce91cef43f60c0f65ba923",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это расчётный и переговорный инструмент, а не юридическая консультация и не гарантия того, что условия аванса удастся изменить или что возвращать аванс не придётся. Генподрядчик вправе не согласиться ни на один пункт. Комплект даёт аргумент и цифру, а не рычаг.",
+          "after": "Расчёт показывает финансовые последствия условий аванса и аргументы для переговоров. Изменение условий требует согласия генподрядчика."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/11-bankrotstvo-genpodryadchika/01-slovar-poley-bankrotstvo.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/11-bankrotstvo-genpodryadchika/01-slovar-poley-bankrotstvo.docx",
+      "input_sha256": "9bc0a3767f56952f89b5c679387975562ba25c83363ef689a7f659a42f6c2b2e",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/11-bankrotstvo-genpodryadchika/01-slovar-poley-bankrotstvo.docx",
+      "output_sha256": "65de1da1c5dee6d1bbbe8f54dc5e0d9cba01c8d8c7e0d5806dcf7b6b9ad5b5c0",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовой комплект документов, а не юридическая консультация и не гарантия возврата денег. Он не вычитан юристом.",
+          "after": "Комплект документов для подготовки и сопровождения требования о возврате денежных средств."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/11-bankrotstvo-genpodryadchika/02-algoritm-genpodryadchik-bankrotitsya.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/11-bankrotstvo-genpodryadchika/02-algoritm-genpodryadchik-bankrotitsya.docx",
+      "input_sha256": "a54d0e29a60a66a599aecef72a7dda90d5bc06662843a75acfe5a466a097acfe",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/11-bankrotstvo-genpodryadchika/02-algoritm-genpodryadchik-bankrotitsya.docx",
+      "output_sha256": "7483e4cfc7963e2d7b27e30785098357d58ab4f07d440601ae64b0ae200d3220",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовой комплект документов, а не юридическая консультация и не гарантия возврата денег. Он не вычитан юристом.",
+          "after": "Комплект документов для подготовки и сопровождения требования о возврате денежных средств."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/11-bankrotstvo-genpodryadchika/03-markery-do-bankrotstva.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/11-bankrotstvo-genpodryadchika/03-markery-do-bankrotstva.docx",
+      "input_sha256": "98f2f8fae7d02f2ae81608236bdfa1e9790e4abd162098a9597ae6b50d8b06ec",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/11-bankrotstvo-genpodryadchika/03-markery-do-bankrotstva.docx",
+      "output_sha256": "8edc62ebc978a4d4c5393db7786748a220aee540b6ad1d5c5bcaf3cd668c9be9",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовой комплект документов, а не юридическая консультация и не гарантия возврата денег. Он не вычитан юристом.",
+          "after": "Комплект документов для подготовки и сопровождения требования о возврате денежных средств."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/11-bankrotstvo-genpodryadchika/04-reestr-dokumentov-i-dat-po-obektu.xlsx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/11-bankrotstvo-genpodryadchika/04-reestr-dokumentov-i-dat-po-obektu.xlsx",
+      "input_sha256": "ecaff59a00d2fbd8e1b3326b9e0d4342190ac056f2cce19039e1a2dfd767674c",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/11-bankrotstvo-genpodryadchika/04-reestr-dokumentov-i-dat-po-obektu.xlsx",
+      "output_sha256": "e790905be4391ba813fe05cdcce3713a2d1cec17290094f5a23210ba8bc99314",
+      "changes": [
+        {
+          "part": "xl/worksheets/sheet1.xml",
+          "before": "Это рабочая таблица, а не юридическая консультация и не гарантия включения требования в реестр. Она приводит документы и даты в порядок — решения по ним принимает юрист по вашему делу. Пропущенный срок восстанавливается не всегда, а требование, поданное с ошибкой, теряет очередь. Сроков и ставок числом в файле нет намеренно: они меняются вместе с редакцией закона, а скачанная книга не обновляется — каждую дату вы проверяете сами на дату заполнения и подтверждаете у юриста.",
+          "after": "Таблица систематизирует документы и даты для включения требования в реестр. Проверьте применимые сроки и порядок подачи на дату обращения: пропуск срока и ошибки в заявлении могут повлиять на очередность удовлетворения требования."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/11-bankrotstvo-genpodryadchika/05-perechen-paketa-dlya-zayavleniya-trebovaniya.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/11-bankrotstvo-genpodryadchika/05-perechen-paketa-dlya-zayavleniya-trebovaniya.docx",
+      "input_sha256": "4f412eea6e8815cf460c26967b47ee71ffbf09638da601e189601692d5db1c12",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/11-bankrotstvo-genpodryadchika/05-perechen-paketa-dlya-zayavleniya-trebovaniya.docx",
+      "output_sha256": "c186430ba30bda8859091489f8ddf446731eba569515c70ebc01df8a13eaa75c",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовой комплект документов, а не юридическая консультация и не гарантия возврата денег. Он не вычитан юристом.",
+          "after": "Комплект документов для подготовки и сопровождения требования о возврате денежных средств."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/11-bankrotstvo-genpodryadchika/06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/11-bankrotstvo-genpodryadchika/06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "input_sha256": "147477f390338fcc204135f66811d20f2d3e2e942d2f0bfd2e42d75d0f5b512d",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/11-bankrotstvo-genpodryadchika/06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "output_sha256": "1b7399fb8418979cf73b3be76c0af7edc8caf6bd96a29e5b4171fe34b1c25113",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовой комплект документов, а не юридическая консультация и не гарантия возврата денег. Он не вычитан юристом.",
+          "after": "Комплект документов для подготовки и сопровождения требования о возврате денежных средств."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/11-bankrotstvo-genpodryadchika/07-zapros-au-o-sostoyanii-raschetov.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/11-bankrotstvo-genpodryadchika/07-zapros-au-o-sostoyanii-raschetov.docx",
+      "input_sha256": "ed2731bafc2772f6df2ab94a7f0c6b9aa07f78a96da97f123699042685167cb3",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/11-bankrotstvo-genpodryadchika/07-zapros-au-o-sostoyanii-raschetov.docx",
+      "output_sha256": "3f1e73d55ee0765de8d9515433490d65fd6a90385b98d88095ffb95366ecbb50",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовой комплект документов, а не юридическая консультация и не гарантия возврата денег. Он не вычитан юристом.",
+          "after": "Комплект документов для подготовки и сопровождения требования о возврате денежных средств."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/11-bankrotstvo-genpodryadchika/08-zayavlenie-o-vklyuchenii-v-reestr-zagotovka.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/11-bankrotstvo-genpodryadchika/08-zayavlenie-o-vklyuchenii-v-reestr-zagotovka.docx",
+      "input_sha256": "8c59ce083c478f68018bb4f05603d3c6ef4d9ef030037b7adf80654d0847fb4d",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/11-bankrotstvo-genpodryadchika/08-zayavlenie-o-vklyuchenii-v-reestr-zagotovka.docx",
+      "output_sha256": "7f92b62b7cf5d2a387f17ff33472ed0ae4d432d98a19c16ec61f164f13be4b14",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовой комплект документов, а не юридическая консультация и не гарантия возврата денег. Он не вычитан юристом.",
+          "after": "Комплект документов для подготовки и сопровождения требования о возврате денежных средств."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/11-bankrotstvo-genpodryadchika/09-chto-delat-esli-srok-propushchen.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/11-bankrotstvo-genpodryadchika/09-chto-delat-esli-srok-propushchen.docx",
+      "input_sha256": "5537dd1bd2d475fb88644e627c4a223c1b072b72ee78002d3e1dad51b3cbf0d4",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/11-bankrotstvo-genpodryadchika/09-chto-delat-esli-srok-propushchen.docx",
+      "output_sha256": "098ae096566aea9187098331b9f92be987abd203e196beb9a42cd73443aee772",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовой комплект документов, а не юридическая консультация и не гарантия возврата денег. Он не вычитан юристом.",
+          "after": "Комплект документов для подготовки и сопровождения требования о возврате денежных средств."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/30-slovar-poley-oborona.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/30-slovar-poley-oborona.docx",
+      "input_sha256": "7508154f6ab37168866051e493e35904bacd54227ae91c9e1b9ca21c2c748ba2",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/30-slovar-poley-oborona.docx",
+      "output_sha256": "8df8c9affd21b4131769d2271c0e8536901da3fade1a4e7b785c3406452831f7",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/31-algoritm-pri-navyazannoy-vine.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/31-algoritm-pri-navyazannoy-vine.docx",
+      "input_sha256": "afaae6bbf5eebb81891d66a5dae5982e8c1f5f8c9bf98d88e0c530b13cdc3ebb",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/31-algoritm-pri-navyazannoy-vine.docx",
+      "output_sha256": "ff28faefe425921a234a60ee2a2676b7114d05b391918f789c25a3d0251fb7c3",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/32-soglashenie-o-razgranichenii-otvetstvennosti.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/32-soglashenie-o-razgranichenii-otvetstvennosti.docx",
+      "input_sha256": "4b9bd0cee9384718ed874bb8cef780c560e84d2fdd8ea5c3df86b91449933591",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/32-soglashenie-o-razgranichenii-otvetstvennosti.docx",
+      "output_sha256": "0e90bd8d8011ec74b6884c7f0748792158170d98e375156459fee964abfa99c9",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/33-motivirovannyy-otvet-na-pretenziyu.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/33-motivirovannyy-otvet-na-pretenziyu.docx",
+      "input_sha256": "acc94cd6957ca29d8ca288c31a012044745802900916f4b69e7a4080d496c1b0",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/33-motivirovannyy-otvet-na-pretenziyu.docx",
+      "output_sha256": "3e401efc623988a604d7520e37f17e9e3703d8a0c69f9a6c557eea319bfe74a5",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "input_sha256": "2273a1577a28d76a9dce96625f1a53ceac015e5fc42a352ce171d23b10fcb282",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "output_sha256": "d3b76e0ebc01debb34d41bf77dcba436c015b4b96c185bc8c1629496f419362f",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/35-preduprezhdenie-po-st-716.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/35-preduprezhdenie-po-st-716.docx",
+      "input_sha256": "d38b5482f5aefd404976c342a8b6c509f9a059182c89ae92796289e3d596ddba",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/35-preduprezhdenie-po-st-716.docx",
+      "output_sha256": "fca0051277db920f6fa393472b9627393da6f2907911b19310b13fae9d3d2596",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/36-otvet-na-garantiynuyu-pretenziyu.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/36-otvet-na-garantiynuyu-pretenziyu.docx",
+      "input_sha256": "f764eb4e9e35c531cb2a02622246eafdbc58c82899b3dc912eaff0c3ff46a62f",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/36-otvet-na-garantiynuyu-pretenziyu.docx",
+      "output_sha256": "9611eae5007544eb80eaa2ac4a7c053080f1fe37bfeb38f76e5c6d66bff1afe1",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/37-akt-peredachi-fronta-rabot.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/37-akt-peredachi-fronta-rabot.docx",
+      "input_sha256": "bd88a16d88e0796a5ed0d975bc2128466b1af095bf17b1c5ff350bd16cba74c0",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/37-akt-peredachi-fronta-rabot.docx",
+      "output_sha256": "45a5350887802de87a2bd2daee9c14858d0e1e3c327d48c5ee11a585cef9479b",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Не заменяет юридическую консультацию по спору, который уже идёт.",
+          "after": ""
+        },
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/38-akt-vhodnogo-kontrolya-davalcheskih.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/38-akt-vhodnogo-kontrolya-davalcheskih.docx",
+      "input_sha256": "d3cfd856c074fad7f6ad6029841c988dccbca91f9e14000f9f99c370fe152bfe",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/38-akt-vhodnogo-kontrolya-davalcheskih.docx",
+      "output_sha256": "b9aec61634a689118bece836b35a0641d175c0e831663abc4943080f5ec93c19",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Не заменяет юридическую консультацию по спору, который уже идёт.",
+          "after": ""
+        },
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/39-vozrazhenie-na-zachet-uderzhanie.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/39-vozrazhenie-na-zachet-uderzhanie.docx",
+      "input_sha256": "aa43913bc378f4375235c28a168e44c7fdaeddd9fd71a3e67eccc0feb79756e0",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/39-vozrazhenie-na-zachet-uderzhanie.docx",
+      "output_sha256": "a7f53b4fd4d63c0356e5c6aae73d6655646a565915ad28ddf68b63a7aa207354",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/40-reglament-komissionnoy-fiksacii.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/40-reglament-komissionnoy-fiksacii.docx",
+      "input_sha256": "af81d431c362fbbf51d247afb013ba5f2ad0f335cda626e14b869b4e83991408",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/40-reglament-komissionnoy-fiksacii.docx",
+      "output_sha256": "6929ef494104dff7b72f6e48f6c09d06c113b6529d4a5032ab30ecf544b19d11",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/41-reestr-garantiynyh-uderzhaniy.xlsx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/41-reestr-garantiynyh-uderzhaniy.xlsx",
+      "input_sha256": "ad8a175b2d8e25aa34d1ff6b3fb132b40152d76ea8d8c243710c4113109483c5",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/41-reestr-garantiynyh-uderzhaniy.xlsx",
+      "output_sha256": "0983330012e5d49c1982560c7ec2431d861ce7c6201bebb7b2f17b20cf58a347",
+      "changes": [
+        {
+          "part": "xl/worksheets/sheet1.xml",
+          "before": "Это типовой рабочий инструмент, а не юридическая консультация и не оценка вашей ситуации. Тексты комплекта «Ответ на претензию заказчика/генподрядчика» прошли вычитку юристом в типовой редакции, но приоритет всегда у вашего договора: удержание и его возврат считаются так, как написано в нём. Если по претензии деньги уже удержаны из оплаты или списаны — это другая ситуация и другой комплект; этот файл её не закрывает. Ставок и сроков законодательства числом в файле нет намеренно: они меняются, а скачанный файл не обновляется — доли, ставки и сроки вы вводите сами по своему договору и проверяете на дату заполнения.",
+          "after": "Приоритет имеют условия договора. Удержания и порядок их возврата определяются договором; уже произведённые удержания требуют отдельной проверки. Доли, ставки и сроки сверяйте на дату заполнения."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/42-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/42-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "input_sha256": "41f6259efbd875589bb94da0e78f353dcc1a744a7e93f58b01b9cf0847703528",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/42-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "output_sha256": "986e1f1da0e656ce26994624c0d3bb23618015c3f04e728d9459694dfd427fef",
+      "changes": [
+        {
+          "part": "xl/worksheets/sheet1.xml",
+          "before": "Это типовой рабочий инструмент, а не юридическая консультация и не оценка вашей ситуации. Тексты комплекта «Ответ на претензию заказчика/генподрядчика» прошли вычитку юристом в типовой редакции, но приоритет всегда у вашего договора: состав исполнительной документации и порядок её передачи определяются им и обязательными требованиями, которые вы проверяете сами на дату заполнения. Если по претензии деньги уже удержаны из оплаты или списаны — это другая ситуация и другой комплект; этот файл её не закрывает. Ставок и сроков законодательства числом в файле нет намеренно: они меняются, а скачанный файл не обновляется — сроки и пороги вы задаёте сами.",
+          "after": "Состав исполнительной документации и порядок её передачи определяются договором и обязательными требованиями на дату заполнения. Уже произведённые удержания требуют отдельной проверки. Сроки и пороги сверяйте по применимым нормам."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/43-pamyatka-kto-komu-otvechaet.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/43-pamyatka-kto-komu-otvechaet.docx",
+      "input_sha256": "99d3539f6f507013513c710ff74303acad94e76e82044ad6eb884908b292e190",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/43-pamyatka-kto-komu-otvechaet.docx",
+      "output_sha256": "50969bf4e26a717c3026a147d5894dbf4ac53dde38bd3018b4cb3093824bd15e",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "input_sha256": "3a04ec2548128447728daff3704a3b47aaa25d2f82b412d60747f005f6ee8e7e",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "output_sha256": "306e03b7c971cd30c5884c32ac061d35bd4be6192d439a86b8637a980a836a14",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/45-zayavlenie-ob-uchastii-v-osmotre.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/45-zayavlenie-ob-uchastii-v-osmotre.docx",
+      "input_sha256": "ba88bdfcc1910e1d31cf9bd87d21ab8f7d7c57dcd64c6071d3e511bea8c5ae7a",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/45-zayavlenie-ob-uchastii-v-osmotre.docx",
+      "output_sha256": "9b4949c0b331ec12a17307faead05f96a2e7f499035a655574501fd996efc502",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/46-razbor-zaklyucheniya-ekspertizy.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/46-razbor-zaklyucheniya-ekspertizy.docx",
+      "input_sha256": "c2b1c532755a4c442f5f85beef736ca6284058780ec3fb07f9187e742b35f35e",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/46-razbor-zaklyucheniya-ekspertizy.docx",
+      "output_sha256": "741b9cad215ebdbc10392c724ef94b502ad32ff097d53d9c1ff5f7b9d7d408ac",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/47-voprosy-ekspertu-i-zagotovka-hodataystva.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/47-voprosy-ekspertu-i-zagotovka-hodataystva.docx",
+      "input_sha256": "103235dea5350d957c46942d1db2da0581fa005fd9a4099e87ef00c848357d4b",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/47-voprosy-ekspertu-i-zagotovka-hodataystva.docx",
+      "output_sha256": "2cf6123f2ee7c2036a2bd4bc25045ee9bb84615d0e030709ca637fbd021e5ad2",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/12-otvet-na-pretenziyu/48-opis-dokazatelstv-po-defektu.xlsx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/12-otvet-na-pretenziyu/48-opis-dokazatelstv-po-defektu.xlsx",
+      "input_sha256": "353f0f1165fd456d9b176d74182cc83908ea9ac818fcd3d628410d82ad833a65",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/12-otvet-na-pretenziyu/48-opis-dokazatelstv-po-defektu.xlsx",
+      "output_sha256": "dbcb54b8439aada5fbddccc7ef0fc2810a745a26e4ab165b9d944a2822eb51c0",
+      "changes": [
+        {
+          "part": "xl/worksheets/sheet1.xml",
+          "before": "Это типовой рабочий инструмент, а не юридическая консультация и не оценка вашей ситуации. Тексты комплекта «Ответ на претензию заказчика/генподрядчика» прошли вычитку юристом в типовой редакции, но приоритет всегда у вашего договора: состав документов по вашему объекту определяется им и требованиями, действующими на дату заполнения, — их вы сверяете сами. Ставок и сроков законодательства числом в файле нет намеренно: они меняются, а скачанный файл не обновляется — порог ожидания ответа вы задаёте сами.\nОпись — рабочий учёт, а не процессуальный документ: в суд подаются сами документы, и это делает представитель. Отметка «нет» напротив обязательного документа не означает проигрыша спора и не означает, что документ нельзя получить, — она означает, что этим заниматься надо сейчас, а не в заседании.\nСаму опись не передавайте никому за пределами своей организации — ни оппоненту, ни эксперту, ни в приложение к письму. Она показывает не только то, что у вас есть, но и то, чего у вас нет. Наружу уходят перечисленные в ней документы, поимённо и по описи вложения, а не этот файл.",
+          "after": "Состав документов определяется договором и требованиями на дату заполнения. Сроки и пороги сверяйте по применимым нормам. Опись предназначена для внутреннего учёта; в суд передаются сами документы. Отсутствующие обязательные документы следует получить или восстановить. Внутреннюю опись не передавайте контрагенту: она раскрывает пробелы в документации."
+        },
+        {
+          "part": "xl/worksheets/sheet2.xml",
+          "before": "Это типовой рабочий инструмент, а не юридическая консультация и не оценка вашей ситуации; приоритет всегда у вашего договора. Опись — рабочий учёт, а не процессуальный документ: в суд подаются сами документы, и это делает представитель. Отметка «нет» напротив обязательного документа не означает проигрыша спора — она означает, что этим заниматься надо сейчас, а не в заседании. Саму опись не передавайте никому за пределами своей организации — ни оппоненту, ни эксперту, ни в приложение к письму: она показывает не только то, что у вас есть, но и то, чего у вас нет.",
+          "after": "Приоритет имеют условия договора. Опись предназначена для внутреннего учёта; в суд передаются сами документы. Отсутствующие обязательные документы следует получить или восстановить. Внутреннюю опись не передавайте контрагенту: она раскрывает пробелы в документации."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+      "input_sha256": "4b70a943c426a2fb37b3862dad05cce8ab7156fca6e210b9db56bff5508bdefa",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+      "output_sha256": "2fb16b67f382a597b5a75370042e3f71007e4d4cccf9de826df8970df8df3238",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки предложения «рассчитаемся квартирами» и типовые запросы к сторонам сделки, а не юридическая консультация и не гарантия того, что сделка окажется безопасной или что ответы на запросы будут получены. Комплект делает видимым, что именно вам предлагают — оплаченную квартиру или долг за неё, — и переводит решение из «по старой памяти» в решение по проверенным фактам.",
+          "after": "Проверьте предложение о расчёте квартирами: оплачена ли квартира, какие права передаются и какие обязательства остаются. Запросите подтверждающие документы у сторон сделки до принятия решения."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+      "input_sha256": "b164466a3e310095bce33d6b88901caa89ba185cae006d2ddd6e4d6f91f24316",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+      "output_sha256": "fef2c2fcc561c5f97a778e4ca8e42e5c161bdd4426240f3c38c2cc49484f2a21",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки предложения «рассчитаемся квартирами» и типовые запросы к сторонам сделки, а не юридическая консультация и не гарантия того, что сделка окажется безопасной или что ответы на запросы будут получены. Комплект делает видимым, что именно вам предлагают — оплаченную квартиру или долг за неё, — и переводит решение из «по старой памяти» в решение по проверенным фактам.",
+          "after": "Проверьте предложение о расчёте квартирами: оплачена ли квартира, какие права передаются и какие обязательства остаются. Запросите подтверждающие документы у сторон сделки до принятия решения."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/13-raschet-metrami/53-zapros-status-obekta.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/13-raschet-metrami/53-zapros-status-obekta.docx",
+      "input_sha256": "081eedc305f56c1057e8c3280770d193c52c8a01c1edaae637a49c6ea64039e2",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/13-raschet-metrami/53-zapros-status-obekta.docx",
+      "output_sha256": "5b01454206d35970978e873f5a000d1853726fe14721b87cba12d17216958192",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки предложения «рассчитаемся квартирами» и типовые запросы к сторонам сделки, а не юридическая консультация и не гарантия того, что сделка окажется безопасной или что ответы на запросы будут получены. Комплект делает видимым, что именно вам предлагают — оплаченную квартиру или долг за неё, — и переводит решение из «по старой памяти» в решение по проверенным фактам.",
+          "after": "Проверьте предложение о расчёте квартирами: оплачена ли квартира, какие права передаются и какие обязательства остаются. Запросите подтверждающие документы у сторон сделки до принятия решения."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/13-raschet-metrami/54-zapros-sostoyanie-escrow.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/13-raschet-metrami/54-zapros-sostoyanie-escrow.docx",
+      "input_sha256": "62f65837be2fe1ca40b503996b4993216bc216dd6f0f06517c470f46e0f17141",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/13-raschet-metrami/54-zapros-sostoyanie-escrow.docx",
+      "output_sha256": "1669fdd3d1243b10ad50e3cf65c495bb5f5403fa1bc639396b37b4d02eaa9fa2",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки предложения «рассчитаемся квартирами» и типовые запросы к сторонам сделки, а не юридическая консультация и не гарантия того, что сделка окажется безопасной или что ответы на запросы будут получены. Комплект делает видимым, что именно вам предлагают — оплаченную квартиру или долг за неё, — и переводит решение из «по старой памяти» в решение по проверенным фактам.",
+          "after": "Проверьте предложение о расчёте квартирами: оплачена ли квартира, какие права передаются и какие обязательства остаются. Запросите подтверждающие документы у сторон сделки до принятия решения."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/14-peredacha-id-pod-podpis/01-slovar-poley.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/14-peredacha-id-pod-podpis/01-slovar-poley.docx",
+      "input_sha256": "dcf65153cb2cde6316682d441f2895f058a174402fea81115079ca5fc6cbb157",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/14-peredacha-id-pod-podpis/01-slovar-poley.docx",
+      "output_sha256": "4e061be983d34b7e25c4caed98d96fa2f0452dac1bc801511fa183d4b92c5e8c",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы передачи документации, а не юридическая консультация. Они не обещают, что комплект примут с первого раза и что оплату после передачи разблокируют: часть замечаний приходит независимо от того, как собран и передан комплект. Что они делают — оставляют след: какой документ, в каком составе, кому и когда передан.",
+          "after": "Формы фиксируют состав, адресата и дату передачи исполнительной документации. Замечания к комплекту рассматривайте по договору и обязательным требованиям."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/14-peredacha-id-pod-podpis/02-soprovoditelnoe-pismo-peredachi.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/14-peredacha-id-pod-podpis/02-soprovoditelnoe-pismo-peredachi.docx",
+      "input_sha256": "0c41c6275c74294c76f5719537582e6af7c02d6f50e6e56997f75835e59cc7ca",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/14-peredacha-id-pod-podpis/02-soprovoditelnoe-pismo-peredachi.docx",
+      "output_sha256": "110fdee76f0204c242ad4a9c1cfb7d17bd01b5b3865e201b45d133cae160900a",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы передачи документации, а не юридическая консультация. Они не обещают, что комплект примут с первого раза и что оплату после передачи разблокируют: часть замечаний приходит независимо от того, как собран и передан комплект. Что они делают — оставляют след: какой документ, в каком составе, кому и когда передан.",
+          "after": "Формы фиксируют состав, адресата и дату передачи исполнительной документации. Замечания к комплекту рассматривайте по договору и обязательным требованиям."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx",
+      "input_sha256": "6a7ba967e6088cb9aef04ac1e377178c0811af458fc4b35bf873017a42aa9a86",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx",
+      "output_sha256": "d440d13b3d87b1203c7fb5b8718a639e773ec79677ac3eee579c77583631c6f1",
+      "changes": [
+        {
+          "part": "xl/worksheets/sheet1.xml",
+          "before": "Прочитайте до того, как заполнять. Это типовой рабочий документ, а не юридическая консультация. Он не обещает, что комплект примут с первого раза: часть замечаний приходит независимо от того, как он собран и передан. Что он делает — фиксирует состав передачи: что именно, в каком объёме и в скольких экземплярах ушло второй стороне. Тексты прошли вычитку юристом в типовой редакции. Нормативная сверка форм и порядка передачи не проводилась, и вычитка её не заменяет. Приоритет всегда у вашего договора: состав документации, форма и адресат передачи, срок рассмотрения определяются им, а обязательные требования к формам вы проверяете сами в действующей редакции на дату передачи. Сроков и норм числом в файле нет намеренно: они меняются, а скачанный файл не обновляется.",
+          "after": "Форма фиксирует состав, объём и количество экземпляров передаваемой документации. Перед отправкой проверьте требования договора к составу, форме, адресату и сроку рассмотрения. Обязательные требования сверяйте в редакции, действующей на дату передачи."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/14-peredacha-id-pod-podpis/04-akt-priema-peredachi-id.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/14-peredacha-id-pod-podpis/04-akt-priema-peredachi-id.docx",
+      "input_sha256": "1c2e83d5104d42f424b8fe57d39e171a38332c8680b8c308978aa7a3498fcfe6",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/14-peredacha-id-pod-podpis/04-akt-priema-peredachi-id.docx",
+      "output_sha256": "e04e22cfed8b2ef56d2da778ba77b5f933f4e8f5910c9f6badf29fd3f8fb1f78",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы передачи документации, а не юридическая консультация. Они не обещают, что комплект примут с первого раза и что оплату после передачи разблокируют: часть замечаний приходит независимо от того, как собран и передан комплект. Что они делают — оставляют след: какой документ, в каком составе, кому и когда передан.",
+          "after": "Формы фиксируют состав, адресата и дату передачи исполнительной документации. Замечания к комплекту рассматривайте по договору и обязательным требованиям."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx",
+      "input_sha256": "bc66bd11e3d9d49dd4cffa882b352083a22af7e62f0d5404da16e241cfad17c6",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx",
+      "output_sha256": "cffc00f6c89e4b49ffbfad644905405c0088fbb5503cb97fde0fa5754940a3aa",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы передачи документации, а не юридическая консультация. Они не обещают, что комплект примут с первого раза и что оплату после передачи разблокируют: часть замечаний приходит независимо от того, как собран и передан комплект. Что они делают — оставляют след: какой документ, в каком составе, кому и когда передан.",
+          "after": "Формы фиксируют состав, адресата и дату передачи исполнительной документации. Замечания к комплекту рассматривайте по договору и обязательным требованиям."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx",
+      "input_sha256": "7508154f6ab37168866051e493e35904bacd54227ae91c9e1b9ca21c2c748ba2",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/15-otvet-na-pretenziyu-baza/30-slovar-poley-oborona.docx",
+      "output_sha256": "8df8c9affd21b4131769d2271c0e8536901da3fade1a4e7b785c3406452831f7",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "input_sha256": "afaae6bbf5eebb81891d66a5dae5982e8c1f5f8c9bf98d88e0c530b13cdc3ebb",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/15-otvet-na-pretenziyu-baza/31-algoritm-pri-navyazannoy-vine.docx",
+      "output_sha256": "ff28faefe425921a234a60ee2a2676b7114d05b391918f789c25a3d0251fb7c3",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/15-otvet-na-pretenziyu-baza/33-motivirovannyy-otvet-na-pretenziyu.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/15-otvet-na-pretenziyu-baza/33-motivirovannyy-otvet-na-pretenziyu.docx",
+      "input_sha256": "acc94cd6957ca29d8ca288c31a012044745802900916f4b69e7a4080d496c1b0",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/15-otvet-na-pretenziyu-baza/33-motivirovannyy-otvet-na-pretenziyu.docx",
+      "output_sha256": "3e401efc623988a604d7520e37f17e9e3703d8a0c69f9a6c557eea319bfe74a5",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "input_sha256": "2273a1577a28d76a9dce96625f1a53ceac015e5fc42a352ce171d23b10fcb282",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/15-otvet-na-pretenziyu-baza/34-vozrazhenie-na-odnostoronniy-akt.docx",
+      "output_sha256": "d3b76e0ebc01debb34d41bf77dcba436c015b4b96c185bc8c1629496f419362f",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/15-otvet-na-pretenziyu-baza/36-otvet-na-garantiynuyu-pretenziyu.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/15-otvet-na-pretenziyu-baza/36-otvet-na-garantiynuyu-pretenziyu.docx",
+      "input_sha256": "f764eb4e9e35c531cb2a02622246eafdbc58c82899b3dc912eaff0c3ff46a62f",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/15-otvet-na-pretenziyu-baza/36-otvet-na-garantiynuyu-pretenziyu.docx",
+      "output_sha256": "9611eae5007544eb80eaa2ac4a7c053080f1fe37bfeb38f76e5c6d66bff1afe1",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/15-otvet-na-pretenziyu-baza/39-vozrazhenie-na-zachet-uderzhanie.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/15-otvet-na-pretenziyu-baza/39-vozrazhenie-na-zachet-uderzhanie.docx",
+      "input_sha256": "aa43913bc378f4375235c28a168e44c7fdaeddd9fd71a3e67eccc0feb79756e0",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/15-otvet-na-pretenziyu-baza/39-vozrazhenie-na-zachet-uderzhanie.docx",
+      "output_sha256": "a7f53b4fd4d63c0356e5c6aae73d6655646a565915ad28ddf68b63a7aa207354",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "input_sha256": "99d3539f6f507013513c710ff74303acad94e76e82044ad6eb884908b292e190",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/15-otvet-na-pretenziyu-baza/43-pamyatka-kto-komu-otvechaet.docx",
+      "output_sha256": "50969bf4e26a717c3026a147d5894dbf4ac53dde38bd3018b4cb3093824bd15e",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "input_sha256": "3a04ec2548128447728daff3704a3b47aaa25d2f82b412d60747f005f6ee8e7e",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/15-otvet-na-pretenziyu-baza/44-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "output_sha256": "306e03b7c971cd30c5884c32ac061d35bd4be6192d439a86b8637a980a836a14",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/16-chto-v-smete-ne-oplatyat/60-slovar-poley-smeta.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/16-chto-v-smete-ne-oplatyat/60-slovar-poley-smeta.docx",
+      "input_sha256": "301dd6202e99b3710b8fc6b2234bf469077fd07dd83d51509825fc21f5395c9f",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/16-chto-v-smete-ne-oplatyat/60-slovar-poley-smeta.docx",
+      "output_sha256": "3c5d9d05a24529b7c1bb222626151f2bdac13a92de2b976c207fb81cecde41d7",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки сметы и рабочие формы к нему, а не юридическая консультация, не составление сметы и не гарантия того, что генподрядчик согласится включить затраты. Комплект делает видимым, чего смета не оплачивает, — пока цена ещё обсуждается.",
+          "after": "Порядок проверки сметы и рабочие формы помогают выявить затраты, не учтённые в цене, до согласования условий с генподрядчиком."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/16-chto-v-smete-ne-oplatyat/61-algoritm-proverki-smety.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/16-chto-v-smete-ne-oplatyat/61-algoritm-proverki-smety.docx",
+      "input_sha256": "37a7552e01ea0ca94222e47d607ebfca451d6d25602e4427f9b9dbd8e643ce2b",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/16-chto-v-smete-ne-oplatyat/61-algoritm-proverki-smety.docx",
+      "output_sha256": "d1f7a4ee4172c5d90451df64bb6681175c22548d9e9d411b2dc8f28b3142bc71",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки сметы и рабочие формы к нему, а не юридическая консультация, не составление сметы и не гарантия того, что генподрядчик согласится включить затраты. Комплект делает видимым, чего смета не оплачивает, — пока цена ещё обсуждается.",
+          "after": "Порядок проверки сметы и рабочие формы помогают выявить затраты, не учтённые в цене, до согласования условий с генподрядчиком."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/16-chto-v-smete-ne-oplatyat/62-chek-list-vypadayushchih-zatrat.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/16-chto-v-smete-ne-oplatyat/62-chek-list-vypadayushchih-zatrat.docx",
+      "input_sha256": "0d767d182cf5a566edd2ff2dbac31d5eb8f2cad6bde8536a6a222e060b6a5555",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/16-chto-v-smete-ne-oplatyat/62-chek-list-vypadayushchih-zatrat.docx",
+      "output_sha256": "8ba5c40e0e962547fcb1f921d71c434190f917b333d60eae12efe29c698c03ef",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки сметы и рабочие формы к нему, а не юридическая консультация, не составление сметы и не гарантия того, что генподрядчик согласится включить затраты. Комплект делает видимым, чего смета не оплачивает, — пока цена ещё обсуждается.",
+          "after": "Порядок проверки сметы и рабочие формы помогают выявить затраты, не учтённые в цене, до согласования условий с генподрядчиком."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/16-chto-v-smete-ne-oplatyat/64-zapros-o-vklyuchenii-zatrat.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/16-chto-v-smete-ne-oplatyat/64-zapros-o-vklyuchenii-zatrat.docx",
+      "input_sha256": "5eb9608b39ae3149dbe7deb55858846f9110bfb740c74787b2cd4c366cb65bcf",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/16-chto-v-smete-ne-oplatyat/64-zapros-o-vklyuchenii-zatrat.docx",
+      "output_sha256": "7d505b4777d39e02c4a4f312106fca774ed10bea98e583a3d3bc2b159cc3ca72",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки сметы и рабочие формы к нему, а не юридическая консультация, не составление сметы и не гарантия того, что генподрядчик согласится включить затраты. Комплект делает видимым, чего смета не оплачивает, — пока цена ещё обсуждается.",
+          "after": "Порядок проверки сметы и рабочие формы помогают выявить затраты, не учтённые в цене, до согласования условий с генподрядчиком."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/16-chto-v-smete-ne-oplatyat/65-protokol-raznoglasiy-po-smete.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/16-chto-v-smete-ne-oplatyat/65-protokol-raznoglasiy-po-smete.docx",
+      "input_sha256": "3059c154e2f9d7d19dcf907b5bb5ea1c9f626fa565ae126394b1b7cd90f752a1",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/16-chto-v-smete-ne-oplatyat/65-protokol-raznoglasiy-po-smete.docx",
+      "output_sha256": "4bccd86bb22f90ec20510d1010e70149a4045449f37666fe8c76ad133e5f9636",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки сметы и рабочие формы к нему, а не юридическая консультация, не составление сметы и не гарантия того, что генподрядчик согласится включить затраты. Комплект делает видимым, чего смета не оплачивает, — пока цена ещё обсуждается.",
+          "after": "Порядок проверки сметы и рабочие формы помогают выявить затраты, не учтённые в цене, до согласования условий с генподрядчиком."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/16-chto-v-smete-ne-oplatyat/66-pamyatka-nakladnye-i-smetnaya-pribyl.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/16-chto-v-smete-ne-oplatyat/66-pamyatka-nakladnye-i-smetnaya-pribyl.docx",
+      "input_sha256": "addc90788ccdeba00ab43dc83d9e89b4bdc1bb50df39cd9b493561b7fc482ddc",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/16-chto-v-smete-ne-oplatyat/66-pamyatka-nakladnye-i-smetnaya-pribyl.docx",
+      "output_sha256": "ed5d1da760131f588e5b69f7cc723030fa47ce74df6bec71bc262bbf47ce278d",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки сметы и рабочие формы к нему, а не юридическая консультация, не составление сметы и не гарантия того, что генподрядчик согласится включить затраты. Комплект делает видимым, чего смета не оплачивает, — пока цена ещё обсуждается.",
+          "after": "Порядок проверки сметы и рабочие формы помогают выявить затраты, не учтённые в цене, до согласования условий с генподрядчиком."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/16-chto-v-smete-ne-oplatyat/67-pamyatka-zimnee-udorozhanie-i-vzis.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/16-chto-v-smete-ne-oplatyat/67-pamyatka-zimnee-udorozhanie-i-vzis.docx",
+      "input_sha256": "e92c0e6b56df35c73dbffbd74b0dc3ed4d2e080c79707d37f182fa316e1e7bf2",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/16-chto-v-smete-ne-oplatyat/67-pamyatka-zimnee-udorozhanie-i-vzis.docx",
+      "output_sha256": "bfead6acbe027627ad5f70c7bf8b2706a60b7b80665d2fa1cf95bc0633f1e1ff",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки сметы и рабочие формы к нему, а не юридическая консультация, не составление сметы и не гарантия того, что генподрядчик согласится включить затраты. Комплект делает видимым, чего смета не оплачивает, — пока цена ещё обсуждается.",
+          "after": "Порядок проверки сметы и рабочие формы помогают выявить затраты, не учтённые в цене, до согласования условий с генподрядчиком."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/16-chto-v-smete-ne-oplatyat/68-pamyatka-musor-transport-nepredvidennye.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/16-chto-v-smete-ne-oplatyat/68-pamyatka-musor-transport-nepredvidennye.docx",
+      "input_sha256": "7c411b21cfb57fced28f7d7a4daec7cbc6dbd404f10ae490308416a16c69c205",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/16-chto-v-smete-ne-oplatyat/68-pamyatka-musor-transport-nepredvidennye.docx",
+      "output_sha256": "b79600604369205f5f2009b32670af4013d79079fa979ba7a9185f4f1f75fe89",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки сметы и рабочие формы к нему, а не юридическая консультация, не составление сметы и не гарантия того, что генподрядчик согласится включить затраты. Комплект делает видимым, чего смета не оплачивает, — пока цена ещё обсуждается.",
+          "after": "Порядок проверки сметы и рабочие формы помогают выявить затраты, не учтённые в цене, до согласования условий с генподрядчиком."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/17-odnostoronniy-akt-i-zachet/01-poryadok-pervogo-dnya.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/17-odnostoronniy-akt-i-zachet/01-poryadok-pervogo-dnya.docx",
+      "input_sha256": "67655cf0020d2ad59fe9df3e9a9cb1f29fde7b555fdf59e6ce39a4090b806a33",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/17-odnostoronniy-akt-i-zachet/01-poryadok-pervogo-dnya.docx",
+      "output_sha256": "c2c249083fee034c2896b3cb5410c42870b0ccc172a3e9a75e2d75c3d551b032",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы и порядок действий на один день — тот, в который вы получили односторонний акт о недостатках или уведомление о зачёте (удержании). Не юридическая консультация и не гарантия того, что требование снимут. Что комплект делает — помогает не согласиться письменно и в договорный срок, пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменных возражений на односторонний акт о недостатках или уведомление о зачёте (удержании). Направляйте возражения в установленный договором срок; фиксируйте оговорки при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/17-odnostoronniy-akt-i-zachet/02-vozrazhenie-na-odnostoronniy-akt.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/17-odnostoronniy-akt-i-zachet/02-vozrazhenie-na-odnostoronniy-akt.docx",
+      "input_sha256": "2c482a8f9f148ae09c7a1a1cadbcf9e91c73264be8bdf029a51b0def59a0875e",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/17-odnostoronniy-akt-i-zachet/02-vozrazhenie-na-odnostoronniy-akt.docx",
+      "output_sha256": "145c1fb881c7cb6647a991474d15f635b25bc00790c94975148a360359fe7867",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/17-odnostoronniy-akt-i-zachet/03-vozrazhenie-na-zachet-uderzhanie.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/17-odnostoronniy-akt-i-zachet/03-vozrazhenie-na-zachet-uderzhanie.docx",
+      "input_sha256": "aa43913bc378f4375235c28a168e44c7fdaeddd9fd71a3e67eccc0feb79756e0",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/17-odnostoronniy-akt-i-zachet/03-vozrazhenie-na-zachet-uderzhanie.docx",
+      "output_sha256": "a7f53b4fd4d63c0356e5c6aae73d6655646a565915ad28ddf68b63a7aa207354",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы для досудебного ответа на претензии заказчика/генподрядчика, а не юридическая консультация и не гарантия того, что претензию снимут. Комплект помогает не согласиться письменно и в срок — пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменного ответа на претензию заказчика или генподрядчика в установленный срок. Фиксируйте возражения и оговорки, в том числе при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/17-odnostoronniy-akt-i-zachet/04-slovar-poley.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/17-odnostoronniy-akt-i-zachet/04-slovar-poley.docx",
+      "input_sha256": "08f50084cf4272d5e9450e5c4fc413c1eeb68e4d15df6b431bdca96a1190bbcc",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/17-odnostoronniy-akt-i-zachet/04-slovar-poley.docx",
+      "output_sha256": "6081f33fd5d747dbf0435fe0acb10caaeb83f2efdf3305fe20a91c741d4a9ac3",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это формы и порядок действий на один день — тот, в который вы получили односторонний акт о недостатках или уведомление о зачёте (удержании). Не юридическая консультация и не гарантия того, что требование снимут. Что комплект делает — помогает не согласиться письменно и в договорный срок, пока молчание или акт сверки без оговорок не превратились в согласие.",
+          "after": "Формы для подготовки письменных возражений на односторонний акт о недостатках или уведомление о зачёте (удержании). Направляйте возражения в установленный договором срок; фиксируйте оговорки при подписании акта сверки."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "input_sha256": "8d719e6ac7d8cfc809082b301d510ce192d3dcce3f132e91216d74e340dfb3ac",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/18-genpodryadchik-bankrotitsya/01-poryadok-pervogo-dnya-bankrotstvo.docx",
+      "output_sha256": "1127633b2c73ecdc033e65b3c47be7a65fa4aa899e889a4f4c8eeca702d936ad",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовой комплект документов, а не юридическая консультация и не гарантия возврата денег. Он не вычитан юристом.",
+          "after": "Комплект документов для подготовки и сопровождения требования о возврате денежных средств."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "input_sha256": "23d113ed7107bea8914d4efd0aa934155f91402f995757b7f3dd2d3f8042e88c",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/18-genpodryadchik-bankrotitsya/02-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+      "output_sha256": "d150e88342ee55f87ca272293a516e4f110c095f37070feaa524210255eef9ca",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовой комплект документов, а не юридическая консультация и не гарантия возврата денег. Он не вычитан юристом.",
+          "after": "Комплект документов для подготовки и сопровождения требования о возврате денежных средств."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "input_sha256": "5f6daec979cc56a0f959eef05708d64dac33aa3886fafef3f190350efdd733ab",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/18-genpodryadchik-bankrotitsya/03-chto-delat-esli-srok-propushchen.docx",
+      "output_sha256": "5b6f21577bd30bfd9edf514fc4f1ddf65a90017084fc29e58c27be049797a24a",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовой комплект документов, а не юридическая консультация и не гарантия возврата денег. Он не вычитан юристом.",
+          "after": "Комплект документов для подготовки и сопровождения требования о возврате денежных средств."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "input_sha256": "e9919a93487a696e766554f49e8f16d21efff2d5d59e13f2b0bfc9d155d33d83",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/18-genpodryadchik-bankrotitsya/04-slovar-poley-bankrotstvo-vhod.docx",
+      "output_sha256": "ff9cd3d3dc120528fa9c3d8ef6ad19aa2c6fc13c6d7d48d856fa2bb47226e602",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовой комплект документов, а не юридическая консультация и не гарантия возврата денег. Он не вычитан юристом.",
+          "after": "Комплект документов для подготовки и сопровождения требования о возврате денежных средств."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/19-kvartiry-vmesto-deneg/01-poryadok-dnya-kogda-prosyat-podpisat.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/19-kvartiry-vmesto-deneg/01-poryadok-dnya-kogda-prosyat-podpisat.docx",
+      "input_sha256": "b96b3fd0a805710241d737dc697b3de8caa2ffed92d85f8cd9a90b7cce41ab0c",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/19-kvartiry-vmesto-deneg/01-poryadok-dnya-kogda-prosyat-podpisat.docx",
+      "output_sha256": "eaac23207f874967e99ffa163f38f50faa76cb99e91916b14bbbb5223f717408",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок действий дня, в который вам дали на подпись бумаги по расчёту квартирами, и ключ к двум типовым запросам. Не юридическая консультация, не оценка вашей сделки и не обещание, что ответы на запросы будут получены. Ступень доводит день до отправленных писем — и на этом заканчивается: она не отвечает на вопрос, входить ли в сделку, и прямо говорит, где этот ответ.",
+          "after": "При получении документов о расчёте квартирами направьте два запроса для проверки прав и обязательств сторон. Решение о сделке принимайте после изучения ответов и подтверждающих документов."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/19-kvartiry-vmesto-deneg/02-zapros-sostoyanie-escrow.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/19-kvartiry-vmesto-deneg/02-zapros-sostoyanie-escrow.docx",
+      "input_sha256": "8e1d58909bd0d5760c0012a2d4f209afb5d789302239f185995c3e346f3f22c9",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/19-kvartiry-vmesto-deneg/02-zapros-sostoyanie-escrow.docx",
+      "output_sha256": "d23650a5cf5ca7c03dc7ef69191284cf68b69eb89e8271bf527a04ce84d71d0b",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки предложения «рассчитаемся квартирами» и типовые запросы к сторонам сделки, а не юридическая консультация и не гарантия того, что сделка окажется безопасной или что ответы на запросы будут получены. Комплект делает видимым, что именно вам предлагают — оплаченную квартиру или долг за неё, — и переводит решение из «по старой памяти» в решение по проверенным фактам.",
+          "after": "Проверьте предложение о расчёте квартирами: оплачена ли квартира, какие права передаются и какие обязательства остаются. Запросите подтверждающие документы у сторон сделки до принятия решения."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/19-kvartiry-vmesto-deneg/03-zapros-status-obekta.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/19-kvartiry-vmesto-deneg/03-zapros-status-obekta.docx",
+      "input_sha256": "86544986724fbfd90753c8ba24489f277505df9ddfd4c91d8998f41887d7c32a",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/19-kvartiry-vmesto-deneg/03-zapros-status-obekta.docx",
+      "output_sha256": "f93c18a0d7d473f8e921e34a400e847162f3ef7a94d68f9b4a902ca6741ff83d",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок проверки предложения «рассчитаемся квартирами» и типовые запросы к сторонам сделки, а не юридическая консультация и не гарантия того, что сделка окажется безопасной или что ответы на запросы будут получены. Комплект делает видимым, что именно вам предлагают — оплаченную квартиру или долг за неё, — и переводит решение из «по старой памяти» в решение по проверенным фактам.",
+          "after": "Проверьте предложение о расчёте квартирами: оплачена ли квартира, какие права передаются и какие обязательства остаются. Запросите подтверждающие документы у сторон сделки до принятия решения."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/19-kvartiry-vmesto-deneg/04-slovar-poley-zaprosy.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/19-kvartiry-vmesto-deneg/04-slovar-poley-zaprosy.docx",
+      "input_sha256": "afdb614cd4c09ad1a0b7f40a8e166c3b3bbcc2b7c7648a700c4166add5e34665",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/19-kvartiry-vmesto-deneg/04-slovar-poley-zaprosy.docx",
+      "output_sha256": "9b999b47d007e39b236369b0bd1c0754133aacc33ae0bfac38e95c2113e20215",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это порядок действий дня, в который вам дали на подпись бумаги по расчёту квартирами, и ключ к двум типовым запросам. Не юридическая консультация, не оценка вашей сделки и не обещание, что ответы на запросы будут получены. Ступень доводит день до отправленных писем — и на этом заканчивается: она не отвечает на вопрос, входить ли в сделку, и прямо говорит, где этот ответ.",
+          "after": "При получении документов о расчёте квартирами направьте два запроса для проверки прав и обязательств сторон. Решение о сделке принимайте после изучения ответов и подтверждающих документов."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/20-trebuyut-vernut-avans/01-poryadok-pervyh-dney-vozvrat.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/20-trebuyut-vernut-avans/01-poryadok-pervyh-dney-vozvrat.docx",
+      "input_sha256": "affa7e061aba009e79f79b130d4884d5db438b46f8d00a1264b4a0b75afde0ab",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/20-trebuyut-vernut-avans/01-poryadok-pervyh-dney-vozvrat.docx",
+      "output_sha256": "ba43b50d2ce4180bc816a2d6f45d3531e45a460c9d0be74d5436981c0792e3eb",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовые документы первых дней, а не юридическая консультация и не гарантия того, что возвращать аванс не придётся или что вернуть придётся меньше. Что они делают — не дают пропустить срок, не дают признать чужую цифру и заставляют вторую сторону показать документы, на которых стоит её сумма.",
+          "after": "Документы первых дней после требования вернуть аванс помогают зафиксировать позицию, соблюсти сроки и запросить документы, подтверждающие расчёт заявленной суммы."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/20-trebuyut-vernut-avans/02-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/20-trebuyut-vernut-avans/02-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "input_sha256": "dbe369faa4517d227adf0bd98e8a084738e705b8f5a648245b22110cae67b589",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/20-trebuyut-vernut-avans/02-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "output_sha256": "322f7df7f8eb8465e3fc57d10fe059ab97be994061ce91cef43f60c0f65ba923",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это расчётный и переговорный инструмент, а не юридическая консультация и не гарантия того, что условия аванса удастся изменить или что возвращать аванс не придётся. Генподрядчик вправе не согласиться ни на один пункт. Комплект даёт аргумент и цифру, а не рычаг.",
+          "after": "Расчёт показывает финансовые последствия условий аванса и аргументы для переговоров. Изменение условий требует согласия генподрядчика."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/20-trebuyut-vernut-avans/03-zapros-dokumentov-po-trebovaniyu.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/20-trebuyut-vernut-avans/03-zapros-dokumentov-po-trebovaniyu.docx",
+      "input_sha256": "62aa2cce5e62ada9be1a933b30c580f0e30478e1fdfc28f4c1fa3032f290747c",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/20-trebuyut-vernut-avans/03-zapros-dokumentov-po-trebovaniyu.docx",
+      "output_sha256": "4f922ddfcf1e9c0ddac8ec0fa04fa6f376234cb97ab33b1a36d48f57aa7d2af3",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовые документы первых дней, а не юридическая консультация и не гарантия того, что возвращать аванс не придётся или что вернуть придётся меньше. Что они делают — не дают пропустить срок, не дают признать чужую цифру и заставляют вторую сторону показать документы, на которых стоит её сумма.",
+          "after": "Документы первых дней после требования вернуть аванс помогают зафиксировать позицию, соблюсти сроки и запросить документы, подтверждающие расчёт заявленной суммы."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    },
+    {
+      "source": "products-storage/20-trebuyut-vernut-avans/04-slovar-poley-vozvrat-avansa.docx",
+      "input_candidate": "tools/candidates/portfolio-owner-editorial-v3-20261013/20-trebuyut-vernut-avans/04-slovar-poley-vozvrat-avansa.docx",
+      "input_sha256": "0718f3e5c9562dc5f796f56f4f8f5c4ecc5bbb558b09e2a10a37081255758044",
+      "output_candidate": "tools/candidates/portfolio-owner-editorial-legal-v4-20261013/20-trebuyut-vernut-avans/04-slovar-poley-vozvrat-avansa.docx",
+      "output_sha256": "5b9b1cb7369fead0f9fdcfce6d68e1c0fe302d52813e4fd7209b1b6008fa1630",
+      "changes": [
+        {
+          "part": "word/document.xml",
+          "before": "Это типовые документы первых дней, а не юридическая консультация и не гарантия того, что возвращать аванс не придётся или что вернуть придётся меньше. Что они делают — не дают пропустить срок, не дают признать чужую цифру и заставляют вторую сторону показать документы, на которых стоит её сумма.",
+          "after": "Документы первых дней после требования вернуть аванс помогают зафиксировать позицию, соблюсти сроки и запросить документы, подтверждающие расчёт заявленной суммы."
+        }
+      ],
+      "status": "LEGAL_DISCLAIMER_DELTA_STRUCTURAL_PASS_ONLY"
+    }
+  ],
+  "files": 88,
+  "units": 98,
+  "unique_replacements": 26,
+  "semantic_review": "PENDING",
+  "native": "PENDING",
+  "visual": "PENDING",
+  "pdf": "PENDING",
+  "G1_G8": "OPEN",
+  "release": "BLOCKED"
+}
