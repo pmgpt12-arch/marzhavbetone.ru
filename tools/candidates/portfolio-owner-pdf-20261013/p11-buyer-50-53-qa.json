@@ -1,0 +1,87 @@
+{
+  "utc": "2026-10-13T15:56:05.085262+00:00",
+  "input_commit": "17d66d741a930d40a5bf866e38440b77a12e778f",
+  "scope": "P11_TWO_CHANGED_DOCX_NATIVE_AND_ALL_SEVEN_BUYER_LEXICAL_CROSS_REFERENCE",
+  "native_job": "p11-buyer-50-53-word-20261013-v1",
+  "native_report_sha256": "b299876ce9500d67e37c2309d183ac160a2c03f317705bd08e5046ef3effbcc4",
+  "native_files": [
+    {
+      "name": "50-slovar-poley-raschet-metrami.docx",
+      "source_sha256": "966a058f693ea4accec5b40e70e8df99c0e17cff9e2fbfdbe21b0759ddc16995",
+      "pdf_sha256": "7a01579564eb89515e11b0933130655da78db16ebc8626e68447bdaa3b1cf5f3",
+      "pages": 5,
+      "page_text_lengths": [
+        2227,
+        3079,
+        3180,
+        3229,
+        3049
+      ],
+      "status": "PASS_NATIVE_WORD_OPEN_EXPORT_AND_PAGE_COMPLETENESS"
+    },
+    {
+      "name": "53-zapros-status-obekta.docx",
+      "source_sha256": "602f762c28e3e04a45ea4730b24527e0ef06fdfec67480e6a6bdfce66462ffba",
+      "pdf_sha256": "688f3dc987ad69fd77b0d2a380f0c7fa9ba15573a93d57a6ed19029efc612cf8",
+      "pages": 3,
+      "page_text_lengths": [
+        1949,
+        1126,
+        1915
+      ],
+      "status": "PASS_NATIVE_WORD_OPEN_EXPORT_AND_PAGE_COMPLETENESS"
+    }
+  ],
+  "frozen_input_manifest": [
+    {
+      "name": "00-START-HERE.txt",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/00-START-HERE.txt",
+      "sha256": "d124d19bc978b430cd5c3ba931d8a15048016308d8c85a013ce30c21394ea32b",
+      "candidate": true
+    },
+    {
+      "name": "50-slovar-poley-raschet-metrami.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+      "sha256": "966a058f693ea4accec5b40e70e8df99c0e17cff9e2fbfdbe21b0759ddc16995",
+      "candidate": true
+    },
+    {
+      "name": "51-algoritm-raschet-metrami.pdf",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/51-algoritm-raschet-metrami.pdf",
+      "sha256": "c996ab8e4a79d496bee5a6c54d9c98aa44453db9d0b322506a68c8d9de297488",
+      "candidate": true
+    },
+    {
+      "name": "52-chek-list-raschet-metrami.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+      "sha256": "d7a392aa4c7982c9da3b8c73dae88a7e5e29059b07469f755e01aeb180a17112",
+      "candidate": true
+    },
+    {
+      "name": "53-zapros-status-obekta.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/53-zapros-status-obekta.docx",
+      "sha256": "602f762c28e3e04a45ea4730b24527e0ef06fdfec67480e6a6bdfce66462ffba",
+      "candidate": true
+    },
+    {
+      "name": "54-zapros-sostoyanie-escrow.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/54-zapros-sostoyanie-escrow.docx",
+      "sha256": "4ab1c0c3a8b2f5f84f6dfa6668b6701c3153a1714dfcc3f20314a3a916e463a4",
+      "candidate": true
+    },
+    {
+      "name": "55-pamyatka-punkt-ustupki-escrow.pdf",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf",
+      "sha256": "e9260870acead2e3478fa8d84f612f3cbedf56f853f29a5cd44391a2379625f3",
+      "candidate": true
+    }
+  ],
+  "buyer_lexical": "PASS",
+  "cross_reference_fields": "PASS_53_54_IN_50",
+  "buyer_scenario_escrow": "PASS_STATIC_CONSISTENCY_ONLY",
+  "normative_independent": "OPEN",
+  "buyer_independent": "OPEN",
+  "MANIFEST_release_price": "OPEN",
+  "G1_G8": "HOLD",
+  "release": "HOLD"
+}
