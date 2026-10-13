@@ -808,3 +808,11 @@
   - products-storage/ARTIFACT-INVENTORY.json
   - tools/build_artifact_inventory.py
   решение: ''
+
+- id: test_p2_native_word_evidence
+  команда: python3 tools/test_p2_native_word_evidence.py
+  класс: public
+  блокирует: true
+  зачем: P2 exact native Word DOCX/PDF/report and four-page visual evidence; rejects stale hashes and false product acceptance
+  требует: []
+  решение: Evidence files are mandatory in the test itself; missing evidence fails closed. No new Office execution.
