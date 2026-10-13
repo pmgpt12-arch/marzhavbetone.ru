@@ -111,6 +111,7 @@ def verify_receipt(record, qa, source_parts, candidate_parts, changed_parts):
     native=ET.parse(NATIVE_REPORT).getroot()
     assert native.get("job")==qa["native_job_id"] and native.get("status")=="PASS", "NATIVE_REPORT_JOB_DRIFT"
     assert native.get("excel_version")=="16.0" and native.get("excel_build")=="4324", "NATIVE_EXCEL_VERSION"
+    assert native.get("scope")=="NATIVE_OPEN_EXPORT_AND_HEADER_REPAIR_ONLY; numeric scenarios, UI typing/paste, legal/buyer acceptance not performed", "NATIVE_SCOPE_OVERCLAIM"
     checks={c.get("name"):c.attrib for c in native.findall("check")}
     assert len(checks)==4 and all(c.get("pass")=="True" for c in checks.values()), "NATIVE_CHECKS_DRIFT"
     assert checks["p1395header:input_sha"]["actual"]==CANDIDATE_SHA, "NATIVE_INPUT_SHA_DRIFT"

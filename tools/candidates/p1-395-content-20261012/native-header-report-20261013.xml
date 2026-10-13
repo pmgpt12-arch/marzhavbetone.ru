@@ -1,4 +1,4 @@
-<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="p1-395-native-header-20261013-v1" excel_version="16.0" excel_build="4324">
+<report status="PASS" scope="NATIVE_OPEN_EXPORT_AND_HEADER_REPAIR_ONLY; numeric scenarios, UI typing/paste, legal/buyer acceptance not performed" job="p1-395-native-header-20261013-v1" excel_version="16.0" excel_build="4324">
   <check name="p1395header:input_sha" pass="True" expected="8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34" actual="8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34" />
   <check name="p1395header:sheet_protected" pass="True" expected="False" actual="False" />
   <check name="p1395header:pdf_export" pass="True" expected="%PDF-" actual="bytes=213436" />
