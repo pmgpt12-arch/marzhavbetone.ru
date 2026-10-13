@@ -59,7 +59,29 @@ def run():
     assert forb(updated+" без подписанных бумаг"),"NEGATIVE_3_NOT_CAUGHT"
     rec=json.loads(RECEIPT.read_text(encoding="utf-8"))
     assert rec["candidate_sha256"]==CANDIDATE_SHA and rec["parent_sha256"]==PARENT_SHA, "RECEIPT_MISMATCH"
-    print("P2_INSTRUCTION_STYLE_PASS: SHA exact, 17/17 ZIP parts, 13/97 paragraphs corrected, A4, 3 negative tests; no native Word, legal, buyer, G1-G8")
+    pairs={
+        "00-START-HERE.txt":("ffd45c0ddb86c0d5013abaeec73a8486093b27077dee67df3e9cfe6a6bbc9bfa",
+                              "125057d148f1ba42186bad9a10a3958ee32ae17b8f4503730aadcb0aecc96d10"),
+        "MANIFEST.md":("007e8e0c6152e495d7a8198db3901cffe9f64bcb2a26601afddbf0e98870ab73",
+                       "ca6b059e08144052307a91b734b51ed6f148c1b878b6324d4ed80c8c236f4a9b")}
+    extra=json.loads((DIR/"entrypoint-text-qa.json").read_text(encoding="utf-8"))
+    for name,(previous_sha,current_sha) in pairs.items():
+        parent=(DIR/(name+".parent")).read_bytes()
+        current=(DIR/name).read_bytes()
+        assert sha(parent)==previous_sha and sha(current)==current_sha,("ENTRYPOINT_SHA_DRIFT",name)
+        assert refs(parent.decode("utf8"))==refs(current.decode("utf8")),("ENTRYPOINT_REFS_CHANGED",name)
+        assert extra["sources"][name]["candidate_sha256"]==current_sha,("EXTRA_RECEIPT_MISMATCH",name)
+    start=(DIR/"00-START-HERE.txt").read_text(encoding="utf8")
+    manifest=(DIR/"MANIFEST.md").read_text(encoding="utf8")
+    assert "без подписанных бумаг" not in start.casefold()
+    assert "допы согласованы" not in start.casefold() and "на сами деньги" not in start.casefold()
+    assert "без предварительного\n   письменного согласования" in start
+    assert "урегулирование задолженности за выполненные работы" in start
+    assert "29 900 ₽" in start, "PRICE_CLAIM_UNINTENTIONALLY_CHANGED"
+    assert "обещано бесплатным материалом" not in manifest.casefold()
+    assert manifest.count("Допы") == 1 and "Допы не в подарок" in manifest
+    assert extra["unchanged_refs"] is True, "INDEPENDENT_REFERENCE_GATE_UNRECORDED"
+    print("P2_ENTRYPOINT_STYLE_PASS: DOCX+PDF+2 text artifacts SHA exact, 13/97 paragraphs, 17 OOXML parts, A4, 3 negatives, refs preserved; no native Word/legal/buyer/G1-G8")
     return 0
 if __name__=="__main__":
     try:sys.exit(run())
