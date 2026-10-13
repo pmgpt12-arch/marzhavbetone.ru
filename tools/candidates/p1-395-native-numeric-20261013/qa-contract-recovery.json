@@ -1,0 +1,33 @@
+{
+  "status": "PATCHED_PENDING_TARGETED_QA",
+  "observed_failed_tests": [
+    "test_exact_word_pass_reused_without_new_job",
+    "test_cached_native_fail_cannot_override_raw_pass"
+  ],
+  "root_cause": "Tests selected records[-1] as the Word checkpoint; append-only history now ends with a numeric checkpoint. Existing raw-report binder only covered open/export gates.",
+  "classification": "QA_TEST_FIXTURE_IDENTITY_AND_MULTI_FILE_REPORT_SCOPE",
+  "rule": "Select named historical fixtures by stable identity; bind numeric raw report input SHA to its own file tag, not every input in a batch.",
+  "changes": [
+    {
+      "path": "tools/build_artifact_registry.py",
+      "before_sha256": "b888d60718586e3d63e8a3438d9a291ccec78b32244d29602a728887523c445a",
+      "after_sha256": "248426c605beacc9de5fefed98645c9f81405756cb0a48aebb647020ec586d7a"
+    },
+    {
+      "path": "tools/test_artifact_registry.py",
+      "before_sha256": "4633259c128665393a8d562fbd4361e5b02c9a965d025d3547dc7e61ae6ec2ff",
+      "after_sha256": "719cf6c9b0483dcaf09b7e4c49373d5e6fec1bc5ddf64e2b26fdee5d0a1ea2f9"
+    },
+    {
+      "path": "tools/test_p1_395_native_numeric_evidence.py",
+      "before_sha256": "8f6744b751f25eb954fcd92814cf18f3a1c0953f59d0f6ef030c667e71a49506",
+      "after_sha256": "0edbd6ae2673025797e77cbd917f49cb4b3420590cd85fd5f6da37a572fc3f80"
+    }
+  ],
+  "regressions_added": 4,
+  "native_fixture_or_product_changes": 0,
+  "native_reexecutions": 0,
+  "first_failed_validation": "validation.json",
+  "first_failed_validation_sha256": "724c8263cdf3ec33e98260c6b960e20153ce7b2928306eb2a80474c32152994a",
+  "do_not_repeat_native_job": "p1-395-numeric-four-20261013-v1"
+}

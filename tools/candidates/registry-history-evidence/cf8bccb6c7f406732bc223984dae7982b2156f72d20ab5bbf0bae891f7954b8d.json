@@ -1,0 +1,39 @@
+{
+  "decision": {
+    "accepted_scope": null,
+    "actual_input_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+    "changed_dimensions": [
+      "contract_sha256"
+    ],
+    "decision": "DELTA_RECHECK_REQUIRED",
+    "do_not_launch_duplicate": false,
+    "g1_g8_status": "NOT_FULLY_ACCEPTED",
+    "gate_id": "native_open_export",
+    "job_id": "p1-395-native-header-20261013-v1",
+    "next_atomic_task": "Resolve P1-PRINT-ORPHAN-NOTES as layout-only delta; run new-SHA native and filled numeric checks only after that delta",
+    "record_id": "P1-395-HEADER-NATIVE-20261013",
+    "release_status": "BLOCKED"
+  },
+  "new_contract": {
+    "native_value_assertions": 42,
+    "output_assertions": 24,
+    "plan_sha256": "e428e7f48b897c41429263faba3a818df980e020843733cf195df2e8695f97f9",
+    "scope": "NATIVE_RECALC_FORMULA_PRESERVING_DERIVED_FIXTURES_ONLY",
+    "source_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34"
+  },
+  "old_contract": {
+    "definition": "Exact XLSX native open/export and source unchanged; not numeric scenario verification",
+    "gate_id": "native_open_export",
+    "release_not_implied": true,
+    "subject": "exact immutable file"
+  },
+  "reason": "New numeric contract, not a repetition of accepted open/export; target environment is rechecked from returned native report",
+  "request": {
+    "actual_input_path": "/home/denis/projects/mb001-p1-395-copy-correction-20261012/tools/candidates/p1-395-content-20261012/14-raschet-procentov-395-gk.xlsx",
+    "contract_sha256": "c38872f96854296c74300c60952fee436559824f358389259b3c323bcac80bc7",
+    "dependency_fingerprint": "48c867fe9d2510b662305de0851698928a0b6202c7a38fd5c0570c3963c6d659",
+    "environment_fingerprint": "1430bc0641a8f2ec2ecec336f7a591f5f809479d8c4083a6226918c21578e8c8",
+    "gate_id": "native_open_export",
+    "record_id": "P1-395-HEADER-NATIVE-20261013"
+  }
+}
