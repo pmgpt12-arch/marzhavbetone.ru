@@ -1,0 +1,113 @@
+{
+  "acceptance_limits": {
+    "canonical_replacement_accepted": false,
+    "content_accepted": false,
+    "independent_visual_accepted": false,
+    "legal_accepted": false,
+    "release_accepted": false
+  },
+  "base_sha": "7d1a04115926ec748e9a83b72685de3da911aeb8",
+  "candidate_only": true,
+  "counts": {
+    "documents": 4,
+    "fail_pages": 0,
+    "pages": 11,
+    "pass_pages": 11
+  },
+  "criteria": {
+    "all_pages_inspected": true,
+    "graphite_white_b2b": true,
+    "muted_gold_accent": "B08D57 visible once above first-page title for each remediated document",
+    "no_clipping": true,
+    "no_overlap": true
+  },
+  "id": "P11-T6-GOLD-ACCENT-AUTHOR-VISUAL-REVIEW-20261014-V2",
+  "model_calls": 0,
+  "native_verification_sha256": "5118b6f7280b0e1278051563625b75497c3385f862e647d9325740964c5f55e4",
+  "next_step": "Commit exact candidate/evidence package; require independent exact-head visual review and exact-head CI before merge.",
+  "pages": [
+    {
+      "assessment": "PASS: muted-gold top accent is visible above the title; graphite/white hierarchy is coherent; title, table, and body fit without clipping or overlap.",
+      "file": "50-slovar-poley-raschet-metrami.docx",
+      "image": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/native-v2/p11gold50v2-1.png",
+      "sha256": "a6c6d6dafa5e7754ac34f9e07e70df9ec80a711105bd05043f005b99c9989263",
+      "verdict": "PASS"
+    },
+    {
+      "assessment": "PASS: continuation table remains readable and aligned; no clipping, overlap, or accidental accent duplication.",
+      "file": "50-slovar-poley-raschet-metrami.docx",
+      "image": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/native-v2/p11gold50v2-2.png",
+      "sha256": "56fd0c65c1f3eb5d2c81e9badb958776cb4197982d9692c78f8755b29a4aa1cb",
+      "verdict": "PASS"
+    },
+    {
+      "assessment": "PASS: muted-gold top accent is visible above the title; hierarchy is clear; no clipping or overlap.",
+      "file": "52-chek-list-raschet-metrami.docx",
+      "image": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/native-v2/p11gold52v2-1.png",
+      "sha256": "8e3d7e691405e73795cc88749247362ce9e00cbe74f40eda1b1ab817c85253e9",
+      "verdict": "PASS"
+    },
+    {
+      "assessment": "PASS: checklist continuation and table structure are readable; no clipping or overlap.",
+      "file": "52-chek-list-raschet-metrami.docx",
+      "image": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/native-v2/p11gold52v2-2.png",
+      "sha256": "12cd3bab259a01cb5c64fe7fea2342cd60403dc3c9a4cd9425fde60fadacef40",
+      "verdict": "PASS"
+    },
+    {
+      "assessment": "PASS: checklist sections 6–7 are readable with adequate margins; no clipping, overlap, or stranded content.",
+      "file": "52-chek-list-raschet-metrami.docx",
+      "image": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/native-v2/p11gold52v2-3.png",
+      "sha256": "d6dc4346e432e9a3ec271acce0a47e7f127caaebcd61e7216cf57b96f027b5ba",
+      "verdict": "PASS"
+    },
+    {
+      "assessment": "PASS: muted-gold top accent is visible above the title; callout and request opening fit cleanly; no clipping or overlap.",
+      "file": "53-zapros-status-obekta.docx",
+      "image": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/native-v2/p11gold53v2-1.png",
+      "sha256": "17cb5394cf38283e3622cd17a7e68e32d2f79dbfbd9c7648e44a2601efd9e870",
+      "verdict": "PASS"
+    },
+    {
+      "assessment": "PASS: request continuation, placeholders, and signature block are readable; no clipping or overlap.",
+      "file": "53-zapros-status-obekta.docx",
+      "image": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/native-v2/p11gold53v2-2.png",
+      "sha256": "b2abafccdf5c20884edc5d8afd141cc5ffb8ae5bf4db34008795e292d7729b41",
+      "verdict": "PASS"
+    },
+    {
+      "assessment": "PASS: buyer instruction page is readable with stable hierarchy and margins; no clipping or overlap.",
+      "file": "53-zapros-status-obekta.docx",
+      "image": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/native-v2/p11gold53v2-3.png",
+      "sha256": "94677f1aa730fca500ca7a72a7f5974ac1fec2c009f55541984d230aa21a4c6e",
+      "verdict": "PASS"
+    },
+    {
+      "assessment": "PASS: muted-gold top accent is visible above the title; callout and request opening fit cleanly; no clipping or overlap.",
+      "file": "54-zapros-sostoyanie-escrow.docx",
+      "image": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/native-v2/p11gold54v2-1.png",
+      "sha256": "396a7df2184d59bcbfaf37f7662880fe860b7337d2233c71228064ba3b3d1f95",
+      "verdict": "PASS"
+    },
+    {
+      "assessment": "PASS: request continuation and signature block are readable; no clipping or overlap.",
+      "file": "54-zapros-sostoyanie-escrow.docx",
+      "image": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/native-v2/p11gold54v2-2.png",
+      "sha256": "416deead1496703a3bb0a7323321ce5507f7eefd0c3453c8708f9f0bd474d54c",
+      "verdict": "PASS"
+    },
+    {
+      "assessment": "PASS: buyer instruction page is readable with stable hierarchy and margins; no clipping or overlap.",
+      "file": "54-zapros-sostoyanie-escrow.docx",
+      "image": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/native-v2/p11gold54v2-3.png",
+      "sha256": "5df65dbd096816602fe6c2e3e066228deb7c9e19930ac9e9f6bb7cacc7dc314d",
+      "verdict": "PASS"
+    }
+  ],
+  "paid_api_calls": 0,
+  "recorded_at": "2026-10-14T12:03:26.813124+07:00",
+  "schema_version": 1,
+  "scope": "visual_brand_layout_only",
+  "source_files_changed": 0,
+  "status": "AUTHOR_VISUAL_PASS_INDEPENDENT_PENDING"
+}

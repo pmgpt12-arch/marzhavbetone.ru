@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "record_id": "P11-T6-CURRENT-GOLD-FORMAL-NOMINATION-ROUTE-20261014",
+  "record_status": "CANDIDATE_FOR_INDEPENDENT_REVIEW",
+  "scope": "FORMAL_NOMINATION_CURRENT_GOLD_ARCHIVE_AND_ROUTE_ONLY",
+  "source_head": "65d51da1dea3fcdc60f857d066f6c1123e683976",
+  "product": {
+    "target_code": "P11",
+    "target_name": "Система проверки расчётов недвижимостью и уступки прав",
+    "legacy_lineage_sku": "t6",
+    "portfolio_parent_issue": 291,
+    "control_registry_issue": 600
+  },
+  "current_gold_selection": {
+    "manifest_path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-consolidated-gold-20261014/candidate-manifest.json",
+    "manifest_sha256": "1bd932de3fbea4537a1ab7d4f1ad1d8a20d0472148fb7ad8a2f6fee412dc86e0",
+    "manifest_git_blob": "702419c24831958e8fa5de32ce7840bb621d7a90",
+    "archive_path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-consolidated-gold-20261014/p11-t6-eight-files-gold-candidate.zip",
+    "archive_sha256": "f365039ef568dbbe9c661a6e1f553d21ddd0b086c9172f1e5a4340fb7dfe7f70",
+    "archive_git_blob": "65efefebe600029bb8c239df0268dca976bff369",
+    "archive_bytes": 592882,
+    "member_count": 8,
+    "members": [
+      {"name": "00-START-HERE.txt", "sha256": "2f895a2f2b8ea5e166c8f18dd416465f2651b3562068551fc9f26841fd5dcf3a", "git_blob": "f83e4f7e7e364d5a66ddf85ded7817b80ef98611"},
+      {"name": "50-slovar-poley-raschet-metrami.docx", "sha256": "c5de8ebe3b7518042b081894ef0205635f688e3b7160986a0415135e711b601a", "git_blob": "557536220f3d990d597e66934fce614ae64682ea"},
+      {"name": "51-algoritm-raschet-metrami.pdf", "sha256": "2a4c98dc4a1b131dbccb787276f487a17a76a0c6643932c0ee0ca666601135d7", "git_blob": "2e417285fe0e48dc04a4f8ad83832d32791766ba"},
+      {"name": "52-chek-list-raschet-metrami.docx", "sha256": "149ff5b2fcb1cfa214a0dfee64f0d6a003bfe3bbbafc60977030a67535b15b33", "git_blob": "afe0741d062c510774a56ae8193eeabb0f9211a9"},
+      {"name": "53-zapros-status-obekta.docx", "sha256": "4746cd1086be16d55b636ad651370f032956bfda0dfe3f8b83f2f34487774a7a", "git_blob": "dbd80d7b4bd7cbe5b60b00757d5f3c9b526260df"},
+      {"name": "54-zapros-sostoyanie-escrow.docx", "sha256": "bf32807bf9d1ec955cf151f3e5dd055fde47ebd85ce322b0376e0c873f52a319", "git_blob": "c42ae07d257a3a6a6dd5f0fc40f81f489bd6cb9a"},
+      {"name": "55-pamyatka-punkt-ustupki-escrow.pdf", "sha256": "20f65a850db70836b2897dc747ed6478781641e3a4f5a537b094a7afec0814a2", "git_blob": "47c35f6555d1b5cc339c6b2326e8fbb60e0f8505"},
+      {"name": "56-pervyy-den-do-podpisi.docx", "sha256": "9c40a96498037b53a68ecea6f3ee57129a9f2c236d1073d1818c603016260807", "git_blob": "14e0ab75f15109686f9360980541b0b5208af13c"}
+    ],
+    "archive_review": {
+      "accepted_pr": 630,
+      "accepted_head": "d22208836ff675d80086d0e9da3834212ab4f389",
+      "merge_commit": "65d51da1dea3fcdc60f857d066f6c1123e683976",
+      "independent_verdict": "PASS_CANDIDATE_ARCHIVE_COMPOSITION_SCOPE_ONLY",
+      "independent_receipt_sha256": "a9df80be402b04d4d5c1b8a17094f7f9b5dfdeaed5ed6cb19915044e6ad031da",
+      "exact_head_ci_success": [38516710154, 38516710160]
+    }
+  },
+  "superseded_pre_gold_selection": {
+    "archive_path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-eight-files-candidate-buyer-wording-20261014.zip",
+    "archive_sha256": "6a07f3c81152a22c3f2a8f127862e8a4e1ea6cafd0f750095d1933a5c095f572",
+    "archive_git_blob": "76a1e1d7397996bf16f64afb1dcb00a7e66d5140",
+    "status": "SUPERSEDED_FOR_CURRENT_GOLD_SELECTION_ONLY_NOT_DELETED"
+  },
+  "prior_route_record": {
+    "path": "tools/candidates/portfolio-owner-pdf-20261013/19-kvartiry-vmesto-deneg/p11-t6-post-purchase-letter-formal-nomination-route-20261014.json",
+    "sha256": "4bbc436d010a1a29f6720717448469c2f78b3667f89d11fca97f829dc09086f6",
+    "git_blob": "4bdc815e8cfe282a5256f5d31bcbbadc4acf189b",
+    "accepted_pr": 631,
+    "accepted_head": "80d5803e648abbe6f18e61cb29804b962c9512da",
+    "merge_commit": "4b252f391ca6966731dd6be94a767b6b48347e5d",
+    "status": "SUPERSEDED_ONLY_FOR_ARCHIVE_SELECTION_ROUTE_POLICY_PRESERVED"
+  },
+  "separate_letter": {
+    "path": "tools/candidates/portfolio-owner-pdf-20261013/19-kvartiry-vmesto-deneg/00-PISMO-POSLE-POKUPKI.txt",
+    "sha256": "c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5",
+    "git_blob": "339bd2556427cdd011453cda9c562ac5ebdcb7d3",
+    "bytes": 3072,
+    "in_buyer_archive": false,
+    "role": "POST_PURCHASE_MESSAGE_SOURCE_FOR_CONSOLIDATED_P11_T6_ONLY",
+    "second_text_allowed": false
+  },
+  "delivery_route": {
+    "trigger_contract": "AFTER_SUCCESSFUL_PURCHASE_ONLY",
+    "channel_contract": "SEPARATE_POST_PURCHASE_MESSAGE_OUTSIDE_BUYER_ZIP",
+    "compatible_product": "CONSOLIDATED_P11_T6_CURRENT_GOLD_CANDIDATE_ONLY",
+    "legacy_standalone_t6_allowed": false,
+    "letter_in_buyer_zip": false,
+    "implementation_status": "NOT_VERIFIED",
+    "deployable_runtime_source_status": "NOT_NOMINATED",
+    "consolidated_runtime_identity_status": "NOT_NOMINATED",
+    "live_configuration_changed": false,
+    "delivery_execution_authorized": false,
+    "message_sent": false
+  },
+  "open_gates": {
+    "controlled_delivery_implementation": "BLOCKED_DEPLOYABLE_SOURCE_AND_CONSOLIDATED_RUNTIME_IDENTITY",
+    "canonical_replacement": "NOT_AUTHORIZED",
+    "full_product_acceptance": "NOT_GRANTED",
+    "G1_G8": "0/13",
+    "release_acceptance": "NOT_GRANTED"
+  },
+  "prohibitions": {
+    "source_replacement": false,
+    "live_sku_price_payment_change": false,
+    "live_delivery_change": false,
+    "deploy_or_publication": false,
+    "release": "HOLD"
+  },
+  "acceptance_contract": [
+    "Independent reviewer recomputes this record, current manifest, archive, eight selected member identities, prior route record and letter identities.",
+    "Independent reviewer executes the retained current-gold verifier against immutable Git objects and confirms CRC, exact ordered eight members, byte equality and 8/8 negative mutations.",
+    "Independent reviewer verifies the pre-gold archive is preserved but superseded for the current gold selection.",
+    "Independent reviewer verifies the separate letter remains outside the ZIP and the route forbids legacy standalone T6.",
+    "Acceptance nominates only the current candidate archive, its selected paths and the existing route policy; runtime, canonical replacement, product acceptance and release remain blocked or open."
+  ],
+  "model_calls": 0,
+  "paid_api_calls": 0,
+  "release": "HOLD",
+  "next_step": "Obtain independent exact-head review and required CI, then merge only this evidence record. Resume controlled-delivery implementation only after deployable source and consolidated runtime identity are nominated."
+}

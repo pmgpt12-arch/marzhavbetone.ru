@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "id": "P11-T6-ARCHIVE-AFTER-ICS",
+  "status": "PREPARED",
+  "prepared_at": "2026-10-14T09:18:00+07:00",
+  "execution_pattern": "iterative",
+  "primary_result": "deterministic 8-file candidate archive on exact integrated head",
+  "feedback_loop_required": true,
+  "checkpoint_policy": "verified_only",
+  "repo": "pmgpt12-arch/marzhavbetone.ru",
+  "base_branch": "codex/mb001-portfolio-editorial-20261013",
+  "input_head": "d4e2d84666f0c20a2942bb6b13791f9633b950c2",
+  "branch": "codex/p11-archive-ics-20261014",
+  "worktree": "/home/denis/projects/mb001-p11-archive-ics-20261014",
+  "accepted_checkpoints": [
+    {
+      "pr": 621,
+      "head": "65b40fa0e921cfa81f59016a84245c30099f4807",
+      "verdict": "PASS_INDEPENDENT_ICS_CLEANUP_SCOPE_ONLY",
+      "receipt_sha256": "4f620ddb8e4cb276b3453eb05989386c4635569afb7d089f13e139490b4e37d8"
+    },
+    {
+      "merge_commit": "d4e2d84666f0c20a2942bb6b13791f9633b950c2",
+      "scope": "candidate branch only"
+    }
+  ],
+  "input_sha256": {
+    "50-slovar-poley-raschet-metrami.docx": "6f40e5d3757d77d6460efb990f459167220f5fb9f3f36a6a6bcfb92b415869d5",
+    "53-zapros-status-obekta.docx": "c3fccbdc5e7e6841ca8c48b5ab1c199bdebe0d2f4990c232040d20f70bfc023e"
+  },
+  "contract": [
+    "create a new archive path; do not overwrite stale a7beecf archive",
+    "8 exact buyer files only",
+    "six unchanged files retain accepted SHA",
+    "50/53 use corrected SHA",
+    "ZIP CRC PASS and extracted SHA 8/8",
+    "write append-only receipt and HOLD manifest; no production/canonical/release"
+  ],
+  "next_step": "create isolated worktree, rebuild deterministically, verify, commit/push Draft PR, independent archive acceptance"
+}

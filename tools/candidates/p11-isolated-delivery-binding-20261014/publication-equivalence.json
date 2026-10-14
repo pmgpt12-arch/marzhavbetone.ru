@@ -1,0 +1,35 @@
+{
+  "id": "P11-CONCURRENT-CORRECTION-EQUIVALENCE-20261014",
+  "parent_commit": "9213b1eb08d14a4e8780a8daf84b3dadc7d980af",
+  "parent_tree": "b675605df207e79ece5346d37937571ae25a0cd5",
+  "preserved_concurrent_change": "difflib unified_diff n=0 (no blank context-line trailing whitespace)",
+  "added_logic": "Cross-order legacy cache preservation from tested v2",
+  "runtime_outputs_byte_equal_to_65_tested_version": true,
+  "runtime_copy_sha256": {
+    "products-config.php": "a6427bddba614efd8adbc5579acd838aaaaffd190bd2b4ba0e4a324d33a447dd",
+    "download.php": "2ccd9b2507cfc7e64eeada608825f507b4c780cd898c4cdc799cdce67691c92d"
+  },
+  "reused_65_receipt_sha256": "c5b9f0c9f955a48e447f5811cd1689437ea7d987511367d47a3eafaae6880114",
+  "old_patch_sha256": "4b6c3df10b1d8979a24f026a048665e384599e03eff14b4a2ff36e372f160545",
+  "published_patch_sha256": "8d9ae2c857d3e4de399a2c9f79110fa734f291e58a4321eb54673ee8a1368eb5",
+  "actual_git_apply_check_unidiff_zero": "PASS",
+  "actual_git_apply_output_equality": "PASS",
+  "actual_git_diff_check": "PASS",
+  "actual_patch_file_whitespace_check": "PASS",
+  "temporary_directory_removed": true,
+  "prior_author_and_packaging_records_preserved": true,
+  "suite_repeated_for_format_only_change": false,
+  "release": "HOLD",
+  "independent_review": "PENDING",
+  "update_recovery": "Prior update_ref returned API error; read actual ref, discovered concurrent revision, did not force or retry the old parent",
+  "harness_correction": {
+    "class": "RUNTIME_HARNESS_EXIT_CODE_CONTRACT",
+    "original_script_blob": "edceb9cf8928f6963dab34c9a945ace8c270446f",
+    "observed_control": "git diff --no-index --check on a clean nonempty file returns 1 with empty stdout/stderr",
+    "root_cause": "--no-index implies --exit-code, while --check is not compatible with --exit-code",
+    "documentation": "https://git-scm.com/docs/git-diff",
+    "rule": "Use staged git diff --cached --check for whitespace and report command/exit/stdout/stderr on failures",
+    "fix": "Stage only change.patch in private temporary repository, then diff --cached --check -- change.patch",
+    "product_code_changed_for_harness_fix": false
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "id": "P11-T6-ARCHIVE-AFTER-ICS-HARNESS-DIAGNOSIS",
+  "status": "DIAGNOSED",
+  "observed_at": "2026-10-14T09:26:00+07:00",
+  "classification": "RUNTIME_HARNESS",
+  "fact": "archive CRC and 8/8 SHA PASS, process exit 0, but archive-after-ics-failure.json was created",
+  "root_cause": "top-level handler caught BaseException; successful SystemExit(0) entered failure path before being re-raised with code 0",
+  "product_defect": false,
+  "first_attempt_outputs": {
+    "archive_sha256": "ee07ec000a1076a64cc9ddbc6a735f924be9e9eaf8b376a473897858fed1dbe8",
+    "receipt_sha256": "a812095da78cfa7ad0e2eb14334743e683d9733690cfd36f7db28d13a79eea11",
+    "hold_sha256": "142f60815fbd14bb771704d9930a965e58fba31a02f9483ef5d82b66c85ec98a"
+  },
+  "invalid_receipt": "archive-after-ics-failure.json from first attempt is FALSE_POSITIVE_INVALIDATED, retained append-only",
+  "hypothesis": "changing except BaseException to except Exception will preserve true failures while excluding SystemExit(0)",
+  "changed_fingerprint": "handler-class:BaseException->Exception",
+  "next_step": "patch one line, rerun deterministic archive build, require absence of any new failure write and exact same archive SHA"
+}

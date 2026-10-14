@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "id": "P11-ROLLBACK-ENTITLEMENT-REMEDIATION-20261014",
+  "status": "BUILT_NOT_ACCEPTED",
+  "base": "03ebb0f1970a295d69fc6e8bc175d9e1d5191f76",
+  "input_blobs": {
+    "products-config.php": "1d2a0225c3974d0fd44b9011b1b06803ceadb16e",
+    "download.php": "f642cf899acf0915e27ced6f626bdc78424c41c9",
+    "payment.php": "917edd032f203563dafff86d553c3863925082f1"
+  },
+  "input_sha256": {
+    "products-config.php": "6874b4bfea06351fecdb4405bb0c9c8a07333e142d69697ab87de1af5bd16b91",
+    "download.php": "bd6380b155ac95ed8e73c7fb2a587a3903e0d85658ce4de3154b74306d7a78f8",
+    "payment.php": "394f003be37dd2904e9b20fea733392e87859fb2dc9a4b16f61642a205317929"
+  },
+  "output_sha256": {
+    "products-config.php": "c2cc7e74a3f267723fb2a504f23a97dd4cf68b408b3f899b7a7292959c441de7",
+    "download.php": "2ccd9b2507cfc7e64eeada608825f507b4c780cd898c4cdc799cdce67691c92d",
+    "payment.php": "10b1a663ab40eaac22b17f8041d397daeb12cc9d07117b4a29a881aab063cbc9"
+  },
+  "accepted_binding_output_sha256": {
+    "download.php": "2ccd9b2507cfc7e64eeada608825f507b4c780cd898c4cdc799cdce67691c92d"
+  },
+  "release_patch_sha256": "fbe5a1310f85b27ac38cf3d99edacbe8077769ca22fc125eff0d97b28be128c3",
+  "rollback_patch_sha256": "3f36e478207d8222481674c2e8e2f7677d14d7065a65d0b3f3afeefd432c92b0",
+  "runtime_paths": [
+    "products-config.php",
+    "download.php",
+    "payment.php"
+  ],
+  "model_calls": 0,
+  "live_changes": false
+}

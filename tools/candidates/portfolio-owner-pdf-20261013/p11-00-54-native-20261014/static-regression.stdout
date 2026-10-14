@@ -1,0 +1,36 @@
+{
+  "verdict": "PASS",
+  "checks": {
+    "outgoing_СРОК_ОТВЕТА_НА_ЗАПРОС": true,
+    "outgoing_АДРЕС_ДЛЯ_ОТВЕТА": true,
+    "outgoing_ЭЛЕКТРОННАЯ_ПОЧТА": true,
+    "numbering_1_2_3": true,
+    "legal_point_preserved": true,
+    "when_applies_heading": true,
+    "legal_guide_normal_paragraph": true,
+    "start_steps": true,
+    "start_formats": true,
+    "manifest_seven_exact_names": true,
+    "numbering_not_route": true,
+    "filled_reply_values": true
+  },
+  "negative_tests": {
+    "missing_СРОК_ОТВЕТА_НА_ЗАПРОС": true,
+    "missing_АДРЕС_ДЛЯ_ОТВЕТА": true,
+    "missing_ЭЛЕКТРОННАЯ_ПОЧТА": true,
+    "duplicate_point3": true,
+    "missing_heading": true,
+    "missing_legal_point": true,
+    "wrong_step": true,
+    "false_excel": true,
+    "wrong_format": true,
+    "missing_file": true,
+    "missing_boundary": true,
+    "legal_misstyled_heading": true
+  },
+  "input_sha256": {
+    "54-zapros-sostoyanie-escrow.docx": "f0bd1a1d9a16c23c272122e764c9414c848fcc9ea35af121d4e28b3154f680cc",
+    "00-START-HERE.txt": "1141927c5cb30b8c4ba2ca69949d560e8591ff27d263b9ae598c930315545210"
+  },
+  "scope": "TWO_FILES_STATIC_ONLY_NOT_NATIVE_OR_PRODUCT_ACCEPTANCE"
+}

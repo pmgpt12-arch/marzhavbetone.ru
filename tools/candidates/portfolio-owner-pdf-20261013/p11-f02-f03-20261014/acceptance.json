@@ -1,0 +1,47 @@
+{
+  "id": "P11-F02-F03-AUTHOR-DELTA-20261014",
+  "utc": "2026-10-14T00:15:52.525879+00:00",
+  "base_commit": "cfbc4e3edcf438250bac98a2df04133d96bb27b3",
+  "source_review_id": 5507097044,
+  "scope": "F02_F03_IMPLEMENTATION_TECHNICAL_NATIVE_AND_AUTHOR_REVIEW_ONLY",
+  "changes": "3 editable DOCX; 2 PDF exported by Microsoft Word; 2 synchronized text extracts",
+  "native_job": "p11-f02-f03-word-20261014-v1",
+  "native_raw_report_sha256": "61f285e287aebfd89ed80b5727feefd5e7eb9ccc164302ac391cafec896fa3d4",
+  "native_input_passed": 3,
+  "native_pages": 7,
+  "rendered_pages_examined": 7,
+  "positive_checks": 13,
+  "negative_mutations_detected": 15,
+  "author_desk_scenarios": 6,
+  "visual_review": {
+    "51": [
+      "All three pages read; new boundary and stop rule visible; no clipping or overlap. Step 5 continues on next page with heading and opening line kept together."
+    ],
+    "52": [
+      "Both pages read; boundary checkbox visible on page 1; unified stop/resume paragraph and all red-flag rows visible on page 2. Source blue headings/italic subtitle remain."
+    ],
+    "55": [
+      "Both pages read; transfer-boundary section and final paragraph fully visible; no clipping or orphan page. Source blue title rule remains."
+    ]
+  },
+  "F02": "IMPLEMENTED_AUTHOR_CHECKED_PENDING_INDEPENDENT_ACCEPTANCE",
+  "F03": "IMPLEMENTED_AUTHOR_CHECKED_PENDING_INDEPENDENT_ACCEPTANCE",
+  "F01_and_START_HERE": "ACCEPTED_PRIOR_EXACT_SHA_UNCHANGED",
+  "normative_source": "214-ФЗ ч.2 ст.11; ConsultantPlus source recorded separately",
+  "independent_legal_signoff": "NOT_RUN_FOR_THIS_DELTA",
+  "independent_buyer_signoff": "NOT_RUN_FOR_THIS_DELTA",
+  "remaining": [
+    "P11+T6 completeness/disposition",
+    "formal nominations/release manifest",
+    "brand-style residual",
+    "independent F02/F03 delta review",
+    "full G1-G8"
+  ],
+  "G1_G8": "0/13",
+  "release": "HOLD",
+  "product_source_roots_modified": false,
+  "prices_sku_checkout_vpn_production_modified": false,
+  "native_replays": 0,
+  "paid_model_calls": 0,
+  "ci_integration": "Regression command exists; mandatory CI registration not claimed"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "P11-CROSS-ORDER-LEGACY-CACHE-PROBE-20261014",
+  "candidate_head": "f0efb917e98b82eb4d751686da887c10753ac6a7",
+  "scenario": "New unmarked P11 order with newer legacy masters and an existing issued shared archive",
+  "original_sha256": "14c2e7d7763101fa0ba9927a5640414f65faae355d1fa1a3b9661d72438e45f3",
+  "after_sha256": "8bdfbee1221dc2eb838fc1ec1f9918bb90fd7fefd857bc7208d035ae9957df4f",
+  "legacy_archive_preserved": false,
+  "prepare_result": {
+    "links": [
+      {
+        "sku": "p11",
+        "name": "Комплект «Расчёт метрами: проверка до подписи»",
+        "url": "https://fixture.invalid/download.php?o=order_20261014_9_test&t=6f9a924dcedd5ac3bf50743a4cefeeae&f=p11"
+      }
+    ],
+    "missing": []
+  },
+  "real_customers_or_production_touched": false,
+  "transport_diagnosis": "Prior inline command stopped at Python SyntaxError before execution; use retained script blob instead of nested shell quoting",
+  "status": "FAIL_CROSS_ORDER_LEGACY_CACHE_OVERWRITE",
+  "temporary_sandbox_removed": true
+}

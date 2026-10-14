@@ -1,0 +1,87 @@
+{
+  "scope": "P11_B01_B08_DELTA_ONLY",
+  "buyer_files": {
+    "00-START-HERE.txt": "2f895a2f2b8ea5e166c8f18dd416465f2651b3562068551fc9f26841fd5dcf3a",
+    "50-slovar-poley-raschet-metrami.docx": "966a058f693ea4accec5b40e70e8df99c0e17cff9e2fbfdbe21b0759ddc16995",
+    "51-algoritm-raschet-metrami.pdf": "2a4c98dc4a1b131dbccb787276f487a17a76a0c6643932c0ee0ca666601135d7",
+    "52-chek-list-raschet-metrami.docx": "6094a91af0a2e750a1ef71f9b394ea49207af11f8c5420ade1a7da48ff79fd38",
+    "53-zapros-status-obekta.docx": "602f762c28e3e04a45ea4730b24527e0ef06fdfec67480e6a6bdfce66462ffba",
+    "54-zapros-sostoyanie-escrow.docx": "8e76f513b4f72c51bd8e9ad1bd56c27409285585b2f38f96c76b5f8dfbfa4f96",
+    "55-pamyatka-punkt-ustupki-escrow.pdf": "20f65a850db70836b2897dc747ed6478781641e3a4f5a537b094a7afec0814a2",
+    "56-pervyy-den-do-podpisi.docx": "9c40a96498037b53a68ecea6f3ee57129a9f2c236d1073d1818c603016260807"
+  },
+  "native_jobs": {
+    "51_55": "p11-buyer-51-55-brand-word-20261014-v2",
+    "52": "p11-buyer-52-table-word-20261014-v4",
+    "54": "p11-buyer-fixes-word-20261014-v1"
+  },
+  "checks": {
+    "all_eight_exist": true,
+    "start_and_manifest_eight": true,
+    "economics_table_10_rows": true,
+    "economics_three_cases": true,
+    "pdf_no_unresolved_fields": true,
+    "changed_docx_zip_crc": true,
+    "52_54_no_explicit_italic": true,
+    "51_55_pdf_exact_native_output": true,
+    "F02_F03_CURRENT_SHA_POSITIVE_13_OF_13": true,
+    "F02_F03_CURRENT_SHA_NEGATIVE_15_OF_15": true
+  },
+  "economics_cases": [
+    {
+      "inputs": [
+        10000000,
+        5,
+        600000,
+        200000,
+        4000000,
+        12,
+        10,
+        9000000
+      ],
+      "expected": [
+        8300000,
+        -700000
+      ]
+    },
+    {
+      "inputs": [
+        10000000,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        9000000
+      ],
+      "expected": [
+        10000000,
+        1000000
+      ]
+    },
+    {
+      "inputs": [
+        5000000,
+        20,
+        500000,
+        100000,
+        2000000,
+        24,
+        12,
+        4500000
+      ],
+      "expected": [
+        2920000,
+        -1580000
+      ]
+    }
+  ],
+  "buyer_delta": "PASS_STATIC_AND_NATIVE_DELTA",
+  "full_independent_8_file_visual": "NOT_RUN",
+  "G1_G8": "OPEN",
+  "nomination": "PENDING",
+  "release": "HOLD",
+  "regression_script": "tools/test_p11_buyer_delta.py",
+  "historical_sha_pinned_test": "EXPECTED_SHA_MISMATCH_ON_NEW_EDITORIAL_SHA; CONTENT_RECHECK_13_15_PASS"
+}

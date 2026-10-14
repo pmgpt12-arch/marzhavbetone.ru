@@ -1,0 +1,94 @@
+{
+  "utc": "2026-10-13T15:40:48.406124+00:00",
+  "source_commit": "23832f3e63846cd665008e08ba55d872831f9d89",
+  "scope": "P11_BUYER_CROSS_DOCUMENT_DELTA_AND_FROZEN_SEVEN_FILE_INPUT",
+  "checks": [
+    {
+      "name": "52-chek-list-raschet-metrami.docx",
+      "sha256": "f4bc1d93701f17f018dff793c1da3bdb2b65d0cdf0570b9993051cc247476e3b",
+      "changed_paragraphs": [
+        12,
+        22,
+        38
+      ],
+      "pages_preview": 2,
+      "pdf_preview_sha256": "023069c6c0bbbc732bc82f469c7780d2dc9328a8cb371016bb828f44265858e7",
+      "status": "PASS_STATIC_AND_PREVIEW_ONLY",
+      "native_word": "OPEN"
+    },
+    {
+      "name": "54-zapros-sostoyanie-escrow.docx",
+      "sha256": "69bae197c5ebd86198621c892c5930fb984841e606a725780bf5547a8fc9b674",
+      "changed_paragraphs": [
+        18,
+        26,
+        34,
+        37,
+        38,
+        39,
+        40
+      ],
+      "pages_preview": 3,
+      "pdf_preview_sha256": "ea1a80a82a2061555d7264f1ca422cb9ace93d0a4631c1ea4169321a28a252a9",
+      "status": "PASS_STATIC_AND_PREVIEW_ONLY",
+      "native_word": "OPEN"
+    },
+    {
+      "name": "00-START-HERE.txt",
+      "sha256": "716e47f02a4c3e9233798cb175ae73e234d909feab626d33efc9b5089d0e5c22",
+      "status": "PASS_STATIC_ONLY"
+    }
+  ],
+  "frozen_input_manifest": [
+    {
+      "name": "00-START-HERE.txt",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/00-START-HERE.txt",
+      "sha256": "716e47f02a4c3e9233798cb175ae73e234d909feab626d33efc9b5089d0e5c22",
+      "source": "nominated_candidate"
+    },
+    {
+      "name": "50-slovar-poley-raschet-metrami.docx",
+      "path": "products-storage/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+      "sha256": "f80f23ea0b096f8f4626552465125cf728c1947d78447e19d089354406058349",
+      "source": "canonical_master"
+    },
+    {
+      "name": "51-algoritm-raschet-metrami.pdf",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/51-algoritm-raschet-metrami.pdf",
+      "sha256": "c996ab8e4a79d496bee5a6c54d9c98aa44453db9d0b322506a68c8d9de297488",
+      "source": "nominated_candidate"
+    },
+    {
+      "name": "52-chek-list-raschet-metrami.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+      "sha256": "f4bc1d93701f17f018dff793c1da3bdb2b65d0cdf0570b9993051cc247476e3b",
+      "source": "nominated_candidate"
+    },
+    {
+      "name": "53-zapros-status-obekta.docx",
+      "path": "products-storage/13-raschet-metrami/53-zapros-status-obekta.docx",
+      "sha256": "89183de06f06e349ee5e9bf4ef7aba220a485a631c1067045ca2ffdebfa696d3",
+      "source": "canonical_master"
+    },
+    {
+      "name": "54-zapros-sostoyanie-escrow.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/54-zapros-sostoyanie-escrow.docx",
+      "sha256": "69bae197c5ebd86198621c892c5930fb984841e606a725780bf5547a8fc9b674",
+      "source": "nominated_candidate"
+    },
+    {
+      "name": "55-pamyatka-punkt-ustupki-escrow.pdf",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf",
+      "sha256": "e9260870acead2e3478fa8d84f612f3cbedf56f853f29a5cd44391a2379625f3",
+      "source": "nominated_candidate"
+    }
+  ],
+  "nomination": "PROPOSED_NOT_CANONICAL",
+  "independent_normative": "OPEN",
+  "independent_buyer": "OPEN",
+  "native_office_new_docx": "OPEN",
+  "MANIFEST_price_mismatch": "OPEN_HISTORICAL_2490_VS_APPROVED_TARGET_24900_NO_PRICE_CHANGE",
+  "G1_G8": "HOLD",
+  "release": "HOLD",
+  "verdict": "PASS_DELTA_STATIC_AND_PDF_PREVIEW_NOT_PRODUCT_ACCEPTANCE"
+}

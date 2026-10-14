@@ -1,0 +1,91 @@
+{
+  "utc": "2026-10-13T16:03:08.127061+00:00",
+  "input_commit": "d3b096cd64c1672c4a5021d0d03383edc52937a9",
+  "source_issue": 597,
+  "parent_issue": 291,
+  "source_pr": 618,
+  "scope": "P11_SYNTHETIC_BUYER_FILLED_TWO_REQUESTS_NATIVE_PRINT",
+  "scenario": "Неоплаченный ДДУ, уступка от юридического лица, подрядчик до подписания запрашивает документы по объекту и эскроу",
+  "expected_decision": "STOP_SIGNING_PENDING_DOCUMENTS",
+  "scenario_receipt_sha256": "01e43699e5dbdfcb30534d9666af9931bb6291ef522932858feb423321008e9e",
+  "native_job": "p11-filled-buyer-requests-20261013-v1",
+  "native_report_sha256": "7cc2939dd82acb410cd9ea2a9103d2c38e7a1098905ce701996dd58dde6f720b",
+  "entries": [
+    {
+      "name": "53-zapros-status-obekta.docx",
+      "source_sha256": "602f762c28e3e04a45ea4730b24527e0ef06fdfec67480e6a6bdfce66462ffba",
+      "synthetic_derived_sha256": "1cc56580597f02dd0cced05652f4e461746f1479e12e26d5035ad97087971774",
+      "placeholders_replaced": 15,
+      "native_pdf_sha256": "a27e3f5876fe541bfa720a5dc9814ca55f62cfec2c67bfec9d1fb688d28c9264",
+      "native_pages": 3,
+      "letter_pages": 2,
+      "guide_page": 3,
+      "last_page_chars": 1900,
+      "status": "PASS_SYNTHETIC_FILLED_NATIVE_PRINT_ONLY"
+    },
+    {
+      "name": "54-zapros-sostoyanie-escrow.docx",
+      "source_sha256": "4ab1c0c3a8b2f5f84f6dfa6668b6701c3153a1714dfcc3f20314a3a916e463a4",
+      "synthetic_derived_sha256": "c98262905459f4bb13ddf77d9bbc0f57d3baf6ec0e904c3756d8667ebb4595de",
+      "placeholders_replaced": 18,
+      "native_pdf_sha256": "7261cda0b4789d02a9e1e1b28d6ac927daf1751eb5f8604d1d73a0bfaa54a12f",
+      "native_pages": 3,
+      "letter_pages": 2,
+      "guide_page": 3,
+      "last_page_chars": 2607,
+      "status": "PASS_SYNTHETIC_FILLED_NATIVE_PRINT_ONLY"
+    }
+  ],
+  "frozen_seven_input_manifest": [
+    {
+      "name": "00-START-HERE.txt",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/00-START-HERE.txt",
+      "sha256": "d124d19bc978b430cd5c3ba931d8a15048016308d8c85a013ce30c21394ea32b",
+      "candidate": true
+    },
+    {
+      "name": "50-slovar-poley-raschet-metrami.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+      "sha256": "966a058f693ea4accec5b40e70e8df99c0e17cff9e2fbfdbe21b0759ddc16995",
+      "candidate": true
+    },
+    {
+      "name": "51-algoritm-raschet-metrami.pdf",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/51-algoritm-raschet-metrami.pdf",
+      "sha256": "c996ab8e4a79d496bee5a6c54d9c98aa44453db9d0b322506a68c8d9de297488",
+      "candidate": true
+    },
+    {
+      "name": "52-chek-list-raschet-metrami.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+      "sha256": "d7a392aa4c7982c9da3b8c73dae88a7e5e29059b07469f755e01aeb180a17112",
+      "candidate": true
+    },
+    {
+      "name": "53-zapros-status-obekta.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/53-zapros-status-obekta.docx",
+      "sha256": "602f762c28e3e04a45ea4730b24527e0ef06fdfec67480e6a6bdfce66462ffba",
+      "candidate": true
+    },
+    {
+      "name": "54-zapros-sostoyanie-escrow.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/54-zapros-sostoyanie-escrow.docx",
+      "sha256": "4ab1c0c3a8b2f5f84f6dfa6668b6701c3153a1714dfcc3f20314a3a916e463a4",
+      "candidate": true
+    },
+    {
+      "name": "55-pamyatka-punkt-ustupki-escrow.pdf",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf",
+      "sha256": "e9260870acead2e3478fa8d84f612f3cbedf56f853f29a5cd44391a2379625f3",
+      "candidate": true
+    }
+  ],
+  "product_bytes_modified": false,
+  "paid_calls": 0,
+  "independent_buyer_signoff": "NOT_RUN",
+  "independent_normative_signoff": "NOT_RUN",
+  "formal_nomination": "OPEN",
+  "release": "HOLD",
+  "G1_G8": "0/13",
+  "result": "PASS_SYNTHETIC_FILLED_NATIVE_PRINT_NOT_PRODUCT_ACCEPTANCE"
+}

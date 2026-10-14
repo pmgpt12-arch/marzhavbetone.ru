@@ -1,0 +1,70 @@
+{
+  "acceptance": [
+    "exact parent head",
+    "one exact buyer-visible replacement",
+    "only word/document.xml payload changed in file 50",
+    "other seven archive members byte-identical",
+    "new archive unique root members 8/8, CRC PASS, extracted SHA 8/8"
+  ],
+  "checkpoint_policy": "verified_only",
+  "delta": {
+    "changed_ooxml_parts": [
+      "word/document.xml"
+    ],
+    "new_target_sha256": "b0bd9d309115377c0e80c418d2dda1acdf3d33d4863feb2f15de69b70099427c",
+    "new_text": "Рабочие телефон и адрес электронной почты для связи",
+    "occurrences": 1,
+    "old_text": "Телефон и адрес электронной почты для суда",
+    "visible_text_exact_replacement": true
+  },
+  "finished_at_utc": "2026-10-14T03:14:05.255182+00:00",
+  "id": "P11-BUYER-WORDING-DELTA-20261014",
+  "input": {
+    "archive_path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-eight-files-candidate-ics-20261014.zip",
+    "archive_sha256": "ee07ec000a1076a64cc9ddbc6a735f924be9e9eaf8b376a473897858fed1dbe8",
+    "head": "a9be7e88d0b4bae12bcc230c7184dbb2ea44eb4b",
+    "independent_failure_receipt_sha256": "77e59d54655dc62be220e3635810fd048abdeddeacafc87d31203093cd5d3fc0",
+    "target_path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+    "target_sha256": "6f40e5d3757d77d6460efb990f459167220f5fb9f3f36a6a6bcfb92b415869d5"
+  },
+  "limitations": [
+    "author cannot independently accept own delta/archive",
+    "no new visual, native Office, release, nomination, production or delivery acceptance",
+    "release HOLD; G1-G8 0/13"
+  ],
+  "model_calls": 0,
+  "next_step": "commit isolated candidate, independent exact-text/OOXML/archive delta-review, exact-head CI; retain HOLD",
+  "no_paid_api": true,
+  "output": {
+    "archive_bytes": 592844,
+    "archive_path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-eight-files-candidate-buyer-wording-20261014.zip",
+    "archive_sha256": "6a07f3c81152a22c3f2a8f127862e8a4e1ea6cafd0f750095d1933a5c095f572",
+    "extracted_sha256_match": "8_OF_8_PASS",
+    "member_sha256": {
+      "00-START-HERE.txt": "2f895a2f2b8ea5e166c8f18dd416465f2651b3562068551fc9f26841fd5dcf3a",
+      "50-slovar-poley-raschet-metrami.docx": "b0bd9d309115377c0e80c418d2dda1acdf3d33d4863feb2f15de69b70099427c",
+      "51-algoritm-raschet-metrami.pdf": "2a4c98dc4a1b131dbccb787276f487a17a76a0c6643932c0ee0ca666601135d7",
+      "52-chek-list-raschet-metrami.docx": "6094a91af0a2e750a1ef71f9b394ea49207af11f8c5420ade1a7da48ff79fd38",
+      "53-zapros-status-obekta.docx": "c3fccbdc5e7e6841ca8c48b5ab1c199bdebe0d2f4990c232040d20f70bfc023e",
+      "54-zapros-sostoyanie-escrow.docx": "8e76f513b4f72c51bd8e9ad1bd56c27409285585b2f38f96c76b5f8dfbfa4f96",
+      "55-pamyatka-punkt-ustupki-escrow.pdf": "20f65a850db70836b2897dc747ed6478781641e3a4f5a537b094a7afec0814a2",
+      "56-pervyy-den-do-podpisi.docx": "9c40a96498037b53a68ecea6f3ee57129a9f2c236d1073d1818c603016260807"
+    },
+    "ordered_members": [
+      "00-START-HERE.txt",
+      "50-slovar-poley-raschet-metrami.docx",
+      "51-algoritm-raschet-metrami.pdf",
+      "52-chek-list-raschet-metrami.docx",
+      "53-zapros-status-obekta.docx",
+      "54-zapros-sostoyanie-escrow.docx",
+      "55-pamyatka-punkt-ustupki-escrow.pdf",
+      "56-pervyy-den-do-podpisi.docx"
+    ],
+    "unchanged_members": "7_OF_7_BYTE_IDENTICAL",
+    "zip_crc": "PASS"
+  },
+  "release_authorized": false,
+  "route": "deterministic Python zip/OOXML; no Office, render or model call",
+  "schema_version": 1,
+  "status": "PASS_AUTHOR_EXACT_DELTA_AND_ARCHIVE_ONLY"
+}

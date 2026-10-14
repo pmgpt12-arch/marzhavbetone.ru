@@ -1,0 +1,119 @@
+{
+  "id": "P11-T6-EIGHT-FILE-FINAL-BUYER-ACCEPTANCE-20261014",
+  "source_commit": "23ad4a65feb53d9ad118960a206be8a18e7ec53e",
+  "scope": "ISOLATED_BUYER_PACKAGE_NOT_PRODUCTION",
+  "target_sku": "P11",
+  "merged_from": [
+    "P11",
+    "T6"
+  ],
+  "buyer_files": {
+    "00-START-HERE.txt": "2f895a2f2b8ea5e166c8f18dd416465f2651b3562068551fc9f26841fd5dcf3a",
+    "50-slovar-poley-raschet-metrami.docx": "e4b1aa51546f5c7b3e3347057e4f09b4596893084e5a310fb08cbab470e40932",
+    "51-algoritm-raschet-metrami.pdf": "2a4c98dc4a1b131dbccb787276f487a17a76a0c6643932c0ee0ca666601135d7",
+    "52-chek-list-raschet-metrami.docx": "6094a91af0a2e750a1ef71f9b394ea49207af11f8c5420ade1a7da48ff79fd38",
+    "53-zapros-status-obekta.docx": "eadc711f3e9b1b6a094d4f9382bf0f8c212722c5fa4f73b3bd25b324aca53ffd",
+    "54-zapros-sostoyanie-escrow.docx": "8e76f513b4f72c51bd8e9ad1bd56c27409285585b2f38f96c76b5f8dfbfa4f96",
+    "55-pamyatka-punkt-ustupki-escrow.pdf": "20f65a850db70836b2897dc747ed6478781641e3a4f5a537b094a7afec0814a2",
+    "56-pervyy-den-do-podpisi.docx": "9c40a96498037b53a68ecea6f3ee57129a9f2c236d1073d1818c603016260807"
+  },
+  "package": {
+    "path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-eight-files-candidate-20261014.zip",
+    "sha256": "a7beecf04862e12bac4a31bb41326c661d417f58ec076126158f9d4d73a7eba1",
+    "file_count": 8,
+    "zip_crc": "PASS",
+    "file_sha256_match": "8_OF_8_PASS",
+    "post_purchase_letter": "EXCLUDED_SEPARATE_SUPPORT_MATERIAL"
+  },
+  "native_word": {
+    "masters_checked": 7,
+    "exact_source_sha_matches": "7_OF_7_PASS",
+    "jobs": [
+      "p11-50-53-final-style-word-20261014-v2",
+      "p11-buyer-51-55-brand-word-20261014-v2",
+      "p11-buyer-52-table-word-20261014-v4",
+      "p11-buyer-fixes-word-20261014-v1",
+      "p11-t6-dayone-word-20261014-v2"
+    ],
+    "native_page_counts": {
+      "50": 2,
+      "51": 3,
+      "52": 3,
+      "53": 3,
+      "54": 3,
+      "55": 2,
+      "56": 1
+    },
+    "native_pages_reviewed_across_exact_sha": 17,
+    "visual": "PASS",
+    "unchanged_successful_jobs_rerun": 0
+  },
+  "buyer_scenarios": [
+    {
+      "id": "B01",
+      "description": "first-day action and complete navigation",
+      "verdict": "PASS"
+    },
+    {
+      "id": "B02",
+      "description": "two editable outgoing requests, field dictionary, synthetic fill",
+      "verdict": "PASS"
+    },
+    {
+      "id": "B03",
+      "description": "transfer act already signed or status unknown => STOP",
+      "verdict": "PASS"
+    },
+    {
+      "id": "B04",
+      "description": "two red flags => STOP with controlled restart",
+      "verdict": "PASS"
+    },
+    {
+      "id": "B05",
+      "description": "unfunded escrow and creditor consent check",
+      "verdict": "PASS"
+    },
+    {
+      "id": "B06",
+      "description": "net cash economics with taxes discount fees financing and 3 numeric cases",
+      "verdict": "PASS"
+    },
+    {
+      "id": "B07",
+      "description": "no unresolved placeholders in noneditable PDF 51/55",
+      "verdict": "PASS"
+    },
+    {
+      "id": "B08",
+      "description": "graphite/white/gold and print layout, final 50/53 delta",
+      "verdict": "PASS"
+    }
+  ],
+  "tests": {
+    "buyer_delta": "PASS_STATIC_8_FILES_3_NUMERIC_2_NEGATIVE",
+    "request_regression": "PASS",
+    "f02_f03_content": "13_OF_13_POSITIVE_15_OF_15_NEGATIVE_PASS",
+    "forbidden_phrases": "NO_MATCHES_IN_CHECKED_BUYER_CONTENT",
+    "git_actions_previous_head": "4_OF_4_SUCCESS",
+    "git_actions_this_head": "IN_PROGRESS_AT_CHECK"
+  },
+  "verdicts": {
+    "buyer_package": "PASS",
+    "native_office": "PASS",
+    "print_visual": "PASS",
+    "normative": "PARTIAL_F02_F03_ONLY_FULL_INDEPENDENT_NORMATIVE_OPEN",
+    "formal_registry_nomination": "OPEN",
+    "live_payment_download": "NOT_TESTED_NO_PRODUCTION_CHANGE",
+    "release_manifest": "HOLD",
+    "G1_G8_accepted_products": 0,
+    "portfolio_total": 13
+  },
+  "blockers": [
+    "Full independent normative signoff on exact nominated buyer files",
+    "Formal ARTIFACT-REGISTRY nomination and registry gate",
+    "Controlled production payment/download acceptance and release gate"
+  ],
+  "change_scope": "Only isolated buyer ZIP and evidence; no prices/SKU/payment/VPN/production changed",
+  "release_authorized": false
+}
