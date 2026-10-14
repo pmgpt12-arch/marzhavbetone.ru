@@ -1,0 +1,29 @@
+{
+  "acceptance": [
+    "raw Word report input SHA PASS",
+    "Word PASS",
+    "2 A4 pages",
+    "all pages visually reviewed",
+    "replacement text visible without clipping/overlap",
+    "independent review pending"
+  ],
+  "checkpoint_policy": "verified_only",
+  "executor": {
+    "path": "tools/candidates/portfolio-owner-pdf-20261013/p11-50-buyer-wording-native-20261014/submit.py",
+    "sha256": "b44ca38afbaf09ab44a2a8bae08034625da3c13f415e447f484b841db18988c3"
+  },
+  "id": "P11-50-BUYER-WORDING-NATIVE",
+  "idle_age_seconds": 2.1,
+  "idle_poll": "192.168.1.140 - - [14/Oct/2026 10:35:34] \"GET /word/current.xml HTTP/1.0\" 204 -",
+  "input": {
+    "50-slovar-poley-raschet-metrami.docx": "b0bd9d309115377c0e80c418d2dda1acdf3d33d4863feb2f15de69b70099427c"
+  },
+  "input_head": "27573b16efc45508172e3f4dce33f1ad281ae62c",
+  "job": "p11-50-buyer-wording-word-20261014-v1",
+  "model_calls": 0,
+  "prepared_at_utc": "2026-10-14T03:35:36.139219+00:00",
+  "previous_job": "p11-50-53-ics-cleanup-word-20261014-v1",
+  "release": "HOLD",
+  "schema_version": 1,
+  "status": "PREPARED"
+}

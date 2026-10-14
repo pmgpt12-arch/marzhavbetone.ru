@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "id": "P11-50-BUYER-WORDING-NATIVE-ACCEPTANCE",
+  "finished_at_utc": "2026-10-14T03:38:35Z",
+  "input_head": "27573b16efc45508172e3f4dce33f1ad281ae62c",
+  "job": "p11-50-buyer-wording-word-20261014-v1",
+  "input": {
+    "50-slovar-poley-raschet-metrami.docx": "b0bd9d309115377c0e80c418d2dda1acdf3d33d4863feb2f15de69b70099427c"
+  },
+  "raw_report": {
+    "status": "PASS",
+    "file_status": "PASS",
+    "sha256": "fced701a11345c99d62a5caaf859041ab0f389eb79b5b3a6fd4bd3936ef7a17e",
+    "pdf_sha256": "bb0ee3fc0df6b68dfe91c9ca59da96498a51ab9ae449bf4c8c0ef2623170c9ab"
+  },
+  "outputs": {
+    "50.pdf": "bb0ee3fc0df6b68dfe91c9ca59da96498a51ab9ae449bf4c8c0ef2623170c9ab",
+    "50-1.png": "89f825f4722617a342813ad0eadb91f954b5d214a6ec8a95c2fc291d677740bc",
+    "50-2.png": "078b469f1565042689e15aae77b9dfb4a69af32199eedb9721b13e99fb68be6d"
+  },
+  "visual_review": {
+    "pages_expected": 2,
+    "pages_reviewed": 2,
+    "a4_pages": 2,
+    "replacement_text_visible": "Рабочие телефон и адрес электронной почты для связи",
+    "page_1": "PASS: replacement is fully visible in the contractor contacts row; no clipping, overlap, or table-boundary collision.",
+    "page_2": "PASS: table continuation and final note are fully visible; no clipping, overlap, or broken page flow."
+  },
+  "acceptance": "PASS_NATIVE_AND_VISUAL_DELTA_SCOPE_ONLY",
+  "checkpoint_policy": "verified_only",
+  "model_calls": 0,
+  "limitations": [
+    "This accepts only the corrected file 50 native Word render and two-page visual delta.",
+    "It is not a product legal, release, archive composition, delivery, or canonical-source acceptance.",
+    "Independent exact-head review and CI remain required before merge.",
+    "Release remains HOLD; G1-G8 remain 0/13."
+  ],
+  "release": "HOLD",
+  "next_step": "Commit the native evidence on the isolated nomination branch, obtain independent exact-head acceptance and CI, then prepare the current 8-file P11/T6 registry nomination record."
+}
