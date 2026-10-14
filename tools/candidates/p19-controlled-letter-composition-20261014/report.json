@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "P19-CONTROLLED-LETTER-COMPOSITION-20261014",
+  "status": "AUTHOR_CANDIDATE_PASS_PENDING_INDEPENDENT_REVIEW",
+  "base_sha": "7d1a04115926ec748e9a83b72685de3da911aeb8",
+  "target": "products-storage/19-kvartiry-vmesto-deneg/00-PISMO-POSLE-POKUPKI.txt",
+  "output_sha256": "20343fc5584da6b10d4cc37970d80ddce773b7250314dc078955fcf1948652fb",
+  "output_bytes": 1860,
+  "inputs": {
+    "manifest_sha256": "49f73db9361299b057c1f368cebec057e4e539863dcf29ad0e1ab0364245deb2",
+    "start_here_sha256": "d5095054fcf929c8b9bd1d241dbcacbd2f78f46f258d027a4bcfea28657b9a73",
+    "owner_authorization_receipt_sha256": "0489889b85944e8d15f1f5d6e8d03f2a74ad992b8b195ab7c08ccca36abdd59a",
+    "diagnosis_sha256": "e2bbdf33ee015d4d7dcda1e8c33d2290d612720faae76bda78abe4e44bc1e92c"
+  },
+  "checks": {
+    "subject_exact_product": true,
+    "opens_start_here": true,
+    "references_01_04": true,
+    "no_unsupported_30_day_claim": true,
+    "scope_boundary": true,
+    "no_url": true
+  },
+  "source_files_changed": 1,
+  "buyer_archive_changed": 0,
+  "model_calls": 0,
+  "paid_api_calls": 0,
+  "limits": [
+    "new composition, not recovered original",
+    "no canonical replacement",
+    "no publication/live delivery",
+    "no price/SKU/payment changes",
+    "legal/content/delivery-route acceptance pending"
+  ],
+  "next_step": "Independent content/legal/lineage/delivery-route review on exact head; do not merge or publish before PASS and CI."
+}
