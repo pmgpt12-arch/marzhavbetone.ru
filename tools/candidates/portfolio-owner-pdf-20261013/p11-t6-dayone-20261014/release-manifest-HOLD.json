@@ -1,0 +1,29 @@
+{
+  "id": "P11-T6-RELEASE-MANIFEST-CANDIDATE-HOLD-20261014",
+  "source_commit": "796674adb63bceed90ee3d4934bb6c7fa019a2fe",
+  "target_sku": "P11",
+  "merged_from": [
+    "P11",
+    "T6"
+  ],
+  "target_file_count": 8,
+  "files": {
+    "00-START-HERE.txt": "2f895a2f2b8ea5e166c8f18dd416465f2651b3562068551fc9f26841fd5dcf3a",
+    "50-slovar-poley-raschet-metrami.docx": "966a058f693ea4accec5b40e70e8df99c0e17cff9e2fbfdbe21b0759ddc16995",
+    "51-algoritm-raschet-metrami.pdf": "70b88b47d6d4238453fc342c78290513b1a928cdedd3baac4cffc85fac16d4d6",
+    "52-chek-list-raschet-metrami.docx": "86d162fbd54965c6102d3cc67980c0a68b14d6441fb67efaddd874076a962765",
+    "53-zapros-status-obekta.docx": "602f762c28e3e04a45ea4730b24527e0ef06fdfec67480e6a6bdfce66462ffba",
+    "54-zapros-sostoyanie-escrow.docx": "f0bd1a1d9a16c23c272122e764c9414c848fcc9ea35af121d4e28b3154f680cc",
+    "55-pamyatka-punkt-ustupki-escrow.pdf": "2ae328734d0b7c9d8857070b77bc1346d96b7bf2d7e1a255662b7834994ba955",
+    "56-pervyy-den-do-podpisi.docx": "9c40a96498037b53a68ecea6f3ee57129a9f2c236d1073d1818c603016260807"
+  },
+  "nomination_status": "NOT_APPROVED",
+  "release_status": "HOLD",
+  "acceptance_record": "p11-t6-dayone-20261014/independent-buyer-gate.json",
+  "blockers": [
+    "P11-BUYER-ECONOMICS",
+    "P11-BUYER-PDF-PLACEHOLDERS",
+    "P11-BUYER-BRAND"
+  ],
+  "canonical_or_production_changed": false
+}
