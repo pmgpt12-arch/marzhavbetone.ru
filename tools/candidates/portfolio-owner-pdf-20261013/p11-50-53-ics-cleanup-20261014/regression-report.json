@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "P11-50-53-ICS-CLEANUP-REGRESSION",
+  "status": "PASS",
+  "base": "58ed5fe199dbcdecf6261eca634fe73b712c73fd",
+  "files": {
+    "50-slovar-poley-raschet-metrami.docx": {
+      "input_sha256": "e4b1aa51546f5c7b3e3347057e4f09b4596893084e5a310fb08cbab470e40932",
+      "output_sha256": "6f40e5d3757d77d6460efb990f459167220f5fb9f3f36a6a6bcfb92b415869d5",
+      "changed_parts": [
+        "word/document.xml"
+      ],
+      "checks": {
+        "exact_sha": true,
+        "changed_parts_only_document_xml": true,
+        "baseline_active_i_zero": true,
+        "baseline_active_iCs_exact": true,
+        "after_active_i_zero": true,
+        "after_active_iCs_zero": true,
+        "visible_text_identical": true,
+        "document_xml_exact_expected_normalization": true
+      }
+    },
+    "53-zapros-status-obekta.docx": {
+      "input_sha256": "eadc711f3e9b1b6a094d4f9382bf0f8c212722c5fa4f73b3bd25b324aca53ffd",
+      "output_sha256": "c3fccbdc5e7e6841ca8c48b5ab1c199bdebe0d2f4990c232040d20f70bfc023e",
+      "changed_parts": [
+        "word/document.xml"
+      ],
+      "checks": {
+        "exact_sha": true,
+        "changed_parts_only_document_xml": true,
+        "baseline_active_i_zero": true,
+        "baseline_active_iCs_exact": true,
+        "after_active_i_zero": true,
+        "after_active_iCs_zero": true,
+        "visible_text_identical": true,
+        "document_xml_exact_expected_normalization": true
+      }
+    }
+  },
+  "negative_mutations": {
+    "50-slovar-poley-raschet-metrami.docx": true,
+    "53-zapros-status-obekta.docx": true
+  },
+  "model_calls": 0,
+  "release": "HOLD"
+}
