@@ -28,14 +28,15 @@ REPORT = ROOT / "tools/reports/site-static-content-snapshot-20261012/report.json
 RECEIPT = ROOT / "tools/reports/site-static-content-snapshot-20261012/receipt.json"
 ROUTE_REPORT = ROOT / "tools/reports/site-route-discovery-20261012/report.json"
 ARTIFACT_REGISTRY = ROOT / "products-storage/ARTIFACT-REGISTRY.json"
+ARTIFACT_REGISTRY_SOURCE_COMMIT = "0d80986aa78640394462ab1a73a895a19cf9019f"
 
 CONTENT_SOURCE_COMMIT = "03ce64f607c43bd6a1443ad2d1088c07697c22ba"
 CONTENT_SOURCE_TREE = "e9a7e8cb6cbf91f1a1c21c5e0cf468970d70c5e4"
 ACCEPTED_DISCOVERY_MERGE = "4c93fe4ae680c88f2ca82a65ec6fd380b0248af6"
 ROUTE_REPORT_BLOB = "5f779a82995515b3a2b1c687771823c82439130d"
 ROUTE_REPORT_SHA256 = "37febeca4e5c6c8a4f21e5d7ec1534b5fe61bd8a9ba994cd93bc0bf7e71933cb"
-ARTIFACT_REGISTRY_BLOB = "5a431138f4d157ed42fbd6ff034c40c515c4422b"
-ARTIFACT_REGISTRY_SHA256 = "080238747ee7e32fe72efaa9a62f911f670ad76354f0e972482a8fa4602195fc"
+ARTIFACT_REGISTRY_BLOB = "51742bc4ed4eda8a98743175382bd93fa86d7259"
+ARTIFACT_REGISTRY_SHA256 = "f399ff0cc040299b81c7c544d846dd90037af9a71895747001a1b8c0bbc40721"
 SNAPSHOT_DATE = "2026-10-12"
 CANONICAL_EXCEPTIONS = ["404.html", "fail.html", "success.html", "test-pokupka.html"]
 
@@ -123,7 +124,7 @@ def assert_pinned_registry_identity():
     inventory hashes, roles or statuses are excluded.
     """
     relative = ARTIFACT_REGISTRY.relative_to(ROOT).as_posix()
-    baseline = read_source(CONTENT_SOURCE_COMMIT, relative)
+    baseline = read_source(ARTIFACT_REGISTRY_SOURCE_COMMIT, relative)
     blob = hashlib.sha1(b"blob " + str(len(baseline)).encode() + b"\0" + baseline).hexdigest()
     if blob != ARTIFACT_REGISTRY_BLOB or sha256(baseline) != ARTIFACT_REGISTRY_SHA256:
         raise SnapshotError("accepted registry baseline drift")

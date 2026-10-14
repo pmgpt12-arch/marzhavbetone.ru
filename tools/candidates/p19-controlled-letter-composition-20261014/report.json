@@ -32,8 +32,8 @@
     "legal/content/delivery-route acceptance pending",
     "artifact registry reconciliation is technical provenance, not product/release acceptance"
   ],
-  "next_step": "Independent exact-head re-review plus exact-head CI; no publication/live delivery.",
-  "changed_files_count": 7,
+  "next_step": "Independent exact-head re-review and all exact-head CI; no publication/live delivery.",
+  "changed_files_count": 12,
   "registry_reconciliation": {
     "ci_diagnosis_sha256": "44b3e3bc9e294e00733bb2879cc09c31b8c8fb145dc6a76a66c2db4733bc09bd",
     "runtime_sku": "t6",
@@ -55,5 +55,15 @@
     "scope": "complete fail-closed product-root inventory/provenance only",
     "baseline_test_updated": true,
     "baseline_test_diagnosis_sha256": "d424e9521fd7b1cd7b7d41f9f38be24d67a87018c8e1ce8921237c7ad3e3244b"
+  },
+  "consumer_rebind": {
+    "diagnosis_sha256": "36165e445e0673c48deee8d7571659b2dacdeccf90be07cf0eb50f52aa73ad3d",
+    "registry_source_commit": "0d80986aa78640394462ab1a73a895a19cf9019f",
+    "registry_identity_sha256": "0c13befa31baeef2638408053b65ae59ee5133d325cba00b5a09d3571cc56483",
+    "scope": "static snapshot registry baseline and P2 registry-identity pin only; existing content/routes/P2 nominations unchanged",
+    "static_snapshot_report_sha256": "2f2cb94a8bc74726da4b5b57ce52530fc860cc44fbdbb48f2b4fa38f2c92406f",
+    "static_snapshot_receipt_sha256": "bf89911772886aaf502bb93240f302b7f23ba346b691048e2e32566aa6eb3787",
+    "static_pages_unchanged": 88,
+    "local_dependencies_unchanged": 63
   }
 }

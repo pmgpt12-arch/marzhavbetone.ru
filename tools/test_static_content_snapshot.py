@@ -99,7 +99,7 @@ class StaticContentSnapshotTests(unittest.TestCase):
 class RegistryIdentityProjectionTests(unittest.TestCase):
     def accepted(self):
         import json
-        return json.loads(mod.read_source(mod.CONTENT_SOURCE_COMMIT,"products-storage/ARTIFACT-REGISTRY.json"))
+        return json.loads(mod.read_source(mod.ARTIFACT_REGISTRY_SOURCE_COMMIT,"products-storage/ARTIFACT-REGISTRY.json"))
 
     def test_history_only_append_preserves_static_identity(self):
         data=self.accepted();new=copy.deepcopy(data);new["change_history"]={"added":"audit only"}
