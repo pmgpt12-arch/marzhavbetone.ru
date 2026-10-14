@@ -102,12 +102,38 @@ if (!defined('PRODUCTS_DIR')) {
 if (!defined('DELIVERY_DIR')) {
     define('DELIVERY_DIR', ORDERS_DIR . '/delivery');
 }
-// Срок жизни ссылки на скачивание (обещание из письма покупателю — 30 дней)
-if (!defined('DELIVERY_TTL_DAYS')) {
-    define('DELIVERY_TTL_DAYS', 30);
+// Срок жизни ссылки: ровно один час от первой выдачи ссылки.
+if (!defined('DELIVERY_TTL_SECONDS')) {
+    define('DELIVERY_TTL_SECONDS', 3600);
 }
 if (!defined('DELIVERY_MAX_DOWNLOADS')) {
     define('DELIVERY_MAX_DOWNLOADS', 30);
+}
+
+/** Истечение включительно: в момент expires_at ссылка уже недействительна. */
+function mvb_delivery_is_expired(int $expiresAt, ?int $now = null): bool
+{
+    return ($now ?? time()) >= $expiresAt;
+}
+
+/**
+ * Фиксирует единый момент первой выдачи и выводит обе временные отметки из него.
+ * Повторный callback сохраняет уже записанное окно без продления.
+ */
+function mvb_delivery_window(array $existing, ?int $issuedAtEpoch = null): array
+{
+    if (isset($existing['created_at'], $existing['expires_at'])) {
+        return [
+            'created_at' => (string)$existing['created_at'],
+            'expires_at' => (string)$existing['expires_at'],
+        ];
+    }
+
+    $issuedAtEpoch ??= time();
+    return [
+        'created_at' => date('c', $issuedAtEpoch),
+        'expires_at' => date('c', $issuedAtEpoch + DELIVERY_TTL_SECONDS),
+    ];
 }
 
 // Папки заказов и выдачи не должны читаться напрямую через веб.
@@ -674,11 +700,11 @@ function mvb_prepare_delivery(array &$order): array
         return ['links' => [], 'missing' => $missing];
     }
 
+    $window = mvb_delivery_window($existing);
     $order['delivery'] = [
         'token'      => $token,
-        'created_at' => (string)($existing['created_at'] ?? date('c')),
-        'expires_at' => (string)($existing['expires_at']
-            ?? date('c', time() + DELIVERY_TTL_DAYS * 86400)),
+        'created_at' => $window['created_at'],
+        'expires_at' => $window['expires_at'],
         'downloads'  => (int)($existing['downloads'] ?? 0),
         'items'      => $items,
         'editions'   => $editions,
@@ -914,8 +940,7 @@ function mvb_delivery_email(array $order, array $links): string
     foreach ($links as $link) {
         $body .= '• ' . $link['name'] . "\n  " . $link['url'] . "\n\n";
     }
-    $days = DELIVERY_TTL_DAYS;
-    $body .= "Ссылки действуют {$days} дней. Сохраните файлы на свой компьютер.\n\n";
+    $body .= "Ссылки действуют 1 час с момента первой выдачи. Сохраните файлы на свой компьютер.\n\n";
     $body .= "Что делать дальше:\n";
     $body .= "1. Скачайте архив и распакуйте его.\n";
     // Файла инструкции нет в части папок, поэтому письмо на него не

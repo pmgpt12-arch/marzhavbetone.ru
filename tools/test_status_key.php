@@ -167,12 +167,12 @@ mvb_check('старый заказ без ключа не пускают', funct
     mvb_true(strpos($о['body'], 'old@example.invalid') === false, 'в ответе почта старого заказа');
 });
 
-mvb_check('верный ключ → статус отдаётся', function () use ($портСайта, $orderId, $ключ) {
+mvb_check('верный ключ → статус отдаётся', function () use ($портСайта, $orderId, $ключ, $каталогСайта) {
     $о = get($портСайта, '/check-payment.php?order=' . rawurlencode($orderId) . '&key=' . $ключ);
     mvb_equal($о['code'], 200, 'код ответа: ' . $о['body']);
     mvb_true(($о['json']['ok'] ?? false) === true, 'ok не true');
     mvb_true(isset($о['json']['order']['status']), 'нет статуса');
-    mvb_equal($о['json']['order']['total'], 249000, 'сумма');
+    mvb_equal($о['json']['order']['total'], $каталогСайта['p1']['price'], 'сумма из серверного каталога');
 });
 
 mvb_check('в успешном ответе нет почты и лишних полей',

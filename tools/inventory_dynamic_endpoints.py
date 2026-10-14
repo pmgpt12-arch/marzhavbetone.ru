@@ -10,7 +10,7 @@ import os
 import signal
 from pathlib import Path
 
-EXPECTED_REPORT_SHA256 = "029e2d0763775a05afd8f6fa86c01a6c9fe94af67e597602e4b3779edfaeecbb"
+EXPECTED_REPORT_SHA256 = "2410bda106b581e3e998d9bc0832a6a10a48f7d64f936e01992ea8f03047cfd0"
 EXPECTED_ENDPOINTS = (
     "app-script.php",
     "check-payment.php",
