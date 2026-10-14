@@ -1,0 +1,128 @@
+{
+  "status": "PASS_AUTHOR_ISOLATED_BINDING_ONLY",
+  "source_commit": "8311bb2dc7b497415952d03630e4a477f8bf9d7c",
+  "checks": {
+    "php_lint_products-config.php": "PASS",
+    "php_lint_download.php": "PASS",
+    "php_lint_bridge.php": "PASS",
+    "php_lint_download-cli.php": "PASS",
+    "catalog_prices_sku_names_dirs_byte_equal": "PASS",
+    "stale_base_rejected": "PASS",
+    "new_paid_order_prepared": "PASS",
+    "new_name_only_in_binding": "PASS",
+    "one_intercepted_mail_no_external_send": "PASS",
+    "accepted_letter_verbatim": "PASS",
+    "no_stale_number_order_guidance": "PASS",
+    "all_eight_filename_references": "PASS",
+    "link_matches_existing_route": "PASS",
+    "stored_archive_exact_accepted_sha": "PASS",
+    "stored_letter_exact_accepted_sha": "PASS",
+    "eight_members_crc_and_letter_outside": "PASS",
+    "repeat_callback_preserves_order": "PASS",
+    "repeat_callback_does_not_send_again": "PASS",
+    "download_handler_200_exact_bytes": "PASS",
+    "download_count_increment_once": "PASS",
+    "unpaid_download_fail_closed_no_counter": "PASS",
+    "wrong_token_fail_closed_no_counter": "PASS",
+    "unowned_sku_fail_closed_no_counter": "PASS",
+    "expired_fail_closed_no_counter": "PASS",
+    "quota_fail_closed_no_counter": "PASS",
+    "missing_edition_metadata_fail_closed_no_counter": "PASS",
+    "source_accepted.zip_missing_no_partial_delivery": "PASS",
+    "issued_survives_accepted.zip_missing": "PASS",
+    "source_accepted.zip_changed_no_partial_delivery": "PASS",
+    "issued_survives_accepted.zip_changed": "PASS",
+    "source_accepted-letter.txt_missing_no_partial_delivery": "PASS",
+    "issued_survives_accepted-letter.txt_missing": "PASS",
+    "source_accepted-letter.txt_changed_no_partial_delivery": "PASS",
+    "issued_survives_accepted-letter.txt_changed": "PASS",
+    "issued_p11-f365039e_missing_no_fallback": "PASS",
+    "download_missing_snapshot_fails_without_count": "PASS",
+    "issued_p11-f365039e_changed_no_fallback": "PASS",
+    "download_changed_snapshot_fails_without_count": "PASS",
+    "issued_p11-letter-c_missing_no_fallback": "PASS",
+    "issued_p11-letter-c_changed_no_fallback": "PASS",
+    "feature_disabled_no_new_issue": "PASS",
+    "unknown_edition": "PASS",
+    "wrong_hash": "PASS",
+    "unpaid_prepare": "PASS",
+    "standalone_t6_not_allowed": "PASS",
+    "mixed_order_missing_item": "PASS",
+    "legacy_p11_callback_keeps_snapshot_token_order": "PASS",
+    "legacy_p11_download_200_original": "PASS",
+    "legacy_p11_not_migrated_by_later_marker": "PASS",
+    "legacy_p11_missing_not_rebuilt_from_new_master": "PASS",
+    "legacy_t6_callback_keeps_snapshot_token_order": "PASS",
+    "legacy_t6_download_200_original": "PASS",
+    "legacy_t6_not_migrated_by_later_marker": "PASS",
+    "legacy_t6_missing_not_rebuilt_from_new_master": "PASS",
+    "unmarked_order_not_upgraded": "PASS",
+    "p1_existing_edition_regression": "PASS",
+    "input_sources_unchanged": "PASS",
+    "no_extra_mail_on_failed_or_legacy_calls": "PASS",
+    "temporary_sandbox_removed": "PASS"
+  },
+  "checks_passed": 59,
+  "checks_total": 59,
+  "downloads": {
+    "new_p11": {
+      "code": 200,
+      "sha256": "f365039ef568dbbe9c661a6e1f553d21ddd0b086c9172f1e5a4340fb7dfe7f70",
+      "bytes": 592882
+    },
+    "legacy_p11": {
+      "code": 200,
+      "sha256": "73b72469a4ed5c823e52def4e249f06d2de9c66f22fa57cac69c25beb26a8216",
+      "fixture": "synthetic historical snapshot"
+    },
+    "legacy_t6": {
+      "code": 200,
+      "sha256": "57d4f009eeafa9bf16e1ace82aa98a22b6eaf95af73047caa9c079a0db1440b7",
+      "fixture": "synthetic historical snapshot"
+    }
+  },
+  "messages": {
+    "new_p11": {
+      "sha256": "bc4d722ccce36b9fb7dc099faa4e1b052d0f2a1977fe7f93c2bb4933d921496d",
+      "letter_sha256": "c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5",
+      "transport": "intercepted PHP mail; no external send"
+    }
+  },
+  "archive_sha256": "f365039ef568dbbe9c661a6e1f553d21ddd0b086c9172f1e5a4340fb7dfe7f70",
+  "letter_sha256": "c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5",
+  "php_version": "8.3.6",
+  "modified_runtime_copy_sha256": {
+    "products-config.php": "e1aaec03b3847629b66c2601042cb57b8952ef8e112c0d53ff2ac74b652eeae2",
+    "download.php": "2ccd9b2507cfc7e64eeada608825f507b4c780cd898c4cdc799cdce67691c92d"
+  },
+  "patch_sha256": "a30f83bd1f2a06f5aa5c2fd937afb09f6030bf14f491ce1ba6a5960b7c300902",
+  "real_mail_sent": 0,
+  "real_payments": 0,
+  "live_orders_touched": 0,
+  "working_trees_modified": 0,
+  "native_office_jobs": 0,
+  "model_calls": 0,
+  "independent_acceptance": "PENDING",
+  "release": "HOLD",
+  "G1_G8_accepted_products": 0,
+  "test_transport": "CLI full download.php handler; no HTTP listener or real checkout",
+  "elapsed_seconds": 7.869,
+  "inputs": {
+    "products-config.php": {
+      "sha256": "6874b4bfea06351fecdb4405bb0c9c8a07333e142d69697ab87de1af5bd16b91",
+      "bytes": 57384
+    },
+    "download.php": {
+      "sha256": "bd6380b155ac95ed8e73c7fb2a587a3903e0d85658ce4de3154b74306d7a78f8",
+      "bytes": 7496
+    },
+    "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-consolidated-gold-20261014/p11-t6-eight-files-gold-candidate.zip": {
+      "sha256": "f365039ef568dbbe9c661a6e1f553d21ddd0b086c9172f1e5a4340fb7dfe7f70",
+      "bytes": 592882
+    },
+    "tools/candidates/portfolio-owner-pdf-20261013/19-kvartiry-vmesto-deneg/00-PISMO-POSLE-POKUPKI.txt": {
+      "sha256": "c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5",
+      "bytes": 3072
+    }
+  }
+}
