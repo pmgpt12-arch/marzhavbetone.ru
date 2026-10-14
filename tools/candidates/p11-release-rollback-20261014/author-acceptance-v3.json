@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "id": "P11-CONTROLLED-RELEASE-ROLLBACK-CANDIDATE-20261014",
+  "status": "PASS_AUTHOR_RELEASE_ROLLBACK_CANDIDATE_ONLY",
+  "base": "297fdd6560dd158dc463c2e128ed580f1cdb17a2",
+  "checks": {
+    "accepted_zip_sha256": "PASS",
+    "accepted_letter_sha256": "PASS",
+    "deterministic_builder": "PASS",
+    "accepted_products_config_bytes_reused": "PASS",
+    "accepted_download_bytes_reused": "PASS",
+    "only_three_runtime_outputs": "PASS",
+    "payment_http_input_anchor_unique": "PASS",
+    "published_release_patch_matches": "PASS",
+    "published_rollback_patch_matches": "PASS",
+    "source_drift_fails_closed": "PASS",
+    "php_lint_products-config.php": "PASS",
+    "php_lint_download.php": "PASS",
+    "php_lint_payment.php": "PASS",
+    "enabled_payment_exit_zero": "PASS",
+    "enabled_payment_returns_fixture_url": "PASS",
+    "one_order_persisted": "PASS",
+    "provider_called_once_after_order_persisted": "PASS",
+    "server_assigns_exact_edition_before_provider": "PASS",
+    "client_edition_and_price_ignored": "PASS",
+    "provider_amount_matches_server_total": "PASS",
+    "provider_receipt_matches_server_item": "PASS",
+    "edition_persists_after_provider": "PASS",
+    "accepted_zip_staged_before_provider": "PASS",
+    "accepted_letter_staged_before_provider": "PASS",
+    "disabled_refuses_before_side_effects": "PASS",
+    "missing_source_refuses_before_side_effects": "PASS",
+    "release_patch_check": "PASS",
+    "release_patch_apply": "PASS",
+    "release_byte_equivalence": "PASS",
+    "rollback_patch_check": "PASS",
+    "rollback_patch_apply": "PASS",
+    "rollback_byte_equivalence": "PASS"
+  },
+  "model_calls": 0,
+  "paid_api": false,
+  "external_network": false,
+  "live_changes": false,
+  "checks_passed": 32,
+  "checks_total": 32,
+  "input_sha256": {
+    "products-config.php": "6874b4bfea06351fecdb4405bb0c9c8a07333e142d69697ab87de1af5bd16b91",
+    "download.php": "bd6380b155ac95ed8e73c7fb2a587a3903e0d85658ce4de3154b74306d7a78f8",
+    "payment.php": "394f003be37dd2904e9b20fea733392e87859fb2dc9a4b16f61642a205317929"
+  },
+  "output_sha256": {
+    "products-config.php": "a6427bddba614efd8adbc5579acd838aaaaffd190bd2b4ba0e4a324d33a447dd",
+    "download.php": "2ccd9b2507cfc7e64eeada608825f507b4c780cd898c4cdc799cdce67691c92d",
+    "payment.php": "10b1a663ab40eaac22b17f8041d397daeb12cc9d07117b4a29a881aab063cbc9"
+  },
+  "release_patch_sha256": "b64a1c172a6787b5b163f21035dd37d10e8872d88c912df8f5de2adf55654f69",
+  "rollback_patch_sha256": "395303d0e06ccec86bcaf2165a592344631b64db603c4a859dc59dd209758625",
+  "accepted_zip_sha256": "f365039ef568dbbe9c661a6e1f553d21ddd0b086c9172f1e5a4340fb7dfe7f70",
+  "accepted_letter_sha256": "c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5",
+  "provider_fixture": {
+    "external_call": false,
+    "persisted_before_call": true,
+    "edition": {
+      "kind": "p11-t6-gold-20261014",
+      "zip": "p11-f365039ef568dbbe9c661a6e1f553d21ddd0b086c9172f1e5a4340fb7dfe7f70.zip",
+      "sha256": "f365039ef568dbbe9c661a6e1f553d21ddd0b086c9172f1e5a4340fb7dfe7f70",
+      "letter": "p11-letter-c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5.txt",
+      "letter_sha256": "c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5"
+    }
+  },
+  "limits": [
+    "candidate-only; no root runtime or config changes",
+    "no production source nomination",
+    "no real checkout, provider, callback, SMTP, deploy or rollback",
+    "G1-G8 remains 0/13; release HOLD"
+  ],
+  "elapsed_seconds": 0.424
+}
