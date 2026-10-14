@@ -1,0 +1,89 @@
+{
+  "id": "P3-XLSX02-06-FINAL-RECEIPT-20261014",
+  "status": "AUTHOR_FUNCTIONAL_AND_VISUAL_PASS_NATIVE_AND_INDEPENDENT_PENDING",
+  "completed_at": "2026-10-14T20:04:00+07:00",
+  "branch": "codex/p3-xlsx-02-06-20261014",
+  "base_commit": "290f11d15d4d5a769c7982d143dde8e1fe513211",
+  "route": "isolated worktree -> deterministic artifact authoring -> LibreOffice Calc recalc -> scenario acceptance -> PDF/PNG render -> visual inspection -> draft stacked PR",
+  "inputs": [
+    {
+      "path": "products-storage/05-ks-bez-vozvrata/02-reestr-prilozheniy.xlsx",
+      "sha256": "ccc422fe4d9f76580d204091b9206243410f5b709600fc314863f91a0f0542f8"
+    },
+    {
+      "path": "products-storage/05-ks-bez-vozvrata/06-zhurnal-peredachi.xlsx",
+      "sha256": "8da8ec7d25eca4d5e3c729d029d506317420eccc82cb6776260312ee23c210de"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "candidate/02-reestr-prilozheniy.xlsx",
+      "sha256": "49320b1ca999474aa7cf6d2cf9eb9563c703be3b556aa1f2ce491cf1a2797ca0"
+    },
+    {
+      "path": "candidate/06-zhurnal-peredachi.xlsx",
+      "sha256": "b4dcb8e2da4b89bb7d3b373216e31db848f4724b08c18343a6b522c071bbab5c"
+    },
+    {
+      "path": "preview/02-reestr-prilozheniy.pdf",
+      "sha256": "2811ddfaef0ba32549c7c3f5bfd255635cda25d1139eb511ae7c2d52d30a1d7b"
+    },
+    {
+      "path": "preview/06-zhurnal-peredachi.pdf",
+      "sha256": "9f19bb2ed627b4f480d4a94c7383064069d16ca1a1c44c5c4ed43392c4f91978"
+    }
+  ],
+  "reports": [
+    {
+      "path": "artifact-author-report.json",
+      "sha256": "23ac15aa8e5d05928a2e8063a35521d8c54b577ee27578f34351acae78f5cc64"
+    },
+    {
+      "path": "author-acceptance.json",
+      "sha256": "6bb84e156bd25237b2b01eee426dd28f8257b51fa083107f7063f3b27de21772"
+    },
+    {
+      "path": "visual-review.json",
+      "sha256": "c81100a7a999854905950c28dd47b9f10941954d1551e8239cf5584044637c94"
+    },
+    {
+      "path": "source-map.json",
+      "sha256": "e57e96b4c0966bbd3b07936ca7fe80ed71a619fd6f04242df3dc15de56b88b6e"
+    }
+  ],
+  "acceptance": {
+    "structural_and_functional": "21/21 PASS",
+    "numeric_scenarios": "14/14 PASS",
+    "cached_formula_errors": 0,
+    "visual_pages": "6/6 PASS",
+    "source_hashes_unchanged": "2/2 PASS",
+    "model_calls": 0,
+    "paid_calls": 0
+  },
+  "remediation_lineage": [
+    {
+      "diagnosis": "005",
+      "class": "RUNTIME/HARNESS",
+      "resolution": "normalized A4 paperSize type in verifier"
+    },
+    {
+      "diagnosis": "006",
+      "class": "RUNTIME/HARNESS_COMPATIBILITY",
+      "resolution": "isolated print-title experiment"
+    },
+    {
+      "diagnosis": "007",
+      "class": "LAYOUT/PAGINATION",
+      "resolution": "repeat row 4 and set 02 data rows to 21 pt"
+    }
+  ],
+  "limitations": {
+    "native_microsoft_excel": "NOT_RUN",
+    "independent_buyer_review": "PENDING",
+    "canonical_replacement": false,
+    "production_publication": false,
+    "release": "HOLD"
+  },
+  "next_step": "Publish a draft stacked PR for independent review and exact-head CI; do not merge until native Excel and independent buyer gates are satisfied.",
+  "checkpoint_policy": "verified_only"
+}

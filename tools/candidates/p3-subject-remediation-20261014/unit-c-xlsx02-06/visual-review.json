@@ -1,0 +1,32 @@
+{
+  "id": "P3-XLSX02-06-VISUAL-REVIEW-FINAL-20261014",
+  "status": "PASS_AUTHOR_VISUAL_LIBREOFFICE",
+  "reviewed_at": "2026-10-14T20:01:00+07:00",
+  "method": "Exact final PNG pages rendered by LibreOffice Calc headless and Poppler; all six pages inspected. Final PNG hashes equal the accepted experiment-002 page hashes.",
+  "pages_reviewed": 6,
+  "checks": {
+    "02_page_1_title_header_rows_1_25_readable": true,
+    "02_page_2_repeated_header_rows_26_50_readable": true,
+    "02_page_3_instruction_readable": true,
+    "06_page_1_title_header_rows_1_30_readable": true,
+    "06_page_2_repeated_header_rows_31_50_readable": true,
+    "06_page_3_instruction_readable": true,
+    "all_columns_fit_landscape": true,
+    "no_clipped_or_overlapping_text": true,
+    "white_graphite_muted_gold_style": true
+  },
+  "page_sha256": {
+    "02/page-1.png": "b3c3a76a00160594ef845d39885dd16b2e0062540d3a35ec82594bb7374bfd5e",
+    "02/page-2.png": "af3acaa171fb14806bdbce7680c59a3c8d879a07da241c479f0b5b608ca51e92",
+    "02/page-3.png": "9829565f51b34779304caece5df783dec76db78a35a21521484d972cd690955c",
+    "06/page-1.png": "d950834e92b5db162adf5c71c568e367aed6031a7abcdd26dd482d0d193bbd83",
+    "06/page-2.png": "731169041449d1503bf3cc1a8b6d27bbfbc80aaa286d6fb6ad2e7d78f7c47c16",
+    "06/page-3.png": "8708f8234eed8ee7a33de256a55487b74739c432f9b7804caaee982655a69db8"
+  },
+  "author_functional_report_sha256": "6bb84e156bd25237b2b01eee426dd28f8257b51fa083107f7063f3b27de21772",
+  "native_microsoft_excel": "NOT_RUN",
+  "independent_buyer_review": "PENDING",
+  "canonical_replacement": false,
+  "release": "HOLD",
+  "checkpoint_policy": "verified_only"
+}

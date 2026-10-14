@@ -1,0 +1,25 @@
+{
+  "id": "P3-XLSX02-06-SOURCE-MAP-20261014",
+  "status": "LINEAGE_VERIFIED_CANDIDATE_ONLY",
+  "base_commit": "290f11d15d4d5a769c7982d143dde8e1fe513211",
+  "nomination_scope": "Current product reconciliation retains historical XLSX 02/06; no owner-v3 replacement workbook was nominated.",
+  "mappings": [
+    {
+      "source": "products-storage/05-ks-bez-vozvrata/02-reestr-prilozheniy.xlsx",
+      "source_sha256": "ccc422fe4d9f76580d204091b9206243410f5b709600fc314863f91a0f0542f8",
+      "candidate": "candidate/02-reestr-prilozheniy.xlsx",
+      "candidate_sha256": "49320b1ca999474aa7cf6d2cf9eb9563c703be3b556aa1f2ce491cf1a2797ca0"
+    },
+    {
+      "source": "products-storage/05-ks-bez-vozvrata/06-zhurnal-peredachi.xlsx",
+      "source_sha256": "8da8ec7d25eca4d5e3c729d029d506317420eccc82cb6776260312ee23c210de",
+      "candidate": "candidate/06-zhurnal-peredachi.xlsx",
+      "candidate_sha256": "b4dcb8e2da4b89bb7d3b373216e31db848f4724b08c18343a6b522c071bbab5c"
+    }
+  ],
+  "original_sources_unchanged": true,
+  "candidate_only": true,
+  "sku_mapping_claim": false,
+  "canonical_replacement": false,
+  "release": "HOLD"
+}
