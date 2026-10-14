@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "P11-50-53-ICS-CLEANUP-AUTHOR-ACCEPTANCE",
+  "status": "PASS_AUTHOR_CANDIDATE_ONLY",
+  "finished_at": "2026-10-14T01:50:18.082292+00:00",
+  "base_head": "58ed5fe199dbcdecf6261eca634fe73b712c73fd",
+  "github_observed_after_base": "dade5a80aa1a9fe4271b40b24a1d7c45dc8ab579",
+  "github_delta_after_base": "two evidence/archive files only; product 50/53 unchanged",
+  "candidate_sha256": {
+    "50": "6f40e5d3757d77d6460efb990f459167220f5fb9f3f36a6a6bcfb92b415869d5",
+    "53": "c3fccbdc5e7e6841ca8c48b5ab1c199bdebe0d2f4990c232040d20f70bfc023e"
+  },
+  "native": {
+    "job": "p11-50-53-ics-cleanup-word-20261014-v1",
+    "status": "PASS",
+    "pages": {
+      "50": 2,
+      "53": 3
+    },
+    "pdf_sha256": {
+      "50": "d97f0684082df389ce4424ed898f4b93c2451e51412b803f3cf392b0590f2071",
+      "53": "2df51ae45b802d8e62f2ed2232be0a3808642db015cb3ff5794beaafc90652bd"
+    }
+  },
+  "visual_review": {
+    "pages_reviewed": 5,
+    "status": "PASS_AUTHOR_VISUAL_ONLY",
+    "facts": [
+      "50 compact two-page dictionary, 8pt table text readable",
+      "53 three pages unchanged in layout",
+      "graphite headings",
+      "no visible italic",
+      "no clipping or overlap",
+      "page-2 dictionary header repeats"
+    ]
+  },
+  "regression": {
+    "status": "PASS",
+    "report_sha256": "95fa2b0fc2f94d662ed1be396358c1dd33f088ed9039ae09a5bf859094db3afa"
+  },
+  "evidence_sha256": {
+    "passport.json": "dab1b7b9e9505054af84ce1505301f76abae932469a77ba3c172c0832eea1fcd",
+    "patch-report.json": "2b1643f39b330641b2e7d6b1a5ac4e4a64bae17c40931271e6228a052cba8e04",
+    "native-passport.json": "f5a3cd221e2c5e155bd45cc1acaee3eb79ad91613d0a5856a61bf973dfce19dd",
+    "native-receipt.json": "b6af91bab8754c8f4226fee28cc5efc0e69afa96a27fadcb9fa436d6db1a7a8b",
+    "regression-report.json": "95fa2b0fc2f94d662ed1be396358c1dd33f088ed9039ae09a5bf859094db3afa",
+    "native/50.pdf": "d97f0684082df389ce4424ed898f4b93c2451e51412b803f3cf392b0590f2071",
+    "native/50-1.png": "501f3297316f4e538cff1155ca3d9514ac61c719bb96c35cc713c25920191d5e",
+    "native/50-2.png": "d8b8ca3388a9ce2b5e605c16621a4001757b53d6743374e380c4aea5db652063",
+    "native/53.pdf": "2df51ae45b802d8e62f2ed2232be0a3808642db015cb3ff5794beaafc90652bd",
+    "native/53-1.png": "5728f322b7e2a2c685f7c3069187c1f901647df580774f9a64554021c46b2ec3",
+    "native/53-2.png": "dbe2d712b71b483429d237601d53754c09705fd254efa7f16d9ce6011ba00421",
+    "native/53-3.png": "5a82959871551015b8ddbd58507833784ee1138d3cec625d1a029bfb57658c6d",
+    "native/report.xml": "e18f1885e95c3921ddc0c4f711f2ac321ddc1db800c65fa03cf58de2ce297db1"
+  },
+  "limitations": [
+    "author cannot independently accept own correction",
+    "existing eight-file archive at dade5a80 predates corrected SHA and becomes stale",
+    "archive/full buyer replay, exact-head CI and independent delta review required",
+    "release HOLD",
+    "G1-G8 0/13"
+  ],
+  "next_step": "commit/rebase on current PR head, publish Draft correction, run CI, independent review, rebuild/review archive"
+}

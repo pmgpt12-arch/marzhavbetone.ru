@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "id": "P11-50-53-ICS-NATIVE",
+  "status": "PREPARED",
+  "prepared_at": "2026-10-14T01:47:24.385577+00:00",
+  "job": "p11-50-53-ics-cleanup-word-20261014-v1",
+  "inputs": {
+    "50-slovar-poley-raschet-metrami.docx": "6f40e5d3757d77d6460efb990f459167220f5fb9f3f36a6a6bcfb92b415869d5",
+    "53-zapros-status-obekta.docx": "c3fccbdc5e7e6841ca8c48b5ab1c199bdebe0d2f4990c232040d20f70bfc023e"
+  },
+  "executor": {
+    "path": "/home/denis/projects/mb001-p11-ics-cleanup-20261014/tools/candidates/portfolio-owner-pdf-20261013/p11-50-53-ics-cleanup-20261014/native_submit.py",
+    "sha256": "81478c7305bc0c00b721965ebf198d6abe11a30cf89ea2e7693ca80888375a4c"
+  },
+  "previous_job": "p11-buyer-brand-50-layout-word-20261014-v2",
+  "idle_poll": "192.168.1.140 - - [14/Oct/2026 08:47:09] \"GET /word/current.xml HTTP/1.0\" 204 -",
+  "acceptance": [
+    "exact SHA Word PASS 2/2",
+    "50 remains 2 pages, 53 remains 3 pages",
+    "all five pages visually reviewed",
+    "no clipping/overlap; graphite/no italic",
+    "independent review pending"
+  ],
+  "checkpoint_policy": "verified_only",
+  "release": "HOLD"
+}
