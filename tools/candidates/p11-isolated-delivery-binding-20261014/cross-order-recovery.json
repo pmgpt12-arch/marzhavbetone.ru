@@ -1,0 +1,18 @@
+{
+  "id": "P11-CROSS-ORDER-CACHE-RECOVERY-20261014",
+  "superseded_candidate_head": "f0efb917e98b82eb4d751686da887c10753ac6a7",
+  "observed_failure_blob": "7a91c14c10a65bdfe6d3b2e08e10fd885b0e72fe",
+  "observed_failure_sha256": "5b8a020894a668aee7225e04fe75cebb8cdfc6417343545d4ef81d83fa71d5dc",
+  "root_cause": "Already issued orders were pinned but an unmarked new order still called the mutable shared legacy ZIP builder, overwriting the file referenced by prior buyers",
+  "class": "CROSS_ORDER_SHARED_ARTIFACT_MUTATION",
+  "rule": "All P11/T6 paths in the isolated binding treat legacy publication as immutable: new unmarked orders reuse it or fail closed; no regeneration from newer masters",
+  "minimal_fix": "One branch in existing mvb_prepare_delivery overlay; no catalogue or checkout change",
+  "regression_gate": "Six new checks: P11/T6 unmarked order does not modify old bytes; older orders download original after new order; missing legacy snapshot is not regenerated",
+  "checks_passed": 65,
+  "checks_total": 65,
+  "prior_59_receipt_status": "Historical limited coverage retained; not sufficient for cross-order preservation and superseded by v2 for current code",
+  "why_rechecked": "Runtime overlay changed to correct observed defect; complete isolated suite rerun only for changed code, not old Office/PDF/model/product jobs",
+  "source_commit": "8311bb2dc7b497415952d03630e4a477f8bf9d7c",
+  "release": "HOLD",
+  "independent_acceptance": "PENDING"
+}

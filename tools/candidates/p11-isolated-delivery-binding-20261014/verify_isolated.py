@@ -202,8 +202,23 @@ require __DIR__.'/download.php';
             check('legacy_'+sku+'_missing_not_rebuilt_from_new_master',q['result']==[] and not (delivery/zipname).exists() and c==500 and a['delivery']['downloads']==2)
             (delivery/zipname).write_bytes(before)
         # An unmarked new P11 order retains the pre-existing generic route.
+        legacy_cache={sku:(name,(delivery/name).read_bytes()) for sku,name in [('p11','13-raschet-metrami.zip'),('t6','19-kvartiry-vmesto-deneg.zip')]}
         u=new('p11',False);u['id']='order_20261014_3_unmarked';q=call(u)
         check('unmarked_order_not_upgraded','p11' not in q['order']['delivery']['editions'] and q['order']['delivery']['items']['p11']=='13-raschet-metrami.zip')
+        check('unmarked_p11_preserves_prior_archive_bytes',(delivery/legacy_cache['p11'][0]).read_bytes()==legacy_cache['p11'][1])
+        fresh_t6=new('t6',False); fresh_t6['id']='order_20261014_4_unmarked'
+        qt=call(fresh_t6)
+        check('unmarked_t6_preserves_prior_archive_bytes',bool(qt['result']['links']) and (delivery/legacy_cache['t6'][0]).read_bytes()==legacy_cache['t6'][1])
+        for legacy_sku,(legacy_name,historical) in legacy_cache.items():
+            prior_order=new(legacy_sku,False)
+            prior_order['id']='order_20261014_5_'+legacy_sku
+            prior_order['delivery']={'token':'prior'+legacy_sku,'created_at':'2026-01-01T00:00:00Z','expires_at':'2099-01-01T00:00:00Z','downloads':4,'items':{legacy_sku:legacy_name},'editions':[]}
+            c,b,a=get(prior_order,legacy_sku)
+            check('old_'+legacy_sku+'_download_after_new_unmarked_order',c==200 and b==historical and a['delivery']['downloads']==5)
+            legacy_file=delivery/legacy_name;legacy_file.unlink()
+            fresh=new(legacy_sku,False); no_snapshot=call(fresh)
+            check('unmarked_'+legacy_sku+'_missing_cache_no_rebuild',not no_snapshot['result']['links'] and bool(no_snapshot['result']['missing']) and no_snapshot['order']==fresh and not legacy_file.exists())
+            legacy_file.write_bytes(historical)
         # P1 pinned-edition code is left in place; verify one synthetic existing order.
         buf=io.BytesIO()
         with zipfile.ZipFile(buf,'w') as z:z.writestr('legacy-p1.txt','P1 existing edition')

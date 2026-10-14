@@ -25,18 +25,25 @@
 +            // Consolidated P11 must not be selected through standalone T6.
 +            $zipPath = null;
 +        } elseif ($sku === 'p1' && $issued !== null) {
-@@ -659 +681 @@
+@@ -646,0 +669,6 @@
++        } elseif ($sku === 'p11' || $sku === 't6') {
++            // New unmarked orders share the historical route: never refresh its
++            // shared ZIP from newer masters and thereby alter previous purchases.
++            // Missing legacy publication requires explicit verified restoration.
++            $legacyPath = DELIVERY_DIR . '/' . $product['zip'];
++            $zipPath = !is_link($legacyPath) && is_file($legacyPath) ? $legacyPath : null;
+@@ -659 +687 @@
 -        if ($sku === 'p1' && $edition !== null) $editions[$sku] = $edition;
 +        if (($sku === 'p1' || $sku === 'p11') && $edition !== null) $editions[$sku] = $edition;
-@@ -662 +684,2 @@
+@@ -662 +690,2 @@
 -            'name' => $product['name'],
 +            'name' => ($sku === 'p11' && $edition !== null)
 +                ? 'Система проверки расчётов недвижимостью и уступки прав' : $product['name'],
-@@ -911,0 +935,3 @@
+@@ -911,0 +941,3 @@
 +    if (isset($order['delivery']['editions']['p11'])) {
 +        return mvb_p11_bound_delivery_email($order, $links);
 +    }
-@@ -934,0 +961,104 @@
+@@ -934,0 +967,104 @@
 +
 +/** Isolated P11/T6 edition binding. Disabled unless the sandbox explicitly opts in.
 + * Existing P1 issuance, SKU catalogue, payment and notification transport are reused.

@@ -52,6 +52,7 @@ def build(inputs: dict[str, bytes], helpers: str):
     p=replace_once(p,"function mvb_delivery_email(array $order, array $links): string\n{",
         "function mvb_delivery_email(array $order, array $links): string\n{\n    if (isset($order['delivery']['editions']['p11'])) {\n        return mvb_p11_bound_delivery_email($order, $links);\n    }")
     p=replace_once(p,"'name' => $product['name'],", "'name' => ($sku === 'p11' && $edition !== null)\n                ? 'Система проверки расчётов недвижимостью и уступки прав' : $product['name'],")
+    p=replace_once(p,'        } else {\n            $zipPath = mvb_build_product_zip($sku);\n        }\n        if (!$zipPath) {',"        } elseif ($sku === 'p11' || $sku === 't6') {\n            // New unmarked orders share the historical route: never refresh its\n            // shared ZIP from newer masters and thereby alter previous purchases.\n            // Missing legacy publication requires explicit verified restoration.\n            $legacyPath = DELIVERY_DIR . '/' . $product['zip'];\n            $zipPath = !is_link($legacyPath) && is_file($legacyPath) ? $legacyPath : null;\n        } else {\n            $zipPath = mvb_build_product_zip($sku);\n        }\n        if (!$zipPath) {")
     p=p.rstrip()+"\n"+helpers
     d=inputs['download.php'].decode()
     d=replace_once(d,"$edition = $sku === 'p1' ? ($delivery['editions'][$sku] ?? null) : null;",
