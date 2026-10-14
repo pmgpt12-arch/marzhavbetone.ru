@@ -267,8 +267,8 @@ class RegistryChangeHistoryTests(unittest.TestCase):
         with self.assertRaises(MODULE.RegistryError):MODULE.verify_history_files(data,ROOT)
 
     def test_baseline_inventory_not_replaced(self):
-        self.assertEqual(BASE['file_inventory']['files'],218)
-        self.assertEqual(BASE['file_inventory']['sha256'],'f9ea9acb1c39826599787ebdc9372765863a48b8f812eb14c41a39d12627da5f')
+        self.assertEqual(BASE['file_inventory']['files'],219)
+        self.assertEqual(BASE['file_inventory']['sha256'],'cf6234319d33704eb200fb8f19e0ab2200f7578d5bdef3a9f3c979adffe5d58c')
         self.assertEqual(len(BASE['artifacts']),4)
 
 

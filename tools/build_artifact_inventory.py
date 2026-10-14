@@ -14,8 +14,8 @@ from pathlib import Path
 
 ALLOWED_ROLES = {"canonical_master", "historical_mirror"}
 EXPECTED_ROOTS = 19
-EXPECTED_FILES = 218
-EXPECTED_BYTES = 5_097_868
+EXPECTED_FILES = 219
+EXPECTED_BYTES = 5_099_728
 
 
 class InventoryError(ValueError):

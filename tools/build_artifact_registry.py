@@ -52,7 +52,7 @@ def validate_shape(data: dict) -> None:
         raise RegistryError("invalid file_inventory path")
     if not isinstance(inventory.get("sha256"), str) or len(inventory["sha256"]) != 64:
         raise RegistryError("invalid file_inventory sha256")
-    if inventory.get("files") != 218 or inventory.get("bytes") != 5_097_868:
+    if inventory.get("files") != 219 or inventory.get("bytes") != 5_099_728:
         raise RegistryError("file_inventory totals drift")
     validate_change_history(data)
     roles = set(data.get("allowed_roles", []))
