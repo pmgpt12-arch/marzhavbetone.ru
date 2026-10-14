@@ -1,0 +1,19 @@
+{
+  "id": "P3-01-TABLE-LAYOUT-RECOVERY-20261014",
+  "class": "EQUAL_WIDTH_TABLE_WITH_LONG_INSTRUCTIONS",
+  "observed": "Narrow instruction cells break words; row 5.2 split between pages 3 and 4. Four pages reviewed.",
+  "root_cause": "Source gives number/status and long instruction equal widths; no row keep-together. Longer corrected text exposes the existing geometry defect.",
+  "rule": "Allocate widths by column role; prohibit row splitting; repeat table headers and inspect every changed page.",
+  "input_sha256": "873aa2144b5a142817bae487b089e4f9b46975a46237307a4a3590cad39d8efd",
+  "output_sha256": "fbab630d202d1501191f5b82461f923af062c78614c8b4ec13609b1255565339",
+  "unchanged_text": true,
+  "only_changed_parts": [
+    "word/document.xml"
+  ],
+  "row_keep_applied": 32,
+  "header_repeat_applied": 5,
+  "visual_after": "PENDING",
+  "native_word": "NOT_RUN",
+  "independent_review": "PENDING",
+  "release": "HOLD"
+}

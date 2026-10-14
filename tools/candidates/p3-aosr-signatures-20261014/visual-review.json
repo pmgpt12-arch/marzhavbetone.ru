@@ -1,0 +1,23 @@
+{
+  "id": "P3-AOSR-SIGNATURES-VISUAL-20261014",
+  "reviewer": "ChatGPT coordinator; author of the current correction, not independent reviewer",
+  "status": "PASS_RENDER_READABILITY_WITH_FORMAT_RESIDUAL",
+  "renderer": "LibreOffice Writer PDF export + pdftoppm, 1400px page images",
+  "all_final_pages_inspected": true,
+  "final_pages_inspected": 18,
+  "records": [
+    {"file":"candidate/03-akt-skrytyh-rabot.docx","sha256":"512e1cdcd2870bf4d945db87b789f8b10cfa1ab278b83bfcc2bfda1cad935e30","pages":11,"page_size":"A4","result":"Readable: instruction page plus five full two-page acts; all fields and five conditional signature areas visible; no clipping, overlap or missing Cyrillic observed."},
+    {"file":"candidate/03-filled-example-QA.docx","sha256":"b70ed9368ef51eec6dacc30dd1ce32aad8b3d2db204489efee16f9069c22d82c","pages":2,"page_size":"A4","result":"Synthetic field filling fits; all tokens replaced, signatures blank. This is a layout fixture, not a complete independently checked construction scenario."},
+    {"file":"candidate/01-proverochnyy-list-komplekta-ks.docx","sha256":"14783a86a1a1a9e4ce5176770c2ba4c6b162261c8cc812f995455d8deb03b9e1","pages":3,"page_size":"Letter inherited from source","result":"Corrected instruction-column widths, readable identifiers/status, repeated headers and unbroken rows. No clipping/overlap observed. Inherited blue headings and non-A4 format remain outside this scoped subject correction; full corporate/print acceptance remains OPEN."},
+    {"file":"candidate/09-tipovye-oshibki.docx","sha256":"8a7c1bdf2563a7b4da7f762c8ffb826219ff06c44f043a5378c975aa73b96c96","pages":2,"page_size":"Letter inherited from source","result":"Changed error headings and paragraphs readable; no clipping, overlap or orphan heading observed. Inherited blue headings/non-A4 format remain; full corporate/print acceptance OPEN."}
+  ],
+  "rejected_layouts": [
+    {"file":"01","sha256":"873aa2144b5a142817bae487b089e4f9b46975a46237307a4a3590cad39d8efd","pages_inspected":4,"result":"REVISE: equal-width columns make long instructions narrow; row 5.2 splits across pages."},
+    {"file":"01","sha256":"fbab630d202d1501191f5b82461f923af062c78614c8b4ec13609b1255565339","pages_inspected":3,"result":"REVISE: instruction columns improved, but number and status widths were insufficient; corrected without text changes."}
+  ],
+  "native_word": "NOT_RUN",
+  "physical_print": "NOT_RUN",
+  "independent_acceptance": "PENDING",
+  "normative_full_acceptance": "PENDING",
+  "release": "HOLD"
+}
