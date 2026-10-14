@@ -17,9 +17,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 REPORT = ROOT / "tools/reports/site-route-discovery-20261012/report.json"
-SOURCE_COMMIT = "03ce64f607c43bd6a1443ad2d1088c07697c22ba"
-SOURCE_TREE = "e9a7e8cb6cbf91f1a1c21c5e0cf468970d70c5e4"
-SNAPSHOT_DATE = "2026-10-12"
+SOURCE_COMMIT = "abdd7c64976b692c8c28088e1eb980445103cd22"
+SOURCE_TREE = "0d15db53ec9d0e06b1b82d7aafda5000171c2edc"
+SNAPSHOT_DATE = "2026-10-14"
 
 SUPPORTING_PAGES = {"404.html", "fail.html", "success.html", "test-pokupka.html"}
 PUBLIC_ENDPOINTS = {
@@ -226,7 +226,7 @@ def main() -> int:
             current = REPORT.read_bytes()
             if current != data:
                 raise DiscoveryError("report drift")
-            print(f"SITE_ROUTE_DISCOVERY_PASS candidates=116 public=98 sha256={digest}")
+            print(f"SITE_ROUTE_DISCOVERY_PASS candidates=117 public=98 sha256={digest}")
             return 0
         REPORT.parent.mkdir(parents=True, exist_ok=True)
         tmp = REPORT.with_suffix(".tmp")
@@ -241,7 +241,7 @@ def main() -> int:
             __import__("os").fsync(dir_fd)
         finally:
             __import__("os").close(dir_fd)
-        print(f"SITE_ROUTE_DISCOVERY_WRITTEN candidates=116 public=98 sha256={digest}")
+        print(f"SITE_ROUTE_DISCOVERY_WRITTEN candidates=117 public=98 sha256={digest}")
         return 0
     except Exception as exc:
         print(f"SITE_ROUTE_DISCOVERY_FAIL {exc}", file=sys.stderr)
