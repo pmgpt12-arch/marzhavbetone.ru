@@ -17,7 +17,7 @@ REQUIRED = ('СРОК_ОТВЕТА_НА_ЗАПРОС', 'АДРЕС_ДЛЯ_ОТВ
 FILES = ('00-START-HERE.txt', '50-slovar-poley-raschet-metrami.docx',
          '51-algoritm-raschet-metrami.pdf', '52-chek-list-raschet-metrami.docx',
          '53-zapros-status-obekta.docx', '54-zapros-sostoyanie-escrow.docx',
-         '55-pamyatka-punkt-ustupki-escrow.pdf')
+         '55-pamyatka-punkt-ustupki-escrow.pdf', '56-pervyy-den-do-podpisi.docx')
 
 def check(xml: str, start: str) -> dict:
     root = ET.fromstring(xml)
@@ -40,10 +40,10 @@ def check(xml: str, start: str) -> dict:
     checks['legal_guide_normal_paragraph'] = len(legal)==1 and legal[0][1] not in ('Heading1','Heading2')
     compact = ' '.join(start.split())
     checks['start_steps'] = ('Запрос об эскроу (54) направляют на шаге 2, запрос о статусе объекта (53) — на шаге 3.' in compact)
-    checks['start_formats'] = ('В Word редактируются словарь полей (50), чек-лист (52) и запросы (53, 54).' in compact and 'В PDF представлены алгоритм (51) и памятка (55).' in compact and 'Excel' not in start)
+    checks['start_formats'] = ('В Word редактируются словарь полей (50), чек-лист (52), запросы (53, 54) и маршрут первого дня (56).' in compact and 'В PDF представлены алгоритм (51) и памятка (55).' in compact and 'Excel' not in start)
     section = re.search(r'4\. ЧТО В АРХИВЕ\n(.*?)\n5\. ЗАДАЧА',start,re.S)
     listed = re.findall(r'^\s+([0-9]{2}-[^\s]+\.(?:txt|docx|pdf))',section.group(1),re.M) if section else []
-    checks['manifest_seven_exact_names'] = tuple(listed)==FILES
+    checks['manifest_eight_exact_names'] = tuple(listed)==FILES
     checks['numbering_not_route'] = 'Порядок применения указан в разделе 3 и в алгоритме, а не в номерах файлов.' in compact
     sample = dict(zip(REQUIRED,('20.10.2026','Тестовый адрес для ответа','qa@example.invalid')))
     filled = outgoing
