@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "unit_id": "P3-RETENTION07-REMEDIATION-20261014",
+  "input": {
+    "path": "tools/candidates/portfolio-owner-editorial-v3-20261013/05-ks-bez-vozvrata/07-sroki-hraneniya.docx",
+    "sha256": "98be8b956c7068e58e66872ba0222f9454d3b8e09ba8afb6e67a75708e996311"
+  },
+  "sources": [
+    {
+      "id": "402FZ",
+      "url": "https://minfin.gov.ru/ru/document?id_4=15014-federalnyi_zakon_ot_06.12.2011__402-fz_o_bukhgalterskom_uchete",
+      "role": "Article 29 accounting-record minimum and archive-rule dependency",
+      "verified": "official Minfin result refreshed 2026-10-14"
+    },
+    {
+      "id": "ROSARCHIVE236",
+      "url": "https://publication.pravo.gov.ru/Document/View/0001202002070036",
+      "role": "Exact category-specific retention schedule; prohibits reusing mismatched items 424/572",
+      "verified": "official publication previously checked; items 424/572 mapped to other document classes"
+    },
+    {
+      "id": "MINSTROY344PR",
+      "url": "https://publication.pravo.gov.ru/document/0001202306010019",
+      "role": "Executive-document composition/procedure boundary; not a universal retention-period source",
+      "verified": "official publication"
+    }
+  ],
+  "decisions": [
+    {
+      "old_claim": "KS-2/KS-3, AOSR, schemes and estimates: permanent under item 424",
+      "disposition": "REMOVED",
+      "reason": "item 424 does not cover these classes and one period cannot be assigned across distinct functions"
+    },
+    {
+      "old_claim": "journals, certificates, passports and general correspondence: five years under item 572",
+      "disposition": "REMOVED",
+      "reason": "item 572 is not a general rule for these classes"
+    },
+    {
+      "new_claim": "Primary accounting documents are kept under archive rules but at least five years after the reporting year",
+      "scope": "Only when the concrete document functions as a primary accounting record",
+      "source": "402FZ Article 29"
+    },
+    {
+      "new_claim": "Other documents require exact classification, start event, contract/project/nomenclature checks and a hold for transfer/warranty/audit/claim/dispute",
+      "scope": "Operational checklist; no invented universal period",
+      "source": "ROSARCHIVE236 + contract/project/organization records schedule"
+    }
+  ],
+  "limits": {
+    "legal_acceptance": false,
+    "independent_review": false,
+    "native_word": false,
+    "release": false
+  }
+}

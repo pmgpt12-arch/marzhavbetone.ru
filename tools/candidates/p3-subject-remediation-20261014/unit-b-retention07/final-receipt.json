@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "unit_id": "P3-RETENTION07-REMEDIATION-20261014",
+  "status": "AUTHOR_PASS_VISUAL_PASS_INDEPENDENT_AND_NATIVE_PENDING",
+  "completed_at": "2026-10-14T19:14:00+07:00",
+  "source_sha256": "98be8b956c7068e58e66872ba0222f9454d3b8e09ba8afb6e67a75708e996311",
+  "selected_output_sha256": "18928f78153ab8e05d1f7e9943692fd49790760a4f0676c747b0864aa414f0f3",
+  "pdf_preview_sha256": "5765ff38a6888d74d8b5891c53f2a10b954cc5bd0bacf9eb17f774d7fbeed156",
+  "author_checks": "10/10",
+  "visual_pages": "1/1",
+  "visual_page_sha256": "eda2df35718cf6604dd98255c4472cbc18ea2bbf8ee464d19e685e417a9c5e90",
+  "rejected": [
+    {
+      "sha256": "05caf551b8a6ed75827d92856f7f65029c8a563c2a44a2a89eed7ede93cfcb21",
+      "reason": "blue inherited title rule"
+    },
+    {
+      "sha256": "f76b8b046043d3e890544d2dec8bf8b5344314c5fb8e4a5216b7271fe9f84b73",
+      "reason": "package changed but visual page remained identical; Title style still active"
+    }
+  ],
+  "scope": "Candidate №07 only. No canonical product replacement.",
+  "limits": {
+    "native_word": "NOT_RUN",
+    "independent_normative": "PENDING",
+    "independent_buyer": "PENDING",
+    "product_release": false,
+    "model_calls": 0,
+    "paid_calls": 0
+  },
+  "next_step": "Preserve this exact candidate; continue Unit C XLSX02/06 separately, then independent exact-SHA subject/buyer and native Office review."
+}
