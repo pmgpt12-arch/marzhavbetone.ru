@@ -1,0 +1,34 @@
+{
+  "id": "P3-XLSX02-06-VISUAL-REVIEW-CORRECTED-20261014",
+  "status": "PASS_AUTHOR_VISUAL_LIBREOFFICE",
+  "reviewed_at": "2026-10-14T20:15:00+07:00",
+  "method": "Exact final PNG pages rendered by LibreOffice Calc headless and Poppler; six blank-template pages plus two populated scenario pages inspected.",
+  "pages_reviewed": 8,
+  "checks": {
+    "blank_templates_all_columns_fit_landscape": true,
+    "blank_templates_no_clipped_or_overlapping_text": true,
+    "blank_templates_repeated_headers_and_instructions_readable": true,
+    "populated_02_exact_green_only_for_ready": true,
+    "populated_02_not_ready_remains_red_not_false_green": true,
+    "populated_02_invalid_domain_future_date_fractional_values_red": true,
+    "populated_06_invalid_domain_future_dates_fractional_values_red": true,
+    "populated_fractional_value_1_5_visible_in_both_workbooks": true,
+    "white_graphite_muted_gold_style": true
+  },
+  "page_sha256": {
+    "02/page-1.png": "b3c3a76a00160594ef845d39885dd16b2e0062540d3a35ec82594bb7374bfd5e",
+    "02/page-2.png": "af3acaa171fb14806bdbce7680c59a3c8d879a07da241c479f0b5b608ca51e92",
+    "02/page-3.png": "9829565f51b34779304caece5df783dec76db78a35a21521484d972cd690955c",
+    "06/page-1.png": "d950834e92b5db162adf5c71c568e367aed6031a7abcdd26dd482d0d193bbd83",
+    "06/page-2.png": "731169041449d1503bf3cc1a8b6d27bbfbc80aaa286d6fb6ad2e7d78f7c47c16",
+    "06/page-3.png": "8708f8234eed8ee7a33de256a55487b74739c432f9b7804caaee982655a69db8",
+    "scenarios/02/page-1.png": "38fe19381ea29c251371c17870263b635e5139747630607b0fb25a1c3d05f8f4",
+    "scenarios/06/page-1.png": "c922fb5c00e100de1d7317d611642b77f2f00c3348423503589513edb8f09d74"
+  },
+  "author_functional_report_sha256": "2dd897b96bb2469a831a7fa05e921d9107a826821172bdf1d5205b5a6b9510df",
+  "native_microsoft_excel": "NOT_RUN",
+  "independent_buyer_review": "PENDING_REVIEW_OF_CORRECTED_HEAD",
+  "canonical_replacement": false,
+  "release": "HOLD",
+  "checkpoint_policy": "verified_only"
+}
