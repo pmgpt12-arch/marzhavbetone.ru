@@ -43,6 +43,24 @@ $check = static function (string $name, bool $ok, string $detail = '') use (&$fa
 
 echo "Owner contract: current product, one-hour link\n";
 
+$fixedIssuedAt = 2000000000;
+$fixedWindow = mvb_delivery_window([], $fixedIssuedAt);
+$fixedCreated = strtotime($fixedWindow['created_at']);
+$fixedExpires = strtotime($fixedWindow['expires_at']);
+$check('fixed issuance seam uses supplied epoch',
+    $fixedCreated === $fixedIssuedAt,
+    'created=' . var_export($fixedCreated, true));
+$check('fixed issuance seam derives exact 3600-second window',
+    $fixedCreated !== false && $fixedExpires !== false
+        && ($fixedExpires - $fixedCreated) === DELIVERY_TTL_SECONDS,
+    'delta=' . (($fixedCreated !== false && $fixedExpires !== false)
+        ? (string)($fixedExpires - $fixedCreated) : 'invalid'));
+$preservedWindow = mvb_delivery_window([
+    'created_at' => $fixedWindow['created_at'],
+    'expires_at' => $fixedWindow['expires_at'],
+], $fixedIssuedAt + 9999);
+$check('fixed issuance seam preserves replay window', $preservedWindow === $fixedWindow);
+
 $catalog = mvb_products();
 $sku = isset($catalog['p3']) ? 'p3' : array_key_first(array_filter(
     $catalog,
@@ -100,6 +118,16 @@ $email = mvb_delivery_email($order, $plan['links']);
 $oneHour = strpos($email, '1 час') !== false || strpos($email, '60 минут') !== false;
 $check('buyer message states one hour', $oneHour);
 $check('buyer message has no day-based expiry promise', strpos($email, 'дней') === false);
+
+foreach (['payment-delivery.html', 'offer.html', 'success.html'] as $surface) {
+    $copy = (string)file_get_contents($root . '/' . $surface);
+    $check("{$surface} states one-hour link lifetime", strpos($copy, '1 час') !== false);
+    $check("{$surface} has no 30-day link promise",
+        strpos($copy, '30 дней') === false && strpos($copy, '30 календарных дней') === false);
+}
+$offerCopy = (string)file_get_contents($root . '/offer.html');
+$check('offer says repeat access does not extend expiry',
+    strpos($offerCopy, 'при повторном обращении не продлевается') !== false);
 
 $clean = static function (string $path) use (&$clean): void {
     if (!is_dir($path)) {

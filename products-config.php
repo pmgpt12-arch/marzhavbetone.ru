@@ -116,6 +116,26 @@ function mvb_delivery_is_expired(int $expiresAt, ?int $now = null): bool
     return ($now ?? time()) >= $expiresAt;
 }
 
+/**
+ * Фиксирует единый момент первой выдачи и выводит обе временные отметки из него.
+ * Повторный callback сохраняет уже записанное окно без продления.
+ */
+function mvb_delivery_window(array $existing, ?int $issuedAtEpoch = null): array
+{
+    if (isset($existing['created_at'], $existing['expires_at'])) {
+        return [
+            'created_at' => (string)$existing['created_at'],
+            'expires_at' => (string)$existing['expires_at'],
+        ];
+    }
+
+    $issuedAtEpoch ??= time();
+    return [
+        'created_at' => date('c', $issuedAtEpoch),
+        'expires_at' => date('c', $issuedAtEpoch + DELIVERY_TTL_SECONDS),
+    ];
+}
+
 // Папки заказов и выдачи не должны читаться напрямую через веб.
 // Для Apache кладём deny-файлы; для nginx нужен location-запрет (см. README).
 foreach ([ORDERS_DIR, DELIVERY_DIR] as $dir) {
@@ -680,11 +700,11 @@ function mvb_prepare_delivery(array &$order): array
         return ['links' => [], 'missing' => $missing];
     }
 
+    $window = mvb_delivery_window($existing);
     $order['delivery'] = [
         'token'      => $token,
-        'created_at' => (string)($existing['created_at'] ?? date('c')),
-        'expires_at' => (string)($existing['expires_at']
-            ?? date('c', time() + DELIVERY_TTL_SECONDS)),
+        'created_at' => $window['created_at'],
+        'expires_at' => $window['expires_at'],
         'downloads'  => (int)($existing['downloads'] ?? 0),
         'items'      => $items,
         'editions'   => $editions,
