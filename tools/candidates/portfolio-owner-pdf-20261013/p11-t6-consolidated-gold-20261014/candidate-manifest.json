@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "record_id": "P11-T6-CONSOLIDATE-GOLD-LETTER-20261014",
+  "role": "report_evidence_not_nominated",
+  "status": "PASS_AUTHOR_ARCHIVE_COMPOSITION_AND_READBACK_ONLY",
+  "created_at": "2026-10-14T05:20:32.242832+00:00",
+  "source_commit": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+  "source_git_tree": "9fed20f17136a306358d04815ae9bb41c810ec3b",
+  "parent_issue": 291,
+  "registry_issue": 600,
+  "portfolio_decision_issue": 578,
+  "candidate_parent_pr": 618,
+  "source_nomination": {
+    "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/p11-formal-nomination-candidate-v2-20261014.json",
+    "sha256": "610b2fc8124def8517b8e29a14976557eca81285c6a23ab2c4346ebdedc0d85b",
+    "git_blob": "7449da64d3931d1fa583163389fbf9f20da9e875",
+    "historical_record_preserved": true,
+    "current_selection_changed_by_pr": 629
+  },
+  "archive": {
+    "path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-consolidated-gold-20261014/p11-t6-eight-files-gold-candidate.zip",
+    "sha256": "f365039ef568dbbe9c661a6e1f553d21ddd0b086c9172f1e5a4340fb7dfe7f70",
+    "git_blob": "65efefebe600029bb8c239df0268dca976bff369",
+    "bytes": 592882,
+    "members": 8,
+    "predecessor_path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-eight-files-candidate-buyer-wording-20261014.zip",
+    "predecessor_sha256": "6a07f3c81152a22c3f2a8f127862e8a4e1ea6cafd0f750095d1933a5c095f572",
+    "predecessor_status": "SUPERSEDED_FOR_CURRENT_GOLD_SELECTION_ONLY_NOT_DELETED",
+    "zip_date_time": [
+      2026,
+      10,
+      14,
+      12,
+      0,
+      0
+    ],
+    "compression": "DEFLATE level 9",
+    "create_system": 3,
+    "external_attr": 2175008768
+  },
+  "buyer_files": [
+    {
+      "name": "00-START-HERE.txt",
+      "source_path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/00-START-HERE.txt",
+      "source_commit": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+      "sha256": "2f895a2f2b8ea5e166c8f18dd416465f2651b3562068551fc9f26841fd5dcf3a",
+      "git_blob": "f83e4f7e7e364d5a66ddf85ded7817b80ef98611",
+      "bytes": 4309,
+      "previous_sha256": "2f895a2f2b8ea5e166c8f18dd416465f2651b3562068551fc9f26841fd5dcf3a",
+      "dependency_pr": 625
+    },
+    {
+      "name": "50-slovar-poley-raschet-metrami.docx",
+      "source_path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/candidates/50-slovar-poley-raschet-metrami.docx",
+      "source_commit": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+      "sha256": "c5de8ebe3b7518042b081894ef0205635f688e3b7160986a0415135e711b601a",
+      "git_blob": "557536220f3d990d597e66934fce614ae64682ea",
+      "bytes": 12360,
+      "previous_sha256": "b0bd9d309115377c0e80c418d2dda1acdf3d33d4863feb2f15de69b70099427c",
+      "dependency_pr": 629
+    },
+    {
+      "name": "51-algoritm-raschet-metrami.pdf",
+      "source_path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/51-algoritm-raschet-metrami.pdf",
+      "source_commit": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+      "sha256": "2a4c98dc4a1b131dbccb787276f487a17a76a0c6643932c0ee0ca666601135d7",
+      "git_blob": "2e417285fe0e48dc04a4f8ad83832d32791766ba",
+      "bytes": 271643,
+      "previous_sha256": "2a4c98dc4a1b131dbccb787276f487a17a76a0c6643932c0ee0ca666601135d7",
+      "dependency_pr": 625
+    },
+    {
+      "name": "52-chek-list-raschet-metrami.docx",
+      "source_path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/candidates/52-chek-list-raschet-metrami.docx",
+      "source_commit": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+      "sha256": "149ff5b2fcb1cfa214a0dfee64f0d6a003bfe3bbbafc60977030a67535b15b33",
+      "git_blob": "afe0741d062c510774a56ae8193eeabb0f9211a9",
+      "bytes": 12007,
+      "previous_sha256": "6094a91af0a2e750a1ef71f9b394ea49207af11f8c5420ade1a7da48ff79fd38",
+      "dependency_pr": 629
+    },
+    {
+      "name": "53-zapros-status-obekta.docx",
+      "source_path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/candidates/53-zapros-status-obekta.docx",
+      "source_commit": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+      "sha256": "4746cd1086be16d55b636ad651370f032956bfda0dfe3f8b83f2f34487774a7a",
+      "git_blob": "dbd80d7b4bd7cbe5b60b00757d5f3c9b526260df",
+      "bytes": 11306,
+      "previous_sha256": "c3fccbdc5e7e6841ca8c48b5ab1c199bdebe0d2f4990c232040d20f70bfc023e",
+      "dependency_pr": 629
+    },
+    {
+      "name": "54-zapros-sostoyanie-escrow.docx",
+      "source_path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-gold-accent-remediation-20261014/candidates/54-zapros-sostoyanie-escrow.docx",
+      "source_commit": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+      "sha256": "bf32807bf9d1ec955cf151f3e5dd055fde47ebd85ce322b0376e0c873f52a319",
+      "git_blob": "c42ae07d257a3a6a6dd5f0fc40f81f489bd6cb9a",
+      "bytes": 11723,
+      "previous_sha256": "8e76f513b4f72c51bd8e9ad1bd56c27409285585b2f38f96c76b5f8dfbfa4f96",
+      "dependency_pr": 629
+    },
+    {
+      "name": "55-pamyatka-punkt-ustupki-escrow.pdf",
+      "source_path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf",
+      "source_commit": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+      "sha256": "20f65a850db70836b2897dc747ed6478781641e3a4f5a537b094a7afec0814a2",
+      "git_blob": "47c35f6555d1b5cc339c6b2326e8fbb60e0f8505",
+      "bytes": 261512,
+      "previous_sha256": "20f65a850db70836b2897dc747ed6478781641e3a4f5a537b094a7afec0814a2",
+      "dependency_pr": 625
+    },
+    {
+      "name": "56-pervyy-den-do-podpisi.docx",
+      "source_path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/56-pervyy-den-do-podpisi.docx",
+      "source_commit": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+      "sha256": "9c40a96498037b53a68ecea6f3ee57129a9f2c236d1073d1818c603016260807",
+      "git_blob": "14e0ab75f15109686f9360980541b0b5208af13c",
+      "bytes": 38464,
+      "previous_sha256": "9c40a96498037b53a68ecea6f3ee57129a9f2c236d1073d1818c603016260807",
+      "dependency_pr": 625
+    }
+  ],
+  "changed_members": [
+    "50-slovar-poley-raschet-metrami.docx",
+    "52-chek-list-raschet-metrami.docx",
+    "53-zapros-status-obekta.docx",
+    "54-zapros-sostoyanie-escrow.docx"
+  ],
+  "unchanged_members": [
+    "00-START-HERE.txt",
+    "51-algoritm-raschet-metrami.pdf",
+    "55-pamyatka-punkt-ustupki-escrow.pdf",
+    "56-pervyy-den-do-podpisi.docx"
+  ],
+  "separate_letter": {
+    "path": "tools/candidates/portfolio-owner-pdf-20261013/19-kvartiry-vmesto-deneg/00-PISMO-POSLE-POKUPKI.txt",
+    "source_commit": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+    "sha256": "c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5",
+    "git_blob": "339bd2556427cdd011453cda9c562ac5ebdcb7d3",
+    "bytes": 3072,
+    "in_buyer_archive": false,
+    "independent_review_comment": 6161424063,
+    "scope": "Consolidated P11/T6 only; do not use for standalone historical T6"
+  },
+  "checks": {
+    "selected_sha_and_github_blob": "8/8 PASS",
+    "predecessor_identity": "PASS",
+    "expected_delta": "4 changed / 4 unchanged PASS",
+    "crc": "PASS",
+    "ordered_unique_members": "8/8 PASS",
+    "extracted_exact_bytes": "8/8 PASS",
+    "two_memory_builds_identical": "PASS",
+    "letter_references": "8/8 PASS",
+    "uploaded_blob_readback": "BYTE_IDENTICAL PASS"
+  },
+  "reused_evidence": {
+    "gold_native_visual_comment": 6161403686,
+    "gold_receipt_sha256": "1ebb7f60c1e6a1e017c3d9bad4602e02b04ece1b6f62a6d5026e7b14be8616e8",
+    "gold_scope": "4 DOCX / 11 pages; native, visual, lineage only",
+    "letter_comment": 6161424063,
+    "letter_receipt_sha256": "7e126305ff4bc03669e908b2923b3ac59d8669e24f5c75d75fe86e1b1c5e0e9f",
+    "letter_scope": "Consolidated post-purchase letter candidate only",
+    "native_visual_or_normative_rerun": false
+  },
+  "limits": {
+    "independent_archive_acceptance": "PENDING",
+    "formal_registry_nomination": "OPEN",
+    "controlled_delivery": "OPEN",
+    "full_product_acceptance": "NOT_GRANTED",
+    "G1_G8_accepted_products": 0,
+    "portfolio_total": 13,
+    "release_authorized": false,
+    "status": "HOLD"
+  },
+  "side_effects": {
+    "server_files_modified": 0,
+    "server_worktrees_modified": 0,
+    "product_files_modified": 0,
+    "prior_archives_modified": 0,
+    "native_office_jobs": 0,
+    "model_calls": 0,
+    "paid_api_calls": 0,
+    "production_changed": false,
+    "email_sent": false
+  },
+  "metadata_correction": {
+    "observed_tree_endpoint_alias_sha": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+    "canonical_tree_source": "Git commit object .tree.sha",
+    "correct_source_git_tree": "9fed20f17136a306358d04815ae9bb41c810ec3b",
+    "rule": "Resolve commit-to-tree from commit object; never label an aliased tree request identifier as canonical tree SHA. No product bytes changed."
+  },
+  "reproducible_check": "python3 tools/candidates/portfolio-owner-pdf-20261013/p11-t6-consolidated-gold-20261014/verify_candidate.py --root .",
+  "next_step": "Independent exact-SHA archive/composition review. Then formal registry nomination of these selected paths and a controlled-delivery gate; never substitute the pre-gold archive or include the email as a ninth member."
+}

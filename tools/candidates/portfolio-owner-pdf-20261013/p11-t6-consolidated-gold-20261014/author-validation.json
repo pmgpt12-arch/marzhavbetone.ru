@@ -1,0 +1,31 @@
+{
+  "status": "PASS_DETERMINISTIC_CURRENT_CANDIDATE_ONLY",
+  "members": 8,
+  "changed_members": 4,
+  "unchanged_members": 4,
+  "letter_references": 8,
+  "archive_sha256": "f365039ef568dbbe9c661a6e1f553d21ddd0b086c9172f1e5a4340fb7dfe7f70",
+  "negative_mutations_detected": {
+    "stale_pre_gold_SHA": true,
+    "commit_as_tree_SHA": true,
+    "release_escalation": true,
+    "missing_member": true,
+    "duplicate_member": true,
+    "service_letter_in_archive": true,
+    "changed_member_bytes": true,
+    "legacy_email_reference": true
+  },
+  "release_authorized": false,
+  "independent_acceptance": "NOT_PERFORMED_BY_THIS_SCRIPT",
+  "schema_version": 1,
+  "manifest_sha256": "1bd932de3fbea4537a1ab7d4f1ad1d8a20d0472148fb7ad8a2f6fee412dc86e0",
+  "verifier_sha256": "2094b818c66a6b571bf80ed517a73994b73384d12c4dd6e317d659e72a120afb",
+  "source_commit": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+  "source_git_tree": "9fed20f17136a306358d04815ae9bb41c810ec3b",
+  "method": "Exact retained verifier function executed against immutable Git objects and downloaded archive/letter bytes; no working-tree materialization and no CLI rerun",
+  "finished_at": "2026-10-14T05:25:21.843693+00:00",
+  "elapsed_seconds": 8.703,
+  "source_files_modified": 0,
+  "office_jobs": 0,
+  "model_calls": 0
+}
