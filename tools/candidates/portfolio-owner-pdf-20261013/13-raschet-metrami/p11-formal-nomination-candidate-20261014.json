@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "record_id": "P11-FORMAL-NOMINATION-CANDIDATE-20261014",
+  "record_status": "CANDIDATE_FOR_INDEPENDENT_REVIEW",
+  "product": {
+    "target_code": "P11",
+    "target_name": "Система проверки расчётов недвижимостью и уступки прав",
+    "target_price_rub": 24900,
+    "owner_decision": {
+      "issue": 578,
+      "decision_id": "MB001-PRICE-PORTFOLIO-2026-10-10"
+    },
+    "portfolio_parent_issue": 291
+  },
+  "lineage": {
+    "registry_commit": "cfbc4e3edcf438250bac98a2df04133d96bb27b3",
+    "registry_path": "products-storage/ARTIFACT-REGISTRY.json",
+    "registry_blob": "319f2bf8a45d9b198b4d27f29eb827fb807ca5bc",
+    "registry_sha256": "dbfbd517f274fc80703ba8918cf654d93166a2a2ac6e5bf0203f2f0289ec0570",
+    "sources": [
+      {
+        "target_sku": "P11",
+        "runtime_sku": "p11",
+        "relative_root": "products-storage/13-raschet-metrami",
+        "git_tree_sha": "64522b4b06800efc9589d15ae8d2f0c250fb16aa",
+        "file_count": 8,
+        "bytes": 181816,
+        "role": "historical_mirror",
+        "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+      },
+      {
+        "target_sku": "P11",
+        "runtime_sku": "t6",
+        "relative_root": "products-storage/19-kvartiry-vmesto-deneg",
+        "git_tree_sha": "690eff7e8c22dd85ab06528a37499c5dd4abcc91",
+        "file_count": 6,
+        "bytes": 76902,
+        "role": "historical_mirror",
+        "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+      }
+    ],
+    "claim_limit": "Lineage identifies both owner-approved source families. It does not by itself prove that every T6 requirement is represented in the seven buyer files."
+  },
+  "nominated_buyer_set": {
+    "source_commit": "1021fd42c1fad898562e75512a0afcbf11318833",
+    "evidence_commit": "cfbc4e3edcf438250bac98a2df04133d96bb27b3",
+    "directory": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami",
+    "files": [
+      {
+        "name": "00-START-HERE.txt",
+        "sha256": "1141927c5cb30b8c4ba2ca69949d560e8591ff27d263b9ae598c930315545210",
+        "bytes": 4069,
+        "git_blob": "5340dc4cf0bd91d22bb20a3ee155d99dedf72721"
+      },
+      {
+        "name": "50-slovar-poley-raschet-metrami.docx",
+        "sha256": "966a058f693ea4accec5b40e70e8df99c0e17cff9e2fbfdbe21b0759ddc16995",
+        "bytes": 12275,
+        "git_blob": "0255765003e4d4d2a4c5b6ec9b5c1a482ffb1ebd"
+      },
+      {
+        "name": "51-algoritm-raschet-metrami.pdf",
+        "sha256": "5e88481f9c619894faaca9392fe416cf0ec0da076101f08d4d2048d4d482ff04",
+        "bytes": 59938,
+        "git_blob": "e04d2d158370a08384e0a7ae30b7de2e550b8507"
+      },
+      {
+        "name": "52-chek-list-raschet-metrami.docx",
+        "sha256": "2a3251d67ac090ab8a347f8cfc5acb7833a8a92db964f82d9d62a7f0bc061505",
+        "bytes": 10841,
+        "git_blob": "ef86d644ffaa60a9a1a4081436aabcc25a83f50a"
+      },
+      {
+        "name": "53-zapros-status-obekta.docx",
+        "sha256": "602f762c28e3e04a45ea4730b24527e0ef06fdfec67480e6a6bdfce66462ffba",
+        "bytes": 11317,
+        "git_blob": "ef2375ac901042638e01983f5f78227dba8471e4"
+      },
+      {
+        "name": "54-zapros-sostoyanie-escrow.docx",
+        "sha256": "f0bd1a1d9a16c23c272122e764c9414c848fcc9ea35af121d4e28b3154f680cc",
+        "bytes": 11651,
+        "git_blob": "c579803cebc072b5d42f1f0e4bd01cfbe95b8ec4"
+      },
+      {
+        "name": "55-pamyatka-punkt-ustupki-escrow.pdf",
+        "sha256": "6545fc1362a1f2744e8c333d629d06154d439063fc31dc623e477979062df60e",
+        "bytes": 50866,
+        "git_blob": "712d113146d0e8656ec31caca06048885b050c1f"
+      }
+    ]
+  },
+  "accepted_checkpoints": {
+    "F01_00_54_delta": "PASS_LIMITED_ON_EXACT_SHA",
+    "native_word_54": "PASS_LIMITED_ON_EXACT_SHA",
+    "static_positive": "12/12 PASS",
+    "negative_mutations": "12/12 DETECTED",
+    "buyer_input_ci": "4/4 SUCCESS",
+    "evidence_head_ci": "4/4 SUCCESS"
+  },
+  "open_gates": {
+    "F02": "OPEN_TRANSFER_ACT_BOUNDARY",
+    "F03": "OPEN_UNIFIED_STOP_RESUME_RULE",
+    "F04": "OPEN_P11_T6_COMPLETENESS_AND_CROSSWALK",
+    "F05": "OPEN_FORMAL_INDEPENDENT_NOMINATION_ACCEPTANCE_AND_RELEASE_MANIFEST",
+    "post_purchase_letter_runtime_t6": "BLOCKED_OWNER_SOURCE_OR_EXPLICIT_NEW_COMPOSITION_AUTHORIZATION",
+    "brand_style": "OPEN",
+    "G1_G8": "0/13",
+    "full_buyer_acceptance": "NOT_GRANTED",
+    "full_normative_acceptance": "NOT_GRANTED"
+  },
+  "prohibitions": {
+    "source_replacement": false,
+    "live_sku_price_payment_change": false,
+    "deploy_or_publication": false,
+    "release": "HOLD",
+    "merge_authorization": false
+  },
+  "references": {
+    "buyer_issue": 597,
+    "owner_portfolio_issue": 578,
+    "parent_issue": 291,
+    "native_evidence_path": "tools/candidates/portfolio-owner-pdf-20261013/p11-00-54-native-20261014/acceptance.json",
+    "prior_manifest_candidate": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/p11-manifest-release-candidate.json"
+  },
+  "acceptance_contract": [
+    "independent reviewer recomputes all seven file SHA256, byte sizes and Git blobs at source_commit",
+    "independent reviewer verifies both P11/p11 and P11/t6 registry entries at registry_commit",
+    "record must remain HOLD while any listed open gate remains open",
+    "candidate may not be treated as source replacement, product acceptance, release or deploy authorization"
+  ],
+  "next_step": "Independent review of this exact record; then resolve F02/F03 and prove P11+T6 crosswalk. Owner source or explicit new-composition authorization is still required for the missing runtime-t6 post-purchase letter."
+}
