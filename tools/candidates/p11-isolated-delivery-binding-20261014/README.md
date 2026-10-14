@@ -23,7 +23,7 @@ Base commit `8311bb2dc7b497415952d03630e4a477f8bf9d7c`, tree `c1cb9e01527d4025c0
 
 ## Фактическая проверка
 
-`author-acceptance.json`: **59/59 PASS**, PHP 8.3.6; SHA256 отчёта `2ec022fe526232940192011b635809a360a6c072c13ecc0ad50e75bfd9218e4a`. Контрольные суммы опубликованных пяти code/patch/report blob прочитаны обратно и совпали с проверенными байтами.
+`author-acceptance.json`: **59/59 PASS**, PHP 8.3.6; SHA256 отчёта `1599ecb9dbe97a038cba5aeaf4e88bb4281de729373798ae043322fc50e1c30e`. Контрольные суммы опубликованных пяти code/patch/report blob прочитаны обратно и совпали с проверенными байтами.
 
 Полные функции выполнялись в новом приватном TemporaryDirectory; каталог удалён после проверки. Нативная PHP `mail` отключена при старте процесса и заменена только тестовым регистратором, принимающим адреса `@fixture.invalid`. Код проверяет отсутствие нативной mail до определения регистратора. Доступ PHP ограничен песочницей через open_basedir; allow_url_fopen отключён. Каждый PHP-вызов ограничен 8 секундами. HTTP-слушатель не запускался.
 
@@ -47,4 +47,4 @@ python3 -B -c 'import sys,json,subprocess; from pathlib import Path; d=Path("too
 
 ## Packaging gate recovery
 
-CI run 38525258437 correctly rejected the PHP fragment filename as an extra HTML/PHP source candidate. The fragment is now stored as binding_helpers.php.txt with identical bytes. The existing route scanner and baseline are unchanged; its exact source_files and assert_head_candidates_match_source functions detect the old path and accept the renamed candidate projection: 116/116 match. Source fragments that are not independent executable endpoints must use a non-route text suffix before publication. No repeat of the 59 unchanged PHP behavior checks; their exact code, patch, source and receipt bytes remain fixed. Packaging-only proof: packaging-recovery.json. Independent acceptance remains pending; release HOLD.
+CI run 38525258437 correctly rejected the PHP fragment filename as an extra HTML/PHP source candidate. The fragment is now stored as binding_helpers.php.txt with identical bytes. The existing route scanner and baseline are unchanged; its exact source_files and assert_head_candidates_match_source functions detect the old path and accept the renamed candidate projection: 116/116 match. Source fragments that are not independent executable endpoints must use a non-route text suffix before publication. The 59 PHP behavior checks were repeated after zero-context patch serialization; generated runtime bytes and accepted source bytes remain unchanged, while patch/receipt hashes were updated. Packaging-only proof: packaging-recovery.json. Independent acceptance remains pending; release HOLD.

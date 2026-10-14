@@ -1,9 +1,6 @@
 --- a/products-config.php
 +++ b/products-config.php
-@@ -633,7 +633,29 @@
-         $sku = $product['sku'];
-         $issued = $existing['items'][$sku] ?? null;
-         $edition = $sku === 'p1' ? ($existing['editions'][$sku] ?? ($position['edition'] ?? null)) : null;
+@@ -636 +636,23 @@
 -        if ($sku === 'p1' && $issued !== null) {
 +        $p11IssuedEdition = $existing['editions']['p11'] ?? null;
 +        if (($sku === 'p11' || $sku === 't6') && $issued !== null
@@ -28,37 +25,18 @@
 +            // Consolidated P11 must not be selected through standalone T6.
 +            $zipPath = null;
 +        } elseif ($sku === 'p1' && $issued !== null) {
-             // Повторный callback не меняет уже выданное издание.
-             $zipPath = is_string($issued) && basename($issued) === $issued
-                 ? DELIVERY_DIR . '/' . $issued : null;
-@@ -656,10 +678,11 @@
-             continue;
-         }
-         $items[$product['sku']] = basename($zipPath);
+@@ -659 +681 @@
 -        if ($sku === 'p1' && $edition !== null) $editions[$sku] = $edition;
 +        if (($sku === 'p1' || $sku === 'p11') && $edition !== null) $editions[$sku] = $edition;
-         $links[] = [
-             'sku'  => $product['sku'],
+@@ -662 +684,2 @@
 -            'name' => $product['name'],
 +            'name' => ($sku === 'p11' && $edition !== null)
 +                ? 'Система проверки расчётов недвижимостью и уступки прав' : $product['name'],
-             'url'  => SITE_URL . '/download.php?o=' . rawurlencode((string)($order['id'] ?? ''))
-                 . '&t=' . $token
-                 . '&f=' . $product['sku'],
-@@ -909,6 +932,9 @@
- /** Текст письма покупателю со ссылками на скачивание. */
- function mvb_delivery_email(array $order, array $links): string
- {
+@@ -911,0 +935,3 @@
 +    if (isset($order['delivery']['editions']['p11'])) {
 +        return mvb_p11_bound_delivery_email($order, $links);
 +    }
-     $body = "Здравствуйте!\n\n";
-     $body .= "Спасибо за покупку. Ваши материалы готовы к скачиванию:\n\n";
-     foreach ($links as $link) {
-@@ -932,3 +958,107 @@
-     $body .= "Команда «Маржа в бетоне»\n";
-     return $body;
- }
+@@ -934,0 +961,104 @@
 +
 +/** Isolated P11/T6 edition binding. Disabled unless the sandbox explicitly opts in.
 + * Existing P1 issuance, SKU catalogue, payment and notification transport are reused.
@@ -165,42 +143,20 @@
 +}
 --- a/download.php
 +++ b/download.php
-@@ -73,7 +73,7 @@
-         return ['deny' => [404, 'Этот материал не входит в ваш заказ.']];
-     }
- 
+@@ -76 +76 @@
 -    $edition = $sku === 'p1' ? ($delivery['editions'][$sku] ?? null) : null;
 +    $edition = ($sku === 'p1' || $sku === 'p11') ? ($delivery['editions'][$sku] ?? null) : null;
-     if ($sku === 'p1' && $edition === null) {
-         foreach (($locked['items'] ?? []) as $position) {
-             if (($position['sku'] ?? '') === $sku && isset($position['edition'])) {
-@@ -82,14 +82,18 @@
-             }
-         }
-     }
+@@ -84,0 +85,4 @@
 +    if ($sku === 'p11' && $edition === null
 +        && preg_match('/^p11-[a-f0-9]{64}\.zip$/D', (string)$delivery['items'][$sku])) {
 +        return ['deny' => [500, 'Missing P11 edition metadata.']];
 +    }
-     if ($edition !== null) {
+@@ -86 +90 @@
 -        $pinnedPath = mvb_p1_edition_path($edition);
 +        $pinnedPath = $sku === 'p11' ? mvb_p11_edition_path($edition) : mvb_p1_edition_path($edition);
-         if ($pinnedPath === null || basename($pinnedPath) !== $delivery['items'][$sku]) {
-             return ['deny' => [500, 'Файл временно недоступен. Напишите нам — проверим комплект.']];
-         }
-     }
-     // Legacy P1 без снимка также нельзя восстанавливать из новой редакции.
+@@ -92 +96 @@
 -    if ($sku === 'p1' && !is_file(DELIVERY_DIR . '/' . basename((string)$delivery['items'][$sku]))) {
 +    if (in_array($sku, ['p1', 'p11', 't6'], true) && !is_file(DELIVERY_DIR . '/' . basename((string)$delivery['items'][$sku]))) {
-         return ['deny' => [500, 'Файл временно недоступен. Напишите нам — проверим комплект.']];
-     }
- 
-@@ -114,7 +118,7 @@
- }
- 
- $zipPath = DELIVERY_DIR . '/' . $decision['zip'];
+@@ -117 +121 @@
 -if (!is_file($zipPath) && !$decision['pinned'] && $sku !== 'p1') {
 +if (!is_file($zipPath) && !$decision['pinned'] && !in_array($sku, ['p1', 'p11', 't6'], true)) {
-     // Архив мог быть очищен — пересобираем из исходников. Вне блокировки:
-     // сборка идёт по диску и держать на ней заказ незачем.
-     $zipPath = mvb_build_product_zip($sku) ?? '';

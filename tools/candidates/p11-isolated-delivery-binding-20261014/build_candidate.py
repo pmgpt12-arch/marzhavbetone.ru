@@ -69,5 +69,5 @@ def build(inputs: dict[str, bytes], helpers: str):
                      "if (!is_file($zipPath) && !$decision['pinned'] && !in_array($sku, ['p1', 'p11', 't6'], true)) {")
     outputs={'products-config.php':p.encode(),'download.php':d.encode()}
     patch=''.join(''.join(difflib.unified_diff(inputs[k].decode().splitlines(True),v.decode().splitlines(True),
-                         fromfile='a/'+k,tofile='b/'+k)) for k,v in outputs.items())
+                         fromfile='a/'+k,tofile='b/'+k,n=0)) for k,v in outputs.items())
     return outputs,patch
