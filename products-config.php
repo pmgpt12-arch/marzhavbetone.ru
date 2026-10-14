@@ -595,6 +595,94 @@ function mvb_build_product_zip(string $sku): ?string
 }
 
 /**
+ * Строит неизменяемую запись о подтверждённом платеже.
+ *
+ * Источник суммы, валюты и времени — подтверждённый объект провайдера, а не
+ * корзина или локальные часы. Повтор того же платежа возвращает уже закрытую
+ * запись и не может продлить срок выдачи. Конфликт любого принятого факта
+ * закрывается исключением до выдачи товара.
+ */
+function mvb_build_payment_record(array $order, array $payment): array
+{
+    $expectedKeys = [
+        'schema_version',
+        'order_id',
+        'payment_id',
+        'email',
+        'amount_value',
+        'amount_currency',
+        'provider_paid_at',
+        'delivery_expires_at',
+    ];
+
+    $orderId = (string)($order['id'] ?? '');
+    $providerOrderId = (string)($payment['metadata']['order_id'] ?? '');
+    $paymentId = (string)($payment['id'] ?? '');
+    $status = (string)($payment['status'] ?? '');
+    $amountValue = (string)($payment['amount']['value'] ?? '');
+    $amountCurrency = (string)($payment['amount']['currency'] ?? '');
+    $providerPaidAt = (string)($payment['captured_at'] ?? '');
+
+    if ($orderId === '' || $providerOrderId === '' || !hash_equals($orderId, $providerOrderId)) {
+        throw new RuntimeException('payment_record order_id mismatch');
+    }
+    if ($paymentId === '' || $status !== 'succeeded') {
+        throw new RuntimeException('payment_record requires succeeded payment');
+    }
+    if (!preg_match('/^(?:0|[1-9][0-9]*)\.[0-9]{2}$/', $amountValue)) {
+        throw new RuntimeException('payment_record invalid provider amount');
+    }
+    if (!preg_match('/^[A-Z]{3}$/', $amountCurrency)) {
+        throw new RuntimeException('payment_record invalid provider currency');
+    }
+    if ($providerPaidAt === '' || strtotime($providerPaidAt) === false) {
+        throw new RuntimeException('payment_record invalid provider paid time');
+    }
+
+    $existing = $order['payment_record'] ?? null;
+    if ($existing !== null) {
+        if (!is_array($existing) || array_keys($existing) !== $expectedKeys) {
+            throw new RuntimeException('payment_record existing schema drift');
+        }
+        $immutable = [
+            'schema_version' => 1,
+            'order_id' => $orderId,
+            'payment_id' => $paymentId,
+            'email' => (string)($order['email'] ?? ''),
+            'amount_value' => $amountValue,
+            'amount_currency' => $amountCurrency,
+            'provider_paid_at' => $providerPaidAt,
+        ];
+        foreach ($immutable as $field => $value) {
+            if (($existing[$field] ?? null) !== $value) {
+                throw new RuntimeException('payment_record immutable fact conflict: ' . $field);
+            }
+        }
+        $existingExpiry = (string)($existing['delivery_expires_at'] ?? '');
+        if ($existingExpiry === '' || strtotime($existingExpiry) === false) {
+            throw new RuntimeException('payment_record invalid existing delivery expiry');
+        }
+        return $existing;
+    }
+
+    $deliveryExpiresAt = (string)($order['delivery']['expires_at'] ?? '');
+    if ($deliveryExpiresAt === '' || strtotime($deliveryExpiresAt) === false) {
+        throw new RuntimeException('payment_record requires delivery expiry');
+    }
+
+    return [
+        'schema_version' => 1,
+        'order_id' => $orderId,
+        'payment_id' => $paymentId,
+        'email' => (string)($order['email'] ?? ''),
+        'amount_value' => $amountValue,
+        'amount_currency' => $amountCurrency,
+        'provider_paid_at' => $providerPaidAt,
+        'delivery_expires_at' => $deliveryExpiresAt,
+    ];
+}
+
+/**
  * Готовит выдачу для оплаченного заказа: собирает архивы, генерирует токен,
  * дописывает блок delivery в массив заказа. Возвращает список ссылок.
  */
