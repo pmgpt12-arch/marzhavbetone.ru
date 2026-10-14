@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 ROOT=$(cd "$(dirname "$0")" && pwd)
-STATE=/home/denis/.local/state/claude-dispatcher/coordinator/2026-10-14-p3-subject-remediation/unit-c-xlsx02-06
+if [[ -n "${P3_UNITC_STATE:-}" ]]; then
+  STATE=$P3_UNITC_STATE
+  mkdir -p "$STATE"
+else
+  STATE=$(mktemp -d /tmp/p3-unitc-state-XXXXXX)
+fi
+export P3_UNITC_STATE="$STATE"
 finish() {
   rc=$?
   if [[ $rc -ne 0 ]]; then
@@ -59,6 +65,19 @@ for name in 02-reestr-prilozheniy.xlsx 06-zhurnal-peredachi.xlsx; do
   sync -f "$pdf"
   sync -f "$dir"
 done
+mkdir -p "$ROOT/preview/scenarios"
+for name in 02-scenarios.xlsx 06-scenarios.xlsx; do
+  profile=$(mktemp -d /tmp/p3-unitc-scenario-render-lo-XXXXXX)
+  timeout 120s libreoffice --headless "-env:UserInstallation=file://$profile" --convert-to pdf --outdir "$ROOT/preview/scenarios" "$STATE/scenario-recalc/$name"
+  rm -rf "$profile"
+  pdf="$ROOT/preview/scenarios/${name%.xlsx}.pdf"
+  test -s "$pdf"
+  dir="$ROOT/preview/scenarios/${name%.xlsx}"
+  mkdir -p "$dir"
+  timeout 60s pdftoppm -scale-to 1400 -f 1 -singlefile -png "$pdf" "$dir/page-1"
+  sync -f "$pdf"
+  sync -f "$dir"
+done
 python3 "$ROOT/verify_candidates.py"
-sha256sum "$ROOT"/candidate/*.xlsx "$ROOT"/preview/*.pdf "$ROOT"/author-acceptance.json
+sha256sum "$ROOT"/candidate/*.xlsx "$ROOT"/preview/*.pdf "$ROOT"/preview/scenarios/*.pdf "$ROOT"/author-acceptance.json
 sync -f "$ROOT"

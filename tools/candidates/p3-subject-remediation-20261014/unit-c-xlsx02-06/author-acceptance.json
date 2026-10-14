@@ -6,7 +6,10 @@
     "source_unchanged_06-zhurnal-peredachi.xlsx": true,
     "02-reestr-prilozheniy.xlsx_formula_coverage_50": true,
     "02-reestr-prilozheniy.xlsx_data_validation_ranges": true,
+    "02-reestr-prilozheniy.xlsx_data_validation_error_alerts": true,
+    "02-reestr-prilozheniy.xlsx_date_bounds_explicit": true,
     "02-reestr-prilozheniy.xlsx_conditional_status_rules": true,
+    "02-reestr-prilozheniy.xlsx_conditional_exact_equality": true,
     "02-reestr-prilozheniy.xlsx_a4_landscape_fit_width": true,
     "02-reestr-prilozheniy.xlsx_print_title_row_4": true,
     "02-reestr-prilozheniy.xlsx_data_row_height_21": true,
@@ -14,18 +17,23 @@
     "02-reestr-prilozheniy.xlsx_banned_labels_absent": true,
     "06-zhurnal-peredachi.xlsx_formula_coverage_50": true,
     "06-zhurnal-peredachi.xlsx_data_validation_ranges": true,
+    "06-zhurnal-peredachi.xlsx_data_validation_error_alerts": true,
+    "06-zhurnal-peredachi.xlsx_date_bounds_explicit": true,
     "06-zhurnal-peredachi.xlsx_conditional_status_rules": true,
+    "06-zhurnal-peredachi.xlsx_conditional_exact_equality": true,
     "06-zhurnal-peredachi.xlsx_a4_landscape_fit_width": true,
     "06-zhurnal-peredachi.xlsx_print_title_row_4": true,
     "06-zhurnal-peredachi.xlsx_frozen_header": true,
     "06-zhurnal-peredachi.xlsx_banned_labels_absent": true,
+    "scenario_count_02_exact_12": true,
+    "scenario_count_06_exact_13": true,
     "02-scenarios.xlsx_scenario_expected_values": true,
     "06-scenarios.xlsx_scenario_expected_values": true,
     "02-reestr-prilozheniy.xlsx_cached_formula_errors_zero": true,
     "06-zhurnal-peredachi.xlsx_cached_formula_errors_zero": true
   },
-  "passed": 21,
-  "total": 21,
+  "passed": 29,
+  "total": 29,
   "scenarios": {
     "02": [
       {
@@ -74,6 +82,54 @@
         "expected": "НЕ ГОТОВО",
         "actual": "НЕ ГОТОВО",
         "cached_raw": "НЕ ГОТОВО",
+        "pass": true
+      },
+      {
+        "case": "invalid_doc_type",
+        "row": 11,
+        "expected": "ЗАПОЛНИТЬ",
+        "actual": "ЗАПОЛНИТЬ",
+        "cached_raw": "ЗАПОЛНИТЬ",
+        "pass": true
+      },
+      {
+        "case": "future_date",
+        "row": 12,
+        "expected": "ЗАПОЛНИТЬ",
+        "actual": "ЗАПОЛНИТЬ",
+        "cached_raw": "ЗАПОЛНИТЬ",
+        "pass": true
+      },
+      {
+        "case": "fractional_pages",
+        "row": 13,
+        "expected": "ЗАПОЛНИТЬ",
+        "actual": "ЗАПОЛНИТЬ",
+        "cached_raw": "ЗАПОЛНИТЬ",
+        "pass": true
+      },
+      {
+        "case": "invalid_presence",
+        "row": 14,
+        "expected": "ЗАПОЛНИТЬ",
+        "actual": "ЗАПОЛНИТЬ",
+        "cached_raw": "ЗАПОЛНИТЬ",
+        "pass": true
+      },
+      {
+        "case": "invalid_checked",
+        "row": 15,
+        "expected": "ЗАПОЛНИТЬ",
+        "actual": "ЗАПОЛНИТЬ",
+        "cached_raw": "ЗАПОЛНИТЬ",
+        "pass": true
+      },
+      {
+        "case": "not_required_no_reason",
+        "row": 16,
+        "expected": "ЗАПОЛНИТЬ",
+        "actual": "ЗАПОЛНИТЬ",
+        "cached_raw": "ЗАПОЛНИТЬ",
         "pass": true
       }
     ],
@@ -141,25 +197,65 @@
         "actual": "ЗАПОЛНИТЬ",
         "cached_raw": "ЗАПОЛНИТЬ",
         "pass": true
+      },
+      {
+        "case": "future_transfer",
+        "row": 13,
+        "expected": "ЗАПОЛНИТЬ",
+        "actual": "ЗАПОЛНИТЬ",
+        "cached_raw": "ЗАПОЛНИТЬ",
+        "pass": true
+      },
+      {
+        "case": "invalid_method",
+        "row": 14,
+        "expected": "ЗАПОЛНИТЬ",
+        "actual": "ЗАПОЛНИТЬ",
+        "cached_raw": "ЗАПОЛНИТЬ",
+        "pass": true
+      },
+      {
+        "case": "invalid_status",
+        "row": 15,
+        "expected": "ЗАПОЛНИТЬ",
+        "actual": "ЗАПОЛНИТЬ",
+        "cached_raw": "ЗАПОЛНИТЬ",
+        "pass": true
+      },
+      {
+        "case": "fractional_count",
+        "row": 16,
+        "expected": "ЗАПОЛНИТЬ",
+        "actual": "ЗАПОЛНИТЬ",
+        "cached_raw": "ЗАПОЛНИТЬ",
+        "pass": true
+      },
+      {
+        "case": "return_future",
+        "row": 17,
+        "expected": "УКАЗАТЬ ВОЗВРАТ",
+        "actual": "УКАЗАТЬ ВОЗВРАТ",
+        "cached_raw": "УКАЗАТЬ ВОЗВРАТ",
+        "pass": true
       }
     ]
   },
   "artifacts": [
     {
       "path": "candidate/02-reestr-prilozheniy.xlsx",
-      "sha256": "49320b1ca999474aa7cf6d2cf9eb9563c703be3b556aa1f2ce491cf1a2797ca0",
-      "bytes": 13978,
+      "sha256": "929a84cf9a870b44d79113fa31379403ec3b671345ca5001938c5aa709e5c12a",
+      "bytes": 16774,
       "formula_rows": 50,
       "data_validations": 5,
-      "conditional_rules": 6
+      "conditional_rules": 9
     },
     {
       "path": "candidate/06-zhurnal-peredachi.xlsx",
-      "sha256": "b4dcb8e2da4b89bb7d3b373216e31db848f4724b08c18343a6b522c071bbab5c",
-      "bytes": 15223,
+      "sha256": "8be06268e40833821be2909ce2225814524a845ea73506b014c2c925647a0d11",
+      "bytes": 17168,
       "formula_rows": 50,
       "data_validations": 5,
-      "conditional_rules": 6
+      "conditional_rules": 9
     }
   ],
   "renderer": "LibreOffice Calc headless + Poppler; artifact authoring by @oai/artifact-tool",

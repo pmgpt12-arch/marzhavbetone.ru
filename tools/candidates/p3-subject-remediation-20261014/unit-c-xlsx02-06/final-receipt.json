@@ -1,10 +1,11 @@
 {
-  "id": "P3-XLSX02-06-FINAL-RECEIPT-20261014",
-  "status": "AUTHOR_FUNCTIONAL_AND_VISUAL_PASS_NATIVE_AND_INDEPENDENT_PENDING",
-  "completed_at": "2026-10-14T20:04:00+07:00",
+  "id": "P3-XLSX02-06-CORRECTED-RECEIPT-20261014",
+  "status": "AUTHOR_CORRECTED_FUNCTIONAL_AND_VISUAL_PASS_INDEPENDENT_AND_NATIVE_PENDING",
+  "completed_at": "2026-10-14T20:18:00+07:00",
   "branch": "codex/p3-xlsx-02-06-20261014",
+  "rejected_head": "355db1d421e9e818990b1cb1a6a0da06761e399d",
   "base_commit": "290f11d15d4d5a769c7982d143dde8e1fe513211",
-  "route": "isolated worktree -> deterministic artifact authoring -> LibreOffice Calc recalc -> scenario acceptance -> PDF/PNG render -> visual inspection -> draft stacked PR",
+  "route": "isolated worktree -> deterministic correction -> LibreOffice Calc recalc -> 25 scenario acceptance -> blank and populated PDF/PNG render -> author visual inspection -> exact corrected-head independent review",
   "inputs": [
     {
       "path": "products-storage/05-ks-bez-vozvrata/02-reestr-prilozheniy.xlsx",
@@ -18,72 +19,100 @@
   "outputs": [
     {
       "path": "candidate/02-reestr-prilozheniy.xlsx",
-      "sha256": "49320b1ca999474aa7cf6d2cf9eb9563c703be3b556aa1f2ce491cf1a2797ca0"
+      "sha256": "929a84cf9a870b44d79113fa31379403ec3b671345ca5001938c5aa709e5c12a",
+      "bytes": 16774
     },
     {
       "path": "candidate/06-zhurnal-peredachi.xlsx",
-      "sha256": "b4dcb8e2da4b89bb7d3b373216e31db848f4724b08c18343a6b522c071bbab5c"
+      "sha256": "8be06268e40833821be2909ce2225814524a845ea73506b014c2c925647a0d11",
+      "bytes": 17168
     },
     {
       "path": "preview/02-reestr-prilozheniy.pdf",
-      "sha256": "2811ddfaef0ba32549c7c3f5bfd255635cda25d1139eb511ae7c2d52d30a1d7b"
+      "sha256": "c1baf6611c0d015d25506a7d952970646f9957210fe731fe7c265dd66281cbce",
+      "bytes": 32189
     },
     {
       "path": "preview/06-zhurnal-peredachi.pdf",
-      "sha256": "9f19bb2ed627b4f480d4a94c7383064069d16ca1a1c44c5c4ed43392c4f91978"
+      "sha256": "b868abe80d8d16e2b31da2a0f8325693a101e7b71b3a92dce617025bc21050d1",
+      "bytes": 32881
+    },
+    {
+      "path": "preview/scenarios/02-scenarios.pdf",
+      "sha256": "40d1329239ee58c1c9dc484f428d4f2af1d109d16bb596106128e9948e184370",
+      "bytes": 35087
+    },
+    {
+      "path": "preview/scenarios/06-scenarios.pdf",
+      "sha256": "24ae95c783765129f979c79c013ce06b376d8392337a66262a1a728b8ad8af06",
+      "bytes": 35161
     }
   ],
   "reports": [
     {
       "path": "artifact-author-report.json",
-      "sha256": "23ac15aa8e5d05928a2e8063a35521d8c54b577ee27578f34351acae78f5cc64"
+      "sha256": "23ac15aa8e5d05928a2e8063a35521d8c54b577ee27578f34351acae78f5cc64",
+      "scope": "initial artifact author stage"
     },
     {
       "path": "author-acceptance.json",
-      "sha256": "6bb84e156bd25237b2b01eee426dd28f8257b51fa083107f7063f3b27de21772"
+      "sha256": "2dd897b96bb2469a831a7fa05e921d9107a826821172bdf1d5205b5a6b9510df"
     },
     {
       "path": "visual-review.json",
-      "sha256": "c81100a7a999854905950c28dd47b9f10941954d1551e8239cf5584044637c94"
+      "sha256": "466658df414128044dfda93c5781296d2666aaad8f7ceb8f2b334181e9aa77d8"
     },
     {
       "path": "source-map.json",
-      "sha256": "e57e96b4c0966bbd3b07936ca7fe80ed71a619fd6f04242df3dc15de56b88b6e"
+      "sha256": "591459cc158a100003dfda9ee8ada78e505e1e8c270a971fb1c524726ceb82c4"
+    },
+    {
+      "path": "README.md",
+      "sha256": "5985bb8a0f4d6e48b800df0bb9468193ec8e56c986a24bb3edbf842ee3b9fdca"
     }
   ],
   "acceptance": {
-    "structural_and_functional": "21/21 PASS",
-    "numeric_scenarios": "14/14 PASS",
+    "structural_and_functional": "29/29 PASS",
+    "recalculated_scenarios": "25/25 PASS",
+    "data_validation_error_alerts": "10/10 blocking",
+    "exact_equality_conditional_rules": "18/18 across two workbooks",
     "cached_formula_errors": 0,
-    "visual_pages": "6/6 PASS",
+    "blank_visual_pages": "6/6 PASS",
+    "populated_visual_pages": "2/2 PASS",
     "source_hashes_unchanged": "2/2 PASS",
     "model_calls": 0,
     "paid_calls": 0
   },
+  "prior_independent_review": {
+    "exact_head": "355db1d421e9e818990b1cb1a6a0da06761e399d",
+    "verdict": "FAIL_PRODUCT_ACCEPTANCE",
+    "receipt_sha256": "8a88ac700b2a124dfdb5857b0444fe28c703f493a20f827349e786240667667b",
+    "disposition": "Superseded by uncommitted corrected candidates; old head must not be merged."
+  },
   "remediation_lineage": [
     {
-      "diagnosis": "005",
-      "class": "RUNTIME/HARNESS",
-      "resolution": "normalized A4 paperSize type in verifier"
+      "diagnosis": "008",
+      "class": "CONTRACT_AND_ACCEPTANCE_HARNESS",
+      "resolution": "exact status rules, blocking validations, domain/date formulas, 25 scenarios, self-contained acceptance"
     },
     {
-      "diagnosis": "006",
-      "class": "RUNTIME/HARNESS_COMPATIBILITY",
-      "resolution": "isolated print-title experiment"
+      "diagnosis": "010",
+      "class": "RUNTIME_HARNESS",
+      "resolution": "removed nonportable stopIfTrue assertion; retained exact unique mutually exclusive equality rules"
     },
     {
-      "diagnosis": "007",
-      "class": "LAYOUT/PAGINATION",
-      "resolution": "repeat row 4 and set 02 data rows to 21 pt"
+      "diagnosis": "011",
+      "class": "LAYOUT_AND_BUYER_USABILITY",
+      "resolution": "0.## quantity display exposes invalid fractional input"
     }
   ],
   "limitations": {
     "native_microsoft_excel": "NOT_RUN",
-    "independent_buyer_review": "PENDING",
+    "independent_buyer_review": "PENDING_CORRECTED_HEAD",
     "canonical_replacement": false,
     "production_publication": false,
     "release": "HOLD"
   },
-  "next_step": "Publish a draft stacked PR for independent review and exact-head CI; do not merge until native Excel and independent buyer gates are satisfied.",
+  "next_step": "Commit corrected candidate package, push once, request independent review of the exact corrected head, then require exact-head CI. Do not merge until native Excel and independent buyer gates are satisfied.",
   "checkpoint_policy": "verified_only"
 }

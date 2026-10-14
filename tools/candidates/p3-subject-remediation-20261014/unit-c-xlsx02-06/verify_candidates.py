@@ -4,7 +4,7 @@ from pathlib import Path
 import openpyxl
 ROOT=Path(__file__).resolve().parent
 WT=ROOT.parents[3]
-STATE=Path("/home/denis/.local/state/claude-dispatcher/coordinator/2026-10-14-p3-subject-remediation/unit-c-xlsx02-06")
+STATE=Path(os.environ.get("P3_UNITC_STATE", ROOT/"acceptance-state"))
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
 def atomic_json(path,data):
     tmp=path.with_suffix(path.suffix+".tmp")
@@ -28,9 +28,18 @@ for name,sheet,col,r1,r2,min_dv,banned in spec:
     wb=openpyxl.load_workbook(p,data_only=False);ws=wb[sheet]
     formulas=[ws[f"{col}{r}"].value for r in range(r1,r2+1)]
     checks[name+"_formula_coverage_50"]=len(formulas)==50 and all(isinstance(x,str) and x.startswith("=") for x in formulas)
-    checks[name+"_data_validation_ranges"]=len(ws.data_validations.dataValidation)>=min_dv
-    rules=sum(len(v) for v in ws.conditional_formatting._cf_rules.values())
-    checks[name+"_conditional_status_rules"]=rules>=5
+    dvs=ws.data_validations.dataValidation
+    checks[name+"_data_validation_ranges"]=len(dvs)>=min_dv
+    checks[name+"_data_validation_error_alerts"]=all(dv.showErrorMessage is True and dv.errorStyle=="stop" for dv in dvs)
+    date_dvs=[dv for dv in dvs if dv.type=="date"]
+    checks[name+"_date_bounds_explicit"]=bool(date_dvs) and all(str(dv.formula1).lstrip("=")=="DATE(2000,1,1)" and str(dv.formula2).lstrip("=")=="TODAY()" for dv in date_dvs)
+    cf_rules=[rule for values in ws.conditional_formatting._cf_rules.values() for rule in values]
+    cf_formulas=[f for rule in cf_rules for f in (rule.formula or [])]
+    expected_statuses=["ГОТОВО","ЗАКРЫТО","НЕ ГОТОВО","ЗАПОЛНИТЬ","УКАЗАТЬ ВОЗВРАТ","ПРОВЕРИТЬ ОСНОВАНИЕ","ВОЗВРАТ ЗАФИКСИРОВАН","ПРОВЕРИТЬ","В РАБОТЕ"]
+    expected_cf={f'${col}5="{status}"' for status in expected_statuses}
+    rules=len(cf_rules)
+    checks[name+"_conditional_status_rules"]=rules==9 and all(rule.type=="expression" for rule in cf_rules)
+    checks[name+"_conditional_exact_equality"]=set(cf_formulas)==expected_cf and all("SEARCH(" not in f.upper() for f in cf_formulas)
     checks[name+"_a4_landscape_fit_width"]=str(ws.page_setup.paperSize)==str(ws.PAPERSIZE_A4) and ws.page_setup.orientation=="landscape" and ws.page_setup.fitToWidth==1
     checks[name+"_print_title_row_4"]=ws.print_title_rows=="$4:$4"
     if name.startswith("02-"):
@@ -41,6 +50,8 @@ for name,sheet,col,r1,r2,min_dv,banned in spec:
     artifacts.append({"path":"candidate/"+name,"sha256":sha(p),"bytes":p.stat().st_size,"formula_rows":50,"data_validations":len(ws.data_validations.dataValidation),"conditional_rules":rules})
     wb.close()
 scenario=json.loads((STATE/"scenario-map.json").read_text())
+checks["scenario_count_02_exact_12"]=len(scenario.get("02",[]))==12
+checks["scenario_count_06_exact_13"]=len(scenario.get("06",[]))==13
 for key,name,sheet,col in [
  ("02","02-scenarios.xlsx","Реестр приложений","I"),
  ("06","06-scenarios.xlsx","Журнал передачи комплекта КС","L"),
