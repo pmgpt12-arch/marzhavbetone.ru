@@ -1,0 +1,104 @@
+
+/** Isolated P11/T6 edition binding. Disabled unless the sandbox explicitly opts in.
+ * Existing P1 issuance, SKU catalogue, payment and notification transport are reused.
+ * This candidate is not a production activation or a checkout nomination.
+ */
+function mvb_p11_binding_edition(): array
+{
+    $sha = 'f365039ef568dbbe9c661a6e1f553d21ddd0b086c9172f1e5a4340fb7dfe7f70';
+    $letter = 'c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5';
+    return ['kind' => 'p11-t6-gold-20261014', 'zip' => 'p11-' . $sha . '.zip',
+        'sha256' => $sha, 'letter' => 'p11-letter-' . $letter . '.txt',
+        'letter_sha256' => $letter];
+}
+
+function mvb_p11_binding_valid($edition): bool
+{
+    if (!defined('MVB_P11_CANDIDATE_BINDING') || MVB_P11_CANDIDATE_BINDING !== true
+        || !is_array($edition)) return false;
+    $expected = mvb_p11_binding_edition();
+    if (count($edition) !== count($expected)) return false;
+    foreach ($expected as $key => $value) {
+        if (($edition[$key] ?? null) !== $value) return false;
+    }
+    return true;
+}
+
+/** Never rebuild an issued edition from mutable masters. */
+function mvb_p11_edition_path($edition): ?string
+{
+    if (!mvb_p11_binding_valid($edition)) return null;
+    $path = DELIVERY_DIR . '/' . $edition['zip'];
+    if (is_link($path) || !is_file($path)
+        || !hash_equals($edition['sha256'], (string)@hash_file('sha256', $path))) return null;
+    return $path;
+}
+
+function mvb_p11_edition_letter($edition): ?string
+{
+    if (!mvb_p11_binding_valid($edition)) return null;
+    $path = DELIVERY_DIR . '/' . $edition['letter'];
+    if (is_link($path) || !is_file($path)) return null;
+    $bytes = @file_get_contents($path);
+    return is_string($bytes) && hash_equals($edition['letter_sha256'], hash('sha256', $bytes))
+        ? $bytes : null;
+}
+
+/** Publish only the two accepted immutable inputs, not a new ZIP build. */
+function mvb_p11_stage_edition($edition): ?string
+{
+    if (!mvb_p11_binding_valid($edition) || !defined('MVB_P11_CANDIDATE_SOURCE_DIR')) return null;
+    $source = MVB_P11_CANDIDATE_SOURCE_DIR;
+    if (!is_string($source) || !is_dir($source)) return null;
+    $zip = @file_get_contents($source . '/accepted.zip');
+    $letter = @file_get_contents($source . '/accepted-letter.txt');
+    if (!is_string($zip) || !hash_equals($edition['sha256'], hash('sha256', $zip))
+        || !is_string($letter) || !hash_equals($edition['letter_sha256'], hash('sha256', $letter))) return null;
+    $lock = @fopen(DELIVERY_DIR . '/.p11-edition.lock', 'c');
+    if ($lock === false) return null;
+    $tmp = null;
+    try {
+        if (!flock($lock, LOCK_EX | LOCK_NB)) return null;
+        foreach ([$edition['zip'] => $zip, $edition['letter'] => $letter] as $name => $bytes) {
+            $dest = DELIVERY_DIR . '/' . $name;
+            if (is_link($dest)) return null;
+            if (file_exists($dest)) {
+                if (!is_file($dest) || !hash_equals(hash('sha256', $bytes), (string)@hash_file('sha256', $dest))) return null;
+                continue;
+            }
+            $tmp = tempnam(DELIVERY_DIR, '.p11-stage-');
+            if ($tmp === false) { $tmp = null; return null; }
+            if (@file_put_contents($tmp, $bytes, LOCK_EX) !== strlen($bytes)
+                || !hash_equals(hash('sha256', $bytes), (string)@hash_file('sha256', $tmp))
+                || !@rename($tmp, $dest)) return null;
+            $tmp = null;
+        }
+        return mvb_p11_edition_letter($edition) !== null ? mvb_p11_edition_path($edition) : null;
+    } finally {
+        if (is_string($tmp) && is_file($tmp)) @unlink($tmp);
+        flock($lock, LOCK_UN);
+        fclose($lock);
+    }
+}
+
+/** Uses the existing generated download links plus the accepted letter verbatim. */
+function mvb_p11_bound_delivery_email(array $order, array $links): string
+{
+    $edition = $order['delivery']['editions']['p11'] ?? null;
+    $letter = mvb_p11_edition_letter($edition);
+    if ($letter === null || mvb_p11_edition_path($edition) === null) {
+        throw new RuntimeException('P11: issued archive or letter identity check failed');
+    }
+    $body = "Ваши материалы готовы к скачиванию:\n\n";
+    foreach ($links as $link) {
+        $name = $link['sku'] === 'p11'
+            ? 'Система проверки расчётов недвижимостью и уступки прав' : $link['name'];
+        $body .= $name . "\n" . $link['url'] . "\n\n";
+    }
+    $body .= 'Ссылки действуют ' . DELIVERY_TTL_DAYS . " дней. Сохраните архив.\n\n";
+    $body .= $letter;
+    if (count($links) > 1) {
+        $body .= "\nДля остальных материалов заказа используйте инструкцию внутри соответствующего архива.\n";
+    }
+    return $body;
+}
