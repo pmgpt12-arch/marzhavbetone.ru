@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "id": "P11-T6-GOLD-ACCENT-REMEDIATION-20261014",
+  "status": "PATCH_PASS_NATIVE_VISUAL_PENDING",
+  "base_sha": "7d1a04115926ec748e9a83b72685de3da911aeb8",
+  "source_files_changed": 0,
+  "candidate_files": {
+    "50-slovar-poley-raschet-metrami.docx": {
+      "input_sha256": "b0bd9d309115377c0e80c418d2dda1acdf3d33d4863feb2f15de69b70099427c",
+      "output_sha256": "77c09be9fc65d73d45df63b55377f9eba6b7bedc0bc02131d063e8122f2a2b94",
+      "visible_text_equal": true,
+      "changed_package_parts": [
+        "word/document.xml"
+      ],
+      "accent": {
+        "paragraph": "first body paragraph",
+        "border": "top",
+        "color": "B08D57",
+        "size_eighth_points": 12,
+        "space_points": 5
+      }
+    },
+    "52-chek-list-raschet-metrami.docx": {
+      "input_sha256": "6094a91af0a2e750a1ef71f9b394ea49207af11f8c5420ade1a7da48ff79fd38",
+      "output_sha256": "3d392d8ae1416960eb357ed76563cffc625d34836175eeae7c417b1bc7bfa9db",
+      "visible_text_equal": true,
+      "changed_package_parts": [
+        "word/document.xml"
+      ],
+      "accent": {
+        "paragraph": "first body paragraph",
+        "border": "top",
+        "color": "B08D57",
+        "size_eighth_points": 12,
+        "space_points": 5
+      }
+    },
+    "53-zapros-status-obekta.docx": {
+      "input_sha256": "c3fccbdc5e7e6841ca8c48b5ab1c199bdebe0d2f4990c232040d20f70bfc023e",
+      "output_sha256": "080f9d124e72fcdeb19352583a9d5a13976d4f45d0c92454e776657f4b86ebae",
+      "visible_text_equal": true,
+      "changed_package_parts": [
+        "word/document.xml"
+      ],
+      "accent": {
+        "paragraph": "first body paragraph",
+        "border": "top",
+        "color": "B08D57",
+        "size_eighth_points": 12,
+        "space_points": 5
+      }
+    },
+    "54-zapros-sostoyanie-escrow.docx": {
+      "input_sha256": "8e76f513b4f72c51bd8e9ad1bd56c27409285585b2f38f96c76b5f8dfbfa4f96",
+      "output_sha256": "a7eacc06231e0de5be3c5f06ada973fa9ed0c0a69ffd8dc34107f002d6030417",
+      "visible_text_equal": true,
+      "changed_package_parts": [
+        "word/document.xml"
+      ],
+      "accent": {
+        "paragraph": "first body paragraph",
+        "border": "top",
+        "color": "B08D57",
+        "size_eighth_points": 12,
+        "space_points": 5
+      }
+    }
+  },
+  "contract": "small muted gold accent above title; text/tables/sections otherwise preserved",
+  "model_calls": 0,
+  "paid_api_calls": 0,
+  "release": "HOLD",
+  "next_step": "single native Word batch render then inspect all 11 pages"
+}
