@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "record_id": "P11-T6-POST-PURCHASE-LETTER-FORMAL-NOMINATION-ROUTE-20261014",
+  "record_status": "CANDIDATE_FOR_INDEPENDENT_REVIEW",
+  "scope": "FORMAL_NOMINATION_AND_DELIVERY_ROUTE_POLICY_ONLY",
+  "product": {
+    "target_code": "P11",
+    "target_name": "Система проверки расчётов недвижимостью и уступки прав",
+    "legacy_lineage_sku": "t6",
+    "portfolio_parent_issue": 291,
+    "control_registry_issue": 600
+  },
+  "source_head": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+  "prior_nomination": {
+    "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/p11-formal-nomination-candidate-v2-20261014.json",
+    "sha256": "610b2fc8124def8517b8e29a14976557eca81285c6a23ab2c4346ebdedc0d85b",
+    "git_blob": "7449da64d3931d1fa583163389fbf9f20da9e875",
+    "accepted_pr": 625,
+    "accepted_head": "025e8bcd10249e8c6ee547007109d61c99912be4",
+    "merge_commit": "d961b9c7c95b45919ef96347e5a0d27f4d6f0fcc",
+    "independent_verdict": "PASS_NOMINATION_READINESS_RECORD_ONLY",
+    "independent_receipt_sha256": "7bcd3eb6e5b1fb094d3aceea3fb908f0a83032624e93915bf255e57c0a3ce231"
+  },
+  "formal_letter_nomination": {
+    "path": "tools/candidates/portfolio-owner-pdf-20261013/19-kvartiry-vmesto-deneg/00-PISMO-POSLE-POKUPKI.txt",
+    "sha256": "c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5",
+    "git_blob": "339bd2556427cdd011453cda9c562ac5ebdcb7d3",
+    "bytes": 3072,
+    "source_origin": "new_owner_authorized_composition_not_recovered_historical_file",
+    "owner_authorization_date": "2026-10-14",
+    "role": "POST_PURCHASE_MESSAGE_SOURCE_FOR_CONSOLIDATED_P11_T6_ONLY",
+    "accepted_pr": 627,
+    "accepted_head": "a6146787c8259754baa6b82ac885472a8ba2c37b",
+    "merge_commit": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+    "independent_verdict": "PASS_CONSOLIDATED_P11_T6_POST_PURCHASE_LETTER_CANDIDATE_ONLY",
+    "independent_receipt_sha256": "7e126305ff4bc03669e908b2923b3ac59d8669e24f5c75d75fe86e1b1c5e0e9f",
+    "second_text_allowed": false
+  },
+  "buyer_archive": {
+    "path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-eight-files-candidate-buyer-wording-20261014.zip",
+    "sha256": "6a07f3c81152a22c3f2a8f127862e8a4e1ea6cafd0f750095d1933a5c095f572",
+    "git_blob": "76a1e1d7397996bf16f64afb1dcb00a7e66d5140",
+    "bytes": 592844,
+    "member_count": 8,
+    "members": [
+      "00-START-HERE.txt",
+      "50-slovar-poley-raschet-metrami.docx",
+      "51-algoritm-raschet-metrami.pdf",
+      "52-chek-list-raschet-metrami.docx",
+      "53-zapros-status-obekta.docx",
+      "54-zapros-sostoyanie-escrow.docx",
+      "55-pamyatka-punkt-ustupki-escrow.pdf",
+      "56-pervyy-den-do-podpisi.docx"
+    ],
+    "letter_is_member": false,
+    "archive_rebuilt_for_letter": false
+  },
+  "delivery_route": {
+    "message_source": "formal_letter_nomination.path",
+    "buyer_attachment": "buyer_archive.path",
+    "trigger_contract": "AFTER_SUCCESSFUL_PURCHASE_ONLY",
+    "channel_contract": "SEPARATE_POST_PURCHASE_MESSAGE_OUTSIDE_BUYER_ZIP",
+    "compatible_product": "CONSOLIDATED_P11_T6_EIGHT_FILE_CANDIDATE_ONLY",
+    "legacy_standalone_t6_allowed": false,
+    "letter_in_buyer_zip": false,
+    "implementation_status": "NOT_VERIFIED",
+    "live_configuration_changed": false,
+    "delivery_execution_authorized": false,
+    "message_sent": false
+  },
+  "accepted_checkpoints": {
+    "buyer_archive_nomination_readiness": "PASS_NOMINATION_READINESS_RECORD_ONLY",
+    "letter_content_buyer_route_lineage": "PASS_CONSOLIDATED_P11_T6_POST_PURCHASE_LETTER_CANDIDATE_ONLY",
+    "candidate_brand_native_visual": "PASS_CANDIDATE_NATIVE_VISUAL_LINEAGE_SCOPE_ONLY",
+    "combined_merge_head": "fb829b3c4a2f8508b1e655b53edfb4fc541c7ca7",
+    "combined_merge_head_ci_success": [
+      38515494835,
+      38515494849,
+      38515494832,
+      38515494833
+    ]
+  },
+  "open_gates": {
+    "formal_letter_nomination": "OPEN_INDEPENDENT_EXACT_HEAD_ACCEPTANCE",
+    "controlled_delivery_route_policy": "OPEN_INDEPENDENT_EXACT_HEAD_ACCEPTANCE",
+    "controlled_delivery_implementation": "OPEN_RUNTIME_AND_BUYER_DELIVERY_TEST",
+    "canonical_replacement": "NOT_AUTHORIZED",
+    "full_product_acceptance": "NOT_GRANTED",
+    "G1_G8": "0/13",
+    "release_acceptance": "NOT_GRANTED"
+  },
+  "prohibitions": {
+    "source_replacement": false,
+    "live_sku_price_payment_change": false,
+    "live_delivery_change": false,
+    "deploy_or_publication": false,
+    "release": "HOLD"
+  },
+  "acceptance_contract": [
+    "Independent reviewer recomputes the letter SHA256, byte size and Git blob at source_head.",
+    "Independent reviewer recomputes the prior nomination record SHA256 and Git blob at source_head.",
+    "Independent reviewer verifies buyer ZIP SHA256, Git blob, CRC, exact eight root members and byte equality with the prior nominated Git objects.",
+    "Independent reviewer verifies the letter is outside the ZIP and the route is limited to the consolidated P11+T6 candidate.",
+    "Validator must detect an altered letter hash, an altered archive member set and route mutations that include the letter in the ZIP or allow legacy standalone T6.",
+    "Acceptance of this record nominates the letter and route policy only; live delivery implementation, product acceptance, canonical replacement and release remain open or prohibited."
+  ],
+  "evidence_record_merge_after_gates": true,
+  "model_calls": 0,
+  "paid_api_calls": 0,
+  "release": "HOLD",
+  "next_step": "Run the deterministic validator, obtain independent exact-head review and required CI, then merge only this evidence record if all pass. Implement and buyer-test controlled delivery separately; do not rebuild the buyer ZIP."
+}
