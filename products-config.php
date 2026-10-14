@@ -102,12 +102,18 @@ if (!defined('PRODUCTS_DIR')) {
 if (!defined('DELIVERY_DIR')) {
     define('DELIVERY_DIR', ORDERS_DIR . '/delivery');
 }
-// Срок жизни ссылки на скачивание (обещание из письма покупателю — 30 дней)
-if (!defined('DELIVERY_TTL_DAYS')) {
-    define('DELIVERY_TTL_DAYS', 30);
+// Срок жизни ссылки: ровно один час от первой выдачи ссылки.
+if (!defined('DELIVERY_TTL_SECONDS')) {
+    define('DELIVERY_TTL_SECONDS', 3600);
 }
 if (!defined('DELIVERY_MAX_DOWNLOADS')) {
     define('DELIVERY_MAX_DOWNLOADS', 30);
+}
+
+/** Истечение включительно: в момент expires_at ссылка уже недействительна. */
+function mvb_delivery_is_expired(int $expiresAt, ?int $now = null): bool
+{
+    return ($now ?? time()) >= $expiresAt;
 }
 
 // Папки заказов и выдачи не должны читаться напрямую через веб.
@@ -678,7 +684,7 @@ function mvb_prepare_delivery(array &$order): array
         'token'      => $token,
         'created_at' => (string)($existing['created_at'] ?? date('c')),
         'expires_at' => (string)($existing['expires_at']
-            ?? date('c', time() + DELIVERY_TTL_DAYS * 86400)),
+            ?? date('c', time() + DELIVERY_TTL_SECONDS)),
         'downloads'  => (int)($existing['downloads'] ?? 0),
         'items'      => $items,
         'editions'   => $editions,
@@ -914,8 +920,7 @@ function mvb_delivery_email(array $order, array $links): string
     foreach ($links as $link) {
         $body .= '• ' . $link['name'] . "\n  " . $link['url'] . "\n\n";
     }
-    $days = DELIVERY_TTL_DAYS;
-    $body .= "Ссылки действуют {$days} дней. Сохраните файлы на свой компьютер.\n\n";
+    $body .= "Ссылки действуют 1 час с момента первой выдачи. Сохраните файлы на свой компьютер.\n\n";
     $body .= "Что делать дальше:\n";
     $body .= "1. Скачайте архив и распакуйте его.\n";
     // Файла инструкции нет в части папок, поэтому письмо на него не
