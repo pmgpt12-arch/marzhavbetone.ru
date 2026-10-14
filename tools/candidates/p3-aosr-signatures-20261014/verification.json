@@ -1,0 +1,27 @@
+{
+  "status": "PASS_AUTHOR_STRUCTURE_AND_DELTA_ONLY",
+  "positive_checks": {
+    "identity_crc_01-proverochnyy-list-komplekta-ks.docx": true,
+    "identity_crc_09-tipovye-oshibki.docx": true,
+    "identity_crc_03-akt-skrytyh-rabot.docx": true,
+    "identity_crc_03-filled-example-QA.docx": true,
+    "exact_full_document_delta_01-proverochnyy-list-komplekta-ks.docx": true,
+    "exact_full_document_delta_09-tipovye-oshibki.docx": true,
+    "five_act_individual_fields_sections_signatures": true
+  },
+  "negative_checks": {
+    "missing_act": "DETECTED",
+    "missing_section7": "DETECTED",
+    "lost_date_field": "DETECTED",
+    "mixed_act_token": "DETECTED",
+    "lost_signature": "DETECTED",
+    "unconditional_designer": "DETECTED",
+    "description_instead_of_act": "DETECTED",
+    "old_v3_stub": "DETECTED"
+  },
+  "positive_passed": 7,
+  "negative_detected": 8,
+  "independent_acceptance": "PENDING",
+  "native_word": "NOT_RUN",
+  "release": "HOLD"
+}
