@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "record_id": "P11-T6-POST-PURCHASE-LETTER-OWNER-20261014",
+  "record_status": "NEW_SOURCE_CREATED_AUTHOR_CHECKED_INDEPENDENT_REVIEW_PENDING",
+  "owner_authorization": {
+    "date": "2026-10-14",
+    "source": "Direct owner message in current ChatGPT conversation",
+    "exact_quote": "Разрешаю создать 00-PISMO-POSLE-POKUPKI.txt",
+    "scope": "New composition of this one missing P11/T6 post-purchase letter; not permission to release or send email"
+  },
+  "source_commit": "d961b9c7c95b45919ef96347e5a0d27f4d6f0fcc",
+  "source_nominations": {
+    "issue": 600,
+    "parent_issue": 291,
+    "portfolio_decision_issue": 578,
+    "candidate_pr": 618,
+    "readiness_pr": 625,
+    "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/p11-formal-nomination-candidate-v2-20261014.json",
+    "git_blob": "7449da64d3931d1fa583163389fbf9f20da9e875",
+    "sha256": "610b2fc8124def8517b8e29a14976557eca81285c6a23ab2c4346ebdedc0d85b",
+    "start_here_git_blob": "f83e4f7e7e364d5a66ddf85ded7817b80ef98611",
+    "start_here_sha256": "2f895a2f2b8ea5e166c8f18dd416465f2651b3562068551fc9f26841fd5dcf3a",
+    "editorial_policy_git_blob": "27b881304fda1d0b5ad41dfeb9ea77c0adac739d",
+    "input_method": "Exact-ref GitHub connector reads; reference names and contact copied into the frozen text contract; no binary or Office reruns"
+  },
+  "artifact": {
+    "path": "tools/candidates/portfolio-owner-pdf-20261013/19-kvartiry-vmesto-deneg/00-PISMO-POSLE-POKUPKI.txt",
+    "source_origin": "new_owner_authorized_composition_not_recovered_historical_file",
+    "target_sku": "P11",
+    "legacy_lineage_sku": "t6",
+    "role": "report_evidence_not_nominated",
+    "purpose": "Separate post-purchase email source for the consolidated P11+T6 eight-file candidate",
+    "sha256": "c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5",
+    "git_blob": "339bd2556427cdd011453cda9c562ac5ebdcb7d3",
+    "bytes": 3072,
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "office_status": "NOT_APPLICABLE_PLAIN_TEXT",
+    "release_status": "HOLD"
+  },
+  "delivery_contract": {
+    "compatible_candidate_archive_sha256": "6a07f3c81152a22c3f2a8f127862e8a4e1ea6cafd0f750095d1933a5c095f572",
+    "buyer_archive_member_count": 8,
+    "letter_in_buyer_archive": false,
+    "archive_rebuilt": false,
+    "legacy_standalone_t6_delivery_allowed": false,
+    "reason": "The letter refers to the consolidated 50-56 filenames. Do not attach it to the historical standalone T6 package with 01-04 filenames. Controlled delivery remains a separate gate."
+  },
+  "verification": {
+    "verdict": "PASS_AUTHOR_LETTER_CONTRACT_ONLY",
+    "source_contract": "PR625 frozen eight-file nomination; fields read through GitHub connector",
+    "letter_sha256": "c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5",
+    "letter_git_blob": "339bd2556427cdd011453cda9c562ac5ebdcb7d3",
+    "bytes": 3072,
+    "lines": 45,
+    "positive_checks": {
+      "plain_utf8_no_bom_or_control": true,
+      "subject_present": true,
+      "approved_product_name": true,
+      "all_eight_references_match_frozen_nomination": true,
+      "urgent_first_day_route": true,
+      "escrow_step_two": true,
+      "status_step_three": true,
+      "verified_support_contact": true,
+      "no_forbidden_editorial_terms": true,
+      "no_unresolved_placeholders": true,
+      "no_price": true,
+      "no_invented_download_url": true,
+      "no_internal_release_labels": true,
+      "value_and_support": true,
+      "readable_lines_final_newline": true
+    },
+    "negative_mutations_detected": {
+      "nonexistent_reference": true,
+      "missing_support": true,
+      "forbidden_word": true,
+      "unresolved_link_token": true,
+      "wrong_step": true,
+      "legacy_t6_reference": true
+    },
+    "independent_review": "PENDING",
+    "release": "HOLD"
+  },
+  "reproducible_check": {
+    "path": "tools/test_t6_post_purchase_letter_20261014.py",
+    "sha256": "2f01e07721f1bd1c920b7c5dec26c23a1bcc3a279ac84a86df4878d97d7f6dd4",
+    "command": "python3 tools/test_t6_post_purchase_letter_20261014.py --root .",
+    "source_contract": "Frozen names and email observed in exact source commit; tests are letter-only author checks, not fresh acceptance of the eight existing product files."
+  },
+  "precondition_transition": {
+    "previous": "BLOCKED_OWNER_SOURCE_OR_EXPLICIT_NEW_COMPOSITION_AUTHORIZATION",
+    "current": "OWNER_AUTHORIZED_SOURCE_CREATED_REVIEW_PENDING",
+    "only_field": "post_purchase_letter_runtime_t6",
+    "historical_nomination_record_mutated": false
+  },
+  "acceptance_limits": {
+    "independent_semantic_and_buyer_review": "PENDING",
+    "formal_registry_nomination": "OPEN",
+    "controlled_delivery": "OPEN",
+    "G1_G8_accepted_products": 0,
+    "portfolio_total": 13,
+    "full_product_acceptance": false,
+    "release_authorized": false,
+    "email_sent": false
+  },
+  "execution": {
+    "external_model_calls": 0,
+    "paid_api_calls": 0,
+    "native_office_calls": 0,
+    "tasks_restarted": 0,
+    "local_recovery": [
+      "Direct sandbox HTTP failed DNS resolution; no retry; existing exact-ref GitHub connector content used instead.",
+      "Python write failed because the previously created directory was owned by container root; no file success claimed. Inspected uid and directory ownership, used one container execution identity, reopened and hashed the result."
+    ],
+    "gate": "Use verified connector inputs; confirm writable sandbox identity before artifact creation; completion requires readback and exact blob/SHA verification."
+  },
+  "next_step": "Independently review the new letter and three-file diff at exact PR head; then accept this source and update the existing nomination/release planning in a separate controlled step. Do not rebuild the unchanged eight-file archive merely to include the email source."
+}
