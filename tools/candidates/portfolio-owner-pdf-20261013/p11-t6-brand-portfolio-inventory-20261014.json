@@ -1,0 +1,619 @@
+{
+  "schema_version": 1,
+  "id": "P11-T6-BRAND-PORTFOLIO-INVENTORY-20261014",
+  "source_head": "d961b9c7c95b45919ef96347e5a0d27f4d6f0fcc",
+  "scope": "READ_ONLY_EXACT_SHA_BRAND_EVIDENCE_INVENTORY_ONLY",
+  "accepted_archive_sha256": "6a07f3c81152a22c3f2a8f127862e8a4e1ea6cafd0f750095d1933a5c095f572",
+  "files_checked": 8,
+  "files": [
+    {
+      "name": "00-START-HERE.txt",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/00-START-HERE.txt",
+      "sha256": "2f895a2f2b8ea5e166c8f18dd416465f2651b3562068551fc9f26841fd5dcf3a",
+      "bytes": 4309,
+      "format": "TXT",
+      "static_facts": {
+        "bytes": 4309,
+        "lines": 80
+      },
+      "visual_evidence": {
+        "status": "NOT_APPLICABLE_TEXT_ONLY",
+        "pages": 0,
+        "exact_input_sha_bound": true,
+        "routes": []
+      }
+    },
+    {
+      "name": "50-slovar-poley-raschet-metrami.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/50-slovar-poley-raschet-metrami.docx",
+      "sha256": "b0bd9d309115377c0e80c418d2dda1acdf3d33d4863feb2f15de69b70099427c",
+      "bytes": 12332,
+      "format": "DOCX",
+      "static_facts": {
+        "zip_crc": "PASS",
+        "document_body_headers_footers": {
+          "paragraph_elements": 99,
+          "table_elements": 3,
+          "drawing_elements": 0,
+          "active_italic_elements": 0,
+          "inactive_italic_elements": 112,
+          "explicit_text_colors": {
+            "323539": 112
+          },
+          "explicit_shading_fills": {
+            "EDEDED": 6,
+            "F2F2F2": 1
+          },
+          "fonts": {
+            "Times New Roman": 448
+          },
+          "paragraph_styles": {
+            "Heading2": 4,
+            "ListParagraph": 3,
+            "Heading1": 1
+          }
+        },
+        "style_definitions": {
+          "paragraph_elements": 0,
+          "table_elements": 0,
+          "drawing_elements": 0,
+          "active_italic_elements": 0,
+          "inactive_italic_elements": 11,
+          "explicit_text_colors": {
+            "323539": 11,
+            "0563C1": 1
+          },
+          "explicit_shading_fills": {},
+          "fonts": {
+            "Times New Roman": 4
+          },
+          "paragraph_styles": {}
+        },
+        "theme_colors": {},
+        "page_sizes": [
+          {
+            "w_twips": "11906",
+            "h_twips": "16838",
+            "orient": "portrait"
+          }
+        ],
+        "body_palette_presence_facts": {
+          "graphite_family_present": true,
+          "gold_family_present": false,
+          "blue_family_present": false,
+          "matched_graphite": [
+            "323539"
+          ],
+          "matched_gold": [],
+          "matched_blue": [],
+          "scope": "explicit values in document body, headers and footers only; no rendered-area inference"
+        },
+        "interpretation_guard": "style_definitions and theme_colors are not evidence that a format is rendered on a buyer-visible page"
+      },
+      "visual_evidence": {
+        "status": "EXACT_SHA_NATIVE_PDF_AND_PNG_PRESENT",
+        "pages": 2,
+        "exact_input_sha_bound": true,
+        "routes": [
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-50-buyer-wording-native-20261014/native-receipt.json",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-50-buyer-wording-native-20261014/native/50.pdf",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-50-buyer-wording-native-20261014/native/50-1.png",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-50-buyer-wording-native-20261014/native/50-2.png"
+        ],
+        "output_sha256": {
+          "50.pdf": "bb0ee3fc0df6b68dfe91c9ca59da96498a51ab9ae449bf4c8c0ef2623170c9ab",
+          "50-1.png": "89f825f4722617a342813ad0eadb91f954b5d214a6ec8a95c2fc291d677740bc",
+          "50-2.png": "078b469f1565042689e15aae77b9dfb4a69af32199eedb9721b13e99fb68be6d"
+        }
+      }
+    },
+    {
+      "name": "51-algoritm-raschet-metrami.pdf",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/51-algoritm-raschet-metrami.pdf",
+      "sha256": "2a4c98dc4a1b131dbccb787276f487a17a76a0c6643932c0ee0ca666601135d7",
+      "bytes": 271643,
+      "format": "PDF",
+      "static_facts": {
+        "pages": 3,
+        "page_size": "595.32 x 841.92 pts (A4)",
+        "pdf_version": "1.5",
+        "font_names": [
+          "ABCDEE+Calibri",
+          "ABCDEE+Calibri,Bold",
+          "Times New Roman"
+        ]
+      },
+      "visual_evidence": {
+        "status": "EXACT_BUYER_PDF_IS_NATIVE_OUTPUT",
+        "pages": 3,
+        "exact_input_sha_bound": true,
+        "routes": [
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-buyer-fixes-20261014/evidence/51-55-report.xml",
+          "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/51-algoritm-raschet-metrami.pdf"
+        ],
+        "output_sha256": {
+          "51-algoritm-raschet-metrami.pdf": "2a4c98dc4a1b131dbccb787276f487a17a76a0c6643932c0ee0ca666601135d7"
+        }
+      }
+    },
+    {
+      "name": "52-chek-list-raschet-metrami.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+      "sha256": "6094a91af0a2e750a1ef71f9b394ea49207af11f8c5420ade1a7da48ff79fd38",
+      "bytes": 11981,
+      "format": "DOCX",
+      "static_facts": {
+        "zip_crc": "PASS",
+        "document_body_headers_footers": {
+          "paragraph_elements": 82,
+          "table_elements": 2,
+          "drawing_elements": 0,
+          "active_italic_elements": 0,
+          "inactive_italic_elements": 84,
+          "explicit_text_colors": {
+            "323539": 84
+          },
+          "explicit_shading_fills": {
+            "F2F2F2": 1
+          },
+          "fonts": {
+            "Times New Roman": 220
+          },
+          "paragraph_styles": {
+            "Heading2": 7,
+            "Heading1": 1
+          }
+        },
+        "style_definitions": {
+          "paragraph_elements": 0,
+          "table_elements": 0,
+          "drawing_elements": 0,
+          "active_italic_elements": 1,
+          "inactive_italic_elements": 3,
+          "explicit_text_colors": {
+            "323539": 3,
+            "1F4D78": 2,
+            "2E74B5": 2,
+            "0563C1": 1
+          },
+          "explicit_shading_fills": {},
+          "fonts": {
+            "Times New Roman": 4
+          },
+          "paragraph_styles": {}
+        },
+        "theme_colors": {},
+        "page_sizes": [
+          {
+            "w_twips": "11906",
+            "h_twips": "16838",
+            "orient": "portrait"
+          }
+        ],
+        "body_palette_presence_facts": {
+          "graphite_family_present": true,
+          "gold_family_present": false,
+          "blue_family_present": false,
+          "matched_graphite": [
+            "323539"
+          ],
+          "matched_gold": [],
+          "matched_blue": [],
+          "scope": "explicit values in document body, headers and footers only; no rendered-area inference"
+        },
+        "interpretation_guard": "style_definitions and theme_colors are not evidence that a format is rendered on a buyer-visible page"
+      },
+      "visual_evidence": {
+        "status": "EXACT_SHA_NATIVE_PDF_PRESENT",
+        "pages": 3,
+        "exact_input_sha_bound": true,
+        "routes": [
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-buyer-fixes-20261014/delta-acceptance.json",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-buyer-fixes-20261014/evidence/52-report.xml",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-buyer-fixes-20261014/evidence/52-native.pdf"
+        ],
+        "output_sha256": {
+          "52-native.pdf": "1029d8bc3f454ffa01e4fa5aa453fc663340456ba8ee76198e9a3e9e3449acea"
+        }
+      }
+    },
+    {
+      "name": "53-zapros-status-obekta.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/53-zapros-status-obekta.docx",
+      "sha256": "c3fccbdc5e7e6841ca8c48b5ab1c199bdebe0d2f4990c232040d20f70bfc023e",
+      "bytes": 11283,
+      "format": "DOCX",
+      "static_facts": {
+        "zip_crc": "PASS",
+        "document_body_headers_footers": {
+          "paragraph_elements": 43,
+          "table_elements": 1,
+          "drawing_elements": 0,
+          "active_italic_elements": 0,
+          "inactive_italic_elements": 60,
+          "explicit_text_colors": {
+            "323539": 60
+          },
+          "explicit_shading_fills": {
+            "F2F2F2": 1
+          },
+          "fonts": {
+            "Times New Roman": 236
+          },
+          "paragraph_styles": {
+            "ListParagraph": 5,
+            "Heading2": 4,
+            "Heading1": 2
+          }
+        },
+        "style_definitions": {
+          "paragraph_elements": 0,
+          "table_elements": 0,
+          "drawing_elements": 0,
+          "active_italic_elements": 0,
+          "inactive_italic_elements": 11,
+          "explicit_text_colors": {
+            "323539": 11,
+            "0563C1": 1
+          },
+          "explicit_shading_fills": {},
+          "fonts": {
+            "Times New Roman": 4
+          },
+          "paragraph_styles": {}
+        },
+        "theme_colors": {},
+        "page_sizes": [
+          {
+            "w_twips": "11906",
+            "h_twips": "16838",
+            "orient": "portrait"
+          }
+        ],
+        "body_palette_presence_facts": {
+          "graphite_family_present": true,
+          "gold_family_present": false,
+          "blue_family_present": false,
+          "matched_graphite": [
+            "323539"
+          ],
+          "matched_gold": [],
+          "matched_blue": [],
+          "scope": "explicit values in document body, headers and footers only; no rendered-area inference"
+        },
+        "interpretation_guard": "style_definitions and theme_colors are not evidence that a format is rendered on a buyer-visible page"
+      },
+      "visual_evidence": {
+        "status": "EXACT_SHA_NATIVE_PDF_AND_PNG_PRESENT",
+        "pages": 3,
+        "exact_input_sha_bound": true,
+        "routes": [
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-50-53-ics-cleanup-20261014/native-receipt.json",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-50-53-ics-cleanup-20261014/native/53.pdf",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-50-53-ics-cleanup-20261014/native/53-1.png",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-50-53-ics-cleanup-20261014/native/53-2.png",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-50-53-ics-cleanup-20261014/native/53-3.png"
+        ],
+        "output_sha256": {
+          "53.pdf": "2df51ae45b802d8e62f2ed2232be0a3808642db015cb3ff5794beaafc90652bd",
+          "53-1.png": "5728f322b7e2a2c685f7c3069187c1f901647df580774f9a64554021c46b2ec3",
+          "53-2.png": "dbe2d712b71b483429d237601d53754c09705fd254efa7f16d9ce6011ba00421",
+          "53-3.png": "5a82959871551015b8ddbd58507833784ee1138d3cec625d1a029bfb57658c6d"
+        }
+      }
+    },
+    {
+      "name": "54-zapros-sostoyanie-escrow.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/54-zapros-sostoyanie-escrow.docx",
+      "sha256": "8e76f513b4f72c51bd8e9ad1bd56c27409285585b2f38f96c76b5f8dfbfa4f96",
+      "bytes": 11700,
+      "format": "DOCX",
+      "static_facts": {
+        "zip_crc": "PASS",
+        "document_body_headers_footers": {
+          "paragraph_elements": 47,
+          "table_elements": 1,
+          "drawing_elements": 0,
+          "active_italic_elements": 0,
+          "inactive_italic_elements": 71,
+          "explicit_text_colors": {
+            "323539": 71
+          },
+          "explicit_shading_fills": {
+            "F2F2F2": 1
+          },
+          "fonts": {
+            "Times New Roman": 280
+          },
+          "paragraph_styles": {
+            "ListParagraph": 6,
+            "Heading2": 5,
+            "Heading1": 2
+          }
+        },
+        "style_definitions": {
+          "paragraph_elements": 0,
+          "table_elements": 0,
+          "drawing_elements": 0,
+          "active_italic_elements": 1,
+          "inactive_italic_elements": 3,
+          "explicit_text_colors": {
+            "323539": 3,
+            "1F4D78": 2,
+            "2E74B5": 2,
+            "0563C1": 1
+          },
+          "explicit_shading_fills": {},
+          "fonts": {
+            "Times New Roman": 4
+          },
+          "paragraph_styles": {}
+        },
+        "theme_colors": {},
+        "page_sizes": [
+          {
+            "w_twips": "11906",
+            "h_twips": "16838",
+            "orient": "portrait"
+          }
+        ],
+        "body_palette_presence_facts": {
+          "graphite_family_present": true,
+          "gold_family_present": false,
+          "blue_family_present": false,
+          "matched_graphite": [
+            "323539"
+          ],
+          "matched_gold": [],
+          "matched_blue": [],
+          "scope": "explicit values in document body, headers and footers only; no rendered-area inference"
+        },
+        "interpretation_guard": "style_definitions and theme_colors are not evidence that a format is rendered on a buyer-visible page"
+      },
+      "visual_evidence": {
+        "status": "EXACT_SHA_NATIVE_PDF_PRESENT",
+        "pages": 3,
+        "exact_input_sha_bound": true,
+        "routes": [
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-buyer-fixes-20261014/delta-acceptance.json",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-buyer-fixes-20261014/evidence/54-report.xml",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-buyer-fixes-20261014/evidence/54-native.pdf"
+        ],
+        "output_sha256": {
+          "54-native.pdf": "6cd429cb4ab47bd9500760fdc5bc13568eeccf1f99a4be20f97967bcffd26693"
+        }
+      }
+    },
+    {
+      "name": "55-pamyatka-punkt-ustupki-escrow.pdf",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf",
+      "sha256": "20f65a850db70836b2897dc747ed6478781641e3a4f5a537b094a7afec0814a2",
+      "bytes": 261512,
+      "format": "PDF",
+      "static_facts": {
+        "pages": 2,
+        "page_size": "595.32 x 841.92 pts (A4)",
+        "pdf_version": "1.5",
+        "font_names": [
+          "ABCDEE+Calibri",
+          "ABCDEE+Calibri,Bold",
+          "Times New Roman"
+        ]
+      },
+      "visual_evidence": {
+        "status": "EXACT_BUYER_PDF_IS_NATIVE_OUTPUT",
+        "pages": 2,
+        "exact_input_sha_bound": true,
+        "routes": [
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-buyer-fixes-20261014/evidence/51-55-report.xml",
+          "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/55-pamyatka-punkt-ustupki-escrow.pdf"
+        ],
+        "output_sha256": {
+          "55-pamyatka-punkt-ustupki-escrow.pdf": "20f65a850db70836b2897dc747ed6478781641e3a4f5a537b094a7afec0814a2"
+        }
+      }
+    },
+    {
+      "name": "56-pervyy-den-do-podpisi.docx",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami/56-pervyy-den-do-podpisi.docx",
+      "sha256": "9c40a96498037b53a68ecea6f3ee57129a9f2c236d1073d1818c603016260807",
+      "bytes": 38464,
+      "format": "DOCX",
+      "static_facts": {
+        "zip_crc": "PASS",
+        "document_body_headers_footers": {
+          "paragraph_elements": 25,
+          "table_elements": 1,
+          "drawing_elements": 0,
+          "active_italic_elements": 0,
+          "inactive_italic_elements": 0,
+          "explicit_text_colors": {
+            "303438": 25
+          },
+          "explicit_shading_fills": {},
+          "fonts": {
+            "Arial": 50
+          },
+          "paragraph_styles": {
+            "Heading1": 7
+          }
+        },
+        "style_definitions": {
+          "paragraph_elements": 0,
+          "table_elements": 0,
+          "drawing_elements": 0,
+          "active_italic_elements": 17,
+          "inactive_italic_elements": 28,
+          "explicit_text_colors": {
+            "FFFFFF": 119,
+            "000000": 92,
+            "4F81BD": 14,
+            "1F497D": 7,
+            "243F60": 4,
+            "404040": 4,
+            "313539": 3,
+            "9E3A38": 3,
+            "365F91": 2,
+            "C0504D": 2,
+            "17365D": 1,
+            "31849B": 1,
+            "348DA5": 1,
+            "5F497A": 1,
+            "664E82": 1,
+            "76923C": 1,
+            "7E9C40": 1,
+            "808080": 1,
+            "943634": 1,
+            "E36C0A": 1,
+            "F2730A": 1
+          },
+          "explicit_shading_fills": {
+            "FFFFFF": 77,
+            "000000": 27,
+            "C0C0C0": 14,
+            "D2EAF1": 14,
+            "D3DFEE": 14,
+            "D8D8D8": 14,
+            "DFD8E8": 14,
+            "E6EED5": 14,
+            "EFD3D2": 14,
+            "FDE4D0": 14,
+            "4BACC6": 10,
+            "4F81BD": 10,
+            "8064A2": 10,
+            "9BBB59": 10,
+            "C0504D": 10,
+            "F79646": 10,
+            "808080": 9,
+            "A5D5E2": 9,
+            "A7BFDE": 9,
+            "BFB1D0": 9,
+            "CDDDAC": 9,
+            "DFA7A6": 9,
+            "FBCAA2": 9,
+            "31849B": 6,
+            "365F91": 6,
+            "5F497A": 6,
+            "76923C": 6,
+            "943634": 6,
+            "E36C0A": 6,
+            "276A7C": 3,
+            "2C4C74": 3,
+            "4C3B62": 3,
+            "5E7530": 3,
+            "772C2A": 3,
+            "999999": 3,
+            "9E3A38": 3,
+            "B65608": 3,
+            "B6DDE8": 3,
+            "B8CCE4": 3,
+            "CCC0D9": 3,
+            "CCCCCC": 3,
+            "D6E3BC": 3,
+            "DAEEF3": 3,
+            "DBE5F1": 3,
+            "E5B8B7": 3,
+            "E5DFEC": 3,
+            "E6E6E6": 3,
+            "EAF1DD": 3,
+            "EDF2F8": 3,
+            "EDF6F9": 3,
+            "F2DBDB": 3,
+            "F2EFF6": 3,
+            "F5F8EE": 3,
+            "F8EDED": 3,
+            "FBD4B4": 3,
+            "FDE9D9": 3,
+            "FEF4EC": 3,
+            "205867": 1,
+            "243F60": 1,
+            "348DA5": 1,
+            "3F3151": 1,
+            "4E6128": 1,
+            "622423": 1,
+            "664E82": 1,
+            "7E9C40": 1,
+            "974706": 1,
+            "F2730A": 1
+          },
+          "fonts": {
+            "majorHAnsi": 142,
+            "majorBidi": 71,
+            "majorEastAsia": 71,
+            "Courier": 4,
+            "Aptos": 2,
+            "minorHAnsi": 2,
+            "minorBidi": 1,
+            "minorEastAsia": 1
+          },
+          "paragraph_styles": {}
+        },
+        "theme_colors": {
+          "dk1": "WINDOWTEXT",
+          "lt1": "WINDOW",
+          "accent1": "4F81BD",
+          "accent2": "C0504D",
+          "accent3": "9BBB59",
+          "accent4": "8064A2",
+          "accent5": "4BACC6",
+          "accent6": "F79646"
+        },
+        "page_sizes": [
+          {
+            "w_twips": "11906",
+            "h_twips": "16838",
+            "orient": "portrait"
+          }
+        ],
+        "body_palette_presence_facts": {
+          "graphite_family_present": true,
+          "gold_family_present": false,
+          "blue_family_present": false,
+          "matched_graphite": [
+            "303438"
+          ],
+          "matched_gold": [],
+          "matched_blue": [],
+          "scope": "explicit values in document body, headers and footers only; no rendered-area inference"
+        },
+        "interpretation_guard": "style_definitions and theme_colors are not evidence that a format is rendered on a buyer-visible page"
+      },
+      "visual_evidence": {
+        "status": "EXACT_SHA_NATIVE_PDF_AND_PNG_PRESENT",
+        "pages": 1,
+        "exact_input_sha_bound": true,
+        "routes": [
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-dayone-20261014/native/job-v2.xml",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-dayone-20261014/native/report-v2.xml",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-dayone-20261014/native/output-v2.pdf",
+          "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-dayone-20261014/native/final-1.png"
+        ],
+        "output_sha256": {
+          "output-v2.pdf": "079bb397ca51d35927ad5c36c4c3ac7e66da81100f8aa8d36b06c300d65e5f2b",
+          "final-1.png": "b35df73dee811f9cb425af2dda3b61972c3ded4cbf94c2af20e0780f55e8a18b"
+        }
+      }
+    }
+  ],
+  "summary": {
+    "identity": "PASS_8_OF_8_EXACT_SHA",
+    "visual_evidence_pages": 17,
+    "expected_visual_pages": 17,
+    "page_evidence_coverage": "PASS_17_OF_17",
+    "missing_exact_sha_render_files": [],
+    "brand_static_scope": "OOXML_COLOR_FONT_STYLE_FACTS_PLUS_PDF_METADATA",
+    "brand_visual_acceptance": "NOT_CLAIMED_BY_AUTHOR_INVENTORY",
+    "source_files_changed": 0,
+    "model_calls": 0,
+    "paid_api_calls": 0,
+    "release": "HOLD",
+    "G1_G8": "0/13"
+  },
+  "limitations": [
+    "Exact native/PDF evidence presence does not itself prove independent brand conformance.",
+    "OOXML style/theme definitions do not prove rendered body formatting; they are reported separately from document/header/footer facts.",
+    "PDF metadata and fonts do not establish page colour proportions; page images/PDFs remain the visual source.",
+    "This report does not accept legal content, controlled delivery, canonical replacement, release, publication, prices, SKU, payment or live delivery."
+  ],
+  "next_step": "Independent visual review of all 17 exact-SHA pages using the mapped evidence; no new Office render is needed unless the reviewer proves an evidence mismatch."
+}
