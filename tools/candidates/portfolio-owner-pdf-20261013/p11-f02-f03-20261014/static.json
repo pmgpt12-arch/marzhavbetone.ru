@@ -1,0 +1,36 @@
+{
+  "positive": {
+    "51_one_boundary": true,
+    "51_registration_and_transfer": true,
+    "51_part3_preserved": true,
+    "52_one_boundary": true,
+    "52_registration_and_transfer": true,
+    "52_part3_preserved": true,
+    "55_one_boundary": true,
+    "55_registration_and_transfer": true,
+    "55_part3_preserved": true,
+    "51_unified_stop_resume": true,
+    "52_unified_stop_resume": true,
+    "51_no_old_permission": true,
+    "52_heading_preserved": true
+  },
+  "negative_detected": {
+    "51_ч. 2 ст. 11 Закона № 214-ФЗ": true,
+    "51_передаточного акта": true,
+    "51_СТОП": true,
+    "52_ч. 2 ст. 11 Закона № 214-ФЗ": true,
+    "52_передаточного акта": true,
+    "52_СТОП": true,
+    "55_ч. 2 ст. 11 Закона № 214-ФЗ": true,
+    "55_передаточного акта": true,
+    "55_СТОП": true,
+    "51_Два и более — СТОП": true,
+    "51_письменного решения руководителя": true,
+    "51_Правовые препятствия должны быть устранены.": true,
+    "52_Два и более — СТОП": true,
+    "52_письменного решения руководителя": true,
+    "52_Правовые препятствия должны быть устранены.": true
+  },
+  "baseline_detected": true,
+  "scope": "STATIC_REGRESSION_ONLY"
+}

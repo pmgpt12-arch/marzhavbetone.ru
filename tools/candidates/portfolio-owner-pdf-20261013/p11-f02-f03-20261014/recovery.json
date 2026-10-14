@@ -1,0 +1,7 @@
+{
+  "class": "SHARED_ZIPINFO_MUTATED_BY_WRITER",
+  "effect": "read verification detected overlapped entries in in-memory source",
+  "product_writes_before_failure": 0,
+  "fix": "deep-copy ZipInfo before writestr",
+  "regression": "source ZIP remains readable; only document.xml may differ"
+}
