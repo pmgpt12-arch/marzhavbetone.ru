@@ -13,7 +13,7 @@ Base commit `8311bb2dc7b497415952d03630e4a477f8bf9d7c`, tree `c1cb9e01527d4025c0
 
 ## Привязка — только изолированный экземпляр
 
-`build_candidate.py` проверяет два исходных Git blob и уникальность каждой замены, затем строит копии существующих `products-config.php` и `download.php`. `binding_helpers.php` — фрагмент, добавляемый к проверенной копии, не самостоятельный подключаемый runtime. `isolated-binding.patch` содержит ту же адресную дельту. Файлы в корне репозитория не изменены.
+`build_candidate.py` проверяет два исходных Git blob и уникальность каждой замены, затем строит копии существующих `products-config.php` и `download.php`. `binding_helpers.php.txt` — фрагмент, добавляемый к проверенной копии, не самостоятельный подключаемый runtime. `isolated-binding.patch` содержит ту же адресную дельту. Файлы в корне репозитория не изменены.
 
 Новый консолидированный комплект выбирается только при двух условиях: явное включение `MVB_P11_CANDIDATE_BINDING=true` в конфигурации песочницы и точный серверный признак издания у позиции `p11`: `kind=p11-t6-gold-20261014` плюс зафиксированные SHA/имена ZIP и письма. В этой работе признак назначается только синтетическому заказу. Назначение его реальным заказам в checkout/payment не реализовано и не разрешено. Production source path/runtime nomination остаются отдельным gate.
 
@@ -34,7 +34,7 @@ Base commit `8311bb2dc7b497415952d03630e4a477f8bf9d7c`, tree `c1cb9e01527d4025c0
 Нужны Python 3, PHP CLI с ZipArchive и репозиторий с точным base commit. Из корня репозитория одна команда (не запускать повторно без причины; независимая приёмка — отдельный scope):
 
 ```sh
-python3 -B -c 'import sys,json,subprocess; from pathlib import Path; d=Path("tools/candidates/p11-isolated-delivery-binding-20261014"); sys.path.insert(0,str(d)); from build_candidate import build,BASE; from verify_isolated import verify; read=lambda p:subprocess.check_output(["git","show",BASE+":"+p],timeout=15); result,patch=verify(read,build,(d/"binding_helpers.php").read_text()); print(json.dumps(result,ensure_ascii=False,indent=2))'
+python3 -B -c 'import sys,json,subprocess; from pathlib import Path; d=Path("tools/candidates/p11-isolated-delivery-binding-20261014"); sys.path.insert(0,str(d)); from build_candidate import build,BASE; from verify_isolated import verify; read=lambda p:subprocess.check_output(["git","show",BASE+":"+p],timeout=15); result,patch=verify(read,build,(d/"binding_helpers.php.txt").read_text()); print(json.dumps(result,ensure_ascii=False,indent=2))'
 ```
 
 Первый авторский прогон вызвал те же сохранённые функции на exact-ref GitHub bytes, не этот CLI entrypoint. Обязательная CI-интеграция 59 проверок не заявляется. Автоматические общерепозиторные workflow не заменяют этот отчёт. При отсутствующем base/object остановиться: это CONTEXT/DEPENDENCY, не дефект модели. Исходная локальная копия сервера не содержала base; использованы GitHub GET без git fetch и изменения worktree. Сбой DNS контейнера не повторялся.
@@ -44,3 +44,7 @@ python3 -B -c 'import sys,json,subprocess; from pathlib import Path; d=Path("too
 Автор проверяет поведение изолированного кода; независимая проверка нового patch/тестов ещё **PENDING**. Не merge/apply patch к runtime, не nominate production source, не менять checkout/payment/цены/SKU/VPN и не деплоить по этому результату. Общий статус G1–G8 **0/13 HOLD**.
 
 Следующий gate: независимый exact-head review адресной привязки и воспроизводимости синтетических сценариев. Затем отдельный согласованный контролируемый релиз с назначением production source и серверного маркера издания, проверкой реального HTTP/покупательского маршрута и планом отката; в этой задаче это не выполнялось.
+
+## Packaging gate recovery
+
+CI run 38525258437 correctly rejected the PHP fragment filename as an extra HTML/PHP source candidate. The fragment is now stored as binding_helpers.php.txt with identical bytes. The existing route scanner and baseline are unchanged; its exact source_files and assert_head_candidates_match_source functions detect the old path and accept the renamed candidate projection: 116/116 match. Source fragments that are not independent executable endpoints must use a non-route text suffix before publication. No repeat of the 59 unchanged PHP behavior checks; their exact code, patch, source and receipt bytes remain fixed. Packaging-only proof: packaging-recovery.json. Independent acceptance remains pending; release HOLD.

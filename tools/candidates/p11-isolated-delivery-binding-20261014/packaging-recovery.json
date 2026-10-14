@@ -1,0 +1,32 @@
+{
+  "reproduced_failure": "HEAD candidate drift: missing=[], extra=['tools/candidates/p11-isolated-delivery-binding-20261014/binding_helpers.php'], changed=[]",
+  "id": "P11-BINDING-PACKAGING-RECOVERY-20261014",
+  "failed_head": "023dfee549eb2401d80b479a9484c05f0ed71432",
+  "failed_run": 38525258437,
+  "failed_job": 115724004243,
+  "classification": "CONTEXT_PACKAGING_NOT_PRODUCT_LOGIC",
+  "root_cause": "Non-executable PHP source fragment stored with an executable .php suffix; existing immutable HTML/PHP inventory detected one extra source",
+  "old_path": "tools/candidates/p11-isolated-delivery-binding-20261014/binding_helpers.php",
+  "new_path": "tools/candidates/p11-isolated-delivery-binding-20261014/binding_helpers.php.txt",
+  "fragment_blob_unchanged": "ea91f05178d77261e28616985056993750272725",
+  "scanner_blob": "1091eee7632e25ad047e3925f2b6de4bc5aef281",
+  "scanner_modified": false,
+  "baseline_modified": false,
+  "gate": "Actual retained source_files and assert_head_candidates_match_source executed with GitHub immutable ls-tree-equivalent bytes",
+  "baseline_candidates": 116,
+  "rejected_candidates": 117,
+  "corrected_candidates": 116,
+  "candidate_fingerprints_equal": true,
+  "test_scope": "PACKAGING_DELTA_ONLY",
+  "unchanged_59_checks_repeated": false,
+  "unchanged_dependencies": {
+    "build_candidate.py": "972f044aab5e8427927a5a55362486cd3f6639e5",
+    "verify_isolated.py": "f82b21db08744ea2709f9d1846d662ee0d74d8ba",
+    "isolated-binding.patch": "e649ba08bab79fac2aa861b175da165986077b58",
+    "author-acceptance.json": "d55ea34d8de5189ac8ff5b3d67d3c74246df23ff"
+  },
+  "rule": "Keep non-executable source fragments as text; run existing route candidate gate before publication; do not weaken scanner or rewrite its baseline",
+  "status": "PASS_PACKAGING_DELTA_ONLY",
+  "release": "HOLD",
+  "timestamp_utc": "2026-10-14T07:02:50.074773+00:00"
+}
