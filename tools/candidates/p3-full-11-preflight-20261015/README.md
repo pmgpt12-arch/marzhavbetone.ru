@@ -1,3 +1,3 @@
-# P3 full 11-file integration preflight
+# P3 full 11-file integration candidate — narrow remediation
 
-Exact composition candidate assembled from accepted stacked inputs at base 31022811984544ea9cdad19cef7fed95f9af54be. Deterministic checks passed; native Office, normative/legal, buyer scenario and G1–G8 remain OPEN. Candidate only: no merge, release, deploy or canonical replacement.
+Candidate-only remediation stacked on PR #645 exact head 22c1230dc0c03b1bc7fc678e863590055e9fd97d. Author scope changes only 01, 03, 06 and 07; the other seven buyer files remain byte-identical. LibreOffice regression, fresh renders and independent exact-head buyer/normative review are required before any acceptance. Native Microsoft Office, G1–G8, owner nomination and release remain OPEN/HOLD; no canonical replacement, merge, deploy or live action is authorized.

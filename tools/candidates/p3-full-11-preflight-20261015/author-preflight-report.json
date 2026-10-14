@@ -1,128 +1,114 @@
 {
-  "archive_sha256": "93b0a269be0eb5a0e674ff068419b8070072608a58c15e62467d4034137aec5f",
-  "base_head": "31022811984544ea9cdad19cef7fed95f9af54be",
-  "branch": "codex/p3-full-11-preflight-20261015",
-  "checks": [
-    {
-      "count": 11,
-      "name": "exact_11_names_hashes",
-      "status": "PASS"
-    },
-    {
-      "counts": {
-        ".docx": 7,
-        ".pdf": 1,
-        ".txt": 1,
-        ".xlsx": 2
-      },
-      "name": "composition_1txt_7docx_2xlsx_1pdf",
-      "status": "PASS"
-    },
-    {
-      "name": "ooxml_zip_crc_and_xml_parse",
-      "status": "PASS",
-      "xml_members": 125
-    },
-    {
-      "name": "pdf_qpdf_pdfinfo_pdftotext",
-      "pages": 2,
-      "qpdf": "checking /home/denis/projects/p3-full-11-preflight-20261015/tools/candidates/p3-full-11-preflight-20261015/candidate/08-algoritm-proverki.pdf\nPDF Version: 1.7\nFile is not encrypted\nFile is not linearized\nNo syntax or stream encoding errors found; the file may still contain\nerrors that qpdf cannot detect",
-      "status": "PASS",
-      "text_chars": 2832
-    },
-    {
-      "name": "start_here_literal_references",
-      "resolved": 10,
-      "status": "PASS"
-    },
-    {
-      "bytes": 341850,
-      "name": "deterministic_archive_exact_members",
-      "sha256": "93b0a269be0eb5a0e674ff068419b8070072608a58c15e62467d4034137aec5f",
-      "status": "PASS"
-    }
+  "acceptance": "PASS_AUTHOR_SCOPE",
+  "acceptance_evidence": {
+    "acceptance_report_sha256": "fb23835f9fb65b849667241299f18fcb749734afa99307b2a33ea10f0227fda3",
+    "changed_render": "4 files / 19 pages / visual PASS",
+    "libreoffice_scenario_report_sha256": "2a23697bf6a38d58a6f6c1b76e91a88774667a9f1baf57ddefabb29a4499740c",
+    "libreoffice_scenarios": "20/20 prior + 11/11 new, zero formula errors",
+    "public_check_log_sha256": "01a8257b9a8087296891a5f8dab58465dea863566c256ec54df9840a0fec4e25",
+    "public_checks": "58/58 PASS",
+    "render_manifest_sha256": "076054254c92760dd4f6fd11bb7ac4c90e1379735a57e4d753a768398db8ee53",
+    "visual_review_report_sha256": "6cce8f5cca86047f4e1e06c16e4afc78086ce0432525fb0b36452cd12c814515"
+  },
+  "archive": {
+    "bytes": 343756,
+    "fixed_timestamp": "1980-01-01T00:00:00",
+    "members": [
+      "00-START-HERE.txt",
+      "01-proverochnyy-list-komplekta-ks.docx",
+      "02-reestr-prilozheniy.xlsx",
+      "03-akt-skrytyh-rabot.docx",
+      "04-protokol-vnutrenney-proverki.docx",
+      "05-pismo-o-nedostatkah.docx",
+      "06-zhurnal-peredachi.xlsx",
+      "07-sroki-hraneniya.docx",
+      "08-algoritm-proverki.pdf",
+      "09-tipovye-oshibki.docx",
+      "10-sravnitelnaya-tablica.docx"
+    ],
+    "mode": "100644",
+    "path": "P3-full-11-candidate.zip",
+    "sha256": "520c7c8178a1a357dd74314b2a526ea91a41a2c3f12851df8b059c57037d8589"
+  },
+  "base_head": "22c1230dc0c03b1bc7fc678e863590055e9fd97d",
+  "branch": "codex/p3-pr645-remediation-20261015",
+  "changed_paths": [
+    "candidate/01-proverochnyy-list-komplekta-ks.docx",
+    "candidate/03-akt-skrytyh-rabot.docx",
+    "candidate/06-zhurnal-peredachi.xlsx",
+    "candidate/07-sroki-hraneniya.docx",
+    "manifest.json",
+    "P3-full-11-candidate.zip",
+    "README.md",
+    "author-preflight-report.json"
   ],
-  "files": [
-    {
-      "bytes": 3996,
-      "path": "candidate/00-START-HERE.txt",
-      "sha256": "f8aadb9047191a9542303bddb88d4ddce543ab6a7be4a7c8ad854a246962ff82",
-      "source": "tools/candidates/p3-ad-exact-seven-20261014/candidate/00-START-HERE.txt"
-    },
-    {
-      "bytes": 43235,
-      "path": "candidate/01-proverochnyy-list-komplekta-ks.docx",
-      "sha256": "edeadc13861dcd7c3e356a87aea54e606e48878395e62d6d1f09af8cef1fad90",
-      "source": "tools/candidates/p3-ad-exact-seven-20261014/candidate/01-proverochnyy-list-komplekta-ks.docx"
-    },
-    {
-      "bytes": 16774,
-      "path": "candidate/02-reestr-prilozheniy.xlsx",
-      "sha256": "929a84cf9a870b44d79113fa31379403ec3b671345ca5001938c5aa709e5c12a",
-      "source": "tools/candidates/p3-subject-remediation-20261014/unit-c-xlsx02-06/candidate/02-reestr-prilozheniy.xlsx"
-    },
-    {
-      "bytes": 42882,
-      "path": "candidate/03-akt-skrytyh-rabot.docx",
-      "sha256": "576a1ded02eb4befc40d5bf269799aea34fb160e8afbd84885fd337f39da1008",
-      "source": "tools/candidates/p3-style03-remediation-20261014/candidate/03-akt-skrytyh-rabot.docx"
-    },
-    {
-      "bytes": 39362,
-      "path": "candidate/04-protokol-vnutrenney-proverki.docx",
-      "sha256": "d2fd70cb60397076b44209e5989da0a0110b50513bcd5c5c062d558a070a3e1a",
-      "source": "tools/candidates/p3-ad-exact-seven-20261014/candidate/04-protokol-vnutrenney-proverki.docx"
-    },
-    {
-      "bytes": 39435,
-      "path": "candidate/05-pismo-o-nedostatkah.docx",
-      "sha256": "22d8d04a51f3eacb2285323e0d7517f7ab372a2456e062fb585411e8554a3d3d",
-      "source": "tools/candidates/p3-ad-exact-seven-20261014/candidate/05-pismo-o-nedostatkah.docx"
-    },
-    {
-      "bytes": 17168,
-      "path": "candidate/06-zhurnal-peredachi.xlsx",
-      "sha256": "8be06268e40833821be2909ce2225814524a845ea73506b014c2c925647a0d11",
-      "source": "tools/candidates/p3-subject-remediation-20261014/unit-c-xlsx02-06/candidate/06-zhurnal-peredachi.xlsx"
-    },
-    {
-      "bytes": 39694,
-      "path": "candidate/07-sroki-hraneniya.docx",
-      "sha256": "18928f78153ab8e05d1f7e9943692fd49790760a4f0676c747b0864aa414f0f3",
-      "source": "tools/candidates/p3-subject-remediation-20261014/unit-b-retention07/candidate/07-sroki-hraneniya.docx"
-    },
-    {
-      "bytes": 58687,
-      "path": "candidate/08-algoritm-proverki.pdf",
-      "sha256": "43396d5cc5bab8829ec917e828eda46773b0e037f13d52aa476ecfb0dacecec2",
-      "source": "tools/candidates/p3-ad-exact-seven-20261014/candidate/08-algoritm-proverki.pdf"
-    },
-    {
-      "bytes": 40669,
-      "path": "candidate/09-tipovye-oshibki.docx",
-      "sha256": "465935a45415804811ec167509520d414ffe5a0f19d4b37fea2465df24dafbcf",
-      "source": "tools/candidates/p3-ad-exact-seven-20261014/candidate/09-tipovye-oshibki.docx"
-    },
-    {
-      "bytes": 39912,
-      "path": "candidate/10-sravnitelnaya-tablica.docx",
-      "sha256": "9ff876618a7ffd360af989054d373125bda3deb4e24b0ae14c9e4df90d3132b3",
-      "source": "tools/candidates/p3-ad-exact-seven-20261014/candidate/10-sravnitelnaya-tablica.docx"
-    }
+  "created_at": "2026-10-15T01:46:17.515783+07:00",
+  "implemented": [
+    "01 explicit rendered 4.1–4.10 column plus historical/non-universal №100 qualification and official №369/пр URL",
+    "03 official №369/пр URL and minimal 152-ФЗ applicability/minimization/access/transfer/storage note",
+    "06 confirmation identifier/date/evidence requirement before ЗАКРЫТО, contractual response deadline/control date, repeat-transfer linkage",
+    "07 numeric statutory retention period removed per R-009 and replaced with dynamic source/date verification instruction",
+    "07 pagination-only typography/margin correction after preserved sparse-page visual FAIL"
   ],
-  "finished_at": "2026-10-14T17:52:48.266757+00:00",
+  "input_sha256": {
+    "00-START-HERE.txt": "f8aadb9047191a9542303bddb88d4ddce543ab6a7be4a7c8ad854a246962ff82",
+    "01-proverochnyy-list-komplekta-ks.docx": "edeadc13861dcd7c3e356a87aea54e606e48878395e62d6d1f09af8cef1fad90",
+    "02-reestr-prilozheniy.xlsx": "929a84cf9a870b44d79113fa31379403ec3b671345ca5001938c5aa709e5c12a",
+    "03-akt-skrytyh-rabot.docx": "576a1ded02eb4befc40d5bf269799aea34fb160e8afbd84885fd337f39da1008",
+    "04-protokol-vnutrenney-proverki.docx": "d2fd70cb60397076b44209e5989da0a0110b50513bcd5c5c062d558a070a3e1a",
+    "05-pismo-o-nedostatkah.docx": "22d8d04a51f3eacb2285323e0d7517f7ab372a2456e062fb585411e8554a3d3d",
+    "06-zhurnal-peredachi.xlsx": "8be06268e40833821be2909ce2225814524a845ea73506b014c2c925647a0d11",
+    "07-sroki-hraneniya.docx": "18928f78153ab8e05d1f7e9943692fd49790760a4f0676c747b0864aa414f0f3",
+    "08-algoritm-proverki.pdf": "43396d5cc5bab8829ec917e828eda46773b0e037f13d52aa476ecfb0dacecec2",
+    "09-tipovye-oshibki.docx": "465935a45415804811ec167509520d414ffe5a0f19d4b37fea2465df24dafbcf",
+    "10-sravnitelnaya-tablica.docx": "9ff876618a7ffd360af989054d373125bda3deb4e24b0ae14c9e4df90d3132b3"
+  },
   "limitations": [
-    "native Word OPEN",
-    "native Excel OPEN",
-    "normative/legal OPEN",
-    "buyer scenario OPEN",
-    "G1-G8 OPEN",
-    "merge/release HOLD"
+    "candidate only",
+    "no source or canonical replacement",
+    "no native Microsoft Office claim",
+    "no legal/release claim",
+    "no merge/deploy/live action"
   ],
-  "next_step": "independent exact-head integration review, then native Office and buyer/normative gates",
+  "model_calls": 0,
+  "output_sha256": {
+    "00-START-HERE.txt": "f8aadb9047191a9542303bddb88d4ddce543ab6a7be4a7c8ad854a246962ff82",
+    "01-proverochnyy-list-komplekta-ks.docx": "33a874e348b60a977b85bc50abcd54e29d65e01d169d7f4459253c539beeb790",
+    "02-reestr-prilozheniy.xlsx": "929a84cf9a870b44d79113fa31379403ec3b671345ca5001938c5aa709e5c12a",
+    "03-akt-skrytyh-rabot.docx": "cd8e5d4b1533bbbfebb3d85a06784a1b861ef6a8b54bcfb027d557fcb64bfdb5",
+    "04-protokol-vnutrenney-proverki.docx": "d2fd70cb60397076b44209e5989da0a0110b50513bcd5c5c062d558a070a3e1a",
+    "05-pismo-o-nedostatkah.docx": "22d8d04a51f3eacb2285323e0d7517f7ab372a2456e062fb585411e8554a3d3d",
+    "06-zhurnal-peredachi.xlsx": "862daec8caad602c044f147f64768ed65cbb7497072d95c55df5d390acea14f3",
+    "07-sroki-hraneniya.docx": "e38b546f4446d63021f4a4f6bb551deba54e808bdda964528d8eb287eabb8925",
+    "08-algoritm-proverki.pdf": "43396d5cc5bab8829ec917e828eda46773b0e037f13d52aa476ecfb0dacecec2",
+    "09-tipovye-oshibki.docx": "465935a45415804811ec167509520d414ffe5a0f19d4b37fea2465df24dafbcf",
+    "10-sravnitelnaya-tablica.docx": "9ff876618a7ffd360af989054d373125bda3deb4e24b0ae14c9e4df90d3132b3"
+  },
+  "paid_calls": 0,
+  "remaining_gates": [
+    "independent exact-head buyer review",
+    "independent exact-head normative/legal review",
+    "native Microsoft Excel verification",
+    "native Microsoft Word verification",
+    "G1–G8",
+    "owner nomination/canonical replacement authorization",
+    "release"
+  ],
   "schema_version": 1,
-  "started_at": "2026-10-14T17:52:47.348161+00:00",
-  "status": "PASS_AUTHOR_DETERMINISTIC_INTEGRATION_PREFLIGHT_ONLY",
-  "unit": "p3-full-11-deterministic-integration-preflight",
-  "worktree_clean_before_outputs": true
+  "status": "PASS_AUTHOR_CANDIDATE_ONLY",
+  "unchanged_byte_identical": {
+    "00-START-HERE.txt": true,
+    "02-reestr-prilozheniy.xlsx": true,
+    "04-protokol-vnutrenney-proverki.docx": true,
+    "05-pismo-o-nedostatkah.docx": true,
+    "08-algoritm-proverki.pdf": true,
+    "09-tipovye-oshibki.docx": true,
+    "10-sravnitelnaya-tablica.docx": true
+  },
+  "unit": "p3-pr645-narrow-content-and-workbook-remediation",
+  "visual_remediation": {
+    "output_sha256": "e38b546f4446d63021f4a4f6bb551deba54e808bdda964528d8eb287eabb8925",
+    "prior_sha256": "488beb809e1103071ff97846eb74e2d01e5ecf65e2667d2c54791e45e1bc5124",
+    "reason": "avoid sparse spill page while retaining all normative qualifiers"
+  }
 }

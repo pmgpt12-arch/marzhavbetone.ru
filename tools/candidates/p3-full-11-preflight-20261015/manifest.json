@@ -1,5 +1,14 @@
 {
+  "author_acceptance_evidence": {
+    "evidence_root": "/home/denis/.local/state/claude-dispatcher/coordinator/2026-10-14-p3-subject-remediation/pr645-remediation-20261015",
+    "libreoffice_scenarios": "20/20 prior + 11/11 new",
+    "public_checks": "58/58",
+    "rendered_changed_files": 4,
+    "rendered_pages": 19,
+    "visual": "PASS_AUTHOR_SCOPE"
+  },
   "base_head": "31022811984544ea9cdad19cef7fed95f9af54be",
+  "branch": "codex/p3-pr645-remediation-20261015",
   "composition": {
     "docx": 7,
     "pdf": 1,
@@ -15,9 +24,11 @@
       "source": "tools/candidates/p3-ad-exact-seven-20261014/candidate/00-START-HERE.txt"
     },
     {
-      "bytes": 43235,
+      "bytes": 43389,
       "path": "candidate/01-proverochnyy-list-komplekta-ks.docx",
-      "sha256": "edeadc13861dcd7c3e356a87aea54e606e48878395e62d6d1f09af8cef1fad90",
+      "remediated_from_sha256": "edeadc13861dcd7c3e356a87aea54e606e48878395e62d6d1f09af8cef1fad90",
+      "remediation_unit": "p3-pr645-narrow-content-and-workbook-remediation",
+      "sha256": "33a874e348b60a977b85bc50abcd54e29d65e01d169d7f4459253c539beeb790",
       "source": "tools/candidates/p3-ad-exact-seven-20261014/candidate/01-proverochnyy-list-komplekta-ks.docx"
     },
     {
@@ -27,9 +38,11 @@
       "source": "tools/candidates/p3-subject-remediation-20261014/unit-c-xlsx02-06/candidate/02-reestr-prilozheniy.xlsx"
     },
     {
-      "bytes": 42882,
+      "bytes": 43152,
       "path": "candidate/03-akt-skrytyh-rabot.docx",
-      "sha256": "576a1ded02eb4befc40d5bf269799aea34fb160e8afbd84885fd337f39da1008",
+      "remediated_from_sha256": "576a1ded02eb4befc40d5bf269799aea34fb160e8afbd84885fd337f39da1008",
+      "remediation_unit": "p3-pr645-narrow-content-and-workbook-remediation",
+      "sha256": "cd8e5d4b1533bbbfebb3d85a06784a1b861ef6a8b54bcfb027d557fcb64bfdb5",
       "source": "tools/candidates/p3-style03-remediation-20261014/candidate/03-akt-skrytyh-rabot.docx"
     },
     {
@@ -45,15 +58,20 @@
       "source": "tools/candidates/p3-ad-exact-seven-20261014/candidate/05-pismo-o-nedostatkah.docx"
     },
     {
-      "bytes": 17168,
+      "bytes": 19376,
       "path": "candidate/06-zhurnal-peredachi.xlsx",
-      "sha256": "8be06268e40833821be2909ce2225814524a845ea73506b014c2c925647a0d11",
+      "remediated_from_sha256": "8be06268e40833821be2909ce2225814524a845ea73506b014c2c925647a0d11",
+      "remediation_unit": "p3-pr645-narrow-content-and-workbook-remediation",
+      "sha256": "862daec8caad602c044f147f64768ed65cbb7497072d95c55df5d390acea14f3",
       "source": "tools/candidates/p3-subject-remediation-20261014/unit-c-xlsx02-06/candidate/06-zhurnal-peredachi.xlsx"
     },
     {
-      "bytes": 39694,
+      "bytes": 39836,
+      "pagination_remediation_from_sha256": "d3a36786af8338b51e323ef31be643e8dca76106a1e418857162bcd1396c3b27",
       "path": "candidate/07-sroki-hraneniya.docx",
-      "sha256": "18928f78153ab8e05d1f7e9943692fd49790760a4f0676c747b0864aa414f0f3",
+      "remediated_from_sha256": "18928f78153ab8e05d1f7e9943692fd49790760a4f0676c747b0864aa414f0f3",
+      "remediation_unit": "p3-pr645-narrow-content-and-workbook-remediation",
+      "sha256": "e38b546f4446d63021f4a4f6bb551deba54e808bdda964528d8eb287eabb8925",
       "source": "tools/candidates/p3-subject-remediation-20261014/unit-b-retention07/candidate/07-sroki-hraneniya.docx"
     },
     {
@@ -77,13 +95,15 @@
   ],
   "role": "candidate_not_nominated",
   "schema_version": 1,
+  "source_head": "22c1230dc0c03b1bc7fc678e863590055e9fd97d",
   "status": {
-    "buyer": "OPEN",
-    "deterministic_integration_preflight": "PASS",
+    "author_remediation": "PASS",
+    "buyer": "AWAITING_INDEPENDENT_REVIEW",
+    "deterministic_integration_preflight": "PASS_AUTHOR_SCOPE",
     "independent": "OPEN",
     "native_excel": "OPEN",
     "native_word": "OPEN",
-    "normative_legal": "OPEN",
+    "normative_legal": "AWAITING_INDEPENDENT_REVIEW",
     "release": "HOLD"
   }
 }
