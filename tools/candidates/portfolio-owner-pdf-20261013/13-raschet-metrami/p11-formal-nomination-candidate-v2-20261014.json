@@ -1,0 +1,159 @@
+{
+  "schema_version": 2,
+  "record_id": "P11-FORMAL-NOMINATION-CANDIDATE-V2-20261014",
+  "record_status": "CANDIDATE_FOR_INDEPENDENT_REVIEW",
+  "supersedes": {
+    "pull_request": 620,
+    "reason": "The prior record nominated seven obsolete buyer-file versions and predates the accepted eighth T6 file and the corrected/native-verified file 50.",
+    "reuse_prohibited": true
+  },
+  "product": {
+    "target_code": "P11",
+    "target_name": "Система проверки расчётов недвижимостью и уступки прав",
+    "portfolio_parent_issue": 291,
+    "control_registry_issue": 600,
+    "owner_decision_issue": 578,
+    "live_sku_price_payment_change": false
+  },
+  "lineage": {
+    "registry_commit": "c05bff7a1c5154c2b37887f4e527ab673207be9b",
+    "registry_path": "products-storage/ARTIFACT-REGISTRY.json",
+    "registry_blob": "319f2bf8a45d9b198b4d27f29eb827fb807ca5bc",
+    "registry_sha256": "dbfbd517f274fc80703ba8918cf654d93166a2a2ac6e5bf0203f2f0289ec0570",
+    "sources": [
+      {
+        "target_sku": "P11",
+        "runtime_sku": "p11",
+        "relative_root": "products-storage/13-raschet-metrami",
+        "git_tree_sha": "64522b4b06800efc9589d15ae8d2f0c250fb16aa",
+        "file_count": 8,
+        "bytes": 181816,
+        "role": "historical_mirror",
+        "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+      },
+      {
+        "target_sku": "P11",
+        "runtime_sku": "t6",
+        "relative_root": "products-storage/19-kvartiry-vmesto-deneg",
+        "git_tree_sha": "690eff7e8c22dd85ab06528a37499c5dd4abcc91",
+        "file_count": 6,
+        "bytes": 76902,
+        "role": "historical_mirror",
+        "release_status": "EXISTING_CATALOG_NOT_TARGET_RELEASE"
+      }
+    ],
+    "claim_limit": "These entries establish owner-approved P11/p11 and P11/t6 source-family lineage only; they do not turn historical mirrors into release sources."
+  },
+  "nominated_buyer_set": {
+    "source_commit": "c05bff7a1c5154c2b37887f4e527ab673207be9b",
+    "directory": "tools/candidates/portfolio-owner-pdf-20261013/13-raschet-metrami",
+    "archive": {
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-eight-files-candidate-buyer-wording-20261014.zip",
+      "sha256": "6a07f3c81152a22c3f2a8f127862e8a4e1ea6cafd0f750095d1933a5c095f572",
+      "bytes": 592844,
+      "git_blob": "76a1e1d7397996bf16f64afb1dcb00a7e66d5140",
+      "root_members": 8,
+      "predecessor_sha256": "ee07ec000a1076a64cc9ddbc6a735f924be9e9eaf8b376a473897858fed1dbe8",
+      "delta": "Only file 50 changed; the other seven member bytes are unchanged."
+    },
+    "files": [
+      {
+        "name": "00-START-HERE.txt",
+        "sha256": "2f895a2f2b8ea5e166c8f18dd416465f2651b3562068551fc9f26841fd5dcf3a",
+        "bytes": 4309,
+        "git_blob": "f83e4f7e7e364d5a66ddf85ded7817b80ef98611"
+      },
+      {
+        "name": "50-slovar-poley-raschet-metrami.docx",
+        "sha256": "b0bd9d309115377c0e80c418d2dda1acdf3d33d4863feb2f15de69b70099427c",
+        "bytes": 12332,
+        "git_blob": "518b21e6aab12f87d37eaea1dd991763202be9dc"
+      },
+      {
+        "name": "51-algoritm-raschet-metrami.pdf",
+        "sha256": "2a4c98dc4a1b131dbccb787276f487a17a76a0c6643932c0ee0ca666601135d7",
+        "bytes": 271643,
+        "git_blob": "2e417285fe0e48dc04a4f8ad83832d32791766ba"
+      },
+      {
+        "name": "52-chek-list-raschet-metrami.docx",
+        "sha256": "6094a91af0a2e750a1ef71f9b394ea49207af11f8c5420ade1a7da48ff79fd38",
+        "bytes": 11981,
+        "git_blob": "6f49f155794062175f04f5ff121490eb4b17937c"
+      },
+      {
+        "name": "53-zapros-status-obekta.docx",
+        "sha256": "c3fccbdc5e7e6841ca8c48b5ab1c199bdebe0d2f4990c232040d20f70bfc023e",
+        "bytes": 11283,
+        "git_blob": "213387eb2f39ca05771a5054dd84827e45f73039"
+      },
+      {
+        "name": "54-zapros-sostoyanie-escrow.docx",
+        "sha256": "8e76f513b4f72c51bd8e9ad1bd56c27409285585b2f38f96c76b5f8dfbfa4f96",
+        "bytes": 11700,
+        "git_blob": "584b5921e3e0a39930f783bbc2e512f8e8f9b8c1"
+      },
+      {
+        "name": "55-pamyatka-punkt-ustupki-escrow.pdf",
+        "sha256": "20f65a850db70836b2897dc747ed6478781641e3a4f5a537b094a7afec0814a2",
+        "bytes": 261512,
+        "git_blob": "47c35f6555d1b5cc339c6b2326e8fbb60e0f8505"
+      },
+      {
+        "name": "56-pervyy-den-do-podpisi.docx",
+        "sha256": "9c40a96498037b53a68ecea6f3ee57129a9f2c236d1073d1818c603016260807",
+        "bytes": 38464,
+        "git_blob": "14e0ab75f15109686f9360980541b0b5208af13c"
+      }
+    ]
+  },
+  "accepted_checkpoints": {
+    "full_archive_identity_and_lineage": "PASS_8_OF_8",
+    "normative_primary_claim_scope": "PASS_8_OF_8",
+    "buyer_review_before_delta": "FAIL_MINOR_FILE50_WORDING_ONLY",
+    "buyer_wording_delta": "PASS_DELTA_SCOPE_ONLY",
+    "file50_native_word_and_visual": "PASS_NATIVE_EVIDENCE_DELTA_ONLY",
+    "exact_head_ci_pr623": "4/4 SUCCESS",
+    "exact_head_ci_pr624": "4/4 SUCCESS",
+    "receipts": {
+      "base_archive_review_sha256": "77e59d54655dc62be220e3635810fd048abdeddeacafc87d31203093cd5d3fc0",
+      "wording_delta_review_sha256": "d58fdb18a42ebdc46a9a2ee93ada71880d271497f2d48c202fb32307f73edf5d",
+      "native_delta_review_sha256": "03c67896761037bca4b3d0bc3c5c32c0bf204905c7c1fb0ee34b50cbb477f862",
+      "author_native_acceptance_sha256": "b726d717649a21f7c66e36622d3bc56d79d684416c100c55545270d15f05c8d4"
+    },
+    "github": {
+      "buyer_wording_pr": 623,
+      "native_evidence_pr": 624,
+      "parent_candidate_pr": 618,
+      "independent_native_comment_id": 6160412481
+    }
+  },
+  "open_gates": {
+    "F05": "OPEN_FORMAL_INDEPENDENT_NOMINATION_ACCEPTANCE_AND_RELEASE_MANIFEST",
+    "post_purchase_letter_runtime_t6": "BLOCKED_OWNER_SOURCE_OR_EXPLICIT_NEW_COMPOSITION_AUTHORIZATION",
+    "brand_portfolio_acceptance": "OPEN",
+    "archive_delivery_crosscheck": "OPEN_AFTER_NOMINATION",
+    "G1_G8": "0/13",
+    "full_product_acceptance": "NOT_GRANTED",
+    "release_acceptance": "NOT_GRANTED"
+  },
+  "prohibitions": {
+    "source_replacement": false,
+    "live_sku_price_payment_change": false,
+    "deploy_or_publication": false,
+    "release": "HOLD",
+    "merge_authorization": false
+  },
+  "acceptance_contract": [
+    "Independent reviewer recomputes all eight file SHA256, byte sizes and Git blobs from source_commit.",
+    "Independent reviewer verifies ZIP CRC, the exact eight root members and byte equality with the nominated Git objects.",
+    "Independent reviewer verifies both P11/p11 and P11/t6 registry entries at registry_commit.",
+    "Validator must detect an altered file hash and an altered lineage fixture.",
+    "Record remains HOLD while any listed open gate remains open.",
+    "Candidate is not source replacement, product acceptance, delivery, release or deploy authorization."
+  ],
+  "model_calls": 0,
+  "no_paid_api": true,
+  "release": "HOLD",
+  "next_step": "Run the deterministic validator, obtain independent exact-head review and CI, then merge only this readiness record if all pass. Release and canonical replacement remain prohibited."
+}
