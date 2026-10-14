@@ -1,0 +1,25 @@
+{
+  "status": "PASS_VISUAL_LIBREOFFICE_SCOPE_ONLY",
+  "reviewed_at": "2026-10-14T19:14:00+07:00",
+  "candidate_sha256": "18928f78153ab8e05d1f7e9943692fd49790760a4f0676c747b0864aa414f0f3",
+  "pdf_sha256": "5765ff38a6888d74d8b5891c53f2a10b954cc5bd0bacf9eb17f774d7fbeed156",
+  "page_count": 1,
+  "page_sha256": {
+    "page-1.png": "eda2df35718cf6604dd98255c4472cbc18ea2bbf8ee464d19e685e417a9c5e90"
+  },
+  "pages_reviewed": 1,
+  "checks": {
+    "no_clipping": true,
+    "no_overlap": true,
+    "table_readable": true,
+    "sources_readable": true,
+    "a4": true,
+    "white_graphite_muted_gold": true,
+    "title_rule_removed": true
+  },
+  "limits": {
+    "renderer": "LibreOffice + Poppler",
+    "native_microsoft_word": false,
+    "independent_review": false
+  }
+}

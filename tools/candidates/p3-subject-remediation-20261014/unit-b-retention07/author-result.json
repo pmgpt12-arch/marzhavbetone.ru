@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "unit_id": "P3-RETENTION07-REMEDIATION-20261014",
+  "status": "AUTHOR_PASS_RETENTION07_SCOPE_ONLY",
+  "source_path": "tools/candidates/portfolio-owner-editorial-v3-20261013/05-ks-bez-vozvrata/07-sroki-hraneniya.docx",
+  "source_sha256": "98be8b956c7068e58e66872ba0222f9454d3b8e09ba8afb6e67a75708e996311",
+  "output_path": "tools/candidates/p3-subject-remediation-20261014/unit-b-retention07/candidate/07-sroki-hraneniya.docx",
+  "output_sha256": "18928f78153ab8e05d1f7e9943692fd49790760a4f0676c747b0864aa414f0f3",
+  "checks": {
+    "input_sha_exact": true,
+    "table_9x4": true,
+    "a4": true,
+    "wrong_item_424_removed": true,
+    "wrong_universal_572_removed": true,
+    "permanent_claim_removed": true,
+    "402fz_minimum_present": true,
+    "classification_required": true,
+    "hold_conditions_present": true,
+    "official_sources_present": true
+  },
+  "passed": 10,
+  "total": 10,
+  "failed": [],
+  "limits": {
+    "legal_acceptance": false,
+    "native_microsoft_word": false,
+    "independent_review": false,
+    "product_release": false,
+    "canonical_replacement": false,
+    "model_calls": 0,
+    "paid_calls": 0
+  },
+  "next_step": "Render and inspect every page, then run independent exact-SHA subject/buyer review and native Word."
+}
