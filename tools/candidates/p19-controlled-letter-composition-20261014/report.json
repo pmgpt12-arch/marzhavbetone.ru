@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "P19-CONTROLLED-LETTER-COMPOSITION-20261014",
-  "status": "AUTHOR_CANDIDATE_PASS_PENDING_INDEPENDENT_REVIEW",
+  "status": "AUTHOR_CANDIDATE_PASS_PENDING_RE_REVIEW",
   "base_sha": "7d1a04115926ec748e9a83b72685de3da911aeb8",
   "target": "products-storage/19-kvartiry-vmesto-deneg/00-PISMO-POSLE-POKUPKI.txt",
   "output_sha256": "20343fc5584da6b10d4cc37970d80ddce773b7250314dc078955fcf1948652fb",
@@ -29,7 +29,20 @@
     "no canonical replacement",
     "no publication/live delivery",
     "no price/SKU/payment changes",
-    "legal/content/delivery-route acceptance pending"
+    "legal/content/delivery-route acceptance pending",
+    "artifact registry reconciliation is technical provenance, not product/release acceptance"
   ],
-  "next_step": "Independent content/legal/lineage/delivery-route review on exact head; do not merge or publish before PASS and CI."
+  "next_step": "Independent re-review on the corrected exact head plus exact-head CI; no publication/live delivery.",
+  "changed_files_count": 3,
+  "registry_reconciliation": {
+    "ci_diagnosis_sha256": "44b3e3bc9e294e00733bb2879cc09c31b8c8fb145dc6a76a66c2db4733bc09bd",
+    "runtime_sku": "t6",
+    "old_git_tree_sha": "690eff7e8c22dd85ab06528a37499c5dd4abcc91",
+    "new_git_tree_sha": "22524698d8222ee0a9a5c816d43a0946f7bfb442",
+    "old_file_count": 6,
+    "new_file_count": 7,
+    "old_bytes": 76902,
+    "new_bytes": 78762,
+    "scope": "fail-closed root identity and derived coverage only"
+  }
 }
