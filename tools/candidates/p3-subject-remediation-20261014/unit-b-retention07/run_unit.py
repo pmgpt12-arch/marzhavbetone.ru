@@ -2,7 +2,9 @@
 import hashlib
 import json
 import os
+import shutil
 import subprocess
+import tempfile
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -55,10 +57,10 @@ try:
     atomic_json(RECEIPT, payload)
 
     RENDER.mkdir(exist_ok=True)
-    profile = ROOT / (".lo-profile-" + str(os.getpid()))
-    profile.mkdir(exist_ok=True)
+    profile = Path(tempfile.mkdtemp(prefix="p3-retention07-lo-"))
     run(["soffice", "--headless", "-env:UserInstallation=file://" + str(profile),
          "--convert-to", "pdf", "--outdir", str(RENDER), str(DOCX)], 180)
+    shutil.rmtree(profile, ignore_errors=True)
     payload["stages"].append("libreoffice_pdf")
     atomic_json(RECEIPT, payload)
 
