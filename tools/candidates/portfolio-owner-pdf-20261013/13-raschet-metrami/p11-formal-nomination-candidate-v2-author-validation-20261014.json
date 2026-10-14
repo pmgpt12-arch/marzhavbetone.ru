@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "P11-FORMAL-NOMINATION-CANDIDATE-V2-AUTHOR-VALIDATION",
+  "finished_at_utc": "2026-10-14T03:57:00Z",
+  "input_head": "c05bff7a1c5154c2b37887f4e527ab673207be9b",
+  "inputs": {
+    "record_sha256": "610b2fc8124def8517b8e29a14976557eca81285c6a23ab2c4346ebdedc0d85b",
+    "validator_sha256": "c0e7f906001f649f2b480a43018fde47ff459d4369bc2f3c34481ac8e4b74c5d",
+    "archive_sha256": "6a07f3c81152a22c3f2a8f127862e8a4e1ea6cafd0f750095d1933a5c095f572",
+    "registry_sha256": "dbfbd517f274fc80703ba8918cf654d93166a2a2ac6e5bf0203f2f0289ec0570"
+  },
+  "command": [
+    "python3",
+    "tools/test_p11_formal_nomination_candidate_v2.py",
+    "--root",
+    "."
+  ],
+  "exit_code": 0,
+  "result": {
+    "status": "PASS",
+    "files_checked": 8,
+    "archive_crc": "PASS",
+    "archive_members_equal_git_objects": 8,
+    "lineage_entries_checked": 2,
+    "negative_mutations": {
+      "altered_file_hash": true,
+      "altered_lineage": true
+    },
+    "release": "HOLD",
+    "G1_G8": "0/13"
+  },
+  "state_report": {
+    "path": "/home/denis/.local/state/claude-dispatcher/coordinator/2026-10-14T0350-p11-registry-nomination-v2/validation.json",
+    "sha256": "d85916e6529b260e8160208042b6383b330fd89fef8a119827846fcdcba2eaf2",
+    "execution_fingerprint_sha256": "aa1c5529d96bbab9abc36160c0ab143a8f7157078fd6a7b92bb78c291c1297bc"
+  },
+  "acceptance": "PASS_AUTHOR_DETERMINISTIC_NOMINATION_READINESS_ONLY",
+  "independent_review": "PENDING",
+  "model_calls": 0,
+  "no_paid_api": true,
+  "limitations": [
+    "No ARTIFACT-REGISTRY.json, products-storage, buyer file, canonical source, delivery or live configuration changed.",
+    "This is not independent acceptance, product acceptance, release or publication authorization.",
+    "Release remains HOLD and G1-G8 remain 0/13."
+  ],
+  "next_step": "Commit and open a draft PR for independent exact-head review and required CI."
+}
