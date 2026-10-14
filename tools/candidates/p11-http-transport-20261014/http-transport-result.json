@@ -1,0 +1,496 @@
+{
+  "schema_version": 1,
+  "id": "P11-ISOLATED-HTTP-TRANSPORT-20261014",
+  "status": "PASS_AUTHOR_HTTP_SANDBOX_TRANSPORT_ONLY",
+  "scope": "HTTP_SANDBOX_TRANSPORT_ONLY",
+  "accepted_head": "e6cf48c0478c359353d469dd27fd65a110f2c8ca",
+  "accepted_merge": "91767b143ebf4eb35eea79dbda4a7784700b9d56",
+  "independent_dependency_receipt_sha256": "179ba94660d8c9abf19985b8ca1527545e4f8d53bab4737ebcbc13dab20aaa30",
+  "checks": {
+    "immutable_input_products-config.php": "PASS",
+    "immutable_input_download.php": "PASS",
+    "immutable_input_builder": "PASS",
+    "immutable_input_helper": "PASS",
+    "immutable_input_patch": "PASS",
+    "immutable_input_archive": "PASS",
+    "immutable_input_letter": "PASS",
+    "accepted_runtime_output_hashes": "PASS",
+    "accepted_patch_identity": "PASS",
+    "php_zip_preflight": "PASS",
+    "loopback_listener_ready": "PASS",
+    "paid_fixture_persisted_with_edition": "PASS",
+    "issued_link_targets_actual_loopback_handler": "PASS",
+    "single_captured_email_contains_accepted_txt": "PASS",
+    "http_new_p11_200_exact_accepted_zip": "PASS",
+    "http_zip_headers": "PASS",
+    "http_download_persisted_counter_once": "PASS",
+    "callback_after_http_preserves_saved_order_and_mail_count": "PASS",
+    "second_http_download_exact_bytes_and_counter": "PASS",
+    "http_wrong_token_no_counter_charge": "PASS",
+    "http_unowned_sku_no_counter_charge": "PASS",
+    "http_unpaid_no_counter_charge": "PASS",
+    "http_expired_no_counter_charge": "PASS",
+    "http_quota_no_counter_charge": "PASS",
+    "http_missing_edition_metadata_no_counter_charge": "PASS",
+    "http_corrupt_snapshot_no_rebuild_or_charge": "PASS",
+    "http_missing_snapshot_no_rebuild_or_charge": "PASS",
+    "http_legacy_p11_original_before": "PASS",
+    "unmarked_p11_preserves_legacy_file_and_order": "PASS",
+    "http_legacy_p11_original_after": "PASS",
+    "http_legacy_p11_missing_not_rebuilt": "PASS",
+    "http_legacy_t6_original_before": "PASS",
+    "unmarked_t6_preserves_legacy_file_and_order": "PASS",
+    "http_legacy_t6_original_after": "PASS",
+    "http_legacy_t6_missing_not_rebuilt": "PASS",
+    "fixture_private_order_not_http_exposed": "PASS",
+    "accepted_inputs_remain_unchanged": "PASS",
+    "runtime_copies_not_changed_by_http_test": "PASS",
+    "no_additional_mail": "PASS",
+    "no_php_fatal_warning_or_notice": "PASS",
+    "cleanup_server_stopped": "PASS",
+    "cleanup_directory_removed": "PASS"
+  },
+  "http_observations": [
+    {
+      "case": "new_p11_download_from_issued_link",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "f5d44cbeb7f6fa5386c368409d5efe8c24f7a29a150f5c0798b26520a3e18a48",
+      "fixture_order_id": "order_20261014_100_p11",
+      "status": 200,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:42 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "application/zip",
+        "content-disposition": "attachment; filename=\"13-raschet-metrami.zip\"",
+        "content-length": "592882",
+        "x-content-type-options": "nosniff"
+      },
+      "body_bytes": 592882,
+      "body_sha256": "f365039ef568dbbe9c661a6e1f553d21ddd0b086c9172f1e5a4340fb7dfe7f70",
+      "downloads_before": 0,
+      "downloads_after": 1
+    },
+    {
+      "case": "second_valid_download",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "f5d44cbeb7f6fa5386c368409d5efe8c24f7a29a150f5c0798b26520a3e18a48",
+      "fixture_order_id": "order_20261014_100_p11",
+      "status": 200,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:42 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "application/zip",
+        "content-disposition": "attachment; filename=\"13-raschet-metrami.zip\"",
+        "content-length": "592882",
+        "x-content-type-options": "nosniff"
+      },
+      "body_bytes": 592882,
+      "body_sha256": "f365039ef568dbbe9c661a6e1f553d21ddd0b086c9172f1e5a4340fb7dfe7f70",
+      "downloads_before": 1,
+      "downloads_after": 2
+    },
+    {
+      "case": "wrong_token",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "8735a5fe6b9c28d7496637362baa61e7b0fe0e81f68bfa82d658a3e236bb5d33",
+      "fixture_order_id": "order_20261014_100_p11",
+      "status": 403,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:42 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "text/html; charset=utf-8"
+      },
+      "body_bytes": 422,
+      "body_sha256": "6844b4f2449eda8c81fb29c57321604725307df59fc1275f454ec9ed41617f5a",
+      "downloads_before": 2,
+      "downloads_after": 2
+    },
+    {
+      "case": "unowned_sku",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "76901f76ddd025ed3298f22273f2b17786e2c652e5b12172f37c9ae97f095fbe",
+      "fixture_order_id": "order_20261014_100_p11",
+      "status": 404,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:42 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "text/html; charset=utf-8"
+      },
+      "body_bytes": 443,
+      "body_sha256": "c8f968d0d3feace63c780b6c4d7f31ba893703d64176e6364970de712994aee6",
+      "downloads_before": 2,
+      "downloads_after": 2
+    },
+    {
+      "case": "unpaid",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "421fe4b0bd9ac70a28cb772d405c7290475330ed0478ce3313a92008780bb0a1",
+      "fixture_order_id": "order_20261014_101_p11",
+      "status": 403,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:43 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "text/html; charset=utf-8"
+      },
+      "body_bytes": 565,
+      "body_sha256": "0f8a02388be583fa65fd765df2c6e7a98932467a55f63296821f72c5c83730b3",
+      "downloads_before": 0,
+      "downloads_after": 0
+    },
+    {
+      "case": "expired",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "23fa43c3206f4d0a9d6f0afd4116659ee187d315e6adc11e9f1c370020dd2571",
+      "fixture_order_id": "order_20261014_102_p11",
+      "status": 410,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:43 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "text/html; charset=utf-8"
+      },
+      "body_bytes": 428,
+      "body_sha256": "b4f1623454b848ecaf3e55e12d021a762dc1efbaa741512f2ff351c94ba139e0",
+      "downloads_before": 0,
+      "downloads_after": 0
+    },
+    {
+      "case": "quota",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "c848778c5270e2e260719d569b355b1aae22d34160d028f6428c6bfe4d83a7b4",
+      "fixture_order_id": "order_20261014_103_p11",
+      "status": 429,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:43 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "text/html; charset=utf-8"
+      },
+      "body_bytes": 454,
+      "body_sha256": "990e48e65c33e9284d0babcf993ede1850ccb9bdd7e6548935a6f81ff3ef284c",
+      "downloads_before": 30,
+      "downloads_after": 30
+    },
+    {
+      "case": "missing_edition_metadata",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "896a6de79c83a228bd7d42f67a19afeb9a75704ee2632ba34db392ed6e04c9a7",
+      "fixture_order_id": "order_20261014_104_p11",
+      "status": 500,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:43 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "text/html; charset=utf-8"
+      },
+      "body_bytes": 407,
+      "body_sha256": "cc9b26866f664c6eab3bc56b20d42aed47725ea85a7447f99493f03ceb09e99e",
+      "downloads_before": 0,
+      "downloads_after": 0
+    },
+    {
+      "case": "corrupt_snapshot",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "f5d44cbeb7f6fa5386c368409d5efe8c24f7a29a150f5c0798b26520a3e18a48",
+      "fixture_order_id": "order_20261014_100_p11",
+      "status": 500,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:43 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "text/html; charset=utf-8"
+      },
+      "body_bytes": 488,
+      "body_sha256": "43f048c8ff4d7685af0039e9498749b33ccbe397ef075c20d04f93c83fff165e",
+      "downloads_before": 2,
+      "downloads_after": 2
+    },
+    {
+      "case": "missing_snapshot",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "f5d44cbeb7f6fa5386c368409d5efe8c24f7a29a150f5c0798b26520a3e18a48",
+      "fixture_order_id": "order_20261014_100_p11",
+      "status": 500,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:43 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "text/html; charset=utf-8"
+      },
+      "body_bytes": 488,
+      "body_sha256": "43f048c8ff4d7685af0039e9498749b33ccbe397ef075c20d04f93c83fff165e",
+      "downloads_before": 2,
+      "downloads_after": 2
+    },
+    {
+      "case": "legacy_p11_before_new_order",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "302bf11adcf01ad3c430977919c448e63f0c00744bd719d99f53f0c5d5e5a418",
+      "fixture_order_id": "order_20261014_200_p11",
+      "status": 200,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:43 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "application/zip",
+        "content-disposition": "attachment; filename=\"13-raschet-metrami.zip\"",
+        "content-length": "146",
+        "x-content-type-options": "nosniff"
+      },
+      "body_bytes": 146,
+      "body_sha256": "b11bcc826997caa5564f7692ecee04993b983b92a7d04f6a0c43062086616e5b",
+      "downloads_before": 2,
+      "downloads_after": 3
+    },
+    {
+      "case": "legacy_p11_after_new_order",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "302bf11adcf01ad3c430977919c448e63f0c00744bd719d99f53f0c5d5e5a418",
+      "fixture_order_id": "order_20261014_200_p11",
+      "status": 200,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:43 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "application/zip",
+        "content-disposition": "attachment; filename=\"13-raschet-metrami.zip\"",
+        "content-length": "146",
+        "x-content-type-options": "nosniff"
+      },
+      "body_bytes": 146,
+      "body_sha256": "b11bcc826997caa5564f7692ecee04993b983b92a7d04f6a0c43062086616e5b",
+      "downloads_before": 3,
+      "downloads_after": 4
+    },
+    {
+      "case": "legacy_p11_missing",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "302bf11adcf01ad3c430977919c448e63f0c00744bd719d99f53f0c5d5e5a418",
+      "fixture_order_id": "order_20261014_200_p11",
+      "status": 500,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:43 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "text/html; charset=utf-8"
+      },
+      "body_bytes": 488,
+      "body_sha256": "43f048c8ff4d7685af0039e9498749b33ccbe397ef075c20d04f93c83fff165e",
+      "downloads_before": 4,
+      "downloads_after": 4
+    },
+    {
+      "case": "legacy_t6_before_new_order",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "c5f819f6c548740a623bf9f5d0e9f3abea22138e7afd01490ef5267cdc9310e0",
+      "fixture_order_id": "order_20261014_300_t6",
+      "status": 200,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:43 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "application/zip",
+        "content-disposition": "attachment; filename=\"19-kvartiry-vmesto-deneg.zip\"",
+        "content-length": "143",
+        "x-content-type-options": "nosniff"
+      },
+      "body_bytes": 143,
+      "body_sha256": "9a0bfd6c28f5f2912a68a1beb7680cc201033cbfcf11737a0dd0f9ca73fab22e",
+      "downloads_before": 2,
+      "downloads_after": 3
+    },
+    {
+      "case": "legacy_t6_after_new_order",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "c5f819f6c548740a623bf9f5d0e9f3abea22138e7afd01490ef5267cdc9310e0",
+      "fixture_order_id": "order_20261014_300_t6",
+      "status": 200,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:43 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "application/zip",
+        "content-disposition": "attachment; filename=\"19-kvartiry-vmesto-deneg.zip\"",
+        "content-length": "143",
+        "x-content-type-options": "nosniff"
+      },
+      "body_bytes": 143,
+      "body_sha256": "9a0bfd6c28f5f2912a68a1beb7680cc201033cbfcf11737a0dd0f9ca73fab22e",
+      "downloads_before": 3,
+      "downloads_after": 4
+    },
+    {
+      "case": "legacy_t6_missing",
+      "method": "GET",
+      "request_path_without_query": "/download.php",
+      "query_sha256": "c5f819f6c548740a623bf9f5d0e9f3abea22138e7afd01490ef5267cdc9310e0",
+      "fixture_order_id": "order_20261014_300_t6",
+      "status": 500,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:43 GMT",
+        "connection": "close",
+        "x-powered-by": "PHP/8.3.6",
+        "content-type": "text/html; charset=utf-8"
+      },
+      "body_bytes": 488,
+      "body_sha256": "43f048c8ff4d7685af0039e9498749b33ccbe397ef075c20d04f93c83fff165e",
+      "downloads_before": 4,
+      "downloads_after": 4
+    },
+    {
+      "case": "fixture_orders_not_in_document_root",
+      "method": "GET",
+      "request_path_without_query": "/orders/order_20261014_100_p11.json",
+      "query_sha256": "339a8828026f2a12812099d3c465e087e2e0ea506d12b17e95f0010159b3e32e",
+      "fixture_order_id": null,
+      "status": 404,
+      "headers": {
+        "host": "127.0.0.1:39719",
+        "date": "Wed, 14 Oct 2026 07:53:43 GMT",
+        "connection": "close",
+        "content-type": "text/html; charset=UTF-8",
+        "content-length": "567"
+      },
+      "body_bytes": 567,
+      "body_sha256": "d1e36e0e9e09766a636ded89b89134855866ea57c9f11457943270d6f8126bbd",
+      "downloads_before": null,
+      "downloads_after": null
+    }
+  ],
+  "inputs": {
+    "products-config.php": {
+      "commit": "8311bb2dc7b497415952d03630e4a477f8bf9d7c",
+      "path": "products-config.php",
+      "sha256": "6874b4bfea06351fecdb4405bb0c9c8a07333e142d69697ab87de1af5bd16b91",
+      "git_blob": "1d2a0225c3974d0fd44b9011b1b06803ceadb16e",
+      "bytes": 57384
+    },
+    "download.php": {
+      "commit": "8311bb2dc7b497415952d03630e4a477f8bf9d7c",
+      "path": "download.php",
+      "sha256": "bd6380b155ac95ed8e73c7fb2a587a3903e0d85658ce4de3154b74306d7a78f8",
+      "git_blob": "f642cf899acf0915e27ced6f626bdc78424c41c9",
+      "bytes": 7496
+    },
+    "builder": {
+      "commit": "e6cf48c0478c359353d469dd27fd65a110f2c8ca",
+      "path": "tools/candidates/p11-isolated-delivery-binding-20261014/build_candidate.py",
+      "sha256": "e71b35efc4c296f1c90c91f41bf5320cc6cf6606f8503dc39b0bdfc9a4a7b800",
+      "git_blob": "53037b18f2479af998171cf17bc30ddf67107ea7",
+      "bytes": 5731
+    },
+    "helper": {
+      "commit": "e6cf48c0478c359353d469dd27fd65a110f2c8ca",
+      "path": "tools/candidates/p11-isolated-delivery-binding-20261014/binding_helpers.php.txt",
+      "sha256": "ec04c9e5d608afab08b8a417f35fec2721a4a7dcba2da8d062f7ec470c71e8a5",
+      "git_blob": "ea91f05178d77261e28616985056993750272725",
+      "bytes": 4845
+    },
+    "patch": {
+      "commit": "e6cf48c0478c359353d469dd27fd65a110f2c8ca",
+      "path": "tools/candidates/p11-isolated-delivery-binding-20261014/isolated-binding.patch",
+      "sha256": "8d9ae2c857d3e4de399a2c9f79110fa734f291e58a4321eb54673ee8a1368eb5",
+      "git_blob": "0124780a9d78dfee40d95ea1fbee8f326c5b1941",
+      "bytes": 8736
+    },
+    "archive": {
+      "commit": "e6cf48c0478c359353d469dd27fd65a110f2c8ca",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/p11-t6-consolidated-gold-20261014/p11-t6-eight-files-gold-candidate.zip",
+      "sha256": "f365039ef568dbbe9c661a6e1f553d21ddd0b086c9172f1e5a4340fb7dfe7f70",
+      "git_blob": "65efefebe600029bb8c239df0268dca976bff369",
+      "bytes": 592882
+    },
+    "letter": {
+      "commit": "e6cf48c0478c359353d469dd27fd65a110f2c8ca",
+      "path": "tools/candidates/portfolio-owner-pdf-20261013/19-kvartiry-vmesto-deneg/00-PISMO-POSLE-POKUPKI.txt",
+      "sha256": "c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5",
+      "git_blob": "339bd2556427cdd011453cda9c562ac5ebdcb7d3",
+      "bytes": 3072
+    }
+  },
+  "limits": {
+    "overall_budget_seconds": 60,
+    "http_timeout_seconds": 3,
+    "php_cli_timeout_seconds": 5,
+    "startup_budget_seconds": 3
+  },
+  "release": "HOLD",
+  "G1_G8_accepted_products": 0,
+  "independent_acceptance_of_this_new_test": "PENDING",
+  "real_payments": 0,
+  "real_mail_sent": 0,
+  "live_orders_touched": 0,
+  "accepted_65_case_suite_repeated": false,
+  "product_bytes_changed": 0,
+  "production_source_nominated": false,
+  "checkout_marker_assignment_tested": false,
+  "real_checkout_or_smtp_tested": false,
+  "server_process_stopped": true,
+  "temporary_directory_removed": true,
+  "runtime_copy_sha256": {
+    "products-config.php": "a6427bddba614efd8adbc5579acd838aaaaffd190bd2b4ba0e4a324d33a447dd",
+    "download.php": "2ccd9b2507cfc7e64eeada608825f507b4c780cd898c4cdc799cdce67691c92d"
+  },
+  "php": {
+    "version": "8.3.6",
+    "zip": true
+  },
+  "listener": {
+    "host": "127.0.0.1",
+    "port": 39719,
+    "pid": 1706557,
+    "document_root_contains_only_runtime_copies": true,
+    "order_and_archive_directories_outside_webroot": true
+  },
+  "captured_mail": {
+    "count": 1,
+    "body_sha256": "d63e93186e53f2cd8c5fd95fe26e232079011935b18cc671c0384e43bcfb1d3b",
+    "accepted_letter_sha256": "c8f9d78cf2335f2acf52ab8d12258e4e3e799c9c87e3447edcc17c7f0f507ea5",
+    "external_send": false
+  },
+  "http_server_log_sha256": "663e5646e9f71c68b7541a2323f1e3df547cd5b16c8069be7b0f23a68e2c807d",
+  "http_server_log": "[Wed Oct 14 14:53:42 2026] PHP 8.3.6 Development Server (http://127.0.0.1:39719) started\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37496 Accepted\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37496 Closed without sending a request; it was probably just an unused speculative preconnection\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37496 Closing\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37504 Accepted\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37504 [200]: GET /download.php?o=order_20261014_100_p11&t=d20f72e223c0be67d815d03d4a5a06ae&f=p11\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37504 Closing\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37518 Accepted\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37518 [200]: GET /download.php?o=order_20261014_100_p11&t=d20f72e223c0be67d815d03d4a5a06ae&f=p11\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37518 Closing\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37526 Accepted\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37526 [403]: GET /download.php?o=order_20261014_100_p11&t=badtoken&f=p11\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37526 Closing\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37530 Accepted\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37530 [404]: GET /download.php?o=order_20261014_100_p11&t=d20f72e223c0be67d815d03d4a5a06ae&f=t6\n[Wed Oct 14 14:53:42 2026] 127.0.0.1:37530 Closing\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37534 Accepted\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37534 [403]: GET /download.php?o=order_20261014_101_p11&t=d20f72e223c0be67d815d03d4a5a06ae&f=p11\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37534 Closing\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37544 Accepted\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37544 [410]: GET /download.php?o=order_20261014_102_p11&t=d20f72e223c0be67d815d03d4a5a06ae&f=p11\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37544 Closing\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37546 Accepted\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37546 [429]: GET /download.php?o=order_20261014_103_p11&t=d20f72e223c0be67d815d03d4a5a06ae&f=p11\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37546 Closing\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37562 Accepted\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37562 [500]: GET /download.php?o=order_20261014_104_p11&t=d20f72e223c0be67d815d03d4a5a06ae&f=p11\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37562 Closing\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37568 Accepted\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37568 [500]: GET /download.php?o=order_20261014_100_p11&t=d20f72e223c0be67d815d03d4a5a06ae&f=p11\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37568 Closing\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37570 Accepted\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37570 [500]: GET /download.php?o=order_20261014_100_p11&t=d20f72e223c0be67d815d03d4a5a06ae&f=p11\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37570 Closing\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37586 Accepted\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37586 [200]: GET /download.php?o=order_20261014_200_p11&t=legacytokenp11&f=p11\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37586 Closing\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37588 Accepted\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37588 [200]: GET /download.php?o=order_20261014_200_p11&t=legacytokenp11&f=p11\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37588 Closing\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37602 Accepted\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37602 [500]: GET /download.php?o=order_20261014_200_p11&t=legacytokenp11&f=p11\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37602 Closing\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37618 Accepted\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37618 [200]: GET /download.php?o=order_20261014_300_t6&t=legacytokent6&f=t6\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37618 Closing\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37620 Accepted\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37620 [200]: GET /download.php?o=order_20261014_300_t6&t=legacytokent6&f=t6\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37620 Closing\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37632 Accepted\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37632 [500]: GET /download.php?o=order_20261014_300_t6&t=legacytokent6&f=t6\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37632 Closing\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37634 Accepted\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37634 [404]: GET /orders/order_20261014_100_p11.json - No such file or directory\n[Wed Oct 14 14:53:43 2026] 127.0.0.1:37634 Closing\n",
+  "checks_passed": 42,
+  "checks_total": 42,
+  "http_requests": 17,
+  "elapsed_seconds": 10.219,
+  "finished_at": "2026-10-14T07:53:43.257971+00:00",
+  "executed_script_sha256": "88663c1272c37b2e759dfa85425fc46a1d7a93a7ae6b464b5ab523b553a7ef10",
+  "source_read_method": "immutable GitHub contents API; no working-tree changes"
+}
