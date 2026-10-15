@@ -3,7 +3,7 @@ Date: 2026-10-15. Owner-approved. Source task: [#653](https://github.com/pmgpt12
 
 ## Brand and domain
 - Brand spelling (public): **На стороне подрядчика**.
-- Full latin domain candidate: **nastoronepodryadchika.ru** (not yet registered; WHOIS checked 2026-10-15, no registration record at that moment).
+- Full latin domain: **nastoronepodryadchika.ru**. Owner confirmed purchase 2026-10-15; direct TCI WHOIS verification: `REGISTERED, DELEGATED, UNVERIFIED`, registrar `REGRU-RU`, created `2026-10-15T10:26:33Z`, expires `2027-10-15T10:26:33Z`, NS `ns1.hosting.reg.ru`, `ns2.hosting.reg.ru`. From ai-workstation DNS A/AAAA resolution failed and HTTPS unavailable at verification; **DNS/TLS gate is not passed**.
 - Old domain **marzhavbetone.ru** MUST remain under control and serve per-path 301 redirects when migration is enabled.
 - The old domain name and operational identifiers in records are not blanket replace targets.
 
@@ -43,3 +43,10 @@ R5 independent release validation with rollback; publish only after PASS.
 
 ## Release proof
 Commit/branch + exact changed-files manifest; static and smoke checks; path-level 301 map; new-domain DNS/TLS verified; crawl/canonical/sitemap validated; mock checkout plus real approved live end-to-end payment and delivery verification, including old-buyer access; published social profile links and post crossposting checked separately. Only then mark DONE.
+
+## Visual refresh approved 2026-10-15
+- Owner approved designing two alternatives for a modern B2B construction-expertise site, without changing product functions, source documents, pricing or purchase/delivery logic.
+- A: Engineer Premium — graphite `#24292F`, warm white `#F7F6F2`, muted gold `#B08D57`, steel gray `#737C83` (preferred direction).
+- B: Technology Industrial — deep blue `#1D3440`, white `#FFFFFF`, steel `#D5E0E4`, copper `#B8744C`.
+- Preview deliverables: home and product page in desktop and mobile layouts, visually reviewed before code work. Compare hierarchy, readability, conversion clarity and accessibility.
+- Figma working file: https://www.figma.com/design/pOP8028A8kQlaox0FTjHK7 (file created, layout work in progress).
