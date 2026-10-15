@@ -36,7 +36,14 @@ with zipfile.ZipFile(AFTER) as result:
  from docx.oxml.ns import qn
  newtext=' '.join(t.text or '' for t in newdoc.element.body.iter(qn('w:t')))
  tok=lambda s:sorted(re.findall(r'\{\{[^{}]+\}\}',s))
- assert tok('\n'.join(original_text))==tok(newtext)
+ expected_tokens=tok('\n'.join(original_text))
+ for i in range(1,6):
+  replacements=[(f'A{i}_ПРЕДСТАВИТЕЛЬ_ИСПОЛНИТЕЛЯ',f'A{i}_ПРЕДСТАВИТЕЛЬ_ИСПОЛНИТЕЛЯ_РАБОТ'),(f'A{i}_СТРОИТЕЛЬ',f'A{i}_ИСПОЛНИТЕЛЬ'),(f'A{i}_ПРЕДСТАВИТЕЛЬ_СТРОИТЕЛЯ',f'A{i}_ПРЕДСТАВИТЕЛЬ_ИСПОЛНИТЕЛЯ'),(f'A{i}_СТРОЙКОНТРОЛЬ_СТРОИТЕЛЯ',f'A{i}_СТРОЙКОНТРОЛЬ_ИСПОЛНИТЕЛЯ')]
+  for a,b in replacements:
+   token='{{'+a+'}}'; replacement='{{'+b+'}}'
+   assert expected_tokens.count(token)==1
+   expected_tokens[expected_tokens.index(token)]=replacement
+ assert sorted(expected_tokens)==tok(newtext)
  manifest={'base_pr':651,'base_head':'b8758c6759f10dba9f3e8c409640663cefb6bdfa',
  'base_zip_sha256':EXPECTED_BEFORE,
  'formatted_docx_sha256':sha(NEW.read_bytes()),

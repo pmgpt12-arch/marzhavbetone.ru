@@ -80,8 +80,34 @@ p(new,raw[2],9.2,0,7)
 for s in raw[3:8]:p(new,s,9.2,1,1)
 h(new,raw[8])
 for s in raw[9:16]:p(new,s,8.6,2,2)
+def relabel_act(a,k):
+    idx=k+1
+    whole='\\n'.join(a)
+    old_extended='Представитель лица, осуществляющего строительство, реконструкцию, капитальный ремонт, по вопросам строительного контроля'
+    new_extended='Представитель Исполнителя по вопросам строительного контроля (лица, осуществляющего строительство, реконструкцию, капитальный ремонт)'
+    old_regular='Представитель лица, осуществляющего строительство, реконструкцию, капитальный ремонт'
+    new_regular='Представитель Исполнителя (лица, осуществляющего строительство, реконструкцию, капитальный ремонт)'
+    old_party='Лицо, осуществляющее строительство, реконструкцию, капитальный ремонт'
+    new_party='Исполнитель (лицо, осуществляющее строительство, реконструкцию, капитальный ремонт)'
+    assert whole.count(old_extended)==2 and whole.count(old_regular)-whole.count(old_extended)==2 and whole.count(old_party)==1
+    changes=[
+       (f'{{{{A{idx}_ПРЕДСТАВИТЕЛЬ_ИСПОЛНИТЕЛЯ}}}}',f'{{{{A{idx}_ПРЕДСТАВИТЕЛЬ_ИСПОЛНИТЕЛЯ_РАБОТ}}}}'),
+       (f'{{{{A{idx}_СТРОИТЕЛЬ}}}}',f'{{{{A{idx}_ИСПОЛНИТЕЛЬ}}}}'),
+       (f'{{{{A{idx}_ПРЕДСТАВИТЕЛЬ_СТРОИТЕЛЯ}}}}',f'{{{{A{idx}_ПРЕДСТАВИТЕЛЬ_ИСПОЛНИТЕЛЯ}}}}'),
+       (f'{{{{A{idx}_СТРОЙКОНТРОЛЬ_СТРОИТЕЛЯ}}}}',f'{{{{A{idx}_СТРОЙКОНТРОЛЬ_ИСПОЛНИТЕЛЯ}}}}'),
+       (old_extended,new_extended),(old_regular,new_regular),(old_party,new_party)
+    ]
+    for old,new in changes:
+        expected=2 if old in (old_extended,old_regular) else 1
+        assert whole.count(old)==expected, (idx,old,whole.count(old),expected)
+        whole=whole.replace(old,new)
+    result=whole.split('\\n')
+    assert len(result)==len(a)
+    assert not re.search(r'(?iu)\\bстроитель\\b',whole)
+    return result
+
 for k in range(5):
- a=raw[16+53*k:16+53*(k+1)]
+ a=relabel_act(raw[16+53*k:16+53*(k+1)],k)
  t=p(new,a[0],11.15,7,4,True,'202830',True)
  t.paragraph_format.page_break_before=True;t.paragraph_format.keep_with_next=True;border(t,sz='7')
  p(new,a[1],7.15,0,4,color='666666',center=True)
@@ -104,11 +130,15 @@ src=tokens('\n'.join(raw))
 outdoc=Document(OUTPUT)
 outtext=''.join(t.text or '' for t in outdoc.element.body.iter(qn('w:t')))
 dst=tokens(outtext)
-assert src==dst, {'missing':list((src-dst).elements()),'extra':list((dst-src).elements())}
+expected=tokens('\\n'.join(piece for k in range(5) for piece in relabel_act(raw[16+53*k:16+53*(k+1)],k)))
+assert expected==dst, {'missing':list((expected-dst).elements()),'extra':list((dst-expected).elements())}
+assert sum(src.values())==sum(dst.values())==135
+assert len(dst)==135
+assert sum(1 for token in dst if '_СТРОИТЕЛЬ' in token or '_СТРОИТЕЛЯ' in token)==0
 assert sum(1 for s in raw if s.startswith('АКТ ОСВИДЕТЕЛЬСТВОВАНИЯ'))==5
 report={'source_sha256':hashfile(SOURCE),'candidate_sha256':hashfile(OUTPUT),'forms':5,
 'source_paragraphs':len(raw),'placeholder_tokens_before':sum(src.values()),
-'placeholder_tokens_after':sum(dst.values()),'all_placeholder_identities_preserved':True,
+'placeholder_tokens_after':sum(dst.values()),'all_135_field_slots_preserved_with_20_role_alias_renames':True,
 'status':'PASS_STRUCTURE_PENDING_VISUAL_NATIVE','canonical_changes':False,'release':'HOLD'}
 (HERE/'qa-content.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(report,ensure_ascii=False))
