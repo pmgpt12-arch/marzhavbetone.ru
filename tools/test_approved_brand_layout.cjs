@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 /**
- * Native Chromium layout gate for the isolated "На стороне подрядчика" preview.
+ * Native Chromium layout and local interaction gate for the isolated "На стороне подрядчика" preview.
  * Usage: node tools/test_approved_brand_layout.cjs <static-html-root> [report.json]
  * Uses Node.js >= 22 (built-in WebSocket), Chrome/Chromium. No external packages.
- * ONLY serves local static files on 127.0.0.1; it cannot test payment/webhooks.
+ * ONLY serves local static files on 127.0.0.1; for test only, app-script.php serves app.js.
+ * No payment, backend, email, webhook or buyer delivery test is performed.
  */
 "use strict";
 const fs=require("node:fs");
@@ -30,7 +31,7 @@ function serve(){
   const server=http.createServer((req,res)=>{
     let urlPath;
     try{urlPath=decodeURIComponent(req.url.split("?")[0]);}catch(e){res.writeHead(400).end();return;}
-    const filename=path.resolve(root,"."+urlPath);
+    const filename=path.resolve(root,"."+ (urlPath==="/app-script.php" ? "/app.js" : urlPath));
     if(filename!==root && !filename.startsWith(root+path.sep)){res.writeHead(403).end();return;}
     fs.readFile(filename,(err,body)=>{
       if(err){res.writeHead(404).end();return;}
@@ -71,6 +72,8 @@ async function main(){
     if(!fs.existsSync(path.join(root,c.url)))throw Error("Missing page: "+c.url);
   }
   if(!fs.existsSync(path.join(root,"brand-approved-2026.css")))throw Error("Brand CSS missing");
+  if(!fs.existsSync(path.join(root,"app.js")))throw Error("app.js required for functional checkout gate");
+  if(!fs.existsSync(path.join(root,"attribution.js")))throw Error("attribution.js required for mobile navigation gate");
   const server=serve();
   await new Promise(resolve=>server.listen(0,"127.0.0.1",resolve));
   const webPort=server.address().port;
@@ -80,7 +83,7 @@ async function main(){
     "--remote-allow-origins=*","--remote-debugging-port=0",
     "--user-data-dir="+chromeDir,"about:blank"
   ],{stdio:"ignore"});
-  const report={scope:"STATIC_UI_ONLY",variant:"Engineer Premium",screens:[],pass:false};
+  const report={scope:"LOCAL_LAYOUT_AND_CART_INTERACTION_NO_BACKEND",variant:"Engineer Premium",screens:[],pass:false};
   let client;
   try{
     let debugPort=0;
@@ -133,6 +136,71 @@ async function main(){
           condition(entry,info.ctaDisplay==="none","MOBILE_EXTRA_CTA");
           condition(entry,info.cartDisplay!=="none","MOBILE_CART_HIDDEN");
         }
+
+        // Functional browser gate. No payment endpoint is invoked.
+        const f=await client.send("Runtime.evaluate",{
+          expression:`JSON.stringify((()=>{
+            const out={errors:[]},check=(ok,name)=>{if(!ok)out.errors.push(name)};
+            const toggle=document.querySelector(".nav-toggle");
+            const nav=document.querySelector(".topbar nav");
+            if(window.innerWidth===390){
+              check(!!toggle && !!nav,"MOBILE_MENU_MISSING");
+              if(toggle&&nav){
+                toggle.click();
+                out.menuExpanded=toggle.getAttribute("aria-expanded");
+                check(nav.classList.contains("is-open")&&out.menuExpanded==="true","MOBILE_MENU_OPEN");
+                toggle.click();
+                check(!nav.classList.contains("is-open")&&toggle.getAttribute("aria-expanded")==="false","MOBILE_MENU_CLOSE");
+              }
+            }
+            const cartToggle=document.querySelector("#cart-toggle");
+            const panel=document.querySelector("#cart-panel");
+            const cartClose=document.querySelector("#cart-close");
+            check(!!cartToggle&&!!panel&&!!cartClose,"CART_ELEMENTS_MISSING");
+            if(cartToggle&&panel&&cartClose){
+              cartToggle.click();
+              check(!panel.hidden&&cartToggle.getAttribute("aria-expanded")==="true","CART_OPEN");
+              cartClose.click();
+              check(panel.hidden&&cartToggle.getAttribute("aria-expanded")==="false","CART_CLOSE");
+            }
+            const buttons=document.querySelectorAll(".add-to-cart");
+            if(buttons.length && cartToggle && panel){
+              const button=buttons[0],expectedPrice=Number(button.dataset.price);
+              const expectedSku=button.dataset.sku;
+              button.click();
+              const count=document.querySelector("#cart-count");
+              const cta=document.querySelector("#cart-checkout");
+              const cartItems=document.querySelectorAll("#cart-items .cart-item");
+              const total=document.querySelector("#cart-total")?.textContent||"";
+              check(count?.textContent==="1","CART_COUNT");
+              check(cartItems.length===1,"CART_ITEM");
+              check(!cta?.disabled,"CHECKOUT_CTA_DISABLED");
+              check(!panel.hidden,"CART_NOT_OPEN_AFTER_ADD");
+              const stored=JSON.parse(localStorage.getItem("marzhavbetone-cart")||"[]");
+              check(stored.length===1&&stored[0].sku===expectedSku&&stored[0].price===expectedPrice,"CART_STORAGE_OR_PRICE");
+              check(total.includes(new Intl.NumberFormat("ru-RU").format(expectedPrice/100)),"CART_TOTAL");
+              cta?.click();
+              const modal=document.querySelector("#checkout-modal");
+              check(!!modal?.classList.contains("active"),"CHECKOUT_MODAL_OPEN");
+              check(!!modal?.querySelector('input[type="email"][required]'),"EMAIL_FIELD");
+              check(!!modal?.querySelector('input[type="checkbox"][required]'),"CONSENT_FIELD");
+              modal?.querySelector(".checkout-close")?.click();
+              check(!modal?.classList.contains("active"),"CHECKOUT_MODAL_CLOSE");
+              cartToggle.click();
+              document.querySelector("#cart-items .cart-remove")?.click();
+              check(document.querySelector("#cart-count")?.textContent==="0","CART_REMOVE");
+              check(document.querySelector("#cart-checkout")?.disabled===true,"EMPTY_CART_DISABLED");
+              check(JSON.parse(localStorage.getItem("marzhavbetone-cart")||"[]").length===0,"CART_CLEAR_STORAGE");
+              cartClose.click();
+              out.sku=expectedSku;out.priceKopecks=expectedPrice;
+            }else if(!buttons.length){out.noSkuOnPage=true;}
+            return out;
+          })())`,
+          returnByValue:true
+        });
+        const interaction=JSON.parse(f.result.value);
+        entry.interaction=interaction;
+        for(const err of interaction.errors)entry.failures.push(err);
         report.screens.push(entry);
       }
     }
