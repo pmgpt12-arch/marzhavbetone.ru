@@ -122,7 +122,8 @@ async function main(){
         });
         const info=JSON.parse(v.result.value);
         const entry={name:target.name,width,...info,failures:[]};
-        condition(entry,info.viewport===width,"VIEWPORT_MISMATCH");
+        condition(entry,info.innerWidth===width,"VIEWPORT_MISMATCH");
+        condition(entry,info.viewport>=width-18 && info.viewport<=width,"CLIENT_VIEWPORT_OUT_OF_RANGE"); /* Desktop scrollbar consumes 15px */
         condition(entry,info.scrollWidth<=width+1,"HORIZONTAL_OVERFLOW");
         condition(entry,info.brandText?.toLowerCase()==="на стороне подрядчика","BRAND_LABEL");
         condition(entry,info.brandDisplay!=="none"&&info.brandWidth>=100,"BRAND_HIDDEN");
