@@ -39,7 +39,7 @@ HOME_COPY_WHITELIST = [
     ("КС подписаны, срок оплаты прошёл или заказчик откладывает расчёт.",
      "Приёмка результата работ или услуг подтверждена, срок оплаты прошёл либо заказчик переносит расчёт.", 1),
 ]
-GENERATOR_COPY_WHITELIST = HOME_COPY_WHITELIST[-2:]
+GENERATOR_COPY_WHITELIST = [(source, replacement, 1) for source, replacement, _ in HOME_COPY_WHITELIST[-2:]]
 
 
 def apply_approved_copy(text: str, edits: list[tuple[str, str, int]]) -> str:
