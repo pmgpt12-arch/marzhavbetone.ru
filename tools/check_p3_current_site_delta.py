@@ -16,6 +16,11 @@ expected={
 base="03ce64f607c43bd6a1443ad2d1088c07697c22ba"
 changed=set(git("diff","--name-only",base,"HEAD","--","*.php","*.html").decode().splitlines())
 assert changed==set(expected),f"unexpected HTML/PHP delta: {sorted(changed^set(expected))}"
+snapshots=["tools/reports/site-route-discovery-20261012/report.json", "tools/reports/site-static-content-snapshot-20261012/report.json"]
+for snapshot in snapshots:
+    # Historical reports must stay byte-identical to the accepted source.
+    accepted=git("show",f"181cda7b7a128eb9f5ead1d1bc13a6f87322da77:{snapshot}")
+    assert (root/snapshot).read_bytes()==accepted, f"historical snapshot drift: {snapshot}"
 report=json.loads((root/"tools/reports/site-route-discovery-20261012/report.json").read_text())
 classes={e["source_path"]:e["route_class"] for e in report["entries"]}
 assert all(classes.get(p)==kind for p,kind in expected.items() if not p.startswith("tools/"))
