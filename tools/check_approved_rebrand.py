@@ -75,7 +75,7 @@ def main() -> int:
             old_links = LINKS.findall(base)
             new_links = LINKS.findall(text)
             css_regex = re.compile(
-                r'href="(?:\.\./)?brand-approved-2026\.css\?v=1"'
+                r'href="(?:\.\./|/)?brand-approved-2026\.css\?v=1"'
             )
             new_links = [link for link in new_links if not css_regex.fullmatch(link)]
             if old_links != new_links:
