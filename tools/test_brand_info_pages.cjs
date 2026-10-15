@@ -65,7 +65,7 @@ async function main(){
     rows.push({url,width,...data,errors});
    }
   }
- } finally {socket?.close();chrome.kill("SIGTERM");srv.close();fs.rmSync(dir,{force:true,recursive:true});}
+ } finally {socket?.close();chrome.kill("SIGTERM");srv.close();await Promise.race([new Promise(r=>chrome.once("exit",r)),wait(900)]);if(chrome.exitCode!==null)fs.rmSync(dir,{force:true,recursive:true});}
  const report={scope:"STATIC_PUBLIC_INFO_PAGES",pass:rows.length===pages.length*2&&rows.every(r=>r.errors.length===0),rows};
  if(output)fs.writeFileSync(output,JSON.stringify(report,null,2)+"\n");
  console.log(JSON.stringify({pass:report.pass,count:rows.length,failed:rows.filter(r=>r.errors.length).map(r=>({url:r.url,width:r.width,errors:r.errors}))}));
