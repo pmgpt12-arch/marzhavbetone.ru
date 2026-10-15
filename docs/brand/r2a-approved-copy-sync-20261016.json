@@ -1,0 +1,28 @@
+{
+  "gate": "R2A_SYNC_WITH_APPROVED_WIDE_AUDIENCE_COPY",
+  "status": "PASS_SOURCE_ONLY_HOLD_DEPLOYMENT",
+  "date": "2026-10-16",
+  "base_r1": "1a74e1f2afcf71b24388852f357be3441e297fe5",
+  "copy_changes": {
+    "audience": "Для исполнителей работ и услуг в строительстве",
+    "hero": "Оформляйте результат. Защищайте заработанное.",
+    "situation": "Результат принят, оплата задерживается"
+  },
+  "host_replace_count": 902,
+  "public_html_inputs": 88,
+  "sitemap_routes_preserved": 84,
+  "all_exact_changes": true,
+  "checks": {
+    "R2_URL_ONLY_VS_UPDATED_R1": "PASS",
+    "generator_label_matches_R1": "PASS",
+    "URL_TRANSFORM_IDEMPOTENT": "PASS",
+    "PUBLIC_LINKS_88_ZERO_BROKEN": "PASS",
+    "SITEMAP_84": "PASS"
+  },
+  "qa_report_sha256": "f52af7350fa5ee7dcc4751acc426b1150a6933cbfdd3fe3784f75605138cc416",
+  "restrictions": [
+    "No main merge or payment changes",
+    "Current noindex preview still reflects earlier copy until republished",
+    "Existing SKU, prices, delivery files unchanged"
+  ]
+}

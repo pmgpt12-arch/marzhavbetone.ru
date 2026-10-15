@@ -3,8 +3,8 @@
 
 The historical accepted snapshot (2026-10-12) stays unchanged. This verifies
 that all 88 current public HTML documents differ from the pinned pre-rebrand
-source ONLY by the approved brand-label replacements, wordmark initial,
-scoped body class and fingerprinted stylesheet. All other bytes including
+source ONLY by approved brand-label replacements, wordmark initial,
+scoped body class, fingerprinted stylesheet and tightly whitelisted hero / payment-delay copy. All other bytes including
 prices, SKU, legal provisions, links, canonical URLs, scripts and order
 metadata remain unchanged.
 
@@ -28,6 +28,28 @@ EXCLUDED_DIRS = {".git", ".claude", "content", "data", "tools", "node_modules"}
 LINK = re.compile(r'<link\s+rel="stylesheet"[^>]*>', re.IGNORECASE)
 MARK = re.compile(r'(<span\s+class="brand-mark">)М(</span>)')
 CSS_NAME = "brand-approved-2026.css"
+HOME_COPY_WHITELIST = [
+    ("ДЛЯ СТРОИТЕЛЬНЫХ ПОДРЯДЧИКОВ И СУБПОДРЯДЧИКОВ",
+     "ДЛЯ ИСПОЛНИТЕЛЕЙ РАБОТ И УСЛУГ В СТРОИТЕЛЬСТВЕ", 1),
+    ("Система получения оплаты <em>за выполненные строительные работы</em>",
+     "Оформляйте результат. <em>Защищайте заработанное.</em>", 1),
+    ("Готовые алгоритмы и документы для каждого этапа: договор, допработы, исполнительная документация, КС-2 и КС-3, удержания и получение оплаты.",
+     "Документы, расчёты и порядок действий для подтверждения работ и услуг, приёмки, защиты своей позиции в споре с заказчиком и получения оплаты.", 1),
+    ("Работы закрыты, но денег нет", "Результат принят, оплата задерживается", 2),
+    ("КС подписаны, срок оплаты прошёл или заказчик откладывает расчёт.",
+     "Приёмка результата работ или услуг подтверждена, срок оплаты прошёл либо заказчик переносит расчёт.", 1),
+]
+GENERATOR_COPY_WHITELIST = [(source, replacement, 1) for source, replacement, _ in HOME_COPY_WHITELIST[-2:]]
+
+
+def apply_approved_copy(text: str, edits: list[tuple[str, str, int]]) -> str:
+    """Fail closed if a declared source phrase changes or appears unexpectedly."""
+    for source, replacement, expected in edits:
+        actual = text.count(source)
+        if actual != expected:
+            raise ValueError(f"Approved copy source count drift: {source[:65]}: {actual}/{expected}")
+        text = text.replace(source, replacement)
+    return text
 
 
 def git(*args: str) -> str:
@@ -60,7 +82,8 @@ def expected_rebrand(original: str, name: str, css_version: str, absolute: bool 
     prefix = "/" if absolute else ("../" if "/" in name else "")
     tag = f'\n  <link rel="stylesheet" href="{prefix}{CSS_NAME}?v={css_version}">'
     after = links[-1].end()
-    return text[:after] + tag + text[after:]
+    text = text[:after] + tag + text[after:]
+    return apply_approved_copy(text, HOME_COPY_WHITELIST) if name == "index.html" else text
 
 
 def inspect() -> dict:
@@ -92,8 +115,13 @@ def inspect() -> dict:
             "failure_class": "" if match else "UNAPPROVED_HTML_DELTA",
         })
     mismatches = [row["path"] for row in results if not row["match"]]
+    generator_path = "tools/rebuild_index_2026-08-14.py"
+    generator_baseline = git("show", f"{BASE_SHA}:{generator_path}")
+    generator_expected = apply_approved_copy(generator_baseline, GENERATOR_COPY_WHITELIST)
+    generator_actual = (ROOT / generator_path).read_text("utf-8")
+    generator_copy_pass = generator_actual == generator_expected
     return {
-        "gate": "REBRAND_EXACT_TRANSFORMATION_V1",
+        "gate": "REBRAND_EXACT_TRANSFORMATION_V2_APPROVED_COPY",
         "historical_baseline_sha": BASE_SHA,
         "current_commit": git("rev-parse", "HEAD").strip(),
         "css_version": version,
@@ -101,10 +129,11 @@ def inspect() -> dict:
         "checked": len(files),
         "matches": len(files) - len(mismatches),
         "mismatches": mismatches,
+        "generator_copy_pass": generator_copy_pass,
         "pages": results,
-        "pass": len(files) == 88 and not mismatches,
+        "pass": len(files) == 88 and not mismatches and generator_copy_pass,
         "limitations": [
-            "This permits only approved label/CSS changes; source snapshots remain historical",
+            "This permits only approved label/CSS and explicitly whitelisted homepage copy; historical snapshots remain immutable",
             "Not a payment, buyer access, DNS, live browser or SEO migration gate",
         ],
     }
@@ -121,7 +150,7 @@ def main() -> int:
         args.report.write_text(json.dumps(result, ensure_ascii=False, indent=2)+"\n")
     print(json.dumps({key: result[key] for key in
           ("gate", "historical_baseline_sha", "current_commit",
-           "css_version", "checked", "matches", "mismatches", "pass")}, ensure_ascii=False))
+           "css_version", "checked", "matches", "mismatches", "generator_copy_pass", "pass")}, ensure_ascii=False))
     return 1 if args.check and not result["pass"] else 0
 
 
