@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "record_date": "2026-10-15",
+  "phase": "R1.1 approved UI non-payment interactions",
+  "status": "PASS_LOCAL_BROWSER_INTERACTIONS_ONLY",
+  "repository": "pmgpt12-arch/marzhavbetone.ru",
+  "branch": "feature/rebrand-na-storone-podryadchika-20261015",
+  "source_commit": "7eef878c0aa26910561ffa6117152d38489ead76",
+  "runner": "tools/test_approved_brand_layout.cjs",
+  "runner_sha256": "4bc1343146fc9178746fa404893908d3167dcd09e9c2a428611600151f6fdc7b",
+  "live_report_sha256": "05a7322d05746fc511059d7ec4b84c3b1af4208ad663840bd9d3ad59e84b3970",
+  "run_environment": "ai-workstation / isolated /tmp/mb-brand-functional-20261015 / Node 22 Chromium headless / localhost HTTP; app-script.php served as existing app.js in read-only test adapter; payment endpoint not invoked",
+  "screens": [
+    {
+      "name": "home",
+      "width": 390,
+      "sku": "p7",
+      "price_kopecks": 249000,
+      "pass": true
+    },
+    {
+      "name": "catalog",
+      "width": 390,
+      "sku": "p7",
+      "price_kopecks": 249000,
+      "pass": true
+    },
+    {
+      "name": "product-p1",
+      "width": 390,
+      "sku": "p1",
+      "price_kopecks": 2990000,
+      "pass": true
+    },
+    {
+      "name": "home",
+      "width": 1360,
+      "sku": "p7",
+      "price_kopecks": 249000,
+      "pass": true
+    },
+    {
+      "name": "catalog",
+      "width": 1360,
+      "sku": "p7",
+      "price_kopecks": 249000,
+      "pass": true
+    },
+    {
+      "name": "product-p1",
+      "width": 1360,
+      "sku": "p1",
+      "price_kopecks": 2990000,
+      "pass": true
+    }
+  ],
+  "acceptance_checks": [
+    "same baseline 6/6 visual+layout",
+    "mobile navigation toggle opened and closed",
+    "cart opens and closes",
+    "product add, correct price display, correct SKU and kopecks in localStorage",
+    "checkout modal opens and closes with email and consent fields",
+    "remove product empties cart and disables checkout",
+    "independent pre-rebrand SKU/price baseline p7=249000, p1=2990000"
+  ],
+  "fault_injections": [
+    {
+      "type": "CART_COUNT static mutation",
+      "expected": "CART_COUNT",
+      "observed": "CART_COUNT",
+      "exit": 1,
+      "pass": true
+    },
+    {
+      "type": "nav menu is-open token mutation",
+      "expected": "MOBILE_MENU_OPEN",
+      "observed": "MOBILE_MENU_OPEN",
+      "exit": 1,
+      "pass": true
+    },
+    {
+      "type": "product p7 button data-price altered",
+      "expected": "PRODUCT_SKU_PRICE_BASELINE",
+      "observed": "PRODUCT_SKU_PRICE_BASELINE",
+      "exit": 1,
+      "pass": true
+    }
+  ],
+  "main_checkout": {
+    "dirty_file_count_before": 1,
+    "dirty_file_count_after": 1,
+    "changes_applied_to_checkout": 0
+  },
+  "reliability_notes": [
+    "No live payment was initiated or approved; no webhook, mail, download or buyer rights verified",
+    "No staging deployment and no domain redirect was performed",
+    "CSS and HTML only currently updated on three pages; shared public site rollout remains HOLD",
+    "Previously verified 2 of 2 layout fault injection tests remain on prior evidence"
+  ],
+  "next_tasks": [
+    "audit all buyer-visible routes and build controlled brand coverage inventory",
+    "extend scoped style and identity without changing financial identifiers/archives",
+    "stage full application with isolated valid config and real static assets",
+    "browser checkout and independent payment/delivery/legacy rights acceptance before release"
+  ]
+}
