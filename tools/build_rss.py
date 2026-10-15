@@ -30,7 +30,7 @@ ROOT = Path(__file__).resolve().parent.parent
 ARTICLES = ROOT / "articles"
 DZEN_TITLES = ROOT / "data" / "site" / "dzen-titles.json"
 SITE = "https://marzhavbetone.ru"
-CHANNEL_TITLE = "Маржа в бетоне"
+CHANNEL_TITLE = "На стороне подрядчика"
 CHANNEL_DESCRIPTION = (
     "Разборы для строительных подрядчиков: как оформить работы, "
     "защитить допработы и получить оплату."
