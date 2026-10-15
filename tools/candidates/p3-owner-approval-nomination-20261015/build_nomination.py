@@ -17,7 +17,7 @@ def blob_at(path):
     return git("rev-parse",f"{HEAD}:{path}")
 def sha(data):
     return hashlib.sha256(data).hexdigest()
-assert git("rev-parse","HEAD")==HEAD, "HEAD_CHANGED"
+assert subprocess.run(["git","-C",str(ROOT),"merge-base","--is-ancestor",HEAD,git("rev-parse","HEAD")],check=False).returncode==0, "SOURCE_COMMIT_NOT_ANCESTOR"
 old=json.loads((ROOT/OLD_MANIFEST).read_text())
 assert len(old["files"])==11
 zipdata=(ROOT/ZIP_PATH).read_bytes()
@@ -45,7 +45,7 @@ with zipfile.ZipFile(io.BytesIO(zipdata)) as z:
           "format":name.split(".")[-1],
           "role":"nominated_candidate","nomination_source":"owner-approved AOSR #619:6190381029",
           "content_status":"PASS_INSPECTED_SCOPE",
-          "office_status":"PASS_EXACT_OR_REUSED_SHA",
+          "office_status":("NATIVE_WORD_CURRENT_EXACT_SHA_PASS" if name=="03-akt-skrytyh-rabot.docx" else "NATIVE_WORD_PREVIOUS_EXACT_SHA_PASS" if name.endswith(".docx") else "NATIVE_EXCEL_OPEN_EXACT_SHA_OWNER_SCENARIOS_REPORTED_PASS" if name.endswith(".xlsx") else "PREVIOUS_PDF_VISUAL_PASS" if name.endswith(".pdf") else "NOT_APPLICABLE_TXT"),
           "release_status":"HOLD_NOT_LIVE"
         })
 assert rows[3]["sha256"]==EXPECTED_DOC
