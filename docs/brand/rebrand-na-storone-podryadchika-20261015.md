@@ -45,8 +45,7 @@ R5 independent release validation with rollback; publish only after PASS.
 Commit/branch + exact changed-files manifest; static and smoke checks; path-level 301 map; new-domain DNS/TLS verified; crawl/canonical/sitemap validated; mock checkout plus real approved live end-to-end payment and delivery verification, including old-buyer access; published social profile links and post crossposting checked separately. Only then mark DONE.
 
 ## Visual refresh approved 2026-10-15
-- Owner approved designing two alternatives for a modern B2B construction-expertise site, without changing product functions, source documents, pricing or purchase/delivery logic.
-- A: Engineer Premium — graphite `#24292F`, warm white `#F7F6F2`, muted gold `#B08D57`, steel gray `#737C83` (preferred direction).
-- B: Technology Industrial — deep blue `#1D3440`, white `#FFFFFF`, steel `#D5E0E4`, copper `#B8744C`.
-- Preview deliverables: home and product page in desktop and mobile layouts, visually reviewed before code work. Compare hierarchy, readability, conversion clarity and accessibility.
-- Figma working file: https://www.figma.com/design/pOP8028A8kQlaox0FTjHK7 (file created, layout work in progress).
+- **OWNER DESIGN APPROVAL — 2026-10-15**: approved **A / «Инженерный премиум»**; no further work on option B is required.
+- Final palette: graphite `#24292F`, warm white `#F7F6F2`, muted gold `#B08D57`, steel gray `#737C83`.
+- Approved Figma file: https://www.figma.com/design/pOP8028A8kQlaox0FTjHK7; homepage desktop node `3:2` (1360×1197), homepage mobile node `3:45` (390×1643); concept product node `3:87` desktop / `3:114` mobile still require QA before design-to-code acceptance.
+- Exact implementation gate: isolated feature branch, preserve existing content architecture, cart/payment/sales/access, no production publication before responsive visual QA and purchase gate. Do not treat a design prototype as a live site.
