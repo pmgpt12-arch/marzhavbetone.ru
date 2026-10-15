@@ -1,0 +1,28 @@
+{
+  "parent_pr": 647,
+  "base_commit": "20eff3aa0cde8cc42b43c5625b6b76ab8c7fabc0",
+  "source_path": "tools/candidates/p3-full-11-preflight-20261015/candidate/09-tipovye-oshibki.docx",
+  "source_sha256": "465935a45415804811ec167509520d414ffe5a0f19d4b37fea2465df24dafbcf",
+  "candidate_sha256": "d107fe9cf43acb7aec2b680736856637a22b422bd55698c237cb721e1dcffafa",
+  "changed_ooxml_members": [
+    "word/document.xml"
+  ],
+  "replacement_before": "Проверка в комплекте: №02, лист «Реестр».",
+  "replacement_after": "Проверка в комплекте: №02, лист «Реестр приложений».",
+  "replacement_count": 1,
+  "native_word": "PASS_OPEN_AND_PDF_EXPORT_SCOPE",
+  "visual_review": "PENDING",
+  "complete_product": "HOLD",
+  "lo_render": {
+    "pages": 3,
+    "page_size": "A4",
+    "pdf_sha256": "5ac26547bfc6a1094af3023264c901b718e41e2d5eb2e487228867f6094b5fd0",
+    "visual_review": "3/3 pages inspected clean"
+  },
+  "native_word_report_sha256": "42718014b655db3cbbf99c4df6f9da3f1be297df6dcd2619185fb0cb214904df",
+  "native_word_pdf_sha256": "8670cd70dc461464226ded737ca3c42dd8b905762f16e290c4d82bf60b7721d2",
+  "native_word_pdf_pages": 3,
+  "native_word_visual_review": "3/3 A4 inspected visually, no clipping or collisions",
+  "crossdoc_exact_sheet_name": "Реестр приложений",
+  "price_sku_production": "UNMODIFIED"
+}
