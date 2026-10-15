@@ -1,0 +1,19 @@
+{
+  "scope": "P3_06_BUYER_NEGATIVE_REMEDIATION_CANDIDATE",
+  "source_sha256": "7efe0218defcad70921a87dcce04700a75fd8a5075a25be3874ccf9785c153a0",
+  "candidate_sha256": "d0d9724258aeec39322de9da796dec381ce4fb64819f89e58007c9872a904e32",
+  "changed_ooxml_parts": [
+    "xl/worksheets/sheet1.xml",
+    "xl/sharedStrings.xml"
+  ],
+  "formulas_modified": 50,
+  "blocking_validations": 7,
+  "known_negative_findings": [
+    "whitespace_only_receipt_produced_closed",
+    "bogus_previous_delivery_link_produced_in_work"
+  ],
+  "source_report_job": "p3-649-independent-negative-buyer-20261015-v1",
+  "native_excel": "PENDING",
+  "buyer_acceptance": "PENDING",
+  "release": "HOLD"
+}
