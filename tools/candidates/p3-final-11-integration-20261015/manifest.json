@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "role": "candidate_not_nominated",
+  "base_pr": 648,
+  "source_head": "c5e23a35b8ee2ca52165406806e1ab62cf38f4a1",
+  "composition": {
+    "docx": 7,
+    "pdf": 1,
+    "total": 11,
+    "txt": 1,
+    "xlsx": 2
+  },
+  "archive_sha256": "2a017e41f552ffbb31bd1b37f8dacdacb8f5ec43b86b490f3a47e70afa941b68",
+  "files": [
+    {
+      "name": "00-START-HERE.txt",
+      "relative_source_path": "tools/candidates/p3-full-11-preflight-20261015/candidate/00-START-HERE.txt",
+      "source_commit": "c5e23a35b8ee2ca52165406806e1ab62cf38f4a1",
+      "sha256": "f8aadb9047191a9542303bddb88d4ddce543ab6a7be4a7c8ad854a246962ff82",
+      "bytes": 3996
+    },
+    {
+      "name": "01-proverochnyy-list-komplekta-ks.docx",
+      "relative_source_path": "tools/candidates/p3-full-11-preflight-20261015/candidate/01-proverochnyy-list-komplekta-ks.docx",
+      "source_commit": "c5e23a35b8ee2ca52165406806e1ab62cf38f4a1",
+      "sha256": "33a874e348b60a977b85bc50abcd54e29d65e01d169d7f4459253c539beeb790",
+      "bytes": 43389
+    },
+    {
+      "name": "02-reestr-prilozheniy.xlsx",
+      "relative_source_path": "tools/candidates/p3-full-11-preflight-20261015/candidate/02-reestr-prilozheniy.xlsx",
+      "source_commit": "c5e23a35b8ee2ca52165406806e1ab62cf38f4a1",
+      "sha256": "929a84cf9a870b44d79113fa31379403ec3b671345ca5001938c5aa709e5c12a",
+      "bytes": 16774
+    },
+    {
+      "name": "03-akt-skrytyh-rabot.docx",
+      "relative_source_path": "tools/candidates/p3-full-11-preflight-20261015/candidate/03-akt-skrytyh-rabot.docx",
+      "source_commit": "c5e23a35b8ee2ca52165406806e1ab62cf38f4a1",
+      "sha256": "cd8e5d4b1533bbbfebb3d85a06784a1b861ef6a8b54bcfb027d557fcb64bfdb5",
+      "bytes": 43152
+    },
+    {
+      "name": "04-protokol-vnutrenney-proverki.docx",
+      "relative_source_path": "tools/candidates/p3-full-11-preflight-20261015/candidate/04-protokol-vnutrenney-proverki.docx",
+      "source_commit": "c5e23a35b8ee2ca52165406806e1ab62cf38f4a1",
+      "sha256": "d2fd70cb60397076b44209e5989da0a0110b50513bcd5c5c062d558a070a3e1a",
+      "bytes": 39362
+    },
+    {
+      "name": "05-pismo-o-nedostatkah.docx",
+      "relative_source_path": "tools/candidates/p3-full-11-preflight-20261015/candidate/05-pismo-o-nedostatkah.docx",
+      "source_commit": "c5e23a35b8ee2ca52165406806e1ab62cf38f4a1",
+      "sha256": "22d8d04a51f3eacb2285323e0d7517f7ab372a2456e062fb585411e8554a3d3d",
+      "bytes": 39435
+    },
+    {
+      "name": "06-zhurnal-peredachi.xlsx",
+      "relative_source_path": "tools/candidates/p3-validation-alerts-20261015/06-zhurnal-peredachi.xlsx",
+      "source_commit": "c5e23a35b8ee2ca52165406806e1ab62cf38f4a1",
+      "sha256": "7efe0218defcad70921a87dcce04700a75fd8a5075a25be3874ccf9785c153a0",
+      "bytes": 21173
+    },
+    {
+      "name": "07-sroki-hraneniya.docx",
+      "relative_source_path": "tools/candidates/p3-full-11-preflight-20261015/candidate/07-sroki-hraneniya.docx",
+      "source_commit": "c5e23a35b8ee2ca52165406806e1ab62cf38f4a1",
+      "sha256": "e38b546f4446d63021f4a4f6bb551deba54e808bdda964528d8eb287eabb8925",
+      "bytes": 39836
+    },
+    {
+      "name": "08-algoritm-proverki.pdf",
+      "relative_source_path": "tools/candidates/p3-full-11-preflight-20261015/candidate/08-algoritm-proverki.pdf",
+      "source_commit": "c5e23a35b8ee2ca52165406806e1ab62cf38f4a1",
+      "sha256": "43396d5cc5bab8829ec917e828eda46773b0e037f13d52aa476ecfb0dacecec2",
+      "bytes": 58687
+    },
+    {
+      "name": "09-tipovye-oshibki.docx",
+      "relative_source_path": "tools/candidates/p3-doc09-sheet-reference-20261015/09-tipovye-oshibki.docx",
+      "source_commit": "c5e23a35b8ee2ca52165406806e1ab62cf38f4a1",
+      "sha256": "d107fe9cf43acb7aec2b680736856637a22b422bd55698c237cb721e1dcffafa",
+      "bytes": 40674
+    },
+    {
+      "name": "10-sravnitelnaya-tablica.docx",
+      "relative_source_path": "tools/candidates/p3-full-11-preflight-20261015/candidate/10-sravnitelnaya-tablica.docx",
+      "source_commit": "c5e23a35b8ee2ca52165406806e1ab62cf38f4a1",
+      "sha256": "9ff876618a7ffd360af989054d373125bda3deb4e24b0ae14c9e4df90d3132b3",
+      "bytes": 39912
+    }
+  ],
+  "acceptance": {
+    "archive": "PASS_11_OF_11",
+    "deterministic": "PASS",
+    "cross_document": "PASS_BASIC_REFERENCES",
+    "native_office": "PREVIOUS_EXACT_SHA_RECEIPTS_REUSED",
+    "independent_buyer": "OPEN",
+    "release": "HOLD",
+    "G1_G8": "0/13"
+  }
+}
