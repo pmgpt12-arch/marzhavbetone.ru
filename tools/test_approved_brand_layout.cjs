@@ -201,6 +201,9 @@ async function main(){
         const interaction=JSON.parse(f.result.value);
         entry.interaction=interaction;
         for(const err of interaction.errors)entry.failures.push(err);
+        // Independent baseline from the pre-rebrand live catalog, not the mutated button data:
+        const expected=target.name==="product-p1"?{sku:"p1",priceKopecks:2990000}:{sku:"p7",priceKopecks:249000};
+        condition(entry,interaction.sku===expected.sku && interaction.priceKopecks===expected.priceKopecks,"PRODUCT_SKU_PRICE_BASELINE");
         report.screens.push(entry);
       }
     }
