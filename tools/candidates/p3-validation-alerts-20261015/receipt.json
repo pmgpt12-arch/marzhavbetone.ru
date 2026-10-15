@@ -1,13 +1,28 @@
 {
-  "result": "PASS_CANDIDATE_REPAIR_ONLY",
+  "verdict": "PASS_STRUCTURAL_AND_EXCEL_OPEN_SCOPE_ONLY",
+  "source_pr": 646,
   "source_head": "2d15f145d162c1042cd06e624561a21b276d7276",
   "source_sha256": "862daec8caad602c044f147f64768ed65cbb7497072d95c55df5d390acea14f3",
-  "output_path": "/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011/p3-pr646-validation-candidate-20261015/06-zhurnal-peredachi.xlsx",
-  "output_sha256": "7cd0cb3e939909e6a1fffc32766136423ca6d5cb6e63f7575b4720fef004e3c8",
-  "validations_blocking": 7,
-  "other_zip_members_byte_identical": 9,
-  "negative_mutations_rejected": 2,
-  "office_native": "NOT_RUN",
-  "independent_review": "PENDING",
+  "superseded_unusable_sha256": "7cd0cb3e939909e6a1fffc32766136423ca6d5cb6e63f7575b4720fef004e3c8",
+  "current_candidate_sha256": "7efe0218defcad70921a87dcce04700a75fd8a5075a25be3874ccf9785c153a0",
+  "current_candidate_relpath": "06-zhurnal-peredachi.xlsx",
+  "method": "LibreOffice isolated normalization of prior alert correction; no formula intent changed",
+  "native_excel": {
+    "excel_version": "16.0",
+    "excel_build": "4324",
+    "candidate_open_confirmed": true,
+    "scenario_status": "BLOCKED_HARNESS_LOCKED_ON_UNPROTECTED_SHEET",
+    "report_sha256": "65b30959d1493f882bc33ff8d431025b5d933bc738ca0e341f9ffc5c7a57302b",
+    "diagnostic_old_pr646_report_sha256": "1a584a0898c6f93ed20c3b94556fe2752310f0813bb85ea3084fb66e64baf8f7",
+    "control_prior_good_pass_sha256": "d752eb95c82b165516a9c6df0b07683a834a89c181cec832ea9b38b23a403fe7"
+  },
+  "validation_controls": "7/7 showErrorMessage=true,errorStyle=stop",
+  "formula_semantics": "50/50 preserved (FALSE normalized to FALSE())",
+  "print": {
+    "lo_a3_pages": 3,
+    "pdf_sha256": "04c77a03d9b12649cc7d075615859fea18201ad3bba0f13b049404662272dc64"
+  },
+  "independent_product_acceptance": "OPEN",
+  "native_ui_typing_paste": "NOT_VERIFIED",
   "release": "HOLD"
 }
