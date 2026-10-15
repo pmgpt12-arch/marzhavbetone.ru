@@ -56,12 +56,21 @@ def main() -> int:
             problems.append("NO_APPROVED_BODY_CLASS")
         if LEGACY.search(text):
             problems.append("OLD_BRAND_DISPLAY")
-        if "class=\"brand\"" in text and not (
-            'aria-label="На стороне подрядчика, на главную"' in text
-            and re.search(r'<span\s+class="brand-mark">Н</span>', text)
-            and "<span>на стороне подрядчика</span>" in text
-        ):
-            problems.append("HEADER_BRAND_MISMATCH")
+        # Payment result pages have a standalone brand link, not the
+        # canonical site-wide navigation header. Keep both contracts strict.
+        if 'class="brand"' in text:
+            short_brand = bool(
+                re.search(r'<span\\s+class="brand-mark">Н</span>', text)
+                and '<span>на стороне подрядчика</span>' in text
+            )
+            if path.as_posix() in {"success.html", "fail.html"}:
+                if not short_brand:
+                    problems.append("RESULT_BRAND_MISMATCH")
+            elif not (
+                short_brand
+                and 'aria-label="На стороне подрядчика, на главную"' in text
+            ):
+                problems.append("HEADER_BRAND_MISMATCH")
         if not re.search(r'<title[^>]*>.*?</title>', text, re.I | re.S):
             problems.append("TITLE_MISSING")
         rel = path.as_posix()
