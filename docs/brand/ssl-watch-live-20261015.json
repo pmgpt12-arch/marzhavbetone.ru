@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "checked_utc": "2026-10-15T15:52:33.459479+00:00",
+  "status": "OK",
+  "warn_days": 21,
+  "critical_days": 14,
+  "hosts": [
+    {
+      "host": "nastoronepodryadchika.ru",
+      "status": "OK",
+      "errors": [],
+      "expiry_utc": "2027-01-13T14:32:06+00:00",
+      "days_left": 89.94,
+      "http_status": 200,
+      "final_url": "https://nastoronepodryadchika.ru/",
+      "origin_tls": {
+        "status": "OK",
+        "expiry_utc": "2027-01-13T14:32:06+00:00",
+        "days_left": 89.94
+      }
+    },
+    {
+      "host": "www.nastoronepodryadchika.ru",
+      "status": "OK",
+      "errors": [],
+      "expiry_utc": "2027-01-13T14:32:06+00:00",
+      "days_left": 89.94,
+      "http_status": 200,
+      "final_url": "https://www.nastoronepodryadchika.ru/",
+      "origin_tls": {
+        "status": "OK",
+        "expiry_utc": "2027-01-13T14:32:06+00:00",
+        "days_left": 89.94
+      }
+    }
+  ],
+  "origin_checked": true
+}
