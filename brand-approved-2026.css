@@ -225,3 +225,14 @@ body.rebrand-approved {
     overflow-wrap:normal;
   }
 }
+
+/* Prevent 2px page-wide overflow from the old catalog-jump margin:-22px
+ * inside a section with 20px approved mobile padding. Keep horizontal
+ * scrolling of category chips within the navigation strip itself. */
+@media(max-width:600px){
+  body.rebrand-approved .catalog-jump{
+    margin-left:0;margin-right:0;
+    width:100%;max-width:100%;
+    padding-left:0;padding-right:0;
+  }
+}
