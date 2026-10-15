@@ -236,3 +236,15 @@ body.rebrand-approved {
     padding-left:0;padding-right:0;
   }
 }
+
+/* The legacy articles topic strip used -22px side margins with 22px page
+ * padding. Approved mobile sections use 20px: old margins caused a 2px
+ * document-wide overflow on articles/index.html. Keep the chip strip
+ * internally scrollable rather than clipping page content. */
+@media(max-width:600px){
+  body.rebrand-approved .topic-filter{
+    margin-left:0;margin-right:0;
+    width:100%;max-width:100%;
+    padding-left:0;padding-right:0;
+  }
+}

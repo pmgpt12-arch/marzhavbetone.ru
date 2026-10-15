@@ -1,0 +1,45 @@
+{
+  "status": "PASS_BRAND_PUBLIC_PREVIEW_ONLY",
+  "source_baseline_commit": "b9274c88fe6e5a518e515161802c3b2be14cf3c4",
+  "branch": "feature/rebrand-public-pages-20261016",
+  "approved_variant": "Инженерный премиум",
+  "scope": {
+    "all_tracked_html": 88,
+    "complete": 88,
+    "pending": 0,
+    "navigation_generator_pass": true,
+    "rss_builder_pass": true,
+    "no_unsafe_price_sku_changes": true,
+    "unchanged_links_until_domain_move": true,
+    "idempotent_reapply": true
+  },
+  "chromium": {
+    "commerce_screens": 6,
+    "commerce_pass": true,
+    "support_screens": 16,
+    "support_pass": true,
+    "commerce_qa_sha256": "05a7322d05746fc511059d7ec4b84c3b1af4208ad663840bd9d3ad59e84b3970",
+    "support_qa_sha256": "579d543e3401c10edbbf5805c66f217ca405b4f64c7d8d17ebc0fa6003748a96"
+  },
+  "other_gates": {
+    "link_audit_pages": 88,
+    "broken_local_targets": 0,
+    "html_and_jsonld_valid": true,
+    "link_tests": 7,
+    "link_test_failures": 0,
+    "seo_script_exit": 0,
+    "nav_check_exit": 0
+  },
+  "do_not_release": [
+    "old-domain canonical/OG/sitemap still intact, must switch atomically with migration",
+    "live PHP payment/webhook/order email and valid buyer download not tested",
+    "old buyer token/path access not yet tested",
+    "social accounts not migrated",
+    "GitHub main triggers production deploy, no merge before purchase gate"
+  ],
+  "notes": [
+    "isolated git worktree, existing checkout unchanged",
+    "Chrome profile cleanup warning is non-blocking, no browser test failures",
+    "no URL, domain, SKU, price or order file rewrite"
+  ]
+}
