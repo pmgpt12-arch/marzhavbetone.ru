@@ -210,9 +210,10 @@ body.rebrand-approved {
     white-space:nowrap;
   }
   body.rebrand-approved .topbar .nav-toggle{
-    flex:0 0 38px;
-    width:38px;height:38px;
-    margin:0;padding:6px;
+    flex:0 0 44px;
+    min-width:44px;
+    width:44px;height:44px;
+    margin:0;padding:8px;
   }
 }
 
@@ -234,5 +235,18 @@ body.rebrand-approved {
     margin-left:0;margin-right:0;
     width:100%;max-width:100%;
     padding-left:0;padding-right:0;
+  }
+}
+
+/* The legacy mobile topic strip used -22px margins, but approved sections
+ * have 20px padding. Keep chip scrolling inside its own full-width track. */
+@media(max-width:600px){
+  body.rebrand-approved .topic-filter{
+    margin-left:0;
+    margin-right:0;
+    width:100%;
+    max-width:100%;
+    padding-left:0;
+    padding-right:0;
   }
 }

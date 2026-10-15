@@ -11,6 +11,7 @@ handles are NOT targets. Re-runs must be idempotent.
 """
 from __future__ import annotations
 import argparse
+import hashlib
 import re
 import subprocess
 import sys
@@ -19,7 +20,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 OLD_NAME = "Маржа в бетоне"
 NEW_NAME = "На стороне подрядчика"
-NEW_CSS = "brand-approved-2026.css?v=1"
+NEW_CSS = "brand-approved-2026.css?v=" + hashlib.sha1((ROOT / "brand-approved-2026.css").read_bytes()).hexdigest()[:8]
+CSS_REF = re.compile(r'href="(?:\.\./|/)?brand-approved-2026\.css(?:\?v=[^"]*)?"')
 SKIP_FOLDERS = {".git", "node_modules", "content", "data", ".claude"}
 CSS_LINK = re.compile(r'<link\b[^>]*\brel=["\']stylesheet["\'][^>]*>', re.I)
 BODY = re.compile(r'<body(\s[^>]*)?>', re.I)
@@ -55,10 +57,15 @@ def transform_html(text: str, relative: Path) -> str:
         if body.group(0) != "<body>":
             raise ValueError(f"{relative}: unexpected body tag: {body.group(0)}")
         text = text[:body.start()] + '<body class="rebrand-approved">' + text[body.end():]
-    if NEW_CSS in text:
-        if text.count(NEW_CSS) != 1:
-            raise ValueError(f"{relative}: repeated brand CSS references")
-        return text
+    css_refs = list(CSS_REF.finditer(text))
+    if len(css_refs) > 1:
+        raise ValueError(f"{relative}: repeated brand CSS references")
+    if css_refs:
+        current = css_refs[0]
+        old_href = current.group(0)
+        prefix = "../" if '../brand-approved-2026.css' in old_href else ("/" if '/brand-approved-2026.css' in old_href else "")
+        new_href = f'href="{prefix}{NEW_CSS}"'
+        return text[:current.start()] + new_href + text[current.end():]
 
     head_close = text.lower().find("</head>")
     if head_close < 0:

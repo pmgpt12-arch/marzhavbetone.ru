@@ -12,6 +12,7 @@ at this stage: changing them belongs to the later migration acceptance.
 """
 from __future__ import annotations
 import argparse
+import hashlib
 import json
 import re
 import subprocess
@@ -25,6 +26,7 @@ PROTECTED = re.compile(r'data-(?:sku|price)="[^"]*"|id="(?:cart-[^"]*|checkout-[
 LINKS = re.compile(r'(?:href|src)="[^"]*"', re.I)
 LEGACY = re.compile(r'Маржа в бетоне|маржа в бетоне|Маржи в бетоне')
 SKIP = {".git", "node_modules", ".claude", "data", "content"}
+CSS_VERSION = hashlib.sha1((ROOT / "brand-approved-2026.css").read_bytes()).hexdigest()[:8]
 
 
 def git(*args: str) -> str:
@@ -50,8 +52,12 @@ def main() -> int:
     for path in pages:
         text = (ROOT / path).read_text(encoding="utf-8")
         problems = []
-        if "brand-approved-2026.css?v=1" not in text:
-            problems.append("NO_APPROVED_CSS")
+        correct_version = re.search(
+            r'href="(?:\.\./|/)?brand-approved-2026\.css\?v='
+            + CSS_VERSION + r'"', text
+        )
+        if not correct_version:
+            problems.append("NO_APPROVED_CSS_OR_STALE_VERSION")
         if not re.search(r'<body[^>]*class="[^"]*\brebrand-approved\b[^"]*"', text, re.I):
             problems.append("NO_APPROVED_BODY_CLASS")
         if LEGACY.search(text):
@@ -84,7 +90,7 @@ def main() -> int:
             old_links = LINKS.findall(base)
             new_links = LINKS.findall(text)
             css_regex = re.compile(
-                r'href="(?:\.\./|/)?brand-approved-2026\.css\?v=1"'
+                r'href="(?:\.\./|/)?brand-approved-2026\.css\?v=[0-9a-f]{8}"'
             )
             new_links = [link for link in new_links if not css_regex.fullmatch(link)]
             if old_links != new_links:
