@@ -1,0 +1,51 @@
+{
+  "scope": "INDEPENDENT_READ_ONLY_ASSEMBLED_EXACT_P3",
+  "archive_sha256": "44effd5122826ca6950e69806e0bf36ec0dd0cd7b142d58f29b3075ac94ac451",
+  "member_sha": {
+    "00-START-HERE.txt": "f8aadb9047191a9542303bddb88d4ddce543ab6a7be4a7c8ad854a246962ff82",
+    "01-proverochnyy-list-komplekta-ks.docx": "33a874e348b60a977b85bc50abcd54e29d65e01d169d7f4459253c539beeb790",
+    "02-reestr-prilozheniy.xlsx": "d2685f1606ff392cb3d7a23155f047fc11cce9b660541608d3058936a3887a9b",
+    "03-akt-skrytyh-rabot.docx": "cd8e5d4b1533bbbfebb3d85a06784a1b861ef6a8b54bcfb027d557fcb64bfdb5",
+    "04-protokol-vnutrenney-proverki.docx": "d2fd70cb60397076b44209e5989da0a0110b50513bcd5c5c062d558a070a3e1a",
+    "05-pismo-o-nedostatkah.docx": "22d8d04a51f3eacb2285323e0d7517f7ab372a2456e062fb585411e8554a3d3d",
+    "06-zhurnal-peredachi.xlsx": "029b048be85fef8f38e2c48e14ddfec41cf208151b7c406ac4603886f676bffd",
+    "07-sroki-hraneniya.docx": "e38b546f4446d63021f4a4f6bb551deba54e808bdda964528d8eb287eabb8925",
+    "08-algoritm-proverki.pdf": "43396d5cc5bab8829ec917e828eda46773b0e037f13d52aa476ecfb0dacecec2",
+    "09-tipovye-oshibki.docx": "d107fe9cf43acb7aec2b680736856637a22b422bd55698c237cb721e1dcffafa",
+    "10-sravnitelnaya-tablica.docx": "9ff876618a7ffd360af989054d373125bda3deb4e24b0ae14c9e4df90d3132b3"
+  },
+  "files_verified": 11,
+  "source_lineage_verified": 11,
+  "product_checks": {
+    "numbered_checklist": 40,
+    "fillable_aosr_forms": 5,
+    "aosr_fields_min": 130,
+    "error_cases": 15,
+    "excel_formula_rows": 50,
+    "validation_rules_02": 5,
+    "validation_rules_06": 7,
+    "docx_native_matched": 7,
+    "native_negative_retest_06": 8,
+    "native_negative_retest_02": 4
+  },
+  "native_evidence_sha256": {
+    "p3-650-02-buyer-native-20261015-v1": "c024b9f60186b1dfa62fd52fb40646130f588bb32565a577cecdd2aea59fd37c",
+    "p3-650-06-native-print-style-20261015-v1": "57555c4a700ca5cc9338e0fa36628d1c402d89598dd16a5c3a5279f86a641ea6",
+    "p3-650-negative-remediation-native-20261015-v1": "36b6a94027106e7336a9bfe9f7238dab0a5a901bc1345c91234a0b2d8feec38e"
+  },
+  "legacy_fail_confirmed": true,
+  "gates": {
+    "G1_document_integrity": "PASS",
+    "G2_practical_tool_completeness": "PASS_INSPECTED_SCOPE",
+    "G3_workflow_correspondence": "PASS_INSPECTED_SCOPE",
+    "G4_independent_buyer": "BLOCKED_EXACT_SHA_UI_PASTE",
+    "G5_normative": "REUSE_PR646_18_OF_18_SAME_NORMATIVE_BYTES",
+    "G6_native_office": "PARTIAL_OPEN_EXPORT_AND_DERIVED_QA_PASS_UI_OPEN",
+    "G7_design_print": "PASS_REVIEWED_CHANGED_XLSX_NATIVE_PDF",
+    "G8_release_nomination": "HOLD"
+  },
+  "independent_product_verdict": "BLOCKED_NATIVE_UI_AND_FORMAL_RELEASE",
+  "nomination": "NOT_APPROVED",
+  "production_changes": 0,
+  "price_sku_changes": 0
+}
