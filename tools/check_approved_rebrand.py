@@ -60,7 +60,7 @@ def main() -> int:
         # canonical site-wide navigation header. Keep both contracts strict.
         if 'class="brand"' in text:
             short_brand = bool(
-                re.search(r'<span\\s+class="brand-mark">Н</span>', text)
+                re.search(r'<span\s+class="brand-mark">Н</span>', text)
                 and '<span>на стороне подрядчика</span>' in text
             )
             if path.as_posix() in {"success.html", "fail.html"}:
