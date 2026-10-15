@@ -179,3 +179,39 @@ body.rebrand-approved {
     animation-duration:.01ms!important;transition-duration:.01ms!important;
   }
 }
+
+/* Mobile header regression: preserve the brand instead of shrinking to 0px.
+ * Root cause: legacy nav/checkout button display overrides compete for flex
+ * width. The new brand must remain visible at 390px with cart and menu.
+ */
+@media(max-width:700px){
+  body.rebrand-approved .topbar{
+    justify-content:space-between;
+    gap:8px;
+    padding-left:16px;padding-right:16px;
+    min-width:0;
+  }
+  body.rebrand-approved .topbar .brand{
+    flex:0 0 158px;
+    width:158px;
+    min-width:158px;
+    max-width:158px;
+    font-size:13px;
+    line-height:1.12;
+  }
+  body.rebrand-approved .topbar .nav-cta{display:none!important}
+  body.rebrand-approved .topbar .cart-toggle{
+    display:inline-flex!important;
+    flex:0 0 auto;
+    width:auto;
+    margin-left:auto;
+    padding:9px 10px;
+    font-size:12px;
+    white-space:nowrap;
+  }
+  body.rebrand-approved .topbar .nav-toggle{
+    flex:0 0 38px;
+    width:38px;height:38px;
+    margin:0;padding:6px;
+  }
+}
