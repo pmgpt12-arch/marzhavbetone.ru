@@ -14,13 +14,13 @@
 Отдельно включён ежедневный ChatGPT condition watch. **Telegram-бот для публикаций не используется как канал личных аварийных уведомлений**, чтобы не рассылать сведения о неисправностях покупателям.
 
 ## Проверки и доказательства
-- No-network: `python3 -m unittest discover -s tools -p 'test_ssl_*.py' -v`. 21/21 PASS на изолированной среде и 21/21 PASS с исходниками GitHub на ai-workstation 2026-10-15.
+- No-network: `python3 -m unittest discover -s tools -p 'test_ssl_*.py' -v`. 24/24 PASS на изолированной среде и 24/24 PASS с исходниками GitHub на ai-workstation 2026-10-15.
 - Negative cases: истечение, пороги 22/21/14 дней, CA-trust failure, SAN mismatch, DNS failure, timeout, устаревший origin certificate, open/escalate/dedupe/close alert.
 - **Live real-network check** тем же скриптом из GitHub branch на ai-workstation: 2026-10-15T15:52:33Z, apex+www HTTP 200, публичный+origin TLS PASS, SAN верный, срок `2027-01-13T14:32:06Z`, статус OK, `89.94` дня осталось. Artifact: `docs/brand/ssl-watch-live-20261015.json` в этой ветке.
 
 ## Acceptance / VERIFIED DONE
 - [x] Monitoring code and workflow in separate branch.
-- [x] Unit/regression tests 21/21 PASS; artificial errors **detected**.
+- [x] Unit/regression tests 24/24 PASS; artificial errors **detected**.
 - [x] Live check both domains / both origin SNI PASS from ai-workstation.
 - [ ] PR merged to default branch **after reviewing production deploy trigger**. Scheduled workflow lives only on default branch; PR is not enough.
 - [ ] First manual GitHub workflow_dispatch: artifact uploaded, job status recorded.
