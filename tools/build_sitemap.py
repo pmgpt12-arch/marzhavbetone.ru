@@ -23,7 +23,7 @@ from datetime import date
 from pathlib import Path
 
 SITE = Path(__file__).resolve().parent.parent
-BASE = "https://marzhavbetone.ru"
+BASE = "https://nastoronepodryadchika.ru"
 
 # Страницы, которых в карте быть не должно, и причина у каждой.
 EXCLUDED = {
