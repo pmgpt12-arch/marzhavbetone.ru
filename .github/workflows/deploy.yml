@@ -117,9 +117,9 @@ jobs:
           set -euo pipefail
           url="https://nastoronepodryadchika.ru/rebrand-preview-20261016/index.html"
           response=$(curl -fsS --connect-timeout 8 --max-time 18 "$url")
-          printf '%s' "$response" | grep -q 'noindex,nofollow,noarchive'
-          printf '%s' "$response" | grep -q 'preview-only-banner'
-          printf '%s' "$response" | grep -q 'на стороне подрядчика'
+          grep -qF 'noindex,nofollow,noarchive' <<< "$response"
+          grep -qF 'preview-only-banner' <<< "$response"
+          grep -qF 'на стороне подрядчика' <<< "$response"
           echo "SAFE_PREVIEW_HTTPS_AND_NO_PAYMENT=PASS"
 
   deploy:
