@@ -15,6 +15,10 @@ on:
         description: 'Пробный прогон: показать изменения, ничего не заливать'
         type: boolean
         default: false
+      inspect_new_site:
+        description: 'Только проверить каталоги старого и нового сайтов по SSH, без выкладки'
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy
@@ -30,7 +34,47 @@ env:
   SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
 
 jobs:
+  inspect-new-site:
+    if: inputs.inspect_new_site == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Read-only SSH preflight of separate rebrand webroot
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          set -euo pipefail
+          if [ -z "$KEY" ] || [ -z "$HOST" ] || [ -z "$USER" ]; then
+            echo "::error::Missing SSH deployment credentials"
+            exit 2
+          fi
+          umask 077
+          mkdir -p ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes \
+            -o ConnectTimeout=15 -p "$SSH_PORT" "$USER@$HOST" \
+            'set -eu
+             OLD=www/marzhavbetone.ru
+             NEW=www/nastoronepodryadchika.ru
+             [ -d "$OLD" ] && [ -f "$OLD/index.html" ] || { echo "OLD_ROOT_MISSING"; exit 10; }
+             [ -d "$NEW" ] && [ -f "$NEW/index.html" ] || { echo "NEW_ROOT_MISSING"; exit 11; }
+             [ ! -L "$NEW" ] || { echo "NEW_ROOT_IS_SYMLINK"; exit 12; }
+             old_real=$(cd "$OLD" && pwd -P)
+             new_real=$(cd "$NEW" && pwd -P)
+             [ "$old_real" != "$new_real" ] || { echo "SAME_ROOT_BLOCK"; exit 13; }
+             [ -w "$NEW" ] || { echo "NEW_ROOT_NOT_WRITABLE"; exit 14; }
+             printf "OLD_ROOT_OK=YES\nNEW_ROOT_OK=YES\nROOTS_DISTINCT=YES\nNEW_ROOT_WRITABLE=YES\n"
+             [ -d "$OLD/orders" ] && echo "OLD_ORDERS_DIR=EXISTS" || echo "OLD_ORDERS_DIR=ABSENT"
+             [ -f "$OLD/config.php" ] && echo "OLD_CONFIG=EXISTS" || echo "OLD_CONFIG=ABSENT"
+             [ -f "$NEW/config.php" ] && echo "NEW_CONFIG=EXISTS" || echo "NEW_CONFIG=ABSENT"
+             [ -d products-marzhavbetone ] && echo "MASTERS_DIR=EXISTS" || echo "MASTERS_DIR=ABSENT"'
+
   deploy:
+    if: ${{ !inputs.inspect_new_site }}
     runs-on: ubuntu-latest
     steps:
       # Пока секреты не заданы, workflow завершается зелёным и ничего не делает —
