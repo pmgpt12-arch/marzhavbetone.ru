@@ -114,14 +114,14 @@ jobs:
             ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=15 -p "$SSH_PORT" "$USER@$HOST" "$@"
           }
           staging=".rebrand-preview-upload-$GITHUB_RUN_ID"
-          target="www/nastoronepodryadchika.ru/rebrand-preview-20261016"
+          target="www/nastoronepodryadchika.ru/rebrand-preview-20261016-v2"
           ssh_run "set -eu; test -d www/marzhavbetone.ru; test -d www/nastoronepodryadchika.ru; test ! -e '$target'; test ! -L www/nastoronepodryadchika.ru; test ! -e '$staging'; mkdir -m 700 '$staging'"
           timeout 100s rsync -az --no-perms --no-owner --no-group -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT" "$RUNNER_TEMP/mb-preview-safe/" "$USER@$HOST:$staging/"
           ssh_run "set -eu; test -f '$staging/preview-manifest.json'; test -f '$staging/index.html'; test -f '$staging/katalog.html'; test -f '$staging/products/p1-oplata-po-ks2.html'; count=\$(find '$staging' -name '*.html' -type f | wc -l); test \"\$count\" -eq 88; test -z \"\$(find '$staging' -name '*.php' -type f -print -quit)\"; grep -q 'noindex,nofollow,noarchive' '$staging/index.html'; grep -q preview-only-banner '$staging/index.html'; test \"\$(stat -c %d '$staging')\" = \"\$(stat -c %d 'www/nastoronepodryadchika.ru')\"; chmod -R a+rX '$staging'; test ! -e '$target'; mv '$staging' '$target'; echo PREVIEW_PUBLISHED_WITHOUT_OLD_SITE_CHANGE"
       - name: Verify remote noindex preview content
         run: |
           set -euo pipefail
-          url="https://nastoronepodryadchika.ru/rebrand-preview-20261016/index.html"
+          url="https://nastoronepodryadchika.ru/rebrand-preview-20261016-v2/index.html"
           response=$(curl -fsS --connect-timeout 8 --max-time 18 "$url")
           grep -qF 'noindex,nofollow,noarchive' <<< "$response"
           grep -qF 'preview-only-banner' <<< "$response"
