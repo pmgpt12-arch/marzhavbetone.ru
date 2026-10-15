@@ -1,0 +1,181 @@
+/*
+ * "На стороне подрядчика" — owner-approved Engineer Premium UI, 2026-10-15.
+ * Scoped to rebrand-approved pages, preserving current production styling.
+ * Graphite #24292F | warm white #F7F6F2 | muted gold #B08D57 | steel #737C83.
+ * Do not touch checkout IDs, product prices, business logic or buyer files.
+ */
+body.rebrand-approved {
+  --paper:#F7F6F2;
+  --ink:#24292F;
+  --ink-soft:#737C83;
+  --concrete:#D9D8D2;
+  --orange:#B08D57; /* compatibility with existing component tokens */
+  --white:#fff;
+  --line:rgba(36,41,47,.16);
+  --brand-text-accent:#806238; /* readable small text on white */
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Sans","Segoe UI",Arial,sans-serif;
+}
+.rebrand-approved .topbar,
+.rebrand-approved .article-nav{
+  background:rgba(247,246,242,.97);
+  border-bottom:1px solid var(--line);
+  box-shadow:none;
+  padding-top:18px;padding-bottom:18px;
+}
+.rebrand-approved .brand{
+  max-width:245px;flex:0 1 auto;line-height:1.12;
+  font-size:16px;letter-spacing:-.015em;white-space:normal;
+}
+.rebrand-approved .brand-mark{display:none}
+.rebrand-approved .brand span:last-child{max-width:220px;overflow-wrap:normal}
+.rebrand-approved .topbar nav{gap:clamp(13px,2vw,28px)}
+.rebrand-approved .topbar nav a{font-size:14px;font-weight:650}
+.rebrand-approved .topbar a:hover,
+.rebrand-approved .article-nav a:hover{color:var(--brand-text-accent)}
+.rebrand-approved .button,
+.rebrand-approved button.button{
+  background:#24292F;color:#fff;
+  border:1px solid #24292F;border-radius:7px;
+  font-weight:700;box-shadow:none;
+  transition:background .15s ease,color .15s ease;
+}
+.rebrand-approved .button:hover,
+.rebrand-approved button.button:hover{background:#38414B;border-color:#38414B}
+.rebrand-approved .button:focus-visible,
+.rebrand-approved a:focus-visible,
+.rebrand-approved button:focus-visible{
+  outline:3px solid #B08D57;outline-offset:3px;
+}
+.rebrand-approved .eyebrow,
+.rebrand-approved .product-number,
+.rebrand-approved .case-label{
+  color:var(--brand-text-accent);letter-spacing:.08em;
+}
+.rebrand-approved .lead,
+.rebrand-approved .section p,
+.rebrand-approved .article-page>p{color:#626E78;line-height:1.55}
+.rebrand-approved .hero{min-height:0;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:stretch}
+.rebrand-approved .hero-copy{padding:clamp(44px,6vw,86px) clamp(22px,5vw,76px)}
+.rebrand-approved .hero h1{
+  color:var(--ink);
+  font-size:clamp(35px,4.2vw,64px);line-height:1.09;
+  letter-spacing:-.042em;max-width:740px;
+}
+.rebrand-approved .hero h1 em{color:var(--ink)}
+.rebrand-approved .hero .lead{font-size:clamp(16px,1.45vw,19px)}
+.rebrand-approved .hero-scheme{
+  min-height:0;background:#24292F;color:#F7F6F2;
+  padding:clamp(30px,4vw,60px);gap:18px;
+}
+.rebrand-approved .hero-scheme figcaption{
+  color:#D2B88B;background:transparent;box-shadow:none;
+  font-size:13px;letter-spacing:.08em;
+}
+.rebrand-approved .scheme li{border-color:rgba(255,255,255,.19)}
+.rebrand-approved .scheme li:first-child{border-color:rgba(255,255,255,.19)}
+.rebrand-approved .scheme b{color:#C9A96D}
+.rebrand-approved .scheme span{font-size:clamp(16px,1.35vw,20px);color:#F7F6F2}
+.rebrand-approved .scheme-money span,
+.rebrand-approved .scheme-money b{color:#D2B88B}
+.rebrand-approved .scheme-note{color:#D6D9DC}
+.rebrand-approved .hero-scheme .text-link{border-color:#D2B88B;color:#F7F6F2}
+.rebrand-approved .hero-scheme .text-link span{color:#D2B88B}
+.rebrand-approved .hero-actions{gap:20px;flex-wrap:wrap}
+.rebrand-approved .hero-facts{gap:32px;margin-top:38px}
+.rebrand-approved .section{padding-top:clamp(54px,6vw,86px);padding-bottom:clamp(54px,6vw,86px)}
+.rebrand-approved .section h2,
+.rebrand-approved .section-head h2{
+  font-size:clamp(29px,3.7vw,52px);line-height:1.1;letter-spacing:-.035em;
+}
+.rebrand-approved #situations{background:#EEECE6}
+.rebrand-approved #situations .topic-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;border:0;
+}
+.rebrand-approved #situations .topic-grid article,
+.rebrand-approved #situations .topic-grid article+article{
+  padding:22px 24px 25px;background:#fff;
+  border:1px solid #D9D8D2;border-radius:8px;
+  min-width:0;box-shadow:none;
+}
+.rebrand-approved #situations .topic-grid h3{
+  margin:12px 0 12px;font-size:clamp(20px,1.9vw,25px);
+  line-height:1.2;letter-spacing:-.023em;
+}
+.rebrand-approved #situations .topic-grid p{
+  font-size:14px;line-height:1.5;color:#737C83;
+}
+.rebrand-approved .product-card,
+.rebrand-approved .case-card,
+.rebrand-approved .showcase-card{
+  border:1px solid #D9D8D2;border-radius:9px;box-shadow:none;
+}
+.rebrand-approved .product-card{
+  background:#fff;color:#24292F;
+  padding:clamp(22px,2.6vw,34px);
+}
+.rebrand-approved .product-card.featured{background:#24292F;color:#F7F6F2;box-shadow:none}
+.rebrand-approved .product-card.featured p{color:#D5DADF}
+.rebrand-approved .product-card h3{
+  line-height:1.13;letter-spacing:-.03em;overflow-wrap:anywhere;
+}
+.rebrand-approved .product-documents li::marker{color:#B08D57}
+.rebrand-approved .product-card p,
+.rebrand-approved .product-group-note{color:#626E78}
+.rebrand-approved .product-card.featured>p{color:#D5DADF}
+.rebrand-approved .product-footer strong{font-size:20px}
+.rebrand-approved .product-group summary{border-color:#D9D8D2}
+.rebrand-approved .cart-panel{background:#F7F6F2}
+.rebrand-approved .contact-form{
+  background:#24292F;color:#fff;box-shadow:none;
+  border-radius:9px;
+}
+.rebrand-approved .contact-form input,
+.rebrand-approved .contact-form textarea,
+.rebrand-approved .contact-form select{
+  border-radius:6px;
+}
+.rebrand-approved .ticker,
+.rebrand-approved .sales-result,
+.rebrand-approved .channel-banner{
+  background:#24292F;color:#F7F6F2;
+}
+.rebrand-approved .ticker{animation:none}
+.rebrand-approved .sales-result .result-list b{color:#D2B88B}
+.rebrand-approved .social-dock .social-primary{background:#806238}
+.rebrand-approved .social-dock a:hover{background:#47515D}
+.rebrand-approved footer{border-top:1px solid var(--line)}
+.rebrand-approved .article-page h1{letter-spacing:-.04em;line-height:1.09}
+@media(max-width:1050px){
+  .rebrand-approved .topbar{gap:12px}
+  .rebrand-approved .hero{grid-template-columns:1fr}
+  .rebrand-approved .hero-copy{padding-bottom:42px}
+  .rebrand-approved #situations .topic-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .rebrand-approved .topbar{padding:13px 20px}
+  .rebrand-approved .brand{max-width:178px;font-size:14px}
+  .rebrand-approved .hero-copy{padding:40px 20px 30px}
+  .rebrand-approved .hero h1{font-size:clamp(33px,8.8vw,46px);line-height:1.11}
+  .rebrand-approved .hero .lead{font-size:16px;margin:18px 0 21px}
+  .rebrand-approved .hero-scheme{padding:28px 20px;gap:12px;min-height:0}
+  .rebrand-approved .scheme li{padding:12px 0}
+  .rebrand-approved .scheme span{font-size:17px}
+  .rebrand-approved .hero-actions{align-items:stretch}
+  .rebrand-approved .hero-actions .button{width:100%;text-align:center}
+  .rebrand-approved .section{padding:48px 20px}
+  .rebrand-approved #situations .topic-grid{grid-template-columns:1fr;gap:12px}
+  .rebrand-approved #situations .topic-grid article,
+  .rebrand-approved #situations .topic-grid article+article{padding:20px}
+  .rebrand-approved .product-card h3{font-size:clamp(22px,5.8vw,27px)}
+  .rebrand-approved .product-footer{gap:12px}
+  .rebrand-approved .product-footer .button{width:100%}
+  .rebrand-approved .sales-result{padding:42px 20px}
+}
+@media(prefers-reduced-motion:reduce){
+  .rebrand-approved *, .rebrand-approved *::before, .rebrand-approved *::after{
+    animation-duration:.01ms!important;transition-duration:.01ms!important;
+  }
+}
