@@ -56,12 +56,18 @@ def main() -> int:
             problems.append("NO_APPROVED_BODY_CLASS")
         if LEGACY.search(text):
             problems.append("OLD_BRAND_DISPLAY")
-        if "class=\"brand\"" in text and not (
-            'aria-label="На стороне подрядчика, на главную"' in text
-            and re.search(r'<span\s+class="brand-mark">Н</span>', text)
-            and "<span>на стороне подрядчика</span>" in text
-        ):
-            problems.append("HEADER_BRAND_MISMATCH")
+        # Compact post-payment pages have a standalone wordmark, no topbar.
+        if 'class="brand"' in text:
+            wordmark = (
+                re.search(r'<span\s+class="brand-mark">Н</span>', text)
+                and "<span>на стороне подрядчика</span>" in text
+            )
+            header = (
+                "<header" not in text or
+                'aria-label="На стороне подрядчика, на главную"' in text
+            )
+            if not (wordmark and header):
+                problems.append("HEADER_BRAND_MISMATCH")
         if not re.search(r'<title[^>]*>.*?</title>', text, re.I | re.S):
             problems.append("TITLE_MISSING")
         rel = path.as_posix()
