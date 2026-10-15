@@ -215,3 +215,13 @@ body.rebrand-approved {
     margin:0;padding:6px;
   }
 }
+
+/* Legacy styles.css @max-width:600 intentionally hides the old brand text.
+ * The newly approved wordmark must remain visible on mobile. */
+@media(max-width:700px){
+  body.rebrand-approved .topbar .brand span:not(.brand-mark){
+    display:inline!important;
+    max-width:158px;
+    overflow-wrap:normal;
+  }
+}
