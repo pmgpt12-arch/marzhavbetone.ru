@@ -139,6 +139,16 @@ def main():
                 assert code == 200 and json.loads(data)["ok"], (code, data[:500])
                 paid = json.loads((orders / (order_id + ".json")).read_text())
                 assert paid["status"] == "paid" and "p3" in paid["delivery"]["items"]
+                original_delivery = dict(paid["delivery"])
+                notification = {"event": "payment.succeeded", "object": {
+                    "id": paid["payment_id"], "status": "succeeded",
+                    "metadata": {"order_id": order_id}}}
+                repeat_code, repeat_data = request(port, "/webhook.php", notification)
+                assert repeat_code == 200 and json.loads(repeat_data)["ok"]
+                repeated = json.loads((orders / (order_id + ".json")).read_text())
+                assert repeated["status"] == "paid"
+                assert repeated["delivery"] == original_delivery, "duplicate webhook changed issued link"
+                assert repeated["admin_notified_at"] == paid["admin_notified_at"]
                 assert 3598 <= __import__("datetime").datetime.fromisoformat(paid["delivery"]["expires_at"]).timestamp() - time.time() <= 3601
                 code, data = request(port, "/download.php?o=%s&t=%s&f=p3" %
                                      (order_id, paid["delivery"]["token"]))
@@ -148,7 +158,14 @@ def main():
                 after = json.loads((orders / (order_id + ".json")).read_text())
                 assert after["delivery"]["downloads"] == 1
                 assert entries(data) == entries(REFERENCE.read_bytes())
-                print("PASS: P3 server price, mocked payment API and webhook, hour TTL, HTTP ZIP 11/11 exact SHA")
+                # Review the actual buyer email body without invoking mail().
+                php = '''require $argv[1]; require $argv[2]; $o=json_decode(file_get_contents($argv[3]),true); $p=mvb_products()["p3"]; $url=SITE_URL."/download.php?o=".$o["id"]."&t=".$o["delivery"]["token"]."&f=p3"; echo mvb_delivery_email($o,[["sku"=>"p3","name"=>$p["name"],"url"=>$url]]);'''
+                message = subprocess.run(["php", "-r", php, str(web / "config.php"),
+                    str(web / "products-config.php"), str(orders / (order_id + ".json"))],
+                    capture_output=True, text=True, timeout=5, check=True).stdout
+                assert "1 час" in message and "/download.php?o=" in message
+                assert paid["delivery"]["token"] in message
+                print("PASS: P3 mock API, genuine duplicate webhook, buyer email body, one-hour HTTP ZIP 11/11 SHA")
             finally:
                 proc.terminate()
                 proc.wait(timeout=5)
