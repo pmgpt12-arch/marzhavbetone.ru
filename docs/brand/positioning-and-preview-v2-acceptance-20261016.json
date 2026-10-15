@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "status": "PASS_REBRAND_COPY_AND_SAFE_PREVIEW_ONLY",
+  "checked_date": "2026-10-16",
+  "owner_approved_audience": "Для исполнителей работ и услуг в строительстве",
+  "working_hero_heading": "Оформляйте результат. Защищайте заработанное.",
+  "updated_case_heading": "Результат принят, оплата задерживается",
+  "updated_case_description": "Приёмка результата работ или услуг подтверждена, срок оплаты прошёл либо заказчик переносит расчёт.",
+  "source_branch": "feature/rebrand-na-storone-podryadchika-20261015",
+  "source_r1_copy_gate_sha": "1a74e1f2afcf71b24388852f357be3441e297fe5",
+  "source_v2_preview_deploy_sha": "f69edfdd1c145a850d82a18c807540e69fbc6a30",
+  "r2_copy_sync_merge_sha": "d6b89425acfe6337addd6c1003a9271a6a55d4e7",
+  "checks": {
+    "full_html_exact_copy_source": "PASS:88/88; pinned product prices and SKU unchanged",
+    "homepage_generator_copy": "PASS",
+    "original_page_browser": "PASS:6/6 390px and 1360px with nonpayment cart",
+    "preview_bundle": "PASS:88 HTML, 153 public assets, no PHP, 13 submission-disabled forms, all pages noindex",
+    "preview_browser": "PASS:6/6; 0 unauthorized analytics or payment requests",
+    "github_actions_preview_publish": "PASS: run 38825296332, publish-preview SUCCESS; deploy SKIPPED",
+    "public_https_preview": "PASS: main/catalog/P1 HTTP 200, noindex+preview banner",
+    "public_https_home_copy": "PASS: approved-audience, proposed-hero and revised-situation strings present on preview homepage",
+    "production_root_unchanged": "New root still Reg.ru placeholder (HTTP 200); old production store not redeployed"
+  },
+  "preview_url": "https://nastoronepodryadchika.ru/rebrand-preview-20261016-v2/index.html",
+  "preview_catalog_url": "https://nastoronepodryadchika.ru/rebrand-preview-20261016-v2/katalog.html",
+  "preview_product_url": "https://nastoronepodryadchika.ru/rebrand-preview-20261016-v2/products/p1-oplata-po-ks2.html",
+  "workflow_run_url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/38825296332",
+  "limitations": [
+    "Homepage case text is broad, but P1 product itself remains a specific KS-2/KS-3 package",
+    "Exact wording of proposed headline and situation can still be refined before release",
+    "SSL and static preview checked, not new-domain live commerce or YooKassa/webhook/email/1-hour links",
+    "No root-domain launch, old-domain redirects, or social account rename performed",
+    "Historical strict original brand transformation snapshot preserved; revised v2 code gate explicitly whitelists copy updates"
+  ]
+}
