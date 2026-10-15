@@ -88,6 +88,13 @@ async function main(){
     if(!data.h1)errs.push("H1_MISSING");
     if(width===390&&data.header&&!data.hasMobileMenu)errs.push("MENU_MISSING");
    }
+   if(errs.includes("HORIZONTAL_OVERFLOW")){
+    const diag=await call("Runtime.evaluate",{returnByValue:true,expression:`JSON.stringify([...document.querySelectorAll("*")].map(e=>{
+      const r=e.getBoundingClientRect();
+      return {tag:e.tagName,cl:String(e.className).slice(0,70),x:Math.round(r.x),right:Math.round(r.right),width:Math.round(r.width)};
+    }).filter(e=>e.right>document.documentElement.clientWidth+1||e.x< -1).sort((a,b)=>b.right-a.right).slice(0,12))`});
+    if(diag.result?.value)data.overflowElements=JSON.parse(diag.result.value);
+   }
    rows.push({name,width,...data,errors:errs});
   }
  }finally{
