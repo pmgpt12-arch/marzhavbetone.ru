@@ -75,6 +75,12 @@ jobs:
              [ -d "$OLD/orders" ] && echo "OLD_ORDERS_DIR=EXISTS" || echo "OLD_ORDERS_DIR=ABSENT"
              [ -f "$OLD/config.php" ] && echo "OLD_CONFIG=EXISTS" || echo "OLD_CONFIG=ABSENT"
              [ -f "$NEW/config.php" ] && echo "NEW_CONFIG=EXISTS" || echo "NEW_CONFIG=ABSENT"
+             if grep -qF DELIVERY_TTL_DAYS "$OLD/config.php"; then
+               grep -F DELIVERY_TTL_DAYS "$OLD/config.php" | head -4
+             else echo "OLD_CONFIG_TTL_OVERRIDE=ABSENT"; fi
+             if [ -f "$OLD/products-config.php" ]; then
+               grep -F DELIVERY_TTL_DAYS "$OLD/products-config.php" | head -5
+             else echo "OLD_PRODUCTS_CONFIG=ABSENT"; fi
              [ -d products-marzhavbetone ] && echo "MASTERS_DIR=EXISTS" || echo "MASTERS_DIR=ABSENT"'
 
   publish-preview:
