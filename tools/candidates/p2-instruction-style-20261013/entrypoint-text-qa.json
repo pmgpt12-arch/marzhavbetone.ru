@@ -1,0 +1,28 @@
+{
+  "status": "PASS_P2_ENTRYPOINT_TEXT_AND_REFERENCE_SCOPE_ONLY",
+  "scope": "Only two text files, staged noncanonical corrections",
+  "sources": {
+    "00-START-HERE.txt": {
+      "parent_sha256": "ffd45c0ddb86c0d5013abaeec73a8486093b27077dee67df3e9cfe6a6bbc9bfa",
+      "candidate_sha256": "125057d148f1ba42186bad9a10a3958ee32ae17b8f4503730aadcb0aecc96d10",
+      "replacement_count": 2,
+      "candidate_bytes": 4977
+    },
+    "MANIFEST.md": {
+      "parent_sha256": "007e8e0c6152e495d7a8198db3901cffe9f64bcb2a26601afddbf0e98870ab73",
+      "candidate_sha256": "ca6b059e08144052307a91b734b51ed6f148c1b878b6324d4ed80c8c236f4a9b",
+      "replacement_count": 1,
+      "candidate_bytes": 2537
+    }
+  },
+  "official_free_material_title_preserved": "Допы не в подарок",
+  "unchanged_refs": true,
+  "remaining": [
+    "full P2 consistency",
+    "controlled canonical instruction DOCX/PDF replacement",
+    "Excel UI",
+    "buyer/legal",
+    "release G1-G8"
+  ],
+  "timestamp_utc": "2026-10-13T01:13:42.234270+00:00"
+}
