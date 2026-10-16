@@ -420,10 +420,13 @@ jobs:
     runs-on: [self-hosted, Linux, X64]
     timeout-minutes: 12
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Use verified local P3 worktree
+        run: |
+          test "$GITHUB_REF_NAME" = "release/mb001-p3-20261016"
+          test "$(git -C /home/denis/projects/mb001-p3-release-20261016 rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git -C /home/denis/projects/mb001-p3-release-20261016 status --porcelain)"
       - name: Verify exact P3 candidate
+        working-directory: /home/denis/projects/mb001-p3-release-20261016
         run: |
           test "$GITHUB_REF_NAME" = "release/mb001-p3-20261016"
           test "$(git rev-parse HEAD:products-storage/05-ks-bez-vozvrata)" = "00aca2f4e4163f39e329f4dd14e5b23a813d448e"
@@ -452,6 +455,7 @@ jobs:
           done
           test -s ~/.ssh/known_hosts || { echo "::error::SSH_HOST_KEY_UNAVAILABLE"; exit 23; }
       - name: Execute scoped P3 operation
+        working-directory: /home/denis/projects/mb001-p3-release-20261016
         env:
           HOME: ${{ runner.temp }}/p3-sandbox
           HOST: ${{ secrets.DEPLOY_HOST }}
