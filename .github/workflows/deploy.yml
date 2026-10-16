@@ -442,8 +442,14 @@ jobs:
           printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keygen -y -P '' -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
-          ssh-keyscan -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
-          test -s ~/.ssh/known_hosts
+          for attempt in 1 2; do
+            if ssh-keyscan -T 10 -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null; then
+              break
+            fi
+            echo "SSH_HOST_KEY_NETWORK_RETRY attempt=$attempt" >&2
+            sleep 2
+          done
+          test -s ~/.ssh/known_hosts || { echo "::error::SSH_HOST_KEY_UNAVAILABLE"; exit 23; }
       - name: Execute scoped P3 operation
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
