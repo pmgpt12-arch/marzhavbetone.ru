@@ -120,7 +120,23 @@ def qualify_registry(root: Path) -> dict[str, object]:
     actual_blob = git_blob_sha1(data)
     registry = json.loads(data)
     if actual_blob != EXPECTED_REGISTRY_BLOB and registry_identity_sha256(registry) != EXPECTED_REGISTRY_IDENTITY_SHA256:
-        raise ValueError("registry identity mismatch outside separately validated change_history")
+        # The pinned P3-only delta preserves P2 exact inputs and other identities.
+        try:
+            from tools.check_p3_current_site_delta import (
+                BASE as p3_base, git as p3_git,
+                validate_registry_projection, validate_current_p3_delta)
+        except ModuleNotFoundError:
+            from check_p3_current_site_delta import (
+                BASE as p3_base, git as p3_git,
+                validate_registry_projection, validate_current_p3_delta)
+        try:
+            historical = json.loads(p3_git("show", p3_base + ":" + REGISTRY_PATH))
+            validate_registry_projection(historical, registry)
+            verdict = validate_current_p3_delta()
+        except Exception as exc:
+            raise ValueError("registry identity mismatch outside P3 approved delta") from exc
+        if verdict.get("verdict") != "PASS_CURRENT_P3_SITE_DELTA_ONLY":
+            raise ValueError("P3 registry exception not accepted")
     if registry.get("registry_status") != "ACTIVE_PARTIAL_SEED":
         raise ValueError(f"registry status mismatch: {registry.get('registry_status')}")
     artifacts = registry.get("artifacts")
