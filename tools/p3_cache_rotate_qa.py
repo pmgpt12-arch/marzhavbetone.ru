@@ -56,6 +56,40 @@ def main() -> int:
             run([*ssh, remote, "cat " + shlex.quote(path)], stdout=stream, timeout=45)
         return sha(target.read_bytes())
 
+    if os.getenv("P3_CACHE_INSPECT") == "true":
+        observe = r'''
+set -Eeuo pipefail
+site_arg="$1"
+case "$site_arg" in /*) site="$site_arg";; *) site="$HOME/$site_arg";; esac
+site="$(cd "$site" && pwd -P)"
+delivery="$(php -r 'require $argv[1]; require $argv[2]; echo DELIVERY_DIR;' "$site/config.php" "$site/products-config.php")"
+cache="$delivery/05-ks-bez-vozvrata.zip"
+if test -f "$cache"; then
+ echo "LIVE_CACHE_SHA256=$(sha256sum "$cache" | cut -d' ' -f1)"
+else
+ echo "LIVE_CACHE=ABSENT"
+fi
+for d in "$delivery"/.p3-buyer-qa-*; do
+ test -d "$d" || continue
+ for f in "$d"/*.zip; do
+  test -f "$f" || continue
+  echo "STAGED_ZIP_SHA256=$(sha256sum "$f" | cut -d' ' -f1)"
+  echo "STAGED_RUN_ID=$(basename "$d")"
+ done
+done
+vault="$HOME/product-archive-vault/by-sku/p3"
+for d in "$vault"/*; do
+ test -d "$d" || continue
+ echo "ARCHIVE_VERSION=$(basename "$d")"
+ for f in "$d"/*.zip; do
+  test -f "$f" || continue
+  echo "ARCHIVED_OLD_ZIP_SHA256=$(sha256sum "$f" | cut -d' ' -f1)"
+ done
+done
+'''
+        print("P3_CACHE_READONLY_INSPECTION\n" + remote_script(observe, env["SITE_PATH"]), flush=True)
+        return 0
+
     preflight = r'''
 set -Eeuo pipefail
 umask 077

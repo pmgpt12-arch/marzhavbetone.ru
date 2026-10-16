@@ -468,6 +468,16 @@ jobs:
           P3_ONLY: 'true'
           DRY_RUN: ${{ inputs.dry_run }}
         run: bash tools/release_p3_only.sh
+      - name: Inspect P3 cache state after failed rotation (read only)
+        if: ${{ inputs.p3_cache_qa == true && inputs.p3_only != true && inputs.dry_run == true }}
+        working-directory: /home/denis/projects/mb001-p3-release-20261016
+        env:
+          HOME: ${{ runner.temp }}/p3-sandbox
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          P3_CACHE_QA: 'true'
+          P3_CACHE_INSPECT: 'true'
+        run: python3 tools/p3_cache_rotate_qa.py
       - name: Rotate P3 historical cache and verify production buyer archive
         if: ${{ inputs.p3_cache_qa == true && inputs.p3_only != true && inputs.dry_run != true }}
         working-directory: /home/denis/projects/mb001-p3-release-20261016
