@@ -29,12 +29,12 @@ async function main(){
  let ws;
  try{
   let port=0;
-  for(let i=0;i<50;i++){
+  for(let i=0;i<150;i++){
    const f=path.join(profile,"DevToolsActivePort");
    if(fs.existsSync(f)){port=Number(fs.readFileSync(f,"utf8").split("\n")[0]);break;}
    await sleep(120);
   }
-  if(!port)throw Error("Chrome remote debugging did not start");
+  if(!port)throw Error("Chrome remote debugging did not start within 18 seconds; process exit="+String(chrome.exitCode??"running"));
   const tabs=await(await fetch("http://127.0.0.1:"+port+"/json")).json();
   ws=new WebSocket(tabs.find(x=>x.type==="page").webSocketDebuggerUrl);
   await new Promise((resolve,reject)=>{ws.onopen=resolve;ws.onerror=reject});

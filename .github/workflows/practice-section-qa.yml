@@ -49,7 +49,15 @@ jobs:
       - name: Native Chromium nav and hub acceptance at four widths
         run: |
           command -v google-chrome
-          node tools/test_practice_section_ui.cjs artifacts/practice-browser.json
+          status=0
+          node tools/test_practice_section_ui.cjs artifacts/practice-browser.json || status=$?
+          if [ "$status" -eq 2 ]; then
+            echo "::warning::Chromium startup/transport unavailable; one bounded retry"
+            sleep 3
+            node tools/test_practice_section_ui.cjs artifacts/practice-browser.json
+          elif [ "$status" -ne 0 ]; then
+            exit "$status"
+          fi
           node tools/test_approved_brand_layout.cjs "$PWD" artifacts/practice-cart-layout.json
       - uses: actions/upload-artifact@v4
         if: always()
