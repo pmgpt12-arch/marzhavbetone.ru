@@ -90,6 +90,8 @@ class P3LegacySnapshotBridgeTests(unittest.TestCase):
         price = re.search(r"'price'\s*=>\s*(\d+)", p3.group(1))
         self.assertIsNotNone(price)
         self.assertEqual(int(price.group(1)), 1790000)
+        diagnostic = (root / "diagnostika.html").read_text(encoding="utf-8")
+        self.assertIn('"url": "/products/p3-shablony-ks2-ks3.html", "price": 17900', diagnostic)
         pages = ("index.html", "katalog.html",
                  "products/p3-shablony-ks2-ks3.html",
                  "articles/proverka-ks-2-pered-sdachey.html",
