@@ -187,5 +187,38 @@ class ContractTests(unittest.TestCase):
         self.assertTrue(page.waited)
 
 
+class ApprovedP3PriceTitleTests(unittest.TestCase):
+    def test_original_title_still_accepted(self):
+        self.assertTrue(target.accepted_title_match({"source_path": "index.html",
+                                                       "title": "Original"}, "Original"))
+
+    def test_p3_exact_price_title_allowed_with_pinned_gate(self):
+        with mock.patch("tools.check_p3_current_site_delta.validate_current_p3_delta",
+                        return_value={"verdict": "PASS_CURRENT_P3_SITE_DELTA_ONLY"}) as verified:
+            self.assertTrue(target.accepted_title_match(
+                {"source_path": target.P3_PRICE_PAGE, "title": "Old P3 title"},
+                target.P3_APPROVED_TITLE))
+            verified.assert_called_once()
+
+    def test_other_page_change_still_fails(self):
+        self.assertFalse(target.accepted_title_match(
+            {"source_path": "katalog.html", "title": "Old catalog"},
+            target.P3_APPROVED_TITLE))
+
+    def test_wrong_p3_price_title_fails(self):
+        self.assertFalse(target.accepted_title_match(
+            {"source_path": target.P3_PRICE_PAGE, "title": "Old P3 title"},
+            "P3 — 1 990 ₽"))
+
+    def test_gate_failure_cannot_accept_current_price_title(self):
+        with mock.patch("tools.check_p3_current_site_delta.validate_current_p3_delta",
+                        side_effect=ValueError("unapproved source drift")):
+            with self.assertRaisesRegex(ValueError, "unapproved source drift"):
+                target.accepted_title_match(
+                    {"source_path": target.P3_PRICE_PAGE, "title": "Old P3 title"},
+                    target.P3_APPROVED_TITLE)
+
+
+
 if __name__ == "__main__":
     unittest.main()

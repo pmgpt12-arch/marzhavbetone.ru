@@ -62,6 +62,14 @@ def stable_id(runtime_sku: str, relative_path: str) -> str:
 
 
 def build_inventory(registry: dict, repo: Path, source_commit: str) -> dict:
+    # This inventory is an immutable historical snapshot, not a live-root gate.
+    # Verify historical trees from the pinned commit; current roots are checked
+    # separately by build_artifact_registry.py against HEAD.
+    registry = json.loads(json.dumps(registry))
+    for source in registry.get("product_sources", []):
+        root = source["relative_root"]
+        source["git_tree_sha"] = git_text(repo, "rev-parse", f"{source_commit}:{root}")
+        source["bytes"] = sum(int(row["bytes"]) for row in ls_tree_files(repo, source_commit, root))
     sources = registry.get("product_sources", [])
     if len(sources) != EXPECTED_ROOTS:
         raise InventoryError(f"runtime root count mismatch: {len(sources)} != {EXPECTED_ROOTS}")

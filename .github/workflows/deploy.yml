@@ -15,6 +15,10 @@ on:
         description: 'Пробный прогон: показать изменения, ничего не заливать'
         type: boolean
         default: false
+      p3_only:
+        description: 'Адресный P3, без остальных товаров'
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy
@@ -31,6 +35,7 @@ env:
 
 jobs:
   deploy:
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.p3_only != true }}
     runs-on: ubuntu-latest
     steps:
       # Пока секреты не заданы, workflow завершается зелёным и ничего не делает —
@@ -409,3 +414,57 @@ jobs:
           payload=$(printf '{"host":"marzhavbetone.ru","key":"%s","urlList":%s}' "$key" "$list")
           code=$(curl -s -o /tmp/indexnow.out -w '%{http_code}'                  -X POST 'https://yandex.com/indexnow'                  -H 'Content-Type: application/json; charset=utf-8'                  -d "$payload")
           echo "IndexNow → HTTP $code"; cat /tmp/indexnow.out || true
+
+  deploy-p3-only:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.p3_only == true }}
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    steps:
+      - name: Use verified local P3 worktree
+        run: |
+          test "$GITHUB_REF_NAME" = "release/mb001-p3-20261016"
+          test "$(git -C /home/denis/projects/mb001-p3-release-20261016 rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git -C /home/denis/projects/mb001-p3-release-20261016 status --porcelain)"
+      - name: Verify exact P3 candidate
+        working-directory: /home/denis/projects/mb001-p3-release-20261016
+        run: |
+          test "$GITHUB_REF_NAME" = "release/mb001-p3-20261016"
+          test "$(git rev-parse HEAD:products-storage/05-ks-bez-vozvrata)" = "00aca2f4e4163f39e329f4dd14e5b23a813d448e"
+          python3 tools/check_p3_current_site_delta.py > /dev/null
+          php -l products-config.php
+          php -r 'define("ORDERS_DIR",sys_get_temp_dir()); require "products-config.php"; exit(mvb_products()["p3"]["price"] === 1790000 ? 0 : 3);'
+          bash -n tools/release_p3_only.sh
+      - name: Prepare GitHub deploy SSH
+        env:
+          HOME: ${{ runner.temp }}/p3-sandbox
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          test -n "$KEY" && test -n "$HOST" && test -n "$USER" || exit 1
+          mkdir -p ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keygen -y -P '' -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
+          for attempt in 1 2; do
+            if ssh-keyscan -T 10 -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null; then
+              break
+            fi
+            echo "SSH_HOST_KEY_NETWORK_RETRY attempt=$attempt" >&2
+            sleep 2
+          done
+          test -s ~/.ssh/known_hosts || { echo "::error::SSH_HOST_KEY_UNAVAILABLE"; exit 23; }
+      - name: Execute scoped P3 operation
+        working-directory: /home/denis/projects/mb001-p3-release-20261016
+        env:
+          HOME: ${{ runner.temp }}/p3-sandbox
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          P3_ONLY: 'true'
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: bash tools/release_p3_only.sh
+      - name: Remove job-scoped SSH credentials
+        if: always()
+        run: |
+          rm -f "$RUNNER_TEMP/p3-sandbox/.ssh/deploy_key" "$RUNNER_TEMP/p3-sandbox/.ssh/deploy_key.pub"
+          rm -f "$RUNNER_TEMP/p3-sandbox/.ssh/known_hosts"

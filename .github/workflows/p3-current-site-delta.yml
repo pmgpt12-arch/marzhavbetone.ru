@@ -1,0 +1,31 @@
+name: P3 current site delta gate
+
+on:
+  pull_request:
+    paths:
+      - 'download.php'
+      - 'products-config.php'
+      - 'products/p3-shablony-ks2-ks3.html'
+      - 'tools/test_delivery_one_hour.php'
+      - 'tools/check_p3_current_site_delta.py'
+      - 'tools/test_p3_current_site_delta.py'
+      - 'products-storage/05-ks-bez-vozvrata/**'
+      - 'products-storage/ARTIFACT-REGISTRY.json'
+      - '.github/workflows/p3-current-site-delta.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-current-delta:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check pinned historic reports and exact P3 current delta
+        run: python3 tools/check_p3_current_site_delta.py
+      - name: Test P3 negative drift controls
+        run: python3 -m unittest tools.test_p3_current_site_delta

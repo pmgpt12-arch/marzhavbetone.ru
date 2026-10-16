@@ -28,6 +28,8 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # P3 exact delta gate requires accepted baseline ancestry
 
       - uses: actions/setup-python@v5
         with:

@@ -61,7 +61,7 @@ $reserve = mvb_with_order_lock_strict($orderFile, function (array &$locked) use 
         return ['deny' => [403, 'Ссылка недействительна.']];
     }
 
-    if (!empty($delivery['expires_at']) && strtotime((string)$delivery['expires_at']) < time()) {
+    if (!empty($delivery['expires_at']) && strtotime((string)$delivery['expires_at']) <= time()) {
         return ['deny' => [410, 'Срок действия ссылки истёк.']];
     }
 
