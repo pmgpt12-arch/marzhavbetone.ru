@@ -24,7 +24,7 @@ foreach ([
     'ORDERS_DIR' => sys_get_temp_dir(),
     'SITE_URL' => 'https://example.invalid',
     'ADMIN_EMAIL' => 'a@example.invalid',
-    'DELIVERY_TTL_DAYS' => 7,
+    'DELIVERY_TTL_SECONDS' => 3600,
     'YOOKASSA_SHOP_ID' => 't',
     'YOOKASSA_SECRET_KEY' => 't',
     'YOOKASSA_API_URL' => 'https://example.invalid',

@@ -102,9 +102,22 @@ if (!defined('PRODUCTS_DIR')) {
 if (!defined('DELIVERY_DIR')) {
     define('DELIVERY_DIR', ORDERS_DIR . '/delivery');
 }
-// Срок жизни ссылки на скачивание (обещание из письма покупателю — 30 дней)
-if (!defined('DELIVERY_TTL_DAYS')) {
-    define('DELIVERY_TTL_DAYS', 30);
+// Срок ссылки на скачивание новых заказов — ровно 1 час (3600 секунд).
+// Исторические delivery.expires_at не продлеваем и не перезаписываем.
+if (!defined('DELIVERY_TTL_SECONDS')) {
+    define('DELIVERY_TTL_SECONDS', 3600);
+}
+if ((int) DELIVERY_TTL_SECONDS !== 3600) {
+    throw new RuntimeException('DELIVERY_TTL_SECONDS must be exactly 3600');
+}
+
+/** Просроченная, отсутствующая или повреждённая дата запрещает скачивание. */
+function mvb_delivery_link_expired(array $delivery, ?int $now = null): bool
+{
+    $raw = $delivery['expires_at'] ?? null;
+    if (!is_string($raw) || trim($raw) === '') return true;
+    $expiry = strtotime($raw);
+    return $expiry === false || $expiry <= ($now ?? time());
 }
 if (!defined('DELIVERY_MAX_DOWNLOADS')) {
     define('DELIVERY_MAX_DOWNLOADS', 30);
@@ -605,6 +618,11 @@ function mvb_prepare_delivery(array &$order): array
     // ссылки, ушедшие покупателю прошлым разом, ломать нельзя.
     $existing = is_array($order['delivery'] ?? null) ? $order['delivery'] : [];
     $token = (string)($existing['token'] ?? '');
+    // Повторный webhook не продлевает уже выданный или просроченный токен.
+    if ($token !== '' && mvb_delivery_link_expired($existing)) {
+        return ['links' => [], 'missing' => [['sku' => '—',
+            'reason' => 'срок прежней ссылки истёк или отсутствует']]];
+    }
     if ($token === '') {
         $token = bin2hex(random_bytes(16));
     }
@@ -674,11 +692,12 @@ function mvb_prepare_delivery(array &$order): array
         return ['links' => [], 'missing' => $missing];
     }
 
+    $issuedAt = time();
     $order['delivery'] = [
         'token'      => $token,
-        'created_at' => (string)($existing['created_at'] ?? date('c')),
+        'created_at' => (string)($existing['created_at'] ?? date('c', $issuedAt)),
         'expires_at' => (string)($existing['expires_at']
-            ?? date('c', time() + DELIVERY_TTL_DAYS * 86400)),
+            ?? date('c', $issuedAt + DELIVERY_TTL_SECONDS)),
         'downloads'  => (int)($existing['downloads'] ?? 0),
         'items'      => $items,
         'editions'   => $editions,
@@ -880,7 +899,7 @@ function mvb_deliver_and_notify(array &$order): array
     }
 
     if (!empty($order['email'])) {
-        $subject = 'Ваши материалы «Маржа в бетоне» — заказ оплачен';
+        $subject = 'Ваши материалы «На стороне подрядчика» — заказ оплачен';
         $headers = [
             'From: site@marzhavbetone.ru',
             'Reply-To: ' . ADMIN_EMAIL,
@@ -914,8 +933,7 @@ function mvb_delivery_email(array $order, array $links): string
     foreach ($links as $link) {
         $body .= '• ' . $link['name'] . "\n  " . $link['url'] . "\n\n";
     }
-    $days = DELIVERY_TTL_DAYS;
-    $body .= "Ссылки действуют {$days} дней. Сохраните файлы на свой компьютер.\n\n";
+    $body .= "Ссылки действуют 1 час с момента формирования. Сохраните файлы на свой компьютер.\n\n";
     $body .= "Что делать дальше:\n";
     $body .= "1. Скачайте архив и распакуйте его.\n";
     // Файла инструкции нет в части папок, поэтому письмо на него не
@@ -929,6 +947,6 @@ function mvb_delivery_email(array $order, array $links): string
     $body .= "- PDF-файлы используются как чек-листы и алгоритмы;\n";
     $body .= "- для спорных ситуаций нужна проверка профильного специалиста.\n\n";
     $body .= "Вопросы: " . ADMIN_EMAIL . "\n\n";
-    $body .= "Команда «Маржа в бетоне»\n";
+    $body .= "Команда «На стороне подрядчика»\n";
     return $body;
 }

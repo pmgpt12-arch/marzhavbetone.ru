@@ -1,0 +1,48 @@
+{
+  "gate": "R3_OWNER_AGREED_ONE_HOUR_BUYER_DOWNLOAD",
+  "status": "PASS_LOCAL_SYNTHETIC__FULL_BUYER_GATE_HOLD",
+  "date": "2026-10-16",
+  "repo": "pmgpt12-arch/marzhavbetone.ru",
+  "branch": "feature/rebrand-r3-one-hour-delivery-20261016",
+  "parent_r2_sha": "9a2e7936c8dc1b4c4e5afc8b654d82736f12e0af",
+  "agreed_link_lifetime_seconds": 3600,
+  "source_code_default_previous_days": 30,
+  "live_old_production_ttl_override": "ABSENT",
+  "live_old_production_inspection": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/38834604787",
+  "implementation": {
+    "new_links_expire_at_3600s": true,
+    "expired_token_cannot_be_refreshed_by_callback": true,
+    "missing_invalid_or_boundary_expiry_rejected": true,
+    "historical_order_expires_at_preserved": true,
+    "email_promises_one_hour": true,
+    "new_brand_subject_and_signature": true,
+    "sender_transport": "existing site@marzhavbetone.ru still in source pending authenticated new sender acceptance",
+    "hours_config_override_not_3600_blocked": true
+  },
+  "verified": {
+    "php_syntax": "PASS",
+    "unit_checks": 22,
+    "php_download_http_checks": 13,
+    "old_delivery_regression_suites": 4,
+    "negative_config_override": "PASS",
+    "strict_source_delta": "PASS",
+    "php_download_statuses": "200_valid,403_invalid_token_or_unpaid,404_unordered_sku_or_order,410_expired_missing_invalid_date,429_download_limit"
+  },
+  "source_sha256": {
+    "products-config.php": "af9982c37e83f87bc170e2aa6bc7dba62f6a51e7cf5719fe5eb3c95b9c592ba8",
+    "download.php": "91aa0ab0b4444217881546bedbf9ebb918e54d0c795dc9ad61aa991ce654baa9",
+    "tools/test_delivery_one_hour.php": "b7a00ff33ce34c29bf68be853224d15bf6848f9934ed4a37c621cd2187027d72",
+    "tools/test_delivery_expiry_http.py": "1d8c0e2ded495172965fb7f86ba92a8caed6406c4e9ee764db8a93564946418f",
+    "tools/check_r3_one_hour_delta.py": "607a49d95c6c4909859dfb32a6483910d49c2c1ced3e21f5f060d862106c57b2",
+    ".github/workflows/r3-one-hour-delivery.yml": "c2e771eca1deb25ead90650532306da430e03ad1f6843a05bec8aefc6a0f4d7b"
+  },
+  "release_blockers": [
+    "Do not deploy new PHP to the old live store",
+    "No new-domain config.php or new domain secure order root configured",
+    "Real YooKassa test payment, signed webhook, email delivery, zip archive SHA and browser journey remain unverified",
+    "Email From identity and SPF/DKIM require separate verification",
+    "No redirects/checkout cutover to new domain until full buyer gate"
+  ],
+  "production_modified": false,
+  "test_mode": "synthetic fake order and localhost PHP; no external calls"
+}

@@ -1,0 +1,64 @@
+name: R3 one-hour buyer download
+
+on:
+  push:
+    branches:
+      - feature/rebrand-r3-one-hour-delivery-20261016
+  pull_request:
+    branches:
+      - feature/rebrand-r2-domain-20261016
+    paths:
+      - 'products-config.php'
+      - 'download.php'
+      - 'tools/test_delivery_one_hour.php'
+      - 'tools/test_delivery_expiry_http.py'
+      - 'tools/test_delivery_all_or_nothing.php'
+      - 'tools/test_delivery_cache_freshness.php'
+      - 'tools/test_order_lock.php'
+      - 'tools/test_price_authority.php'
+      - '.github/workflows/r3-one-hour-delivery.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-delivery:
+    name: PHP 8.3 synthetic expiry and download acceptance
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install PHP runtime and zip extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: zip
+          tools: none
+          coverage: none
+      - name: Verify PHP syntax and exact hourly expiration
+        run: |
+          set -euo pipefail
+          php -v
+          php -m | grep -Fx zip
+          php -l products-config.php
+          php -l download.php
+          php -l tools/test_delivery_one_hour.php
+          php tools/test_delivery_one_hour.php
+          php -r 'define("ORDERS_DIR", sys_get_temp_dir()); define("DELIVERY_TTL_SECONDS",7200); try { require "products-config.php"; exit(9); } catch (RuntimeException $e) { echo "PASS: non-hour override rejected\n"; exit(0); }'
+      - name: Synthetic HTTP link acceptance (no payment, no buyer records)
+        run: |
+          set -euo pipefail
+          python3 tools/test_delivery_expiry_http.py
+      - name: Existing product price, delivery and concurrency regressions
+        run: |
+          set -euo pipefail
+          php tools/test_delivery_all_or_nothing.php
+          php tools/test_delivery_cache_freshness.php
+          php tools/test_order_lock.php
+          php tools/test_price_authority.php
+      - name: Reject unapproved changes to core commerce source
+        run: |
+          set -euo pipefail
+          python3 tools/check_r3_one_hour_delta.py --check

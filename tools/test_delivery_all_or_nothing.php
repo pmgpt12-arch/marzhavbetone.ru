@@ -37,7 +37,7 @@ foreach ([
     'PRODUCTS_DIR' => $products,
     'SITE_URL' => 'https://example.invalid',
     'ADMIN_EMAIL' => 'admin@example.invalid',
-    'DELIVERY_TTL_DAYS' => 7,
+    'DELIVERY_TTL_SECONDS' => 3600,
     'YOOKASSA_SHOP_ID' => 'test',
     'YOOKASSA_SECRET_KEY' => 'test',
     'YOOKASSA_API_URL' => 'https://example.invalid',

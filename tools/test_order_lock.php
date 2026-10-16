@@ -33,7 +33,7 @@ foreach ([
     'ORDERS_DIR' => $tmp,
     'SITE_URL' => 'https://example.invalid',
     'ADMIN_EMAIL' => 'admin@example.invalid',
-    'DELIVERY_TTL_DAYS' => 7,
+    'DELIVERY_TTL_SECONDS' => 3600,
     'YOOKASSA_SHOP_ID' => 'test',
     'YOOKASSA_SECRET_KEY' => 'test',
     'YOOKASSA_API_URL' => 'https://example.invalid',
@@ -65,7 +65,7 @@ declare(strict_types=1);
 [$script, $root, $orderFile, $deliveryLog, $tmpDir, $tag] = $argv;
 foreach ([
     'ORDERS_DIR' => $tmpDir, 'SITE_URL' => 'https://example.invalid',
-    'ADMIN_EMAIL' => 'a@example.invalid', 'DELIVERY_TTL_DAYS' => 7,
+    'ADMIN_EMAIL' => 'a@example.invalid', 'DELIVERY_TTL_SECONDS' => 3600,
     'YOOKASSA_SHOP_ID' => 't', 'YOOKASSA_SECRET_KEY' => 't',
     'YOOKASSA_API_URL' => 'https://example.invalid', 'YOOKASSA_MODE' => 'test',
 ] as $n => $v) { if (!defined($n)) define($n, $v); }
