@@ -23,6 +23,10 @@ on:
         description: 'Адресный выпуск P11'
         type: boolean
         default: false
+      p5_review_export:
+        description: 'Передать только архив P5 на проверку форматирования'
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy
@@ -39,7 +43,7 @@ env:
 
 jobs:
   deploy:
-    if: ${{ github.event_name != 'workflow_dispatch' || (inputs.p3_only != true && inputs.p11_only != true) }}
+    if: ${{ github.event_name != 'workflow_dispatch' || (inputs.p3_only != true && inputs.p11_only != true && inputs.p5_review_export != true) }}
     runs-on: ubuntu-latest
     steps:
       # Пока секреты не заданы, workflow завершается зелёным и ничего не делает —
@@ -534,3 +538,22 @@ jobs:
         run: |
           rm -f "$RUNNER_TEMP/p11-sandbox/.ssh/deploy_key" "$RUNNER_TEMP/p11-sandbox/.ssh/deploy_key.pub"
           rm -f "$RUNNER_TEMP/p11-sandbox/.ssh/known_hosts"
+
+  export-p5-review:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.p5_review_export == true }}
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 4
+    steps:
+      - name: Verify exact candidate on ai-workstation
+        run: |
+          test "$GITHUB_REF_NAME" = "candidate/mb001-p5-owner-review-20261016"
+          test "$(git -C /home/denis/projects/mb001-p5-owner-review-20261016 rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git -C /home/denis/projects/mb001-p5-owner-review-20261016 status --porcelain)"
+          sha256sum /home/denis/projects/mb001-p5-owner-review-20261016/tools/candidates/p5-p12-executive-owner-review-20261016/P5-P12-protection-system-30-files-owner-review-v1.zip
+      - name: Export P5 candidate without any production access
+        uses: actions/upload-artifact@v4
+        with:
+          name: p5-editorial-archive-${{ github.run_id }}
+          path: /home/denis/projects/mb001-p5-owner-review-20261016/tools/candidates/p5-p12-executive-owner-review-20261016/P5-P12-protection-system-30-files-owner-review-v1.zip
+          if-no-files-found: error
+          retention-days: 3
