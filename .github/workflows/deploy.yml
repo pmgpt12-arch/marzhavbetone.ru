@@ -19,6 +19,10 @@ on:
         description: 'Адресный P3, без остальных товаров'
         type: boolean
         default: false
+      p3_cache_qa:
+        description: 'Архивировать старый кэш P3 и создать доказательство покупательского ZIP'
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy
@@ -35,7 +39,7 @@ env:
 
 jobs:
   deploy:
-    if: ${{ github.event_name != 'workflow_dispatch' || inputs.p3_only != true }}
+    if: ${{ github.event_name != 'workflow_dispatch' || (inputs.p3_only != true && inputs.p3_cache_qa != true) }}
     runs-on: ubuntu-latest
     steps:
       # Пока секреты не заданы, workflow завершается зелёным и ничего не делает —
@@ -416,7 +420,7 @@ jobs:
           echo "IndexNow → HTTP $code"; cat /tmp/indexnow.out || true
 
   deploy-p3-only:
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.p3_only == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && (inputs.p3_only == true || inputs.p3_cache_qa == true) }}
     runs-on: [self-hosted, Linux, X64]
     timeout-minutes: 12
     steps:
@@ -455,6 +459,7 @@ jobs:
           done
           test -s ~/.ssh/known_hosts || { echo "::error::SSH_HOST_KEY_UNAVAILABLE"; exit 23; }
       - name: Execute scoped P3 operation
+        if: ${{ inputs.p3_only == true && inputs.p3_cache_qa != true }}
         working-directory: /home/denis/projects/mb001-p3-release-20261016
         env:
           HOME: ${{ runner.temp }}/p3-sandbox
@@ -463,6 +468,23 @@ jobs:
           P3_ONLY: 'true'
           DRY_RUN: ${{ inputs.dry_run }}
         run: bash tools/release_p3_only.sh
+      - name: Rotate P3 historical cache and verify production buyer archive
+        if: ${{ inputs.p3_cache_qa == true && inputs.p3_only != true && inputs.dry_run != true }}
+        working-directory: /home/denis/projects/mb001-p3-release-20261016
+        env:
+          HOME: ${{ runner.temp }}/p3-sandbox
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          P3_CACHE_QA: 'true'
+        run: python3 tools/p3_cache_rotate_qa.py
+      - name: Upload exact production buyer archive for manual acceptance
+        if: ${{ inputs.p3_cache_qa == true && inputs.p3_only != true && inputs.dry_run != true }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: p3-production-buyer-${{ github.run_id }}
+          path: ${{ runner.temp }}/p3-cache-evidence/
+          if-no-files-found: error
+          retention-days: 14
       - name: Remove job-scoped SSH credentials
         if: always()
         run: |
