@@ -21,6 +21,7 @@ import json
 import re
 import subprocess
 from pathlib import Path
+from rename_practice_section import html_transform, GENERATOR, sub_once
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE_SHA = "32cb4ee8627c12d067a0db962fdab9adf49f3ade"
@@ -96,7 +97,9 @@ def expected_rebrand(original: str, name: str, css_version: str, absolute: bool 
     tag = f'\n  <link rel="stylesheet" href="{prefix}{CSS_NAME}?v={css_version}">'
     after = links[-1].end()
     text = text[:after] + tag + text[after:]
-    return apply_approved_copy(text, HOME_COPY_WHITELIST) if name == "index.html" else text
+    if name == "index.html":
+        text = apply_approved_copy(text, HOME_COPY_WHITELIST)
+    return html_transform(text, Path(name))
 
 
 def inspect() -> dict:
@@ -131,10 +134,12 @@ def inspect() -> dict:
     generator_path = "tools/rebuild_index_2026-08-14.py"
     generator_baseline = git("show", f"{BASE_SHA}:{generator_path}")
     generator_expected = apply_approved_copy(generator_baseline, GENERATOR_COPY_WHITELIST)
+    for a,b in GENERATOR[generator_path].items():
+        generator_expected = sub_once(generator_expected,a,b,generator_path)
     generator_actual = (ROOT / generator_path).read_text("utf-8")
     generator_copy_pass = generator_actual == generator_expected
     return {
-        "gate": "REBRAND_EXACT_TRANSFORMATION_V3_APPROVED_OFFER",
+        "gate": "REBRAND_EXACT_TRANSFORMATION_V4_APPROVED_EDITORIAL_NAME",
         "historical_baseline_sha": BASE_SHA,
         "current_commit": git("rev-parse", "HEAD").strip(),
         "css_version": version,
