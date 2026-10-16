@@ -16,7 +16,7 @@ from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
 
 ROOT=Path(__file__).resolve().parent.parent
-PARENT_SHA="8836eff74f80066812537132d32d9adc790707c1"
+PARENT_SHA="79018043dd965313b73036f760572b0aaf77f9bd"
 OLD="https://marzhavbetone.ru"
 NEW="https://nastoronepodryadchika.ru"
 

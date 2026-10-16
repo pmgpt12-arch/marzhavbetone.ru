@@ -21,6 +21,7 @@ import json
 import re
 import subprocess
 from pathlib import Path
+from rename_practice_section import html_transform, GENERATOR, sub_once
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE_SHA = "32cb4ee8627c12d067a0db962fdab9adf49f3ade"
@@ -32,15 +33,28 @@ HOME_COPY_WHITELIST = [
     ("ДЛЯ СТРОИТЕЛЬНЫХ ПОДРЯДЧИКОВ И СУБПОДРЯДЧИКОВ",
      "ДЛЯ ИСПОЛНИТЕЛЕЙ РАБОТ И УСЛУГ В СТРОИТЕЛЬСТВЕ", 1),
     ("Система получения оплаты <em>за выполненные строительные работы</em>",
-     "Оформляйте результат. <em>Защищайте заработанное.</em>", 1),
+     "Практические системы <em>для решения спорных вопросов с заказчиком</em>", 1),
     ("Готовые алгоритмы и документы для каждого этапа: договор, допработы, исполнительная документация, КС-2 и КС-3, удержания и получение оплаты.",
-     "Документы, расчёты и порядок действий для подтверждения работ и услуг, приёмки, защиты своей позиции в споре с заказчиком и получения оплаты.", 1),
+     "Готовые комплекты документов, расчёты и пошаговые алгоритмы действий — от согласования условий договора и дополнительных работ до приёмки результата, оспаривания удержаний и получения оплаты.", 1),
+    ('<a class="button" href="#situations">Выбрать свою ситуацию</a>',
+     '<a class="button" href="#situations">Подобрать решение под свою ситуацию →</a>', 1),
     ("Работы закрыты, но денег нет", "Результат принят, оплата задерживается", 2),
     ("КС подписаны, срок оплаты прошёл или заказчик откладывает расчёт.",
      "Приёмка результата работ или услуг подтверждена, срок оплаты прошёл либо заказчик переносит расчёт.", 1),
 ]
-GENERATOR_COPY_WHITELIST = [(source, replacement, 1) for source, replacement, _ in HOME_COPY_WHITELIST[-2:]]
-
+# Historical 2026-08-14 generator has a punctuation variant in H1 and a
+# redundant lead. Explicitly whitelist those differences; never blanket-
+# rewrite original product names or source archive/document contents.
+GENERATOR_COPY_WHITELIST = [
+    HOME_COPY_WHITELIST[0],
+    ("Система получения оплаты <em>за выполненные строительные работы.</em>",
+     "Практические системы <em>для решения спорных вопросов с заказчиком</em>", 1),
+    HOME_COPY_WHITELIST[2],
+    HOME_COPY_WHITELIST[3],
+    ('        <p class="lead">От договора до денег на счёте подрядчика.</p>\n', '', 1),
+    ("Работы закрыты, но денег нет", "Результат принят, оплата задерживается", 1),
+    HOME_COPY_WHITELIST[5],
+]
 
 def apply_approved_copy(text: str, edits: list[tuple[str, str, int]]) -> str:
     """Fail closed if a declared source phrase changes or appears unexpectedly."""
@@ -83,7 +97,9 @@ def expected_rebrand(original: str, name: str, css_version: str, absolute: bool 
     tag = f'\n  <link rel="stylesheet" href="{prefix}{CSS_NAME}?v={css_version}">'
     after = links[-1].end()
     text = text[:after] + tag + text[after:]
-    return apply_approved_copy(text, HOME_COPY_WHITELIST) if name == "index.html" else text
+    if name == "index.html":
+        text = apply_approved_copy(text, HOME_COPY_WHITELIST)
+    return html_transform(text, Path(name))
 
 
 def inspect() -> dict:
@@ -118,10 +134,12 @@ def inspect() -> dict:
     generator_path = "tools/rebuild_index_2026-08-14.py"
     generator_baseline = git("show", f"{BASE_SHA}:{generator_path}")
     generator_expected = apply_approved_copy(generator_baseline, GENERATOR_COPY_WHITELIST)
+    for a,b in GENERATOR[generator_path].items():
+        generator_expected = sub_once(generator_expected,a,b,generator_path)
     generator_actual = (ROOT / generator_path).read_text("utf-8")
     generator_copy_pass = generator_actual == generator_expected
     return {
-        "gate": "REBRAND_EXACT_TRANSFORMATION_V2_APPROVED_COPY",
+        "gate": "REBRAND_EXACT_TRANSFORMATION_V4_APPROVED_EDITORIAL_NAME",
         "historical_baseline_sha": BASE_SHA,
         "current_commit": git("rev-parse", "HEAD").strip(),
         "css_version": version,

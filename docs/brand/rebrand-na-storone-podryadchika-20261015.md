@@ -71,3 +71,18 @@ Commit/branch + exact changed-files manifest; static and smoke checks; path-leve
 - Published preview: https://nastoronepodryadchika.ru/rebrand-preview-20261016-v3/index.html; GitHub Actions [run 38827558990](https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/38827558990) **PASS**, the production `deploy` job **SKIPPED**. The first delivery run [38827187674](https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/38827187674) was blocked by a transient SSH key-exchange reset; one controlled retry passed. No shared-root changes.
 - Independent external GET of v3 home, catalog, P1, favicon and navigation JS returned HTTP 200; homepage bytes exactly match the locally verified v3 build, `noindex,nofollow,noarchive` and preview notice present, `/rebrand-preview-20261016-v3/payment.php` returned HTTP 404. Old `https://marzhavbetone.ru/` still returned commercial site HTTP 200.
 - **STATUS: VERIFIED PREVIEW ONLY**. New-domain root, live PHP, YooKassa, mail, orders, one-hour download and 301 cutover remain **HOLD** until buyer acceptance. Previous v1/v2 preview URLs intentionally remain unchanged as historical draft versions.
+
+
+## Approved editorial section label — 2026-10-16 (final)
+- **OWNER APPROVED:** «Практика и судебные решения» replaces the prior provisional
+  «Практика и решения» and original «Разборы».
+- Apply in site navigation (85/85), article breadcrumb/schema (42/42), editorial
+  H1, page titles/OG titles and template-generators. In-page descriptions
+  correctly distinguish practice from court outcomes; do not imply every
+  published case is a judicial decision.
+- Keep public URL `/articles/` and all existing article slugs unchanged.
+  Exact permitted-delta, native UI, cart, and no-broken-links gates remain
+  mandatory; no change to main, payments, buyer orders or 301 redirects.
+- QA: `docs/brand/practice-and-court-decisions-20261016.json` (versioned
+  successor to provisional V1 report). Historic V1 remains evidence, not
+  current branding.
