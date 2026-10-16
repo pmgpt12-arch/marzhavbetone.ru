@@ -250,3 +250,39 @@ body.rebrand-approved {
     padding-right:0;
   }
 }
+
+/* R4: Responsive editorial index cards. Prevent min-content grid tracks from
+ * forcing the "Практика и решения" index beyond the viewport. */
+body.rebrand-approved .showcase-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+body.rebrand-approved .showcase-card{
+  min-width:0;
+}
+body.rebrand-approved .showcase-card h2{
+  overflow-wrap:anywhere;
+}
+@media (min-width:701px) and (max-width:1100px){
+  body.rebrand-approved .showcase-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media (max-width:700px){
+  body.rebrand-approved .showcase-grid{
+    grid-template-columns:minmax(0,1fr);
+  }
+}
+
+/* The index headline is longer and more descriptive than the former slogan;
+ * reduce headline dominance, keep the explanation close on small screens. */
+body.rebrand-approved .showcase-intro h1{
+  font-size:clamp(36px,5.5vw,72px);
+  line-height:1.06;
+  letter-spacing:-.042em;
+  text-wrap:balance;
+}
+@media(max-width:900px){
+  body.rebrand-approved .showcase-intro{
+    gap:24px;
+  }
+}

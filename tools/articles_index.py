@@ -92,7 +92,7 @@ def main() -> int:
     chips += [f'<button type="button" data-cluster="{slug(n)}">'
               f'{SHORT.get(n, n[0].upper() + n[1:])}<span>{counts[n]}</span>'
               f'</button>' for n in order]
-    bar = ('\n    <nav class="topic-filter" aria-label="Темы разборов">'
+    bar = ('\n    <nav class="topic-filter" aria-label="Темы практических материалов">'
            + "".join("\n      " + c for c in chips)
            + '\n    </nav>')
 
