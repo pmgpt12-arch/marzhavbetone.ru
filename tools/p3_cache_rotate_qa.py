@@ -66,6 +66,7 @@ delivery="$(php -r 'require $argv[1]; require $argv[2]; echo DELIVERY_DIR;' "$si
 cache="$delivery/05-ks-bez-vozvrata.zip"
 if test -f "$cache"; then
  echo "LIVE_CACHE_SHA256=$(sha256sum "$cache" | cut -d' ' -f1)"
+ echo "LIVE_CACHE_PATH=$cache"
 else
  echo "LIVE_CACHE=ABSENT"
 fi
@@ -87,7 +88,24 @@ for d in "$vault"/*; do
  done
 done
 '''
-        print("P3_CACHE_READONLY_INSPECTION\n" + remote_script(observe, env["SITE_PATH"]), flush=True)
+        report = remote_script(observe, env["SITE_PATH"])
+        facts = dict(row.split("=", 1) for row in report.splitlines() if "=" in row)
+        path = facts.pop("LIVE_CACHE_PATH", None)
+        if not path: raise ValueError("live buyer cache missing")
+        output = local / "P3-production-buyer-11-files.zip"
+        digest = remote_read(path, output)
+        if digest != facts.get("LIVE_CACHE_SHA256"): raise ValueError("live cache SHA mismatch")
+        nomination = json.loads(NOMINATION.read_text(encoding="utf-8"))
+        expected = {x["member"]: x["sha256"] for x in nomination["member_artifacts"]}
+        with zipfile.ZipFile(output) as z:
+            if z.testzip() or len(z.namelist()) != 11 or set(z.namelist()) != set(expected):
+                raise ValueError("unexpected buyer archive members")
+            if any(sha(z.read(n)) != expected[n] for n in expected):
+                raise ValueError("buyer archive member SHA mismatch")
+        receipt = {"status":"PASS_P3_PRODUCTION_BUYER_ZIP", "member_sha":"11/11 PASS", "zip_sha256":digest,
+                   "vault":"product-archive-vault/by-sku/p3 outside webroot", "paid_order":"not invoked"}
+        (local / "verification.json").write_text(json.dumps(receipt, indent=2) + "\n")
+        print("P3_PRODUCTION_BUYER_ZIP_VERIFIED " + json.dumps(receipt), flush=True)
         return 0
 
     preflight = r'''

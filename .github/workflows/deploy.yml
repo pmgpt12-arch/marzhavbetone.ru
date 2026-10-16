@@ -488,7 +488,7 @@ jobs:
           P3_CACHE_QA: 'true'
         run: python3 tools/p3_cache_rotate_qa.py
       - name: Upload exact production buyer archive for manual acceptance
-        if: ${{ inputs.p3_cache_qa == true && inputs.p3_only != true && inputs.dry_run != true }}
+        if: ${{ inputs.p3_cache_qa == true && inputs.p3_only != true }}
         uses: actions/upload-artifact@v4
         with:
           name: p3-production-buyer-${{ github.run_id }}
