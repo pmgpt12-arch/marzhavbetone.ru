@@ -11,6 +11,7 @@ ZIP_SHA='5f1ea256b4eec178e6cf13072e9b9b6c30104d5ad78194efd8afd60702671f5f'
 TREE='95e8aaeb3a28ed44ba66ffa6e7d40b40353db0df'
 SITE_FILES=(
   articles/dostraivali-za-metry-otkaz-v-zos.html
+  articles/zos-v-stroitelstve.html
   articles/raschet-metrami.html
   diagnostika.html
   katalog.html

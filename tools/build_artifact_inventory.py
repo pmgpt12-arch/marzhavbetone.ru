@@ -69,7 +69,9 @@ def build_inventory(registry: dict, repo: Path, source_commit: str) -> dict:
     for source in registry.get("product_sources", []):
         root = source["relative_root"]
         source["git_tree_sha"] = git_text(repo, "rev-parse", f"{source_commit}:{root}")
-        source["bytes"] = sum(int(row["bytes"]) for row in ls_tree_files(repo, source_commit, root))
+        historical_rows = ls_tree_files(repo, source_commit, root)
+        source["file_count"] = len(historical_rows)
+        source["bytes"] = sum(int(row["bytes"]) for row in historical_rows)
     sources = registry.get("product_sources", [])
     if len(sources) != EXPECTED_ROOTS:
         raise InventoryError(f"runtime root count mismatch: {len(sources)} != {EXPECTED_ROOTS}")
