@@ -134,7 +134,7 @@ def build_cases(index_text: str) -> str:
             f'            <p class="case-tag">{tag}</p>\n'
             f"            <h3>{title}</h3>\n"
             f'            <p class="case-point">{point}</p>\n'
-            f'            <span class="case-open">Открыть разбор →</span>\n'
+            f'            <span class="case-open">Читать материал →</span>\n'
             f"          </div>\n"
             f"        </a>"
         )
@@ -144,7 +144,7 @@ def build_cases(index_text: str) -> str:
         '      <div class="section-head row">\n'
         '        <div><p class="eyebrow">ИЗНУТРИ СТРОЙКИ</p>'
         "<h2>То, что не написано в договоре</h2></div>\n"
-        '        <a class="text-link" href="articles/">Все разборы →</a>\n'
+        '        <a class="text-link" href="articles/">Все материалы →</a>\n'
         "      </div>\n"
         f'      <div class="case-grid">\n{cards}\n      </div>\n'
         "    </section>\n\n"
@@ -156,9 +156,9 @@ def build_materials(old: str) -> str:
     return (
         '    <section class="section dark" id="materials">\n'
         '      <div class="section-head row">\n'
-        '        <div><p class="eyebrow">СВЕЖИЕ РАЗБОРЫ</p>'
+        '        <div><p class="eyebrow">ПРАКТИКА И СУДЕБНЫЕ РЕШЕНИЯ</p>'
         "<h2>Разбираем, где подрядчик теряет деньги</h2></div>\n"
-        '        <a class="text-link light" href="articles/">Витрина разборов →</a>\n'
+        '        <a class="text-link light" href="articles/">Смотреть практические материалы →</a>\n'
         "      </div>\n"
         f'      <div class="cards">\n        {cards}\n      </div>\n'
         "    </section>\n\n"

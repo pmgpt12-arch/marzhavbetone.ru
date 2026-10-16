@@ -15,6 +15,14 @@ on:
         description: 'Пробный прогон: показать изменения, ничего не заливать'
         type: boolean
         default: false
+      inspect_new_site:
+        description: 'Только проверить каталоги старого и нового сайтов по SSH, без выкладки'
+        type: boolean
+        default: false
+      publish_preview:
+        description: 'Выложить только безопасный noindex-предпросмотр, без оплаты'
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy
@@ -30,7 +38,98 @@ env:
   SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
 
 jobs:
+  inspect-new-site:
+    if: inputs.inspect_new_site == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Read-only SSH preflight of separate rebrand webroot
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          set -euo pipefail
+          if [ -z "$KEY" ] || [ -z "$HOST" ] || [ -z "$USER" ]; then
+            echo "::error::Missing SSH deployment credentials"
+            exit 2
+          fi
+          umask 077
+          mkdir -p ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes \
+            -o ConnectTimeout=15 -p "$SSH_PORT" "$USER@$HOST" \
+            'set -eu
+             OLD=www/marzhavbetone.ru
+             NEW=www/nastoronepodryadchika.ru
+             [ -d "$OLD" ] && [ -f "$OLD/index.html" ] || { echo "OLD_ROOT_MISSING"; exit 10; }
+             [ -d "$NEW" ] && [ -f "$NEW/index.html" ] || { echo "NEW_ROOT_MISSING"; exit 11; }
+             [ ! -L "$NEW" ] || { echo "NEW_ROOT_IS_SYMLINK"; exit 12; }
+             old_real=$(cd "$OLD" && pwd -P)
+             new_real=$(cd "$NEW" && pwd -P)
+             [ "$old_real" != "$new_real" ] || { echo "SAME_ROOT_BLOCK"; exit 13; }
+             [ -w "$NEW" ] || { echo "NEW_ROOT_NOT_WRITABLE"; exit 14; }
+             printf "OLD_ROOT_OK=YES\nNEW_ROOT_OK=YES\nROOTS_DISTINCT=YES\nNEW_ROOT_WRITABLE=YES\n"
+             [ -d "$OLD/orders" ] && echo "OLD_ORDERS_DIR=EXISTS" || echo "OLD_ORDERS_DIR=ABSENT"
+             [ -f "$OLD/config.php" ] && echo "OLD_CONFIG=EXISTS" || echo "OLD_CONFIG=ABSENT"
+             [ -f "$NEW/config.php" ] && echo "NEW_CONFIG=EXISTS" || echo "NEW_CONFIG=ABSENT"
+             if grep -qF DELIVERY_TTL_DAYS "$OLD/config.php"; then
+               grep -F DELIVERY_TTL_DAYS "$OLD/config.php" | head -4
+             else echo "OLD_CONFIG_TTL_OVERRIDE=ABSENT"; fi
+             if [ -f "$OLD/products-config.php" ]; then
+               grep -F DELIVERY_TTL_DAYS "$OLD/products-config.php" | head -5
+             else echo "OLD_PRODUCTS_CONFIG=ABSENT"; fi
+             [ -d products-marzhavbetone ] && echo "MASTERS_DIR=EXISTS" || echo "MASTERS_DIR=ABSENT"'
+
+  publish-preview:
+    if: inputs.publish_preview == true && inputs.inspect_new_site != true && github.ref_name == 'feature/rebrand-practice-and-solutions-20261016'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build public no-commerce preview (88 HTML, noindex, no PHP)
+        run: |
+          set -euo pipefail
+          python3 tools/build_safe_rebrand_preview.py --output "$RUNNER_TEMP/mb-preview-safe"
+          python3 -c 'import pathlib; p=pathlib.Path("'"$RUNNER_TEMP"'/mb-preview-safe"); h=list(p.rglob("*.html")); assert len(h)==88; assert not list(p.rglob("*.php")); assert all("noindex,nofollow,noarchive" in f.read_text() for f in h); assert all("preview-only-banner" in f.read_text() for f in h)'
+      - name: Stage and atomically publish only under second webroot
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          set -euo pipefail
+          if [ -z "$KEY" ] || [ -z "$HOST" ] || [ -z "$USER" ]; then
+            echo "::error::Missing SSH deployment credentials"
+            exit 2
+          fi
+          umask 077
+          mkdir -p ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh_run() {
+            ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=15 -p "$SSH_PORT" "$USER@$HOST" "$@"
+          }
+          staging=".rebrand-preview-upload-$GITHUB_RUN_ID"
+          target="www/nastoronepodryadchika.ru/rebrand-preview-20261016-v5"
+          ssh_run "set -eu; test -d www/marzhavbetone.ru; test -d www/nastoronepodryadchika.ru; test ! -e '$target'; test ! -L www/nastoronepodryadchika.ru; test ! -e '$staging'; mkdir -m 700 '$staging'"
+          timeout 100s rsync -az --no-perms --no-owner --no-group -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT" "$RUNNER_TEMP/mb-preview-safe/" "$USER@$HOST:$staging/"
+          ssh_run "set -eu; test -f '$staging/preview-manifest.json'; test -f '$staging/index.html'; test -f '$staging/katalog.html'; test -f '$staging/products/p1-oplata-po-ks2.html'; count=\$(find '$staging' -name '*.html' -type f | wc -l); test \"\$count\" -eq 88; test -z \"\$(find '$staging' -name '*.php' -type f -print -quit)\"; grep -q 'noindex,nofollow,noarchive' '$staging/index.html'; grep -q preview-only-banner '$staging/index.html'; test \"\$(stat -c %d '$staging')\" = \"\$(stat -c %d 'www/nastoronepodryadchika.ru')\"; chmod -R a+rX '$staging'; test ! -e '$target'; mv '$staging' '$target'; echo PREVIEW_PUBLISHED_WITHOUT_OLD_SITE_CHANGE"
+      - name: Verify remote noindex preview content
+        run: |
+          set -euo pipefail
+          url="https://nastoronepodryadchika.ru/rebrand-preview-20261016-v5/index.html"
+          response=$(curl -fsS --connect-timeout 8 --max-time 18 "$url")
+          grep -qF 'noindex,nofollow,noarchive' <<< "$response"
+          grep -qF 'preview-only-banner' <<< "$response"
+          grep -qF 'на стороне подрядчика' <<< "$response"
+          echo "SAFE_PREVIEW_HTTPS_AND_NO_PAYMENT=PASS"
+
   deploy:
+    if: ${{ !inputs.inspect_new_site && !inputs.publish_preview }}
     runs-on: ubuntu-latest
     steps:
       # Пока секреты не заданы, workflow завершается зелёным и ничего не делает —

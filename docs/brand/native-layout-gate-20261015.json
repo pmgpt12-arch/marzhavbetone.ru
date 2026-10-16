@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "status": "PASS_STATIC_UI_ONLY",
+  "checked_at_local": "2026-10-15 23:47 Asia/Krasnoyarsk (run after owner request)",
+  "source_commit": "df4d45b9ec79c76620e0bac60e89adbe9beb4fac",
+  "source_branch": "feature/rebrand-na-storone-podryadchika-20261015",
+  "environment": {
+    "device": "ai-workstation",
+    "engine": "Headless Chromium via Node.js WebSocket CDP",
+    "mode": "localhost isolated static HTML snapshot",
+    "viewport_widths_px": [
+      390,
+      1360
+    ]
+  },
+  "artifacts": {
+    "runner": "tools/test_approved_brand_layout.cjs",
+    "runner_sha256": "14e90a303a112f605e7988f98021a06593b5e4f63caf0e47dec3e629042e3598",
+    "full_qa_report_sha256": "a018118c4e2ff44cc13c043c9966e9938939a04faa91b2583bc5e0742fc832d9",
+    "session_local_qa_path": "/tmp/mb-brand-verify-20261015-2347/qa-report.json"
+  },
+  "six_screens": [
+    {
+      "name": "home",
+      "width": 390,
+      "client_width": 390,
+      "scroll_width": 390,
+      "brand_width_px": 158,
+      "failures": []
+    },
+    {
+      "name": "catalog",
+      "width": 390,
+      "client_width": 390,
+      "scroll_width": 390,
+      "brand_width_px": 158,
+      "failures": []
+    },
+    {
+      "name": "product-p1",
+      "width": 390,
+      "client_width": 390,
+      "scroll_width": 390,
+      "brand_width_px": 158,
+      "failures": []
+    },
+    {
+      "name": "home",
+      "width": 1360,
+      "client_width": 1345,
+      "scroll_width": 1345,
+      "brand_width_px": 217.234375,
+      "failures": []
+    },
+    {
+      "name": "catalog",
+      "width": 1360,
+      "client_width": 1345,
+      "scroll_width": 1345,
+      "brand_width_px": 217.234375,
+      "failures": []
+    },
+    {
+      "name": "product-p1",
+      "width": 1360,
+      "client_width": 1345,
+      "scroll_width": 1345,
+      "brand_width_px": 217.234375,
+      "failures": []
+    }
+  ],
+  "checks": [
+    "Brand label visible in all 6 viewports",
+    "mobile cart visible",
+    "mobile extra CTA hidden",
+    "no document horizontal overflow",
+    "approved warm white background",
+    "all tested pages have H1 heading"
+  ],
+  "negative_fixture_tests": [
+    {
+      "fault": "brand hidden by CSS on <=700px",
+      "expected": "BRAND_HIDDEN",
+      "observed": [
+        "BRAND_HIDDEN"
+      ],
+      "exit_code": 1,
+      "pass": true
+    },
+    {
+      "fault": "body forced min-width:500px",
+      "expected": "HORIZONTAL_OVERFLOW",
+      "observed": [
+        "HORIZONTAL_OVERFLOW",
+        "VIEWPORT_MISMATCH"
+      ],
+      "exit_code": 1,
+      "pass": true
+    }
+  ],
+  "protected_main_worktree": {
+    "dirty_files_before": 1,
+    "dirty_files_after": 1,
+    "modifications_by_test": 0
+  },
+  "limitations": [
+    "Only three pages and 2 viewport widths checked",
+    "Static local snapshot; PHP checkout and JS payment flow not executed",
+    "Canonical references remain on old domain pending release; no SEO/domain migration validation",
+    "External assets may not appear offline; visual image loading is not part of this test",
+    "Full mobile menu click and checkout interaction gate remain pending",
+    "Not permission to merge, publish or redirect"
+  ],
+  "next_gate": "Code PR review, all-public-page rebrand scope, browser interactions and independent buyer payment/delivery test. Keep separate staging and main deploy untouched."
+}

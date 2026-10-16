@@ -61,7 +61,7 @@ def card(item: dict) -> str:
         "          </dl>",
         '          <p class="case-error"><span>Точка ошибки</span>'
         f'{esc(item["error_point"])}</p>',
-        '          <span class="case-open">Открыть разбор →</span>',
+        '          <span class="case-open">Читать материал →</span>',
         "        </a>",
     ]
     return "\n".join(parts)
@@ -76,7 +76,7 @@ def block(items: list[dict]) -> str:
         "<h2>То, что не написано в договоре</h2>\n"
         '        <p class="lead">Как деньги подрядчика уходят на стороне: кто принимал '
         "решения, чем они обосновывались и в какой момент спор было уже не выиграть.</p></div>\n"
-        '        <a class="text-link" href="articles/">Все разборы →</a>\n'
+        '        <a class="text-link" href="articles/">Все материалы →</a>\n'
         "      </div>\n"
         f'      <div class="case-grid">\n{cards}\n      </div>\n'
         "    </section>\n"

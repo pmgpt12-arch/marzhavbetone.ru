@@ -1,0 +1,68 @@
+name: Practice section rename QA
+
+on:
+  push:
+    branches:
+      - feature/rebrand-practice-and-solutions-20261016
+  pull_request:
+    branches:
+      - feature/rebrand-na-storone-podryadchika-20261015
+    paths:
+      - 'articles/**'
+      - 'index.html'
+      - 'data/site/navigation.yaml'
+      - 'tools/rename_practice_section.py'
+      - 'tools/test_practice_section_delta.py'
+      - 'tools/test_practice_section_ui.cjs'
+      - 'brand-approved-2026.css'
+
+permissions:
+  contents: read
+
+jobs:
+  accepted-section:
+    name: Exact content and responsive browser QA
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install existing navigation parser
+        run: python3 -m pip install --disable-pip-version-check pyyaml==6.0.2
+      - name: Verify route, SKU, price and 88-page exact rename
+        run: |
+          mkdir -p artifacts
+          python3 tools/rename_practice_section.py --check
+          python3 tools/test_practice_section_delta.py --check --report artifacts/practice-source.json
+          python3 tools/check_nav.py
+          python3 tools/check_approved_rebrand.py --strict
+          python3 tools/asset_versions.py --check
+          python3 tools/link_audit.py --verify
+          python3 tools/build_sitemap.py --verify
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Native Chromium nav and hub acceptance at four widths
+        run: |
+          command -v google-chrome
+          status=0
+          node tools/test_practice_section_ui.cjs artifacts/practice-browser.json || status=$?
+          if [ "$status" -eq 2 ]; then
+            echo "::warning::Chromium startup/transport unavailable; one bounded retry"
+            sleep 3
+            node tools/test_practice_section_ui.cjs artifacts/practice-browser.json
+          elif [ "$status" -ne 0 ]; then
+            exit "$status"
+          fi
+          node tools/test_approved_brand_layout.cjs "$PWD" artifacts/practice-cart-layout.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: practice-section-qa
+          path: artifacts/
+          if-no-files-found: ignore
+          retention-days: 14
