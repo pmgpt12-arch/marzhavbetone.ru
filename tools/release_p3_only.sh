@@ -3,7 +3,7 @@
 set -Eeuo pipefail
 : "${HOST:?}" "${USER:?}" "${SITE_PATH:?}" "${PRODUCTS_PATH:?}" "${SSH_PORT:?}"
 [[ "${P3_ONLY:-false}" == "true" ]] || { echo 'P3_SCOPE_NOT_ENABLED'; exit 2; }
-export RSYNC_RSH="ssh -i $HOME/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=20 -p $SSH_PORT"
+export RSYNC_RSH="ssh -i $HOME/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts -o ConnectTimeout=20 -p $SSH_PORT"
 P3_ROOT='products-storage/05-ks-bez-vozvrata'
 P3_LIVE="$PRODUCTS_PATH/05-ks-bez-vozvrata"
 ZIP='tools/candidates/p3-aosr-form-layout-20261015/P3-11-buyer-AOSR-formatted-20261015.zip'
@@ -19,7 +19,7 @@ SITE_FILES=(
   products/p3-shablony-ks2-ks3.html
   products-config.php
 )
-ssh_run() { ssh -i "$HOME/.ssh/deploy_key" -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=20 -p "$SSH_PORT" "$USER@$HOST" "$@"; }
+ssh_run() { ssh -i "$HOME/.ssh/deploy_key" -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts -o ConnectTimeout=20 -p "$SSH_PORT" "$USER@$HOST" "$@"; }
 expect_zip="$(sha256sum "$ZIP" | cut -d ' ' -f1)"
 [[ "$expect_zip" == "$ZIP_SHA" ]] || { echo 'P3_ZIP_MISMATCH'; exit 3; }
 [[ "$(git rev-parse "HEAD:$P3_ROOT")" == "$TREE" ]] || { echo 'P3_MASTER_TREE_MISMATCH'; exit 3; }

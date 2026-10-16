@@ -417,7 +417,7 @@ jobs:
 
   deploy-p3-only:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.p3_only == true }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64]
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
@@ -433,6 +433,7 @@ jobs:
           bash -n tools/release_p3_only.sh
       - name: Prepare GitHub deploy SSH
         env:
+          HOME: ${{ runner.temp }}/p3-sandbox
           KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
@@ -452,8 +453,14 @@ jobs:
           test -s ~/.ssh/known_hosts || { echo "::error::SSH_HOST_KEY_UNAVAILABLE"; exit 23; }
       - name: Execute scoped P3 operation
         env:
+          HOME: ${{ runner.temp }}/p3-sandbox
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
           P3_ONLY: 'true'
           DRY_RUN: ${{ inputs.dry_run }}
         run: bash tools/release_p3_only.sh
+      - name: Remove job-scoped SSH credentials
+        if: always()
+        run: |
+          rm -f "$RUNNER_TEMP/p3-sandbox/.ssh/deploy_key" "$RUNNER_TEMP/p3-sandbox/.ssh/deploy_key.pub"
+          rm -f "$RUNNER_TEMP/p3-sandbox/.ssh/known_hosts"
