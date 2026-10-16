@@ -154,7 +154,17 @@ def validate_entries(entries: list[dict[str, object]], candidates: set[str]) -> 
 def build_report(commit: str = SOURCE_COMMIT) -> dict[str, object]:
     assert_source_tree(commit)
     files = source_files(commit)
-    assert_head_candidates_match_source(files, source_files("HEAD"))
+    try:
+        assert_head_candidates_match_source(files, source_files("HEAD"))
+    except DiscoveryError as exc:
+        try:
+            from tools.check_p3_current_site_delta import validate_current_p3_delta
+        except ModuleNotFoundError:
+            from check_p3_current_site_delta import validate_current_p3_delta
+        try:
+            validate_current_p3_delta()
+        except Exception as gate_exc:
+            raise DiscoveryError(f"unapproved HEAD candidate drift: {gate_exc}") from exc
     source_sitemap = read_source(commit, "sitemap.xml")
     assert_control_input_equal(
         "sitemap.xml", source_sitemap, read_source("HEAD", "sitemap.xml")
