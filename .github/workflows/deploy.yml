@@ -19,6 +19,10 @@ on:
         description: 'Адресный P3, без остальных товаров'
         type: boolean
         default: false
+      p11_only:
+        description: 'Адресный выпуск P11'
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy
@@ -35,7 +39,7 @@ env:
 
 jobs:
   deploy:
-    if: ${{ github.event_name != 'workflow_dispatch' || inputs.p3_only != true }}
+    if: ${{ github.event_name != 'workflow_dispatch' || (inputs.p3_only != true && inputs.p11_only != true) }}
     runs-on: ubuntu-latest
     steps:
       # Пока секреты не заданы, workflow завершается зелёным и ничего не делает —
@@ -468,3 +472,65 @@ jobs:
         run: |
           rm -f "$RUNNER_TEMP/p3-sandbox/.ssh/deploy_key" "$RUNNER_TEMP/p3-sandbox/.ssh/deploy_key.pub"
           rm -f "$RUNNER_TEMP/p3-sandbox/.ssh/known_hosts"
+
+  deploy-p11-only:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.p11_only == true }}
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    steps:
+      - name: Use verified local P11 worktree
+        run: |
+          test "$GITHUB_REF_NAME" = "release/mb001-p11-20261016"
+          test "$(git -C /home/denis/projects/mb001-p11-release-20261016 rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git -C /home/denis/projects/mb001-p11-release-20261016 status --porcelain)"
+      - name: Verify exact P11 candidate
+        working-directory: /home/denis/projects/mb001-p11-release-20261016
+        run: |
+          test "$GITHUB_REF_NAME" = "release/mb001-p11-20261016"
+          test "$(git rev-parse HEAD:products-storage/13-raschet-metrami)" = "95e8aaeb3a28ed44ba66ffa6e7d40b40353db0df"
+          python3 tools/link_audit.py --verify > /dev/null
+          php -l products-config.php
+          php -r 'define("ORDERS_DIR",sys_get_temp_dir()); require "products-config.php"; exit(mvb_products()["p11"]["price"] === 2490000 && mvb_resolve_product(["sku"=>"t6"]) === null ? 0 : 3);'
+          bash -n tools/release_p11_only.sh
+      - name: Prepare GitHub deploy SSH
+        env:
+          HOME: ${{ runner.temp }}/p11-sandbox
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          test -n "$KEY" && test -n "$HOST" && test -n "$USER" || exit 1
+          mkdir -p ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keygen -y -P '' -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
+          for attempt in 1 2; do
+            if ssh-keyscan -T 10 -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null; then
+              break
+            fi
+            echo "SSH_HOST_KEY_NETWORK_RETRY attempt=$attempt" >&2
+            sleep 2
+          done
+          test -s ~/.ssh/known_hosts || { echo "::error::SSH_HOST_KEY_UNAVAILABLE"; exit 23; }
+      - name: Execute scoped P11 operation
+        working-directory: /home/denis/projects/mb001-p11-release-20261016
+        env:
+          HOME: ${{ runner.temp }}/p11-sandbox
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          P11_ONLY: 'true'
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: bash tools/release_p11_only.sh
+      - name: Upload P11 production buyer ZIP for owner
+        if: ${{ inputs.dry_run != true }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: P11-production-buyer-${{ github.run_id }}
+          path: ${{ runner.temp }}/p11-live-buyer-evidence/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Remove job-scoped SSH credentials
+        if: always()
+        run: |
+          rm -f "$RUNNER_TEMP/p11-sandbox/.ssh/deploy_key" "$RUNNER_TEMP/p11-sandbox/.ssh/deploy_key.pub"
+          rm -f "$RUNNER_TEMP/p11-sandbox/.ssh/known_hosts"

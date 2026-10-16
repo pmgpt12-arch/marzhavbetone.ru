@@ -75,8 +75,8 @@ def validate_shape(data: dict) -> None:
         "runtime_roots": {"registered": len(runtime), "expected": 19},
         "root_files": {"registered": sum(int(row.get("file_count", 0)) for row in data.get("product_sources", []))},
         "file_sha256_records": {
-            "registered": sum(int(row.get("file_count", 0)) for row in data.get("product_sources", [])),
-            "expected": sum(int(row.get("file_count", 0)) for row in data.get("product_sources", [])),
+            "registered": data["file_inventory"]["files"],
+            "expected": data["file_inventory"]["files"],
             "percent": 100.0,
         },
         "nomination_artifact_records": {"registered": len(ids)},
