@@ -1,0 +1,31 @@
+{
+  "gate": "R2_SYNC_OWNER_APPROVED_EDITORIAL_AND_DOMAIN",
+  "status": "PASS_SOURCE_AND_BROWSER__PAYMENT_RELEASE_HOLD",
+  "checked_on": "2026-10-16",
+  "parent_r1_head": "79018043dd965313b73036f760572b0aaf77f9bd",
+  "previous_r2_head": "8a7d634ecb01c4d4ed066cd33a990a27e7d6134d",
+  "merged_public_html": 88,
+  "exact_domain_replacements": 902,
+  "post_merge_old_host_references": 0,
+  "new_host_references": 902,
+  "preserved_sitemap_paths": 84,
+  "verified_title": "Практика и судебные решения",
+  "new_title_in_nav": 85,
+  "routes_unchanged": true,
+  "native_nav_browser": 12,
+  "native_nav_pass": true,
+  "nonpayment_cart_browser": 6,
+  "nonpayment_cart_pass": true,
+  "local_broken_links": 0,
+  "generator_source_integrity": "R1 approved builders merged; R2 SITE/BASE pointers keep new domain",
+  "source_report_sha256": "195ccbbde9257213a4f328073447580d73fb972f345e8ebcd6f2fd28783d3984",
+  "ui_report_sha256": "ee3e972480ce6dfa4436b3aed0be4793fc5aa697d36d4f849011e1f0da058cff",
+  "cart_report_sha256": "37ba0de33c20dd0e7d5a5424d90eff2bde9861b45ac3a8eb5bbaef803f83d486",
+  "release_hold": [
+    "Do not merge to main",
+    "No SSL/HTTP switch or old-domain 301 yet",
+    "New-root still default hosting landing page; no php config deployed",
+    "YooKassa, webhook, independent payment delivery email and 3600s download link not accepted",
+    "No historical product archives or order records changed"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "gate": "R2_DOMAIN_CUTOVER_PREFLIGHT",
+  "status": "INVENTORY_VERIFIED__CUTOVER_NOT_STARTED",
+  "observed_at": "2026-10-16",
+  "parent_branch": "feature/rebrand-na-storone-podryadchika-20261015",
+  "target_domain": "nastoronepodryadchika.ru",
+  "old_domain": "marzhavbetone.ru",
+  "observations": {
+    "public_html_pages": 88,
+    "html_pages_with_old_host_references": 84,
+    "old_host_occurrences_in_html": 815,
+    "sitemap": "sitemap.xml tracked, old-host URLs in <loc>",
+    "robots": "robots.txt contains Host: marzhavbetone.ru and old sitemap",
+    "rewrite_rules": ".htaccess contains old-host redirects and reverse proxy HTTPS handling",
+    "website": "Old domain serves commercial site; new root shows Reg.ru placeholder; commerce-disabled noindex preview is live under /rebrand-preview-20261016/",
+    "sensitive_paths": "Old runtime config.php and orders exist, separate new config.php absent; product masters kept outside old webroot",
+    "ssl": "Both new apex and www have trusted Let's Encrypt cert on existing origin"
+  },
+  "classes_to_migrate": {
+    "SEO_URLS": "canonical, og:url, JSON-LD @id/url, href/src absolute own-domain, sitemap, robots and RSS builder",
+    "RUNTIME_URLS": "SITE_URL and return/success URLs, webhook URL, server routing after separate payment gate",
+    "BRAND_PRESENTATION": "Email subject/signature and favicon; only validated runtime sender changes",
+    "KEEP_AS_IS": "Historical archives and receipts, prior buyer records, products storage physical names, PHP keys, established social handles until reauth, existing working email sender until verified",
+    "SECURITY": "Never copy working payment secrets into a public unaccepted preview, never expose orders or masters"
+  },
+  "release_gates": [
+    "Complete and validate new-host static/domain URLs and sitemap; canonical self-referencing",
+    "Stage PHP backend with isolated credentials/order storage and nonpublic masters",
+    "Verify secure order creation, authorized YooKassa webhook, mail delivery and 1-hour expiring download",
+    "Preserve order records; only unexpired buyer links need their stated one-hour lifetime, no perpetual buyer URL support required",
+    "Enable old-domain path-preserving redirects only after new-site smoke+buyer gates PASS",
+    "Approve launch; then update social profile links and metadata"
+  ],
+  "exclusions": [
+    "No provider credentials, IP firewall, production PHP or DNS changed by this inventory",
+    "Not release approval"
+  ]
+}

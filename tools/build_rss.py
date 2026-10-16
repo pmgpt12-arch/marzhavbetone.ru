@@ -29,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES = ROOT / "articles"
 DZEN_TITLES = ROOT / "data" / "site" / "dzen-titles.json"
-SITE = "https://marzhavbetone.ru"
+SITE = "https://nastoronepodryadchika.ru"
 CHANNEL_TITLE = "На стороне подрядчика"
 CHANNEL_DESCRIPTION = (
     "Практические материалы для исполнителей работ и услуг в строительстве: как оформить работы, "
