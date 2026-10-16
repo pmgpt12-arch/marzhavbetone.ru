@@ -56,7 +56,7 @@ def check()->dict:
   page_results.append({"path":name,"pass":not problems,"problems":problems,"changed":actual!=original})
  nav_old=git("show",f"{BASE_SHA}:data/site/navigation.yaml")
  nav_now=(ROOT/"data/site/navigation.yaml").read_text("utf-8")
- nav_expected=REN.sub_once(nav_old,"    text: Разборы\n    href: /articles/","    text: Практика и решения\n    href: /articles/","navigation")
+ nav_expected=REN.sub_once(nav_old,"    text: Разборы\n    href: /articles/","    text: Практика и судебные решения\n    href: /articles/","navigation")
  source_problems=[]
  if nav_expected!=nav_now:source_problems.append("NAV_SOURCE_DRIFT")
  for path,rules in REN.GENERATOR.items():
@@ -67,11 +67,11 @@ def check()->dict:
   if expected!=actual:source_problems.append("GENERATOR_SOURCE_DRIFT:"+path)
  data={x["path"]:x for x in page_results}
  docs=[x for x in pages if x.as_posix().startswith("articles/")]
- article_schema_count=sum('"name": "Практика и решения"' in (ROOT/p).read_text("utf-8") for p in docs)
- nav_label_count=sum('>Практика и решения</a>' in (ROOT/p).read_text("utf-8") for p in pages)
+ article_schema_count=sum('"name": "Практика и судебные решения"' in (ROOT/p).read_text("utf-8") for p in docs)
+ nav_label_count=sum('>Практика и судебные решения</a>' in (ROOT/p).read_text("utf-8") for p in pages)
  hub=(ROOT/"articles/index.html").read_text("utf-8")
  return {
-  "gate":"R1_PRACTICE_SECTION_RENAME_V1",
+  "gate":"R1_PRACTICE_AND_COURT_DECISIONS_V2",
   "scope":"presentation labels only, no production",
   "baseline":BASE_SHA,
   "current_commit":git("rev-parse","HEAD").strip(),
@@ -83,17 +83,17 @@ def check()->dict:
   "nav_label_pages":nav_label_count,
   "article_schema_pages":article_schema_count,
   "source_problems":source_problems,
-  "hub_h1_ok":"Практика: договоры, приёмка, оплата и споры" in hub,
+  "hub_h1_ok":"Практика и судебные решения" in hub,
   "hub_label_ok":"ПРАКТИЧЕСКИЕ МАТЕРИАЛЫ" in hub,
-  "hub_title_ok":"<title>Практика и решения — На стороне подрядчика</title>" in hub,
+  "hub_title_ok":"<title>Практика и судебные решения — На стороне подрядчика</title>" in hub,
   "problems":[x for x in page_results if not x["pass"]],
   "pages":page_results,
   "pass":len(pages)==88 and all(x["pass"] for x in page_results)
     and nav_label_count==85 and article_schema_count==42
     and not source_problems and all((
-      "Практика: договоры, приёмка, оплата и споры" in hub,
+      "Практика и судебные решения" in hub,
       "ПРАКТИЧЕСКИЕ МАТЕРИАЛЫ" in hub,
-      "<title>Практика и решения — На стороне подрядчика</title>" in hub,
+      "<title>Практика и судебные решения — На стороне подрядчика</title>" in hub,
     )),
   "non_goals":["No payment processing or legal product files changed",
     "No actual buyer checkout or DNS/cutover tested",

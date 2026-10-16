@@ -156,7 +156,7 @@ def build_materials(old: str) -> str:
     return (
         '    <section class="section dark" id="materials">\n'
         '      <div class="section-head row">\n'
-        '        <div><p class="eyebrow">ПРАКТИКА И РЕШЕНИЯ</p>'
+        '        <div><p class="eyebrow">ПРАКТИКА И СУДЕБНЫЕ РЕШЕНИЯ</p>'
         "<h2>Разбираем, где подрядчик теряет деньги</h2></div>\n"
         '        <a class="text-link light" href="articles/">Смотреть практические материалы →</a>\n'
         "      </div>\n"

@@ -22,7 +22,7 @@ new_nav = """    <nav aria-label="Основная навигация">
       <a href="#catalog">Решения</a>
       <a href="#checklist">Бесплатно</a>
       <a href="kalkulyator.html">Калькуляторы</a>
-      <a href="articles/">Практика и решения</a>
+      <a href="articles/">Практика и судебные решения</a>
       <a href="#author">О проекте</a>
       <a class="button button-small" href="#situations">Найти решение</a>
     </nav>"""

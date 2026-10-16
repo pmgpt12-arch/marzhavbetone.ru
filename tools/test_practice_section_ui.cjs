@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 "use strict";
-/** Browser regression for approved nav "Практика и решения" and unchanged /articles/ routes.
+/** Browser regression for approved nav "Практика и судебные решения" and unchanged /articles/ routes.
  * Run: node tools/test_practice_section_ui.cjs [report.json]
  * No external libraries; Node 22+ and Google Chrome; localhost only.
  */
@@ -79,22 +79,22 @@ async function main(){
         ctaVisible:visible(cta),cartVisible:visible(cart),
         breadcrumb:[...document.querySelectorAll('.breadcrumbs li')].map(e=>e.textContent.trim()),
         outliers:[...document.querySelectorAll('body *')].map(e=>{const r=e.getBoundingClientRect();return {tag:e.tagName,cls:String(e.className).slice(0,90),x:Math.round(r.x),right:Math.round(r.right),width:Math.round(r.width)};}).filter(e=>e.right>document.documentElement.clientWidth+1).sort((a,b)=>b.right-a.right).slice(0,12),
-        jsonLdSection:document.querySelector('script[type="application/ld+json"]')?.textContent.includes('"name": "Практика и решения"')||false};
+        jsonLdSection:document.querySelector('script[type="application/ld+json"]')?.textContent.includes('"name": "Практика и судебные решения"')||false};
     })())`,returnByValue:true});
     const d=JSON.parse(value.result.value);
     const errors=[];
     if(d.width!==width)errors.push("VIEWPORT");
     if(d.scrollWidth>width+1)errors.push("HORIZONTAL_OVERFLOW");
-    if(d.href!=="/articles/"||d.label!=="Практика и решения")errors.push("NAV_LABEL_OR_ROUTE");
+    if(d.href!=="/articles/"||d.label!=="Практика и судебные решения")errors.push("NAV_LABEL_OR_ROUTE");
     if(width===390){
       if(!d.menuVisible||!d.opened||!d.closed)errors.push("MOBILE_MENU");
     }else if(d.navbarVisible&&d.ctaVisible&&d.navRight>d.ctaLeft-1){
       errors.push("DESKTOP_NAV_CTA_OVERLAP");
     }
     if(rel==="articles/index.html"){
-      if(d.h1!=="Практика: договоры, приёмка, оплата и споры")errors.push("HUB_H1");
-      if(!d.title.includes("Практика и решения"))errors.push("HUB_TITLE");
-      if(!d.breadcrumb.includes("Практика и решения")||!d.jsonLdSection)errors.push("HUB_SCHEMA_BREADCRUMB");
+      if(d.h1!=="Практика и судебные решения")errors.push("HUB_H1");
+      if(!d.title.includes("Практика и судебные решения"))errors.push("HUB_TITLE");
+      if(!d.breadcrumb.includes("Практика и судебные решения")||!d.jsonLdSection)errors.push("HUB_SCHEMA_BREADCRUMB");
     }else if(rel.startsWith("articles/")&&!d.jsonLdSection)errors.push("ARTICLE_SCHEMA_BREADCRUMB");
     rows.push({path:rel,width,errors,...d});
     if(width===390||width===1360){

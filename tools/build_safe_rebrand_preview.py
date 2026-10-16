@@ -19,7 +19,7 @@ import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PREFIX = "/rebrand-preview-20261016-v4/"
+PREFIX = "/rebrand-preview-20261016-v5/"
 PAGE = re.compile(r"<body\b[^>]*>", re.I)
 SCRIPTS = re.compile(r"\s*<script\b[^>]*>[\s\S]*?</script>", re.I)
 CANONICAL = re.compile(r'\s*<link\b[^>]*rel="canonical"[^>]*>', re.I)

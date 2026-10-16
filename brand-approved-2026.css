@@ -286,3 +286,10 @@ body.rebrand-approved .showcase-intro h1{
     gap:24px;
   }
 }
+
+/* Approved long navigation label: keep proper spacing at intermediate desktop widths. */
+@media (min-width:901px) and (max-width:1439px){
+  body.rebrand-approved .topbar nav{
+    gap:clamp(8px,1vw,16px);
+  }
+}
