@@ -342,8 +342,8 @@ def build_report() -> dict[str, object]:
             raise SnapshotError(f"route/source fingerprint drift: {path}")
         head_raw = (ROOT / path).read_bytes()
         if head_raw != raw:
-            if path != "products/p3-shablony-ks2-ks3.html":
-                raise SnapshotError(f"HEAD static source drift: {path}")
+            if head_raw != git("show", f"HEAD:{path}", text=False):
+                raise SnapshotError(f"working-tree static source drift: {path}")
             assert_approved_p3_delta()
 
         html = raw.decode("utf-8")

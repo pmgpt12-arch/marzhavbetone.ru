@@ -59,7 +59,7 @@ class P3LegacySnapshotBridgeTests(unittest.TestCase):
     def test_unexpected_html_php_extra_fails(self):
         hashes = {path: value[1] for path, value in gate.EXPECTED_HTML_PHP.items()}
         with self.assertRaisesRegex(ValueError, "unapproved HTML/PHP delta"):
-            gate.validate_html_deltas(set(hashes) | {"index.html"}, hashes)
+            gate.validate_html_deltas(set(hashes) | {"unrelated-page.html"}, hashes)
 
     def test_unexpected_html_php_missing_fails(self):
         hashes = {path: value[1] for path, value in gate.EXPECTED_HTML_PHP.items()}
@@ -78,6 +78,33 @@ class P3LegacySnapshotBridgeTests(unittest.TestCase):
             hashes[path] = "f" * 64
             with self.subTest(path=path), self.assertRaisesRegex(ValueError, "changed or unpinned"):
                 gate.validate_html_deltas(set(hashes), hashes)
+
+
+    def test_owner_approved_p3_price_is_consistent(self):
+        import re
+        from pathlib import Path
+        root = gate.ROOT
+        config = (root / "products-config.php").read_text(encoding="utf-8")
+        p3 = re.search(r"'p3'\s*=>\s*\[(.*?)\],", config, flags=re.S)
+        self.assertIsNotNone(p3)
+        price = re.search(r"'price'\s*=>\s*(\d+)", p3.group(1))
+        self.assertIsNotNone(price)
+        self.assertEqual(int(price.group(1)), 1790000)
+        pages = ("index.html", "katalog.html",
+                 "products/p3-shablony-ks2-ks3.html",
+                 "articles/proverka-ks-2-pered-sdachey.html",
+                 "articles/raboty-ne-prinyaty.html")
+        for name in pages:
+            content = (root / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertIn("17 900 \u20bd", content)
+                self.assertNotIn("1 990 \u20bd", content)
+        for name in pages[:3]:
+            content = (root / name).read_text(encoding="utf-8")
+            self.assertIn('data-price="1790000"', content)
+        for name in ("katalog.html", "products/p3-shablony-ks2-ks3.html"):
+            self.assertIn('"price": "17900"', (root / name).read_text(encoding="utf-8"))
+
 
 
 if __name__ == "__main__":

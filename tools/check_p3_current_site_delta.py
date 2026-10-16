@@ -2,7 +2,7 @@
 """Exact current P3 exception for immutable 2026-10-12 site snapshots.
 
 The historical reports are never rewritten. Only the nominated P3 tree and
-four reviewed HTML/PHP blobs may differ from the accepted source.
+its eight pinned price/route HTML/PHP blobs may differ from the accepted source.
 """
 from __future__ import annotations
 
@@ -24,9 +24,13 @@ P3_TREE = "00aca2f4e4163f39e329f4dd14e5b23a813d448e"
 P3_BYTES = 397571
 P3_ROOT = "products-storage/05-ks-bez-vozvrata"
 EXPECTED_HTML_PHP = {
+    "articles/proverka-ks-2-pered-sdachey.html": ("indexable_page", "77f39ba3fff5e81113fe5c57172be894411db4503ed5252ab3156888c5d674ec"),
+    "articles/raboty-ne-prinyaty.html": ("indexable_page", "e17ea3d20bf70b328e080e96747142591e8d35cc07a726143370bf1552bf1100"),
+    "index.html": ("indexable_page", "79b3f3461075fd2e93151752aee067f6875b101103d91e4e29165cf041fc1d12"),
+    "katalog.html": ("indexable_page", "caa6dc33b5024ecc2232a4d066af3c3d055d23d44e82a096f0ec0850e95e3e0d"),
     "download.php": ("public_endpoint", "8c90c5abf5900d1ab7e14d663a584e304fcf9ef8e37a953a4ac5b231e1b6ec55"),
-    "products-config.php": ("non_route_module", "1fd10f9d5961432ba5ad5fcffaf22ba36761af0fd49867ab72ca6f184636f299"),
-    "products/p3-shablony-ks2-ks3.html": ("indexable_page", "16d576dc3aebe609d6b53ddc7f7bbda5dd2ddaab571ed82582c3a7af90fc067d"),
+    "products-config.php": ("non_route_module", "b38d78f0f58a68c48f414684ff90eb6796f7ddabf6de78ebc6af1ade6ff6191f"),
+    "products/p3-shablony-ks2-ks3.html": ("indexable_page", "bfc2eff2d5d4be76d110a8362fc57586096fdce4ea99011fd79167f5d6828e31"),
     "tools/test_delivery_one_hour.php": ("test_fixture", "4bdae0c79bf1336af424d5d0a479b37616b10d910dfb89cc138429b94584d6ef"),
 }
 HISTORICAL_REPORTS = (
