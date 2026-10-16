@@ -16,7 +16,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PRICE = 199000
+PRICE = 1790000
 SOURCE = ROOT / "products-storage/05-ks-bez-vozvrata"
 REFERENCE = ROOT / "tools/candidates/p3-aosr-form-layout-20261015/P3-11-buyer-AOSR-formatted-20261015.zip"
 EXCLUDE = {".htaccess", "00-PISMO-POSLE-POKUPKI.txt", "MANIFEST.md"}
@@ -88,7 +88,7 @@ def main():
                 assert order["status"] == "pending"
                 assert order["items"][0]["sku"] == "p3"
                 assert order["items"][0]["price"] == PRICE and order["total"] == PRICE
-                assert payload["amount"] == {"value": "1990.00", "currency": "RUB"}
+                assert payload["amount"] == {"value": "17900.00", "currency": "RUB"}
                 audit.append(order_id)
                 self.send({"id": "mock_" + order_id, "status": "pending",
                            "confirmation": {"confirmation_url": "https://example.invalid/test"}})

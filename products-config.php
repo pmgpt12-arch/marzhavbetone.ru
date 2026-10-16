@@ -146,7 +146,7 @@ function mvb_products(): array
         ],
         'p3' => [
             'name'  => 'Комплект «КС-2 без возврата: сдайте с первой попытки»',
-            'price' => 199000,
+            'price' => 1790000,
             'dir'   => '05-ks-bez-vozvrata',
             'zip'   => '05-ks-bez-vozvrata.zip',
         ],

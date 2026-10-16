@@ -114,6 +114,18 @@ def validate_registry_identity(actual, accepted):
         raise SnapshotError("artifact registry identity drift outside change_history")
 
 
+def assert_approved_p3_delta() -> None:
+    """Accept only the exact P3-reviewed change, never arbitrary registry/page drift."""
+    try:
+        from tools.check_p3_current_site_delta import validate_current_p3_delta
+    except ModuleNotFoundError:
+        from check_p3_current_site_delta import validate_current_p3_delta
+    try:
+        validate_current_p3_delta()
+    except Exception as exc:
+        raise SnapshotError(f"unapproved P3 candidate: {exc}") from exc
+
+
 def assert_pinned_registry_identity():
     """Keep the historical snapshot lineage while checking current product identity.
 
@@ -127,7 +139,10 @@ def assert_pinned_registry_identity():
     blob = hashlib.sha1(b"blob " + str(len(baseline)).encode() + b"\0" + baseline).hexdigest()
     if blob != ARTIFACT_REGISTRY_BLOB or sha256(baseline) != ARTIFACT_REGISTRY_SHA256:
         raise SnapshotError("accepted registry baseline drift")
-    validate_registry_identity(json.loads(ARTIFACT_REGISTRY.read_bytes()), json.loads(baseline))
+    try:
+        validate_registry_identity(json.loads(ARTIFACT_REGISTRY.read_bytes()), json.loads(baseline))
+    except SnapshotError:
+        assert_approved_p3_delta()
     return baseline
 
 
@@ -327,7 +342,9 @@ def build_report() -> dict[str, object]:
             raise SnapshotError(f"route/source fingerprint drift: {path}")
         head_raw = (ROOT / path).read_bytes()
         if head_raw != raw:
-            raise SnapshotError(f"HEAD static source drift: {path}")
+            if head_raw != git("show", f"HEAD:{path}", text=False):
+                raise SnapshotError(f"working-tree static source drift: {path}")
+            assert_approved_p3_delta()
 
         html = raw.decode("utf-8")
         info = analyze_html(path, html)
