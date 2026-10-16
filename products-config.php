@@ -379,8 +379,8 @@ function mvb_products(): array
         // смежных запросах сделки («переуступка дду»), ядро узкое.
         // Цена — решение decision-price-p11-001 (ai-business-os).
         'p11' => [
-            'name'  => 'Комплект «Расчёт метрами: проверка до подписи»',
-            'price' => 249000,
+            'name'  => 'Расчёты в неденежной форме: жилые и офисные помещения, машино-места',
+            'price' => 2490000,
             'dir'   => '13-raschet-metrami',
             'zip'   => '13-raschet-metrami.zip',
         ],
@@ -416,11 +416,13 @@ function mvb_resolve_product(array $item): ?array
 {
     $catalog = mvb_products();
     $sku = (string)($item['sku'] ?? '');
+    if ($sku === 't6') return null;
     if ($sku !== '' && isset($catalog[$sku])) {
         return ['sku' => $sku] + $catalog[$sku];
     }
     $name = (string)($item['name'] ?? '');
     foreach ($catalog as $key => $product) {
+        if ($key === 't6') continue;
         if ($product['name'] === $name) {
             return ['sku' => $key] + $product;
         }
