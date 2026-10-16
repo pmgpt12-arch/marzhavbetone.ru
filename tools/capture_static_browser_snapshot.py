@@ -30,6 +30,25 @@ VIEWPORTS = {
 }
 OVERFLOW_TOLERANCE_PX = 1
 
+P3_PRICE_PAGE = "products/p3-shablony-ks2-ks3.html"
+P3_APPROVED_TITLE = "Комплект «КС-2 без возврата»: шаблоны, реестры, алгоритм — 17 900 ₽"
+
+
+def accepted_title_match(source_page: dict, observed_title: str) -> bool:
+    """A changed title is accepted only for the exact SHA-pinned P3 price change."""
+    if observed_title == source_page["title"]:
+        return True
+    if source_page.get("source_path") != P3_PRICE_PAGE or observed_title != P3_APPROVED_TITLE:
+        return False
+    try:
+        from tools.check_p3_current_site_delta import validate_current_p3_delta
+    except ModuleNotFoundError:
+        from check_p3_current_site_delta import validate_current_p3_delta
+    validate_current_p3_delta()
+    return True
+
+
+
 
 def sha256_bytes(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
@@ -356,7 +375,7 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
                             ]
                             checks = {
                                 "navigation_status": response.status if response else None,
-                                "title_match": title == source_page["title"],
+                                "title_match": accepted_title_match(source_page, title),
                                 "h1_match": h1 == source_page["h1"],
                                 "canonical_match": canonical == source_page["canonical"],
                                 "horizontal_overflow_px": overflow,
