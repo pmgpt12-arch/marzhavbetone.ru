@@ -104,6 +104,20 @@ async function main(){
       for(const target of cases){
         await client.send("Page.navigate",{url:"http://127.0.0.1:"+webPort+target.url});
         await sleep(420);
+        // The nav toggle is injected by the deferred attribution.js script.
+        // Hosted GitHub runners sometimes complete navigation before it executes.
+        // Wait at most 3.5s for readiness; a genuinely missing toggle is still
+        // detected by MOBILE_MENU_MISSING below.
+        if(width===390){
+          for(let attempt=0;attempt<25;attempt++){
+            const ready=await client.send("Runtime.evaluate",{
+              expression:"Boolean(document.querySelector('.topbar .nav-toggle'))",
+              returnByValue:true
+            });
+            if(ready.result?.value===true)break;
+            await sleep(140);
+          }
+        }
         const v=await client.send("Runtime.evaluate",{
           expression:`JSON.stringify((()=>{
             const a=document.querySelector('.topbar .brand'),
