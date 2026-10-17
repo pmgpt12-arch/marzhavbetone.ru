@@ -157,8 +157,8 @@ function mvb_products(): array
             'zip'   => '08-pto-bez-zamechaniy.zip',
         ],
         'p5' => [
-            'name'  => 'Комплект «Гарантийное удержание: возврат, оспаривание штрафов и зачётов»',
-            'price' => 299000,
+            'name'  => 'Система защиты подрядчика от претензий, штрафов, удержаний и зачётов',
+            'price' => 2990000,
             'dir'   => '07-uderzhaniya-shtrafy-zachety',
             'zip'   => '07-uderzhaniya-shtrafy-zachety.zip',
         ],
@@ -417,12 +417,14 @@ function mvb_resolve_product(array $item): ?array
     $catalog = mvb_products();
     $sku = (string)($item['sku'] ?? '');
     if ($sku === 't6') return null;
+    if ($sku === 'p12') return null;
     if ($sku !== '' && isset($catalog[$sku])) {
         return ['sku' => $sku] + $catalog[$sku];
     }
     $name = (string)($item['name'] ?? '');
     foreach ($catalog as $key => $product) {
         if ($key === 't6') continue;
+        if ($key === 'p12') continue;
         if ($product['name'] === $name) {
             return ['sku' => $key] + $product;
         }
