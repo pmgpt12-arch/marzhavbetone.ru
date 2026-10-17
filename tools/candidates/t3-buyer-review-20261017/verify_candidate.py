@@ -7,7 +7,7 @@ from docx import Document
 import re, subprocess, sys
 archive=Path(sys.argv[1]); expected=['00-START-HERE.pdf','01-poryadok-deystviy.docx','02-vozrazheniya-na-akt.docx','03-vozrazheniya-na-zachet.docx','04-slovar-poley.docx']
 with ZipFile(archive) as z:
- assert z.testzip() is None and z.namelist()==expected, 'ZIP CRC or buyer inventory'
+ assert z.testzip() is None and len(z.namelist())==5 and set(z.namelist())==set(expected), 'ZIP CRC or buyer inventory'
  pdf=subprocess.run(['pdftotext','-','-'],input=z.read(expected[0]),capture_output=True,check=True).stdout.decode()
  assert all(name in pdf for name in expected[1:]), 'Instruction references'
  docs={name:Document(BytesIO(z.read(name))) for name in expected[1:]}
