@@ -27,6 +27,10 @@ on:
         description: 'Адресный выпуск P5+P12 R6'
         type: boolean
         default: false
+      t2_review_export:
+        description: 'Только архив кандидата T2 для проверки'
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy
@@ -43,7 +47,7 @@ env:
 
 jobs:
   deploy:
-    if: ${{ github.event_name != 'workflow_dispatch' || (inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true) }}
+    if: ${{ github.event_name != 'workflow_dispatch' || (inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true) }}
     runs-on: ubuntu-latest
     steps:
       # Пока секреты не заданы, workflow завершается зелёным и ничего не делает —
@@ -600,3 +604,24 @@ jobs:
         run: |
           rm -f "$RUNNER_TEMP/p5-sandbox/.ssh/deploy_key" "$RUNNER_TEMP/p5-sandbox/.ssh/deploy_key.pub"
           rm -f "$RUNNER_TEMP/p5-sandbox/.ssh/known_hosts"
+
+
+  export-t2-review:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.t2_review_export == true }}
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 5
+    steps:
+      - name: Verify exact T2 owner-review candidate
+        run: |
+          test "$GITHUB_REF_NAME" = "candidate/mb001-t2-owner-review-20261017"
+          test "$(git -C /home/denis/projects/mb001-t2-owner-review-20261017 rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git -C /home/denis/projects/mb001-t2-owner-review-20261017 status --porcelain)"
+          cd /home/denis/projects/mb001-t2-owner-review-20261017
+          echo '80c7b085aa31cf241c97b562dce5e386d8807e8d53ecbe1581c97a9d14a2f705  tools/candidates/t2-buyer-review-20261017/T2-peredacha-ID-6-files-business-R1.zip' | sha256sum -c
+      - name: Export T2 candidate without server deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: t2-owner-review-${{ github.run_id }}
+          path: /home/denis/projects/mb001-t2-owner-review-20261017/tools/candidates/t2-buyer-review-20261017/T2-peredacha-ID-6-files-business-R1.zip
+          if-no-files-found: error
+          retention-days: 3
