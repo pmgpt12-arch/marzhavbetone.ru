@@ -1,5 +1,5 @@
 {
-  "status": "T2_R2_READY_FOR_OWNER_REVIEW_NOT_RELEASED",
+  "status": "T2_VERIFIED_DONE",
   "product_title": "Система документального подтверждения передачи исполнительной документации",
   "target_price_rub": 9900,
   "source_commit": "530f615",
@@ -122,8 +122,22 @@
     "word_pdf": "Reused unchanged SHA and previous successful render: PDF 1 page; DOCX 3/1/1/5 pages",
     "dictionary_markers": "PASS"
   },
-  "owner_review_required": true,
-  "published": false,
-  "release_scope": "No storefront, checkout, production or accepted primary product changes",
-  "main_product_counter": "3/13 unchanged; T2 is separate SKU"
+  "owner_review_required": false,
+  "published": true,
+  "release_scope": "Scoped T2 only, production run 39046922164; P3/P11/P5+P12 unchanged",
+  "main_product_counter": "3/13 unchanged; T2 is separate SKU",
+  "production": {
+    "owner_confirmed_at_date": "2026-10-17 Asia/Krasnoyarsk",
+    "owner_confirmation": "Все ок",
+    "release_commit": "6b80451195a8de9b1dde541ebb916d41a7fd116f",
+    "release_run_id": 39046922164,
+    "buyer_zip_sha256": "cc485e11fa68d88f239975cbb9d63421a5a1d3ca1d17c01ea857e09c5458c2c7",
+    "buyer_zip_bytes": 82911,
+    "exact_files_verified": 6,
+    "hourly_link_run_id": 39047149047,
+    "active_http": 200,
+    "expired_http": 410,
+    "ttl_seconds": 3600,
+    "paid_order_test": "not invoked"
+  }
 }
