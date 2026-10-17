@@ -1,0 +1,27 @@
+"""Regression: Excel disclaimer heading must block nomination; legal negations stay valid."""
+import unittest
+from io import BytesIO
+from zipfile import ZipFile
+from editorial_business_style_gate import check
+
+class T2EditorialRegression(unittest.TestCase):
+    def test_comment_text_is_checked(self):
+        stream=BytesIO()
+        with ZipFile(stream,'w') as z:
+            z.writestr('xl/comments/comment1.xml', '<comments><comment><text><t>Ради этой колонки опись и существует</t></text></comment></comments>')
+        self.assertTrue(check('book.xlsx',stream.getvalue()))
+
+    def test_disclaimer_heading_variants(self):
+        for text in ('Что эта опись не делает', 'Чего этот комплект не делает',
+                     'Что данный документ не делает', 'Чего данная опись не делает'):
+            with self.subTest(text=text):
+                self.assertTrue(check('fragment.txt', text.encode()))
+
+    def test_preserve_legally_meaningful_negations(self):
+        for text in ('Настоящий акт не является признанием требований.',
+                     'Подпись подтверждает получение документации.',
+                     'Оплата не подтверждена. Обязанность не переходит.'):
+            with self.subTest(text=text):
+                self.assertEqual([], check('fragment.txt', text.encode()))
+
+if __name__=='__main__': unittest.main()

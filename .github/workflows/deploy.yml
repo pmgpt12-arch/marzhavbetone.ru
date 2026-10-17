@@ -27,6 +27,18 @@ on:
         description: 'Адресный выпуск P5+P12 R6'
         type: boolean
         default: false
+      t2_only:
+        description: 'Адресный выпуск T2 R2'
+        type: boolean
+        default: false
+      t2_link_probe:
+        description: 'Проверка часовой ссылки T2 без оплаты'
+        type: boolean
+        default: false
+      t2_review_export:
+        description: 'Только архив кандидата T2 для проверки'
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy
@@ -43,7 +55,7 @@ env:
 
 jobs:
   deploy:
-    if: ${{ github.event_name != 'workflow_dispatch' || (inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true) }}
+    if: ${{ github.event_name != 'workflow_dispatch' || (inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true) }}
     runs-on: ubuntu-latest
     steps:
       # Пока секреты не заданы, workflow завершается зелёным и ничего не делает —
@@ -539,6 +551,113 @@ jobs:
           rm -f "$RUNNER_TEMP/p11-sandbox/.ssh/deploy_key" "$RUNNER_TEMP/p11-sandbox/.ssh/deploy_key.pub"
           rm -f "$RUNNER_TEMP/p11-sandbox/.ssh/known_hosts"
 
+  deploy-t2-only:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.t2_only == true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true }}
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    steps:
+      - name: Use verified local T2 worktree
+        run: |
+          test "$GITHUB_REF_NAME" = "candidate/mb001-t2-owner-review-20261017"
+          test "$(git -C /home/denis/projects/mb001-t2-owner-review-20261017 rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git -C /home/denis/projects/mb001-t2-owner-review-20261017 status --porcelain)"
+      - name: Verify exact T2 candidate
+        working-directory: /home/denis/projects/mb001-t2-owner-review-20261017
+        run: |
+          test "$GITHUB_REF_NAME" = "candidate/mb001-t2-owner-review-20261017"
+          test "$(git rev-parse HEAD:products-storage/14-peredacha-id-pod-podpis)" = "262cc7dfbe39973106806897d958c6f17d6f933c"
+          python3 tools/link_audit.py --verify > /dev/null
+          php -l products-config.php
+          php -r 'define("ORDERS_DIR",sys_get_temp_dir()); require "products-config.php"; exit(mvb_products()["t2"]["price"] === 990000 && mvb_resolve_product(["sku"=>"t2"]) !== null ? 0 : 3);'
+          bash -n tools/release_t2_only.sh
+      - name: Prepare GitHub deploy SSH
+        env:
+          HOME: ${{ runner.temp }}/t2-sandbox
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          test -n "$KEY" && test -n "$HOST" && test -n "$USER" || exit 1
+          mkdir -p ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keygen -y -P '' -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
+          for attempt in 1 2; do
+            if ssh-keyscan -T 10 -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null; then
+              break
+            fi
+            echo "SSH_HOST_KEY_NETWORK_RETRY attempt=$attempt" >&2
+            sleep 2
+          done
+          test -s ~/.ssh/known_hosts || { echo "::error::SSH_HOST_KEY_UNAVAILABLE"; exit 23; }
+      - name: Execute scoped T2 operation
+        working-directory: /home/denis/projects/mb001-t2-owner-review-20261017
+        env:
+          HOME: ${{ runner.temp }}/t2-sandbox
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          T2_ONLY: 'true'
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: bash tools/release_t2_only.sh
+      - name: Upload T2 production buyer ZIP for owner
+        if: ${{ inputs.dry_run != true }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: T2-production-buyer-${{ github.run_id }}
+          path: ${{ runner.temp }}/t2-live-buyer-evidence/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Remove job-scoped SSH credentials
+        if: always()
+        run: |
+          rm -f "$RUNNER_TEMP/t2-sandbox/.ssh/deploy_key" "$RUNNER_TEMP/t2-sandbox/.ssh/deploy_key.pub"
+          rm -f "$RUNNER_TEMP/t2-sandbox/.ssh/known_hosts"
+
+  probe-t2-live-link:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.t2_link_probe == true && inputs.t2_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true }}
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 6
+    steps:
+      - name: Verify exact T2 link probe worktree
+        run: |
+          test "$GITHUB_REF_NAME" = "candidate/mb001-t2-owner-review-20261017"
+          test "$(git -C /home/denis/projects/mb001-t2-owner-review-20261017 rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git -C /home/denis/projects/mb001-t2-owner-review-20261017 status --porcelain)"
+          bash -n /home/denis/projects/mb001-t2-owner-review-20261017/tools/verify_t2_live_link.sh
+      - name: Prepare GitHub deploy SSH
+        env:
+          HOME: ${{ runner.temp }}/t2-sandbox
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          test -n "$KEY" && test -n "$HOST" && test -n "$USER" || exit 1
+          mkdir -p ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keygen -y -P '' -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
+          for attempt in 1 2; do
+            if ssh-keyscan -T 10 -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null; then
+              break
+            fi
+            echo "SSH_HOST_KEY_NETWORK_RETRY attempt=$attempt" >&2
+            sleep 2
+          done
+          test -s ~/.ssh/known_hosts || { echo "::error::SSH_HOST_KEY_UNAVAILABLE"; exit 23; }
+      - name: Probe T2 active and expired HTTP link
+        working-directory: /home/denis/projects/mb001-t2-owner-review-20261017
+        env:
+          HOME: ${{ runner.temp }}/t2-sandbox
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: bash tools/verify_t2_live_link.sh
+      - name: Remove job-scoped SSH credentials
+        if: always()
+        run: |
+          rm -f "$RUNNER_TEMP/t2-sandbox/.ssh/deploy_key" "$RUNNER_TEMP/t2-sandbox/.ssh/deploy_key.pub"
+          rm -f "$RUNNER_TEMP/t2-sandbox/.ssh/known_hosts"
+
+
   deploy-p5-only:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.p5_only == true }}
     runs-on: [self-hosted, Linux, X64]
@@ -600,3 +719,24 @@ jobs:
         run: |
           rm -f "$RUNNER_TEMP/p5-sandbox/.ssh/deploy_key" "$RUNNER_TEMP/p5-sandbox/.ssh/deploy_key.pub"
           rm -f "$RUNNER_TEMP/p5-sandbox/.ssh/known_hosts"
+
+
+  export-t2-review:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.t2_review_export == true }}
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 5
+    steps:
+      - name: Verify exact T2 owner-review candidate
+        run: |
+          test "$GITHUB_REF_NAME" = "candidate/mb001-t2-owner-review-20261017"
+          test "$(git -C /home/denis/projects/mb001-t2-owner-review-20261017 rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git -C /home/denis/projects/mb001-t2-owner-review-20261017 status --porcelain)"
+          cd /home/denis/projects/mb001-t2-owner-review-20261017
+          echo '80c7b085aa31cf241c97b562dce5e386d8807e8d53ecbe1581c97a9d14a2f705  tools/candidates/t2-buyer-review-20261017/T2-peredacha-ID-6-files-business-R1.zip' | sha256sum -c
+      - name: Export T2 candidate without server deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: t2-owner-review-${{ github.run_id }}
+          path: /home/denis/projects/mb001-t2-owner-review-20261017/tools/candidates/t2-buyer-review-20261017/T2-peredacha-ID-6-files-business-R1.zip
+          if-no-files-found: error
+          retention-days: 3
