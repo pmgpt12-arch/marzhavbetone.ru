@@ -1,0 +1,129 @@
+{
+  "status": "T2_R2_READY_FOR_OWNER_REVIEW_NOT_RELEASED",
+  "product_title": "Система документального подтверждения передачи исполнительной документации",
+  "target_price_rub": 9900,
+  "source_commit": "530f615",
+  "source_R1_sha256": "80c7b085aa31cf241c97b562dce5e386d8807e8d53ecbe1581c97a9d14a2f705",
+  "buyer_file_count": 6,
+  "zip_name": "T2-peredacha-ID-6-files-business-R2.zip",
+  "zip_sha256": "f50e64138980e4ad0ad0f262a5201e43464b0c600b4cc023726f50d23cebe195",
+  "zip_bytes": 82906,
+  "buyer_files": [
+    {
+      "name": "00-START-HERE.pdf",
+      "sha256": "298fa091c81f491669439a33251fac4e9165da14c48c481a3840193732df1357",
+      "bytes": 32069
+    },
+    {
+      "name": "01-slovar-poley.docx",
+      "sha256": "4a5a5d7ac357633aa9f0ea9c2b92ce6f4eb2c5240f8e4b9392abb49770a9a796",
+      "bytes": 11592
+    },
+    {
+      "name": "02-soprovoditelnoe-pismo-peredachi.docx",
+      "sha256": "c798fd7d54a9433493fc06a3fefb78854c37827b4c0a89d9f1939609b39382d8",
+      "bytes": 9494
+    },
+    {
+      "name": "03-opis-peredavaemogo-komplekta.xlsx",
+      "sha256": "6bf7ca0c4dc15ff132b91269542adaf8f80c689e9dc99b180d4f26586a808ae6",
+      "bytes": 20210
+    },
+    {
+      "name": "04-akt-priema-peredachi-id.docx",
+      "sha256": "8e650a23f8a09a53f2ddc5e01b7ba68ebc012a09d96cbdb0dcc0b6d52a7ad0e4",
+      "bytes": 9215
+    },
+    {
+      "name": "05-poryadok-peredachi-id.docx",
+      "sha256": "a5020ade5e3ad61b2124c49192893123df77dca5dd8b0caf442cce3b7fbfe941",
+      "bytes": 11552
+    }
+  ],
+  "changed_from_previous_draft": [
+    "03-opis-peredavaemogo-komplekta.xlsx"
+  ],
+  "checks": {
+    "crc": "PASS",
+    "exact_member_names": "PASS",
+    "editorial_automated": "EDITORIAL_PASS files=6 forbidden_occurrences=0",
+    "editorial_semantic": "PASS: instructions, examples, notes and cross-document references reviewed",
+    "formula_count": 124,
+    "formula_text_and_cached_values": "IDENTICAL_TO_R1",
+    "other_values": "IDENTICAL except 22 authorized text cells (including A2) and three note texts",
+    "validations_conditional_formatting_merges_views": "IDENTICAL_TO_R1",
+    "styles": "Existing definitions retained; scoped wrapping variants appended",
+    "print": {
+      "engine": "LibreOffice Calc via render_docx.py",
+      "pdf_sha256": "fc9c29dae3682e61f49589a2989156235adcaedd5d881b6467ea2ec73166a555",
+      "pages": 6,
+      "Опись_pages": 3,
+      "other_sheets_pages": [
+        1,
+        1,
+        1
+      ],
+      "all_nine_columns_and_repeated_headers": "PASS",
+      "all_22_edited_text_cells_fully_present": "PASS",
+      "signatures_on_final_opis_page": "PASS",
+      "empty_pages": 0,
+      "visual_review": "All six final-layout pages inspected; after wrapping change affected pages 3/4/6 inspected again"
+    },
+    "native_formula_scenarios": {
+      "valid": {
+        "expected": {
+          "A11": 1,
+          "A12": 2,
+          "A13": 3,
+          "A14": 4,
+          "C132": 4,
+          "E132": 5,
+          "C133": 0,
+          "E133": 1
+        },
+        "observed": {
+          "A11": 1.0,
+          "A12": 2.0,
+          "A13": 3.0,
+          "A14": 4.0,
+          "C132": 4.0,
+          "E132": 5.0,
+          "C133": 0.0,
+          "E133": 1.0
+        },
+        "status": "PASS",
+        "recalculated_xlsx_sha256": "9ce3906abc8ebf53d98232db74ee69b148e0becda17ec0e8c342e943645f2f75"
+      },
+      "missing": {
+        "expected": {
+          "A11": 1,
+          "A12": 2,
+          "A13": 3,
+          "A14": 4,
+          "C132": 4,
+          "E132": 3,
+          "C133": 1,
+          "E133": 1
+        },
+        "observed": {
+          "A11": 1.0,
+          "A12": 2.0,
+          "A13": 3.0,
+          "A14": 4.0,
+          "C132": 4.0,
+          "E132": 3.0,
+          "C133": 1.0,
+          "E133": 1.0
+        },
+        "status": "PASS",
+        "recalculated_xlsx_sha256": "9bddda61a2ea778f42f764bc1b346aaed0ca1fb716495b6dc12aca34380e3c9b"
+      }
+    },
+    "word_pdf": "Reused unchanged SHA and previous successful render: PDF 1 page; DOCX 3/1/1/5 pages",
+    "dictionary_markers": "PASS"
+  },
+  "owner_review_required": true,
+  "published": false,
+  "release_scope": "No storefront, checkout, production or accepted primary product changes",
+  "main_product_counter": "3/13 unchanged; T2 is separate SKU"
+}

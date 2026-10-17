@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "native_engine": "LibreOffice Calc, XLSX import/recalculation/export on disposable copies",
+  "native_scenarios": {
+    "valid": {
+      "expected": {
+        "A11": 1,
+        "A12": 2,
+        "A13": 3,
+        "A14": 4,
+        "C132": 4,
+        "E132": 5,
+        "C133": 0,
+        "E133": 1
+      },
+      "observed": {
+        "A11": 1.0,
+        "A12": 2.0,
+        "A13": 3.0,
+        "A14": 4.0,
+        "C132": 4.0,
+        "E132": 5.0,
+        "C133": 0.0,
+        "E133": 1.0
+      },
+      "status": "PASS",
+      "recalculated_xlsx_sha256": "9ce3906abc8ebf53d98232db74ee69b148e0becda17ec0e8c342e943645f2f75"
+    },
+    "missing": {
+      "expected": {
+        "A11": 1,
+        "A12": 2,
+        "A13": 3,
+        "A14": 4,
+        "C132": 4,
+        "E132": 3,
+        "C133": 1,
+        "E133": 1
+      },
+      "observed": {
+        "A11": 1.0,
+        "A12": 2.0,
+        "A13": 3.0,
+        "A14": 4.0,
+        "C132": 4.0,
+        "E132": 3.0,
+        "C133": 1.0,
+        "E133": 1.0
+      },
+      "status": "PASS",
+      "recalculated_xlsx_sha256": "9bddda61a2ea778f42f764bc1b346aaed0ca1fb716495b6dc12aca34380e3c9b"
+    }
+  },
+  "print": {
+    "engine": "LibreOffice Calc via render_docx.py",
+    "pdf_sha256": "fc9c29dae3682e61f49589a2989156235adcaedd5d881b6467ea2ec73166a555",
+    "pages": 6,
+    "Опись_pages": 3,
+    "other_sheets_pages": [
+      1,
+      1,
+      1
+    ],
+    "all_nine_columns_and_repeated_headers": "PASS",
+    "all_22_edited_text_cells_fully_present": "PASS",
+    "signatures_on_final_opis_page": "PASS",
+    "empty_pages": 0,
+    "visual_review": "All six final-layout pages inspected; after wrapping change affected pages 3/4/6 inspected again"
+  },
+  "dictionary_markers": "All markers in letter/act defined",
+  "final_xlsx_sha256": "6bf7ca0c4dc15ff132b91269542adaf8f80c689e9dc99b180d4f26586a808ae6"
+}

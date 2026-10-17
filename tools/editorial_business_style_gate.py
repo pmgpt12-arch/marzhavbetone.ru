@@ -27,6 +27,7 @@ FORBIDDEN = {
     "непроверенное_заявление_о_юристе": r"тексты\s+прошли\s+вычитку\s+юристом",
     "оправдательный_блок": r"важно,\s*прочитайте\s+до\s+использования",
     "самооправдание_через_сравнение": r"это\s+зеркало\s+алгоритма",
+    "оправдание_назначения_описи": r"ради\s+этой\s+колонки\s+опись\s+и\s+существует",
     "отсутствие_значений_как_оправдание": r"числа,\s+которых\s+в\s+файле\s+нет\s+намеренно",
     "внутренняя_фраза_ссылки": r"скачивание\s+по\s+ссылке\s+покупателя\s+доступно",
     "до_подписи": r"до\s+подписи",
@@ -68,7 +69,7 @@ def extract(name: str, data: bytes) -> str:
         parts = []
         with ZipFile(BytesIO(data)) as archive:
             for path in archive.namelist():
-                if path == "xl/sharedStrings.xml" or (
+                if path == "xl/sharedStrings.xml" or (path.startswith("xl/comments/") and path.endswith(".xml")) or (
                     path.startswith("xl/worksheets/") and path.endswith(".xml")
                 ):
                     root = ET.fromstring(archive.read(path))
