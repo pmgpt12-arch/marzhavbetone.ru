@@ -285,14 +285,19 @@ def verify_history_files(data, repo):
     # A saved status cannot override the raw native report for the same SHA/job.
     for record in data.get("change_history", {}).get("records", []):
         for gate in record["gates"]:
-            if gate["gate_id"] != "native_open_export" or gate["status"] not in {"PASS", "FAIL"}:
+            if gate["gate_id"] not in {"native_open_export", "native_numeric_fixture"} or gate["status"] not in {"PASS", "FAIL"}:
                 continue
             import xml.etree.ElementTree as ET
-            reports = [ET.fromstring((repo/e["archive_path"]).read_bytes()) for e in record["evidence"] if e["kind"] == "native-report"]
+            reports = [ET.fromstring((repo/e["archive_path"]).read_bytes()) for e in record["evidence"] if e["kind"] in {"native-report", "native-numeric-report"}]
             reports = [r for r in reports if r.get("job") == gate["job_id"]]
             require_history(len(reports) == 1, "missing or ambiguous raw native report")
             require_history(reports[0].get("status") == gate["status"], "native verdict contradicts raw report")
             input_checks = [c for c in reports[0].findall("check") if c.get("name", "").endswith(":input_sha")]
+            if gate["gate_id"] == "native_numeric_fixture":
+                tag = record.get("execution", {}).get("tag")
+                require_history(isinstance(tag, str) and bool(tag), "numeric native tag missing")
+                input_checks = [c for c in input_checks if c.get("name") == tag + ":input_sha"]
+                require_history(len(input_checks) == 1, "numeric native input check missing or ambiguous")
             for c in input_checks:
                 require_history(c.get("actual") == gate["subject_sha256"] and c.get("pass", "").lower() == "true", "native input SHA mismatch")
 

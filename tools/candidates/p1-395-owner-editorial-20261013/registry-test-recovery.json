@@ -1,0 +1,10 @@
+{
+  "error": "test_same_job_and_fingerprint_cannot_be_recorded_twice: expected RegistryError not raised",
+  "classification": "QA_HARNESS_FIXTURE_SELECTION",
+  "root_cause": "Test selected records[-1] and assumed a native job. New owner editorial checkpoint has job_id=None.",
+  "rule": "Select a fixture meeting the tested native-job precondition, never by log position.",
+  "fix": "Select an actual job-bearing record; preserve duplicate-job enforcement unchanged.",
+  "regression": "test_job_fixture_selection_ignores_no_job_tail",
+  "candidate_binary_modified": false,
+  "verification": "PENDING"
+}

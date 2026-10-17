@@ -1,0 +1,795 @@
+{
+  "G1_G8": "OPEN",
+  "cached_value_checks": 66,
+  "checks": [
+    {
+      "actual": "10",
+      "cell": "C4",
+      "expected": {
+        "kind": "number",
+        "value": "10"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "1000000",
+      "cell": "D4",
+      "expected": {
+        "kind": "number",
+        "value": "1000000"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "10",
+      "cell": "E4",
+      "expected": {
+        "kind": "number",
+        "value": "10"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "365",
+      "cell": "F4",
+      "expected": {
+        "kind": "number",
+        "value": "365"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "2739.73",
+      "cell": "G4",
+      "expected": {
+        "kind": "number",
+        "value": "2739.73"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "cell": "H4",
+      "expected": {
+        "kind": "blank",
+        "value": ""
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "2739.73",
+      "cell": "G45",
+      "expected": {
+        "kind": "number",
+        "value": "2739.73"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "1002739.73",
+      "cell": "G46",
+      "expected": {
+        "kind": "number",
+        "value": "1002739.73"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "cell": "H45",
+      "expected": {
+        "kind": "blank",
+        "value": ""
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "1000000",
+      "cell": "B4",
+      "expected": {
+        "kind": "number",
+        "value": "1000000"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "0",
+      "cell": "B5",
+      "expected": {
+        "kind": "number",
+        "value": "0"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "1000000",
+      "cell": "B6",
+      "expected": {
+        "kind": "number",
+        "value": "1000000"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "45658",
+      "cell": "B7",
+      "expected": {
+        "kind": "number",
+        "value": "45658"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "45667",
+      "cell": "B8",
+      "expected": {
+        "kind": "number",
+        "value": "45667"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "10",
+      "cell": "B9",
+      "expected": {
+        "kind": "number",
+        "value": "10"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "2739.73",
+      "cell": "B10",
+      "expected": {
+        "kind": "number",
+        "value": "2739.73"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "1002739.73",
+      "cell": "B11",
+      "expected": {
+        "kind": "number",
+        "value": "1002739.73"
+      },
+      "fixture": "ordinary-365",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "2",
+      "cell": "C4",
+      "expected": {
+        "kind": "number",
+        "value": "2"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "1000",
+      "cell": "D4",
+      "expected": {
+        "kind": "number",
+        "value": "1000"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "36.5",
+      "cell": "E4",
+      "expected": {
+        "kind": "number",
+        "value": "36.5"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "366",
+      "cell": "F4",
+      "expected": {
+        "kind": "number",
+        "value": "366"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "1.99",
+      "cell": "G4",
+      "expected": {
+        "kind": "number",
+        "value": "1.99"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "cell": "H4",
+      "expected": {
+        "kind": "blank",
+        "value": ""
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "1",
+      "cell": "C5",
+      "expected": {
+        "kind": "number",
+        "value": "1"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "800",
+      "cell": "D5",
+      "expected": {
+        "kind": "number",
+        "value": "800"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "36.5",
+      "cell": "E5",
+      "expected": {
+        "kind": "number",
+        "value": "36.5"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "366",
+      "cell": "F5",
+      "expected": {
+        "kind": "number",
+        "value": "366"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "0.8",
+      "cell": "G5",
+      "expected": {
+        "kind": "number",
+        "value": "0.80"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "cell": "H5",
+      "expected": {
+        "kind": "blank",
+        "value": ""
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "2.79",
+      "cell": "G45",
+      "expected": {
+        "kind": "number",
+        "value": "2.79"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "802.79",
+      "cell": "G46",
+      "expected": {
+        "kind": "number",
+        "value": "802.79"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "cell": "H45",
+      "expected": {
+        "kind": "blank",
+        "value": ""
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "1000",
+      "cell": "B4",
+      "expected": {
+        "kind": "number",
+        "value": "1000"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "200",
+      "cell": "B5",
+      "expected": {
+        "kind": "number",
+        "value": "200"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "800",
+      "cell": "B6",
+      "expected": {
+        "kind": "number",
+        "value": "800"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "45292",
+      "cell": "B7",
+      "expected": {
+        "kind": "number",
+        "value": "45292"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "45294",
+      "cell": "B8",
+      "expected": {
+        "kind": "number",
+        "value": "45294"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "3",
+      "cell": "B9",
+      "expected": {
+        "kind": "number",
+        "value": "3"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "2.79",
+      "cell": "B10",
+      "expected": {
+        "kind": "number",
+        "value": "2.79"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "802.79",
+      "cell": "B11",
+      "expected": {
+        "kind": "number",
+        "value": "802.79"
+      },
+      "fixture": "leap-partial",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "1",
+      "cell": "C4",
+      "expected": {
+        "kind": "number",
+        "value": "1"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "100000",
+      "cell": "D4",
+      "expected": {
+        "kind": "number",
+        "value": "100000"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "10",
+      "cell": "E4",
+      "expected": {
+        "kind": "number",
+        "value": "10"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "365",
+      "cell": "F4",
+      "expected": {
+        "kind": "number",
+        "value": "365"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "27.4",
+      "cell": "G4",
+      "expected": {
+        "kind": "number",
+        "value": "27.40"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "cell": "H4",
+      "expected": {
+        "kind": "blank",
+        "value": ""
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "2",
+      "cell": "C5",
+      "expected": {
+        "kind": "number",
+        "value": "2"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "100000",
+      "cell": "D5",
+      "expected": {
+        "kind": "number",
+        "value": "100000"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "12",
+      "cell": "E5",
+      "expected": {
+        "kind": "number",
+        "value": "12"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "366",
+      "cell": "F5",
+      "expected": {
+        "kind": "number",
+        "value": "366"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "65.569999999999993",
+      "cell": "G5",
+      "expected": {
+        "kind": "number",
+        "value": "65.57"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "cell": "H5",
+      "expected": {
+        "kind": "blank",
+        "value": ""
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "92.97",
+      "cell": "G45",
+      "expected": {
+        "kind": "number",
+        "value": "92.97"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "100092.97",
+      "cell": "G46",
+      "expected": {
+        "kind": "number",
+        "value": "100092.97"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "cell": "H45",
+      "expected": {
+        "kind": "blank",
+        "value": ""
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "100000",
+      "cell": "B4",
+      "expected": {
+        "kind": "number",
+        "value": "100000"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "0",
+      "cell": "B5",
+      "expected": {
+        "kind": "number",
+        "value": "0"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "100000",
+      "cell": "B6",
+      "expected": {
+        "kind": "number",
+        "value": "100000"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "45291",
+      "cell": "B7",
+      "expected": {
+        "kind": "number",
+        "value": "45291"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "45293",
+      "cell": "B8",
+      "expected": {
+        "kind": "number",
+        "value": "45293"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "3",
+      "cell": "B9",
+      "expected": {
+        "kind": "number",
+        "value": "3"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "92.97",
+      "cell": "B10",
+      "expected": {
+        "kind": "number",
+        "value": "92.97"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "100092.97",
+      "cell": "B11",
+      "expected": {
+        "kind": "number",
+        "value": "100092.97"
+      },
+      "fixture": "year-rate",
+      "part": "xl/worksheets/sheet3.xml",
+      "pass": true
+    },
+    {
+      "actual": "Период пропущен или перекрыт — исправьте даты",
+      "cell": "H4",
+      "expected": {
+        "kind": "text",
+        "value": "Период пропущен или перекрыт — исправьте даты"
+      },
+      "fixture": "invalid-gaps",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "Период пропущен или перекрыт — исправьте даты",
+      "cell": "H5",
+      "expected": {
+        "kind": "text",
+        "value": "Период пропущен или перекрыт — исправьте даты"
+      },
+      "fixture": "invalid-gaps",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    },
+    {
+      "actual": "Последний период не совпадает с датой окончания",
+      "cell": "H45",
+      "expected": {
+        "kind": "text",
+        "value": "Последний период не совпадает с датой окончания"
+      },
+      "fixture": "invalid-gaps",
+      "part": "xl/worksheets/sheet2.xml",
+      "pass": true
+    }
+  ],
+  "completed_utc": "2026-10-13T04:19:05.829486+00:00",
+  "do_not_add_native_and_cached_counts_as_unique": true,
+  "fixtures": 4,
+  "job_id": "p1-395-numeric-four-20261013-v1",
+  "native_attempts": 1,
+  "native_checks": 58,
+  "outputs": [
+    {
+      "bytes": 21661,
+      "path": "p1n1-filled.xlsx",
+      "sha256": "f1d8f3a368a1b53384b033e943a3d843dbaf1e0a63ed4d84f7823b262419c9e8"
+    },
+    {
+      "bytes": 215326,
+      "path": "p1n1-filled.pdf",
+      "sha256": "ffd11cc517084e9220d763d4ade24b0a286beba39d1a68d255a9d5d4b23d8f21"
+    },
+    {
+      "bytes": 21704,
+      "path": "p1n2-filled.xlsx",
+      "sha256": "e829a043346cb737acdb02c49a7cdae396e82365a1c6616500f9327398251312"
+    },
+    {
+      "bytes": 216249,
+      "path": "p1n2-filled.pdf",
+      "sha256": "f9a58233fb7249b5e633df8694d83be07507458823801c94866e8a58d73c09db"
+    },
+    {
+      "bytes": 21716,
+      "path": "p1n3-filled.xlsx",
+      "sha256": "7f3855dca979fcce5220aba81205a2f9177956460b3fcfc2912401547a298e1c"
+    },
+    {
+      "bytes": 216067,
+      "path": "p1n3-filled.pdf",
+      "sha256": "047f4f57ec437b13391b42596a5d8eb6eb32d3ba0da7a78580319dc2b24bfa3a"
+    },
+    {
+      "bytes": 21696,
+      "path": "p1n4-filled.xlsx",
+      "sha256": "559490833c29f47cfe04ab4bf94376cf94f9f7226b5556f8b6cebe32ef9c0749"
+    },
+    {
+      "bytes": 216599,
+      "path": "p1n4-filled.pdf",
+      "sha256": "11a938cbd7fccd6d74920ba75af1f126a877320baad5cdb203e9c582f76f3eec"
+    }
+  ],
+  "release": "BLOCKED",
+  "runtime_changes": 0,
+  "scope_exclusions": [
+    "manual typing/paste UI",
+    "formula protection policy",
+    "complete boundary coverage",
+    "legal/currentness",
+    "full buyer G1-G8",
+    "release"
+  ],
+  "source_commit": "586263405d2f6c0ff8c208e4fcbe7a0242b345b1",
+  "source_mutations": 0,
+  "source_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+  "status": "PASS_FOUR_DERIVED_NATIVE_NUMERIC_FIXTURES_ONLY",
+  "unique_business_assertions": 66
+}
