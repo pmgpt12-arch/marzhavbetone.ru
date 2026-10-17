@@ -1,0 +1,48 @@
+{
+  "status": "OWNER_REVIEW_CANDIDATE_NOT_PUBLISHED",
+  "edition": "R1",
+  "buyer_files": [
+    {
+      "name": "00-START-HERE.pdf",
+      "size_bytes": 25952,
+      "sha256": "7b4c29c362543b75e37634dc5dbc84396c7e253623a566d4150a83543f048cab"
+    },
+    {
+      "name": "01-poryadok-deystviy.docx",
+      "size_bytes": 38669,
+      "sha256": "a18a414021b872da8858d3a4711d1220db452b3c5028a96e41c714045484f885"
+    },
+    {
+      "name": "02-vozrazheniya-na-akt.docx",
+      "size_bytes": 37843,
+      "sha256": "a038219ec36d47288b06bf280b67fb547c7c036e92a44b02dc1d0b831c7becb1"
+    },
+    {
+      "name": "03-vozrazheniya-na-zachet.docx",
+      "size_bytes": 37951,
+      "sha256": "1982692e4afbf7ade710a17771e76db7aae4f4e4e62b74d57c37f01fc7b367a0"
+    },
+    {
+      "name": "04-slovar-poley.docx",
+      "size_bytes": 39009,
+      "sha256": "e60d1f4c5b2d54e41570c1c95909dd5c4f813f046b423ddf3ffedf0d72489259"
+    }
+  ],
+  "archive": {
+    "name": "T3-vozrazheniya-5-files-business-R1.zip",
+    "size_bytes": 166646,
+    "sha256": "554096d56512a75d3291b9c8e45b9257484aa2cd3b6048c5eec530f6006bc6de"
+  },
+  "checks": [
+    "CRC and exact inventory PASS",
+    "Editorial business gate PASS",
+    "Form-first and dictionary gate PASS",
+    "PDF and 4 Word documents rendered as one A4 page each; page images visually inspected"
+  ],
+  "source_revision": "T3 original files in products-storage/17-odnostoronniy-akt-i-zachet remain unchanged",
+  "legal_sources": {
+    "ГК РФ ст. 410": "https://www.consultant.ru/document/cons_doc_LAW_5142/ce09e59d11f3a60c30a1601c0f6c7cceb9835dfa/",
+    "ГК РФ ст. 333": "https://www.consultant.ru/document/cons_doc_LAW_5142/f9732de88783800811973b3a13ef5112de0b5321/",
+    "ГК РФ ст. 753": "https://www.consultant.ru/document/cons_doc_LAW_9027/6b2d751a0d605616a9a1012cb7c7fbac1b6d84b3/"
+  }
+}
