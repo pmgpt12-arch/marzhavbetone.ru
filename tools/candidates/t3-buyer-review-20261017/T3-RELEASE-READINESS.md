@@ -10,4 +10,6 @@
 - Деплой: `tools/release_t3_only.sh`, только папка T3 и три файла сайта; резервная копия, контроль SHA мастеров, ротация старого T3-кэша, сверка 5/5 фактических членов production ZIP и артефакт выдачи.
 - Локально: PHP lint PASS, редакционный gate PASS 6/6 (архив + страница), проверка списка и полей PASS, целевые цена/имя/файлы PASS, локальный builder 5/5 PASS, link audit PASS, workflow YAML PASS.
 
-Следующий gate — scoped dry-run GitHub Actions. После отдельного разрешения — адресный выпуск и проверка production ZIP и ссылки.
+Scoped dry-run: [GitHub Actions #39053013135](https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39053013135) — PASS, `T3_ONLY_DRY_RUN_NO_WRITE` / `T3_ONLY_DRY_RUN_PASS`. План изменений ограничен папкой T3 и тремя файлами сайта; семь остальных jobs пропущены.
+
+Следующий gate после отдельного разрешения — адресный выпуск и проверка production ZIP и ссылки.
