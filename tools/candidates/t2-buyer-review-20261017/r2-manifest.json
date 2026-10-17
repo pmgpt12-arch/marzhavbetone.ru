@@ -1,0 +1,79 @@
+{
+  "status": "DRAFT_BLOCKED_SEMANTIC_EDITORIAL_AND_PRINT_REVIEW",
+  "source_commit": "c648867bcc698f49f2da1bedaa14438e039ceeab",
+  "source_zip_sha256": "80c7b085aa31cf241c97b562dce5e386d8807e8d53ecbe1581c97a9d14a2f705",
+  "zip_name": "T2-peredacha-ID-6-files-business-R2-DRAFT.zip",
+  "zip_sha256": "200ae7d174e7b6447dc9ec2d72e54c084e60ff32bcec0a477150312bb269ce5d",
+  "zip_bytes": 83413,
+  "files": [
+    {
+      "name": "00-START-HERE.pdf",
+      "bytes": 32069,
+      "sha256": "298fa091c81f491669439a33251fac4e9165da14c48c481a3840193732df1357",
+      "changed_vs_R1": false
+    },
+    {
+      "name": "01-slovar-poley.docx",
+      "bytes": 11592,
+      "sha256": "4a5a5d7ac357633aa9f0ea9c2b92ce6f4eb2c5240f8e4b9392abb49770a9a796",
+      "changed_vs_R1": true
+    },
+    {
+      "name": "02-soprovoditelnoe-pismo-peredachi.docx",
+      "bytes": 9494,
+      "sha256": "c798fd7d54a9433493fc06a3fefb78854c37827b4c0a89d9f1939609b39382d8",
+      "changed_vs_R1": true
+    },
+    {
+      "name": "03-opis-peredavaemogo-komplekta.xlsx",
+      "bytes": 20440,
+      "sha256": "e98f0d015c6bb9289297e8d27cb257cc150ffda19a3288feee345faaa873e334",
+      "changed_vs_R1": true
+    },
+    {
+      "name": "04-akt-priema-peredachi-id.docx",
+      "bytes": 9215,
+      "sha256": "8e650a23f8a09a53f2ddc5e01b7ba68ebc012a09d96cbdb0dcc0b6d52a7ad0e4",
+      "changed_vs_R1": true
+    },
+    {
+      "name": "05-poryadok-peredachi-id.docx",
+      "bytes": 11552,
+      "sha256": "a5020ade5e3ad61b2124c49192893123df77dca5dd8b0caf442cce3b7fbfe941",
+      "changed_vs_R1": true
+    }
+  ],
+  "checks": {
+    "crc": "PASS",
+    "exact_six_names": "PASS",
+    "excel_only_A2_changed": "PASS",
+    "formula_xml_identical": "PASS",
+    "formula_count": 124,
+    "other_cells_and_native_features": "BYTE_IDENTICAL",
+    "automatic_editorial": "EDITORIAL_FAIL 03-opis-peredavaemogo-komplekta.xlsx [чего_комплект_не_делает] Что эта опись не делает",
+    "semantic_editorial": "BLOCKED: unchanged sheet Как заполнять contains Что эта опись не делает and explanatory disclaimers",
+    "print": {
+      "status": "FAIL_EXISTING_IN_R1",
+      "engine": "LibreOffice via documents/render_docx.py",
+      "R1_workbook_pages": 13,
+      "R2_workbook_pages": 13,
+      "expected_workbook_pages": 6,
+      "original_print_areas": [],
+      "original_print_titles": [],
+      "observation": "Опись spans eight pages across two horizontal sections; empty pages and split columns observed. Other cells and print OOXML remain byte-identical."
+    },
+    "production": "NOT_TOUCHED",
+    "word_render": {
+      "01": 3,
+      "02": 1,
+      "04": 1,
+      "05": 5,
+      "empty_pages": 0
+    },
+    "pdf_instruction": {
+      "unchanged_sha256": "298fa091c81f491669439a33251fac4e9165da14c48c481a3840193732df1357",
+      "pages": 1,
+      "file_index_00_05": "matches exact six members; no filename hyperlinks present"
+    }
+  }
+}
