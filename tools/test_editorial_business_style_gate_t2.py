@@ -17,6 +17,16 @@ class T2EditorialRegression(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertTrue(check('fragment.txt', text.encode()))
 
+    def test_explanatory_workbook_headings(self):
+        for phrase in ("Что этот файл делает", "Чего он не делает"):
+            self.assertTrue(check("fragment.txt", phrase.encode()), phrase)
+
+    def test_hidden_self_justification_variants(self):
+        for fragment in ("Что это не заменяет", "Важно: шаблон не заменяет анализ договора",
+                         "Не является гарантией оплаты", "Не вычитан юристом"):
+            with self.subTest(fragment=fragment):
+                self.assertTrue(check("fragment.txt", fragment.encode()))
+
     def test_preserve_legally_meaningful_negations(self):
         for text in ('Настоящий акт не является признанием требований.',
                      'Подпись подтверждает получение документации.',
