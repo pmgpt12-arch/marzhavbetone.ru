@@ -36,7 +36,7 @@ on:
         type: boolean
         default: false
       t3_only:
-        description: 'Адресный выпуск T3 R1'
+        description: 'Адресное исправление T3 R2'
         type: boolean
         default: false
       t2_link_probe:
@@ -628,20 +628,20 @@ jobs:
     steps:
       - name: Use verified local T3 worktree
         run: |
-          test "$GITHUB_REF_NAME" = "candidate/mb001-t3-owner-review-20261017"
-          test "$(git -C /home/denis/projects/mb001-t3-owner-review-20261017 rev-parse HEAD)" = "$GITHUB_SHA"
-          test -z "$(git -C /home/denis/projects/mb001-t3-owner-review-20261017 status --porcelain)"
+          test "$GITHUB_REF_NAME" = "fix/mb001-t3-unilateral-writeoff-20261018"
+          test "$(git -C /home/denis/projects/mb001-t3-unilateral-writeoff-20261018 rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git -C /home/denis/projects/mb001-t3-unilateral-writeoff-20261018 status --porcelain)"
       - name: Verify exact T3 candidate
-        working-directory: /home/denis/projects/mb001-t3-owner-review-20261017
+        working-directory: /home/denis/projects/mb001-t3-unilateral-writeoff-20261018
         run: |
-          test "$GITHUB_REF_NAME" = "candidate/mb001-t3-owner-review-20261017"
-          test "$(git rev-parse HEAD:products-storage/17-odnostoronniy-akt-i-zachet)" = "6295a75e9744aeedf6217eba0ce9bf4de509c027"
+          test "$GITHUB_REF_NAME" = "fix/mb001-t3-unilateral-writeoff-20261018"
+          test "$(git rev-parse HEAD:products-storage/17-odnostoronniy-akt-i-zachet)" = "42970d2e713cbb4042d8bd33487feb6092eca9f4"
           python3 tools/link_audit.py --verify > /dev/null
           php -l products-config.php
           php -r 'define("ORDERS_DIR",sys_get_temp_dir()); require "products-config.php"; exit(mvb_products()["t3"]["price"] === 1490000 && mvb_resolve_product(["sku"=>"t3"]) !== null ? 0 : 3);'
           bash -n tools/release_t3_only.sh
-          python3 tools/candidates/t3-buyer-review-20261017/verify_release_readiness.py
-          python3 tools/editorial_business_style_gate.py tools/candidates/t3-buyer-review-20261017/T3-vozrazheniya-5-files-business-R1.zip products/t3-odnostoronniy-akt-i-zachet.html
+          python3 tools/candidates/t3-unilateral-writeoff-20261018/verify_r2.py
+          python3 tools/editorial_business_style_gate.py tools/candidates/t3-unilateral-writeoff-20261018/T3-odnostoronnee-spisanie-5-files-R2.zip products/t3-odnostoronniy-akt-i-zachet.html
       - name: Prepare GitHub deploy SSH
         env:
           HOME: ${{ runner.temp }}/t3-sandbox
@@ -663,7 +663,7 @@ jobs:
           done
           test -s ~/.ssh/known_hosts || { echo "::error::SSH_HOST_KEY_UNAVAILABLE"; exit 23; }
       - name: Execute scoped T3 operation
-        working-directory: /home/denis/projects/mb001-t3-owner-review-20261017
+        working-directory: /home/denis/projects/mb001-t3-unilateral-writeoff-20261018
         env:
           HOME: ${{ runner.temp }}/t3-sandbox
           HOST: ${{ secrets.DEPLOY_HOST }}
@@ -692,10 +692,10 @@ jobs:
     steps:
       - name: Verify exact T3 link probe worktree
         run: |
-          test "$GITHUB_REF_NAME" = "candidate/mb001-t3-owner-review-20261017"
-          test "$(git -C /home/denis/projects/mb001-t3-owner-review-20261017 rev-parse HEAD)" = "$GITHUB_SHA"
-          test -z "$(git -C /home/denis/projects/mb001-t3-owner-review-20261017 status --porcelain)"
-          bash -n /home/denis/projects/mb001-t3-owner-review-20261017/tools/verify_t3_live_link.sh
+          test "$GITHUB_REF_NAME" = "fix/mb001-t3-unilateral-writeoff-20261018"
+          test "$(git -C /home/denis/projects/mb001-t3-unilateral-writeoff-20261018 rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git -C /home/denis/projects/mb001-t3-unilateral-writeoff-20261018 status --porcelain)"
+          bash -n /home/denis/projects/mb001-t3-unilateral-writeoff-20261018/tools/verify_t3_live_link.sh
       - name: Prepare GitHub deploy SSH
         env:
           HOME: ${{ runner.temp }}/t3-sandbox
@@ -717,7 +717,7 @@ jobs:
           done
           test -s ~/.ssh/known_hosts || { echo "::error::SSH_HOST_KEY_UNAVAILABLE"; exit 23; }
       - name: Probe T3 active and expired HTTP link
-        working-directory: /home/denis/projects/mb001-t3-owner-review-20261017
+        working-directory: /home/denis/projects/mb001-t3-unilateral-writeoff-20261018
         env:
           HOME: ${{ runner.temp }}/t3-sandbox
           HOST: ${{ secrets.DEPLOY_HOST }}

@@ -6,13 +6,17 @@ set -Eeuo pipefail
 export RSYNC_RSH="ssh -i $HOME/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts -o ConnectTimeout=20 -p $SSH_PORT"
 T3_ROOT='products-storage/17-odnostoronniy-akt-i-zachet'
 T3_LIVE="$PRODUCTS_PATH/17-odnostoronniy-akt-i-zachet"
-ZIP='tools/candidates/t3-buyer-review-20261017/T3-vozrazheniya-5-files-business-R1.zip'
-ZIP_SHA='554096d56512a75d3291b9c8e45b9257484aa2cd3b6048c5eec530f6006bc6de'
-TREE='6295a75e9744aeedf6217eba0ce9bf4de509c027'
+ZIP='tools/candidates/t3-unilateral-writeoff-20261018/T3-odnostoronnee-spisanie-5-files-R2.zip'
+ZIP_SHA='b5692cba2473f79b06241948fd75ff8e6483ffda31a110be60efaf31bd19e070'
+TREE='42970d2e713cbb4042d8bd33487feb6092eca9f4'
 SITE_FILES=(
   katalog.html
   products-config.php
   products/t3-odnostoronniy-akt-i-zachet.html
+  diagnostika.html
+  materialy/uderzhaniya.html
+  articles/garantiynoe-uderzhanie-v-ks-2-i-ks-3.html
+  articles/raboty-ne-prinyaty.html
 )
 ssh_run() { ssh -i "$HOME/.ssh/deploy_key" -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts -o ConnectTimeout=20 -p "$SSH_PORT" "$USER@$HOST" "$@"; }
 expect_zip="$(sha256sum "$ZIP" | cut -d ' ' -f1)"
