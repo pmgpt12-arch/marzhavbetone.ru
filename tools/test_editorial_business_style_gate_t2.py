@@ -17,6 +17,17 @@ class T2EditorialRegression(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertTrue(check('fragment.txt', text.encode()))
 
+    def test_recurrence_from_batch_review(self):
+        for phrase in (
+            "Чего в этом файле нет намеренно",
+            "Чего эта таблица не считает",
+            "Почему файл открывается и в LibreOffice",
+            "Значений здесь нет намеренно",
+            "будет считаться согласованной в соответствии с п. [номер] Договора",
+        ):
+            with self.subTest(phrase=phrase):
+                self.assertTrue(check("fragment.txt",phrase.encode()),phrase)
+
     def test_explanatory_workbook_headings(self):
         for phrase in ("Что этот файл делает", "Чего он не делает"):
             self.assertTrue(check("fragment.txt", phrase.encode()), phrase)

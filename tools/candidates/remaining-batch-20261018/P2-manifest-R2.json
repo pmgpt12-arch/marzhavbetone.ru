@@ -1,0 +1,123 @@
+{
+  "sku": "P2",
+  "status": "BUYER_REVIEW_ONLY",
+  "archive": "P2-buyer-review-20261018-R2.zip",
+  "sha256": "08af7eb7493ba376b0d2634b8d4bb6de683b63c129793985b8d9dc48d800d72c",
+  "size_bytes": 459764,
+  "file_count": 15,
+  "changed_from_R1": [
+    "00-INSTRUKCIYA.docx",
+    "00-INSTRUKCIYA.pdf",
+    "01-prikaz-na-dopobem.docx",
+    "02-soglasovanie-obema.docx",
+    "03-uvedomlenie-o-doprabotah.docx",
+    "04-akt-skrytyh-rabot.docx",
+    "05-izmenenie-srokov.docx",
+    "06-pismo-o-priostanovke.docx",
+    "11-dopsoglashenie-obem-i-cena.docx",
+    "12-dopsoglashenie-sroki-doprabot.docx"
+  ],
+  "members": [
+    {
+      "name": "00-INSTRUKCIYA.docx",
+      "sha256": "5d08163d08852361d26385302c485d4df6bbbf32ad018c7b185fe2faa7f231dd",
+      "size_bytes": 43006
+    },
+    {
+      "name": "00-INSTRUKCIYA.pdf",
+      "sha256": "ef36dd9b33ae470dc01ce58669474d467a0dbfd2afd5b5e74a16ec15fd1e7a4f",
+      "size_bytes": 80994
+    },
+    {
+      "name": "00-START-HERE.txt",
+      "sha256": "f33c86f17773416e7020d0aba2646cae7075b8a97a09dcdc99bfba20b1d6f702",
+      "size_bytes": 2865
+    },
+    {
+      "name": "01-prikaz-na-dopobem.docx",
+      "sha256": "f2d021b28e5cd064e978188b1866b9b24ade27ddcf7c6905afd9d48a5bd1bfdb",
+      "size_bytes": 39703
+    },
+    {
+      "name": "02-soglasovanie-obema.docx",
+      "sha256": "a5df4ba95be6cf07c3ae1391386924ec1c672339e3e870ac3d52373d1e53665b",
+      "size_bytes": 40360
+    },
+    {
+      "name": "03-uvedomlenie-o-doprabotah.docx",
+      "sha256": "070f7499feff291d6f5bf03ddc58822b1365daa065e21f7e9db5255c0b77afce",
+      "size_bytes": 39904
+    },
+    {
+      "name": "04-akt-skrytyh-rabot.docx",
+      "sha256": "8a55d9d0d7d324ce6a5042724c70cd5c3bd6d87c9ce194182d8780c315baa4b3",
+      "size_bytes": 39753
+    },
+    {
+      "name": "05-izmenenie-srokov.docx",
+      "sha256": "cf56b952d61b2e502e5903ce11a8932b245b003ba568d2ba8b35c81166c1a138",
+      "size_bytes": 39512
+    },
+    {
+      "name": "06-pismo-o-priostanovke.docx",
+      "sha256": "aa9ac91fa7a038731262a2f29df1322faa9efaf9fc818fde009359495fe790eb",
+      "size_bytes": 39671
+    },
+    {
+      "name": "07-raschet-stoimosti.xlsx",
+      "sha256": "7b9a8ae1eab7e8a6a87972f5d1cdb3a5ed2b2750180d5b46709cbd2659a61093",
+      "size_bytes": 12265
+    },
+    {
+      "name": "08-zhurnal-doprabot.xlsx",
+      "sha256": "ccd72dac2217cd0473bc4de28e5419f3a0e5c32c14bac669c7d0da507b217c41",
+      "size_bytes": 10254
+    },
+    {
+      "name": "09-checklist-fotofiksacii.pdf",
+      "sha256": "7306b4f7711b6b03ed75f4005eda59e41647685ab529e99e96bcccbd1de64d94",
+      "size_bytes": 28200
+    },
+    {
+      "name": "10-algoritm-doprabot.pdf",
+      "sha256": "fdda508ae349196fb80cab2f036fb83ef887186bceb5e0db02854ab4dac28f1c",
+      "size_bytes": 30858
+    },
+    {
+      "name": "11-dopsoglashenie-obem-i-cena.docx",
+      "sha256": "6252e4445dfb9dba0909e633b06671c31a04962216ddd5e9ac6d55ccec823bb0",
+      "size_bytes": 39854
+    },
+    {
+      "name": "12-dopsoglashenie-sroki-doprabot.docx",
+      "sha256": "139f4007719e105a5add8f927b307609afbe192abf7f63312e6cca5e1aa0fceb",
+      "size_bytes": 39558
+    }
+  ],
+  "excel_formulas": 202,
+  "print_pages": {
+    "00-INSTRUKCIYA.docx": 4,
+    "00-INSTRUKCIYA.pdf": 4,
+    "01-prikaz-na-dopobem.docx": 1,
+    "02-soglasovanie-obema.docx": 2,
+    "03-uvedomlenie-o-doprabotah.docx": 1,
+    "04-akt-skrytyh-rabot.docx": 2,
+    "05-izmenenie-srokov.docx": 1,
+    "06-pismo-o-priostanovke.docx": 1,
+    "07-raschet-stoimosti.xlsx": 5,
+    "08-zhurnal-doprabot.xlsx": 5,
+    "09-checklist-fotofiksacii.pdf": 1,
+    "10-algoritm-doprabot.pdf": 1,
+    "11-dopsoglashenie-obem-i-cena.docx": 1,
+    "12-dopsoglashenie-sroki-doprabot.docx": 1
+  },
+  "checks": {
+    "CRC": "PASS",
+    "inner_office_CRC": "PASS",
+    "editorial": "EDITORIAL_PASS files=15 forbidden_occurrences=0",
+    "A4_fonts": "PASS",
+    "signatures_and_page_flow": "PASS",
+    "XLSX_formulas_and_features": "PASS",
+    "no_blank_or_orphan_pages": "PASS"
+  }
+}
