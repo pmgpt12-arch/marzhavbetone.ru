@@ -1,0 +1,57 @@
+{
+  "edition": "R2",
+  "status": "CORRECTION_READY",
+  "owner_request": "Заменить по смыслу зачёт на списание в одностороннем порядке во всём T3",
+  "sha256": "b5692cba2473f79b06241948fd75ff8e6483ffda31a110be60efaf31bd19e070",
+  "size_bytes": 166604,
+  "files": [
+    {
+      "name": "00-START-HERE.pdf",
+      "sha256": "3b3ad751011669ce9b0a3efdee1000eb62c19601dbecb4aa886e975b5bf8b888",
+      "size_bytes": 25762,
+      "changed": true
+    },
+    {
+      "name": "01-poryadok-deystviy.docx",
+      "sha256": "148c64f2e867a5e73d46a25d0873f68cb68e485d66b211d6f68d98453abb2174",
+      "size_bytes": 38693,
+      "changed": true
+    },
+    {
+      "name": "02-vozrazheniya-na-akt.docx",
+      "sha256": "a038219ec36d47288b06bf280b67fb547c7c036e92a44b02dc1d0b831c7becb1",
+      "size_bytes": 37843,
+      "changed": false
+    },
+    {
+      "name": "03-vozrazheniya-na-odnostoronnee-spisanie.docx",
+      "sha256": "b9d4819d9bf05d0e577659dd87bbc3abf3a5a6bfe9cba6fa1d1adfee5d30f455",
+      "size_bytes": 37989,
+      "changed": true
+    },
+    {
+      "name": "04-slovar-poley.docx",
+      "sha256": "ca535aeef9c8cdf7a31dbc8cc5e17b174f7a3f13203c2e09527797bd503ca5c9",
+      "size_bytes": 39061,
+      "changed": true
+    }
+  ],
+  "print_pages": {
+    "00": 1,
+    "01": 1,
+    "03": 1,
+    "04": 1
+  },
+  "verification": [
+    "Native LibreOffice rendering and all changed page images inspected",
+    "02 byte-identical to accepted R1",
+    "Exact 5-file inventory, CRC, dictionary and PDF references PASS",
+    "Editorial gate PASS",
+    "No old Cyrillic term in current buyer files and T3 copy",
+    "T3 CTAs, catalog JSON-LD and diagnostic price aligned"
+  ],
+  "legal_sources": [
+    "https://www.consultant.ru/document/cons_doc_LAW_5142/ce09e59d11f3a60c30a1601c0f6c7cceb9835dfa/",
+    "https://www.consultant.ru/document/cons_doc_LAW_9027/82d94ba9915573e504663796461434708a431773/"
+  ]
+}
