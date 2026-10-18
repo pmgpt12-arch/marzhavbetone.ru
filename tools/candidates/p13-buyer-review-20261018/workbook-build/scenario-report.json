@@ -1,0 +1,79 @@
+{
+  "status": "AMOUNT_RATIO_PASS_WARNING_REQUIRES_NATIVE_CHECK",
+  "engineLimitation": "Array ISNUMBER in SUMPRODUCT warning is not reliably evaluated by artifact engine; native LibreOffice scenarios are required.",
+  "scenarios": [
+    {
+      "name": "blank",
+      "amount": 0,
+      "ratio": "",
+      "message": "Заполните покрытие всех 51 строк; неприменимые отметьте явно",
+      "expectedWarning": "Заполните покрытие",
+      "warningMatches": true
+    },
+    {
+      "name": "all nonapplicable",
+      "amount": 0,
+      "ratio": 0,
+      "message": "Проверка заполнена; решение о цене принимает руководитель",
+      "expectedWarning": "Проверка заполнена",
+      "warningMatches": true
+    },
+    {
+      "name": "coverage and accepted commercial risk",
+      "amount": 310000,
+      "ratio": 0.31,
+      "message": "Есть непокрытые затраты без числовой оценки",
+      "expectedWarning": "Проверка заполнена",
+      "warningMatches": false
+    },
+    {
+      "name": "missing amount",
+      "amount": 110000,
+      "ratio": 0.11,
+      "message": "Есть непокрытые затраты без числовой оценки",
+      "expectedWarning": "без числовой оценки",
+      "warningMatches": true
+    },
+    {
+      "name": "pasted nonnumeric amount",
+      "amount": 110000,
+      "ratio": 0.11,
+      "message": "Есть непокрытые затраты без числовой оценки",
+      "expectedWarning": "без числовой оценки",
+      "warningMatches": true
+    },
+    {
+      "name": "covered without evidence",
+      "amount": 310000,
+      "ratio": 0.31,
+      "message": "Есть непокрытые затраты без числовой оценки",
+      "expectedWarning": "документы покрытия",
+      "warningMatches": false
+    },
+    {
+      "name": "zero profit",
+      "amount": 310000,
+      "ratio": "",
+      "message": "Есть непокрытые затраты без числовой оценки",
+      "expectedWarning": "Проверка заполнена",
+      "warningMatches": false
+    },
+    {
+      "name": "last row",
+      "amount": 335000,
+      "ratio": 0.335,
+      "message": "Есть непокрытые затраты без числовой оценки",
+      "expectedWarning": "Проверка заполнена",
+      "warningMatches": false
+    },
+    {
+      "name": "exclude last row stale amount",
+      "amount": 310000,
+      "ratio": 0.31,
+      "message": "Есть непокрытые затраты без числовой оценки",
+      "expectedWarning": "Проверка заполнена",
+      "warningMatches": false
+    }
+  ],
+  "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}"
+}

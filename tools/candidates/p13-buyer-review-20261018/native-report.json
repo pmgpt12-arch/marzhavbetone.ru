@@ -1,0 +1,81 @@
+{
+  "source_sha256": "566a7556267688cef2a9652f5c5cccca0670317cf6aa8604775a7916a3a07c27",
+  "status": "PASS",
+  "engine": "LibreOffice 24.2.7.2 420(Build:2)",
+  "scenarios": [
+    {
+      "case": "01-blank",
+      "H54": 0,
+      "H56": null,
+      "message": "Заполните покрытие всех 51 строк; неприменимые отметьте явно",
+      "status": "PASS"
+    },
+    {
+      "case": "02-nonapplicable",
+      "H54": 0,
+      "H56": 0,
+      "message": "Проверка заполнена; решение о цене принимает руководитель",
+      "status": "PASS"
+    },
+    {
+      "case": "03-commercial",
+      "H54": 310000,
+      "H56": 0.31,
+      "message": "Проверка заполнена; решение о цене принимает руководитель",
+      "status": "PASS"
+    },
+    {
+      "case": "04-missing",
+      "H54": 110000,
+      "H56": 0.11,
+      "message": "Есть непокрытые затраты без числовой оценки",
+      "status": "PASS"
+    },
+    {
+      "case": "05-text",
+      "H54": 110000,
+      "H56": 0.11,
+      "message": "Есть непокрытые затраты без числовой оценки",
+      "status": "PASS"
+    },
+    {
+      "case": "06-proof",
+      "H54": 310000,
+      "H56": 0.31,
+      "message": "Укажите документы покрытия для закрытых позиций",
+      "status": "PASS"
+    },
+    {
+      "case": "07-zero-profit",
+      "H54": 310000,
+      "H56": null,
+      "message": "Проверка заполнена; решение о цене принимает руководитель",
+      "status": "PASS"
+    },
+    {
+      "case": "08-last-row",
+      "H54": 335000,
+      "H56": 0.335,
+      "message": "Проверка заполнена; решение о цене принимает руководитель",
+      "status": "PASS"
+    },
+    {
+      "case": "09-excluded-stale",
+      "H54": 310000,
+      "H56": 0.31,
+      "message": "Проверка заполнена; решение о цене принимает руководитель",
+      "status": "PASS"
+    },
+    {
+      "case": "10-missing-status",
+      "H54": 0,
+      "H56": 0,
+      "message": "Заполните статус каждой строки",
+      "status": "PASS"
+    }
+  ],
+  "native_roundtrip_validation_ranges": 5,
+  "native_roundtrip_validation_rules": 4,
+  "native_excel_test": false,
+  "scope": "LibreOffice recalculation, OOXML structure and print QA; Microsoft Excel remains buyer acceptance environment"
+}

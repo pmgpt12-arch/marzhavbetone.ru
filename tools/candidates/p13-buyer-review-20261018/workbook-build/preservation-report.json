@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "source_sha256": "2262235a4f2d3513bed99c58a261053181bf5510af684e9a22453ac529c63e52",
+  "output_sha256": "566a7556267688cef2a9652f5c5cccca0670317cf6aa8604775a7916a3a07c27",
+  "changed_parts": [
+    "xl/worksheets/sheet1.xml",
+    "xl/worksheets/sheet2.xml"
+  ],
+  "byte_identical_parts": [
+    "docProps/app.xml",
+    "docProps/core.xml",
+    "xl/theme/theme1.xml",
+    "xl/styles.xml",
+    "_rels/.rels",
+    "xl/workbook.xml",
+    "xl/_rels/workbook.xml.rels",
+    "[Content_Types].xml"
+  ],
+  "cell_edits": {
+    "sheet1": 6,
+    "sheet2": 17
+  },
+  "preserved": "All original styles, column widths, source categories, print areas, repeat headers, page setup, margins and other package parts",
+  "new_features": "One warning formula, five validation ranges, C53:J53 merge, validation dictionary outside print area; input row heights increased to prevent a summary-only second page; guide heights adjusted"
+}

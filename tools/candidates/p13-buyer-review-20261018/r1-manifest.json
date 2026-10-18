@@ -1,0 +1,109 @@
+{
+  "product": "P13",
+  "title": "Система проверки сметной документации и выявления неоплачиваемых затрат",
+  "status": "READY_FOR_OWNER_BUYER_REVIEW_NOT_PUBLISHED",
+  "target_price_rub": 17900,
+  "branch": "candidate/mb001-p13-owner-review-20261018",
+  "base_commit": "6323b4fc74f6a92bc19588bd03ba18ef5a7857c9",
+  "archive": {
+    "name": "P13-smeta-10-files-business-R1.zip",
+    "size": 327893,
+    "sha256": "96ce94529049225351c37dbb4c4966e7e26965a38ec27ba5e9de899d004c66a9",
+    "files": 10,
+    "crc": "PASS",
+    "reproducible_from_exact_files": true
+  },
+  "files": [
+    {
+      "name": "00-START-HERE.pdf",
+      "size": 27777,
+      "sha256": "69bab9b3dd3bd8922aa5561ed2e9da6b3f396d80cbe54d336d6dc0b21d90516b",
+      "print_pages": 1
+    },
+    {
+      "name": "60-slovar-poley-smeta.docx",
+      "size": 39188,
+      "sha256": "601327e8f1fd9c0046bccb58e49065cf71c97b2ce28015d0e9b16e128af3e3bf",
+      "print_pages": 1
+    },
+    {
+      "name": "61-algoritm-proverki-smety.docx",
+      "size": 38752,
+      "sha256": "bb8ca82785f9775b369df8c576f1372a357abac05bf13f56d64dc6522d891ec4",
+      "print_pages": 1
+    },
+    {
+      "name": "62-chek-list-vypadayushchih-zatrat.docx",
+      "size": 40449,
+      "sha256": "c13e82d1eb472c53c2c3c9f06be766e11177f248c94169b722baa0204f26533e",
+      "print_pages": 3
+    },
+    {
+      "name": "63-reestr-zatrat-po-obektu.xlsx",
+      "size": 12306,
+      "sha256": "566a7556267688cef2a9652f5c5cccca0670317cf6aa8604775a7916a3a07c27",
+      "print_pages": 3
+    },
+    {
+      "name": "64-zapros-o-vklyuchenii-zatrat.docx",
+      "size": 38341,
+      "sha256": "153f44e099c34e59a8b8150ec7d0bca5d0711dcba8117cd2b7d0061a0d77cad6",
+      "print_pages": 2
+    },
+    {
+      "name": "65-protokol-raznoglasiy-po-smete.docx",
+      "size": 38406,
+      "sha256": "6858d1994f38f6d16d7093aed2c4f234dde00645a574dd4709f1affd1ed3c6ed",
+      "print_pages": 1
+    },
+    {
+      "name": "66-pamyatka-nakladnye-i-smetnaya-pribyl.docx",
+      "size": 38870,
+      "sha256": "baf695c2bc092a969531a439fac164e101ba3a67d11133df02662c171f2db07e",
+      "print_pages": 1
+    },
+    {
+      "name": "67-pamyatka-zimnee-udorozhanie-i-vzis.docx",
+      "size": 38650,
+      "sha256": "76077238863cbae9f697003eba3e1574fc0ccb1b223eb674b8f1ae0076303f2a",
+      "print_pages": 1
+    },
+    {
+      "name": "68-pamyatka-musor-transport-nepredvidennye.docx",
+      "size": 38572,
+      "sha256": "6bd553e323afc77a70bc4bc472adf1902d971bbd06ea352aa2da4638cf36ea36",
+      "print_pages": 1
+    }
+  ],
+  "changed_files": [
+    "00-START-HERE.pdf",
+    "60-slovar-poley-smeta.docx",
+    "61-algoritm-proverki-smety.docx",
+    "62-chek-list-vypadayushchih-zatrat.docx",
+    "63-reestr-zatrat-po-obektu.xlsx",
+    "64-zapros-o-vklyuchenii-zatrat.docx",
+    "65-protokol-raznoglasiy-po-smete.docx",
+    "66-pamyatka-nakladnye-i-smetnaya-pribyl.docx",
+    "67-pamyatka-zimnee-udorozhanie-i-vzis.docx",
+    "68-pamyatka-musor-transport-nepredvidennye.docx"
+  ],
+  "checks": {
+    "editorial_gate": "EDITORIAL_PASS files=10 forbidden_occurrences=0",
+    "manual_semantic_review": "Completed for every buyer document and workbook instruction",
+    "dictionary_fields": 34,
+    "checklist_points": 62,
+    "all_print_pages_visually_reviewed": true,
+    "xlsx_print": "2 x A3 landscape register with repeating header, 1 x A4 landscape guide",
+    "xlsx_native_scenarios": "10 PASS in LibreOffice 24.2.7.2; final exact SHA in native-report.json",
+    "xlsx_formulas": "H54 and H56 corrected; C53 completeness warning added; no other original formulas",
+    "xlsx_preservation_report": "workbook-build/preservation-report.json",
+    "xlsx_blank_form_no_fixture_data": "PASS",
+    "microsoft_excel_native_test": false
+  },
+  "sources": {
+    "checklist_only": "portfolio-owner-editorial-legal-v4-20261013/16-chto-v-smete-ne-oplatyat: preserved 62 checklist points with local business wording edits",
+    "print_workbook": "PR #496 at 467b942c632cb00c431ae1c3d1394ce2b5249dfb, SHA 2262235a4f2d3513bed99c58a261053181bf5510af684e9a22453ac529c63e52; print acceptance does not imply acceptance of old content or formulas"
+  },
+  "owner_acceptance": "Pending; review forms in Word and register in Excel; publication requires owner authorization",
+  "production_changes": false
+}
