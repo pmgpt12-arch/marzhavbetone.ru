@@ -13,8 +13,9 @@ def xml(e):return E.tostring(e,method='c14n') if e is not None else None
 def cells(root):return {c.get('r'):c for c in root.findall('.//x:c',X)}
 literal=re.compile(r'"(?:[^"]|"")*"')
 results=[]
+pathmap=json.loads((B/'form-originals-audit/workbook-path-map.json').read_text()) if (B/'form-originals-audit/workbook-path-map.json').exists() else {}
 for p in sorted(I.rglob('*.xlsx')):
- q=O/p.relative_to(I);sku=p.parent.name;key=sku+'/'+p.name;plans=layouts.get(key,{'sheets':{}})['sheets']
+ sku=p.parent.name;key=sku+'/'+p.name;q=O/pathmap.get(key,key);plans=layouts.get(key,{'sheets':{}})['sheets']
  allowed={(e['loc'].split(':')[0],e['loc'].split(':')[1]):e for e in edits if e['sku']==sku and e['file']==p.name}
  allowedf={(e['part'],e['cell']):e for e in fs if e['sku']==sku and e['file']==p.name}
  a=openpyxl.load_workbook(p,data_only=False);b=openpyxl.load_workbook(q,data_only=False)
@@ -101,7 +102,7 @@ for p in sorted(I.rglob('*.xlsx')):
     assert expected==zb.read(n),(key,n,'unexpected part change')
  assert counts['text_changes']==len(allowed),(key,'missing text edits',counts,len(allowed))
  assert counts['display_formula_changes']==len(allowedf),(key,'missing formula edits')
- results.append({'sku':sku,'file':p.name,'sha256':digest(q),**counts,'numerical_formula_skeletons':'IDENTICAL','functional_features':'PRESERVED','status':'PASS'})
+ results.append({'sku':sku,'source_file':p.name,'file':q.name,'sha256':digest(q),**counts,'numerical_formula_skeletons':'IDENTICAL','functional_features':'PRESERVED','status':'PASS'})
 for lock in json.loads((B/'original-form-lock.json').read_text()):assert digest(O/lock['sku']/lock['member'])==lock['sha256'],('published original modified',lock)
 report={'status':'PASS','workbooks':results,'formula_count':sum(x['formula_count'] for x in results),'formula_display_changes':sum(x['display_formula_changes'] for x in results),'published_originals':'BYTE_IDENTICAL','native_office':'PENDING'}
 (B/'evidence/workbook-preservation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')

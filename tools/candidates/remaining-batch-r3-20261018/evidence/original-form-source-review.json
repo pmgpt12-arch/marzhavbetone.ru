@@ -1,5 +1,5 @@
 {
-  "status": "SOURCE_FIELDS_REVIEWED_NATIVE_PENDING",
+  "status": "SUPERSEDED_REJECTED_ORIGINAL_LAYOUT",
   "primary": "https://www.consultant.ru/document/cons_doc_LAW_448832/b7695a35ee4ee5e0d7a4df4ae2597481ff54688d/",
   "official_publication": "https://publication.pravo.gov.ru/document/0001202306010019",
   "selected": "AOSR-published.xlsx",
@@ -35,5 +35,7 @@
       "source": "Klerk alternative DOCX",
       "reason": "Condensed field wording; not selected."
     }
-  ]
+  ],
+  "superseded_by": "form-originals-audit/reference-manifest.json",
+  "rejection": "Third-party XLSX condenses and changes the visual layout of the four-page official form; replaced by unchanged official PDF pages in P2/P3/P4."
 }

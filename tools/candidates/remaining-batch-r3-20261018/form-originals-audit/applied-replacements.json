@@ -1,0 +1,194 @@
+{
+  "status": "ORIGINAL_PDF_REPLACEMENTS_APPLIED_NATIVE_OFFICE_PENDING",
+  "original_forms": [
+    {
+      "sku": "P1",
+      "member": "01-ks-2.xls",
+      "source": "KS-2-original.xls",
+      "sha256": "b09296147561df5afd9a38bbb196860a1a3a3268a8b26d9751c88d4c5bca6281"
+    },
+    {
+      "sku": "P1",
+      "member": "02-ks-3.xls",
+      "source": "KS-3-original.xls",
+      "sha256": "d6922089bffcde2a00a30d62d8d7ea1d87676fe4de9ae44a3d0e9af4d821ed0a"
+    },
+    {
+      "sku": "P1",
+      "member": "06-zhurnal-ucheta-rabot-ks-6a.xls",
+      "source": "KS-6a-original.xls",
+      "sha256": "053c5f1603478ca08fbab8f522ed4448546941d4009c79a76bdc8af13248aa29"
+    },
+    {
+      "sku": "P2",
+      "member": "04-akt-skrytyh-rabot.pdf",
+      "source": "form-originals-audit/aosr-344-original.pdf",
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4"
+    },
+    {
+      "sku": "P3",
+      "member": "03-akt-skrytyh-rabot.pdf",
+      "source": "form-originals-audit/aosr-344-original.pdf",
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4"
+    },
+    {
+      "sku": "P4",
+      "member": "31-akt-osvidetelstvovaniya-skrytyh-rabot.pdf",
+      "source": "form-originals-audit/aosr-344-original.pdf",
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4"
+    },
+    {
+      "sku": "P4",
+      "member": "35-obshiy-zhurnal-rabot.pdf",
+      "source": "form-originals-audit/general-journal-1026-original.pdf",
+      "sha256": "39c89abb6752b27a860044fed979ac2da3c9d5bb9636b333471fcff9e9ca3eed"
+    },
+    {
+      "sku": "P4",
+      "member": "36-zhurnal-vhodnoy-verifikacii.pdf",
+      "source": "form-originals-audit/incoming-verification-24297-original.pdf",
+      "sha256": "353cc2536e4c01fbcc7737ec70ccd17c503e3ac3d21c1ccde5753e1deb6eb216"
+    }
+  ],
+  "working_registers_renamed_byte_identically": {
+    "P1/06-zhurnal-obemov.xlsx": "P1/06A-rabochiy-reestr-obemov.xlsx",
+    "P4/35-obshiy-zhurnal-rabot.xlsx": "P4/35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx",
+    "P4/36-vhodnoy-kontrol.xlsx": "P4/36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx"
+  },
+  "guide_edits": [
+    {
+      "file": "P1/00-INSTRUKCIYA.docx",
+      "paragraph_prefix": "По каждому предъявляемому объёму",
+      "text": "По каждому предъявляемому объёму проверьте основание, подтверждающие документы, стоимость, дату передачи и срок оплаты. Форма КС-6а — файл 06; оперативный учёт объёмов и подтверждений — 06A. Реестр 07 содержит замечания, реестр 08 — передачу документов. До расчёта процентов в файле 14 сверьте остаток с банковскими выписками."
+    },
+    {
+      "file": "P1/00-INSTRUKCIYA.docx",
+      "paragraph_prefix": "Файлы 01-ks-2.xls",
+      "text": "Файлы 01-ks-2.xls, 02-ks-3.xls и 06-zhurnal-ucheta-rabot-ks-6a.xls — опубликованные бланки КС-2, КС-3 и КС-6а по постановлению Госкомстата России от 11.11.1999 № 100. Текст, графы и оформление сохранены. Заполните их в Excel по документам объекта; применимость проверьте по договору и учётной политике."
+    },
+    {
+      "file": "P1/00-INSTRUKCIYA.docx",
+      "paragraph_prefix": "Файл 06",
+      "text": "Файл 06A предназначен для оперативного учёта объёмов и подтверждений. Форму КС-6а заполняйте в файле 06 по документам объекта. Источник бланков КС-2, КС-3 и КС-6а: https://www.consultant.ru/document/cons_doc_LAW_26303/ ."
+    },
+    {
+      "file": "P2/00-INSTRUKCIYA.docx",
+      "paragraph_prefix": "Формы Word и расчёты Excel",
+      "text": "Формы Word и расчёты Excel заполните по документам объекта. Файл 04 — исходный бланк АОСР в PDF для печати и заполнения; интерактивные поля в нём отсутствуют. Остальные PDF содержат инструкции и проверочные листы."
+    },
+    {
+      "file": "P2/00-INSTRUKCIYA.docx",
+      "paragraph_prefix": "Файл 04",
+      "text": "Файл 04 содержит неизменённые страницы рекомендуемого образца АОСР из приложения № 3 к составу исполнительной документации по приказу Минстроя России от 16.05.2023 № 344/пр. Заполните реквизиты объекта и участников, пункты 1–7, приложения и подписи по фактическим обстоятельствам. Освидетельствование оформите до выполнения последующих работ."
+    },
+    {
+      "file": "P2/00-INSTRUKCIYA.docx",
+      "paragraph_prefix": "Связь с дополнительным объёмом",
+      "text": "Связь с дополнительным объёмом, журналом 08, фотоматериалами и согласованием 02 отразите в предусмотренных разделах акта и приложениях. Сохраните все графы и реквизиты исходного бланка. Источник: https://minjust.consultant.ru/files/47785, страницы 13–16."
+    }
+  ],
+  "files": 123,
+  "changed_files": [
+    {
+      "file": "P2/00-INSTRUKCIYA.pdf",
+      "before_sha256": "33b571a76bda921b749bb8e538371dda33d0ac0bf5e8ab2836d7e8daec5e9001",
+      "sha256": "4855380b0cca0d575b08e8c3c3f4ff04f4b164c76e8a4d0047678c799b2d3545"
+    },
+    {
+      "file": "P2/00-INSTRUKCIYA.docx",
+      "before_sha256": "4f02f5187506b417e20e6cdc5f3c142569014dddbc17d1e8d9a9f28c71158bcc",
+      "sha256": "8ba6c3b9bf61d51ffa7d78211f522ff69a7c60f68333a511d1330ae6a8986042"
+    },
+    {
+      "file": "P2/04-akt-skrytyh-rabot.pdf",
+      "before_sha256": null,
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4"
+    },
+    {
+      "file": "P2/00-START-HERE.txt",
+      "before_sha256": "1445f718bb31c59973083b44fd051cd6cd015ce8342c4f144fd3f8ad5815fe58",
+      "sha256": "88ce80c769b9d3aec2cbca0c8bb42059a7187a44bd425041b209833f48ace5e6"
+    },
+    {
+      "file": "P3/00-START-HERE.txt",
+      "before_sha256": "f8aadb9047191a9542303bddb88d4ddce543ab6a7be4a7c8ad854a246962ff82",
+      "sha256": "44df8e6335c5f7ee6404130eebd2e787408f55656f2ef8207020766019c3044d"
+    },
+    {
+      "file": "P3/03-akt-skrytyh-rabot.pdf",
+      "before_sha256": null,
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4"
+    },
+    {
+      "file": "P4/00-START-HERE.txt",
+      "before_sha256": "9a88d1ba7e3da708dd70417613acee8a9ef33d1964864dcfb2639e08f4ac72c9",
+      "sha256": "64d252524bbafb849ace72f50720bacbcd2a237fbf916cd72334fb2b1e6ca885"
+    },
+    {
+      "file": "P4/35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx",
+      "before_sha256": null,
+      "sha256": "54ef5d86e81ab120910cc5ad1889c54ff5253951ec06a180be655eaf4cf65cc4"
+    },
+    {
+      "file": "P4/36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx",
+      "before_sha256": null,
+      "sha256": "e10f379069eb327133fe0b5bb30343b1d1f0604b792f26bf28baf9d9773a995e"
+    },
+    {
+      "file": "P4/31-akt-osvidetelstvovaniya-skrytyh-rabot.pdf",
+      "before_sha256": null,
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4"
+    },
+    {
+      "file": "P4/35-obshiy-zhurnal-rabot.pdf",
+      "before_sha256": null,
+      "sha256": "39c89abb6752b27a860044fed979ac2da3c9d5bb9636b333471fcff9e9ca3eed"
+    },
+    {
+      "file": "P4/36-zhurnal-vhodnoy-verifikacii.pdf",
+      "before_sha256": null,
+      "sha256": "353cc2536e4c01fbcc7737ec70ccd17c503e3ac3d21c1ccde5753e1deb6eb216"
+    },
+    {
+      "file": "P1/06-zhurnal-ucheta-rabot-ks-6a.xls",
+      "before_sha256": null,
+      "sha256": "053c5f1603478ca08fbab8f522ed4448546941d4009c79a76bdc8af13248aa29"
+    },
+    {
+      "file": "P1/00-INSTRUKCIYA.pdf",
+      "before_sha256": "209cd6b92989b15573a89d14ce12a3da9df70eeadcb2d8d054003c584978880b",
+      "sha256": "12671acc7f557b4d0a713298aa0593da15d72bdd36ee16df54e9751cfc2259e7"
+    },
+    {
+      "file": "P1/00-INSTRUKCIYA.docx",
+      "before_sha256": "6e516b627ac4dc2ac889c299b4f506056059800b76f36aca8e6c1fcaf6be0224",
+      "sha256": "c3fa51c103f28048a9fb4d90b17a519f95e7e03e5f71830096ea159f5aeaffc0"
+    },
+    {
+      "file": "P1/00-START-HERE.txt",
+      "before_sha256": "43c0ee2a1354a16ca8f809acce1f0a68f4127b778f27f493ba37874f5f667b3a",
+      "sha256": "d8b091900b0ff4b29857900dc2cac253490877af32a02daf7c5ebac1226daf32"
+    },
+    {
+      "file": "P1/03-akt-vypolnennyh-rabot.docx",
+      "before_sha256": "3e5a2adcdaea4402b570bbd95f86f7edcd885ea9cdcc5efc4567144ebd022a07",
+      "sha256": "bf3d055ccc050d5f0e1c1b1f09963d436aed7fc81647d63a1d0285e3f3e8cbfe"
+    },
+    {
+      "file": "P1/06A-rabochiy-reestr-obemov.xlsx",
+      "before_sha256": null,
+      "sha256": "a2cafa2bddf6304ac3d0153756ca6da1e1d1cd6711949d2c704654bb506c18e4"
+    }
+  ],
+  "removed_files": [
+    "P1/06-zhurnal-obemov.xlsx",
+    "P2/04-akt-skrytyh-rabot.xlsx",
+    "P4/31-akt-osvidetelstvovaniya-skrytyh-rabot.xlsx",
+    "P4/35-obshiy-zhurnal-rabot.xlsx",
+    "P4/36-vhodnoy-kontrol.xlsx",
+    "P3/03-akt-skrytyh-rabot.docx"
+  ],
+  "native_office": "PENDING",
+  "publication": "NOT_PERFORMED",
+  "comparison_base": "808f78ea5e3ddf235eac6bae078b42fa5f121e35 checkpoint109 + immutable accepted P3 snapshot11"
+}

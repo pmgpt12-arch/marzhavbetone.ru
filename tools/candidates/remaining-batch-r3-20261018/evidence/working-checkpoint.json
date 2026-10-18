@@ -1,30 +1,30 @@
 {
   "status": "WIP_NOT_FOR_OWNER_ACCEPTANCE_OR_PRODUCTION",
-  "files": 109,
+  "files": 123,
   "editorial_gate": "PASS including formula literals",
   "office_core_metadata_gate": {
     "status": "PASS",
-    "files": 87
+    "files": 93
   },
   "native_office_final": "BLOCKED: Windows agent recovery required; no final SHA qualification claimed.",
   "inventory": [
     {
       "sku": "P1",
       "file": "00-INSTRUKCIYA.docx",
-      "bytes": 41278,
-      "sha256": "6e516b627ac4dc2ac889c299b4f506056059800b76f36aca8e6c1fcaf6be0224"
+      "bytes": 41243,
+      "sha256": "c3fa51c103f28048a9fb4d90b17a519f95e7e03e5f71830096ea159f5aeaffc0"
     },
     {
       "sku": "P1",
       "file": "00-INSTRUKCIYA.pdf",
-      "bytes": 103864,
-      "sha256": "209cd6b92989b15573a89d14ce12a3da9df70eeadcb2d8d054003c584978880b"
+      "bytes": 105425,
+      "sha256": "12671acc7f557b4d0a713298aa0593da15d72bdd36ee16df54e9751cfc2259e7"
     },
     {
       "sku": "P1",
       "file": "00-START-HERE.txt",
-      "bytes": 2256,
-      "sha256": "43c0ee2a1354a16ca8f809acce1f0a68f4127b778f27f493ba37874f5f667b3a"
+      "bytes": 2876,
+      "sha256": "d8b091900b0ff4b29857900dc2cac253490877af32a02daf7c5ebac1226daf32"
     },
     {
       "sku": "P1",
@@ -41,8 +41,8 @@
     {
       "sku": "P1",
       "file": "03-akt-vypolnennyh-rabot.docx",
-      "bytes": 10948,
-      "sha256": "3e5a2adcdaea4402b570bbd95f86f7edcd885ea9cdcc5efc4567144ebd022a07"
+      "bytes": 10951,
+      "sha256": "bf3d055ccc050d5f0e1c1b1f09963d436aed7fc81647d63a1d0285e3f3e8cbfe"
     },
     {
       "sku": "P1",
@@ -58,7 +58,13 @@
     },
     {
       "sku": "P1",
-      "file": "06-zhurnal-obemov.xlsx",
+      "file": "06-zhurnal-ucheta-rabot-ks-6a.xls",
+      "bytes": 51200,
+      "sha256": "053c5f1603478ca08fbab8f522ed4448546941d4009c79a76bdc8af13248aa29"
+    },
+    {
+      "sku": "P1",
+      "file": "06A-rabochiy-reestr-obemov.xlsx",
       "bytes": 9333,
       "sha256": "a2cafa2bddf6304ac3d0153756ca6da1e1d1cd6711949d2c704654bb506c18e4"
     },
@@ -233,20 +239,20 @@
     {
       "sku": "P2",
       "file": "00-INSTRUKCIYA.docx",
-      "bytes": 42849,
-      "sha256": "4f02f5187506b417e20e6cdc5f3c142569014dddbc17d1e8d9a9f28c71158bcc"
+      "bytes": 42773,
+      "sha256": "8ba6c3b9bf61d51ffa7d78211f522ff69a7c60f68333a511d1330ae6a8986042"
     },
     {
       "sku": "P2",
       "file": "00-INSTRUKCIYA.pdf",
-      "bytes": 104935,
-      "sha256": "33b571a76bda921b749bb8e538371dda33d0ac0bf5e8ab2836d7e8daec5e9001"
+      "bytes": 104860,
+      "sha256": "4855380b0cca0d575b08e8c3c3f4ff04f4b164c76e8a4d0047678c799b2d3545"
     },
     {
       "sku": "P2",
       "file": "00-START-HERE.txt",
-      "bytes": 2895,
-      "sha256": "1445f718bb31c59973083b44fd051cd6cd015ce8342c4f144fd3f8ad5815fe58"
+      "bytes": 3594,
+      "sha256": "88ce80c769b9d3aec2cbca0c8bb42059a7187a44bd425041b209833f48ace5e6"
     },
     {
       "sku": "P2",
@@ -268,9 +274,9 @@
     },
     {
       "sku": "P2",
-      "file": "04-akt-skrytyh-rabot.xlsx",
-      "bytes": 24160,
-      "sha256": "aa683a9b17190fb73288266aec4159bedb2f766259da621638b80418f363473b"
+      "file": "04-akt-skrytyh-rabot.pdf",
+      "bytes": 261891,
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4"
     },
     {
       "sku": "P2",
@@ -321,10 +327,76 @@
       "sha256": "139f4007719e105a5add8f927b307609afbe192abf7f63312e6cca5e1aa0fceb"
     },
     {
+      "sku": "P3",
+      "file": "00-START-HERE.txt",
+      "bytes": 5602,
+      "sha256": "44df8e6335c5f7ee6404130eebd2e787408f55656f2ef8207020766019c3044d"
+    },
+    {
+      "sku": "P3",
+      "file": "01-proverochnyy-list-komplekta-ks.docx",
+      "bytes": 43389,
+      "sha256": "33a874e348b60a977b85bc50abcd54e29d65e01d169d7f4459253c539beeb790"
+    },
+    {
+      "sku": "P3",
+      "file": "02-reestr-prilozheniy.xlsx",
+      "bytes": 16597,
+      "sha256": "d2685f1606ff392cb3d7a23155f047fc11cce9b660541608d3058936a3887a9b"
+    },
+    {
+      "sku": "P3",
+      "file": "03-akt-skrytyh-rabot.pdf",
+      "bytes": 261891,
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4"
+    },
+    {
+      "sku": "P3",
+      "file": "04-protokol-vnutrenney-proverki.docx",
+      "bytes": 39362,
+      "sha256": "d2fd70cb60397076b44209e5989da0a0110b50513bcd5c5c062d558a070a3e1a"
+    },
+    {
+      "sku": "P3",
+      "file": "05-pismo-o-nedostatkah.docx",
+      "bytes": 39435,
+      "sha256": "22d8d04a51f3eacb2285323e0d7517f7ab372a2456e062fb585411e8554a3d3d"
+    },
+    {
+      "sku": "P3",
+      "file": "06-zhurnal-peredachi.xlsx",
+      "bytes": 21527,
+      "sha256": "029b048be85fef8f38e2c48e14ddfec41cf208151b7c406ac4603886f676bffd"
+    },
+    {
+      "sku": "P3",
+      "file": "07-sroki-hraneniya.docx",
+      "bytes": 39836,
+      "sha256": "e38b546f4446d63021f4a4f6bb551deba54e808bdda964528d8eb287eabb8925"
+    },
+    {
+      "sku": "P3",
+      "file": "08-algoritm-proverki.pdf",
+      "bytes": 58687,
+      "sha256": "43396d5cc5bab8829ec917e828eda46773b0e037f13d52aa476ecfb0dacecec2"
+    },
+    {
+      "sku": "P3",
+      "file": "09-tipovye-oshibki.docx",
+      "bytes": 40674,
+      "sha256": "d107fe9cf43acb7aec2b680736856637a22b422bd55698c237cb721e1dcffafa"
+    },
+    {
+      "sku": "P3",
+      "file": "10-sravnitelnaya-tablica.docx",
+      "bytes": 39912,
+      "sha256": "9ff876618a7ffd360af989054d373125bda3deb4e24b0ae14c9e4df90d3132b3"
+    },
+    {
       "sku": "P4",
       "file": "00-START-HERE.txt",
-      "bytes": 3284,
-      "sha256": "9a88d1ba7e3da708dd70417613acee8a9ef33d1964864dcfb2639e08f4ac72c9"
+      "bytes": 4112,
+      "sha256": "64d252524bbafb849ace72f50720bacbcd2a237fbf916cd72334fb2b1e6ca885"
     },
     {
       "sku": "P4",
@@ -382,9 +454,9 @@
     },
     {
       "sku": "P4",
-      "file": "31-akt-osvidetelstvovaniya-skrytyh-rabot.xlsx",
-      "bytes": 24160,
-      "sha256": "aa683a9b17190fb73288266aec4159bedb2f766259da621638b80418f363473b"
+      "file": "31-akt-osvidetelstvovaniya-skrytyh-rabot.pdf",
+      "bytes": 261891,
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4"
     },
     {
       "sku": "P4",
@@ -406,13 +478,25 @@
     },
     {
       "sku": "P4",
-      "file": "35-obshiy-zhurnal-rabot.xlsx",
+      "file": "35-obshiy-zhurnal-rabot.pdf",
+      "bytes": 621166,
+      "sha256": "39c89abb6752b27a860044fed979ac2da3c9d5bb9636b333471fcff9e9ca3eed"
+    },
+    {
+      "sku": "P4",
+      "file": "35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx",
       "bytes": 9442,
       "sha256": "54ef5d86e81ab120910cc5ad1889c54ff5253951ec06a180be655eaf4cf65cc4"
     },
     {
       "sku": "P4",
-      "file": "36-vhodnoy-kontrol.xlsx",
+      "file": "36-zhurnal-vhodnoy-verifikacii.pdf",
+      "bytes": 102072,
+      "sha256": "353cc2536e4c01fbcc7737ec70ccd17c503e3ac3d21c1ccde5753e1deb6eb216"
+    },
+    {
+      "sku": "P4",
+      "file": "36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx",
       "bytes": 9112,
       "sha256": "e10f379069eb327133fe0b5bb30343b1d1f0604b792f26bf28baf9d9773a995e"
     },
@@ -662,11 +746,5 @@
       "bytes": 38247,
       "sha256": "cf67357235336395e5a5fd580855a7b1f5eba34ab764779f0359f39dfa6c4881"
     }
-  ],
-  "stale_form_references": "NONE",
-  "regression_tests": {
-    "editorial": 8,
-    "metadata": 2,
-    "job_coordination": 1
-  }
+  ]
 }

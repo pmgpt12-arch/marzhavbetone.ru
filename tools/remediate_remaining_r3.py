@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Targeted language/layout remediation; published forms bypass restyling."""
+"""Intermediate text/layout stage; NOT a buyer candidate.
+
+After workbook authoring/stitching, collect_original_form_references.py and
+apply_original_forms_r3.py MUST run. The final overlay replaces interim AOSR
+sources and adds the official journals; packaging rejects unqualified originals.
+"""
 from pathlib import Path
 from zipfile import ZipFile,ZIP_DEFLATED,ZipInfo
 from lxml import etree as E

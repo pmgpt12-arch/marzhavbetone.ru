@@ -9,6 +9,7 @@ from openpyxl import load_workbook
 import json, subprocess, sys, re
 from refine_remaining_batch_r2 import BASE, OUT, SKUS, source
 from office_core_metadata_gate import check_bytes as check_office_metadata
+from standard_form_original_gate import check_member as check_original_form,established
 
 COUNTS={'P1':19,'P2':15,'P4':23,'P7':13,'P8':11,'P9':10,'P10':8}
 ALLOWED={
@@ -38,7 +39,7 @@ def docx_check(data,sku,name):
  for s in d.sections:
   w,h=s.page_width.cm,s.page_height.cm
   assert abs(sorted((w,h))[0]-21)<0.05 and abs(sorted((w,h))[1]-29.7)<0.05,(sku,name,'paper',w,h)
- if sku in ('P1','P2','P4'):
+ if sku in ('P1','P2','P4') and not established(sku,name):
   for style in d.styles:
    if style.name=='Normal':assert style.font.name=='Arial',(sku,name,'Normal font')
   for p in d.paragraphs:
@@ -69,6 +70,7 @@ for sku in SKUS:
  changed=[]; formulas=0; details=[]; printpages={}
  for f in files:
   data=f.read_bytes();name=f.name
+  check_original_form(sku,name,data)
   if f.suffix in {'.docx','.xlsx'}:check_office_metadata(data,sku+'/'+name)
   if prior[name]!=data:changed.append(name)
   if name.endswith('.xlsx'):
