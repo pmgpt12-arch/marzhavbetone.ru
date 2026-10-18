@@ -3,9 +3,10 @@
 from pathlib import Path
 from zipfile import ZipFile
 from lxml import etree as E
-import json, subprocess
-ROOT=Path('/tmp/mb-r3/input')
-OUT=Path('/tmp/mb-r3/audit');OUT.mkdir(parents=True,exist_ok=True)
+import json, subprocess, argparse
+p=argparse.ArgumentParser();p.add_argument('--input',type=Path,default=Path('/tmp/mb-r3/input'));p.add_argument('--output',type=Path,default=Path('/tmp/mb-r3/audit'));a=p.parse_args()
+ROOT=a.input
+OUT=a.output;OUT.mkdir(parents=True,exist_ok=True)
 W={'w':'http://schemas.openxmlformats.org/wordprocessingml/2006/main'}
 X={'x':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
 for folder in sorted(ROOT.iterdir()):
@@ -32,6 +33,9 @@ for folder in sorted(ROOT.iterdir()):
                                 v=c.find('x:v',X)
                                 text=v.text if v is not None and v.text else ''
                             if text:rows.append({'loc':part+':'+c.get('r'),'text':text})
+                            formula=c.find('x:f',X)
+                            if formula is not None and formula.text:
+                                rows.append({'loc':part+':'+c.get('r')+':formula','text':formula.text})
         elif f.suffix=='.txt':rows=[{'loc':str(i),'text':s} for i,s in enumerate(f.read_text().splitlines()) if s]
         elif f.suffix=='.pdf':rows=[{'loc':'pdf','text':subprocess.check_output(['pdftotext','-layout',str(f),'-'],text=True)}]
         data.append({'file':f.name,'rows':rows})

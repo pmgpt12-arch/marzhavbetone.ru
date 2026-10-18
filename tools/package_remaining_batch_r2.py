@@ -8,6 +8,7 @@ from docx import Document
 from openpyxl import load_workbook
 import json, subprocess, sys, re
 from refine_remaining_batch_r2 import BASE, OUT, SKUS, source
+from office_core_metadata_gate import check_bytes as check_office_metadata
 
 COUNTS={'P1':19,'P2':15,'P4':23,'P7':13,'P8':11,'P9':10,'P10':8}
 ALLOWED={
@@ -68,6 +69,7 @@ for sku in SKUS:
  changed=[]; formulas=0; details=[]; printpages={}
  for f in files:
   data=f.read_bytes();name=f.name
+  if f.suffix in {'.docx','.xlsx'}:check_office_metadata(data,sku+'/'+name)
   if prior[name]!=data:changed.append(name)
   if name.endswith('.xlsx'):
    n,edits=workbook_check(prior[name],data,sku,name);formulas+=n

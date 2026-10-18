@@ -1,0 +1,39 @@
+{
+  "status": "SOURCE_FIELDS_REVIEWED_NATIVE_PENDING",
+  "primary": "https://www.consultant.ru/document/cons_doc_LAW_448832/b7695a35ee4ee5e0d7a4df4ae2597481ff54688d/",
+  "official_publication": "https://publication.pravo.gov.ru/document/0001202306010019",
+  "selected": "AOSR-published.xlsx",
+  "sha256": "aa683a9b17190fb73288266aec4159bedb2f766259da621638b80418f363473b",
+  "comparison": "Field coverage checked against Appendix 3; third-party typography, punctuation and explanatory additions are not asserted verbatim to the normative text. No changes made to downloaded workbook.",
+  "fields": {
+    "object": "A3:A6",
+    "developer_technical_customer": "A7:A13",
+    "builder": "A14:A18",
+    "designer": "A19:A23",
+    "number_date": "A28:AN29",
+    "five_representative_roles_authority": "A30:A51",
+    "inspected_work_performer": "A52:A55",
+    "clauses_1_to_7": "A57:A80",
+    "additional_copy_count_attachments": "A82:A86",
+    "five_signature_roles": "A87:AB105"
+  },
+  "local_visual": "Both pages inspected; no displaced date, numbered clause or signature block.",
+  "rejected": [
+    {
+      "file": "AOSR-published.docx",
+      "reason": "Floating date and clause number displaced in native Word PDF; not delivered."
+    },
+    {
+      "source": "Stroydoc alternative DOCX",
+      "reason": "Native Word timed out; not qualified."
+    },
+    {
+      "source": "Stroyka alternative DOCX",
+      "reason": "Publisher guidance and local render header overlap; not selected."
+    },
+    {
+      "source": "Klerk alternative DOCX",
+      "reason": "Condensed field wording; not selected."
+    }
+  ]
+}
