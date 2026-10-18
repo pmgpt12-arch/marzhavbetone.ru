@@ -5,10 +5,10 @@ from zipfile import ZipFile
 from io import BytesIO
 from docx import Document
 from bs4 import BeautifulSoup
-import hashlib,re,subprocess,json
+import hashlib,re,subprocess,json,sys
 root=Path(__file__).resolve().parents[3]
 folder=Path(__file__).resolve().parent
-archive=folder/'T3-odnostoronnee-spisanie-5-files-R2.zip'
+archive=Path(sys.argv[1]) if len(sys.argv)>1 else folder/'T3-odnostoronnee-spisanie-5-files-R2.zip'
 title='Система подготовки возражений на односторонний акт или списание в одностороннем порядке'
 expected=['00-START-HERE.pdf','01-poryadok-deystviy.docx','02-vozrazheniya-na-akt.docx','03-vozrazheniya-na-odnostoronnee-spisanie.docx','04-slovar-poley.docx']
 no_old=lambda t: re.search(r'зач[её]т',t,re.I) is None

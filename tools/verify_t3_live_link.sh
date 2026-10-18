@@ -45,7 +45,7 @@ url="https://marzhavbetone.ru/download.php?o=$id&t=$token&f=t3"
 code="$(curl -sS -L --max-time 30 -o "$tmp" -w '%{http_code}' "$url")"
 [[ "$code" == '200' ]] || { echo "T3_LINK_PROBE_HTTP_$code"; exit 6; }
 got="$(sha256sum "$tmp" | cut -d ' ' -f1)"
-[[ "$got" == '1f2b09c4e060e4e7310fd8d1f48461282b99fad7793b6acb3bc3267f2d69d2fb' ]] || { echo 'T3_LINK_PROBE_ZIP_MISMATCH'; exit 7; }
+[[ "$got" == 'af8678ecc0275458c7fa4c53a0a56b69cd57b89229ad41b52fcec11d38c61240' ]] || { echo 'T3_LINK_PROBE_ZIP_MISMATCH'; exit 7; }
 ssh_run "bash -se -- '$SITE_PATH' '$id'" <<'EXPIRE'
 set -Eeuo pipefail
 site_arg="$1"; id="$2"
