@@ -1,0 +1,19 @@
+<report status="FAIL" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="batch-r3-p1-relative-rels-20261018" excel_version="16.0" excel_build="4324">
+  <check name="rel-1:input_sha" pass="True" expected="a5899b27165c9381626c6ec46fccf6d322d41b982927de9801e5f7862cab9470" actual="a5899b27165c9381626c6ec46fccf6d322d41b982927de9801e5f7862cab9470" />
+  <error>System.Management.Automation.MethodInvocationException: Исключение при вызове "Open" с "3" аргументами: "Метод Open из класса Workbooks завершен неверно" ---&gt; System.Reflection.TargetInvocationException: Адресат вызова создал исключение. ---&gt; System.Runtime.InteropServices.COMException (0x800A03EC): Метод Open из класса Workbooks завершен неверно
+   --- Конец трассировки внутреннего стека исключений ---
+   в System.RuntimeType.InvokeDispMethod(String name, BindingFlags invokeAttr, Object target, Object[] args, Boolean[] byrefModifiers, Int32 culture, String[] namedParameters)
+   в System.RuntimeType.InvokeMember(String name, BindingFlags bindingFlags, Binder binder, Object target, Object[] providedArgs, ParameterModifier[] modifiers, CultureInfo culture, String[] namedParams)
+   в System.Management.Automation.ComMethod.InvokeMethod(PSMethod method, Object[] arguments)
+   --- Конец трассировки внутреннего стека исключений ---
+   в System.Management.Automation.ComMethod.InvokeMethod(PSMethod method, Object[] arguments)
+   в System.Management.Automation.ComAdapter.MethodInvoke(PSMethod method, Object[] arguments)
+   в System.Management.Automation.Adapter.BaseMethodInvoke(PSMethod method, Object[] arguments)
+   в System.Management.Automation.ParserOps.CallMethod(Token token, Object target, String methodName, Object[] paramArray, Boolean callStatic, Object valueToSet)
+   в System.Management.Automation.MethodCallNode.InvokeMethod(Object target, Object[] arguments, Object value)
+   в System.Management.Automation.MethodCallNode.Execute(Array input, Pipe outputPipe, ExecutionContext context)
+   в System.Management.Automation.AssignmentStatementNode.Execute(Array input, Pipe outputPipe, ExecutionContext context)
+   в System.Management.Automation.StatementListNode.ExecuteStatement(ParseTreeNode statement, Array input, Pipe outputPipe, ArrayList&amp; resultList, ExecutionContext context) 
+C:\Users\x6\AppData\Local\MB-ExcelQA\native.ps1:35 знак:38
++         $book = $excel.Workbooks.Open &lt;&lt;&lt;&lt; ($path,0,$false)</error>
+</report>

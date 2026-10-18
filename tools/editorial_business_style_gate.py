@@ -18,6 +18,9 @@ import xml.etree.ElementTree as ET
 from zipfile import ZipFile
 
 FORBIDDEN = {
+    "разговорный_запуск": r"запуск\s+оплаты|быстрый\s+запуск\s+за\s+\d+\s+минут|назовите\s+(?:е[её]|папку)\s+по\s+объекту",
+    "разговорная_финансовая_метафора": r"длина\s+ямы|худшая\s+точка\s+кассы|объект\s+не\s+встал|расч[её]т\s+молча\s+переста[её]т",
+    "скрытое_оправдание_ограничений": r"что\s+этот\s+лист\s+не\s+решает|что\s+эти\s+суммы\s+не\s+означают|(?:число|числом|правило)\s+[^.]{0,75}(?:намеренно\s+не\s+записано|не\s+задан\s+намеренно|не\s+зашито)",
     "оправдание_состава_расчёта": r"чего\s+(?:в\s+этом\s+файле\s+нет|эта\s+таблица\s+не\s+считает)|почему\s+файл\s+открывается",
     "отсутствие_данных_как_оправдание": r"(?:значений|чисел|ставок)\s+(?:здесь|в\s+(?:этом\s+)?файле)\s+нет\s+намеренно|здесь\s+их\s+нет\s+намеренно",
     "автопринятие_с_пустым_основанием": r"считаться\s+(?:принятой|согласованной)\s+в\s+соответствии\s+с\s+п\.\s*\[(?:номер|\.\.\.)\]",
@@ -66,11 +69,12 @@ def extract(name: str, data: bytes) -> str:
     lower = name.lower()
     if lower.endswith(".docx"):
         with ZipFile(BytesIO(data)) as archive:
-            root = ET.fromstring(archive.read("word/document.xml"))
+            roots = [ET.fromstring(archive.read(p)) for p in archive.namelist()
+                     if p == 'word/document.xml' or p.startswith(('word/header','word/footer','word/comments')) and p.endswith('.xml')]
         ns = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
         return "\n".join(
             "".join(node.text or "" for node in para.iter(ns + "t"))
-            for para in root.iter(ns + "p")
+            for root in roots for para in root.iter(ns + "p")
         )
     if lower.endswith(".xlsx"):
         parts = []

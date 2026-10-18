@@ -5,6 +5,14 @@ from zipfile import ZipFile
 from editorial_business_style_gate import check
 
 class T2EditorialRegression(unittest.TestCase):
+    def test_owner_rejected_r2_language(self):
+        for text in ('запуск оплаты','Быстрый запуск за 60 минут',
+                     'назовите её по объекту и договору','Длина ямы',
+                     'Что этот лист не решает','Что эти суммы не означают',
+                     'Число в этот файл намеренно не записано',
+                     'Числом в файле не задан намеренно'):
+            self.assertTrue(check('sample.txt',text.encode()),text)
+
     def test_comment_text_is_checked(self):
         stream=BytesIO()
         with ZipFile(stream,'w') as z:
