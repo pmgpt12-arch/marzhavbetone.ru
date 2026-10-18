@@ -1,0 +1,75 @@
+{
+  "sku": "P10",
+  "status": "buyer_review_candidate_not_published",
+  "base_commit": "6323b4fc74f6a92bc19588bd03ba18ef5a7857c9",
+  "zip": "P10-otvet-na-pretenziyu-8-files-business-R2.zip",
+  "sha256": "42f51bb0c46fed63253a56dbddeceb3aa971c55a8b0389a5e0a59260acf92526",
+  "bytes": 290682,
+  "files": [
+    {
+      "name": "00-START-HERE.pdf",
+      "bytes": 45927,
+      "sha256": "354eab15b668865611bfc10484f1c4520c73e2a3fdf8042da0a73aee610e6506"
+    },
+    {
+      "name": "01-karta-pretenzii.docx",
+      "bytes": 38948,
+      "sha256": "1dd0438334a54c60599775329c704797b81c02b2c8e1e5c2a2ee6928f8315f83"
+    },
+    {
+      "name": "02-poryadok-otveta.docx",
+      "bytes": 39736,
+      "sha256": "4e61000134c180e3afdf521720d48be5c43e621fda824039f87f0379e412e621"
+    },
+    {
+      "name": "03-otvet-na-pretenziyu.docx",
+      "bytes": 38615,
+      "sha256": "de81d24e9aff8b6fcbe5a0145eacb406833b29ee4ffeca9a88cb9346cae998ee"
+    },
+    {
+      "name": "04-otvet-na-garantiynuyu-pretenziyu.docx",
+      "bytes": 38538,
+      "sha256": "d996126595ec2c83851d83a9d3d859d08026bd2354346a33803ca89f74264971"
+    },
+    {
+      "name": "05-otvet-na-pryamoe-trebovanie.docx",
+      "bytes": 38574,
+      "sha256": "78c894422d17c1b6c53ac7f3277b27b8b218599c859d1d22dbb881fc6b650f3a"
+    },
+    {
+      "name": "06-uvedomlenie-kontragentu.docx",
+      "bytes": 38321,
+      "sha256": "1f0040aeff840bb7a40078ec726473c6d24bd9d21df78f3d9d685bcbc938b263"
+    },
+    {
+      "name": "07-vstavnye-bloki.docx",
+      "bytes": 39395,
+      "sha256": "3cb1e126fc3dcaaec3ca2518a9131347b31b5217b617e89aede4b1d9832cb759"
+    }
+  ],
+  "provenance": "Fresh focused drafting against approved business editorial standard; historic P10 and accepted P5+P12 consulted read-only. No production product or price changes.",
+  "legal_sources": [
+    "https://www.consultant.ru/document/cons_doc_LAW_9027/dae08bc5ec696109c1e4d943d3e6a45896e1f1ac/",
+    "https://www.consultant.ru/document/cons_doc_LAW_9027/925d0d7add27470982a9d7e32af19f95071da818/",
+    "https://www.consultant.ru/document/cons_doc_LAW_5142/f9732de88783800811973b3a13ef5112de0b5321/"
+  ],
+  "validation": {
+    "zip_crc": "PASS",
+    "members": 8,
+    "member_names_match_guide": true,
+    "sendable_forms_begin_with_recipient": true,
+    "editorial_gate": "PASS files=8 forbidden_occurrences=0",
+    "print_pages": {
+      "00": 1,
+      "01": 1,
+      "02": 2,
+      "03": 1,
+      "04": 1,
+      "05": 1,
+      "06": 1,
+      "07": 1
+    },
+    "visual_review": "First pages and two-page route inspected; no blank pages or orphaned section."
+  },
+  "changed_files": "Eight buyer files newly authored in isolated candidate; legacy P10 and released P5+P12 unchanged."
+}
