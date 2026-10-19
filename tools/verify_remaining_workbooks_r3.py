@@ -71,6 +71,9 @@ for p in sorted(I.rglob('*.xlsx')):
      assert [xml(e) for e in ra.findall('x:'+tag,X)]==[xml(e) for e in rb.findall('x:'+tag,X)],(key,n,tag)
     for tag,option in [('rowBreaks','break_before'),('cols','columns')]:
      if option not in plan:assert xml(ra.find('x:'+tag,X))==xml(rb.find('x:'+tag,X)),(key,n,tag)
+     elif tag=='rowBreaks':
+      breaks=rb.find('x:rowBreaks',X)
+      assert breaks is not None and [int(v.get('id'))+1 for v in breaks]==plan[option],(key,n,'planned page breaks')
     pa=ra.find('x:pageSetup',X);pb=rb.find('x:pageSetup',X)
     if 'fit_height' in plan:
      assert pb.get('fitToHeight')==str(plan['fit_height']);pb=copy.deepcopy(pb)

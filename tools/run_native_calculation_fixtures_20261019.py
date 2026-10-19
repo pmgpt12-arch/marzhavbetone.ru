@@ -137,11 +137,15 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(); parser.add_argument('--collect-only', action='store_true')
     parser.add_argument('--fixtures-dir', type=Path); parser.add_argument('--source-root', type=Path)
     parser.add_argument('--profile', choices=['original', 'p8-layout'], default='original')
+    parser.add_argument('--job-prefix')
     args = parser.parse_args()
     if args.fixtures_dir: FIXTURES = args.fixtures_dir
     if args.source_root: SOURCE_ROOT = args.source_root
     if args.profile == 'p8-layout':
         EXPECTED_FIXTURES = 4; EXPECTED_PROBES = 8; PREFIX = 'r3j-p8-warning-layout'
         ARCHIVE_STEM = 'p8-warning-layout'; OUT = BASE / 'evidence/native-final-20261019/p8-warning-layout'
+    if args.job_prefix:
+        assert re.fullmatch(r'[a-z0-9-]{1,40}', args.job_prefix)
+        PREFIX = args.job_prefix
     if not args.collect_only: run()
     collect_print_evidence()
