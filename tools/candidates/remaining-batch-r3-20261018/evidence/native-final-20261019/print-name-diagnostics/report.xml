@@ -1,0 +1,8 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="r3f-print-name-diagnostics-20261019" excel_version="16.0" excel_build="4324">
+  <check name="plain:input_sha" pass="True" expected="5ff437915be328d1020f499803071fa1e1184001d67170eacde193e26bf3c87b" actual="5ff437915be328d1020f499803071fa1e1184001d67170eacde193e26bf3c87b" />
+  <check name="plain:pdf_export" pass="True" expected="%PDF-" actual="bytes=193097" />
+  <check name="plain:source_unchanged" pass="True" expected="5ff437915be328d1020f499803071fa1e1184001d67170eacde193e26bf3c87b" actual="5ff437915be328d1020f499803071fa1e1184001d67170eacde193e26bf3c87b" />
+  <check name="hidden:input_sha" pass="True" expected="28b4796ef8a91cd4f2950ef13227eab7f869b0b0c4d2b00beaecbef38c0bb91c" actual="28b4796ef8a91cd4f2950ef13227eab7f869b0b0c4d2b00beaecbef38c0bb91c" />
+  <check name="hidden:pdf_export" pass="True" expected="%PDF-" actual="bytes=193097" />
+  <check name="hidden:source_unchanged" pass="True" expected="28b4796ef8a91cd4f2950ef13227eab7f869b0b0c4d2b00beaecbef38c0bb91c" actual="28b4796ef8a91cd4f2950ef13227eab7f869b0b0c4d2b00beaecbef38c0bb91c" />
+</report>

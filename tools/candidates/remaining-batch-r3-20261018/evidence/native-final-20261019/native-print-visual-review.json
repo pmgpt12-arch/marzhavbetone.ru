@@ -1,0 +1,889 @@
+{
+  "status": "NATIVE_PRINT_VISUAL_FAIL",
+  "source_commit": "1018bb1268a81a1d89a2ffd3bbdc24422460b1c4",
+  "scope": "Page composition, repeated headers and signature placement of empty source workbooks. Filled-input print fixtures and calculations remain pending.",
+  "workbooks": 19,
+  "pages_reviewed": 94,
+  "findings": [
+    {
+      "id": "EXCEL-PRINT-01",
+      "severity": "BLOCKER_FOR_OWNER_ACCEPTANCE",
+      "finding": "Repeated column headings are absent on continuation pages of registers, although the source contains print-title definitions.",
+      "examples": [
+        "p106a-filled.pdf pages 2-3",
+        "p107-filled.pdf pages 2-3",
+        "p114-filled.pdf page 4",
+        "p809-filled.pdf pages 6 and 8",
+        "p904-filled.pdf pages 4-6"
+      ],
+      "source_change": "NOT_APPLIED; root cause must be established before changing customer files."
+    },
+    {
+      "id": "EXCEL-PRINT-02",
+      "severity": "BLOCKER_FOR_OWNER_ACCEPTANCE",
+      "finding": "Native export includes material outside the specified print area: status-list column on P13 instructions, and instructions above the P8/09 reconciliation form.",
+      "source_change": "NOT_APPLIED"
+    }
+  ],
+  "rejected_diagnostics": {
+    "job": "r3f-print-name-diagnostics-20261019",
+    "plain_names": "NO_IMPROVEMENT",
+    "hidden_attribute": "NO_IMPROVEMENT",
+    "buyer_files_changed": false
+  },
+  "native_opening": "PASS for 19 exact current SHAs; this does not qualify native print",
+  "original_xls": "PENDING",
+  "final_word": "PENDING: worker restart receipt absent",
+  "owner_acceptance": "NOT_READY",
+  "publication": "NOT_PERFORMED",
+  "print_inventory": [
+    {
+      "pdf": "r3f-excel-p1-open-20261019/p106a-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 294,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 0,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 0,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 314,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p1-open-20261019/p107-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 306,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 0,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 0,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 305,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p1-open-20261019/p108-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 273,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 0,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 0,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 0,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 5,
+          "characters": 317,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p1-open-20261019/p114-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 798,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 892,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 399,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 575,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 5,
+          "characters": 809,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 6,
+          "characters": 925,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p2-p4-open-20261019/p207-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 291,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 195,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 5,
+          "characters": 357,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p2-p4-open-20261019/p208-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 272,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 5,
+          "characters": 403,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p2-p4-open-20261019/p406-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 192,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p2-p4-open-20261019/p407-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 131,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p4-registers-open-20261019/p435a-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 284,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 274,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p4-registers-open-20261019/p436a-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 247,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 237,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p4-registers-open-20261019/p437-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 239,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 222,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p4-registers-open-20261019/p438-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 234,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 237,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p7-p13-open-20261019/p702-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 318,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 186,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 288,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p7-p13-open-20261019/p703-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 297,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 186,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 191,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-excel-p7-p13-open-20261019/p705-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 300,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 186,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 205,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-p13-row-order-20261019/p13rows-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 2266,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 1214,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 1662,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-p8-p9-p13-dv-check-20261019/p802-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 2347,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 1121,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 400,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 420,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 5,
+          "characters": 3259,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 6,
+          "characters": 3259,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 7,
+          "characters": 2612,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 8,
+          "characters": 1554,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 9,
+          "characters": 1270,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-p8-p9-p13-dv-check-20261019/p809-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 1313,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 1006,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 1037,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 977,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 5,
+          "characters": 404,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 6,
+          "characters": 546,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 7,
+          "characters": 350,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 8,
+          "characters": 633,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 9,
+          "characters": 859,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 10,
+          "characters": 719,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 11,
+          "characters": 545,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 12,
+          "characters": 934,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 13,
+          "characters": 1757,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 14,
+          "characters": 893,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 15,
+          "characters": 626,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        }
+      ]
+    },
+    {
+      "pdf": "r3f-p8-p9-p13-dv-check-20261019/p904-filled.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 1714,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 685,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 373,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 5,
+          "characters": 0,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 6,
+          "characters": 102,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 7,
+          "characters": 1559,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        },
+        {
+          "page": 8,
+          "characters": 1417,
+          "size": [
+            1190.52001953125,
+            841.9199829101562
+          ]
+        }
+      ]
+    }
+  ],
+  "diagnostic_next": "Export the unchanged input before SaveAs with IgnorePrintAreas=False explicitly; distinguish a workbook defect from the review harness round trip. Prepared helper supports an opt-in attribute and a required receipt check. Not yet executed."
+}

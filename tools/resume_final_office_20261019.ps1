@@ -26,11 +26,14 @@ $newNative=$newNative.Replace($oldClear,$newClear)
 $oldPrint="[ProductCells]::Set(`$sheet,`$input.GetAttribute('cell'),`$input.GetAttribute('kind'),`$input.GetAttribute('value'))"
 $newPrint="`$printSheet=`$sheet; if (`$input.HasAttribute('sheet')) { `$printSheet=`$book.Worksheets.Item(`$input.GetAttribute('sheet')) }; [ProductCells]::Set(`$printSheet,`$input.GetAttribute('cell'),`$input.GetAttribute('kind'),`$input.GetAttribute('value'))"
 $newNative=$newNative.Replace($oldPrint,$newPrint)
+$oldExport="`$book.SaveAs(`$output,51); `$book.ExportAsFixedFormat(0,`$pdfPath)"
+$newExport="if (`$f.GetAttribute('export_source_first') -eq 'true') { `$book.ExportAsFixedFormat(0,`$pdfPath,0,`$true,`$false); `$book.SaveAs(`$output,51); Check (`$tag+':export_source_first') `$true 'direct source export; IgnorePrintAreas=False' 'direct source export; IgnorePrintAreas=False' } else { "+$oldExport+" }"
+if (-not $newNative.Contains(':export_source_first')) { $newNative=$newNative.Replace($oldExport,$newExport) }
 $wordNeedle="`$node.SetAttribute('status',`$status)"
 $wordInsert=$wordNeedle+"; if (Test-Path -LiteralPath `$result) { `$childDoc=New-Object Xml.XmlDocument; `$childDoc.Load(`$result); [void]`$node.AppendChild(`$report.ImportNode(`$childDoc.DocumentElement,`$true)) }"
 $newWord=$beforeWord
 if (-not $beforeWord.Contains('$childDoc=')) { $newWord=$beforeWord.Replace($wordNeedle,$wordInsert) }
-if (-not $newNative.Contains('$targetSheet=') -or -not $newNative.Contains('$expectSheet=') -or -not $newNative.Contains('$sheet.ProtectContents -and') -or -not $newAgent.Contains('\.xlsx?$') -or -not $newWord.Contains('$childDoc=')) { throw 'Installed worker differs from the reviewed version; no changes made.' }
+if (-not $newNative.Contains('$targetSheet=') -or -not $newNative.Contains('$expectSheet=') -or -not $newNative.Contains('$sheet.ProtectContents -and') -or -not $newNative.Contains(':export_source_first') -or -not $newAgent.Contains('\.xlsx?$') -or -not $newWord.Contains('$childDoc=')) { throw 'Installed worker differs from the reviewed version; no changes made.' }
 foreach($text in @($newAgent,$newNative,$newWord)) { [void][scriptblock]::Create($text) }
 # Preserve diagnostics from the earlier failed Word attempt before restarting.
 [xml]$diagnostics='<report job="r3f-worker-diagnostics-20261019" status="FAIL" scope="WORKER_DIAGNOSTICS_ONLY" />'
