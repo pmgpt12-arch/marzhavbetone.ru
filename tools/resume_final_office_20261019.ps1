@@ -29,11 +29,45 @@ $newNative=$newNative.Replace($oldPrint,$newPrint)
 $oldExport="`$book.SaveAs(`$output,51); `$book.ExportAsFixedFormat(0,`$pdfPath)"
 $newExport="if (`$f.GetAttribute('export_source_first') -eq 'true') { `$book.ExportAsFixedFormat(0,`$pdfPath,0,`$true,`$false); `$book.SaveAs(`$output,51); Check (`$tag+':export_source_first') `$true 'direct source export; IgnorePrintAreas=False' 'direct source export; IgnorePrintAreas=False' } else { "+$oldExport+" }"
 if (-not $newNative.Contains(':export_source_first')) { $newNative=$newNative.Replace($oldExport,$newExport) }
+$printState=@'
+function WritePrintState([string]$Stage) {
+    $state=$report.CreateElement('print_preflight');$state.SetAttribute('tag',$tag);$state.SetAttribute('stage',$Stage)
+    try { $state.SetAttribute('excel_active_printer_present',[string](-not [string]::IsNullOrEmpty([string]$excel.ActivePrinter))) } catch { $state.SetAttribute('active_printer_error',$_.Exception.Message) }
+    try {
+        $printers=@(Get-WmiObject Win32_Printer -ErrorAction Stop)
+        $state.SetAttribute('installed_printer_count',[string]$printers.Count)
+        $state.SetAttribute('default_printer_present',[string](@($printers | Where-Object { $_.Default }).Count -gt 0))
+    } catch { $state.SetAttribute('printer_inventory_error',$_.Exception.Message) }
+    try { $state.SetAttribute('spooler_state',[string](Get-Service Spooler -ErrorAction Stop).Status) } catch { $state.SetAttribute('spooler_error',$_.Exception.Message) }
+    foreach($ws in $book.Worksheets) {
+        $entry=$report.CreateElement('sheet');$entry.SetAttribute('name',[string]$ws.Name)
+        try {
+            $entry.SetAttribute('print_area',[string]$ws.PageSetup.PrintArea)
+            $entry.SetAttribute('print_title_rows',[string]$ws.PageSetup.PrintTitleRows)
+            $entry.SetAttribute('print_title_columns',[string]$ws.PageSetup.PrintTitleColumns)
+        } catch { $entry.SetAttribute('pagesetup_error',$_.Exception.Message) }
+        [void]$state.AppendChild($entry)
+    }
+    $ws=$null
+    foreach($nm in $book.Names) {
+        if ([string]$nm.Name -match 'Print_Area|Print_Titles') {
+            $entry=$report.CreateElement('print_name');$entry.SetAttribute('name',[string]$nm.Name)
+            $entry.SetAttribute('refers_to',[string]$nm.RefersTo);[void]$state.AppendChild($entry)
+        }
+    }
+    $nm=$null;[void]$r.AppendChild($state)
+}
+if ($f.GetAttribute('print_preflight') -eq 'true') { WritePrintState 'opened' }
+'@
+$sheetNeedle="`$sheet = `$book.Worksheets.Item(`$f.GetAttribute('sheet'))"
+if (-not $newNative.Contains('function WritePrintState')) { $newNative=$newNative.Replace($sheetNeedle,$sheetNeedle+"`n"+$printState) }
+$closeNeedle='        $book.Close($false); [void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($sheet); $sheet=$null'
+if (-not $newNative.Contains("WritePrintState 'exported_saved'")) { $newNative=$newNative.Replace($closeNeedle,"        if (`$f.GetAttribute('print_preflight') -eq 'true') { WritePrintState 'exported_saved' }`n"+$closeNeedle) }
 $wordNeedle="`$node.SetAttribute('status',`$status)"
 $wordInsert=$wordNeedle+"; if (Test-Path -LiteralPath `$result) { `$childDoc=New-Object Xml.XmlDocument; `$childDoc.Load(`$result); [void]`$node.AppendChild(`$report.ImportNode(`$childDoc.DocumentElement,`$true)) }"
 $newWord=$beforeWord
 if (-not $beforeWord.Contains('$childDoc=')) { $newWord=$beforeWord.Replace($wordNeedle,$wordInsert) }
-if (-not $newNative.Contains('$targetSheet=') -or -not $newNative.Contains('$expectSheet=') -or -not $newNative.Contains('$sheet.ProtectContents -and') -or -not $newNative.Contains(':export_source_first') -or -not $newAgent.Contains('\.xlsx?$') -or -not $newWord.Contains('$childDoc=')) { throw 'Installed worker differs from the reviewed version; no changes made.' }
+if (-not $newNative.Contains('$targetSheet=') -or -not $newNative.Contains('$expectSheet=') -or -not $newNative.Contains('$sheet.ProtectContents -and') -or -not $newNative.Contains(':export_source_first') -or -not $newNative.Contains('function WritePrintState') -or -not $newNative.Contains("WritePrintState 'exported_saved'") -or -not $newAgent.Contains('\.xlsx?$') -or -not $newWord.Contains('$childDoc=')) { throw 'Installed worker differs from the reviewed version; no changes made.' }
 foreach($text in @($newAgent,$newNative,$newWord)) { [void][scriptblock]::Create($text) }
 # Preserve diagnostics from the earlier failed Word attempt before restarting.
 [xml]$diagnostics='<report job="r3f-worker-diagnostics-20261019" status="FAIL" scope="WORKER_DIAGNOSTICS_ONLY" />'

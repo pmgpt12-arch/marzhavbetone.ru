@@ -11,6 +11,9 @@ OUT = BASE / 'evidence/native-final-20261019'
 
 
 def run():
+    review_file = OUT / 'word-native-visual-review.json'
+    review = json.loads(review_file.read_text()) if review_file.exists() else {}
+    visual = {(r['sha256'], r['pdf_sha256']) for r in review.get('documents', []) if r.get('status') == 'PASS'} if review.get('status') == 'PASS' else set()
     current = {sha256(p.read_bytes()).hexdigest(): p for p in (BASE / 'checkpoint-working').rglob('*.docx') if p.parent.name != 'P3'}
     assert len(current) == 66
     candidates = []
@@ -40,7 +43,7 @@ def run():
                                'job': ident, 'tag': tag, 'status': 'PASS', 'fresh': fresh,
                                'pdf_sha256': child.get('pdf_sha256'),
                                'proof': ('word-current-proofs.tar.xz:' + ident) if fresh else str(directory.relative_to(BASE / 'evidence')),
-                               'visual_review': 'PENDING' if fresh and ident != availability else 'REUSED_PREVIOUS_REVIEW'}
+                               'visual_review': ('PASS' if (digest, child.get('pdf_sha256')) in visual else 'PENDING') if fresh and ident != availability else 'REUSED_PREVIOUS_REVIEW'}
             if fresh:
                 archive_members[ident + '/job.xml'] = job_path
                 archive_members[ident + '/report.xml'] = report_path
@@ -54,7 +57,7 @@ def run():
              'reused_proofs': sum(not v['fresh'] for v in verified.values()),
              'previous_algorithm_fail': 'Same SHA passed a bounded isolated run after observed agent restart. Prior cause remains unproven; no claim of a permanent runtime repair.',
              'scope': 'Exact input SHA checked before/after read-only Word opening and PDF export by the installed worker; every PDF checksum matched to its receipt.',
-             'new_native_pdf_visual_review': 'PENDING', 'owner_acceptance': 'NOT_READY', 'publication': 'NOT_PERFORMED',
+             'new_native_pdf_visual_review': 'PASS' if all(r['visual_review'] in {'PASS', 'REUSED_PREVIOUS_REVIEW'} for r in verified.values()) else 'PENDING', 'owner_acceptance': 'NOT_READY', 'publication': 'NOT_PERFORMED',
              'archive': {'file': archive.name, 'sha256': sha256(archive.read_bytes()).hexdigest(), 'bytes': archive.stat().st_size},
              'files': sorted(verified.values(), key=lambda v: (v['sku'], v['file']))}
     (OUT / 'word-current-index.json').write_text(json.dumps(index, ensure_ascii=False, indent=2) + '\n')

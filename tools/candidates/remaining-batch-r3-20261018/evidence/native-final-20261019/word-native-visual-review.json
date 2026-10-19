@@ -1,0 +1,313 @@
+{
+  "status": "PASS",
+  "date": "2026-10-19",
+  "scope": "All 22 native pages of the 11 changed DOCX documents; the other exact DOCX SHAs reuse the previous visual review. No original XLS forms are qualified by this review.",
+  "proof_archive_sha256": "5eb1424053ab76c9dc60cc9d5e2cfa1cb6ba4d22f39e45c8b9ec0d24097ad630",
+  "checks": [
+    "Every native page inspected",
+    "No blank pages or clipped text",
+    "Tables and captions within page margins",
+    "Signature blocks remain with substantive content",
+    "Sending forms start with the form",
+    "No page containing only signatures"
+  ],
+  "documents": [
+    {
+      "job": "r3g-word-p1-1-20261019",
+      "tag": "p1-0",
+      "file": "00-INSTRUKCIYA.docx",
+      "sha256": "c3fa51c103f28048a9fb4d90b17a519f95e7e03e5f71830096ea159f5aeaffc0",
+      "pdf_sha256": "f1ceb25605b13d2760dbf4bf285f2a9b64f0d449d20bbbc5610f7d64e865c669",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 2250,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 2570,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ],
+      "status": "PASS",
+      "page_count": 2
+    },
+    {
+      "job": "r3g-word-p1-1-20261019",
+      "tag": "p1-1",
+      "file": "11-slovar-poley.docx",
+      "sha256": "83c11248a93908afa738f5bc157a32bb71844c3267a9a768d35ecea372f2a48b",
+      "pdf_sha256": "d6f8f23f13a25f50c2668af722180e22dd33a004cbc895640c54adfd238cd705",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 2078,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 2168,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 2510,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 2026,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ],
+      "status": "PASS",
+      "page_count": 4
+    },
+    {
+      "job": "r3g-word-p1-1-20261019",
+      "tag": "p1-2",
+      "file": "16-iskovoe-zayavlenie-o-vzyskanii.docx",
+      "sha256": "610e06791c6299393d1b33802f4ea67b4ee87018839598b86d8cfb8bbb7f7de0",
+      "pdf_sha256": "846873d142976882b62567cc8b01a89417b90728afd70e7d36ad7e0a242adb96",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 2970,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 2594,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ],
+      "status": "PASS",
+      "page_count": 2
+    },
+    {
+      "job": "r3g-word-p1-algorithm-isolated-20261019",
+      "tag": "p1-algorithm",
+      "file": "15-algoritm-pri-zaderzhke-oplaty.docx",
+      "sha256": "2cc358fcf801e98ca37aa649f6d12ad1cb884de12bbf4e7dabccec5b897c077b",
+      "pdf_sha256": "500eca6b5143df08bf78051b6234402cbc1df3bace31fbae2d58091419f47bae",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 2866,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 3464,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 2610,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ],
+      "status": "PASS",
+      "page_count": 3
+    },
+    {
+      "job": "r3g-word-p13-1-20261019",
+      "tag": "p13-0",
+      "file": "65-protokol-raznoglasiy-po-smete.docx",
+      "sha256": "56bdeaedb3ca504055e2ecf2c93ea329ed1e79532331b27ad9667f2dde6893c5",
+      "pdf_sha256": "c859630147984fdc6f6061ded0d67cae96f8b851bf26b123f44c228b10f4e181",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 1743,
+          "size": [
+            841.9199829101562,
+            595.3200073242188
+          ]
+        }
+      ],
+      "status": "PASS",
+      "page_count": 1
+    },
+    {
+      "job": "r3g-word-p2-1-20261019",
+      "tag": "p2-0",
+      "file": "00-INSTRUKCIYA.docx",
+      "sha256": "8ba6c3b9bf61d51ffa7d78211f522ff69a7c60f68333a511d1330ae6a8986042",
+      "pdf_sha256": "b1611cca65946ef4c80de3b6fdc32ccb1068d33998a5dd133056c14040667759",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 2467,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 2551,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 3,
+          "characters": 2026,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 4,
+          "characters": 1758,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ],
+      "status": "PASS",
+      "page_count": 4
+    },
+    {
+      "job": "r3g-word-p7-1-20261019",
+      "tag": "p7-0",
+      "file": "00-INSTRUKCIYA.docx",
+      "sha256": "9f62bd045903cdfbec29e1c370255f0714ff1ff31c27e3cb4ccd70c37fff987a",
+      "pdf_sha256": "7bb3d3807daf2db39d92baddc9381ff7665ba6d8f30c5ae0ad200c4c13c3b85c",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 1146,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ],
+      "status": "PASS",
+      "page_count": 1
+    },
+    {
+      "job": "r3g-word-p7-1-20261019",
+      "tag": "p7-1",
+      "file": "01-dogovor-subpodryada.docx",
+      "sha256": "2c4b21efe5e1ac4ecf3d511839f45bb5dadbe18eaf71e293aee505abb06bfbcc",
+      "pdf_sha256": "ea0dc1a468ad2ad38550087450d7789639cfd54da74fa5b1642bf85b3495ec15",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 3728,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        },
+        {
+          "page": 2,
+          "characters": 3760,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ],
+      "status": "PASS",
+      "page_count": 2
+    },
+    {
+      "job": "r3g-word-p7-1-20261019",
+      "tag": "p7-2",
+      "file": "06-dopsoglashenie-obem.docx",
+      "sha256": "1ff7a818fa5fa9939410c61084cf84957d5ce05937683745273cda733d8fdb37",
+      "pdf_sha256": "7de179b852db85cb8aeabbedcb3797671887379edb90922b79d5cdd2aa9efd1a",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 1300,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ],
+      "status": "PASS",
+      "page_count": 1
+    },
+    {
+      "job": "r3g-word-p8-1-20261019",
+      "tag": "p8-0",
+      "file": "04-algoritm-peregovorov-ob-avanse.docx",
+      "sha256": "c0292cc68cc84777a47fca0f31ccf70b828c85d95fd8ac759345875536696414",
+      "pdf_sha256": "fc634be0866b7215f656f0fb400e0284387d7e9098d85ce7c285cd3d35805de6",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 1118,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ],
+      "status": "PASS",
+      "page_count": 1
+    },
+    {
+      "job": "r3g-word-p9-1-20261019",
+      "tag": "p9-0",
+      "file": "02-algoritm-genpodryadchik-bankrotitsya.docx",
+      "sha256": "d6cedf566099b54f77b1fd5ab96aab97ebbaa33fd4c9d195495fd8b63f526393",
+      "pdf_sha256": "f8b643fe63865c8d34608106094c0a676282019ba1fb3c124ada127aa6134774",
+      "pages": [
+        {
+          "page": 1,
+          "characters": 1420,
+          "size": [
+            595.3200073242188,
+            841.9199829101562
+          ]
+        }
+      ],
+      "status": "PASS",
+      "page_count": 1
+    }
+  ]
+}

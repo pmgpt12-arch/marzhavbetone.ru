@@ -2,7 +2,7 @@
 """Run bounded native expectations on independently authored input-only fixtures."""
 from pathlib import Path
 from hashlib import sha256
-import json, shutil, time, xml.etree.ElementTree as E
+import json, re, shutil, subprocess, tarfile, time, xml.etree.ElementTree as E
 from submit_office_review_job import submit
 
 REPO = Path(__file__).resolve().parents[1]
@@ -77,5 +77,56 @@ def run():
     print('NATIVE_CALCULATION_FIXTURES_PASS', 13, 'SHEET_PROBES', 20, flush=True)
 
 
+def collect_print_evidence():
+    """A calculation PASS is separate from display and source-print qualification."""
+    summary = json.loads((OUT / 'summary.json').read_text())
+    assert summary['status'] == 'PASS' and summary['fixtures'] == 13
+    normalize = lambda value: re.sub(r'\s+', ' ', value).strip()
+    scans = []
+    checks = 0
+    expected_values = 0
+    for directory in sorted(OUT.glob('r3h-calc-fixtures-g*')):
+        job = E.parse(directory / 'job.xml').getroot()
+        report = E.parse(directory / 'report.xml').getroot()
+        assert report.get('status') == 'PASS' and report.get('job') == job.get('id')
+        checks += len(report.findall('check'))
+        for file in job.findall('file'):
+            pdf = directory / (file.get('tag') + '-filled.pdf')
+            result = subprocess.run(['pdftotext', str(pdf), '-'], capture_output=True, text=True, timeout=20, check=True)
+            text = normalize(result.stdout)
+            expected = file.findall('case/expect')
+            expected_values += len(expected)
+            messages = [{'text': e.get('value'), 'present_in_pdf_text': normalize(e.get('value')) in text}
+                        for e in expected if e.get('kind') == 'text']
+            scans.append({'job': job.get('id'), 'tag': file.get('tag'), 'fixture': file.get('name'),
+                          'sheet_probe': file.get('sheet'), 'pdf_sha256': sha256(pdf.read_bytes()).hexdigest(),
+                          'hash_marks': bool(re.search(r'#{3,}', text)),
+                          'formula_errors': sorted(set(re.findall(r'#(?:REF!|DIV/0!|VALUE!|NAME\?|NUM!|N/A|NULL!)', text))),
+                          'expected_messages': messages})
+    missing = [dict(job=row['job'], tag=row['tag'], text=m['text']) for row in scans
+               for m in row['expected_messages'] if not m['present_in_pdf_text']]
+    display = {'scope': 'Native PDF text screening for expected messages, hash marks and unexpected formula errors. '
+                        'Text presence alone is not visual qualification. Exports use the current SaveAs-first harness.',
+               'calculation_status': 'PASS', 'native_checks': checks, 'expected_values': expected_values,
+               'missing_message_candidates': missing, 'pdfs': scans, 'native_print_visual': 'PENDING'}
+    (OUT / 'display-text-screen.json').write_text(json.dumps(display, ensure_ascii=False, indent=2) + '\n')
+    archive = OUT.parent / 'calculation-current-proofs.tar.xz'
+    with tarfile.open(archive, 'w:xz') as target:
+        for path in sorted(OUT.rglob('*')):
+            if path.is_file(): target.add(path, arcname=str(path.relative_to(OUT)), recursive=False)
+    (OUT.parent / 'calculation-proof-archive.json').write_text(json.dumps({
+        'status': 'CALCULATION_PASS_ONLY', 'file': archive.name, 'sha256': sha256(archive.read_bytes()).hexdigest(),
+        'bytes': archive.stat().st_size, 'fixtures': 13, 'sheet_probes': 20,
+        'native_checks': checks, 'expected_values': expected_values,
+        'source_print': 'UNQUALIFIED: existing native print issue remains open'}, ensure_ascii=False, indent=2) + '\n')
+    print('DISPLAY_TEXT_SCREEN', json.dumps({'missing_messages': missing,
+          'pdfs_with_hash_marks_or_formula_errors': [r['tag'] for r in scans if r['hash_marks'] or r['formula_errors']]}), flush=True)
+    print('CALCULATION_PROOF_ARCHIVE', archive.stat().st_size, sha256(archive.read_bytes()).hexdigest(), flush=True)
+
+
 if __name__ == '__main__':
-    run()
+    import argparse
+    parser = argparse.ArgumentParser(); parser.add_argument('--collect-only', action='store_true')
+    args = parser.parse_args()
+    if not args.collect_only: run()
+    collect_print_evidence()
