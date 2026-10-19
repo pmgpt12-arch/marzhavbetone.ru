@@ -4,8 +4,9 @@ from pathlib import Path
 from zipfile import ZipFile,ZipInfo,ZIP_DEFLATED
 from copy import deepcopy
 from lxml import etree as E
-import json,re
+import json,re,argparse
 from normalize_xlsx_element_order import normalize_parts
+parser=argparse.ArgumentParser();parser.add_argument('--only');args=parser.parse_args()
 BASE=Path(__file__).resolve().parents[1]/'tools/candidates/remaining-batch-r3-20261018'
 IN=Path('/tmp/mb-r3/input');OUT=Path('/tmp/mb-r3/work');AUTH=Path('/tmp/mb-r3/authored')
 X={'x':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'};Q='{'+X['x']+'}'
@@ -36,6 +37,7 @@ def ensure(root,tag):
 changes=[]
 for patch in sorted(Path('/tmp/mb-r3/patches').rglob('*.json')):
  edits=json.loads(patch.read_text());sku=patch.parent.name;name=patch.stem+'.xlsx';key=sku+'/'+name
+ if args.only and key!=args.only:continue
  layout=layouts.get(key,{'sheets':{}});fs=[f for f in formulas if f['sku']==sku and f['file']==name]
  with ZipFile(IN/sku/name) as z:parts={n:z.read(n) for n in z.namelist()}
  authored=ZipFile(AUTH/sku/name) if edits or fs or layout['sheets'] else None

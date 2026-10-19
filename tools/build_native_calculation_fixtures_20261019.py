@@ -6,7 +6,7 @@ from zipfile import ZipFile
 from hashlib import sha256
 from copy import deepcopy
 from lxml import etree as E
-import json, os, re, subprocess
+import argparse, json, os, re, subprocess
 from normalize_xlsx_element_order import normalize_parts, column_number
 
 REPO = Path(__file__).resolve().parents[1]
@@ -93,6 +93,11 @@ def specs():
 
 def build(spec):
     source = WORK / spec['sku'] / spec['file']
+    if not spec['inputs']:
+        destination = OUT / (spec['name'] + '.xlsx'); destination.write_bytes(source.read_bytes())
+        digest = sha256(source.read_bytes()).hexdigest()
+        return dict(spec, source_sha256=digest, fixture_sha256=digest, bytes=destination.stat().st_size,
+                    preservation='Exact source bytes copied under a QA filename; no input or workbook changes.')
     with ZipFile(source) as archive:
         infos = archive.infolist(); parts = {i.filename: archive.read(i.filename) for i in infos}
     sheets = E.fromstring(parts['xl/workbook.xml']).findall('x:sheets/x:sheet', NS)
@@ -153,11 +158,40 @@ def build(spec):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(); parser.add_argument('--only-source'); parser.add_argument('--source-root', type=Path)
+    parser.add_argument('--out-dir', type=Path); parser.add_argument('--p8-message-boundaries', action='store_true')
+    args = parser.parse_args()
+    if args.source_root: WORK = args.source_root
+    if args.out_dir: OUT = args.out_dir
+    selected = specs()
+    if args.p8_message_boundaries:
+        assert args.only_source == 'P8/09-raschet-otrabotannoy-chasti-avansa.xlsx'
+        unilateral = deepcopy(next(r for r in selected if r['name'] == 'p8-advance-unilateral')['inputs'])
+        unilateral['Выполнено'].update(C45='КС-2 № ТЕСТ-40', E45=400000, F45='подписан односторонне', I45=100000, J45=100000)
+        unilateral['Выполнено'].update(C20='КС-2 № ТЕСТ-15', E20=400000, F20='подписан обеими сторонами', I20=0, J20=0)
+        import openpyxl
+        source = openpyxl.load_workbook(WORK / 'P8/09-raschet-otrabotannoy-chasti-avansa.xlsx', data_only=False)
+        validation = next(v for v in source['Встречное'].data_validations.dataValidation if 'B6' in v.sqref)
+        assert validation.formula1.startswith('"') and validation.formula1.endswith('"')
+        category = validation.formula1[1:-1].split(',')[0]
+        assert source['Встречное']['G30'].data_type == 'f'
+        unilateral['Встречное'] = {f'{col}{row}': value for row in [6, 30] for col, value in
+                                    {'B': category, 'D': 25000, 'E': 'Документ № ТЕСТ-1', 'F': 'нет'}.items()}
+        warning = 'ОШИБКА: погашение аванса отнесено к акту, не подписанному обеими сторонами.'
+        payment_warning = 'По подписанному акту не отражены погашение аванса и оплата: проверьте платежи.'
+        counter_warning = 'Проверьте самостоятельное основание требования и подтверждающие документы.'
+        selected += [dict(name='p8-advance-message-boundaries', sku='P8', file='09-raschet-otrabotannoy-chasti-avansa.xlsx',
+                          inputs=unilateral, probes={'Выполнено': {'L6': warning, 'L20': payment_warning, 'L45': warning},
+                                                    'Встречное': {'G6': counter_warning, 'G30': counter_warning}}),
+                     dict(name='p8-layout-source-copy', sku='P8', file='09-raschet-otrabotannoy-chasti-avansa.xlsx',
+                          inputs={}, probes={'Как читать': {}})]
+    if args.only_source: selected = [r for r in selected if r['sku'] + '/' + r['file'] == args.only_source]
+    assert selected
     OUT.mkdir(exist_ok=True, parents=True); (OUT / 'authored').mkdir(exist_ok=True)
     manifest = OUT / 'fixture-manifest.json'
     previous = {r['name']: r for r in json.loads(manifest.read_text())['records']} if manifest.exists() else {}
     records = []
-    for spec in specs():
+    for spec in selected:
         if spec['name'] in previous:
             old = previous[spec['name']]
             assert all(old[k] == v for k, v in spec.items())
@@ -170,3 +204,7 @@ if __name__ == '__main__':
         (OUT / 'fixture-manifest.json').write_text(json.dumps({'status': 'DISPOSABLE_TEST_FIXTURES_NOT_BUYER_FILES',
                                                             'records': records}, ensure_ascii=False, indent=2) + '\n')
         print('FIXTURE_PRESERVATION_PASS', spec['name'], flush=True)
+    assert len(records) == len(selected)
+    manifest.write_text(json.dumps({'status': 'DISPOSABLE_TEST_FIXTURES_NOT_BUYER_FILES',
+                                    'complete': True, 'expected_count': len(selected),
+                                    'records': records}, ensure_ascii=False, indent=2) + '\n')

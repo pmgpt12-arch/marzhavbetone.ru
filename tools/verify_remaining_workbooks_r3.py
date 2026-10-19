@@ -21,6 +21,11 @@ for p in sorted(I.rglob('*.xlsx')):
  allowedf={(e['part'],e['cell']):e for e in fs if e['sku']==sku and e['file']==p.name}
  a=openpyxl.load_workbook(p,data_only=False);b=openpyxl.load_workbook(q,data_only=False)
  assert a.sheetnames==b.sheetnames,(key,'sheets')
+ if key=='P8/09-raschet-otrabotannoy-chasti-avansa.xlsx':
+  for title,column,last in [('Выполнено','L',45),('Встречное','G',30)]:
+   for row in range(6,last+1):
+    c=b[title][column+str(row)]
+    assert c.data_type=='f' and c.alignment.wrap_text and (b[title].row_dimensions[row].height or 0)>=45,(key,title,row,'formula warning must fit three lines')
  counts={'formula_count':0,'display_formula_changes':0,'text_changes':0}
  for i,(wa,wb) in enumerate(zip(a,b),1):
   part=f'xl/worksheets/sheet{i}.xml';plan=plans.get(part,{})
