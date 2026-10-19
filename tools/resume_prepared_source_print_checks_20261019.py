@@ -30,7 +30,7 @@ def run(wait_seconds):
     if not ready(): raise SystemExit('WORKER_UPDATE_NOT_OBSERVED; no job submitted; Office connectivity is not the blocker')
     OUT.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(ROOT / 'results/native/r3f-worker-diagnostics-20261019/report.xml', OUT / 'worker-update-diagnostics.xml')
-    for ident in ['r3i-source-print-preflight-20261019', 'r3i-original-xls-source-print-20261019']:
+    for ident in ['r3n-source-print-preflight-20261020', 'r3n-original-xls-source-print-20261020']:
         jobdir = ROOT / 'native' / ident
         job = E.parse(jobdir / 'job.xml').getroot()
         for file in job.findall('file'):
