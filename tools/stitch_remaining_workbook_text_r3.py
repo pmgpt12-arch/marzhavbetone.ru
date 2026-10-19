@@ -5,6 +5,7 @@ from zipfile import ZipFile,ZipInfo,ZIP_DEFLATED
 from copy import deepcopy
 from lxml import etree as E
 import json,re
+from normalize_xlsx_element_order import normalize_parts
 BASE=Path(__file__).resolve().parents[1]/'tools/candidates/remaining-batch-r3-20261018'
 IN=Path('/tmp/mb-r3/input');OUT=Path('/tmp/mb-r3/work');AUTH=Path('/tmp/mb-r3/authored')
 X={'x':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'};Q='{'+X['x']+'}'
@@ -116,10 +117,11 @@ for patch in sorted(Path('/tmp/mb-r3/patches').rglob('*.json')):
  if sku=='P1' and name.startswith(('06-','07-','08-')):
   name_set(0,'_xlnm.Print_Area',"'Реестр'!$A$1:$"+('K' if name.startswith('07-') else 'J')+'$103');name_set(0,'_xlnm.Print_Titles',"'Реестр'!$1:$3")
  if wb_changed:parts['xl/workbook.xml']=dump(wb)
+ order_repairs=normalize_parts(parts)
  with ZipFile(OUT/sku/name,'w',ZIP_DEFLATED) as z:
   for n,b in sorted(parts.items()):
    info=ZipInfo(n,(2026,10,18,0,0,0));info.compress_type=ZIP_DEFLATED;z.writestr(info,b)
- changes.append({'sku':sku,'file':name,'authored_text_cells':len(edits),'formula_display_changes':len(fs),'double_timezone_repairs':repairs})
+ changes.append({'sku':sku,'file':name,'authored_text_cells':len(edits),'formula_display_changes':len(fs),'double_timezone_repairs':repairs,'element_order_repairs':order_repairs})
  if authored:authored.close()
  print(changes[-1])
 Path('/tmp/mb-r3/workbook-stitch-report.json').write_text(json.dumps(changes,ensure_ascii=False,indent=2))

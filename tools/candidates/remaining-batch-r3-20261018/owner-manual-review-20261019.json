@@ -1,5 +1,5 @@
 {
-  "status": "OWNER_MANUAL_QA_PENDING",
+  "status": "SUPERSEDED_NOT_FINAL",
   "date": "2026-10-19",
   "source_commit": "806175377aa326504d591f8a2e75f3eff69a2f5a",
   "authorization": "Owner requested manual inspection because laptop connection is unavailable.",
@@ -25,5 +25,7 @@
     "P7/06-dopsoglashenie-obem.docx",
     "P8/04-algoritm-peregovorov-ob-avanse.docx",
     "P9/02-algoritm-genpodryadchik-bankrotitsya.docx"
-  ]
+  ],
+  "reason": "P13 row order corrected after normal Excel opening failed; original manual ZIP remains historical and is not the final owner candidate.",
+  "current_p13_sha256": "9a4fcc8257f909b252fbeba4a3f162df67dbffd8613d844b62c64a3faa1c7cc3"
 }

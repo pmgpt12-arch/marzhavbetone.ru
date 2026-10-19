@@ -5,6 +5,7 @@ from zipfile import ZipFile
 from lxml import etree as E
 import json,hashlib,re,copy
 import openpyxl
+from normalize_xlsx_element_order import normalize_parts
 R=Path(__file__).resolve().parents[1];B=R/'tools/candidates/remaining-batch-r3-20261018'
 I=Path('/tmp/mb-r3/input');O=Path('/tmp/mb-r3/work');X={'x':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
 edits=json.loads((B/'text-edits.json').read_text());fs=json.loads((B/'formula-text-edits.json').read_text());layouts=json.loads((B/'layout-edits.json').read_text())
@@ -40,6 +41,7 @@ for p in sorted(I.rglob('*.xlsx')):
   assert set(str(v) for v in wb.merged_cells.ranges)==set(str(v) for v in wa.merged_cells.ranges)|set(plan.get('merges',[])),(key,part,'merges')
  with ZipFile(p) as za,ZipFile(q) as zb:
   assert za.testzip() is None and zb.testzip() is None
+  assert not normalize_parts({n:zb.read(n) for n in zb.namelist()}),(key,'worksheet rows/cells are out of order')
   assert set(za.namelist())==set(zb.namelist()),(key,'part inventory')
   sa=E.fromstring(za.read('xl/styles.xml'));sb=E.fromstring(zb.read('xl/styles.xml'))
   for ca,cb in zip(sa,sb):
