@@ -1,0 +1,449 @@
+{
+  "status": "PASS_CURRENT_SOURCE_SCENARIOS_ONLY",
+  "scenarios": 14,
+  "sheet_probes": 22,
+  "expected_values": 60,
+  "native_checks": 126,
+  "scope": "Independent input-only fixtures preserving the qualified source formulas and features. Native Excel expected-value checks; UI typing/paste and general print acceptance are separate.",
+  "native_source_print": "PENDING_WORKER_UPDATE",
+  "superseded_scenarios": [
+    {
+      "name": "p8-advance-bilateral",
+      "old_source_sha256": "cd7d962bdfd2f83c1469ba12b8877596876d3a7203aa5674bb6aecd9791dfff7",
+      "current_source_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4"
+    },
+    {
+      "name": "p8-advance-unilateral",
+      "old_source_sha256": "cd7d962bdfd2f83c1469ba12b8877596876d3a7203aa5674bb6aecd9791dfff7",
+      "current_source_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4"
+    }
+  ],
+  "records": [
+    {
+      "name": "p1-interest-base",
+      "sku": "P1",
+      "file": "14-raschet-procentov-395-gk.xlsx",
+      "source_sha256": "0899e1ba75bdf29f1400ef855ebf61fbcc1681bb1c7487609004a1b4c2e83927",
+      "fixture_sha256": "a1ee27df80b8ed3e736bc826cacf94044cf247747d9ee6b1e2671b0ab185db36",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Расчёт",
+          "job": "r3h-calc-fixtures-g01-20261019",
+          "tag": "c00",
+          "expected_values": 5,
+          "checks": 8,
+          "pdf_sha256": "b3a9247ae16457868c1fff3da481175cbae5596835930e8d78b4ee0132831a89",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g01-20261019/report.xml",
+          "report_sha256": "f25fbb98823e6bc024261b634ed873200b616ac75c97bda9b37b3088b23dc0c1",
+          "job_sha256": "bc730190f9b9d98a06fd051cb80dca8c7d98f3b1307071dcdbdf7db55fd5ed57"
+        },
+        {
+          "sheet": "Итог для документа",
+          "job": "r3h-calc-fixtures-g01-20261019",
+          "tag": "c01",
+          "expected_values": 3,
+          "checks": 6,
+          "pdf_sha256": "b6e5e1bfcb76647e037ac8e809cafd8e5289098418fda266d8b37e2bf2b94dce",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g01-20261019/report.xml",
+          "report_sha256": "f25fbb98823e6bc024261b634ed873200b616ac75c97bda9b37b3088b23dc0c1",
+          "job_sha256": "bc730190f9b9d98a06fd051cb80dca8c7d98f3b1307071dcdbdf7db55fd5ed57"
+        }
+      ]
+    },
+    {
+      "name": "p1-interest-partial",
+      "sku": "P1",
+      "file": "14-raschet-procentov-395-gk.xlsx",
+      "source_sha256": "0899e1ba75bdf29f1400ef855ebf61fbcc1681bb1c7487609004a1b4c2e83927",
+      "fixture_sha256": "5095a50b47e819f7632db934c57eedd54e45f6e62362d8265d9997725ed0b69a",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Расчёт",
+          "job": "r3h-calc-fixtures-g01-20261019",
+          "tag": "c02",
+          "expected_values": 4,
+          "checks": 7,
+          "pdf_sha256": "ff705d22694bdb2b6217c05d9c8bae0aee8a557e7ba9a3c16c437686105b46a7",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g01-20261019/report.xml",
+          "report_sha256": "f25fbb98823e6bc024261b634ed873200b616ac75c97bda9b37b3088b23dc0c1",
+          "job_sha256": "bc730190f9b9d98a06fd051cb80dca8c7d98f3b1307071dcdbdf7db55fd5ed57"
+        },
+        {
+          "sheet": "Итог для документа",
+          "job": "r3h-calc-fixtures-g01-20261019",
+          "tag": "c03",
+          "expected_values": 3,
+          "checks": 6,
+          "pdf_sha256": "305119dd777e5c975d9cc4ca0c7a6e60205cd7e8a83dc2ded6f44fcee856174d",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g01-20261019/report.xml",
+          "report_sha256": "f25fbb98823e6bc024261b634ed873200b616ac75c97bda9b37b3088b23dc0c1",
+          "job_sha256": "bc730190f9b9d98a06fd051cb80dca8c7d98f3b1307071dcdbdf7db55fd5ed57"
+        }
+      ]
+    },
+    {
+      "name": "p1-interest-gap",
+      "sku": "P1",
+      "file": "14-raschet-procentov-395-gk.xlsx",
+      "source_sha256": "0899e1ba75bdf29f1400ef855ebf61fbcc1681bb1c7487609004a1b4c2e83927",
+      "fixture_sha256": "703d497d8cf96fe2e16a8e29173c467836012423541d7c1aaa36de06c544f1b6",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Расчёт",
+          "job": "r3h-calc-fixtures-g02-20261019",
+          "tag": "c04",
+          "expected_values": 1,
+          "checks": 4,
+          "pdf_sha256": "533cb30781c61e07c29158a388781880a0e7f1210dfc92dfab96cbd8a2f99ee7",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g02-20261019/report.xml",
+          "report_sha256": "241ebf7986e9c13152109d5a89a2963e3f7366142631f73b542d8da29f8f3e15",
+          "job_sha256": "14a7bea0a1670a7bd492ee7d44ee85cfbe91a9d8f3336cdd43827d1f0b90b4f8"
+        }
+      ]
+    },
+    {
+      "name": "p2-cost-coefficient",
+      "sku": "P2",
+      "file": "07-raschet-stoimosti.xlsx",
+      "source_sha256": "ac4c5d9980bfd1ee102ecda9bdd7fc9b813f4d55e5510595d8fca78c040ea58f",
+      "fixture_sha256": "1e22888e162e45381c01043b196b0765d401c8ba00615614d2e33550aa13ba9c",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Реестр",
+          "job": "r3h-calc-fixtures-g02-20261019",
+          "tag": "c05",
+          "expected_values": 2,
+          "checks": 5,
+          "pdf_sha256": "17cc51d8deaded076dbe4938c016e6e380b2a6030be69daee241c8079d297f5a",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g02-20261019/report.xml",
+          "report_sha256": "241ebf7986e9c13152109d5a89a2963e3f7366142631f73b542d8da29f8f3e15",
+          "job_sha256": "14a7bea0a1670a7bd492ee7d44ee85cfbe91a9d8f3336cdd43827d1f0b90b4f8"
+        }
+      ]
+    },
+    {
+      "name": "p2-cost-empty-coefficient",
+      "sku": "P2",
+      "file": "07-raschet-stoimosti.xlsx",
+      "source_sha256": "ac4c5d9980bfd1ee102ecda9bdd7fc9b813f4d55e5510595d8fca78c040ea58f",
+      "fixture_sha256": "fb9401f32cf301d0014303cd924a59c43df74c47579d457aad2e9de4f133a504",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Реестр",
+          "job": "r3h-calc-fixtures-g02-20261019",
+          "tag": "c06",
+          "expected_values": 2,
+          "checks": 5,
+          "pdf_sha256": "ebd73fab99d455cd932991a8bcf2697a08897e68b2d40ad7ab843ee0c28684ef",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g02-20261019/report.xml",
+          "report_sha256": "241ebf7986e9c13152109d5a89a2963e3f7366142631f73b542d8da29f8f3e15",
+          "job_sha256": "14a7bea0a1670a7bd492ee7d44ee85cfbe91a9d8f3336cdd43827d1f0b90b4f8"
+        }
+      ]
+    },
+    {
+      "name": "p8-advance-compare",
+      "sku": "P8",
+      "file": "02-kalkulyator-usloviy-avansa.xlsx",
+      "source_sha256": "781f36e37f22ed428561f10b9cb9eebece39a32bcb2f4eb24800121a00400551",
+      "fixture_sha256": "ffe380c21ea06e6467ff46cebba9d8d40cd63aafbfc9f492f460ed1bf5547be3",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Условия",
+          "job": "r3h-calc-fixtures-g02-20261019",
+          "tag": "c07",
+          "expected_values": 4,
+          "checks": 7,
+          "pdf_sha256": "1830bca14fc87442f50820891a34dbad8ce446272cc755545c60ec254e8801fd",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g02-20261019/report.xml",
+          "report_sha256": "241ebf7986e9c13152109d5a89a2963e3f7366142631f73b542d8da29f8f3e15",
+          "job_sha256": "14a7bea0a1670a7bd492ee7d44ee85cfbe91a9d8f3336cdd43827d1f0b90b4f8"
+        },
+        {
+          "sheet": "Сравнение",
+          "job": "r3h-calc-fixtures-g03-20261019",
+          "tag": "c08",
+          "expected_values": 8,
+          "checks": 11,
+          "pdf_sha256": "a7ce0e09eec5e73fc9ffef84de0be07f9f1e9ca4e0faa3d55ecea92b02dbad43",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g03-20261019/report.xml",
+          "report_sha256": "de21835fb6c9151b74dd17c5452b721ac1ee0d757a700ff9d892047b9e9f96b3",
+          "job_sha256": "c1c7084add4a932c1050871dffa64e8ebf1296e478cc0cd95318679e5ac62014"
+        }
+      ]
+    },
+    {
+      "name": "p8-advance-missing-price",
+      "sku": "P8",
+      "file": "02-kalkulyator-usloviy-avansa.xlsx",
+      "source_sha256": "781f36e37f22ed428561f10b9cb9eebece39a32bcb2f4eb24800121a00400551",
+      "fixture_sha256": "e313719f44927c11a6f4e07d55a9ce8f4201f10bb298ae893e41ab94bd75ed0d",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Условия",
+          "job": "r3h-calc-fixtures-g03-20261019",
+          "tag": "c09",
+          "expected_values": 1,
+          "checks": 4,
+          "pdf_sha256": "3f9fb3f8eb3626fb41ba245c470f2db06ab1034fec0bfc9ff11ff5d8db2cc928",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g03-20261019/report.xml",
+          "report_sha256": "de21835fb6c9151b74dd17c5452b721ac1ee0d757a700ff9d892047b9e9f96b3",
+          "job_sha256": "c1c7084add4a932c1050871dffa64e8ebf1296e478cc0cd95318679e5ac62014"
+        }
+      ]
+    },
+    {
+      "name": "p9-bankruptcy-cutoff",
+      "sku": "P9",
+      "file": "04-reestr-dokumentov-i-dat-po-obektu.xlsx",
+      "source_sha256": "7c4ea2a305c1e8c2486768407492453492a41f3497dace35c9d01d0925ef843d",
+      "fixture_sha256": "a38bd3d91cee5f25cc3172cac3413a8c202a18467c8aab0464d481f62e8e90c9",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Реестр документов",
+          "job": "r3h-calc-fixtures-g04-20261019",
+          "tag": "c15",
+          "expected_values": 2,
+          "checks": 5,
+          "pdf_sha256": "4e67489e4a9761c3a7fb3e0b448de4a45eff007617f4156229ada4ab1698e049",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g04-20261019/report.xml",
+          "report_sha256": "55bc5738dd7cfb818b1d601db40a44a6bcc3de8c13090747ec8bf94544db4c98",
+          "job_sha256": "06c041cb7840fdfa75fc221a8a5acb01c136914ed8e7dc8203178fc6d2748fe9"
+        },
+        {
+          "sheet": "Итоги",
+          "job": "r3h-calc-fixtures-g05-20261019",
+          "tag": "c16",
+          "expected_values": 3,
+          "checks": 6,
+          "pdf_sha256": "87abae2c85f1332e3e5cf7d53b75c55e33c35bd1a00e141c9c8540169d0ecafa",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g05-20261019/report.xml",
+          "report_sha256": "eb547ca70559736a81adec3db635894b63e0ad9bf1ec6034538c940c953bbf98",
+          "job_sha256": "3913940a45bbaa165a1957d827e0d3e87b0ab25f5ca22a11f72a3b6ccb4918f3"
+        }
+      ]
+    },
+    {
+      "name": "p13-uncovered-cost",
+      "sku": "P13",
+      "file": "63-reestr-zatrat-po-obektu.xlsx",
+      "source_sha256": "9a4fcc8257f909b252fbeba4a3f162df67dbffd8613d844b62c64a3faa1c7cc3",
+      "fixture_sha256": "1de45945e5aa4f10c1a196cafce6d1b9b10e58e3c61e36d24de0086fb365bfd7",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Реестр затрат",
+          "job": "r3h-calc-fixtures-g05-20261019",
+          "tag": "c17",
+          "expected_values": 3,
+          "checks": 6,
+          "pdf_sha256": "67de8ba7be17069998c2c9ec9aa8a0bf8928f0391fac63e209a2f6965640f0f1",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g05-20261019/report.xml",
+          "report_sha256": "eb547ca70559736a81adec3db635894b63e0ad9bf1ec6034538c940c953bbf98",
+          "job_sha256": "3913940a45bbaa165a1957d827e0d3e87b0ab25f5ca22a11f72a3b6ccb4918f3"
+        }
+      ]
+    },
+    {
+      "name": "p13-covered-cost",
+      "sku": "P13",
+      "file": "63-reestr-zatrat-po-obektu.xlsx",
+      "source_sha256": "9a4fcc8257f909b252fbeba4a3f162df67dbffd8613d844b62c64a3faa1c7cc3",
+      "fixture_sha256": "fd656d882e100b4e36cfcc678ced6809c31000cf6b95355a30dfe94938fab722",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Реестр затрат",
+          "job": "r3h-calc-fixtures-g05-20261019",
+          "tag": "c18",
+          "expected_values": 3,
+          "checks": 6,
+          "pdf_sha256": "bf3df43ea432e03fef10ab30b365adf31efc2516210bee7d0b8f2b39fb102460",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g05-20261019/report.xml",
+          "report_sha256": "eb547ca70559736a81adec3db635894b63e0ad9bf1ec6034538c940c953bbf98",
+          "job_sha256": "3913940a45bbaa165a1957d827e0d3e87b0ab25f5ca22a11f72a3b6ccb4918f3"
+        }
+      ]
+    },
+    {
+      "name": "p13-missing-estimate",
+      "sku": "P13",
+      "file": "63-reestr-zatrat-po-obektu.xlsx",
+      "source_sha256": "9a4fcc8257f909b252fbeba4a3f162df67dbffd8613d844b62c64a3faa1c7cc3",
+      "fixture_sha256": "3498378e778b99cbe6542b9607f93dbb4c3d62ab970fc3ec83c48299475d1f96",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Реестр затрат",
+          "job": "r3h-calc-fixtures-g05-20261019",
+          "tag": "c19",
+          "expected_values": 1,
+          "checks": 4,
+          "pdf_sha256": "cbf8c19f5a80c0b406b34660f8c6fedcde67cba24969388391b28de6f59a9569",
+          "archive": "calculation-current-proofs.tar.xz",
+          "archive_sha256": "5b9930d0e37c4a2028a06004d5438b0ce03a70a7194ee968bcb6612a7d880fc6",
+          "report_member": "r3h-calc-fixtures-g05-20261019/report.xml",
+          "report_sha256": "eb547ca70559736a81adec3db635894b63e0ad9bf1ec6034538c940c953bbf98",
+          "job_sha256": "3913940a45bbaa165a1957d827e0d3e87b0ab25f5ca22a11f72a3b6ccb4918f3"
+        }
+      ]
+    },
+    {
+      "name": "p8-advance-bilateral",
+      "sku": "P8",
+      "file": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "source_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+      "fixture_sha256": "6d0c9a01d509f324758f674a0fa8c540f3d3474960f5764d028deb5798e21362",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Договор и аванс",
+          "job": "r3l-p8-warning-layout-g01-20261019",
+          "tag": "c00",
+          "expected_values": 2,
+          "checks": 5,
+          "pdf_sha256": "d80abaabe43e30ef54eb498398bf6970da89ae5dbf43220792f3d1f4f1a67fbb",
+          "archive": "p8-warning-layout-proofs.tar.xz",
+          "archive_sha256": "d7715872661b49eb22582082eeb530cb1607a208c5851d401b1931d7b6a5df74",
+          "report_member": "r3l-p8-warning-layout-g01-20261019/report.xml",
+          "report_sha256": "628334860d4cfd439d26c1981521f034652c21ce0245013d5280a65c57a0fba9",
+          "job_sha256": "efe5755cb46a8f9014cc4a50bc86231c6945115d74ce3a7164cbf2078d9047f4"
+        },
+        {
+          "sheet": "Выполнено",
+          "job": "r3l-p8-warning-layout-g01-20261019",
+          "tag": "c01",
+          "expected_values": 1,
+          "checks": 4,
+          "pdf_sha256": "f9604e37cdcb48c3d520d739dd16f3b36110c7de509f222cfb63db39404b0509",
+          "archive": "p8-warning-layout-proofs.tar.xz",
+          "archive_sha256": "d7715872661b49eb22582082eeb530cb1607a208c5851d401b1931d7b6a5df74",
+          "report_member": "r3l-p8-warning-layout-g01-20261019/report.xml",
+          "report_sha256": "628334860d4cfd439d26c1981521f034652c21ce0245013d5280a65c57a0fba9",
+          "job_sha256": "efe5755cb46a8f9014cc4a50bc86231c6945115d74ce3a7164cbf2078d9047f4"
+        },
+        {
+          "sheet": "Сальдо",
+          "job": "r3l-p8-warning-layout-g01-20261019",
+          "tag": "c02",
+          "expected_values": 4,
+          "checks": 7,
+          "pdf_sha256": "506c08bfe6eeb1fd667434c6c6470c0b81453d19e54244028c9338df627b4924",
+          "archive": "p8-warning-layout-proofs.tar.xz",
+          "archive_sha256": "d7715872661b49eb22582082eeb530cb1607a208c5851d401b1931d7b6a5df74",
+          "report_member": "r3l-p8-warning-layout-g01-20261019/report.xml",
+          "report_sha256": "628334860d4cfd439d26c1981521f034652c21ce0245013d5280a65c57a0fba9",
+          "job_sha256": "efe5755cb46a8f9014cc4a50bc86231c6945115d74ce3a7164cbf2078d9047f4"
+        }
+      ]
+    },
+    {
+      "name": "p8-advance-unilateral",
+      "sku": "P8",
+      "file": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "source_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+      "fixture_sha256": "a22350a75d89541950b8cc80b4b291529b2346f35e39ff1bda645efcaffb41bd",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Договор и аванс",
+          "job": "r3l-p8-warning-layout-g01-20261019",
+          "tag": "c03",
+          "expected_values": 2,
+          "checks": 5,
+          "pdf_sha256": "00e7d449bd8135457742ee134da64138af2da35525f56c87184292d42830d874",
+          "archive": "p8-warning-layout-proofs.tar.xz",
+          "archive_sha256": "d7715872661b49eb22582082eeb530cb1607a208c5851d401b1931d7b6a5df74",
+          "report_member": "r3l-p8-warning-layout-g01-20261019/report.xml",
+          "report_sha256": "628334860d4cfd439d26c1981521f034652c21ce0245013d5280a65c57a0fba9",
+          "job_sha256": "efe5755cb46a8f9014cc4a50bc86231c6945115d74ce3a7164cbf2078d9047f4"
+        },
+        {
+          "sheet": "Выполнено",
+          "job": "r3l-p8-warning-layout-g02-20261019",
+          "tag": "c04",
+          "expected_values": 1,
+          "checks": 4,
+          "pdf_sha256": "d0b020c9f92492b650e42d040278c6b79dec34ba47fe46bd4ee3a270c1693b4e",
+          "archive": "p8-warning-layout-proofs.tar.xz",
+          "archive_sha256": "d7715872661b49eb22582082eeb530cb1607a208c5851d401b1931d7b6a5df74",
+          "report_member": "r3l-p8-warning-layout-g02-20261019/report.xml",
+          "report_sha256": "3e9f8614f56451bd76964a9b3c7d58fdd61899702a0d97a3a6584a0c6e7bf57c",
+          "job_sha256": "be87bcdeaea26b67e3859d57693a9b6a0e0305606ddb75ca2d9feac5a005abee"
+        }
+      ]
+    },
+    {
+      "name": "p8-advance-message-boundaries",
+      "sku": "P8",
+      "file": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "source_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+      "fixture_sha256": "32c07a9723499150af382d551d0c07dde8ace02c416629121aa727c746a90d70",
+      "input_preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved.",
+      "probes": [
+        {
+          "sheet": "Выполнено",
+          "job": "r3l-p8-warning-layout-g02-20261019",
+          "tag": "c05",
+          "expected_values": 3,
+          "checks": 6,
+          "pdf_sha256": "949108e2a9a3379be7ae70e9431097b4c9eda86ac51c261d52a5587e53834f6e",
+          "archive": "p8-warning-layout-proofs.tar.xz",
+          "archive_sha256": "d7715872661b49eb22582082eeb530cb1607a208c5851d401b1931d7b6a5df74",
+          "report_member": "r3l-p8-warning-layout-g02-20261019/report.xml",
+          "report_sha256": "3e9f8614f56451bd76964a9b3c7d58fdd61899702a0d97a3a6584a0c6e7bf57c",
+          "job_sha256": "be87bcdeaea26b67e3859d57693a9b6a0e0305606ddb75ca2d9feac5a005abee"
+        },
+        {
+          "sheet": "Встречное",
+          "job": "r3l-p8-warning-layout-g02-20261019",
+          "tag": "c06",
+          "expected_values": 2,
+          "checks": 5,
+          "pdf_sha256": "c26d5ea38342c6300f921c86abbddde963fa5815b5047dc8e61f7255d97dc689",
+          "archive": "p8-warning-layout-proofs.tar.xz",
+          "archive_sha256": "d7715872661b49eb22582082eeb530cb1607a208c5851d401b1931d7b6a5df74",
+          "report_member": "r3l-p8-warning-layout-g02-20261019/report.xml",
+          "report_sha256": "3e9f8614f56451bd76964a9b3c7d58fdd61899702a0d97a3a6584a0c6e7bf57c",
+          "job_sha256": "be87bcdeaea26b67e3859d57693a9b6a0e0305606ddb75ca2d9feac5a005abee"
+        }
+      ]
+    }
+  ]
+}

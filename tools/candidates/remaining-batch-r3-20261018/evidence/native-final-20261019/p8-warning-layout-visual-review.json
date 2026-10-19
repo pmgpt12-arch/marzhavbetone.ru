@@ -1,0 +1,24 @@
+{
+  "status": "PASS_SCOPED_WARNING_LAYOUT_ONLY",
+  "source_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+  "scope": "Full formula warning text, data/totals/notes grouping only. Repeated print headers and print areas remain unqualified under the SaveAs-first harness; no general native print PASS.",
+  "native_job": "r3l-p8-warning-layout-g02-20261019",
+  "boundary_pdf_sha256": "949108e2a9a3379be7ae70e9431097b4c9eda86ac51c261d52a5587e53834f6e",
+  "pages": 17,
+  "review": {
+    "previous_layout": "All 17 pages inspected in the preceding iteration; formula warning texts fit. Counterclaim notes previously isolated on their own page.",
+    "current_layout": "Pixel comparison with previous iteration: only pages 8, 9, 10 differ. All three changed pages visually inspected; last data rows, totals and notes share page 10. Other 14 pages pixel-identical.",
+    "warning_cells": [
+      "Выполнено!L6",
+      "Выполнено!L20",
+      "Выполнено!L45",
+      "Встречное!G6",
+      "Встречное!G30"
+    ],
+    "middle_row": "Additional supported native print fixture fills Встречное row 18. Page 9 visually inspected; G18 warning complete in three lines. G6/G18/G30 text present in the PDF.",
+    "middle_job": "r3m-p8-counter-middle-print-20261019",
+    "middle_pdf_sha256": "cbd6b0d63ecaf118125d9041fb9951140de437072e6d7759873db4033c865310"
+  },
+  "buyer_acceptance": "NOT_REQUESTED",
+  "publication": "NOT_PERFORMED"
+}

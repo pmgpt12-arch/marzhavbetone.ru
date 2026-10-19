@@ -2,16 +2,16 @@
   "status": "XLSX_OPENING_AND_EXPORT_PASS_ONLY",
   "workbooks": 19,
   "scope": "Exact input SHA, normal native opening, PDF export and unchanged input SHA. Some batch receipts are FAIL because another file failed; only complete individual checks count.",
-  "scenario_tests": "PENDING",
+  "scenario_tests": "SEE calculation-current-source-index.json: separate input-only fixtures",
   "native_print_visual_review": "PENDING",
-  "final_word": "PENDING",
+  "final_word": "SEE word-current-index.json: separate SHA-bound qualification",
   "original_xls": "PENDING",
   "owner_acceptance": "NOT_REQUESTED",
   "publication": "NOT_PERFORMED",
   "archive": {
     "file": "xlsx-opening-proofs.tar.xz",
-    "sha256": "10ae268f9c7c78263f31037d32821c7b029c25561c62a387953ba422cad2a010",
-    "bytes": 3841552
+    "sha256": "562449071ebf531f13ae1bed3429f02a4e33bf66364618937618479c0326686b",
+    "bytes": 3843232
   },
   "files": [
     {
@@ -26,7 +26,7 @@
       "pdf": "r3f-excel-p1-open-20261019/p106a-filled.pdf",
       "pdf_sha256": "c6842e23b0409c8c80b15cf321266850a6f1e006be1de8244450bf3770f25161",
       "pdf_bytes": 193097,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -41,7 +41,7 @@
       "pdf": "r3f-excel-p1-open-20261019/p107-filled.pdf",
       "pdf_sha256": "300ff60e35aff150ee222fcd9bf969a940d60394796ef7748131bfedf5f5b843",
       "pdf_bytes": 191942,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -56,7 +56,7 @@
       "pdf": "r3f-excel-p1-open-20261019/p108-filled.pdf",
       "pdf_sha256": "9e7dc37c131e1301a61d285e4d29ff38fe80896ccafeb0c8643350f882e7a4fc",
       "pdf_bytes": 191279,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -71,7 +71,7 @@
       "pdf": "r3f-excel-p1-open-20261019/p114-filled.pdf",
       "pdf_sha256": "9bfd7730a496ae8f5bafed1e3c60e469dadd0d816fb76d126e2eedaeaa6cda2c",
       "pdf_bytes": 218876,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -86,7 +86,7 @@
       "pdf": "r3f-p13-row-order-20261019/p13rows-filled.pdf",
       "pdf_sha256": "48cb68e028cd806cb99f1eb61b4108707388ced1170eb4dafa4a7422437e6cd8",
       "pdf_bytes": 220549,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -101,7 +101,7 @@
       "pdf": "r3f-excel-p2-p4-open-20261019/p207-filled.pdf",
       "pdf_sha256": "5c366aaac34d95ab82eaa851ea8287735c824c0f8d719654e2000154943161f9",
       "pdf_bytes": 332028,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -116,7 +116,7 @@
       "pdf": "r3f-excel-p2-p4-open-20261019/p208-filled.pdf",
       "pdf_sha256": "e7ebd1d71aaea85f2fb2205586bd76e94b8e3933df6f232041fc4f1843607fe9",
       "pdf_bytes": 199108,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -131,7 +131,7 @@
       "pdf": "r3f-excel-p2-p4-open-20261019/p406-filled.pdf",
       "pdf_sha256": "52563b27512c147661093ae33688406de1ba46d617202b43013d56e995c141c5",
       "pdf_bytes": 175250,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -146,7 +146,7 @@
       "pdf": "r3f-excel-p2-p4-open-20261019/p407-filled.pdf",
       "pdf_sha256": "bffe5c5826ad3eb44acf2955433dfbf6e34dc5c8cdb7abff5d72cb0bf5a6a8c7",
       "pdf_bytes": 173209,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -161,7 +161,7 @@
       "pdf": "r3f-excel-p4-registers-open-20261019/p435a-filled.pdf",
       "pdf_sha256": "05d13ce8a21ed6aa67d72001a530c8fb62e00c57b1b85e180f429ac20d1a19ce",
       "pdf_bytes": 194637,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -176,7 +176,7 @@
       "pdf": "r3f-excel-p4-registers-open-20261019/p436a-filled.pdf",
       "pdf_sha256": "1afb3611a237d4e296f6c63c3e2e2095224ec9cd4f93c23c4d364e113cccc5a7",
       "pdf_bytes": 190726,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -191,7 +191,7 @@
       "pdf": "r3f-excel-p4-registers-open-20261019/p437-filled.pdf",
       "pdf_sha256": "51961db16b8e8dcc831ce52c90e28a6369925de23ac6de719c17b8fbf5e7b208",
       "pdf_bytes": 190192,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -206,7 +206,7 @@
       "pdf": "r3f-excel-p4-registers-open-20261019/p438-filled.pdf",
       "pdf_sha256": "ad67220b3b21b71d2725e76f607103330f7df4484eb9b68c70440aed81f80960",
       "pdf_bytes": 190754,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -221,7 +221,7 @@
       "pdf": "r3f-excel-p7-p13-open-20261019/p702-filled.pdf",
       "pdf_sha256": "3de6993c0e3ae2582b1fee1df957c343a3cf9343886d4246c0112b7d24ca41b0",
       "pdf_bytes": 250018,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -236,7 +236,7 @@
       "pdf": "r3f-excel-p7-p13-open-20261019/p703-filled.pdf",
       "pdf_sha256": "3a041643c58a2d11c1f55d5a55a386156993fa7735dc216bcc09615180622f1c",
       "pdf_bytes": 249034,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -251,7 +251,7 @@
       "pdf": "r3f-excel-p7-p13-open-20261019/p705-filled.pdf",
       "pdf_sha256": "7d3369b0abee9ed0b8a32086802f8ba8f54fe18e83f374a8a43a31ef44d3b124",
       "pdf_bytes": 248808,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -266,22 +266,22 @@
       "pdf": "r3f-p8-p9-p13-dv-check-20261019/p802-filled.pdf",
       "pdf_sha256": "a9b4d00f9fa69653b7da6b31ef6cd5eb57c3dd21de00c796903ac7fb75479a9c",
       "pdf_bytes": 338620,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
       "sku": "P8",
       "file": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
-      "sha256": "cd7d962bdfd2f83c1469ba12b8877596876d3a7203aa5674bb6aecd9791dfff7",
-      "job": "r3f-p8-p9-p13-dv-check-20261019",
-      "batch_status": "FAIL",
+      "sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+      "job": "r3l-p8-warning-layout-g02-20261019",
+      "batch_status": "PASS",
       "individual_input_pdf_source_checks": "PASS",
       "excel_version": "16.0",
       "excel_build": "4324",
-      "pdf": "r3f-p8-p9-p13-dv-check-20261019/p809-filled.pdf",
-      "pdf_sha256": "85f8a40ddd47bc9870f4f3e5870902b7d1a6b29e2d92f83e8df0f7476e5e8681",
-      "pdf_bytes": 269600,
-      "scenario_tests": "PENDING",
+      "pdf": "r3l-p8-warning-layout-g02-20261019/c07-filled.pdf",
+      "pdf_sha256": "03a2a67b1b4d13edacdf62909c11d3b670948f516d92d0ca8ce009a313714f9f",
+      "pdf_bytes": 271122,
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     },
     {
@@ -296,7 +296,7 @@
       "pdf": "r3f-p8-p9-p13-dv-check-20261019/p904-filled.pdf",
       "pdf_sha256": "247594e1bd6c22e1c193458debc00bc7e4a6a46fb672cc9966af39e01a523184",
       "pdf_bytes": 236672,
-      "scenario_tests": "PENDING",
+      "scenario_tests": "SEE_CURRENT_SOURCE_INDEX_WHERE_APPLICABLE",
       "native_print_visual_review": "PENDING"
     }
   ]

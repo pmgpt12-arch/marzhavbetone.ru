@@ -3,11 +3,13 @@
 from pathlib import Path
 from zipfile import ZipFile
 from lxml import etree as E
-import json,hashlib,re,copy
+import argparse,json,hashlib,re,copy
 import openpyxl
 from normalize_xlsx_element_order import normalize_parts
 R=Path(__file__).resolve().parents[1];B=R/'tools/candidates/remaining-batch-r3-20261018'
-I=Path('/tmp/mb-r3/input');O=Path('/tmp/mb-r3/work');X={'x':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
+parser=argparse.ArgumentParser();parser.add_argument('--work-dir',type=Path,default=Path('/tmp/mb-r3/work'))
+args=parser.parse_args()
+I=Path('/tmp/mb-r3/input');O=args.work_dir;X={'x':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
 edits=json.loads((B/'text-edits.json').read_text());fs=json.loads((B/'formula-text-edits.json').read_text());layouts=json.loads((B/'layout-edits.json').read_text())
 def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def xml(e):return E.tostring(e,method='c14n') if e is not None else None
