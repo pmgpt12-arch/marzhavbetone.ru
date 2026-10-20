@@ -15,10 +15,15 @@ ssh=['ssh','-i',str(sshdir/'deploy_key'),'-o','IdentitiesOnly=yes','-o','BatchMo
 host=os.environ['USER']+'@'+os.environ['HOST'];evidence=Path(os.environ['RUNNER_TEMP'])/'remaining-live-buyer-evidence';evidence.mkdir(exist_ok=True)
 def run(args,**kw):return subprocess.run(args,cwd=R,check=True,timeout=90,**kw)
 def ops(phase):
- code=(R/'tools/remaining_live_ops.php').read_text().removeprefix('<?php')
- cmd='php -r '+shlex.quote(code)+' -- '+' '.join(map(shlex.quote,[os.environ['SITE_PATH'],os.environ['PRODUCTS_PATH'],phase,encoded]))
+ code=(R/'tools/remaining_live_ops.php').read_text()
+ anchor='[$script,$siteArg,$productsArg,$phase,$encoded] = $argv;'
+ assert code.count(anchor)==1
+ code=code.replace(anchor,'[$script,$siteArg,$productsArg,$phase] = $argv; $encoded="'+encoded+'";')
+ # Send the plan and PHP over stdin; hosting SSH exec-request packets are bounded.
+ cmd='php -- /dev/stdin '+' '.join(map(shlex.quote,[os.environ['SITE_PATH'],os.environ['PRODUCTS_PATH'],phase]))
+ assert len(cmd.encode())<4096,'remote command must exclude code and plan payload'
  try:
-  result=run([*ssh,host,cmd],capture_output=True,text=True)
+  result=run([*ssh,host,cmd],input=code,capture_output=True,text=True)
  except subprocess.CalledProcessError as error:
   raise RuntimeError('REMOTE_PHASE '+phase+' exit='+str(error.returncode)+' stderr='+error.stderr[-3000:]) from None
  return json.loads(result.stdout)
@@ -28,6 +33,8 @@ def write(name,obj):(evidence/name).write_text(json.dumps(obj,ensure_ascii=False
 def main():
  run(['python3','tools/verify_remaining_release_20261020.py'])
  run(['php','-l','products-config.php']);run(['php','-l','tools/remaining_live_ops.php'])
+ transport=run([*ssh,host,"php -r 'echo \"SSH_PHP_READY\";'"],capture_output=True,text=True)
+ assert transport.stdout=='SSH_PHP_READY';print('PASS_SMALL_SSH_PHP_TRANSPORT',flush=True)
  receipt=ops('preflight');write('preflight.json',receipt);print('PASS_READ_ONLY_LIVE_BASELINES',flush=True)
  dry=os.environ.get('DRY_RUN')=='true'
  with tempfile.NamedTemporaryFile(mode='w',suffix='.files') as names:
