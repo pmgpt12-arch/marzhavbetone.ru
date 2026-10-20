@@ -897,7 +897,7 @@ jobs:
         if: contains(github.event.head_commit.message, '[reconcile-r3-contracts]')
         run: |
           timeout 90 python3 -m pip install --disable-pip-version-check pillow pyyaml pytest python-docx pymupdf==1.26.7
-          python3 tools/reconcile_remaining_release_20261020.py
+          python3 tools/fix_remaining_contract_metadata_20261020.py
           python3 - <<'PY_SAVE'
           import json,subprocess
           from pathlib import Path
@@ -914,7 +914,7 @@ jobs:
           git diff --cached --quiet || git commit -m 'Refresh artifact registry for accepted R3 source trees'
           git push origin HEAD:candidate/mb001-remaining-batch-r3-20261018
           set +e
-          timeout 300 python3 tools/classify_remaining_checks_20261020.py
+          timeout 300 python3 tools/classify_remaining_checks_20261020.py check_artifact_registry test_artifact_registry sync_kit_file_counts test_sync_kit_file_counts test_normative_gate
           result=$?
           set -e
           base='tools/candidates/remaining-batch-r3-20261018/release-20261020'
