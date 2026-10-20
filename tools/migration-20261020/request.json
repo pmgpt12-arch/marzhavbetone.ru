@@ -1,13 +1,12 @@
 {
-  "phase": "dry-run-new",
+  "phase": "stage-private",
   "attempt": 1,
-  "authorization": "Owner 2026-10-20: continue approved full domain migration via GitHub Actions only",
+  "authorization": "Owner approved migration and continue instruction, 2026-10-20",
   "production_cutover": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+  "depends_on_verified_dry_run": 39405927779,
   "depends_on_verified_route_run": 39403424665,
-  "depends_on_verified_backup_run": 39389485844,
-  "scope": "Re-read live 13-SKU/172-file manifest and immutable runtime hashes; verify four private backup SHA-256 values; restore new-site-before TAR only into a new private rehearsal directory and compare to current new webroot; exact checksum rsync --dry-run with explicit shipping allowlist, no deletes, no config/masters/orders upload",
-  "writes_permitted": "Private rollback rehearsal directory only; safe evidence committed to migration branch",
-  "writes_forbidden": "Both public webroots, live config, buyer masters, live orders/cache, payment provider and redirect rules",
-  "expected_output": "remote-dry-run.json + new-root-host-plan.json + dry-run-live-inspection.json; actual success required before isolated staging"
+  "scope": "Copy accepted 171 website files only to a new private host workspace; use dummy disabled payment credentials, new sandbox order/cache directories and existing approved master directories read-only; capture P1 edition through existing function; build and verify all 13 ZIPs, 172 member hashes and CRC, exact 3600-second token lifetime, repeated-token stability and new-domain email text without sending",
+  "live_changes_forbidden": ["old webroot", "new public webroot", "real configuration", "real orders and caches", "buyer master files", "payment provider settings", "mail delivery"],
+  "expected_output": "private-stage-verification.json; exact source and live invariants verified before and after"
 }
