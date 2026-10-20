@@ -4,7 +4,7 @@ declare(strict_types=1);
 [$script,$siteArg,$productsArg,$phase,$encoded] = $argv;
 function absolute_path(string $p):string{return $p[0]==='/'?$p:getenv('HOME').'/'.$p;}
 $site=realpath(absolute_path($siteArg));$products=realpath(absolute_path($productsArg));
-if(!$site||!$products||!is_file($site.'/index.html'))throw new RuntimeException('wrong deployment roots');
+if(!$site||!$products||!is_file($site.'/index.html'))throw new RuntimeException('wrong deployment roots '.json_encode(['argc'=>count($argv),'args'=>$argv,'cwd'=>getcwd(),'home'=>getenv('HOME'),'site'=>$site,'products'=>$products]));
 $plan=json_decode(base64_decode($encoded,true),true,512,JSON_THROW_ON_ERROR);
 require $site.'/config.php';require $site.'/products-config.php';
 if(realpath(PRODUCTS_DIR)!==$products)throw new RuntimeException('wrong resolved PRODUCTS_DIR');
