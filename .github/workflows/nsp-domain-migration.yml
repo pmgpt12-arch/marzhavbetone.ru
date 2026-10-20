@@ -48,7 +48,7 @@ jobs:
           from pathlib import Path
           d=Path('tools/migration-20261020')
           c=json.loads((d/'contract.json').read_text());r=json.loads((d/'request.json').read_text())
-          assert r['phase'] in {'inspect-backup','prepare-site','extend-shipping','validate-routes','audit-offers','dry-run-new','stage-private','publish-test','diagnose-http','verify-legacy-http'} and not r['production_cutover']
+          assert r['phase'] in {'inspect-backup','prepare-site','extend-shipping','validate-routes','audit-offers','dry-run-new','stage-private','publish-test','diagnose-http','verify-legacy-http','provider-audit'} and not r['production_cutover']
           assert r['expected_main']==c['approved_base_commit']
           assert len(c['active_skus'])==13 and sum(x['files'] for x in c['active_skus'].values())==172
           assert all(x['dir'].isascii() for x in c['active_skus'].values())
@@ -75,7 +75,7 @@ jobs:
           command -v google-chrome
           timeout 90s python3 -m pip install --quiet --disable-pip-version-check playwright
       - name: Existing deployment SSH, job-local credentials
-        if: steps.phase.outputs.phase == 'inspect-backup' || steps.phase.outputs.phase == 'dry-run-new' || steps.phase.outputs.phase == 'stage-private' || steps.phase.outputs.phase == 'publish-test'
+        if: steps.phase.outputs.phase == 'inspect-backup' || steps.phase.outputs.phase == 'dry-run-new' || steps.phase.outputs.phase == 'stage-private' || steps.phase.outputs.phase == 'publish-test' || steps.phase.outputs.phase == 'provider-audit'
         env:
           KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           HOST: ${{ secrets.DEPLOY_HOST }}
@@ -106,6 +106,7 @@ jobs:
             dry-run-new) timeout 600s python3 tools/migration-20261020/dry_run_new.py ;;
             stage-private) timeout 600s python3 tools/migration-20261020/stage_private.py ;;
             publish-test) timeout 600s python3 tools/migration-20261020/publish_test.py ;;
+            provider-audit) timeout 100s python3 tools/migration-20261020/provider_webhook_audit.py ;;
             diagnose-http) timeout 90s python3 tools/migration-20261020/diagnose_http.py ;;
             verify-legacy-http)
               timeout 35s git fetch --no-tags --depth=1 origin main
