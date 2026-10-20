@@ -302,6 +302,32 @@ jobs:
           echo 'NSP_LIVE_CONFIG_APPLIED'
           REMOTE
 
+  nsp-live-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify new-site live configuration and HTTP endpoints
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/verify_key
+          chmod 600 ~/.ssh/verify_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/verify_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          php -l "$site/config.php" >/dev/null
+          php -r 'require $argv[1]; if(YOOKASSA_SHOP_ID!=="1502106"||YOOKASSA_MODE!=="live"||YOOKASSA_API_URL!=="https://api.yookassa.ru/v3"||!is_dir(ORDERS_DIR)||!is_dir(DELIVERY_DIR)||!is_dir(PRODUCTS_DIR)||DELIVERY_TTL_SECONDS!==3600) exit(1); echo "NSP_CONFIG_LIVE_VERIFIED\n";' "$site/config.php"
+          for endpoint in payment.php webhook.php; do
+            status="$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "https://nastoronepodryadchika.ru/$endpoint" || true)"
+            echo "NSP_HTTP_$endpoint=$status"
+          done
+          REMOTE
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
