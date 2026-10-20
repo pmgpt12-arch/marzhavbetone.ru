@@ -1,6 +1,6 @@
 {
-  "status": "FAIL_NEW_DOMAIN_TEST",
-  "run": "39422331371",
+  "status": "PASS_NEW_DOMAIN_HTTPS_AND_13_SYNTHETIC_DOWNLOADS",
+  "run": "39423577670",
   "source_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
   "old_store_modified": false,
   "real_payment": false,
@@ -136,6 +136,16 @@
   ],
   "security": [
     {
+      "path": "get/?k=gu",
+      "http": 302,
+      "telegram_deep_link_preserved": true
+    },
+    {
+      "path": "get/?k=invalid",
+      "http": 404,
+      "closed_dictionary": true
+    },
+    {
       "path": "config.php",
       "http": 403,
       "exposed": false
@@ -205,7 +215,218 @@
       "redirect": false
     }
   ],
-  "downloads": [],
-  "expired_links": [],
-  "error": "AssertionError:('DOWNLOAD_HTTP', 'p1', 410)"
+  "downloads": [
+    {
+      "sku": "p1",
+      "http": 200,
+      "files": 20,
+      "crc": "PASS",
+      "all_member_sha256": "PASS",
+      "zip_sha256": "ebfb2d95b79c4c2cbfd63db7f95682f04f6758af8a94f9d5265f64c1676e7e62",
+      "expected_filename": "01-ks-podpisany-deneg-net.zip",
+      "order_scenario": "SYNTHETIC_PAID_STATUS_NO_PROVIDER_TRANSACTION"
+    },
+    {
+      "sku": "p2",
+      "http": 200,
+      "files": 15,
+      "crc": "PASS",
+      "all_member_sha256": "PASS",
+      "zip_sha256": "9490c08b073373c1530620e703014da9909c0e0628fc7815b267c4ac05b54625",
+      "expected_filename": "02-dopy-ne-v-podarok.zip",
+      "order_scenario": "SYNTHETIC_PAID_STATUS_NO_PROVIDER_TRANSACTION"
+    },
+    {
+      "sku": "p3",
+      "http": 200,
+      "files": 11,
+      "crc": "PASS",
+      "all_member_sha256": "PASS",
+      "zip_sha256": "e6aeb8815b021443f3ea65af9cb1a2d4dd9adbda92d1fa2ae6baa8ed0b09bbf0",
+      "expected_filename": "05-ks-bez-vozvrata.zip",
+      "order_scenario": "SYNTHETIC_PAID_STATUS_NO_PROVIDER_TRANSACTION"
+    },
+    {
+      "sku": "p4",
+      "http": 200,
+      "files": 25,
+      "crc": "PASS",
+      "all_member_sha256": "PASS",
+      "zip_sha256": "9287b05f256cfaedc1d76ed8d6a02169c9960c56e044e59a033e24fc605072b3",
+      "expected_filename": "08-pto-bez-zamechaniy.zip",
+      "order_scenario": "SYNTHETIC_PAID_STATUS_NO_PROVIDER_TRANSACTION"
+    },
+    {
+      "sku": "p5",
+      "http": 200,
+      "files": 30,
+      "crc": "PASS",
+      "all_member_sha256": "PASS",
+      "zip_sha256": "5d710dc78925c9153b12b81a86770e2e28a5ccc2c5502e57f12a8d463f0fe6b4",
+      "expected_filename": "07-uderzhaniya-shtrafy-zachety.zip",
+      "order_scenario": "SYNTHETIC_PAID_STATUS_NO_PROVIDER_TRANSACTION"
+    },
+    {
+      "sku": "p7",
+      "http": 200,
+      "files": 13,
+      "crc": "PASS",
+      "all_member_sha256": "PASS",
+      "zip_sha256": "5cbb3c10b09a5746c387fb7c1e570f2653070f67b507743473db2c4468606631",
+      "expected_filename": "03-dogovor-podryada.zip",
+      "order_scenario": "SYNTHETIC_PAID_STATUS_NO_PROVIDER_TRANSACTION"
+    },
+    {
+      "sku": "p8",
+      "http": 200,
+      "files": 11,
+      "crc": "PASS",
+      "all_member_sha256": "PASS",
+      "zip_sha256": "d18a1793309554747c64a1489fbd3448af51bddb9fcda8333bba90d61a1a45fa",
+      "expected_filename": "10-avans-usloviya-i-pribyl.zip",
+      "order_scenario": "SYNTHETIC_PAID_STATUS_NO_PROVIDER_TRANSACTION"
+    },
+    {
+      "sku": "p9",
+      "http": 200,
+      "files": 10,
+      "crc": "PASS",
+      "all_member_sha256": "PASS",
+      "zip_sha256": "9bcc7a0093ff6ff9b1af2f5e7c896a6c7fdc2c66aec8a11b9ed5610b9ad37d0e",
+      "expected_filename": "11-bankrotstvo-genpodryadchika.zip",
+      "order_scenario": "SYNTHETIC_PAID_STATUS_NO_PROVIDER_TRANSACTION"
+    },
+    {
+      "sku": "p10",
+      "http": 200,
+      "files": 8,
+      "crc": "PASS",
+      "all_member_sha256": "PASS",
+      "zip_sha256": "d2897842b001e1b212aeb06b3ac46e0885e7f8d4f2a482957282131c2f81fc1c",
+      "expected_filename": "15-otvet-na-pretenziyu-baza.zip",
+      "order_scenario": "SYNTHETIC_PAID_STATUS_NO_PROVIDER_TRANSACTION"
+    },
+    {
+      "sku": "p11",
+      "http": 200,
+      "files": 8,
+      "crc": "PASS",
+      "all_member_sha256": "PASS",
+      "zip_sha256": "27ffe38a5a5136f7f0253f085899478cd8503eb0c828031c66e11490b06b3149",
+      "expected_filename": "13-raschet-metrami.zip",
+      "order_scenario": "SYNTHETIC_PAID_STATUS_NO_PROVIDER_TRANSACTION"
+    },
+    {
+      "sku": "p13",
+      "http": 200,
+      "files": 10,
+      "crc": "PASS",
+      "all_member_sha256": "PASS",
+      "zip_sha256": "221469b8525fbcf8a3ed915dcd9c4d3a817356ad4eb36d9989d9c6f3c1e21ac3",
+      "expected_filename": "16-chto-v-smete-ne-oplatyat.zip",
+      "order_scenario": "SYNTHETIC_PAID_STATUS_NO_PROVIDER_TRANSACTION"
+    },
+    {
+      "sku": "t2",
+      "http": 200,
+      "files": 6,
+      "crc": "PASS",
+      "all_member_sha256": "PASS",
+      "zip_sha256": "ac0ddc1a8dfd1a051ac39d52c57a12850b3d9348e375f54455bbb694ccbf01e2",
+      "expected_filename": "14-peredacha-id-pod-podpis.zip",
+      "order_scenario": "SYNTHETIC_PAID_STATUS_NO_PROVIDER_TRANSACTION"
+    },
+    {
+      "sku": "t3",
+      "http": 200,
+      "files": 5,
+      "crc": "PASS",
+      "all_member_sha256": "PASS",
+      "zip_sha256": "010eadc764627a967ea852ce3836f4b72b2ea82bf672ce05837290f555669ca6",
+      "expected_filename": "17-odnostoronniy-akt-i-zachet.zip",
+      "order_scenario": "SYNTHETIC_PAID_STATUS_NO_PROVIDER_TRANSACTION"
+    }
+  ],
+  "expired_links": [
+    {
+      "sku": "p1",
+      "http": 410
+    },
+    {
+      "sku": "p2",
+      "http": 410
+    },
+    {
+      "sku": "p3",
+      "http": 410
+    },
+    {
+      "sku": "p4",
+      "http": 410
+    },
+    {
+      "sku": "p5",
+      "http": 410
+    },
+    {
+      "sku": "p7",
+      "http": 410
+    },
+    {
+      "sku": "p8",
+      "http": 410
+    },
+    {
+      "sku": "p9",
+      "http": 410
+    },
+    {
+      "sku": "p10",
+      "http": 410
+    },
+    {
+      "sku": "p11",
+      "http": 410
+    },
+    {
+      "sku": "p13",
+      "http": 410
+    },
+    {
+      "sku": "t2",
+      "http": 410
+    },
+    {
+      "sku": "t3",
+      "http": 410
+    }
+  ],
+  "old_store_http": {
+    "status": "PASS_EXACT_ORIGIN_CONTENT_WITH_OBSERVED_CDN_TRANSFORMS",
+    "raw_http_sha256": "a1818e430a9ad7ad60ddabc676bf4624376fa86231aca83420f4e4cd4df5b707",
+    "normalized_sha256": "31310628b0d2b75ae2fc2b2250f5864901fe48145ea84a6a19b7c7e071782bae",
+    "transformations": {
+      "email_links_decoded": 2,
+      "email_spans_decoded": 1,
+      "email_decoder_removed": 1,
+      "cloudflare_beacon_removed": 1
+    }
+  },
+  "buyer_files": 172,
+  "active_skus": 13,
+  "ttl_definition_seconds": 3600,
+  "expired_http": 410,
+  "old_store_serving_unchanged": true,
+  "real_orders_and_masters_untouched": true,
+  "new_site": "https://nastoronepodryadchika.ru/",
+  "release_state": "STAGING_ONLY_NOINDEX_PAYMENTS_DISABLED",
+  "payment_evidence": "NO_REAL_PAYMENT_PERFORMED; synthetic order status tests delivery only",
+  "email_evidence": "RENDERED_ONLY_NOT_SENT",
+  "expiry_scenario": "Declared 3600 seconds checked at issue; each synthetic order expires_at set into past, HTTP 410 verified",
+  "remaining": [
+    "Enable vetted live config with shared production order/cache paths",
+    "Verify actual provider payment and webhook plus delivered email on new host",
+    "Activate ordinary old-host redirects only after real buyer acceptance",
+    "Update permanent deployment target and remove temporary noindex/staging overlay"
+  ]
 }
