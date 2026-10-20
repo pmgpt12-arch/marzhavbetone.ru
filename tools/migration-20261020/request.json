@@ -1,12 +1,11 @@
 {
-  "phase": "prepare-site",
-  "attempt": 2,
-  "authorization": "Owner continuation and explicit request to preserve site routes; no cutover",
+  "phase": "extend-shipping",
+  "attempt": 1,
+  "authorization": "Owner continuation; preserve /get/ Telegram deep-link and buyer routes",
   "production_cutover": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
-  "previous_public_acceptance_run": 39422331371,
-  "previous_failure": "Fresh HTTP 410 for p1 because synthetic token created >3600s earlier; rollback confirmed; add prepublication token-freshness gate.",
-  "route_discovery": "Existing /get/?k=... Instagram/ManyChat to Telegram deep-link missing from 171-file shipping allowlist. Add get/index.php unchanged and verify 302 known key, 404 unknown key.",
-  "scope": "Regenerate site shipping manifest including unchanged get/index.php and current accepted 13-SKU pages; no real payment, no live config, no buyer document edits; do not deploy",
-  "expected_output": "prepared-site-plan.json updated to 172 site files and get/index.php SHA256; source product manifest unchanged 13/172"
+  "previous_failed_prepare_run": 39422855174,
+  "classified_cause": "Historical prepare_site.py is not idempotent against an already-prepared brand candidate; UNEXPECTED_EMAIL_CODE_DELTA. Avoid re-running full builder; extend existing verified manifest at narrow level.",
+  "scope": "Inspect 171 existing shipping SHA/size against prepared manifest and append unchanged get/index.php from main; no content, PHP handlers, price or product changes",
+  "expected_output": "shipping-route-addendum.json PASS, prepared-site-plan.json exactly 172 site files, buyer manifest unchanged"
 }
