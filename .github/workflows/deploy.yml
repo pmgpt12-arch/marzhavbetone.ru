@@ -224,6 +224,26 @@ jobs:
           echo 'NSP_PHP_PREFLIGHT=PASS'
           REMOTE
 
+  nsp-stage-secret:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Stage YooKassa credential in private hosting directory
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          YK: ${{ secrets.NSP_YOOKASSA_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$YK"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/audit_key
+          chmod 600 ~/.ssh/audit_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          umask 077
+          printf '%s' "$YK" | ssh -i ~/.ssh/audit_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -c '"'"'set -eu; p="$HOME/nsp-production-private/yookassa-key"; test ! -e "$p" || { echo "KEY_ALREADY_PRESENT"; exit 0; }; umask 077; cat > "$p"; chmod 600 "$p"; test -s "$p"; echo "PRIVATE_YOOKASSA_KEY_STAGED"'"'"''
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
