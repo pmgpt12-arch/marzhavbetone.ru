@@ -1,15 +1,10 @@
 {
-  "phase": "publish-test",
-  "attempt": 3,
-  "authorization": "Owner continuation; new-domain public noindex disabled-commerce acceptance only",
+  "phase": "provider-audit",
+  "attempt": 1,
+  "authorization": "Owner continuation; read-only payment-provider webhook inventory before live cutover",
   "production_cutover": false,
-  "public_new_root_acceptance": true,
-  "real_payment_enabled": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
-  "fresh_private_stage_run": 39423257078,
-  "verified_172_shipping_dry_run": 39423151819,
-  "verified_rollback": "original new-root SHA pinned and rollback action installed",
-  "freshness_gate": "All 13 synthetic links must retain >900 seconds before new-root switch, otherwise reject without publication",
-  "scope": "New-domain HTTPS: 18 pages, 13 ZIPs 172 member SHA/CRC, expired HTTP410, private-path 403/404, payment POST503, /get/?k=gu 302 and invalid key404; exact CDN-normalized old-site preservation; no real payments or email",
-  "expected_output": "new-domain-http-acceptance.json PASS or rollback with classification"
+  "verified_new_domain_https_run": 39423577670,
+  "scope": "GET /v3/webhooks with existing server-side credentials, return sanitized event and URL host/path only; verify old production config hash before/after; no payment creation, webhook registration, mail or DNS changes",
+  "expected_output": "provider-webhook-inventory.json with existing callback URL and provider HTTP status, no credentials or buyer data"
 }
