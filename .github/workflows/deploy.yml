@@ -198,6 +198,32 @@ jobs:
             exit 1
           fi
 
+  nsp-php-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify PHP execution and migration state
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/audit_key
+          chmod 600 ~/.ssh/audit_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/audit_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          php -l "$site/config.php" >/dev/null
+          php -l "$site/payment.php" >/dev/null
+          php -l "$site/webhook.php" >/dev/null
+          php -r 'require $argv[1]; echo "SITE_URL=".SITE_URL.PHP_EOL; echo "MODE=".YOOKASSA_MODE.PHP_EOL; echo "STAGE=".(defined("NSP_MIGRATION_STAGE")&&NSP_MIGRATION_STAGE?"YES":"NO").PHP_EOL;' "$site/config.php" 2>/dev/null
+          test -d "$HOME/nsp-production-private/orders/delivery"
+          echo 'NSP_PHP_PREFLIGHT=PASS'
+          REMOTE
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
