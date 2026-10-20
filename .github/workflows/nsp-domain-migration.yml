@@ -1,0 +1,101 @@
+name: NSP domain migration
+
+on:
+  push:
+    branches: [migration/nsp-domain-20261020]
+    paths:
+      - tools/migration-20261020/request.json
+      - .github/workflows/nsp-domain-migration.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Serialize against the existing production deploy workflow, never cancel it.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
+  PRODUCTS_PATH: ${{ secrets.DEPLOY_PRODUCTS_PATH || 'products-marzhavbetone' }}
+  SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+  MIGRATION_SSH_DIR: ${{ runner.temp }}/nsp-migration-ssh-${{ github.run_id }}
+
+jobs:
+  inspect-backup:
+    if: github.ref_name == 'migration/nsp-domain-20261020'
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: zip
+          tools: none
+          coverage: none
+      - name: Validate phase and safe source contract
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/migration-20261020/inspect_backup.py
+          php -l tools/migration-20261020/probe.php
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=Path('tools/migration-20261020')
+          c=json.loads((d/'contract.json').read_text())
+          r=json.loads((d/'request.json').read_text())
+          assert r['phase']=='inspect-backup' and not r['production_cutover']
+          assert r['expected_main']==c['approved_base_commit']
+          assert len(c['active_skus'])==13 and sum(x['files'] for x in c['active_skus'].values())==172
+          assert all(x['dir'].isascii() for x in c['active_skus'].values())
+          print('TASK_CONTRACT_PASS__NO_DEPLOY')
+          PY
+      - name: Existing deployment SSH, job-local credentials
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          set -euo pipefail
+          test -n "$KEY" && test -n "$HOST" && test -n "$USER"
+          umask 077
+          mkdir -p "$MIGRATION_SSH_DIR"
+          chmod 700 "$MIGRATION_SSH_DIR"
+          printf '%s\n' "$KEY" | tr -d '\r' > "$MIGRATION_SSH_DIR/deploy_key"
+          chmod 600 "$MIGRATION_SSH_DIR/deploy_key"
+          ssh-keygen -y -P '' -f "$MIGRATION_SSH_DIR/deploy_key" > /dev/null
+          timeout 20s ssh-keyscan -T 10 -p "$SSH_PORT" -H "$HOST" > "$MIGRATION_SSH_DIR/known_hosts" 2>/dev/null
+          test -s "$MIGRATION_SSH_DIR/known_hosts"
+      - name: Inspect production, compare all 172 files, create private rollback backups
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: timeout 600s python3 tools/migration-20261020/inspect_backup.py
+      - name: Preserve sanitized evidence only in migration branch
+        if: always()
+        run: |
+          set -euo pipefail
+          if [ -d tools/migration-20261020/evidence ]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add -f tools/migration-20261020/evidence/
+            if ! git diff --cached --quiet; then
+              git commit -m '[skip deploy] Record migration baseline evidence; no production cutover'
+              git push origin HEAD:migration/nsp-domain-20261020
+            fi
+          fi
+      - name: Retain non-secret checkpoint artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nsp-migration-baseline-${{ github.run_id }}
+          path: tools/migration-20261020/evidence/
+          if-no-files-found: ignore
+          retention-days: 14
+      - name: Remove only this job's temporary SSH credentials
+        if: always()
+        run: rm -f "$MIGRATION_SSH_DIR/deploy_key" "$MIGRATION_SSH_DIR/known_hosts"
