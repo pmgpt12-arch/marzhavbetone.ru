@@ -1,13 +1,13 @@
 {
-  "phase": "verify-legacy-http",
-  "attempt": 1,
+  "phase": "dry-run-new",
+  "attempt": 2,
   "authorization": "Owner migration continuation; investigate failed gate before retry",
   "production_cutover": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
-  "previous_run": 39408736540,
+  "previous_run": 39410025073,
   "verified_partial_result": "18 new-domain pages, all 13 real HTTPS ZIP downloads/172 member hashes and CRC, 13 expired HTTP410 links and private-path guards passed. Last old-root HTTP-vs-filesystem equality failed. Filesystem snapshot stayed unchanged and automatic rollback is ALREADY_ROLLED_BACK.",
   "hypothesis": "The old host is behind a transforming CDN: historical public-before-state already has HTTP SHA different from origin and different between apex/www despite same URL and length. Determine exact public HTML delta before changing the acceptance comparison.",
-  "scope": "Read-only public old-domain exact-content gate; no SSH, no payment, no production writes",
-  "expected_output": "legacy-http-acceptance.json with 3 normalized exact comparisons and 5 negative mutation checks",
-  "classified_cause": "Cloudflare transforms only email addresses and adds its own scripts; direct public-vs-origin SHA comparison was an invalid gate. Verify three responses with a narrow normalization and reject business-content mutations."
+  "scope": "Read-only old/new webroot and backup checks; rsync dry-run only; private rollback drill; no live upload",
+  "expected_output": "remote-dry-run.json with current root, 171-file plan, four backups and no public mutations",
+  "classified_cause": "Previous new-domain publish-test failed only because Cloudflare alters old public HTML. Exact normalization gate passed 3/3 and rejects 5 business-content mutations. Prior public test rolled back; require fresh bounded remote dry-run and backup checks before new private staging."
 }
