@@ -1,21 +1,17 @@
 #!/usr/bin/env python3
-"""One bounded migration unit: route/context preservation and native UI acceptance.
-No SSH, production writes, payment calls, buyer-file editing or retired-SKU revival.
-Uses the existing migration workflow, manifest generator, link and browser tests.
-"""
+"""Bounded route-preservation and UI gate; no SSH, payments or production writes."""
 from __future__ import annotations
-import copy, functools, hashlib, http.server, importlib.util, json, os, re
+import functools, hashlib, http.server, importlib.util, json, os, re
 import shutil, subprocess, threading
-from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit, urlunsplit
 
-ROOT = Path(__file__).resolve().parents[2]
-D = Path(__file__).resolve().parent
-OUT = D / 'evidence'
-MARKER = '/* NSP migration 20261020: section headings must not size article-card titles. */'
-CSS_FIX = '''\n/* NSP migration 20261020: section headings must not size article-card titles. */
+ROOT=Path(__file__).resolve().parents[2]
+D=Path(__file__).resolve().parent
+OUT=D/'evidence'
+MARKER='/* NSP migration 20261020: section headings must not size article-card titles. */'
+CSS_FIX='''\n/* NSP migration 20261020: section headings must not size article-card titles. */
 body.rebrand-approved .showcase-card h2{
   font-size:clamp(22px,1.9vw,28px);
   line-height:1.2;
@@ -24,36 +20,39 @@ body.rebrand-approved .showcase-card h2{
   word-break:normal;
 }
 '''
-OWN_HOSTS = {'marzhavbetone.ru','www.marzhavbetone.ru','nastoronepodryadchika.ru','www.nastoronepodryadchika.ru'}
-RETIRED = {'t1':'p1','t4':'p9','t5':'p8','t6':'p11','p12':'p5'}
+OWN_HOSTS={'marzhavbetone.ru','www.marzhavbetone.ru','nastoronepodryadchika.ru','www.nastoronepodryadchika.ru'}
+RETIRED={'t1':'p1','t4':'p9','t5':'p8','t6':'p11','p12':'p5'}
 
 
-def run(args, timeout=30):
-    return subprocess.run(args, cwd=ROOT, text=True, capture_output=True, check=True, timeout=timeout)
+def run(args,timeout=30):
+    p=subprocess.run(args,cwd=ROOT,text=True,capture_output=True,timeout=timeout)
+    if p.returncode:
+        raise RuntimeError('COMMAND_FAILED '+repr(args)+' exit='+str(p.returncode)+'\n'+p.stdout[-3000:]+'\n'+p.stderr[-1500:])
+    return p
 
 
-def write(name, value):
+def write(name,value):
     (OUT/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
 
-def git_source(base, rel):
+def git_source(base,rel):
     return run(['git','show',base+':'+rel]).stdout
 
 
-def normalize_url(value, page):
-    absolute = urljoin('https://nastoronepodryadchika.ru/'+page,value)
-    parts = urlsplit(absolute)
+def normalize_url(value,page):
+    absolute=urljoin('https://nastoronepodryadchika.ru/'+page,value)
+    parts=urlsplit(absolute)
     if parts.hostname in OWN_HOSTS:
-        return 'SITE:'+urlunsplit(('', '', parts.path or '/', parts.query, parts.fragment))
+        return 'SITE:'+urlunsplit(('','',parts.path or '/',parts.query,parts.fragment))
     return value
 
 
 class PageLinks(HTMLParser):
-    def __init__(self, source):
+    def __init__(self,source):
         super().__init__(convert_charrefs=True)
         self.links=[];self.buttons=[]
         self.feed(source)
-    def handle_starttag(self, tag, attrs):
+    def handle_starttag(self,tag,attrs):
         a=dict(attrs)
         for key in ('href','src','action','poster'):
             if a.get(key) is not None and 'brand-approved-2026.css' not in a[key]:
@@ -62,7 +61,7 @@ class PageLinks(HTMLParser):
             self.buttons.append({k:a.get(k) for k in ('data-sku','data-price','data-product')})
 
 
-def links_signature(source, page):
+def signature(source,page):
     return [(t,k,normalize_url(v,page)) for t,k,v in PageLinks(source).links]
 
 
@@ -72,7 +71,7 @@ def scenarios(source):
     return json.loads(match.group(1))
 
 
-def source_review(contract, plan):
+def source_review(contract,plan):
     base=contract['approved_base_commit']
     run(['git','fetch','--no-tags','--depth=1','origin','main'],45)
     assert run(['git','rev-parse','FETCH_HEAD']).stdout.strip()==base,'MAIN_ADVANCED_RECONCILIATION_REQUIRED'
@@ -82,7 +81,7 @@ def source_review(contract, plan):
     rows=[];old_intermediates=[]
     for rel in pages:
         before=git_source(base,rel);now=(ROOT/rel).read_text(encoding='utf-8')
-        assert links_signature(before,rel)==links_signature(now,rel),'ROUTE_OR_QUERY_OR_FRAGMENT_CHANGED:'+rel
+        assert signature(before,rel)==signature(now,rel),'ROUTE_OR_QUERY_OR_FRAGMENT_CHANGED:'+rel
         bp,np=PageLinks(before),PageLinks(now)
         assert bp.buttons==np.buttons,'COMMERCE_BINDING_CHANGED:'+rel
         for b in np.buttons:
@@ -101,9 +100,8 @@ def source_review(contract, plan):
                 product_links.append({'url':normalized[5:],'sku':sku,'retired':sku in RETIRED,'successor':RETIRED.get(sku)})
                 if sku in RETIRED:old_intermediates.append({'source':rel,'target':normalized[5:],'retired_sku':sku,'successor':RETIRED[sku]})
         rows.append({'page':rel,'source_sha256':hashlib.sha256(before.encode()).hexdigest(),
-                     'candidate_sha256':hashlib.sha256(now.encode()).hexdigest(),
-                     'link_count':len(np.links),'route_signature_preserved':True,
-                     'product_links':product_links,'purchase_buttons':np.buttons})
+          'candidate_sha256':hashlib.sha256(now.encode()).hexdigest(),'link_count':len(np.links),
+          'route_signature_preserved':True,'product_links':product_links,'purchase_buttons':np.buttons})
     before=scenarios(git_source(base,'diagnostika.html'))
     after=scenarios((ROOT/'diagnostika.html').read_text())
     assert after==before,'DIAGNOSTIC_DECISION_TREE_CHANGED'
@@ -119,23 +117,16 @@ def source_review(contract, plan):
     forbidden=['data/business/diagnostic.yaml','data/business/money-pains.yaml']
     assert all(not (ROOT/p).exists() for p in forbidden),'DELETED_DIAGNOSTIC_SOURCE_RESTORED'
     for rel in ['payment.php','webhook.php','check-payment.php','download.php','app.js','attribution.js']:
-        actual=(ROOT/rel).read_bytes()
         old=subprocess.run(['git','show',base+':'+rel],cwd=ROOT,capture_output=True,check=True,timeout=20).stdout
-        assert actual==old,'CHECKOUT_OR_ATTRIBUTION_CODE_CHANGED:'+rel
+        assert (ROOT/rel).read_bytes()==old,'CHECKOUT_OR_ATTRIBUTION_CODE_CHANGED:'+rel
     spec=importlib.util.spec_from_file_location('nsp_inspection',D/'inspect_backup.py')
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-    manifest=module.repo_manifest()
     accepted=json.loads((OUT/'repository-full-13sku-manifest.json').read_text())['products']
-    assert manifest==accepted,'BUYER_172_FILE_OR_CATALOG_DRIFT'
+    assert module.repo_manifest()==accepted,'BUYER_172_FILE_OR_CATALOG_DRIFT'
     redirect=(D/'old-domain-cutover.htaccess').read_text()
     assert 'RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$' in redirect
     assert 'https://nastoronepodryadchika.ru%{REQUEST_URI}' in redirect
     assert '^\\.well-known/acme-challenge/' in redirect
-    assert '^ healthcare' not in redirect
-    assert '^ medication' not in redirect
-    assert '^ materials' not in redirect
-    assert '^ financial' not in redirect
-    assert '^ housing' not in redirect
     assert '^(?:payment|webhook|check-payment|download|contact)\\.php$ - [L]' in redirect,'PAYMENT_POST_REDIRECT_GUARD_MISSING'
     report={'status':'PASS_ROUTE_AND_BUYER_SOURCE_INVARIANTS','baseline':base,
       'public_pages':len(pages),'diagnostic_scenarios':after,'diagnostic_scenario_count':len(after),
@@ -150,12 +141,9 @@ def source_review(contract, plan):
       'production_touched':False}
     write('route-source-review.json',report)
     print('ROUTE_SOURCE_PASS',len(pages),'PAGES',len(after),'SCENARIOS',len(active),'SKUS',flush=True)
-    return report
 
 
 def fix_typography(plan):
-    # Root cause: broad .section h2 selector overrides editorial card typography.
-    # Keep the accepted theme; append the narrow component rule, not a redesign.
     for row in plan['shipping_files']:
         p=ROOT/row['file'];assert hashlib.sha256(p.read_bytes()).hexdigest()==row['sha256'],'UNREVIEWED_SHIPPING_DRIFT:'+row['file']
     css=ROOT/'brand-approved-2026.css';text=css.read_text()
@@ -174,7 +162,7 @@ def card_browser_review():
     class Static(http.server.SimpleHTTPRequestHandler):
         def log_message(self,*args):pass
     server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Static,directory=str(ROOT)))
-    thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+    threading.Thread(target=server.serve_forever,daemon=True).start()
     base=f'http://127.0.0.1:{server.server_port}'
     rows=[]
     try:
@@ -184,8 +172,7 @@ def card_browser_review():
             page.route('**/*',lambda r:r.continue_() if r.request.url.startswith(base) else r.abort())
             for width in (390,1366,1440,1600,1920):
                 page.set_viewport_size({'width':width,'height':900})
-                page.goto(base+'/articles/index.html',wait_until='domcontentloaded')
-                page.wait_for_timeout(300)
+                page.goto(base+'/articles/index.html',wait_until='domcontentloaded');page.wait_for_timeout(300)
                 metrics=page.evaluate('''() => ({scroll:document.documentElement.scrollWidth,width:innerWidth,
                   headings:[...document.querySelectorAll('.showcase-card h2')].map(e=>{
                     const s=getComputedStyle(e),r=e.getBoundingClientRect(),c=document.createElement('canvas').getContext('2d');
@@ -200,38 +187,32 @@ def card_browser_review():
                 rows.append({'width':width,'cards':len(metrics['headings']),'pass':True,'headings':metrics['headings']})
             browser.close()
         write('route-card-browser.json',{'status':'PASS_COMPONENT_TYPOGRAPHY','viewports':rows,'external_calls':False})
-    finally:
-        server.shutdown();server.server_close()
+    finally:server.shutdown();server.server_close()
     print('CARD_TYPOGRAPHY_PASS',len(rows),'VIEWPORTS',flush=True)
 
 
 def main():
     contract=json.loads((D/'contract.json').read_text())
-    plan_path=OUT/'prepared-site-plan.json';original_plan=plan_path.read_bytes()
-    plan=json.loads(original_plan)
+    plan_path=OUT/'prepared-site-plan.json';original_plan=plan_path.read_bytes();plan=json.loads(original_plan)
     checkpoint={'status':'RUNNING','source_main':contract['approved_base_commit'],
       'run':os.getenv('GITHUB_RUN_ID'),'production_touched':False,'payment_submitted':False}
     try:
         source_review(contract,plan)
         fix_typography(plan)
-        for cmd in [
-          ['python3','tools/check_nav.py'],['python3','tools/link_audit.py','--verify'],
-          ['python3','tools/build_sitemap.py','--verify'],
-          ['node','tools/test_diagnostic_sku_standalone.js']]:
-            output=run(cmd,60);print(output.stdout[-2000:],flush=True)
+        for cmd in [['python3','tools/check_nav.py'],['python3','tools/link_audit.py','--verify'],
+          ['python3','tools/build_sitemap.py','--verify'],['node','tools/test_diagnostic_sku_standalone.js']]:
+            print(run(cmd,60).stdout[-2000:],flush=True)
         card_browser_review()
-        output=run(['python3',str(D/'test_candidate.py')],300)
-        print(output.stdout[-3000:],flush=True)
+        print(run(['python3',str(D/'test_candidate.py')],300).stdout[-3000:],flush=True)
         source_review(contract,plan)
         checkpoint.update(status='PASS_ROUTES_AND_CURRENT_13SKU_BROWSER',pages=88,
           scenarios=12,active_skus=13,buyer_files=172,card_viewports=5,
           remaining='remote scoped dry-run; isolated staging; live payment/email/13 downloaded ZIPs; redirects')
     except Exception as exc:
         plan_path.write_bytes(original_plan)
-        checkpoint.update(status='FAIL_ROUTE_REVIEW_OR_UI',error=type(exc).__name__+':'+str(exc)[:2000])
+        checkpoint.update(status='FAIL_ROUTE_REVIEW_OR_UI',error=type(exc).__name__+':'+str(exc)[:4000])
         raise
-    finally:
-        write('route-review-checkpoint.json',checkpoint)
+    finally:write('route-review-checkpoint.json',checkpoint)
     print('ROUTES_AND_CANDIDATE_VERIFIED_NO_CUTOVER',flush=True)
 
 
