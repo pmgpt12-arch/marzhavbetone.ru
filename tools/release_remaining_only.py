@@ -18,9 +18,9 @@ def ops(phase):
  code=(R/'tools/remaining_live_ops.php').read_text()
  anchor='[$script,$siteArg,$productsArg,$phase,$encoded] = $argv;'
  assert code.count(anchor)==1
- code=code.replace(anchor,'[$script,$siteArg,$productsArg,$phase] = $argv; $encoded="'+encoded+'";')
+ code=code.replace(anchor,'if(count($argv)!==4)throw new RuntimeException("CLI_ARGV_CONTRACT"); [$script,$siteArg,$productsArg,$phase] = $argv; $encoded="'+encoded+'";')
  # Send the plan and PHP over stdin; hosting SSH exec-request packets are bounded.
- cmd='php -- /dev/stdin '+' '.join(map(shlex.quote,[os.environ['SITE_PATH'],os.environ['PRODUCTS_PATH'],phase]))
+ cmd='php -f /dev/stdin -- '+' '.join(map(shlex.quote,[os.environ['SITE_PATH'],os.environ['PRODUCTS_PATH'],phase]))
  assert len(cmd.encode())<4096,'remote command must exclude code and plan payload'
  try:
   result=run([*ssh,host,cmd],input=code,capture_output=True,text=True)

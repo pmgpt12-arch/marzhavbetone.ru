@@ -896,6 +896,7 @@ jobs:
       - name: Verify accepted bytes, prices, delivery and local workflow contract
         run: |
           python3 tools/verify_remaining_release_20261020.py
+          python3 tools/test_scoped_release_transport.py
           php -l tools/remaining_live_ops.php
           php -l products-config.php
           python3 tools/link_audit.py --verify
