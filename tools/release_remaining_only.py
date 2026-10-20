@@ -17,7 +17,10 @@ def run(args,**kw):return subprocess.run(args,cwd=R,check=True,timeout=90,**kw)
 def ops(phase):
  code=(R/'tools/remaining_live_ops.php').read_text().removeprefix('<?php')
  cmd='php -r '+shlex.quote(code)+' -- '+' '.join(map(shlex.quote,[os.environ['SITE_PATH'],os.environ['PRODUCTS_PATH'],phase,encoded]))
- result=run([*ssh,host,cmd],capture_output=True,text=True)
+ try:
+  result=run([*ssh,host,cmd],capture_output=True,text=True)
+ except subprocess.CalledProcessError as error:
+  raise RuntimeError('REMOTE_PHASE '+phase+' exit='+str(error.returncode)+' stderr='+error.stderr[-3000:]) from None
  return json.loads(result.stdout)
 def rsync(source,target,extra=(),dry=False):
  run(['rsync','-az','--itemize-changes',*(['--dry-run'] if dry else []),*extra,'-e',shlex.join(ssh),str(source),host+':'+target])
