@@ -43,6 +43,21 @@ def http(url,label,method='GET',body=None):
         raise RuntimeError('HTTP_TRANSPORT:'+label+':'+type(exc).__name__) from None
 
 
+class NoExternalRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, request, fp, code, msg, headers, newurl):
+        return None
+
+
+def http_redirect_header(url,label):
+    # Never follow the deep link to Telegram from acceptance tests.
+    opener=urllib.request.build_opener(NoExternalRedirect)
+    req=urllib.request.Request(url,headers={'User-Agent':'NSP-Migration-Acceptance/1.0'})
+    try:resp=opener.open(req,timeout=12)
+    except urllib.error.HTTPError as exc:resp=exc
+    with resp:
+        return resp.code,resp.headers.get('Location','')
+
+
 def prepare():
     c=json.loads((D/'contract.json').read_text())
     stage=json.loads((OUT/'private-stage-verification.json').read_text())
@@ -112,6 +127,14 @@ def main():
             parts=urllib.parse.urlsplit(final)
             assert code==200 and parts.scheme=='https' and parts.hostname==c['new_domain'],'HOST_VARIANT_LOOP_OR_WRONG_TARGET'
             assert urllib.parse.parse_qs(parts.query).get('utm_source')==['migration-check'],'HOST_REDIRECT_QUERY_LOST'
+        # Instagram/ManyChat free-material deep links are existing buyer routes.
+        # Their closed keyword dictionary must survive the hostname migration.
+        code,location=http_redirect_header(base+'/get/?k=gu','FUNNEL_GET_VALID')
+        assert code==302 and location=='https://t.me/marzhafunnel_bot?start=gu','FUNNEL_GET_REDIRECT_DRIFT'
+        code,location=http_redirect_header(base+'/get/?k=not-a-valid-key','FUNNEL_GET_UNKNOWN')
+        assert code==404 and not location,'FUNNEL_GET_UNKNOWN_KEY_NOT_REJECTED'
+        report['security'].append({'path':'get/?k=gu','http':302,'telegram_deep_link_preserved':True})
+        report['security'].append({'path':'get/?k=invalid','http':404,'closed_dictionary':True})
         for rel in ['config.php','config.php.bak','products-config.php','orders/','orders/delivery/',
                     'products-storage/','.git/HEAD','tools/migration-20261020/probe.php','delivery/']:
             code,data,headers,_=http(base+'/'+rel,'PRIVACY:'+rel)
