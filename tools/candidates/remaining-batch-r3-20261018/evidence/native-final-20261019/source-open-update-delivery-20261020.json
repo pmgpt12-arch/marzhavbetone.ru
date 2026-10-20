@@ -1,7 +1,8 @@
 {
   "status": "READY_FOR_INSTALL_NOT_NATIVE_QUALIFIED",
-  "sha256": "f00e2e51f3a93ccd511e519da19b6142f81593b1b22a883e5f6deaead1e5c59b",
-  "bytes": 3814,
+  "sha256": "1def08c8e586aa6560e6d9691770462f07ccbfcb69987393ac01993d874b5f6e",
+  "bytes": 4093,
   "scope": "Excel worker only; read-only normal opening, explicit per-file Local option, no buyer file changes",
-  "behaviour_test": "PENDING"
+  "behaviour_test": "PENDING",
+  "preflight": "Accept exactly one known three-argument Open with literal True or False; return actual previous literal in update receipt. Available baseline script does not establish the installed literal."
 }

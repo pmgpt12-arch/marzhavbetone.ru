@@ -6,7 +6,7 @@ foreach($p in @($native,$agent)) { if (-not (Test-Path -LiteralPath $p)) { throw
 if (@(Get-ChildItem -LiteralPath $root -Filter '*.claimed').Count -gt 0) { throw 'An Excel QA job is still claimed. No changes made.' }
 $before=[IO.File]::ReadAllText($native)
 if (-not $before.Contains(':export_source_first') -or -not $before.Contains('function WritePrintState')) { throw 'The source-print worker update must be installed first. No changes made.' }
-$oldOpen='$book = $excel.Workbooks.Open($path,0,$false)'
+$openPattern='\$book\s*=\s*\$excel\.Workbooks\.Open\(\$path\s*,\s*0\s*,\s*\$(false|true)\s*\)'
 $newOpen=@'
 $localOpen=$f.GetAttribute('open_local') -eq 'true'
 $missing=[Type]::Missing
@@ -14,9 +14,13 @@ $book = $excel.Workbooks.Open($path,0,$true,$missing,$missing,$missing,$true,$mi
 Check ($tag+':opened_read_only') ([bool]$book.ReadOnly) 'True' ([string]$book.ReadOnly)
 $mode=$report.CreateElement('open_mode');$mode.SetAttribute('tag',$tag);$mode.SetAttribute('read_only',[string]$book.ReadOnly);$mode.SetAttribute('local_argument',[string]$localOpen);$mode.SetAttribute('corrupt_load','xlNormalLoad=0');[void]$r.AppendChild($mode)
 '@
-if ($before.Contains($oldOpen)) { $after=$before.Replace($oldOpen,$newOpen) }
-elseif ($before.Contains($newOpen)) { $after=$before }
-else { throw 'Installed Open implementation differs from the reviewed version. No changes made.' }
+if ($before.Contains($newOpen)) { $after=$before;$priorReadOnly='already_patched' }
+else {
+    $openMatches=[regex]::Matches($before,$openPattern)
+    if ($openMatches.Count -ne 1) { throw 'Installed Open implementation differs from the reviewed version. No changes made.' }
+    $priorReadOnly=$openMatches[0].Groups[1].Value
+    $after=$before.Replace($openMatches[0].Value,$newOpen)
+}
 if (-not $after.Contains(':opened_read_only') -or -not $after.Contains('$localOpen,0)')) { throw 'Source-opening patch validation failed.' }
 [void][scriptblock]::Create($after)
 $stop=Join-Path $root 'stop'
@@ -43,6 +47,7 @@ if (-not $written) { throw 'Source-opening update not written.' }
 try {
     [xml]$config=[IO.File]::ReadAllText((Join-Path $root 'config.xml'))
     [xml]$report='<report job="r3q-excel-source-open-update-20261020" status="PASS" scope="WORKER_SCRIPT_UPDATE_ONLY"><check name="reviewed_source_open_patch_written" pass="True" expected="read-only opening and explicit Local option" actual="read-back matched; native behavior requires fresh jobs" /></report>'
+    $report.DocumentElement.SetAttribute('previous_read_only_literal',$priorReadOnly)
     $client=New-Object Net.WebClient;$client.Proxy=$null
     $client.Headers.Add('X-MB-Token',$config.DocumentElement.GetAttribute('token'))
     try { [void]$client.UploadData('http://192.168.1.72:8765/native/result/r3q-excel-source-open-update-20261020/report.xml',[Text.Encoding]::UTF8.GetBytes($report.OuterXml)) } finally { $client.Dispose() }
