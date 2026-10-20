@@ -8,6 +8,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 import inspect_backup as inspection
 from dry_run_new import run,ssh_args
+from legacy_http_gate import verify as verify_legacy_html, self_test as test_legacy_gate
 
 ROOT=Path(__file__).resolve().parents[2]
 D=Path(__file__).resolve().parent
@@ -78,6 +79,10 @@ def main():
     for key in ['paths','products','code_sha256','config_sha256_not_contents','new_root_index_sha256']:
         assert before[key]==baseline[key],'LIVE_STATE_CHANGED:'+key
     assert not before['runtime']['new_config_exists'],'NEW_ROOT_ALREADY_CONFIGURED'
+    # Fail before touching either public root if CDN normalization regresses.
+    old_source=(ROOT/'index.html').read_bytes()
+    assert hashlib.sha256(old_source).hexdigest()==baseline['code_sha256']['index.html'],'LEGACY_ORIGIN_SOURCE_CHANGED'
+    test_legacy_gate(old_source)
     attempts=False
     report={'status':'RUNNING_NEW_DOMAIN_ACCEPTANCE','run':os.environ['GITHUB_RUN_ID'],
       'source_main':c['approved_base_commit'],'old_store_modified':False,
@@ -153,7 +158,14 @@ def main():
         assert after['runtime']['new_config_exists']
         oldcode,oldbody,_,oldfinal=http('https://'+c['old_domain']+'/','OLD_STORE')
         assert oldcode==200 and urllib.parse.urlsplit(oldfinal).hostname==c['old_domain'],'OLD_STORE_REDIRECTED_PREMATURELY'
-        assert hashlib.sha256(oldbody).hexdigest()==before['code_sha256']['index.html'],'OLD_STOREFRONT_CHANGED'
+        old_verified=verify_legacy_html(oldbody,old_source)
+        assert old_verified['expected_origin_sha256']==before['code_sha256']['index.html'],'OLD_STOREFRONT_CHANGED'
+        report['old_store_http']={
+          'status':old_verified['status'],
+          'raw_http_sha256':old_verified['raw_http_sha256'],
+          'normalized_sha256':old_verified['normalized_sha256'],
+          'transformations':old_verified['transformations']
+        }
         assert len(report['downloads'])==13 and sum(r['files'] for r in report['downloads'])==172
         report.update(status='PASS_NEW_DOMAIN_HTTPS_AND_13_SYNTHETIC_DOWNLOADS',
           buyer_files=172,active_skus=13,ttl_definition_seconds=3600,expired_http=410,
