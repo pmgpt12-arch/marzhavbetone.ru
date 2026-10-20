@@ -48,7 +48,7 @@ jobs:
           from pathlib import Path
           d=Path('tools/migration-20261020')
           c=json.loads((d/'contract.json').read_text());r=json.loads((d/'request.json').read_text())
-          assert r['phase'] in {'inspect-backup','prepare-site','validate-routes','audit-offers','dry-run-new','stage-private','publish-test'} and not r['production_cutover']
+          assert r['phase'] in {'inspect-backup','prepare-site','validate-routes','audit-offers','dry-run-new','stage-private','publish-test','diagnose-http'} and not r['production_cutover']
           assert r['expected_main']==c['approved_base_commit']
           assert len(c['active_skus'])==13 and sum(x['files'] for x in c['active_skus'].values())==172
           assert all(x['dir'].isascii() for x in c['active_skus'].values())
@@ -105,6 +105,7 @@ jobs:
             dry-run-new) timeout 600s python3 tools/migration-20261020/dry_run_new.py ;;
             stage-private) timeout 600s python3 tools/migration-20261020/stage_private.py ;;
             publish-test) timeout 600s python3 tools/migration-20261020/publish_test.py ;;
+            diagnose-http) timeout 90s python3 tools/migration-20261020/diagnose_http.py ;;
             audit-offers)
               timeout 35s git fetch --no-tags --depth=1 origin main
               timeout 90s python3 tools/migration-20261020/audit_route_offers.py ;;
