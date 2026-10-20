@@ -1,14 +1,15 @@
 {
-  "phase": "stage-private",
+  "phase": "publish-test",
   "attempt": 2,
-  "authorization": "Owner migration continuation; investigate failed gate before retry",
+  "authorization": "Owner requested to continue migration on 2026-10-20; isolated new-domain HTTPS acceptance only",
   "production_cutover": false,
+  "public_new_root_acceptance": true,
+  "real_payment_enabled": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
-  "previous_run": 39410166252,
-  "verified_partial_result": "18 new-domain pages, all 13 real HTTPS ZIP downloads/172 member hashes and CRC, 13 expired HTTP410 links and private-path guards passed. Last old-root HTTP-vs-filesystem equality failed. Filesystem snapshot stayed unchanged and automatic rollback is ALREADY_ROLLED_BACK.",
-  "hypothesis": "The old host is behind a transforming CDN: historical public-before-state already has HTTP SHA different from origin and different between apex/www despite same URL and length. Determine exact public HTML delta before changing the acceptance comparison.",
-  "scope": "Create new run-scoped private candidate; verify 13 actual ZIPs/172 buyer-file hashes and TTL 3600, no public writes, no real payment",
-  "expected_output": "private-stage-verification.json PASS with new unique workspace and exact 13-SKU member hashes",
-  "classified_cause": "Previous new-domain publish-test failed only because Cloudflare alters old public HTML. Exact normalization gate passed 3/3 and rejects 5 business-content mutations. Prior public test rolled back; require fresh bounded remote dry-run and backup checks before new private staging.",
-  "verified_dependency": "PASS_EXACT_REMOTE_DRY_RUN_AND_ROLLBACK, 171 shipping files, 4 backups verified, no public modifications"
+  "verified_private_stage_run": 39410371372,
+  "verified_private_stage_workspace": "/var/www/u3581543/data/nsp-migration-private/run-39410371372-stage",
+  "previous_public_test_run": 39410166252,
+  "verified_legacy_cdn_gate_run": 39410025073,
+  "scope": "Publish disabled-commerce noindex candidate to new domain only; verify 18 pages, www/http canonical, 13 actual HTTPS ZIP downloads and 172 member SHA256/CRC, 13 expired HTTP410, no private source access; exact Cloudflare-aware old-store content; automatic new-root rollback on any failure. No real payment, mail, old-site changes or DNS cutover.",
+  "expected_output": "new-domain-http-acceptance.json with PASS or failure and rollback receipt; preserve old storefront and original new-root tree SHA"
 }
