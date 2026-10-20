@@ -1,13 +1,14 @@
 {
-  "phase": "dry-run-new",
+  "phase": "stage-private",
   "attempt": 2,
   "authorization": "Owner migration continuation; investigate failed gate before retry",
   "production_cutover": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
-  "previous_run": 39410025073,
+  "previous_run": 39410166252,
   "verified_partial_result": "18 new-domain pages, all 13 real HTTPS ZIP downloads/172 member hashes and CRC, 13 expired HTTP410 links and private-path guards passed. Last old-root HTTP-vs-filesystem equality failed. Filesystem snapshot stayed unchanged and automatic rollback is ALREADY_ROLLED_BACK.",
   "hypothesis": "The old host is behind a transforming CDN: historical public-before-state already has HTTP SHA different from origin and different between apex/www despite same URL and length. Determine exact public HTML delta before changing the acceptance comparison.",
-  "scope": "Read-only old/new webroot and backup checks; rsync dry-run only; private rollback drill; no live upload",
-  "expected_output": "remote-dry-run.json with current root, 171-file plan, four backups and no public mutations",
-  "classified_cause": "Previous new-domain publish-test failed only because Cloudflare alters old public HTML. Exact normalization gate passed 3/3 and rejects 5 business-content mutations. Prior public test rolled back; require fresh bounded remote dry-run and backup checks before new private staging."
+  "scope": "Create new run-scoped private candidate; verify 13 actual ZIPs/172 buyer-file hashes and TTL 3600, no public writes, no real payment",
+  "expected_output": "private-stage-verification.json PASS with new unique workspace and exact 13-SKU member hashes",
+  "classified_cause": "Previous new-domain publish-test failed only because Cloudflare alters old public HTML. Exact normalization gate passed 3/3 and rejects 5 business-content mutations. Prior public test rolled back; require fresh bounded remote dry-run and backup checks before new private staging.",
+  "verified_dependency": "PASS_EXACT_REMOTE_DRY_RUN_AND_ROLLBACK, 171 shipping files, 4 backups verified, no public modifications"
 }
