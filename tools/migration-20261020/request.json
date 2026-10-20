@@ -1,9 +1,11 @@
 {
   "phase": "prepare-site",
-  "attempt": 1,
+  "attempt": 2,
   "authorization": "Owner migration specification 2026-10-20",
   "production_cutover": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
   "depends_on_verified_run": 39389485844,
+  "previous_run": 39390684572,
+  "recovery": "Source generation and product invariants passed; commit gate rejected extra EOF blank line in new redirect template. Generator now normalizes EOF and asserts it. No acceptance gate disabled.",
   "scope": "Current main source only; approved CSS/icons; no buyer document edits; no production writes"
 }
