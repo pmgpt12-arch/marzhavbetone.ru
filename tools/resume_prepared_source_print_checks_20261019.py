@@ -8,15 +8,18 @@ from submit_office_review_job import submit
 REPO = Path(__file__).resolve().parents[1]
 ROOT = Path('/home/denis/.local/share/ai-business-os/tool-sandbox/excel-laptop-preflight-20261011')
 OUT = REPO / 'tools/candidates/remaining-batch-r3-20261018/evidence/native-final-20261019/source-print'
+PROFILE = 'source-print'
 
 
 def ready():
-    receipt = ROOT / 'results/native/r3f-worker-diagnostics-20261019/report.xml'
+    update = 'r3q-excel-source-open-update-20261020' if PROFILE == 'source-open' else 'r3f-worker-diagnostics-20261019'
+    receipt = ROOT / 'results/native' / update / 'report.xml'
     if not receipt.exists(): return False
     report = E.parse(receipt).getroot()
-    if report.get('scope') != 'WORKER_DIAGNOSTICS_ONLY': return False
+    expected_scope = 'WORKER_SCRIPT_UPDATE_ONLY' if PROFILE == 'source-open' else 'WORKER_DIAGNOSTICS_ONLY'
+    if report.get('scope') != expected_scope: return False
     stamp = receipt.stat().st_mtime
-    for channel in ['native', 'word']:
+    for channel in (['native'] if PROFILE == 'source-open' else ['native', 'word']):
         path = ROOT / 'results' / (channel + '-laptop-status.json')
         if not path.exists(): return False
         status = json.loads(path.read_text())
@@ -29,8 +32,11 @@ def run(wait_seconds):
     while not ready() and time.monotonic() < stop: time.sleep(3)
     if not ready(): raise SystemExit('WORKER_UPDATE_NOT_OBSERVED; no job submitted; Office connectivity is not the blocker')
     OUT.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(ROOT / 'results/native/r3f-worker-diagnostics-20261019/report.xml', OUT / 'worker-update-diagnostics.xml')
-    for ident in ['r3n-source-print-preflight-20261020', 'r3n-original-xls-source-print-20261020']:
+    update = 'r3q-excel-source-open-update-20261020' if PROFILE == 'source-open' else 'r3f-worker-diagnostics-20261019'
+    shutil.copyfile(ROOT / 'results/native' / update / 'report.xml', OUT / (update + '-report.xml'))
+    jobs = (['r3r-xlsx-local-mode-control-20261020', 'r3r-original-xls-readonly-20261020'] if PROFILE == 'source-open'
+            else ['r3n-source-print-preflight-20261020', 'r3n-original-xls-source-print-20261020'])
+    for ident in jobs:
         jobdir = ROOT / 'native' / ident
         job = E.parse(jobdir / 'job.xml').getroot()
         for file in job.findall('file'):
@@ -55,6 +61,9 @@ def run(wait_seconds):
             for suffix in ['input_sha', 'export_source_first', 'pdf_export', 'source_unchanged']:
                 check = report.find("check[@name='" + tag + ':' + suffix + "']")
                 assert check is not None and check.get('pass', '').lower() == 'true', (tag, suffix, 'HARNESS_CAPABILITY_NOT_QUALIFIED')
+            if PROFILE == 'source-open':
+                check = report.find("check[@name='" + tag + ":opened_read_only']")
+                assert check is not None and check.get('pass', '').lower() == 'true' and check.get('actual', '').lower() == 'true'
             states = report.findall("print_preflight[@tag='" + tag + "']")
             assert {state.get('stage') for state in states} == {'opened', 'exported_saved'}, (tag, 'HARNESS_PRINT_PREFLIGHT_MISSING')
             for state in states: print('PRINT_PREFLIGHT', E.tostring(state, encoding='unicode'), flush=True)
@@ -63,5 +72,7 @@ def run(wait_seconds):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(); parser.add_argument('--wait-seconds', type=int, default=0)
+    parser.add_argument('--profile', choices=['source-print', 'source-open'], default='source-print')
     args = parser.parse_args(); assert 0 <= args.wait_seconds <= 240
+    PROFILE = args.profile
     run(args.wait_seconds)
