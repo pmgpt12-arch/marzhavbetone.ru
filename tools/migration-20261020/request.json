@@ -1,7 +1,9 @@
 {
-  "phase": "inspect-backup",
+  "phase": "prepare-site",
   "attempt": 1,
   "authorization": "Owner migration specification 2026-10-20",
   "production_cutover": false,
-  "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752"
+  "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+  "depends_on_verified_run": 39389485844,
+  "scope": "Current main source only; approved CSS/icons; no buyer document edits; no production writes"
 }
