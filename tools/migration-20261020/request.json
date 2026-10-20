@@ -1,12 +1,12 @@
 {
-  "phase": "dry-run-new",
-  "attempt": 2,
-  "authorization": "Owner continuation: safe scoped dry run only",
+  "phase": "stage-private",
+  "attempt": 3,
+  "authorization": "Owner continuation; private staging with fresh 3600s synthetic tokens",
   "production_cutover": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
-  "verified_route_addendum_run": 39423055832,
+  "verified_dry_run": 39423151819,
   "shipping_files": 172,
   "buyer_files": 172,
-  "scope": "Read-only compare old site, new root, private masters, orders; verify four backups and 172 exact allowlisted site files including get/index.php; rehearse rollback outside public directories; no public writes or real payment",
-  "expected_output": "remote-dry-run.json PASS_EXACT_REMOTE_DRY_RUN_AND_ROLLBACK with four verified backups"
+  "scope": "Create unique private 172-site-file candidate with unchanged get/index.php; verify all 13 SKU archives, 172 member hashes, CRC, P1 edition and new-domain link generation; no public directory changes, real payment or email",
+  "expected_output": "private-stage-verification.json PASS, fresh run-scoped workspace and synthetic tokens"
 }
