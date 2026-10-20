@@ -1,15 +1,12 @@
 {
-  "phase": "publish-test",
+  "phase": "prepare-site",
   "attempt": 2,
-  "authorization": "Owner requested to continue migration on 2026-10-20; isolated new-domain HTTPS acceptance only",
+  "authorization": "Owner continuation and explicit request to preserve site routes; no cutover",
   "production_cutover": false,
-  "public_new_root_acceptance": true,
-  "real_payment_enabled": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
-  "verified_private_stage_run": 39410371372,
-  "verified_private_stage_workspace": "/var/www/u3581543/data/nsp-migration-private/run-39410371372-stage",
-  "previous_public_test_run": 39410166252,
-  "verified_legacy_cdn_gate_run": 39410025073,
-  "scope": "Publish disabled-commerce noindex candidate to new domain only; verify 18 pages, www/http canonical, 13 actual HTTPS ZIP downloads and 172 member SHA256/CRC, 13 expired HTTP410, no private source access; exact Cloudflare-aware old-store content; automatic new-root rollback on any failure. No real payment, mail, old-site changes or DNS cutover.",
-  "expected_output": "new-domain-http-acceptance.json with PASS or failure and rollback receipt; preserve old storefront and original new-root tree SHA"
+  "previous_public_acceptance_run": 39422331371,
+  "previous_failure": "Fresh HTTP 410 for p1 because synthetic token created >3600s earlier; rollback confirmed; add prepublication token-freshness gate.",
+  "route_discovery": "Existing /get/?k=... Instagram/ManyChat to Telegram deep-link missing from 171-file shipping allowlist. Add get/index.php unchanged and verify 302 known key, 404 unknown key.",
+  "scope": "Regenerate site shipping manifest including unchanged get/index.php and current accepted 13-SKU pages; no real payment, no live config, no buyer document edits; do not deploy",
+  "expected_output": "prepared-site-plan.json updated to 172 site files and get/index.php SHA256; source product manifest unchanged 13/172"
 }
