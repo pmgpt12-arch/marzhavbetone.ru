@@ -1,0 +1,84 @@
+{
+  "status": "PASS_REVIEWED_CURRENT_DELTAS",
+  "documents": [
+    {
+      "document": "products-storage/01-zakrytie-rabot/03-akt-vypolnennyh-rabot.docx",
+      "previous_semantic_hash": "sha256:fbae2bf19cc41f7ce0278b8ef145a7029ae73d8477e80dd51bb171ad96e08b51",
+      "current_semantic_hash": "sha256:4b6201e44d685c0efd8865cf84a9d07ea6d5851feb6b81d42d4e6f24ac6780c4",
+      "raw_sha256": "bf3d055ccc050d5f0e1c1b1f09963d436aed7fc81647d63a1d0285e3f3e8cbfe",
+      "review": "Only the operational register filename changes from 06 to 06A. All remaining semantic parts are identical; the reference now resolves to the accepted member.",
+      "verdict": "PASS_SCOPED_DELTA_REVIEW",
+      "reviewer": "Codex current session; no external model call or human-lawyer claim",
+      "prior_source_evidence": "data/legal/history/normative-results-2026-10-20-before-r3.yaml"
+    },
+    {
+      "document": "products-storage/01-zakrytie-rabot/11-slovar-poley.docx",
+      "previous_semantic_hash": "sha256:3e328b2ceebffb42b0332cf4dbb5feb5cbb674941fd2a5104c63195a71ea466c",
+      "current_semantic_hash": "sha256:375287ee2d1643a543063ed8b59f66a34bf1e1ef4def8a59ebb4bea18eaa8d63",
+      "raw_sha256": "83c11248a93908afa738f5bc157a32bb71844c3267a9a768d35ecea372f2a48b",
+      "review": "Reviewed rewritten control instructions and relocated legal guidance from file 16. Separate response and pre-action waiting periods remain explicit. Articles 191/193, 395(4), 125/126 and the payment/claim-cost controls remain qualified. Individual entrepreneur particulars are relocated from the previously checked statement of claim.",
+      "verdict": "PASS_SCOPED_DELTA_REVIEW",
+      "reviewer": "Codex current session; no external model call or human-lawyer claim",
+      "prior_source_evidence": "data/legal/history/normative-results-2026-10-20-before-r3.yaml"
+    },
+    {
+      "document": "products-storage/01-zakrytie-rabot/12-pretenziya-na-neoplatu-po-ks-2.docx",
+      "previous_semantic_hash": "sha256:c4283a4bcd6084cc9d5b768ce5970ff56bc8aaf05e34457413ca00d09d753b4c",
+      "current_semantic_hash": "sha256:6d45784ac0075252645b9324a5df34551f1b253a7e64a528cd90d9b7d9f3e254",
+      "raw_sha256": "b476c23402caf42da0fe33710fa64b73b808692a5d6b80e4e5fdcd7e8d8f5f0e",
+      "review": "The complete current sending form is an exact ordered subsequence of the previous checked semantic text. Explanatory pages are removed; payment demands, legal grounds, periods, sums, appendices and signature fields in the form are unchanged. Cross-document preparation guidance remains in files 11 and 15.",
+      "verdict": "PASS_SCOPED_DELTA_REVIEW",
+      "reviewer": "Codex current session; no external model call or human-lawyer claim",
+      "prior_source_evidence": "data/legal/history/normative-results-2026-10-20-before-r3.yaml"
+    },
+    {
+      "document": "products-storage/01-zakrytie-rabot/13-uvedomlenie-o-prosrochke-oplaty.docx",
+      "previous_semantic_hash": "sha256:df345f79c072a40413727970f4b11796fdca544eb49ec74ad0a60fbd19be9df2",
+      "current_semantic_hash": "sha256:505aa0bf64adfb5aab54ad795c97f9ebc4e369b66ca14a60bafb52a5a88dad02",
+      "raw_sha256": "c942759a345de00ab321c238c29af0c14ed51d2fe1170e96d1311bcca38613c2",
+      "review": "The complete current sending form is an exact ordered subsequence of the previous checked semantic text. No added legal demand or automatic consequence. Files 11/15 retain the distinction between the appointed response date and the applicable waiting period before filing.",
+      "verdict": "PASS_SCOPED_DELTA_REVIEW",
+      "reviewer": "Codex current session; no external model call or human-lawyer claim",
+      "prior_source_evidence": "data/legal/history/normative-results-2026-10-20-before-r3.yaml"
+    },
+    {
+      "document": "products-storage/01-zakrytie-rabot/14-raschet-procentov-395-gk.xlsx",
+      "previous_semantic_hash": "sha256:4ca6d9b9cfa4393cfcfe93d29467e95f1f02c9e24cac7332ca166664fea11a7a",
+      "current_semantic_hash": "sha256:9cbd5ca631ee1d121a4c0e0f2d7ad248d53479c9d9b6d3bdc383b04a43ae90e0",
+      "raw_sha256": "0899e1ba75bdf29f1400ef855ebf61fbcc1681bb1c7487609004a1b4c2e83927",
+      "review": "All formula semantic entries are identical to the previous checked workbook. Revised input and print instructions retain historical debt, dated partial payments, rate/year splits, actual calendar-year length and the payment-day rule. Removed disclaimer blocks do not change calculation logic; sanction selection is explained in files 11/15. Native numeric scenarios are separately bound to the exact current SHA.",
+      "verdict": "PASS_SCOPED_DELTA_REVIEW",
+      "reviewer": "Codex current session; no external model call or human-lawyer claim",
+      "prior_source_evidence": "data/legal/history/normative-results-2026-10-20-before-r3.yaml"
+    },
+    {
+      "document": "products-storage/01-zakrytie-rabot/15-algoritm-pri-zaderzhke-oplaty.docx",
+      "previous_semantic_hash": "sha256:49ff8cf920445cfbc00e5e995253df956db69ca7a97f266c9438c5b8202e90d1",
+      "current_semantic_hash": "sha256:8a2737b48b1b530a26cf8ec9f2d223a79f999f17f1917bf16576c9945d298a61",
+      "raw_sha256": "2cc358fcf801e98ca37aa649f6d12ad1cb884de12bbf4e7dabccec5b897c077b",
+      "review": "Reviewed every changed paragraph. Qualified pre-action waiting, conditional suspension under articles 328/719 and paragraph 57 of Plenum 54, article 753(4), bankruptcy publication and article 8 enforcement routes retain their substantive conditions. No automatic acceptance or immediate suspension from nonpayment is introduced. Operational dates remain distinct from contractual/procedural periods.",
+      "verdict": "PASS_SCOPED_DELTA_REVIEW",
+      "reviewer": "Codex current session; no external model call or human-lawyer claim",
+      "prior_source_evidence": "data/legal/history/normative-results-2026-10-20-before-r3.yaml"
+    },
+    {
+      "document": "products-storage/01-zakrytie-rabot/16-iskovoe-zayavlenie-o-vzyskanii.docx",
+      "previous_semantic_hash": "sha256:6f3c7539c22db12d2d3413686c1aef05bd9f735ca2b6146f1a3d680ef7646e29",
+      "current_semantic_hash": "sha256:2ef338f4215c8b39d394d263f0b002c38469c98dbe14a01070a847aa04ac4e5e",
+      "raw_sha256": "610e06791c6299393d1b33802f4ea67b4ee87018839598b86d8cfb8bbb7f7de0",
+      "review": "Reviewed the retained claim form and relocated guidance in file 11. Interest basis and prayer remain intact. Alternative conciliation history is now an explicit fillable factual field. The optional repealed registration-certificate appendix is replaced by a factual other-evidence list, consistent with article 126(1)(4) repeal. Entrepreneur particulars and coordinated penalty/interest substitutions remain in file 11.",
+      "verdict": "PASS_SCOPED_DELTA_REVIEW",
+      "reviewer": "Codex current session; no external model call or human-lawyer claim",
+      "prior_source_evidence": "data/legal/history/normative-results-2026-10-20-before-r3.yaml"
+    }
+  ],
+  "basis": "Exact prior PASS hashes verified; changed semantic parts read with cross-document relocations. Prior source evidence retained; sources for changed propositions consulted again 20.10.2026. No new buyer-file edits.",
+  "sources_rechecked": [
+    "https://www.consultant.ru/document/cons_doc_LAW_37800/4d77fceae32b76a1cc26db3a1c64857d59045fdc/",
+    "https://www.consultant.ru/document/cons_doc_LAW_37800/3602d6d485c2ed29f7b862fc5d814eac05274be0/",
+    "https://www.consultant.ru/document/cons_doc_LAW_5142/93383099dc4f06165d8d4aac4eeb159db4f6da3d/",
+    "https://www.consultant.ru/document/cons_doc_LAW_9027/6b2d751a0d605616a9a1012cb7c7fbac1b6d84b3/",
+    "https://www.consultant.ru/document/cons_doc_LAW_71450/638828631575bc444797ecfd09452f7eff765df5/",
+    "https://www.consultant.ru/document/cons_doc_LAW_207545/"
+  ]
+}

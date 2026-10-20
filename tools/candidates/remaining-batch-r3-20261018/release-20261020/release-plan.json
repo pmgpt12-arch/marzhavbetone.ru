@@ -450,6 +450,11 @@
   },
   "site_files": [
     {
+      "file": "diagnostika.html",
+      "before_sha256": "4fb875a01629eb91b8ecafb23993fd58296ee505b5484032e2b179d4abb3a2f3",
+      "sha256": "040fcfdc3f2bc575d208a1201e2062feef42df4d00df5ba9e2fe5adff3e1b255"
+    },
+    {
       "file": "index.html",
       "before_sha256": "79b3f3461075fd2e93151752aee067f6875b101103d91e4e29165cf041fc1d12",
       "sha256": "31310628b0d2b75ae2fc2b2250f5864901fe48145ea84a6a19b7c7e071782bae"
@@ -457,7 +462,22 @@
     {
       "file": "katalog.html",
       "before_sha256": "a899fc63f73ca00093fc7eeeb78cbd48a36cce7ed35d368bb8c3ddb0ca30b229",
-      "sha256": "a96b6c961c12208182614ade8c8edc86d182eb81bbbbfffae5e8b1fc43f9062d"
+      "sha256": "788a6016fe9957d2127d8b93bd5777028d06a0548a8654d7e7a2564bc0f912f9"
+    },
+    {
+      "file": "materialy/akt-skrytyh-rabot.html",
+      "before_sha256": "e8ae43613b06aaf4779f1c53fe3da0e4c21de80f2ca965b43d7c43ac3b5ddc61",
+      "sha256": "f02d03292076e1706b6a4c75b1ccd9a1fa4eca2e8625899c6c311d4998f3af40"
+    },
+    {
+      "file": "materialy/dengi.html",
+      "before_sha256": "e4bf69aae5271402140b77f08e88d4adc0c6a16844b76adfbefa18130304b326",
+      "sha256": "08148d891f7bf4f80a4f9509f013a7f47d554466d832ba260a91d225e91be890"
+    },
+    {
+      "file": "materialy/ispolnitelnaya-dokumentaciya.html",
+      "before_sha256": "db300c25472106a189085c5eda402e3ff1d23de7b3a44accf83952ba8aa78906",
+      "sha256": "b15daef4d50ecdf0f7a26bdc448ebdd227e32d1f15f82be6abd08edc6c6b9ec8"
     },
     {
       "file": "products-config.php",
@@ -467,22 +487,22 @@
     {
       "file": "products/p1-oplata-po-ks2.html",
       "before_sha256": "6b6b0a3cc750520d9a7f726b485de98591a6501b16ea6e9c1fda1957a116f5c4",
-      "sha256": "faed1599b240f8d37f905a6a68cd786cab67e688d051037cbf0edf8455ab8b44"
+      "sha256": "8c72e95143416efc1f1768462119e7df7b4086046deaeec5e54a7c357e16a362"
     },
     {
       "file": "products/p10-otvet-na-pretenziyu.html",
       "before_sha256": "d8aa76cfd2c3518b2139cfcc5f49a399eaf327851e6ed89e835d287149000b9b",
-      "sha256": "3a374f835100ab07b7640a79f376c808fa748a13e1ee5140a8e7fd1282433a6b"
+      "sha256": "8b5af710fda4bc02b7264fd6bfb77ef9c7baf98e52d838d176be3c6c770d24b9"
     },
     {
       "file": "products/p13-chto-v-smete-ne-oplatyat.html",
       "before_sha256": "9f825dabab64c3e35c2f8a9a6e08c24660d3559322f22330091f01ef28f79ea7",
-      "sha256": "10c1d9056a25efc76c21a10c18c4e869494ef82004f400268c166ad969aa145f"
+      "sha256": "9bdda23a198cd73b4a7683422545a8fa6c29b259d8654071295dfe76b48dd429"
     },
     {
       "file": "products/p2-dopolnitelnye-raboty.html",
       "before_sha256": "38c90c07a4019b84d7ead0ab02528e5278a25f616549aad074814330758a779e",
-      "sha256": "e57dc3a98ee34e525af7d85a1f3a4e8388b0be19f3c6f4d39cc27b6b2bbf6664"
+      "sha256": "a1ed96dcbbefdd5de83b55380b0bd8e29817098f30b8a385fac534a8777e2307"
     },
     {
       "file": "products/p3-shablony-ks2-ks3.html",
@@ -492,27 +512,32 @@
     {
       "file": "products/p4-ispolnitelnaya-dokumentaciya-pto.html",
       "before_sha256": "9e8cca179ff717f3871ae66e9e0f1bbce7bebca54d19d9a828e8fee30dd7d199",
-      "sha256": "285fb5dd9f39ead7a4c35b515393e689995a89a6005d86acb2d0f1f774b0e502"
+      "sha256": "3ebcc2c5e5383fe6270f86f41817164d0d908abd41d8a6c500150404f97281f3"
     },
     {
       "file": "products/p7-dogovor-podryada.html",
       "before_sha256": "906f3da7ede968b4c5aaabe477f3d292ce4a837eecbe8f8b3a27c21f3d10d05a",
-      "sha256": "9d2de2f8e2687b650bc85a9223490935d7953c21e2b3f8aedb7f4684247df62d"
+      "sha256": "33e32c3ff318f4af51a185eb023fb798829b6cd3056f5c9870f2d4b442620568"
     },
     {
       "file": "products/p8-avans-po-dogovoru-subpodryada.html",
       "before_sha256": "b339ad87de6e7ca46e11fb8bf3d21176996ebff71dc96cb784859099d314728f",
-      "sha256": "e2684e3d0b95b60131f116c5b9d8e1a1921cc382b2fd4691f14981de6f0aaf0c"
+      "sha256": "68317efd707b51cd64c56039bd5bd7534c1cf4e601a16f09902638a66b87f022"
     },
     {
       "file": "products/p9-bankrotstvo-genpodryadchika.html",
       "before_sha256": "93b47afd8f2a8694478c76db14976a57a622cc39195429c93b2b768a61ff4a2c",
-      "sha256": "93d854c91b71a10afefed363770e389293c742fc2d9d69df6ed5765fcf412a10"
+      "sha256": "7f6531203d9fd1ea9966727a9f57542d54342e1b97f0394cadb411d3c3b779ff"
     },
     {
       "file": "products/t1-pervyy-shag-pri-neoplate.html",
       "before_sha256": "05a45f5f388f4dc1ada91cce0914a2ba7ee17f26b21ae578f467487d56676c0f",
       "sha256": "21ea0987c71802c4e135d2c2be4d2f5b3c999f57bf344657f55b210b6a13e57e"
+    },
+    {
+      "file": "products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+      "before_sha256": "4a846818281952475ca500ff86c06309c4c4fc4da7b7ecefa1f58021ddf10143",
+      "sha256": "25ba26476a757ed7c537ae8b4dbb0ac4d6091b2d1f78541be1feeab65f095983"
     },
     {
       "file": "products/t4-genpodryadchik-bankrotitsya.html",
