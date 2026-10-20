@@ -1,79 +1,36 @@
-# Акты скрытых работ и исполнительная документация
+# Система ведения, проверки и передачи исполнительной документации
 
-Версия: 28.09.2026
-
-Внутренний документ. В архив покупателю не попадает: сборка исключает
-`.htaccess`, `00-PISMO-POSLE-POKUPKI.txt` и `MANIFEST.md`
-(`products-config.php`, функция `mvb_build_product_zip`).
-
-Манифеста у этой папки не было вовсе. Она собрана из двух источников —
-комплекта «ИД блокирует оплату» и блока ПТО, лежавшего внутри полного
-комплекта, — и до сих пор оставалась единственной папкой, состав которой
-никто не описывал. Проверка `tools/check_packages.py` это и показывала.
-
-## Описание
-Две соседние задачи одного человека. Первая — собрать и сдать исполнительную
-документацию так, чтобы её приняли с первого раза. Вторая — что делать, когда
-ИД уже стала поводом не платить: письма, служебные записки, признаки
-необоснованной блокировки.
+Покупателю уходит 25 файлов.
 
 ## Состав
-- `00-START-HERE.txt` — Текст
-Покупателю уходит 23 файла.
 
-### Когда ИД блокирует оплату
-- `01-uvedomlenie-o-gotovnosti-id.docx` — Word: уведомление о готовности ИД к передаче
-- `02-akt-priemki-id.docx` — Word: акт приёмки исполнительной документации
-- `03-perechen-vozmozhnyh-zamechaniy.docx` — Word: перечень типовых и нетиповых замечаний с ответами
-- `04-pismo-na-zamechaniya.docx` — Word: письмо-ответ на замечания заказчика
-- `05-sluzhebnaya-zapiska.docx` — Word: служебная записка о блокировке оплаты
-- `06-reestr-zamechaniy.xlsx` — Excel: реестр замечаний
-- `07-grafik-ustraneniya.xlsx` — Excel: график устранения
-- `08-algoritm-raboty-s-id.pdf` — PDF: алгоритм работы с ИД
-- `09-krasnye-flagi.docx` — Word: признаки необоснованной блокировки оплаты
+- `00-START-HERE.txt`
+- `01-uvedomlenie-o-gotovnosti-id.docx`
+- `02-akt-priemki-id.docx`
+- `03-perechen-vozmozhnyh-zamechaniy.docx`
+- `04-pismo-na-zamechaniya.docx`
+- `05-sluzhebnaya-zapiska.docx`
+- `06-reestr-zamechaniy.xlsx`
+- `07-grafik-ustraneniya.xlsx`
+- `08-algoritm-raboty-s-id.pdf`
+- `09-krasnye-flagi.docx`
+- `31-akt-osvidetelstvovaniya-skrytyh-rabot.pdf`
+- `32-kartochka-ispolnitelnoy-shemy.docx`
+- `33-akt-peredachi-komplekta-pto.docx`
+- `34-sluzhebnaya-zapiska.docx`
+- `35-obshiy-zhurnal-rabot.pdf`
+- `35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx`
+- `36-zhurnal-vhodnoy-verifikacii.pdf`
+- `36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx`
+- `37-reestr-pasportov.xlsx`
+- `38-reestr-id.xlsx`
+- `39-algoritm-zamechaniy.pdf`
+- `40-ezhemesyachnaya-proverka.pdf`
+- `41-akt-peredachi-ploshchadki-fronta.docx`
+- `42-akt-vhodnogo-kontrolya-materialov.docx`
+- `43-preduprezhdenie-po-st-716.docx`
 
-### Сбор и сдача комплекта ПТО
-- `31-pyat-aktov-skrytyh-rabot.docx` — Word: пять заготовок актов скрытых работ
-- `32-shablon-ispolnitelnoy-shemy.docx` — Word: карточка исполнительной схемы
-- `33-akt-peredachi-komplekta-pto.docx` — Word: акт передачи комплекта ПТО
-- `34-sluzhebnaya-zapiska.docx` — Word: служебная записка о готовности и рисках
-- `35-obshiy-zhurnal-rabot.xlsx` — Excel: общий журнал работ
-- `36-vhodnoy-kontrol.xlsx` — Excel: журнал входного контроля
-- `37-reestr-pasportov.xlsx` — Excel: реестр паспортов и сертификатов
-- `38-reestr-id.xlsx` — Excel: реестр исполнительной документации
-- `39-algoritm-zamechaniy.pdf` — PDF: алгоритм работы с замечаниями
-- `40-ezhemesyachnaya-proverka.pdf` — PDF: ежемесячная проверка комплекта
-- `41-akt-peredachi-ploshchadki-fronta.docx` — Word: акт передачи площадки и фронта работ, точка отсчёта сроков субподрядчика
-- `42-akt-vhodnogo-kontrolya-materialov.docx` — Word: акт входного контроля давальческих материалов, фиксация состояния и комплектности на входе
-- `43-preduprezhdenie-po-st-716.docx` — Word: письмо-предупреждение о непригодности материала, документации или указаний по ст. 716 ГК РФ и приостановление работ; пара к акту 42
+## Приёмка
 
-Файлы 41 и 42 добавлены 03.08.2026. Они же входят в комплект «Ответ на
-претензию» под номерами 37 и 38: документ один, ситуаций две. Здесь он
-нужен как начало документооборота объекта, там — как доказательство в
-споре о навязанной вине. Перекрёстных ссылок внутри текстов у них нет,
-поэтому смена номера ничего не ломает.
-
-Выпуск 28.09.2026 (Issue #308, аудит #300 P4-01 и P4-03). Акт 42 пишет
-«шаблон письма-предупреждения входит в комплект», а письма в P4 не было.
-Добавлен `43` — письмо P12 `35-preduprezhdenie-po-st-716.docx`, вычитанное
-юристом («ред. 3») и прошедшее нормативную сверку 01.08.2026. Изменена одна
-фраза примечания: ссылка на «ответ на претензию (отдельный документ
-комплекта)», которого в P4 нет. Сравнительная таблица `10` снята из выдачи:
-цена внутри файла, «окупаемость», сравнение со снятым «Полным комплектом» и
-свойства, которых в комплекте нет. Число файлов не изменилось — 23. Выпуск
-воспроизводится `products-storage/build_p4_release.py`, состав закреплён
-тестами P4 в `tools/test_delivery_artifacts.py`.
-
-## Что здесь стоит проверить при следующем заходе
-
-Два файла названы в аудите заготовками, а не документами:
-`31-pyat-aktov-skrytyh-rabot.docx` и `32-shablon-ispolnitelnoy-shemy.docx` —
-это перечни полей, а не формы. Пакет продаётся за 2 990 ₽, и обещание «пять
-заготовок актов» покупатель прочтёт как пять форм. Решение по ним не принято.
-
-Инструкции `00-INSTRUKCIYA` в папке нет. Письмо после оплаты это учитывает —
-оно больше не велит открыть её безусловно, — но собрать её сюда стоит.
-
-## Цена
-
-2 990 ₽. Действующая цена — только в `products-config.php`, здесь справочно.
+Владелец согласовал архив 20.10.2026. SHA-256 принятого ZIP: `83a2dd9e513f437afc091197701c405e1caebc9f33bf99dde6a8f6627e0dca76`.
+Цена: 24900 ₽. Основание: #578.

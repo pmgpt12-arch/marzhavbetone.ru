@@ -1,34 +1,26 @@
-# Дополнительные работы: как получить оплату
+# Система оформления и получения оплаты за дополнительные работы
 
-Версия: 09.10.2026
-
-## Описание
-Полный комплект для фиксации и оплаты дополнительных объемов работ. Включает допсоглашения, калькуляторы, алгоритмы согласования с заказчиком.
+Покупателю уходит 15 файлов.
 
 ## Состав
-- `00-START-HERE.txt` — Текст
-- `00-INSTRUKCIYA.docx` — Word
-- `00-INSTRUKCIYA.pdf` — PDF
-- `01-prikaz-na-dopobem.docx` — Word: письменное поручение на дополнительные работы
-- `02-soglasovanie-obema.docx` — Word: согласование объема
-- `03-uvedomlenie-o-doprabotah.docx` — Word: уведомление о допработах
-- `04-akt-skrytyh-rabot.docx` — Word: рекомендуемый образец АОСР, приложение № 3 к приказу Минстроя № 344/пр
-- `05-izmenenie-srokov.docx` — Word: изменение сроков
-- `06-pismo-o-priostanovke.docx` — Word: письмо о приостановке
-- `07-raschet-stoimosti.xlsx` — Excel: расчет стоимости
-- `08-zhurnal-doprabot.xlsx` — Excel: операционный журнал допработ, не КС-6а
-- `09-checklist-fotofiksacii.pdf` — PDF: чек-лист фотофиксации
-- `10-algoritm-doprabot.pdf` — PDF: алгоритм допработ
-- `11-dopsoglashenie-obem-i-cena.docx` — Word: допсоглашение об изменении объёма и цены — обещано бесплатным материалом «за границей бесплатного»
-- `12-dopsoglashenie-sroki-doprabot.docx` — Word: допсоглашение об изменении сроков из-за допработ
 
-## Бесплатный микропродукт
-`00-free-dopy-ne-v-podarok` — "Допы не в подарок"
+- `00-INSTRUKCIYA.docx`
+- `00-INSTRUKCIYA.pdf`
+- `00-START-HERE.txt`
+- `01-prikaz-na-dopobem.docx`
+- `02-soglasovanie-obema.docx`
+- `03-uvedomlenie-o-doprabotah.docx`
+- `04-akt-skrytyh-rabot.pdf`
+- `05-izmenenie-srokov.docx`
+- `06-pismo-o-priostanovke.docx`
+- `07-raschet-stoimosti.xlsx`
+- `08-zhurnal-doprabot.xlsx`
+- `09-checklist-fotofiksacii.pdf`
+- `10-algoritm-doprabot.pdf`
+- `11-dopsoglashenie-obem-i-cena.docx`
+- `12-dopsoglashenie-sroki-doprabot.docx`
 
-## Ограничение
-Редактируемые формы связывают договор, проект, документы объекта и подтверждения передачи с расчётом стоимости дополнительных работ.
+## Приёмка
 
-## Выпуск
-Текущий комплект: два маршрута, 15 файлов для покупателя. Цена задаётся единым каталогом сайта.
-
-Только файл 04 опирается на рекомендуемый образец Минстроя. Остальные файлы — рабочие и договорные формы комплекта.
+Владелец согласовал архив 20.10.2026. SHA-256 принятого ZIP: `60b19ed92288144b6f1c6e17c39a5b9cd01d308749877b4e11f862897de1eae0`.
+Цена: 24900 ₽. Основание: #578.
