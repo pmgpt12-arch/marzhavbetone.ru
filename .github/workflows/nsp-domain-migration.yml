@@ -39,14 +39,14 @@ jobs:
         id: phase
         run: |
           set -euo pipefail
-          python3 -m py_compile tools/migration-20261020/inspect_backup.py tools/migration-20261020/prepare_site.py
+          python3 -m py_compile tools/migration-20261020/inspect_backup.py tools/migration-20261020/prepare_site.py tools/migration-20261020/review_routes.py tools/migration-20261020/test_candidate.py
           php -l tools/migration-20261020/probe.php
           python3 - <<'PY'
           import json,os
           from pathlib import Path
           d=Path('tools/migration-20261020')
           c=json.loads((d/'contract.json').read_text());r=json.loads((d/'request.json').read_text())
-          assert r['phase'] in {'inspect-backup','prepare-site'} and not r['production_cutover']
+          assert r['phase'] in {'inspect-backup','prepare-site','validate-routes'} and not r['production_cutover']
           assert r['expected_main']==c['approved_base_commit']
           assert len(c['active_skus'])==13 and sum(x['files'] for x in c['active_skus'].values())==172
           assert all(x['dir'].isascii() for x in c['active_skus'].values())
@@ -54,8 +54,14 @@ jobs:
           print('TASK_CONTRACT_PASS',r['phase'],'NO_CUTOVER')
           PY
       - name: Existing supported navigation dependency
-        if: steps.phase.outputs.phase == 'prepare-site'
+        if: steps.phase.outputs.phase == 'prepare-site' || steps.phase.outputs.phase == 'validate-routes'
         run: timeout 75s python3 -m pip install --quiet --disable-pip-version-check pyyaml
+      - name: Existing browser test dependency for source-only route review
+        if: steps.phase.outputs.phase == 'validate-routes'
+        run: |
+          set -euo pipefail
+          command -v google-chrome
+          timeout 90s python3 -m pip install --quiet --disable-pip-version-check playwright
       - name: Existing deployment SSH, job-local credentials
         if: steps.phase.outputs.phase == 'inspect-backup'
         env:
@@ -84,6 +90,7 @@ jobs:
           case "$PHASE" in
             inspect-backup) timeout 600s python3 tools/migration-20261020/inspect_backup.py ;;
             prepare-site) timeout 240s python3 tools/migration-20261020/prepare_site.py ;;
+            validate-routes) timeout 420s python3 tools/migration-20261020/review_routes.py ;;
             *) echo 'UNAPPROVED_PHASE'; exit 2 ;;
           esac
       - name: Preserve verified source and sanitized evidence in migration branch
@@ -95,16 +102,17 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          if [ "$PHASE" = prepare-site ] && [ "$EXECUTE_RESULT" = success ]; then
+          if { [ "$PHASE" = prepare-site ] || [ "$PHASE" = validate-routes ]; } && [ "$EXECUTE_RESULT" = success ]; then
             python3 - <<'PY'
           import json,subprocess
           from pathlib import Path
           p=json.loads(Path('tools/migration-20261020/evidence/prepared-site-plan.json').read_text())
           allowed={r['file'] for r in p['shipping_files']}|{'config.php','data/site/navigation.yaml','tools/build_sitemap.py','tools/build_rss.py','tools/link_audit.py'}
           changed=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
-          assert set(changed)<=allowed, sorted(set(changed)-allowed)
-          assert not any(x.startswith(('products-storage/','orders/')) for x in changed)
-          if changed:subprocess.run(['git','add','--',*changed],check=True)
+          source_changed=[x for x in changed if not x.startswith('tools/migration-20261020/evidence/')]
+          assert set(source_changed)<=allowed, sorted(set(source_changed)-allowed)
+          assert not any(x.startswith(('products-storage/','orders/')) for x in source_changed)
+          if source_changed:subprocess.run(['git','add','--',*source_changed],check=True)
           for path in ['brand-approved-2026.css','rss.xml','tools/migration-20261020/old-domain-cutover.htaccess']:
             if Path(path).exists():subprocess.run(['git','add','-f','--',path],check=True)
           PY
