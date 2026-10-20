@@ -133,14 +133,14 @@ function mvb_products(): array
 {
     return [
         'p1' => [
-            'name'  => 'Комплект «Акты выполненных работ, КС-2 и КС-3: закрытие и взыскание оплаты»',
+            'name'  => 'Система получения оплаты за выполненные работы',
             'price' => 2990000,
             'dir'   => '01-zakrytie-rabot',
             'zip'   => '01-ks-podpisany-deneg-net.zip',
         ],
         'p2' => [
-            'name'  => 'Комплект «Дополнительные работы: как получить оплату»',
-            'price' => 1990000,
+            'name'  => 'Система оформления и получения оплаты за дополнительные работы',
+            'price' => 2490000,
             'dir'   => '02-dopraboty-bez-poter',
             'zip'   => '02-dopy-ne-v-podarok.zip',
         ],
@@ -151,8 +151,8 @@ function mvb_products(): array
             'zip'   => '05-ks-bez-vozvrata.zip',
         ],
         'p4' => [
-            'name'  => 'Комплект «Акты скрытых работ и исполнительная документация»',
-            'price' => 299000,
+            'name'  => 'Система ведения, проверки и передачи исполнительной документации',
+            'price' => 2490000,
             'dir'   => '08-pto-bez-zamechaniy',
             'zip'   => '08-pto-bez-zamechaniy.zip',
         ],
@@ -308,8 +308,8 @@ function mvb_products(): array
         ],
 
         'p7' => [
-            'name'  => 'Комплект «Договор субподряда: образец, красные флаги, протокол разногласий»',
-            'price' => 249000,
+            'name'  => 'Система проверки и согласования договора субподряда',
+            'price' => 2490000,
             'dir'   => '03-dogovor-podryada',
             'zip'   => '03-dogovor-podryada.zip',
         ],
@@ -318,8 +318,8 @@ function mvb_products(): array
         // Продаётся отдельно, потому что условия аванса правятся и тогда,
         // когда договор уже подписан, — для этого в комплекте допсоглашение.
         'p8' => [
-            'name'  => 'Комплект «Аванс по договору подряда и неотработанный остаток: условия, расчёт, ответ на требование о возврате»',
-            'price' => 249000,
+            'name'  => 'Система управления авансами и расчётами по договору подряда',
+            'price' => 2490000,
             'dir'   => '10-avans-usloviya-i-pribyl',
             'zip'   => '10-avans-usloviya-i-pribyl.zip',
         ],
@@ -328,8 +328,8 @@ function mvb_products(): array
         // Нормативная сверка (Р-026) для него предшествует продаже и
         // проведена 31.07.2026 — см. MANIFEST.md в папке продукта.
         'p9' => [
-            'name'  => 'Комплект «Реестр требований кредиторов: как подрядчику заявить требование, сроки, переписка с управляющим»',
-            'price' => 299000,
+            'name'  => 'Система защиты требований подрядчика при банкротстве генподрядчика',
+            'price' => 2490000,
             'dir'   => '11-bankrotstvo-genpodryadchika',
             'zip'   => '11-bankrotstvo-genpodryadchika.zip',
         ],
@@ -347,8 +347,8 @@ function mvb_products(): array
         // набор файлов не изменился ни на один, и покупателю прошлого
         // заказа выдаётся ровно то, за что он платил.
         'p10' => [
-            'name'  => 'Комплект «Ответ на претензию заказчика или генподрядчика»',
-            'price' => 299000,
+            'name'  => 'Система подготовки ответа на претензию заказчика',
+            'price' => 1790000,
             'dir'   => '15-otvet-na-pretenziyu-baza',
             'zip'   => '15-otvet-na-pretenziyu-baza.zip',
         ],
@@ -375,8 +375,8 @@ function mvb_products(): array
         // смете не оплатят». Цена по нижней ступени линейки, как у p7, p8 и
         // p11: тот же покупатель и тот же момент «до подписания».
         'p13' => [
-            'name'  => 'Комплект «Что в смете не оплатят: проверка сметы субподрядчиком до подписания»',
-            'price' => 249000,
+            'name'  => 'Система проверки сметной документации и выявления неоплачиваемых затрат',
+            'price' => 1790000,
             'dir'   => '16-chto-v-smete-ne-oplatyat',
             'zip'   => '16-chto-v-smete-ne-oplatyat.zip',
         ],
@@ -399,6 +399,9 @@ function mvb_resolve_product(array $item): ?array
 {
     $catalog = mvb_products();
     $sku = (string)($item['sku'] ?? '');
+    if ($sku === 't1') return null;
+    if ($sku === 't4') return null;
+    if ($sku === 't5') return null;
     if ($sku === 't6') return null;
     if ($sku === 'p12') return null;
     if ($sku !== '' && isset($catalog[$sku])) {
@@ -406,6 +409,9 @@ function mvb_resolve_product(array $item): ?array
     }
     $name = (string)($item['name'] ?? '');
     foreach ($catalog as $key => $product) {
+        if ($key === 't1') continue;
+        if ($key === 't4') continue;
+        if ($key === 't5') continue;
         if ($key === 't6') continue;
         if ($key === 'p12') continue;
         if ($product['name'] === $name) {
@@ -923,6 +929,12 @@ function mvb_delivery_email(array $order, array $links): string
         $body .= "4. Сохраните подтверждения направления и получения вместе с описью и актом.\n\n";
         $body .= "Вопросы: " . ADMIN_EMAIL . "\n\n";
         $body .= "Команда «Маржа в бетоне»\n";
+        return $body;
+    }
+    // Exact accepted entry file for each remaining product.
+    $acceptedStarts = ['p1' => '00-INSTRUKCIYA.pdf', 'p2' => '00-INSTRUKCIYA.pdf', 'p4' => '00-START-HERE.txt', 'p7' => '00-INSTRUKCIYA.pdf', 'p8' => '00-START-HERE.txt', 'p9' => '00-START-HERE.txt', 'p10' => '00-START-HERE.pdf', 'p13' => '00-START-HERE.pdf'];
+    if (count($links) === 1 && isset($acceptedStarts[$links[0]["sku"] ?? ""])) {
+        $body .= "Порядок действий:\n1. Распакуйте архив и откройте " . $acceptedStarts[$links[0]["sku"]] . ".\n2. Выберите порядок действий по вашей ситуации.\n3. Заполните документы по договору и материалам объекта.\n4. Проверьте реквизиты, расчёты, полномочия и подписи перед направлением.\n\nВопросы: " . ADMIN_EMAIL . "\n\nНа стороне подрядчика\n";
         return $body;
     }
     $body .= "Что делать дальше:\n";
