@@ -1,6 +1,6 @@
 {
   "status": "PASS_HOST_PLAN_AND_PRIVATE_ROLLBACK_REHEARSAL",
-  "run": "run-39410166252",
+  "run": "run-39423151819",
   "backups": {
     "old-site": {
       "sha256": "f8f068dc4cf842b8ca28adcd093d427d0a42ab14673523bf75f9c35aab267976",
@@ -26,7 +26,7 @@
   "new_root_file_count": 771,
   "new_root_tree_sha256": "614b55a911a945606e59a2de42186a8940a31673f6f970c4d29e3e6310cb3091",
   "rollback_rehearsal": {
-    "location": "/var/www/u3581543/data/nsp-migration-private/run-39410166252-rollback-drill",
+    "location": "/var/www/u3581543/data/nsp-migration-private/run-39423151819-rollback-drill",
     "files": 771,
     "matches_current_new_root": true,
     "old_order_store_restored": false,
@@ -742,6 +742,12 @@
       "new_sha256": "8037dc8d7cff685015213fc452ae3afc70f128660352dff188702e5434dc0cf0"
     },
     {
+      "file": "get/index.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "7aa490f25a6151b5329424ca17c95b3173d51ea342acaab2c9f14cf10a52b83d"
+    },
+    {
       "file": "ig-webhook.php",
       "action": "CREATE",
       "old_sha256": null,
@@ -1060,6 +1066,6 @@
       "new_sha256": "c8d758c1234e47466b212dbe91ddd3466aa24b64f6d50ecd669a16bc6655cb2d"
     }
   ],
-  "shipping_bytes": 12301734,
+  "shipping_bytes": 12304982,
   "live_webroots_modified": false
 }
