@@ -137,10 +137,15 @@ jobs:
           src="$HOME/www/nastoronepodryadchika.ru/config.php"
           dst="$HOME/nsp-migration-private/backup-config-before-yookassa-1502106-20261020.php"
           test -f "$src"
-          test ! -e "$dst"
-          umask 077
-          cp -p "$src" "$dst"
-          chmod 600 "$dst"
+          if test -e "$dst"; then
+            test -s "$dst"
+            test "$(stat -c %a "$dst")" = 600
+            cmp -s "$src" "$dst" || { echo 'BACKUP_EXISTS_WITH_DIFFERENT_CONTENT'; exit 1; }
+          else
+            umask 077
+            cp -p "$src" "$dst"
+            chmod 600 "$dst"
+          fi
           test -s "$dst"
           cmp -s "$src" "$dst"
           test "$(stat -c %a "$dst")" = 600
