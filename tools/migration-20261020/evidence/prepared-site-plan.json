@@ -595,6 +595,11 @@
       "sha256": "8037dc8d7cff685015213fc452ae3afc70f128660352dff188702e5434dc0cf0"
     },
     {
+      "file": "get/index.php",
+      "size": 3248,
+      "sha256": "7aa490f25a6151b5329424ca17c95b3173d51ea342acaab2c9f14cf10a52b83d"
+    },
+    {
       "file": "ig-webhook.php",
       "size": 11310,
       "sha256": "b8aba9decdc2101631a6214f63a8079e0d545d92c280870a2c346adf5f2fe77b"
@@ -876,5 +881,13 @@
   "public_pages": 88,
   "new_root_initial_mode": "stage with temporary noindex before owner real payment and final redirects",
   "cutover_not_executed": true,
-  "route_typography_revision": "20261020-scoped-showcase-h2"
+  "route_typography_revision": "20261020-scoped-showcase-h2",
+  "shipping_route_addendum": {
+    "route": "/get/?k=<approved-key>",
+    "file": "get/index.php",
+    "sha256": "7aa490f25a6151b5329424ca17c95b3173d51ea342acaab2c9f14cf10a52b83d",
+    "behavior": "302 to existing Telegram bot for known keys; 404 unknown",
+    "source": "published main; no content change",
+    "other_shipping_files_unchanged": 171
+  }
 }
