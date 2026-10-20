@@ -51,6 +51,25 @@ try{
     $accepted=json_decode(file_get_contents($work.'/private-stage-receipt.json'),true,512,JSON_THROW_ON_ERROR);
     gate($accepted['status']==='PASS_PRIVATE_HOST_CANDIDATE_AND_13_ARCHIVES'&&$accepted['buyer_files']===172,'PRIVATE_ACCEPTANCE_MISSING');
     if($phase==='publish'){
+        // A private stage can be perfectly valid but its one-hour synthetic
+        // links can expire while another release gate is investigated.
+        // Reject stale stages BEFORE parking either public directory.
+        $linksFile=$work.'/private-probe-links.json';
+        gate(is_file($linksFile),'PROBE_LINKS_MISSING');
+        $probes=json_decode(file_get_contents($linksFile),true,512,JSON_THROW_ON_ERROR);
+        gate(is_array($probes)&&count($probes)===13,'PROBE_COUNT_DRIFT');
+        foreach($probes as $sku=>$probe){
+            $id=$probe['id']??'';
+            gate((bool)preg_match('/^order_[0-9_]+_nspmig[a-f0-9]+$/D',$id),'PROBE_ID_INVALID');
+            $orderFile=$work.'/synthetic-orders/'.$id.'.json';
+            gate(is_file($orderFile),'PROBE_ORDER_MISSING');
+            $order=json_decode(file_get_contents($orderFile),true,512,JSON_THROW_ON_ERROR);
+            $issued=strtotime((string)($order['delivery']['created_at']??''));
+            $expiry=strtotime((string)($order['delivery']['expires_at']??''));
+            gate($issued!==false&&$expiry!==false&&$expiry-$issued===3600,'PROBE_TTL_INVALID');
+            gate($expiry>time()+900,'PROBE_LINKS_TOO_OLD_RESTAGE_REQUIRED');
+            gate(($order['migration_probe']??false)===true&&($order['provider_payment_performed']??true)===false,'PROBE_NOT_SYNTHETIC');
+        }
         gate(is_dir($new)&&is_dir($stage)&&!file_exists($parked)&&!file_exists($stateFile),'PUBLICATION_ALREADY_ATTEMPTED');
         gate(nsp_digest(nsp_tree($new))===$p['original_new_tree_sha256'],'NEW_ROOT_CHANGED_SINCE_BACKUP');
         gate(nsp_digest(nsp_tree($stage))===$accepted['stage_tree_sha256'],'PRIVATE_STAGE_HASH_DRIFT');
