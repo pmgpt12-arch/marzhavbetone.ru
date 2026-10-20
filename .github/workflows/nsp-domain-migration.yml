@@ -39,17 +39,22 @@ jobs:
         id: phase
         run: |
           set -euo pipefail
-          python3 -m py_compile tools/migration-20261020/inspect_backup.py tools/migration-20261020/prepare_site.py tools/migration-20261020/review_routes.py tools/migration-20261020/test_candidate.py tools/migration-20261020/audit_route_offers.py
+          python3 -m py_compile tools/migration-20261020/inspect_backup.py tools/migration-20261020/prepare_site.py tools/migration-20261020/review_routes.py tools/migration-20261020/test_candidate.py tools/migration-20261020/audit_route_offers.py tools/migration-20261020/dry_run_new.py
           php -l tools/migration-20261020/probe.php
           python3 - <<'PY'
-          import json,os
+          import json,os,sys,subprocess
           from pathlib import Path
           d=Path('tools/migration-20261020')
           c=json.loads((d/'contract.json').read_text());r=json.loads((d/'request.json').read_text())
-          assert r['phase'] in {'inspect-backup','prepare-site','validate-routes','audit-offers'} and not r['production_cutover']
+          assert r['phase'] in {'inspect-backup','prepare-site','validate-routes','audit-offers','dry-run-new'} and not r['production_cutover']
           assert r['expected_main']==c['approved_base_commit']
           assert len(c['active_skus'])==13 and sum(x['files'] for x in c['active_skus'].values())==172
           assert all(x['dir'].isascii() for x in c['active_skus'].values())
+          if r['phase']=='dry-run-new':
+              sys.path.insert(0,str(d.resolve()))
+              from dry_run_new import PHP
+              result=subprocess.run(['php','-l'],input=PHP,text=True,capture_output=True,timeout=15)
+              assert result.returncode==0,result.stderr
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('phase='+r['phase']+'\n')
           print('TASK_CONTRACT_PASS',r['phase'],'NO_CUTOVER')
           PY
@@ -63,7 +68,7 @@ jobs:
           command -v google-chrome
           timeout 90s python3 -m pip install --quiet --disable-pip-version-check playwright
       - name: Existing deployment SSH, job-local credentials
-        if: steps.phase.outputs.phase == 'inspect-backup'
+        if: steps.phase.outputs.phase == 'inspect-backup' || steps.phase.outputs.phase == 'dry-run-new'
         env:
           KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           HOST: ${{ secrets.DEPLOY_HOST }}
@@ -90,6 +95,7 @@ jobs:
           case "$PHASE" in
             inspect-backup) timeout 600s python3 tools/migration-20261020/inspect_backup.py ;;
             prepare-site) timeout 240s python3 tools/migration-20261020/prepare_site.py ;;
+            dry-run-new) timeout 600s python3 tools/migration-20261020/dry_run_new.py ;;
             audit-offers)
               timeout 35s git fetch --no-tags --depth=1 origin main
               timeout 90s python3 tools/migration-20261020/audit_route_offers.py ;;
