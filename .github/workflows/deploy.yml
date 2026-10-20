@@ -863,26 +863,60 @@ jobs:
           retention-days: 3
 
   deploy-remaining-only:
-    if: ${{ (github.event_name == 'workflow_dispatch' && inputs.remaining_only == true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_only != true && inputs.t3_only != true && inputs.t2_link_probe != true && inputs.t3_link_probe != true && inputs.t2_review_export != true) || (github.event_name == 'push' && github.ref_name == 'candidate/mb001-remaining-batch-r3-20261018' && (contains(github.event.head_commit.message, '[dry-run-r3-release]') || contains(github.event.head_commit.message, '[publish-r3-release]'))) }}
-    runs-on: [self-hosted, Linux, X64]
+    if: ${{ (github.event_name == 'workflow_dispatch' && inputs.remaining_only == true) || (github.event_name == 'push' && github.ref_name == 'candidate/mb001-remaining-batch-r3-20261018' && (contains(github.event.head_commit.message, '[prepare-r3-hosted]') || contains(github.event.head_commit.message, '[dry-run-r3-release]') || contains(github.event.head_commit.message, '[publish-r3-release]'))) }}
+    runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: write
     env:
       REMAINING_SSH_DIR: /tmp/mb001-r3-ssh-${{ github.run_id }}
-    defaults:
-      run:
-        working-directory: /home/denis/projects/mb001-remaining-batch-r3-20261018
     steps:
-      - name: Verify pinned accepted worktree and publication contract
+      - name: Cancel superseded queued local preparation
+        if: contains(github.event.head_commit.message, '[prepare-r3-hosted]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST repos/${{ github.repository }}/actions/runs/39380017553/cancel
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Dependency preflight
         run: |
-          test -z "$(git status --porcelain --untracked-files=no)"
-          git fetch origin "$GITHUB_SHA"
-          git merge --ff-only "$GITHUB_SHA"
-          test "$GITHUB_REF_NAME" = "candidate/mb001-remaining-batch-r3-20261018"
-          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
-          test -z "$(git status --porcelain --untracked-files=no)"
+          timeout 90 python3 -m pip install --disable-pip-version-check beautifulsoup4==4.12.3
+          if ! php -r 'exit(class_exists("ZipArchive") && function_exists("curl_init") ? 0 : 3);'; then
+            timeout 90 sudo apt-get update -qq
+            timeout 90 sudo apt-get install -y -qq php-cli php-zip php-curl
+          fi
+      - name: Reproduce the saved approved release scope
+        if: contains(github.event.head_commit.message, '[prepare-r3-hosted]')
+        run: |
+          python3 tools/prepare_remaining_release_20261020.py
+          python3 tools/verify_remaining_release_20261020.py --finalize-retired
+      - name: Verify accepted bytes, prices, delivery and local workflow contract
+        run: |
           python3 tools/verify_remaining_release_20261020.py
           php -l tools/remaining_live_ops.php
-          python3 -m py_compile tools/release_remaining_only.py
+          php -l products-config.php
+          python3 tools/link_audit.py --verify
+          php tools/test_delivery_one_hour.php
+          php tools/test_delivery_all_or_nothing.php
+      - name: Save only the exact approved publication sources
+        if: contains(github.event.head_commit.message, '[prepare-r3-hosted]')
+        run: |
+          python3 - <<'PY_SAVE'
+          import json,subprocess
+          from pathlib import Path
+          r=Path.cwd();base='tools/candidates/remaining-batch-r3-20261018/release-20261020'
+          plan=json.loads((r/base/'release-plan.json').read_text())
+          paths=[v['file'] for v in plan['site_files']]+['products-storage/'+v['dir'] for v in plan['packages']]+[base]
+          changed=subprocess.check_output(['git','diff','--name-only','HEAD'],text=True).splitlines()
+          assert all(any(n==p or n.startswith(p+'/') for p in paths) for n in changed),changed
+          subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
+          subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
+          subprocess.run(['git','add','--',*paths],check=True)
+          subprocess.run(['git','commit','-m','Save accepted R3 publication masters, 13 product positions and owner approval'],check=True)
+          subprocess.run(['git','push','origin','HEAD:candidate/mb001-remaining-batch-r3-20261018'],check=True,timeout=45)
+          PY_SAVE
       - name: Prepare job-scoped deployment SSH
         env:
           KEY: ${{ secrets.DEPLOY_SSH_KEY }}
@@ -901,7 +935,7 @@ jobs:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
           REMAINING_ONLY: 'true'
-          DRY_RUN: ${{ inputs.dry_run == true || contains(github.event.head_commit.message, '[dry-run-r3-release]') }}
+          DRY_RUN: ${{ inputs.dry_run == true || contains(github.event.head_commit.message, '[dry-run-r3-release]') || contains(github.event.head_commit.message, '[prepare-r3-hosted]') }}
         run: python3 tools/release_remaining_only.py
       - name: Save exact production archives and verification
         if: always()
