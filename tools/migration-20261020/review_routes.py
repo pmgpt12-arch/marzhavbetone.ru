@@ -182,6 +182,14 @@ def card_browser_review():
             for width in (390,1366,1440,1600,1920):
                 page.set_viewport_size({'width':width,'height':900})
                 page.goto(base+'/articles/index.html',wait_until='domcontentloaded');page.wait_for_timeout(300)
+                # Existing pagination intentionally hides most cards. Exercise
+                # its real control; measuring hidden 0px headings is not a
+                # word-wrap defect. Do not skip those articles from coverage.
+                more=page.locator('button.showcase-more')
+                expanded=0
+                for _ in range(8):
+                    if more.count()==0 or not more.is_visible():break
+                    more.click();page.wait_for_timeout(60);expanded+=1
                 metrics=page.evaluate('''() => ({scroll:document.documentElement.scrollWidth,width:innerWidth,
                   headings:[...document.querySelectorAll('.showcase-card h2')].map(e=>{
                     const s=getComputedStyle(e),r=e.getBoundingClientRect(),c=document.createElement('canvas').getContext('2d');
@@ -194,12 +202,11 @@ def card_browser_review():
                 if metrics['scroll']>width+1:errors.append({'code':'EDITORIAL_OVERFLOW','scroll':metrics['scroll']})
                 if not metrics['headings']:errors.append({'code':'NO_EDITORIAL_CARDS'})
                 for h in metrics['headings']:
+                    if h['width']<=0:errors.append({'code':'ARTICLE_NOT_ACCESSIBLE_AFTER_SHOW_MORE',**h})
+                    elif h['longest']>h['width']+2:errors.append({'code':'BROKEN_CARD_WORD',**h})
                     if h['font']>28.1:errors.append({'code':'CARD_INHERITS_SECTION_H2',**h})
-                    if h['longest']>h['width']+2:errors.append({'code':'BROKEN_CARD_WORD',**h})
-                rows.append({'width':width,'cards':len(metrics['headings']),'pass':not errors,'errors':errors,'headings':metrics['headings']})
+                rows.append({'width':width,'cards':len(metrics['headings']),'show_more_clicks':expanded,'pass':not errors,'errors':errors,'headings':metrics['headings']})
                 failures.extend({'viewport':width,**error} for error in errors)
-            # Persist all diagnostics even if a gate fails. Never silently relax
-            # the word-fit criterion or report the source revision as accepted.
             write('route-card-browser.json',{'status':'FAIL_COMPONENT_TYPOGRAPHY' if failures else 'PASS_COMPONENT_TYPOGRAPHY',
                   'viewports':rows,'routes':routes,'failures':failures,'external_calls':False})
             assert not failures,('CARD_TYPOGRAPHY',failures[:12])
