@@ -1,0 +1,83 @@
+{
+  "file": "tools/candidates/remaining-batch-r3-20261018/release-20261020/integration-check-classification.json",
+  "sha256": "972d0fc91dba0dd4cab25fe8ac95cfd218dc1dc293710e5aba0bf30020c1d39c",
+  "original_status": "PASS_NO_NEW_FAILURES_REQUIRED_RELEASE_CONTRACTS_PASS",
+  "checks": [
+    {
+      "id": "check_artifact_registry",
+      "classification": "CURRENT_PASS",
+      "exit": 0
+    },
+    {
+      "id": "test_artifact_registry",
+      "classification": "CURRENT_PASS",
+      "exit": 0
+    },
+    {
+      "id": "check_packages",
+      "classification": "PREEXISTING_FAILURE_RETAINED",
+      "exit": 1
+    },
+    {
+      "id": "sync_kit_file_counts",
+      "classification": "CURRENT_PASS",
+      "exit": 0
+    },
+    {
+      "id": "test_sync_kit_file_counts",
+      "classification": "PREEXISTING_FAILURE_RETAINED",
+      "exit": 1
+    },
+    {
+      "id": "build_preview",
+      "classification": "PREEXISTING_FAILURE_RETAINED",
+      "exit": 1
+    },
+    {
+      "id": "test_official_forms",
+      "classification": "CURRENT_PASS",
+      "exit": 0
+    },
+    {
+      "id": "test_p1_price_http",
+      "classification": "CURRENT_PASS",
+      "exit": 0
+    },
+    {
+      "id": "test_p1_print_layout",
+      "classification": "CURRENT_PASS",
+      "exit": 0
+    },
+    {
+      "id": "test_no_refund_sales_disclaimer",
+      "classification": "PREEXISTING_FAILURE_RETAINED",
+      "exit": 1
+    },
+    {
+      "id": "test_p1_value_language",
+      "classification": "CURRENT_PASS",
+      "exit": 0
+    },
+    {
+      "id": "verify_delivery_zips",
+      "classification": "CURRENT_PASS",
+      "exit": 0
+    },
+    {
+      "id": "test_diagnostic_sku_standalone",
+      "classification": "CURRENT_PASS",
+      "exit": 0
+    },
+    {
+      "id": "test_normative_gate",
+      "classification": "CURRENT_PASS",
+      "exit": 0
+    },
+    {
+      "id": "normative_gate",
+      "classification": "CURRENT_PASS",
+      "exit": 0
+    }
+  ],
+  "historical_failures_not_relabelled_pass": true
+}
