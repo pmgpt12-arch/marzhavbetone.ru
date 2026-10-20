@@ -39,14 +39,14 @@ jobs:
         id: phase
         run: |
           set -euo pipefail
-          python3 -m py_compile tools/migration-20261020/inspect_backup.py tools/migration-20261020/prepare_site.py tools/migration-20261020/review_routes.py tools/migration-20261020/test_candidate.py
+          python3 -m py_compile tools/migration-20261020/inspect_backup.py tools/migration-20261020/prepare_site.py tools/migration-20261020/review_routes.py tools/migration-20261020/test_candidate.py tools/migration-20261020/audit_route_offers.py
           php -l tools/migration-20261020/probe.php
           python3 - <<'PY'
           import json,os
           from pathlib import Path
           d=Path('tools/migration-20261020')
           c=json.loads((d/'contract.json').read_text());r=json.loads((d/'request.json').read_text())
-          assert r['phase'] in {'inspect-backup','prepare-site','validate-routes'} and not r['production_cutover']
+          assert r['phase'] in {'inspect-backup','prepare-site','validate-routes','audit-offers'} and not r['production_cutover']
           assert r['expected_main']==c['approved_base_commit']
           assert len(c['active_skus'])==13 and sum(x['files'] for x in c['active_skus'].values())==172
           assert all(x['dir'].isascii() for x in c['active_skus'].values())
@@ -90,7 +90,13 @@ jobs:
           case "$PHASE" in
             inspect-backup) timeout 600s python3 tools/migration-20261020/inspect_backup.py ;;
             prepare-site) timeout 240s python3 tools/migration-20261020/prepare_site.py ;;
-            validate-routes) timeout 420s python3 tools/migration-20261020/review_routes.py ;;
+            audit-offers)
+              timeout 35s git fetch --no-tags --depth=1 origin main
+              timeout 90s python3 tools/migration-20261020/audit_route_offers.py ;;
+            validate-routes)
+              timeout 35s git fetch --no-tags --depth=1 origin main
+              timeout 90s python3 tools/migration-20261020/audit_route_offers.py
+              timeout 420s python3 tools/migration-20261020/review_routes.py ;;
             *) echo 'UNAPPROVED_PHASE'; exit 2 ;;
           esac
       - name: Preserve verified source and sanitized evidence in migration branch
