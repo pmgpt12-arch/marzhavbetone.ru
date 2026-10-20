@@ -867,7 +867,7 @@ jobs:
     runs-on: [self-hosted, Linux, X64]
     timeout-minutes: 15
     env:
-      REMAINING_SSH_DIR: ${{ runner.temp }}/remaining-release-ssh
+      REMAINING_SSH_DIR: /tmp/mb001-r3-ssh-${{ github.run_id }}
     defaults:
       run:
         working-directory: /home/denis/projects/mb001-remaining-batch-r3-20261018
