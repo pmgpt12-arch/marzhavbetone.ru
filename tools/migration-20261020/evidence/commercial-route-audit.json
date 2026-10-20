@@ -1,120 +1,11 @@
 {
-  "status": "INVENTORY_COMPLETE_WITH_BLOCKERS",
+  "status": "PASS_ALL_PUBLIC_PURCHASE_PRICES",
   "source_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
-  "candidate_commit": "f81970483236aed3566a38ff2b2e37bb9290da69",
+  "candidate_commit": "78cf40aad8f55a64a8b4b86908ba028aa844cb35",
   "html_pages": 88,
-  "purchase_buttons_checked": 38,
-  "price_or_retired_purchase_issues": [
-    {
-      "page": "demo/obshchiy-princip-osparivaniya-uderzhaniy.html",
-      "sku": "p5",
-      "price": "299000",
-      "name": "Комплект «Гарантийное удержание: возврат, оспаривание штрафов и зачётов»",
-      "line": 71,
-      "source_tag": "<button class=\"button add-to-cart\" type=\"button\" data-product=\"Комплект «Гарантийное удержание: возврат, оспаривание штрафов и зачётов»\" data-sku=\"p5\" data-price=\"299000\">",
-      "expected_price": 2990000,
-      "expected_name": "Система защиты подрядчика от претензий, штрафов, удержаний и зачётов",
-      "issue": "PRICE_DISAGREES_WITH_SERVER",
-      "inherited_from_published_main": true
-    },
-    {
-      "page": "demo/pretenziya-na-neoplatu.html",
-      "sku": "t1",
-      "price": "99000",
-      "name": "Заказчик не оплачивает работы: претензия, расчёт процентов, порядок действий",
-      "line": 105,
-      "source_tag": "<button class=\"button add-to-cart\" type=\"button\" data-product=\"Заказчик не оплачивает работы: претензия, расчёт процентов, порядок действий\" data-sku=\"t1\" data-price=\"99000\">",
-      "expected_price": null,
-      "expected_name": null,
-      "issue": "RETIRED_SKU_PURCHASE",
-      "inherited_from_published_main": true
-    },
-    {
-      "page": "demo/strategiya-otveta-na-zamechaniya.html",
-      "sku": "p4",
-      "price": "299000",
-      "name": "Комплект «Акты скрытых работ и исполнительная документация»",
-      "line": 63,
-      "source_tag": "<button class=\"button add-to-cart\" type=\"button\" data-product=\"Комплект «Акты скрытых работ и исполнительная документация»\" data-sku=\"p4\" data-price=\"299000\">",
-      "expected_price": 2490000,
-      "expected_name": "Система ведения, проверки и передачи исполнительной документации",
-      "issue": "PRICE_DISAGREES_WITH_SERVER",
-      "inherited_from_published_main": true
-    },
-    {
-      "page": "index.html",
-      "sku": "p5",
-      "price": "299000",
-      "name": "Комплект «Гарантийное удержание: возврат, оспаривание штрафов и зачётов»",
-      "line": 282,
-      "source_tag": "<button class=\"button add-to-cart\" type=\"button\" data-product=\"Комплект «Гарантийное удержание: возврат, оспаривание штрафов и зачётов»\" data-sku=\"p5\" data-price=\"299000\">",
-      "expected_price": 2990000,
-      "expected_name": "Система защиты подрядчика от претензий, штрафов, удержаний и зачётов",
-      "issue": "PRICE_DISAGREES_WITH_SERVER",
-      "inherited_from_published_main": true
-    },
-    {
-      "page": "products/t6-kvartiry-vmesto-deneg.html",
-      "sku": "t6",
-      "price": "99000",
-      "name": "Предлагают квартиры вместо денег: запросы до подписи",
-      "line": 168,
-      "source_tag": "<button class=\"button add-to-cart large\" type=\"button\" data-product=\"Предлагают квартиры вместо денег: запросы до подписи\" data-sku=\"t6\" data-price=\"99000\">",
-      "expected_price": null,
-      "expected_name": null,
-      "issue": "RETIRED_SKU_PURCHASE",
-      "inherited_from_published_main": true
-    }
-  ],
+  "purchase_buttons_checked": 33,
+  "price_or_retired_purchase_issues": [],
   "all_offers": [
-    {
-      "page": "demo/algoritm-pri-zaderzhke-oplaty.html",
-      "sku": "p1",
-      "price": "2990000",
-      "name": "Комплект «Акты выполненных работ, КС-2 и КС-3: закрытие и взыскание оплаты»",
-      "line": 79,
-      "source_tag": "<button class=\"button add-to-cart\" type=\"button\" data-product=\"Комплект «Акты выполненных работ, КС-2 и КС-3: закрытие и взыскание оплаты»\" data-sku=\"p1\" data-price=\"2990000\">",
-      "expected_price": 2990000,
-      "expected_name": "Система получения оплаты за выполненные работы",
-      "issue": null,
-      "inherited_from_published_main": true
-    },
-    {
-      "page": "demo/obshchiy-princip-osparivaniya-uderzhaniy.html",
-      "sku": "p5",
-      "price": "299000",
-      "name": "Комплект «Гарантийное удержание: возврат, оспаривание штрафов и зачётов»",
-      "line": 71,
-      "source_tag": "<button class=\"button add-to-cart\" type=\"button\" data-product=\"Комплект «Гарантийное удержание: возврат, оспаривание штрафов и зачётов»\" data-sku=\"p5\" data-price=\"299000\">",
-      "expected_price": 2990000,
-      "expected_name": "Система защиты подрядчика от претензий, штрафов, удержаний и зачётов",
-      "issue": "PRICE_DISAGREES_WITH_SERVER",
-      "inherited_from_published_main": true
-    },
-    {
-      "page": "demo/pretenziya-na-neoplatu.html",
-      "sku": "t1",
-      "price": "99000",
-      "name": "Заказчик не оплачивает работы: претензия, расчёт процентов, порядок действий",
-      "line": 105,
-      "source_tag": "<button class=\"button add-to-cart\" type=\"button\" data-product=\"Заказчик не оплачивает работы: претензия, расчёт процентов, порядок действий\" data-sku=\"t1\" data-price=\"99000\">",
-      "expected_price": null,
-      "expected_name": null,
-      "issue": "RETIRED_SKU_PURCHASE",
-      "inherited_from_published_main": true
-    },
-    {
-      "page": "demo/strategiya-otveta-na-zamechaniya.html",
-      "sku": "p4",
-      "price": "299000",
-      "name": "Комплект «Акты скрытых работ и исполнительная документация»",
-      "line": 63,
-      "source_tag": "<button class=\"button add-to-cart\" type=\"button\" data-product=\"Комплект «Акты скрытых работ и исполнительная документация»\" data-sku=\"p4\" data-price=\"299000\">",
-      "expected_price": 2490000,
-      "expected_name": "Система ведения, проверки и передачи исполнительной документации",
-      "issue": "PRICE_DISAGREES_WITH_SERVER",
-      "inherited_from_published_main": true
-    },
     {
       "page": "index.html",
       "sku": "p7",
@@ -166,14 +57,14 @@
     {
       "page": "index.html",
       "sku": "p5",
-      "price": "299000",
-      "name": "Комплект «Гарантийное удержание: возврат, оспаривание штрафов и зачётов»",
+      "price": "2990000",
+      "name": "Система защиты подрядчика от претензий, штрафов, удержаний и зачётов",
       "line": 282,
-      "source_tag": "<button class=\"button add-to-cart\" type=\"button\" data-product=\"Комплект «Гарантийное удержание: возврат, оспаривание штрафов и зачётов»\" data-sku=\"p5\" data-price=\"299000\">",
+      "source_tag": "<button class=\"button add-to-cart\" type=\"button\" data-product=\"Система защиты подрядчика от претензий, штрафов, удержаний и зачётов\" data-sku=\"p5\" data-price=\"2990000\">",
       "expected_price": 2990000,
       "expected_name": "Система защиты подрядчика от претензий, штрафов, удержаний и зачётов",
-      "issue": "PRICE_DISAGREES_WITH_SERVER",
-      "inherited_from_published_main": true
+      "issue": null,
+      "inherited_from_published_main": false
     },
     {
       "page": "index.html",
@@ -510,18 +401,6 @@
       "expected_name": "Система подготовки возражений на односторонний акт или списание в одностороннем порядке",
       "issue": null,
       "inherited_from_published_main": true
-    },
-    {
-      "page": "products/t6-kvartiry-vmesto-deneg.html",
-      "sku": "t6",
-      "price": "99000",
-      "name": "Предлагают квартиры вместо денег: запросы до подписи",
-      "line": 168,
-      "source_tag": "<button class=\"button add-to-cart large\" type=\"button\" data-product=\"Предлагают квартиры вместо денег: запросы до подписи\" data-sku=\"t6\" data-price=\"99000\">",
-      "expected_price": null,
-      "expected_name": null,
-      "issue": "RETIRED_SKU_PURCHASE",
-      "inherited_from_published_main": true
     }
   ],
   "demo_source_references": [
@@ -594,11 +473,6 @@
     },
     {
       "source": "articles/zakazchik-ne-oplachivaet-vypolnennye-raboty.html",
-      "target": "/products/t1-pervyy-shag-pri-neoplate.html",
-      "retired_sku": "t1"
-    },
-    {
-      "source": "demo/pretenziya-na-neoplatu.html",
       "target": "/products/t1-pervyy-shag-pri-neoplate.html",
       "retired_sku": "t1"
     },
