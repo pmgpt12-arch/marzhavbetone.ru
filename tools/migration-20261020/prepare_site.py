@@ -119,11 +119,12 @@ def main():
         p=ROOT/rel
         if not p.is_file() or rel=='config.php':continue
         parts=Path(rel).parts
-        allowed=(len(parts)==1 and (p.suffix.lower() in {'.html','.css','.js','.svg','.ico','.png','.jpg','.xml','.txt','.php','.webmanifest'} or rel=='.htaccess')) or parts[0] in HTML_DIRS|{'assets'}
+        allowed=(len(parts)==1 and (p.suffix.lower() in {'.html','.css','.js','.svg','.ico','.png','.jpg','.xml','.txt','.php','.webmanifest'} or rel=='.htaccess')) or parts[0] in HTML_DIRS|{'assets'} or rel=='get/index.php'
         if not allowed:continue
         assert not rel.startswith(BUYER_REJECT_PREFIX)
         shipping.append({'file':rel,'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
     assert any(x['file']=='index.html' for x in shipping) and not any(x['file']=='config.php' for x in shipping)
+    assert sum(x['file']=='get/index.php' for x in shipping)==1,'FUNNEL_DEEP_LINK_ROUTE_NOT_SHIPPED'
     old_ht=subprocess.run(['git','show',BASE+':.htaccess'],cwd=ROOT,check=True,capture_output=True,text=True).stdout
     old_route='''# Preserve POST handlers: no HTTP redirect for payment, webhook, status or download.
 <IfModule mod_rewrite.c>
