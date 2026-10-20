@@ -875,7 +875,7 @@ function mvb_deliver_and_notify(array &$order): array
     }
 
     if (!empty($order['email'])) {
-        $subject = 'Ваши материалы «Маржа в бетоне» — заказ оплачен';
+        $subject = 'Ваши материалы «На стороне подрядчика» — заказ оплачен';
         $headers = [
             'From: site@marzhavbetone.ru',
             'Reply-To: ' . ADMIN_EMAIL,
@@ -918,7 +918,7 @@ function mvb_delivery_email(array $order, array $links): string
         $body .= "3. Заполните форму 02 или 03 по словарю полей, приложите документы и контррасчёт, если он требуется.\n";
         $body .= "4. Направьте возражения по договорному каналу; сохраните подтверждения доставки.\n\n";
         $body .= "Вопросы: " . ADMIN_EMAIL . "\n\n";
-        $body .= "Команда «Маржа в бетоне»\n";
+        $body .= "Команда «На стороне подрядчика»\n";
         return $body;
     }
     if (count($links) === 1 && ($links[0]['sku'] ?? '') === 't2') {
@@ -928,7 +928,7 @@ function mvb_delivery_email(array $order, array $links): string
         $body .= "3. Заполните формы с учётом договора, проекта и объекта.\n";
         $body .= "4. Сохраните подтверждения направления и получения вместе с описью и актом.\n\n";
         $body .= "Вопросы: " . ADMIN_EMAIL . "\n\n";
-        $body .= "Команда «Маржа в бетоне»\n";
+        $body .= "Команда «На стороне подрядчика»\n";
         return $body;
     }
     // Exact accepted entry file for each remaining product.
@@ -950,6 +950,6 @@ function mvb_delivery_email(array $order, array $links): string
     $body .= "- PDF-файлы используются как чек-листы и алгоритмы;\n";
     $body .= "- для спорных ситуаций нужна проверка профильного специалиста.\n\n";
     $body .= "Вопросы: " . ADMIN_EMAIL . "\n\n";
-    $body .= "Команда «Маржа в бетоне»\n";
+    $body .= "Команда «На стороне подрядчика»\n";
     return $body;
 }
