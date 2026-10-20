@@ -1,11 +1,12 @@
 {
-  "phase": "extend-shipping",
-  "attempt": 1,
-  "authorization": "Owner continuation; preserve /get/ Telegram deep-link and buyer routes",
+  "phase": "dry-run-new",
+  "attempt": 2,
+  "authorization": "Owner continuation: safe scoped dry run only",
   "production_cutover": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
-  "previous_failed_prepare_run": 39422855174,
-  "classified_cause": "Historical prepare_site.py is not idempotent against an already-prepared brand candidate; UNEXPECTED_EMAIL_CODE_DELTA. Avoid re-running full builder; extend existing verified manifest at narrow level.",
-  "scope": "Inspect 171 existing shipping SHA/size against prepared manifest and append unchanged get/index.php from main; no content, PHP handlers, price or product changes",
-  "expected_output": "shipping-route-addendum.json PASS, prepared-site-plan.json exactly 172 site files, buyer manifest unchanged"
+  "verified_route_addendum_run": 39423055832,
+  "shipping_files": 172,
+  "buyer_files": 172,
+  "scope": "Read-only compare old site, new root, private masters, orders; verify four backups and 172 exact allowlisted site files including get/index.php; rehearse rollback outside public directories; no public writes or real payment",
+  "expected_output": "remote-dry-run.json PASS_EXACT_REMOTE_DRY_RUN_AND_ROLLBACK with four verified backups"
 }
