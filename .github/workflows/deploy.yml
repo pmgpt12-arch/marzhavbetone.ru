@@ -53,7 +53,7 @@ on:
         default: false
 
 concurrency:
-  group: deploy
+  group: ${{ contains(github.event.head_commit.message, '[prepare-r3-hosted]') && 'deploy-r3-recovery' || 'deploy' }}
   cancel-in-progress: false
 
 env:
@@ -876,7 +876,9 @@ jobs:
         if: contains(github.event.head_commit.message, '[prepare-r3-hosted]')
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api -X POST repos/${{ github.repository }}/actions/runs/39380017553/cancel
+        run: |
+          gh api -X POST repos/${{ github.repository }}/actions/runs/39380017553/cancel
+          gh api -X POST repos/${{ github.repository }}/actions/runs/39380302827/cancel
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
