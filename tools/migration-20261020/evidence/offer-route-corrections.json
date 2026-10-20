@@ -1,0 +1,50 @@
+{
+  "status": "APPLIED_PENDING_FULL_ROUTE_ACCEPTANCE",
+  "observed_inherited_defects": 5,
+  "scope": [
+    {
+      "page": "demo/algoritm-pri-zaderzhke-oplaty.html",
+      "before_sha256": "c4ab6a1312d5c4f670f3a3711bb23a3cd19d5ce550e4862017280af2841dd6da",
+      "after_sha256": "2b7667901fb9e708864e68f1c55354a8da7cf28ddd4d2e2b92666a72465f95bd",
+      "changed": true
+    },
+    {
+      "page": "demo/obshchiy-princip-osparivaniya-uderzhaniy.html",
+      "before_sha256": "77f33d51ba7d8afdb6bc1839b377b562853ff11b8de42afccfe17901421f8084",
+      "after_sha256": "bbe73187375f83b30503d5aff898cda957ef7b97d6ea97a925c0ad727053ac5f",
+      "changed": true
+    },
+    {
+      "page": "demo/pretenziya-na-neoplatu.html",
+      "before_sha256": "b366946ed41614bdfbc7eb2d27dee14b3bffe5110b8d8ec2ff6b139b353e50ec",
+      "after_sha256": "782a41faf2ca118cd50bc19bc70462ee9af6534c2c94ce01d2b8c3becd71293f",
+      "changed": true
+    },
+    {
+      "page": "demo/strategiya-otveta-na-zamechaniya.html",
+      "before_sha256": "b90d7ef65d09c1bd0871e2d388a497e45e6bc1e67ee8ec4c476d70b16258b3bb",
+      "after_sha256": "3566844717451bae648d0d77d7998f4181340a08438c915e00b94a691d402157",
+      "changed": true
+    },
+    {
+      "page": "index.html",
+      "before_sha256": "1a1202b0c3d603fbe977a3c460b1acbafcd646d69d09a21a498e4926524df188",
+      "after_sha256": "ba593898a74b7a41c5a3c5c0d5583af356c775f9c4a6e5bf38371724c15dc4b8",
+      "changed": true
+    },
+    {
+      "page": "products/t6-kvartiry-vmesto-deneg.html",
+      "before_sha256": "805f1286012beb1cb46f546852905abe5b45d4fab0c2f76294e119714a7d4c80",
+      "after_sha256": "5a4155a0926182d110d98403c70cb3bbfbadc08b3f714ecf7067a1708fdbab6d",
+      "changed": true
+    }
+  ],
+  "server_catalog_prices_changed": false,
+  "buyer_documents_changed": false,
+  "policy": "Demo cards explain current system and link directly to its accepted page; no obsolete buy buttons. T6 uses the existing retired-product bridge pattern to P11. Historical demo prose is not re-certified; no buyer master is restored.",
+  "allowed_route_changes": {
+    "demo/pretenziya-na-neoplatu.html": "old T1 offer -> direct P1 page",
+    "products/t6-kvartiry-vmesto-deneg.html": "retired T6 sales body -> P11 information bridge"
+  },
+  "remaining_historical_demo_warning": "Original excerpt/source-reference checks remain under the preexisting build_preview classification; no legal or content acceptance is claimed."
+}

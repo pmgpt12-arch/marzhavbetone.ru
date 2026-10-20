@@ -1,0 +1,2740 @@
+{
+  "status": "PASS_ROUTE_AND_BUYER_SOURCE_INVARIANTS",
+  "baseline": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+  "public_pages": 88,
+  "diagnostic_scenarios": [
+    {
+      "id": "S-7",
+      "when": {
+        "bankrot": true
+      },
+      "verdict": "Контрагент неплатёжеспособен",
+      "means": "Обычный маршрут «претензия — иск» здесь не работает: требование заявляется в деле о банкротстве и в ограниченный срок. Срок считается не с того дня, когда вы узнали, а от публикации сведений о процедуре.",
+      "pain": "Контрагент становится неплатёжеспособным",
+      "free": "/materialy/bankrotstvo.html",
+      "core": {
+        "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+        "price": 24900
+      },
+      "entry": null,
+      "pain_id": "bankrotstvo",
+      "situation": null,
+      "stage": "insolvent"
+    },
+    {
+      "id": "S-11",
+      "when": {
+        "bankrot": false,
+        "signed": "terminated"
+      },
+      "verdict": "Договор расторгнут, требуют вернуть аванс",
+      "means": "Требование приходит одной цифрой, и, пока вашей нет, спорить нечем. Считается отработанная часть аванса и сальдо расчётов, а срок на ответ берётся из договора, а не из ощущения «успеем». Молчание здесь читается как согласие с их цифрой.",
+      "pain": "Опасные условия договора",
+      "pain_id": "dogovor",
+      "situation": "avans",
+      "stage": "after_termination",
+      "free": "/materialy/avans.html",
+      "core": {
+        "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+        "price": 24900
+      },
+      "entry": null
+    },
+    {
+      "id": "S-6",
+      "when": {
+        "bankrot": false,
+        "signed": false,
+        "predmet": "dogovor"
+      },
+      "verdict": "Условия договора до подписи",
+      "means": "Условия оплаты, приёмки и удержаний правятся только сейчас. После подписи каждая из этих строк стоит денег, и правится она уже спором.",
+      "pain": "Опасные условия договора",
+      "free": "/materialy/dogovor.html",
+      "core": {
+        "url": "/products/p7-dogovor-podryada.html",
+        "price": 24900
+      },
+      "pain_id": "dogovor",
+      "situation": "dogovor_do_podpisi",
+      "stage": "before_work"
+    },
+    {
+      "id": "S-8",
+      "when": {
+        "bankrot": false,
+        "signed": false,
+        "predmet": "avans"
+      },
+      "verdict": "Аванс: условия ещё можно поменять",
+      "means": "Аванс — не деньги вперёд, а обязательство с порядком погашения и сроком отработки. Спорят потом не о самом авансе, а о том, как записаны четыре условия: размер, порядок погашения, срок отработки и что считается неотработанным остатком. Сейчас они правятся протоколом разногласий, после подписи — только соглашением сторон.",
+      "pain": "Опасные условия договора",
+      "pain_id": "dogovor",
+      "situation": "avans",
+      "stage": "before_work",
+      "free": "/materialy/avans.html",
+      "core": {
+        "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+        "price": 24900
+      }
+    },
+    {
+      "id": "S-9",
+      "when": {
+        "bankrot": false,
+        "signed": false,
+        "predmet": "metry"
+      },
+      "verdict": "Расчёт квартирами или метрами вместо денег",
+      "means": "Платёж метрами — не цена со скидкой, а перенос на подрядчика сроков продажи и рисков объекта. До подписи проверяются статус объекта и состояние эскроу: после подписи эти два вопроса задавать уже поздно, а отвечать на них придётся деньгами.",
+      "pain": "Опасные условия договора",
+      "pain_id": "dogovor",
+      "situation": "raschet_metrami",
+      "stage": "before_work",
+      "free": "/materialy/raschet-metrami.html",
+      "core": {
+        "url": "/products/p11-raschet-metrami.html",
+        "price": 24900
+      },
+      "entry": null
+    },
+    {
+      "id": "S-10",
+      "when": {
+        "bankrot": false,
+        "signed": false,
+        "predmet": "smeta"
+      },
+      "verdict": "Смета и состав цены до подписания",
+      "means": "Часть потерь маржи заложена в смету до начала работ: накладные и сметная прибыль, зимнее удорожание и ВЗиС, мусор, транспорт и непредвиденные. Проверяется состав цены один раз — сейчас, потому что после подписи он меняется только соглашением.",
+      "pain": "Опасные условия договора",
+      "pain_id": "dogovor",
+      "situation": "smeta",
+      "stage": "before_work",
+      "core": {
+        "url": "/products/p13-chto-v-smete-ne-oplatyat.html",
+        "price": 17900
+      }
+    },
+    {
+      "id": "S-3",
+      "when": {
+        "bankrot": false,
+        "signed": true,
+        "done": true,
+        "extra": true
+      },
+      "verdict": "Спор об оплате дополнительных работ",
+      "means": "Решает не факт выполнения, а доказанность поручения до начала работ. Проверять надо, чем зафиксировано задание и согласована ли стоимость.",
+      "pain": "Не оплачивают дополнительные работы",
+      "free": "/materialy/dop-raboty.html",
+      "core": {
+        "url": "/products/p2-dopolnitelnye-raboty.html",
+        "price": 24900
+      },
+      "pain_id": "dop_raboty",
+      "situation": null,
+      "stage": "in_progress"
+    },
+    {
+      "id": "S-5",
+      "when": {
+        "bankrot": false,
+        "signed": true,
+        "done": true,
+        "extra": false,
+        "docs": true
+      },
+      "verdict": "Документация блокирует приёмку и оплату",
+      "means": "Пока комплект не принят, не двигаются ни приёмка, ни срок оплаты. Возвращают почти всегда по одним и тем же причинам, и они проверяемы у себя до передачи.",
+      "pain": "Исполнительная документация блокирует приёмку и оплату",
+      "free": "/materialy/ispolnitelnaya-dokumentaciya.html",
+      "core": {
+        "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+        "price": 24900
+      },
+      "entry": {
+        "url": "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+        "price": 9900
+      },
+      "pain_id": "ispolnitelnaya",
+      "situation": null,
+      "stage": "in_progress"
+    },
+    {
+      "id": "S-2",
+      "when": {
+        "bankrot": false,
+        "signed": true,
+        "done": true,
+        "extra": false,
+        "docs": false,
+        "accepted": false
+      },
+      "verdict": "Работы выполнены, но не приняты",
+      "means": "Срок оплаты не начинает течь, пока работы не приняты или пока не сработал порядок одностороннего оформления. Спор идёт о приёмке, а не о деньгах — пока.",
+      "pain": "Не принимают и не подписывают КС",
+      "free": "/materialy/vozvrat-ks.html",
+      "core": {
+        "url": "/products/p3-shablony-ks2-ks3.html",
+        "price": 17900
+      },
+      "entry": {
+        "url": "/products/t3-odnostoronniy-akt-i-zachet.html",
+        "price": 14900
+      },
+      "pain_id": "ks",
+      "situation": null,
+      "stage": "submitted"
+    },
+    {
+      "id": "S-4",
+      "when": {
+        "bankrot": false,
+        "signed": true,
+        "done": true,
+        "extra": false,
+        "docs": false,
+        "accepted": true,
+        "retention": true
+      },
+      "verdict": "Часть суммы удержана",
+      "means": "Спор не о выполнении, а об основании и сроке возврата. Проверять надо условие договора, событие отсчёта срока и обоснованность удержания.",
+      "pain": "Не возвращают удержания",
+      "free": "/materialy/uderzhaniya.html",
+      "core": {
+        "url": "/products/p5-shtrafy-uderzhaniya.html",
+        "price": 29900
+      },
+      "entry": {
+        "url": "/products/t3-odnostoronniy-akt-i-zachet.html",
+        "price": 14900
+      },
+      "pain_id": "uderzhanie",
+      "situation": null,
+      "stage": "contested"
+    },
+    {
+      "id": "S-1",
+      "when": {
+        "bankrot": false,
+        "signed": true,
+        "done": true,
+        "extra": false,
+        "docs": false,
+        "accepted": true,
+        "retention": false,
+        "overdue": true
+      },
+      "verdict": "Просрочка оплаты принятых работ",
+      "means": "Работы приняты, срок прошёл, удержаний нет — предмет спора только деньги. Дальше порядок один: сверить свои документы, зафиксировать просрочку, предъявить требование.",
+      "pain": "Работы выполнены — денег нет",
+      "free": "/materialy/dengi.html",
+      "core": {
+        "url": "/products/p1-oplata-po-ks2.html",
+        "price": 29900
+      },
+      "entry": null,
+      "pain_id": "neoplata",
+      "situation": null,
+      "stage": "overdue"
+    },
+    {
+      "id": "S-0",
+      "when": {
+        "bankrot": false,
+        "signed": true,
+        "done": true,
+        "extra": false,
+        "docs": false,
+        "accepted": true,
+        "retention": false,
+        "overdue": false
+      },
+      "verdict": "Работы приняты, срок оплаты ещё не наступил",
+      "means": "Требовать пока нечего, и это хорошая новость: время есть на то, чтобы проверить собственные документы до наступления срока. Половина отказов в оплате держится на расхождениях в них, а не на нежелании платить.",
+      "pain": "Работы выполнены — денег нет",
+      "free": "/materialy/dengi.html",
+      "core": {
+        "url": "/products/p1-oplata-po-ks2.html",
+        "price": 29900
+      },
+      "entry": null,
+      "pain_id": "neoplata",
+      "situation": null,
+      "stage": "accepted_unpaid"
+    }
+  ],
+  "diagnostic_scenario_count": 12,
+  "independent_product_choice_MB007": "preserved; not a compulsory entry-then-core purchase ladder",
+  "diagnostic_legacy_generator": "DO_NOT_RUN: deleted YAML sources intentionally absent",
+  "active_skus": [
+    "p1",
+    "p10",
+    "p11",
+    "p13",
+    "p2",
+    "p3",
+    "p4",
+    "p5",
+    "p7",
+    "p8",
+    "p9",
+    "t2",
+    "t3"
+  ],
+  "retired_to_successor": {
+    "t1": "p1",
+    "t4": "p9",
+    "t5": "p8",
+    "t6": "p11",
+    "p12": "p5"
+  },
+  "buyer_files": 172,
+  "payment_and_attribution_sources_unchanged": true,
+  "pages": [
+    {
+      "page": "404.html",
+      "published_source_sha256": "d20adae4f37b2a22e6bbf5d40a18cdbd2cc58fc7f2edf542545a940beb130fba",
+      "candidate_sha256": "9f83f9e2982ca2e1ac5c4c2655affdfdd6ce93761bf9aee8a974a4c93d80a6c1",
+      "link_count": 17,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/akt-osvidetelstvovaniya-skrytyh-rabot.html",
+      "published_source_sha256": "f1f4f4e0509c7df33da1757a7bfce32726caff33cc8dec07f5ef2206146d7f9a",
+      "candidate_sha256": "f11f9ad2328822e58cb99c613d1aae292c3083e55724cde6bf0b593c1fc6c6c4",
+      "link_count": 29,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+          "sku": "t2",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/akt-peredachi-stroitelnoy-ploshchadki-obrazec.html",
+      "published_source_sha256": "3440d8fb0b60bbc55dc50dd0b60f33085fccd9c040a9180874c2125261ffd861",
+      "candidate_sha256": "2cf2ef88d207958e11b84100083d74931f922366ff5c71c9f2869b93c5cdc6d2",
+      "link_count": 34,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+          "sku": "t2",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/akt-skrytyh-rabot-montazh.html",
+      "published_source_sha256": "3ecdd9b0cab83f8ff845d2da75e7fcc9ec364f4a9b11d8c32ff775bcd5b3b322",
+      "candidate_sha256": "00a089c747f1156f603ecd7c110470e46c7db849ae5e78f2dfd75ee92c2fd92b",
+      "link_count": 31,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+          "sku": "t2",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/akt-skrytyh-rabot-obrazec.html",
+      "published_source_sha256": "b97dbcc62caa4beaab2a397c5b8403f4605dfda1b9b071ee36125be212c6a97b",
+      "candidate_sha256": "9eeb4016a8e34dd1a51277880672444a938a5542ff37fc88281785e0aa374e57",
+      "link_count": 37,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+          "sku": "t2",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/akty-skrytyh-rabot-kakie.html",
+      "published_source_sha256": "fb20983907b35b8bc23cd358adfe12a41fb018443bf5461585eb0d584a9d5853",
+      "candidate_sha256": "48bd32d811503a6386ec95e148e18ffcd8d6cefaee6c14831ada20450b0f2cd9",
+      "link_count": 33,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/avans-eto-ne-dengi-eto-kryuchok.html",
+      "published_source_sha256": "895c761a6ebf40dc603396855fd7223ff3bb5d366355c0584b29f0e023263b68",
+      "candidate_sha256": "7ab3366d2495cc8a6379418829d3dc402199aca20e6dbe02e625f9016451d1c4",
+      "link_count": 33,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/avans-po-dogovoru-podryada.html",
+      "published_source_sha256": "3af05253a2cb2fc9b003f0d1c60ec0fa360df64f6cb958cd9b8e09b416740d47",
+      "candidate_sha256": "a830c37f6711f2a83735a55bd525f1a14870b7067009ece17a91a2cc7de76e58",
+      "link_count": 35,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/bankovskaya-garantiya-na-vozvrat-avansa.html",
+      "published_source_sha256": "9c4e8701999a4ef16c11ddd1527caee709ece2a4eeac8fc1fcf59125dde9b353",
+      "candidate_sha256": "882b27eba4b8382145ef05327b408442486f56d30744a1db51a577f028b4803d",
+      "link_count": 33,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/bankrotstvo-genpodryadchika-5-markerov.html",
+      "published_source_sha256": "e53fb5556d2c594f2f27ca0d5eea4ac77a19575032558d47906f67d89db257e4",
+      "candidate_sha256": "a857c4878b437cab58d413792d6daa9ae57748a1d3f6b1efcb3776f9f6c10c6a",
+      "link_count": 36,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t4-genpodryadchik-bankrotitsya.html",
+          "sku": "t4",
+          "retired": true,
+          "successor": "p9"
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/dogovor-subpodryada-obrazec.html",
+      "published_source_sha256": "4f25cc78bceacf8019a118182d47437642416738394c12846e716fe952c144a0",
+      "candidate_sha256": "be333efec2e5836cdd5264091e0ce857c09b52df6b338534d6c1df39fcdc9db7",
+      "link_count": 34,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/dolg-zakryvali-na-sleduyushchem-obekte.html",
+      "published_source_sha256": "d711abf7ffd44e12c51cf61c7f49562d6384fe9015dbe5474178cf7fab94d61e",
+      "candidate_sha256": "5aa9de17f2de62e2e99cc0530f20bd55e5f205b822e78c8307fc8d36ba5dfce6",
+      "link_count": 32,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t1-pervyy-shag-pri-neoplate.html?utm_source=site&utm_medium=article&utm_campaign=neoplata&utm_content=dolg-zakryvali-na-sleduyushchem-obekte-entry",
+          "sku": "t1",
+          "retired": true,
+          "successor": "p1"
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/dopolnitelnye-raboty-v-stroitelstve.html",
+      "published_source_sha256": "1a8fdeca79bfe8141601fd18bd4b43f5aa044a876989f3ed7f8a437dc3cc3708",
+      "candidate_sha256": "0b96a6893aabfe2a95e85d0e23e051bf0ed3696ae8f01f959c80f5f813e0194a",
+      "link_count": 35,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/dopraboty-bez-soglasheniya.html",
+      "published_source_sha256": "0af93ccd684150e7d93842dea1da03ca6fe9e8876377e2636b00e9c7cd31def0",
+      "candidate_sha256": "5d049a27b0973feff2c4b1d83848d664e1bf072f9d72f32ef824dacaf3236d0e",
+      "link_count": 41,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/dostraivali-za-metry-otkaz-v-zos.html",
+      "published_source_sha256": "cfe20e220bd98bb8577c971cbd00d75b99ea28ac78f66aa0068ec04c3ba19a54",
+      "candidate_sha256": "83c8eca1533a51523d4eb4736685d887ac625630148d31d46fd10173268dedfb",
+      "link_count": 32,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p11-raschet-metrami.html",
+          "sku": "p11",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/garantiynoe-uderzhanie-chto-eto.html",
+      "published_source_sha256": "ff0f64319802f1df6e27e4e5bd60bd6411305ffbc1029fba39918c2db6f8454d",
+      "candidate_sha256": "fce6ef1b2f1040baa33b0ac5527a0e4113569ddef2ed55c762254af7ca765706",
+      "link_count": 33,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/garantiynoe-uderzhanie-v-ks-2-i-ks-3.html",
+      "published_source_sha256": "b7ed6febe02ef3aba540f9eb493e687c660cae5a604128784238566999b5a3d7",
+      "candidate_sha256": "082019fd3d12236b1edbc17e4fc445a7396c486baf56e547967502fac231d994",
+      "link_count": 39,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t3-odnostoronniy-akt-i-zachet.html",
+          "sku": "t3",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/genpodryadchik-zarabatyvaet-na-vas.html",
+      "published_source_sha256": "00c4b3236a2a234571ece452062dcb955588e513d3a475a50fbcf1213b4a4c98",
+      "candidate_sha256": "abb1624ea5590cd5ed88d1d352e6f89da8236862d9456bb53e1b2aed8f50c190",
+      "link_count": 30,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/index.html",
+      "published_source_sha256": "2ee822374c4056113860f52ca93774712962c1b34338359ac93901c1eaf7121a",
+      "candidate_sha256": "3f5dd434f0de4800f8eb67791cb4950c566d91c8e5513f220cc7f550da697c71",
+      "link_count": 98,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/ispolnitelnaya-dokumentaciya-sostav.html",
+      "published_source_sha256": "36a6e8889b9ae4abb82f48ef50d89db8aea4a43a215aa460facdd09f8dbc7460",
+      "candidate_sha256": "10de1e1f785d623c321cabac1e8ce884402c3a4c109b5c256985ea97c1512a5c",
+      "link_count": 33,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html?utm_source=site&utm_medium=article&utm_campaign=ispolnitelnaya&utm_content=ispolnitelnaya-dokumentaciya-sostav-entry",
+          "sku": "t2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html?utm_source=site&utm_medium=article&utm_campaign=ispolnitelnaya&utm_content=ispolnitelnaya-dokumentaciya-sostav-core",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/krasnye-flagi-dogovora-subpodryada.html",
+      "published_source_sha256": "093d6f1c271f471385097165d1801660bfe024f10b373925bda1e4a162755bf9",
+      "candidate_sha256": "b0a59885a8f7981f97ca8a07cda504ee989a7401b3c342a202e339098b0a8853",
+      "link_count": 32,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/neotrabotannyy-avans.html",
+      "published_source_sha256": "1a091aaac4e1cd5ab192f46329851457c48736f36a4483cc969413c26a2da132",
+      "candidate_sha256": "67d4f075fc6dd2339de96913385e5c0dcaea7a85ecd18462c18e225fc9eaa634",
+      "link_count": 35,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t5-trebuyut-vernut-avans.html",
+          "sku": "t5",
+          "retired": true,
+          "successor": "p8"
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/podpisannaya-ks2-ne-znachit-chto-zaplatyat.html",
+      "published_source_sha256": "d9097c81684e161e754e36436556b808b006cfeb5bdec48d932a8a009463a4fc",
+      "candidate_sha256": "24a6dc7016154809bc5d95b288e7ef21db20ef5c92f75d60f9ea2cbf883c72bb",
+      "link_count": 28,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t1-pervyy-shag-pri-neoplate.html",
+          "sku": "t1",
+          "retired": true,
+          "successor": "p1"
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/pretenziya-za-chuzhuyu-kommunalku.html",
+      "published_source_sha256": "400180a7b70e9a473cb0f51cb856c1bb2bcad573fdb656e257e3cea59527d4ff",
+      "candidate_sha256": "88e401c4f3d1218b3a9709a794c180c6b3e2386b1bd8b717fa164a06e1171ad3",
+      "link_count": 32,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p10-otvet-na-pretenziyu.html",
+          "sku": "p10",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p10-otvet-na-pretenziyu.html?utm_source=site&utm_medium=article&utm_campaign=uderzhanie&utm_content=pretenziya-za-chuzhuyu-kommunalku-core-perepiska",
+          "sku": "p10",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/protokol-raznoglasiy-k-dogovoru.html",
+      "published_source_sha256": "dc0068449cab23c47a31fb2c73dabce481e444eff25d334bb24c405ab940a869",
+      "candidate_sha256": "8dfc934a0558216955fdb4b3d24612503128ab7a257c67f68638ba07c19c52ac",
+      "link_count": 30,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/proverka-ks-2-pered-sdachey.html",
+      "published_source_sha256": "77f39ba3fff5e81113fe5c57172be894411db4503ed5252ab3156888c5d674ec",
+      "candidate_sha256": "b38e962ee2f17df54da19b63c708ab0627c12cc6f7ca65dfafd98ccc524737ba",
+      "link_count": 42,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/pyat-dokazatelstv-vypolneniya.html",
+      "published_source_sha256": "02a781f9027492c6823fc1a905e44e3d0132830dd3e054acfbc5a9529ce0549e",
+      "candidate_sha256": "054c0fcbb08af37919667cf0c50a534fc45ad45d0693720e3ecc9ce4c13374b5",
+      "link_count": 27,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+          "sku": "t2",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/raboty-ne-prinyaty.html",
+      "published_source_sha256": "10a43f1560b5248f48874f65ccb63c7d238cbf4c5644eb0588dfd7b0f01afaf8",
+      "candidate_sha256": "754329229edda32a74119263c089de578058165bd8cb808677588541db75b877",
+      "link_count": 39,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t1-pervyy-shag-pri-neoplate.html",
+          "sku": "t1",
+          "retired": true,
+          "successor": "p1"
+        },
+        {
+          "url": "/products/t3-odnostoronniy-akt-i-zachet.html",
+          "sku": "t3",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/raschet-metrami.html",
+      "published_source_sha256": "9aa3ce242ac6e3ee3bb78cdc0840cb6c339c8f19b88c89f3350dd35b5bf88277",
+      "candidate_sha256": "779bcff9cb309e3641ef2ff55be7ff6b2735c55a8402a9307e84a3c29d551328",
+      "link_count": 30,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p11-raschet-metrami.html",
+          "sku": "p11",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p11-raschet-metrami.html",
+          "sku": "p11",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p11-raschet-metrami.html",
+          "sku": "p11",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/reestr-trebovaniy-kreditorov.html",
+      "published_source_sha256": "d1b07ac624690c2e54867a6fb6c492718ab639c1146dd0658a7c36b3c7091271",
+      "candidate_sha256": "3a672dc64e4cdd4a18a779298e0d02808b6275f60ef39c2bd96c2444b2115967",
+      "link_count": 32,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/skidka-15-procentov-na-tendere-eto-otbor-zhertv.html",
+      "published_source_sha256": "8dd585518f0f977b4421e0072e6cd4d50a88d3cd7269ae76f812a40bc5f05463",
+      "candidate_sha256": "3d2256816d9e2f392db66070f16b03d79f6e356f3391e0d11019b677b6e52153",
+      "link_count": 25,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p7-dogovor-podryada.html?utm_campaign=dogovor&utm_source=site&utm_medium=article&utm_content=skidka-15-procentov-na-tendere-eto-otbor-zhertv-core",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p7-dogovor-podryada.html?utm_campaign=dogovor&utm_source=site&utm_medium=article&utm_content=skidka-15-procentov-na-tendere-eto-otbor-zhertv-core",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html?utm_campaign=dop_raboty&utm_source=site&utm_medium=article&utm_content=skidka-15-procentov-na-tendere-eto-otbor-zhertv-core-dopraboty",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/srok-garantiynogo-uderzhaniya.html",
+      "published_source_sha256": "d7b6a67ff75136a1450ad064d02fac06662a7542274989c2be76e94bf61bcfa5",
+      "candidate_sha256": "f706ddc052d865b9e8dad7b3a1f9d3d2a97bf392f1fc08da0787f1d44218e54c",
+      "link_count": 29,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/srok-vklyucheniya-v-reestr-trebovaniy-kreditorov.html",
+      "published_source_sha256": "1db29bcf93e17acbbc0ad964674e7728ab57cb2e74a2f94ef23075978ede82c0",
+      "candidate_sha256": "8950aa199cb96caf1119ed50a2546d8fdf3e26672d61d82f9ccb823da01669e1",
+      "link_count": 32,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/stroitelnaya-smeta-gde-teryaetsya-marzha.html",
+      "published_source_sha256": "716d6fa0df59353f606e11d4241d714325d48aa758af6a1b1e6978ede759683d",
+      "candidate_sha256": "aaa1269a0b4c92dae772a89c38a0850be84924f6c27475520c126395928a240a",
+      "link_count": 37,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p13-chto-v-smete-ne-oplatyat.html",
+          "sku": "p13",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p13-chto-v-smete-ne-oplatyat.html",
+          "sku": "p13",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/stroitelnyy-musor-v-smete.html",
+      "published_source_sha256": "283d2bb1591e52d13ee1efef0b50686f5552ea795ecd03f4ff6ca46bf701d669",
+      "candidate_sha256": "cc7be13b4736676fb4fbb603edbb802f95fe13e98c77cf7abd5125e2b28496b8",
+      "link_count": 35,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p13-chto-v-smete-ne-oplatyat.html",
+          "sku": "p13",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/vklyuchenie-v-reestr-trebovaniy-kreditorov.html",
+      "published_source_sha256": "2dab5653a7c24c5ae417537ca74da68fe78b68eaa2a90987872a9e94d0964a1a",
+      "candidate_sha256": "7a793b55eb50c5bff4011e64c7dd02ef18ecc65cf8662b2dc0e0d9b783132030",
+      "link_count": 33,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/vozvrat-avansa-po-dogovoru-podryada.html",
+      "published_source_sha256": "1d027e7cce567ddea6f0984c4e5eed19a3fd9eae47fadfd6781684737618c3d6",
+      "candidate_sha256": "a3c856cbd234f44be488dca91894e22e145a9b809e114fc92af744e1be03a1b4",
+      "link_count": 32,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/vozvrat-garantiynogo-uderzhaniya.html",
+      "published_source_sha256": "eb946394edefb99c0aea7520f105d7c833c17e9203f5afd899d2307f376f85e7",
+      "candidate_sha256": "9792b31133d1200b53830448ea829a922a7538023d31b8a0780b9773eb4ff712",
+      "link_count": 32,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/vsyo-vklyucheno-v-cenu.html",
+      "published_source_sha256": "aba224679e5bc5d12c4f9a227e4f3e760d828e678940efa65c1d046f9c4de002",
+      "candidate_sha256": "10340a9bdb3bf42c1763cd5e5e193cc16e1e35c153c54632ca213aa330847c2c",
+      "link_count": 25,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/zakazchik-ne-oplachivaet-vypolnennye-raboty.html",
+      "published_source_sha256": "3b1363793543866b8f422726c238b614351d00ba6e4af587a1276d276ba87b7e",
+      "candidate_sha256": "35a1436214f352a1410e68ebc30fd4d9f070fb22e5eb1a08da7f464742e332bb",
+      "link_count": 41,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/t1-pervyy-shag-pri-neoplate.html",
+          "sku": "t1",
+          "retired": true,
+          "successor": "p1"
+        },
+        {
+          "url": "/products/t1-pervyy-shag-pri-neoplate.html",
+          "sku": "t1",
+          "retired": true,
+          "successor": "p1"
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/zapros-arbitrazhnomu-upravlyayushchemu.html",
+      "published_source_sha256": "1e92275292c20fcd0fca46768af2e6eb08e62d80b3fc296d1c45149008bc959c",
+      "candidate_sha256": "18364315496319b3a3986008904b7238985347f2917a12987fae77d8d076ed5e",
+      "link_count": 31,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/zayavlenie-o-vklyuchenii-v-reestr-trebovaniy.html",
+      "published_source_sha256": "293712df3fb897d6ce0ba15a9dd4b24f8039af22186862ace5336916781d116d",
+      "candidate_sha256": "c96fbcd4d34e0c58661d4f5915953519ddf457f05d63ae26a3c44f96b0da8e76",
+      "link_count": 33,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "articles/zos-v-stroitelstve.html",
+      "published_source_sha256": "c929bd585d91a7a5546afbf9cf6671cfd1d994f542cd84e284a0db48a9a5f453",
+      "candidate_sha256": "08431658cde362da8dea07dd4a8793280b2933c16073badc74587beccd44e8bc",
+      "link_count": 34,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p11-raschet-metrami.html",
+          "sku": "p11",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p11-raschet-metrami.html",
+          "sku": "p11",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "contacts.html",
+      "published_source_sha256": "cba31f620df2bb86ff13e705ac20c17c87b8e6e32134a6f552b18b974600518e",
+      "candidate_sha256": "32733f13107749050e1ba2395c07e0975bc8c69171147d6734456505cb9536d5",
+      "link_count": 15,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": []
+    },
+    {
+      "page": "demo/algoritm-pri-zaderzhke-oplaty.html",
+      "published_source_sha256": "5778d5e49ef67ffa4599a4ea2f73e5f31b2f5f394a3666ad30a095b12d4c92c9",
+      "candidate_sha256": "2b7667901fb9e708864e68f1c55354a8da7cf28ddd4d2e2b92666a72465f95bd",
+      "link_count": 24,
+      "explicit_inherited_offer_correction": true,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "demo/obshchiy-princip-osparivaniya-uderzhaniy.html",
+      "published_source_sha256": "d6759431e3cf5c06e3c04e15acf7ab40a8e5dbfe244da3ef539b26ea570bbc8e",
+      "candidate_sha256": "bbe73187375f83b30503d5aff898cda957ef7b97d6ea97a925c0ad727053ac5f",
+      "link_count": 24,
+      "explicit_inherited_offer_correction": true,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "demo/pretenziya-na-neoplatu.html",
+      "published_source_sha256": "f3b332434dacf6422eff8756c772e90cf7c9ce00b58610cca88d0b59051d4d4c",
+      "candidate_sha256": "782a41faf2ca118cd50bc19bc70462ee9af6534c2c94ce01d2b8c3becd71293f",
+      "link_count": 24,
+      "explicit_inherited_offer_correction": true,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "demo/strategiya-otveta-na-zamechaniya.html",
+      "published_source_sha256": "31ea116da9fd380a14f5a8df634d0d85f1defcb7178e77889e1b1ebc058d0e50",
+      "candidate_sha256": "3566844717451bae648d0d77d7998f4181340a08438c915e00b94a691d402157",
+      "link_count": 24,
+      "explicit_inherited_offer_correction": true,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "diagnostika.html",
+      "published_source_sha256": "040fcfdc3f2bc575d208a1201e2062feef42df4d00df5ba9e2fe5adff3e1b255",
+      "candidate_sha256": "e26e703fd2f4be88a009b68340965a80631bbfd312aca1330d4cdfd3dfc001f8",
+      "link_count": 17,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": []
+    },
+    {
+      "page": "fail.html",
+      "published_source_sha256": "509168ae289ba899133cfd667a207e35fd22d0b0d9ca77eeafd7e38186906879",
+      "candidate_sha256": "2e61505fcf3112cbbbb5af47ee376ac1fc1bdfbce65de58f554ea7a7c271a683",
+      "link_count": 7,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": []
+    },
+    {
+      "page": "index.html",
+      "published_source_sha256": "31310628b0d2b75ae2fc2b2250f5864901fe48145ea84a6a19b7c7e071782bae",
+      "candidate_sha256": "ba593898a74b7a41c5a3c5c0d5583af356c775f9c4a6e5bf38371724c15dc4b8",
+      "link_count": 90,
+      "explicit_inherited_offer_correction": true,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": [
+        {
+          "data-sku": "p7",
+          "data-price": "2490000",
+          "data-product": "Система проверки и согласования договора субподряда"
+        },
+        {
+          "data-sku": "p2",
+          "data-price": "2490000",
+          "data-product": "Система оформления и получения оплаты за дополнительные работы"
+        },
+        {
+          "data-sku": "p3",
+          "data-price": "1790000",
+          "data-product": "Комплект «КС-2 без возврата: сдайте с первой попытки»"
+        },
+        {
+          "data-sku": "p1",
+          "data-price": "2990000",
+          "data-product": "Система получения оплаты за выполненные работы"
+        },
+        {
+          "data-sku": "p5",
+          "data-price": "2990000",
+          "data-product": "Система защиты подрядчика от претензий, штрафов, удержаний и зачётов"
+        },
+        {
+          "data-sku": "p9",
+          "data-price": "2490000",
+          "data-product": "Система защиты требований подрядчика при банкротстве генподрядчика"
+        }
+      ]
+    },
+    {
+      "page": "kalkulyator.html",
+      "published_source_sha256": "2c842e61861914caf2d244b5a129ae7e0f476ff864510d4e6af3fe9a46c7fe09",
+      "candidate_sha256": "4b7bf8e2abc6ec9b0c80722fb6f6dac21000e92f79f6ce123cf723a3c3ab104f",
+      "link_count": 21,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t1-pervyy-shag-pri-neoplate.html",
+          "sku": "t1",
+          "retired": true,
+          "successor": "p1"
+        },
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "katalog.html",
+      "published_source_sha256": "788a6016fe9957d2127d8b93bd5777028d06a0548a8654d7e7a2564bc0f912f9",
+      "candidate_sha256": "b502a5e82e99a50b2ad83a449452d5d9d3be39866a27ef38dccb19b2f1df352f",
+      "link_count": 80,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p13-chto-v-smete-ne-oplatyat.html",
+          "sku": "p13",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p11-raschet-metrami.html",
+          "sku": "p11",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+          "sku": "t2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/t3-odnostoronniy-akt-i-zachet.html",
+          "sku": "t3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p10-otvet-na-pretenziyu.html",
+          "sku": "p10",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": [
+        {
+          "data-sku": "p7",
+          "data-price": "2490000",
+          "data-product": "Система проверки и согласования договора субподряда"
+        },
+        {
+          "data-sku": "p8",
+          "data-price": "2490000",
+          "data-product": "Система управления авансами и расчётами по договору подряда"
+        },
+        {
+          "data-sku": "p13",
+          "data-price": "1790000",
+          "data-product": "Система проверки сметной документации и выявления неоплачиваемых затрат"
+        },
+        {
+          "data-sku": "p11",
+          "data-price": "2490000",
+          "data-product": "Расчёты в неденежной форме: жилые и офисные помещения, машино-места"
+        },
+        {
+          "data-sku": "p4",
+          "data-price": "2490000",
+          "data-product": "Система ведения, проверки и передачи исполнительной документации"
+        },
+        {
+          "data-sku": "p2",
+          "data-price": "2490000",
+          "data-product": "Система оформления и получения оплаты за дополнительные работы"
+        },
+        {
+          "data-sku": "p3",
+          "data-price": "1790000",
+          "data-product": "Комплект «КС-2 без возврата: сдайте с первой попытки»"
+        },
+        {
+          "data-sku": "p1",
+          "data-price": "2990000",
+          "data-product": "Система получения оплаты за выполненные работы"
+        },
+        {
+          "data-sku": "t2",
+          "data-price": "990000",
+          "data-product": "Система документального подтверждения передачи исполнительной документации"
+        },
+        {
+          "data-sku": "t3",
+          "data-price": "1490000",
+          "data-product": "Система подготовки возражений на односторонний акт или списание в одностороннем порядке"
+        },
+        {
+          "data-sku": "p5",
+          "data-price": "2990000",
+          "data-product": "Система защиты подрядчика от претензий, штрафов, удержаний и зачётов"
+        },
+        {
+          "data-sku": "p9",
+          "data-price": "2490000",
+          "data-product": "Система защиты требований подрядчика при банкротстве генподрядчика"
+        },
+        {
+          "data-sku": "p10",
+          "data-price": "1790000",
+          "data-product": "Система подготовки ответа на претензию заказчика"
+        }
+      ]
+    },
+    {
+      "page": "materialy/akt-skrytyh-rabot.html",
+      "published_source_sha256": "f02d03292076e1706b6a4c75b1ccd9a1fa4eca2e8625899c6c311d4998f3af40",
+      "candidate_sha256": "fa6c82445b3ee6b25bd0e488997d8a4755dab590ee677ff1fd5b71e159d1cd42",
+      "link_count": 30,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+          "sku": "t2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "materialy/avans.html",
+      "published_source_sha256": "011a0e758725b55b69d5a9678209427e67e270c90da4e3c32e4980ff09f9feb9",
+      "candidate_sha256": "af04c7310aabc318b8b3e5d885519aba4e1221229051471e7e590dfc4e3d90ad",
+      "link_count": 27,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/t5-trebuyut-vernut-avans.html",
+          "sku": "t5",
+          "retired": true,
+          "successor": "p8"
+        },
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "materialy/bankrotstvo.html",
+      "published_source_sha256": "5ae2c1fcda4e8ad1362eb685732f1585d3be29c7ea66beef56ba2b0e8d384a8f",
+      "candidate_sha256": "34ba673c21b84d0dfc3a7899f79ffebaddadeab1dbff632fac27fa6b8d01ab59",
+      "link_count": 27,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/t4-genpodryadchik-bankrotitsya.html",
+          "sku": "t4",
+          "retired": true,
+          "successor": "p9"
+        },
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "materialy/dengi.html",
+      "published_source_sha256": "08148d891f7bf4f80a4f9509f013a7f47d554466d832ba260a91d225e91be890",
+      "candidate_sha256": "4c21d74542757a3b8463ca0eb6c57b4559fa557cb2eb44b693ee7924cfd87bc3",
+      "link_count": 28,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/t1-pervyy-shag-pri-neoplate.html",
+          "sku": "t1",
+          "retired": true,
+          "successor": "p1"
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "materialy/dogovor.html",
+      "published_source_sha256": "5b768d3f78d046a662fcda634178311236ec45c0d67b6ff77565cdfa84111616",
+      "candidate_sha256": "2de0ebf548fd040589d4326f8430b733bd668e79985426875edb01af604f72ce",
+      "link_count": 26,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "materialy/dop-raboty.html",
+      "published_source_sha256": "88d913a6d6487992b2847efbed32bac363f0ce0b2a43c80c2f2d8a43752ce07c",
+      "candidate_sha256": "d98a4afca15b99af05f8e42f91784044cc79c0df762a3c86f624761da788582f",
+      "link_count": 26,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "materialy/index.html",
+      "published_source_sha256": "e3391eca8ffac511ace7165ae626778f8a9e98a31d5da9729e009b7794712b84",
+      "candidate_sha256": "5fe38ab96202d01e664190c6cac21c3d010a24a247ca8c0b1d6695e6068cd7d3",
+      "link_count": 43,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p11-raschet-metrami.html",
+          "sku": "p11",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "materialy/ispolnitelnaya-dokumentaciya.html",
+      "published_source_sha256": "b15daef4d50ecdf0f7a26bdc448ebdd227e32d1f15f82be6abd08edc6c6b9ec8",
+      "candidate_sha256": "5d98976a10973ea4555279b2389c5bebc760601fef207d036fa51272fcec263f",
+      "link_count": 30,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+          "sku": "t2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "materialy/raschet-metrami.html",
+      "published_source_sha256": "4582392e3020462c002c8d811cd0becb30459d5455e1082d0e9ffa05fcf4c830",
+      "candidate_sha256": "b36d120340b9cee21b190e6c4f91d2204d013cde3f0de9317e528686e5f8c209",
+      "link_count": 26,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p11-raschet-metrami.html",
+          "sku": "p11",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "materialy/uderzhaniya.html",
+      "published_source_sha256": "712483cc82ac2c6f1d59a2bdb56138d180eb144dab59e863a6716aa095342460",
+      "candidate_sha256": "ceb1598c171a82d26297c66e08d740e6762ec5b8119becdfcf5347a7515d9165",
+      "link_count": 27,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/t3-odnostoronniy-akt-i-zachet.html",
+          "sku": "t3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p5-shtrafy-uderzhaniya.html",
+          "sku": "p5",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "materialy/vozvrat-ks.html",
+      "published_source_sha256": "eaca85baf05e0a0778600dd7167527eb169c3c5755afdd82629779d1067e3a27",
+      "candidate_sha256": "da0b2c7704956e16f3cb4eaaa0fecd5371f86ba70a37ae57d05961f531082105",
+      "link_count": 26,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "offer.html",
+      "published_source_sha256": "121288253e7232895704b915a403f3a9452420cfe7c787a9faf65e19cdef7678",
+      "candidate_sha256": "c4273a2b97ab38248ecccdf92e82fe9d69f39e2ffbb2e21301bd181afd37de1c",
+      "link_count": 16,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": []
+    },
+    {
+      "page": "payment-delivery.html",
+      "published_source_sha256": "354d7aeb1c967f9fe6d3b4618a31108d60a8168d9e510db600887a93b6a3f269",
+      "candidate_sha256": "b4bca6d3c5298cb78f90dd9b3f36413ff0bdd9fced198609114a54d2de4806eb",
+      "link_count": 14,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": []
+    },
+    {
+      "page": "privacy.html",
+      "published_source_sha256": "9cb50beea56ff1055b2b9d4f3b7a8581e39ed8f8f4d23ecfb1709e88796c92a4",
+      "candidate_sha256": "985f73d4b4f4458dd4c35674395e50b69aaf101a4e552354c5ccc075ef07dbb0",
+      "link_count": 16,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": []
+    },
+    {
+      "page": "products/p1-oplata-po-ks2.html",
+      "published_source_sha256": "8c72e95143416efc1f1768462119e7df7b4086046deaeec5e54a7c357e16a362",
+      "candidate_sha256": "859c3e311c646588cbfeaee895b1c6ce563990ba4ea2528679eb03293a8ff36c",
+      "link_count": 30,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": [
+        {
+          "data-sku": "p1",
+          "data-price": "2990000",
+          "data-product": "Система получения оплаты за выполненные работы"
+        }
+      ]
+    },
+    {
+      "page": "products/p10-otvet-na-pretenziyu.html",
+      "published_source_sha256": "8b5af710fda4bc02b7264fd6bfb77ef9c7baf98e52d838d176be3c6c770d24b9",
+      "candidate_sha256": "f4814e8b34d77c92d8e3bab8edf28ad156cadac1826713d669daa6c5e5598c09",
+      "link_count": 30,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": [
+        {
+          "data-sku": "p10",
+          "data-price": "1790000",
+          "data-product": "Система подготовки ответа на претензию заказчика"
+        }
+      ]
+    },
+    {
+      "page": "products/p11-raschet-metrami.html",
+      "published_source_sha256": "efef76e8c0f8f1e87d5d8545ed04c4cc459b55e45261df475e820c957879264d",
+      "candidate_sha256": "ca602c072cff1c213e294bbc5d81b411c922f9244faeb08ae17df446449ec3db",
+      "link_count": 35,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p7-dogovor-podryada.html",
+          "sku": "p7",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": [
+        {
+          "data-sku": "p11",
+          "data-price": "2490000",
+          "data-product": "Комплект «Расчёты в неденежной форме: жилые и офисные помещения, машино-места»"
+        }
+      ]
+    },
+    {
+      "page": "products/p12-spor-s-summoy.html",
+      "published_source_sha256": "435857eda0b63af2dcac482fa11a4f4395a9dbb0a1c3bcc60a9df603a0735c00",
+      "candidate_sha256": "f8d311442cc83243822255df47f4d8ef500924806d749b32192071c4bcf9de3a",
+      "link_count": 37,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p10-otvet-na-pretenziyu.html",
+          "sku": "p10",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": [
+        {
+          "data-sku": "p5",
+          "data-price": "2990000",
+          "data-product": "Система защиты подрядчика от претензий, штрафов, удержаний и зачётов"
+        }
+      ]
+    },
+    {
+      "page": "products/p13-chto-v-smete-ne-oplatyat.html",
+      "published_source_sha256": "9bdda23a198cd73b4a7683422545a8fa6c29b259d8654071295dfe76b48dd429",
+      "candidate_sha256": "eda73ae21e2d7ec6a0809834aff9348fb84a2ee26f3d65d0f722bd3869554698",
+      "link_count": 30,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": [
+        {
+          "data-sku": "p13",
+          "data-price": "1790000",
+          "data-product": "Система проверки сметной документации и выявления неоплачиваемых затрат"
+        }
+      ]
+    },
+    {
+      "page": "products/p2-dopolnitelnye-raboty.html",
+      "published_source_sha256": "a1ed96dcbbefdd5de83b55380b0bd8e29817098f30b8a385fac534a8777e2307",
+      "candidate_sha256": "f8b4fad8f2d82d3151064e96d419d6bb74dbeb09c45ad2077e6b230f350a948c",
+      "link_count": 30,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": [
+        {
+          "data-sku": "p2",
+          "data-price": "2490000",
+          "data-product": "Система оформления и получения оплаты за дополнительные работы"
+        }
+      ]
+    },
+    {
+      "page": "products/p3-shablony-ks2-ks3.html",
+      "published_source_sha256": "1c09b92b77584ff0a92cbd2e6fe8d145414a4f14f6d2385586009871da345c55",
+      "candidate_sha256": "94aa6e37c52e6436a3d54cd1449b9a077634072cad78deba245a7e071fb4a76e",
+      "link_count": 38,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p10-otvet-na-pretenziyu.html",
+          "sku": "p10",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p10-otvet-na-pretenziyu.html",
+          "sku": "p10",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p12-spor-s-summoy.html",
+          "sku": "p12",
+          "retired": true,
+          "successor": "p5"
+        },
+        {
+          "url": "/products/p12-spor-s-summoy.html",
+          "sku": "p12",
+          "retired": true,
+          "successor": "p5"
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": [
+        {
+          "data-sku": "p3",
+          "data-price": "1790000",
+          "data-product": "Комплект «КС-2 без возврата: сдайте с первой попытки»"
+        }
+      ]
+    },
+    {
+      "page": "products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+      "published_source_sha256": "3ebcc2c5e5383fe6270f86f41817164d0d908abd41d8a6c500150404f97281f3",
+      "candidate_sha256": "3d27139c7af53e6978545ad603af4d1e10d4f5b42d1a66e73ac8b8930ab56601",
+      "link_count": 30,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": [
+        {
+          "data-sku": "p4",
+          "data-price": "2490000",
+          "data-product": "Система ведения, проверки и передачи исполнительной документации"
+        }
+      ]
+    },
+    {
+      "page": "products/p5-shtrafy-uderzhaniya.html",
+      "published_source_sha256": "f3d37d44ac698d805e8e2a429e6525d1eb76148b962a85fac66f1ab8932fd9c2",
+      "candidate_sha256": "576fa1372b5615583a7264c5cd7223c08fc507bc0a5542bdd9196236b5a65d7f",
+      "link_count": 39,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p10-otvet-na-pretenziyu.html",
+          "sku": "p10",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p10-otvet-na-pretenziyu.html",
+          "sku": "p10",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p2-dopolnitelnye-raboty.html",
+          "sku": "p2",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": [
+        {
+          "data-sku": "p5",
+          "data-price": "2990000",
+          "data-product": "Система защиты подрядчика от претензий, штрафов, удержаний и зачётов"
+        }
+      ]
+    },
+    {
+      "page": "products/p7-dogovor-podryada.html",
+      "published_source_sha256": "33e32c3ff318f4af51a185eb023fb798829b6cd3056f5c9870f2d4b442620568",
+      "candidate_sha256": "b25dff4470b1da68ec2cf5a0b75ba245b383dbb3ff3443e9076a19a2e03c9266",
+      "link_count": 30,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": [
+        {
+          "data-sku": "p7",
+          "data-price": "2490000",
+          "data-product": "Система проверки и согласования договора субподряда"
+        }
+      ]
+    },
+    {
+      "page": "products/p8-avans-po-dogovoru-subpodryada.html",
+      "published_source_sha256": "68317efd707b51cd64c56039bd5bd7534c1cf4e601a16f09902638a66b87f022",
+      "candidate_sha256": "36c2b37c1a5a97d8d3a97a71abf298abae400474a1cf5d9fe2beff26ff0f09ac",
+      "link_count": 30,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": [
+        {
+          "data-sku": "p8",
+          "data-price": "2490000",
+          "data-product": "Система управления авансами и расчётами по договору подряда"
+        }
+      ]
+    },
+    {
+      "page": "products/p9-bankrotstvo-genpodryadchika.html",
+      "published_source_sha256": "7f6531203d9fd1ea9966727a9f57542d54342e1b97f0394cadb411d3c3b779ff",
+      "candidate_sha256": "6abb34b1ee3ee7f7ffa25f309cee1fa57ce94819ed729a84a24cb8da5a24218d",
+      "link_count": 30,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": [
+        {
+          "data-sku": "p9",
+          "data-price": "2490000",
+          "data-product": "Система защиты требований подрядчика при банкротстве генподрядчика"
+        }
+      ]
+    },
+    {
+      "page": "products/t1-pervyy-shag-pri-neoplate.html",
+      "published_source_sha256": "21ea0987c71802c4e135d2c2be4d2f5b3c999f57bf344657f55b210b6a13e57e",
+      "candidate_sha256": "285e184cf2fd9e83390d2f74e0778d5f7da68c15cb35f867c0be75d048144921",
+      "link_count": 28,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+      "published_source_sha256": "25ba26476a757ed7c537ae8b4dbb0ac4d6091b2d1f78541be1feeab65f095983",
+      "candidate_sha256": "98b1dc09d6a005141029d5aa46adef584b314bf2138252e6931bbe32a6cb93cf",
+      "link_count": 45,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html?utm_source=site&utm_medium=product-ladder&utm_campaign=ispolnitelnaya&utm_content=t2-to-p4",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p1-oplata-po-ks2.html",
+          "sku": "p1",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p3-shablony-ks2-ks3.html",
+          "sku": "p3",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        },
+        {
+          "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+          "sku": "p4",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": [
+        {
+          "data-sku": "t2",
+          "data-price": "990000",
+          "data-product": "Система документального подтверждения передачи исполнительной документации"
+        }
+      ]
+    },
+    {
+      "page": "products/t3-odnostoronniy-akt-i-zachet.html",
+      "published_source_sha256": "5a1130fdcae69ffd626b782b710cfccd4af376791069603530d8a37daaa47061",
+      "candidate_sha256": "dfb752105e03062d764df0a168e3ec5084af3690df030505f40ddf639591efce",
+      "link_count": 29,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": [
+        {
+          "data-sku": "t3",
+          "data-price": "1490000",
+          "data-product": "Система подготовки возражений на односторонний акт или списание в одностороннем порядке"
+        }
+      ]
+    },
+    {
+      "page": "products/t4-genpodryadchik-bankrotitsya.html",
+      "published_source_sha256": "ebe02d729a4a89a88c33b84141cb0b9e5df87637d407b41f24e208611d53873b",
+      "candidate_sha256": "02c7cbee4100bdeb0f458d04df7ceb5c5ffffaad59a0891b09c53b658b165d3b",
+      "link_count": 28,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+          "sku": "p9",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "products/t5-trebuyut-vernut-avans.html",
+      "published_source_sha256": "55e8806b91b61ecc2c9db07b02966c741a5a12db6dcbd59b81359560b8fd1ab7",
+      "candidate_sha256": "16c82c17c1531a684a8ef4842e8840e54c724a94f0ebe122ac4469a0b4062dd7",
+      "link_count": 28,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+          "sku": "p8",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "products/t6-kvartiry-vmesto-deneg.html",
+      "published_source_sha256": "efc50255f491a73bda0e81e55fa511631ca4ae77ba152ffcba40b5406e7b82b6",
+      "candidate_sha256": "5a4155a0926182d110d98403c70cb3bbfbadc08b3f714ecf7067a1708fdbab6d",
+      "link_count": 28,
+      "explicit_inherited_offer_correction": true,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [
+        {
+          "url": "/products/p11-raschet-metrami.html",
+          "sku": "p11",
+          "retired": false,
+          "successor": null
+        }
+      ],
+      "purchase_buttons": []
+    },
+    {
+      "page": "refund.html",
+      "published_source_sha256": "3841b3365978ccf8f4a39d8e615979b06b5074b842e269645d7f123da23a3e0a",
+      "candidate_sha256": "88464afb4fa19d6622513ad46625140762af0990d01005e5ba3b1ea1fa62ae55",
+      "link_count": 15,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": []
+    },
+    {
+      "page": "success.html",
+      "published_source_sha256": "82105220bb1462e9518d9c7cd0707925c0dbc2af2eb8f0301b688342435521b8",
+      "candidate_sha256": "bf733b5cd02d4e80bd47ed39080b937107640e5e80583791397297057f2abead",
+      "link_count": 11,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": []
+    },
+    {
+      "page": "test-pokupka.html",
+      "published_source_sha256": "70096112e8b22047b5c038ea780f52a0e840f1c97695d91adf067f5d383c7428",
+      "candidate_sha256": "3f815d85108d3571c524d88062bff88dc722dcf5379906817e8d2e7a1e989306",
+      "link_count": 11,
+      "explicit_inherited_offer_correction": false,
+      "route_signature_matches_published_plus_exact_correction": true,
+      "product_links": [],
+      "purchase_buttons": [
+        {
+          "data-sku": "test1",
+          "data-price": "100",
+          "data-product": "Тестовая покупка (проверка выдачи)"
+        }
+      ]
+    }
+  ],
+  "legacy_product_intermediates": [
+    {
+      "source": "articles/bankrotstvo-genpodryadchika-5-markerov.html",
+      "target": "/products/t4-genpodryadchik-bankrotitsya.html",
+      "retired_sku": "t4",
+      "successor": "p9"
+    },
+    {
+      "source": "articles/dolg-zakryvali-na-sleduyushchem-obekte.html",
+      "target": "/products/t1-pervyy-shag-pri-neoplate.html?utm_source=site&utm_medium=article&utm_campaign=neoplata&utm_content=dolg-zakryvali-na-sleduyushchem-obekte-entry",
+      "retired_sku": "t1",
+      "successor": "p1"
+    },
+    {
+      "source": "articles/neotrabotannyy-avans.html",
+      "target": "/products/t5-trebuyut-vernut-avans.html",
+      "retired_sku": "t5",
+      "successor": "p8"
+    },
+    {
+      "source": "articles/podpisannaya-ks2-ne-znachit-chto-zaplatyat.html",
+      "target": "/products/t1-pervyy-shag-pri-neoplate.html",
+      "retired_sku": "t1",
+      "successor": "p1"
+    },
+    {
+      "source": "articles/raboty-ne-prinyaty.html",
+      "target": "/products/t1-pervyy-shag-pri-neoplate.html",
+      "retired_sku": "t1",
+      "successor": "p1"
+    },
+    {
+      "source": "articles/zakazchik-ne-oplachivaet-vypolnennye-raboty.html",
+      "target": "/products/t1-pervyy-shag-pri-neoplate.html",
+      "retired_sku": "t1",
+      "successor": "p1"
+    },
+    {
+      "source": "articles/zakazchik-ne-oplachivaet-vypolnennye-raboty.html",
+      "target": "/products/t1-pervyy-shag-pri-neoplate.html",
+      "retired_sku": "t1",
+      "successor": "p1"
+    },
+    {
+      "source": "kalkulyator.html",
+      "target": "/products/t1-pervyy-shag-pri-neoplate.html",
+      "retired_sku": "t1",
+      "successor": "p1"
+    },
+    {
+      "source": "materialy/avans.html",
+      "target": "/products/t5-trebuyut-vernut-avans.html",
+      "retired_sku": "t5",
+      "successor": "p8"
+    },
+    {
+      "source": "materialy/bankrotstvo.html",
+      "target": "/products/t4-genpodryadchik-bankrotitsya.html",
+      "retired_sku": "t4",
+      "successor": "p9"
+    },
+    {
+      "source": "materialy/dengi.html",
+      "target": "/products/t1-pervyy-shag-pri-neoplate.html",
+      "retired_sku": "t1",
+      "successor": "p1"
+    },
+    {
+      "source": "products/p3-shablony-ks2-ks3.html",
+      "target": "/products/p12-spor-s-summoy.html",
+      "retired_sku": "p12",
+      "successor": "p5"
+    },
+    {
+      "source": "products/p3-shablony-ks2-ks3.html",
+      "target": "/products/p12-spor-s-summoy.html",
+      "retired_sku": "p12",
+      "successor": "p5"
+    }
+  ],
+  "legacy_intermediates_policy": "Existing nonpurchase links preserved except explicit six-page corrections; no retired purchase button. Product Fit not inferred from link existence.",
+  "redirect_check": "source-only GET/HEAD and POST exemption; not live HTTP acceptance",
+  "unimplemented_growth_routes": "AIOS #367/#423/#427 and site #268 remain separate accepted-dependency gates",
+  "production_touched": false
+}
