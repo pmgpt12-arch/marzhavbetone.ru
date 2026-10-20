@@ -157,6 +157,7 @@ def build() -> str:
     questions, scenarios = load_tree()
     pains = load_pains()
     skus = catalogue()
+    retired=set(re.findall(r"if \(\$sku === '([^']+)'\) return null;",(ROOT/'products-config.php').read_text()))
 
     payload = []
     for s in scenarios:
@@ -165,6 +166,7 @@ def build() -> str:
             raise SystemExit(f"{s['id']}: боли {s['pain']} нет в лестнице")
         core = pain["core"]
         entry = pain.get("entry")
+        if entry and entry['sku'] in retired:entry=None
         if core["sku"] not in skus:
             raise SystemExit(f"{s['id']}: комплект {core['sku']} не продаётся")
 

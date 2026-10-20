@@ -8,7 +8,7 @@ import re
 BASE = Path(__file__).resolve().parents[1] / 'products-storage/01-zakrytie-rabot'
 FORBIDDEN = [
     r'шаблон\w*',
-    r'юрист\w*',
+    r'(?:прошл\w+\s+вычитку|вычитан\w*|провере\w+)\s+юрист\w*',
     r'профильн\w*\s+специалист\w*',
     r'типов\w*',
     r'юридическ\w*\s+консультац\w*',

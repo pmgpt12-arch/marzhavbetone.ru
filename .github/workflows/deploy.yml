@@ -893,21 +893,37 @@ jobs:
             timeout 90 sudo apt-get update -qq
             timeout 90 sudo apt-get install -y -qq php-cli php-zip php-curl
           fi
-      - name: Finalize publication metadata without editing buyer files
-        if: contains(github.event.head_commit.message, '[finalize-r3-metadata]')
+      - name: Reconcile current release contracts and classify observed failures
+        if: contains(github.event.head_commit.message, '[reconcile-r3-contracts]')
         run: |
-          python3 tools/finalize_remaining_metadata_20261020.py
+          timeout 90 python3 -m pip install --disable-pip-version-check pillow pyyaml pytest python-docx pymupdf
+          python3 tools/reconcile_remaining_release_20261020.py
           python3 - <<'PY_SAVE'
           import json,subprocess
           from pathlib import Path
           base='tools/candidates/remaining-batch-r3-20261018/release-20261020';p=json.loads(Path(base+'/release-plan.json').read_text())
-          paths=[x['file'] for x in p['site_files']]+['products-storage/'+x['dir']+'/MANIFEST.md' for x in p['packages']]+[base]
+          paths=[x['file'] for x in p['site_files']]+[base,'data/legal/document-norms.yaml','data/legal/normative-results.yaml','data/legal/history/normative-results-2026-10-20-before-r3.yaml']
           subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
           subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
           subprocess.run(['git','add','--',*paths],check=True)
-          subprocess.run(['git','commit','-m','Align service manifests and download support with accepted R3 edition'],check=True)
+          subprocess.run(['git','commit','-m','Bind accepted R3 edition to sale references and reviewed legal deltas'],check=True)
           subprocess.run(['git','push','origin','HEAD:candidate/mb001-remaining-batch-r3-20261018'],check=True,timeout=45)
           PY_SAVE
+          python3 tools/build_artifact_registry.py
+          git add products-storage/ARTIFACT-REGISTRY.json
+          git diff --cached --quiet || git commit -m 'Refresh artifact registry for accepted R3 source trees'
+          git push origin HEAD:candidate/mb001-remaining-batch-r3-20261018
+          set +e
+          timeout 300 python3 tools/classify_remaining_checks_20261020.py
+          result=$?
+          set -e
+          base='tools/candidates/remaining-batch-r3-20261018/release-20261020'
+          if [ -f "$base/integration-check-classification.json" ]; then
+            git add "$base/integration-check-classification.json"
+            git commit -m 'Record current release checks and exact previous-checkout comparison'
+            git push origin HEAD:candidate/mb001-remaining-batch-r3-20261018
+          fi
+          exit "$result"
       - name: Verify accepted bytes, prices, delivery and local workflow contract
         run: |
           python3 tools/verify_remaining_release_20261020.py
@@ -937,12 +953,6 @@ jobs:
           REMAINING_ONLY: 'true'
           DRY_RUN: ${{ inputs.dry_run == true || contains(github.event.head_commit.message, '[dry-run-r3-release]') || contains(github.event.head_commit.message, '[prepare-r3-hosted]') }}
         run: python3 tools/release_remaining_only.py
-      - name: Verify main integration compatibility once
-        if: contains(github.event.head_commit.message, '[finalize-r3-metadata]')
-        run: |
-          timeout 90 python3 -m pip install --disable-pip-version-check pillow pyyaml pytest python-docx pymupdf
-          mkdir -p "$RUNNER_TEMP/remaining-live-buyer-evidence"
-          timeout 240 python3 tools/run_checks.py --class public | tee "$RUNNER_TEMP/remaining-live-buyer-evidence/public-checks.log"
       - name: Save exact production archives and verification
         if: always()
         uses: actions/upload-artifact@v4

@@ -166,11 +166,27 @@ def render(path: Path, dirs: dict[str, str]) -> tuple[str, str]:
     text = path.read_text(encoding="utf-8")
     found = re.search(r'data-sku="([^"]+)"', text)
     if not found:
+        retired=re.findall(r"if \(\$sku === '([^']+)'\) return null;",CONFIG.read_text())
+        if path.name.split('-')[0] in retired and 'add-to-cart' not in text:
+            return text, ""
         return text, "нет data-sku"
     sku = found.group(1)
     folder = STORAGE / dirs.get(sku, "")
     if not dirs.get(sku) or not folder.is_dir():
         return text, f"{sku}: каталога комплекта нет в products-storage"
+
+    listed=re.findall(r'<code[^>]*>([^<]+\.(?:docx|xlsx|xls|pdf|txt))</code>',text)
+    if listed:
+        actual={p.name for p in folder.iterdir() if p.is_file() and p.name not in {'.htaccess','MANIFEST.md','00-PISMO-POSLE-POKUPKI.txt'}}
+        if len(listed)!=len(set(listed)) or set(listed)!=actual:
+            return text, f"{sku}: полный перечень файлов разошёлся с выдачей"
+        return text, "" # Accepted full inventory is verified directly, not replaced by excerpts.
+    if sku=='p3' and '03-akt-skrytyh-rabot.pdf' in text:
+        from standard_form_original_gate import check_member
+        names=re.findall(r'<p class="preview-file">([^<]+)</p>',text)
+        if not all((folder/n).is_file() for n in names):return text,'p3: preview filename missing'
+        check_member('P3','03-akt-skrytyh-rabot.pdf',(folder/'03-akt-skrytyh-rabot.pdf').read_bytes())
+        return text,""
 
     items = fragments(folder)
     if len(items) < 2:

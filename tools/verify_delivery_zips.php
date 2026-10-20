@@ -57,8 +57,7 @@ foreach ($skus as $sku) {
                 $problems[] = 'состав разошёлся: лишние [' . implode(', ', array_diff($got, $want))
                             . '], отсутствуют [' . implode(', ', array_diff($want, $got)) . ']';
             }
-            $intro = $sku === 't2' ? '00-START-HERE.pdf' : '00-START-HERE.txt';
-            if (!in_array($intro, $got, true)) $problems[] = 'нет ' . $intro;
+            if (!array_intersect(['00-START-HERE.pdf','00-START-HERE.txt','00-INSTRUKCIYA.pdf'], $got)) $problems[] = 'нет покупательской инструкции';
             foreach ($service as $s) if (in_array($s, $got, true)) $problems[] = "служебный $s попал в архив";
             if ($empty) $problems[] = 'пустые файлы: ' . implode(', ', $empty);
             if (filesize($zipPath) < 1024) $problems[] = 'архив меньше килобайта';

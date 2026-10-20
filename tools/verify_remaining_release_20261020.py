@@ -54,6 +54,26 @@ def verify():
  soup=BeautifulSoup((R/'katalog.html').read_text(),'html.parser');skus=[b['data-sku'] for b in soup.select('.product-card button[data-sku]')]
  assert len(skus)==13 and len(set(skus))==13,skus
  assert set(skus)=={'p1','p2','p3','p4','p5','p7','p8','p9','p10','p11','p13','t2','t3'}
+ # Structured sale inventory and diagnostic routes must agree with server prices.
+ def check_nodes(node):
+  if isinstance(node,dict):
+   offer=node.get('offers')
+   if isinstance(offer,dict):
+    m=re.search(r'/products/([pt]\d+)-',offer.get('url',''))
+    if m:
+     sku=m[1];assert sku not in plan['retired_sales']
+     if sku in DATA:assert int(offer['price'])*100==cat[sku]['price'],sku
+   for val in node.values():check_nodes(val)
+  elif isinstance(node,list):
+   for val in node:check_nodes(val)
+ for tag in soup.select('script[type="application/ld+json"]'):check_nodes(json.loads(tag.string))
+ diagnostic=(R/'diagnostika.html').read_text();cases=json.loads(re.search(r'const SCENARIOS = (\[.*?\]);',diagnostic,re.S)[1])
+ for case in cases:
+  for role in ['entry','core']:
+   node=case.get(role)
+   if node:
+    sku=re.search(r'/products/([pt]\d+)-',node['url'])[1];assert sku not in plan['retired_sales']
+    if sku in DATA:assert node['price']*100==cat[sku]['price'],sku
  php='define("ORDERS_DIR",sys_get_temp_dir());define("ADMIN_EMAIL","qa@example.invalid");require "products-config.php";'
  php+='foreach(["t1","t4","t5","t6","p12"] as $s){if(mvb_resolve_product(["sku"=>$s])!==null)exit(9);}'
  php+='echo DELIVERY_TTL_SECONDS;'

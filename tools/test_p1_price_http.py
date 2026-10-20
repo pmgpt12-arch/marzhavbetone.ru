@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PRICE = 2990000
 SOURCE = ROOT / "products-storage/01-zakrytie-rabot"
-REFERENCE = ROOT / "tools/reports/p1-final-delivery-20261008/p1-value-edition.zip"
+REFERENCE = ROOT / "tools/candidates/remaining-batch-r3-20261018/final-buyer-review-20261020/P1-buyer-review-R3-20261020.zip"
 EXCLUDE = {".htaccess", "00-PISMO-POSLE-POKUPKI.txt", "MANIFEST.md"}
 
 
@@ -51,9 +51,9 @@ def request(port, path, payload=None):
 def main():
     assert shutil.which("php"), "PHP is required for the HTTP integration check"
     original = files(SOURCE)
-    assert len(original) == 19
+    assert len(original) == 20
     assert entries(REFERENCE.read_bytes()) == original
-    assert sha(REFERENCE.read_bytes()) == "b0bbf5badac93bdb897d7749aaac23b8d08e53893a0bbed46daedd8c63577ae6"
+    assert sha(REFERENCE.read_bytes()) == "7b6306cf4fd8953491c286f5561390482e4ea0111f2a27d46706e01b5fc54981"
     with tempfile.TemporaryDirectory(prefix="p1-price-http-") as td:
         base = Path(td)
         web, masters, orders = base / "web", base / "masters", base / "orders"
@@ -149,7 +149,7 @@ def main():
                 assert code == 200 and entries(data) == original
                 assert sha(data) == paid["items"][0]["edition"]["sha256"]
                 assert entries(data) == entries(REFERENCE.read_bytes())
-                print("PASS: P1 29 900 ₽, server price, pinned 19 files, webhook, HTTP ZIP")
+                print("PASS: P1 29 900 ₽, server price, pinned 20 files, webhook, HTTP ZIP")
             finally:
                 proc.terminate()
                 proc.wait(timeout=5)
