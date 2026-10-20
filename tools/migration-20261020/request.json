@@ -1,15 +1,12 @@
 {
-  "phase": "publish-test",
+  "phase": "diagnose-http",
   "attempt": 1,
-  "authorization": "Owner full migration specification and continue instruction, 2026-10-20",
+  "authorization": "Owner migration continuation; investigate failed gate before retry",
   "production_cutover": false,
-  "public_new_root_acceptance": true,
-  "real_payment_enabled": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
-  "depends_on_verified_dry_run": 39405927779,
-  "depends_on_verified_private_stage": 39406896011,
-  "scope": "Atomically park current new-domain root and publish accepted candidate with dummy payment keys, noindex and a visible staging notice. Old store, real orders, live config and masters remain untouched. Verify all 13 product pages, all 13 actual HTTPS ZIP downloads/172 member SHA and CRC, 13 expired HTTP 410 links, www/http variants, private-path denials and disabled POST endpoints.",
-  "rollback": "On any failed gate, retain failed candidate privately and rename parked original new-root directory back. Never restore historical real order data. Workflow also invokes idempotent transaction recovery if execution times out.",
-  "not_claimed": "No real payment, no sent email, no provider webhook switch, no permanent old-domain redirects",
-  "expected_output": "new-domain-http-acceptance.json plus publication or rollback receipt; payment production activation remains a separate gate"
+  "previous_run": 39407804731,
+  "verified_partial_result": "18 new-domain pages, all 13 real HTTPS ZIP downloads/172 member hashes and CRC, 13 expired HTTP410 links and private-path guards passed. Last old-root HTTP-vs-filesystem equality failed. Filesystem snapshot stayed unchanged and automatic rollback is ALREADY_ROLLED_BACK.",
+  "hypothesis": "The old host is behind a transforming CDN: historical public-before-state already has HTTP SHA different from origin and different between apex/www despite same URL and length. Determine exact public HTML delta before changing the acceptance comparison.",
+  "scope": "Three read-only old-host HTTP requests, immutable main index source comparison, exact line diffs and safe headers. No SSH or public write, no payment or buyer data.",
+  "expected_output": "legacy-http-diagnosis.json with factual representation differences; no migration PASS inference"
 }
