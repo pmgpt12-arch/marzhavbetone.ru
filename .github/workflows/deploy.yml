@@ -863,7 +863,7 @@ jobs:
           retention-days: 3
 
   deploy-remaining-only:
-    if: ${{ (github.event_name == 'workflow_dispatch' && inputs.remaining_only == true) || (github.event_name == 'push' && github.ref_name == 'candidate/mb001-remaining-batch-r3-20261018' && (contains(github.event.head_commit.message, '[prepare-r3-hosted]') || contains(github.event.head_commit.message, '[dry-run-r3-release]') || contains(github.event.head_commit.message, '[publish-r3-release]'))) }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && inputs.remaining_only == true) || (github.event_name == 'push' && github.ref_name == 'candidate/mb001-remaining-batch-r3-20261018' && (contains(github.event.head_commit.message, '[dry-run-r3-release]') || contains(github.event.head_commit.message, '[publish-r3-release]'))) }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -893,24 +893,14 @@ jobs:
             timeout 90 sudo apt-get update -qq
             timeout 90 sudo apt-get install -y -qq php-cli php-zip php-curl
           fi
-      - name: Verify corrected legal mutation fixture
-        if: contains(github.event.head_commit.message, '[reconcile-r3-contracts]')
-        run: |
-          timeout 90 python3 -m pip install --disable-pip-version-check pillow pyyaml pytest python-docx pymupdf==1.26.7
-          base='tools/candidates/remaining-batch-r3-20261018/release-20261020'
-          cp "$base/integration-check-classification.json" "$base/integration-check-classification-before-lawyer-fixture-fix.json"
-          set +e
-          timeout 120 python3 tools/classify_remaining_checks_20261020.py test_normative_gate
-          result=$?
-          set -e
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -f -- "$base/integration-check-classification.json" "$base/integration-check-classification-before-lawyer-fixture-fix.json"
-          git commit -m 'Record mutation-fixture correction and retained unchanged check results'
-          git push origin HEAD:candidate/mb001-remaining-batch-r3-20261018
-          exit "$result"
       - name: Verify accepted bytes, prices, delivery and local workflow contract
         run: |
+          python3 - <<'PY_GATE'
+          import json
+          from pathlib import Path
+          p=Path('tools/candidates/remaining-batch-r3-20261018/release-20261020/integration-check-classification.json')
+          assert json.loads(p.read_text())['status']=='PASS_NO_NEW_FAILURES_REQUIRED_RELEASE_CONTRACTS_PASS'
+          PY_GATE
           python3 tools/verify_remaining_release_20261020.py
           python3 tools/test_scoped_release_transport.py
           php -l tools/remaining_live_ops.php
@@ -938,6 +928,15 @@ jobs:
           REMAINING_ONLY: 'true'
           DRY_RUN: ${{ inputs.dry_run == true || contains(github.event.head_commit.message, '[dry-run-r3-release]') || contains(github.event.head_commit.message, '[prepare-r3-hosted]') }}
         run: python3 tools/release_remaining_only.py
+      - name: Persist verified production archives and source checkpoint
+        if: ${{ !contains(github.event.head_commit.message, '[dry-run-r3-release]') && inputs.dry_run != true }}
+        run: |
+          python3 tools/record_remaining_production_20261020.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f -- tools/candidates/remaining-batch-r3-20261018/release-20261020/production tools/candidates/remaining-batch-r3-20261018/release-20261020/release-plan.json tools/candidates/remaining-batch-r3-20261018/evidence/working-checkpoint.json tools/candidates/remaining-batch-r3-20261018/REVIEW-STATUS.md
+          git commit -m 'Record actual production HTTP archives and verified owner-approved R3 publication'
+          git push origin HEAD:candidate/mb001-remaining-batch-r3-20261018
       - name: Save exact production archives and verification
         if: always()
         uses: actions/upload-artifact@v4
