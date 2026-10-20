@@ -328,6 +328,32 @@ jobs:
           done
           REMOTE
 
+  nsp-post-cutover-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Check active configuration and HTTP responses
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/check_key
+          chmod 600 ~/.ssh/check_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/check_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          file="$HOME/www/nastoronepodryadchika.ru/config.php"
+          php -l "$file" >/dev/null
+          php -r 'require $argv[1]; echo "SHOP_ID_MATCH=".(YOOKASSA_SHOP_ID==="1502106"?"YES":"NO").PHP_EOL; echo "MODE_LIVE=".(YOOKASSA_MODE==="live"?"YES":"NO").PHP_EOL; echo "STAGE_DISABLED=".(!defined("NSP_MIGRATION_STAGE")?"YES":"NO").PHP_EOL; echo "ORDERS_DIR_EXISTS=".(is_dir(ORDERS_DIR)?"YES":"NO").PHP_EOL; echo "DELIVERY_DIR_EXISTS=".(is_dir(DELIVERY_DIR)?"YES":"NO").PHP_EOL;' "$file"
+          REMOTE
+          for p in / /payment.php /webhook.php; do
+            status=$(curl -sS -o /dev/null -w '%{http_code}' --connect-timeout 5 --max-time 12 "https://nastoronepodryadchika.ru$p" || true)
+            echo "HTTP_$p=$status"
+          done
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
