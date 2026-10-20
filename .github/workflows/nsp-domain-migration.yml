@@ -20,7 +20,7 @@ env:
   SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
   PRODUCTS_PATH: ${{ secrets.DEPLOY_PRODUCTS_PATH || 'products-marzhavbetone' }}
   SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
-  MIGRATION_SSH_DIR: ${{ runner.temp }}/nsp-migration-ssh-${{ github.run_id }}
+  MIGRATION_SSH_DIR: /tmp/nsp-migration-ssh-${{ github.run_id }}
 
 jobs:
   inspect-backup:
