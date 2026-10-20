@@ -1,5 +1,5 @@
 {
-  "status": "READY_FOR_OWNER_PRODUCT_ACCEPTANCE",
+  "status": "OWNER_ACCEPTED_PRODUCTION_RELEASE_VERIFIED",
   "files": 123,
   "editorial_gate": "PASS including formula literals",
   "office_core_metadata_gate": {
@@ -746,5 +746,6 @@
       "bytes": 38247,
       "sha256": "cf67357235336395e5a5fd580855a7b1f5eba34ab764779f0359f39dfa6c4881"
     }
-  ]
+  ],
+  "production_evidence": "../release-20261020/production/production-verification.json"
 }
