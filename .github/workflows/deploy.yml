@@ -183,6 +183,21 @@ jobs:
           echo 'NSP_PRIVATE_DIRS_VERIFIED'
           REMOTE
 
+  verify-nsp-secret:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Check encrypted secret presence only
+        env:
+          SECRET: ${{ secrets.NSP_YOOKASSA_KEY }}
+        run: |
+          if [ -n "$SECRET" ]; then
+            echo 'NSP_YOOKASSA_SECRET_PRESENT=YES'
+          else
+            echo 'NSP_YOOKASSA_SECRET_PRESENT=NO'
+            exit 1
+          fi
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
