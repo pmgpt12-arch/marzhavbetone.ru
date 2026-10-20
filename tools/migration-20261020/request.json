@@ -1,13 +1,14 @@
 {
   "phase": "validate-routes",
-  "attempt": 3,
-  "authorization": "Owner migration and website-route review, 2026-10-20",
+  "attempt": 4,
+  "authorization": "Owner migration and recent website-route review, 2026-10-20",
   "production_cutover": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
   "depends_on_verified_run": 39389485844,
   "audit_run": 39401715118,
-  "previous_run": 39402464877,
-  "classified_cause": "Exact routes, diagnostic scenarios, buyer files and link gates passed in temporary candidate; word-fit assertion blocked at 390px without detailed measurements. Collect all five viewport metrics, actual words/font/width before choosing a further CSS or test fix. Acceptance thresholds are unchanged.",
-  "scope": "Same six website-only corrections; full diagnostic typography evidence; no SSH, production writes, payment or buyer-file edits",
-  "expected_output": "Complete route-card-browser.json including failures; commit candidate source only after full acceptance"
+  "previous_run": 39402864984,
+  "classified_cause": "Browser metrics proved failing headings had width=0 because existing pagination hides them. The test now clicks the actual showcase-more control until every article is visible; it still blocks inaccessible cards, overflow and too-wide words. No site pagination code or visual threshold changed.",
+  "scope": "Exact six-page inherited offer corrections; five complete article-card viewports; ten clicked intermediate routes; all 13 actual prices/cart and 12 diagnostic scenarios; all 172 buyer files immutable",
+  "expected_output": "Accepted route graph, corrected offer census, complete browser metrics and updated shipping fingerprint only on verified success",
+  "production_and_payment_actions": "NONE"
 }
