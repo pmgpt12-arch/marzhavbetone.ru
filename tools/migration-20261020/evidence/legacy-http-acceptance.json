@@ -1,0 +1,50 @@
+{
+  "gate": "EXACT_LEGACY_HTTP_WITH_OBSERVED_CLOUDFLARE_TRANSFORMS",
+  "run": "39410025073",
+  "status": "PASS_EXACT_LEGACY_HTTP_CONTENT_WITH_CDN_TRANSFORMS",
+  "production_touched": false,
+  "payment_submitted": false,
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "raw_http_sha256": "72f68aaa47fe611cdc70006c4e847ffcc7525d4221ceeba8ebd663a90dbea7e5",
+      "normalized_sha256": "31310628b0d2b75ae2fc2b2250f5864901fe48145ea84a6a19b7c7e071782bae",
+      "transformations": {
+        "email_links_decoded": 2,
+        "email_spans_decoded": 1,
+        "email_decoder_removed": 1,
+        "cloudflare_beacon_removed": 1
+      }
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "raw_http_sha256": "aa5b9ebf8a224f20a049803dc9d697393dabe8f53044fa198a4bbfe067fe3df0",
+      "normalized_sha256": "31310628b0d2b75ae2fc2b2250f5864901fe48145ea84a6a19b7c7e071782bae",
+      "transformations": {
+        "email_links_decoded": 2,
+        "email_spans_decoded": 1,
+        "email_decoder_removed": 1,
+        "cloudflare_beacon_removed": 1
+      }
+    },
+    {
+      "path": "/index.html",
+      "status": 200,
+      "raw_http_sha256": "14a963b1add8fdfa9ff9b9cb7aed11d21de784cb343204812583cf3eb7de3f55",
+      "normalized_sha256": "31310628b0d2b75ae2fc2b2250f5864901fe48145ea84a6a19b7c7e071782bae",
+      "transformations": {
+        "email_links_decoded": 2,
+        "email_spans_decoded": 1,
+        "email_decoder_removed": 1,
+        "cloudflare_beacon_removed": 1
+      }
+    }
+  ],
+  "origin_sha256": "31310628b0d2b75ae2fc2b2250f5864901fe48145ea84a6a19b7c7e071782bae",
+  "negative_mutations": {
+    "positive_fixtures": 2,
+    "negative_mutations_rejected": 5
+  }
+}
