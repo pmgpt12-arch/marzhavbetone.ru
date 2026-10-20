@@ -1,12 +1,15 @@
 {
-  "phase": "stage-private",
+  "phase": "publish-test",
   "attempt": 3,
-  "authorization": "Owner continuation; private staging with fresh 3600s synthetic tokens",
+  "authorization": "Owner continuation; new-domain public noindex disabled-commerce acceptance only",
   "production_cutover": false,
+  "public_new_root_acceptance": true,
+  "real_payment_enabled": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
-  "verified_dry_run": 39423151819,
-  "shipping_files": 172,
-  "buyer_files": 172,
-  "scope": "Create unique private 172-site-file candidate with unchanged get/index.php; verify all 13 SKU archives, 172 member hashes, CRC, P1 edition and new-domain link generation; no public directory changes, real payment or email",
-  "expected_output": "private-stage-verification.json PASS, fresh run-scoped workspace and synthetic tokens"
+  "fresh_private_stage_run": 39423257078,
+  "verified_172_shipping_dry_run": 39423151819,
+  "verified_rollback": "original new-root SHA pinned and rollback action installed",
+  "freshness_gate": "All 13 synthetic links must retain >900 seconds before new-root switch, otherwise reject without publication",
+  "scope": "New-domain HTTPS: 18 pages, 13 ZIPs 172 member SHA/CRC, expired HTTP410, private-path 403/404, payment POST503, /get/?k=gu 302 and invalid key404; exact CDN-normalized old-site preservation; no real payments or email",
+  "expected_output": "new-domain-http-acceptance.json PASS or rollback with classification"
 }
