@@ -1,13 +1,14 @@
 {
-  "phase": "audit-offers",
-  "attempt": 1,
-  "authorization": "Owner 2026-10-20: continue migration and recover recent site-route decisions",
+  "phase": "validate-routes",
+  "attempt": 2,
+  "authorization": "Owner 2026-10-20: continue migration, keep agreed buyer routes and 13-SKU prices",
   "production_cutover": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
   "depends_on_verified_run": 39389485844,
+  "audit_run": 39401715118,
   "previous_failed_validation": 39400941588,
-  "classified_cause": "Published-main demo page has stale P5 purchase price; collect full class of route-offer inconsistencies before an addressable correction",
-  "scope": "Read-only all 88 HTML offer buttons, retired SKU destinations and demo source references; no source changes, no SSH, no buyer-document edits, no payment",
+  "recovery": "Full audit found five inherited offer defects: three stale prices and two retired buy buttons. Exact six-page source corrections now route demo cards to current systems, bind home P5 to server price, and give retired T6 the accepted P11 bridge. Recheck whole class, no gate relaxation outside declared transforms.",
+  "scope": "88 route graphs, 12 unchanged diagnosis scenarios, 13 active SKUs, 172 immutable files; five viewport typography checks; ten clicked intermediate paths; current product cart tests. No SSH, production, payment, archived-document restoration or deleted diagnostic YAML.",
   "context_artifact": "tools/migration-20261020/route-context-20260929-20261020.md",
-  "expected_output": "commercial-route-audit.json with every mismatch and exact inherited baseline provenance"
+  "expected_output": "route-source-review.json, offer-route-corrections.json, clean commercial-route-audit.json, browser-candidate.json and route-review-checkpoint.json"
 }
