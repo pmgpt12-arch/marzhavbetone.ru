@@ -1,11 +1,13 @@
 {
-  "phase": "validate-routes",
+  "phase": "audit-offers",
   "attempt": 1,
-  "authorization": "Owner 2026-10-20: continue migration and review last 2-3 weeks of website route context",
+  "authorization": "Owner 2026-10-20: continue migration and recover recent site-route decisions",
   "production_cutover": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
   "depends_on_verified_run": 39389485844,
-  "scope": "Preserve 88 route graphs and all 12 diagnosis scenarios; 13 current SKUs and 172 immutable buyer files; repair only oversized editorial card headings; browser and link gates; no SSH, production writes, payment calls or restored deleted diagnostic YAML",
+  "previous_failed_validation": 39400941588,
+  "classified_cause": "Published-main demo page has stale P5 purchase price; collect full class of route-offer inconsistencies before an addressable correction",
+  "scope": "Read-only all 88 HTML offer buttons, retired SKU destinations and demo source references; no source changes, no SSH, no buyer-document edits, no payment",
   "context_artifact": "tools/migration-20261020/route-context-20260929-20261020.md",
-  "expected_output": "route-source-review.json + route-card-browser.json + browser-candidate.json + route-review-checkpoint.json; failed results must not be labelled accepted"
+  "expected_output": "commercial-route-audit.json with every mismatch and exact inherited baseline provenance"
 }
