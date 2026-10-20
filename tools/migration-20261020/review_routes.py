@@ -173,7 +173,7 @@ def card_browser_review():
     server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Static,directory=str(ROOT)))
     threading.Thread(target=server.serve_forever,daemon=True).start()
     base=f'http://127.0.0.1:{server.server_port}'
-    rows=[];routes=[]
+    rows=[];routes=[];failures=[]
     try:
         with sync_playwright() as p:
             browser=p.chromium.launch(executable_path=shutil.which('google-chrome') or shutil.which('chromium'),headless=True,args=['--no-sandbox'])
@@ -187,13 +187,22 @@ def card_browser_review():
                     const s=getComputedStyle(e),r=e.getBoundingClientRect(),c=document.createElement('canvas').getContext('2d');
                     c.font=[s.fontStyle,s.fontWeight,s.fontSize,s.fontFamily].join(' ');
                     const words=e.textContent.trim().split(/\\s+/);
-                    return {text:e.textContent.trim(),font:parseFloat(s.fontSize),width:r.width,
-                      longest:Math.max(0,...words.map(w=>c.measureText(w).width))};})})''')
-                assert metrics['scroll']<=width+1,('EDITORIAL_OVERFLOW',width,metrics['scroll'])
-                assert metrics['headings'],'NO_EDITORIAL_CARDS'
-                assert all(h['font']<=28.1 for h in metrics['headings']),('CARD_INHERITS_SECTION_H2',width)
-                assert all(h['longest']<=h['width']+2 for h in metrics['headings']),('BROKEN_CARD_WORD',width)
-                rows.append({'width':width,'cards':len(metrics['headings']),'pass':True,'headings':metrics['headings']})
+                    const sizes=words.map(w=>({word:w,width:c.measureText(w).width})).sort((a,b)=>b.width-a.width);
+                    return {text:e.textContent.trim(),font:parseFloat(s.fontSize),fontFamily:s.fontFamily,letterSpacing:s.letterSpacing,width:r.width,
+                      wordCount:words.length,longest:sizes[0]?.width||0,longestWord:sizes[0]?.word||''};})})''')
+                errors=[]
+                if metrics['scroll']>width+1:errors.append({'code':'EDITORIAL_OVERFLOW','scroll':metrics['scroll']})
+                if not metrics['headings']:errors.append({'code':'NO_EDITORIAL_CARDS'})
+                for h in metrics['headings']:
+                    if h['font']>28.1:errors.append({'code':'CARD_INHERITS_SECTION_H2',**h})
+                    if h['longest']>h['width']+2:errors.append({'code':'BROKEN_CARD_WORD',**h})
+                rows.append({'width':width,'cards':len(metrics['headings']),'pass':not errors,'errors':errors,'headings':metrics['headings']})
+                failures.extend({'viewport':width,**error} for error in errors)
+            # Persist all diagnostics even if a gate fails. Never silently relax
+            # the word-fit criterion or report the source revision as accepted.
+            write('route-card-browser.json',{'status':'FAIL_COMPONENT_TYPOGRAPHY' if failures else 'PASS_COMPONENT_TYPOGRAPHY',
+                  'viewports':rows,'routes':routes,'failures':failures,'external_calls':False})
+            assert not failures,('CARD_TYPOGRAPHY',failures[:12])
             for width in (390,1360):
                 page.set_viewport_size({'width':width,'height':900})
                 for rel,(_,sku,target) in DEMOS.items():
@@ -209,7 +218,7 @@ def card_browser_review():
                 routes.append({'source':RETIRED_PAGE,'target':'/products/p11-raschet-metrami.html',
                   'width':width,'query_preserved':True,'payment_submitted':False})
             browser.close()
-        write('route-card-browser.json',{'status':'PASS_COMPONENT_TYPOGRAPHY_AND_INTERMEDIATE_ROUTES','viewports':rows,'routes':routes,'external_calls':False})
+        write('route-card-browser.json',{'status':'PASS_COMPONENT_TYPOGRAPHY_AND_INTERMEDIATE_ROUTES','viewports':rows,'routes':routes,'failures':[],'external_calls':False})
     finally:server.shutdown();server.server_close()
     print('CARD_TYPOGRAPHY_PASS',len(rows),'VIEWPORTS','INTERMEDIATE_ROUTES',len(routes),flush=True)
 
