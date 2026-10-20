@@ -42,12 +42,13 @@ jobs:
           python3 -m compileall -q tools/migration-20261020
           php -l tools/migration-20261020/probe.php
           php -l tools/migration-20261020/stage_private.php
+          php -l tools/migration-20261020/publish_test.php
           python3 - <<'PY'
           import json,os,sys,subprocess
           from pathlib import Path
           d=Path('tools/migration-20261020')
           c=json.loads((d/'contract.json').read_text());r=json.loads((d/'request.json').read_text())
-          assert r['phase'] in {'inspect-backup','prepare-site','validate-routes','audit-offers','dry-run-new','stage-private'} and not r['production_cutover']
+          assert r['phase'] in {'inspect-backup','prepare-site','validate-routes','audit-offers','dry-run-new','stage-private','publish-test'} and not r['production_cutover']
           assert r['expected_main']==c['approved_base_commit']
           assert len(c['active_skus'])==13 and sum(x['files'] for x in c['active_skus'].values())==172
           assert all(x['dir'].isascii() for x in c['active_skus'].values())
@@ -56,8 +57,13 @@ jobs:
               from dry_run_new import PHP
               result=subprocess.run(['php','-l'],input=PHP,text=True,capture_output=True,timeout=15)
               assert result.returncode==0,result.stderr
+          if r['phase']=='publish-test':
+              assert r.get('public_new_root_acceptance') is True and r.get('real_payment_enabled') is False
+              s=json.loads((d/'evidence/private-stage-verification.json').read_text())
+              assert s['status']=='PASS_PRIVATE_HOST_CANDIDATE_AND_13_ARCHIVES'
+              assert s['buyer_files']==172 and s['active_skus']==13 and s['credentials']=='DUMMY_DISABLED_NO_LIVE_SECRETS'
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('phase='+r['phase']+'\n')
-          print('TASK_CONTRACT_PASS',r['phase'],'NO_CUTOVER')
+          print('TASK_CONTRACT_PASS',r['phase'],'NO_LIVE_PAYMENT_CUTOVER')
           PY
       - name: Existing supported navigation dependency
         if: steps.phase.outputs.phase == 'prepare-site' || steps.phase.outputs.phase == 'validate-routes'
@@ -69,7 +75,7 @@ jobs:
           command -v google-chrome
           timeout 90s python3 -m pip install --quiet --disable-pip-version-check playwright
       - name: Existing deployment SSH, job-local credentials
-        if: steps.phase.outputs.phase == 'inspect-backup' || steps.phase.outputs.phase == 'dry-run-new' || steps.phase.outputs.phase == 'stage-private'
+        if: steps.phase.outputs.phase == 'inspect-backup' || steps.phase.outputs.phase == 'dry-run-new' || steps.phase.outputs.phase == 'stage-private' || steps.phase.outputs.phase == 'publish-test'
         env:
           KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           HOST: ${{ secrets.DEPLOY_HOST }}
@@ -98,6 +104,7 @@ jobs:
             prepare-site) timeout 240s python3 tools/migration-20261020/prepare_site.py ;;
             dry-run-new) timeout 600s python3 tools/migration-20261020/dry_run_new.py ;;
             stage-private) timeout 600s python3 tools/migration-20261020/stage_private.py ;;
+            publish-test) timeout 600s python3 tools/migration-20261020/publish_test.py ;;
             audit-offers)
               timeout 35s git fetch --no-tags --depth=1 origin main
               timeout 90s python3 tools/migration-20261020/audit_route_offers.py ;;
@@ -107,6 +114,12 @@ jobs:
               timeout 420s python3 tools/migration-20261020/review_routes.py ;;
             *) echo 'UNAPPROVED_PHASE'; exit 2 ;;
           esac
+      - name: Recover only this failed new-domain acceptance transaction
+        if: always() && steps.phase.outputs.phase == 'publish-test' && (steps.execute.outcome == 'failure' || steps.execute.outcome == 'cancelled')
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: timeout 100s python3 tools/migration-20261020/publish_test.py --rollback-only
       - name: Preserve verified source and sanitized evidence in migration branch
         if: always()
         env:
