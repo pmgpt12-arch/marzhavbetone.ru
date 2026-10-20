@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
-"""Prepare candidate from CURRENT published main; never merge obsolete product branches.
-Only accepted CSS/icons are imported from the prior visual approval. Buyer sources,
-SKU, price, ZIP names and the actual payment/download implementation stay intact.
-"""
+"""Prepare current published source for migration; buyer files stay byte-identical."""
 from __future__ import annotations
 import hashlib,importlib.util,json,re,subprocess
 from pathlib import Path
-
 ROOT=Path(__file__).resolve().parents[2]
 DIR=Path(__file__).resolve().parent
 OUT=DIR/'evidence'
@@ -19,28 +15,16 @@ HTML_DIRS={'products','articles','materialy','demo'}
 PROTECTED=re.compile(r'(?:data-(?:sku|price|product)|id)=["\'][^"\']+["\']')
 BUYER_REJECT_PREFIX=('products-storage/','orders/')
 
-
 def run(args,timeout=60):
     return subprocess.run(args,cwd=ROOT,check=True,text=True,capture_output=True,timeout=timeout)
-
-
 def git(*args):return run(['git',*args]).stdout
-
-
-def write(name,value):
-    (OUT/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
-
-
+def write(name,value):(OUT/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
 def current_products():
     spec=importlib.util.spec_from_file_location('nsp_inspect',DIR/'inspect_backup.py')
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
     return module.repo_manifest()
-
-
 def identity(text):
     return text.replace('Маржи в бетоне','На стороне подрядчика').replace('Маржа в бетоне','На стороне подрядчика').replace('маржа в бетоне','на стороне подрядчика')
-
-
 def approved_copy(text,rel):
     text=identity(text)
     text=re.sub(r'(<span\s+class="brand-mark">)М(</span>)',r'\g<1>Н\g<2>',text)
@@ -56,9 +40,7 @@ def approved_copy(text,rel):
          'Работы закрыты, но денег нет':'Результат принят, оплата задерживается',
          'КС подписаны, срок оплаты прошёл или заказчик откладывает расчёт.':'Приёмка результата работ или услуг подтверждена, срок оплаты прошёл либо заказчик переносит расчёт.',
          'СВЕЖИЕ РАЗБОРЫ':'ПРАКТИКА И СУДЕБНЫЕ РЕШЕНИЯ',
-         'Все разборы →':'Все материалы →',
-         'Витрина разборов →':'Смотреть практические материалы →',
-         'Открыть разбор →':'Читать материал →',
+         'Все разборы →':'Все материалы →','Витрина разборов →':'Смотреть практические материалы →','Открыть разбор →':'Читать материал →',
         }
         for old,new in replacements.items():text=text.replace(old,new)
         assert 'Практические системы <em>для решения спорных вопросов с заказчиком</em>' in text,'APPROVED_HERO_NOT_APPLIED'
@@ -66,16 +48,13 @@ def approved_copy(text,rel):
         text=text.replace('Разборы — На стороне подрядчика','Практика и судебные решения — На стороне подрядчика')
         text=text.replace('<li aria-current="page">Разборы</li>','<li aria-current="page">Практика и судебные решения</li>')
         text=text.replace('<h1>Деньги теряются тихо</h1>','<h1>Практика и судебные решения</h1>')
-        text=text.replace('ВИТРИНА ЭКСПЕРТИЗЫ','ПРАКТИЧЕСКИЕ МАТЕРИАЛЫ')
-        text=text.replace('Темы разборов','Темы практических материалов')
+        text=text.replace('ВИТРИНА ЭКСПЕРТИЗЫ','ПРАКТИЧЕСКИЕ МАТЕРИАЛЫ').replace('Темы разборов','Темы практических материалов')
         text=text.replace('Разборы для строительных подрядчиков','Практические материалы для исполнителей работ и услуг в строительстве')
     return text
 
-
 def main():
     checkpoint=json.loads((OUT/'checkpoint.json').read_text())
-    assert checkpoint['status']=='PASS_INSPECT_PRIVATE_BACKUPS_FULL_13SKU_MANIFEST'
-    assert checkpoint['source_main']==BASE
+    assert checkpoint['status']=='PASS_INSPECT_PRIVATE_BACKUPS_FULL_13SKU_MANIFEST' and checkpoint['source_main']==BASE
     run(['git','fetch','--no-tags','--depth=1','origin','main'])
     assert git('rev-parse','FETCH_HEAD').strip()==BASE,'MAIN_ADVANCED_BEFORE_PREPARATION'
     source=json.loads((OUT/'repository-full-13sku-manifest.json').read_text())['products']
@@ -92,7 +71,7 @@ def main():
     changes=[]
     for rel in pages:
         path=ROOT/rel;original=path.read_text(encoding='utf-8')
-        text=approved_copy(original,rel);text=URL.sub(NEW,text)
+        text=URL.sub(NEW,approved_copy(original,rel))
         match=re.search(r'<body\b[^>]*>',text,re.I);assert match,'BODY_MISSING_'+rel
         tag=match.group(0)
         if 'rebrand-approved' not in tag:
@@ -102,15 +81,12 @@ def main():
         if 'brand-approved-2026.css' not in text:
             links=list(re.finditer(r'<link\b[^>]*rel="stylesheet"[^>]*>',text[:text.lower().index('</head>')],re.I))
             assert links,'STYLESHEET_ANCHOR_MISSING_'+rel
-            prefix='../'*(len(Path(rel).parts)-1)
-            pos=links[-1].end()
+            prefix='../'*(len(Path(rel).parts)-1);pos=links[-1].end()
             text=text[:pos]+f'\n  <link rel="stylesheet" href="{prefix}brand-approved-2026.css?v={version}">'+text[pos:]
         assert PROTECTED.findall(text)==before_attrs[rel],'PRODUCT_OR_DOM_IDENTIFIERS_CHANGED_'+rel
         path.write_text(text,encoding='utf-8')
         if text!=original:changes.append(rel)
-    # Existing generation sources, not any customer document, keep the new identity.
-    sources=['data/site/navigation.yaml','tools/build_sitemap.py','tools/build_rss.py','tools/link_audit.py']
-    for rel in sources:
+    for rel in ['data/site/navigation.yaml','tools/build_sitemap.py','tools/build_rss.py','tools/link_audit.py']:
         p=ROOT/rel;s=p.read_text();t=URL.sub(NEW,identity(s))
         if rel.endswith('navigation.yaml'):
             t=t.replace('  mark: М','  mark: Н').replace('    text: Разборы\n    href: /articles/','    text: Практика и судебные решения\n    href: /articles/')
@@ -121,13 +97,10 @@ def main():
         p=ROOT/rel;s=p.read_text();t=URL.sub(NEW,s)
         if rel=='robots.txt':t=t.replace('Host: marzhavbetone.ru','Host: nastoronepodryadchika.ru')
         p.write_text(t);changes.append(rel)
-    # Only brand text in the two customer email strings. Keep the known sender
-    # until authenticated new-domain delivery is independently verified.
     p=ROOT/'products-config.php';s=p.read_text();t=s.replace('«Маржа в бетоне»','«На стороне подрядчика»')
     assert t.replace('«На стороне подрядчика»','«Маржа в бетоне»')==s,'UNEXPECTED_EMAIL_CODE_DELTA'
     p.write_text(t);changes.append('products-config.php')
     p=ROOT/'.htaccess';s=p.read_text();t=URL.sub(NEW,s).replace('www\\.marzhavbetone\\.ru','www\\.nastoronepodryadchika\\.ru')
-    # Existing HTTPS proxy detection is retained; only ordinary GET/HEAD may redirect.
     t=t.replace('    RewriteRule ^(.*)$ '+NEW+'/$1 [R=301,L]', '    RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$\n    RewriteRule ^(.*)$ '+NEW+'/$1 [R=301,L]')
     harden='''# Migration protection: includes work internally, direct HTTP access is denied.
 <IfModule mod_rewrite.c>
@@ -136,22 +109,13 @@ def main():
     RewriteRule ^(?:config\\.php(?:\\..*)?|products-config\\.php|.*\\.(?:bak|sql|tar|tgz))$ - [F,L,NC]
 </IfModule>
 '''
-    p.write_text(harden+'\n'+t);changes.append('.htaccess')
-    # Use the existing supported generators; no document generation / Office work.
-    run(['python3','tools/build_nav.py','--write'])
-    run(['python3','tools/asset_versions.py','--write'])
-    run(['python3','tools/build_sitemap.py','--verify'])
-    run(['python3','tools/build_rss.py'])
-    run(['python3','tools/check_nav.py'])
-    run(['python3','tools/link_audit.py','--verify'])
-    run(['php','tools/test_price_authority.php'])
-    run(['php','tools/test_delivery_one_hour.php'])
+    p.write_text((harden+'\n'+t).rstrip()+'\n');changes.append('.htaccess')
+    for args in [['python3','tools/build_nav.py','--write'],['python3','tools/asset_versions.py','--write'],['python3','tools/build_sitemap.py','--verify'],['python3','tools/build_rss.py'],['python3','tools/check_nav.py'],['python3','tools/link_audit.py','--verify'],['php','tools/test_price_authority.php'],['php','tools/test_delivery_one_hour.php']]:run(args)
     assert current_products()==source,'BUYER_FILES_OR_SERVER_CATALOG_CHANGED'
     for rel in ['payment.php','webhook.php','check-payment.php','download.php']:
         assert (ROOT/rel).read_bytes()==subprocess.run(['git','show',BASE+':'+rel],cwd=ROOT,check=True,capture_output=True).stdout,'PAYMENT_HANDLER_CHANGED_'+rel
     shipping=[]
-    eligible=set(tracked)|{'brand-approved-2026.css','rss.xml'}
-    for rel in sorted(eligible):
+    for rel in sorted(set(tracked)|{'brand-approved-2026.css','rss.xml'}):
         p=ROOT/rel
         if not p.is_file() or rel=='config.php':continue
         parts=Path(rel).parts
@@ -172,10 +136,11 @@ def main():
     RewriteRule ^ https://nastoronepodryadchika.ru%{REQUEST_URI} [R=301,L,NE]
 </IfModule>
 '''
-    (DIR/'old-domain-cutover.htaccess').write_text(old_route+'\n'+old_ht)
+    generated=(old_route+'\n'+old_ht).rstrip()+'\n'
+    assert not generated.endswith('\n\n'),'GENERATED_TEMPLATE_EXTRA_EOF_LINE'
+    (DIR/'old-domain-cutover.htaccess').write_text(generated)
     plan={'status':'PASS_PREPARED_FROM_PUBLISHED_MAIN','source_main':BASE,'approved_style_source':VISUAL,'new_domain':C['new_domain'],'shipping_files':shipping,'do_not_ship':['config.php','products-storage/','orders/'],'config_strategy':'derive private live copy; set SITE_URL=new; retain absolute existing masters/orders/delivery; never print credentials','old_handlers_strategy':'PHP include bridge to new handlers; shared absolute ORDERS_DIR; no ordinary 301 for payment POST','buyer_manifest_preserved':True,'buyer_files':172,'active_skus':13,'support_email_unchanged':C['support_email_preserve_until_verified'],'sender':'retain authenticated site@marzhavbetone.ru until new sender is verified','main_changed':False,'public_pages':len(pages),'new_root_initial_mode':'stage with temporary noindex before owner real payment and final redirects','cutover_not_executed':True}
     write('prepared-site-plan.json',plan)
-    # Exact existing failure classifications stay immutable in this branch.
     assert (ROOT/C['existing_check_classification']).read_bytes()==subprocess.run(['git','show',BASE+':'+C['existing_check_classification']],cwd=ROOT,check=True,capture_output=True).stdout
     write('prepare-checkpoint.json',{'status':'PASS_SOURCE_AND_PRICE_DOCUMENT_INVARIANTS','source_main':BASE,'public_pages':len(pages),'shipping_count':len(shipping),'sku_count':13,'buyer_files':172,'payment_handler_sha_unchanged':True,'p1_catalog_and_masters_unchanged':True,'prod_touched':False,'next':'remote scoped dry-run and isolated new-root staging'})
     print('PREPARED_CURRENT_MAIN 13_SKUS 172_UNCHANGED_BUYER_FILES',flush=True)
