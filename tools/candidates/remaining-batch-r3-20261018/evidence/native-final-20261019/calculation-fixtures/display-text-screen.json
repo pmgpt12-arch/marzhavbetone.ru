@@ -1,0 +1,255 @@
+{
+  "scope": "Native PDF text screening for expected messages, hash marks and unexpected formula errors. Text presence alone is not visual qualification. Exports use the current SaveAs-first harness.",
+  "calculation_status": "PASS",
+  "native_checks": 115,
+  "expected_values": 55,
+  "missing_message_candidates": [
+    {
+      "job": "r3h-calc-fixtures-g04-20261019",
+      "tag": "c14",
+      "text": "ОШИБКА: погашение аванса отнесено к акту, не подписанному обеими сторонами."
+    }
+  ],
+  "pdfs": [
+    {
+      "job": "r3h-calc-fixtures-g01-20261019",
+      "tag": "c00",
+      "fixture": "p1-interest-base.xlsx",
+      "sheet_probe": "Расчёт",
+      "pdf_sha256": "b3a9247ae16457868c1fff3da481175cbae5596835930e8d78b4ee0132831a89",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": []
+    },
+    {
+      "job": "r3h-calc-fixtures-g01-20261019",
+      "tag": "c01",
+      "fixture": "p1-interest-base.xlsx",
+      "sheet_probe": "Итог для документа",
+      "pdf_sha256": "b6e5e1bfcb76647e037ac8e809cafd8e5289098418fda266d8b37e2bf2b94dce",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": []
+    },
+    {
+      "job": "r3h-calc-fixtures-g01-20261019",
+      "tag": "c02",
+      "fixture": "p1-interest-partial.xlsx",
+      "sheet_probe": "Расчёт",
+      "pdf_sha256": "ff705d22694bdb2b6217c05d9c8bae0aee8a557e7ba9a3c16c437686105b46a7",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": []
+    },
+    {
+      "job": "r3h-calc-fixtures-g01-20261019",
+      "tag": "c03",
+      "fixture": "p1-interest-partial.xlsx",
+      "sheet_probe": "Итог для документа",
+      "pdf_sha256": "305119dd777e5c975d9cc4ca0c7a6e60205cd7e8a83dc2ded6f44fcee856174d",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": []
+    },
+    {
+      "job": "r3h-calc-fixtures-g02-20261019",
+      "tag": "c04",
+      "fixture": "p1-interest-gap.xlsx",
+      "sheet_probe": "Расчёт",
+      "pdf_sha256": "533cb30781c61e07c29158a388781880a0e7f1210dfc92dfab96cbd8a2f99ee7",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": [
+        {
+          "text": "Период пропущен или перекрыт — исправьте даты",
+          "present_in_pdf_text": true
+        }
+      ]
+    },
+    {
+      "job": "r3h-calc-fixtures-g02-20261019",
+      "tag": "c05",
+      "fixture": "p2-cost-coefficient.xlsx",
+      "sheet_probe": "Реестр",
+      "pdf_sha256": "17cc51d8deaded076dbe4938c016e6e380b2a6030be69daee241c8079d297f5a",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": []
+    },
+    {
+      "job": "r3h-calc-fixtures-g02-20261019",
+      "tag": "c06",
+      "fixture": "p2-cost-empty-coefficient.xlsx",
+      "sheet_probe": "Реестр",
+      "pdf_sha256": "ebd73fab99d455cd932991a8bcf2697a08897e68b2d40ad7ab843ee0c28684ef",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": []
+    },
+    {
+      "job": "r3h-calc-fixtures-g02-20261019",
+      "tag": "c07",
+      "fixture": "p8-advance-compare.xlsx",
+      "sheet_probe": "Условия",
+      "pdf_sha256": "1830bca14fc87442f50820891a34dbad8ce446272cc755545c60ec254e8801fd",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": []
+    },
+    {
+      "job": "r3h-calc-fixtures-g03-20261019",
+      "tag": "c08",
+      "fixture": "p8-advance-compare.xlsx",
+      "sheet_probe": "Сравнение",
+      "pdf_sha256": "a7ce0e09eec5e73fc9ffef84de0be07f9f1e9ca4e0faa3d55ecea92b02dbad43",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": []
+    },
+    {
+      "job": "r3h-calc-fixtures-g03-20261019",
+      "tag": "c09",
+      "fixture": "p8-advance-missing-price.xlsx",
+      "sheet_probe": "Условия",
+      "pdf_sha256": "3f9fb3f8eb3626fb41ba245c470f2db06ab1034fec0bfc9ff11ff5d8db2cc928",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": [
+        {
+          "text": "Не заполнена сумма договора",
+          "present_in_pdf_text": true
+        }
+      ]
+    },
+    {
+      "job": "r3h-calc-fixtures-g03-20261019",
+      "tag": "c10",
+      "fixture": "p8-advance-bilateral.xlsx",
+      "sheet_probe": "Договор и аванс",
+      "pdf_sha256": "461a401a22009748a7915ef695498ce11511ddfc74ec12cdabeba6fda9b53ea3",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": []
+    },
+    {
+      "job": "r3h-calc-fixtures-g03-20261019",
+      "tag": "c11",
+      "fixture": "p8-advance-bilateral.xlsx",
+      "sheet_probe": "Выполнено",
+      "pdf_sha256": "2e1037cb79f4943db5554979561ab6fed69dd46da92a53334109ae3aaaaf9357",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": []
+    },
+    {
+      "job": "r3h-calc-fixtures-g04-20261019",
+      "tag": "c12",
+      "fixture": "p8-advance-bilateral.xlsx",
+      "sheet_probe": "Сальдо",
+      "pdf_sha256": "43d5b50c643418e7309e66ae3bd4fcedcd17172379c83f3315ff0b741bd2e987",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": []
+    },
+    {
+      "job": "r3h-calc-fixtures-g04-20261019",
+      "tag": "c13",
+      "fixture": "p8-advance-unilateral.xlsx",
+      "sheet_probe": "Договор и аванс",
+      "pdf_sha256": "5868f4cf9312d3cf8cb47af903e8fc48c2a6af14420885ae6385f913b724c5dd",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": []
+    },
+    {
+      "job": "r3h-calc-fixtures-g04-20261019",
+      "tag": "c14",
+      "fixture": "p8-advance-unilateral.xlsx",
+      "sheet_probe": "Выполнено",
+      "pdf_sha256": "40e02c17309282d918ac09ec59a4d4030380262cc0f468f7b82d1158d91308a2",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": [
+        {
+          "text": "ОШИБКА: погашение аванса отнесено к акту, не подписанному обеими сторонами.",
+          "present_in_pdf_text": false
+        }
+      ]
+    },
+    {
+      "job": "r3h-calc-fixtures-g04-20261019",
+      "tag": "c15",
+      "fixture": "p9-bankruptcy-cutoff.xlsx",
+      "sheet_probe": "Реестр документов",
+      "pdf_sha256": "4e67489e4a9761c3a7fb3e0b448de4a45eff007617f4156229ada4ab1698e049",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": [
+        {
+          "text": "до принятия заявления",
+          "present_in_pdf_text": true
+        },
+        {
+          "text": "после принятия заявления",
+          "present_in_pdf_text": true
+        }
+      ]
+    },
+    {
+      "job": "r3h-calc-fixtures-g05-20261019",
+      "tag": "c16",
+      "fixture": "p9-bankruptcy-cutoff.xlsx",
+      "sheet_probe": "Итоги",
+      "pdf_sha256": "87abae2c85f1332e3e5cf7d53b75c55e33c35bd1a00e141c9c8540169d0ecafa",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": []
+    },
+    {
+      "job": "r3h-calc-fixtures-g05-20261019",
+      "tag": "c17",
+      "fixture": "p13-uncovered-cost.xlsx",
+      "sheet_probe": "Реестр затрат",
+      "pdf_sha256": "67de8ba7be17069998c2c9ec9aa8a0bf8928f0391fac63e209a2f6965640f0f1",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": [
+        {
+          "text": "Проверка заполнена; решение о цене принимает руководитель",
+          "present_in_pdf_text": true
+        }
+      ]
+    },
+    {
+      "job": "r3h-calc-fixtures-g05-20261019",
+      "tag": "c18",
+      "fixture": "p13-covered-cost.xlsx",
+      "sheet_probe": "Реестр затрат",
+      "pdf_sha256": "bf3df43ea432e03fef10ab30b365adf31efc2516210bee7d0b8f2b39fb102460",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": [
+        {
+          "text": "Проверка заполнена; решение о цене принимает руководитель",
+          "present_in_pdf_text": true
+        }
+      ]
+    },
+    {
+      "job": "r3h-calc-fixtures-g05-20261019",
+      "tag": "c19",
+      "fixture": "p13-missing-estimate.xlsx",
+      "sheet_probe": "Реестр затрат",
+      "pdf_sha256": "cbf8c19f5a80c0b406b34660f8c6fedcde67cba24969388391b28de6f59a9569",
+      "hash_marks": false,
+      "formula_errors": [],
+      "expected_messages": [
+        {
+          "text": "Есть непокрытые затраты без числовой оценки",
+          "present_in_pdf_text": true
+        }
+      ]
+    }
+  ],
+  "native_print_visual": "PENDING"
+}

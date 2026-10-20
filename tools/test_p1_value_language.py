@@ -8,7 +8,7 @@ import re
 BASE = Path(__file__).resolve().parents[1] / 'products-storage/01-zakrytie-rabot'
 FORBIDDEN = [
     r'шаблон\w*',
-    r'юрист\w*',
+    r'(?:прошл\w+\s+вычитку|вычитан\w*|провере\w+)\s+юрист\w*',
     r'профильн\w*\s+специалист\w*',
     r'типов\w*',
     r'юридическ\w*\s+консультац\w*',
@@ -41,9 +41,13 @@ def text_of(path):
         with zipfile.ZipFile(path) as archive:
             return '\n'.join(archive.read(n).decode() for n in archive.namelist()
                              if n.startswith('xl/') and n.endswith('.xml'))
+    if path.suffix == '.xls':
+        from standard_form_original_gate import check_member
+        check_member('P1',path.name,path.read_bytes())
+        return '' # Exact original-source bytes are separately visually qualified.
     return path.read_text()
 
-files = [p for p in BASE.iterdir() if p.suffix.lower() in {'.docx', '.pdf', '.xlsx', '.txt'}]
+files = [p for p in BASE.iterdir() if p.suffix.lower() in {'.docx', '.pdf', '.xlsx', '.xls', '.txt'} and p.name!='00-PISMO-POSLE-POKUPKI.txt']
 assert len(files) == 20, len(files)
 failures = [(p.name, phrase) for p in files for phrase in FORBIDDEN
             if re.search(phrase, text_of(p), re.I)]

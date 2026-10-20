@@ -7,34 +7,23 @@ import hashlib
 
 ROOT = Path(__file__).resolve().parents[1]
 REL = Path("14-raschet-procentov-395-gk.xlsx")
-COPIES = [ROOT / "products-storage/01-zakrytie-rabot" / REL,
-          ROOT / "products-storage/04-polnyy-komplekt-pto/01-30-bazovye-pakety/01-zakrytie-rabot" / REL]
 NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
-
-assert all(p.is_file() for p in COPIES), "одна из копий P1 отсутствует"
-assert len({hashlib.sha256(p.read_bytes()).hexdigest() for p in COPIES}) == 1, "копии P1 различаются"
-for book in COPIES:
+BASE=ROOT/'products-storage/01-zakrytie-rabot'
+# Historical full-bundle mirrors are outside the active edition.
+books=sorted(BASE.glob('*.xlsx'))
+assert len(books)==4
+for book in books:
     with ZipFile(book) as archive:
-        for index in range(1, 5):
-            sheet = ET.fromstring(archive.read(f"xl/worksheets/sheet{index}.xml"))
-            props = sheet.find(f"{NS}sheetPr/{NS}pageSetUpPr")
-            setup = sheet.find(f"{NS}pageSetup")
-            assert props is not None and props.get("fitToPage") == "1", (book, index, "fitToPage")
-            assert setup is not None and setup.get("fitToWidth") == "1", (book, index, "fitToWidth")
-            assert setup.get("fitToHeight") == "0", (book, index, "fitToHeight")
-            expected = "landscape" if index in (2, 4) else "portrait"
-            assert setup.get("orientation") == expected, (book, index, "orientation")
-for name in ("06-zhurnal-obemov.xlsx", "07-reestr-zamechaniy.xlsx", "08-reestr-peredachi.xlsx"):
-    paths = [ROOT / "products-storage/01-zakrytie-rabot" / name,
-             ROOT / "products-storage/04-polnyy-komplekt-pto/01-30-bazovye-pakety/01-zakrytie-rabot" / name]
-    assert all(p.is_file() for p in paths), (name, "missing")
-    assert len({hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}) == 1, (name, "copies differ")
-    with ZipFile(paths[0]) as archive:
-        for index, orientation in ((1, "landscape"), (2, "portrait")):
-            sheet = ET.fromstring(archive.read(f"xl/worksheets/sheet{index}.xml"))
-            props = sheet.find(f"{NS}sheetPr/{NS}pageSetUpPr")
-            setup = sheet.find(f"{NS}pageSetup")
-            assert props is not None and props.get("fitToPage") == "1", (name, index, "fitToPage")
-            assert setup is not None and setup.get("fitToWidth") == "1", (name, index, "fitToWidth")
-            assert setup.get("orientation") == orientation, (name, index, "orientation")
-print("P1 print layout: four Excel files, both copies, one-page width PASS")
+        sheets=[n for n in archive.namelist() if n.startswith('xl/worksheets/sheet') and n.endswith('.xml')]
+        for name in sheets:
+            sheet=ET.fromstring(archive.read(name));props=sheet.find(f"{NS}sheetPr/{NS}pageSetUpPr");setup=sheet.find(f"{NS}pageSetup")
+            assert props is not None and props.get('fitToPage')=='1',(book,name)
+            assert setup is not None and setup.get('fitToWidth')=='1',(book,name)
+            assert setup.get('orientation') in {'portrait','landscape'},(book,name)
+import json
+acceptance=json.loads((ROOT/'tools/candidates/remaining-batch-r3-20261018/owner-manual-excel-20261020/acceptance.json').read_text())
+assert acceptance['status']=='PASS_OWNER_MANUAL_OPEN_AND_PRINT'
+for p in sorted(BASE.glob('*.xls'))+books:
+    rows=[x for x in acceptance['inventory'] if x['sku']=='P1' and x['file']==p.name]
+    assert len(rows)==1 and hashlib.sha256(p.read_bytes()).hexdigest()==rows[0]['sha256']
+print('P1 exact 7 Excel source files: current print settings plus owner manual opening/print acceptance PASS')

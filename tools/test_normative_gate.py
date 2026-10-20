@@ -165,10 +165,11 @@ def m_stale_result(tmp: Path) -> None:
 def m_missing_mapping(tmp: Path) -> None:
     """Документ выпал из реестра — файл при этом продаётся."""
     p = tmp / "data/legal/document-norms.yaml"
-    s = p.read_text(encoding="utf-8")
-    start = s.index("  - path: " + DOCX)
-    end = s.index("  - path: ", start + 10)
-    p.write_text(s[:start] + s[end:], encoding="utf-8")
+    data = yaml.safe_load(p.read_text(encoding="utf-8"))
+    before = len(data['documents'])
+    data['documents'] = [row for row in data['documents'] if row['path'] != DOCX]
+    assert len(data['documents']) == before - 1
+    p.write_text(yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8")
 
 
 def m_secondary_passes(tmp: Path) -> None:
@@ -243,10 +244,8 @@ def m_lawyer_claim(tmp: Path) -> None:
     """На страницу вернулось утверждение о вычитке юристом."""
     p = tmp / "products/p1-oplata-po-ks2.html"
     s = p.read_text(encoding="utf-8")
-    p.write_text(s.replace("<h2>Что входит в комплект</h2>",
-                           "<p>Тексты прошли вычитку юристом.</p>"
-                           "<h2>Что входит в комплект</h2>", 1),
-                 encoding="utf-8")
+    assert s.count('</main>') == 1
+    p.write_text(s.replace('</main>', '<p>Тексты прошли вычитку юристом.</p></main>', 1), encoding='utf-8')
 
 
 def m_verdict_fail(tmp: Path) -> None:
@@ -405,3 +404,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+

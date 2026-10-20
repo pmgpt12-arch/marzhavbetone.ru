@@ -1,0 +1,147 @@
+{
+  "status": "DISPOSABLE_TEST_FIXTURES_NOT_BUYER_FILES",
+  "complete": true,
+  "expected_count": 4,
+  "records": [
+    {
+      "name": "p8-advance-bilateral",
+      "sku": "P8",
+      "file": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "inputs": {
+        "Договор и аванс": {
+          "B5": 1000000,
+          "B6": 300000,
+          "B8": "генподрядчик отказался от исполнения, о наших нарушениях не заявлено",
+          "B11": 100000
+        },
+        "Выполнено": {
+          "C6": "КС-2 № ТЕСТ-1",
+          "E6": 400000,
+          "F6": "подписан обеими сторонами",
+          "I6": 200000,
+          "J6": 100000
+        }
+      },
+      "probes": {
+        "Договор и аванс": {
+          "B16": 200000,
+          "B17": 100000
+        },
+        "Выполнено": {
+          "K6": 100000
+        },
+        "Сальдо": {
+          "B11": 400000,
+          "B12": 200000,
+          "B13": 100000,
+          "B14": 100000
+        }
+      },
+      "source_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+      "fixture_sha256": "6d0c9a01d509f324758f674a0fa8c540f3d3474960f5764d028deb5798e21362",
+      "bytes": 29372,
+      "preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved."
+    },
+    {
+      "name": "p8-advance-unilateral",
+      "sku": "P8",
+      "file": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "inputs": {
+        "Договор и аванс": {
+          "B5": 1000000,
+          "B6": 300000,
+          "B8": "генподрядчик отказался от исполнения, о наших нарушениях не заявлено",
+          "B11": 100000
+        },
+        "Выполнено": {
+          "C6": "КС-2 № ТЕСТ-1",
+          "E6": 400000,
+          "F6": "подписан односторонне",
+          "I6": 200000,
+          "J6": 100000
+        }
+      },
+      "probes": {
+        "Договор и аванс": {
+          "B16": 0,
+          "B17": 300000
+        },
+        "Выполнено": {
+          "L6": "ОШИБКА: погашение аванса отнесено к акту, не подписанному обеими сторонами."
+        }
+      },
+      "source_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+      "fixture_sha256": "a22350a75d89541950b8cc80b4b291529b2346f35e39ff1bda645efcaffb41bd",
+      "bytes": 29374,
+      "preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved."
+    },
+    {
+      "name": "p8-advance-message-boundaries",
+      "sku": "P8",
+      "file": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "inputs": {
+        "Договор и аванс": {
+          "B5": 1000000,
+          "B6": 300000,
+          "B8": "генподрядчик отказался от исполнения, о наших нарушениях не заявлено",
+          "B11": 100000
+        },
+        "Выполнено": {
+          "C6": "КС-2 № ТЕСТ-1",
+          "E6": 400000,
+          "F6": "подписан односторонне",
+          "I6": 200000,
+          "J6": 100000,
+          "C45": "КС-2 № ТЕСТ-40",
+          "E45": 400000,
+          "F45": "подписан односторонне",
+          "I45": 100000,
+          "J45": 100000,
+          "C20": "КС-2 № ТЕСТ-15",
+          "E20": 400000,
+          "F20": "подписан обеими сторонами",
+          "I20": 0,
+          "J20": 0
+        },
+        "Встречное": {
+          "B6": "материалы переданы генподрядчику",
+          "D6": 25000,
+          "E6": "Документ № ТЕСТ-1",
+          "F6": "нет",
+          "B30": "материалы переданы генподрядчику",
+          "D30": 25000,
+          "E30": "Документ № ТЕСТ-1",
+          "F30": "нет"
+        }
+      },
+      "probes": {
+        "Выполнено": {
+          "L6": "ОШИБКА: погашение аванса отнесено к акту, не подписанному обеими сторонами.",
+          "L20": "По подписанному акту не отражены погашение аванса и оплата: проверьте платежи.",
+          "L45": "ОШИБКА: погашение аванса отнесено к акту, не подписанному обеими сторонами."
+        },
+        "Встречное": {
+          "G6": "Проверьте самостоятельное основание требования и подтверждающие документы.",
+          "G30": "Проверьте самостоятельное основание требования и подтверждающие документы."
+        }
+      },
+      "source_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+      "fixture_sha256": "32c07a9723499150af382d551d0c07dde8ace02c416629121aa727c746a90d70",
+      "bytes": 30076,
+      "preservation": "Only listed non-formula input cell values changed; every other XML element and package part preserved."
+    },
+    {
+      "name": "p8-layout-source-copy",
+      "sku": "P8",
+      "file": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "inputs": {},
+      "probes": {
+        "Как читать": {}
+      },
+      "source_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+      "fixture_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+      "bytes": 28099,
+      "preservation": "Exact source bytes copied under a QA filename; no input or workbook changes."
+    }
+  ]
+}

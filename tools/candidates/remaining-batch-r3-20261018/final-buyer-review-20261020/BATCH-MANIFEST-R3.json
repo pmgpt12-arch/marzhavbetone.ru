@@ -1,0 +1,1085 @@
+{
+  "status": "READY_FOR_OWNER_PRODUCT_ACCEPTANCE",
+  "source_commit": "0ce920f0c7b86ce1588515c3356ff22f9589e02c",
+  "archive": "NSP_remaining_products_R3_owner_review_2026-10-20.zip",
+  "sha256": "37c1b22c092ef979b4dd2151f018b6812dad017532d842159be8cf0fb70f0789",
+  "bytes": 4549478,
+  "new_product_packages": 8,
+  "isolated_P3_revision": 1,
+  "product_files": 123,
+  "outer_members": 10,
+  "outer_CRC": "PASS",
+  "all_inner_CRC": "PASS",
+  "manual_excel_archive_sha256": "7b9dd906a4b8e11db49fb8a0e89252ac3bfa6e762e497e6d6c7913d3e8da6ca5",
+  "checks": {
+    "word_native_current_SHA": "PASS_66",
+    "word_visual": "PASS_REUSED_UNCHANGED_VIEWS",
+    "xlsx_native_opening_current_SHA": "PASS_19",
+    "excel_owner_manual_open_and_print": "PASS_22",
+    "numerical_scenarios": "PASS_14_SCENARIOS_60_EXPECTED_VALUES",
+    "workbook_preservation": "PASS_2470_FORMULAS_AND_FUNCTIONAL_FEATURES",
+    "office_metadata": "REUSED_PASS_93_IDENTICAL_CHECKPOINT_FILES",
+    "original_forms": "PASS_8_EXACT_BUYER_SHAS",
+    "accepted_P3_unrelated_members": "UNCHANGED_FROM_VERIFIED_CHECKPOINT"
+  },
+  "checks_requiring_manual_substitution": "Opening/print confirmed by owner on exact 22-file ZIP; failed automatic harness receipts retained.",
+  "whole_product_batch_owner_acceptance": "PENDING",
+  "publication": "NOT_PERFORMED",
+  "accepted_main_product_counter": "UNCHANGED",
+  "packages": [
+    {
+      "sku": "P1",
+      "status": "READY_FOR_OWNER_PRODUCT_ACCEPTANCE",
+      "archive": "P1-buyer-review-R3-20261020.zip",
+      "sha256": "7b6306cf4fd8953491c286f5561390482e4ea0111f2a27d46706e01b5fc54981",
+      "bytes": 304909,
+      "file_count": 20,
+      "CRC": "PASS",
+      "source_SHA_match": "PASS",
+      "editorial": "PASS",
+      "original_form_gate": "PASS",
+      "buyer_filename_references": "PASS",
+      "source_commit": "0ce920f0c7b86ce1588515c3356ff22f9589e02c",
+      "members": [
+        {
+          "file": "00-INSTRUKCIYA.docx",
+          "bytes": 41243,
+          "sha256": "c3fa51c103f28048a9fb4d90b17a519f95e7e03e5f71830096ea159f5aeaffc0"
+        },
+        {
+          "file": "00-INSTRUKCIYA.pdf",
+          "bytes": 105425,
+          "sha256": "12671acc7f557b4d0a713298aa0593da15d72bdd36ee16df54e9751cfc2259e7"
+        },
+        {
+          "file": "00-START-HERE.txt",
+          "bytes": 2876,
+          "sha256": "d8b091900b0ff4b29857900dc2cac253490877af32a02daf7c5ebac1226daf32"
+        },
+        {
+          "file": "01-ks-2.xls",
+          "bytes": 28160,
+          "sha256": "b09296147561df5afd9a38bbb196860a1a3a3268a8b26d9751c88d4c5bca6281"
+        },
+        {
+          "file": "02-ks-3.xls",
+          "bytes": 26112,
+          "sha256": "d6922089bffcde2a00a30d62d8d7ea1d87676fe4de9ae44a3d0e9af4d821ed0a"
+        },
+        {
+          "file": "03-akt-vypolnennyh-rabot.docx",
+          "bytes": 10951,
+          "sha256": "bf3d055ccc050d5f0e1c1b1f09963d436aed7fc81647d63a1d0285e3f3e8cbfe"
+        },
+        {
+          "file": "04-akt-priemki.docx",
+          "bytes": 12319,
+          "sha256": "bc7e68833b07223558e0cae648bf9f82c65cb590c48f104b935d1537cf15637e"
+        },
+        {
+          "file": "05-peredatochnyy-akt.docx",
+          "bytes": 12120,
+          "sha256": "226a92dc69184f169ef1bc8897c53ab30e6b2eeca4a6aa11f44fc76d8a884be1"
+        },
+        {
+          "file": "06-zhurnal-ucheta-rabot-ks-6a.xls",
+          "bytes": 51200,
+          "sha256": "053c5f1603478ca08fbab8f522ed4448546941d4009c79a76bdc8af13248aa29"
+        },
+        {
+          "file": "06A-rabochiy-reestr-obemov.xlsx",
+          "bytes": 9333,
+          "sha256": "a2cafa2bddf6304ac3d0153756ca6da1e1d1cd6711949d2c704654bb506c18e4"
+        },
+        {
+          "file": "07-reestr-zamechaniy.xlsx",
+          "bytes": 9501,
+          "sha256": "fdd9d8d8015f348086fabaa2bd7dfd136febb6eb2ab6408630b0bda611a41a56"
+        },
+        {
+          "file": "08-reestr-peredachi.xlsx",
+          "bytes": 9264,
+          "sha256": "06225667155164df3323f8d1ab995a806fcdf17d4ebfb387f45375de5e626495"
+        },
+        {
+          "file": "09-checklist-peredachi.pdf",
+          "bytes": 23110,
+          "sha256": "6576b0be65d30bbd9100008c40852cc7efe97d1280adfecafce7181f5ca8196c"
+        },
+        {
+          "file": "10-sroki-hraneniya.pdf",
+          "bytes": 22167,
+          "sha256": "a066b06560ba8edad1df48b38332133d9b7946a0ebdb1d5e8dcebf321e01f1ee"
+        },
+        {
+          "file": "11-slovar-poley.docx",
+          "bytes": 15312,
+          "sha256": "83c11248a93908afa738f5bc157a32bb71844c3267a9a768d35ecea372f2a48b"
+        },
+        {
+          "file": "12-pretenziya-na-neoplatu-po-ks-2.docx",
+          "bytes": 11259,
+          "sha256": "b476c23402caf42da0fe33710fa64b73b808692a5d6b80e4e5fdcd7e8d8f5f0e"
+        },
+        {
+          "file": "13-uvedomlenie-o-prosrochke-oplaty.docx",
+          "bytes": 10032,
+          "sha256": "c942759a345de00ab321c238c29af0c14ed51d2fe1170e96d1311bcca38613c2"
+        },
+        {
+          "file": "14-raschet-procentov-395-gk.xlsx",
+          "bytes": 19021,
+          "sha256": "0899e1ba75bdf29f1400ef855ebf61fbcc1681bb1c7487609004a1b4c2e83927"
+        },
+        {
+          "file": "15-algoritm-pri-zaderzhke-oplaty.docx",
+          "bytes": 15294,
+          "sha256": "2cc358fcf801e98ca37aa649f6d12ad1cb884de12bbf4e7dabccec5b897c077b"
+        },
+        {
+          "file": "16-iskovoe-zayavlenie-o-vzyskanii.docx",
+          "bytes": 12381,
+          "sha256": "610e06791c6299393d1b33802f4ea67b4ee87018839598b86d8cfb8bbb7f7de0"
+        }
+      ],
+      "reference_details": [
+        {
+          "file": "00-INSTRUKCIYA.docx",
+          "references": [
+            "01-ks-2.xls",
+            "02-ks-3.xls",
+            "03-akt-vypolnennyh-rabot.docx",
+            "04-akt-priemki.docx",
+            "05-peredatochnyy-akt.docx",
+            "06-zhurnal-ucheta-rabot-ks-6a.xls",
+            "06A-rabochiy-reestr-obemov.xlsx",
+            "07-reestr-zamechaniy.xlsx",
+            "08-reestr-peredachi.xlsx",
+            "09-checklist-peredachi.pdf",
+            "10-sroki-hraneniya.pdf",
+            "11-slovar-poley.docx",
+            "12-pretenziya-na-neoplatu-po-ks-2.docx",
+            "13-uvedomlenie-o-prosrochke-oplaty.docx",
+            "14-raschet-procentov-395-gk.xlsx",
+            "15-algoritm-pri-zaderzhke-oplaty.docx",
+            "16-iskovoe-zayavlenie-o-vzyskanii.docx"
+          ]
+        },
+        {
+          "file": "00-INSTRUKCIYA.pdf",
+          "references": [
+            "01-ks-2.xls",
+            "02-ks-3.xls",
+            "03-akt-vypolnennyh-rabot.docx",
+            "04-akt-priemki.docx",
+            "05-peredatochnyy-akt.docx",
+            "06-zhurnal-ucheta-rabot-ks-6a.xls",
+            "06A-rabochiy-reestr-obemov.xlsx",
+            "07-reestr-zamechaniy.xlsx",
+            "08-reestr-peredachi.xlsx",
+            "09-checklist-peredachi.pdf",
+            "10-sroki-hraneniya.pdf",
+            "11-slovar-poley.docx",
+            "12-pretenziya-na-neoplatu-po-ks-2.docx",
+            "13-uvedomlenie-o-prosrochke-oplaty.docx",
+            "14-raschet-procentov-395-gk.xlsx",
+            "15-algoritm-pri-zaderzhke-oplaty.docx",
+            "16-iskovoe-zayavlenie-o-vzyskanii.docx"
+          ]
+        },
+        {
+          "file": "00-START-HERE.txt",
+          "references": [
+            "00-INSTRUKCIYA.docx",
+            "00-INSTRUKCIYA.pdf",
+            "00-START-HERE.txt",
+            "01-ks-2.xls",
+            "02-ks-3.xls",
+            "03-akt-vypolnennyh-rabot.docx",
+            "04-akt-priemki.docx",
+            "05-peredatochnyy-akt.docx",
+            "06-zhurnal-ucheta-rabot-ks-6a.xls",
+            "06A-rabochiy-reestr-obemov.xlsx",
+            "07-reestr-zamechaniy.xlsx",
+            "08-reestr-peredachi.xlsx",
+            "09-checklist-peredachi.pdf",
+            "10-sroki-hraneniya.pdf",
+            "11-slovar-poley.docx",
+            "12-pretenziya-na-neoplatu-po-ks-2.docx",
+            "13-uvedomlenie-o-prosrochke-oplaty.docx",
+            "14-raschet-procentov-395-gk.xlsx",
+            "15-algoritm-pri-zaderzhke-oplaty.docx",
+            "16-iskovoe-zayavlenie-o-vzyskanii.docx"
+          ]
+        },
+        {
+          "file": "03-akt-vypolnennyh-rabot.docx",
+          "references": [
+            "06A-rabochiy-reestr-obemov.xlsx",
+            "07-reestr-zamechaniy.xlsx"
+          ]
+        },
+        {
+          "file": "04-akt-priemki.docx",
+          "references": [
+            "07-reestr-zamechaniy.xlsx"
+          ]
+        },
+        {
+          "file": "05-peredatochnyy-akt.docx",
+          "references": [
+            "08-reestr-peredachi.xlsx"
+          ]
+        }
+      ],
+      "publication": "NOT_PERFORMED"
+    },
+    {
+      "sku": "P2",
+      "status": "READY_FOR_OWNER_PRODUCT_ACCEPTANCE",
+      "archive": "P2-buyer-review-R3-20261020.zip",
+      "sha256": "60b19ed92288144b6f1c6e17c39a5b9cd01d308749877b4e11f862897de1eae0",
+      "bytes": 675016,
+      "file_count": 15,
+      "CRC": "PASS",
+      "source_SHA_match": "PASS",
+      "editorial": "PASS",
+      "original_form_gate": "PASS",
+      "buyer_filename_references": "PASS",
+      "source_commit": "0ce920f0c7b86ce1588515c3356ff22f9589e02c",
+      "members": [
+        {
+          "file": "00-INSTRUKCIYA.docx",
+          "bytes": 42773,
+          "sha256": "8ba6c3b9bf61d51ffa7d78211f522ff69a7c60f68333a511d1330ae6a8986042"
+        },
+        {
+          "file": "00-INSTRUKCIYA.pdf",
+          "bytes": 104860,
+          "sha256": "4855380b0cca0d575b08e8c3c3f4ff04f4b164c76e8a4d0047678c799b2d3545"
+        },
+        {
+          "file": "00-START-HERE.txt",
+          "bytes": 3594,
+          "sha256": "88ce80c769b9d3aec2cbca0c8bb42059a7187a44bd425041b209833f48ace5e6"
+        },
+        {
+          "file": "01-prikaz-na-dopobem.docx",
+          "bytes": 39703,
+          "sha256": "f2d021b28e5cd064e978188b1866b9b24ade27ddcf7c6905afd9d48a5bd1bfdb"
+        },
+        {
+          "file": "02-soglasovanie-obema.docx",
+          "bytes": 40360,
+          "sha256": "a5df4ba95be6cf07c3ae1391386924ec1c672339e3e870ac3d52373d1e53665b"
+        },
+        {
+          "file": "03-uvedomlenie-o-doprabotah.docx",
+          "bytes": 39904,
+          "sha256": "070f7499feff291d6f5bf03ddc58822b1365daa065e21f7e9db5255c0b77afce"
+        },
+        {
+          "file": "04-akt-skrytyh-rabot.pdf",
+          "bytes": 261891,
+          "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4"
+        },
+        {
+          "file": "05-izmenenie-srokov.docx",
+          "bytes": 39512,
+          "sha256": "cf56b952d61b2e502e5903ce11a8932b245b003ba568d2ba8b35c81166c1a138"
+        },
+        {
+          "file": "06-pismo-o-priostanovke.docx",
+          "bytes": 39671,
+          "sha256": "aa9ac91fa7a038731262a2f29df1322faa9efaf9fc818fde009359495fe790eb"
+        },
+        {
+          "file": "07-raschet-stoimosti.xlsx",
+          "bytes": 12556,
+          "sha256": "ac4c5d9980bfd1ee102ecda9bdd7fc9b813f4d55e5510595d8fca78c040ea58f"
+        },
+        {
+          "file": "08-zhurnal-doprabot.xlsx",
+          "bytes": 10149,
+          "sha256": "05127fdb8e298adbc3090063560a88c61fe6896dfb452b429502399fe8a127ec"
+        },
+        {
+          "file": "09-checklist-fotofiksacii.pdf",
+          "bytes": 28200,
+          "sha256": "7306b4f7711b6b03ed75f4005eda59e41647685ab529e99e96bcccbd1de64d94"
+        },
+        {
+          "file": "10-algoritm-doprabot.pdf",
+          "bytes": 30858,
+          "sha256": "fdda508ae349196fb80cab2f036fb83ef887186bceb5e0db02854ab4dac28f1c"
+        },
+        {
+          "file": "11-dopsoglashenie-obem-i-cena.docx",
+          "bytes": 39854,
+          "sha256": "6252e4445dfb9dba0909e633b06671c31a04962216ddd5e9ac6d55ccec823bb0"
+        },
+        {
+          "file": "12-dopsoglashenie-sroki-doprabot.docx",
+          "bytes": 39558,
+          "sha256": "139f4007719e105a5add8f927b307609afbe192abf7f63312e6cca5e1aa0fceb"
+        }
+      ],
+      "reference_details": [
+        {
+          "file": "00-INSTRUKCIYA.docx",
+          "references": [
+            "00-INSTRUKCIYA.docx",
+            "00-INSTRUKCIYA.pdf",
+            "00-START-HERE.txt",
+            "01-prikaz-na-dopobem.docx",
+            "02-soglasovanie-obema.docx",
+            "03-uvedomlenie-o-doprabotah.docx",
+            "04-akt-skrytyh-rabot.pdf",
+            "05-izmenenie-srokov.docx",
+            "06-pismo-o-priostanovke.docx",
+            "07-raschet-stoimosti.xlsx",
+            "08-zhurnal-doprabot.xlsx",
+            "09-checklist-fotofiksacii.pdf",
+            "10-algoritm-doprabot.pdf",
+            "11-dopsoglashenie-obem-i-cena.docx",
+            "12-dopsoglashenie-sroki-doprabot.docx"
+          ]
+        },
+        {
+          "file": "00-INSTRUKCIYA.pdf",
+          "references": [
+            "00-INSTRUKCIYA.docx",
+            "00-INSTRUKCIYA.pdf",
+            "00-START-HERE.txt",
+            "01-prikaz-na-dopobem.docx",
+            "02-soglasovanie-obema.docx",
+            "03-uvedomlenie-o-doprabotah.docx",
+            "04-akt-skrytyh-rabot.pdf",
+            "05-izmenenie-srokov.docx",
+            "06-pismo-o-priostanovke.docx",
+            "07-raschet-stoimosti.xlsx",
+            "08-zhurnal-doprabot.xlsx",
+            "09-checklist-fotofiksacii.pdf",
+            "10-algoritm-doprabot.pdf",
+            "11-dopsoglashenie-obem-i-cena.docx",
+            "12-dopsoglashenie-sroki-doprabot.docx"
+          ]
+        },
+        {
+          "file": "00-START-HERE.txt",
+          "references": [
+            "00-INSTRUKCIYA.docx",
+            "00-INSTRUKCIYA.pdf",
+            "00-START-HERE.txt",
+            "01-prikaz-na-dopobem.docx",
+            "02-soglasovanie-obema.docx",
+            "03-uvedomlenie-o-doprabotah.docx",
+            "04-akt-skrytyh-rabot.pdf",
+            "05-izmenenie-srokov.docx",
+            "06-pismo-o-priostanovke.docx",
+            "07-raschet-stoimosti.xlsx",
+            "08-zhurnal-doprabot.xlsx",
+            "09-checklist-fotofiksacii.pdf",
+            "10-algoritm-doprabot.pdf",
+            "11-dopsoglashenie-obem-i-cena.docx",
+            "12-dopsoglashenie-sroki-doprabot.docx"
+          ]
+        }
+      ],
+      "publication": "NOT_PERFORMED"
+    },
+    {
+      "sku": "P3",
+      "status": "READY_FOR_OWNER_PRODUCT_ACCEPTANCE",
+      "archive": "P3-buyer-review-R3-20261020.zip",
+      "sha256": "ec3997051a59e2d4d86b9d0a5a0c9cfae554b1996612449c4ebc6f830bb4ab0a",
+      "bytes": 539767,
+      "file_count": 11,
+      "CRC": "PASS",
+      "source_SHA_match": "PASS",
+      "editorial": "PASS",
+      "original_form_gate": "PASS",
+      "buyer_filename_references": "PASS",
+      "source_commit": "0ce920f0c7b86ce1588515c3356ff22f9589e02c",
+      "members": [
+        {
+          "file": "00-START-HERE.txt",
+          "bytes": 5602,
+          "sha256": "44df8e6335c5f7ee6404130eebd2e787408f55656f2ef8207020766019c3044d"
+        },
+        {
+          "file": "01-proverochnyy-list-komplekta-ks.docx",
+          "bytes": 43389,
+          "sha256": "33a874e348b60a977b85bc50abcd54e29d65e01d169d7f4459253c539beeb790"
+        },
+        {
+          "file": "02-reestr-prilozheniy.xlsx",
+          "bytes": 16597,
+          "sha256": "d2685f1606ff392cb3d7a23155f047fc11cce9b660541608d3058936a3887a9b"
+        },
+        {
+          "file": "03-akt-skrytyh-rabot.pdf",
+          "bytes": 261891,
+          "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4"
+        },
+        {
+          "file": "04-protokol-vnutrenney-proverki.docx",
+          "bytes": 39362,
+          "sha256": "d2fd70cb60397076b44209e5989da0a0110b50513bcd5c5c062d558a070a3e1a"
+        },
+        {
+          "file": "05-pismo-o-nedostatkah.docx",
+          "bytes": 39435,
+          "sha256": "22d8d04a51f3eacb2285323e0d7517f7ab372a2456e062fb585411e8554a3d3d"
+        },
+        {
+          "file": "06-zhurnal-peredachi.xlsx",
+          "bytes": 21527,
+          "sha256": "029b048be85fef8f38e2c48e14ddfec41cf208151b7c406ac4603886f676bffd"
+        },
+        {
+          "file": "07-sroki-hraneniya.docx",
+          "bytes": 39836,
+          "sha256": "e38b546f4446d63021f4a4f6bb551deba54e808bdda964528d8eb287eabb8925"
+        },
+        {
+          "file": "08-algoritm-proverki.pdf",
+          "bytes": 58687,
+          "sha256": "43396d5cc5bab8829ec917e828eda46773b0e037f13d52aa476ecfb0dacecec2"
+        },
+        {
+          "file": "09-tipovye-oshibki.docx",
+          "bytes": 40674,
+          "sha256": "d107fe9cf43acb7aec2b680736856637a22b422bd55698c237cb721e1dcffafa"
+        },
+        {
+          "file": "10-sravnitelnaya-tablica.docx",
+          "bytes": 39912,
+          "sha256": "9ff876618a7ffd360af989054d373125bda3deb4e24b0ae14c9e4df90d3132b3"
+        }
+      ],
+      "reference_details": [
+        {
+          "file": "00-START-HERE.txt",
+          "references": [
+            "01-proverochnyy-list-komplekta-ks.docx",
+            "02-reestr-prilozheniy.xlsx",
+            "03-akt-skrytyh-rabot.pdf",
+            "04-protokol-vnutrenney-proverki.docx",
+            "05-pismo-o-nedostatkah.docx",
+            "06-zhurnal-peredachi.xlsx",
+            "07-sroki-hraneniya.docx",
+            "08-algoritm-proverki.pdf",
+            "09-tipovye-oshibki.docx",
+            "10-sravnitelnaya-tablica.docx"
+          ]
+        }
+      ],
+      "publication": "NOT_PERFORMED"
+    },
+    {
+      "sku": "P4",
+      "status": "READY_FOR_OWNER_PRODUCT_ACCEPTANCE",
+      "archive": "P4-buyer-review-R3-20261020.zip",
+      "sha256": "83a2dd9e513f437afc091197701c405e1caebc9f33bf99dde6a8f6627e0dca76",
+      "bytes": 1404652,
+      "file_count": 25,
+      "CRC": "PASS",
+      "source_SHA_match": "PASS",
+      "editorial": "PASS",
+      "original_form_gate": "PASS",
+      "buyer_filename_references": "PASS",
+      "source_commit": "0ce920f0c7b86ce1588515c3356ff22f9589e02c",
+      "members": [
+        {
+          "file": "00-START-HERE.txt",
+          "bytes": 4112,
+          "sha256": "64d252524bbafb849ace72f50720bacbcd2a237fbf916cd72334fb2b1e6ca885"
+        },
+        {
+          "file": "01-uvedomlenie-o-gotovnosti-id.docx",
+          "bytes": 38340,
+          "sha256": "16508fbbbae397ba11aeeefb620743fbaca25013a8aa3065bd6030bc69011243"
+        },
+        {
+          "file": "02-akt-priemki-id.docx",
+          "bytes": 38251,
+          "sha256": "b103ebb57a5e976323d803848a47eeaa0dd84a6653432048aaf552c9d92aba19"
+        },
+        {
+          "file": "03-perechen-vozmozhnyh-zamechaniy.docx",
+          "bytes": 39104,
+          "sha256": "6f460274cb7db5860d7768d1da499aecfaced0a0f3e380dd273c6ac3c1c97fec"
+        },
+        {
+          "file": "04-pismo-na-zamechaniya.docx",
+          "bytes": 38216,
+          "sha256": "e35ddc1114a79e55b757293e780b50f8e1b6138a130a498f000816bf9fdd8f34"
+        },
+        {
+          "file": "05-sluzhebnaya-zapiska.docx",
+          "bytes": 38064,
+          "sha256": "9c162cbe2ba61298d1ca494cfa8f901a2a74be94e130dd3165848c1f8bb6baa5"
+        },
+        {
+          "file": "06-reestr-zamechaniy.xlsx",
+          "bytes": 5705,
+          "sha256": "2a892c98e1c4f54a9f63b3308fc3c20479efae7c2de780ffa41e4652bc66a711"
+        },
+        {
+          "file": "07-grafik-ustraneniya.xlsx",
+          "bytes": 5545,
+          "sha256": "4784093d37ba69d3054aafd9d0c88c8d9c5d57ebf7baf11d2d8aabc20e002a89"
+        },
+        {
+          "file": "08-algoritm-raboty-s-id.pdf",
+          "bytes": 25654,
+          "sha256": "28f3603225a7600406cd78588714da90e5b93ee9942fe80d577664f7b1f3140c"
+        },
+        {
+          "file": "09-krasnye-flagi.docx",
+          "bytes": 38827,
+          "sha256": "52e00b75ab2dbb94f148c76778bdf7344587eb76711086fd23b8a33f542d1034"
+        },
+        {
+          "file": "31-akt-osvidetelstvovaniya-skrytyh-rabot.pdf",
+          "bytes": 261891,
+          "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4"
+        },
+        {
+          "file": "32-kartochka-ispolnitelnoy-shemy.docx",
+          "bytes": 38695,
+          "sha256": "81a7b227a8c64dca0a26db4189fa9bd8a324eb69133a9ec887cb4c86daf664c5"
+        },
+        {
+          "file": "33-akt-peredachi-komplekta-pto.docx",
+          "bytes": 38924,
+          "sha256": "688b787643be193f04af9ce94836068730d839366ffd1472a30b997bbdbddf35"
+        },
+        {
+          "file": "34-sluzhebnaya-zapiska.docx",
+          "bytes": 38789,
+          "sha256": "4414f25a4e897b0d35915b0ee53016fbeea0b30c08cedcc115f8d2f37ae3da3c"
+        },
+        {
+          "file": "35-obshiy-zhurnal-rabot.pdf",
+          "bytes": 621166,
+          "sha256": "39c89abb6752b27a860044fed979ac2da3c9d5bb9636b333471fcff9e9ca3eed"
+        },
+        {
+          "file": "35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx",
+          "bytes": 9442,
+          "sha256": "54ef5d86e81ab120910cc5ad1889c54ff5253951ec06a180be655eaf4cf65cc4"
+        },
+        {
+          "file": "36-zhurnal-vhodnoy-verifikacii.pdf",
+          "bytes": 102072,
+          "sha256": "353cc2536e4c01fbcc7737ec70ccd17c503e3ac3d21c1ccde5753e1deb6eb216"
+        },
+        {
+          "file": "36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx",
+          "bytes": 9112,
+          "sha256": "e10f379069eb327133fe0b5bb30343b1d1f0604b792f26bf28baf9d9773a995e"
+        },
+        {
+          "file": "37-reestr-pasportov.xlsx",
+          "bytes": 9129,
+          "sha256": "d8a4d449ddf29b84e7ccaf0d812ed7d6ddd53308f28e9f79ffba4e3154f7f85d"
+        },
+        {
+          "file": "38-reestr-id.xlsx",
+          "bytes": 9322,
+          "sha256": "6d2c0f11fc66612f42a1c0c89b5a626a6c8062359f4f53aa6e612b1357e22338"
+        },
+        {
+          "file": "39-algoritm-zamechaniy.pdf",
+          "bytes": 25767,
+          "sha256": "9392f1fd485987ff9feb387b2fe1ddd2074a6b70aa9158498f287af1b914aa57"
+        },
+        {
+          "file": "40-ezhemesyachnaya-proverka.pdf",
+          "bytes": 27859,
+          "sha256": "a5aac0df9011afce8436b7cd8a4ecf4aaa79801a44136d9f6a4994a6e5533d94"
+        },
+        {
+          "file": "41-akt-peredachi-ploshchadki-fronta.docx",
+          "bytes": 38875,
+          "sha256": "5a36ac14df6babd94060bfbbd818682b2a918808d792c0c87a9a6866fbf098dd"
+        },
+        {
+          "file": "42-akt-vhodnogo-kontrolya-materialov.docx",
+          "bytes": 38893,
+          "sha256": "a200ed1fa87e963e3fabf6020a7c2d44c84930d5e9caf0311d02354122207f25"
+        },
+        {
+          "file": "43-preduprezhdenie-po-st-716.docx",
+          "bytes": 38716,
+          "sha256": "b570a391c75d7d3184d14356a878cde9f38b153ab041c8308362bac1d4383008"
+        }
+      ],
+      "reference_details": [
+        {
+          "file": "00-START-HERE.txt",
+          "references": [
+            "00-START-HERE.txt",
+            "01-uvedomlenie-o-gotovnosti-id.docx",
+            "02-akt-priemki-id.docx",
+            "03-perechen-vozmozhnyh-zamechaniy.docx",
+            "04-pismo-na-zamechaniya.docx",
+            "05-sluzhebnaya-zapiska.docx",
+            "06-reestr-zamechaniy.xlsx",
+            "07-grafik-ustraneniya.xlsx",
+            "08-algoritm-raboty-s-id.pdf",
+            "09-krasnye-flagi.docx",
+            "31-akt-osvidetelstvovaniya-skrytyh-rabot.pdf",
+            "32-kartochka-ispolnitelnoy-shemy.docx",
+            "33-akt-peredachi-komplekta-pto.docx",
+            "34-sluzhebnaya-zapiska.docx",
+            "35-obshiy-zhurnal-rabot.pdf",
+            "35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx",
+            "36-zhurnal-vhodnoy-verifikacii.pdf",
+            "36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx",
+            "37-reestr-pasportov.xlsx",
+            "38-reestr-id.xlsx",
+            "39-algoritm-zamechaniy.pdf",
+            "40-ezhemesyachnaya-proverka.pdf",
+            "41-akt-peredachi-ploshchadki-fronta.docx",
+            "42-akt-vhodnogo-kontrolya-materialov.docx",
+            "43-preduprezhdenie-po-st-716.docx"
+          ]
+        }
+      ],
+      "publication": "NOT_PERFORMED"
+    },
+    {
+      "sku": "P7",
+      "status": "READY_FOR_OWNER_PRODUCT_ACCEPTANCE",
+      "archive": "P7-buyer-review-R3-20261020.zip",
+      "sha256": "b656b706df76aa9ae40fe0a8d3f62af75748cdcd304fa10fa656cd5ef614f812",
+      "bytes": 315962,
+      "file_count": 13,
+      "CRC": "PASS",
+      "source_SHA_match": "PASS",
+      "editorial": "PASS",
+      "original_form_gate": "PASS",
+      "buyer_filename_references": "PASS",
+      "source_commit": "0ce920f0c7b86ce1588515c3356ff22f9589e02c",
+      "members": [
+        {
+          "file": "00-INSTRUKCIYA.docx",
+          "bytes": 38181,
+          "sha256": "9f62bd045903cdfbec29e1c370255f0714ff1ff31c27e3cb4ccd70c37fff987a"
+        },
+        {
+          "file": "00-INSTRUKCIYA.pdf",
+          "bytes": 34941,
+          "sha256": "7d3244a40f50ada9321dbba079013bfccbe00769a1f2504b4f6555aabe197cca"
+        },
+        {
+          "file": "00-START-HERE.txt",
+          "bytes": 829,
+          "sha256": "960c1716c7e21ee0b59773673706bbab60a3723b601530f6371d48d35b353074"
+        },
+        {
+          "file": "01-dogovor-subpodryada.docx",
+          "bytes": 41511,
+          "sha256": "2c4b21efe5e1ac4ecf3d511839f45bb5dadbe18eaf71e293aee505abb06bfbcc"
+        },
+        {
+          "file": "02-perechen-rabot.xlsx",
+          "bytes": 9345,
+          "sha256": "0bee211d31c8f997b7a26fc87893d9a5aff90e60d7010563aaa10283f21ba983"
+        },
+        {
+          "file": "03-kalendarnyy-plan.xlsx",
+          "bytes": 9207,
+          "sha256": "f3525a8bac8eb2664e03971eae1d73b6e9490dfd2353023a4c221bc89cff100c"
+        },
+        {
+          "file": "04-poryadok-priemki.docx",
+          "bytes": 38794,
+          "sha256": "774f96809f6de685933e8503837bafa49681f859ad41493794edab7f2f1c7410"
+        },
+        {
+          "file": "05-grafik-platezhey.xlsx",
+          "bytes": 9423,
+          "sha256": "e79a370ff72482e30ffafb47dbb5d6f8f2ea21fb1336fa193d8fa41f81c57f35"
+        },
+        {
+          "file": "06-dopsoglashenie-obem.docx",
+          "bytes": 38387,
+          "sha256": "1ff7a818fa5fa9939410c61084cf84957d5ce05937683745273cda733d8fdb37"
+        },
+        {
+          "file": "07-dopsoglashenie-sroki.docx",
+          "bytes": 38282,
+          "sha256": "f3aaa1b0157927a1dca276d56a72fefe5ab78f499639670e62fec87cd7bdec8a"
+        },
+        {
+          "file": "08-krasnye-flagi.pdf",
+          "bytes": 27130,
+          "sha256": "3af78a07a2d5bdd80b67319f1ebd6973da212a9d10c5d267f951f54d72b0df07"
+        },
+        {
+          "file": "09-checklist-dogovora.pdf",
+          "bytes": 26777,
+          "sha256": "b86ecf65c9c104e67d569570ddb1b3543d02350f9c83e1204ace67c14749bede"
+        },
+        {
+          "file": "10-protokol-raznoglasiy.docx",
+          "bytes": 38612,
+          "sha256": "c881837ecffaeeeae2d7d0e3e29ecf952b639a43a00866404a787ef902d29f1d"
+        }
+      ],
+      "reference_details": [
+        {
+          "file": "00-START-HERE.txt",
+          "references": [
+            "00-INSTRUKCIYA.docx",
+            "00-INSTRUKCIYA.pdf",
+            "00-START-HERE.txt",
+            "01-dogovor-subpodryada.docx",
+            "02-perechen-rabot.xlsx",
+            "03-kalendarnyy-plan.xlsx",
+            "04-poryadok-priemki.docx",
+            "05-grafik-platezhey.xlsx",
+            "06-dopsoglashenie-obem.docx",
+            "07-dopsoglashenie-sroki.docx",
+            "08-krasnye-flagi.pdf",
+            "09-checklist-dogovora.pdf",
+            "10-protokol-raznoglasiy.docx"
+          ]
+        }
+      ],
+      "publication": "NOT_PERFORMED"
+    },
+    {
+      "sku": "P8",
+      "status": "READY_FOR_OWNER_PRODUCT_ACCEPTANCE",
+      "archive": "P8-buyer-review-R3-20261020.zip",
+      "sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+      "bytes": 344456,
+      "file_count": 11,
+      "CRC": "PASS",
+      "source_SHA_match": "PASS",
+      "editorial": "PASS",
+      "original_form_gate": "PASS",
+      "buyer_filename_references": "PASS",
+      "source_commit": "0ce920f0c7b86ce1588515c3356ff22f9589e02c",
+      "members": [
+        {
+          "file": "00-START-HERE.txt",
+          "bytes": 1005,
+          "sha256": "75c3617962a431314b84d798cdb2c596dd9e138a06032fc7b8d77afeee7d2554"
+        },
+        {
+          "file": "01-slovar-poley-avans.docx",
+          "bytes": 38306,
+          "sha256": "aa9f9d54ac7d3e699a0ed007b1718d45877e89849d700e5b9e01b458f81c4160"
+        },
+        {
+          "file": "02-kalkulyator-usloviy-avansa.xlsx",
+          "bytes": 35933,
+          "sha256": "781f36e37f22ed428561f10b9cb9eebece39a32bcb2f4eb24800121a00400551"
+        },
+        {
+          "file": "03-razbor-chetyrekh-usloviy-avansa.docx",
+          "bytes": 38231,
+          "sha256": "3602cb07f9052c146a70aefbe591a5c0d2a3d4bbdfdd64a14db7ce521c55c57d"
+        },
+        {
+          "file": "04-algoritm-peregovorov-ob-avanse.docx",
+          "bytes": 38136,
+          "sha256": "c0292cc68cc84777a47fca0f31ccf70b828c85d95fd8ac759345875536696414"
+        },
+        {
+          "file": "05-protokol-raznoglasiy-avansovye-punkty.docx",
+          "bytes": 38454,
+          "sha256": "37a909e5e08f47fcffe5e3ed130f385f05bd628cdad6910b19c7d5ecff3977ec"
+        },
+        {
+          "file": "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx",
+          "bytes": 38277,
+          "sha256": "c21fdf8cfcdf8b0e83283ace243c533ba79c12a8c89f05357683c831a21e4fee"
+        },
+        {
+          "file": "07-trebovanie-o-vyplate-avansa.docx",
+          "bytes": 38234,
+          "sha256": "634e1194539436eecce1d748c275071ee15a3b5e20e8e78f0b73c8eb578b8201"
+        },
+        {
+          "file": "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+          "bytes": 38177,
+          "sha256": "52994b8f90bfcd9659d26c1cf967dc020a48abafbd19341da460134659581e14"
+        },
+        {
+          "file": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+          "bytes": 28099,
+          "sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4"
+        },
+        {
+          "file": "10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+          "bytes": 38361,
+          "sha256": "fb9258f6b9517a84d4cde3b7162e4f8ac728d4af6916ed21359019934ed8ce9e"
+        }
+      ],
+      "reference_details": [
+        {
+          "file": "00-START-HERE.txt",
+          "references": [
+            "00-START-HERE.txt",
+            "01-slovar-poley-avans.docx",
+            "02-kalkulyator-usloviy-avansa.xlsx",
+            "03-razbor-chetyrekh-usloviy-avansa.docx",
+            "04-algoritm-peregovorov-ob-avanse.docx",
+            "05-protokol-raznoglasiy-avansovye-punkty.docx",
+            "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx",
+            "07-trebovanie-o-vyplate-avansa.docx",
+            "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+            "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+            "10-otvet-na-trebovanie-o-vozvrate-avansa.docx"
+          ]
+        }
+      ],
+      "publication": "NOT_PERFORMED"
+    },
+    {
+      "sku": "P9",
+      "status": "READY_FOR_OWNER_PRODUCT_ACCEPTANCE",
+      "archive": "P9-buyer-review-R3-20261020.zip",
+      "sha256": "010a4bbf89de760a05e18448d8498252952470e00252e1f5a26fc2d538525066",
+      "bytes": 311268,
+      "file_count": 10,
+      "CRC": "PASS",
+      "source_SHA_match": "PASS",
+      "editorial": "PASS",
+      "original_form_gate": "PASS",
+      "buyer_filename_references": "PASS",
+      "source_commit": "0ce920f0c7b86ce1588515c3356ff22f9589e02c",
+      "members": [
+        {
+          "file": "00-START-HERE.txt",
+          "bytes": 1109,
+          "sha256": "e3dbb773555c787868a0d818d340e396aa0370c795d4d9e3d8d9f16066e4d1f1"
+        },
+        {
+          "file": "01-slovar-poley-bankrotstvo.docx",
+          "bytes": 38158,
+          "sha256": "1fdf56c914032761294665f19b4a83375ff50a87301a4377b0227a2f941c4556"
+        },
+        {
+          "file": "02-algoritm-genpodryadchik-bankrotitsya.docx",
+          "bytes": 38363,
+          "sha256": "d6cedf566099b54f77b1fd5ab96aab97ebbaa33fd4c9d195495fd8b63f526393"
+        },
+        {
+          "file": "03-markery-do-bankrotstva.docx",
+          "bytes": 38078,
+          "sha256": "0a0f5c13e9810bbbd3da834d2f55dab2861d3e00a68c38441059ace5d8a5db75"
+        },
+        {
+          "file": "04-reestr-dokumentov-i-dat-po-obektu.xlsx",
+          "bytes": 31671,
+          "sha256": "7c4ea2a305c1e8c2486768407492453492a41f3497dace35c9d01d0925ef843d"
+        },
+        {
+          "file": "05-perechen-paketa-dlya-zayavleniya-trebovaniya.docx",
+          "bytes": 38430,
+          "sha256": "ee7a13022a07799f4b2403c337a53987959e5cebbec372f5d911e4823d92603f"
+        },
+        {
+          "file": "06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+          "bytes": 38224,
+          "sha256": "a3172e7aa6800354dd573bc5ada341b93b393a370a33b79956e745c7b98d21ff"
+        },
+        {
+          "file": "07-zapros-au-o-sostoyanii-raschetov.docx",
+          "bytes": 38274,
+          "sha256": "4474dde972e084c424f65aedd41286c8fe4b927f2e05dc7dc94fef63124ed88c"
+        },
+        {
+          "file": "08-zayavlenie-o-vklyuchenii-v-reestr-zagotovka.docx",
+          "bytes": 38555,
+          "sha256": "9fde12d12d781e54e32e5d3b93f3838543e9436dbcee9390ce4ef4c548c0535b"
+        },
+        {
+          "file": "09-chto-delat-esli-srok-propushchen.docx",
+          "bytes": 38247,
+          "sha256": "cf67357235336395e5a5fd580855a7b1f5eba34ab764779f0359f39dfa6c4881"
+        }
+      ],
+      "reference_details": [
+        {
+          "file": "00-START-HERE.txt",
+          "references": [
+            "00-START-HERE.txt",
+            "01-slovar-poley-bankrotstvo.docx",
+            "02-algoritm-genpodryadchik-bankrotitsya.docx",
+            "03-markery-do-bankrotstva.docx",
+            "04-reestr-dokumentov-i-dat-po-obektu.xlsx",
+            "05-perechen-paketa-dlya-zayavleniya-trebovaniya.docx",
+            "06-uvedomlenie-arbitrazhnomu-upravlyayushchemu.docx",
+            "07-zapros-au-o-sostoyanii-raschetov.docx",
+            "08-zayavlenie-o-vklyuchenii-v-reestr-zagotovka.docx",
+            "09-chto-delat-esli-srok-propushchen.docx"
+          ]
+        }
+      ],
+      "publication": "NOT_PERFORMED"
+    },
+    {
+      "sku": "P10",
+      "status": "READY_FOR_OWNER_PRODUCT_ACCEPTANCE",
+      "archive": "P10-buyer-review-R3-20261020.zip",
+      "sha256": "6571ba84d65db857e2270ae7e10b3550558aeb766df399336ac22c7a2a1302e8",
+      "bytes": 302531,
+      "file_count": 8,
+      "CRC": "PASS",
+      "source_SHA_match": "PASS",
+      "editorial": "PASS",
+      "original_form_gate": "PASS",
+      "buyer_filename_references": "PASS",
+      "source_commit": "0ce920f0c7b86ce1588515c3356ff22f9589e02c",
+      "members": [
+        {
+          "file": "00-START-HERE.pdf",
+          "bytes": 50152,
+          "sha256": "fce7c08ae1e764c06ded1884b22c89206bf6ae7e63f596206eaaf43219a1c54e"
+        },
+        {
+          "file": "01-karta-pretenzii.docx",
+          "bytes": 38971,
+          "sha256": "99644643a21cb1ba5901f5b53d2733f298a67cd6b8c0dfcc0be7f7aee1970d30"
+        },
+        {
+          "file": "02-poryadok-otveta.docx",
+          "bytes": 39764,
+          "sha256": "1a7d549bcd8f0c09ba48e0c35f4bec7cb2d1cba60f98ccf541d73eff0bd09987"
+        },
+        {
+          "file": "03-otvet-na-pretenziyu.docx",
+          "bytes": 38635,
+          "sha256": "c43c5b94d5366469727875f0bf9261b5ca7bcb8863b2b135a95f0e2a8fb4e46a"
+        },
+        {
+          "file": "04-otvet-na-garantiynuyu-pretenziyu.docx",
+          "bytes": 38613,
+          "sha256": "91ea9681cd0ffdba29e19e1dff100de729df41bcbc71bad1a1e13415b7d33a85"
+        },
+        {
+          "file": "05-otvet-na-pryamoe-trebovanie.docx",
+          "bytes": 38645,
+          "sha256": "f46ae46e89c84806ba5b5b1b8bf38e192fff53ec6a06288594e6b5225948c3bf"
+        },
+        {
+          "file": "06-uvedomlenie-kontragentu.docx",
+          "bytes": 38389,
+          "sha256": "cb3fc8afd55233e87a2b10589d187faa3ad65fe17e3116f0d153a55c25f67e05"
+        },
+        {
+          "file": "07-vstavnye-bloki.docx",
+          "bytes": 39395,
+          "sha256": "3cb1e126fc3dcaaec3ca2518a9131347b31b5217b617e89aede4b1d9832cb759"
+        }
+      ],
+      "reference_details": [
+        {
+          "file": "00-START-HERE.pdf",
+          "references": [
+            "01-karta-pretenzii.docx",
+            "02-poryadok-otveta.docx",
+            "03-otvet-na-pretenziyu.docx",
+            "04-otvet-na-garantiynuyu-pretenziyu.docx",
+            "05-otvet-na-pryamoe-trebovanie.docx",
+            "06-uvedomlenie-kontragentu.docx",
+            "07-vstavnye-bloki.docx"
+          ]
+        }
+      ],
+      "publication": "NOT_PERFORMED"
+    },
+    {
+      "sku": "P13",
+      "status": "READY_FOR_OWNER_PRODUCT_ACCEPTANCE",
+      "archive": "P13-buyer-review-R3-20261020.zip",
+      "sha256": "67db893ec122ff76379a6a61bc3eab29185a8a7daa0e8586af6a1c7392952dd2",
+      "bytes": 351503,
+      "file_count": 10,
+      "CRC": "PASS",
+      "source_SHA_match": "PASS",
+      "editorial": "PASS",
+      "original_form_gate": "PASS",
+      "buyer_filename_references": "PASS",
+      "source_commit": "0ce920f0c7b86ce1588515c3356ff22f9589e02c",
+      "members": [
+        {
+          "file": "00-START-HERE.pdf",
+          "bytes": 49964,
+          "sha256": "faaba34dbc0ea894b7a4f225b16dbbc3541192945fd31cfd46e844ecb2f4c626"
+        },
+        {
+          "file": "60-slovar-poley-smeta.docx",
+          "bytes": 39188,
+          "sha256": "601327e8f1fd9c0046bccb58e49065cf71c97b2ce28015d0e9b16e128af3e3bf"
+        },
+        {
+          "file": "61-algoritm-proverki-smety.docx",
+          "bytes": 38752,
+          "sha256": "bb8ca82785f9775b369df8c576f1372a357abac05bf13f56d64dc6522d891ec4"
+        },
+        {
+          "file": "62-chek-list-vypadayushchih-zatrat.docx",
+          "bytes": 40442,
+          "sha256": "3dd95b6f6aef35b99e66bc124c458079b1c55a41b6982f140cbc5dffa2502db9"
+        },
+        {
+          "file": "63-reestr-zatrat-po-obektu.xlsx",
+          "bytes": 12732,
+          "sha256": "9a4fcc8257f909b252fbeba4a3f162df67dbffd8613d844b62c64a3faa1c7cc3"
+        },
+        {
+          "file": "64-zapros-o-vklyuchenii-zatrat.docx",
+          "bytes": 38341,
+          "sha256": "153f44e099c34e59a8b8150ec7d0bca5d0711dcba8117cd2b7d0061a0d77cad6"
+        },
+        {
+          "file": "65-protokol-raznoglasiy-po-smete.docx",
+          "bytes": 38422,
+          "sha256": "56bdeaedb3ca504055e2ecf2c93ea329ed1e79532331b27ad9667f2dde6893c5"
+        },
+        {
+          "file": "66-pamyatka-nakladnye-i-smetnaya-pribyl.docx",
+          "bytes": 38870,
+          "sha256": "baf695c2bc092a969531a439fac164e101ba3a67d11133df02662c171f2db07e"
+        },
+        {
+          "file": "67-pamyatka-zimnee-udorozhanie-i-vzis.docx",
+          "bytes": 38650,
+          "sha256": "76077238863cbae9f697003eba3e1574fc0ccb1b223eb674b8f1ae0076303f2a"
+        },
+        {
+          "file": "68-pamyatka-musor-transport-nepredvidennye.docx",
+          "bytes": 38572,
+          "sha256": "6bd553e323afc77a70bc4bc472adf1902d971bbd06ea352aa2da4638cf36ea36"
+        }
+      ],
+      "reference_details": [
+        {
+          "file": "00-START-HERE.pdf",
+          "references": [
+            "60-slovar-poley-smeta.docx",
+            "61-algoritm-proverki-smety.docx",
+            "62-chek-list-vypadayushchih-zatrat.docx",
+            "63-reestr-zatrat-po-obektu.xlsx",
+            "64-zapros-o-vklyuchenii-zatrat.docx",
+            "65-protokol-raznoglasiy-po-smete.docx",
+            "66-pamyatka-nakladnye-i-smetnaya-pribyl.docx",
+            "67-pamyatka-zimnee-udorozhanie-i-vzis.docx",
+            "68-pamyatka-musor-transport-nepredvidennye.docx"
+          ]
+        }
+      ],
+      "publication": "NOT_PERFORMED"
+    }
+  ]
+}

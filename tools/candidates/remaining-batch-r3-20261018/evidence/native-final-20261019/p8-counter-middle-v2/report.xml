@@ -1,0 +1,8 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="r3m-p8-counter-middle-print-20261019" excel_version="16.0" excel_build="4324">
+  <check name="p8mid:input_sha" pass="True" expected="32c07a9723499150af382d551d0c07dde8ace02c416629121aa727c746a90d70" actual="32c07a9723499150af382d551d0c07dde8ace02c416629121aa727c746a90d70" />
+  <check name="p8mid:counter-endpoints-before-middle-input:G6" pass="True" expected="text:Проверьте самостоятельное основание требования и подтверждающие документы." actual="System.String:Проверьте самостоятельное основание требования и подтверждающие документы." />
+  <check name="p8mid:counter-endpoints-before-middle-input:G30" pass="True" expected="text:Проверьте самостоятельное основание требования и подтверждающие документы." actual="System.String:Проверьте самостоятельное основание требования и подтверждающие документы." />
+  <check name="p8mid:counter-endpoints-before-middle-input:G18" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p8mid:pdf_export" pass="True" expected="%PDF-" actual="bytes=280415" />
+  <check name="p8mid:source_unchanged" pass="True" expected="32c07a9723499150af382d551d0c07dde8ace02c416629121aa727c746a90d70" actual="32c07a9723499150af382d551d0c07dde8ace02c416629121aa727c746a90d70" />
+</report>

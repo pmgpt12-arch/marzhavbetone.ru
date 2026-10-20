@@ -1,56 +1,31 @@
-# КС подписаны — денег нет
+# Система получения оплаты за выполненные работы
 
-Версия: 30.07.2026
-
-Внутренний документ. В архив покупателю не попадает: сборка исключает
-`.htaccess`, `00-PISMO-POSLE-POKUPKI.txt` и `MANIFEST.md`
-(`products-config.php`, функция `mvb_build_product_zip`).
-
-## Описание
-Комплект для двух соседних стадий: работы закрываются формами КС-2 / КС-3 —
-и работы приняты, а оплаты нет. Первая часть — формы, журналы и реестры
-закрытия. Вторая — уведомление о просрочке, претензия, расчёт процентов по
-ст. 395 ГК РФ, исковое заявление и алгоритм, который их связывает.
+Покупателю уходит 20 файлов.
 
 ## Состав
-- `00-START-HERE.txt` — Текст
-Покупателю уходит 19 файлов.
 
-### Закрытие работ
-- `00-INSTRUKCIYA.docx` — Word
-- `00-INSTRUKCIYA.pdf` — PDF
-- `01-ks-2.docx` — Word: унифицированная форма КС-2, Госкомстат № 100, ОКУД 0322005
-- `02-ks-3.docx` — Word: унифицированная форма КС-3, Госкомстат № 100, ОКУД 0322001
-- `03-akt-vypolnennyh-rabot.docx` — Word: акт выполненных работ
-- `04-akt-priemki.docx` — Word: акт приемки
-- `05-peredatochnyy-akt.docx` — Word: передаточный акт
-- `06-zhurnal-obemov.xlsx` — Excel: операционный журнал объемов, не КС-6а
-- `07-reestr-zamechaniy.xlsx` — Excel: реестр замечаний
-- `08-reestr-peredachi.xlsx` — Excel: реестр передачи
-- `09-checklist-peredachi.pdf` — PDF: чек-лист передачи
-- `10-sroki-hraneniya.pdf` — PDF: сроки хранения
+- `00-INSTRUKCIYA.docx`
+- `00-INSTRUKCIYA.pdf`
+- `00-START-HERE.txt`
+- `01-ks-2.xls`
+- `02-ks-3.xls`
+- `03-akt-vypolnennyh-rabot.docx`
+- `04-akt-priemki.docx`
+- `05-peredatochnyy-akt.docx`
+- `06-zhurnal-ucheta-rabot-ks-6a.xls`
+- `06A-rabochiy-reestr-obemov.xlsx`
+- `07-reestr-zamechaniy.xlsx`
+- `08-reestr-peredachi.xlsx`
+- `09-checklist-peredachi.pdf`
+- `10-sroki-hraneniya.pdf`
+- `11-slovar-poley.docx`
+- `12-pretenziya-na-neoplatu-po-ks-2.docx`
+- `13-uvedomlenie-o-prosrochke-oplaty.docx`
+- `14-raschet-procentov-395-gk.xlsx`
+- `15-algoritm-pri-zaderzhke-oplaty.docx`
+- `16-iskovoe-zayavlenie-o-vzyskanii.docx`
 
-### Работы приняты, оплаты нет (добавлено 30.07.2026)
-- `11-slovar-poley.docx` — Word: единый словарь подстановок для документов 12–16
-- `12-pretenziya-na-neoplatu-po-ks-2.docx` — Word: досудебная претензия по принятым работам
-- `13-uvedomlenie-o-prosrochke-oplaty.docx` — Word: мягкий первый шаг до претензии
-- `14-raschet-procentov-395-gk.xlsx` — Excel: расчёт процентов по ст. 395 ГК РФ, ключевая ставка вводится вручную
-- `15-algoritm-pri-zaderzhke-oplaty.docx` — Word: порядок действий, связывает документы 11–16 и бесплатный комплект
-- `16-iskovoe-zayavlenie-o-vzyskanii.docx` — Word: исковое заявление в арбитражный суд
+## Приёмка
 
-Файлы 11–16 собираются генератором в отдельном репозитории: правки вносятся
-там, иначе состав разойдётся с источником. Те же шесть файлов лежат в
-`04-polnyy-komplekt-pto/01-30-bazovye-pakety/01-zakrytie-rabot/`, и обновлять
-их нужно в обоих местах.
-
-## Бесплатный микропродукт
-`00-free-ks-podpisany-deneg-net` — "КС подписаны, денег нет: первые 7 проверок"
-
-## Применение
-Материалы помогают закрыть выполненные работы, сверить расчёты и подготовить документы для взыскания оплаты. Заполните формы по договору и фактам объекта; при оспаривании актов, зачёте или банкротстве соберите подтверждения и определите применимый порядок действий.
-
-## Ценовая гипотеза
-14 900–19 900 ₽ — гипотеза от 23.07.2026, действующая цена в
-`products-config.php`
-
-Формы 01–02 применяются по договору и учетной политике; остальные файлы — рабочие и договорные документы, не утвержденные государственные формы.
+Владелец согласовал архив 20.10.2026. SHA-256 принятого ZIP: `7b6306cf4fd8953491c286f5561390482e4ea0111f2a27d46706e01b5fc54981`.
+Цена: 29900 ₽. Основание: #578.

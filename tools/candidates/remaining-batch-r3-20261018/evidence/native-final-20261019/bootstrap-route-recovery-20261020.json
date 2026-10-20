@@ -1,0 +1,11 @@
+{
+  "status": "SERVICE_RESTART_AND_HTTP_SHA_PASS",
+  "cause": "Observed HTTP 403 for GET /finish-office.ps1 from 192.168.1.71 at 06:29 Krasnoyarsk; existing peer guard excludes that address.",
+  "scope": "Only exact GET /finish-office.ps1 for that peer; existing global peers, job/input/result routes and token checks unchanged.",
+  "before_sha256": "6a175ba44c13a6a03295e100f7dafac83a4715b66f8bb439c3f38589a1fc7dc5",
+  "after_sha256": "031700678bed73844c3eedf1fee7561b746f174c6636b7eafaed46d7c6b4f1dd",
+  "regression_cases": 9,
+  "office_capability": "NOT_YET_QUALIFIED",
+  "helper_sha256": "e8b31f81c76ae93796b043ae4a8ebae3b4a2f894dd178611d7152f170d5c622e",
+  "actual_peer_71_redownload": "PENDING"
+}

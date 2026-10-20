@@ -219,11 +219,13 @@ const СЦЕНАРИИ = сценарии();
   if (беды.length) throw new Error('\n         ' + беды.join('\n         '));
 });
 
-проверка('пара S-0/S-1 ведёт t1 и p1 — состав не изменился', () => {
+проверка('S-0/S-1 ведут в принятый P1 с учётом консолидации T1', () => {
   for (const id of ['S-0', 'S-1']) {
     const s = СЦЕНАРИИ.find(x => x.id === id);
     if (!s) throw new Error(id + ' пропал из сценарииев');
-    равно(sku_из_адреса(s.entry.url), 't1', id + ' entry');
+    if (КОНФИГ.includes("if ($sku === 't1') return null;")) {
+      равно(s.entry, null, id + ' retired entry');
+    } else равно(sku_из_адреса(s.entry.url), 't1', id + ' entry');
     равно(sku_из_адреса(s.core.url), 'p1', id + ' core');
   }
 });

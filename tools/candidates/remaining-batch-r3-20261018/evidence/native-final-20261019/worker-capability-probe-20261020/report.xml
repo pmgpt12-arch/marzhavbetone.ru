@@ -1,0 +1,5 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="r3i-source-print-preflight-20261019" excel_version="16.0" excel_build="4324">
+  <check name="p1source:input_sha" pass="True" expected="a2cafa2bddf6304ac3d0153756ca6da1e1d1cd6711949d2c704654bb506c18e4" actual="a2cafa2bddf6304ac3d0153756ca6da1e1d1cd6711949d2c704654bb506c18e4" />
+  <check name="p1source:pdf_export" pass="True" expected="%PDF-" actual="bytes=193097" />
+  <check name="p1source:source_unchanged" pass="True" expected="a2cafa2bddf6304ac3d0153756ca6da1e1d1cd6711949d2c704654bb506c18e4" actual="a2cafa2bddf6304ac3d0153756ca6da1e1d1cd6711949d2c704654bb506c18e4" />
+</report>

@@ -36,6 +36,12 @@ def texts(sku: str) -> dict[str, str]:
 
 
 def main() -> None:
+    if "if ($sku === 't1') return null;" in CONFIG:
+        assert 'href="p1-oplata-po-ks2.html"' in PAGE
+        assert 'data-sku="t1"' not in PAGE
+        assert 'Документы этого решения включены в систему' in PAGE
+        print('T1 consolidated into accepted P1: separate sale disabled, canonical parent disclosed PASS')
+        return
     t1, p1 = texts("t1"), texts("p1")
     exact = sum(any(difflib.SequenceMatcher(None, a, b).ratio() >= SAME_THRESHOLD
                     for b in p1.values()) for a in t1.values())

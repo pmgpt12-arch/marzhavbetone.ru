@@ -1,25 +1,22 @@
-# КС без возврата
+# Комплект «КС-2 без возврата: сдайте с первой попытки»
 
-Версия: 23.07.2026
-
-## Описание
-Полный комплект для подготовки и сдачи исполнительной документации (КС) без возврата от заказчика. Включает шаблоны, чек-листы, реестры и алгоритмы внутренней проверки.
+Покупателю уходит 11 файлов.
 
 ## Состав
-- `00-START-HERE.txt` — Текст
-- `01-proverochnyy-list-komplekta-ks.docx` — Word: расширенный проверочный лист КС
-- `02-reestr-prilozheniy.xlsx` — Excel: реестр приложений с автоматической проверкой
-- `03-akt-skrytyh-rabot.docx` — Word: акты скрытых работ (5 типовых форм)
-- `04-protokol-vnutrenney-proverki.docx` — Word: протокол внутренней проверки
-- `05-pismo-o-nedostatkah.docx` — Word: шаблон письма об устранении недостатков
-- `06-zhurnal-peredachi.xlsx` — Excel: журнал передачи комплекта КС
-- `07-sroki-hraneniya.docx` — Word: таблица сроков хранения по видам работ
-- `08-algoritm-proverki.pdf` — PDF: пошаговый алгоритм внутренней проверки
-- `09-tipovye-oshibki.docx` — Word: типовые ошибки и способы их устранения
-- `10-sravnitelnaya-tablica.docx` — Word: сравнение бесплатного и полного комплекта
 
-## Ограничение
-Материалы являются редактируемыми шаблонами и требуют адаптации под договор, проект, систему документооборота и фактические обстоятельства объекта.
+- `00-START-HERE.txt`
+- `01-proverochnyy-list-komplekta-ks.docx`
+- `02-reestr-prilozheniy.xlsx`
+- `03-akt-skrytyh-rabot.pdf`
+- `04-protokol-vnutrenney-proverki.docx`
+- `05-pismo-o-nedostatkah.docx`
+- `06-zhurnal-peredachi.xlsx`
+- `07-sroki-hraneniya.docx`
+- `08-algoritm-proverki.pdf`
+- `09-tipovye-oshibki.docx`
+- `10-sravnitelnaya-tablica.docx`
 
-## Ценовая гипотеза
-12 900–16 900 ₽
+## Приёмка
+
+Владелец согласовал архив 20.10.2026. SHA-256 принятого ZIP: `ec3997051a59e2d4d86b9d0a5a0c9cfae554b1996612449c4ebc6f830bb4ab0a`.
+Цена: 17900 ₽. Основание: #578.

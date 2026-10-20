@@ -1,0 +1,32 @@
+{
+  "status": "SUPERSEDED_NOT_FINAL",
+  "date": "2026-10-19",
+  "source_commit": "806175377aa326504d591f8a2e75f3eff69a2f5a",
+  "authorization": "Owner requested manual inspection because laptop connection is unavailable.",
+  "product_file_count": 123,
+  "automatic_native_office_final": "INCOMPLETE",
+  "owner_manual_review": "PENDING",
+  "publication": "NOT_PERFORMED",
+  "archive": "NSP_all_packages_manual_review_R3_2026-10-19.zip",
+  "sha256": "6f92ddc52159c4028dd975661b23ac6705d5a8f24cfee48458fc7158facec163",
+  "bytes": 6585701,
+  "archive_members": 129,
+  "CRC": "PASS",
+  "product_member_SHA_match": "123/123",
+  "pending_word_files": [
+    "P1/00-INSTRUKCIYA.docx",
+    "P1/11-slovar-poley.docx",
+    "P1/15-algoritm-pri-zaderzhke-oplaty.docx",
+    "P1/16-iskovoe-zayavlenie-o-vzyskanii.docx",
+    "P13/65-protokol-raznoglasiy-po-smete.docx",
+    "P2/00-INSTRUKCIYA.docx",
+    "P7/00-INSTRUKCIYA.docx",
+    "P7/01-dogovor-subpodryada.docx",
+    "P7/06-dopsoglashenie-obem.docx",
+    "P8/04-algoritm-peregovorov-ob-avanse.docx",
+    "P9/02-algoritm-genpodryadchik-bankrotitsya.docx"
+  ],
+  "reason": "P13 row order corrected after normal Excel opening failed; original manual ZIP remains historical and is not the final owner candidate.",
+  "current_p13_sha256": "9a4fcc8257f909b252fbeba4a3f162df67dbffd8613d844b62c64a3faa1c7cc3",
+  "superseded_reason": "Contains previous P13 row ordering and previous P8 warning row heights/page breaks. Never issue as the final candidate."
+}

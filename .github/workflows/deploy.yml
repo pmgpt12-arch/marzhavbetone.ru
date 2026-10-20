@@ -2,7 +2,7 @@ name: Deploy to server
 
 on:
   push:
-    branches: [main]
+    branches: [main, candidate/mb001-remaining-batch-r3-20261018]
   # Ежедневно 09:00 МСК. Фид собирается на каждом деплое и отдаёт только те
   # статьи, которым пришёл срок (RELEASE в tools/build_rss.py). Без прогона
   # по расписанию очередная статья появилась бы в ленте не в свой день, а
@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      remaining_only:
+        description: "Адресный выпуск согласованной линейки R3"
+        type: boolean
+        default: false
       dry_run:
         description: 'Пробный прогон: показать изменения, ничего не заливать'
         type: boolean
@@ -49,7 +53,7 @@ on:
         default: false
 
 concurrency:
-  group: deploy
+  group: ${{ contains(github.event.head_commit.message, '[dry-run-r3-release]') && 'deploy-r3-recovery' || 'deploy' }}
   cancel-in-progress: false
 
 env:
@@ -63,7 +67,7 @@ env:
 
 jobs:
   deploy:
-    if: ${{ github.event_name != 'workflow_dispatch' || (inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true) }}
+    if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
     steps:
       # Пока секреты не заданы, workflow завершается зелёным и ничего не делает —
@@ -857,3 +861,91 @@ jobs:
           path: /home/denis/projects/mb001-t2-owner-review-20261017/tools/candidates/t2-buyer-review-20261017/T2-peredacha-ID-6-files-business-R1.zip
           if-no-files-found: error
           retention-days: 3
+
+  deploy-remaining-only:
+    if: ${{ (github.event_name == 'workflow_dispatch' && inputs.remaining_only == true) || (github.event_name == 'push' && github.ref_name == 'candidate/mb001-remaining-batch-r3-20261018' && (contains(github.event.head_commit.message, '[dry-run-r3-release]') || contains(github.event.head_commit.message, '[publish-r3-release]'))) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: write
+    env:
+      REMAINING_SSH_DIR: /tmp/mb001-r3-ssh-${{ github.run_id }}
+    steps:
+      - name: Finalize superseded queued cancellation
+        if: contains(github.event.head_commit.message, '[dry-run-r3-release]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for run_id in 39380017553 39380541045; do
+            status=$(gh api repos/${{ github.repository }}/actions/runs/$run_id --jq .status)
+            if [ "$status" != completed ]; then
+              gh api -X POST repos/${{ github.repository }}/actions/runs/$run_id/force-cancel
+            fi
+          done
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Dependency preflight
+        run: |
+          timeout 90 python3 -m pip install --disable-pip-version-check beautifulsoup4==4.12.3
+          if ! php -r 'exit(class_exists("ZipArchive") && function_exists("curl_init") ? 0 : 3);'; then
+            timeout 90 sudo apt-get update -qq
+            timeout 90 sudo apt-get install -y -qq php-cli php-zip php-curl
+          fi
+      - name: Verify accepted bytes, prices, delivery and local workflow contract
+        run: |
+          python3 - <<'PY_GATE'
+          import json
+          from pathlib import Path
+          p=Path('tools/candidates/remaining-batch-r3-20261018/release-20261020/integration-check-classification.json')
+          assert json.loads(p.read_text())['status']=='PASS_NO_NEW_FAILURES_REQUIRED_RELEASE_CONTRACTS_PASS'
+          PY_GATE
+          python3 tools/verify_remaining_release_20261020.py
+          python3 tools/test_scoped_release_transport.py
+          php -l tools/remaining_live_ops.php
+          php -l products-config.php
+          python3 tools/link_audit.py --verify
+          php tools/test_delivery_one_hour.php
+          php tools/test_delivery_all_or_nothing.php
+      - name: Prepare job-scoped deployment SSH
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          test -n "$KEY" && test -n "$HOST"
+          mkdir -p "$REMAINING_SSH_DIR"
+          chmod 700 "$REMAINING_SSH_DIR"
+          printf '%s\n' "$KEY" | tr -d '\r' > "$REMAINING_SSH_DIR/deploy_key"
+          chmod 600 "$REMAINING_SSH_DIR/deploy_key"
+          ssh-keygen -y -P '' -f "$REMAINING_SSH_DIR/deploy_key" > /dev/null
+          ssh-keyscan -T 10 -p "$SSH_PORT" -H "$HOST" > "$REMAINING_SSH_DIR/known_hosts" 2>/dev/null
+          test -s "$REMAINING_SSH_DIR/known_hosts"
+      - name: Scoped dry-run or authorized publication
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          REMAINING_ONLY: 'true'
+          DRY_RUN: ${{ inputs.dry_run == true || contains(github.event.head_commit.message, '[dry-run-r3-release]') || contains(github.event.head_commit.message, '[prepare-r3-hosted]') }}
+        run: python3 tools/release_remaining_only.py
+      - name: Persist verified production archives and source checkpoint
+        if: ${{ !contains(github.event.head_commit.message, '[dry-run-r3-release]') && inputs.dry_run != true }}
+        run: |
+          python3 tools/record_remaining_production_20261020.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f -- tools/candidates/remaining-batch-r3-20261018/release-20261020/production tools/candidates/remaining-batch-r3-20261018/release-20261020/release-plan.json tools/candidates/remaining-batch-r3-20261018/evidence/working-checkpoint.json tools/candidates/remaining-batch-r3-20261018/REVIEW-STATUS.md
+          git commit -m 'Record actual production HTTP archives and verified owner-approved R3 publication'
+          git push origin HEAD:candidate/mb001-remaining-batch-r3-20261018
+      - name: Save exact production archives and verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: remaining-release-${{ github.run_id }}
+          path: ${{ runner.temp }}/remaining-live-buyer-evidence/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Remove job-scoped deployment credentials
+        if: always()
+        run: rm -f "$REMAINING_SSH_DIR/deploy_key" "$REMAINING_SSH_DIR/known_hosts"
+

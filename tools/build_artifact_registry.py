@@ -129,6 +129,12 @@ def reconcile(data: dict, repo: Path, check: bool) -> bool:
                     raise RegistryError(f"artifact drift {artifact['registry_id']} {key}: {artifact.get(key)} != {value}")
                 artifact[key] = value
                 changed = True
+    expected_count = sum(int(row.get("file_count", 0)) for row in data["product_sources"])
+    if data['coverage']['root_files'] != {'registered': expected_count}:
+        if check:
+            raise RegistryError('coverage drift root_files')
+        data['coverage']['root_files'] = {'registered': expected_count}
+        changed = True
     verify_history_files(data, repo)
     return changed
 
@@ -144,8 +150,14 @@ def main() -> int:
     registry = (repo / args.registry).resolve()
     try:
         data = json.loads(registry.read_text(encoding="utf-8"))
+        repaired_coverage = False
+        if not args.check:
+            expected = {'registered': sum(int(row.get('file_count', 0)) for row in data['product_sources'])}
+            repaired_coverage = data['coverage']['root_files'] != expected
+            data['coverage']['root_files'] = expected
         validate_shape(data)
-        changed = reconcile(data, repo, args.check)
+        changed = reconcile(data, repo, args.check) or repaired_coverage
+        validate_shape(data)
         if args.reuse_request:
             request = json.loads(Path(args.reuse_request).read_text(encoding="utf-8"))
             print(json.dumps(plan_checkpoint_reuse(data, request, repo), ensure_ascii=False))
