@@ -244,6 +244,64 @@ jobs:
           umask 077
           printf '%s' "$YK" | ssh -i ~/.ssh/audit_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -c '"'"'set -eu; p="$HOME/nsp-production-private/yookassa-key"; test ! -e "$p" || { echo "KEY_ALREADY_PRESENT"; exit 0; }; umask 077; cat > "$p"; chmod 600 "$p"; test -s "$p"; echo "PRIVATE_YOOKASSA_KEY_STAGED"'"'"''
 
+  nsp-cutover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Atomically enable YooKassa 1502106 on new domain
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_cutover_key
+          chmod 600 ~/.ssh/nsp_cutover_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/nsp_cutover_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          private="$HOME/nsp-production-private"
+          original="$site/config.php"
+          backup="$HOME/nsp-migration-private/backup-config-before-yookassa-1502106-20261020.php"
+          keyfile="$private/yookassa-key"
+          test -s "$original" && test -s "$backup" && test -s "$keyfile"
+          cmp -s "$original" "$backup" || { echo 'CONFIG_CHANGED_SINCE_BACKUP'; exit 1; }
+          test "$(stat -c %a "$keyfile")" = 600
+          test -d "$private/orders/delivery"
+          test -w "$private/orders/delivery"
+          tmp="$(mktemp "$site/.config-next-XXXXXX")"
+          chmod 600 "$tmp"
+          trap 'rm -f "$tmp"' EXIT
+          php -r '
+            $key=trim(file_get_contents($argv[1]));
+            if ($key === "" || strpos($key, "\n") !== false || strpos($key, "\r") !== false) exit(2);
+            $v=[
+              "SITE_URL"=>"https://nastoronepodryadchika.ru",
+              "ADMIN_EMAIL"=>"marzhavbetone@yandex.ru",
+              "ORDERS_DIR"=>$argv[2]."/orders",
+              "DELIVERY_DIR"=>$argv[2]."/orders/delivery",
+              "PRODUCTS_DIR"=>$argv[3],
+              "DELIVERY_TTL_SECONDS"=>3600,
+              "YOOKASSA_SHOP_ID"=>"1502106",
+              "YOOKASSA_SECRET_KEY"=>$key,
+              "YOOKASSA_MODE"=>"live",
+              "YOOKASSA_API_URL"=>"https://api.yookassa.ru/v3"
+            ];
+            $s="<?php\ndeclare(strict_types=1);\n";
+            foreach($v as $k=>$val) $s.="define(".var_export($k,true).",".var_export($val,true).");\n";
+            file_put_contents($argv[4],$s,LOCK_EX);
+          ' "$keyfile" "$private" "$HOME/products-marzhavbetone" "$tmp"
+          php -l "$tmp" >/dev/null
+          php -r 'require $argv[1]; if (YOOKASSA_SHOP_ID!=="1502106" || YOOKASSA_MODE!=="live" || !is_dir(ORDERS_DIR) || !is_dir(PRODUCTS_DIR)) exit(1);' "$tmp"
+          mv "$tmp" "$original"
+          chmod 600 "$original"
+          trap - EXIT
+          php -l "$original" >/dev/null
+          echo 'NSP_CUTOVER_CONFIG_VERIFIED'
+          REMOTE
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
