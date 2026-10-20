@@ -104,9 +104,16 @@ jobs:
           test -s "$site/config.php" && echo YES || echo NO
           printf 'PRIVATE_PRODUCT_DIR='
           test -d "$HOME/products-marzhavbetone" && echo PRESENT || echo MISSING
+          if php -l "$site/config.php" >/dev/null 2>&1; then echo 'PHP_LINT_config.php=PASS'; else echo 'PHP_LINT_config.php=FAIL'; fi
+          if grep -q 'NSP_MIGRATION_STAGE' "$site/config.php"; then echo 'MIGRATION_FLAG=PRESENT'; else echo 'MIGRATION_FLAG=ABSENT'; fi
+          if grep -q 'migration-disabled' "$site/config.php"; then echo 'PAYMENT_DISABLED_MARKER=PRESENT'; else echo 'PAYMENT_DISABLED_MARKER=ABSENT'; fi
+          for dir in "$HOME/nsp-migration-private" "$HOME/products-marzhavbetone"; do
+            if test -d "$dir" && test -r "$dir"; then echo "PRIVATE_DIR_ACCESS=READABLE"; else echo "PRIVATE_DIR_ACCESS=UNAVAILABLE"; fi
+          done
           printf 'MIGRATION_PRIVATE_DIR='
           test -d "$HOME/nsp-migration-private" && echo PRESENT || echo MISSING
           REMOTE
+
 
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
