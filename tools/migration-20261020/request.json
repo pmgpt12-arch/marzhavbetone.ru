@@ -1,14 +1,13 @@
 {
-  "phase": "validate-routes",
-  "attempt": 4,
-  "authorization": "Owner migration and recent website-route review, 2026-10-20",
+  "phase": "dry-run-new",
+  "attempt": 1,
+  "authorization": "Owner 2026-10-20: continue approved full domain migration via GitHub Actions only",
   "production_cutover": false,
   "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
-  "depends_on_verified_run": 39389485844,
-  "audit_run": 39401715118,
-  "previous_run": 39402864984,
-  "classified_cause": "Browser metrics proved failing headings had width=0 because existing pagination hides them. The test now clicks the actual showcase-more control until every article is visible; it still blocks inaccessible cards, overflow and too-wide words. No site pagination code or visual threshold changed.",
-  "scope": "Exact six-page inherited offer corrections; five complete article-card viewports; ten clicked intermediate routes; all 13 actual prices/cart and 12 diagnostic scenarios; all 172 buyer files immutable",
-  "expected_output": "Accepted route graph, corrected offer census, complete browser metrics and updated shipping fingerprint only on verified success",
-  "production_and_payment_actions": "NONE"
+  "depends_on_verified_route_run": 39403424665,
+  "depends_on_verified_backup_run": 39389485844,
+  "scope": "Re-read live 13-SKU/172-file manifest and immutable runtime hashes; verify four private backup SHA-256 values; restore new-site-before TAR only into a new private rehearsal directory and compare to current new webroot; exact checksum rsync --dry-run with explicit shipping allowlist, no deletes, no config/masters/orders upload",
+  "writes_permitted": "Private rollback rehearsal directory only; safe evidence committed to migration branch",
+  "writes_forbidden": "Both public webroots, live config, buyer masters, live orders/cache, payment provider and redirect rules",
+  "expected_output": "remote-dry-run.json + new-root-host-plan.json + dry-run-live-inspection.json; actual success required before isolated staging"
 }
