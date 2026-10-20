@@ -53,7 +53,7 @@ on:
         default: false
 
 concurrency:
-  group: ${{ contains(github.event.head_commit.message, '[prepare-r3-hosted]') && 'deploy-r3-recovery' || 'deploy' }}
+  group: ${{ contains(github.event.head_commit.message, '[dry-run-r3-release]') && 'deploy-r3-recovery' || 'deploy' }}
   cancel-in-progress: false
 
 env:
@@ -872,6 +872,17 @@ jobs:
     env:
       REMAINING_SSH_DIR: /tmp/mb001-r3-ssh-${{ github.run_id }}
     steps:
+      - name: Finalize superseded queued cancellation
+        if: contains(github.event.head_commit.message, '[dry-run-r3-release]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for run_id in 39380017553 39380541045; do
+            status=$(gh api repos/${{ github.repository }}/actions/runs/$run_id --jq .status)
+            if [ "$status" != completed ]; then
+              gh api -X POST repos/${{ github.repository }}/actions/runs/$run_id/force-cancel
+            fi
+          done
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
