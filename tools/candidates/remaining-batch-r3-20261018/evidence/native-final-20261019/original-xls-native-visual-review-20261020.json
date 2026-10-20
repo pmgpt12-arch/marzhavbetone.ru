@@ -1,0 +1,59 @@
+{
+  "status": "PASS_VISUAL_STRUCTURE_ONLY_SOURCE_INTEGRITY_PENDING",
+  "scope": "Visual review of source-first native XLS exports. Prior receipt source_unchanged FAIL remains unresolved; this does not qualify complete native acceptance. Fresh read-only PDFs must match reviewed rasters or be reviewed separately.",
+  "archive": "source-print-native-proofs-20261020.tar.xz",
+  "archive_sha256": "7bec08d5960f7bf73d03b20d7624e74c24ea6e4711101415b0adf4485245d7b8",
+  "visual_pages": 6,
+  "files": [
+    {
+      "tag": "ks2",
+      "file": "01-ks-2.xls",
+      "source_sha256": "b09296147561df5afd9a38bbb196860a1a3a3268a8b26d9751c88d4c5bca6281",
+      "reference_sha256": "e4d14b49180c528d1e8ed819d24d8566d89e075ba10c6a26b1545bcbed5db2f6",
+      "pages": 2,
+      "columns": 8,
+      "native_pdf_sha256": "48cc69a8836cbcd58d4bb39d3fc2d8652ec3da68e53cd7a81b92a428cbd48c21",
+      "native_pdf_archive_member": "r3n-original-xls-source-print-20261020/ks2-filled.pdf",
+      "page_raster_sha256_72dpi": [
+        "1021e04c735fa39d6e9b33bcd2ccc93617e1f203d18066ac5d3f18d2401b9833",
+        "38506f3d7c458c6ae2a7cecf04f9815c6b9dd80ad8c5e76ae5266fb3898bcbcb"
+      ],
+      "review": "All pages compared side by side. Required party/object/contract/period/code fields, table groups and signature positions present. No clipped elements or blank pages.",
+      "edition_differences": "Published Consultant XLS uses Times-style font and different blank-row quantities/heights from the reference PDF. These source-edition differences were preserved; no redesign or pixel identity is claimed."
+    },
+    {
+      "tag": "ks3",
+      "file": "02-ks-3.xls",
+      "source_sha256": "d6922089bffcde2a00a30d62d8d7ea1d87676fe4de9ae44a3d0e9af4d821ed0a",
+      "reference_sha256": "23534190fd82ed46f4443b6d619cc9a384a7721b50b46eb0cf57bdfe7b427a33",
+      "pages": 1,
+      "columns": 6,
+      "native_pdf_sha256": "6e273ea1ab3ef4f41cb2bd504403bd798e12b73da461edb59d0cd2d3ca1e5108",
+      "native_pdf_archive_member": "r3n-original-xls-source-print-20261020/ks3-filled.pdf",
+      "page_raster_sha256_72dpi": [
+        "37f314e65bb9ea692a2ee5fbafef6398c44be301655600dace8653d6e922670c"
+      ],
+      "review": "All pages compared side by side. Required party/object/contract/period/code fields, table groups and signature positions present. No clipped elements or blank pages.",
+      "edition_differences": "Published Consultant XLS uses Times-style font and different blank-row quantities/heights from the reference PDF. These source-edition differences were preserved; no redesign or pixel identity is claimed."
+    },
+    {
+      "tag": "ks6a",
+      "file": "06-zhurnal-ucheta-rabot-ks-6a.xls",
+      "source_sha256": "053c5f1603478ca08fbab8f522ed4448546941d4009c79a76bdc8af13248aa29",
+      "reference_sha256": "ad45d48495c0fda5e12f31078829fbb0d24870354b7d8073797e160daac847a6",
+      "pages": 3,
+      "columns": 46,
+      "native_pdf_sha256": "01e8428685a80769dddbaa043760c6fa848f77baf577f9968b484964fea089c0",
+      "native_pdf_archive_member": "r3n-original-xls-source-print-20261020/ks6a-filled.pdf",
+      "page_raster_sha256_72dpi": [
+        "979a0d61db7f3e911e31a4030a8ae5d1ebb10280f97b63681168eecf4f0ca75e",
+        "69a25ca37a3ed481f457dab106c3a146c0720840ac952cea45f728b08e380c1f",
+        "b614239a2716c833e17f0ec6ea7d600653ed3da61336c3e9236f77aca386be58"
+      ],
+      "review": "All pages compared side by side. Required party/object/contract/period/code fields, table groups and signature positions present. No clipped elements or blank pages.",
+      "edition_differences": "Published Consultant XLS uses Times-style font and different blank-row quantities/heights from the reference PDF. These source-edition differences were preserved; no redesign or pixel identity is claimed."
+    }
+  ],
+  "buyer_acceptance": "NOT_REQUESTED",
+  "publication": "NOT_PERFORMED"
+}
