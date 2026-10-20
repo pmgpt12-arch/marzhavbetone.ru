@@ -176,6 +176,10 @@ jobs:
           chmod 700 "$root" "$root/orders" "$root/orders/delivery"
           test -w "$root/orders/delivery"
           test "$(stat -c %a "$root/orders/delivery")" = 700
+          if command -v php >/dev/null 2>&1; then
+            if php -r '$d=getenv("HOME")."/nsp-production-private/orders/delivery"; $f=tempnam($d,".probe-"); if ($f===false) exit(1); $ok=file_put_contents($f,"test")===4; unlink($f); exit($ok?0:1);' >/dev/null 2>&1; then echo 'PHP_CLI_WRITE=PASS'; else echo 'PHP_CLI_WRITE=FAIL'; fi
+          else echo 'PHP_CLI_WRITE=UNAVAILABLE'; fi
+          echo 'PHP_WEB_WRITE=NOT_TESTED'
           echo 'NSP_PRIVATE_DIRS_VERIFIED'
           REMOTE
 
