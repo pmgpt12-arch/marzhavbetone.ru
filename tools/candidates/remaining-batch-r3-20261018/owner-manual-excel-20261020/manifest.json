@@ -1,5 +1,5 @@
 {
-  "status": "OWNER_MANUAL_OPEN_AND_PRINT_REVIEW_PENDING",
+  "status": "PASS_OWNER_MANUAL_OPEN_AND_PRINT",
   "source_commit": "c491913c40f14e7cf16e72bf96c5fc3c56fbcc8b",
   "archive": "NSP_Excel_22_manual_review_2026-10-20.zip",
   "sha256": "7b9dd906a4b8e11db49fb8a0e89252ac3bfa6e762e497e6d6c7913d3e8da6ca5",
@@ -15,7 +15,7 @@
     "Inspect print preview of every worksheet: columns, text, repeating headings, totals and signatures.",
     "Close without saving changes. Report product folder, filename, sheet/page and any defect."
   ],
-  "native_source_print": "INCOMPLETE; substituted by pending owner manual review, not silently marked PASS",
+  "native_source_print": "Owner manual opening/print PASS for these exact 22 SHAs; automatic harness remains diagnostic only.",
   "buyer_product_release": "NOT_PERFORMED",
   "inventory": [
     {
@@ -150,5 +150,6 @@
       "bytes": 31671,
       "sha256": "7c4ea2a305c1e8c2486768407492453492a41f3497dace35c9d01d0925ef843d"
     }
-  ]
+  ],
+  "owner_acceptance": "acceptance.json"
 }

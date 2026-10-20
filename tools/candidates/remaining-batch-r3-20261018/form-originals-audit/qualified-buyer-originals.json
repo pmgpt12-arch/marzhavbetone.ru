@@ -48,5 +48,35 @@
     "evidence": "reference-manifest.json: exact source page pixels preserved",
     "pages": 1,
     "interactive_fields": false
+  },
+  {
+    "sku": "P1",
+    "file": "01-ks-2.xls",
+    "sha256": "b09296147561df5afd9a38bbb196860a1a3a3268a8b26d9751c88d4c5bca6281",
+    "visual_status": "PASS",
+    "reference_url": "https://www.consultant.ru/document/cons_doc_LAW_26303/",
+    "evidence": "../evidence/native-final-20261019/original-xls-native-visual-review-20261020.json and ../owner-manual-excel-20261020/acceptance.json",
+    "pages": 2,
+    "qualification_method": "Original source bytes, six-page native visual comparison, exact-SHA owner manual opening/print acceptance"
+  },
+  {
+    "sku": "P1",
+    "file": "02-ks-3.xls",
+    "sha256": "d6922089bffcde2a00a30d62d8d7ea1d87676fe4de9ae44a3d0e9af4d821ed0a",
+    "visual_status": "PASS",
+    "reference_url": "https://www.consultant.ru/document/cons_doc_LAW_26303/",
+    "evidence": "../evidence/native-final-20261019/original-xls-native-visual-review-20261020.json and ../owner-manual-excel-20261020/acceptance.json",
+    "pages": 1,
+    "qualification_method": "Original source bytes, six-page native visual comparison, exact-SHA owner manual opening/print acceptance"
+  },
+  {
+    "sku": "P1",
+    "file": "06-zhurnal-ucheta-rabot-ks-6a.xls",
+    "sha256": "053c5f1603478ca08fbab8f522ed4448546941d4009c79a76bdc8af13248aa29",
+    "visual_status": "PASS",
+    "reference_url": "https://www.consultant.ru/document/cons_doc_LAW_26303/",
+    "evidence": "../evidence/native-final-20261019/original-xls-native-visual-review-20261020.json and ../owner-manual-excel-20261020/acceptance.json",
+    "pages": 3,
+    "qualification_method": "Original source bytes, six-page native visual comparison, exact-SHA owner manual opening/print acceptance"
   }
 ]
