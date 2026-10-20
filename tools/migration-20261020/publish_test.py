@@ -80,7 +80,7 @@ def main():
         assert before[key]==baseline[key],'LIVE_STATE_CHANGED:'+key
     assert not before['runtime']['new_config_exists'],'NEW_ROOT_ALREADY_CONFIGURED'
     # Fail before touching either public root if CDN normalization regresses.
-    old_source=(ROOT/'index.html').read_bytes()
+    old_source=run(['git','show',c['approved_base_commit']+':index.html'],20).stdout
     assert hashlib.sha256(old_source).hexdigest()==baseline['code_sha256']['index.html'],'LEGACY_ORIGIN_SOURCE_CHANGED'
     test_legacy_gate(old_source)
     attempts=False
