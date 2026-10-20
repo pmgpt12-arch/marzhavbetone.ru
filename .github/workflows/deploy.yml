@@ -885,7 +885,7 @@ jobs:
           done
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
       - name: Dependency preflight
         run: |
           timeout 90 python3 -m pip install --disable-pip-version-check beautifulsoup4==4.12.3
@@ -893,6 +893,21 @@ jobs:
             timeout 90 sudo apt-get update -qq
             timeout 90 sudo apt-get install -y -qq php-cli php-zip php-curl
           fi
+      - name: Finalize publication metadata without editing buyer files
+        if: contains(github.event.head_commit.message, '[finalize-r3-metadata]')
+        run: |
+          python3 tools/finalize_remaining_metadata_20261020.py
+          python3 - <<'PY_SAVE'
+          import json,subprocess
+          from pathlib import Path
+          base='tools/candidates/remaining-batch-r3-20261018/release-20261020';p=json.loads(Path(base+'/release-plan.json').read_text())
+          paths=[x['file'] for x in p['site_files']]+['products-storage/'+x['dir']+'/MANIFEST.md' for x in p['packages']]+[base]
+          subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
+          subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
+          subprocess.run(['git','add','--',*paths],check=True)
+          subprocess.run(['git','commit','-m','Align service manifests and download support with accepted R3 edition'],check=True)
+          subprocess.run(['git','push','origin','HEAD:candidate/mb001-remaining-batch-r3-20261018'],check=True,timeout=45)
+          PY_SAVE
       - name: Verify accepted bytes, prices, delivery and local workflow contract
         run: |
           python3 tools/verify_remaining_release_20261020.py
@@ -922,6 +937,12 @@ jobs:
           REMAINING_ONLY: 'true'
           DRY_RUN: ${{ inputs.dry_run == true || contains(github.event.head_commit.message, '[dry-run-r3-release]') || contains(github.event.head_commit.message, '[prepare-r3-hosted]') }}
         run: python3 tools/release_remaining_only.py
+      - name: Verify main integration compatibility once
+        if: contains(github.event.head_commit.message, '[finalize-r3-metadata]')
+        run: |
+          timeout 90 python3 -m pip install --disable-pip-version-check pillow pyyaml pytest python-docx pymupdf
+          mkdir -p "$RUNNER_TEMP/remaining-live-buyer-evidence"
+          timeout 240 python3 tools/run_checks.py --class public | tee "$RUNNER_TEMP/remaining-live-buyer-evidence/public-checks.log"
       - name: Save exact production archives and verification
         if: always()
         uses: actions/upload-artifact@v4
