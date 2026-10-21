@@ -1,0 +1,22 @@
+{
+  "class": "DOCUMENT_API_MATERIALIZED_UNUSED_HEADER_FOOTER",
+  "observed_count": 24,
+  "examples": [
+    {
+      "path": "products-storage/00-free-ks-podpisany-deneg-net/04-shablon-pisma.docx",
+      "added": [
+        "word/footer1.xml",
+        "word/header1.xml"
+      ]
+    },
+    {
+      "path": "products-storage/00-free-ks-podpisany-deneg-net/01-algoritm-pervichnoy-proverki.docx",
+      "added": [
+        "word/footer1.xml",
+        "word/header1.xml"
+      ]
+    }
+  ],
+  "rule": "Only inspect already-existing header/footer relationship targets; package part set must remain unchanged",
+  "gate": "verify office package preservation"
+}

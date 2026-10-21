@@ -48,10 +48,9 @@ header_font = Font(color="FFFFFF", bold=True, size=11)
 
 # Название и цена платного комплекта — из products-config.php, ключ p8.
 # Здесь повторены текстом; при расхождении верным считается config.
-PAID_NAME = ("Аванс по договору подряда и неотработанный остаток: условия, "
-             "расчёт, ответ на требование о возврате")
-PAID_PRICE = "2 490 ₽"
-PAID_URL = "https://marzhavbetone.ru/products/p8-avans-po-dogovoru-subpodryada.html"
+PAID_NAME = 'Система управления авансами и расчётами по договору подряда'
+PAID_PRICE = '24 900 ₽'
+PAID_URL = 'https://nastoronepodryadchika.ru/products/p8-avans-po-dogovoru-subpodryada.html'
 
 LAWYER_NOTE = (
     "Материал не заменяет юриста и юристом не вычитан. Он про то, что прочитать "
@@ -161,6 +160,11 @@ def create_word_doc(filepath, title, sections):
                         table.cell(i, j).text = str(text)
                 doc.add_paragraph()
 
+    from pathlib import Path as _NspPath
+    import sys as _NspSys
+    _NspSys.path.insert(0,str(_NspPath(__file__).resolve().parents[1]/'tools/nsp-free-downloads-20261021'))
+    from clean_language import normalize_doc
+    normalize_doc(doc)
     doc.save(filepath)
     print(f"  [Word]  {filepath}")
 

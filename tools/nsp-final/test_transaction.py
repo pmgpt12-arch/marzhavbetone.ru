@@ -54,5 +54,6 @@ with tempfile.TemporaryDirectory() as tmp:
     (target.parent/'unrelated.txt').unlink();target.parent.rmdir()
     outside=home/'outside';outside.mkdir();(outside/'canary').write_text('keep');target.parent.symlink_to(outside,target_is_directory=True)
     run(stage('symlink'),'dry-run',False);assert (outside/'canary').read_text()=='keep';target.parent.unlink()
+    d=stage('zip','downloads/dengi.zip');run(d,'apply');run(d,'verify');run(d,'rollback');assert not target.parent.exists()
     run(stage('unsafe','downloads/other.pdf'),'dry-run',False);assert not target.parent.exists()
 print('PUBLIC_PDF_CREATE_ABSENCE_CONCURRENT_EDIT_SYMLINK_AND_ROLLBACK=PASS')

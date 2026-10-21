@@ -15,7 +15,7 @@ def main(action):
     assert action in ['dry-run','publish']
     validation=validate(); (EVIDENCE/'source-validation.json').write_text(json.dumps(validation,indent=2)+'\n')
     call(['php','-l','tools/nsp-final/transaction.php'])
-    call(['python3','tools/nsp-final/test_transaction.py'])
+    (EVIDENCE/'transaction-tests.txt').write_bytes(call(['python3','tools/nsp-final/test_transaction.py']))
     call(['node','--check','app.js'])
     selected=json.loads((ROOT/'tools/nsp-final/manifest.json').read_text())
     if any(r['path']=='app.js' for r in selected):
@@ -23,6 +23,8 @@ def main(action):
     if any(r['path']=='downloads/checklist-zakrytiya-rabot.pdf' for r in selected):
         (EVIDENCE/'pdf-validation.json').write_bytes(call(['python3','tools/nsp-free-checklist-20261021/verify.py']))
     call(['sh','-n','tools/nsp_backup_config.sh'])
+    if any(r['path'].endswith('.zip') for r in selected):
+        (EVIDENCE/'free-validation.json').write_bytes(call(['python3','tools/nsp-free-downloads-20261021/verify.py']))
     run=os.environ['GITHUB_RUN_ID']; attempt=os.environ['GITHUB_RUN_ATTEMPT']; assert run.isdigit() and attempt.isdigit()
     port=os.environ['PORT']; host=os.environ['HOST']; user=os.environ['SSH_USER']; assert port.isdigit()
     common=['-i',str(Path.home()/'.ssh/nsp_final_key'),'-o','IdentitiesOnly=yes','-o','BatchMode=yes','-o','ConnectTimeout=12','-o','ServerAliveInterval=10','-o','ServerAliveCountMax=3']
@@ -66,6 +68,7 @@ def main(action):
             with urllib.request.urlopen(req,timeout=15) as response:
                 assert response.status==200 and urllib.parse.urlsplit(response.url).hostname=='nastoronepodryadchika.ru','HTTP_OR_REDIRECT'
                 data=response.read(2000001); assert len(data)<=2000000
+                if path.endswith('.zip'): assert data.startswith(b'PK\x03\x04'),'ZIP_HEADER'
                 if path.endswith('.pdf'): assert response.headers.get_content_type()=='application/pdf' and data.startswith(b'%PDF-'),'PDF_CONTENT_TYPE'
             expected=(ROOT/path).read_bytes(); assert data==expected,'HTTPS_BYTES_'+path
             return {'path':path,'status':200,'sha256':hashlib.sha256(data).hexdigest()}

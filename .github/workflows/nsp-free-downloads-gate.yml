@@ -1,0 +1,17 @@
+name: NSP free downloads contract
+on:
+  push:
+    branches: [main, fix/nsp-free-downloads-20261021]
+    paths: [downloads/**, products-storage/00-free-*/**, products-storage/build_free_*.py, tools/nsp-free-downloads-20261021/**, tools/build_free_zips.py, katalog.html, .github/workflows/nsp-free-downloads-gate.yml]
+  pull_request:
+    paths: [downloads/**, products-storage/00-free-*/**, products-storage/build_free_*.py, tools/nsp-free-downloads-20261021/**, tools/build_free_zips.py, katalog.html]
+permissions:
+  contents: read
+jobs:
+  verify-free-downloads:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m pip install --disable-pip-version-check --timeout 20 --retries 0 pypdf==6.10.0 lxml==6.0.2
+      - run: python3 tools/nsp-free-downloads-20261021/verify.py

@@ -17,9 +17,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # адреса: файл уходил читателю с ценой, которой в кассе нет, и без ссылки,
 # по которой её можно проверить.
 PAID_KEY = "p3"
-PAID_NAME = "КС-2 без возврата: сдайте с первой попытки"
-PAID_PRICE = "1 990 ₽"
-PAID_URL = "https://marzhavbetone.ru/products/p3-shablony-ks2-ks3.html"
+PAID_NAME = 'КС-2 без возврата: сдайте с первой попытки'
+PAID_PRICE = '17 900 ₽'
+PAID_URL = 'https://nastoronepodryadchika.ru/products/p3-shablony-ks2-ks3.html'
 
 thin_border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
 header_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
@@ -88,6 +88,11 @@ def create_word_doc(filepath, title, sections):
             for item in section["numbered"]:
                 doc.add_paragraph(item, style='List Number')
     
+    from pathlib import Path as _NspPath
+    import sys as _NspSys
+    _NspSys.path.insert(0,str(_NspPath(__file__).resolve().parents[1]/'tools/nsp-free-downloads-20261021'))
+    from clean_language import normalize_doc
+    normalize_doc(doc)
     doc.save(filepath)
     print(f"  [Word]  {filepath}")
 

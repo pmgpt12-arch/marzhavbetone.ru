@@ -13,11 +13,11 @@ header_font = Font(color="FFFFFF", bold=True, size=11)
 
 # Название и цена платного комплекта — из products-config.php, ключ p7.
 # Здесь они повторены текстом; при расхождении верным считается config.
-PAID_NAME = "Договор субподряда: образец, красные флаги, протокол разногласий"
-PAID_PRICE = "2 490 ₽"
+PAID_NAME = 'Система проверки и согласования договора субподряда'
+PAID_PRICE = '24 900 ₽'
 # Адрес страницы комплекта. До 16.09.2026 на его месте стояла строка-заглушка:
 # цена была верной, а проверить её читателю было негде.
-PAID_URL = "https://marzhavbetone.ru/products/p7-dogovor-podryada.html"
+PAID_URL = 'https://nastoronepodryadchika.ru/products/p7-dogovor-podryada.html'
 
 # Оговорка о границе повторяется во всех четырёх файлах дословно: материал
 # именно про то, где эта граница проходит, и разные формулировки в разных
@@ -93,6 +93,11 @@ def create_word_doc(filepath, title, sections):
             for item in section["numbered"]:
                 doc.add_paragraph(item, style='List Number')
 
+    from pathlib import Path as _NspPath
+    import sys as _NspSys
+    _NspSys.path.insert(0,str(_NspPath(__file__).resolve().parents[1]/'tools/nsp-free-downloads-20261021'))
+    from clean_language import normalize_doc
+    normalize_doc(doc)
     doc.save(filepath)
     print(f"  [Word]  {filepath}")
 

@@ -29,9 +29,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Название и цена платного комплекта — из products-config.php, ключ p11.
 # Здесь повторены текстом; при расхождении верным считается config.
-PAID_NAME = "Расчёт метрами: проверка до подписи"
-PAID_PRICE = "2 490 ₽"
-PAID_URL = "https://marzhavbetone.ru/products/p11-raschet-metrami.html"
+PAID_NAME = 'Расчёты в неденежной форме: жилые и офисные помещения, машино-места'
+PAID_PRICE = '24 900 ₽'
+PAID_URL = 'https://nastoronepodryadchika.ru/products/p11-raschet-metrami.html'
 
 FLAGS = [
     ("Счёт эскроу по передаваемому ДДУ не открыт — или открыт, но не "
@@ -125,6 +125,11 @@ def build():
         run.font.size = Pt(9)
         run.font.color.rgb = RGBColor(0x59, 0x59, 0x59)
 
+    from pathlib import Path as _NspPath
+    import sys as _NspSys
+    _NspSys.path.insert(0,str(_NspPath(__file__).resolve().parents[1]/'tools/nsp-free-downloads-20261021'))
+    from clean_language import normalize_doc
+    normalize_doc(doc)
     doc.save(path)
     print(f"  [Word]  {path}")
 
