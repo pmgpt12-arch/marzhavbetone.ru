@@ -1,0 +1,52 @@
+name: NSP approved product placement audit
+on:
+  push:
+    branches: ['audit/nsp-products-placement-20261021']
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bind accepted master bytes without changing production
+        run: python3 tools/audits/nsp-products-placement-20261021/prepare.py
+      - name: Compare new-domain masters and existing archives read-only
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+        run: |
+          set -euo pipefail
+          keydir=$(mktemp -d)
+          trap 'rm -rf "$keydir"' EXIT
+          printf '%s\n' "$KEY" | tr -d '\r' > "$keydir/key"
+          chmod 600 "$keydir/key"
+          ssh-keyscan -T 10 -p "$PORT" -H "$HOST" > "$keydir/known_hosts" 2>/dev/null
+          set +e
+          ssh -i "$keydir/key" -p "$PORT" -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=15 -o UserKnownHostsFile="$keydir/known_hosts" "$USER@$HOST" 'php -f /dev/stdin' < /tmp/nsp-placement-audit.php > tools/audits/nsp-products-placement-20261021/result.json
+          result=$?
+          set -e
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('tools/audits/nsp-products-placement-20261021/result.json')
+          r=json.loads(p.read_text())
+          print(r['status'])
+          for x in r['products']:print(x['sku'],x['files'],x['master_sha'],x['existing_archive'])
+          print('ERRORS',r['errors'])
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f tools/audits/nsp-products-placement-20261021/result.json
+          git commit -m 'Save new-domain approved product placement audit evidence'
+          git push origin HEAD:audit/nsp-products-placement-20261021
+          exit "$result"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nsp-product-placement-${{ github.run_id }}
+          path: tools/audits/nsp-products-placement-20261021/result.json
+          if-no-files-found: warn
