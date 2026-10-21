@@ -458,6 +458,54 @@ jobs:
           REMOTE
           exit 1
 
+  nsp-one-ruble-checkout-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Validate test product and build its buyer archive
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_check_key
+          chmod 600 ~/.ssh/nsp_check_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/nsp_check_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          test -s "$site/test-pokupka.html"
+          php -r '
+            require $argv[1]."/config.php";
+            require $argv[1]."/products-config.php";
+            $p=mvb_products()["test1"]??null;
+            if (!$p || (int)$p["price"]!==100) exit(2);
+            echo "TEST_SKU_PRICE_100_KOPEKS=YES\n";
+            if (!is_dir(PRODUCTS_DIR."/".$p["dir"])) exit(3);
+            echo "TEST_PRODUCT_SOURCE=FOUND\n";
+            if (!class_exists("ZipArchive")) exit(4);
+            $zip=mvb_build_product_zip("test1");
+            if (!$zip || !is_file($zip) || filesize($zip)===0) exit(5);
+            $z=new ZipArchive();
+            if ($z->open($zip)!==true || $z->numFiles===0) exit(6);
+            echo "TEST_ARCHIVE=VERIFIED\n";
+            $z->close();
+            if (DELIVERY_TTL_SECONDS!==3600) exit(7);
+            echo "DELIVERY_TTL_1_HOUR=YES\n";
+          ' "$site"
+          REMOTE
+          for path in /test-pokupka.html /app-script.php /payment.php /webhook.php; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --connect-timeout 5 --max-time 12 "https://nastoronepodryadchika.ru$path" || true)
+            echo "CHECK_$path=$code"
+            case "$path:$code" in
+              /test-pokupka.html:200|/app-script.php:200|/payment.php:405|/webhook.php:400) ;;
+              *) exit 8 ;;
+            esac
+          done
+          echo 'ONE_RUBLE_CHECKOUT_PREFLIGHT=PASS'
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
