@@ -1032,6 +1032,37 @@ jobs:
           done
           REMOTE
 
+  nsp-old-301-curl-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify 84 old URLs with browser-like curl instead of Python urllib
+        run: |
+          python3 - <<'PY'
+          import urllib.request,xml.etree.ElementTree as ET,subprocess,concurrent.futures,collections
+          new='https://nastoronepodryadchika.ru'
+          old='https://marzhavbetone.ru'
+          with urllib.request.urlopen(new+'/sitemap.xml',timeout=12) as r:xml=r.read()
+          newurls=[x.text for x in ET.fromstring(xml).findall('.//{*}loc') if x.text]
+          assert len(newurls)==84
+          def check(target):
+            url=old+target[len(new):]
+            try:
+              p=subprocess.run(['curl','-sS','-I','-o','/dev/null','-A','Mozilla/5.0','--connect-timeout','5','--max-time','12','-w','%{http_code}|%{redirect_url}',url],capture_output=True,text=True,timeout=15)
+              code,_,dest=p.stdout.strip().partition('|')
+              return url,code,dest,p.returncode
+            except Exception as e:return url,'ERROR_'+type(e).__name__,'',1
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:results=list(pool.map(check,newurls))
+          bad=[x for x in results if x[1]!='301' or x[2]!=new+x[0][len(old):] or x[3]!=0]
+          print('OLD_301_CHECKED='+str(len(results)))
+          print('OLD_301_PASS='+str(len(results)-len(bad)))
+          print('OLD_301_ERRORS='+str(len(bad)))
+          print('OLD_301_HTTP_DISTRIBUTION='+repr(dict(collections.Counter(x[1] for x in results))))
+          for x in bad[:12]:print('REDIRECT_MISMATCH='+repr(x))
+          if bad:raise SystemExit(2)
+          print('OLD_301_ALL_SITEMAP_URLS=VERIFIED')
+          PY
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
