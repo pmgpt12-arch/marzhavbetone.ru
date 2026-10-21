@@ -1,0 +1,62 @@
+name: SSL Monitor — На стороне подрядчика
+
+on:
+  # Ежедневно примерно 08:17 по Красноярску (UTC+7).
+  schedule:
+    - cron: '17 1 * * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - tools/ssl_watch.py
+      - tools/ssl_alert.py
+      - tools/test_ssl_watch.py
+      - tools/test_ssl_alert.py
+      - .github/workflows/ssl-monitor.yml
+
+concurrency:
+  group: ssl-monitor
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  monitor:
+    name: Проверка HTTPS и сертификатов
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Негативные тесты монитора и оповещений
+        run: python3 -m unittest discover -s tools -p 'test_ssl_*.py' -v
+
+      - name: Реальная проверка публичного HTTPS и origin TLS
+        id: ssl_probe
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        run: python3 tools/ssl_watch.py --origin-ip 37.140.192.133 --output ssl-watch-report.json
+
+      - name: Сохранить проверяемый отчёт
+        if: always() && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ssl-watch-${{ github.run_id }}
+          path: ssl-watch-report.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Открыть или закрыть GitHub Issue при изменении состояния
+        if: always() && github.event_name != 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 tools/ssl_alert.py --report ssl-watch-report.json
+
+      - name: Блокирующий результат проверки
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          python3 -c 'import json; d=json.load(open("ssl-watch-report.json", encoding="utf-8")); assert d["status"] == "OK", "SSL monitor: " + d["status"]'
