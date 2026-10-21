@@ -835,6 +835,36 @@ jobs:
           print('SEO_MAPPING_AND_CANONICAL=PASS')
           PY
 
+  nsp-noindex-source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Identify noindex source in production HTML
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/noindex_key
+          chmod 600 ~/.ssh/noindex_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/noindex_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          for file in index.html articles/index.html products/p1-oplata-po-ks2.html test-pokupka.html; do
+            echo "HTML_FILE=$file"
+            grep -inE 'name="robots"|name="googlebot"|noindex|nofollow|canonical' "$root/$file" | head -8 || true
+          done
+          echo 'NOINDEX_FILE_COUNT'
+          grep -ril 'noindex' "$root" --include='*.html' | wc -l || true
+          REMOTE
+          for url in / /articles/ /products/p1-oplata-po-ks2.html; do
+            echo "HEADER_URL=$url"
+            curl -sSI --connect-timeout 5 --max-time 10 "https://nastoronepodryadchika.ru$url" | grep -Ei '^HTTP/|^x-robots-tag:' || true
+          done
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
