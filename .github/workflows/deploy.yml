@@ -59,15 +59,15 @@ concurrency:
 env:
   # Пути по умолчанию — под виртуальный хостинг reg.ru: домашняя папка
   # пользователя uXXXXXXX = /var/www/uXXXXXXX/data, сайт лежит в
-  # ~/www/marzhavbetone.ru, файлы продуктов — в ~/products-marzhavbetone
+  # ~/www/nastoronepodryadchika.ru, файлы продуктов — в ~/products-marzhavbetone
   # (вне webroot, прямых ссылок нет). Переопределяются секретами.
-  SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
+  SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/nastoronepodryadchika.ru' }}
   PRODUCTS_PATH: ${{ secrets.DEPLOY_PRODUCTS_PATH || 'products-marzhavbetone' }}
   SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
 
 jobs:
   deploy:
-    if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
+    if: ${{ (github.ref_name == 'main' || (github.ref_name == 'migration/nsp-domain-20261020' && github.event_name == 'workflow_dispatch' && inputs.dry_run == true)) && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
     steps:
       # Пока секреты не заданы, workflow завершается зелёным и ничего не делает —
@@ -178,6 +178,11 @@ jobs:
           fi
           echo "SSH-подключение: ок"
 
+          if [ "$SITE_PATH" != "www/nastoronepodryadchika.ru" ]; then
+            echo "::error::NSP deployment path gate: refusing non-new-domain target"
+            exit 1
+          fi
+
           if ! ssh_run "test -d '$SITE_PATH'"; then
             echo "::error::На хостинге нет папки '$SITE_PATH' (путь считается от домашней папки $USER). Задайте секрет DEPLOY_PATH с верным путём."
             exit 1
@@ -232,6 +237,18 @@ jobs:
             args=(-az --delete --itemize-changes)
             [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
             for e in "${EXCLUDES[@]}"; do args+=(--exclude "$e"); done
+            if [ "$DRY_RUN" != "true" ]; then
+              preview="$(mktemp)"
+              rsync "${args[@]}" --dry-run \
+                -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT" \
+                ./ "$USER@$HOST:$SITE_PATH/" > "$preview"
+              if grep '^\*deleting' "$preview" | grep -Ev '^\*deleting[[:space:]]+rebrand-preview-20261016(-v[2-5])?(/|$)' ; then
+                echo "::error::Unapproved file deletions in NSP deploy. Stop before production writes."
+                rm -f "$preview"
+                exit 1
+              fi
+              rm -f "$preview"
+            fi
             rsync "${args[@]}" \
               -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT" \
               ./ "$USER@$HOST:$SITE_PATH/"
@@ -260,13 +277,13 @@ jobs:
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           if [ "$TOOL" = "rsync" ]; then
-            args=(-az --delete)
+            args=(-az)
             [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
             rsync "${args[@]}" \
               -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT" \
               products-storage/ "$USER@$HOST:$PRODUCTS_PATH/"
           else
-            mirror_args="--reverse --delete --parallel=4"
+            mirror_args="--reverse --parallel=4"
             [ "$DRY_RUN" = "true" ] && mirror_args="$mirror_args --dry-run"
             lftp -c "
               set sftp:connect-program 'ssh -a -x -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT';
@@ -359,7 +376,7 @@ jobs:
           for attempt in 1 2 3 4 5; do
             body=$(curl -s --max-time 30 \
                      -H 'Cache-Control: no-cache' -H 'Pragma: no-cache' \
-                     -w '\n%{http_code}' https://marzhavbetone.ru/ || true)
+                     -w '\n%{http_code}' https://nastoronepodryadchika.ru/ || true)
             code=$(printf '%s' "$body" | tail -n1)
             echo "попытка $attempt: HTTP $code"
             if [ "$code" = "200" ] && printf '%s' "$body" | grep -qF "$expected"; then
@@ -408,7 +425,7 @@ jobs:
           failures=0
           check_path() {
             path="$1"
-            body=$(curl -s --max-time 30 -w '\n%{http_code}' "https://marzhavbetone.ru$path" || true)
+            body=$(curl -s --max-time 30 -w '\n%{http_code}' "https://nastoronepodryadchika.ru$path" || true)
             code=$(printf '%s' "$body" | tail -n1)
             echo "  $path -> HTTP $code (ждём 403 или 404)"
             case "$code" in
@@ -440,10 +457,10 @@ jobs:
         continue-on-error: true
         run: |
           key="07e706758d2b3889c5bf9c7b3760d86d"
-          urls=$(git diff --name-only HEAD~1 HEAD 2>/dev/null                  | grep -E '^(articles/.*\.html|products/.*\.html|materialy/.*\.html|index\.html|kalkulyator\.html)$'                  | sed 's|^index.html$||; s|^|https://marzhavbetone.ru/|' | head -50)
+          urls=$(git diff --name-only HEAD~1 HEAD 2>/dev/null                  | grep -E '^(articles/.*\.html|products/.*\.html|materialy/.*\.html|index\.html|kalkulyator\.html)$'                  | sed 's|^index.html$||; s|^|https://nastoronepodryadchika.ru/|' | head -50)
           if [ -z "$urls" ]; then echo "изменённых страниц нет"; exit 0; fi
           list=$(printf '%s' "$urls" | python3 -c 'import sys,json; print(json.dumps([u for u in sys.stdin.read().split() if u]))')
-          payload=$(printf '{"host":"marzhavbetone.ru","key":"%s","urlList":%s}' "$key" "$list")
+          payload=$(printf '{"host":"nastoronepodryadchika.ru","key":"%s","urlList":%s}' "$key" "$list")
           code=$(curl -s -o /tmp/indexnow.out -w '%{http_code}'                  -X POST 'https://yandex.com/indexnow'                  -H 'Content-Type: application/json; charset=utf-8'                  -d "$payload")
           echo "IndexNow → HTTP $code"; cat /tmp/indexnow.out || true
 

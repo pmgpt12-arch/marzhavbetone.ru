@@ -1,0 +1,10 @@
+{
+  "phase": "provider-audit",
+  "attempt": 1,
+  "authorization": "Owner continuation; read-only payment-provider webhook inventory before live cutover",
+  "production_cutover": false,
+  "expected_main": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+  "verified_new_domain_https_run": 39423577670,
+  "scope": "GET /v3/webhooks with existing server-side credentials, return sanitized event and URL host/path only; verify old production config hash before/after; no payment creation, webhook registration, mail or DNS changes",
+  "expected_output": "provider-webhook-inventory.json with existing callback URL and provider HTTP status, no credentials or buyer data"
+}

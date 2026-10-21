@@ -1,0 +1,169 @@
+name: NSP domain migration
+
+on:
+  push:
+    branches: [migration/nsp-domain-20261020]
+    paths:
+      - tools/migration-20261020/request.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
+  PRODUCTS_PATH: ${{ secrets.DEPLOY_PRODUCTS_PATH || 'products-marzhavbetone' }}
+  SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+  MIGRATION_SSH_DIR: /tmp/nsp-migration-ssh-${{ github.run_id }}
+
+jobs:
+  bounded-migration-step:
+    if: github.ref_name == 'migration/nsp-domain-20261020' && !contains(github.event.head_commit.message, '[migration-config-only]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: zip
+          tools: none
+          coverage: none
+      - name: Validate requested phase and contract
+        id: phase
+        run: |
+          set -euo pipefail
+          python3 -m compileall -q tools/migration-20261020
+          php -l tools/migration-20261020/probe.php
+          php -l tools/migration-20261020/stage_private.php
+          php -l tools/migration-20261020/publish_test.php
+          python3 - <<'PY'
+          import json,os,sys,subprocess
+          from pathlib import Path
+          d=Path('tools/migration-20261020')
+          c=json.loads((d/'contract.json').read_text());r=json.loads((d/'request.json').read_text())
+          assert r['phase'] in {'inspect-backup','prepare-site','extend-shipping','validate-routes','audit-offers','dry-run-new','stage-private','publish-test','diagnose-http','verify-legacy-http','provider-audit'} and not r['production_cutover']
+          assert r['expected_main']==c['approved_base_commit']
+          assert len(c['active_skus'])==13 and sum(x['files'] for x in c['active_skus'].values())==172
+          assert all(x['dir'].isascii() for x in c['active_skus'].values())
+          if r['phase']=='dry-run-new':
+              sys.path.insert(0,str(d.resolve()))
+              from dry_run_new import PHP
+              result=subprocess.run(['php','-l'],input=PHP,text=True,capture_output=True,timeout=15)
+              assert result.returncode==0,result.stderr
+          if r['phase']=='publish-test':
+              assert r.get('public_new_root_acceptance') is True and r.get('real_payment_enabled') is False
+              s=json.loads((d/'evidence/private-stage-verification.json').read_text())
+              assert s['status']=='PASS_PRIVATE_HOST_CANDIDATE_AND_13_ARCHIVES'
+              assert s['buyer_files']==172 and s['active_skus']==13 and s['credentials']=='DUMMY_DISABLED_NO_LIVE_SECRETS'
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('phase='+r['phase']+'\n')
+          print('TASK_CONTRACT_PASS',r['phase'],'NO_LIVE_PAYMENT_CUTOVER')
+          PY
+      - name: Existing supported navigation dependency
+        if: steps.phase.outputs.phase == 'prepare-site' || steps.phase.outputs.phase == 'validate-routes'
+        run: timeout 75s python3 -m pip install --quiet --disable-pip-version-check pyyaml
+      - name: Existing browser test dependency for source-only route review
+        if: steps.phase.outputs.phase == 'validate-routes'
+        run: |
+          set -euo pipefail
+          command -v google-chrome
+          timeout 90s python3 -m pip install --quiet --disable-pip-version-check playwright
+      - name: Existing deployment SSH, job-local credentials
+        if: steps.phase.outputs.phase == 'inspect-backup' || steps.phase.outputs.phase == 'dry-run-new' || steps.phase.outputs.phase == 'stage-private' || steps.phase.outputs.phase == 'publish-test' || steps.phase.outputs.phase == 'provider-audit'
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          set -euo pipefail
+          test -n "$KEY" && test -n "$HOST" && test -n "$USER"
+          umask 077
+          mkdir -p "$MIGRATION_SSH_DIR"
+          chmod 700 "$MIGRATION_SSH_DIR"
+          printf '%s\n' "$KEY" | tr -d '\r' > "$MIGRATION_SSH_DIR/deploy_key"
+          chmod 600 "$MIGRATION_SSH_DIR/deploy_key"
+          ssh-keygen -y -P '' -f "$MIGRATION_SSH_DIR/deploy_key" > /dev/null
+          timeout 20s ssh-keyscan -T 10 -p "$SSH_PORT" -H "$HOST" > "$MIGRATION_SSH_DIR/known_hosts" 2>/dev/null
+          test -s "$MIGRATION_SSH_DIR/known_hosts"
+      - name: Execute exactly one bounded phase
+        id: execute
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PHASE: ${{ steps.phase.outputs.phase }}
+        run: |
+          set -euo pipefail
+          case "$PHASE" in
+            inspect-backup) timeout 600s python3 tools/migration-20261020/inspect_backup.py ;;
+            prepare-site) timeout 240s python3 tools/migration-20261020/prepare_site.py ;;
+            extend-shipping) timeout 90s python3 tools/migration-20261020/extend_route_shipping.py ;;
+            dry-run-new) timeout 600s python3 tools/migration-20261020/dry_run_new.py ;;
+            stage-private) timeout 600s python3 tools/migration-20261020/stage_private.py ;;
+            publish-test) timeout 600s python3 tools/migration-20261020/publish_test.py ;;
+            provider-audit) timeout 100s python3 tools/migration-20261020/provider_webhook_audit.py ;;
+            diagnose-http) timeout 90s python3 tools/migration-20261020/diagnose_http.py ;;
+            verify-legacy-http)
+              timeout 35s git fetch --no-tags --depth=1 origin main
+              timeout 90s python3 tools/migration-20261020/verify_legacy_http.py ;;
+            audit-offers)
+              timeout 35s git fetch --no-tags --depth=1 origin main
+              timeout 90s python3 tools/migration-20261020/audit_route_offers.py ;;
+            validate-routes)
+              timeout 35s git fetch --no-tags --depth=1 origin main
+              timeout 90s python3 tools/migration-20261020/audit_route_offers.py
+              timeout 420s python3 tools/migration-20261020/review_routes.py ;;
+            *) echo 'UNAPPROVED_PHASE'; exit 2 ;;
+          esac
+      - name: Recover only this failed new-domain acceptance transaction
+        if: always() && steps.phase.outputs.phase == 'publish-test' && (steps.execute.outcome == 'failure' || steps.execute.outcome == 'cancelled')
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: timeout 100s python3 tools/migration-20261020/publish_test.py --rollback-only
+      - name: Preserve verified source and sanitized evidence in migration branch
+        if: always()
+        env:
+          PHASE: ${{ steps.phase.outputs.phase }}
+          EXECUTE_RESULT: ${{ steps.execute.outcome }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if { [ "$PHASE" = prepare-site ] || [ "$PHASE" = validate-routes ]; } && [ "$EXECUTE_RESULT" = success ]; then
+            python3 - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          p=json.loads(Path('tools/migration-20261020/evidence/prepared-site-plan.json').read_text())
+          allowed={r['file'] for r in p['shipping_files']}|{'config.php','data/site/navigation.yaml','tools/build_sitemap.py','tools/build_rss.py','tools/link_audit.py'}
+          changed=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
+          source_changed=[x for x in changed if not x.startswith('tools/migration-20261020/evidence/')]
+          assert set(source_changed)<=allowed, sorted(set(source_changed)-allowed)
+          assert not any(x.startswith(('products-storage/','orders/')) for x in source_changed)
+          if source_changed:subprocess.run(['git','add','--',*source_changed],check=True)
+          for path in ['brand-approved-2026.css','rss.xml','tools/migration-20261020/old-domain-cutover.htaccess']:
+            if Path(path).exists():subprocess.run(['git','add','-f','--',path],check=True)
+          PY
+          fi
+          if [ -d tools/migration-20261020/evidence ]; then git add -f tools/migration-20261020/evidence/; fi
+          if ! git diff --cached --quiet; then
+            git diff --cached --check
+            git commit -m "[skip deploy] Record verified migration $PHASE; no production cutover"
+            git push origin HEAD:migration/nsp-domain-20261020
+          fi
+      - name: Retain safe checkpoint artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nsp-migration-${{ github.run_id }}
+          path: tools/migration-20261020/evidence/
+          if-no-files-found: ignore
+          retention-days: 14
+      - name: Remove only this job's temporary credentials
+        if: always()
+        run: rm -f "$MIGRATION_SSH_DIR/deploy_key" "$MIGRATION_SSH_DIR/known_hosts"

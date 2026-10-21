@@ -1,0 +1,41 @@
+{
+  "status": "RECONCILED_ROUTING_SOURCE_PRECEDENCE",
+  "observed_on": "2026-10-20",
+  "current_product_source": {
+    "repository": "pmgpt12-arch/marzhavbetone.ru",
+    "commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+    "files": ["products-config.php", "diagnostika.html"],
+    "owner_registry": 291,
+    "owner_price_decision": 578,
+    "active_skus": 13,
+    "buyer_files": 172
+  },
+  "historical_taxonomy": {
+    "repository": "pmgpt12-arch/ai-business-os",
+    "path": "00_Core/rules/Pains.yaml",
+    "observed_blob_sha": "61ecd99b618a2e49db2f49eaa8d2151cb6b7cd6c",
+    "declared_updated": "2026-08-26",
+    "known_skus_count": 18,
+    "still_contains_retired_skus": ["t1", "t4", "t5", "t6", "p12"],
+    "interpretation": "Canonical namespace and situation taxonomy are historical inputs, not permission to restore retired products or prices. The taxonomy itself was not edited during the migration."
+  },
+  "preserve": [
+    "pain_id, situation, stage and existing attribution IDs",
+    "all 12 current diagnostic scenarios and their current product choices",
+    "different semantics of mi_priority (content taxonomy) and resolution_order (decision priority)",
+    "bankruptcy priority over ordinary debt route",
+    "contract/advance/real-estate/estimate as separate situations, not all routed to P7",
+    "MB007 independent task-based product choice; no compulsory cheap-then-expensive ladder",
+    "stable public URLs, own-domain normalized link graph, query parameters and anchors"
+  ],
+  "override_historical_product_links_with_owner_consolidation": {
+    "t1": "p1", "t4": "p9", "t5": "p8", "t6": "p11", "p12": "p5"
+  },
+  "forbidden_restoration": {
+    "removed_commit": "a1373b0",
+    "files": ["data/business/diagnostic.yaml", "data/business/money-pains.yaml"],
+    "action": "Do not recreate these deleted website-owned taxonomies and do not run legacy build_diagnostic.py --write"
+  },
+  "new_growth_routes": "AIOS #367/#423/#427 describe required future source-intent-to-solution routing. Their dependencies and subject-matter Product Fit acceptance must not be fabricated or silently executed as domain migration.",
+  "scope_limit": "No change to AI Business OS canonical files, paid documents, product pricing or payment backend; this record prevents a migration rollback to superseded architecture."
+}

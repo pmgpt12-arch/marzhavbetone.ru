@@ -1,0 +1,1071 @@
+{
+  "status": "PASS_HOST_PLAN_AND_PRIVATE_ROLLBACK_REHEARSAL",
+  "run": "run-39423151819",
+  "backups": {
+    "old-site": {
+      "sha256": "f8f068dc4cf842b8ca28adcd093d427d0a42ab14673523bf75f9c35aab267976",
+      "bytes": 67706880,
+      "verified": true
+    },
+    "new-site-before": {
+      "sha256": "bff621835efd8072da99753e0a0025b89348bad8618ea19f3d3425b38fd9c77c",
+      "bytes": 59596800,
+      "verified": true
+    },
+    "masters": {
+      "sha256": "707c8391f598766bc476e33a63d9d99d9835787ddde2d2b59f42d7a28d8df188",
+      "bytes": 14684160,
+      "verified": true
+    },
+    "orders-and-cache": {
+      "sha256": "5770fa34ae46f756eb77f1ab5f573c815abbf5939f1b8e0874d3455eb2d667dc",
+      "bytes": 6522880,
+      "verified": true
+    }
+  },
+  "new_root_file_count": 771,
+  "new_root_tree_sha256": "614b55a911a945606e59a2de42186a8940a31673f6f970c4d29e3e6310cb3091",
+  "rollback_rehearsal": {
+    "location": "/var/www/u3581543/data/nsp-migration-private/run-39423151819-rollback-drill",
+    "files": 771,
+    "matches_current_new_root": true,
+    "old_order_store_restored": false,
+    "live_directory_modified": false
+  },
+  "shipping": [
+    {
+      "file": ".htaccess",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "a527d9eb929f7936e1a80994a057ed100ce9921c846d4b1175e48a5782843305"
+    },
+    {
+      "file": "07e706758d2b3889c5bf9c7b3760d86d.txt",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "4edd475883e20919d74817baf21c9c56881eb9786246614be26bf0b1fa8eee6e"
+    },
+    {
+      "file": "404.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "4f6a3c0f75fef08cea89da1c53772f5571b3e4e9b87497a6db0f8b59d681847e"
+    },
+    {
+      "file": "app-script.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "7ba0130cbe199fe0018da9c5cf5794ef35b968906fa6b007d86b8640bd0e5461"
+    },
+    {
+      "file": "app.js",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "365806f60b6cda2c00c93e11d66f653654b75b7e6192dc701c7da56439d6b187"
+    },
+    {
+      "file": "apple-touch-icon.png",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "e0356a0b825c699c7cf2230c0f86ff9d0af9d508c4f6fba39bb344d7c1a2cf08"
+    },
+    {
+      "file": "article.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "c329426d6ceba953ab77ab4d13b0098b577c904f45e89c8b4a2e8f89fe2b3e17"
+    },
+    {
+      "file": "articles/akt-osvidetelstvovaniya-skrytyh-rabot.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "bc6b8af48b1a5ae652705ed5f86cc2e545ebfef75acf8709d2dea93760cdf526"
+    },
+    {
+      "file": "articles/akt-peredachi-stroitelnoy-ploshchadki-obrazec.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "bd3bcdc9da3816e5be98fd92426876a71ec3e7be75b0cdeb910003d8450df68b"
+    },
+    {
+      "file": "articles/akt-skrytyh-rabot-montazh.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "fd6d1ee0e7d13addf12322dcc385115cc5377bbf96d042f36df5b80e4b5510d4"
+    },
+    {
+      "file": "articles/akt-skrytyh-rabot-obrazec.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "12d1826ac434953a568a389bd5b922a9337417a33af8c843e53d8069ee4eb608"
+    },
+    {
+      "file": "articles/akty-skrytyh-rabot-kakie.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "4685f3fe655940cf1d3c11f48cf34bca68587fb7aa5948414597a051cd6c3070"
+    },
+    {
+      "file": "articles/avans-eto-ne-dengi-eto-kryuchok.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "ffb64d06ea673f1554c16c21feaec077b5cb84483f3852c96b3b22e088f0447f"
+    },
+    {
+      "file": "articles/avans-po-dogovoru-podryada.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "93706015169fb2281c9e8cad39bc6d403cf6335a41f3c3467c882134edf3f397"
+    },
+    {
+      "file": "articles/bankovskaya-garantiya-na-vozvrat-avansa.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "6f6200c4deae23f1a58b6ee56ffba757670f62947cc69f5fec4089d715e44cc1"
+    },
+    {
+      "file": "articles/bankrotstvo-genpodryadchika-5-markerov.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "dd230bc3893a394213765fd69617824de055fc9fb8a04e39abfe3b39169237cc"
+    },
+    {
+      "file": "articles/dogovor-subpodryada-obrazec.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "451e7c7e71e4f36998e4c7358f90f406654c2da754e9193999872dc554eb4d21"
+    },
+    {
+      "file": "articles/dolg-zakryvali-na-sleduyushchem-obekte.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "53eac56802ecae2771291c4c315ab85662ba89057934e67f038f0308455e8fcc"
+    },
+    {
+      "file": "articles/dopolnitelnye-raboty-v-stroitelstve.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "7a3fa9c8340f03ed2fd5aa64aedf83dfa2a1ddc96af81f5f3a17051fa7aaae4f"
+    },
+    {
+      "file": "articles/dopraboty-bez-soglasheniya.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "33147b4e75a93351946c093afb8084d4a8c8514fcedb14207ce1430a3d238ddf"
+    },
+    {
+      "file": "articles/dostraivali-za-metry-otkaz-v-zos.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "a24aadc6af2cae825dd1924ce2e207ec1a4be260cd82a5e7cc49637fda896cfa"
+    },
+    {
+      "file": "articles/garantiynoe-uderzhanie-chto-eto.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "b2f6bb04ffcd0dc762aea267f20da350e6af6e5646da105027d969821844c71a"
+    },
+    {
+      "file": "articles/garantiynoe-uderzhanie-v-ks-2-i-ks-3.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "6e86a5b6c2b13582acdc1ecaef272278f985bed7162f4d65c31aed7e7cc51e9e"
+    },
+    {
+      "file": "articles/genpodryadchik-zarabatyvaet-na-vas.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "bc1c965dbb6081ffc3127ee45ee61c77ef5b45dbb5b1f54c9cb9b834729258ae"
+    },
+    {
+      "file": "articles/index.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "092fd8eb99fe71745c7efeb309536ffbc6e78d42354e6533b1415ccb50160682"
+    },
+    {
+      "file": "articles/ispolnitelnaya-dokumentaciya-sostav.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "9b2eff011f4a55c8792f6050256e6d32bb9e027e746ac86e546e5de6b7891b6c"
+    },
+    {
+      "file": "articles/krasnye-flagi-dogovora-subpodryada.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "c16f0010ed3f079cada346ce346edadee91ded6b4c65c7736a3bd8a1871970b3"
+    },
+    {
+      "file": "articles/neotrabotannyy-avans.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "d3e67c44bc35b209f5cb675d64cc2acde794a6061ccb3a7b585f49052fe2c822"
+    },
+    {
+      "file": "articles/podpisannaya-ks2-ne-znachit-chto-zaplatyat.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "f9cbd8631c75a0cb61cebd87830042ed658ae58d33ca87c2d19d5088afafcf09"
+    },
+    {
+      "file": "articles/pretenziya-za-chuzhuyu-kommunalku.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "477c093aabab92c15cd7494e9d124a7f3c12e62350faa1b763ad6864724c0079"
+    },
+    {
+      "file": "articles/protokol-raznoglasiy-k-dogovoru.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "591d3531cd7933e84796d45e5f6f58adc96407e24fc31ba0abab05f8e837afd9"
+    },
+    {
+      "file": "articles/proverka-ks-2-pered-sdachey.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "f0f43970f7862c8d32e2f0b60cbfe85b06c3e23b8674e1fc9b4cb3eb0ca1b13c"
+    },
+    {
+      "file": "articles/pyat-dokazatelstv-vypolneniya.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "e0818b6e2189be175163ca3bb4a1ce02d1fa5b1c7933b0dee139eaefb56058b2"
+    },
+    {
+      "file": "articles/raboty-ne-prinyaty.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "eec4dab142946f633ae3c671a63e028a28fe0a66d4d9ec1c5b4d50e41b0f8c13"
+    },
+    {
+      "file": "articles/raschet-metrami.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "d1922ab61b13b2058466cb9ad3200bcab97086f04469a3490a43a4d0b4d8d91a"
+    },
+    {
+      "file": "articles/reestr-trebovaniy-kreditorov.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "d1d5acf66638038a6f1431bb92e66bb88b877f2076d4e51d0480382edb1fc9c4"
+    },
+    {
+      "file": "articles/skidka-15-procentov-na-tendere-eto-otbor-zhertv.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "3c612978b07513cd5f12afade48c4f201d7971486b258396033134dcdbf5e438"
+    },
+    {
+      "file": "articles/srok-garantiynogo-uderzhaniya.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "a51c14e3513dfc5692963406fac393893c2e50540f30a947fa4f8f3a217548d7"
+    },
+    {
+      "file": "articles/srok-vklyucheniya-v-reestr-trebovaniy-kreditorov.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "f278952eb20da41e31adef34c53586d76d5f50b539ab3247eacd6217ac475ba1"
+    },
+    {
+      "file": "articles/stroitelnaya-smeta-gde-teryaetsya-marzha.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "bc706bf1bb765669662569f7ebe2cc91e068dd348d6a52d8a61137f72a4fa1f1"
+    },
+    {
+      "file": "articles/stroitelnyy-musor-v-smete.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "af0b24a83305750030bf4c2fdd1c1025d7d80083c951c914e30879dbd055d5a1"
+    },
+    {
+      "file": "articles/vklyuchenie-v-reestr-trebovaniy-kreditorov.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "0100ec74f95ec514a0c41fcca9d84169d18f403585f5cb3d2a04b3c3e3e6933b"
+    },
+    {
+      "file": "articles/vozvrat-avansa-po-dogovoru-podryada.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "a01da388801b44cae766cc70a5257b7ee77754c71d475232b1d174b02df23577"
+    },
+    {
+      "file": "articles/vozvrat-garantiynogo-uderzhaniya.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "cb088c14eeedbf39fb6c6d466a61ce56df0ec045eef563c9130f3f85cdbf1034"
+    },
+    {
+      "file": "articles/vsyo-vklyucheno-v-cenu.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "3911047e726800f5d32b66b1d741ae56acc2506c9c98064faee9924d47597174"
+    },
+    {
+      "file": "articles/zakazchik-ne-oplachivaet-vypolnennye-raboty.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "528e320a69723b329eaf228c3e5a29c424738fe6b8a9f2823c2754802ee7769c"
+    },
+    {
+      "file": "articles/zapros-arbitrazhnomu-upravlyayushchemu.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "ff2c8ec77a35cdf08d12dfa0a22099b7b795683b78e0523af3d5332877964de6"
+    },
+    {
+      "file": "articles/zayavlenie-o-vklyuchenii-v-reestr-trebovaniy.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "5927b493c968f379e2909d18f8b4438114f6f1226b816b43a8bebbcabff443de"
+    },
+    {
+      "file": "articles/zos-v-stroitelstve.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "7807665c0f37b6b81e83c6de8035d150c156e3830280b85ea3d4045f0ea53c4b"
+    },
+    {
+      "file": "assets/akt-osvidetelstvovaniya-skrytyh-rabot.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "6a401ce62de609b08514c1158be249d299466add60634fcff5fe1c165a74e5cf"
+    },
+    {
+      "file": "assets/akt-peredachi-stroitelnoy-ploshchadki-obrazec.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "0f2f5421be48ae353145fc0a4906d7cc7cea1cecf5d76c223055e226a2935b26"
+    },
+    {
+      "file": "assets/akt-skrytyh-rabot-montazh.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "db6c9de0fd9ef4f16bead432515df2e2153cf7b804eb5481bbb95ec2ec5c19cf"
+    },
+    {
+      "file": "assets/akt-skrytyh-rabot-obrazec.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "40db9d9e25f976d3657bf51efaa59f5c2e426cd29d5c888572de333e3748b9e6"
+    },
+    {
+      "file": "assets/akty-skrytyh-rabot-kakie.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "20197be3595285911c5092c90fb61a3d71eccdf7fedad676442f96c83e8c7f71"
+    },
+    {
+      "file": "assets/alexander-sergeev.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "d054443ef98c2321c43033778d2a7b2d98384783a8dca20589b1c97086a17fa1"
+    },
+    {
+      "file": "assets/avans-eto-ne-dengi-eto-kryuchok.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "2cfc404202b4a9cb48307967c7a69e190146e781c6f8662c9f02fba6334e9c79"
+    },
+    {
+      "file": "assets/avans-po-dogovoru-podryada.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "80bd742aea8ee5a4c2e7d63f96397be25236ab70ace11decff28e6a9cf9f7e90"
+    },
+    {
+      "file": "assets/bankovskaya-garantiya-na-vozvrat-avansa.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "9874e856ac96a5958c85494fa1c628dab7b23f6deac2c838ac2630c8316eaf65"
+    },
+    {
+      "file": "assets/bankrotstvo-genpodryadchika-5-markerov.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "5e234e055367a8426e3c9b066c31160fd06509add299b48cc99b5cc7bddcecd3"
+    },
+    {
+      "file": "assets/dogovor-subpodryada-obrazec.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "071d5d912d1d11eaa8f3d04168cd24ad116ca135731c4773102a86bd0565efeb"
+    },
+    {
+      "file": "assets/dolg-zakryvali-na-sleduyushchem-obekte.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "407681b1e63eae3ddc419633f8e616ec8fd397dda42f1f235bde8b757c2d2ddc"
+    },
+    {
+      "file": "assets/dopolnitelnye-raboty-v-stroitelstve.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "6ab81d19ce19174e04656a0e548b2900c08d4c77f4aeed26865377284a08b99d"
+    },
+    {
+      "file": "assets/dopraboty.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "2622be7f0237ac5296810e3d4b069755d89917bce4dda0543e853e65877bf380"
+    },
+    {
+      "file": "assets/dostraivali-za-metry-otkaz-v-zos.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "61440f8b49d6b678abf63fe3d716e78db9810db546f6ec08afd2c5760f31cf0c"
+    },
+    {
+      "file": "assets/garantiynoe-uderzhanie-chto-eto.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "7f7407064047cd68a1b32899692593c588c43e21602d428f312066b23851eb9c"
+    },
+    {
+      "file": "assets/garantiynoe-uderzhanie-v-ks-2-i-ks-3.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "abd0112f9d2e2e4667fd7c40acb2b54394dc4e88997a17ef212c50cee24728f5"
+    },
+    {
+      "file": "assets/genpodryadchik-zarabatyvaet-na-vas.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "a0ebc04280099d7a5ebab82eb1f8acec4b7868c8763ee1fcc34d384fb47f5756"
+    },
+    {
+      "file": "assets/hero.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "ccce338edcaefe5af957a216690865b6eb75b35f22464c06598eb083fc776b15"
+    },
+    {
+      "file": "assets/ispolnitelnaya-dokumentaciya-sostav.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "c5508e61f42d81bde889a3ba2d68671c9b629f0fa0ce27b383974834859127fd"
+    },
+    {
+      "file": "assets/krasnye-flagi-dogovora-subpodryada.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "d0d1efebaea2b3637d9dfbe4abf65c9495013b61fcefaebab19608d3a3b7de67"
+    },
+    {
+      "file": "assets/neotrabotannyy-avans.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "a7c0dd12fb439d47330e57a2de23b4e618cdc650040e2afee0121f36bab94109"
+    },
+    {
+      "file": "assets/otvet-na-pretenziyu.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "172972be47a1fb59148737b2a7bc1fa088955f381728d3ec18fed9c26d0519fe"
+    },
+    {
+      "file": "assets/podpisannaya-ks2-ne-znachit-chto-zaplatyat.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "0cd988e9d5df3c15cbf62e45e52b53abb1dd8613384b33417f21ac11b5d5871b"
+    },
+    {
+      "file": "assets/pretenziya-za-chuzhuyu-kommunalku.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "bb55216c3cbed9adf8cf03bc364c997fbab4c87e0b2db1dbb6a07def5738bee8"
+    },
+    {
+      "file": "assets/priemka.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "f2d898747be28676ef17682a1581ce5490b357b2175660176c277f3a5e67f8dd"
+    },
+    {
+      "file": "assets/protokol-raznoglasiy-k-dogovoru.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "ed1be41bd7bfd5c7ae21ec20581a1718e578b3860e4ee8ade186b3517dd5b9ba"
+    },
+    {
+      "file": "assets/proverka-ks-2-pered-sdachey.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "622114838a171d5197a493278bae6b13de31b601199b4fad29d150f98813aa7e"
+    },
+    {
+      "file": "assets/pyat-dokazatelstv-vypolneniya.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "cd82a710ecde1b1253ab99fd1a34a3e095f364ce69cdd0338ae927c8f6f4525c"
+    },
+    {
+      "file": "assets/raschet-metrami.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "644e9fc802a5331fab7e45118c4d7c15104b797d1edb176b721c0604dc169796"
+    },
+    {
+      "file": "assets/reestr-trebovaniy-kreditorov.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "7d262af3486c94b3c115e7801e3328c1f4c044af48a1946a8309017fd845f3e0"
+    },
+    {
+      "file": "assets/skidka-15-procentov-na-tendere-eto-otbor-zhertv.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "96cc0b57c46481dc73a4e6775c9242b6cc493b9a8a762d7c7f1dfec18192f6fc"
+    },
+    {
+      "file": "assets/srok-garantiynogo-uderzhaniya.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "af5b7762645c1fb104b864244d38a52e43825b9edfefbfa6120bfabc9c6ba0ed"
+    },
+    {
+      "file": "assets/srok-vklyucheniya-v-reestr-trebovaniy-kreditorov.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "85cc0375daf476feba33e0e1ba79ebe6355b4c220c6fa2eaee288ac52ea6e84d"
+    },
+    {
+      "file": "assets/stroitelnaya-smeta-gde-teryaetsya-marzha.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "3db05f31c6df2ecf2561cd24b8973acfad7953c74854a32581c4a468a3601734"
+    },
+    {
+      "file": "assets/stroitelnyy-musor-v-smete.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "6778fe734460e4c0f20a60faf634f192d4b63d4b54d01da6fc00d02ad583c12e"
+    },
+    {
+      "file": "assets/uderzhanie.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "4fd510796e8614bb44a050518476d900bd4119c57532d7a26971a35f806829dc"
+    },
+    {
+      "file": "assets/vklyuchenie-v-reestr-trebovaniy-kreditorov.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "6c118b2a7edf035902a29ef02f2572d9470b538127495e4a25b539251802f34c"
+    },
+    {
+      "file": "assets/vozvrat-avansa-po-dogovoru-podryada.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "9fa3ef36df9c0ba8682bb9d743f6ea70b69604c79433cd127f5d13f101965957"
+    },
+    {
+      "file": "assets/vozvrat-garantiynogo-uderzhaniya.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "39614ac1e6f2f03ab9a83af4328368c53cc7099a3116ad27dcfbf400f15743cc"
+    },
+    {
+      "file": "assets/vsyo-vklyucheno-v-cenu.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "04bb8d513f7c9b9ce292ca22815dd3b8b7df773441944ff29e4193f3874bf969"
+    },
+    {
+      "file": "assets/zakazchik-ne-oplachivaet-vypolnennye-raboty.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "b5e45c2e7d7e44c4db8e8e4087da50206030649f244fdfb2711b36f0fe9962d4"
+    },
+    {
+      "file": "assets/zapros-arbitrazhnomu-upravlyayushchemu.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "69cae3750d189555dc20dcc4abc693e87b9a62039c8e08dfdfc5ab3ddd03b874"
+    },
+    {
+      "file": "assets/zayavlenie-o-vklyuchenii-v-reestr-trebovaniy.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "4681a6bffb681f5b2a335ced9f858922a9eee830e484d05ecb4db859b8c27da1"
+    },
+    {
+      "file": "assets/zos-v-stroitelstve.jpg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "f479d20738bb6525e5760fbf160aaf189a3d3359bee76a3a15ee0679c5173e29"
+    },
+    {
+      "file": "attribution.js",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "e396254e6bdaa1b5acb9291b34c709eb96f58df37db833bb780f298dd9989c67"
+    },
+    {
+      "file": "author.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "8a1c82f0144d669342b8f0d0343111f22afbaad9736ce23f142e1a66a79df71f"
+    },
+    {
+      "file": "brand-approved-2026.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "ca1c9225cd0c559df8e170cde372aff39dbb367c947bf661f7e75266144da195"
+    },
+    {
+      "file": "cart.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "5e85d2fdbd421d47a9ad67062835bf22013d0daa5b42e9edc68520217c999d6f"
+    },
+    {
+      "file": "catalog.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "8ae3482f422ae33fc0c9a123ba487bbc3182777eabb2f279801e9d31ce3c7c39"
+    },
+    {
+      "file": "check-payment.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "d19d4961857eb90ae68753db0c8ca7be3e465cc267a184eb15c4c916df8caea5"
+    },
+    {
+      "file": "contact-form.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "d83cdd5b13faaf4bc9add7997fccc5cbdc4e33776a7e35f6495fae6a923041da"
+    },
+    {
+      "file": "contact.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "c60e2ce81a490959bf0efe808d404fc5dc4ee668bd038a84dd689072aeb7c8e6"
+    },
+    {
+      "file": "contacts.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "069a68a1ff51709d1ae01019eda1a2dc5fea81cbbe61a92610cb86d021f66b44"
+    },
+    {
+      "file": "demo/algoritm-pri-zaderzhke-oplaty.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "6335863623d44281d3a72577df8d071e6f6e656d06e57e59d4e2a40e281b5512"
+    },
+    {
+      "file": "demo/obshchiy-princip-osparivaniya-uderzhaniy.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "8fd89fd558ca7da6a8122c3daa7000cd2671be7f39630a7f06f7280d0f2e725c"
+    },
+    {
+      "file": "demo/pretenziya-na-neoplatu.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "afeae0dcdd5c9dea51b69f10df5e265224473daf0e38ef98d64e2a971ff1c706"
+    },
+    {
+      "file": "demo/strategiya-otveta-na-zamechaniya.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "f7005f7045801ba7a355f2c053336d578e643adff3725364375dcf6676d635ee"
+    },
+    {
+      "file": "desktop-wide.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "a775df329adbd07b976f5ae98f5a69f1ab7d39903cf76e279f8ee380d6cf6073"
+    },
+    {
+      "file": "desktop.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "d89151e87fea723b5b3e10d92f64ad3f308e8686c8b1d78d7a8b63a3f8401ce8"
+    },
+    {
+      "file": "diagnostika.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "d980c1edc9a45fcc80da3f6760f44d192ece943c65cadf18c2088653d65e41df"
+    },
+    {
+      "file": "download.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "8c90c5abf5900d1ab7e14d663a584e304fcf9ef8e37a953a4ac5b231e1b6ec55"
+    },
+    {
+      "file": "event.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "c13c154b3d330630af01c7d2a70c03f01945dc411043e6b5cbce8f9195d727e4"
+    },
+    {
+      "file": "fail.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "dd45181d18d8c58ab9c932839156d89ec3bbb9b25e41d6ee19f7e00a4b03c820"
+    },
+    {
+      "file": "faq.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "314b6b4d5d40f58432131b6626c0c7a974a5f2dbdd1c36eb8017748abdd80d6a"
+    },
+    {
+      "file": "favicon-32.png",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "c263da477aca3a35f5912b8060585a0318ebe4c9d87f7488e456ab2984369696"
+    },
+    {
+      "file": "favicon.ico",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "9f33aad347c2192392468e61b9c604f9a1912fa7d2fec79aadd75f85f3ba93e7"
+    },
+    {
+      "file": "favicon.svg",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "ffd99cf00ba5b2ddc8553134a226ace46e6038ae7520030f633f7835e565abe3"
+    },
+    {
+      "file": "footer.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "8037dc8d7cff685015213fc452ae3afc70f128660352dff188702e5434dc0cf0"
+    },
+    {
+      "file": "get/index.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "7aa490f25a6151b5329424ca17c95b3173d51ea342acaab2c9f14cf10a52b83d"
+    },
+    {
+      "file": "ig-webhook.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "b8aba9decdc2101631a6214f63a8079e0d545d92c280870a2c346adf5f2fe77b"
+    },
+    {
+      "file": "index.html",
+      "action": "REPLACE",
+      "old_sha256": "da186b18641e31fe6b7a80abeb1f493ddee2e11b0fa6f9783d6d729966b21a22",
+      "new_sha256": "a8c228d6e1bd83fdfacfafa0af2f0b7712c99f1b5c375c4573b4c9e83b0adb7d"
+    },
+    {
+      "file": "kalkulyator.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "71cd0f93d92a1233491222a3ec3dd33b91418a7db46332970655e2d8777827de"
+    },
+    {
+      "file": "katalog.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "ceff26acff777b21fbe578d7f213824e45ab791e2d680d658bf60063c50623f6"
+    },
+    {
+      "file": "lead.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "799c8a0fa57c1be290b302906878e5fcf7a2a82eb318a02111b2e198477f8b1a"
+    },
+    {
+      "file": "lead.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "11a9f76f4786ce80b350534ab145e0fc8abe69c2d27b875a62b3c75cfb426c32"
+    },
+    {
+      "file": "legal.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "6f2f4991949be34fa70e26db01743670a788a22c6d04bfe9a230c64006dc5a97"
+    },
+    {
+      "file": "materialy/akt-skrytyh-rabot.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "6cbb5beedfebd9f21e3d084f7cc635425c9a27892a176759b046ef10d7c31e65"
+    },
+    {
+      "file": "materialy/avans.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "ca1d6023db304d273dfb3cc859c062f54f15bfd45ca74ebbc6299d7f96cb41d5"
+    },
+    {
+      "file": "materialy/bankrotstvo.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "e88c70779120769f53d6a47336c7bdfd972d0a5b4dbe5485f0c6d167f5d8c996"
+    },
+    {
+      "file": "materialy/dengi.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "8bbb111f7b63ddb82d0fb0af9b8d3b6b94cf663a9c3b553c938f1ea7a198c0e6"
+    },
+    {
+      "file": "materialy/dogovor.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "6cbdb3c88fdb73cbce2d9269fb1fecd04b94e875c5401a3f3c5fad081a7238a5"
+    },
+    {
+      "file": "materialy/dop-raboty.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "821961153b2a759ccc47d62f876f7a4016444334795b9f8693147e353a292b22"
+    },
+    {
+      "file": "materialy/index.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "852769b9b8dfffff5e41d3cf645fdcf92b9f1fc9ed5f608c359fb39b76690186"
+    },
+    {
+      "file": "materialy/ispolnitelnaya-dokumentaciya.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "434f431b68dc561b947439400c92cb2b0004efc8b642a27ab55c36a8fa1bae48"
+    },
+    {
+      "file": "materialy/raschet-metrami.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "8942636acbf24b61b10b812f6364bb2c31c065ac85cdfd9f95a24d0414d6c0f4"
+    },
+    {
+      "file": "materialy/uderzhaniya.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "1d677cf06f14a76fa1ea99020dd6350f2fc8c19774fa8c6490474831193fd3b8"
+    },
+    {
+      "file": "materialy/vozvrat-ks.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "d48207846aaca72917680cc7b75923d256543a21abd6841b8f1a94f6e8a143f7"
+    },
+    {
+      "file": "mvb_funnel.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "41db37d3cc903c17159936e4a8a1764aafae917e61c765114666fd718a66273f"
+    },
+    {
+      "file": "mvb_funnel_health.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "4dcd4a467b09c9a96dc6f7960bc70bb00f1ee40a5d6ddb09a4dbd973c892ed36"
+    },
+    {
+      "file": "offer.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "091973c8cf315dbdd3389fec0c33a5c070f6ec9930b87c7ddc0c112b8c7f0cb7"
+    },
+    {
+      "file": "payment-delivery.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "d65d97bc69b59e42f2301393d380494a9b92369accf8159f276eb205a4b2a85c"
+    },
+    {
+      "file": "payment.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "394f003be37dd2904e9b20fea733392e87859fb2dc9a4b16f61642a205317929"
+    },
+    {
+      "file": "privacy.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "2fe5963e49a85d9c4bd52b4db717e84a7b2e90ff9e403cfb50d5736b563e3a84"
+    },
+    {
+      "file": "product.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "820ffea43d9773492a6e568e105963b4c2cfbbbb6fe769a95946cc79f0ee3e99"
+    },
+    {
+      "file": "products-config.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "10739a7aff2a98e676c1e15b3499c64ad82703d0d6a3c6650b3dab751ce70551"
+    },
+    {
+      "file": "products/p1-oplata-po-ks2.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "2668e0d20cb47a4ff25f88dda1153905e8f10d5a4d603a0cbb1d50beedf9b827"
+    },
+    {
+      "file": "products/p10-otvet-na-pretenziyu.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "cb5b725f92f61ae26c251e434eb0bffa711fd2f798437e0a5536cdc066823f40"
+    },
+    {
+      "file": "products/p11-raschet-metrami.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "1027e4800dd107fbe6d48bc9d8bbd3cbad4cfd2b6aae5ee444e531f8ceabda65"
+    },
+    {
+      "file": "products/p12-spor-s-summoy.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "27586b9129fbbcf6ee713ffa1d38a8b9e3072ba6a833ce381dc99a943872f0a5"
+    },
+    {
+      "file": "products/p13-chto-v-smete-ne-oplatyat.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "55b341874be1ac24c02fe848fedb9e4e1789537e85f7940cf55836d1faff4d58"
+    },
+    {
+      "file": "products/p2-dopolnitelnye-raboty.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "4d83107b12e7b0c2eaed29c1b5e8d87aa792d2438c71c728db05f8541b25e056"
+    },
+    {
+      "file": "products/p3-shablony-ks2-ks3.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "7dd564ee2538b0a6bc22dc13a8a681bfac5a71e3030f7a65e86e8cb72ca7fd41"
+    },
+    {
+      "file": "products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "b874a3a270221aee7144890e902a97e5b7b31a82bd7617cebe2b0cd5bbac6420"
+    },
+    {
+      "file": "products/p5-shtrafy-uderzhaniya.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "201f5b584b92526e94e7e520d7bdcf77241135fd42a9d8094030f4537003cdf6"
+    },
+    {
+      "file": "products/p7-dogovor-podryada.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "9139c9f2776f448b71efa9d3b131e48a476ae710ed84b866ddd20ff5f339b281"
+    },
+    {
+      "file": "products/p8-avans-po-dogovoru-subpodryada.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "091bc5073ade235ac0927fa93b231b62a2d28dd86b6ce6c0dc2080649207f23a"
+    },
+    {
+      "file": "products/p9-bankrotstvo-genpodryadchika.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "ea2907c93160bfdba43eb6a475265ff2046ca129b5e2049ddb12f8ace67f9f4c"
+    },
+    {
+      "file": "products/t1-pervyy-shag-pri-neoplate.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "440b99798766c977cec8a11e600e6dfc675cd84905fc4f7882adce62d893e386"
+    },
+    {
+      "file": "products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "b36d2ce2a72a51435a7713036373cf2bec029fe7443ff271116b52202c822964"
+    },
+    {
+      "file": "products/t3-odnostoronniy-akt-i-zachet.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "9c9c1bc3c8328b6a52bbd5d74049f128e23078141380910d71c42ce21196816b"
+    },
+    {
+      "file": "products/t4-genpodryadchik-bankrotitsya.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "59e797ca67267d97d09c4a8f63bd9ccba3867d4ad2541e3ecf3e217a374a5e97"
+    },
+    {
+      "file": "products/t5-trebuyut-vernut-avans.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "cdf90b353938723dd275d6f35d658767399d7a63deb98884241c4d0dbd5d4240"
+    },
+    {
+      "file": "products/t6-kvartiry-vmesto-deneg.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "e81fc83c8073b969f4943df7db06d223211b1b56485331ce67fee782f093773c"
+    },
+    {
+      "file": "refund.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "b73bf5f5e1c1ed623fbd65e2e7b338c6d88d2d827d7a1de3d318ce09e10cc809"
+    },
+    {
+      "file": "robots.txt",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "5509b82c047e2ff2f88e70c88e4992921e4422f8904a8d03781179f288931cb1"
+    },
+    {
+      "file": "rss.xml",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "62f921f7d72fba7596a430e25a51d639d9fc29fdf50b22496de6a09207416dc9"
+    },
+    {
+      "file": "sitemap.xml",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "aeff76d8979c10b44d5b3be637001a2e46c9e179b3c4596f9c64ea4264eb60e5"
+    },
+    {
+      "file": "social-icons.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "f224471b1bdf13dee4a9f0c6499db1152312c6d03e56b6a6781dec8c897b449d"
+    },
+    {
+      "file": "styles.css",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "b0f272aa616e9bcb3beae729f938746e651139e0c0c63b066fb1cb486013ba20"
+    },
+    {
+      "file": "success.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "9179d86d2745d1c44bd07ddd733316f36a54072aa795b7b9eb95cbd1ba0a8606"
+    },
+    {
+      "file": "test-pokupka.html",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "3f73080b5e057e2dd0c19e1117527fe2c8652cda68170c13285f04a94ec81650"
+    },
+    {
+      "file": "webhook.php",
+      "action": "CREATE",
+      "old_sha256": null,
+      "new_sha256": "c8d758c1234e47466b212dbe91ddd3466aa24b64f6d50ecd669a16bc6655cb2d"
+    }
+  ],
+  "shipping_bytes": 12304982,
+  "live_webroots_modified": false
+}

@@ -23,11 +23,13 @@ from datetime import date
 from pathlib import Path
 
 SITE = Path(__file__).resolve().parent.parent
-BASE = "https://marzhavbetone.ru"
+BASE = "https://nastoronepodryadchika.ru"
 
 # Страницы, которых в карте быть не должно, и причина у каждой.
 EXCLUDED = {
     "test-pokupka.html": "скрытая служебная покупка за 1 ₽, закрыта и в robots.txt",
+    "p12-spor-s-summoy.html": "архивная страница, переводит на P5",
+    "t6-kvartiry-vmesto-deneg.html": "архивная страница, переводит на P11",
     "success.html": "страница после оплаты, доступна только с токеном заказа",
     "fail.html": "страница неудачной оплаты",
     "404.html": "страница ошибки",

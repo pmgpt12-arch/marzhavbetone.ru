@@ -7,7 +7,7 @@
  * 
  * 2. Для тестового режима используйте данные тестового магазина
  * 3. Укажите URL для webhook'ов в личном кабинете:
- *    https://marzhavbetone.ru/webhook.php
+ *    https://nastoronepodryadchika.ru/webhook.php
  */
 
 // === ЗАПОЛНИТЕ ЭТИ ДАННЫЕ ===
@@ -18,7 +18,7 @@ define('YOOKASSA_SECRET_KEY', 'ВАШ_SECRET_KEY');       // Например: '
 define('YOOKASSA_MODE', 'test');
 
 // Базовый URL сайта (без слэша в конце)
-define('SITE_URL', 'https://marzhavbetone.ru');
+define('SITE_URL', 'https://nastoronepodryadchika.ru');
 
 // Email для уведомлений о новых заказах
 define('ADMIN_EMAIL', 'marzhavbetone@yandex.ru');

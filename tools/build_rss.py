@@ -29,10 +29,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES = ROOT / "articles"
 DZEN_TITLES = ROOT / "data" / "site" / "dzen-titles.json"
-SITE = "https://marzhavbetone.ru"
-CHANNEL_TITLE = "Маржа в бетоне"
+SITE = "https://nastoronepodryadchika.ru"
+CHANNEL_TITLE = "На стороне подрядчика"
 CHANNEL_DESCRIPTION = (
-    "Разборы для строительных подрядчиков: как оформить работы, "
+    "Практические материалы для исполнителей работ и услуг в строительстве: как оформить работы, "
     "защитить допработы и получить оплату."
 )
 AUTHOR = "Александр Сергеев"
@@ -432,7 +432,7 @@ def collect() -> list[dict]:
         source = path.read_text(encoding="utf-8")
 
         title = meta(source, "og:title") or ""
-        title = re.sub(r"\s*—\s*Маржа в бетоне$", "", title)
+        title = re.sub(r"\s*—\s*На стороне подрядчика$", "", title)
         if not title:
             found = re.search(r"<title>(.*?)</title>", source, re.S)
             title = html.unescape(found.group(1)) if found else path.stem
