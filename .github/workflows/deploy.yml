@@ -790,6 +790,51 @@ jobs:
           ! grep -Fq 'data-nsp-staging="true"' /tmp/nsp-index.html
           echo 'PUBLIC_SEO_STAGING_REMOVAL=PASS'
 
+  nsp-seo-mapping-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Compare old sitemap to new pages and canonical
+        run: |
+          python3 - <<'PY'
+          import urllib.request,urllib.error,urllib.parse,xml.etree.ElementTree as ET,concurrent.futures,collections,re,html
+          old='https://marzhavbetone.ru'
+          new='https://nastoronepodryadchika.ru'
+          def fetch(url,method='GET'):
+            try:
+              with urllib.request.urlopen(urllib.request.Request(url,method=method,headers={'User-Agent':'NSP-SEO-Audit/1.0'}),timeout=12) as r:return r.status,r.geturl(),r.read() if method=='GET' else b''
+            except urllib.error.HTTPError as e:return e.code,url,b''
+            except Exception as e:return 'ERR_'+type(e).__name__,url,b''
+          def sitemap(domain):
+            code,_,data=fetch(domain+'/sitemap.xml')
+            if code!=200:raise RuntimeError('SITEMAP_HTTP_'+domain+'_'+str(code))
+            return [n.text.strip() for n in ET.fromstring(data).findall('.//{*}loc') if n.text]
+          old_urls=sitemap(old)
+          new_urls=sitemap(new)
+          print('OLD_SITEMAP_URLS='+str(len(old_urls)))
+          print('NEW_SITEMAP_URLS='+str(len(new_urls)))
+          new_set=set(new_urls)
+          mapped=[(u,new+u[len(old):]) for u in old_urls if u.startswith(old+'/')]
+          missing=[(a,b) for a,b in mapped if b not in new_set]
+          print('OLD_TO_NEW_SITEMAP_MATCHES='+str(len(mapped)-len(missing)))
+          print('OLD_TO_NEW_MISSING='+str(len(missing)))
+          for a,b in missing[:20]:print('MISSING_MAPPING='+a+' -> '+b)
+          def page(u):
+            code,target,data=fetch(u)
+            if code!=200:return (u,code,'HTTP_ERROR')
+            s=data.decode('utf-8','replace')
+            m=re.search(r'<link\b[^>]*rel=["\']canonical["\'][^>]*>',s,re.I)
+            canon=re.search(r'href=["\']([^"\']+)',m.group(0),re.I).group(1) if m and re.search(r'href=["\']([^"\']+)',m.group(0),re.I) else ''
+            noindex=bool(re.search(r'<meta\b[^>]*name=["\']robots["\'][^>]*content=["\'][^"\']*noindex',s,re.I))
+            return (u,code,canon,'NOINDEX' if noindex else 'INDEXABLE')
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool: pages=list(pool.map(page,new_urls))
+          bad=[x for x in pages if x[1]!=200 or len(x)<4 or x[3]=='NOINDEX' or x[2]!=x[0]]
+          print('NEW_PAGE_SEO_BAD_COUNT='+str(len(bad)))
+          for x in bad[:20]:print('PAGE_SEO_MISMATCH='+repr(x))
+          if missing or bad:raise SystemExit(2)
+          print('SEO_MAPPING_AND_CANONICAL=PASS')
+          PY
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
