@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      seo_remove_staging_block:
+        description: 'Fix live robots and remove migration banner'
+        type: boolean
+        default: false
       webmaster_register_new_domain:
         description: 'Register new domain in Yandex Webmaster API'
         type: boolean
@@ -710,6 +714,81 @@ jobs:
           if bad or not urls or any(not u.startswith(root+'/') for u in urls):raise SystemExit(2)
           print('SITEMAP_URL_ACCEPTANCE=PASS')
           PY
+
+  nsp-remove-seo-staging-block:
+    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.seo_remove_staging_block == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fix robots and remove obsolete migration banner
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/seo_fix_key
+          chmod 600 ~/.ssh/seo_fix_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/seo_fix_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          private="$HOME/nsp-migration-private"
+          robots="$root/robots.txt"
+          index="$root/index.html"
+          test -s "$robots" && test -s "$index"
+          if grep -Fqx 'Disallow: /' "$robots"; then
+            test "$(wc -l < "$robots")" -eq 2
+            grep -Fqx 'User-agent: *' "$robots"
+            test ! -e "$private/backup-robots-before-seo-20261021.txt"
+            umask 077
+            cp -p "$robots" "$private/backup-robots-before-seo-20261021.txt"
+            chmod 600 "$private/backup-robots-before-seo-20261021.txt"
+            temp="$(mktemp "$root/.robots-next-XXXXXX")"
+            printf 'User-agent: *\nAllow: /\nSitemap: https://nastoronepodryadchika.ru/sitemap.xml\n' > "$temp"
+            chmod 644 "$temp"
+            mv "$temp" "$robots"
+            echo 'ROBOTS_CRAWLING_ENABLED'
+          else
+            grep -Fqx 'Sitemap: https://nastoronepodryadchika.ru/sitemap.xml' "$robots"
+            test ! "$(grep -Fc 'Disallow: /' "$robots")" -gt 0
+            echo 'ROBOTS_ALREADY_CORRECT'
+          fi
+          if grep -Fq 'data-nsp-staging="true"' "$index"; then
+            test ! -e "$private/backup-index-before-seo-20261021.html"
+            umask 077
+            cp -p "$index" "$private/backup-index-before-seo-20261021.html"
+            chmod 600 "$private/backup-index-before-seo-20261021.html"
+            temp="$(mktemp "$root/.index-next-XXXXXX")"
+            php -r '
+              $source=file_get_contents($argv[1]);
+              $count=0;
+              $out=preg_replace("~<div data-nsp-staging=\"true\"[^>]*>.*?</div>~s","",$source,1,$count);
+              if($count!==1 || $out===null || strpos($out,"data-nsp-staging")!==false) exit(2);
+              if(file_put_contents($argv[2],$out)===false) exit(3);
+            ' "$index" "$temp"
+            chmod 644 "$temp"
+            mv "$temp" "$index"
+            echo 'MIGRATION_BANNER_REMOVED'
+          else
+            echo 'MIGRATION_BANNER_ALREADY_ABSENT'
+          fi
+          grep -Fqx 'Sitemap: https://nastoronepodryadchika.ru/sitemap.xml' "$robots"
+          test "$(grep -Fc 'Disallow: /' "$robots")" -eq 0
+          test "$(grep -Fc 'data-nsp-staging="true"' "$index")" -eq 0
+          grep -Fq 'rel="canonical" href="https://nastoronepodryadchika.ru/"' "$index"
+          echo 'NSP_SEO_STAGING_REMOVAL=VERIFIED'
+          REMOTE
+      - name: Verify public SEO endpoints
+        run: |
+          set -euo pipefail
+          curl -fsS --connect-timeout 5 --max-time 12 https://nastoronepodryadchika.ru/robots.txt -o /tmp/nsp-robots.txt
+          grep -Fqx 'Sitemap: https://nastoronepodryadchika.ru/sitemap.xml' /tmp/nsp-robots.txt
+          ! grep -Fqx 'Disallow: /' /tmp/nsp-robots.txt
+          curl -fsS --connect-timeout 5 --max-time 12 https://nastoronepodryadchika.ru/ -o /tmp/nsp-index.html
+          ! grep -Fq 'data-nsp-staging="true"' /tmp/nsp-index.html
+          echo 'PUBLIC_SEO_STAGING_REMOVAL=PASS'
 
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
