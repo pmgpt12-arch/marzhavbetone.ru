@@ -165,6 +165,17 @@ jobs:
           done
           printf 'MIGRATION_PRIVATE_DIR='
           test -d "$HOME/nsp-migration-private" && echo PRESENT || echo MISSING
+          php -r '
+            $site=$argv[1]; require $site."/config.php";
+            $out=["site_url"=>SITE_URL,"admin_email"=>ADMIN_EMAIL,"shop_id"=>YOOKASSA_SHOP_ID,"ttl"=>DELIVERY_TTL_SECONDS,"files"=>[]];
+            foreach(["config.php","payment.php","webhook.php","products-config.php","contact.php","lead.php","mvb_funnel.php"] as $name){
+              $p=$site."/".$name;
+              if(!is_file($p)){$out["files"][$name]=["present"=>false];continue;}
+              $s=file_get_contents($p);
+              $out["files"][$name]=["present"=>true,"sha256"=>hash("sha256",$s),"old_brand_count"=>substr_count(strtolower($s),"marzhavbetone"),"old_support_email_count"=>substr_count($s,"marzhavbetone@yandex.ru"),"new_support_email_count"=>substr_count($s,"nastoronepodryadchika@yandex.ru"),"old_from"=>strpos($s,"From: site@marzhavbetone.ru")!==false,"new_from"=>strpos($s,"From: site@nastoronepodryadchika.ru")!==false];
+            }
+            echo "NSP_MAIL_IDENTITY_READONLY=".json_encode($out,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+          ' "$site"
           REMOTE
 
 
