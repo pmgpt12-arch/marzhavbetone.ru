@@ -14,3 +14,7 @@ for sku,(directory,count,price) in cfg.items():
 assert sum(len(x['members']) for x in expected.values())==172
 php=Path('tools/audits/nsp-products-placement-20261021/audit.php').read_text().replace('EXPECTED_JSON', 'json_decode('+json.dumps(json.dumps(expected,ensure_ascii=False))+',true)')
 Path('/tmp/nsp-placement-audit.php').write_text(php)
+
+import os
+probe=Path('tools/audits/nsp-products-placement-20261021/probe.php').read_text().replace('EXPECTED_JSON','json_decode('+json.dumps(json.dumps(expected,ensure_ascii=False))+',true)').replace('AUDIT_RUN_ID',os.environ['GITHUB_RUN_ID'])
+Path('/tmp/nsp-probe.php').write_text(probe)
