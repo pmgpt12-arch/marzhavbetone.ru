@@ -39,11 +39,13 @@ from __future__ import annotations
 
 import argparse
 import functools
+import re
 import http.server
 import socket
 import sys
 import threading
 from pathlib import Path
+from urllib.parse import urljoin, urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -317,7 +319,7 @@ WORDBREAK_SCRIPT = """() => {
     if (!(avail > 0)) continue;
     meas.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;'
       + 'font:' + cs.font + ';letter-spacing:' + cs.letterSpacing;
-    for (const word of (el.textContent || '').split(/[\\s\\u00a0\\u00ad]+/)) {
+    for (const word of (el.innerText || '').split(/[\\s\\u00a0\\u00ad]+/)) {
       if (!word) continue;
       meas.textContent = word;
       const w = meas.getBoundingClientRect().width;
@@ -461,26 +463,62 @@ CARDBOX_SCRIPT = """() => {
 }"""
 
 
-def first_screen(page, height: int) -> list[str]:
-    """Что видно на странице товара до прокрутки.
+def retired_skus() -> set[str]:
+    # The checkout resolver is the existing authority for retired routes.
+    return set(re.findall(r"if \(\$sku === '([^']+)'\) return null;",
+                          (ROOT / 'products-config.php').read_text()))
 
-    Отсутствие блока — тоже дефект, и он назван отдельно от «низ слишком
-    низко»: пустой селектор молча даёт ноль, а ноль читается как «всё
-    хорошо». Ровно так теряются цели Метрики, и здесь ошибка была бы та же.
-    """
+
+def archive_screen(page, height: int, sku: str) -> list[str]:
+    links = page.locator('main a[href]').evaluate_all(
+        "els => els.map(e => ({href:e.getAttribute('href'), bottom:e.getBoundingClientRect().bottom, visible:e.getBoundingClientRect().width>0 && e.getBoundingClientRect().height>0}))")
+    for link in links:
+        target = link['href'].split('?')[0].split('#')[0]
+        url = urlsplit(urljoin('/products/archive.html', target))
+        name = Path(url.path).name
+        target_sku = name.split('-')[0]
+        if (not re.match(r'^(?:[pt]\d+)-[a-z0-9-]+\.html$', name)
+                or target_sku in retired_skus() or url.scheme or url.netloc
+                or url.path != '/products/' + name or not link['visible']
+                or not (ROOT / 'products' / name).is_file()):
+            continue
+        if link['bottom'] > height:
+            return ['переход к действующей системе ниже первого экрана']
+        if page.locator(f'main .add-to-cart[data-sku="{sku}"]').count():
+            return ['архивная страница снова продаёт снятый SKU']
+        return []
+    return ['архивная страница не содержит перехода к действующей системе']
+
+
+def first_screen(page, height: int, rel: str = '') -> list[str]:
+    """Visible situation/result, price and purchase; archives require a live route."""
+    sku = Path(rel).name.split('-')[0]
+    if sku in retired_skus() and not page.locator('main .add-to-cart').count():
+        return archive_screen(page, height, sku)
+    if sku in retired_skus() and page.locator(f'main .add-to-cart[data-sku="{sku}"]').count():
+        return ['архивная страница снова продаёт снятый SKU']
     out = []
     box = page.evaluate(
         """() => {
-          const at = sel => {
-            const el = document.querySelector(sel);
-            return el ? Math.round(el.getBoundingClientRect().bottom + scrollY) : null;
+          const bottom = el => {
+            if (!el || !el.innerText.trim() || !el.getClientRects().length) return null;
+            return Math.round(el.getBoundingClientRect().bottom + scrollY);
           };
-          return {fit: at('.product-fit'), buy: at('.add-to-cart'),
-                  price: at('.price')};
+          const at = sel => bottom(document.querySelector(sel));
+          let fit = at('main .product-fit');
+          if (fit === null) {
+            const result = [...document.querySelectorAll('main h2')].find(
+              e => e.innerText.trim().toLowerCase() === 'результат');
+            const lead = at('main .lead');
+            const body = result && result.nextElementSibling;
+            const outcome = body && body.tagName === 'P' ? bottom(body) : null;
+            if (lead !== null && outcome !== null) fit = Math.max(lead, outcome);
+          }
+          return {fit, buy:at('main .add-to-cart'), price:at('main .price')};
         }""")
     for name, key, limit, human in (
-            ("«когда применять / кому подойдёт»", "fit", PRODUCT_FIT_SCREENS,
-             ".product-fit"),
+            ("ситуация и результат", "fit", PRODUCT_FIT_SCREENS,
+             ".product-fit или main .lead + раздел «Результат»"),
             ("кнопка покупки", "buy", PRODUCT_BUY_SCREENS, ".add-to-cart"),
             ("цена", "price", PRODUCT_BUY_SCREENS, ".price")):
         bottom = box[key]
@@ -552,7 +590,7 @@ def check_page(browser, base: str, rel: str,
 
             if rel.startswith("products/"):
                 bad.extend(f"{rel} @{width}: {item}"
-                           for item in first_screen(page, height))
+                           for item in first_screen(page, height, rel))
 
             limit = HEIGHT_MAX.get(rel)
             if limit is not None:

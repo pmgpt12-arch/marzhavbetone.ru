@@ -44,6 +44,9 @@ jobs:
           python3 -m pip install --quiet playwright
           python3 -m playwright install --with-deps chromium
 
+      - name: Контракт браузерной проверки
+        run: python3 tools/test_desktop_contract.py
+
       # Карта сайта и фид собираются при выкладке, а проверки на них
       # смотрят. Без сборки здесь они мерят вчерашний артефакт.
       - name: Собрать генерируемое
