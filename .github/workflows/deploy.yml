@@ -1005,6 +1005,33 @@ jobs:
           print('OLD_TO_NEW_301=VERIFIED')
           PY
 
+  nsp-old-403-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Compare old-domain HTTP responses from two network origins
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          for path in / /sitemap.xml /articles/; do
+            echo "RUNNER_PATH=$path"
+            curl -sSI --connect-timeout 5 --max-time 10 "https://marzhavbetone.ru$path" | grep -Ei '^HTTP/|^location:|^server:|^x-' | head -10 || true
+          done
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/probe_key
+          chmod 600 ~/.ssh/probe_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/probe_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          for path in / /sitemap.xml /articles/; do
+            echo "HOSTING_PATH=$path"
+            curl -sSI --connect-timeout 5 --max-time 10 "https://marzhavbetone.ru$path" | grep -Ei '^HTTP/|^location:|^server:|^x-' | head -10 || true
+          done
+          REMOTE
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
