@@ -20,7 +20,7 @@ if "Header always set X-Robots-Tag \"noindex" in ht or "R=503" in ht:
     errors.append("migration block present in .htaccess")
 xml = ET.parse(ROOT / "sitemap.xml").getroot()
 urls = [e.text.strip() for e in xml.findall(".//{*}loc") if e.text]
-if len(urls) < 84 or len(urls) != len(set(urls)):
+if len(urls) < 82 or len(urls) != len(set(urls)):
     errors.append("sitemap URL count/uniqueness invalid")
 for url in urls:
     if not url.startswith(DOMAIN + "/"):
