@@ -1167,6 +1167,58 @@ jobs:
           ! grep -Eiq 'name="robots"[^>]*noindex' /tmp/nsp-yandex-index.html
           echo 'YANDEX_META_PUBLIC_VERIFY=PASS'
 
+  nsp-final-product-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Read-only audit of published SKU masters and buyer runtime
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/inventory_key
+          chmod 600 ~/.ssh/inventory_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/inventory_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          for file in config.php products-config.php payment.php webhook.php download.php; do
+            php -l "$root/$file" >/dev/null
+          done
+          php -r '
+            require $argv[1]."/config.php";
+            require $argv[1]."/products-config.php";
+            $catalog=mvb_products();
+            $count=0;$bad=0;$filesTotal=0;
+            foreach($catalog as $sku=>$product) {
+              if($sku==="test1")continue;
+              $count++;
+              $dir=PRODUCTS_DIR."/".$product["dir"];
+              $fileCount=0;
+              if(is_dir($dir)) {
+                foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir,FilesystemIterator::SKIP_DOTS)) as $file) {
+                  if($file->isFile() && $file->getSize()>0)$fileCount++;
+                }
+              }
+              $valid=$fileCount>0 && (int)$product["price"]>0 && !empty($product["zip"]);
+              echo "SKU_".$sku."_FILES=".$fileCount." STATUS=".($valid?"PASS":"FAIL")."\n";
+              if(!$valid)$bad++;
+              $filesTotal+=$fileCount;
+            }
+            echo "ACTIVE_SKU_COUNT=".$count."\n";
+            echo "PRODUCT_MASTER_FILE_TOTAL=".$filesTotal."\n";
+            echo "PRODUCTS_OUTSIDE_WEBROOT=".(str_starts_with(realpath(PRODUCTS_DIR)?:"",realpath($argv[1])."/")?"NO":"YES")."\n";
+            echo "PAYMENT_SHOP_MATCH=".(YOOKASSA_SHOP_ID==="1502106"?"YES":"NO")."\n";
+            echo "DELIVERY_TTL_ONE_HOUR=".(DELIVERY_TTL_SECONDS===3600?"YES":"NO")."\n";
+            echo "PRODUCT_SKU_ERRORS=".$bad."\n";
+            if($bad || $count!==13 || YOOKASSA_SHOP_ID!=="1502106" || DELIVERY_TTL_SECONDS!==3600)exit(3);
+            echo "PRODUCT_INVENTORY=PASS\n";
+          ' "$root"
+          REMOTE
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
