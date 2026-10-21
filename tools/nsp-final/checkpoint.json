@@ -1,0 +1,27 @@
+{
+  "repo": "pmgpt12-arch/marzhavbetone.ru",
+  "base_main": "aeca7919f470e179241c522c6d56e826251b706d",
+  "branch": "fix/nsp-cutover-final-20261021",
+  "snapshot_commit": "5e16f20776dd3d109de6287d8279c66f645d8970",
+  "snapshot_run": 39559856161,
+  "candidate_commit": "e42f5664243091d90ababaef6656491b54b8f733",
+  "dry_run": 39560891644,
+  "publication_commit": "019cf9c0d83ad7af6e65f8728d664a2da0e9d899",
+  "publication_run": 39565483988,
+  "pull_request": 674,
+  "audit_workflow_fix_commit": "249c1a92cf0bf08dfbbfc375cccc0de216eb86b0",
+  "status": "VERIFIED_PUBLISHED_MAIN_SYNC_PENDING",
+  "not_accepted_as_green": [
+    "legacy public release checks",
+    "historical P3/site snapshot checks",
+    "app-script old fingerprint contracts",
+    "browser install DNS failure"
+  ],
+  "limitations": [
+    "Dzen replacement address unconfirmed",
+    "buyer documents and mail sender identity outside this static-file correction"
+  ],
+  "https_verified_files": 85,
+  "production_master_directory_files_unchanged": 442,
+  "production_unique_config_backups": 2
+}
