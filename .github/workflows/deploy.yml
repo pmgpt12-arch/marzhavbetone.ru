@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      webmaster_register_new_domain:
+        description: 'Register new domain in Yandex Webmaster API'
+        type: boolean
+        default: false
       activate_nsp_payment_endpoints:
         description: 'Activate new-domain payment endpoints only, with rollback'
         type: boolean
@@ -549,6 +553,52 @@ jobs:
             echo "BUYER_ORDER_SERVER_ACCEPTANCE=PASS\n";
           ' "$site"
           REMOTE
+
+  nsp-yandex-webmaster-register:
+    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.webmaster_register_new_domain == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Register and inspect site via official Webmaster API
+        env:
+          YANDEX_TOKEN: ${{ secrets.YANDEX_WEBMASTER_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json,os,urllib.request,urllib.error
+          base="https://api.webmaster.yandex.net/v4"
+          token=os.environ.get("YANDEX_TOKEN","")
+          if not token: raise SystemExit("WEBMASTER_TOKEN_MISSING")
+          def call(path,method="GET",data=None):
+              payload=None if data is None else json.dumps(data).encode()
+              req=urllib.request.Request(base+path,data=payload,method=method,headers={"Authorization":"OAuth "+token,"Content-Type":"application/json"})
+              try:
+                  with urllib.request.urlopen(req,timeout=12) as r: return r.status,json.load(r)
+              except urllib.error.HTTPError as e:
+                  try: result=json.load(e)
+                  except Exception: result={}
+                  return e.code,result
+          status,user=call("/user")
+          if status!=200: raise SystemExit("WEBMASTER_USER_HTTP_"+str(status))
+          uid=user.get("user_id")
+          print("WEBMASTER_USER_AUTH=PASS")
+          status,hosts=call("/user/"+str(uid)+"/hosts")
+          if status!=200: raise SystemExit("WEBMASTER_HOSTS_HTTP_"+str(status))
+          old=[h for h in hosts.get("hosts",[]) if "marzhavbetone.ru" in h.get("ascii_host_url","")]
+          new=[h for h in hosts.get("hosts",[]) if "nastoronepodryadchika.ru" in h.get("ascii_host_url","")]
+          print("OLD_DOMAIN_PRESENT="+str(bool(old)))
+          print("NEW_DOMAIN_PRESENT_BEFORE="+str(bool(new)))
+          if not new:
+              status,result=call("/user/"+str(uid)+"/hosts","POST",{"host_url":"https://nastoronepodryadchika.ru/"})
+              print("ADD_NEW_DOMAIN_HTTP="+str(status))
+              if status not in (200,201): raise SystemExit("WEBMASTER_ADD_FAILED")
+              new_id=result.get("host_id")
+          else: new_id=new[0]["host_id"]
+          status,verify=call("/user/"+str(uid)+"/hosts/"+urllib.parse.quote(new_id,safe="")+"/verification")
+          print("NEW_DOMAIN_VERIFICATION_HTTP="+str(status))
+          if status==200:
+              print("NEW_DOMAIN_VERIFICATION_STATE="+str(verify.get("verification_state","UNKNOWN")))
+              print("NEW_DOMAIN_VERIFICATION_UIN="+str(verify.get("verification_uin","")))
+          PY
 
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
