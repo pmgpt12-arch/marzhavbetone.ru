@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Real browser fixtures: accepted product layouts and deliberate regressions."""
 from playwright.sync_api import sync_playwright
+from pathlib import Path
+import tempfile
+import test_cart
 import check_desktop as desktop
 
 HEIGHT = 768
@@ -40,6 +43,49 @@ def main():
             page.set_content(style+'<h3>ЗАКРЫТИЕВЫПОЛНЕННЫХРАБОТ</h3>')
             assert page.evaluate(desktop.WORDBREAK_SCRIPT), 'real oversized word accepted'
             cases+=2
+            # Routes remain independent of whatever SKU was put on the button.
+            assert test_cart.purchase_route(test_cart.ROOT/'products/p1-oplata-po-ks2.html') == ('p1', None)
+            assert test_cart.purchase_route(test_cart.ROOT/'products/p12-spor-s-summoy.html') == ('p5','/products/p5-shtrafy-uderzhaniya.html')
+            assert test_cart.purchase_route(test_cart.ROOT/'products/t1-pervyy-shag-pri-neoplate.html') == (None,None)
+            with tempfile.TemporaryDirectory() as directory:
+                probe=Path(directory)/'p12-spor-s-summoy.html'
+                probe.write_text((test_cart.ROOT/'products/p12-spor-s-summoy.html').read_text().replace('https://nastoronepodryadchika.ru/products/p5-', 'https://foreign.invalid/products/p5-'))
+                try:
+                    test_cart.purchase_route(probe)
+                except ValueError:
+                    pass
+                else:
+                    raise AssertionError('foreign canonical accepted for a retired alias')
+            cases+=4
+            server, port=desktop.serve()
+            base=f'http://127.0.0.1:{port}'
+            try:
+                for width in [360,390,1366]:
+                    mobile=browser.new_page(viewport={'width':width,'height':800})
+                    def route(request):
+                        url=request.request.url
+                        if not url.startswith(base+'/'):
+                            request.abort()
+                        elif '/app-script.php' in url:
+                            request.fulfill(content_type='application/javascript',body=(desktop.ROOT/'app.js').read_text())
+                        else:
+                            request.continue_()
+                    mobile.route('**/*',route)
+                    mobile.goto(base+'/index.html',wait_until='networkidle')
+                    mobile.evaluate('document.fonts.ready')
+                    if width<768:
+                        after=mobile.screenshot(full_page=True,animations='disabled')
+                        mobile.locator('#checklist-title-fit').evaluate('(e)=>e.remove()')
+                        before=mobile.screenshot(full_page=True,animations='disabled')
+                        assert after==before, f'mobile pixels changed at {width}'
+                    else:
+                        size=mobile.locator('.checklist .document h3').evaluate('(e)=>getComputedStyle(e).fontSize')
+                        assert size=='38px', size
+                        assert not mobile.evaluate(desktop.WORDBREAK_SCRIPT)
+                    mobile.close()
+                    cases+=1
+            finally:
+                server.shutdown()
         finally:
             browser.close()
     print(f'Desktop guard contract: {cases} browser cases PASS')
