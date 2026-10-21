@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      seo_redirect_old_domain:
+        description: 'Enable path-preserving 301 on old domain after SEO preflight'
+        type: boolean
+        default: false
       seo_fix_noindex:
         description: 'Remove noindex only from 84 sitemap pages and global header'
         type: boolean
@@ -947,6 +951,58 @@ jobs:
           print('TEST_PAGE_NOINDEX_PRESERVED=YES')
           if bad:raise SystemExit(2)
           print('PUBLIC_INDEXABILITY=VERIFIED')
+          PY
+
+  nsp-old-domain-301:
+    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.seo_redirect_old_domain == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply old domain redirect preserving paths
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/redirect_key
+          chmod 600 ~/.ssh/redirect_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          php -l tools/nsp_old_domain_redirect.php
+          scp -q -i ~/.ssh/redirect_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 tools/nsp_old_domain_redirect.php "$USER@$HOST:nsp-migration-private/nsp_old_domain_redirect.php"
+          ssh -i ~/.ssh/redirect_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          php "$HOME/nsp-migration-private/nsp_old_domain_redirect.php" apply "$HOME/www/marzhavbetone.ru" "$HOME/nsp-migration-private/backup-old-htaccess-before-301-20261021"
+          REMOTE
+      - name: Verify 301 for all old sitemap URLs
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import urllib.request,urllib.error,xml.etree.ElementTree as ET,concurrent.futures
+          old='https://marzhavbetone.ru'
+          new='https://nastoronepodryadchika.ru'
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,*args,**kwargs):return None
+          opener=urllib.request.build_opener(NoRedirect)
+          with urllib.request.urlopen(old+'/sitemap.xml',timeout=12) as r: xml=r.read()
+          urls=[x.text for x in ET.fromstring(xml).findall('.//{*}loc') if x.text]
+          assert len(urls)==84
+          def check(url):
+              req=urllib.request.Request(url,method='HEAD')
+              try:
+                  with opener.open(req,timeout=12) as r:return url,r.status,r.headers.get('Location','')
+              except urllib.error.HTTPError as e:return url,e.code,e.headers.get('Location','')
+              except Exception as e:return url,'ERROR_'+type(e).__name__,''
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:results=list(pool.map(check,urls))
+          bad=[(u,c,l) for u,c,l in results if c!=301 or l!=new+u[len(old):]]
+          print('OLD_SITEMAP_URLS='+str(len(urls)))
+          print('OLD_301_CORRECT='+str(len(results)-len(bad)))
+          print('OLD_301_ERRORS='+str(len(bad)))
+          for x in bad[:12]:print('REDIRECT_ERROR='+repr(x))
+          if bad:raise SystemExit(2)
+          print('OLD_TO_NEW_301=VERIFIED')
           PY
 
   deploy:
