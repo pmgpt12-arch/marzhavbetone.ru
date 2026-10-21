@@ -865,6 +865,32 @@ jobs:
             curl -sSI --connect-timeout 5 --max-time 10 "https://nastoronepodryadchika.ru$url" | grep -Ei '^HTTP/|^x-robots-tag:' || true
           done
 
+  nsp-robots-header-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Inspect X-Robots-Tag configuration
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/seo_header_key
+          chmod 600 ~/.ssh/seo_header_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/seo_header_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          echo 'SITE_HTACCESS_ROBOTS'
+          grep -inE 'robots|noindex|noarchive|nofollow|Header' "$root/.htaccess" | head -40 || true
+          echo 'PARENT_HTACCESS_ROBOTS'
+          for file in "$HOME/www/.htaccess" "$HOME/.htaccess"; do
+            if test -f "$file"; then grep -inE 'robots|noindex|noarchive|nofollow|Header' "$file" | head -20 || true; fi
+          done
+          REMOTE
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
