@@ -78,6 +78,9 @@ jobs:
           set -euo pipefail
           timeout 40s ssh -p "$PORT" -i ~/.ssh/nsp_final_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$SSH_USER@$HOST" 'php /dev/stdin "$HOME/www/nastoronepodryadchika.ru"' < tools/nsp-free-checklist-20261021/inspect.php > /tmp/nsp-final-evidence/checklist-inspect.json
           cat /tmp/nsp-final-evidence/checklist-inspect.json
+      - name: Install bounded public PDF validation dependency
+        if: (env.NSP_ACTION == 'dry-run' || env.NSP_ACTION == 'publish') && github.ref_name == 'fix/nsp-free-checklist-20261021'
+        run: python3 -m pip install --disable-pip-version-check --timeout 20 --retries 0 pypdf==6.10.0
       - name: Targeted dry-run or publication
         if: env.NSP_ACTION == 'dry-run' || env.NSP_ACTION == 'publish'
         run: python3 tools/nsp-final/release.py "$NSP_ACTION"

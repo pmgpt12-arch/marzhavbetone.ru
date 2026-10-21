@@ -1,0 +1,30 @@
+name: NSP public checklist contract
+on:
+  push:
+    branches: [main, fix/nsp-free-checklist-20261021]
+    paths:
+      - downloads/checklist-zakrytiya-rabot.pdf
+      - tools/nsp-free-checklist-20261021/**
+      - .github/workflows/nsp-free-checklist-gate.yml
+      - katalog.html
+  pull_request:
+    paths:
+      - downloads/checklist-zakrytiya-rabot.pdf
+      - tools/nsp-free-checklist-20261021/**
+      - .github/workflows/nsp-free-checklist-gate.yml
+      - katalog.html
+permissions:
+  contents: read
+jobs:
+  pdf-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m pip install --disable-pip-version-check --timeout 20 --retries 0 pypdf==6.10.0 reportlab==4.4.9
+      - name: Verify committed and freshly generated public PDF
+        run: |
+          set -euo pipefail
+          python3 tools/nsp-free-checklist-20261021/verify.py
+          NSP_CHECKLIST_OUTPUT=/tmp/nsp-rebuilt-checklist.pdf python3 tools/nsp-free-checklist-20261021/build.py
+          python3 tools/nsp-free-checklist-20261021/verify.py /tmp/nsp-rebuilt-checklist.pdf

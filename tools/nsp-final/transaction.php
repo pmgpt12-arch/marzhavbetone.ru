@@ -3,8 +3,16 @@ declare(strict_types=1);
 // Bounded static-file transaction; all configuration, orders and masters are excluded.
 function demand(bool $ok,string $why): void { if(!$ok) throw new RuntimeException($why); }
 function sha(string $p): string { demand(is_file($p)&&!is_link($p),'MISSING_OR_SYMLINK'); return (string)hash_file('sha256',$p); }
+function current_sha(string $p): ?string { if(!file_exists($p)&&!is_link($p)) return null; return sha($p); }
+function remove_created_dirs(string $root,string $dir): void {
+    $p=$dir.'/created-dirs.json'; if(!is_file($p)) return;
+    foreach(json_decode((string)file_get_contents($p),true,512,JSON_THROW_ON_ERROR) as $name) {
+        demand($name==='downloads','UNSAFE_CREATED_DIRECTORY'); $folder=$root.'/'.$name;
+        if(is_dir($folder)&&!is_link($folder)&&count(scandir($folder))===2) demand(rmdir($folder),'REMOVE_EMPTY_DIRECTORY');
+    }
+}
 function write_atomic(string $p,string $bytes): void {
-    $mode=fileperms($p)&0777; $tmp=tempnam(dirname($p),'.nsp-final-'); demand($tmp!==false,'TEMP_FAILED');
+    $mode=is_file($p)?fileperms($p)&0777:0644; $tmp=tempnam(dirname($p),'.nsp-final-'); demand($tmp!==false,'TEMP_FAILED');
     try { demand(file_put_contents($tmp,$bytes,LOCK_EX)===strlen($bytes),'WRITE_FAILED'); chmod($tmp,$mode); demand(rename($tmp,$p),'RENAME_FAILED'); }
     finally { if(is_file($tmp)) unlink($tmp); }
 }
@@ -31,8 +39,9 @@ function protected_state(string $root): array {
 function restore(string $root,string $dir,array $rows,array $names): void {
     foreach($rows as $r) {
         if(!in_array($r['path'],$names,true)) continue;
-        $p=$root.'/'.$r['path']; $current=sha($p); if($current===$r['before']) continue;
+        $p=$root.'/'.$r['path']; $current=current_sha($p); if($current===$r['before']) continue;
         demand($current===$r['after'],'ROLLBACK_CONCURRENT_EDIT_'.$r['path']);
+        if($r['before']===null) { demand(unlink($p),'REMOVE_NEW_FILE'); continue; }
         demand(sha($dir.'/original/'.$r['path'])===$r['before'],'BACKUP_MISMATCH');
         write_atomic($p,(string)file_get_contents($dir.'/original/'.$r['path'])); demand(sha($p)===$r['before'],'ROLLBACK_HASH');
     }
@@ -45,38 +54,49 @@ try {
     $rows=json_decode((string)file_get_contents($dir.'/manifest.json'),true,512,JSON_THROW_ON_ERROR);
     demand(is_array($rows)&&count($rows)>0&&count($rows)<=100,'MANIFEST_COUNT'); $seen=[];
     foreach($rows as $r) {
-        $p=$r['path']; demand((bool)preg_match('~^(?:articles/|materialy/|products/|demo/)?[a-zA-Z0-9_-]+\.(?:html|js|css)$~D',$p),'UNSAFE_PATH');
+        $p=$r['path']; demand($p==='downloads/checklist-zakrytiya-rabot.pdf'||(bool)preg_match('~^(?:articles/|materialy/|products/|demo/)?[a-zA-Z0-9_-]+\.(?:html|js|css)$~D',$p),'UNSAFE_PATH');
         demand(!isset($seen[$p]),'DUPLICATE_PATH'); $seen[$p]=true;
-        demand(strpos((string)realpath(dirname($root.'/'.$p)).'/',$root.'/')===0,'PATH_ESCAPE');
-        foreach(['before','after'] as $k) demand((bool)preg_match('/^[a-f0-9]{64}$/D',$r[$k]),'HASH_FORMAT');
+        $parent=dirname($root.'/'.$p);
+        demand(!is_link($parent),'PARENT_SYMLINK');
+        if($p==='downloads/checklist-zakrytiya-rabot.pdf'&&!file_exists($parent)) demand($parent===$root.'/downloads','MISSING_PARENT');
+        else demand(is_dir($parent)&&strpos((string)realpath($parent).'/',$root.'/')===0,'PATH_ESCAPE');
+        foreach(['before','after'] as $k) {
+            if($k==='before'&&$r[$k]===null){demand($p==='downloads/checklist-zakrytiya-rabot.pdf','UNSAFE_CREATION');continue;}
+            demand(is_string($r[$k])&&(bool)preg_match('/^[a-f0-9]{64}$/D',$r[$k]),'HASH_FORMAT');
+        }
     }
     $state=protected_state($root);
     if($mode==='verify'||$mode==='rollback') {
         $baseline=json_decode((string)file_get_contents($dir.'/protected.json'),true,512,JSON_THROW_ON_ERROR);
         demand($state===$baseline,'PROTECTED_STATE_CHANGED');
-        if($mode==='rollback') restore($root,$dir,$rows,array_keys($seen));
+        if($mode==='rollback') { restore($root,$dir,$rows,array_keys($seen)); remove_created_dirs($root,$dir); }
         else foreach($rows as $r) demand(sha($root.'/'.$r['path'])===$r['after'],'LIVE_HASH_'.$r['path']);
         echo json_encode(['status'=>'PASS','mode'=>$mode,'protected_php'=>'UNCHANGED','masters'=>'UNCHANGED','masters_count'=>$state['masters_count'],'sku'=>13,'ttl'=>3600],JSON_THROW_ON_ERROR)."\n"; exit;
     }
     foreach($rows as $r) {
-        demand(sha($root.'/'.$r['path'])===$r['before'],'LIVE_CONCURRENT_EDIT_'.$r['path']);
+        demand(current_sha($root.'/'.$r['path'])===$r['before'],'LIVE_CONCURRENT_EDIT_'.$r['path']);
         demand(sha($dir.'/candidate/'.$r['path'])===$r['after'],'CANDIDATE_HASH');
     }
     if($mode==='dry-run') { echo json_encode(['status'=>'PASS','mode'=>$mode,'files'=>count($rows),'sku'=>13,'masters_count'=>$state['masters_count'],'runtime_paths_read'=>true,'writes_to_public'=>0],JSON_THROW_ON_ERROR)."\n"; exit; }
     demand(!file_exists($dir.'/original')&&!file_exists($dir.'/protected.json'),'TRANSACTION_ALREADY_USED');
     mkdir($dir.'/original',0700);
     foreach($rows as $r) {
+        if($r['before']===null) continue;
         $p=$dir.'/original/'.$r['path']; if(!is_dir(dirname($p))) mkdir(dirname($p),0700,true);
         demand(copy($root.'/'.$r['path'],$p),'BACKUP_COPY'); chmod($p,0600); demand(sha($p)===$r['before'],'BACKUP_HASH');
     }
     file_put_contents($dir.'/protected.json',json_encode($state,JSON_THROW_ON_ERROR)); chmod($dir.'/protected.json',0600);
+    $createdDirs=[];
+    if(isset($seen['downloads/checklist-zakrytiya-rabot.pdf'])&&!is_dir($root.'/downloads')) { demand(!file_exists($root.'/downloads')&&!is_link($root.'/downloads'),'DOWNLOADS_CONCURRENT_EDIT'); demand(mkdir($root.'/downloads',0755),'CREATE_DOWNLOADS'); $createdDirs[]='downloads'; }
+    file_put_contents($dir.'/created-dirs.json',json_encode($createdDirs,JSON_THROW_ON_ERROR)); chmod($dir.'/created-dirs.json',0600);
     foreach($rows as $r) {
-        $p=$root.'/'.$r['path']; demand(sha($p)===$r['before'],'LIVE_CONCURRENT_EDIT_'.$r['path']);
+        $p=$root.'/'.$r['path']; demand(current_sha($p)===$r['before'],'LIVE_CONCURRENT_EDIT_'.$r['path']);
         write_atomic($p,(string)file_get_contents($dir.'/candidate/'.$r['path'])); $changed[]=$r['path']; demand(sha($p)===$r['after'],'WRITE_HASH');
     }
     demand(protected_state($root)===$state,'PROTECTED_STATE_CHANGED');
     echo json_encode(['status'=>'PASS','mode'=>'apply','files'=>count($changed),'protected_php'=>'UNCHANGED','masters'=>'UNCHANGED'],JSON_THROW_ON_ERROR)."\n";
 } catch(Throwable $e) {
     if($changed) { try { restore($root,$dir,$rows,$changed); echo "AUTO_ROLLBACK=PASS\n"; } catch(Throwable $r) { fwrite(STDERR,'ROLLBACK_FAILED='.$r->getMessage()."\n"); } }
+    if($dir&&$root) { try { remove_created_dirs($root,$dir); } catch(Throwable $cleanup) { fwrite(STDERR,'DIRECTORY_CLEANUP_FAILED='.$cleanup->getMessage()."\n"); } }
     fwrite(STDERR,'NSP_TRANSACTION_FAILED='.$e->getMessage()."\n"); exit(1);
 }

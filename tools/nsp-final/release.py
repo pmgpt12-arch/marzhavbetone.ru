@@ -17,7 +17,11 @@ def main(action):
     call(['php','-l','tools/nsp-final/transaction.php'])
     call(['python3','tools/nsp-final/test_transaction.py'])
     call(['node','--check','app.js'])
-    (EVIDENCE/'email-checkout.json').write_bytes(call(['python3','tools/nsp-ui-audit-20261021/test_email_checkout.py']))
+    selected=json.loads((ROOT/'tools/nsp-final/manifest.json').read_text())
+    if any(r['path']=='app.js' for r in selected):
+        (EVIDENCE/'email-checkout.json').write_bytes(call(['python3','tools/nsp-ui-audit-20261021/test_email_checkout.py']))
+    if any(r['path']=='downloads/checklist-zakrytiya-rabot.pdf' for r in selected):
+        (EVIDENCE/'pdf-validation.json').write_bytes(call(['python3','tools/nsp-free-checklist-20261021/verify.py']))
     call(['sh','-n','tools/nsp_backup_config.sh'])
     run=os.environ['GITHUB_RUN_ID']; attempt=os.environ['GITHUB_RUN_ATTEMPT']; assert run.isdigit() and attempt.isdigit()
     port=os.environ['PORT']; host=os.environ['HOST']; user=os.environ['SSH_USER']; assert port.isdigit()
@@ -62,6 +66,7 @@ def main(action):
             with urllib.request.urlopen(req,timeout=15) as response:
                 assert response.status==200 and urllib.parse.urlsplit(response.url).hostname=='nastoronepodryadchika.ru','HTTP_OR_REDIRECT'
                 data=response.read(2000001); assert len(data)<=2000000
+                if path.endswith('.pdf'): assert response.headers.get_content_type()=='application/pdf' and data.startswith(b'%PDF-'),'PDF_CONTENT_TYPE'
             expected=(ROOT/path).read_bytes(); assert data==expected,'HTTPS_BYTES_'+path
             return {'path':path,'status':200,'sha256':hashlib.sha256(data).hexdigest()}
         with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool: rows=list(pool.map(inspect,paths))
