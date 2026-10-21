@@ -28,6 +28,13 @@
   зачем: формы используют новую почту; согласие и 11 бесплатных выдач сохранены; реальных писем нет
   требует: []
   решение: ''
+- id: test_nsp_delivery_brand
+  команда: python3 tools/test_nsp_delivery_brand.py
+  класс: public
+  блокирует: true
+  зачем: тема и все ветки письма покупателю используют новый бренд; реальных писем и заказов нет
+  требует: []
+  решение: ''
 - id: test_p1_immutable_edition
   команда: php tools/test_p1_immutable_edition.php
   класс: public

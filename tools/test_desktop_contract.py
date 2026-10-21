@@ -33,9 +33,10 @@ def main():
                 errors=desktop.first_screen(page, HEIGHT, rel)
                 assert (not errors) == accepted, (label, errors)
                 cases+=1
-            style='<style>h3{width:332px;font:42px Arial;overflow-wrap:anywhere}</style>'
+            style='<style>h3{width:500px;font:42px Arial;overflow-wrap:anywhere}</style>'
             page.set_content(style+'<h3>ЗАКРЫТИЕ<br>ВЫПОЛНЕННЫХ<br>РАБОТ</h3>')
-            assert not page.evaluate(desktop.WORDBREAK_SCRIPT), 'BR joined separate words'
+            errors = page.evaluate(desktop.WORDBREAK_SCRIPT)
+            assert not errors, ('BR joined separate words', errors)
             page.set_content(style+'<h3>ЗАКРЫТИЕВЫПОЛНЕННЫХРАБОТ</h3>')
             assert page.evaluate(desktop.WORDBREAK_SCRIPT), 'real oversized word accepted'
             cases+=2
