@@ -1,0 +1,142 @@
+name: NSP remove MAX links only
+on:
+  push:
+    branches: [migration/nsp-domain-20261020]
+    paths: [.github/workflows/nsp-remove-max.yml]
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  nsp-remove-max:
+    if: github.ref_name == 'migration/nsp-domain-20261020'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+      RELEASE_DIR: nsp-migration-private/remove-max-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove MAX from source, validate, and commit only two HTML files
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/nsp-max-evidence
+          python3 tools/nsp_remove_max.py . --manifest /tmp/nsp-max-evidence/source.json
+          php -l tools/nsp_max_transaction.php
+          if git grep -n -I -E '(https?:)?//(www\.)?max\.ru([/?#"\x27]|$)' -- '*.html'; then
+            echo 'UNEXPECTED_MAX_HTML_REFERENCE'; exit 1
+          fi
+          git diff --check
+          git diff --exit-code -- . ':!index.html' ':!katalog.html'
+          git add -- index.html katalog.html
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email 'github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Remove MAX icons and links from NSP homepage and catalog [skip deploy]'
+            git push origin HEAD:migration/nsp-domain-20261020
+          fi
+          git rev-parse HEAD > /tmp/nsp-max-evidence/source-commit.txt
+          echo 'MAX_SOURCE=PASS'
+      - name: Prepare candidates from the current live HTML, not from older source
+        run: |
+          set -euo pipefail
+          test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
+          [[ "$PORT" =~ ^[0-9]+$ ]]
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_max_key
+          chmod 600 ~/.ssh/nsp_max_key
+          ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          SSH=(ssh -p "$PORT" -i ~/.ssh/nsp_max_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 -o ServerAliveInterval=10 -o ServerAliveCountMax=3)
+          SCP=(scp -P "$PORT" -i ~/.ssh/nsp_max_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 -o ServerAliveInterval=10 -o ServerAliveCountMax=3)
+          mkdir -p /tmp/nsp-max-candidates
+          for file in index.html katalog.html; do
+            timeout 45s "${SCP[@]}" "$SSH_USER@$HOST:www/nastoronepodryadchika.ru/$file" "/tmp/nsp-max-candidates/$file"
+          done
+          python3 tools/nsp_remove_max.py /tmp/nsp-max-candidates --manifest /tmp/nsp-max-evidence/live.json
+          timeout 45s "${SSH[@]}" "$SSH_USER@$HOST" "umask 077; test -d nsp-migration-private && mkdir '$RELEASE_DIR' && mkdir '$RELEASE_DIR/candidate'"
+          timeout 45s "${SCP[@]}" /tmp/nsp-max-candidates/index.html /tmp/nsp-max-candidates/katalog.html "$SSH_USER@$HOST:$RELEASE_DIR/candidate/"
+          timeout 45s "${SCP[@]}" /tmp/nsp-max-evidence/live.json "$SSH_USER@$HOST:$RELEASE_DIR/manifest.json"
+          timeout 45s "${SCP[@]}" tools/nsp_max_transaction.php "$SSH_USER@$HOST:$RELEASE_DIR/transaction.php"
+      - name: Publish two HTML files, verify live pages and untouched payment files
+        run: |
+          set -euo pipefail
+          SSH=(ssh -p "$PORT" -i ~/.ssh/nsp_max_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 -o ServerAliveInterval=10 -o ServerAliveCountMax=3)
+          applied=0
+          rollback_on_error() {
+            code=$?
+            trap - ERR
+            if [ "$applied" = 1 ]; then
+              timeout 60s "${SSH[@]}" "$SSH_USER@$HOST" "php '$RELEASE_DIR/transaction.php' rollback \"\$HOME/www/nastoronepodryadchika.ru\" \"\$HOME/$RELEASE_DIR\"" || echo 'MAX_ROLLBACK_REQUIRES_INSPECTION'
+            fi
+            exit "$code"
+          }
+          trap rollback_on_error ERR
+          timeout 60s "${SSH[@]}" "$SSH_USER@$HOST" "sh -s -- '$RELEASE_DIR'" <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          for file in config.php payment.php webhook.php products-config.php; do php -l "$site/$file" >/dev/null; done
+          php "$HOME/$1/transaction.php" apply "$site" "$HOME/$1"
+          REMOTE
+          applied=1
+          python3 - <<'PY'
+          import concurrent.futures, hashlib, json, pathlib, re, urllib.parse, urllib.request, xml.etree.ElementTree as ET
+          root='https://nastoronepodryadchika.ru'
+          def get(url):
+              request=urllib.request.Request(url,headers={'User-Agent':'NSP-MAX-Removal-QA/1.0','Accept-Encoding':'identity','Cache-Control':'no-cache'})
+              with urllib.request.urlopen(request,timeout=12) as response:
+                  if urllib.parse.urlsplit(response.url).hostname!='nastoronepodryadchika.ru': raise ValueError('FOREIGN_REDIRECT')
+                  body=response.read(2000001)
+                  if len(body)>2000000: raise ValueError('PAGE_TOO_LARGE')
+                  return body
+          sitemap=ET.fromstring(get(root+'/sitemap.xml'))
+          urls={item.text.strip() for item in sitemap.findall('.//{*}loc') if item.text}
+          urls.update([root+'/',root+'/katalog.html',root+'/404.html'])
+          assert 2<=len(urls)<=120, 'UNEXPECTED_SITEMAP_SIZE'
+          for url in urls:
+              parsed=urllib.parse.urlsplit(url)
+              assert parsed.scheme=='https' and parsed.hostname=='nastoronepodryadchika.ru', 'FOREIGN_SITEMAP_URL'
+          needle=re.compile(rb'(?:https?:)?//(?:www\.)?max\.ru(?:[/?#\x22\x27]|$)',re.I)
+          def inspect(url):
+              try:
+                  body=get(url)
+                  if needle.search(body): return {'url':url,'error':'MAX_REFERENCE_REMAINS'}
+                  if re.search(rb'(?:aria-label|title)\s*=\s*[\x22\x27]MAX[\x22\x27]',body,re.I): return {'url':url,'error':'MAX_ICON_REMAINS'}
+                  return {'url':url,'status':'PASS'}
+              except Exception as error:
+                  return {'url':url,'error':str(error)}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+              results=list(pool.map(inspect,sorted(urls)))
+          errors=[item for item in results if 'error' in item]
+          for name,path in [('index.html','/'),('katalog.html','/katalog.html')]:
+              expected=pathlib.Path('/tmp/nsp-max-candidates',name).read_bytes()
+              assert get(root+path)==expected, 'LIVE_CANDIDATE_BYTES_MISMATCH_'+name
+          report={'pages_checked':len(results),'errors':errors,'max_references':0 if not errors else 'UNVERIFIED','pages':results}
+          pathlib.Path('/tmp/nsp-max-evidence/http.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+          print('MAX_PUBLIC_PAGES_CHECKED='+str(len(results)))
+          print('MAX_PUBLIC_ERRORS='+str(len(errors)))
+          if errors: print(json.dumps(errors,ensure_ascii=False)); raise SystemExit(1)
+          print('MAX_PUBLIC_HTTP=PASS')
+          print('MAX_LIVE_CANDIDATE_BYTES=PASS')
+          PY
+          timeout 60s "${SSH[@]}" "$SSH_USER@$HOST" "sh -s -- '$RELEASE_DIR'" <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          php "$HOME/$1/transaction.php" verify "$site" "$HOME/$1"
+          for file in config.php payment.php webhook.php products-config.php; do php -l "$site/$file" >/dev/null; done
+          echo 'PHP_LINT=PASS'
+          REMOTE
+          applied=0
+          trap - ERR
+          echo 'MAX_REMOVAL=VERIFIED' | tee /tmp/nsp-max-evidence/result.txt
+          echo 'Removed only MAX anchors and sameAs references; non-MAX contacts preserved. Payment configuration and PHP bytes unchanged.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nsp-remove-max-evidence
+          path: /tmp/nsp-max-evidence/
+          retention-days: 30
