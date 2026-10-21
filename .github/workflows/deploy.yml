@@ -122,6 +122,41 @@ env:
   SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
 
 jobs:
+  nsp-control-email-once:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.migration_action == 'nsp-control-email-once' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate one-shot mail and no-repeat behavior offline
+        run: |
+          php -l tools/nsp_control_email.php
+          python3 tools/test_nsp_control_email.py
+      - name: Send exactly one owner-authorized control message
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          SSH_USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          [[ "$PORT" =~ ^[0-9]+$ ]]
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/control_mail_key
+          chmod 600 ~/.ssh/control_mail_key
+          timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          SSH=(ssh -p "$PORT" -i ~/.ssh/control_mail_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 -o ServerAliveInterval=10 -o ServerAliveCountMax=3 "$SSH_USER@$HOST")
+          mode=send
+          if [ "$DRY_RUN" = true ]; then mode=dry-run; fi
+          timeout 45s "${SSH[@]}" "php /dev/stdin $mode \"\$HOME/www/nastoronepodryadchika.ru\" \"\$HOME/nsp-migration-private\"" < tools/nsp_control_email.php | tee /tmp/nsp-control-email-receipt.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nsp-control-email-${{ github.run_id }}
+          path: /tmp/nsp-control-email-receipt.json
+          retention-days: 30
+
   inspect:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'inspect' }}
     runs-on: ubuntu-latest
