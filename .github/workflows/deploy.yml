@@ -1219,6 +1219,49 @@ jobs:
           ' "$root"
           REMOTE
 
+  nsp-public-catalog-consistency:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify 13 public products against 18 backend SKUs
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/catalog_key
+          chmod 600 ~/.ssh/catalog_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/catalog_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          php -r '
+            require $argv[1]."/config.php";
+            require $argv[1]."/products-config.php";
+            $html=file_get_contents($argv[1]."/katalog.html");
+            if($html===false)exit(2);
+            preg_match_all("/data-product=\"([^\"]+)\"\s+data-sku=\"([^\"]+)\"\s+data-price=\"([0-9]+)\"/", $html,$matches,PREG_SET_ORDER);
+            $catalog=mvb_products();$seen=[];$errors=0;
+            foreach($matches as $m) {
+              $name=html_entity_decode($m[1],ENT_QUOTES|ENT_HTML5,"UTF-8");
+              $sku=$m[2];$price=(int)$m[3];
+              $product=$catalog[$sku]??null;
+              $ok=$product && !isset($seen[$sku]) && $name===$product["name"] && $price===(int)$product["price"];
+              $seen[$sku]=true;
+              if(!$ok)$errors++;
+              echo "PUBLIC_SKU_".$sku."=".($ok?"PASS":"FAIL")."\n";
+            }
+            echo "PUBLIC_SKU_COUNT=".count($matches)."\n";
+            echo "BACKEND_SKU_COUNT=".count($catalog)."\n";
+            echo "HIDDEN_SKU_COUNT=".(count($catalog)-count($seen))."\n";
+            echo "CATALOG_MISMATCHES=".$errors."\n";
+            if(count($matches)!==13 || count($catalog)!==19 || $errors)exit(3);
+            echo "CATALOG_PRICE_NAME_CONSISTENCY=PASS\n";
+          ' "$root"
+          REMOTE
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
