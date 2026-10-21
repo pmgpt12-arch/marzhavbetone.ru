@@ -237,6 +237,18 @@ jobs:
             args=(-az --delete --itemize-changes)
             [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
             for e in "${EXCLUDES[@]}"; do args+=(--exclude "$e"); done
+            if [ "$DRY_RUN" != "true" ]; then
+              preview="$(mktemp)"
+              rsync "${args[@]}" --dry-run \
+                -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT" \
+                ./ "$USER@$HOST:$SITE_PATH/" > "$preview"
+              if grep '^\*deleting' "$preview" | grep -Ev '^\*deleting[[:space:]]+rebrand-preview-20261016(-v[2-5])?(/|$)' ; then
+                echo "::error::Unapproved file deletions in NSP deploy. Stop before production writes."
+                rm -f "$preview"
+                exit 1
+              fi
+              rm -f "$preview"
+            fi
             rsync "${args[@]}" \
               -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT" \
               ./ "$USER@$HOST:$SITE_PATH/"
@@ -265,13 +277,13 @@ jobs:
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           if [ "$TOOL" = "rsync" ]; then
-            args=(-az --delete)
+            args=(-az)
             [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
             rsync "${args[@]}" \
               -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT" \
               products-storage/ "$USER@$HOST:$PRODUCTS_PATH/"
           else
-            mirror_args="--reverse --delete --parallel=4"
+            mirror_args="--reverse --parallel=4"
             [ "$DRY_RUN" = "true" ] && mirror_args="$mirror_args --dry-run"
             lftp -c "
               set sftp:connect-program 'ssh -a -x -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p $SSH_PORT';
