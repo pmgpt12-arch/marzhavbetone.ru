@@ -506,6 +506,50 @@ jobs:
           done
           echo 'ONE_RUBLE_CHECKOUT_PREFLIGHT=PASS'
 
+  nsp-buyer-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify recent paid test order without exposing buyer details
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/buyer_key
+          chmod 600 ~/.ssh/buyer_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/buyer_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          php -r '
+            require $argv[1]."/config.php";
+            $files=glob(ORDERS_DIR."/order_*.json")?:[];
+            $matches=[];
+            foreach ($files as $f) {
+              $o=json_decode(file_get_contents($f),true);
+              if (!is_array($o)) continue;
+              $hasTest=false;
+              foreach(($o["items"]??[]) as $item) if(($item["sku"]??"")==="test1") $hasTest=true;
+              if($hasTest) $matches[]=$o;
+            }
+            usort($matches,fn($a,$b)=>strcmp($b["created_at"]??"",$a["created_at"]??""));
+            echo "TEST_ORDER_COUNT=".count($matches)."\n";
+            if(!$matches) exit(2);
+            $o=$matches[0];
+            echo "LATEST_TEST_STATUS=".($o["status"]??"MISSING")."\n";
+            echo "LATEST_TEST_TOTAL_100=".(($o["total"]??0)===100?"YES":"NO")."\n";
+            echo "LATEST_TEST_PAYMENT_ID_PRESENT=".(!empty($o["payment_id"])?"YES":"NO")."\n";
+            echo "LATEST_TEST_PAID_AT_PRESENT=".(!empty($o["paid_at"])?"YES":"NO")."\n";
+            echo "LATEST_TEST_DELIVERY_ITEMS_PRESENT=".(!empty($o["delivery"]["items"])?"YES":"NO")."\n";
+            echo "LATEST_TEST_EMAIL_SENT=".(!empty($o["delivery"]["email_sent_at"])?"YES":"NO")."\n";
+            if (($o["status"]??"")!=="paid" || ($o["total"]??0)!==100 || empty($o["payment_id"]) || empty($o["delivery"]["email_sent_at"])) exit(3);
+            echo "BUYER_ORDER_SERVER_ACCEPTANCE=PASS\n";
+          ' "$site"
+          REMOTE
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
