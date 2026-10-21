@@ -1135,7 +1135,7 @@ jobs:
             if($html===false)exit(2);
             $tag="<meta name=\"yandex-verification\" content=\"a71ee165aa19d589\" />";
             if(substr_count($html,$tag)===1){echo "YANDEX_META_ALREADY_PRESENT\n";exit(0);}
-            if(stripos($html,"yandex-verification")!==false)exit(3);
+            if(substr_count($html,"name=\"yandex-verification\"")>1)exit(3);
             if(substr_count(strtolower($html),"<head>")!==1)exit(4);
             if(strpos($html,"https://nastoronepodryadchika.ru/")===false)exit(5);
             if(file_exists($backup)) {
