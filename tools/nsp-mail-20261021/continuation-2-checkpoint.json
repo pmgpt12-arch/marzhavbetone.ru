@@ -1,0 +1,72 @@
+{
+  "main_before": "fb586a9604f833eeb508fb3180da37d586bee230",
+  "candidate": "29f185111b766c455cac07e1edae9101beefea4f",
+  "candidate_branch": "fix/nsp-render-contract-20261021",
+  "render_previous": {
+    "run": 39631577906,
+    "findings": 72,
+    "status": "FAIL_OLD_CONTRACTS_PLUS_WORD_WRAP"
+  },
+  "render_second": {
+    "run": 39634325211,
+    "findings": 1,
+    "status": "FAIL_REAL_CHECKLIST_WORD_WRAP"
+  },
+  "public_ci_sender_draft": {
+    "run": 39634690753,
+    "status": "PASS",
+    "form_sender_cases": 16,
+    "buyer_email_cases": 14,
+    "real_messages": 0
+  },
+  "current_changes": "desktop checklist heading 42→38px from 1100px; browser/cart contracts current; independent browser jobs continue after a failure",
+  "static_release": "VERIFIED_DONE_HTTPS_AND_6_VIEWPORTS",
+  "mail_subject_signature_source": "matches deployed SHA 10739a7aff2a98e676c1e15b3499c64ad82703d0d6a3c6650b3dab751ce70551",
+  "from": "unchanged; draft exact four-file patch; actual control email not authorized or sent",
+  "pdf": "pilot prepared; PDF-D awaits owner approval",
+  "current_full_ci": {
+    "run": 39635827595,
+    "status": "PASS"
+  },
+  "current_render": {
+    "status": "VERIFIED_ALL_CURRENT_CHECKS_PASS",
+    "full_run": 39635821671,
+    "full_run_conclusion": "FAIL_ON_OBSOLETE_ATTRIBUTION_SELECTOR_ONLY",
+    "passed_in_full_run": [
+      "21 guard fixtures including mobile pixel equality",
+      "mobile 390",
+      "desktop 26 pages at 1366/1440/1600/1920",
+      "cart 18 pages"
+    ],
+    "attribution_retry": {
+      "run": 39636570539,
+      "job": 119348592635,
+      "scope": "attribution",
+      "status": "PASS",
+      "also_passed": "same 21 guard fixtures"
+    },
+    "reuse_source_delta": [
+      ".github/workflows/render-checks.yml",
+      "tools/nsp-final/request.json",
+      "tools/test_attribution_chain.py"
+    ]
+  },
+  "current_static_dry_run": {
+    "run": 39635861784,
+    "status": "PASS",
+    "public_writes": 0
+  },
+  "publication_commit": "038ed254d6478f7896ab0f85d16f3dc44e65ad15",
+  "publication": {
+    "run": 39636075626,
+    "job": 119346787369,
+    "artifact_id": 12360269594,
+    "artifact_sha256": "109e73998f365aa59428df10150d4f4c67edb92a7d2f36dd1f5af789f01f7a8a",
+    "files": 1,
+    "protected_php": "UNCHANGED",
+    "masters_count": 442,
+    "sku": 13,
+    "ttl": 3600
+  },
+  "main_sync": "FAST_FORWARD_SOURCE_MATCHES_VERIFIED_PRODUCTION"
+}

@@ -1,0 +1,1057 @@
+﻿2026-10-21T16:33:28.4330436Z Current runner version: '2.338.0'
+2026-10-21T16:33:28.4352122Z ##[group]Runner Image Provisioner
+2026-10-21T16:33:28.4352822Z Hosted Compute Agent
+2026-10-21T16:33:28.4353382Z Version: 20261012.601
+2026-10-21T16:33:28.4353926Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-21T16:33:28.4354503Z Build Date: 2026-10-12T17:48:21Z
+2026-10-21T16:33:28.4355148Z Worker ID: {93ab542c-f90a-4380-aa61-039c88fd711c}
+2026-10-21T16:33:28.4355725Z Region: westus2
+2026-10-21T16:33:28.4356242Z Cloud: Azure
+2026-10-21T16:33:28.4356690Z ##[endgroup]
+2026-10-21T16:33:28.4357750Z ##[group]Operating System
+2026-10-21T16:33:28.4358326Z Ubuntu
+2026-10-21T16:33:28.4358752Z 24.04.5
+2026-10-21T16:33:28.4359196Z LTS
+2026-10-21T16:33:28.4359807Z ##[endgroup]
+2026-10-21T16:33:28.4360264Z ##[group]Runner Image
+2026-10-21T16:33:28.4360824Z Image: ubuntu-24.04
+2026-10-21T16:33:28.4361289Z Version: 20261012.334.1
+2026-10-21T16:33:28.4362372Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-21T16:33:28.4363556Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-21T16:33:28.4364405Z ##[endgroup]
+2026-10-21T16:33:28.4365336Z ##[group]GITHUB_TOKEN Permissions
+2026-10-21T16:33:28.4366980Z Contents: read
+2026-10-21T16:33:28.4367463Z Metadata: read
+2026-10-21T16:33:28.4367972Z Packages: read
+2026-10-21T16:33:28.4368437Z ##[endgroup]
+2026-10-21T16:33:28.4370483Z Secret source: Actions
+2026-10-21T16:33:28.4371360Z Cache mode: write
+2026-10-21T16:33:28.4371928Z Prepare workflow directory
+2026-10-21T16:33:28.4638392Z Prepare all required actions
+2026-10-21T16:33:28.4679218Z Getting action download info
+2026-10-21T16:33:28.8332227Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-21T16:33:28.9365017Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-21T16:33:29.1224755Z Complete job name: render
+2026-10-21T16:33:29.1853339Z ##[group]Run actions/checkout@v4
+2026-10-21T16:33:29.1853996Z with:
+2026-10-21T16:33:29.1854344Z   fetch-depth: 0
+2026-10-21T16:33:29.1854735Z   repository: pmgpt12-arch/marzhavbetone.ru
+2026-10-21T16:33:29.1857678Z   token: ***
+2026-10-21T16:33:29.1858031Z   ssh-strict: true
+2026-10-21T16:33:29.1858383Z   ssh-user: git
+2026-10-21T16:33:29.1858732Z   persist-credentials: true
+2026-10-21T16:33:29.1859128Z   clean: true
+2026-10-21T16:33:29.1859484Z   sparse-checkout-cone-mode: true
+2026-10-21T16:33:29.1860295Z   fetch-tags: false
+2026-10-21T16:33:29.1860782Z   show-progress: true
+2026-10-21T16:33:29.1861135Z   lfs: false
+2026-10-21T16:33:29.1861466Z   submodules: false
+2026-10-21T16:33:29.1861829Z   set-safe-directory: true
+2026-10-21T16:33:29.1862228Z   allow-unsafe-pr-checkout: false
+2026-10-21T16:33:29.1862910Z ##[endgroup]
+2026-10-21T16:33:29.2648992Z Syncing repository: pmgpt12-arch/marzhavbetone.ru
+2026-10-21T16:33:29.2651088Z ##[group]Getting Git version info
+2026-10-21T16:33:29.2651806Z Working directory is '/home/runner/work/marzhavbetone.ru/marzhavbetone.ru'
+2026-10-21T16:33:29.2652711Z [command]/usr/bin/git version
+2026-10-21T16:33:29.2739284Z git version 2.55.0
+2026-10-21T16:33:29.2743828Z ##[endgroup]
+2026-10-21T16:33:29.2750186Z Temporarily overriding HOME='/home/runner/work/_temp/61c46960-8c03-42f1-b11b-8e0972376e6c' before making global git config changes
+2026-10-21T16:33:29.2751891Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-21T16:33:29.2754981Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/marzhavbetone.ru/marzhavbetone.ru
+2026-10-21T16:33:29.2802202Z Deleting the contents of '/home/runner/work/marzhavbetone.ru/marzhavbetone.ru'
+2026-10-21T16:33:29.2806164Z ##[group]Initializing the repository
+2026-10-21T16:33:29.2809519Z [command]/usr/bin/git init /home/runner/work/marzhavbetone.ru/marzhavbetone.ru
+2026-10-21T16:33:29.2906131Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-21T16:33:29.2907646Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-21T16:33:29.2910704Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-21T16:33:29.2911664Z hint: call:
+2026-10-21T16:33:29.2912194Z hint:
+2026-10-21T16:33:29.2912810Z hint: 	git config --global init.defaultBranch <name>
+2026-10-21T16:33:29.2913564Z hint:
+2026-10-21T16:33:29.2914265Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-21T16:33:29.2915470Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-21T16:33:29.2916431Z hint:
+2026-10-21T16:33:29.2917339Z hint: 	git branch -m <name>
+2026-10-21T16:33:29.2919797Z hint:
+2026-10-21T16:33:29.2920966Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-21T16:33:29.2922363Z Initialized empty Git repository in /home/runner/work/marzhavbetone.ru/marzhavbetone.ru/.git/
+2026-10-21T16:33:29.2925197Z [command]/usr/bin/git remote add origin https://github.com/pmgpt12-arch/marzhavbetone.ru
+2026-10-21T16:33:29.2967558Z ##[endgroup]
+2026-10-21T16:33:29.2968579Z ##[group]Disabling automatic garbage collection
+2026-10-21T16:33:29.2970973Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-21T16:33:29.2998427Z ##[endgroup]
+2026-10-21T16:33:29.2999326Z ##[group]Setting up auth
+2026-10-21T16:33:29.3004299Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-21T16:33:29.3032931Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-21T16:33:29.3367361Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-21T16:33:29.3397607Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-21T16:33:29.3587649Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-21T16:33:29.3617730Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-21T16:33:29.3804502Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-21T16:33:29.3840011Z ##[endgroup]
+2026-10-21T16:33:29.3840634Z ##[group]Fetching the repository
+2026-10-21T16:33:29.3849165Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-10-21T16:33:38.5693936Z From https://github.com/pmgpt12-arch/marzhavbetone.ru
+2026-10-21T16:33:38.5694985Z  * [new branch]        audit/nsp-hosting-readonly-20261020 -> origin/audit/nsp-hosting-readonly-20261020
+2026-10-21T16:33:38.5696065Z  * [new branch]        audit/nsp-products-placement-20261021 -> origin/audit/nsp-products-placement-20261021
+2026-10-21T16:33:38.5697223Z  * [new branch]        candidate/mb001-p10-owner-review-20261018 -> origin/candidate/mb001-p10-owner-review-20261018
+2026-10-21T16:33:38.5698307Z  * [new branch]        candidate/mb001-p13-owner-review-20261018 -> origin/candidate/mb001-p13-owner-review-20261018
+2026-10-21T16:33:38.5699369Z  * [new branch]        candidate/mb001-p5-owner-review-20261016 -> origin/candidate/mb001-p5-owner-review-20261016
+2026-10-21T16:33:38.5700991Z  * [new branch]        candidate/mb001-remaining-batch-r3-20261018 -> origin/candidate/mb001-remaining-batch-r3-20261018
+2026-10-21T16:33:38.5702469Z  * [new branch]        candidate/mb001-remaining-batch-review-20261018 -> origin/candidate/mb001-remaining-batch-review-20261018
+2026-10-21T16:33:38.5703663Z  * [new branch]        candidate/mb001-remaining-batch-review-r2-20261018 -> origin/candidate/mb001-remaining-batch-review-r2-20261018
+2026-10-21T16:33:38.5704760Z  * [new branch]        candidate/mb001-t2-owner-review-20261017 -> origin/candidate/mb001-t2-owner-review-20261017
+2026-10-21T16:33:38.5706003Z  * [new branch]        candidate/mb001-t3-owner-review-20261017 -> origin/candidate/mb001-t3-owner-review-20261017
+2026-10-21T16:33:38.5706940Z  * [new branch]        claude/add-claim-block-to-delivery -> origin/claude/add-claim-block-to-delivery
+2026-10-21T16:33:38.5707869Z  * [new branch]        claude/ai-business-os-audit-rpexeu -> origin/claude/ai-business-os-audit-rpexeu
+2026-10-21T16:33:38.5708775Z  * [new branch]        claude/akt-peredachi-ploshchadki -> origin/claude/akt-peredachi-ploshchadki
+2026-10-21T16:33:38.5709918Z  * [new branch]        claude/aosr-regulatory-wording-xq87uq -> origin/claude/aosr-regulatory-wording-xq87uq
+2026-10-21T16:33:38.5711030Z  * [new branch]        claude/article-cover-duplicates-x8oiie -> origin/claude/article-cover-duplicates-x8oiie
+2026-10-21T16:33:38.5711990Z  * [new branch]        claude/article-garantiya-na-avans -> origin/claude/article-garantiya-na-avans
+2026-10-21T16:33:38.5712685Z  * [new branch]        claude/article-neotrabotannyy-avans -> origin/claude/article-neotrabotannyy-avans
+2026-10-21T16:33:38.5713263Z  * [new branch]        claude/article-reestr-trebovaniy -> origin/claude/article-reestr-trebovaniy
+2026-10-21T16:33:38.5713836Z  * [new branch]        claude/article-srok-vklyucheniya -> origin/claude/article-srok-vklyucheniya
+2026-10-21T16:33:38.5714408Z  * [new branch]        claude/article-vklyuchenie-v-reestr -> origin/claude/article-vklyuchenie-v-reestr
+2026-10-21T16:33:38.5714965Z  * [new branch]        claude/article-vozvrat-avansa -> origin/claude/article-vozvrat-avansa
+2026-10-21T16:33:38.5715556Z  * [new branch]        claude/article-zapros-upravlyayushchemu -> origin/claude/article-zapros-upravlyayushchemu
+2026-10-21T16:33:38.5716162Z  * [new branch]        claude/article-zayavlenie-v-reestr -> origin/claude/article-zayavlenie-v-reestr
+2026-10-21T16:33:38.5716940Z  * [new branch]        claude/articles-dogovor-subpodryada -> origin/claude/articles-dogovor-subpodryada
+2026-10-21T16:33:38.5717636Z  * [new branch]        claude/articles-ispolnitelnaya-dokumentaciya -> origin/claude/articles-ispolnitelnaya-dokumentaciya
+2026-10-21T16:33:38.5718209Z  * [new branch]        claude/articles-smety   -> origin/claude/articles-smety
+2026-10-21T16:33:38.5718639Z  * [new branch]        claude/avans-landing    -> origin/claude/avans-landing
+2026-10-21T16:33:38.5719153Z  * [new branch]        claude/avans-neotrabotanny-ostatok -> origin/claude/avans-neotrabotanny-ostatok
+2026-10-21T16:33:38.5720589Z  * [new branch]        claude/bold-galileo-g7cfyh -> origin/claude/bold-galileo-g7cfyh
+2026-10-21T16:33:38.5721426Z  * [new branch]        claude/bundle-copies    -> origin/claude/bundle-copies
+2026-10-21T16:33:38.5722175Z  * [new branch]        claude/business-growth-sprint-1-1946sw -> origin/claude/business-growth-sprint-1-1946sw
+2026-10-21T16:33:38.5722747Z  * [new branch]        claude/carousel-cards   -> origin/claude/carousel-cards
+2026-10-21T16:33:38.5723277Z  * [new branch]        claude/catalog-desktop-hotfix -> origin/claude/catalog-desktop-hotfix
+2026-10-21T16:33:38.5724009Z  * [new branch]        claude/catalog-production-polish -> origin/claude/catalog-production-polish
+2026-10-21T16:33:38.5724835Z  * [new branch]        claude/catalog-widths-label -> origin/claude/catalog-widths-label
+2026-10-21T16:33:38.5725407Z  * [new branch]        claude/check-covers-placeholder -> origin/claude/check-covers-placeholder
+2026-10-21T16:33:38.5725920Z  * [new branch]        claude/check-covers-shared -> origin/claude/check-covers-shared
+2026-10-21T16:33:38.5726573Z  * [new branch]        claude/commercial-journey-pricing-phase-0-z9e207 -> origin/claude/commercial-journey-pricing-phase-0-z9e207
+2026-10-21T16:33:38.5727232Z  * [new branch]        claude/confident-planck-ok644n -> origin/claude/confident-planck-ok644n
+2026-10-21T16:33:38.5727749Z  * [new branch]        claude/content-skill    -> origin/claude/content-skill
+2026-10-21T16:33:38.5728239Z  * [new branch]        claude/cool-bardeen-pbwfsx -> origin/claude/cool-bardeen-pbwfsx
+2026-10-21T16:33:38.5728990Z  * [new branch]        claude/cool-bardeen-pbwfsx-r026 -> origin/claude/cool-bardeen-pbwfsx-r026
+2026-10-21T16:33:38.5729516Z  * [new branch]        claude/cover-prompt-system -> origin/claude/cover-prompt-system
+2026-10-21T16:33:38.5730124Z  * [new branch]        claude/cover-prompts    -> origin/claude/cover-prompts
+2026-10-21T16:33:38.5730762Z  * [new branch]        claude/cover-prompts-six -> origin/claude/cover-prompts-six
+2026-10-21T16:33:38.5731243Z  * [new branch]        claude/covers-five-articles -> origin/claude/covers-five-articles
+2026-10-21T16:33:38.5731896Z  * [new branch]        claude/covers-generated -> origin/claude/covers-generated
+2026-10-21T16:33:38.5732730Z  * [new branch]        claude/covers-generated-2 -> origin/claude/covers-generated-2
+2026-10-21T16:33:38.5733266Z  * [new branch]        claude/covers-vosem-statey -> origin/claude/covers-vosem-statey
+2026-10-21T16:33:38.5733743Z  * [new branch]        claude/daty             -> origin/claude/daty
+2026-10-21T16:33:38.5734177Z  * [new branch]        claude/defects-4-9      -> origin/claude/defects-4-9
+2026-10-21T16:33:38.5734614Z  * [new branch]        claude/deploy-hardening -> origin/claude/deploy-hardening
+2026-10-21T16:33:38.5735114Z  * [new branch]        claude/deploy-key-diagnostics -> origin/claude/deploy-key-diagnostics
+2026-10-21T16:33:38.5735606Z  * [new branch]        claude/dogovor-package  -> origin/claude/dogovor-package
+2026-10-21T16:33:38.5736141Z  * [new branch]        claude/draft-pr-status-check-8ous8q -> origin/claude/draft-pr-status-check-8ous8q
+2026-10-21T16:33:38.5736646Z  * [new branch]        claude/dzen-7-days      -> origin/claude/dzen-7-days
+2026-10-21T16:33:38.5737062Z  * [new branch]        claude/dzen-batch       -> origin/claude/dzen-batch
+2026-10-21T16:33:38.5737595Z  * [new branch]        claude/dzen-copy-paste-and-cross-links -> origin/claude/dzen-copy-paste-and-cross-links
+2026-10-21T16:33:38.5738289Z  * [new branch]        claude/dzen-dedup       -> origin/claude/dzen-dedup
+2026-10-21T16:33:38.5738803Z  * [new branch]        claude/dzen-garantiya   -> origin/claude/dzen-garantiya
+2026-10-21T16:33:38.5739297Z  * [new branch]        claude/dzen-headlines   -> origin/claude/dzen-headlines
+2026-10-21T16:33:38.5740161Z  * [new branch]        claude/dzen-manual-posts -> origin/claude/dzen-manual-posts
+2026-10-21T16:33:38.5740648Z  * [new branch]        claude/dzen-neotrabotannyy -> origin/claude/dzen-neotrabotannyy
+2026-10-21T16:33:38.5741122Z  * [new branch]        claude/dzen-new-articles -> origin/claude/dzen-new-articles
+2026-10-21T16:33:38.5741545Z  * [new branch]        claude/dzen-otkaz       -> origin/claude/dzen-otkaz
+2026-10-21T16:33:38.5741943Z  * [new branch]        claude/dzen-plan        -> origin/claude/dzen-plan
+2026-10-21T16:33:38.5742422Z  * [new branch]        claude/dzen-povtornaya-podacha -> origin/claude/dzen-povtornaya-podacha
+2026-10-21T16:33:38.5742954Z  * [new branch]        claude/dzen-published-check -> origin/claude/dzen-published-check
+2026-10-21T16:33:38.5743526Z  * [new branch]        claude/dzen-publishing-traffic-1skler -> origin/claude/dzen-publishing-traffic-1skler
+2026-10-21T16:33:38.5744083Z  * [new branch]        claude/dzen-reestr      -> origin/claude/dzen-reestr
+2026-10-21T16:33:38.5744494Z  * [new branch]        claude/dzen-rss         -> origin/claude/dzen-rss
+2026-10-21T16:33:38.5744886Z  * [new branch]        claude/dzen-srok        -> origin/claude/dzen-srok
+2026-10-21T16:33:38.5745372Z  * [new branch]        claude/dzen-telegram-new-articles -> origin/claude/dzen-telegram-new-articles
+2026-10-21T16:33:38.5745873Z  * [new branch]        claude/dzen-token-fix   -> origin/claude/dzen-token-fix
+2026-10-21T16:33:38.5746325Z  * [new branch]        claude/dzen-verification -> origin/claude/dzen-verification
+2026-10-21T16:33:38.5746771Z  * [new branch]        claude/dzen-vklyuchenie -> origin/claude/dzen-vklyuchenie
+2026-10-21T16:33:38.5747203Z  * [new branch]        claude/dzen-vosem       -> origin/claude/dzen-vosem
+2026-10-21T16:33:38.5747737Z  * [new branch]        claude/dzen-vozvrat     -> origin/claude/dzen-vozvrat
+2026-10-21T16:33:38.5748184Z  * [new branch]        claude/dzen-zagotovki   -> origin/claude/dzen-zagotovki
+2026-10-21T16:33:38.5748608Z  * [new branch]        claude/dzen-zapros      -> origin/claude/dzen-zapros
+2026-10-21T16:33:38.5749032Z  * [new branch]        claude/dzen-zayavka     -> origin/claude/dzen-zayavka
+2026-10-21T16:33:38.5749460Z  * [new branch]        claude/dzen-zayavlenie  -> origin/claude/dzen-zayavlenie
+2026-10-21T16:33:38.5750002Z  * [new branch]        claude/entry-step-990   -> origin/claude/entry-step-990
+2026-10-21T16:33:38.5750518Z  * [new branch]        claude/exciting-thompson-rqjc7t -> origin/claude/exciting-thompson-rqjc7t
+2026-10-21T16:33:38.5751134Z  * [new branch]        claude/factual-audit-claude-code-22n8lg -> origin/claude/factual-audit-claude-code-22n8lg
+2026-10-21T16:33:38.5751784Z  * [new branch]        claude/fix-app-script-version-p8-p9 -> origin/claude/fix-app-script-version-p8-p9
+2026-10-21T16:33:38.5752316Z  * [new branch]        claude/fix-defects-avans -> origin/claude/fix-defects-avans
+2026-10-21T16:33:38.5752793Z  * [new branch]        claude/fix-delivery-defects -> origin/claude/fix-delivery-defects
+2026-10-21T16:33:38.5753266Z  * [new branch]        claude/fix-false-claims -> origin/claude/fix-false-claims
+2026-10-21T16:33:38.5753754Z  * [new branch]        claude/fix-funnel-bot-username -> origin/claude/fix-funnel-bot-username
+2026-10-21T16:33:38.5754261Z  * [new branch]        claude/fix-gk-references-p5 -> origin/claude/fix-gk-references-p5
+2026-10-21T16:33:38.5754800Z  * [new branch]        claude/fix-lead-magnet-delivery -> origin/claude/fix-lead-magnet-delivery
+2026-10-21T16:33:38.5755292Z  * [new branch]        claude/fix-legal-links  -> origin/claude/fix-legal-links
+2026-10-21T16:33:38.5755781Z  * [new branch]        claude/fix-paid-delivery-path -> origin/claude/fix-paid-delivery-path
+2026-10-21T16:33:38.5756400Z  * [new branch]        claude/fix-published-state -> origin/claude/fix-published-state
+2026-10-21T16:33:38.5756875Z  * [new branch]        claude/fix-stale-prices -> origin/claude/fix-stale-prices
+2026-10-21T16:33:38.5757342Z  * [new branch]        claude/fix-unclosed-card -> origin/claude/fix-unclosed-card
+2026-10-21T16:33:38.5757795Z  * [new branch]        claude/free-bankrotstvo -> origin/claude/free-bankrotstvo
+2026-10-21T16:33:38.5758288Z  * [new branch]        claude/free-bankrotstvo-wiring -> origin/claude/free-bankrotstvo-wiring
+2026-10-21T16:33:38.5758765Z  * [new branch]        claude/free-dogovor     -> origin/claude/free-dogovor
+2026-10-21T16:33:38.5759211Z  * [new branch]        claude/free-magnets-wiring -> origin/claude/free-magnets-wiring
+2026-10-21T16:33:38.5759765Z  * [new branch]        claude/free-uderzhaniya -> origin/claude/free-uderzhaniya
+2026-10-21T16:33:38.5760200Z  * [new branch]        claude/funnel-audit     -> origin/claude/funnel-audit
+2026-10-21T16:33:38.5760638Z  * [new branch]        claude/funnel-enable    -> origin/claude/funnel-enable
+2026-10-21T16:33:38.5761069Z  * [new branch]        claude/funnel-magnet    -> origin/claude/funnel-magnet
+2026-10-21T16:33:38.5761493Z  * [new branch]        claude/funnel-smoke     -> origin/claude/funnel-smoke
+2026-10-21T16:33:38.5761953Z  * [new branch]        claude/gifted-wright-otl19h -> origin/claude/gifted-wright-otl19h
+2026-10-21T16:33:38.5762502Z  * [new branch]        claude/gifted-wright-otl19h-p7 -> origin/claude/gifted-wright-otl19h-p7
+2026-10-21T16:33:38.5763034Z  * [new branch]        claude/github-issue-276-kkhmly -> origin/claude/github-issue-276-kkhmly
+2026-10-21T16:33:38.5763555Z  * [new branch]        claude/github-issue-277-xgb49d -> origin/claude/github-issue-277-xgb49d
+2026-10-21T16:33:38.5764066Z  * [new branch]        claude/github-issue-282-kjknzi -> origin/claude/github-issue-282-kjknzi
+2026-10-21T16:33:38.5764634Z  * [new branch]        claude/github-issue-284-report-qiq12t -> origin/claude/github-issue-284-report-qiq12t
+2026-10-21T16:33:38.5765305Z  * [new branch]        claude/github-issue-294-xw2coh -> origin/claude/github-issue-294-xw2coh
+2026-10-21T16:33:38.5765824Z  * [new branch]        claude/github-issue-296-u5rw83 -> origin/claude/github-issue-296-u5rw83
+2026-10-21T16:33:38.5766348Z  * [new branch]        claude/gitignore-local-settings -> origin/claude/gitignore-local-settings
+2026-10-21T16:33:38.5766856Z  * [new branch]        claude/guard-include-files -> origin/claude/guard-include-files
+2026-10-21T16:33:38.5767400Z  * [new branch]        claude/hero-diagnostika-conversion -> origin/claude/hero-diagnostika-conversion
+2026-10-21T16:33:38.5767943Z  * [new branch]        claude/internal-consistency -> origin/claude/internal-consistency
+2026-10-21T16:33:38.5768446Z  * [new branch]        claude/issue-245-case-package -> origin/claude/issue-245-case-package
+2026-10-21T16:33:38.5768967Z  * [new branch]        claude/issue-245-discovery -> origin/claude/issue-245-discovery
+2026-10-21T16:33:38.5769409Z  * [new branch]        claude/issue-326        -> origin/claude/issue-326
+2026-10-21T16:33:38.5769891Z  * [new branch]        claude/issue-328        -> origin/claude/issue-328
+2026-10-21T16:33:38.5770285Z  * [new branch]        claude/issue-329        -> origin/claude/issue-329
+2026-10-21T16:33:38.5770676Z  * [new branch]        claude/issue-330        -> origin/claude/issue-330
+2026-10-21T16:33:38.5771068Z  * [new branch]        claude/issue-337        -> origin/claude/issue-337
+2026-10-21T16:33:38.5771450Z  * [new branch]        claude/issue-338        -> origin/claude/issue-338
+2026-10-21T16:33:38.5771842Z  * [new branch]        claude/issue-339        -> origin/claude/issue-339
+2026-10-21T16:33:38.5772223Z  * [new branch]        claude/issue-508        -> origin/claude/issue-508
+2026-10-21T16:33:38.5772604Z  * [new branch]        claude/issue-509        -> origin/claude/issue-509
+2026-10-21T16:33:38.5772980Z  * [new branch]        claude/issue-510        -> origin/claude/issue-510
+2026-10-21T16:33:38.5773480Z  * [new branch]        claude/issue-511        -> origin/claude/issue-511
+2026-10-21T16:33:38.5773867Z  * [new branch]        claude/issue-516        -> origin/claude/issue-516
+2026-10-21T16:33:38.5774251Z  * [new branch]        claude/issue-519        -> origin/claude/issue-519
+2026-10-21T16:33:38.5774635Z  * [new branch]        claude/issue-543        -> origin/claude/issue-543
+2026-10-21T16:33:38.5775016Z  * [new branch]        claude/issue-546        -> origin/claude/issue-546
+2026-10-21T16:33:38.5775398Z  * [new branch]        claude/issue-547        -> origin/claude/issue-547
+2026-10-21T16:33:38.5775783Z  * [new branch]        claude/issue-548        -> origin/claude/issue-548
+2026-10-21T16:33:38.5776161Z  * [new branch]        claude/issue-549        -> origin/claude/issue-549
+2026-10-21T16:33:38.5776539Z  * [new branch]        claude/issue-550        -> origin/claude/issue-550
+2026-10-21T16:33:38.5776919Z  * [new branch]        claude/issue-551        -> origin/claude/issue-551
+2026-10-21T16:33:38.5777311Z  * [new branch]        claude/issue-552        -> origin/claude/issue-552
+2026-10-21T16:33:38.5777694Z  * [new branch]        claude/issue-555        -> origin/claude/issue-555
+2026-10-21T16:33:38.5778071Z  * [new branch]        claude/issue-558        -> origin/claude/issue-558
+2026-10-21T16:33:38.5778444Z  * [new branch]        claude/issue-561        -> origin/claude/issue-561
+2026-10-21T16:33:38.5778823Z  * [new branch]        claude/issue-582        -> origin/claude/issue-582
+2026-10-21T16:33:38.5779300Z  * [new branch]        claude/katalog-i-magnit-2026-08-09 -> origin/claude/katalog-i-magnit-2026-08-09
+2026-10-21T16:33:38.5780290Z  * [new branch]        claude/keen-dirac-wzizha -> origin/claude/keen-dirac-wzizha
+2026-10-21T16:33:38.5780819Z  * [new branch]        claude/lead-magnets-in-articles -> origin/claude/lead-magnets-in-articles
+2026-10-21T16:33:38.5781307Z  * [new branch]        claude/leadform-fix     -> origin/claude/leadform-fix
+2026-10-21T16:33:38.5781722Z  * [new branch]        claude/link-audit       -> origin/claude/link-audit
+2026-10-21T16:33:38.5782363Z  * [new branch]        claude/litres-book-read-task-vkk2g6 -> origin/claude/litres-book-read-task-vkk2g6
+2026-10-21T16:33:38.5782870Z  * [new branch]        claude/magnit-avans     -> origin/claude/magnit-avans
+2026-10-21T16:33:38.5783386Z  * [new branch]        claude/marzha-instagram-reels-q6esnh -> origin/claude/marzha-instagram-reels-q6esnh
+2026-10-21T16:33:38.5783988Z  * [new branch]        claude/marzha-knowledge-audit-q0t39k -> origin/claude/marzha-knowledge-audit-q0t39k
+2026-10-21T16:33:38.5784558Z  * [new branch]        claude/marzha-search-seo-66jv3k -> origin/claude/marzha-search-seo-66jv3k
+2026-10-21T16:33:38.5785132Z  * [new branch]        claude/marzha-telegram-channel-n9bpea -> origin/claude/marzha-telegram-channel-n9bpea
+2026-10-21T16:33:38.5785850Z  * [new branch]        claude/marzhavbetone-customer-journey-audit-u58x43 -> origin/claude/marzhavbetone-customer-journey-audit-u58x43
+2026-10-21T16:33:38.5786607Z  * [new branch]        claude/marzhavbetone-development-plan-91c9xd -> origin/claude/marzhavbetone-development-plan-91c9xd
+2026-10-21T16:33:38.5787327Z  * [new branch]        claude/marzhavbetone-product-funnel-kakcnq -> origin/claude/marzhavbetone-product-funnel-kakcnq
+2026-10-21T16:33:38.5788000Z  * [new branch]        claude/mb001-buyer-document-audit-uxz2ry -> origin/claude/mb001-buyer-document-audit-uxz2ry
+2026-10-21T16:33:38.5788570Z  * [new branch]        claude/mb001-c02-r1-test-fix -> origin/claude/mb001-c02-r1-test-fix
+2026-10-21T16:33:38.5789075Z  * [new branch]        claude/mb001-c02-t3-article-cta -> origin/claude/mb001-c02-t3-article-cta
+2026-10-21T16:33:38.5789763Z  * [new branch]        claude/mb001-free-materials-technical-fix -> origin/claude/mb001-free-materials-technical-fix
+2026-10-21T16:33:38.5790394Z  * [new branch]        claude/mb001-l1-a-attribution-36c4mb -> origin/claude/mb001-l1-a-attribution-36c4mb
+2026-10-21T16:33:38.5791107Z  * [new branch]        claude/mb001-l1-b-free-to-s1-489g72 -> origin/claude/mb001-l1-b-free-to-s1-489g72
+2026-10-21T16:33:38.5791673Z  * [new branch]        claude/mb001-p10-p12-factual-fix -> origin/claude/mb001-p10-p12-factual-fix
+2026-10-21T16:33:38.5792267Z  * [new branch]        claude/mb001-p5-remove-stale-comparison -> origin/claude/mb001-p5-remove-stale-comparison
+2026-10-21T16:33:38.5792889Z  * [new branch]        claude/mb001-paid-core-technical-fix -> origin/claude/mb001-paid-core-technical-fix
+2026-10-21T16:33:38.5793490Z  * [new branch]        claude/mb001-paid-p5-p7-technical-fix -> origin/claude/mb001-paid-p5-p7-technical-fix
+2026-10-21T16:33:38.5794131Z  * [new branch]        claude/mb001-payment-delivery-security-fix -> origin/claude/mb001-payment-delivery-security-fix
+2026-10-21T16:33:38.5794796Z  * [new branch]        claude/mb001-preview-and-p5-stale-name-fix -> origin/claude/mb001-preview-and-p5-stale-name-fix
+2026-10-21T16:33:38.5795479Z  * [new branch]        claude/mb001-product-readiness-audit-f96kaj -> origin/claude/mb001-product-readiness-audit-f96kaj
+2026-10-21T16:33:38.5796189Z  * [new branch]        claude/mb001-product-repackaging-matrix-bpc14n -> origin/claude/mb001-product-repackaging-matrix-bpc14n
+2026-10-21T16:33:38.5796835Z  * [new branch]        claude/mb001-s1-a2-route-language -> origin/claude/mb001-s1-a2-route-language
+2026-10-21T16:33:38.5797363Z  * [new branch]        claude/mb001-s1-a3-route-gates -> origin/claude/mb001-s1-a3-route-gates
+2026-10-21T16:33:38.5797840Z  * [new branch]        claude/mb001-s1-cloud   -> origin/claude/mb001-s1-cloud
+2026-10-21T16:33:38.5798291Z  * [new branch]        claude/mb001-s1-h-financial -> origin/claude/mb001-s1-h-financial
+2026-10-21T16:33:38.5798800Z  * [new branch]        claude/mb001-sync-kit-counts-fix -> origin/claude/mb001-sync-kit-counts-fix
+2026-10-21T16:33:38.5799321Z  * [new branch]        claude/mb001-t3-t5-factual-fix -> origin/claude/mb001-t3-t5-factual-fix
+2026-10-21T16:33:38.5799969Z  * [new branch]        claude/mb005-unpaid-product-ladder -> origin/claude/mb005-unpaid-product-ladder
+2026-10-21T16:33:38.5800685Z  * [new branch]        claude/mb006-routing-consistency-site -> origin/claude/mb006-routing-consistency-site
+2026-10-21T16:33:38.5862394Z  * [new branch]        claude/mb007-diagnostika-standalone-sku -> origin/claude/mb007-diagnostika-standalone-sku
+2026-10-21T16:33:38.5863548Z  * [new branch]        claude/mb008-production-pass-fixes -> origin/claude/mb008-production-pass-fixes
+2026-10-21T16:33:38.5864382Z  * [new branch]        claude/merge-site-v5    -> origin/claude/merge-site-v5
+2026-10-21T16:33:38.5865062Z  * [new branch]        claude/metrika-correction -> origin/claude/metrika-correction
+2026-10-21T16:33:38.5865753Z  * [new branch]        claude/metrika-counter  -> origin/claude/metrika-counter
+2026-10-21T16:33:38.5866636Z  * [new branch]        claude/migrate-covers-to-assets-hw5w4s -> origin/claude/migrate-covers-to-assets-hw5w4s
+2026-10-21T16:33:38.5867568Z  * [new branch]        claude/mobile-card-padding -> origin/claude/mobile-card-padding
+2026-10-21T16:33:38.5868374Z  * [new branch]        claude/modest-goldberg-3e9zm7 -> origin/claude/modest-goldberg-3e9zm7
+2026-10-21T16:33:38.5869248Z  * [new branch]        claude/modest-goldberg-3urmsd -> origin/claude/modest-goldberg-3urmsd
+2026-10-21T16:33:38.5870228Z  * [new branch]        claude/modest-goldberg-q5nhkq -> origin/claude/modest-goldberg-q5nhkq
+2026-10-21T16:33:38.5871001Z  * [new branch]        claude/new-session-5v1mvk -> origin/claude/new-session-5v1mvk
+2026-10-21T16:33:38.5871712Z  * [new branch]        claude/no-consultations -> origin/claude/no-consultations
+2026-10-21T16:33:38.5872446Z  * [new branch]        claude/normative-check-avans -> origin/claude/normative-check-avans
+2026-10-21T16:33:38.5873266Z  * [new branch]        claude/openrouter-api-access-oyei5y -> origin/claude/openrouter-api-access-oyei5y
+2026-10-21T16:33:38.5873968Z  * [new branch]        claude/openrouter-api-switching-rule-ppe9tf -> origin/claude/openrouter-api-switching-rule-ppe9tf
+2026-10-21T16:33:38.5874873Z  * [new branch]        claude/oplate-kvartiroj-landing-v7xana -> origin/claude/oplate-kvartiroj-landing-v7xana
+2026-10-21T16:33:38.5875533Z  * [new branch]        claude/optimistic-brahmagupta-ge7ajt -> origin/claude/optimistic-brahmagupta-ge7ajt
+2026-10-21T16:33:38.5876132Z  * [new branch]        claude/optimistic-johnson-g7vtu6 -> origin/claude/optimistic-johnson-g7vtu6
+2026-10-21T16:33:38.5876644Z  * [new branch]        claude/otchety-2026-08-09 -> origin/claude/otchety-2026-08-09
+2026-10-21T16:33:38.5877112Z  * [new branch]        claude/p10-composition  -> origin/claude/p10-composition
+2026-10-21T16:33:38.5877570Z  * [new branch]        claude/p10-redakciya-1-3-0 -> origin/claude/p10-redakciya-1-3-0
+2026-10-21T16:33:38.5878004Z  * [new branch]        claude/p10-v11          -> origin/claude/p10-v11
+2026-10-21T16:33:38.5878620Z  * [new branch]        claude/p2-forms-cleanup-r3-6zde4s -> origin/claude/p2-forms-cleanup-r3-6zde4s
+2026-10-21T16:33:38.5879102Z  * [new branch]        claude/p4-akty          -> origin/claude/p4-akty
+2026-10-21T16:33:38.5879768Z  * [new branch]        claude/p4-documents-cleanup-r3-o341z1 -> origin/claude/p4-documents-cleanup-r3-o341z1
+2026-10-21T16:33:38.5880383Z  * [new branch]        claude/p4-r026-legal-review-ts686m -> origin/claude/p4-r026-legal-review-ts686m
+2026-10-21T16:33:38.5880959Z  * [new branch]        claude/p5-buyer-acceptance-t8e28b -> origin/claude/p5-buyer-acceptance-t8e28b
+2026-10-21T16:33:38.5881451Z  * [new branch]        claude/p5-fix-1-t8e28b  -> origin/claude/p5-fix-1-t8e28b
+2026-10-21T16:33:38.5882004Z  * [new branch]        claude/p5-r026-follow-up -> origin/claude/p5-r026-follow-up
+2026-10-21T16:33:38.5882496Z  * [new branch]        claude/p5-r026-plenum-recheck-2 -> origin/claude/p5-r026-plenum-recheck-2
+2026-10-21T16:33:38.5883042Z  * [new branch]        claude/p5-regulatory-edits-fvrtlw -> origin/claude/p5-regulatory-edits-fvrtlw
+2026-10-21T16:33:38.5883616Z  * [new branch]        claude/p6-sync          -> origin/claude/p6-sync
+2026-10-21T16:33:38.5884106Z  * [new branch]        claude/p7-r026-review-packet-yg9so2 -> origin/claude/p7-r026-review-packet-yg9so2
+2026-10-21T16:33:38.5884824Z  * [new branch]        claude/perelinkovka-ploshchadka -> origin/claude/perelinkovka-ploshchadka
+2026-10-21T16:33:38.5885422Z  * [new branch]        claude/person-faq       -> origin/claude/person-faq
+2026-10-21T16:33:38.5885851Z  * [new branch]        claude/php-hide-errors  -> origin/claude/php-hide-errors
+2026-10-21T16:33:38.5886417Z  * [new branch]        claude/positioning      -> origin/claude/positioning
+2026-10-21T16:33:38.5887243Z  * [new branch]        claude/product-composition-and-prices -> origin/claude/product-composition-and-prices
+2026-10-21T16:33:38.5888111Z  * [new branch]        claude/product-oborona  -> origin/claude/product-oborona
+2026-10-21T16:33:38.5888710Z  * [new branch]        claude/products-avans-bankrotstvo -> origin/claude/products-avans-bankrotstvo
+2026-10-21T16:33:38.5889260Z  * [new branch]        claude/reel-captions-in-repo -> origin/claude/reel-captions-in-repo
+2026-10-21T16:33:38.5889892Z  * [new branch]        claude/reel-validator   -> origin/claude/reel-validator
+2026-10-21T16:33:38.5890320Z  * [new branch]        claude/reels-avatar     -> origin/claude/reels-avatar
+2026-10-21T16:33:38.5890761Z  * [new branch]        claude/reels-batch-one  -> origin/claude/reels-batch-one
+2026-10-21T16:33:38.5891361Z  * [new branch]        claude/reels-feedback   -> origin/claude/reels-feedback
+2026-10-21T16:33:38.5892038Z  * [new branch]        claude/reels-foundation -> origin/claude/reels-foundation
+2026-10-21T16:33:38.5892530Z  * [new branch]        claude/reels-generated-video -> origin/claude/reels-generated-video
+2026-10-21T16:33:38.5893014Z  * [new branch]        claude/relaxed-cerf-hvwvpo -> origin/claude/relaxed-cerf-hvwvpo
+2026-10-21T16:33:38.5893464Z  * [new branch]        claude/remotion-ci-fix  -> origin/claude/remotion-ci-fix
+2026-10-21T16:33:38.5894067Z  * [new branch]        claude/remotion-template -> origin/claude/remotion-template
+2026-10-21T16:33:38.5894523Z  * [new branch]        claude/rename-p9-reestr -> origin/claude/rename-p9-reestr
+2026-10-21T16:33:38.5895021Z  * [new branch]        claude/rename-products-by-demand -> origin/claude/rename-products-by-demand
+2026-10-21T16:33:38.5895511Z  * [new branch]        claude/repo-check-hook  -> origin/claude/repo-check-hook
+2026-10-21T16:33:38.5895977Z  * [new branch]        claude/retire-uderzhanie-stub -> origin/claude/retire-uderzhanie-stub
+2026-10-21T16:33:38.5896504Z  * [new branch]        claude/rss-isklyucheniya -> origin/claude/rss-isklyucheniya
+2026-10-21T16:33:38.5897039Z  * [new branch]        claude/rss-tablicy      -> origin/claude/rss-tablicy
+2026-10-21T16:33:38.5897559Z  * [new branch]        claude/ru-ssh-mechanism-audit-ta2pvd -> origin/claude/ru-ssh-mechanism-audit-ta2pvd
+2026-10-21T16:33:38.5898156Z  * [new branch]        claude/s1-02a-independent-buyer-check -> origin/claude/s1-02a-independent-buyer-check
+2026-10-21T16:33:38.5898774Z  * [new branch]        claude/s1-02a-sostav-marshrut-9b6284 -> origin/claude/s1-02a-sostav-marshrut-9b6284
+2026-10-21T16:33:38.5899371Z  * [new branch]        claude/s1-acceptance-contract-l6fyqk -> origin/claude/s1-acceptance-contract-l6fyqk
+2026-10-21T16:33:38.5900232Z  * [new branch]        claude/s1-replace-p1-t1-mstncs -> origin/claude/s1-replace-p1-t1-mstncs
+2026-10-21T16:33:38.5900716Z  * [new branch]        claude/sales-attribution -> origin/claude/sales-attribution
+2026-10-21T16:33:38.5901303Z  * [new branch]        claude/sales-funnel-p0-magnets-continuation -> origin/claude/sales-funnel-p0-magnets-continuation
+2026-10-21T16:33:38.5901954Z  * [new branch]        claude/sales-funnel-p1-2-safe-routing -> origin/claude/sales-funnel-p1-2-safe-routing
+2026-10-21T16:33:38.5902573Z  * [new branch]        claude/sales-funnel-p1-4-situation-model -> origin/claude/sales-funnel-p1-4-situation-model
+2026-10-21T16:33:38.5903200Z  * [new branch]        claude/sales-funnel-p1-5-post-purchase -> origin/claude/sales-funnel-p1-5-post-purchase
+2026-10-21T16:33:38.5903861Z  * [new branch]        claude/schema-itemlist-fix -> origin/claude/schema-itemlist-fix
+2026-10-21T16:33:38.5904412Z  * [new branch]        claude/search-demand-empty-csv-mdxzob -> origin/claude/search-demand-empty-csv-mdxzob
+2026-10-21T16:33:38.5904990Z  * [new branch]        claude/secrets-instruction-nz8ezg -> origin/claude/secrets-instruction-nz8ezg
+2026-10-21T16:33:38.5905815Z  * [new branch]        claude/seo-skills-marzha-gaypzh -> origin/claude/seo-skills-marzha-gaypzh
+2026-10-21T16:33:38.5906575Z  * [new branch]        claude/sharp-brown-xc0l06 -> origin/claude/sharp-brown-xc0l06
+2026-10-21T16:33:38.5907264Z  * [new branch]        claude/sitemap-generator -> origin/claude/sitemap-generator
+2026-10-21T16:33:38.5907729Z  * [new branch]        claude/sleepy-mayer-twktih -> origin/claude/sleepy-mayer-twktih
+2026-10-21T16:33:38.5908176Z  * [new branch]        claude/strategy-data    -> origin/claude/strategy-data
+2026-10-21T16:33:38.5908663Z  * [new branch]        claude/strategy-readme-prices -> origin/claude/strategy-readme-prices
+2026-10-21T16:33:38.5909169Z  * [new branch]        claude/sweet-ritchie-r2ct80 -> origin/claude/sweet-ritchie-r2ct80
+2026-10-21T16:33:38.5909800Z  * [new branch]        claude/t3-listing       -> origin/claude/t3-listing
+2026-10-21T16:33:38.5910249Z  * [new branch]        claude/telegram-autopost -> origin/claude/telegram-autopost
+2026-10-21T16:33:38.5910719Z  * [new branch]        claude/telegram-test-message -> origin/claude/telegram-test-message
+2026-10-21T16:33:38.5911214Z  * [new branch]        claude/telegram-utm-breakdown -> origin/claude/telegram-utm-breakdown
+2026-10-21T16:33:38.5911674Z  * [new branch]        claude/test-product     -> origin/claude/test-product
+2026-10-21T16:33:38.5912086Z  * [new branch]        claude/tg-garantiya     -> origin/claude/tg-garantiya
+2026-10-21T16:33:38.5912510Z  * [new branch]        claude/tg-neotrabotannyy -> origin/claude/tg-neotrabotannyy
+2026-10-21T16:33:38.5913090Z  * [new branch]        claude/tg-reestr        -> origin/claude/tg-reestr
+2026-10-21T16:33:38.5913586Z  * [new branch]        claude/tg-srok          -> origin/claude/tg-srok
+2026-10-21T16:33:38.5914006Z  * [new branch]        claude/tg-vklyuchenie   -> origin/claude/tg-vklyuchenie
+2026-10-21T16:33:38.5914404Z  * [new branch]        claude/tg-vosem         -> origin/claude/tg-vosem
+2026-10-21T16:33:38.5914793Z  * [new branch]        claude/tg-vozvrat       -> origin/claude/tg-vozvrat
+2026-10-21T16:33:38.5915179Z  * [new branch]        claude/tg-zapros        -> origin/claude/tg-zapros
+2026-10-21T16:33:38.5915694Z  * [new branch]        claude/tg-zayavlenie    -> origin/claude/tg-zayavlenie
+2026-10-21T16:33:38.5916141Z  * [new branch]        claude/token-discipline -> origin/claude/token-discipline
+2026-10-21T16:33:38.5916580Z  * [new branch]        claude/two-articles-dzen -> origin/claude/two-articles-dzen
+2026-10-21T16:33:38.5917113Z  * [new branch]        claude/unpack-site-v3   -> origin/claude/unpack-site-v3
+2026-10-21T16:33:38.5917676Z  * [new branch]        claude/verify-readonly  -> origin/claude/verify-readonly
+2026-10-21T16:33:38.5918209Z  * [new branch]        claude/virale-reverse-research-ofol0s -> origin/claude/virale-reverse-research-ofol0s
+2026-10-21T16:33:38.5918735Z  * [new branch]        claude/vitrina-magnitov -> origin/claude/vitrina-magnitov
+2026-10-21T16:33:38.5919160Z  * [new branch]        claude/vitrina-t4-t6    -> origin/claude/vitrina-t4-t6
+2026-10-21T16:33:38.5919707Z  * [new branch]        claude/vitrina-t5       -> origin/claude/vitrina-t5
+2026-10-21T16:33:38.5920183Z  * [new branch]        claude/voronka-graf-sverka -> origin/claude/voronka-graf-sverka
+2026-10-21T16:33:38.5920827Z  * [new branch]        claude/vosem-statey     -> origin/claude/vosem-statey
+2026-10-21T16:33:38.5921553Z  * [new branch]        claude/zos-stroitelstvo-article-mrjwea -> origin/claude/zos-stroitelstvo-article-mrjwea
+2026-10-21T16:33:38.5922208Z  * [new branch]        codex/baseline14-actual-php-zip-20261005 -> origin/codex/baseline14-actual-php-zip-20261005
+2026-10-21T16:33:38.5923100Z  * [new branch]        codex/catalog-baseline-citations-20261005 -> origin/codex/catalog-baseline-citations-20261005
+2026-10-21T16:33:38.5923818Z  * [new branch]        codex/catalog-structural-extension-proof-20261005 -> origin/codex/catalog-structural-extension-proof-20261005
+2026-10-21T16:33:38.5924504Z  * [new branch]        codex/final-fourmodule-gates-20261005 -> origin/codex/final-fourmodule-gates-20261005
+2026-10-21T16:33:38.5925143Z  * [new branch]        codex/gh-first-session-preflight-20261008 -> origin/codex/gh-first-session-preflight-20261008
+2026-10-21T16:33:38.5925769Z  * [new branch]        codex/l1a-verified-existing-20261005 -> origin/codex/l1a-verified-existing-20261005
+2026-10-21T16:33:38.5926391Z  * [new branch]        codex/l1b-dengi-release-passport-20261005 -> origin/codex/l1b-dengi-release-passport-20261005
+2026-10-21T16:33:38.5927127Z  * [new branch]        codex/mb001-327-recovery-20261004 -> origin/codex/mb001-327-recovery-20261004
+2026-10-21T16:33:38.5927705Z  * [new branch]        codex/mb001-332-sku-binding-20261004 -> origin/codex/mb001-332-sku-binding-20261004
+2026-10-21T16:33:38.5928249Z  * [new branch]        codex/mb001-340-recovery-20261004 -> origin/codex/mb001-340-recovery-20261004
+2026-10-21T16:33:38.5928758Z  * [new branch]        codex/mb001-345-recovery-20261004 -> origin/codex/mb001-345-recovery-20261004
+2026-10-21T16:33:38.5929270Z  * [new branch]        codex/mb001-346-recovery-20261004 -> origin/codex/mb001-346-recovery-20261004
+2026-10-21T16:33:38.5930212Z  * [new branch]        codex/mb001-app-script-http-runtime-contract-20261012 -> origin/codex/mb001-app-script-http-runtime-contract-20261012
+2026-10-21T16:33:38.5931038Z  * [new branch]        codex/mb001-app-script-wrapper-source-contract-20261012 -> origin/codex/mb001-app-script-wrapper-source-contract-20261012
+2026-10-21T16:33:38.5931959Z  * [new branch]        codex/mb001-approved-excel-design-contract-20261006 -> origin/codex/mb001-approved-excel-design-contract-20261006
+2026-10-21T16:33:38.5932645Z  * [new branch]        codex/mb001-artifact-registry-20261012 -> origin/codex/mb001-artifact-registry-20261012
+2026-10-21T16:33:38.5933266Z  * [new branch]        codex/mb001-baseline-calc-local-20261006 -> origin/codex/mb001-baseline-calc-local-20261006
+2026-10-21T16:33:38.5933915Z  * [new branch]        codex/mb001-baseline-docx-local-20261006 -> origin/codex/mb001-baseline-docx-local-20261006
+2026-10-21T16:33:38.5934564Z  * [new branch]        codex/mb001-baseline-p11-p13-layout-20261006 -> origin/codex/mb001-baseline-p11-p13-layout-20261006
+2026-10-21T16:33:38.5935193Z  * [new branch]        codex/mb001-closed-ledger-red-20261014 -> origin/codex/mb001-closed-ledger-red-20261014
+2026-10-21T16:33:38.5935771Z  * [new branch]        codex/mb001-correction-361-20261005 -> origin/codex/mb001-correction-361-20261005
+2026-10-21T16:33:38.5936315Z  * [new branch]        codex/mb001-correction-362-20261005 -> origin/codex/mb001-correction-362-20261005
+2026-10-21T16:33:38.5936853Z  * [new branch]        codex/mb001-correction-363-20261005 -> origin/codex/mb001-correction-363-20261005
+2026-10-21T16:33:38.5937396Z  * [new branch]        codex/mb001-correction-364-20261005 -> origin/codex/mb001-correction-364-20261005
+2026-10-21T16:33:38.5937928Z  * [new branch]        codex/mb001-correction-377-20261005 -> origin/codex/mb001-correction-377-20261005
+2026-10-21T16:33:38.5938472Z  * [new branch]        codex/mb001-correction-386-20261005 -> origin/codex/mb001-correction-386-20261005
+2026-10-21T16:33:38.5939007Z  * [new branch]        codex/mb001-correction-388-20261005 -> origin/codex/mb001-correction-388-20261005
+2026-10-21T16:33:38.5939684Z  * [new branch]        codex/mb001-correction-419-20261005 -> origin/codex/mb001-correction-419-20261005
+2026-10-21T16:33:38.5940282Z  * [new branch]        codex/mb001-correction-438-20261005 -> origin/codex/mb001-correction-438-20261005
+2026-10-21T16:33:38.5940827Z  * [new branch]        codex/mb001-correction-444-20261005 -> origin/codex/mb001-correction-444-20261005
+2026-10-21T16:33:38.5941582Z  * [new branch]        codex/mb001-current-only-1h-delivery-20261014 -> origin/codex/mb001-current-only-1h-delivery-20261014
+2026-10-21T16:33:38.5942211Z  * [new branch]        codex/mb001-daywork-handoff-20261006 -> origin/codex/mb001-daywork-handoff-20261006
+2026-10-21T16:33:38.5942914Z  * [new branch]        codex/mb001-dynamic-endpoint-source-inventory-20261012 -> origin/codex/mb001-dynamic-endpoint-source-inventory-20261012
+2026-10-21T16:33:38.5943880Z  * [new branch]        codex/mb001-fix-free-payment-term-calculator -> origin/codex/mb001-fix-free-payment-term-calculator
+2026-10-21T16:33:38.5944702Z  * [new branch]        codex/mb001-fix-p10-p12-catalog-consistency -> origin/codex/mb001-fix-p10-p12-catalog-consistency
+2026-10-21T16:33:38.5945473Z  * [new branch]        codex/mb001-full-artifact-inventory-20261012 -> origin/codex/mb001-full-artifact-inventory-20261012
+2026-10-21T16:33:38.5946209Z  * [new branch]        codex/mb001-independent-353-20261004 -> origin/codex/mb001-independent-353-20261004
+2026-10-21T16:33:38.5946880Z  * [new branch]        codex/mb001-independent-354-20261004 -> origin/codex/mb001-independent-354-20261004
+2026-10-21T16:33:38.5947553Z  * [new branch]        codex/mb001-independent-355-20261004 -> origin/codex/mb001-independent-355-20261004
+2026-10-21T16:33:38.5948169Z  * [new branch]        codex/mb001-independent-356-20261004 -> origin/codex/mb001-independent-356-20261004
+2026-10-21T16:33:38.5948766Z  * [new branch]        codex/mb001-independent-366-20261005 -> origin/codex/mb001-independent-366-20261005
+2026-10-21T16:33:38.5949427Z  * [new branch]        codex/mb001-independent-368-20261005 -> origin/codex/mb001-independent-368-20261005
+2026-10-21T16:33:38.5950170Z  * [new branch]        codex/mb001-independent-370-20261005 -> origin/codex/mb001-independent-370-20261005
+2026-10-21T16:33:38.5950831Z  * [new branch]        codex/mb001-independent-374-20261005 -> origin/codex/mb001-independent-374-20261005
+2026-10-21T16:33:38.5951614Z  * [new branch]        codex/mb001-independent-378-20261005 -> origin/codex/mb001-independent-378-20261005
+2026-10-21T16:33:38.5952264Z  * [new branch]        codex/mb001-independent-379-20261005 -> origin/codex/mb001-independent-379-20261005
+2026-10-21T16:33:38.5952844Z  * [new branch]        codex/mb001-independent-385-20261005 -> origin/codex/mb001-independent-385-20261005
+2026-10-21T16:33:38.5953516Z  * [new branch]        codex/mb001-independent-390-20261005 -> origin/codex/mb001-independent-390-20261005
+2026-10-21T16:33:38.5954167Z  * [new branch]        codex/mb001-independent-393-20261005 -> origin/codex/mb001-independent-393-20261005
+2026-10-21T16:33:38.5954827Z  * [new branch]        codex/mb001-independent-397-20261005 -> origin/codex/mb001-independent-397-20261005
+2026-10-21T16:33:38.5955462Z  * [new branch]        codex/mb001-independent-398-20261005 -> origin/codex/mb001-independent-398-20261005
+2026-10-21T16:33:38.5956070Z  * [new branch]        codex/mb001-independent-403-20261005 -> origin/codex/mb001-independent-403-20261005
+2026-10-21T16:33:38.5956759Z  * [new branch]        codex/mb001-independent-407-20261005 -> origin/codex/mb001-independent-407-20261005
+2026-10-21T16:33:38.5957416Z  * [new branch]        codex/mb001-independent-410-20261005 -> origin/codex/mb001-independent-410-20261005
+2026-10-21T16:33:38.5958075Z  * [new branch]        codex/mb001-independent-411-20261005 -> origin/codex/mb001-independent-411-20261005
+2026-10-21T16:33:38.5958731Z  * [new branch]        codex/mb001-independent-414-20261005 -> origin/codex/mb001-independent-414-20261005
+2026-10-21T16:33:38.5959310Z  * [new branch]        codex/mb001-independent-415-20261005 -> origin/codex/mb001-independent-415-20261005
+2026-10-21T16:33:38.5960059Z  * [new branch]        codex/mb001-independent-421-20261005 -> origin/codex/mb001-independent-421-20261005
+2026-10-21T16:33:38.5960740Z  * [new branch]        codex/mb001-independent-426-20261005 -> origin/codex/mb001-independent-426-20261005
+2026-10-21T16:33:38.5961391Z  * [new branch]        codex/mb001-independent-430-20261005 -> origin/codex/mb001-independent-430-20261005
+2026-10-21T16:33:38.5962170Z  * [new branch]        codex/mb001-independent-433-20261005 -> origin/codex/mb001-independent-433-20261005
+2026-10-21T16:33:38.5962818Z  * [new branch]        codex/mb001-independent-436-20261005 -> origin/codex/mb001-independent-436-20261005
+2026-10-21T16:33:38.5963438Z  * [new branch]        codex/mb001-independent-441-20261005 -> origin/codex/mb001-independent-441-20261005
+2026-10-21T16:33:38.5964000Z  * [new branch]        codex/mb001-independent-446-20261005 -> origin/codex/mb001-independent-446-20261005
+2026-10-21T16:33:38.5964659Z  * [new branch]        codex/mb001-independent-448-20261005 -> origin/codex/mb001-independent-448-20261005
+2026-10-21T16:33:38.5965291Z  * [new branch]        codex/mb001-independent-452-20261005 -> origin/codex/mb001-independent-452-20261005
+2026-10-21T16:33:38.5965956Z  * [new branch]        codex/mb001-independent-455-20261005 -> origin/codex/mb001-independent-455-20261005
+2026-10-21T16:33:38.5966595Z  * [new branch]        codex/mb001-independent-456-20261005 -> origin/codex/mb001-independent-456-20261005
+2026-10-21T16:33:38.5967167Z  * [new branch]        codex/mb001-independent-462-20261005 -> origin/codex/mb001-independent-462-20261005
+2026-10-21T16:33:38.5967810Z  * [new branch]        codex/mb001-independent-464-20261005 -> origin/codex/mb001-independent-464-20261005
+2026-10-21T16:33:38.5968450Z  * [new branch]        codex/mb001-inventory-602-20261012 -> origin/codex/mb001-inventory-602-20261012
+2026-10-21T16:33:38.5969150Z  * [new branch]        codex/mb001-j1-pr283-verification-20261005 -> origin/codex/mb001-j1-pr283-verification-20261005
+2026-10-21T16:33:38.5970009Z  * [new branch]        codex/mb001-normalize-calculator-formulas -> origin/codex/mb001-normalize-calculator-formulas
+2026-10-21T16:33:38.5970746Z  * [new branch]        codex/mb001-one-hour-mainbase-20261014 -> origin/codex/mb001-one-hour-mainbase-20261014
+2026-10-21T16:33:38.5971540Z  * [new branch]        codex/mb001-owner-receipt-20261006 -> origin/codex/mb001-owner-receipt-20261006
+2026-10-21T16:33:38.5972269Z  * [new branch]        codex/mb001-p1-395-content-candidate-20261012 -> origin/codex/mb001-p1-395-content-candidate-20261012
+2026-10-21T16:33:38.5973018Z  * [new branch]        codex/mb001-p11-t6-brand-inventory-20261014 -> origin/codex/mb001-p11-t6-brand-inventory-20261014
+2026-10-21T16:33:38.5973695Z  * [new branch]        codex/mb001-p11-t6-gold-accent-20261014 -> origin/codex/mb001-p11-t6-gold-accent-20261014
+2026-10-21T16:33:38.5974454Z  * [new branch]        codex/mb001-p13-business-design-candidate-20261006 -> origin/codex/mb001-p13-business-design-candidate-20261006
+2026-10-21T16:33:38.5975314Z  * [new branch]        codex/mb001-p13-business-print-candidate-20261006 -> origin/codex/mb001-p13-business-print-candidate-20261006
+2026-10-21T16:33:38.5976095Z  * [new branch]        codex/mb001-p13-checkbox-candidate-20261006 -> origin/codex/mb001-p13-checkbox-candidate-20261006
+2026-10-21T16:33:38.5976814Z  * [new branch]        codex/mb001-p13-checkbox-rootcause-20261006 -> origin/codex/mb001-p13-checkbox-rootcause-20261006
+2026-10-21T16:33:38.5977568Z  * [new branch]        codex/mb001-p19-postpurchase-20261014 -> origin/codex/mb001-p19-postpurchase-20261014
+2026-10-21T16:33:38.5978494Z  * [new branch]        codex/mb001-p2-canonical-office-transport-qualification-20261012 -> origin/codex/mb001-p2-canonical-office-transport-qualification-20261012
+2026-10-21T16:33:38.5979491Z  * [new branch]        codex/mb001-p2-canonical-visual-review-20261012 -> origin/codex/mb001-p2-canonical-visual-review-20261012
+2026-10-21T16:33:38.5980526Z  * [new branch]        codex/mb001-p2-instruction-a4-copy-remediation-20261012 -> origin/codex/mb001-p2-instruction-a4-copy-remediation-20261012
+2026-10-21T16:33:38.5981367Z  * [new branch]        codex/mb001-p2-instruction-language-20261013 -> origin/codex/mb001-p2-instruction-language-20261013
+2026-10-21T16:33:38.5982047Z  * [new branch]        codex/mb001-p2-resume-20261010 -> origin/codex/mb001-p2-resume-20261010
+2026-10-21T16:33:38.5982794Z  * [new branch]        codex/mb001-p3-ci-bridge-20261016 -> origin/codex/mb001-p3-ci-bridge-20261016
+2026-10-21T16:33:38.5983374Z  * [new branch]        codex/mb001-p5-current-delivery -> origin/codex/mb001-p5-current-delivery
+2026-10-21T16:33:38.5984058Z  * [new branch]        codex/mb001-p8-business-design-candidate-20261006 -> origin/codex/mb001-p8-business-design-candidate-20261006
+2026-10-21T16:33:38.5984827Z  * [new branch]        codex/mb001-p8-p9-docx-layout-20261006 -> origin/codex/mb001-p8-p9-docx-layout-20261006
+2026-10-21T16:33:38.5985442Z  * [new branch]        codex/mb001-portfolio-editorial-20261013 -> origin/codex/mb001-portfolio-editorial-20261013
+2026-10-21T16:33:38.5986166Z  * [new branch]        codex/mb001-portfolio-receipts-20261005 -> origin/codex/mb001-portfolio-receipts-20261005
+2026-10-21T16:33:38.5986777Z  * [new branch]        codex/mb001-registry-history-20261013 -> origin/codex/mb001-registry-history-20261013
+2026-10-21T16:33:38.5987407Z  * [new branch]        codex/mb001-role-terminology-gate-20261015 -> origin/codex/mb001-role-terminology-gate-20261015
+2026-10-21T16:33:38.5988139Z  * [new branch]        codex/mb001-site-route-discovery-20261012 -> origin/codex/mb001-site-route-discovery-20261012
+2026-10-21T16:33:38.5988848Z  * [new branch]        codex/mb001-static-browser-render-snapshot-20261012 -> origin/codex/mb001-static-browser-render-snapshot-20261012
+2026-10-21T16:33:38.5989654Z  * [new branch]        codex/mb001-static-content-snapshot-20261012 -> origin/codex/mb001-static-content-snapshot-20261012
+2026-10-21T16:33:38.5990322Z  * [new branch]        codex/mb001-storefront-p1-preview-20261010 -> origin/codex/mb001-storefront-p1-preview-20261010
+2026-10-21T16:33:38.5990976Z  * [new branch]        codex/notification-test-contract-20261005 -> origin/codex/notification-test-contract-20261005
+2026-10-21T16:33:38.5991667Z  * [new branch]        codex/owner-excel-20261005-1310 -> origin/codex/owner-excel-20261005-1310
+2026-10-21T16:33:38.5992337Z  * [new branch]        codex/owner-native-union-20261005 -> origin/codex/owner-native-union-20261005
+2026-10-21T16:33:38.5992887Z  * [new branch]        codex/owner08-acceptance-20261005 -> origin/codex/owner08-acceptance-20261005
+2026-10-21T16:33:38.5993465Z  * [new branch]        codex/p1-acceptance-recovery-20261009 -> origin/codex/p1-acceptance-recovery-20261009
+2026-10-21T16:33:38.5994060Z  * [new branch]        codex/p1-algorithm-artifacts-20261009 -> origin/codex/p1-algorithm-artifacts-20261009
+2026-10-21T16:33:38.5994571Z  * [new branch]        codex/p1-final-20261008 -> origin/codex/p1-final-20261008
+2026-10-21T16:33:38.5995097Z  * [new branch]        codex/p1-production-inventory-20261008 -> origin/codex/p1-production-inventory-20261008
+2026-10-21T16:33:38.5995767Z  * [new branch]        codex/p1-production-inventory-reviewed-20261008 -> origin/codex/p1-production-inventory-reviewed-20261008
+2026-10-21T16:33:38.5996412Z  * [new branch]        codex/p1-visual-standard-20261009 -> origin/codex/p1-visual-standard-20261009
+2026-10-21T16:33:38.5996949Z  * [new branch]        codex/p11-archive-ics-20261014 -> origin/codex/p11-archive-ics-20261014
+2026-10-21T16:33:38.5997472Z  * [new branch]        codex/p11-buyer-wording-20261014 -> origin/codex/p11-buyer-wording-20261014
+2026-10-21T16:33:38.5998091Z  * [new branch]        codex/p11-formal-nomination-candidate-20261014 -> origin/codex/p11-formal-nomination-candidate-20261014
+2026-10-21T16:33:38.5998724Z  * [new branch]        codex/p11-http-transport-20261014 -> origin/codex/p11-http-transport-20261014
+2026-10-21T16:33:38.5999371Z  * [new branch]        codex/p11-ics-cleanup-20261014 -> origin/codex/p11-ics-cleanup-20261014
+2026-10-21T16:33:38.6000053Z  * [new branch]        codex/p11-isolated-delivery-binding-20261014 -> origin/codex/p11-isolated-delivery-binding-20261014
+2026-10-21T16:33:38.6000706Z  * [new branch]        codex/p11-registry-nomination-20261014 -> origin/codex/p11-registry-nomination-20261014
+2026-10-21T16:33:38.6001449Z  * [new branch]        codex/p11-registry-nomination-v2-20261014 -> origin/codex/p11-registry-nomination-v2-20261014
+2026-10-21T16:33:38.6002111Z  * [new branch]        codex/p11-release-rollback-candidate-20261014 -> origin/codex/p11-release-rollback-candidate-20261014
+2026-10-21T16:33:38.6002846Z  * [new branch]        codex/p11-rollback-entitlement-remediation-20261014 -> origin/codex/p11-rollback-entitlement-remediation-20261014
+2026-10-21T16:33:38.6003554Z  * [new branch]        codex/p11-t6-consolidated-gold-20261014 -> origin/codex/p11-t6-consolidated-gold-20261014
+2026-10-21T16:33:38.6004204Z  * [new branch]        codex/p11-t6-gold-formal-nomination-20261014 -> origin/codex/p11-t6-gold-formal-nomination-20261014
+2026-10-21T16:33:38.6004883Z  * [new branch]        codex/p11-t6-letter-nomination-route-20261014 -> origin/codex/p11-t6-letter-nomination-route-20261014
+2026-10-21T16:33:38.6005511Z  * [new branch]        codex/p2-commercial-review-20261009 -> origin/codex/p2-commercial-review-20261009
+2026-10-21T16:33:38.6006204Z  * [new branch]        codex/p2-current-citation-inventory-recovery-20261005 -> origin/codex/p2-current-citation-inventory-recovery-20261005
+2026-10-21T16:33:38.6006882Z  * [new branch]        codex/p2-current-zip-proof-20261005 -> origin/codex/p2-current-zip-proof-20261005
+2026-10-21T16:33:38.6007511Z  * [new branch]        codex/p2-delivery-language-reconcile-20261009 -> origin/codex/p2-delivery-language-reconcile-20261009
+2026-10-21T16:33:38.6008147Z  * [new branch]        codex/p2-delivery-mail-name-20261009 -> origin/codex/p2-delivery-mail-name-20261009
+2026-10-21T16:33:38.6008766Z  * [new branch]        codex/p2-filled-print-acceptance-20261010 -> origin/codex/p2-filled-print-acceptance-20261010
+2026-10-21T16:33:38.6009399Z  * [new branch]        codex/p2-filled-print-correction-20261010 -> origin/codex/p2-filled-print-correction-20261010
+2026-10-21T16:33:38.6010182Z  * [new branch]        codex/p2-form01-correction-20261009 -> origin/codex/p2-form01-correction-20261009
+2026-10-21T16:33:38.6010726Z  * [new branch]        codex/p2-form01-final-20261009 -> origin/codex/p2-form01-final-20261009
+2026-10-21T16:33:38.6011199Z  * [new branch]        codex/p2-form02-20261009 -> origin/codex/p2-form02-20261009
+2026-10-21T16:33:38.6011660Z  * [new branch]        codex/p2-form03-final-20261009 -> origin/codex/p2-form03-final-20261009
+2026-10-21T16:33:38.6012155Z  * [new branch]        codex/p2-form04-final-20261009 -> origin/codex/p2-form04-final-20261009
+2026-10-21T16:33:38.6012794Z  * [new branch]        codex/p2-full-candidate-20261009 -> origin/codex/p2-full-candidate-20261009
+2026-10-21T16:33:38.6013389Z  * [new branch]        codex/p2-integrated-corrections-20261009 -> origin/codex/p2-integrated-corrections-20261009
+2026-10-21T16:33:38.6014027Z  * [new branch]        codex/p2-normative-polish-20261009 -> origin/codex/p2-normative-polish-20261009
+2026-10-21T16:33:38.6014705Z  * [new branch]        codex/p2-numeric-independent-remediation-20261010 -> origin/codex/p2-numeric-independent-remediation-20261010
+2026-10-21T16:33:38.6015399Z  * [new branch]        codex/p2-numeric-validation-580-20261010 -> origin/codex/p2-numeric-validation-580-20261010
+2026-10-21T16:33:38.6016024Z  * [new branch]        codex/p2-p3-composition-inputs-20261005 -> origin/codex/p2-p3-composition-inputs-20261005
+2026-10-21T16:33:38.6016606Z  * [new branch]        codex/p2-price-delivery-20261009 -> origin/codex/p2-price-delivery-20261009
+2026-10-21T16:33:38.6017170Z  * [new branch]        codex/p2-route-a-term-field-20261009 -> origin/codex/p2-route-a-term-field-20261009
+2026-10-21T16:33:38.6017768Z  * [new branch]        codex/p2-runtime-mail-wording-20261009 -> origin/codex/p2-runtime-mail-wording-20261009
+2026-10-21T16:33:38.6018321Z  * [new branch]        codex/p2-start-source-20261005 -> origin/codex/p2-start-source-20261005
+2026-10-21T16:33:38.6018829Z  * [new branch]        codex/p3-11-integrated-20261015 -> origin/codex/p3-11-integrated-20261015
+2026-10-21T16:33:38.6019400Z  * [new branch]        codex/p3-actual-zip-302d-proof-20261005 -> origin/codex/p3-actual-zip-302d-proof-20261005
+2026-10-21T16:33:38.6020273Z  * [new branch]        codex/p3-ad-exact-seven-20261014 -> origin/codex/p3-ad-exact-seven-20261014
+2026-10-21T16:33:38.6020827Z  * [new branch]        codex/p3-aosr-form-layout-20261015 -> origin/codex/p3-aosr-form-layout-20261015
+2026-10-21T16:33:38.6021373Z  * [new branch]        codex/p3-aosr-signatures-20261014 -> origin/codex/p3-aosr-signatures-20261014
+2026-10-21T16:33:38.6021944Z  * [new branch]        codex/p3-app-metadata-repro-20261005 -> origin/codex/p3-app-metadata-repro-20261005
+2026-10-21T16:33:38.6022502Z  * [new branch]        codex/p3-buyer-final-v2-20261015 -> origin/codex/p3-buyer-final-v2-20261015
+2026-10-21T16:33:38.6023029Z  * [new branch]        codex/p3-buyer-negative-20261015 -> origin/codex/p3-buyer-negative-20261015
+2026-10-21T16:33:38.6023641Z  * [new branch]        codex/p3-current-citation-inventory-20261005 -> origin/codex/p3-current-citation-inventory-20261005
+2026-10-21T16:33:38.6024265Z  * [new branch]        codex/p3-delivery-binding-20261015 -> origin/codex/p3-delivery-binding-20261015
+2026-10-21T16:33:38.6024850Z  * [new branch]        codex/p3-doc09-sheet-reference-20261015 -> origin/codex/p3-doc09-sheet-reference-20261015
+2026-10-21T16:33:38.6025430Z  * [new branch]        codex/p3-full-11-preflight-20261015 -> origin/codex/p3-full-11-preflight-20261015
+2026-10-21T16:33:38.6025989Z  * [new branch]        codex/p3-one-hour-ttl-20261015 -> origin/codex/p3-one-hour-ttl-20261015
+2026-10-21T16:33:38.6026588Z  * [new branch]        codex/p3-owner-approval-nomination-20261015 -> origin/codex/p3-owner-approval-nomination-20261015
+2026-10-21T16:33:38.6027207Z  * [new branch]        codex/p3-pr645-remediation-20261015 -> origin/codex/p3-pr645-remediation-20261015
+2026-10-21T16:33:38.6027705Z  * [new branch]        codex/p3-style03-20261014 -> origin/codex/p3-style03-20261014
+2026-10-21T16:33:38.6028340Z  * [new branch]        codex/p3-subject-remediation-20261014 -> origin/codex/p3-subject-remediation-20261014
+2026-10-21T16:33:38.6028921Z  * [new branch]        codex/p3-unit-ad-current-20261014 -> origin/codex/p3-unit-ad-current-20261014
+2026-10-21T16:33:38.6029474Z  * [new branch]        codex/p3-validation-alerts-20261015 -> origin/codex/p3-validation-alerts-20261015
+2026-10-21T16:33:38.6030104Z  * [new branch]        codex/p3-xlsx-02-06-20261014 -> origin/codex/p3-xlsx-02-06-20261014
+2026-10-21T16:33:38.6030661Z  * [new branch]        codex/p5-actual-php-zip-proof-20261005 -> origin/codex/p5-actual-php-zip-proof-20261005
+2026-10-21T16:33:38.6031314Z  * [new branch]        codex/p5-current-citation-inventory-20261005 -> origin/codex/p5-current-citation-inventory-20261005
+2026-10-21T16:33:38.6031975Z  * [new branch]        codex/p5-native-guard-correction-20261005 -> origin/codex/p5-native-guard-correction-20261005
+2026-10-21T16:33:38.6032616Z  * [new branch]        codex/p5-owner-native-generator-20261005 -> origin/codex/p5-owner-native-generator-20261005
+2026-10-21T16:33:38.6033240Z  * [new branch]        codex/p5-owner-native-layout-ci-20261005 -> origin/codex/p5-owner-native-layout-ci-20261005
+2026-10-21T16:33:38.6033783Z  * [new branch]        codex/p7-header-401-20261005 -> origin/codex/p7-header-401-20261005
+2026-10-21T16:33:38.6034274Z  * [new branch]        codex/repackage-p3-p4-20261010 -> origin/codex/repackage-p3-p4-20261010
+2026-10-21T16:33:38.6034825Z  * [new branch]        codex/s1-01-03-table-layout-20261005 -> origin/codex/s1-01-03-table-layout-20261005
+2026-10-21T16:33:38.6035313Z  * [new branch]        codex/s1-a4-20261005    -> origin/codex/s1-a4-20261005
+2026-10-21T16:33:38.6035872Z  * [new branch]        codex/s1-act-multipage-print-evidence-20261005 -> origin/codex/s1-act-multipage-print-evidence-20261005
+2026-10-21T16:33:38.6036544Z  * [new branch]        codex/s1-act-print-instructions-20261005 -> origin/codex/s1-act-print-instructions-20261005
+2026-10-21T16:33:38.6037140Z  * [new branch]        codex/s1-court-clean-copy-20261005 -> origin/codex/s1-court-clean-copy-20261005
+2026-10-21T16:33:38.6037878Z  * [new branch]        codex/s1-current-citation-inventory-20261005 -> origin/codex/s1-current-citation-inventory-20261005
+2026-10-21T16:33:38.6038622Z  * [new branch]        codex/s1-doc09-source-correction-20261005 -> origin/codex/s1-doc09-source-correction-20261005
+2026-10-21T16:33:38.6039266Z  * [new branch]        codex/s1-doc10-checklist-layout-20261005 -> origin/codex/s1-doc10-checklist-layout-20261005
+2026-10-21T16:33:38.6039917Z  * [new branch]        codex/s1-doc10-deadline-20261005 -> origin/codex/s1-doc10-deadline-20261005
+2026-10-21T16:33:38.6040472Z  * [new branch]        codex/s1-doc10-independent-20261005 -> origin/codex/s1-doc10-independent-20261005
+2026-10-21T16:33:38.6041085Z  * [new branch]        codex/s1-excel-overlay-code-review-20261005 -> origin/codex/s1-excel-overlay-code-review-20261005
+2026-10-21T16:33:38.6041732Z  * [new branch]        codex/s1-excel-wording-overlay-20261005 -> origin/codex/s1-excel-wording-overlay-20261005
+2026-10-21T16:33:38.6042302Z  * [new branch]        codex/s1-legal-inputs-20261005 -> origin/codex/s1-legal-inputs-20261005
+2026-10-21T16:33:38.6042804Z  * [new branch]        codex/s1-literal-fix-20261005 -> origin/codex/s1-literal-fix-20261005
+2026-10-21T16:33:38.6043409Z  * [new branch]        codex/s1-multipage-print-instructions-20261005 -> origin/codex/s1-multipage-print-instructions-20261005
+2026-10-21T16:33:38.6044070Z  * [new branch]        codex/s1-outgoing-act-clarity-20261005 -> origin/codex/s1-outgoing-act-clarity-20261005
+2026-10-21T16:33:38.6044646Z  * [new branch]        codex/s1-owner-generator-20261005 -> origin/codex/s1-owner-generator-20261005
+2026-10-21T16:33:38.6045213Z  * [new branch]        codex/s1-related-conditions-20261005 -> origin/codex/s1-related-conditions-20261005
+2026-10-21T16:33:38.6045761Z  * [new branch]        codex/s1-unique-fields-20261005 -> origin/codex/s1-unique-fields-20261005
+2026-10-21T16:33:38.6046457Z  * [new branch]        codex/start-accepted-derivatives-20261005 -> origin/codex/start-accepted-derivatives-20261005
+2026-10-21T16:33:38.6047074Z  * [new branch]        codex/t1-p1-overlap-truth-20261008 -> origin/codex/t1-p1-overlap-truth-20261008
+2026-10-21T16:33:38.6047642Z  * [new branch]        codex/t2-accepted-site-copy-20261005 -> origin/codex/t2-accepted-site-copy-20261005
+2026-10-21T16:33:38.6048179Z  * [new branch]        codex/t3-manifest-source-380 -> origin/codex/t3-manifest-source-380
+2026-10-21T16:33:38.6048732Z  * [new branch]        codex/t6-post-purchase-letter-20261014 -> origin/codex/t6-post-purchase-letter-20261014
+2026-10-21T16:33:38.6049348Z  * [new branch]        codex/traffic-prep-integration-20261005 -> origin/codex/traffic-prep-integration-20261005
+2026-10-21T16:33:38.6050044Z  * [new branch]        codex/value-thread-articles-20261009 -> origin/codex/value-thread-articles-20261009
+2026-10-21T16:33:38.6050704Z  * [new branch]        codex/value-thread-articles-claims-20261009 -> origin/codex/value-thread-articles-claims-20261009
+2026-10-21T16:33:38.6051401Z  * [new branch]        codex/value-thread-articles-contracts-20261009 -> origin/codex/value-thread-articles-contracts-20261009
+2026-10-21T16:33:38.6052074Z  * [new branch]        codex/value-thread-articles-docs-20261009 -> origin/codex/value-thread-articles-docs-20261009
+2026-10-21T16:33:38.6052705Z  * [new branch]        codex/value-thread-buyer-guides-20261009 -> origin/codex/value-thread-buyer-guides-20261009
+2026-10-21T16:33:38.6053350Z  * [new branch]        codex/value-thread-current-catalog-20261009 -> origin/codex/value-thread-current-catalog-20261009
+2026-10-21T16:33:38.6054007Z  * [new branch]        codex/value-thread-free-materials-20261009 -> origin/codex/value-thread-free-materials-20261009
+2026-10-21T16:33:38.6054657Z  * [new branch]        codex/value-thread-free-navigation-20261009 -> origin/codex/value-thread-free-navigation-20261009
+2026-10-21T16:33:38.6055311Z  * [new branch]        codex/value-thread-p1-buyer-guide-20261009 -> origin/codex/value-thread-p1-buyer-guide-20261009
+2026-10-21T16:33:38.6056052Z  * [new branch]        codex/value-thread-products-20261009 -> origin/codex/value-thread-products-20261009
+2026-10-21T16:33:38.6056722Z  * [new branch]        feature/rebrand-na-storone-podryadchika-20261015 -> origin/feature/rebrand-na-storone-podryadchika-20261015
+2026-10-21T16:33:38.6057450Z  * [new branch]        feature/rebrand-practice-and-solutions-20261016 -> origin/feature/rebrand-practice-and-solutions-20261016
+2026-10-21T16:33:38.6058103Z  * [new branch]        feature/rebrand-public-pages-20261016 -> origin/feature/rebrand-public-pages-20261016
+2026-10-21T16:33:38.6058684Z  * [new branch]        feature/rebrand-r2-domain-20261016 -> origin/feature/rebrand-r2-domain-20261016
+2026-10-21T16:33:38.6059299Z  * [new branch]        feature/rebrand-r3-one-hour-delivery-20261016 -> origin/feature/rebrand-r3-one-hour-delivery-20261016
+2026-10-21T16:33:38.6060047Z  * [new branch]        feature/ssl-watch-20261015 -> origin/feature/ssl-watch-20261015
+2026-10-21T16:33:38.6060581Z  * [new branch]        fix/freeze-legacy-deploy-20261021 -> origin/fix/freeze-legacy-deploy-20261021
+2026-10-21T16:33:38.6061206Z  * [new branch]        fix/mb001-597-calculator-percent-gate-20261011 -> origin/fix/mb001-597-calculator-percent-gate-20261011
+2026-10-21T16:33:38.6061828Z  * [new branch]        fix/mb001-free-penalty-calculator -> origin/fix/mb001-free-penalty-calculator
+2026-10-21T16:33:38.6062418Z  * [new branch]        fix/mb001-t3-unilateral-writeoff-20261018 -> origin/fix/mb001-t3-unilateral-writeoff-20261018
+2026-10-21T16:33:38.6062953Z  * [new branch]        fix/nsp-audit-ui-20261021 -> origin/fix/nsp-audit-ui-20261021
+2026-10-21T16:33:38.6063436Z  * [new branch]        fix/nsp-cutover-final-20261021 -> origin/fix/nsp-cutover-final-20261021
+2026-10-21T16:33:38.6063911Z  * [new branch]        fix/nsp-dzen-20261021   -> origin/fix/nsp-dzen-20261021
+2026-10-21T16:33:38.6064509Z  * [new branch]        fix/nsp-free-checklist-20261021 -> origin/fix/nsp-free-checklist-20261021
+2026-10-21T16:33:38.6065036Z  * [new branch]        fix/nsp-free-downloads-20261021 -> origin/fix/nsp-free-downloads-20261021
+2026-10-21T16:33:38.6065521Z  * [new branch]        fix/nsp-layout-v3-20261021 -> origin/fix/nsp-layout-v3-20261021
+2026-10-21T16:33:38.6066007Z  * [new branch]        fix/nsp-mail-identity-20261021 -> origin/fix/nsp-mail-identity-20261021
+2026-10-21T16:33:38.6066567Z  * [new branch]        fix/nsp-product-guides-norms-20261021 -> origin/fix/nsp-product-guides-norms-20261021
+2026-10-21T16:33:38.6067142Z  * [new branch]        fix/nsp-render-contract-20261021 -> origin/fix/nsp-render-contract-20261021
+2026-10-21T16:33:38.6067655Z  * [new branch]        fix/remove-refund-disclaimers -> origin/fix/remove-refund-disclaimers
+2026-10-21T16:33:38.6068139Z  * [new branch]        fix/s1-start-copy-parity -> origin/fix/s1-start-copy-parity
+2026-10-21T16:33:38.6068532Z  * [new branch]        main                    -> origin/main
+2026-10-21T16:33:38.6068985Z  * [new branch]        migration/nsp-domain-20261020 -> origin/migration/nsp-domain-20261020
+2026-10-21T16:33:38.6069496Z  * [new branch]        official-forms-p1-p2-20261009 -> origin/official-forms-p1-p2-20261009
+2026-10-21T16:33:38.6070168Z  * [new branch]        ops/canonical-product-registry-20261012 -> origin/ops/canonical-product-registry-20261012
+2026-10-21T16:33:38.6070764Z  * [new branch]        p1-forms-value-language-20261008 -> origin/p1-forms-value-language-20261008
+2026-10-21T16:33:38.6071336Z  * [new branch]        p1-positive-buyer-language-20261008 -> origin/p1-positive-buyer-language-20261008
+2026-10-21T16:33:38.6071909Z  * [new branch]        p2-repackaging-candidate-20261009 -> origin/p2-repackaging-candidate-20261009
+2026-10-21T16:33:38.6072371Z  * [new branch]        perf-v2                 -> origin/perf-v2
+2026-10-21T16:33:38.6072771Z  * [new branch]        release/mb001-p11-20261016 -> origin/release/mb001-p11-20261016
+2026-10-21T16:33:38.6073218Z  * [new branch]        release/mb001-p3-20261016 -> origin/release/mb001-p3-20261016
+2026-10-21T16:33:38.6073763Z  * [new branch]        release/mb001-p5-20261017 -> origin/release/mb001-p5-20261017
+2026-10-21T16:33:38.6074209Z  * [new branch]        script/issue-331-baseline -> origin/script/issue-331-baseline
+2026-10-21T16:33:38.6074702Z  * [new branch]        script/issue-332-quoted-defects -> origin/script/issue-332-quoted-defects
+2026-10-21T16:33:38.6075177Z  * [new branch]        seo-performance-fixes   -> origin/seo-performance-fixes
+2026-10-21T16:33:38.6076594Z [command]/usr/bin/git branch --list --remote origin/fix/nsp-render-contract-20261021
+2026-10-21T16:33:38.6076991Z   origin/fix/nsp-render-contract-20261021
+2026-10-21T16:33:38.6077672Z [command]/usr/bin/git rev-parse refs/remotes/origin/fix/nsp-render-contract-20261021
+2026-10-21T16:33:38.6078075Z 7db2b19b95772c591786efb3512d389c3fa9301a
+2026-10-21T16:33:38.6078769Z ##[endgroup]
+2026-10-21T16:33:38.6079135Z ##[group]Determining the checkout info
+2026-10-21T16:33:38.6079612Z ##[endgroup]
+2026-10-21T16:33:38.6079858Z [command]/usr/bin/git sparse-checkout disable
+2026-10-21T16:33:38.6080543Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-21T16:33:38.6081309Z ##[group]Checking out the ref
+2026-10-21T16:33:38.6081840Z [command]/usr/bin/git checkout --progress --force -B fix/nsp-render-contract-20261021 refs/remotes/origin/fix/nsp-render-contract-20261021
+2026-10-21T16:33:38.9963811Z Switched to a new branch 'fix/nsp-render-contract-20261021'
+2026-10-21T16:33:38.9969151Z branch 'fix/nsp-render-contract-20261021' set up to track 'origin/fix/nsp-render-contract-20261021'.
+2026-10-21T16:33:39.0004503Z ##[endgroup]
+2026-10-21T16:33:39.0092632Z [command]/usr/bin/git log -1 --format=%H
+2026-10-21T16:33:39.0117239Z 7db2b19b95772c591786efb3512d389c3fa9301a
+2026-10-21T16:33:39.0329717Z ##[group]Run actions/setup-python@v5
+2026-10-21T16:33:39.0330033Z with:
+2026-10-21T16:33:39.0330249Z   python-version: 3.11
+2026-10-21T16:33:39.0330469Z   check-latest: false
+2026-10-21T16:33:39.0332273Z   token: ***
+2026-10-21T16:33:39.0332504Z   update-environment: true
+2026-10-21T16:33:39.0332741Z   allow-prereleases: false
+2026-10-21T16:33:39.0332967Z   freethreaded: false
+2026-10-21T16:33:39.0333179Z ##[endgroup]
+2026-10-21T16:33:39.1336707Z ##[group]Installed versions
+2026-10-21T16:33:39.1438698Z (node:2356) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-21T16:33:39.1439870Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-21T16:33:39.1440435Z Successfully set up CPython (3.11.17)
+2026-10-21T16:33:39.1441116Z ##[endgroup]
+2026-10-21T16:33:39.1601432Z ##[group]Run python3 -m pip install --quiet playwright
+2026-10-21T16:33:39.1602070Z [36;1mpython3 -m pip install --quiet playwright[0m
+2026-10-21T16:33:39.1602641Z [36;1mpython3 -m playwright install --with-deps chromium[0m
+2026-10-21T16:33:39.1863363Z shell: /usr/bin/bash -e {0}
+2026-10-21T16:33:39.1863691Z env:
+2026-10-21T16:33:39.1863970Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:33:39.1864405Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+2026-10-21T16:33:39.1864785Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:33:39.1865140Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:33:39.1865474Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:33:39.1865839Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+2026-10-21T16:33:39.1866175Z ##[endgroup]
+2026-10-21T16:33:42.8180870Z 
+2026-10-21T16:33:42.8181533Z [notice] A new release of pip is available: 26.2.1 -> 26.2.2
+2026-10-21T16:33:42.8182038Z [notice] To update, run: pip install --upgrade pip
+2026-10-21T16:33:43.1253013Z Installing dependencies...
+2026-10-21T16:33:43.1301125Z Switching to root user to install dependencies...
+2026-10-21T16:33:43.1890192Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-21T16:33:43.2133858Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2026-10-21T16:33:43.2147386Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-10-21T16:33:43.2212298Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-10-21T16:33:43.2215928Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-10-21T16:33:43.2216918Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-10-21T16:33:43.3207078Z Get:7 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1400 kB]
+2026-10-21T16:33:43.3316694Z Get:8 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [309 kB]
+2026-10-21T16:33:43.3337636Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1706 kB]
+2026-10-21T16:33:43.3418584Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [342 kB]
+2026-10-21T16:33:43.3424649Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1805 kB]
+2026-10-21T16:33:43.3510954Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [411 kB]
+2026-10-21T16:33:43.4070834Z Get:13 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.4 kB]
+2026-10-21T16:33:43.4120304Z Get:14 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [567 kB]
+2026-10-21T16:33:43.4177839Z Get:15 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [630 kB]
+2026-10-21T16:33:43.4484058Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1145 kB]
+2026-10-21T16:33:43.4562788Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [231 kB]
+2026-10-21T16:33:43.4563781Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1222 kB]
+2026-10-21T16:33:43.4613764Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [246 kB]
+2026-10-21T16:33:43.5065397Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1713 kB]
+2026-10-21T16:33:43.5133924Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [392 kB]
+2026-10-21T16:33:49.6320244Z Fetched 12.5 MB in 1s (12.2 MB/s)
+2026-10-21T16:33:50.3588263Z Reading package lists...
+2026-10-21T16:33:50.3793179Z Reading package lists...
+2026-10-21T16:33:50.5608423Z Building dependency tree...
+2026-10-21T16:33:50.5615780Z Reading state information...
+2026-10-21T16:33:50.6913516Z libasound2t64 is already the newest version (1.2.11-1ubuntu0.3).
+2026-10-21T16:33:50.6914662Z libasound2t64 set to manually installed.
+2026-10-21T16:33:50.6915210Z libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-10-21T16:33:50.6915717Z libatk-bridge2.0-0t64 set to manually installed.
+2026-10-21T16:33:50.6916206Z libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+2026-10-21T16:33:50.6916640Z libatk1.0-0t64 set to manually installed.
+2026-10-21T16:33:50.6917090Z libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-10-21T16:33:50.6917544Z libatspi2.0-0t64 set to manually installed.
+2026-10-21T16:33:50.6917962Z libcairo2 is already the newest version (1.18.0-3build1).
+2026-10-21T16:33:50.6918379Z libcairo2 set to manually installed.
+2026-10-21T16:33:50.6918816Z libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.14).
+2026-10-21T16:33:50.6919307Z libcups2t64 set to manually installed.
+2026-10-21T16:33:50.6919948Z libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+2026-10-21T16:33:50.6920414Z libdbus-1-3 set to manually installed.
+2026-10-21T16:33:50.6920903Z libdrm2 is already the newest version (2.4.125-1ubuntu0.1~24.04.2).
+2026-10-21T16:33:50.6921427Z libdrm2 set to manually installed.
+2026-10-21T16:33:50.6921892Z libgbm1 is already the newest version (25.2.8-0ubuntu0.24.04.4).
+2026-10-21T16:33:50.6922389Z libgbm1 set to manually installed.
+2026-10-21T16:33:50.6922822Z libnspr4 is already the newest version (2:4.35-1.1build1).
+2026-10-21T16:33:50.6923477Z libnspr4 set to manually installed.
+2026-10-21T16:33:50.6923866Z libnss3 is already the newest version (2:3.98-1ubuntu0.2).
+2026-10-21T16:33:50.6924223Z libnss3 set to manually installed.
+2026-10-21T16:33:50.6924583Z libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+2026-10-21T16:33:50.6924963Z libpango-1.0-0 set to manually installed.
+2026-10-21T16:33:50.6925230Z libx11-6 is already the newest version (2:1.8.7-1ubuntu0.1).
+2026-10-21T16:33:50.6925489Z libx11-6 set to manually installed.
+2026-10-21T16:33:50.6925730Z libxcb1 is already the newest version (1.15-1ubuntu2).
+2026-10-21T16:33:50.6925978Z libxcb1 set to manually installed.
+2026-10-21T16:33:50.6926242Z libxcomposite1 is already the newest version (1:0.4.5-1build3).
+2026-10-21T16:33:50.6926773Z libxcomposite1 set to manually installed.
+2026-10-21T16:33:50.6927084Z libxdamage1 is already the newest version (1:1.1.6-1build1).
+2026-10-21T16:33:50.6927352Z libxdamage1 set to manually installed.
+2026-10-21T16:33:50.6927611Z libxext6 is already the newest version (2:1.3.4-1build2).
+2026-10-21T16:33:50.6927861Z libxext6 set to manually installed.
+2026-10-21T16:33:50.6928108Z libxfixes3 is already the newest version (1:6.0.0-2build1).
+2026-10-21T16:33:50.6928370Z libxfixes3 set to manually installed.
+2026-10-21T16:33:50.6928629Z libxkbcommon0 is already the newest version (1.6.0-1build1).
+2026-10-21T16:33:50.6928904Z libxkbcommon0 set to manually installed.
+2026-10-21T16:33:50.6929181Z libxrandr2 is already the newest version (2:1.5.2-2build1).
+2026-10-21T16:33:50.6929728Z libxrandr2 set to manually installed.
+2026-10-21T16:33:50.6930051Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+2026-10-21T16:33:50.6930434Z libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+2026-10-21T16:33:50.6930728Z libfontconfig1 set to manually installed.
+2026-10-21T16:33:50.6931011Z libfreetype6 is already the newest version (2.13.2+dfsg-1ubuntu0.2).
+2026-10-21T16:33:50.6931338Z libfreetype6 set to manually installed.
+2026-10-21T16:33:50.6931615Z fonts-liberation is already the newest version (1:2.1.5-3).
+2026-10-21T16:33:50.6931894Z fonts-liberation set to manually installed.
+2026-10-21T16:33:50.6932170Z The following additional packages will be installed:
+2026-10-21T16:33:50.6932515Z   gir1.2-glib-2.0 libglib2.0-bin libglib2.0-data xfonts-encodings xfonts-utils
+2026-10-21T16:33:50.6932959Z   xserver-common
+2026-10-21T16:33:50.6933189Z Suggested packages:
+2026-10-21T16:33:50.6933435Z   low-memory-monitor
+2026-10-21T16:33:50.6933684Z Recommended packages:
+2026-10-21T16:33:50.6934208Z   fonts-ipafont-mincho fonts-tlwg-loma xfonts-base
+2026-10-21T16:33:50.7112734Z The following NEW packages will be installed:
+2026-10-21T16:33:50.7113421Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+2026-10-21T16:33:50.7117631Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+2026-10-21T16:33:50.7118154Z   xfonts-utils
+2026-10-21T16:33:50.7120944Z The following packages will be upgraded:
+2026-10-21T16:33:50.7150258Z   gir1.2-glib-2.0 libglib2.0-0t64 libglib2.0-bin libglib2.0-data
+2026-10-21T16:33:50.7150995Z   xserver-common xvfb
+2026-10-21T16:33:50.7277699Z 6 upgraded, 9 newly installed, 0 to remove and 88 not upgraded.
+2026-10-21T16:33:50.7278177Z Need to get 23.9 MB of archives.
+2026-10-21T16:33:50.7278565Z After this operation, 79.5 MB of additional disk space will be used.
+2026-10-21T16:33:50.7278903Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-21T16:33:50.8133838Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+2026-10-21T16:33:50.9598062Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-data all 2.80.0-6ubuntu3.10 [50.2 kB]
+2026-10-21T16:33:51.0295515Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-bin amd64 2.80.0-6ubuntu3.10 [97.9 kB]
+2026-10-21T16:33:51.0994204Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 gir1.2-glib-2.0 amd64 2.80.0-6ubuntu3.10 [183 kB]
+2026-10-21T16:33:51.1813032Z Get:6 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-0t64 amd64 2.80.0-6ubuntu3.10 [1548 kB]
+2026-10-21T16:33:51.2742935Z Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2 [5641 kB]
+2026-10-21T16:33:51.4671825Z Get:8 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+2026-10-21T16:33:51.5377925Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1 [2993 kB]
+2026-10-21T16:33:51.6721393Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+2026-10-21T16:33:51.9066281Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+2026-10-21T16:33:51.9872965Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
+2026-10-21T16:33:52.0575120Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
+2026-10-21T16:33:52.1556603Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
+2026-10-21T16:33:52.2305131Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 xserver-common all 2:21.1.12-1ubuntu1.9 [35.0 kB]
+2026-10-21T16:33:52.3002383Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 xvfb amd64 2:21.1.12-1ubuntu1.9 [877 kB]
+2026-10-21T16:33:52.5316999Z Fetched 23.9 MB in 2s (14.9 MB/s)
+2026-10-21T16:33:52.5508617Z Selecting previously unselected package fonts-ipafont-gothic.
+2026-10-21T16:33:52.5786798Z (Reading database ... 
+2026-10-21T16:33:52.5787300Z (Reading database ... 5%
+2026-10-21T16:33:52.5787697Z (Reading database ... 10%
+2026-10-21T16:33:52.5787907Z (Reading database ... 15%
+2026-10-21T16:33:52.5788099Z (Reading database ... 20%
+2026-10-21T16:33:52.5788302Z (Reading database ... 25%
+2026-10-21T16:33:52.5788480Z (Reading database ... 30%
+2026-10-21T16:33:52.5788668Z (Reading database ... 35%
+2026-10-21T16:33:52.5788839Z (Reading database ... 40%
+2026-10-21T16:33:52.5789013Z (Reading database ... 45%
+2026-10-21T16:33:52.5789187Z (Reading database ... 50%
+2026-10-21T16:33:52.5816535Z (Reading database ... 55%
+2026-10-21T16:33:52.6827581Z (Reading database ... 60%
+2026-10-21T16:33:52.8876331Z (Reading database ... 65%
+2026-10-21T16:33:53.0775504Z (Reading database ... 70%
+2026-10-21T16:33:53.2803974Z (Reading database ... 75%
+2026-10-21T16:33:53.4279954Z (Reading database ... 80%
+2026-10-21T16:33:53.6317678Z (Reading database ... 85%
+2026-10-21T16:33:53.8075605Z (Reading database ... 90%
+2026-10-21T16:33:53.9830980Z (Reading database ... 95%
+2026-10-21T16:33:53.9831256Z (Reading database ... 100%
+2026-10-21T16:33:53.9831541Z (Reading database ... 203540 files and directories currently installed.)
+2026-10-21T16:33:53.9871948Z Preparing to unpack .../00-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
+2026-10-21T16:33:53.9948438Z Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-21T16:33:54.2252245Z Preparing to unpack .../01-libglib2.0-data_2.80.0-6ubuntu3.10_all.deb ...
+2026-10-21T16:33:54.2267851Z Unpacking libglib2.0-data (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.9) ...
+2026-10-21T16:33:54.2542786Z Preparing to unpack .../02-libglib2.0-bin_2.80.0-6ubuntu3.10_amd64.deb ...
+2026-10-21T16:33:54.2560832Z Unpacking libglib2.0-bin (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.9) ...
+2026-10-21T16:33:54.2963396Z Preparing to unpack .../03-gir1.2-glib-2.0_2.80.0-6ubuntu3.10_amd64.deb ...
+2026-10-21T16:33:54.2980700Z Unpacking gir1.2-glib-2.0:amd64 (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.9) ...
+2026-10-21T16:33:54.3310415Z Preparing to unpack .../04-libglib2.0-0t64_2.80.0-6ubuntu3.10_amd64.deb ...
+2026-10-21T16:33:54.3370748Z Unpacking libglib2.0-0t64:amd64 (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.9) ...
+2026-10-21T16:33:54.3823376Z Selecting previously unselected package fonts-freefont-ttf.
+2026-10-21T16:33:54.3935464Z Preparing to unpack .../05-fonts-freefont-ttf_20211204+svn4273-2_all.deb ...
+2026-10-21T16:33:54.3941119Z Unpacking fonts-freefont-ttf (20211204+svn4273-2) ...
+2026-10-21T16:33:54.4833436Z Selecting previously unselected package fonts-tlwg-loma-otf.
+2026-10-21T16:33:54.4945837Z Preparing to unpack .../06-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+2026-10-21T16:33:54.4952474Z Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-21T16:33:54.5122304Z Selecting previously unselected package fonts-unifont.
+2026-10-21T16:33:54.5232148Z Preparing to unpack .../07-fonts-unifont_1%3a15.1.01-1build1_all.deb ...
+2026-10-21T16:33:54.5238676Z Unpacking fonts-unifont (1:15.1.01-1build1) ...
+2026-10-21T16:33:54.7094385Z Selecting previously unselected package fonts-wqy-zenhei.
+2026-10-21T16:33:54.7207519Z Preparing to unpack .../08-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+2026-10-21T16:33:54.7296467Z Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-21T16:33:55.1735159Z Selecting previously unselected package xfonts-encodings.
+2026-10-21T16:33:55.1848974Z Preparing to unpack .../09-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+2026-10-21T16:33:55.1856059Z Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-21T16:33:55.2099472Z Selecting previously unselected package xfonts-utils.
+2026-10-21T16:33:55.2215687Z Preparing to unpack .../10-xfonts-utils_1%3a7.7+6build3_amd64.deb ...
+2026-10-21T16:33:55.2223378Z Unpacking xfonts-utils (1:7.7+6build3) ...
+2026-10-21T16:33:55.2508213Z Selecting previously unselected package xfonts-cyrillic.
+2026-10-21T16:33:55.2632385Z Preparing to unpack .../11-xfonts-cyrillic_1%3a1.0.5+nmu1_all.deb ...
+2026-10-21T16:33:55.2639728Z Unpacking xfonts-cyrillic (1:1.0.5+nmu1) ...
+2026-10-21T16:33:55.2918617Z Selecting previously unselected package xfonts-scalable.
+2026-10-21T16:33:55.3032093Z Preparing to unpack .../12-xfonts-scalable_1%3a1.0.3-1.3_all.deb ...
+2026-10-21T16:33:55.3039498Z Unpacking xfonts-scalable (1:1.0.3-1.3) ...
+2026-10-21T16:33:55.3357662Z Preparing to unpack .../13-xserver-common_2%3a21.1.12-1ubuntu1.9_all.deb ...
+2026-10-21T16:33:55.3376067Z Unpacking xserver-common (2:21.1.12-1ubuntu1.9) over (2:21.1.12-1ubuntu1.8) ...
+2026-10-21T16:33:55.3713170Z Preparing to unpack .../14-xvfb_2%3a21.1.12-1ubuntu1.9_amd64.deb ...
+2026-10-21T16:33:55.3729373Z Unpacking xvfb (2:21.1.12-1ubuntu1.9) over (2:21.1.12-1ubuntu1.8) ...
+2026-10-21T16:33:55.4266774Z Setting up fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-21T16:33:55.4365232Z Setting up fonts-freefont-ttf (20211204+svn4273-2) ...
+2026-10-21T16:33:55.4379967Z Setting up libglib2.0-0t64:amd64 (2.80.0-6ubuntu3.10) ...
+2026-10-21T16:33:55.4470574Z Setting up libglib2.0-data (2.80.0-6ubuntu3.10) ...
+2026-10-21T16:33:55.4483399Z Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-21T16:33:55.4496683Z Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-21T16:33:55.4509839Z Setting up gir1.2-glib-2.0:amd64 (2.80.0-6ubuntu3.10) ...
+2026-10-21T16:33:55.4522356Z Setting up fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-21T16:33:55.4579823Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+2026-10-21T16:33:55.4592273Z Setting up xserver-common (2:21.1.12-1ubuntu1.9) ...
+2026-10-21T16:33:55.4606367Z Setting up fonts-unifont (1:15.1.01-1build1) ...
+2026-10-21T16:33:55.4619258Z Setting up xvfb (2:21.1.12-1ubuntu1.9) ...
+2026-10-21T16:33:55.4633332Z Setting up libglib2.0-bin (2.80.0-6ubuntu3.10) ...
+2026-10-21T16:33:55.4646674Z Setting up xfonts-utils (1:7.7+6build3) ...
+2026-10-21T16:33:55.4681940Z Setting up xfonts-cyrillic (1:1.0.5+nmu1) ...
+2026-10-21T16:33:55.4962035Z Setting up xfonts-scalable (1:1.0.3-1.3) ...
+2026-10-21T16:33:55.5207787Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+2026-10-21T16:33:55.7062502Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-10-21T16:33:55.7082185Z Not building database; man-db/auto-update is not 'true'.
+2026-10-21T16:33:55.7094781Z Processing triggers for fontconfig (2.15.0-1.1ubuntu2) ...
+2026-10-21T16:33:56.2295930Z 
+2026-10-21T16:33:56.2296518Z Running kernel seems to be up-to-date.
+2026-10-21T16:33:56.2300004Z 
+2026-10-21T16:33:56.2300188Z Restarting services...
+2026-10-21T16:33:56.2711727Z  systemctl restart packagekit.service php8.3-fpm.service polkit.service udisks2.service
+2026-10-21T16:33:56.3990721Z 
+2026-10-21T16:33:56.3991426Z Service restarts being deferred:
+2026-10-21T16:33:56.3992085Z  systemctl restart ModemManager.service
+2026-10-21T16:33:56.3992536Z  systemctl restart networkd-dispatcher.service
+2026-10-21T16:33:56.3992806Z 
+2026-10-21T16:33:56.3992928Z No containers need to be restarted.
+2026-10-21T16:33:56.3993147Z 
+2026-10-21T16:33:56.3993285Z No user sessions are running outdated binaries.
+2026-10-21T16:33:56.3993534Z 
+2026-10-21T16:33:56.3993778Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-21T16:33:57.3757738Z Downloading Chrome for Testing 156.0.8078.4 (playwright chromium v1248) from https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-linux64.zip
+2026-10-21T16:33:57.7105639Z |                                                                                |   0% of 191.1 MiB
+2026-10-21T16:33:57.9090741Z |■■■■■■■■                                                                        |  10% of 191.1 MiB
+2026-10-21T16:33:57.9731930Z |■■■■■■■■■■■■■■■■                                                                |  20% of 191.1 MiB
+2026-10-21T16:33:58.0486901Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 191.1 MiB
+2026-10-21T16:33:58.0976087Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 191.1 MiB
+2026-10-21T16:33:58.1614377Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 191.1 MiB
+2026-10-21T16:33:58.2211088Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 191.1 MiB
+2026-10-21T16:33:58.2647242Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 191.1 MiB
+2026-10-21T16:33:58.3334633Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 191.1 MiB
+2026-10-21T16:33:58.3787995Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 191.1 MiB
+2026-10-21T16:33:58.4408429Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 191.1 MiB
+2026-10-21T16:34:00.9561113Z Chrome for Testing 156.0.8078.4 (playwright chromium v1248) downloaded to /home/runner/.cache/ms-playwright/chromium-1248
+2026-10-21T16:34:00.9563863Z Downloading FFmpeg (playwright ffmpeg v1013) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1013/ffmpeg-linux.zip
+2026-10-21T16:34:01.2421139Z |                                                                                |   0% of 2.2 MiB
+2026-10-21T16:34:01.2538247Z |■■■■■■■■                                                                        |  10% of 2.2 MiB
+2026-10-21T16:34:01.2598842Z |■■■■■■■■■■■■■■■■                                                                |  20% of 2.2 MiB
+2026-10-21T16:34:01.2632491Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.2 MiB
+2026-10-21T16:34:01.2669234Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.2 MiB
+2026-10-21T16:34:01.2688838Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.2 MiB
+2026-10-21T16:34:01.2718664Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.2 MiB
+2026-10-21T16:34:01.2727478Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.2 MiB
+2026-10-21T16:34:01.2755835Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.2 MiB
+2026-10-21T16:34:01.2766905Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.2 MiB
+2026-10-21T16:34:01.2774202Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.2 MiB
+2026-10-21T16:34:01.3227112Z FFmpeg (playwright ffmpeg v1013) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1013
+2026-10-21T16:34:01.3229389Z Downloading Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) from https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-headless-shell-linux64.zip
+2026-10-21T16:34:01.6676104Z |                                                                                |   0% of 120 MiB
+2026-10-21T16:34:01.8396405Z |■■■■■■■■                                                                        |  10% of 120 MiB
+2026-10-21T16:34:01.8949275Z |■■■■■■■■■■■■■■■■                                                                |  20% of 120 MiB
+2026-10-21T16:34:01.9377377Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 120 MiB
+2026-10-21T16:34:01.9954987Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 120 MiB
+2026-10-21T16:34:02.0240229Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 120 MiB
+2026-10-21T16:34:02.0548308Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 120 MiB
+2026-10-21T16:34:02.1029421Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 120 MiB
+2026-10-21T16:34:02.1327387Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 120 MiB
+2026-10-21T16:34:02.1757668Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 120 MiB
+2026-10-21T16:34:02.2228180Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 120 MiB
+2026-10-21T16:34:04.0888223Z Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1248
+2026-10-21T16:34:04.1155936Z ##[group]Run python3 tools/test_desktop_contract.py
+2026-10-21T16:34:04.1156424Z [36;1mpython3 tools/test_desktop_contract.py[0m
+2026-10-21T16:34:04.1233388Z shell: /usr/bin/bash -e {0}
+2026-10-21T16:34:04.1233707Z env:
+2026-10-21T16:34:04.1234044Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:34:04.1234606Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+2026-10-21T16:34:04.1235162Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:34:04.1235660Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:34:04.1236153Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:34:04.1236684Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+2026-10-21T16:34:04.1237107Z ##[endgroup]
+2026-10-21T16:34:08.8563142Z Desktop guard contract: 21 browser cases PASS
+2026-10-21T16:34:08.8805831Z ##[group]Run python3 tools/build_sitemap.py --write
+2026-10-21T16:34:08.8806183Z [36;1mpython3 tools/build_sitemap.py --write[0m
+2026-10-21T16:34:08.8806435Z [36;1mpython3 tools/build_rss.py --write[0m
+2026-10-21T16:34:08.8862685Z shell: /usr/bin/bash -e {0}
+2026-10-21T16:34:08.8862889Z env:
+2026-10-21T16:34:08.8863108Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:34:08.8863448Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+2026-10-21T16:34:08.8863783Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:34:08.8864080Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:34:08.8864377Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:34:08.8864671Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+2026-10-21T16:34:08.8864928Z ##[endgroup]
+2026-10-21T16:34:09.1542106Z sitemap.xml собран: 82 адресов, добавлено 0, убрано 0
+2026-10-21T16:34:09.2543617Z заголовок из data/site/dzen-titles.json: 17 из 29
+2026-10-21T16:34:09.2545984Z откат на заголовок статьи (12): akt-skrytyh-rabot-montazh, akty-skrytyh-rabot-kakie, avans-po-dogovoru-podryada, dolg-zakryvali-na-sleduyushchem-obekte, dopolnitelnye-raboty-v-stroitelstve, dostraivali-za-metry-otkaz-v-zos, garantiynoe-uderzhanie-v-ks-2-i-ks-3, pretenziya-za-chuzhuyu-kommunalku, proverka-ks-2-pered-sdachey, raschet-metrami, zakazchik-ne-oplachivaet-vypolnennye-raboty, zos-v-stroitelstve
+2026-10-21T16:34:09.2548165Z исключено как опубликованное вручную: 12
+2026-10-21T16:34:09.2548581Z rss.xml собран: 29 материалов
+2026-10-21T16:34:09.2549031Z   15.08.2026  Долг закрывали на следующем объекте: случай на 28 млн
+2026-10-21T16:34:09.2549967Z   15.08.2026  Достраивали за метры: случай, где расчёт квартирами оказался долгом
+2026-10-21T16:34:09.2550874Z   14.08.2026  Гарантийное удержание в КС-2 и КС-3: где показывать и как проверить сумму — На стороне подрядчика
+2026-10-21T16:34:09.2551576Z   14.08.2026  Проверка КС-2 перед сдачей: что ищет заказчик, чтобы вернуть акт — На стороне подрядчика
+2026-10-21T16:34:09.2552291Z   11.08.2026  Акт скрытых работ на монтаж: испытание, освидетельствование, закрытие — На стороне подрядчика
+2026-10-21T16:34:09.2553034Z   11.08.2026  Акты скрытых работ: какие работы считаются скрытыми и когда акт обязателен — На стороне подрядчика
+2026-10-21T16:34:09.2553804Z   11.08.2026  Аванс по договору подряда: почему работа начинается на ваши деньги — На стороне подрядчика
+2026-10-21T16:34:09.2554581Z   11.08.2026  Дополнительные работы в строительстве: порядок оформления — На стороне подрядчика
+2026-10-21T16:34:09.2555267Z   11.08.2026  Заказчик не оплачивает выполненные работы: что сделать до суда — На стороне подрядчика
+2026-10-21T16:34:09.2556065Z   09.08.2026  Претензия за чужую коммуналку: как замечания по качеству стали ключом распределения долга — На стороне подрядчика
+2026-10-21T16:34:09.2556906Z   08.08.2026  Переуступка ДДУ вместо денег: что вам передают при оплате квартирой за работы — На стороне подрядчика
+2026-10-21T16:34:09.2557929Z   08.08.2026  ЗОС в строительстве: что это, кто выдаёт и что значит отказ для подрядчика — На стороне подрядчика
+2026-10-21T16:34:09.2558554Z   02.08.2026  Площадку передали на словах. Простой оплатите вы
+2026-10-21T16:34:09.2559194Z   01.08.2026  Банковская гарантия на возврат аванса: платит подрядчик, защищает генподрядчика
+2026-10-21T16:34:09.2559992Z   01.08.2026  Срок включения в реестр идёт не с того дня, когда вы узнали о банкротстве
+2026-10-21T16:34:09.2560551Z   01.08.2026  Аванс требуют вернуть целиком. Считать — не первое, что нужно делать
+2026-10-21T16:34:09.2561106Z   01.08.2026  Что можно спросить у арбитражного управляющего и чего он не даст
+2026-10-21T16:34:09.2561646Z   01.08.2026  Скачанный образец заявления в реестр кредиторов стоит очереди
+2026-10-21T16:34:09.2562150Z   31.07.2026  Скрытые работы закрыли. Акт подписать забыли
+2026-10-21T16:34:09.2562602Z   31.07.2026  Образец договора из интернета написан не для вас
+2026-10-21T16:34:09.2563333Z   31.07.2026  Пять процентов, которые вы больше не увидите
+2026-10-21T16:34:09.2563814Z   31.07.2026  Работы приняты, оплата стоит: комплект вернули
+2026-10-21T16:34:09.2564247Z   31.07.2026  Договор можно не подписывать целиком
+2026-10-21T16:34:09.2564703Z   31.07.2026  Срок возврата удержания может не наступить никогда
+2026-10-21T16:34:09.2565147Z   31.07.2026  Мусор вывозите вы. В смете его нет
+2026-10-21T16:34:09.2565581Z   31.07.2026  Объект сдан год назад. Удержание не вернули
+2026-10-21T16:34:09.2566046Z   26.07.2026  «Всё включено в цену» — три слова ценой в миллионы
+2026-10-21T16:34:09.2566533Z   25.07.2026  Сделали больше, чем в смете. Заплатят по смете
+2026-10-21T16:34:09.2567037Z   25.07.2026  Работы сделаны, акт не подписан. Молчание работает против вас
+2026-10-21T16:34:09.2619101Z ##[group]Run python3 tools/check_mobile.py
+2026-10-21T16:34:09.2619366Z [36;1mpython3 tools/check_mobile.py[0m
+2026-10-21T16:34:09.2675006Z shell: /usr/bin/bash -e {0}
+2026-10-21T16:34:09.2675379Z env:
+2026-10-21T16:34:09.2675610Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:34:09.2675945Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+2026-10-21T16:34:09.2676274Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:34:09.2676578Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:34:09.2676867Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:34:09.2677155Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+2026-10-21T16:34:09.2677407Z ##[endgroup]
+2026-10-21T16:35:27.4186248Z Проверено страниц: 8 на 390px плюс десктоп.
+2026-10-21T16:35:27.4186685Z Расхождений нет.
+2026-10-21T16:35:27.4437550Z ##[group]Run python3 tools/check_desktop.py
+2026-10-21T16:35:27.4437915Z [36;1mpython3 tools/check_desktop.py[0m
+2026-10-21T16:35:27.4493139Z shell: /usr/bin/bash -e {0}
+2026-10-21T16:35:27.4493547Z env:
+2026-10-21T16:35:27.4503052Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:35:27.4503599Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+2026-10-21T16:35:27.4504104Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:35:27.4504526Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:35:27.4504933Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:35:27.4505344Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+2026-10-21T16:35:27.4505597Z ##[endgroup]
+2026-10-21T16:39:10.4876263Z Замечание — длина в экранах выше цели (не блокирует):
+2026-10-21T16:39:10.4876869Z    · index.html @1366: 11.5 экрана против цели 10.0 — 8865px при окне 768px
+2026-10-21T16:39:10.4877482Z Десктоп (1366, 1440, 1600, 1920): 26 страниц, расхождений нет
+2026-10-21T16:39:10.5123817Z ##[group]Run python3 tools/test_cart.py
+2026-10-21T16:39:10.5124251Z [36;1mpython3 tools/test_cart.py[0m
+2026-10-21T16:39:10.5195442Z shell: /usr/bin/bash -e {0}
+2026-10-21T16:39:10.5195682Z env:
+2026-10-21T16:39:10.5195907Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:39:10.5196258Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+2026-10-21T16:39:10.5196587Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:39:10.5196885Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:39:10.5197174Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:39:10.5197461Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+2026-10-21T16:39:10.5197712Z ##[endgroup]
+2026-10-21T16:39:22.1220021Z Корзина: 18 страниц товаров, sku и цена совпадают с кассой, повторный клик позицию не удваивает
+2026-10-21T16:39:22.1438014Z ##[group]Run python3 tools/test_attribution_chain.py
+2026-10-21T16:39:22.1438335Z [36;1mpython3 tools/test_attribution_chain.py[0m
+2026-10-21T16:39:22.1493724Z shell: /usr/bin/bash -e {0}
+2026-10-21T16:39:22.1493922Z env:
+2026-10-21T16:39:22.1494134Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:39:22.1494491Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+2026-10-21T16:39:22.1494812Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:39:22.1495100Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:39:22.1495394Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-21T16:39:22.1495682Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+2026-10-21T16:39:22.1495931Z ##[endgroup]
+2026-10-21T16:39:53.9746976Z Traceback (most recent call last):
+2026-10-21T16:39:53.9756301Z   File "/home/runner/work/marzhavbetone.ru/marzhavbetone.ru/tools/test_attribution_chain.py", line 167, in <module>
+2026-10-21T16:39:53.9757258Z     raise SystemExit(main())
+2026-10-21T16:39:53.9757585Z                      ^^^^^^
+2026-10-21T16:39:53.9758260Z   File "/home/runner/work/marzhavbetone.ru/marzhavbetone.ru/tools/test_attribution_chain.py", line 125, in main
+2026-10-21T16:39:53.9759346Z     page.click(".product-hero .add-to-cart")
+2026-10-21T16:39:53.9760343Z   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/playwright/sync_api/_generated.py", line 16267, in click
+2026-10-21T16:39:53.9770106Z     self._sync(
+2026-10-21T16:39:53.9771036Z   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+2026-10-21T16:39:53.9771753Z     return task.result()
+2026-10-21T16:39:53.9772010Z            ^^^^^^^^^^^^^
+2026-10-21T16:39:53.9772664Z   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/playwright/_impl/_page.py", line 891, in click
+2026-10-21T16:39:53.9773441Z     return await self._main_frame._click(**locals_to_params(locals()))
+2026-10-21T16:39:53.9773871Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-21T16:39:53.9774583Z   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/playwright/_impl/_frame.py", line 598, in _click
+2026-10-21T16:39:53.9775389Z     await self._channel.send("click", self._timeout, locals_to_params(locals()))
+2026-10-21T16:39:53.9776253Z   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 78, in send
+2026-10-21T16:39:53.9776954Z     return await self._connection.wrap_api_call(
+2026-10-21T16:39:53.9777284Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-21T16:39:53.9778012Z   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 636, in wrap_api_call
+2026-10-21T16:39:53.9778881Z     raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+2026-10-21T16:39:53.9779477Z playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.
+2026-10-21T16:39:53.9780059Z Call log:
+2026-10-21T16:39:53.9780331Z   - waiting for locator(".product-hero .add-to-cart")
+2026-10-21T16:39:53.9780616Z 
+2026-10-21T16:39:53.9974215Z ##[error]Process completed with exit code 1.
+2026-10-21T16:39:54.0084677Z Post job cleanup.
+2026-10-21T16:39:54.0788078Z [command]/usr/bin/git version
+2026-10-21T16:39:54.0823618Z git version 2.55.0
+2026-10-21T16:39:54.0852628Z Temporarily overriding HOME='/home/runner/work/_temp/c317c857-0825-431d-9975-1ed9f59d1fb4' before making global git config changes
+2026-10-21T16:39:54.0853688Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-21T16:39:54.0856778Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/marzhavbetone.ru/marzhavbetone.ru
+2026-10-21T16:39:54.0887606Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-21T16:39:54.0916115Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-21T16:39:54.1126536Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-21T16:39:54.1153120Z http.https://github.com/.extraheader
+2026-10-21T16:39:54.1167373Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-21T16:39:54.1194583Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-21T16:39:54.1409213Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-21T16:39:54.1440911Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-21T16:39:54.1806684Z Cleaning up orphan processes
+2026-10-21T16:39:54.2087101Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
