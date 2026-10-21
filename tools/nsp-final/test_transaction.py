@@ -55,5 +55,8 @@ with tempfile.TemporaryDirectory() as tmp:
     outside=home/'outside';outside.mkdir();(outside/'canary').write_text('keep');target.parent.symlink_to(outside,target_is_directory=True)
     run(stage('symlink'),'dry-run',False);assert (outside/'canary').read_text()=='keep';target.parent.unlink()
     d=stage('zip','downloads/dengi.zip');run(d,'apply');run(d,'verify');run(d,'rollback');assert not target.parent.exists()
+    assets=site/'assets';assets.mkdir()
+    d=stage('asset','assets/nsp-hero-desktop.webp');run(d,'apply');run(d,'verify');run(d,'rollback');assert not (assets/'nsp-hero-desktop.webp').exists();assert not (site/'downloads').exists()
+    assets.rmdir()
     run(stage('unsafe','downloads/other.pdf'),'dry-run',False);assert not target.parent.exists()
 print('PUBLIC_PDF_CREATE_ABSENCE_CONCURRENT_EDIT_SYMLINK_AND_ROLLBACK=PASS')

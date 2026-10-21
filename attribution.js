@@ -135,11 +135,21 @@ window.mvbTrackGoal = function (name) {
     toggle.className = 'nav-toggle';
     toggle.setAttribute('aria-label', 'Меню');
     toggle.setAttribute('aria-expanded', 'false');
+    if (!menu.id) menu.id = 'primary-navigation';
+    toggle.setAttribute('aria-controls', menu.id);
     toggle.appendChild(document.createElement('span'));
 
     toggle.addEventListener('click', function () {
       var open = menu.classList.toggle('is-open');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    header.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && menu.classList.contains('is-open')) {
+        menu.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.focus();
+      }
     });
 
     // Закрывается по выбору пункта: на телефоне переход по якорю не

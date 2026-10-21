@@ -3,7 +3,7 @@ declare(strict_types=1);
 // Bounded static-file transaction; all configuration, orders and masters are excluded.
 function demand(bool $ok,string $why): void { if(!$ok) throw new RuntimeException($why); }
 function sha(string $p): string { demand(is_file($p)&&!is_link($p),'MISSING_OR_SYMLINK'); return (string)hash_file('sha256',$p); }
-function public_download(string $p): bool { return in_array($p,['downloads/checklist-zakrytiya-rabot.pdf','downloads/dengi.zip','downloads/dop-raboty.zip','downloads/vozvrat-ks.zip','downloads/uderzhaniya.zip','downloads/dogovor.zip','downloads/bankrotstvo.zip','downloads/avans.zip','downloads/raschet-metrami.zip','downloads/ispolnitelnaya-dokumentaciya.zip','downloads/akt-skrytyh-rabot.zip'],true); }
+function public_payload(string $p): bool { return in_array($p,['assets/nsp-hero-desktop.webp','assets/nsp-hero-mobile.webp','assets/nsp-stage-icons.svg','sitemap.xml','downloads/checklist-zakrytiya-rabot.pdf','downloads/dengi.zip','downloads/dop-raboty.zip','downloads/vozvrat-ks.zip','downloads/uderzhaniya.zip','downloads/dogovor.zip','downloads/bankrotstvo.zip','downloads/avans.zip','downloads/raschet-metrami.zip','downloads/ispolnitelnaya-dokumentaciya.zip','downloads/akt-skrytyh-rabot.zip'],true); }
 function current_sha(string $p): ?string { if(!file_exists($p)&&!is_link($p)) return null; return sha($p); }
 function remove_created_dirs(string $root,string $dir): void {
     $p=$dir.'/created-dirs.json'; if(!is_file($p)) return;
@@ -55,14 +55,14 @@ try {
     $rows=json_decode((string)file_get_contents($dir.'/manifest.json'),true,512,JSON_THROW_ON_ERROR);
     demand(is_array($rows)&&count($rows)>0&&count($rows)<=100,'MANIFEST_COUNT'); $seen=[];
     foreach($rows as $r) {
-        $p=$r['path']; demand(public_download($p)||(bool)preg_match('~^(?:articles/|materialy/|products/|demo/)?[a-zA-Z0-9_-]+\.(?:html|js|css)$~D',$p),'UNSAFE_PATH');
+        $p=$r['path']; demand(public_payload($p)||(bool)preg_match('~^(?:articles/|materialy/|products/|demo/)?[a-zA-Z0-9_-]+\.(?:html|js|css)$~D',$p),'UNSAFE_PATH');
         demand(!isset($seen[$p]),'DUPLICATE_PATH'); $seen[$p]=true;
         $parent=dirname($root.'/'.$p);
         demand(!is_link($parent),'PARENT_SYMLINK');
-        if(public_download($p)&&!file_exists($parent)) demand($parent===$root.'/downloads','MISSING_PARENT');
+        if(public_payload($p)&&!file_exists($parent)) demand($parent===$root.'/downloads','MISSING_PARENT');
         else demand(is_dir($parent)&&strpos((string)realpath($parent).'/',$root.'/')===0,'PATH_ESCAPE');
         foreach(['before','after'] as $k) {
-            if($k==='before'&&$r[$k]===null){demand(public_download($p),'UNSAFE_CREATION');continue;}
+            if($k==='before'&&$r[$k]===null){demand(public_payload($p),'UNSAFE_CREATION');continue;}
             demand(is_string($r[$k])&&(bool)preg_match('/^[a-f0-9]{64}$/D',$r[$k]),'HASH_FORMAT');
         }
     }
@@ -88,7 +88,7 @@ try {
     }
     file_put_contents($dir.'/protected.json',json_encode($state,JSON_THROW_ON_ERROR)); chmod($dir.'/protected.json',0600);
     $createdDirs=[];
-    if(count(array_filter(array_keys($seen),'public_download'))>0&&!is_dir($root.'/downloads')) { demand(!file_exists($root.'/downloads')&&!is_link($root.'/downloads'),'DOWNLOADS_CONCURRENT_EDIT'); demand(mkdir($root.'/downloads',0755),'CREATE_DOWNLOADS'); $createdDirs[]='downloads'; }
+    if(count(array_filter(array_keys($seen),fn($p)=>str_starts_with($p,'downloads/')))>0&&!is_dir($root.'/downloads')) { demand(!file_exists($root.'/downloads')&&!is_link($root.'/downloads'),'DOWNLOADS_CONCURRENT_EDIT'); demand(mkdir($root.'/downloads',0755),'CREATE_DOWNLOADS'); $createdDirs[]='downloads'; }
     file_put_contents($dir.'/created-dirs.json',json_encode($createdDirs,JSON_THROW_ON_ERROR)); chmod($dir.'/created-dirs.json',0600);
     foreach($createdDirs as $name) demand(chmod($root.'/'.$name,0755),'PUBLIC_DIRECTORY_MODE');
     foreach($rows as $r) {

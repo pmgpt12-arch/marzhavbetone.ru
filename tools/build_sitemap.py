@@ -23,7 +23,7 @@ from datetime import date
 from pathlib import Path
 
 SITE = Path(__file__).resolve().parent.parent
-BASE = "https://marzhavbetone.ru"
+BASE = "https://nastoronepodryadchika.ru"
 
 # Страницы, которых в карте быть не должно, и причина у каждой.
 EXCLUDED = {
@@ -55,14 +55,17 @@ LEGAL = {"privacy.html": "0.2", "offer.html": "0.3", "payment-delivery.html": "0
 
 
 def git_date(path: Path) -> str:
-    """Дата последнего коммита, изменившего файл. Для незакоммиченного — сегодня."""
+    """Дата последнего коммита, изменившего файл. Без истории дата не придумывается."""
     try:
+        shallow=subprocess.check_output(['git','rev-parse','--is-shallow-repository'],cwd=SITE,text=True).strip()
+        if shallow=='true': raise RuntimeError('FULL_GIT_HISTORY_REQUIRED')
         out = subprocess.run(
             ["git", "log", "-1", "--format=%cs", "--", str(path.relative_to(SITE))],
             cwd=SITE, capture_output=True, text=True, timeout=15).stdout.strip()
-        return out or date.today().isoformat()
-    except Exception:
-        return date.today().isoformat()
+        if not re.fullmatch(r'\d{4}-\d{2}-\d{2}',out): raise RuntimeError('MISSING_GIT_DATE:'+str(path))
+        return out
+    except Exception as exc:
+        raise RuntimeError('UNVERIFIED_LASTMOD:'+str(path)) from exc
 
 
 def classify(rel: str) -> tuple[str, str] | None:
@@ -121,6 +124,11 @@ def collect() -> list[tuple[str, str, str, str]]:
             loc = f"{BASE}/{rel[:-len('index.html')]}"
         else:
             loc = f"{BASE}/{rel}"
+        text=path.read_text(encoding='utf-8')
+        canonical=re.search(r'<link[^>]*rel=["\']canonical["\'][^>]*href=["\']([^"\']+)',text,re.I)
+        if canonical and canonical[1] != loc: continue
+        if re.search(r'<meta[^>]*name=["\']robots["\'][^>]*content=["\'][^"\']*noindex',text,re.I): continue
+        if re.search(r'<meta[^>]*http-equiv=["\']refresh',text,re.I): continue
         rows.append((loc, git_date(path), freq, prio))
     # Порядок: главная, разделы, статьи, материалы, правовые — как читается человеком
     order = {"1.0": 0, "0.9": 1, "0.8": 2, "0.7": 3, "0.3": 4, "0.2": 5}

@@ -1,0 +1,35 @@
+name: NSP selected homepage layout contract
+on:
+  push:
+    branches: [main, fix/nsp-layout-v3-20261021]
+    paths: [index.html, katalog.html, attribution.js, brand-approved-2026.css, assets/nsp-*, sitemap.xml, tools/build_sitemap.py, tools/nsp-layout-v3-20261021/**, .github/workflows/nsp-layout-gate.yml]
+permissions:
+  contents: read
+jobs:
+  layout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: python3 -m pip install --disable-pip-version-check --timeout 20 --retries 0 pypdf==6.10.0
+      - run: python3 tools/nsp-layout-v3-20261021/verify_source.py
+      - run: python3 tools/build_sitemap.py --verify
+      - run: npm install --prefix /tmp/nsp-layout-deps --no-audit --no-fund playwright@1.64.1 @axe-core/playwright@4.14.0
+      - run: node tools/nsp-layout-v3-20261021/verify_layout.cjs
+        env:
+          NODE_PATH: /tmp/nsp-layout-deps/node_modules
+          NSP_TEST_OUTPUT: /tmp/nsp-layout-evidence
+      - run: node tools/nsp-ui-audit-20261021/verify_ui.cjs
+        env:
+          NODE_PATH: /tmp/nsp-layout-deps/node_modules
+          NSP_TEST_OUTPUT: /tmp/nsp-layout-regression
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nsp-layout-browser-${{ github.run_id }}
+          path: |
+            /tmp/nsp-layout-evidence/
+            /tmp/nsp-layout-regression/
+          retention-days: 30
