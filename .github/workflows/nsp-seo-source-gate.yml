@@ -1,0 +1,21 @@
+name: NSP source SEO gate
+on:
+  pull_request:
+    paths:
+      - tools/nsp_seo_gate.py
+      - sitemap.xml
+      - robots.txt
+      - .htaccess
+      - '**/*.html'
+      - .github/workflows/nsp-seo-source-gate.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate new-domain source SEO
+        run: python3 tools/nsp_seo_gate.py
