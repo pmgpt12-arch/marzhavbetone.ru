@@ -1,0 +1,47 @@
+name: NSP hosting read-only audit
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Inspect new domain without changes
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$HOST" && test -n "$USER" && test -n "$KEY"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_audit_key
+          chmod 600 ~/.ssh/nsp_audit_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/nsp_audit_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          printf 'NEW_SITE_DIRECTORY='
+          test -d "$site" && echo PRESENT || { echo MISSING; exit 1; }
+          for f in index.html config.php payment.php webhook.php products-config.php; do
+            if test -f "$site/$f"; then printf 'FILE_%s=PRESENT\n' "$f"; else printf 'FILE_%s=MISSING\n' "$f"; fi
+          done
+          if command -v php >/dev/null 2>&1; then
+            for f in payment.php webhook.php products-config.php; do
+              if test -f "$site/$f"; then
+                if php -l "$site/$f" >/dev/null 2>&1; then echo "PHP_LINT_$f=PASS"; else echo "PHP_LINT_$f=FAIL"; fi
+              fi
+            done
+          else
+            echo 'PHP_CLI=UNAVAILABLE'
+          fi
+          printf 'CONFIG_PRESENT='
+          test -s "$site/config.php" && echo YES || echo NO
+          printf 'PRIVATE_PRODUCT_DIR='
+          test -d "$HOME/products-marzhavbetone" && echo PRESENT || echo MISSING
+          printf 'MIGRATION_PRIVATE_DIR='
+          test -d "$HOME/nsp-migration-private" && echo PRESENT || echo MISSING
+          REMOTE

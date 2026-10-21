@@ -86,7 +86,7 @@ if ($source === '') { $source = 'сайт'; }
 
 $clean=static fn(string $value):string=>str_replace(["\r","\n"],' ',strip_tags($value));
 $body="Новый лид\nМатериал: {$material['title']}\nИсточник: {$source}\nИмя: {$clean($name)}\nКонтакт: {$clean($contact)}\nСогласие: получено";
-mail('marzhavbetone@yandex.ru','=?UTF-8?B?'.base64_encode('Заявка на материал: '.$material['title']).'?=',$body,implode("\r\n",['From: site@marzhavbetone.ru','Content-Type: text/plain; charset=UTF-8']));
+mail('nastoronepodryadchika@yandex.ru','=?UTF-8?B?'.base64_encode('Заявка на материал: '.$material['title']).'?=',$body,implode("\r\n",['From: site@marzhavbetone.ru','Content-Type: text/plain; charset=UTF-8']));
 
 echo json_encode([
     'ok'       => true,

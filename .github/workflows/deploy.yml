@@ -11,6 +11,62 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      migration_action:
+        description: 'Exactly one legacy audit action; none disables implicit jobs'
+        type: string
+        default: none
+      cleanup_archived_sitemap_urls:
+        description: 'Remove archived P12 and T6 from live sitemap and set noindex'
+        type: boolean
+        default: false
+      compare_live_sitemap_source:
+        description: 'Compare published sitemap with migration branch before deploy'
+        type: boolean
+        default: false
+      submit_all_new_sitemap_urls:
+        description: 'Validate full new-domain sitemap and notify IndexNow once'
+        type: boolean
+        default: false
+      update_nsp_form_mail:
+        description: 'Update only form recipients, reply address and subject; preserve sender'
+        type: boolean
+        default: false
+      update_nsp_admin_email:
+        description: 'Switch ADMIN_EMAIL only, preserve payment secret and mail From'
+        type: boolean
+        default: false
+      update_nsp_support_live:
+        description: 'Update public support email on new site with private backups'
+        type: boolean
+        default: false
+      fix_nsp_404:
+        description: 'Fix 404 stylesheet path and support email'
+        type: boolean
+        default: false
+      yandex_verification_meta:
+        description: 'Install owner-provided Yandex verification meta on new domain'
+        type: boolean
+        default: false
+      seo_redirect_old_domain:
+        description: 'Enable path-preserving 301 on old domain after SEO preflight'
+        type: boolean
+        default: false
+      seo_fix_noindex:
+        description: 'Remove noindex only from 84 sitemap pages and global header'
+        type: boolean
+        default: false
+      seo_remove_staging_block:
+        description: 'Fix live robots and remove migration banner'
+        type: boolean
+        default: false
+      webmaster_register_new_domain:
+        description: 'Register new domain in Yandex Webmaster API'
+        type: boolean
+        default: false
+      activate_nsp_payment_endpoints:
+        description: 'Activate new-domain payment endpoints only, with rollback'
+        type: boolean
+        default: false
       remaining_only:
         description: "Адресный выпуск согласованной линейки R3"
         type: boolean
@@ -66,6 +122,1558 @@ env:
   SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
 
 jobs:
+  inspect:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'inspect' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Inspect new domain without changes
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$HOST" && test -n "$USER" && test -n "$KEY"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_audit_key
+          chmod 600 ~/.ssh/nsp_audit_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/nsp_audit_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          printf 'NEW_SITE_DIRECTORY='
+          test -d "$site" && echo PRESENT || { echo MISSING; exit 1; }
+          for f in index.html config.php payment.php webhook.php products-config.php; do
+            if test -f "$site/$f"; then printf 'FILE_%s=PRESENT\n' "$f"; else printf 'FILE_%s=MISSING\n' "$f"; fi
+          done
+          if command -v php >/dev/null 2>&1; then
+            for f in payment.php webhook.php products-config.php; do
+              if test -f "$site/$f"; then
+                if php -l "$site/$f" >/dev/null 2>&1; then echo "PHP_LINT_$f=PASS"; else echo "PHP_LINT_$f=FAIL"; fi
+              fi
+            done
+          else
+            echo 'PHP_CLI=UNAVAILABLE'
+          fi
+          printf 'CONFIG_PRESENT='
+          test -s "$site/config.php" && echo YES || echo NO
+          printf 'PRIVATE_PRODUCT_DIR='
+          test -d "$HOME/products-marzhavbetone" && echo PRESENT || echo MISSING
+          if php -l "$site/config.php" >/dev/null 2>&1; then echo 'PHP_LINT_config.php=PASS'; else echo 'PHP_LINT_config.php=FAIL'; fi
+          if grep -q 'NSP_MIGRATION_STAGE' "$site/config.php"; then echo 'MIGRATION_FLAG=PRESENT'; else echo 'MIGRATION_FLAG=ABSENT'; fi
+          if grep -q 'migration-disabled' "$site/config.php"; then echo 'PAYMENT_DISABLED_MARKER=PRESENT'; else echo 'PAYMENT_DISABLED_MARKER=ABSENT'; fi
+          for dir in "$HOME/nsp-migration-private" "$HOME/products-marzhavbetone"; do
+            if test -d "$dir" && test -r "$dir"; then echo "PRIVATE_DIR_ACCESS=READABLE"; else echo "PRIVATE_DIR_ACCESS=UNAVAILABLE"; fi
+          done
+          printf 'MIGRATION_PRIVATE_DIR='
+          test -d "$HOME/nsp-migration-private" && echo PRESENT || echo MISSING
+          php -r '
+            $site=$argv[1]; require $site."/config.php";
+            $out=["site_url"=>SITE_URL,"admin_email"=>ADMIN_EMAIL,"shop_id"=>YOOKASSA_SHOP_ID,"ttl"=>DELIVERY_TTL_SECONDS,"files"=>[]];
+            foreach(["config.php","payment.php","webhook.php","products-config.php","contact.php","lead.php","mvb_funnel.php"] as $name){
+              $p=$site."/".$name;
+              if(!is_file($p)){$out["files"][$name]=["present"=>false];continue;}
+              $s=file_get_contents($p);
+              $out["files"][$name]=["present"=>true,"sha256"=>hash("sha256",$s),"old_brand_count"=>substr_count(strtolower($s),"marzhavbetone"),"old_support_email_count"=>substr_count($s,"marzhavbetone@yandex.ru"),"new_support_email_count"=>substr_count($s,"nastoronepodryadchika@yandex.ru"),"old_from"=>strpos($s,"From: site@marzhavbetone.ru")!==false,"new_from"=>strpos($s,"From: site@nastoronepodryadchika.ru")!==false];
+            }
+            echo "NSP_MAIL_IDENTITY_READONLY=".json_encode($out,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+          ' "$site"
+          REMOTE
+
+
+  backup-nsp-config:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'backup-nsp-config' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create one unique private config snapshot, preserving history
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          SSH_USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
+          [[ "$SSH_PORT" =~ ^[0-9]+$ ]]
+          sh -n tools/nsp_backup_config.sh
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_backup_key
+          chmod 600 ~/.ssh/nsp_backup_key
+          timeout 15s ssh-keyscan -T 8 -p "$SSH_PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          timeout 60s ssh -p "$SSH_PORT" -i ~/.ssh/nsp_backup_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 -o ServerAliveInterval=10 -o ServerAliveCountMax=3 "$SSH_USER@$HOST" "sh -s -- '$GITHUB_RUN_ID' '$GITHUB_RUN_ATTEMPT'" < tools/nsp_backup_config.sh
+
+  prepare-nsp-directories:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'prepare-nsp-directories' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Create protected order directories
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/audit_key
+          chmod 600 ~/.ssh/audit_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/audit_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/nsp-production-private"
+          umask 077
+          mkdir -p "$root/orders/delivery"
+          chmod 700 "$root" "$root/orders" "$root/orders/delivery"
+          test -w "$root/orders/delivery"
+          test "$(stat -c %a "$root/orders/delivery")" = 700
+          if command -v php >/dev/null 2>&1; then
+            if php -r '$d=getenv("HOME")."/nsp-production-private/orders/delivery"; $f=tempnam($d,".probe-"); if ($f===false) exit(1); $ok=file_put_contents($f,"test")===4; unlink($f); exit($ok?0:1);' >/dev/null 2>&1; then echo 'PHP_CLI_WRITE=PASS'; else echo 'PHP_CLI_WRITE=FAIL'; fi
+          else echo 'PHP_CLI_WRITE=UNAVAILABLE'; fi
+          echo 'PHP_WEB_WRITE=NOT_TESTED'
+          echo 'NSP_PRIVATE_DIRS_VERIFIED'
+          REMOTE
+
+  verify-nsp-secret:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'verify-nsp-secret' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Check encrypted secret presence only
+        env:
+          SECRET: ${{ secrets.NSP_YOOKASSA_KEY }}
+        run: |
+          if [ -n "$SECRET" ]; then
+            echo 'NSP_YOOKASSA_SECRET_PRESENT=YES'
+          else
+            echo 'NSP_YOOKASSA_SECRET_PRESENT=NO'
+            exit 1
+          fi
+
+  nsp-php-preflight:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-php-preflight' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify PHP execution and migration state
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/audit_key
+          chmod 600 ~/.ssh/audit_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/audit_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          php -l "$site/config.php" >/dev/null
+          php -l "$site/payment.php" >/dev/null
+          php -l "$site/webhook.php" >/dev/null
+          php -r 'require $argv[1]; echo "SITE_URL=".SITE_URL.PHP_EOL; echo "MODE=".YOOKASSA_MODE.PHP_EOL; echo "STAGE=".(defined("NSP_MIGRATION_STAGE")&&NSP_MIGRATION_STAGE?"YES":"NO").PHP_EOL;' "$site/config.php" 2>/dev/null
+          test -d "$HOME/nsp-production-private/orders/delivery"
+          echo 'NSP_PHP_PREFLIGHT=PASS'
+          REMOTE
+
+  nsp-stage-secret:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-stage-secret' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Stage YooKassa credential in private hosting directory
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          YK: ${{ secrets.NSP_YOOKASSA_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$YK"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/audit_key
+          chmod 600 ~/.ssh/audit_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          umask 077
+          printf '%s' "$YK" | ssh -i ~/.ssh/audit_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -c '"'"'set -eu; p="$HOME/nsp-production-private/yookassa-key"; test ! -e "$p" || { echo "KEY_ALREADY_PRESENT"; exit 0; }; umask 077; cat > "$p"; chmod 600 "$p"; test -s "$p"; echo "PRIVATE_YOOKASSA_KEY_STAGED"'"'"''
+
+  nsp-live-config:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-live-config' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Activate YooKassa shop 1502106 with rollback backup
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          private="$HOME/nsp-production-private"
+          config="$site/config.php"
+          backup="$HOME/nsp-migration-private/backup-config-before-yookassa-1502106-20261020.php"
+          test -s "$backup" && test -s "$private/yookassa-key"
+          test -d "$private/orders/delivery"
+          if grep -q "'1502106'" "$config" && grep -q "'live'" "$config"; then
+            echo 'NSP_LIVE_CONFIG_ALREADY_SET'
+            exit 0
+          fi
+          cmp -s "$config" "$backup" || { echo 'CONFIG_CHANGED_AFTER_BACKUP'; exit 1; }
+          temp="$(mktemp "$site/.config-new-XXXXXX")"
+          chmod 600 "$temp"
+          trap 'rm -f "$temp"' EXIT
+          php -r '
+            $key=trim(file_get_contents($argv[1]));
+            if ($key==="") exit(2);
+            $values=[
+              "SITE_URL"=>"https://nastoronepodryadchika.ru",
+              "ADMIN_EMAIL"=>"marzhavbetone@yandex.ru",
+              "ORDERS_DIR"=>$argv[2]."/orders",
+              "DELIVERY_DIR"=>$argv[2]."/orders/delivery",
+              "PRODUCTS_DIR"=>$argv[3],
+              "DELIVERY_TTL_SECONDS"=>3600,
+              "YOOKASSA_SHOP_ID"=>"1502106",
+              "YOOKASSA_SECRET_KEY"=>$key,
+              "YOOKASSA_MODE"=>"live",
+              "YOOKASSA_API_URL"=>"https://api.yookassa.ru/v3"
+            ];
+            $out="<?php\ndeclare(strict_types=1);\n";
+            foreach($values as $name=>$value) $out.="define(".var_export($name,true).",".var_export($value,true).");\n";
+            if(file_put_contents($argv[4],$out,LOCK_EX)===false) exit(3);
+          ' "$private/yookassa-key" "$private" "$HOME/products-marzhavbetone" "$temp"
+          php -l "$temp" >/dev/null
+          php -r 'require $argv[1]; if(YOOKASSA_SHOP_ID!=="1502106" || YOOKASSA_MODE!=="live" || !is_dir(ORDERS_DIR) || !is_dir(PRODUCTS_DIR)) exit(1);' "$temp"
+          mv "$temp" "$config"
+          chmod 600 "$config"
+          trap - EXIT
+          echo 'NSP_LIVE_CONFIG_APPLIED'
+          REMOTE
+
+  nsp-live-verify:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-live-verify' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify new-site live configuration and HTTP endpoints
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/verify_key
+          chmod 600 ~/.ssh/verify_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/verify_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          php -l "$site/config.php" >/dev/null
+          php -r 'require $argv[1]; if(YOOKASSA_SHOP_ID!=="1502106"||YOOKASSA_MODE!=="live"||YOOKASSA_API_URL!=="https://api.yookassa.ru/v3"||!is_dir(ORDERS_DIR)||!is_dir(DELIVERY_DIR)||!is_dir(PRODUCTS_DIR)||DELIVERY_TTL_SECONDS!==3600) exit(1); echo "NSP_CONFIG_LIVE_VERIFIED\n";' "$site/config.php"
+          for endpoint in payment.php webhook.php; do
+            status="$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "https://nastoronepodryadchika.ru/$endpoint" || true)"
+            echo "NSP_HTTP_$endpoint=$status"
+          done
+          REMOTE
+
+  nsp-post-cutover-check:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-post-cutover-check' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Check active configuration and HTTP responses
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/check_key
+          chmod 600 ~/.ssh/check_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/check_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          file="$HOME/www/nastoronepodryadchika.ru/config.php"
+          php -l "$file" >/dev/null
+          php -r 'require $argv[1]; echo "SHOP_ID_MATCH=".(YOOKASSA_SHOP_ID==="1502106"?"YES":"NO").PHP_EOL; echo "MODE_LIVE=".(YOOKASSA_MODE==="live"?"YES":"NO").PHP_EOL; echo "STAGE_DISABLED=".(!defined("NSP_MIGRATION_STAGE")?"YES":"NO").PHP_EOL; echo "ORDERS_DIR_EXISTS=".(is_dir(ORDERS_DIR)?"YES":"NO").PHP_EOL; echo "DELIVERY_DIR_EXISTS=".(is_dir(DELIVERY_DIR)?"YES":"NO").PHP_EOL;' "$file"
+          REMOTE
+          for p in / /payment.php /webhook.php; do
+            status=$(curl -sS -o /dev/null -w '%{http_code}' --connect-timeout 5 --max-time 12 "https://nastoronepodryadchika.ru$p" || true)
+            echo "HTTP_$p=$status"
+          done
+
+  nsp-http503-diagnostics:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-http503-diagnostics' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Inspect site controls without exposing secrets
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/diag_key
+          chmod 600 ~/.ssh/diag_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/diag_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          echo 'HTACCESS_RULES'
+          if test -f "$site/.htaccess"; then grep -nEi '503|maintenance|migration|payment|webhook|rewrite|deny|forbidden' "$site/.htaccess" | head -35 || true; else echo 'NO_HTACCESS'; fi
+          echo 'PHP_ENDPOINT_STAT'
+          stat -c '%n %a %U:%G' "$site/config.php" "$site/payment.php" "$site/webhook.php"
+          echo 'ERROR_LOG_CANDIDATES'
+          find "$HOME" -maxdepth 3 -type f \( -iname '*error*log*' -o -name 'php_error.log' \) -printf '%p\n' 2>/dev/null | head -20
+          REMOTE
+
+  nsp-enable-payment-endpoints:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.activate_nsp_payment_endpoints == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Remove migration-only 503 rule with automatic rollback
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_ssh_key
+          chmod 600 ~/.ssh/nsp_ssh_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/nsp_ssh_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          file="$site/.htaccess"
+          backup="$HOME/nsp-migration-private/backup-htaccess-before-payments-20261021"
+          rule='RewriteRule ^(?:payment|webhook|check-payment|contact)\.php$ - [R=503,L]'
+          test -f "$file"
+          if ! grep -Fq "$rule" "$file"; then
+            echo 'TEMPORARY_503_RULE_ABSENT'
+            exit 0
+          fi
+          test "$(grep -Fc "$rule" "$file")" = 1
+          if test -e "$backup"; then
+            cmp -s "$file" "$backup" || { echo 'EXISTING_BACKUP_MISMATCH'; exit 1; }
+          else
+            umask 077
+            cp -p "$file" "$backup"
+            chmod 600 "$backup"
+            cmp -s "$file" "$backup"
+          fi
+          tmp="$(mktemp "$site/.htaccess-next-XXXXXX")"
+          trap 'rm -f "$tmp"' EXIT
+          grep -Fv "$rule" "$file" > "$tmp"
+          test "$(wc -l < "$file")" -eq "$(( $(wc -l < "$tmp") + 1 ))"
+          chmod 644 "$tmp"
+          mv "$tmp" "$file"
+          trap - EXIT
+          echo 'MIGRATION_503_RULE_REMOVED'
+          REMOTE
+      - name: Verify public payment endpoints or restore
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          failed=0
+          for path in /payment.php /webhook.php; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --connect-timeout 5 --max-time 12 "https://nastoronepodryadchika.ru$path" || true)
+            echo "ENDPOINT_$path=$code"
+            case "$path:$code" in
+              /payment.php:405|/webhook.php:400) ;;
+              *) failed=1 ;;
+            esac
+          done
+          if [ "$failed" = 0 ]; then echo 'PAYMENT_ENDPOINTS=VERIFIED'; exit 0; fi
+          echo 'ENDPOINT_VERIFICATION_FAILED_ROLLBACK'
+          ssh -i ~/.ssh/nsp_ssh_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          file="$HOME/www/nastoronepodryadchika.ru/.htaccess"
+          backup="$HOME/nsp-migration-private/backup-htaccess-before-payments-20261021"
+          test -s "$backup"
+          cp -p "$backup" "$file"
+          chmod 644 "$file"
+          echo 'HTACCESS_ROLLBACK_APPLIED'
+          REMOTE
+          exit 1
+
+  nsp-one-ruble-checkout-readiness:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-one-ruble-checkout-readiness' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Validate test product and build its buyer archive
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_check_key
+          chmod 600 ~/.ssh/nsp_check_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/nsp_check_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          test -s "$site/test-pokupka.html"
+          php -r '
+            require $argv[1]."/config.php";
+            require $argv[1]."/products-config.php";
+            $p=mvb_products()["test1"]??null;
+            if (!$p || (int)$p["price"]!==100) exit(2);
+            echo "TEST_SKU_PRICE_100_KOPEKS=YES\n";
+            if (!is_dir(PRODUCTS_DIR."/".$p["dir"])) exit(3);
+            echo "TEST_PRODUCT_SOURCE=FOUND\n";
+            if (!class_exists("ZipArchive")) exit(4);
+            $zip=mvb_build_product_zip("test1");
+            if (!$zip || !is_file($zip) || filesize($zip)===0) exit(5);
+            $z=new ZipArchive();
+            if ($z->open($zip)!==true || $z->numFiles===0) exit(6);
+            echo "TEST_ARCHIVE=VERIFIED\n";
+            $z->close();
+            if (DELIVERY_TTL_SECONDS!==3600) exit(7);
+            echo "DELIVERY_TTL_1_HOUR=YES\n";
+          ' "$site"
+          REMOTE
+          for path in /test-pokupka.html /app-script.php /payment.php /webhook.php; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --connect-timeout 5 --max-time 12 "https://nastoronepodryadchika.ru$path" || true)
+            echo "CHECK_$path=$code"
+            case "$path:$code" in
+              /test-pokupka.html:200|/app-script.php:200|/payment.php:405|/webhook.php:400) ;;
+              *) exit 8 ;;
+            esac
+          done
+          echo 'ONE_RUBLE_CHECKOUT_PREFLIGHT=PASS'
+
+  nsp-buyer-acceptance:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-buyer-acceptance' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify recent paid test order without exposing buyer details
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/buyer_key
+          chmod 600 ~/.ssh/buyer_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/buyer_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          php -r '
+            require $argv[1]."/config.php";
+            $files=glob(ORDERS_DIR."/order_*.json")?:[];
+            $matches=[];
+            foreach ($files as $f) {
+              $o=json_decode(file_get_contents($f),true);
+              if (!is_array($o)) continue;
+              $hasTest=false;
+              foreach(($o["items"]??[]) as $item) if(($item["sku"]??"")==="test1") $hasTest=true;
+              if($hasTest) $matches[]=$o;
+            }
+            usort($matches,fn($a,$b)=>strcmp($b["created_at"]??"",$a["created_at"]??""));
+            echo "TEST_ORDER_COUNT=".count($matches)."\n";
+            if(!$matches) exit(2);
+            $o=$matches[0];
+            echo "LATEST_TEST_STATUS=".($o["status"]??"MISSING")."\n";
+            echo "LATEST_TEST_TOTAL_100=".(($o["total"]??0)===100?"YES":"NO")."\n";
+            echo "LATEST_TEST_PAYMENT_ID_PRESENT=".(!empty($o["payment_id"])?"YES":"NO")."\n";
+            echo "LATEST_TEST_PAID_AT_PRESENT=".(!empty($o["paid_at"])?"YES":"NO")."\n";
+            echo "LATEST_TEST_DELIVERY_ITEMS_PRESENT=".(!empty($o["delivery"]["items"])?"YES":"NO")."\n";
+            echo "LATEST_TEST_EMAIL_SENT=".(!empty($o["delivery"]["email_sent_at"])?"YES":"NO")."\n";
+            if (($o["status"]??"")!=="paid" || ($o["total"]??0)!==100 || empty($o["payment_id"]) || empty($o["delivery"]["email_sent_at"])) exit(3);
+            echo "BUYER_ORDER_SERVER_ACCEPTANCE=PASS\n";
+          ' "$site"
+          REMOTE
+
+  nsp-yandex-webmaster-register:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.webmaster_register_new_domain == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Register and inspect site via official Webmaster API
+        env:
+          YANDEX_TOKEN: ${{ secrets.YANDEX_WEBMASTER_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json,os,urllib.request,urllib.error
+          base="https://api.webmaster.yandex.net/v4"
+          token=os.environ.get("YANDEX_TOKEN","")
+          if not token: raise SystemExit("WEBMASTER_TOKEN_MISSING")
+          def call(path,method="GET",data=None):
+              payload=None if data is None else json.dumps(data).encode()
+              req=urllib.request.Request(base+path,data=payload,method=method,headers={"Authorization":"OAuth "+token,"Content-Type":"application/json"})
+              try:
+                  with urllib.request.urlopen(req,timeout=12) as r: return r.status,json.load(r)
+              except urllib.error.HTTPError as e:
+                  try: result=json.load(e)
+                  except Exception: result={}
+                  return e.code,result
+          status,user=call("/user")
+          if status!=200: raise SystemExit("WEBMASTER_USER_HTTP_"+str(status))
+          uid=user.get("user_id")
+          print("WEBMASTER_USER_AUTH=PASS")
+          status,hosts=call("/user/"+str(uid)+"/hosts")
+          if status!=200: raise SystemExit("WEBMASTER_HOSTS_HTTP_"+str(status))
+          old=[h for h in hosts.get("hosts",[]) if "marzhavbetone.ru" in h.get("ascii_host_url","")]
+          new=[h for h in hosts.get("hosts",[]) if "nastoronepodryadchika.ru" in h.get("ascii_host_url","")]
+          print("OLD_DOMAIN_PRESENT="+str(bool(old)))
+          print("NEW_DOMAIN_PRESENT_BEFORE="+str(bool(new)))
+          if not new:
+              status,result=call("/user/"+str(uid)+"/hosts","POST",{"host_url":"https://nastoronepodryadchika.ru/"})
+              print("ADD_NEW_DOMAIN_HTTP="+str(status))
+              if status not in (200,201): raise SystemExit("WEBMASTER_ADD_FAILED")
+              new_id=result.get("host_id")
+          else: new_id=new[0]["host_id"]
+          status,verify=call("/user/"+str(uid)+"/hosts/"+urllib.parse.quote(new_id,safe="")+"/verification")
+          print("NEW_DOMAIN_VERIFICATION_HTTP="+str(status))
+          if status==200:
+              print("NEW_DOMAIN_VERIFICATION_STATE="+str(verify.get("verification_state","UNKNOWN")))
+              print("NEW_DOMAIN_VERIFICATION_UIN="+str(verify.get("verification_uin","")))
+          PY
+
+  nsp-yandex-network-probe:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-yandex-network-probe' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Probe Yandex Webmaster API from hosting
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_probe_key
+          chmod 600 ~/.ssh/nsp_probe_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/nsp_probe_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          code=$(curl -sS -o /dev/null -w '%{http_code}' --connect-timeout 4 --max-time 9 https://api.webmaster.yandex.net/v4/user || true)
+          echo "HOSTING_YANDEX_API_HTTP=$code"
+          REMOTE
+
+  nsp-seo-inventory:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-seo-inventory' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Read-only audit of new-site SEO signals
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/seo_key
+          chmod 600 ~/.ssh/seo_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/seo_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          old="$HOME/www/marzhavbetone.ru"
+          for file in sitemap.xml robots.txt index.html; do
+            if test -f "$root/$file"; then
+              echo "NEW_$file=PRESENT"
+              printf 'OLD_DOMAIN_REFERENCES_%s=' "$file"
+              grep -o 'marzhavbetone.ru' "$root/$file" | wc -l || true
+              printf 'NEW_DOMAIN_REFERENCES_%s=' "$file"
+              grep -o 'nastoronepodryadchika.ru' "$root/$file" | wc -l || true
+            else echo "NEW_$file=MISSING"; fi
+          done
+          echo 'NEW_HOME_CANONICAL'
+          grep -m 1 'rel="canonical"' "$root/index.html" || true
+          echo 'NEW_ROBOTS_SITEMAP'
+          grep '^Sitemap:' "$root/robots.txt" || true
+          echo 'OLD_SITE_REDIRECT_RULES'
+          grep -nE 'RewriteRule|Redirect 301' "$old/.htaccess" | head -12 || true
+          echo 'NEW_SITEMAP_URL_COUNT'
+          grep -c '<loc>' "$root/sitemap.xml" || true
+          REMOTE
+          for url in 'https://marzhavbetone.ru/articles/' 'https://nastoronepodryadchika.ru/articles/' 'https://nastoronepodryadchika.ru/sitemap.xml'; do
+            echo "HTTP_CHECK=$url"
+            curl -sS -I --connect-timeout 5 --max-time 10 "$url" | grep -Ei '^HTTP/|^location:' | head -5 || true
+          done
+
+  nsp-seo-url-validation:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-seo-url-validation' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Validate every new sitemap URL and inspect robots
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/seo_check_key
+          chmod 600 ~/.ssh/seo_check_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/seo_check_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          echo 'ROBOTS_CONTENT_START'
+          cat "$root/robots.txt"
+          echo 'ROBOTS_CONTENT_END'
+          echo 'OLD_DOMAIN_INDEX_REFERENCES'
+          grep -n 'marzhavbetone.ru' "$root/index.html" | head -5 || true
+          REMOTE
+          python3 - <<'PY'
+          import urllib.request,urllib.error,xml.etree.ElementTree as ET,concurrent.futures,collections
+          root='https://nastoronepodryadchika.ru'
+          req=urllib.request.Request(root+'/sitemap.xml',headers={'User-Agent':'NSP-Migration-Audit/1.0'})
+          with urllib.request.urlopen(req,timeout=15) as r: xml=r.read()
+          doc=ET.fromstring(xml)
+          urls=[n.text.strip() for n in doc.findall('.//{*}loc') if n.text]
+          print('SITEMAP_URLS='+str(len(urls)))
+          print('SITEMAP_NEW_DOMAIN_ONLY='+str(all(u.startswith(root+'/') for u in urls)))
+          def check(url):
+            try:
+              with urllib.request.urlopen(urllib.request.Request(url,method='HEAD'),timeout=10) as r:return (url,r.status,r.geturl())
+            except urllib.error.HTTPError as e:return (url,e.code,url)
+            except Exception as e:return (url,'ERROR_'+type(e).__name__,url)
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool: results=list(pool.map(check,urls))
+          counts=collections.Counter(str(x[1]) for x in results)
+          print('SITEMAP_HTTP_COUNTS='+repr(dict(counts)))
+          bad=[x for x in results if x[1]!=200 or not x[2].startswith(root+'/')]
+          print('SITEMAP_BAD_COUNT='+str(len(bad)))
+          for url,code,target in bad[:15]: print('BAD_URL='+url+' STATUS='+str(code)+' TARGET='+target)
+          if bad or not urls or any(not u.startswith(root+'/') for u in urls):raise SystemExit(2)
+          print('SITEMAP_URL_ACCEPTANCE=PASS')
+          PY
+
+  nsp-remove-seo-staging-block:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.seo_remove_staging_block == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fix robots and remove obsolete migration banner
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/seo_fix_key
+          chmod 600 ~/.ssh/seo_fix_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/seo_fix_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          private="$HOME/nsp-migration-private"
+          robots="$root/robots.txt"
+          index="$root/index.html"
+          test -s "$robots" && test -s "$index"
+          if grep -Fqx 'Disallow: /' "$robots"; then
+            test "$(wc -l < "$robots")" -eq 2
+            grep -Fqx 'User-agent: *' "$robots"
+            test ! -e "$private/backup-robots-before-seo-20261021.txt"
+            umask 077
+            cp -p "$robots" "$private/backup-robots-before-seo-20261021.txt"
+            chmod 600 "$private/backup-robots-before-seo-20261021.txt"
+            temp="$(mktemp "$root/.robots-next-XXXXXX")"
+            printf 'User-agent: *\nAllow: /\nSitemap: https://nastoronepodryadchika.ru/sitemap.xml\n' > "$temp"
+            chmod 644 "$temp"
+            mv "$temp" "$robots"
+            echo 'ROBOTS_CRAWLING_ENABLED'
+          else
+            grep -Fqx 'Sitemap: https://nastoronepodryadchika.ru/sitemap.xml' "$robots"
+            test ! "$(grep -Fc 'Disallow: /' "$robots")" -gt 0
+            echo 'ROBOTS_ALREADY_CORRECT'
+          fi
+          if grep -Fq 'data-nsp-staging="true"' "$index"; then
+            test ! -e "$private/backup-index-before-seo-20261021.html"
+            umask 077
+            cp -p "$index" "$private/backup-index-before-seo-20261021.html"
+            chmod 600 "$private/backup-index-before-seo-20261021.html"
+            temp="$(mktemp "$root/.index-next-XXXXXX")"
+            php -r '
+              $source=file_get_contents($argv[1]);
+              $count=0;
+              $out=preg_replace("~<div data-nsp-staging=\"true\"[^>]*>.*?</div>~s","",$source,1,$count);
+              if($count!==1 || $out===null || strpos($out,"data-nsp-staging")!==false) exit(2);
+              if(file_put_contents($argv[2],$out)===false) exit(3);
+            ' "$index" "$temp"
+            chmod 644 "$temp"
+            mv "$temp" "$index"
+            echo 'MIGRATION_BANNER_REMOVED'
+          else
+            echo 'MIGRATION_BANNER_ALREADY_ABSENT'
+          fi
+          grep -Fqx 'Sitemap: https://nastoronepodryadchika.ru/sitemap.xml' "$robots"
+          test "$(grep -Fc 'Disallow: /' "$robots")" -eq 0
+          test "$(grep -Fc 'data-nsp-staging="true"' "$index")" -eq 0
+          grep -Fq 'rel="canonical" href="https://nastoronepodryadchika.ru/"' "$index"
+          echo 'NSP_SEO_STAGING_REMOVAL=VERIFIED'
+          REMOTE
+      - name: Verify public SEO endpoints
+        run: |
+          set -euo pipefail
+          curl -fsS --connect-timeout 5 --max-time 12 https://nastoronepodryadchika.ru/robots.txt -o /tmp/nsp-robots.txt
+          grep -Fqx 'Sitemap: https://nastoronepodryadchika.ru/sitemap.xml' /tmp/nsp-robots.txt
+          ! grep -Fqx 'Disallow: /' /tmp/nsp-robots.txt
+          curl -fsS --connect-timeout 5 --max-time 12 https://nastoronepodryadchika.ru/ -o /tmp/nsp-index.html
+          ! grep -Fq 'data-nsp-staging="true"' /tmp/nsp-index.html
+          echo 'PUBLIC_SEO_STAGING_REMOVAL=PASS'
+
+  nsp-seo-mapping-audit:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-seo-mapping-audit' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Compare old sitemap to new pages and canonical
+        run: |
+          python3 - <<'PY'
+          import urllib.request,urllib.error,urllib.parse,xml.etree.ElementTree as ET,concurrent.futures,collections,re,html
+          old='https://marzhavbetone.ru'
+          new='https://nastoronepodryadchika.ru'
+          def fetch(url,method='GET'):
+            try:
+              with urllib.request.urlopen(urllib.request.Request(url,method=method,headers={'User-Agent':'NSP-SEO-Audit/1.0'}),timeout=12) as r:return r.status,r.geturl(),r.read() if method=='GET' else b''
+            except urllib.error.HTTPError as e:return e.code,url,b''
+            except Exception as e:return 'ERR_'+type(e).__name__,url,b''
+          def sitemap(domain):
+            code,_,data=fetch(domain+'/sitemap.xml')
+            if code!=200:raise RuntimeError('SITEMAP_HTTP_'+domain+'_'+str(code))
+            return [n.text.strip() for n in ET.fromstring(data).findall('.//{*}loc') if n.text]
+          old_urls=sitemap(old)
+          new_urls=sitemap(new)
+          print('OLD_SITEMAP_URLS='+str(len(old_urls)))
+          print('NEW_SITEMAP_URLS='+str(len(new_urls)))
+          new_set=set(new_urls)
+          mapped=[(u,new+u[len(old):]) for u in old_urls if u.startswith(old+'/')]
+          missing=[(a,b) for a,b in mapped if b not in new_set]
+          print('OLD_TO_NEW_SITEMAP_MATCHES='+str(len(mapped)-len(missing)))
+          print('OLD_TO_NEW_MISSING='+str(len(missing)))
+          for a,b in missing[:20]:print('MISSING_MAPPING='+a+' -> '+b)
+          def page(u):
+            code,target,data=fetch(u)
+            if code!=200:return (u,code,'HTTP_ERROR')
+            s=data.decode('utf-8','replace')
+            m=re.search(r'<link\b[^>]*rel=["\']canonical["\'][^>]*>',s,re.I)
+            canon=re.search(r'href=["\']([^"\']+)',m.group(0),re.I).group(1) if m and re.search(r'href=["\']([^"\']+)',m.group(0),re.I) else ''
+            noindex=bool(re.search(r'<meta\b[^>]*name=["\']robots["\'][^>]*content=["\'][^"\']*noindex',s,re.I))
+            return (u,code,canon,'NOINDEX' if noindex else 'INDEXABLE')
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool: pages=list(pool.map(page,new_urls))
+          bad=[x for x in pages if x[1]!=200 or len(x)<4 or x[3]=='NOINDEX' or x[2]!=x[0]]
+          print('NEW_PAGE_SEO_BAD_COUNT='+str(len(bad)))
+          for x in bad[:20]:print('PAGE_SEO_MISMATCH='+repr(x))
+          if missing or bad:raise SystemExit(2)
+          print('SEO_MAPPING_AND_CANONICAL=PASS')
+          PY
+
+  nsp-noindex-source-audit:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-noindex-source-audit' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Identify noindex source in production HTML
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/noindex_key
+          chmod 600 ~/.ssh/noindex_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/noindex_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          for file in index.html articles/index.html products/p1-oplata-po-ks2.html test-pokupka.html; do
+            echo "HTML_FILE=$file"
+            grep -inE 'name="robots"|name="googlebot"|noindex|nofollow|canonical' "$root/$file" | head -8 || true
+          done
+          echo 'NOINDEX_FILE_COUNT'
+          grep -ril 'noindex' "$root" --include='*.html' | wc -l || true
+          REMOTE
+          for url in / /articles/ /products/p1-oplata-po-ks2.html; do
+            echo "HEADER_URL=$url"
+            curl -sSI --connect-timeout 5 --max-time 10 "https://nastoronepodryadchika.ru$url" | grep -Ei '^HTTP/|^x-robots-tag:' || true
+          done
+
+  nsp-robots-header-source:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-robots-header-source' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Inspect X-Robots-Tag configuration
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/seo_header_key
+          chmod 600 ~/.ssh/seo_header_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/seo_header_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          echo 'SITE_HTACCESS_ROBOTS'
+          grep -inE 'robots|noindex|noarchive|nofollow|Header' "$root/.htaccess" | head -40 || true
+          echo 'PARENT_HTACCESS_ROBOTS'
+          for file in "$HOME/www/.htaccess" "$HOME/.htaccess"; do
+            if test -f "$file"; then grep -inE 'robots|noindex|noarchive|nofollow|Header' "$file" | head -20 || true; fi
+          done
+          REMOTE
+
+  nsp-remove-noindex:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.seo_fix_noindex == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply scoped indexability fix with verified private backup
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/seo_fix_key
+          chmod 600 ~/.ssh/seo_fix_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          php -l tools/nsp_seo_noindex_cutover.php
+          scp -q -i ~/.ssh/seo_fix_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 tools/nsp_seo_noindex_cutover.php "$USER@$HOST:nsp-migration-private/nsp_seo_noindex_cutover.php"
+          ssh -i ~/.ssh/seo_fix_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          script="$HOME/nsp-migration-private/nsp_seo_noindex_cutover.php"
+          site="$HOME/www/nastoronepodryadchika.ru"
+          backup="$HOME/nsp-migration-private/seo-noindex-backup-20261021"
+          php -l "$script" >/dev/null
+          php "$script" apply "$site" "$backup"
+          REMOTE
+      - name: Verify public indexability after removal
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import urllib.request,urllib.error,xml.etree.ElementTree as ET,concurrent.futures,re
+          root='https://nastoronepodryadchika.ru'
+          def get(url):
+              with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'NSP-SEO-Postfix/1.0'}),timeout=12) as r:
+                  return r.status,dict(r.headers),r.read().decode('utf-8','replace')
+          _,_,xml=get(root+'/sitemap.xml')
+          urls=[x.text for x in ET.fromstring(xml).findall('.//{*}loc') if x.text]
+          assert len(urls)==84
+          def check(url):
+              code,headers,body=get(url)
+              return (url,code,headers.get('X-Robots-Tag',''),bool(re.search(r'<meta\b[^>]*name=["\']robots["\'][^>]*content=["\'][^"\']*noindex',body,re.I)))
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool: results=list(pool.map(check,urls))
+          bad=[x for x in results if x[1]!=200 or 'noindex' in x[2].lower() or x[3]]
+          print('INDEXABLE_SITEMAP_URLS='+str(len(results)-len(bad)))
+          print('INDEXABILITY_ERRORS='+str(len(bad)))
+          for item in bad[:8]:print('BAD_INDEXABILITY='+repr(item))
+          _,_,test=get(root+'/test-pokupka.html')
+          assert 'noindex' in test.lower(), 'TEST_PAGE_MUST_STAY_NOINDEX'
+          print('TEST_PAGE_NOINDEX_PRESERVED=YES')
+          if bad:raise SystemExit(2)
+          print('PUBLIC_INDEXABILITY=VERIFIED')
+          PY
+
+  nsp-old-domain-301:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.seo_redirect_old_domain == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply old domain redirect preserving paths
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/redirect_key
+          chmod 600 ~/.ssh/redirect_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          php -l tools/nsp_old_domain_redirect.php
+          scp -q -i ~/.ssh/redirect_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 tools/nsp_old_domain_redirect.php "$USER@$HOST:nsp-migration-private/nsp_old_domain_redirect.php"
+          ssh -i ~/.ssh/redirect_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          php "$HOME/nsp-migration-private/nsp_old_domain_redirect.php" apply "$HOME/www/marzhavbetone.ru" "$HOME/nsp-migration-private/backup-old-htaccess-before-301-20261021"
+          REMOTE
+      - name: Verify 301 for all old sitemap URLs
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import urllib.request,urllib.error,xml.etree.ElementTree as ET,concurrent.futures
+          old='https://marzhavbetone.ru'
+          new='https://nastoronepodryadchika.ru'
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,*args,**kwargs):return None
+          opener=urllib.request.build_opener(NoRedirect)
+          with urllib.request.urlopen(new+'/sitemap.xml',timeout=12) as r: xml=r.read()
+          urls=[old+x.text[len(new):] for x in ET.fromstring(xml).findall('.//{*}loc') if x.text and x.text.startswith(new+'/')]
+          assert len(urls)==84
+          def check(url):
+              req=urllib.request.Request(url,method='HEAD')
+              try:
+                  with opener.open(req,timeout=12) as r:return url,r.status,r.headers.get('Location','')
+              except urllib.error.HTTPError as e:return url,e.code,e.headers.get('Location','')
+              except Exception as e:return url,'ERROR_'+type(e).__name__,''
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:results=list(pool.map(check,urls))
+          bad=[(u,c,l) for u,c,l in results if c!=301 or l!=new+u[len(old):]]
+          print('OLD_SITEMAP_URLS='+str(len(urls)))
+          print('OLD_301_CORRECT='+str(len(results)-len(bad)))
+          print('OLD_301_ERRORS='+str(len(bad)))
+          for x in bad[:12]:print('REDIRECT_ERROR='+repr(x))
+          if bad:raise SystemExit(2)
+          print('OLD_TO_NEW_301=VERIFIED')
+          PY
+
+  nsp-old-403-source:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-old-403-source' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Compare old-domain HTTP responses from two network origins
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          for path in / /sitemap.xml /articles/; do
+            echo "RUNNER_PATH=$path"
+            curl -sSI --connect-timeout 5 --max-time 10 "https://marzhavbetone.ru$path" | grep -Ei '^HTTP/|^location:|^server:|^x-' | head -10 || true
+          done
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/probe_key
+          chmod 600 ~/.ssh/probe_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/probe_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          for path in / /sitemap.xml /articles/; do
+            echo "HOSTING_PATH=$path"
+            curl -sSI --connect-timeout 5 --max-time 10 "https://marzhavbetone.ru$path" | grep -Ei '^HTTP/|^location:|^server:|^x-' | head -10 || true
+          done
+          REMOTE
+
+  nsp-old-301-curl-validation:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-old-301-curl-validation' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify 84 old URLs with browser-like curl instead of Python urllib
+        run: |
+          python3 - <<'PY'
+          import urllib.request,xml.etree.ElementTree as ET,subprocess,concurrent.futures,collections
+          new='https://nastoronepodryadchika.ru'
+          old='https://marzhavbetone.ru'
+          with urllib.request.urlopen(new+'/sitemap.xml',timeout=12) as r:xml=r.read()
+          newurls=[x.text for x in ET.fromstring(xml).findall('.//{*}loc') if x.text]
+          assert len(newurls)==84
+          def check(target):
+            url=old+target[len(new):]
+            try:
+              p=subprocess.run(['curl','-sS','-I','-o','/dev/null','-A','Mozilla/5.0','--connect-timeout','5','--max-time','12','-w','%{http_code}|%{redirect_url}',url],capture_output=True,text=True,timeout=15)
+              code,_,dest=p.stdout.strip().partition('|')
+              return url,code,dest,p.returncode
+            except Exception as e:return url,'ERROR_'+type(e).__name__,'',1
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:results=list(pool.map(check,newurls))
+          bad=[x for x in results if x[1]!='301' or x[2]!=new+x[0][len(old):] or x[3]!=0]
+          print('OLD_301_CHECKED='+str(len(results)))
+          print('OLD_301_PASS='+str(len(results)-len(bad)))
+          print('OLD_301_ERRORS='+str(len(bad)))
+          print('OLD_301_HTTP_DISTRIBUTION='+repr(dict(collections.Counter(x[1] for x in results))))
+          for x in bad[:12]:print('REDIRECT_MISMATCH='+repr(x))
+          if bad:raise SystemExit(2)
+          print('OLD_301_ALL_SITEMAP_URLS=VERIFIED')
+          PY
+
+  nsp-yandex-ipv4-diagnostics:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-yandex-ipv4-diagnostics' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Probe official Webmaster API over IPv4
+        env:
+          TOKEN: ${{ secrets.YANDEX_WEBMASTER_TOKEN }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$TOKEN"
+          code=$(curl -4 -sS -o /tmp/yandex-api-user.json -w '%{http_code}' --connect-timeout 6 --max-time 15 -H "Authorization: OAuth $TOKEN" https://api.webmaster.yandex.net/v4/user/ || true)
+          echo "GITHUB_YANDEX_IPV4_HTTP=$code"
+          if [ "$code" = 200 ]; then
+            python3 -c 'import json; x=json.load(open("/tmp/yandex-api-user.json")); print("WEBMASTER_USER_ID="+str(x.get("user_id","MISSING")))'
+          fi
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/yandex_probe_key
+          chmod 600 ~/.ssh/yandex_probe_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/yandex_probe_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          code=$(curl -4 -sS -o /dev/null -w '%{http_code}' --connect-timeout 6 --max-time 15 https://api.webmaster.yandex.net/v4/user/ || true)
+          echo "HOSTING_YANDEX_IPV4_HTTP=$code"
+          REMOTE
+
+  nsp-domain-variants:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-domain-variants' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check apex, www, and HTTP redirects for both domains
+        run: |
+          set -euo pipefail
+          for url in https://www.nastoronepodryadchika.ru/ http://nastoronepodryadchika.ru/ http://www.nastoronepodryadchika.ru/ https://www.marzhavbetone.ru/ http://marzhavbetone.ru/ http://www.marzhavbetone.ru/; do
+            echo "VARIANT_URL=$url"
+            curl -sSI --connect-timeout 5 --max-time 12 "$url" | grep -Ei '^HTTP/|^location:' | head -5 || true
+          done
+
+  nsp-yandex-verification-meta:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.yandex_verification_meta == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Install verification meta with backup and atomic write
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$HOST" && test -n "$USER" && test -n "$KEY"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/yandex_verify_key
+          chmod 600 ~/.ssh/yandex_verify_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/yandex_verify_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          file="$HOME/www/nastoronepodryadchika.ru/index.html"
+          backup="$HOME/nsp-migration-private/backup-index-before-yandex-verify-20261021.html"
+          test -s "$file"
+          php -r '
+            $file=$argv[1]; $backup=$argv[2];
+            $html=file_get_contents($file);
+            if($html===false)exit(2);
+            $tag="<meta name=\"yandex-verification\" content=\"a71ee165aa19d589\" />";
+            if(substr_count($html,$tag)===1){echo "YANDEX_META_ALREADY_PRESENT\n";exit(0);}
+            if(substr_count($html,"name=\"yandex-verification\"")>1)exit(3);
+            if(substr_count(strtolower($html),"<head>")!==1)exit(4);
+            if(strpos($html,"https://nastoronepodryadchika.ru/")===false)exit(5);
+            if(file_exists($backup)) {
+              if(hash_file("sha256",$backup)!==hash("sha256",$html))exit(6);
+            } else {
+              if(!copy($file,$backup))exit(7);
+              chmod($backup,0600);
+              if(hash_file("sha256",$file)!==hash_file("sha256",$backup))exit(8);
+            }
+            $pos=stripos($html,"<head>")+strlen("<head>");
+            $updated=substr_replace($html,"\n  ".$tag,$pos,0);
+            if(substr_count($updated,$tag)!==1)exit(9);
+            $tmp=tempnam(dirname($file),".yandex-verify-");
+            if($tmp===false)exit(10);
+            if(file_put_contents($tmp,$updated,LOCK_EX)!==strlen($updated)){unlink($tmp);exit(11);}
+            chmod($tmp,0644);
+            if(!rename($tmp,$file)){unlink($tmp);exit(12);}
+            echo "YANDEX_META_INSTALLED=YES\n";
+          ' "$file" "$backup"
+          php -r '$s=file_get_contents($argv[1]); if(substr_count($s,"<meta name=\"yandex-verification\" content=\"a71ee165aa19d589\" />")!==1)exit(1); echo "YANDEX_META_FILE_VERIFY=PASS\n";' "$file"
+          REMOTE
+      - name: Verify live homepage contains exact meta
+        run: |
+          set -euo pipefail
+          curl -fsS --connect-timeout 5 --max-time 15 https://nastoronepodryadchika.ru/ -o /tmp/nsp-yandex-index.html
+          grep -Fq '<meta name="yandex-verification" content="a71ee165aa19d589" />' /tmp/nsp-yandex-index.html
+          test "$(grep -Fo '<meta name="yandex-verification" content="a71ee165aa19d589" />' /tmp/nsp-yandex-index.html | wc -l)" -eq 1
+          grep -Fq 'rel="canonical" href="https://nastoronepodryadchika.ru/"' /tmp/nsp-yandex-index.html
+          ! grep -Eiq 'name="robots"[^>]*noindex' /tmp/nsp-yandex-index.html
+          echo 'YANDEX_META_PUBLIC_VERIFY=PASS'
+
+  nsp-final-product-inventory:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-final-product-inventory' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Read-only audit of published SKU masters and buyer runtime
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/inventory_key
+          chmod 600 ~/.ssh/inventory_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/inventory_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          for file in config.php products-config.php payment.php webhook.php download.php; do
+            php -l "$root/$file" >/dev/null
+          done
+          php -r '
+            require $argv[1]."/config.php";
+            require $argv[1]."/products-config.php";
+            $catalog=mvb_products();
+            $count=0;$bad=0;$filesTotal=0;
+            foreach($catalog as $sku=>$product) {
+              if($sku==="test1")continue;
+              $count++;
+              $dir=PRODUCTS_DIR."/".$product["dir"];
+              $fileCount=0;
+              if(is_dir($dir)) {
+                foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir,FilesystemIterator::SKIP_DOTS)) as $file) {
+                  if($file->isFile() && $file->getSize()>0)$fileCount++;
+                }
+              }
+              $valid=$fileCount>0 && (int)$product["price"]>0 && !empty($product["zip"]);
+              echo "SKU_".$sku."_FILES=".$fileCount." STATUS=".($valid?"PASS":"FAIL")."\n";
+              if(!$valid)$bad++;
+              $filesTotal+=$fileCount;
+            }
+            echo "ACTIVE_SKU_COUNT=".$count."\n";
+            echo "PRODUCT_MASTER_FILE_TOTAL=".$filesTotal."\n";
+            echo "PRODUCTS_OUTSIDE_WEBROOT=".(str_starts_with(realpath(PRODUCTS_DIR)?:"",realpath($argv[1])."/")?"NO":"YES")."\n";
+            echo "PAYMENT_SHOP_MATCH=".(YOOKASSA_SHOP_ID==="1502106"?"YES":"NO")."\n";
+            echo "DELIVERY_TTL_ONE_HOUR=".(DELIVERY_TTL_SECONDS===3600?"YES":"NO")."\n";
+            echo "PRODUCT_SKU_ERRORS=".$bad."\n";
+            if($bad || $count!==18 || YOOKASSA_SHOP_ID!=="1502106" || DELIVERY_TTL_SECONDS!==3600 || str_starts_with(realpath(PRODUCTS_DIR)?:"",realpath($argv[1])."/"))exit(3);
+            echo "PRODUCT_INVENTORY=PASS\n";
+          ' "$root"
+          REMOTE
+
+  nsp-public-catalog-consistency:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-public-catalog-consistency' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify 13 public products against 18 backend SKUs
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/catalog_key
+          chmod 600 ~/.ssh/catalog_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/catalog_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          php -r '
+            require $argv[1]."/config.php";
+            require $argv[1]."/products-config.php";
+            $html=file_get_contents($argv[1]."/katalog.html");
+            if($html===false)exit(2);
+            preg_match_all("/data-product=\"([^\"]+)\"\s+data-sku=\"([^\"]+)\"\s+data-price=\"([0-9]+)\"/", $html,$matches,PREG_SET_ORDER);
+            $catalog=mvb_products();$seen=[];$errors=0;
+            foreach($matches as $m) {
+              $name=html_entity_decode($m[1],ENT_QUOTES|ENT_HTML5,"UTF-8");
+              $sku=$m[2];$price=(int)$m[3];
+              $product=$catalog[$sku]??null;
+              $ok=$product && !isset($seen[$sku]) && $name===$product["name"] && $price===(int)$product["price"];
+              $seen[$sku]=true;
+              if(!$ok)$errors++;
+              echo "PUBLIC_SKU_".$sku."=".($ok?"PASS":"FAIL")."\n";
+            }
+            echo "PUBLIC_SKU_COUNT=".count($matches)."\n";
+            echo "BACKEND_SKU_COUNT=".count($catalog)."\n";
+            echo "HIDDEN_SKU_COUNT=".(count($catalog)-count($seen))."\n";
+            echo "CATALOG_MISMATCHES=".$errors."\n";
+            if(count($matches)!==13 || count($catalog)!==19 || $errors)exit(3);
+            echo "CATALOG_PRICE_NAME_CONSISTENCY=PASS\n";
+          ' "$root"
+          REMOTE
+
+  nsp-fix-404-page:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.fix_nsp_404 == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Apply scoped 404 page fix with private backup
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/qa_key
+          chmod 600 ~/.ssh/qa_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/qa_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          file="$HOME/www/nastoronepodryadchika.ru/404.html"
+          backup="$HOME/nsp-migration-private/backup-404-before-fix-20261021.html"
+          test -s "$file"
+          php -r '
+            $f=$argv[1];$backup=$argv[2];$s=file_get_contents($f);
+            if($s===false)exit(2);
+            $old="href=\"brand-approved-2026.css?v=eaa6fbad\"";
+            $new="href=\"/brand-approved-2026.css?v=eaa6fbad\"";
+            if(strpos($s,$old)===false && strpos($s,$new)!==false && strpos($s,"marzhavbetone@yandex.ru")===false){echo "PAGE_404_ALREADY_FIXED\n";exit(0);}
+            if(substr_count($s,$old)!==1)exit(3);
+            if(file_exists($backup))exit(4);
+            if(!copy($f,$backup))exit(5);
+            chmod($backup,0600);
+            if(hash_file("sha256",$f)!==hash_file("sha256",$backup))exit(6);
+            $s=str_replace($old,$new,$s);
+            $s=str_replace("marzhavbetone@yandex.ru","nastoronepodryadchika@yandex.ru",$s);
+            $tmp=tempnam(dirname($f),".404-next-");
+            if($tmp===false)exit(7);
+            if(file_put_contents($tmp,$s,LOCK_EX)!==strlen($s))exit(8);
+            chmod($tmp,0644);
+            if(!rename($tmp,$f))exit(9);
+            echo "PAGE_404_SCOPED_FIX=PASS\n";
+          ' "$file" "$backup"
+          REMOTE
+      - name: Public 404 HTML acceptance
+        run: |
+          set -euo pipefail
+          curl -fsS --connect-timeout 5 --max-time 12 https://nastoronepodryadchika.ru/404.html -o /tmp/404-check.html
+          grep -Fq 'href="/brand-approved-2026.css?v=eaa6fbad"' /tmp/404-check.html
+          grep -Fq 'nastoronepodryadchika@yandex.ru' /tmp/404-check.html
+          ! grep -Fq 'href="brand-approved-2026.css?v=eaa6fbad"' /tmp/404-check.html
+          echo 'PUBLIC_404_FIX=VERIFIED'
+
+  nsp-public-brand-inventory:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-public-brand-inventory' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Inventory old brand references on indexed pages
+        run: |
+          python3 - <<'PY'
+          import urllib.request,xml.etree.ElementTree as ET,concurrent.futures,collections
+          root='https://nastoronepodryadchika.ru'
+          def get(url):
+            with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'NSP-Brand-QA/1.0'}),timeout=12) as r:return r.read().decode('utf-8','replace')
+          xml=get(root+'/sitemap.xml')
+          urls=[x.text for x in ET.fromstring(xml).findall('.//{*}loc') if x.text]
+          needles={
+            'OLD_SUPPORT_EMAIL':'marzhavbetone@yandex.ru',
+            'OLD_TELEGRAM':'t.me/marzhavbetone',
+            'OLD_DZEN':'dzen.ru/marzhavbetone',
+            'OLD_INSTAGRAM':'instagram.com/marzhavbetone',
+            'OLD_MAX':'max.ru/channel_marzhavbetone',
+            'OLD_BRAND_TEXT':'Маржа в бетоне',
+          }
+          def scan(url):
+            try:
+              s=get(url)
+              return url,{k:s.lower().count(v.lower()) for k,v in needles.items()},None
+            except Exception as e:return url,{},type(e).__name__
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:results=list(pool.map(scan,urls))
+          errors=[(u,e) for u,_,e in results if e]
+          print('SITEMAP_PAGES='+str(len(urls)))
+          print('SCAN_ERRORS='+str(len(errors)))
+          for name in needles:
+            pages=[u for u,counts,e in results if not e and counts.get(name,0)>0]
+            occurrences=sum(counts.get(name,0) for _,counts,e in results if not e)
+            print(name+'_PAGES='+str(len(pages))+' OCCURRENCES='+str(occurrences))
+            for u in pages[:6]:print(name+'_EXAMPLE='+u)
+          if errors:raise SystemExit(2)
+          print('BRAND_INVENTORY=VERIFIED')
+          PY
+
+  nsp-update-support-live:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.update_nsp_support_live == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply public support email migration with rollback
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/support_key
+          chmod 600 ~/.ssh/support_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          php -l tools/nsp_support_email_live.php
+          scp -q -i ~/.ssh/support_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 tools/nsp_support_email_live.php "$USER@$HOST:nsp-migration-private/nsp_support_email_live.php"
+          ssh -i ~/.ssh/support_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          php "$HOME/nsp-migration-private/nsp_support_email_live.php" apply "$HOME/www/nastoronepodryadchika.ru" "$HOME/nsp-migration-private/backup-public-support-20261021"
+          REMOTE
+      - name: Verify live support email in homepage and 404
+        run: |
+          set -euo pipefail
+          for path in / /404.html /katalog.html /contacts.html; do
+            curl -fsS --connect-timeout 5 --max-time 12 "https://nastoronepodryadchika.ru$path" -o /tmp/nsp-public-support.html
+            ! grep -Fq 'marzhavbetone@yandex.ru' /tmp/nsp-public-support.html
+          done
+          echo 'PUBLIC_SUPPORT_HTTP=PASS'
+
+  nsp-update-admin-email:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.update_nsp_admin_email == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify scalar config edit and rejection fixtures before hosting access
+        run: |
+          php -l tools/nsp_admin_email.php
+          python3 tools/test_nsp_admin_email.py
+      - name: Change only ADMIN_EMAIL after exact-hash dry run
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          SSH_USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          [[ "$PORT" =~ ^[0-9]+$ ]]
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/admin_mail_key
+          chmod 600 ~/.ssh/admin_mail_key
+          timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          SSH=(ssh -p "$PORT" -i ~/.ssh/admin_mail_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 -o ServerAliveInterval=10 -o ServerAliveCountMax=3 "$SSH_USER@$HOST")
+          expected=0921f9fabc8adbf2dc4c28cd9775b8f95d138a8d074087c1f67a906a7a3ff905
+          timeout 45s "${SSH[@]}" 'php /dev/stdin dry-run "$HOME/www/nastoronepodryadchika.ru/config.php" '"$expected"' -' < tools/nsp_admin_email.php
+          if [ "$DRY_RUN" = true ]; then
+            echo ADMIN_EMAIL_DRY_RUN=PASS
+            exit 0
+          fi
+          receipt=$(timeout 45s "${SSH[@]}" "sh -s -- '$GITHUB_RUN_ID' '$GITHUB_RUN_ATTEMPT'" < tools/nsp_backup_config.sh)
+          backup=$(printf '%s\n' "$receipt" | sed -n 's/^CONFIG_BACKUP_UNIQUE=//p')
+          [[ "$backup" =~ ^config-[A-Za-z0-9._-]+\.php$ ]]
+          printf '%s\n' "$receipt"
+          timeout 45s "${SSH[@]}" "php /dev/stdin apply \"\$HOME/www/nastoronepodryadchika.ru/config.php\" '$expected' \"\$HOME/nsp-migration-private/config-snapshots/$backup\"" < tools/nsp_admin_email.php
+          echo ADMIN_EMAIL_PRODUCTION=VERIFIED
+
+  nsp-update-form-mail:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.update_nsp_form_mail == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify actual handlers offline; no real messages
+        run: |
+          php -l tools/nsp_form_mail.php
+          php -l contact.php
+          php -l lead.php
+          python3 tools/test_nsp_form_mail.py
+      - name: Update exact form handlers and preserve every other PHP file
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          SSH_USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          [[ "$PORT" =~ ^[0-9]+$ ]]
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/form_mail_key
+          chmod 600 ~/.ssh/form_mail_key
+          timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          SSH=(ssh -p "$PORT" -i ~/.ssh/form_mail_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 -o ServerAliveInterval=10 -o ServerAliveCountMax=3 "$SSH_USER@$HOST")
+          timeout 45s "${SSH[@]}" 'php /dev/stdin dry-run "$HOME/www/nastoronepodryadchika.ru" -' < tools/nsp_form_mail.php
+          if [ "$DRY_RUN" = true ]; then
+            echo FORM_MAIL_DRY_RUN=PASS
+            exit 0
+          fi
+          [[ "$GITHUB_RUN_ID" =~ ^[0-9]+$ && "$GITHUB_RUN_ATTEMPT" =~ ^[0-9]+$ ]]
+          relative=nsp-migration-private/form-mail-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT
+          timeout 15s "${SSH[@]}" "umask 077; mkdir \"\$HOME/$relative\""
+          timeout 45s "${SSH[@]}" "php /dev/stdin apply \"\$HOME/www/nastoronepodryadchika.ru\" \"\$HOME/$relative\"" < tools/nsp_form_mail.php
+          python3 - <<'PY'
+          import urllib.request, urllib.error
+          for endpoint in ['contact.php','lead.php']:
+              try: urllib.request.urlopen('https://nastoronepodryadchika.ru/'+endpoint,timeout=12)
+              except urllib.error.HTTPError as error: assert error.code==405
+              else: raise AssertionError('GET must be refused without sending mail')
+          print('FORM_HTTP_GET_GUARD=PASS; real_messages_sent=0')
+          PY
+          echo FORM_MAIL_PRODUCTION=VERIFIED
+
+  nsp-full-sitemap-indexnow:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.submit_all_new_sitemap_urls == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Check IndexNow ownership key on live site
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/indexnow_key
+          chmod 600 ~/.ssh/indexnow_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/indexnow_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          key="07e706758d2b3889c5bf9c7b3760d86d"
+          file="$site/$key.txt"
+          if test -e "$file"; then
+            test "$(cat "$file")" = "$key" || { echo "INDEXNOW_EXISTING_KEY_MISMATCH"; exit 2; }
+            echo 'INDEXNOW_KEY_EXISTING=VERIFIED'
+          else
+            tmp="$(mktemp "$site/.indexnow-key-XXXXXX")"
+            printf '%s\n' "$key" > "$tmp"
+            chmod 644 "$tmp"
+            mv "$tmp" "$file"
+            test "$(cat "$file")" = "$key"
+            echo 'INDEXNOW_KEY_CREATED=VERIFIED'
+          fi
+          REMOTE
+      - name: Audit public URLs and submit new-domain migration to IndexNow
+        run: |
+          python3 - <<'PY'
+          import concurrent.futures,html,json,re,urllib.error,urllib.request,xml.etree.ElementTree as ET
+          base="https://nastoronepodryadchika.ru"
+          key="07e706758d2b3889c5bf9c7b3760d86d"
+          def get(url):
+              req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 NSP-SEO-IndexNow-Audit"})
+              with urllib.request.urlopen(req,timeout=14) as resp:
+                  return resp.status,dict(resp.headers),resp.read()
+          status,_,robots=get(base+"/robots.txt")
+          assert status==200 and b"Sitemap: https://nastoronepodryadchika.ru/sitemap.xml" in robots and b"Disallow: /\n" not in robots,"ROBOTS_GATE"
+          status,_,keybody=get(base+"/"+key+".txt")
+          assert status==200 and keybody.decode().strip()==key,"KEY_GATE"
+          status,_,xml=get(base+"/sitemap.xml")
+          assert status==200,"SITEMAP_GATE"
+          urls=[x.text.strip() for x in ET.fromstring(xml).findall(".//{*}loc") if x.text]
+          assert len(urls)==len(set(urls)) and len(urls)>=80 and all(u.startswith(base+"/") for u in urls),"URL_LIST_GATE"
+          def check(url):
+              try:
+                  code,headers,body=get(url)
+                  if code!=200:return url,"HTTP_"+str(code)
+                  if "noindex" in headers.get("X-Robots-Tag","").lower():return url,"HEADER_NOINDEX"
+                  s=body.decode("utf-8","replace")
+                  if re.search(r'<meta\b[^>]*name=["\']robots["\'][^>]*content=["\'][^"\']*noindex',s,re.I):return url,"META_NOINDEX"
+                  tags=re.findall(r'<link\b[^>]*rel=["\']canonical["\'][^>]*>',s,re.I)
+                  if len(tags)!=1:return url,"CANONICAL_COUNT"
+                  m=re.search(r'href=["\']([^"\']+)',tags[0],re.I)
+                  if not m or html.unescape(m.group(1))!=url:return url,"CANONICAL_MISMATCH"
+                  return url,"PASS"
+              except Exception as e:return url,"FETCH_"+type(e).__name__
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool: results=list(pool.map(check,urls))
+          bad=[x for x in results if x[1]!="PASS"]
+          print("SITEMAP_URL_COUNT="+str(len(urls)))
+          print("INDEXABLE_CANONICAL_PASS="+str(len(results)-len(bad)))
+          print("INDEXABILITY_ERRORS="+str(len(bad)))
+          for x in bad[:10]:print("BAD_URL="+repr(x))
+          if bad:raise SystemExit("INDEXABILITY_GATE_FAILED")
+          payload=json.dumps({"host":"nastoronepodryadchika.ru","key":key,"urlList":urls},ensure_ascii=False).encode()
+          for endpoint in ("https://yandex.com/indexnow","https://api.indexnow.org/indexnow"):
+              req=urllib.request.Request(endpoint,data=payload,method="POST",headers={"Content-Type":"application/json; charset=utf-8","User-Agent":"NSP-Domain-Migration/1.0"})
+              try:
+                  with urllib.request.urlopen(req,timeout=16) as resp: code=resp.status
+              except urllib.error.HTTPError as e:code=e.code
+              except Exception as e:
+                  print("INDEXNOW_ENDPOINT_ERROR="+endpoint+" "+type(e).__name__)
+                  continue
+              print("INDEXNOW_ENDPOINT="+endpoint+" HTTP="+str(code))
+              if code in (200,202):
+                  print("INDEXNOW_SUBMISSION="+("ACCEPTED" if code==200 else "KEY_PENDING_VERIFICATION"))
+                  print("INDEXNOW_URLS_SENT="+str(len(urls)))
+                  break
+          else:raise SystemExit("INDEXNOW_NOT_ACCEPTED")
+          PY
+
+  nsp-compare-sitemap-source:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.compare_live_sitemap_source == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: migration/nsp-domain-20261020
+      - name: Compare live sitemap to migration branch
+        run: |
+          python3 - <<'PY'
+          import urllib.request,xml.etree.ElementTree as ET
+          def locs(data):
+              return {e.text.strip() for e in ET.fromstring(data).findall('.//{*}loc') if e.text}
+          source=locs(open("sitemap.xml","rb").read())
+          with urllib.request.urlopen("https://nastoronepodryadchika.ru/sitemap.xml",timeout=15) as resp:live=locs(resp.read())
+          print("SOURCE_SITEMAP_COUNT="+str(len(source)))
+          print("LIVE_SITEMAP_COUNT="+str(len(live)))
+          for url in sorted(live-source):print("LIVE_ONLY="+url)
+          for url in sorted(source-live):print("SOURCE_ONLY="+url)
+          print("SITEMAP_DIFF_COUNT="+str(len(source^live)))
+          PY
+
+  nsp-cleanup-archived-sitemap:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.cleanup_archived_sitemap_urls == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply guarded archive SEO correction
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          php -l tools/nsp_archive_sitemap_cleanup.php
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/archive_key
+          chmod 600 ~/.ssh/archive_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          scp -q -i ~/.ssh/archive_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 tools/nsp_archive_sitemap_cleanup.php "$USER@$HOST:nsp-migration-private/nsp_archive_sitemap_cleanup.php"
+          ssh -i ~/.ssh/archive_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          php "$HOME/nsp-migration-private/nsp_archive_sitemap_cleanup.php" "$HOME/www/nastoronepodryadchika.ru" "$HOME/nsp-migration-private/backup-archived-sitemap-20261021"
+          REMOTE
+      - name: Verify public sitemap and archived canonical
+        run: |
+          python3 - <<'PY'
+          import urllib.request,xml.etree.ElementTree as ET,re
+          base="https://nastoronepodryadchika.ru"
+          def get(path):
+              with urllib.request.urlopen(base+path,timeout=12) as r:return r.status,r.read().decode("utf-8","replace")
+          code,xml=get("/sitemap.xml")
+          urls=[x.text for x in ET.fromstring(xml).findall(".//{*}loc") if x.text]
+          assert code==200 and len(urls)==82 and len(set(urls))==82
+          archived={"p12-spor-s-summoy.html":"p5-shtrafy-uderzhaniya.html","t6-kvartiry-vmesto-deneg.html":"p11-raschet-metrami.html"}
+          for name,target in archived.items():
+              assert not any(u.endswith("/"+name) for u in urls)
+              code,s=get("/products/"+name)
+              assert code==200 and '<meta name="robots" content="noindex,follow">' in s
+              assert 'rel="canonical" href="'+base+'/products/'+target+'"' in s
+          print("PUBLIC_SITEMAP_INDEXABLE_URLS=82")
+          print("ARCHIVED_P12_T6_EXCLUDED=YES")
+          print("ARCHIVE_PUBLIC_SEO_VERIFY=PASS")
+          PY
+
   deploy:
     if: ${{ github.ref_name == 'main' && vars.ENABLE_LEGACY_DEPLOY == 'true' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
