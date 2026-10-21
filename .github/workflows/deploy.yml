@@ -1063,6 +1063,34 @@ jobs:
           print('OLD_301_ALL_SITEMAP_URLS=VERIFIED')
           PY
 
+  nsp-yandex-ipv4-diagnostics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Probe official Webmaster API over IPv4
+        env:
+          TOKEN: ${{ secrets.YANDEX_WEBMASTER_TOKEN }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$TOKEN"
+          code=$(curl -4 -sS -o /tmp/yandex-api-user.json -w '%{http_code}' --connect-timeout 6 --max-time 15 -H "Authorization: OAuth $TOKEN" https://api.webmaster.yandex.net/v4/user/ || true)
+          echo "GITHUB_YANDEX_IPV4_HTTP=$code"
+          if [ "$code" = 200 ]; then
+            python3 -c 'import json; x=json.load(open("/tmp/yandex-api-user.json")); print("WEBMASTER_USER_ID="+str(x.get("user_id","MISSING")))'
+          fi
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/yandex_probe_key
+          chmod 600 ~/.ssh/yandex_probe_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/yandex_probe_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          code=$(curl -4 -sS -o /dev/null -w '%{http_code}' --connect-timeout 6 --max-time 15 https://api.webmaster.yandex.net/v4/user/ || true)
+          echo "HOSTING_YANDEX_IPV4_HTTP=$code"
+          REMOTE
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
