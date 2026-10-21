@@ -407,11 +407,11 @@ jobs:
           backup="$HOME/nsp-migration-private/backup-htaccess-before-payments-20261021"
           rule='RewriteRule ^(?:payment|webhook|check-payment|contact)\.php$ - [R=503,L]'
           test -f "$file"
-          if ! grep -Fqx "$rule" "$file"; then
+          if ! grep -Fq "$rule" "$file"; then
             echo 'TEMPORARY_503_RULE_ABSENT'
             exit 0
           fi
-          test "$(grep -Fxc "$rule" "$file")" = 1
+          test "$(grep -Fc "$rule" "$file")" = 1
           if test -e "$backup"; then
             cmp -s "$file" "$backup" || { echo 'EXISTING_BACKUP_MISMATCH'; exit 1; }
           else
@@ -422,7 +422,7 @@ jobs:
           fi
           tmp="$(mktemp "$site/.htaccess-next-XXXXXX")"
           trap 'rm -f "$tmp"' EXIT
-          grep -Fvx "$rule" "$file" > "$tmp"
+          grep -Fv "$rule" "$file" > "$tmp"
           test "$(wc -l < "$file")" -eq "$(( $(wc -l < "$tmp") + 1 ))"
           chmod 644 "$tmp"
           mv "$tmp" "$file"
