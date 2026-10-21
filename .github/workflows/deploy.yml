@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      update_nsp_support_live:
+        description: 'Update public support email on new site with private backups'
+        type: boolean
+        default: false
       fix_nsp_404:
         description: 'Fix 404 stylesheet path and support email'
         type: boolean
@@ -1355,6 +1359,38 @@ jobs:
           if errors:raise SystemExit(2)
           print('BRAND_INVENTORY=VERIFIED')
           PY
+
+  nsp-update-support-live:
+    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.update_nsp_support_live == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply public support email migration with rollback
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/support_key
+          chmod 600 ~/.ssh/support_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          php -l tools/nsp_support_email_live.php
+          scp -q -i ~/.ssh/support_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 tools/nsp_support_email_live.php "$USER@$HOST:nsp-migration-private/nsp_support_email_live.php"
+          ssh -i ~/.ssh/support_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          php "$HOME/nsp-migration-private/nsp_support_email_live.php" apply "$HOME/www/nastoronepodryadchika.ru" "$HOME/nsp-migration-private/backup-public-support-20261021"
+          REMOTE
+      - name: Verify live support email in homepage and 404
+        run: |
+          set -euo pipefail
+          for path in / /404.html /katalog.html /contacts.html; do
+            curl -fsS --connect-timeout 5 --max-time 12 "https://nastoronepodryadchika.ru$path" -o /tmp/nsp-public-support.html
+            ! grep -Fq 'marzhavbetone@yandex.ru' /tmp/nsp-public-support.html
+          done
+          echo 'PUBLIC_SUPPORT_HTTP=PASS'
 
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
