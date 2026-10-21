@@ -4,3 +4,14 @@
 Цена: 9 900 ₽. Покупательский состав: ровно 6 файлов из одобренного R2.
 R2 SHA-256: f50e64138980e4ad0ad0f262a5201e43464b0c600b4cc023726f50d23cebe195
 Публикация: требуется отдельное разрешение владельца. Этот внутренний манифест в архив не входит.
+
+Покупателю уходит 6 файлов.
+
+## Состав
+
+- `00-START-HERE.pdf`
+- `01-slovar-poley.docx`
+- `02-soprovoditelnoe-pismo-peredachi.docx`
+- `03-opis-peredavaemogo-komplekta.xlsx`
+- `04-akt-priema-peredachi-id.docx`
+- `05-poryadok-peredachi-id.docx`

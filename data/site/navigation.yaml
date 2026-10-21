@@ -16,10 +16,10 @@
 # в никуда, `/#author` — на раздел главной.
 
 brand:
-  text: маржа в бетоне
-  mark: М
+  text: на стороне подрядчика
+  mark: Н
   href: /
-  aria: Маржа в бетоне, на главную
+  aria: На стороне подрядчика, на главную
 
 # Порядок — путь покупателя, а не алфавит: сначала «что у меня за случай»,
 # потом «чем закрыть», потом справочное.
@@ -41,7 +41,7 @@ items:
     text: Калькуляторы
     href: /kalkulyator.html
   - id: razbory
-    text: Разборы
+    text: Практика и судебные решения
     href: /articles/
   - id: o-proekte
     text: О проекте
@@ -98,3 +98,8 @@ cart_on:
 # но `.topbar` описан в styles.css, а его грузят и они — то есть шапка им
 # ничего не стоит, а без неё с них не было пути никуда, кроме «На главную».
 skip: []
+
+# Принятая компактная шапка главной; генератор и проверка используют один источник.
+header_overrides:
+  index.html: >-
+    <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span>НА СТОРОНЕ<br>ПОДРЯДЧИКА</span></a><nav aria-label="Основная навигация"><a href="/katalog.html">Каталог</a><a href="/diagnostika.html">Диагностика</a><a href="/articles/">Практика</a><a href="/#author">О проекте</a><a class="nav-secondary" href="/materialy/">Бесплатно</a><a class="nav-secondary" href="/kalkulyator.html">Калькуляторы</a><a class="nav-secondary" href="/#contact">Разобрать объект</a></nav><button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>

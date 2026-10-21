@@ -33,7 +33,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES = ROOT / "articles"
 DRAFTS = ROOT / "content" / "dzen"
-SITE = "https://marzhavbetone.ru"
+SITE = "https://nastoronepodryadchika.ru"
 
 HOWTO = """## Как публиковать с телефона
 

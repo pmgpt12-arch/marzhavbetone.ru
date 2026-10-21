@@ -28,6 +28,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import re
 import sys
@@ -175,7 +176,7 @@ def render(path: Path, dirs: dict[str, str]) -> tuple[str, str]:
     if not dirs.get(sku) or not folder.is_dir():
         return text, f"{sku}: каталога комплекта нет в products-storage"
 
-    listed=re.findall(r'<code[^>]*>([^<]+\.(?:docx|xlsx|xls|pdf|txt))</code>',text)
+    listed=re.findall(r'<(?:code|h3)[^>]*>([^<]+\.(?:docx|xlsx|xls|pdf|txt))</(?:code|h3)>',text)
     if listed:
         actual={p.name for p in folder.iterdir() if p.is_file() and p.name not in {'.htaccess','MANIFEST.md','00-PISMO-POSLE-POKUPKI.txt'}}
         if len(listed)!=len(set(listed)) or set(listed)!=actual:
@@ -187,6 +188,20 @@ def render(path: Path, dirs: dict[str, str]) -> tuple[str, str]:
         if not all((folder/n).is_file() for n in names):return text,'p3: preview filename missing'
         check_member('P3','03-akt-skrytyh-rabot.pdf',(folder/'03-akt-skrytyh-rabot.pdf').read_bytes())
         return text,""
+
+    # Owner-authored excerpts are pinned to the actual source files. Their
+    # prose is accepted copy, not the generic first-line extraction below.
+    previews = re.findall(r'<article class="preview-item"[^>]*>.*?</article>', text, re.S)
+    if any('data-source-sha256=' in item for item in previews):
+        for item in previews:
+            source = re.search(r'data-source-sha256="([a-f0-9]{64})"', item)
+            name = re.search(r'<p class="preview-file">([^<]+)</p>', item)
+            if not source or not name or Path(name[1]).name != name[1]:
+                return text, f"{sku}: неполная привязка принятого фрагмента"
+            path = folder / name[1]
+            if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != source[1]:
+                return text, f"{sku}: источник принятого фрагмента изменился — {name[1]}"
+        return text, ""
 
     items = fragments(folder)
     if len(items) < 2:

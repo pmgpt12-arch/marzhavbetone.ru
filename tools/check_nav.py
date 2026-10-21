@@ -43,21 +43,10 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def страницы() -> list[Path]:
-    out = []
-    for путь in sorted(ROOT.glob("**/*.html")):
-        rel = путь.relative_to(ROOT).as_posix()
-        # Каталог пропускается на любой глубине, а не только в корне.
-        # `startswith` не ловил tools/remotion/node_modules/**, и локальный
-        # прогон давал три расхождения на чужих html из зависимостей —
-        # расхождения, которых на раннере нет: node_modules туда не
-        # выкладывается. Гейт и локальный прогон обязаны отвечать одинаково.
-        части = set(rel.split("/")[:-1])
-        if (rel.startswith(ПРОПУСК_КАТАЛОГОВ)
-                or части & {к.rstrip("/") for к in ПРОПУСК_КАТАЛОГОВ}
-                or путь.name in ПРОПУСК_ФАЙЛОВ):
-            continue
-        out.append(путь)
-    return out
+    # Та же граница публикации, что у проверки ссылок: архивные доказательства
+    # внутри tools/ не являются страницами сайта и никогда не перезаписываются.
+    from link_audit import site_html_files
+    return [p for p in site_html_files() if p.name not in ПРОПУСК_ФАЙЛОВ]
 
 
 def пункты_шапки(шапка: str) -> list[tuple[str, str, str]]:
@@ -155,6 +144,13 @@ def main() -> int:
     if not цель_существует(данные["cta"]["href"]):
         дефекты.append(f"канон: призыв ведёт в никуда — {данные['cta']['href']}")
 
+    for rel, override in данные.get("header_overrides", {}).items():
+        if not (ROOT / rel).is_file():
+            дефекты.append(f"канон: нет страницы варианта {rel}")
+        for текст, href, _ in пункты_шапки(override):
+            if not цель_существует(href):
+                дефекты.append(f"{rel}: пункт «{текст}» ведёт в никуда — {href}")
+
     for путь in список:
         rel = путь.relative_to(ROOT).as_posix()
         html = путь.read_text(encoding="utf-8", errors="replace")
@@ -165,6 +161,14 @@ def main() -> int:
         if len(все) > 1:
             дефекты.append(f"{rel}: шапок {len(все)}, должна быть одна")
         шапка = все[0]
+
+        override = данные.get("header_overrides", {}).get(rel)
+        if override:
+            if шапка != override.strip():
+                дефекты.append(f"{rel}: шапка разошлась с принятым вариантом")
+            # Точное сравнение включает порядок, бренд, классы и корзину;
+            # существование всех ссылок варианта проверено выше.
+            continue
 
         пункты = пункты_шапки(шапка)
         было = [(т, h) for т, h, _ in пункты]
@@ -210,7 +214,7 @@ def main() -> int:
             print(f"  … и ещё {len(дефекты) - 40}")
         return 1
 
-    print(f"Шапка: {len(список)} страниц, вариант один, расхождений нет")
+    print(f"Шапка: {len(список)} страниц, утверждённые варианты, расхождений нет")
     return 0
 
 
