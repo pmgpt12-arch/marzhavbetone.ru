@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      update_nsp_admin_email:
+        description: 'Switch ADMIN_EMAIL only, preserve payment secret and mail From'
+        type: boolean
+        default: false
       update_nsp_support_live:
         description: 'Update public support email on new site with private backups'
         type: boolean
@@ -1391,6 +1395,57 @@ jobs:
             ! grep -Fq 'marzhavbetone@yandex.ru' /tmp/nsp-public-support.html
           done
           echo 'PUBLIC_SUPPORT_HTTP=PASS'
+
+  nsp-update-admin-email:
+    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.update_nsp_admin_email == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Change only ADMIN_EMAIL in production config with rollback
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/admin_mail_key
+          chmod 600 ~/.ssh/admin_mail_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/admin_mail_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          file="$HOME/www/nastoronepodryadchika.ru/config.php"
+          backup="$HOME/nsp-migration-private/backup-config-before-admin-email-20261021.php"
+          test -s "$file"
+          php -r '
+            $file=$argv[1];$backup=$argv[2];
+            $s=file_get_contents($file);if($s===false)exit(2);
+            $old="marzhavbetone@yandex.ru";
+            $new="nastoronepodryadchika@yandex.ru";
+            if(strpos($s,$old)===false && strpos($s,$new)!==false){echo "ADMIN_EMAIL_ALREADY_NEW\n";exit(0);}
+            if(substr_count($s,$old)!==1)exit(3);
+            $start=strpos($s,"define(");
+            $admin=strpos($s,"ADMIN_EMAIL");
+            if($admin===false)exit(4);
+            $end=strpos($s,"\n",$admin);
+            $line=substr($s,$admin,$end===false?null:$end-$admin);
+            if(strpos($line,$old)===false)exit(5);
+            if(file_exists($backup))exit(6);
+            if(!copy($file,$backup))exit(7);
+            chmod($backup,0600);
+            if(hash_file("sha256",$file)!==hash_file("sha256",$backup))exit(8);
+            $next=str_replace($old,$new,$s);
+            $tmp=tempnam(dirname($file),".admin-mail-next-");
+            if($tmp===false)exit(9);
+            if(file_put_contents($tmp,$next,LOCK_EX)!==strlen($next))exit(10);
+            chmod($tmp,0600);
+            $lint=0;exec("php -l ".escapeshellarg($tmp)." >/dev/null 2>&1",$ignore,$lint);
+            if($lint!==0){unlink($tmp);exit(11);}
+            if(!rename($tmp,$file))exit(12);
+            echo "ADMIN_EMAIL_UPDATED=YES\n";
+          ' "$file" "$backup"
+          php -r 'require $argv[1]; if(ADMIN_EMAIL!=="nastoronepodryadchika@yandex.ru" || YOOKASSA_SHOP_ID!=="1502106" || DELIVERY_TTL_SECONDS!==3600)exit(1); echo "ADMIN_EMAIL_CONFIG_VERIFIED\n";' "$file"
+          REMOTE
 
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
