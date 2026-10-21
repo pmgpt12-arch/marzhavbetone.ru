@@ -8,7 +8,8 @@ import re
 from html.parser import HTMLParser
 
 HOST = re.compile(r'(?i)^(?:https?:)?//(?:www\.)?max\.ru(?:[/?#]|$)')
-ANCHOR = re.compile(r'<a\b[^>]*\bhref\s*=\s*([\"\'])(?:https?:)?//(?:www\.)?max\.ru(?:[/?#][^\"\']*)?\1[^>]*>.*?</a\s*>', re.I | re.S)
+ANCHOR = re.compile(r'<a\b[^>]*\bhref\s*=\s*([\"\'])(?:https?:)?//(?:www\.)?max\.ru(?:[/?#][^\"\']*)?\1[^>]*>(?:(?!</a\b).)*</a\s*>', re.I | re.S)
+WHOLE_LINE_ANCHOR = re.compile(r'^[ \t]*' + ANCHOR.pattern + r'[ \t]*(?:\r?\n|$)', re.I | re.S | re.M)
 SAME_AS = re.compile(r'("sameAs"\s*:\s*\[)([^\]]*)(\])', re.S)
 TOKEN = r'"(?:https?:)?//(?:www\.)?max\.ru(?:[/?#][^"\r\n]*)?"'
 LD = re.compile(r'<script\b[^>]*type\s*=\s*[\"\']application/ld\+json[\"\'][^>]*>(.*?)</script\s*>', re.I | re.S)
@@ -30,7 +31,9 @@ def links(text):
 
 def transform(text):
     before = links(text)
-    result, count = ANCHOR.subn('', text)
+    result, whole_count = WHOLE_LINE_ANCHOR.subn('', text)
+    result, inline_count = ANCHOR.subn('', result)
+    count = whole_count + inline_count
     def clean_same_as(match):
         body = match.group(2)
         body = re.sub(r'\s*' + TOKEN + r'\s*,', '', body, flags=re.I)
@@ -64,7 +67,9 @@ def self_test():
     for href in ['https://max.ru/a', 'https://www.max.ru/a', '//max.ru/a', 'http://max.ru/a']:
         actual, count = transform("<a href='" + href + "'>MAX</a><a href='https://max.ru.example/a'>untouched</a>")
         assert count == 1 and actual == "<a href='https://max.ru.example/a'>untouched</a>"
-    print('REMOVE_MAX_SELF_TESTS=PASS (10 cases)')
+    fixture = '<aside>\n    <a href="https://max.ru/a"><svg></svg></a>\n    <a href="https://t.me/a">TG</a>\n</aside>\n'
+    assert transform(fixture)[0] == '<aside>\n    <a href="https://t.me/a">TG</a>\n</aside>\n'
+    print('REMOVE_MAX_SELF_TESTS=PASS (11 cases)')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
