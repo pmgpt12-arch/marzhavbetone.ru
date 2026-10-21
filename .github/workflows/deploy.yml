@@ -1091,6 +1091,18 @@ jobs:
           echo "HOSTING_YANDEX_IPV4_HTTP=$code"
           REMOTE
 
+  nsp-domain-variants:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check apex, www, and HTTP redirects for both domains
+        run: |
+          set -euo pipefail
+          for url in https://www.nastoronepodryadchika.ru/ http://nastoronepodryadchika.ru/ http://www.nastoronepodryadchika.ru/ https://www.marzhavbetone.ru/ http://marzhavbetone.ru/ http://www.marzhavbetone.ru/; do
+            echo "VARIANT_URL=$url"
+            curl -sSI --connect-timeout 5 --max-time 12 "$url" | grep -Ei '^HTTP/|^location:' | head -5 || true
+          done
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
