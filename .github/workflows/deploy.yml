@@ -986,8 +986,8 @@ jobs:
           class NoRedirect(urllib.request.HTTPRedirectHandler):
               def redirect_request(self,*args,**kwargs):return None
           opener=urllib.request.build_opener(NoRedirect)
-          with urllib.request.urlopen(old+'/sitemap.xml',timeout=12) as r: xml=r.read()
-          urls=[x.text for x in ET.fromstring(xml).findall('.//{*}loc') if x.text]
+          with urllib.request.urlopen(new+'/sitemap.xml',timeout=12) as r: xml=r.read()
+          urls=[old+x.text[len(new):] for x in ET.fromstring(xml).findall('.//{*}loc') if x.text and x.text.startswith(new+'/')]
           assert len(urls)==84
           def check(url):
               req=urllib.request.Request(url,method='HEAD')
