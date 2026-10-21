@@ -1,0 +1,83 @@
+name: NSP final targeted corrections
+on:
+  push:
+    branches: [fix/nsp-cutover-final-20261021]
+    paths: [tools/nsp-final/request.json]
+permissions:
+  contents: write
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+jobs:
+  targeted:
+    if: github.ref_name == 'fix/nsp-cutover-final-20261021'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read explicit action and configure bounded SSH
+        run: |
+          set -euo pipefail
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish"]; print(x["action"])')
+          echo "NSP_ACTION=$action" >> "$GITHUB_ENV"
+          test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
+          [[ "$PORT" =~ ^[0-9]+$ ]]
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_final_key
+          chmod 600 ~/.ssh/nsp_final_key
+          timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          mkdir -p /tmp/nsp-final-evidence
+      - name: Save current production static source without secrets
+        if: env.NSP_ACTION == 'snapshot'
+        run: |
+          set -euo pipefail
+          php -l tools/nsp_public_inventory.php
+          SSH=(ssh -p "$PORT" -i ~/.ssh/nsp_final_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 -o ServerAliveInterval=10 -o ServerAliveCountMax=3)
+          timeout 60s "${SSH[@]}" "$SSH_USER@$HOST" 'php /dev/stdin "$HOME/www/nastoronepodryadchika.ru"' < tools/nsp_public_inventory.php > /tmp/nsp-final-evidence/static-before.json
+          python3 - <<'PY'
+          import json, pathlib
+          rows=json.load(open('/tmp/nsp-final-evidence/static-before.json'))
+          assert 90 <= len(rows) <= 1200
+          assert len({r['path'] for r in rows})==len(rows)
+          pathlib.Path('/tmp/nsp-static-paths').write_text(''.join(r['path']+'\n' for r in rows))
+          PY
+          timeout 120s "${SSH[@]}" "$SSH_USER@$HOST" 'cd "$HOME/www/nastoronepodryadchika.ru" && tar -cf - -T -' < /tmp/nsp-static-paths > /tmp/nsp-static.tar
+          mkdir /tmp/nsp-static
+          tar -xf /tmp/nsp-static.tar -C /tmp/nsp-static
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re,shutil
+          rows=json.load(open('/tmp/nsp-final-evidence/static-before.json'))
+          for r in rows:
+              p=pathlib.Path('/tmp/nsp-static')/r['path']; data=p.read_bytes()
+              assert len(data)==r['size'] and hashlib.sha256(data).hexdigest()==r['sha256'], 'SNAPSHOT_RACE_OR_CORRUPTION'
+              if p.suffix in ['.html','.js','.css','.xml']:
+                  assert not re.search(rb'(?:-----BEGIN (?:RSA |OPENSSH )?PRIVATE KEY|sk_live_[A-Za-z0-9]{12}|gh[pousr]_[A-Za-z0-9]{20})',data), 'SECRET_PATTERN'
+              dest=pathlib.Path(r['path']); dest.parent.mkdir(parents=True,exist_ok=True); shutil.copyfile(p,dest)
+          pathlib.Path('tools/nsp-final/static-before.json').write_text(json.dumps(rows,indent=2)+'\n')
+          print('STATIC_SNAPSHOT_FILES='+str(len(rows)))
+          PY
+          git diff --stat
+          python3 - <<'PY'
+          import json,subprocess
+          paths=[r['path'] for r in json.load(open('tools/nsp-final/static-before.json'))]
+          subprocess.run(['git','add','--',*paths,'tools/nsp-final/static-before.json'],check=True)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Preserve current NSP public production static source [skip deploy]'
+          git push origin HEAD:fix/nsp-cutover-final-20261021
+          git rev-parse HEAD > /tmp/nsp-final-evidence/snapshot-commit.txt
+      - name: Targeted dry-run or publication
+        if: env.NSP_ACTION != 'snapshot'
+        run: python3 tools/nsp-final/release.py "$NSP_ACTION"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nsp-final-evidence-${{ github.run_id }}
+          path: /tmp/nsp-final-evidence/
+          retention-days: 30
