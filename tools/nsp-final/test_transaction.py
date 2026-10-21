@@ -57,6 +57,7 @@ with tempfile.TemporaryDirectory() as tmp:
     d=stage('zip','downloads/dengi.zip');run(d,'apply');run(d,'verify');run(d,'rollback');assert not target.parent.exists()
     assets=site/'assets';assets.mkdir()
     d=stage('asset','assets/nsp-hero-desktop.webp');run(d,'apply');run(d,'verify');run(d,'rollback');assert not (assets/'nsp-hero-desktop.webp').exists();assert not (site/'downloads').exists()
+    d=stage('font','assets/nsp-plex-sans-semibold.woff2');run(d,'apply');run(d,'verify');run(d,'rollback');assert not (assets/'nsp-plex-sans-semibold.woff2').exists()
     assets.rmdir()
     run(stage('unsafe','downloads/other.pdf'),'dry-run',False);assert not target.parent.exists()
 print('PUBLIC_PDF_CREATE_ABSENCE_CONCURRENT_EDIT_SYMLINK_AND_ROLLBACK=PASS')

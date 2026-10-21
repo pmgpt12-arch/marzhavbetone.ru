@@ -3,7 +3,7 @@ from pypdf import PdfReader
 import re,json,hashlib,subprocess
 ROOT=Path(__file__).resolve().parents[2];HERE=Path(__file__).resolve().parent
 assert (ROOT/'assets/nsp-hero-desktop.webp').stat().st_size<=250*1024 and (ROOT/'assets/nsp-hero-mobile.webp').stat().st_size<=150*1024
-text=(ROOT/'index.html').read_text();assert 'home-v3' in text and 'Сохраните</span> прибыль по объекту' in text
+text=(ROOT/'index.html').read_text();assert text.count('class="home-opening"')==1;assert 'home-v3' in text and 'Сохраните</span> прибыль по объекту' in text
 assert text.count('<h1')==1 and text.count('class="stage-solutions"')==1
 for url in ['/katalog.html#group-do-podpisaniya','/katalog.html#group-zakrytie-i-oplata','/katalog.html#selection-oplata']:assert 'href="'+url+'"' in text
 source=json.loads((HERE/'pdf-pilot/source.json').read_text());assert hashlib.sha256((ROOT/source['source']).read_bytes()).hexdigest()==source['source_docx_sha256'];assert hashlib.sha256((ROOT/source['accepted_pdf']).read_bytes()).hexdigest()==source['accepted_pdf_sha256']
