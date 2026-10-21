@@ -1,0 +1,43 @@
+{
+  "status": "BLOCKED_EXPORT_PRINT_CONTRACT",
+  "customer_master_changed": false,
+  "source_sha256": "20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31",
+  "candidate_local_sha256": "d6d05b3255dd75bb6e63a87c562c57e241d703bd7fa3a9d8e9b4044c9acd4a7b",
+  "formulas": {
+    "G27": {
+      "before": "=IF(OR(H27<>\"\",B27=\"\"),\"\",E27*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F27,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100/365*D27)",
+      "candidate": "=IF(OR(H27<>\"\",B27=\"\"),\"\",E27*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F27,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100*IF(YEAR(B27)=YEAR(C27),D27/(DATE(YEAR(B27)+1,1,1)-DATE(YEAR(B27),1,1)),(DATE(YEAR(B27)+1,1,1)-B27)/(DATE(YEAR(B27)+1,1,1)-DATE(YEAR(B27),1,1))+YEAR(C27)-YEAR(B27)-1+(C27-DATE(YEAR(C27),1,1)+1)/(DATE(YEAR(C27)+1,1,1)-DATE(YEAR(C27),1,1))))"
+    },
+    "G28": {
+      "before": "=IF(OR(H28<>\"\",B28=\"\"),\"\",E28*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F28,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100/365*D28)",
+      "candidate": "=IF(OR(H28<>\"\",B28=\"\"),\"\",E28*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F28,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100*IF(YEAR(B28)=YEAR(C28),D28/(DATE(YEAR(B28)+1,1,1)-DATE(YEAR(B28),1,1)),(DATE(YEAR(B28)+1,1,1)-B28)/(DATE(YEAR(B28)+1,1,1)-DATE(YEAR(B28),1,1))+YEAR(C28)-YEAR(B28)-1+(C28-DATE(YEAR(C28),1,1)+1)/(DATE(YEAR(C28)+1,1,1)-DATE(YEAR(C28),1,1))))"
+    },
+    "G29": {
+      "before": "=IF(OR(H29<>\"\",B29=\"\"),\"\",E29*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F29,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100/365*D29)",
+      "candidate": "=IF(OR(H29<>\"\",B29=\"\"),\"\",E29*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F29,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100*IF(YEAR(B29)=YEAR(C29),D29/(DATE(YEAR(B29)+1,1,1)-DATE(YEAR(B29),1,1)),(DATE(YEAR(B29)+1,1,1)-B29)/(DATE(YEAR(B29)+1,1,1)-DATE(YEAR(B29),1,1))+YEAR(C29)-YEAR(B29)-1+(C29-DATE(YEAR(C29),1,1)+1)/(DATE(YEAR(C29)+1,1,1)-DATE(YEAR(C29),1,1))))"
+    },
+    "G30": {
+      "before": "=IF(OR(H30<>\"\",B30=\"\"),\"\",E30*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F30,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100/365*D30)",
+      "candidate": "=IF(OR(H30<>\"\",B30=\"\"),\"\",E30*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F30,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100*IF(YEAR(B30)=YEAR(C30),D30/(DATE(YEAR(B30)+1,1,1)-DATE(YEAR(B30),1,1)),(DATE(YEAR(B30)+1,1,1)-B30)/(DATE(YEAR(B30)+1,1,1)-DATE(YEAR(B30),1,1))+YEAR(C30)-YEAR(B30)-1+(C30-DATE(YEAR(C30),1,1)+1)/(DATE(YEAR(C30)+1,1,1)-DATE(YEAR(C30),1,1))))"
+    },
+    "G31": {
+      "before": "=IF(OR(H31<>\"\",B31=\"\"),\"\",E31*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F31,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100/365*D31)",
+      "candidate": "=IF(OR(H31<>\"\",B31=\"\"),\"\",E31*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F31,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100*IF(YEAR(B31)=YEAR(C31),D31/(DATE(YEAR(B31)+1,1,1)-DATE(YEAR(B31),1,1)),(DATE(YEAR(B31)+1,1,1)-B31)/(DATE(YEAR(B31)+1,1,1)-DATE(YEAR(B31),1,1))+YEAR(C31)-YEAR(B31)-1+(C31-DATE(YEAR(C31),1,1)+1)/(DATE(YEAR(C31)+1,1,1)-DATE(YEAR(C31),1,1))))"
+    }
+  },
+  "arithmetic_engine": "artifact_tool; real source formulas changed in Python notebook",
+  "arithmetic_scenarios_passed": 7,
+  "existing_input_guards_confirmed": 2,
+  "native_candidate_test": "NOT_RUN",
+  "export_regressions": [
+    "lost _xlnm.Print_Area",
+    "lost pageSetup",
+    "changed pageMargins",
+    "lost fitToPage"
+  ],
+  "unchanged_parser_engine_limitation": "NUMBERVALUE over nested SUBSTITUTE integer text fails in alternative engine; original formulas unchanged; native test required",
+  "sources": [
+    "https://calc.consultant.ru/395gk",
+    "https://www.consultant.ru/document/cons_doc_LAW_5142/93383099dc4f06165d8d4aac4eeb159db4f6da3d/"
+  ]
+}
