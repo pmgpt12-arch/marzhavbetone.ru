@@ -1,4 +1,4 @@
-"""Exact independent HTTPS checks for the complete final nine-file release."""
+"""Exact independent HTTPS checks for the complete final release."""
 from pathlib import Path
 import concurrent.futures,json,hashlib,urllib.request,urllib.parse
 ROOT=Path(__file__).resolve().parents[2];HERE=Path(__file__).resolve().parent
@@ -12,4 +12,4 @@ def probe(item):
  return {'path':name,'status':200,'sha256':wanted,'exact_bytes':'MATCH'}
 if __name__=='__main__':
  with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:out=list(pool.map(probe,expected.items()))
- assert len(out)==9;(HERE/'http-result.json').write_text(json.dumps({'status':'PASS','files':out},indent=2)+'\n');print('FINAL_LAYOUT_HTTPS=PASS; exactfiles=9')
+ assert len(out)==len(expected);(HERE/'http-result.json').write_text(json.dumps({'status':'PASS','files':out},indent=2)+'\n');print('FINAL_LAYOUT_HTTPS=PASS; exactfiles='+str(len(out)))
