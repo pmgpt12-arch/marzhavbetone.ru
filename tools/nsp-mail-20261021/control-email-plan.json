@@ -1,5 +1,5 @@
 {
-  "status": "DRAFT_NOT_SENT",
+  "status": "ACCEPTED_BY_LOCAL_MAIL_TRANSPORT",
   "from": "site@nastoronepodryadchika.ru",
   "to": "nastoronepodryadchika@yandex.ru",
   "reply_to": "nastoronepodryadchika@yandex.ru",
@@ -11,5 +11,14 @@
     "SPF/DKIM/DMARC results from received headers reviewed",
     "no real purchase or customer order created"
   ],
-  "production_sender_switch": "only after actual delivery acceptance"
+  "production_sender_switch": "NOT_APPLIED; only after actual delivery and header acceptance",
+  "user_authorization": "Давай проверим, in response to the concrete single-control-email proposal",
+  "message_id": "<nsp-control-new-from-20261022-v1@nastoronepodryadchika.ru>",
+  "audit_commit": "ec92d2222525c491f0aaf45394007a97114580f4",
+  "retry_policy": "private exclusive claim prevents repeated sending",
+  "run_id": 39693950891,
+  "job_id": 119546674758,
+  "actual_delivery": "AWAITING_RECIPIENT_CONFIRMATION",
+  "authentication_headers": "NOT_YET_AVAILABLE",
+  "mail_attempts": 1
 }
