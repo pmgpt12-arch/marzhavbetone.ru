@@ -1436,50 +1436,38 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Change only ADMIN_EMAIL in production config with rollback
+      - uses: actions/checkout@v4
+      - name: Verify scalar config edit and rejection fixtures before hosting access
+        run: |
+          php -l tools/nsp_admin_email.php
+          python3 tools/test_nsp_admin_email.py
+      - name: Change only ADMIN_EMAIL after exact-hash dry run
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
-          USER: ${{ secrets.DEPLOY_USER }}
+          SSH_USER: ${{ secrets.DEPLOY_USER }}
           KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          DRY_RUN: ${{ inputs.dry_run }}
         run: |
           set -euo pipefail
+          [[ "$PORT" =~ ^[0-9]+$ ]]
           install -d -m 700 ~/.ssh
           printf '%s\n' "$KEY" > ~/.ssh/admin_mail_key
           chmod 600 ~/.ssh/admin_mail_key
-          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
-          ssh -i ~/.ssh/admin_mail_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
-          set -eu
-          file="$HOME/www/nastoronepodryadchika.ru/config.php"
-          backup="$HOME/nsp-migration-private/backup-config-before-admin-email-20261021.php"
-          test -s "$file"
-          php -r '
-            $file=$argv[1];$backup=$argv[2];
-            $s=file_get_contents($file);if($s===false)exit(2);
-            $old="marzhavbetone@yandex.ru";
-            $new="nastoronepodryadchika@yandex.ru";
-            if(strpos($s,$old)===false && strpos($s,$new)!==false){echo "ADMIN_EMAIL_ALREADY_NEW\n";exit(0);}
-            if(substr_count($s,$old)!==1)exit(3);
-            $start=strpos($s,"define(");
-            $admin=strpos($s,"ADMIN_EMAIL");
-            if($admin===false)exit(4);
-            $end=strpos($s,"\n",$admin);
-            $line=substr($s,$admin,$end===false?null:$end-$admin);
-            if(strpos($line,$old)===false)exit(5);
-            if(file_exists($backup))exit(6);
-            if(!copy($file,$backup))exit(7);
-            chmod($backup,0600);
-            if(hash_file("sha256",$file)!==hash_file("sha256",$backup))exit(8);
-            $next=str_replace($old,$new,$s);
-            $tmp=tempnam(dirname($file),".admin-mail-next-");
-            if($tmp===false)exit(9);
-            if(file_put_contents($tmp,$next,LOCK_EX)!==strlen($next))exit(10);
-            chmod($tmp,0600);
-            if(!rename($tmp,$file))exit(12);
-            echo "ADMIN_EMAIL_UPDATED=YES\n";
-          ' "$file" "$backup"
-          php -l "$file" >/dev/null || { cp -p "$backup" "$file"; echo "ADMIN_EMAIL_ROLLBACK_ON_LINT_FAILURE"; exit 1; }
-          php -r 'require $argv[1]; if(ADMIN_EMAIL!=="nastoronepodryadchika@yandex.ru" || YOOKASSA_SHOP_ID!=="1502106" || DELIVERY_TTL_SECONDS!==3600)exit(1); echo "ADMIN_EMAIL_CONFIG_VERIFIED\n";' "$file"
-          REMOTE
+          timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          SSH=(ssh -p "$PORT" -i ~/.ssh/admin_mail_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 -o ServerAliveInterval=10 -o ServerAliveCountMax=3 "$SSH_USER@$HOST")
+          expected=0921f9fabc8adbf2dc4c28cd9775b8f95d138a8d074087c1f67a906a7a3ff905
+          timeout 45s "${SSH[@]}" 'php /dev/stdin dry-run "$HOME/www/nastoronepodryadchika.ru/config.php" '"$expected"' -' < tools/nsp_admin_email.php
+          if [ "$DRY_RUN" = true ]; then
+            echo ADMIN_EMAIL_DRY_RUN=PASS
+            exit 0
+          fi
+          receipt=$(timeout 45s "${SSH[@]}" "sh -s -- '$GITHUB_RUN_ID' '$GITHUB_RUN_ATTEMPT'" < tools/nsp_backup_config.sh)
+          backup=$(printf '%s\n' "$receipt" | sed -n 's/^CONFIG_BACKUP_UNIQUE=//p')
+          [[ "$backup" =~ ^config-[A-Za-z0-9._-]+\.php$ ]]
+          printf '%s\n' "$receipt"
+          timeout 45s "${SSH[@]}" "php /dev/stdin apply \"\$HOME/www/nastoronepodryadchika.ru/config.php\" '$expected' \"\$HOME/nsp-migration-private/config-snapshots/$backup\"" < tools/nsp_admin_email.php
+          echo ADMIN_EMAIL_PRODUCTION=VERIFIED
 
   nsp-full-sitemap-indexnow:
     if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.submit_all_new_sitemap_urls == true }}
