@@ -1,0 +1,15 @@
+{
+  "status": "DRAFT_NOT_SENT",
+  "from": "site@nastoronepodryadchika.ru",
+  "to": "nastoronepodryadchika@yandex.ru",
+  "reply_to": "nastoronepodryadchika@yandex.ru",
+  "subject": "НСП: проверка нового адреса отправителя",
+  "body": "Контрольное письмо проекта «На стороне подрядчика» для проверки доставки с нового адреса отправителя.\nhttps://nastoronepodryadchika.ru/",
+  "acceptance": [
+    "message actually received",
+    "From and Reply-To match",
+    "SPF/DKIM/DMARC results from received headers reviewed",
+    "no real purchase or customer order created"
+  ],
+  "production_sender_switch": "only after actual delivery acceptance"
+}

@@ -18,10 +18,10 @@ define('YOOKASSA_SECRET_KEY', 'ВАШ_SECRET_KEY');       // Например: '
 define('YOOKASSA_MODE', 'test');
 
 // Базовый URL сайта (без слэша в конце)
-define('SITE_URL', 'https://marzhavbetone.ru');
+define('SITE_URL', 'https://nastoronepodryadchika.ru');
 
 // Email для уведомлений о новых заказах
-define('ADMIN_EMAIL', 'marzhavbetone@yandex.ru');
+define('ADMIN_EMAIL', 'nastoronepodryadchika@yandex.ru');
 
 // Папка для хранения заказов (должна быть доступна для записи)
 define('ORDERS_DIR', __DIR__ . '/orders');

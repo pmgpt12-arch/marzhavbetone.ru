@@ -21,6 +21,13 @@
 #
 # Прогон: python3 tools/run_checks.py --class public
 проверки:
+- id: test_nsp_form_mail
+  команда: python3 tools/test_nsp_form_mail.py --handlers-only
+  класс: public
+  блокирует: true
+  зачем: формы используют новую почту; согласие и 11 бесплатных выдач сохранены; реальных писем нет
+  требует: []
+  решение: ''
 - id: test_p1_immutable_edition
   команда: php tools/test_p1_immutable_edition.php
   класс: public
