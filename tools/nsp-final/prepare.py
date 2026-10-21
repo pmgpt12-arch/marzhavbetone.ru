@@ -6,6 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 BASE=ROOT/'tools/nsp-final/static-before.json'
 REPLACEMENTS={
+ 'https://dzen.ru/marzhavbetone':'https://m.dzen.ru/nastoronepodryadchika',
  'https://t.me/marzhavbetone':'https://t.me/nastoronepodryadchika',
  'https://www.instagram.com/marzhavbetone/':'https://www.instagram.com/nastoronepodryadchika/',
  'https://instagram.com/marzhavbetone/':'https://www.instagram.com/nastoronepodryadchika/',
@@ -25,7 +26,7 @@ def main():
         p=ROOT/row['path']
         assert hashlib.sha256(p.read_bytes()).hexdigest()==row['sha256'], 'SOURCE_DRIFT_'+row['path']
         if p.suffix in ['.html','.js']:
-            data=corrected(p.read_text()).encode(); p.write_bytes(data)
+            data=corrected(p.read_bytes().decode('utf-8')).encode(); p.write_bytes(data)
     subprocess.run(['python3',str(ROOT/'tools/catalog_groups.py'),'--write'],check=True,cwd=ROOT)
     for row in rows:
         data=(ROOT/row['path']).read_bytes(); after=hashlib.sha256(data).hexdigest()

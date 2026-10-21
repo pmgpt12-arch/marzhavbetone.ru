@@ -3,7 +3,7 @@
 declare(strict_types=1);
 $root=realpath($argv[1]??'');
 if (!$root || basename($root)!=='nastoronepodryadchika.ru') throw new RuntimeException('WRONG_SITE');
-$dirs=['articles','materialy','products','assets','images','img','css','js','fonts'];
+$dirs=['articles','materialy','products','demo','assets','images','img','css','js','fonts'];
 $ext=['html','css','js','svg','png','jpg','jpeg','webp','ico','gif','avif','woff','woff2','ttf','eot','webmanifest','xml'];
 $rows=[];
 function collect(string $root,string $dir,array $ext,array &$rows): void {

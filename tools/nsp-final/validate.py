@@ -31,7 +31,7 @@ def validate(root=ROOT, catalog_only=False):
             if row['path'] in changed: assert changed[row['path']]['before']==row['sha256']
             if p.suffix in ['.html','.js']:
                 t=data.decode()
-                assert not re.search(r't\.me/marzhavbetone|instagram\.com/marzhavbetone|marzhavbetone@yandex\.ru|https?://(?:www\.)?max\.ru(?:/|["\x27])|data-nsp-staging',t,re.I),'STALE_CONTACT_OR_BANNER_'+row['path']
+                assert not re.search(r'(?:m\.)?dzen\.ru/marzhavbetone|t\.me/marzhavbetone|instagram\.com/marzhavbetone|marzhavbetone@yandex\.ru|https?://(?:www\.)?max\.ru(?:/|["\x27])|data-nsp-staging',t,re.I),'STALE_CONTACT_OR_BANNER_'+row['path']
                 if p.suffix=='.html':
                     assert signature(t)==contract['pages'][row['path']], 'BUY_BUTTON_OR_ROBOTS_CHANGED_'+row['path']
                     for ld in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>',t,re.S): json.loads(ld)
@@ -44,7 +44,7 @@ def validate(root=ROOT, catalog_only=False):
         assert re.search(r'href="#group-'+slug+r'"[^>]*>[^<]+<span>'+str(len(skus))+r'</span>',t), 'NAV_COUNT_'+slug
     assert t.count('class="product-card free"')==10
     assert re.search(r'href="#group-besplatno"[^>]*>[^<]+<span>10</span>',t)
-    report={'status':'PASS','static_files':len(baseline),'changed_files':len(manifest),'paid_sku':13,'prices':'UNCHANGED','buy_buttons_and_robots':'UNCHANGED','groups':[len(s) for s in GROUPS.values()],'free_materials':10,'dzen':'CURRENT_NEW_ADDRESS_UNCONFIRMED; existing link preserved'}
+    report={'status':'PASS','static_files':len(baseline),'changed_files':len(manifest),'paid_sku':13,'prices':'UNCHANGED','buy_buttons_and_robots':'UNCHANGED','groups':[len(s) for s in GROUPS.values()],'free_materials':10,'dzen':'OWNER_CONFIRMED: https://m.dzen.ru/nastoronepodryadchika'}
     print(json.dumps(report,ensure_ascii=False)); return report
 
 if __name__=='__main__':

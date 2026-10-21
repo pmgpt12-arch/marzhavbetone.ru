@@ -1,7 +1,7 @@
 name: NSP final targeted corrections
 on:
   push:
-    branches: [fix/nsp-cutover-final-20261021]
+    branches: [fix/nsp-cutover-final-20261021, fix/nsp-dzen-20261021]
     paths: [tools/nsp-final/request.json]
 permissions:
   contents: write
@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   targeted:
-    if: github.ref_name == 'fix/nsp-cutover-final-20261021'
+    if: github.ref_name == 'fix/nsp-cutover-final-20261021' || github.ref_name == 'fix/nsp-dzen-20261021'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -70,7 +70,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git commit -m 'Preserve current NSP public production static source [skip deploy]'
-          git push origin HEAD:fix/nsp-cutover-final-20261021
+          git push origin "HEAD:$GITHUB_REF_NAME"
           git rev-parse HEAD > /tmp/nsp-final-evidence/snapshot-commit.txt
       - name: Targeted dry-run or publication
         if: env.NSP_ACTION != 'snapshot'
