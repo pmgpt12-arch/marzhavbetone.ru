@@ -1,7 +1,7 @@
 name: NSP final targeted corrections
 on:
   push:
-    branches: [fix/nsp-cutover-final-20261021, fix/nsp-dzen-20261021, fix/nsp-audit-ui-20261021]
+    branches: [fix/nsp-cutover-final-20261021, fix/nsp-dzen-20261021, fix/nsp-audit-ui-20261021, fix/nsp-free-checklist-20261021]
     paths: [tools/nsp-final/request.json]
 permissions:
   contents: write
@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   targeted:
-    if: github.ref_name == 'fix/nsp-cutover-final-20261021' || github.ref_name == 'fix/nsp-dzen-20261021' || github.ref_name == 'fix/nsp-audit-ui-20261021'
+    if: github.ref_name == 'fix/nsp-cutover-final-20261021' || github.ref_name == 'fix/nsp-dzen-20261021' || github.ref_name == 'fix/nsp-audit-ui-20261021' || github.ref_name == 'fix/nsp-free-checklist-20261021'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -23,7 +23,7 @@ jobs:
       - name: Read explicit action and configure bounded SSH
         run: |
           set -euo pipefail
-          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish"]; print(x["action"])')
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","inspect-checklist"]; print(x["action"])')
           echo "NSP_ACTION=$action" >> "$GITHUB_ENV"
           test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
           [[ "$PORT" =~ ^[0-9]+$ ]]
@@ -72,8 +72,14 @@ jobs:
           git commit -m 'Preserve current NSP public production static source [skip deploy]'
           git push origin "HEAD:$GITHUB_REF_NAME"
           git rev-parse HEAD > /tmp/nsp-final-evidence/snapshot-commit.txt
+      - name: Inspect only the public checklist path
+        if: env.NSP_ACTION == 'inspect-checklist'
+        run: |
+          set -euo pipefail
+          timeout 40s ssh -p "$PORT" -i ~/.ssh/nsp_final_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$SSH_USER@$HOST" 'php /dev/stdin "$HOME/www/nastoronepodryadchika.ru"' < tools/nsp-free-checklist-20261021/inspect.php > /tmp/nsp-final-evidence/checklist-inspect.json
+          cat /tmp/nsp-final-evidence/checklist-inspect.json
       - name: Targeted dry-run or publication
-        if: env.NSP_ACTION != 'snapshot'
+        if: env.NSP_ACTION == 'dry-run' || env.NSP_ACTION == 'publish'
         run: python3 tools/nsp-final/release.py "$NSP_ACTION"
       - uses: actions/upload-artifact@v4
         if: always()
