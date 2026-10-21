@@ -9,7 +9,7 @@ const proxyValue=process.env.NSP_LIVE==='1'&&(process.env.HTTPS_PROXY||process.e
 const browser=await chromium.launch({executablePath:process.env.NSP_CHROMIUM||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox'],...(proxy?{proxy:{server:proxy.origin,...(proxy.username?{username:decodeURIComponent(proxy.username),password:decodeURIComponent(proxy.password)}:{})}}:{})});
 let results=[];
 for(const width of process.env.NSP_ONLY==='checkout'?[]:process.env.NSP_LIVE==='1'?[390,1366]:[360,375,390,414,768,1366,1920]){
- const context=await browser.newContext({viewport:{width,height:900}});const page=await context.newPage();await page.route('**/*',route=>new URL(route.request().url()).hostname===new URL(BASE).hostname?route.continue():route.abort());
+ const context=await browser.newContext({viewport:{width,height:900}});const page=await context.newPage();await page.route('**/*',route=>route.request().method()==='GET'&&new URL(route.request().url()).hostname===new URL(BASE).hostname?route.continue():route.abort());
  for(const path of ['/','/products/p7-dogovor-podryada.html','/katalog.html','/kalkulyator.html','/diagnostika.html']){
   await page.goto(BASE+path,{waitUntil:'networkidle'});
   const overflow=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,offenders:[...document.querySelectorAll('body *')].filter(e=>{let b=e.getBoundingClientRect();return b.width>0&&(b.right>innerWidth+1||b.left< -1)&&getComputedStyle(e).position!=='fixed'}).slice(0,10).map(e=>({tag:e.tagName,cls:e.className,x:e.getBoundingClientRect().x,w:e.getBoundingClientRect().width}))}));
@@ -27,7 +27,7 @@ const checkout=[];
 
 for(const width of [360,390,768,1366]){
  const context=await browser.newContext({viewport:{width,height:900}}),page=await context.newPage();let payload;
- await page.route('**/*',async route=>{let u=new URL(route.request().url());if(u.pathname==='/payment.php'){payload=route.request().postDataJSON();return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:false,message:'Контрольный ответ без платежа'})});}return u.hostname===new URL(BASE).hostname?route.continue():route.abort();});
+ await page.route('**/*',async route=>{let u=new URL(route.request().url());if(u.pathname==='/payment.php'){payload=route.request().postDataJSON();return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:false,message:'Контрольный ответ без платежа'})});}return route.request().method()==='GET'&&u.hostname===new URL(BASE).hostname?route.continue():route.abort();});
  await page.goto(BASE+'/products/p7-dogovor-podryada.html',{waitUntil:'networkidle'});
  await page.locator('button[data-sku="p7"]').first().click();
  if(width===390){await page.goto(BASE+'/products/p2-dopolnitelnye-raboty.html',{waitUntil:'networkidle'});await page.locator('button[data-sku="p2"]').first().click();}
@@ -47,7 +47,7 @@ for(const width of [360,390,768,1366]){
 assert(checkout.every(r=>!r.axe?.length),'CHECKOUT_AXE');
 fs.writeFileSync(OUT+'/checkout.json',JSON.stringify(checkout,null,2));
 
-const calc=await browser.newPage();await calc.route('**/*',r=>new URL(r.request().url()).hostname===new URL(BASE).hostname?r.continue():r.abort());await calc.goto(BASE+'/kalkulyator.html');
+const calc=await browser.newPage();await calc.route('**/*',r=>r.request().method()==='GET'&&new URL(r.request().url()).hostname===new URL(BASE).hostname?r.continue():r.abort());await calc.goto(BASE+'/kalkulyator.html');
 assert.equal(await calc.locator('#debt-result').textContent(),'Укажите ставку');
 for(const [value,expected] of [['10','69'],['0','0'],['-1','Ставка'],['101','Ставка']]){await calc.locator('#key-rate').fill(value);assert((await calc.locator('#debt-result').textContent()).startsWith(expected));}
 await calc.locator('#key-rate').fill('10');assert.equal((await calc.locator('#debt-result').textContent()).replace(/[^0-9]/g,''),'69041');
