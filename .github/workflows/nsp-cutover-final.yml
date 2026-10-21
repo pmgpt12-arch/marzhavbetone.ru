@@ -65,7 +65,7 @@ jobs:
           python3 - <<'PY'
           import json,subprocess
           paths=[r['path'] for r in json.load(open('tools/nsp-final/static-before.json'))]
-          subprocess.run(['git','add','--',*paths,'tools/nsp-final/static-before.json'],check=True)
+          subprocess.run(['git','add','-f','--',*paths,'tools/nsp-final/static-before.json'],check=True)
           PY
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
