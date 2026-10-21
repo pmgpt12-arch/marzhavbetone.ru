@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      update_nsp_support_source:
+        description: 'Update old support email in new-domain public source pages only'
+        type: boolean
+        default: false
       remaining_only:
         description: "Адресный выпуск согласованной линейки R3"
         type: boolean
@@ -66,6 +70,54 @@ env:
   SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
 
 jobs:
+  nsp-update-support-source:
+    if: ${{ github.ref_name == 'migration/nsp-domain-20261020' && inputs.update_nsp_support_source == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update exact old mailbox in public HTML and verify diff
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib,xml.etree.ElementTree as ET,urllib.parse,subprocess
+          old='marzhavbetone@yandex.ru'
+          new='nastoronepodryadchika@yandex.ru'
+          xml=ET.parse('sitemap.xml')
+          paths=set()
+          for loc in xml.findall('.//{*}loc'):
+            url=(loc.text or '').strip()
+            if not url.startswith('https://nastoronepodryadchika.ru/'):raise SystemExit('FOREIGN_SITEMAP_URL')
+            p=urllib.parse.unquote(urllib.parse.urlparse(url).path).lstrip('/')
+            if not p or p.endswith('/'):p+='index.html'
+            if '..' in p or not p.endswith('.html'):raise SystemExit('UNSAFE_PATH')
+            paths.add(pathlib.Path(p))
+          paths.update([pathlib.Path('404.html'),pathlib.Path('test-pokupka.html')])
+          changed=[];occurrences=0
+          for p in sorted(paths):
+            if not p.is_file():raise SystemExit('MISSING_PUBLIC_SOURCE_'+str(p))
+            content=p.read_text(encoding='utf-8')
+            n=content.count(old)
+            if n:
+              p.write_text(content.replace(old,new),encoding='utf-8')
+              changed.append(str(p));occurrences+=n
+          print('SOURCE_PAGES_CHECKED='+str(len(paths)))
+          print('SOURCE_EMAIL_FILES_CHANGED='+str(len(changed)))
+          print('SOURCE_EMAIL_OCCURRENCES_REPLACED='+str(occurrences))
+          if not changed or occurrences<5:raise SystemExit('NO_EXPECTED_SOURCE_CHANGES')
+          for p in paths:
+            if old in p.read_text(encoding='utf-8'):raise SystemExit('OLD_SUPPORT_REMAINS_'+str(p))
+          subprocess.run(['git','diff','--check'],check=True)
+          subprocess.run(['git','add','--',*changed],check=True)
+          PY
+          if git diff --cached --quiet; then echo 'NO_SOURCE_DIFF'; exit 1; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Replace old support mailbox in new-domain public HTML [skip deploy]'
+          git push origin HEAD:migration/nsp-domain-20261020
+
   deploy:
     if: ${{ (github.ref_name == 'main' || (github.ref_name == 'migration/nsp-domain-20261020' && github.event_name == 'workflow_dispatch' && inputs.dry_run == true)) && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
