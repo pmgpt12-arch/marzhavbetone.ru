@@ -21,6 +21,6 @@ Implementation: `tools/nsp-layout-v3-20261021/evidence/home-1440.jpg` (1440×105
 
 Cloud browser preview opened and inspected at terminal.local; actual catalog CTA followed. Cloud browser console contains only extension metadata errors from a chrome-extension URL; no site JS error was observed. Automated Chromium 153 checks cover widths 360,390,768,1366,1440,1920; 200% text; six axe passes; three context-preserving catalog routes; diagnostics; cart open/close; responsive image request count; no new first-party failed requests. Menu Escape returns focus to toggle. Existing UI regression: 35 layout checks, 10 axe cases, four mocked checkout cases, calculator boundaries PASS. No real payment or email.
 
-Safari/iOS is untested. Local preview remains available. Browser evidence and exact SHA will be included in release report after GitHub Actions verification. No actionable P0/P1/P2 design finding remains in the checked build. No further P3 iteration is required for this delivery.
+Safari/iOS is untested. Local preview remains available. Verified source c3688358d0d3ac6394da4baf626ce4fcab286e2e; publications 39588718732 and 39589311533 PASS. Final production evidence: tools/nsp-layout-v3-20261021/evidence/live/layout.json and http-result.json. All six production widths, text 200%, routes/cart/menu/axe/JS/request checks passed. No actionable P0/P1/P2 design finding remains in the checked build. No further P3 iteration is required for this delivery.
 
 final result: passed
