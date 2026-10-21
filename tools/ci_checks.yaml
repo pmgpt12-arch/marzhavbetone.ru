@@ -791,3 +791,11 @@
   - products-storage/ARTIFACT-INVENTORY.json
   - tools/build_artifact_inventory.py
   решение: ''
+
+- id: test_nsp_audit_documents
+  команда: python3 tools/test_nsp_audit_documents.py
+  класс: public
+  блокирует: true
+  зачем: нормативные развилки P5/P8/P9 и учёт доплаты и денежных поступлений в P11 не регрессируют при сборке
+  требует: []
+  решение: ""
