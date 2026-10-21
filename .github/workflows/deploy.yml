@@ -27,6 +27,10 @@ on:
         description: 'Validate full new-domain sitemap and notify IndexNow once'
         type: boolean
         default: false
+      update_nsp_form_mail:
+        description: 'Update only form recipients, reply address and subject; preserve sender'
+        type: boolean
+        default: false
       update_nsp_admin_email:
         description: 'Switch ADMIN_EMAIL only, preserve payment secret and mail From'
         type: boolean
@@ -1468,6 +1472,52 @@ jobs:
           printf '%s\n' "$receipt"
           timeout 45s "${SSH[@]}" "php /dev/stdin apply \"\$HOME/www/nastoronepodryadchika.ru/config.php\" '$expected' \"\$HOME/nsp-migration-private/config-snapshots/$backup\"" < tools/nsp_admin_email.php
           echo ADMIN_EMAIL_PRODUCTION=VERIFIED
+
+  nsp-update-form-mail:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.update_nsp_form_mail == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify actual handlers offline; no real messages
+        run: |
+          php -l tools/nsp_form_mail.php
+          php -l contact.php
+          php -l lead.php
+          python3 tools/test_nsp_form_mail.py
+      - name: Update exact form handlers and preserve every other PHP file
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          SSH_USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          [[ "$PORT" =~ ^[0-9]+$ ]]
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/form_mail_key
+          chmod 600 ~/.ssh/form_mail_key
+          timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          SSH=(ssh -p "$PORT" -i ~/.ssh/form_mail_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 -o ServerAliveInterval=10 -o ServerAliveCountMax=3 "$SSH_USER@$HOST")
+          timeout 45s "${SSH[@]}" 'php /dev/stdin dry-run "$HOME/www/nastoronepodryadchika.ru" -' < tools/nsp_form_mail.php
+          if [ "$DRY_RUN" = true ]; then
+            echo FORM_MAIL_DRY_RUN=PASS
+            exit 0
+          fi
+          [[ "$GITHUB_RUN_ID" =~ ^[0-9]+$ && "$GITHUB_RUN_ATTEMPT" =~ ^[0-9]+$ ]]
+          relative=nsp-migration-private/form-mail-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT
+          timeout 15s "${SSH[@]}" "umask 077; mkdir \"\$HOME/$relative\""
+          timeout 45s "${SSH[@]}" "php /dev/stdin apply \"\$HOME/www/nastoronepodryadchika.ru\" \"\$HOME/$relative\"" < tools/nsp_form_mail.php
+          python3 - <<'PY'
+          import urllib.request, urllib.error
+          for endpoint in ['contact.php','lead.php']:
+              try: urllib.request.urlopen('https://nastoronepodryadchika.ru/'+endpoint,timeout=12)
+              except urllib.error.HTTPError as error: assert error.code==405
+              else: raise AssertionError('GET must be refused without sending mail')
+          print('FORM_HTTP_GET_GUARD=PASS; real_messages_sent=0')
+          PY
+          echo FORM_MAIL_PRODUCTION=VERIFIED
 
   nsp-full-sitemap-indexnow:
     if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.submit_all_new_sitemap_urls == true }}
