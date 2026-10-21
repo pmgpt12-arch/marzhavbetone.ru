@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      seo_fix_noindex:
+        description: 'Remove noindex only from 84 sitemap pages and global header'
+        type: boolean
+        default: false
       seo_remove_staging_block:
         description: 'Fix live robots and remove migration banner'
         type: boolean
@@ -890,6 +894,60 @@ jobs:
             if test -f "$file"; then grep -inE 'robots|noindex|noarchive|nofollow|Header' "$file" | head -20 || true; fi
           done
           REMOTE
+
+  nsp-remove-noindex:
+    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.seo_fix_noindex == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply scoped indexability fix with verified private backup
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/seo_fix_key
+          chmod 600 ~/.ssh/seo_fix_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          php -l tools/nsp_seo_noindex_cutover.php
+          scp -q -i ~/.ssh/seo_fix_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 tools/nsp_seo_noindex_cutover.php "$USER@$HOST:nsp-migration-private/nsp_seo_noindex_cutover.php"
+          ssh -i ~/.ssh/seo_fix_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          script="$HOME/nsp-migration-private/nsp_seo_noindex_cutover.php"
+          site="$HOME/www/nastoronepodryadchika.ru"
+          backup="$HOME/nsp-migration-private/seo-noindex-backup-20261021"
+          php -l "$script" >/dev/null
+          php "$script" apply "$site" "$backup"
+          REMOTE
+      - name: Verify public indexability after removal
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import urllib.request,urllib.error,xml.etree.ElementTree as ET,concurrent.futures,re
+          root='https://nastoronepodryadchika.ru'
+          def get(url):
+              with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'NSP-SEO-Postfix/1.0'}),timeout=12) as r:
+                  return r.status,dict(r.headers),r.read().decode('utf-8','replace')
+          _,_,xml=get(root+'/sitemap.xml')
+          urls=[x.text for x in ET.fromstring(xml).findall('.//{*}loc') if x.text]
+          assert len(urls)==84
+          def check(url):
+              code,headers,body=get(url)
+              return (url,code,headers.get('X-Robots-Tag',''),bool(re.search(r'<meta\b[^>]*name=["\']robots["\'][^>]*content=["\'][^"\']*noindex',body,re.I)))
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool: results=list(pool.map(check,urls))
+          bad=[x for x in results if x[1]!=200 or 'noindex' in x[2].lower() or x[3]]
+          print('INDEXABLE_SITEMAP_URLS='+str(len(results)-len(bad)))
+          print('INDEXABILITY_ERRORS='+str(len(bad)))
+          for item in bad[:8]:print('BAD_INDEXABILITY='+repr(item))
+          _,_,test=get(root+'/test-pokupka.html')
+          assert 'noindex' in test.lower(), 'TEST_PAGE_MUST_STAY_NOINDEX'
+          print('TEST_PAGE_NOINDEX_PRESERVED=YES')
+          if bad:raise SystemExit(2)
+          print('PUBLIC_INDEXABILITY=VERIFIED')
+          PY
 
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
