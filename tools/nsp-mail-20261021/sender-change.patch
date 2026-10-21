@@ -1,0 +1,44 @@
+--- a/contact.php
++++ b/contact.php
+@@ -11,7 +11,7 @@
+ $clean=static fn(string $value):string=>str_replace(["\r","\n"],' ',strip_tags($value));
+ $subject='Новый заказ с nastoronepodryadchika.ru';
+ $body="Пакет: {$clean($product)}\nКонтакт: {$clean($contact)}\nСогласие: получено";
+-$headers=['From: site@marzhavbetone.ru','Reply-To: nastoronepodryadchika@yandex.ru','Content-Type: text/plain; charset=UTF-8'];
++$headers=['From: site@nastoronepodryadchika.ru','Reply-To: nastoronepodryadchika@yandex.ru','Content-Type: text/plain; charset=UTF-8'];
+ $sent=mail('nastoronepodryadchika@yandex.ru','=?UTF-8?B?'.base64_encode($subject).'?=',$body,implode("\r\n",$headers));
+ if (!$sent) { http_response_code(500); echo json_encode(['ok'=>false,'message'=>'Сервер не подтвердил отправку'], JSON_UNESCAPED_UNICODE); exit; }
+ echo json_encode(['ok'=>true], JSON_UNESCAPED_UNICODE);
+--- a/lead.php
++++ b/lead.php
+@@ -86,7 +86,7 @@
+ 
+ $clean=static fn(string $value):string=>str_replace(["\r","\n"],' ',strip_tags($value));
+ $body="Новый лид\nМатериал: {$material['title']}\nИсточник: {$source}\nИмя: {$clean($name)}\nКонтакт: {$clean($contact)}\nСогласие: получено";
+-mail('nastoronepodryadchika@yandex.ru','=?UTF-8?B?'.base64_encode('Заявка на материал: '.$material['title']).'?=',$body,implode("\r\n",['From: site@marzhavbetone.ru','Content-Type: text/plain; charset=UTF-8']));
++mail('nastoronepodryadchika@yandex.ru','=?UTF-8?B?'.base64_encode('Заявка на материал: '.$material['title']).'?=',$body,implode("\r\n",['From: site@nastoronepodryadchika.ru','Content-Type: text/plain; charset=UTF-8']));
+ 
+ echo json_encode([
+     'ok'       => true,
+--- a/webhook.php
++++ b/webhook.php
+@@ -113,7 +113,7 @@
+                     'subject' => '=?UTF-8?B?' . base64_encode('✅ Оплачен заказ ' . $orderId) . '?=',
+                     'body'    => $body,
+                     'headers' => implode("\r\n", [
+-                        'From: site@marzhavbetone.ru',
++                        'From: site@nastoronepodryadchika.ru',
+                         'Reply-To: ' . ($locked['email'] ?: ADMIN_EMAIL),
+                         'Content-Type: text/plain; charset=UTF-8',
+                     ]),
+--- a/products-config.php
++++ b/products-config.php
+@@ -877,7 +877,7 @@
+     if (!empty($order['email'])) {
+         $subject = 'Ваши материалы «На стороне подрядчика» — заказ оплачен';
+         $headers = [
+-            'From: site@marzhavbetone.ru',
++            'From: site@nastoronepodryadchika.ru',
+             'Reply-To: ' . ADMIN_EMAIL,
+             'Content-Type: text/plain; charset=UTF-8',
+         ];

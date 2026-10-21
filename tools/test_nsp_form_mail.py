@@ -3,12 +3,17 @@ from pathlib import Path
 import email, email.header, json, os, shutil, subprocess, sys, tempfile
 
 ROOT=Path(__file__).resolve().parents[1]
-HANDLERS_ONLY='--handlers-only' in sys.argv
+SENDER_CANDIDATE='--sender-candidate' in sys.argv
+HANDLERS_ONLY='--handlers-only' in sys.argv or SENDER_CANDIDATE
+EXPECTED_FROM='site@nastoronepodryadchika.ru' if SENDER_CANDIDATE else 'site@marzhavbetone.ru'
 with tempfile.TemporaryDirectory() as d:
     base=Path(d); site=base/'nastoronepodryadchika.ru'; site.mkdir(); backup=base/'private';backup.mkdir(mode=0o700)
     # Reconstruct the frozen production versions from only the approved edits.
     for name in ['contact.php','lead.php']:
         source=(ROOT/name).read_text()
+        if SENDER_CANDIDATE:
+            assert source.count('From: site@marzhavbetone.ru')==1
+            source=source.replace('From: site@marzhavbetone.ru','From: site@nastoronepodryadchika.ru')
         if not HANDLERS_ONLY:
             source=source.replace('nastoronepodryadchika@yandex.ru','marzhavbetone@yandex.ru').replace('Новый заказ с nastoronepodryadchika.ru','Новый заказ с marzhavbetone.ru')
         (site/name).write_text(source);(site/name).chmod(0o644)
@@ -46,12 +51,12 @@ with tempfile.TemporaryDirectory() as d:
         assert invoke(handler,{},'GET')[1] is None
     response,msg=invoke('contact.php',{'product':'Synthetic object','contact':'test@example.invalid','consent':'yes'})
     assert response['ok'] and msg['To']=='nastoronepodryadchika@yandex.ru'
-    assert msg['Reply-To']=='nastoronepodryadchika@yandex.ru' and msg['From']=='site@marzhavbetone.ru'
+    assert msg['Reply-To']=='nastoronepodryadchika@yandex.ru' and msg['From']==EXPECTED_FROM
     subject=str(email.header.make_header(email.header.decode_header(msg['Subject'])))
     assert subject=='Новый заказ с nastoronepodryadchika.ru'
     for key in ['checklist','dengi','dop-raboty','vozvrat-ks','uderzhaniya','dogovor','bankrotstvo','avans','raschet-metrami','ispolnitelnaya-dokumentaciya','akt-skrytyh-rabot']:
         response,msg=invoke('lead.php',{'name':'Synthetic user','contact':'test@example.invalid','consent':'yes','material':key})
         expected='/downloads/checklist-zakrytiya-rabot.pdf' if key=='checklist' else '/downloads/'+key+'.zip'
         assert response['ok'] and response['download']==expected
-        assert msg['To']=='nastoronepodryadchika@yandex.ru' and msg['From']=='site@marzhavbetone.ru'
-    print(json.dumps({'status':'PASS','handler_cases':cases,'transaction_cases':0 if HANDLERS_ONLY else 3,'real_messages_sent':0,'free_routes_verified':11,'sender':'UNCHANGED'}))
+        assert msg['To']=='nastoronepodryadchika@yandex.ru' and msg['From']==EXPECTED_FROM
+    print(json.dumps({'status':'PASS','handler_cases':cases,'transaction_cases':0 if HANDLERS_ONLY else 3,'real_messages_sent':0,'free_routes_verified':11,'sender':EXPECTED_FROM if SENDER_CANDIDATE else 'UNCHANGED'}))

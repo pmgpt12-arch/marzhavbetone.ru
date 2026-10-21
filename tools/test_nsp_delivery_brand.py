@@ -14,6 +14,11 @@ assert len(skus) == 13
 cases = [[{'sku':sku, 'name':'Synthetic '+sku, 'url':'https://nastoronepodryadchika.ru/download.php?synthetic='+sku}] for sku in skus]
 cases.append(cases[0]+cases[-1])
 with tempfile.TemporaryDirectory() as directory:
+    # Match the normal protected directory setup before rendering a template.
+    for target in [Path(directory), Path(directory)/'delivery']:
+        target.mkdir(exist_ok=True)
+        (target/'.htaccess').write_text('Deny from all\n')
+    before={str(p.relative_to(directory)):p.read_bytes() for p in Path(directory).rglob('*') if p.is_file()}
     php = '''define('ORDERS_DIR',$argv[1]); define('ADMIN_EMAIL','nastoronepodryadchika@yandex.ru');
     define('DELIVERY_TTL_SECONDS',3600); require $argv[2];
     $out=[]; foreach(json_decode($argv[3],true) as $links){$out[]=mvb_delivery_email(['id'=>'SYNTHETIC'],$links);}
@@ -28,5 +33,6 @@ with tempfile.TemporaryDirectory() as directory:
         assert '1 час' in body
         for link in links:
             assert link['url'] in body
-    assert not list(Path(directory).iterdir()), 'Rendering templates wrote an order or log'
+    after={str(p.relative_to(directory)):p.read_bytes() for p in Path(directory).rglob('*') if p.is_file()}
+    assert after == before, 'Rendering templates wrote an order or log'
 print(json.dumps({'status':'PASS','buyer_email_cases':len(cases),'real_messages_sent':0,'orders_created':0}))

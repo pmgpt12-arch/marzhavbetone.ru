@@ -28,6 +28,13 @@
   зачем: формы используют новую почту; согласие и 11 бесплатных выдач сохранены; реальных писем нет
   требует: []
   решение: ''
+- id: test_nsp_form_mail_sender_candidate
+  команда: python3 tools/test_nsp_form_mail.py --sender-candidate
+  класс: public
+  блокирует: true
+  зачем: кандидат нового From проверяется в локальном перехвате; боевые файлы и реальные письма не меняются
+  требует: []
+  решение: ''
 - id: test_nsp_delivery_brand
   команда: python3 tools/test_nsp_delivery_brand.py
   класс: public
