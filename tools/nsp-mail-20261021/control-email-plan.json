@@ -1,5 +1,5 @@
 {
-  "status": "ACCEPTED_BY_LOCAL_MAIL_TRANSPORT",
+  "status": "DELIVERY_UNRESOLVED_HOST_LOG_ACCESS_REQUIRED",
   "from": "site@nastoronepodryadchika.ru",
   "to": "nastoronepodryadchika@yandex.ru",
   "reply_to": "nastoronepodryadchika@yandex.ru",
@@ -18,7 +18,10 @@
   "retry_policy": "private exclusive claim prevents repeated sending",
   "run_id": 39693950891,
   "job_id": 119546674758,
-  "actual_delivery": "AWAITING_RECIPIENT_CONFIRMATION",
+  "actual_delivery": "NOT_RECEIVED_AS_REPORTED_BY_RECIPIENT",
   "authentication_headers": "NOT_YET_AVAILABLE",
-  "mail_attempts": 1
+  "mail_attempts": 1,
+  "diagnostic_run": 39695613264,
+  "root_cause": "UNKNOWN; Exim queue denied and mail logs unreadable",
+  "next_step": "Read hosting delivery logs for exact Message-ID; no resend and no production From switch"
 }
