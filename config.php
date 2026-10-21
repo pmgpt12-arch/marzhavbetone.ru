@@ -21,7 +21,7 @@ define('YOOKASSA_MODE', 'test');
 define('SITE_URL', 'https://nastoronepodryadchika.ru');
 
 // Email для уведомлений о новых заказах
-define('ADMIN_EMAIL', 'marzhavbetone@yandex.ru');
+define('ADMIN_EMAIL', 'nastoronepodryadchika@yandex.ru');
 
 // Папка для хранения заказов (должна быть доступна для записи)
 define('ORDERS_DIR', __DIR__ . '/orders');
