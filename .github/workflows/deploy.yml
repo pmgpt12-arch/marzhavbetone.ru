@@ -663,6 +663,54 @@ jobs:
             curl -sS -I --connect-timeout 5 --max-time 10 "$url" | grep -Ei '^HTTP/|^location:' | head -5 || true
           done
 
+  nsp-seo-url-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Validate every new sitemap URL and inspect robots
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/seo_check_key
+          chmod 600 ~/.ssh/seo_check_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/seo_check_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          echo 'ROBOTS_CONTENT_START'
+          cat "$root/robots.txt"
+          echo 'ROBOTS_CONTENT_END'
+          echo 'OLD_DOMAIN_INDEX_REFERENCES'
+          grep -n 'marzhavbetone.ru' "$root/index.html" | head -5 || true
+          REMOTE
+          python3 - <<'PY'
+          import urllib.request,urllib.error,xml.etree.ElementTree as ET,concurrent.futures,collections
+          root='https://nastoronepodryadchika.ru'
+          req=urllib.request.Request(root+'/sitemap.xml',headers={'User-Agent':'NSP-Migration-Audit/1.0'})
+          with urllib.request.urlopen(req,timeout=15) as r: xml=r.read()
+          doc=ET.fromstring(xml)
+          urls=[n.text.strip() for n in doc.findall('.//{*}loc') if n.text]
+          print('SITEMAP_URLS='+str(len(urls)))
+          print('SITEMAP_NEW_DOMAIN_ONLY='+str(all(u.startswith(root+'/') for u in urls)))
+          def check(url):
+            try:
+              with urllib.request.urlopen(urllib.request.Request(url,method='HEAD'),timeout=10) as r:return (url,r.status,r.geturl())
+            except urllib.error.HTTPError as e:return (url,e.code,url)
+            except Exception as e:return (url,'ERROR_'+type(e).__name__,url)
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool: results=list(pool.map(check,urls))
+          counts=collections.Counter(str(x[1]) for x in results)
+          print('SITEMAP_HTTP_COUNTS='+repr(dict(counts)))
+          bad=[x for x in results if x[1]!=200 or not x[2].startswith(root+'/')]
+          print('SITEMAP_BAD_COUNT='+str(len(bad)))
+          for url,code,target in bad[:15]: print('BAD_URL='+url+' STATUS='+str(code)+' TARGET='+target)
+          if bad or not urls or any(not u.startswith(root+'/') for u in urls):raise SystemExit(2)
+          print('SITEMAP_URL_ACCEPTANCE=PASS')
+          PY
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
