@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      yandex_verification_meta:
+        description: 'Install owner-provided Yandex verification meta on new domain'
+        type: boolean
+        default: false
       seo_redirect_old_domain:
         description: 'Enable path-preserving 301 on old domain after SEO preflight'
         type: boolean
@@ -1102,6 +1106,66 @@ jobs:
             echo "VARIANT_URL=$url"
             curl -sSI --connect-timeout 5 --max-time 12 "$url" | grep -Ei '^HTTP/|^location:' | head -5 || true
           done
+
+  nsp-yandex-verification-meta:
+    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.yandex_verification_meta == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Install verification meta with backup and atomic write
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$HOST" && test -n "$USER" && test -n "$KEY"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/yandex_verify_key
+          chmod 600 ~/.ssh/yandex_verify_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/yandex_verify_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          file="$HOME/www/nastoronepodryadchika.ru/index.html"
+          backup="$HOME/nsp-migration-private/backup-index-before-yandex-verify-20261021.html"
+          test -s "$file"
+          php -r '
+            $file=$argv[1]; $backup=$argv[2];
+            $html=file_get_contents($file);
+            if($html===false)exit(2);
+            $tag="<meta name=\"yandex-verification\" content=\"a71ee165aa19d589\" />";
+            if(substr_count($html,$tag)===1){echo "YANDEX_META_ALREADY_PRESENT\n";exit(0);}
+            if(stripos($html,"yandex-verification")!==false)exit(3);
+            if(substr_count(strtolower($html),"<head>")!==1)exit(4);
+            if(strpos($html,"https://nastoronepodryadchika.ru/")===false)exit(5);
+            if(file_exists($backup)) {
+              if(hash_file("sha256",$backup)!==hash("sha256",$html))exit(6);
+            } else {
+              if(!copy($file,$backup))exit(7);
+              chmod($backup,0600);
+              if(hash_file("sha256",$file)!==hash_file("sha256",$backup))exit(8);
+            }
+            $pos=stripos($html,"<head>")+strlen("<head>");
+            $updated=substr_replace($html,"\n  ".$tag,$pos,0);
+            if(substr_count($updated,$tag)!==1)exit(9);
+            $tmp=tempnam(dirname($file),".yandex-verify-");
+            if($tmp===false)exit(10);
+            if(file_put_contents($tmp,$updated,LOCK_EX)!==strlen($updated)){unlink($tmp);exit(11);}
+            chmod($tmp,0644);
+            if(!rename($tmp,$file)){unlink($tmp);exit(12);}
+            echo "YANDEX_META_INSTALLED=YES\n";
+          ' "$file" "$backup"
+          php -r '$s=file_get_contents($argv[1]); if(substr_count($s,"<meta name=\"yandex-verification\" content=\"a71ee165aa19d589\" />")!==1)exit(1); echo "YANDEX_META_FILE_VERIFY=PASS\n";' "$file"
+          REMOTE
+      - name: Verify live homepage contains exact meta
+        run: |
+          set -euo pipefail
+          curl -fsS --connect-timeout 5 --max-time 15 https://nastoronepodryadchika.ru/ -o /tmp/nsp-yandex-index.html
+          grep -Fq '<meta name="yandex-verification" content="a71ee165aa19d589" />' /tmp/nsp-yandex-index.html
+          test "$(grep -Fo '<meta name="yandex-verification" content="a71ee165aa19d589" />' /tmp/nsp-yandex-index.html | wc -l)" -eq 1
+          grep -Fq 'rel="canonical" href="https://nastoronepodryadchika.ru/"' /tmp/nsp-yandex-index.html
+          ! grep -Eiq 'name="robots"[^>]*noindex' /tmp/nsp-yandex-index.html
+          echo 'YANDEX_META_PUBLIC_VERIFY=PASS'
 
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
