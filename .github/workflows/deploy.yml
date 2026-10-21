@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      migration_action:
+        description: 'Exactly one legacy audit action; none disables implicit jobs'
+        type: string
+        default: none
       cleanup_archived_sitemap_urls:
         description: 'Remove archived P12 and T6 from live sitemap and set noindex'
         type: boolean
@@ -115,6 +119,7 @@ env:
 
 jobs:
   inspect:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'inspect' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -164,44 +169,29 @@ jobs:
 
 
   backup-nsp-config:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'backup-nsp-config' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Backup current new-site config outside webroot
+      - uses: actions/checkout@v4
+      - name: Create one unique private config snapshot, preserving history
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
-          USER: ${{ secrets.DEPLOY_USER }}
+          SSH_USER: ${{ secrets.DEPLOY_USER }}
           KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-        shell: bash
         run: |
           set -euo pipefail
-          test -n "$HOST" && test -n "$USER" && test -n "$KEY"
+          test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
+          [[ "$SSH_PORT" =~ ^[0-9]+$ ]]
+          sh -n tools/nsp_backup_config.sh
           install -d -m 700 ~/.ssh
           printf '%s\n' "$KEY" > ~/.ssh/nsp_backup_key
           chmod 600 ~/.ssh/nsp_backup_key
-          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
-          ssh -i ~/.ssh/nsp_backup_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
-          set -eu
-          src="$HOME/www/nastoronepodryadchika.ru/config.php"
-          dst="$HOME/nsp-migration-private/backup-config-before-yookassa-1502106-20261020.php"
-          test -f "$src"
-          if test -e "$dst"; then
-            test -s "$dst"
-            test "$(stat -c %a "$dst")" = 600
-            cmp -s "$src" "$dst" || { echo 'BACKUP_EXISTS_WITH_DIFFERENT_CONTENT'; exit 1; }
-          else
-            umask 077
-            cp -p "$src" "$dst"
-            chmod 600 "$dst"
-          fi
-          test -s "$dst"
-          cmp -s "$src" "$dst"
-          test "$(stat -c %a "$dst")" = 600
-          echo 'BACKUP_CONFIG=VERIFIED'
-          echo 'BACKUP_OUTSIDE_WEBROOT=YES'
-          REMOTE
+          timeout 15s ssh-keyscan -T 8 -p "$SSH_PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          timeout 60s ssh -p "$SSH_PORT" -i ~/.ssh/nsp_backup_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 -o ServerAliveInterval=10 -o ServerAliveCountMax=3 "$SSH_USER@$HOST" "sh -s -- '$GITHUB_RUN_ID' '$GITHUB_RUN_ATTEMPT'" < tools/nsp_backup_config.sh
 
   prepare-nsp-directories:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'prepare-nsp-directories' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -232,6 +222,7 @@ jobs:
           REMOTE
 
   verify-nsp-secret:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'verify-nsp-secret' }}
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
@@ -247,6 +238,7 @@ jobs:
           fi
 
   nsp-php-preflight:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-php-preflight' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -273,6 +265,7 @@ jobs:
           REMOTE
 
   nsp-stage-secret:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-stage-secret' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -293,6 +286,7 @@ jobs:
           printf '%s' "$YK" | ssh -i ~/.ssh/audit_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -c '"'"'set -eu; p="$HOME/nsp-production-private/yookassa-key"; test ! -e "$p" || { echo "KEY_ALREADY_PRESENT"; exit 0; }; umask 077; cat > "$p"; chmod 600 "$p"; test -s "$p"; echo "PRIVATE_YOOKASSA_KEY_STAGED"'"'"''
 
   nsp-live-config:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-live-config' }}
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
@@ -351,6 +345,7 @@ jobs:
           REMOTE
 
   nsp-live-verify:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-live-verify' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -377,6 +372,7 @@ jobs:
           REMOTE
 
   nsp-post-cutover-check:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-post-cutover-check' }}
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -403,6 +399,7 @@ jobs:
           done
 
   nsp-http503-diagnostics:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-http503-diagnostics' }}
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -429,7 +426,7 @@ jobs:
           REMOTE
 
   nsp-enable-payment-endpoints:
-    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.activate_nsp_payment_endpoints == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.activate_nsp_payment_endpoints == true }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -503,6 +500,7 @@ jobs:
           exit 1
 
   nsp-one-ruble-checkout-readiness:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-one-ruble-checkout-readiness' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -551,6 +549,7 @@ jobs:
           echo 'ONE_RUBLE_CHECKOUT_PREFLIGHT=PASS'
 
   nsp-buyer-acceptance:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-buyer-acceptance' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -595,7 +594,7 @@ jobs:
           REMOTE
 
   nsp-yandex-webmaster-register:
-    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.webmaster_register_new_domain == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.webmaster_register_new_domain == true }}
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -641,6 +640,7 @@ jobs:
           PY
 
   nsp-yandex-network-probe:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-yandex-network-probe' }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -662,6 +662,7 @@ jobs:
           REMOTE
 
   nsp-seo-inventory:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-seo-inventory' }}
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -704,6 +705,7 @@ jobs:
           done
 
   nsp-seo-url-validation:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-seo-url-validation' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -752,7 +754,7 @@ jobs:
           PY
 
   nsp-remove-seo-staging-block:
-    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.seo_remove_staging_block == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.seo_remove_staging_block == true }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -827,6 +829,7 @@ jobs:
           echo 'PUBLIC_SEO_STAGING_REMOVAL=PASS'
 
   nsp-seo-mapping-audit:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-seo-mapping-audit' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -872,6 +875,7 @@ jobs:
           PY
 
   nsp-noindex-source-audit:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-noindex-source-audit' }}
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -902,6 +906,7 @@ jobs:
           done
 
   nsp-robots-header-source:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-robots-header-source' }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -928,7 +933,7 @@ jobs:
           REMOTE
 
   nsp-remove-noindex:
-    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.seo_fix_noindex == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.seo_fix_noindex == true }}
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
@@ -982,7 +987,7 @@ jobs:
           PY
 
   nsp-old-domain-301:
-    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.seo_redirect_old_domain == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.seo_redirect_old_domain == true }}
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
@@ -1034,6 +1039,7 @@ jobs:
           PY
 
   nsp-old-403-source:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-old-403-source' }}
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -1061,6 +1067,7 @@ jobs:
           REMOTE
 
   nsp-old-301-curl-validation:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-old-301-curl-validation' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -1092,6 +1099,7 @@ jobs:
           PY
 
   nsp-yandex-ipv4-diagnostics:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-yandex-ipv4-diagnostics' }}
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -1120,6 +1128,7 @@ jobs:
           REMOTE
 
   nsp-domain-variants:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-domain-variants' }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -1132,7 +1141,7 @@ jobs:
           done
 
   nsp-yandex-verification-meta:
-    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.yandex_verification_meta == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.yandex_verification_meta == true }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -1192,6 +1201,7 @@ jobs:
           echo 'YANDEX_META_PUBLIC_VERIFY=PASS'
 
   nsp-final-product-inventory:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-final-product-inventory' }}
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
@@ -1244,6 +1254,7 @@ jobs:
           REMOTE
 
   nsp-public-catalog-consistency:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-public-catalog-consistency' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -1287,7 +1298,7 @@ jobs:
           REMOTE
 
   nsp-fix-404-page:
-    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.fix_nsp_404 == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.fix_nsp_404 == true }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -1338,6 +1349,7 @@ jobs:
           echo 'PUBLIC_404_FIX=VERIFIED'
 
   nsp-public-brand-inventory:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.migration_action == 'nsp-public-brand-inventory' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -1377,7 +1389,7 @@ jobs:
           PY
 
   nsp-update-support-live:
-    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.update_nsp_support_live == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.update_nsp_support_live == true }}
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
@@ -1409,7 +1421,7 @@ jobs:
           echo 'PUBLIC_SUPPORT_HTTP=PASS'
 
   nsp-update-admin-email:
-    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.update_nsp_admin_email == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.update_nsp_admin_email == true }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -1459,7 +1471,7 @@ jobs:
           REMOTE
 
   nsp-full-sitemap-indexnow:
-    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.submit_all_new_sitemap_urls == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.submit_all_new_sitemap_urls == true }}
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
@@ -1547,7 +1559,7 @@ jobs:
           PY
 
   nsp-compare-sitemap-source:
-    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.compare_live_sitemap_source == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.compare_live_sitemap_source == true }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -1570,7 +1582,7 @@ jobs:
           PY
 
   nsp-cleanup-archived-sitemap:
-    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.cleanup_archived_sitemap_urls == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.cleanup_archived_sitemap_urls == true }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -1614,7 +1626,7 @@ jobs:
           PY
 
   deploy:
-    if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
+    if: ${{ github.ref_name == 'main' && vars.ENABLE_LEGACY_DEPLOY == 'true' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
     steps:
       # Пока секреты не заданы, workflow завершается зелёным и ничего не делает —
