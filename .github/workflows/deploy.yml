@@ -1214,7 +1214,7 @@ jobs:
             echo "PAYMENT_SHOP_MATCH=".(YOOKASSA_SHOP_ID==="1502106"?"YES":"NO")."\n";
             echo "DELIVERY_TTL_ONE_HOUR=".(DELIVERY_TTL_SECONDS===3600?"YES":"NO")."\n";
             echo "PRODUCT_SKU_ERRORS=".$bad."\n";
-            if($bad || $count!==13 || YOOKASSA_SHOP_ID!=="1502106" || DELIVERY_TTL_SECONDS!==3600)exit(3);
+            if($bad || $count!==18 || YOOKASSA_SHOP_ID!=="1502106" || DELIVERY_TTL_SECONDS!==3600 || str_starts_with(realpath(PRODUCTS_DIR)?:"",realpath($argv[1])."/"))exit(3);
             echo "PRODUCT_INVENTORY=PASS\n";
           ' "$root"
           REMOTE
