@@ -96,6 +96,11 @@ jobs:
       - name: Targeted dry-run or publication
         if: env.NSP_ACTION == 'dry-run' || env.NSP_ACTION == 'publish'
         run: python3 tools/nsp-final/release.py "$NSP_ACTION"
+      - name: Verify compact desktop and preserved mobile on actual production
+        if: env.NSP_ACTION == 'publish' && github.ref_name == 'fix/nsp-layout-v3-20261021'
+        run: |
+          npm install --prefix /tmp/nsp-compact-live-deps --no-audit --no-fund playwright@1.64.1
+          NODE_PATH=/tmp/nsp-compact-live-deps/node_modules NSP_LIVE=1 NSP_COMPACT_OUTPUT=/tmp/nsp-final-evidence/compact-live node tools/nsp-layout-v3-20261021/verify_compact.cjs after
       - uses: actions/upload-artifact@v4
         if: always()
         with:
