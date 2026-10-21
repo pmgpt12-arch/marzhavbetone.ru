@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      cleanup_archived_sitemap_urls:
+        description: 'Remove archived P12 and T6 from live sitemap and set noindex'
+        type: boolean
+        default: false
       compare_live_sitemap_source:
         description: 'Compare published sitemap with migration branch before deploy'
         type: boolean
@@ -1563,6 +1567,50 @@ jobs:
           for url in sorted(live-source):print("LIVE_ONLY="+url)
           for url in sorted(source-live):print("SOURCE_ONLY="+url)
           print("SITEMAP_DIFF_COUNT="+str(len(source^live)))
+          PY
+
+  nsp-cleanup-archived-sitemap:
+    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.cleanup_archived_sitemap_urls == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply guarded archive SEO correction
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          php -l tools/nsp_archive_sitemap_cleanup.php
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/archive_key
+          chmod 600 ~/.ssh/archive_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          scp -q -i ~/.ssh/archive_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 tools/nsp_archive_sitemap_cleanup.php "$USER@$HOST:nsp-migration-private/nsp_archive_sitemap_cleanup.php"
+          ssh -i ~/.ssh/archive_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          php "$HOME/nsp-migration-private/nsp_archive_sitemap_cleanup.php" "$HOME/www/nastoronepodryadchika.ru" "$HOME/nsp-migration-private/backup-archived-sitemap-20261021"
+          REMOTE
+      - name: Verify public sitemap and archived canonical
+        run: |
+          python3 - <<'PY'
+          import urllib.request,xml.etree.ElementTree as ET,re
+          base="https://nastoronepodryadchika.ru"
+          def get(path):
+              with urllib.request.urlopen(base+path,timeout=12) as r:return r.status,r.read().decode("utf-8","replace")
+          code,xml=get("/sitemap.xml")
+          urls=[x.text for x in ET.fromstring(xml).findall(".//{*}loc") if x.text]
+          assert code==200 and len(urls)==82 and len(set(urls))==82
+          archived={"p12-spor-s-summoy.html":"p5-shtrafy-uderzhaniya.html","t6-kvartiry-vmesto-deneg.html":"p11-raschet-metrami.html"}
+          for name,target in archived.items():
+              assert not any(u.endswith("/"+name) for u in urls)
+              code,s=get("/products/"+name)
+              assert code==200 and '<meta name="robots" content="noindex,follow">' in s
+              assert 'rel="canonical" href="'+base+'/products/'+target+'"' in s
+          print("PUBLIC_SITEMAP_INDEXABLE_URLS=82")
+          print("ARCHIVED_P12_T6_EXCLUDED=YES")
+          print("ARCHIVE_PUBLIC_SEO_VERIFY=PASS")
           PY
 
   deploy:
