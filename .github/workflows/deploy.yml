@@ -1317,6 +1317,45 @@ jobs:
           ! grep -Fq 'href="brand-approved-2026.css?v=eaa6fbad"' /tmp/404-check.html
           echo 'PUBLIC_404_FIX=VERIFIED'
 
+  nsp-public-brand-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Inventory old brand references on indexed pages
+        run: |
+          python3 - <<'PY'
+          import urllib.request,xml.etree.ElementTree as ET,concurrent.futures,collections
+          root='https://nastoronepodryadchika.ru'
+          def get(url):
+            with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'NSP-Brand-QA/1.0'}),timeout=12) as r:return r.read().decode('utf-8','replace')
+          xml=get(root+'/sitemap.xml')
+          urls=[x.text for x in ET.fromstring(xml).findall('.//{*}loc') if x.text]
+          needles={
+            'OLD_SUPPORT_EMAIL':'marzhavbetone@yandex.ru',
+            'OLD_TELEGRAM':'t.me/marzhavbetone',
+            'OLD_DZEN':'dzen.ru/marzhavbetone',
+            'OLD_INSTAGRAM':'instagram.com/marzhavbetone',
+            'OLD_MAX':'max.ru/channel_marzhavbetone',
+            'OLD_BRAND_TEXT':'Маржа в бетоне',
+          }
+          def scan(url):
+            try:
+              s=get(url)
+              return url,{k:s.lower().count(v.lower()) for k,v in needles.items()},None
+            except Exception as e:return url,{},type(e).__name__
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:results=list(pool.map(scan,urls))
+          errors=[(u,e) for u,_,e in results if e]
+          print('SITEMAP_PAGES='+str(len(urls)))
+          print('SCAN_ERRORS='+str(len(errors)))
+          for name in needles:
+            pages=[u for u,counts,e in results if not e and counts.get(name,0)>0]
+            occurrences=sum(counts.get(name,0) for _,counts,e in results if not e)
+            print(name+'_PAGES='+str(len(pages))+' OCCURRENCES='+str(occurrences))
+            for u in pages[:6]:print(name+'_EXAMPLE='+u)
+          if errors:raise SystemExit(2)
+          print('BRAND_INVENTORY=VERIFIED')
+          PY
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
