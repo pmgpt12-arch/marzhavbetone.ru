@@ -36,7 +36,7 @@ try {
    gate(substr_count($body,$oldTag)===1,'CANONICAL_UNEXPECTED_'.$path);
    gate(substr_count(strtolower($body),'<head>')===1,'HEAD_NOT_UNIQUE_'.$path);
    $body=str_replace($oldTag,$newTag,$body);
-   $body=preg_replace('~<head>~i','<head>'."\\n".'  <meta name="robots" content="noindex,follow">',$body,1,$count);
+   $body=preg_replace('~<head>~i','<head>'."\n".'  <meta name="robots" content="noindex,follow">',$body,1,$count);
    gate($body!==null && $count===1,'META_INSERT_FAILED_'.$path);
    $changes[$path]=$body;
  }
@@ -64,7 +64,7 @@ try {
    foreach($changes as $rel=>$body)if(is_file($backup.'/'.$rel))atomicWrite($root.'/'.$rel,(string)file_get_contents($backup.'/'.$rel));
    throw $e;
  }
- echo "ARCHIVE_SITEMAP_URLS_REMOVED=2\\n";
- echo "LIVE_INDEXABLE_SITEMAP_URLS=82\\n";
- echo "ARCHIVE_NOINDEX_AND_CANONICAL=PASS\\n";
-} catch(Throwable $e){fwrite(STDERR,"ARCHIVE_SEO_ERROR=".$e->getMessage()."\\n");exit(1);}
+ echo "ARCHIVE_SITEMAP_URLS_REMOVED=2\n";
+ echo "LIVE_INDEXABLE_SITEMAP_URLS=82\n";
+ echo "ARCHIVE_NOINDEX_AND_CANONICAL=PASS\n";
+} catch(Throwable $e){fwrite(STDERR,"ARCHIVE_SEO_ERROR=".$e->getMessage()."\n");exit(1);}
