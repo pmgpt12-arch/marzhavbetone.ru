@@ -192,19 +192,19 @@ HEAD = """<!DOCTYPE html>
   <meta name="description" content="Каталог документов для строительных \
 субподрядчиков: комплекты с шаблонами КС-2, КС-3, актами, претензиями и \
 алгоритмами получения оплаты, отдельные документы и бесплатные материалы.">
-  <link rel="canonical" href="https://marzhavbetone.ru/katalog.html">
+  <link rel="canonical" href="https://nastoronepodryadchika.ru/katalog.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Каталог документов для строительных подрядчиков">
   <meta property="og:description" content="Комплекты, отдельные документы и \
 бесплатные материалы — по моменту работы: до подписания, по ходу работ, \
 закрытие и оплата, удержания и споры, банкротство заказчика.">
-  <meta property="og:url" content="https://marzhavbetone.ru/katalog.html">
-  <link rel="alternate" type="application/rss+xml" title="Маржа в бетоне" href="/rss.xml">
+  <meta property="og:url" content="https://nastoronepodryadchika.ru/katalog.html">
+  <link rel="alternate" type="application/rss+xml" title="На стороне подрядчика" href="/rss.xml">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="alternate icon" href="/favicon.ico">
-  <title>Каталог документов для строительных подрядчиков — Маржа в бетоне</title>
+  <title>Каталог документов для строительных подрядчиков — На стороне подрядчика</title>
 """
 
 
@@ -239,13 +239,13 @@ def build_katalog(index_text: str, catalog: str, itemlist: str) -> str:
           "@type": "ListItem",
           "position": 1,
           "name": "Главная",
-          "item": "https://marzhavbetone.ru/"
+          "item": "https://nastoronepodryadchika.ru/"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Каталог документов",
-          "item": "https://marzhavbetone.ru/katalog.html"
+          "item": "https://nastoronepodryadchika.ru/katalog.html"
         }
       ]
     },
