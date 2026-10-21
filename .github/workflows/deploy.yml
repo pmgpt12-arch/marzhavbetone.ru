@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      fix_nsp_404:
+        description: 'Fix 404 stylesheet path and support email'
+        type: boolean
+        default: false
       yandex_verification_meta:
         description: 'Install owner-provided Yandex verification meta on new domain'
         type: boolean
@@ -1261,6 +1265,57 @@ jobs:
             echo "CATALOG_PRICE_NAME_CONSISTENCY=PASS\n";
           ' "$root"
           REMOTE
+
+  nsp-fix-404-page:
+    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.fix_nsp_404 == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Apply scoped 404 page fix with private backup
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/qa_key
+          chmod 600 ~/.ssh/qa_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/qa_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          file="$HOME/www/nastoronepodryadchika.ru/404.html"
+          backup="$HOME/nsp-migration-private/backup-404-before-fix-20261021.html"
+          test -s "$file"
+          php -r '
+            $f=$argv[1];$backup=$argv[2];$s=file_get_contents($f);
+            if($s===false)exit(2);
+            $old="href=\"brand-approved-2026.css?v=eaa6fbad\"";
+            $new="href=\"/brand-approved-2026.css?v=eaa6fbad\"";
+            if(strpos($s,$old)===false && strpos($s,$new)!==false && strpos($s,"marzhavbetone@yandex.ru")===false){echo "PAGE_404_ALREADY_FIXED\n";exit(0);}
+            if(substr_count($s,$old)!==1)exit(3);
+            if(file_exists($backup))exit(4);
+            if(!copy($f,$backup))exit(5);
+            chmod($backup,0600);
+            if(hash_file("sha256",$f)!==hash_file("sha256",$backup))exit(6);
+            $s=str_replace($old,$new,$s);
+            $s=str_replace("marzhavbetone@yandex.ru","nastoronepodryadchika@yandex.ru",$s);
+            $tmp=tempnam(dirname($f),".404-next-");
+            if($tmp===false)exit(7);
+            if(file_put_contents($tmp,$s,LOCK_EX)!==strlen($s))exit(8);
+            chmod($tmp,0644);
+            if(!rename($tmp,$f))exit(9);
+            echo "PAGE_404_SCOPED_FIX=PASS\n";
+          ' "$file" "$backup"
+          REMOTE
+      - name: Public 404 HTML acceptance
+        run: |
+          set -euo pipefail
+          curl -fsS --connect-timeout 5 --max-time 12 https://nastoronepodryadchika.ru/404.html -o /tmp/404-check.html
+          grep -Fq 'href="/brand-approved-2026.css?v=eaa6fbad"' /tmp/404-check.html
+          grep -Fq 'nastoronepodryadchika@yandex.ru' /tmp/404-check.html
+          ! grep -Fq 'href="brand-approved-2026.css?v=eaa6fbad"' /tmp/404-check.html
+          echo 'PUBLIC_404_FIX=VERIFIED'
 
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
