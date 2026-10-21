@@ -272,7 +272,7 @@ if (form) {
       formStatus.className = 'form-status success';
       trackGoal('lead_sent');
     } catch (error) {
-      formStatus.textContent = `${error.message}. Напишите напрямую: marzhavbetone@yandex.ru`;
+      formStatus.textContent = `${error.message}. Напишите напрямую: nastoronepodryadchika@yandex.ru`;
       formStatus.className = 'form-status error';
     } finally { button.disabled = false; }
   });
@@ -298,7 +298,7 @@ if (leadForm) {
       const продолжение = дальше
         ? `<p class="lead-continue"><a class="text-link" href="${дальше}">Разобраться, что делать дальше →</a></p>`
         : '';
-      leadStatus.innerHTML = `<p class="lead-ready">Материал готов.</p><a class="button" href="${result.download}" download>${result.label || 'Скачать материалы'}</a> <a class="text-link" href="https://t.me/marzhavbetone" target="_blank">Разборы выходят в Telegram</a>${продолжение}`;
+      leadStatus.innerHTML = `<p class="lead-ready">Материал готов.</p><a class="button" href="${result.download}" download>${result.label || 'Скачать материалы'}</a> <a class="text-link" href="https://t.me/nastoronepodryadchika" target="_blank">Разборы выходят в Telegram</a>${продолжение}`;
       leadForm.reset();
       trackGoal('checklist_download');
     } catch (error) { leadStatus.textContent = error.message; }

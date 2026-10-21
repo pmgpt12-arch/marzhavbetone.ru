@@ -1,0 +1,17 @@
+name: NSP catalog contract
+on:
+  push:
+    branches: [main]
+    paths: [katalog.html, tools/catalog_groups.py, tools/nsp-final/validate.py, .github/workflows/nsp-catalog-gate.yml]
+  pull_request:
+    paths: [katalog.html, tools/catalog_groups.py, tools/nsp-final/validate.py, .github/workflows/nsp-catalog-gate.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/nsp-final/validate.py --catalog-only

@@ -174,7 +174,7 @@ RESULTS = """    <section class="section sales-result" id="results">
 """
 
 NEXT_STEPS = """    <section class="section next-steps">
-      <div><p class="eyebrow">TELEGRAM</p><h3>Разборы ошибок и стройка без официоза</h3><p>Для тех, кто пока не готов покупать: еженедельные разборы договоров, допработ, приёмки и оплаты.</p><a class="text-link" href="https://t.me/marzhavbetone" target="_blank" rel="noopener">Подписаться на канал →</a></div>
+      <div><p class="eyebrow">TELEGRAM</p><h3>Разборы ошибок и стройка без официоза</h3><p>Для тех, кто пока не готов покупать: еженедельные разборы договоров, допработ, приёмки и оплаты.</p><a class="text-link" href="https://t.me/nastoronepodryadchika" target="_blank" rel="noopener">Подписаться на канал →</a></div>
       <div><p class="eyebrow">ДОПОЛНИТЕЛЬНАЯ УСЛУГА</p><h3>Не уверены, какой пакет нужен?</h3><p>Персональный разбор объекта: договорная схема, карта рисков и приоритеты действий. Стоимость укажем после утверждения формата и объёма проверки.</p><a class="text-link product-select" href="#contact" data-product="Персональный разбор объекта">Запросить разбор →</a></div>
     </section>
 
