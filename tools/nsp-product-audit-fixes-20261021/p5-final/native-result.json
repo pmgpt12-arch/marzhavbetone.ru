@@ -1,0 +1,488 @@
+{
+  "status": "PASS",
+  "job": "p5-native-final-20261021-232534",
+  "started_at": "2026-10-21T23:25:34.405804+07:00",
+  "candidate_sha256": "f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3",
+  "source_sha256": "20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31",
+  "queue_restored": true,
+  "product_changed": false,
+  "checks": [
+    {
+      "name": "p5before:input_sha",
+      "pass": "True",
+      "expected": "20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31",
+      "actual": "20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31"
+    },
+    {
+      "name": "p5before:baseline-leap-defect:D27",
+      "pass": "True",
+      "expected": "number:3",
+      "actual": "System.Double:3"
+    },
+    {
+      "name": "p5before:baseline-leap-defect:G27",
+      "pass": "True",
+      "expected": "number:300.82191780821915",
+      "actual": "System.Double:300.821917808219"
+    },
+    {
+      "name": "p5before:baseline-leap-defect:G32",
+      "pass": "True",
+      "expected": "number:300.82191780821915",
+      "actual": "System.Double:300.821917808219"
+    },
+    {
+      "name": "p5before:baseline-leap-defect:H27",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5before:export_source_first",
+      "pass": "True",
+      "expected": "direct source export; IgnorePrintAreas=False",
+      "actual": "direct source export; IgnorePrintAreas=False"
+    },
+    {
+      "name": "p5before:pdf_export",
+      "pass": "True",
+      "expected": "%PDF-",
+      "actual": "bytes=203417"
+    },
+    {
+      "name": "p5before:source_unchanged",
+      "pass": "True",
+      "expected": "20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31",
+      "actual": "20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31"
+    },
+    {
+      "name": "p5fixed:input_sha",
+      "pass": "True",
+      "expected": "f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3",
+      "actual": "f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3"
+    },
+    {
+      "name": "p5fixed:leap-3-days:D27",
+      "pass": "True",
+      "expected": "number:3",
+      "actual": "System.Double:3"
+    },
+    {
+      "name": "p5fixed:leap-3-days:G27",
+      "pass": "True",
+      "expected": "number:300.0",
+      "actual": "System.Double:300"
+    },
+    {
+      "name": "p5fixed:leap-3-days:G32",
+      "pass": "True",
+      "expected": "number:300.0",
+      "actual": "System.Double:300"
+    },
+    {
+      "name": "p5fixed:leap-3-days:H27",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:leap-3-days:H32",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:ordinary-3-days:D27",
+      "pass": "True",
+      "expected": "number:3",
+      "actual": "System.Double:3"
+    },
+    {
+      "name": "p5fixed:ordinary-3-days:G27",
+      "pass": "True",
+      "expected": "number:300.0",
+      "actual": "System.Double:300"
+    },
+    {
+      "name": "p5fixed:ordinary-3-days:G32",
+      "pass": "True",
+      "expected": "number:300.0",
+      "actual": "System.Double:300"
+    },
+    {
+      "name": "p5fixed:ordinary-3-days:H27",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:ordinary-3-days:H32",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:cross-year:D27",
+      "pass": "True",
+      "expected": "number:2",
+      "actual": "System.Double:2"
+    },
+    {
+      "name": "p5fixed:cross-year:G27",
+      "pass": "True",
+      "expected": "number:199.72677595628414",
+      "actual": "System.Double:199.726775954829"
+    },
+    {
+      "name": "p5fixed:cross-year:G32",
+      "pass": "True",
+      "expected": "number:199.72677595628414",
+      "actual": "System.Double:199.726775954829"
+    },
+    {
+      "name": "p5fixed:cross-year:H27",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:cross-year:H32",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:full-leap-year:D27",
+      "pass": "True",
+      "expected": "number:366",
+      "actual": "System.Double:366"
+    },
+    {
+      "name": "p5fixed:full-leap-year:G27",
+      "pass": "True",
+      "expected": "number:36600.0",
+      "actual": "System.Double:36600"
+    },
+    {
+      "name": "p5fixed:full-leap-year:G32",
+      "pass": "True",
+      "expected": "number:36600.0",
+      "actual": "System.Double:36600"
+    },
+    {
+      "name": "p5fixed:full-leap-year:H27",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:full-leap-year:H32",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:two-full-years:D27",
+      "pass": "True",
+      "expected": "number:731",
+      "actual": "System.Double:731"
+    },
+    {
+      "name": "p5fixed:two-full-years:G27",
+      "pass": "True",
+      "expected": "number:20000.0",
+      "actual": "System.Double:20000"
+    },
+    {
+      "name": "p5fixed:two-full-years:G32",
+      "pass": "True",
+      "expected": "number:20000.0",
+      "actual": "System.Double:20000"
+    },
+    {
+      "name": "p5fixed:two-full-years:H27",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:two-full-years:H32",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:century-not-leap:D27",
+      "pass": "True",
+      "expected": "number:3",
+      "actual": "System.Double:3"
+    },
+    {
+      "name": "p5fixed:century-not-leap:G27",
+      "pass": "True",
+      "expected": "number:300.0",
+      "actual": "System.Double:300"
+    },
+    {
+      "name": "p5fixed:century-not-leap:G32",
+      "pass": "True",
+      "expected": "number:300.0",
+      "actual": "System.Double:300"
+    },
+    {
+      "name": "p5fixed:century-not-leap:H27",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:century-not-leap:H32",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:zero-rate:D27",
+      "pass": "True",
+      "expected": "number:3",
+      "actual": "System.Double:3"
+    },
+    {
+      "name": "p5fixed:zero-rate:G27",
+      "pass": "True",
+      "expected": "number:0.0",
+      "actual": "System.Double:0"
+    },
+    {
+      "name": "p5fixed:zero-rate:G32",
+      "pass": "True",
+      "expected": "number:0.0",
+      "actual": "System.Double:0"
+    },
+    {
+      "name": "p5fixed:zero-rate:H27",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:zero-rate:H32",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:numeric-rate-rejected:G27",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:numeric-rate-rejected:G32",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:numeric-rate-rejected:H27",
+      "pass": "True",
+      "expected": "text:Ставка вставлена числом — не видно, был ли знак %. Наберите её заново с апострофом впереди: '0,1 или '0,1%",
+      "actual": "System.String:Ставка вставлена числом — не видно, был ли знак %. Наберите её заново с апострофом впереди: '0,1 или '0,1%"
+    },
+    {
+      "name": "p5fixed:numeric-rate-rejected:H32",
+      "pass": "True",
+      "expected": "text:Итог не считается: исправьте строки с сообщением",
+      "actual": "System.String:Итог не считается: исправьте строки с сообщением"
+    },
+    {
+      "name": "p5fixed:missing-start-rejected:G27",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:missing-start-rejected:G32",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:missing-start-rejected:H27",
+      "pass": "True",
+      "expected": "text:Заполните все поля строки: начало, окончание, базу и ставку",
+      "actual": "System.String:Заполните все поля строки: начало, окончание, базу и ставку"
+    },
+    {
+      "name": "p5fixed:partial-payments:G27",
+      "pass": "True",
+      "expected": "number:500",
+      "actual": "System.Double:500"
+    },
+    {
+      "name": "p5fixed:partial-payments:G28",
+      "pass": "True",
+      "expected": "number:300",
+      "actual": "System.Double:300"
+    },
+    {
+      "name": "p5fixed:partial-payments:G32",
+      "pass": "True",
+      "expected": "number:800",
+      "actual": "System.Double:800"
+    },
+    {
+      "name": "p5fixed:partial-payments:H27",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:partial-payments:H28",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:partial-payments:H32",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:all-five-corrected-rows:G27",
+      "pass": "True",
+      "expected": "number:300",
+      "actual": "System.Double:300"
+    },
+    {
+      "name": "p5fixed:all-five-corrected-rows:G28",
+      "pass": "True",
+      "expected": "number:300",
+      "actual": "System.Double:300"
+    },
+    {
+      "name": "p5fixed:all-five-corrected-rows:G29",
+      "pass": "True",
+      "expected": "number:300",
+      "actual": "System.Double:300"
+    },
+    {
+      "name": "p5fixed:all-five-corrected-rows:G30",
+      "pass": "True",
+      "expected": "number:300",
+      "actual": "System.Double:300"
+    },
+    {
+      "name": "p5fixed:all-five-corrected-rows:G31",
+      "pass": "True",
+      "expected": "number:300",
+      "actual": "System.Double:300"
+    },
+    {
+      "name": "p5fixed:all-five-corrected-rows:G32",
+      "pass": "True",
+      "expected": "number:1500",
+      "actual": "System.Double:1500"
+    },
+    {
+      "name": "p5fixed:all-five-corrected-rows:H32",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:unchanged-contract-penalty:D18",
+      "pass": "True",
+      "expected": "number:10",
+      "actual": "System.Double:10"
+    },
+    {
+      "name": "p5fixed:unchanged-contract-penalty:G18",
+      "pass": "True",
+      "expected": "number:500",
+      "actual": "System.Double:500"
+    },
+    {
+      "name": "p5fixed:unchanged-contract-penalty:G23",
+      "pass": "True",
+      "expected": "number:500",
+      "actual": "System.Double:500"
+    },
+    {
+      "name": "p5fixed:unchanged-contract-penalty:H18",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5fixed:unchanged-contract-penalty:G32",
+      "pass": "True",
+      "expected": "number:0",
+      "actual": "System.Double:0"
+    },
+    {
+      "name": "p5fixed:export_source_first",
+      "pass": "True",
+      "expected": "direct source export; IgnorePrintAreas=False",
+      "actual": "direct source export; IgnorePrintAreas=False"
+    },
+    {
+      "name": "p5fixed:pdf_export",
+      "pass": "True",
+      "expected": "%PDF-",
+      "actual": "bytes=203334"
+    },
+    {
+      "name": "p5fixed:source_unchanged",
+      "pass": "True",
+      "expected": "f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3",
+      "actual": "f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3"
+    }
+  ],
+  "errors": [],
+  "excel_version": "16.0",
+  "excel_build": "4324",
+  "report_sha256": "fc2b0b48c9531a48f2d91ebbdc64becb772968ae7b58b132df9ff871a441821b",
+  "print_state": [
+    "<print_preflight tag=\"p5before\" stage=\"opened\" excel_active_printer_present=\"True\" installed_printer_count=\"3\" default_printer_present=\"True\" spooler_state=\"Running\">\n    <sheet name=\"Расчёт требования\" print_area=\"\" print_title_rows=\"\" print_title_columns=\"\" />\n    <print_name name=\"'Расчёт требования'!Print_Area\" refers_to=\"='Расчёт требования'!$A$1:$H$42\" />\n  </print_preflight>\n  ",
+    "<print_preflight tag=\"p5before\" stage=\"exported_saved\" excel_active_printer_present=\"True\" installed_printer_count=\"3\" default_printer_present=\"True\" spooler_state=\"Running\">\n    <sheet name=\"Расчёт требования\" print_area=\"\" print_title_rows=\"\" print_title_columns=\"\" />\n    <print_name name=\"'Расчёт требования'!Print_Area\" refers_to=\"='Расчёт требования'!$A$1:$H$42\" />\n  </print_preflight>\n  ",
+    "<print_preflight tag=\"p5fixed\" stage=\"opened\" excel_active_printer_present=\"True\" installed_printer_count=\"3\" default_printer_present=\"True\" spooler_state=\"Running\">\n    <sheet name=\"Расчёт требования\" print_area=\"\" print_title_rows=\"\" print_title_columns=\"\" />\n    <print_name name=\"'Расчёт требования'!Print_Area\" refers_to=\"='Расчёт требования'!$A$1:$H$42\" />\n  </print_preflight>\n  ",
+    "<print_preflight tag=\"p5fixed\" stage=\"exported_saved\" excel_active_printer_present=\"True\" installed_printer_count=\"3\" default_printer_present=\"True\" spooler_state=\"Running\">\n    <sheet name=\"Расчёт требования\" print_area=\"\" print_title_rows=\"\" print_title_columns=\"\" />\n    <print_name name=\"'Расчёт требования'!Print_Area\" refers_to=\"='Расчёт требования'!$A$1:$H$42\" />\n  </print_preflight>\n  "
+  ],
+  "files": [
+    {
+      "tag": "p5before",
+      "xlsx": {
+        "path": "/home/denis/projects/nsp-audit-fixes-20261021/qa/p5-final-20261021/p5before-filled.xlsx",
+        "sha256": "061a97cf5bba90b31fc8df8e8896f5b05149144a797114e74349a98b5d5ca716",
+        "bytes": 15720
+      },
+      "pdf": {
+        "path": "/home/denis/projects/nsp-audit-fixes-20261021/qa/p5-final-20261021/p5before-filled.pdf",
+        "sha256": "ab2f9e3138fea15e4c9ea3dee177db09139ebd2d7200577f453aa95f4d764358",
+        "bytes": 203417
+      },
+      "pdf_info": "Author:          openpyxl\nCreator:         Microsoft® Excel® 2016\nProducer:        Microsoft® Excel® 2016\nCreationDate:    Wed Oct 21 23:25:47 2026 +07\nModDate:         Wed Oct 21 23:25:47 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       595.32 x 841.92 pts (A4)\nPage rot:        0\nFile size:       203417 bytes\nOptimized:       no\nPDF version:     1.5\n",
+      "pdf_text": "РАСЧЁТ СУММ ТРЕБОВАНИЯ К ЗАКАЗЧИКУ\nВводите данные только в жёлтые ячейки. Суммы — в рублях. Ставку в таблицах пеней и ст. 395 набирайте с клавиатуры: ячейка\nтекстовая, 0,05 и 0,05% — это 0,05 % в день, 16 и 16% — 16 % годовых. Если в ячейке ставки число (вставка из другой таблицы, формула),\nзнак % по нему не виден — строка не считается; наберите ставку заново с апострофом впереди: '0,05. Ставка пеней меньше 0,01 % в\nдень и ключевая ставка меньше 1 % годовых не считаются. Процент штрафа в п. 2.2 — числом без знака %: 5 % — как 5. Даты —\nДД.ММ.ГГГГ; первый и последний день периода входят в число дней. Период с другой базой или ставкой — отдельной строкой. Если в\nстолбце «Проверка» есть сообщение, сумма по этой строке и итог раздела не считаются.\n\n1. НЕОПЛАЧЕННАЯ СУММА\nСумма по КС-2 (по всем актам спора), руб.\nФактически оплачено, руб.\nНеоплачено по КС-2, руб.\nиз них удержание, срок возврата которого по договору ещё не наступил, руб.\nНеоплачено без такого удержания, руб.\n\n2. НЕУСТОЙКА ПО ДОГОВОРУ — заполните тот вид, который записан в договоре\n2.1. Штраф в твёрдой сумме, руб.\n2.2. Штраф в процентах от суммы (разовый): сумма, от которой он считается,\nпроцент штрафа, % (5 % вводится как 5)\nсумма штрафа, руб.\n2.3. Пени за каждый день просрочки: база × ставка в день / 100 × дни\n                                                              Ставка, % в\n  №       Начало      Окончание Дней          База, руб.    день (0,05 или Сумма, руб.                       Проверка\n                                                                0,05%)\n      1\n      2\n      3\n      4\n      5\nИтого пени, руб.                                                                     0,00\n\n3. ПРОЦЕНТЫ ПО СТ. 395 ГК РФ: база × ключевая ставка / 100 / 365 × дни\n                                                              Ключевая\n                                                              ставка, %\n  №      Начало      Окончание Дней         База, руб.                         Сумма, руб.                   Проверка\n                                                             годовых (16\n                                                               или 16%)\n     1   28.02.2024   01.03.2024       3       366 000,00 10,0                          300,82\n     2\n     3\n     4\n     5\nИтого проценты, руб.                                                                    300,82\n\n4. СВОДКА — суммы показаны раздельно\nОбщая сумма этих строк не выводится: какие из них и от какой суммы включать в требование, определяется договором и законом.\nПеренесите в претензию только те строки, основание которых проверено.\nНеоплачено по КС-2, руб.\nиз них удержание, срок возврата которого по договору ещё не наступил, руб.\nНеоплачено без такого удержания, руб.\nШтраф в твёрдой сумме, руб.\nШтраф в процентах, руб.\nПени, руб.                                                                             0,00\nПроценты по ст. 395 ГК РФ, руб.                                                      300,82\n\f"
+    },
+    {
+      "tag": "p5fixed",
+      "xlsx": {
+        "path": "/home/denis/projects/nsp-audit-fixes-20261021/qa/p5-final-20261021/p5fixed-filled.xlsx",
+        "sha256": "254b2a4daf0321a144b2c6ce21eaf68a6231005d2f71bf1008c577085dac2563",
+        "bytes": 16026
+      },
+      "pdf": {
+        "path": "/home/denis/projects/nsp-audit-fixes-20261021/qa/p5-final-20261021/p5fixed-filled.pdf",
+        "sha256": "b7480c186f3f843828471306b58200952f28e6fdf529de7dbf008f924090a25f",
+        "bytes": 203334
+      },
+      "pdf_info": "Author:          openpyxl\nCreator:         Microsoft® Excel® 2016\nProducer:        Microsoft® Excel® 2016\nCreationDate:    Wed Oct 21 23:25:55 2026 +07\nModDate:         Wed Oct 21 23:25:55 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       595.32 x 841.92 pts (A4)\nPage rot:        0\nFile size:       203334 bytes\nOptimized:       no\nPDF version:     1.5\n",
+      "pdf_text": "РАСЧЁТ СУММ ТРЕБОВАНИЯ К ЗАКАЗЧИКУ\nВводите данные только в жёлтые ячейки. Суммы — в рублях. Ставку в таблицах пеней и ст. 395 набирайте с клавиатуры: ячейка\nтекстовая, 0,05 и 0,05% — это 0,05 % в день, 16 и 16% — 16 % годовых. Если в ячейке ставки число (вставка из другой таблицы, формула),\nзнак % по нему не виден — строка не считается; наберите ставку заново с апострофом впереди: '0,05. Ставка пеней меньше 0,01 % в\nдень и ключевая ставка меньше 1 % годовых не считаются. Процент штрафа в п. 2.2 — числом без знака %: 5 % — как 5. Даты —\nДД.ММ.ГГГГ; первый и последний день периода входят в число дней. Период с другой базой или ставкой — отдельной строкой. Если в\nстолбце «Проверка» есть сообщение, сумма по этой строке и итог раздела не считаются.\n\n1. НЕОПЛАЧЕННАЯ СУММА\nСумма по КС-2 (по всем актам спора), руб.\nФактически оплачено, руб.\nНеоплачено по КС-2, руб.\nиз них удержание, срок возврата которого по договору ещё не наступил, руб.\nНеоплачено без такого удержания, руб.\n\n2. НЕУСТОЙКА ПО ДОГОВОРУ — заполните тот вид, который записан в договоре\n2.1. Штраф в твёрдой сумме, руб.\n2.2. Штраф в процентах от суммы (разовый): сумма, от которой он считается,\nпроцент штрафа, % (5 % вводится как 5)\nсумма штрафа, руб.\n2.3. Пени за каждый день просрочки: база × ставка в день / 100 × дни\n                                                              Ставка, % в\n  №       Начало      Окончание Дней          База, руб.    день (0,05 или Сумма, руб.                       Проверка\n                                                                0,05%)\n      1\n      2\n      3\n      4\n      5\nИтого пени, руб.                                                                     0,00\n\n3. ПРОЦЕНТЫ ПО СТ. 395 ГК РФ: фактические дни каждого года — 365 / 366\n                                                            Ключевая\n                                                            ставка, %\n  №      Начало      Окончание Дней        База, руб.                          Сумма, руб.                   Проверка\n                                                           годовых (16\n                                                             или 16%)\n     1   28.02.2024   01.03.2024      3       366 000,00 10,0                           300,00\n     2\n     3\n     4\n     5\nИтого проценты, руб.                                                                    300,00\n\n4. СВОДКА — суммы показаны раздельно\nОбщая сумма этих строк не выводится: какие из них и от какой суммы включать в требование, определяется договором и законом.\nПеренесите в претензию только те строки, основание которых проверено.\nНеоплачено по КС-2, руб.\nиз них удержание, срок возврата которого по договору ещё не наступил, руб.\nНеоплачено без такого удержания, руб.\nШтраф в твёрдой сумме, руб.\nШтраф в процентах, руб.\nПени, руб.                                                                             0,00\nПроценты по ст. 395 ГК РФ, руб.                                                      300,00\n\f"
+    }
+  ],
+  "verified": true,
+  "source_unchanged": true,
+  "finished_at": "2026-10-21T23:26:05.127106+07:00"
+}

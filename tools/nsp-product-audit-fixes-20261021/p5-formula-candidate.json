@@ -1,6 +1,6 @@
 {
-  "status": "BLOCKED_EXPORT_PRINT_CONTRACT",
-  "customer_master_changed": false,
+  "status": "RESOLVED_PACKAGE_PRESERVATION_AND_NATIVE_EXCEL_PASS",
+  "customer_master_changed": true,
   "source_sha256": "20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31",
   "candidate_local_sha256": "d6d05b3255dd75bb6e63a87c562c57e241d703bd7fa3a9d8e9b4044c9acd4a7b",
   "formulas": {
@@ -28,7 +28,7 @@
   "arithmetic_engine": "artifact_tool; real source formulas changed in Python notebook",
   "arithmetic_scenarios_passed": 7,
   "existing_input_guards_confirmed": 2,
-  "native_candidate_test": "NOT_RUN",
+  "native_candidate_test": "PASS: 12 fixed scenarios, baseline reproduction, reopen; 81 checks",
   "export_regressions": [
     "lost _xlnm.Print_Area",
     "lost pageSetup",
@@ -39,5 +39,8 @@
   "sources": [
     "https://calc.consultant.ru/395gk",
     "https://www.consultant.ru/document/cons_doc_LAW_5142/93383099dc4f06165d8d4aac4eeb159db4f6da3d/"
-  ]
+  ],
+  "resolved_candidate_sha256": "f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3",
+  "resolution_record": "tools/nsp-product-audit-fixes-20261021/p5-final/acceptance.json",
+  "production_changed": false
 }
