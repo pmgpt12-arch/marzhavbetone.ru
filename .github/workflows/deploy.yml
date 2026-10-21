@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      activate_nsp_payment_endpoints:
+        description: 'Activate new-domain payment endpoints only, with rollback'
+        type: boolean
+        default: false
       remaining_only:
         description: "Адресный выпуск согласованной линейки R3"
         type: boolean
@@ -379,6 +383,80 @@ jobs:
           echo 'ERROR_LOG_CANDIDATES'
           find "$HOME" -maxdepth 3 -type f \( -iname '*error*log*' -o -name 'php_error.log' \) -printf '%p\n' 2>/dev/null | head -20
           REMOTE
+
+  nsp-enable-payment-endpoints:
+    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.activate_nsp_payment_endpoints == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Remove migration-only 503 rule with automatic rollback
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_ssh_key
+          chmod 600 ~/.ssh/nsp_ssh_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/nsp_ssh_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          file="$site/.htaccess"
+          backup="$HOME/nsp-migration-private/backup-htaccess-before-payments-20261021"
+          rule='RewriteRule ^(?:payment|webhook|check-payment|contact)\.php$ - [R=503,L]'
+          test -f "$file"
+          if ! grep -Fqx "$rule" "$file"; then
+            echo 'TEMPORARY_503_RULE_ABSENT'
+            exit 0
+          fi
+          test "$(grep -Fxc "$rule" "$file")" = 1
+          if test -e "$backup"; then
+            cmp -s "$file" "$backup" || { echo 'EXISTING_BACKUP_MISMATCH'; exit 1; }
+          else
+            umask 077
+            cp -p "$file" "$backup"
+            chmod 600 "$backup"
+            cmp -s "$file" "$backup"
+          fi
+          tmp="$(mktemp "$site/.htaccess-next-XXXXXX")"
+          trap 'rm -f "$tmp"' EXIT
+          grep -Fvx "$rule" "$file" > "$tmp"
+          test "$(wc -l < "$file")" -eq "$(( $(wc -l < "$tmp") + 1 ))"
+          chmod 644 "$tmp"
+          mv "$tmp" "$file"
+          trap - EXIT
+          echo 'MIGRATION_503_RULE_REMOVED'
+          REMOTE
+      - name: Verify public payment endpoints or restore
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          failed=0
+          for path in /payment.php /webhook.php; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --connect-timeout 5 --max-time 12 "https://nastoronepodryadchika.ru$path" || true)
+            echo "ENDPOINT_$path=$code"
+            case "$path:$code" in
+              /payment.php:405|/webhook.php:400) ;;
+              *) failed=1 ;;
+            esac
+          done
+          if [ "$failed" = 0 ]; then echo 'PAYMENT_ENDPOINTS=VERIFIED'; exit 0; fi
+          echo 'ENDPOINT_VERIFICATION_FAILED_ROLLBACK'
+          ssh -i ~/.ssh/nsp_ssh_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          file="$HOME/www/nastoronepodryadchika.ru/.htaccess"
+          backup="$HOME/nsp-migration-private/backup-htaccess-before-payments-20261021"
+          test -s "$backup"
+          cp -p "$backup" "$file"
+          chmod 644 "$file"
+          echo 'HTACCESS_ROLLBACK_APPLIED'
+          REMOTE
+          exit 1
 
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
