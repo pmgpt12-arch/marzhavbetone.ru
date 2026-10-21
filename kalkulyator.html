@@ -14,7 +14,7 @@
   <link rel="canonical" href="https://nastoronepodryadchika.ru/kalkulyator.html">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=fda7e0ac">
-  <link rel="stylesheet" href="brand-approved-2026.css?v=eaa6fbad">
+  <link rel="stylesheet" href="brand-approved-2026.css?v=e37f44c1">
   <style>
     .calculator-page{max-width:980px;margin:0 auto;padding:56px 24px 90px}.calculator-page h1{max-width:900px}.calculator-intro{max-width:760px}
     .calculator-tabs{display:flex;margin-top:34px}.calculator-tab{flex:1;padding:16px;border:1px solid #a9a49a;background:#d8d4ca;color:#242629;font:700 15px Arial;cursor:pointer}.calculator-tab[aria-selected="true"]{background:#242629;color:#e9e5dc}
@@ -108,14 +108,23 @@
   <footer><div class="footer-inner"><p>© «На стороне подрядчика»</p><p><a href="/offer.html">Оферта</a> · <a href="/payment-delivery.html">Оплата и получение</a> · <a href="/refund.html">Возврат</a></p></div></footer>
   <script>
     const money = value => new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:0}).format(Number.isFinite(value)?value:0);
-    const n = id => Math.max(0,Number(document.getElementById(id).value)||0);
+    const n = id => Number(document.getElementById(id).value);
+    function inputMessage(ids){
+      for(const id of ids){const input=document.getElementById(id), value=n(id);
+        if(input.value.trim()==='')return id==='key-rate'||id==='money-rate'?'Укажите ставку':'Заполните поля расчёта';
+        const max=id==='key-rate'||id==='money-rate'?100:id==='debt-days'||id==='retention-months'?36500:1e12;
+        if(!Number.isFinite(value)||value<0||value>max)return id==='key-rate'||id==='money-rate'?'Ставка: от 0 до 100%':'Проверьте значения: они вне диапазона';
+      }return '';
+    }
     function calculate(){
+      const debtError=inputMessage(['debt-sum','debt-days','key-rate']);
       const debt=n('debt-sum')*n('key-rate')/100/365*n('debt-days');
-      document.getElementById('debt-result').textContent=money(debt);
+      document.getElementById('debt-result').textContent=debtError||money(debt);
+      const retentionError=inputMessage(['retention-sum','retention-months','money-rate','planned-profit']);
       const cost=n('retention-sum')*n('money-rate')/100*n('retention-months')/12;
-      document.getElementById('retention-result').textContent=money(cost);
+      document.getElementById('retention-result').textContent=retentionError||money(cost);
       const profit=n('planned-profit');
-      document.getElementById('retention-share').textContent=profit?`Это около ${Math.round(cost/profit*100)}% плановой прибыли объекта.`:'Без учёта сложного процента, налогов и инфляции.';
+      document.getElementById('retention-share').textContent=retentionError?'Исправьте значения для расчёта.':profit?`Это около ${Math.round(cost/profit*100)}% плановой прибыли объекта.`:'Без учёта сложного процента, налогов и инфляции.';
       nextStep();
     }
     // Показываем ветку по введённой сумме, а не по результату: ставка

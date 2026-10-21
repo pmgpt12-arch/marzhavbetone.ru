@@ -14,7 +14,8 @@ with tempfile.TemporaryDirectory() as tmp:
     release=home/'private'; release.mkdir(); (release/'candidate').mkdir()
     before=b'old'; after=b'new'; (site/'index.html').write_bytes(before); (release/'candidate/index.html').write_bytes(after)
     sha=lambda b:hashlib.sha256(b).hexdigest()
-    (release/'manifest.json').write_text(json.dumps([{'path':'index.html','before':sha(before),'after':sha(after)}]))
+    (site/'brand-approved-2026.css').write_bytes(before); (release/'candidate/brand-approved-2026.css').write_bytes(after)
+    (release/'manifest.json').write_text(json.dumps([{'path':name,'before':sha(before),'after':sha(after)} for name in ['index.html','brand-approved-2026.css']]))
     script=Path(__file__).with_name('transaction.php')
     def run(mode,ok=True):
         p=subprocess.run(['php',str(script),mode,str(site),str(release)],capture_output=True,timeout=15)
@@ -24,4 +25,5 @@ with tempfile.TemporaryDirectory() as tmp:
     (site/'index.html').write_bytes(before); run('apply'); assert (site/'index.html').read_bytes()==after
     run('verify'); run('rollback'); assert (site/'index.html').read_bytes()==before
     assert (release/'original/index.html').read_bytes()==before
+    assert (site/'brand-approved-2026.css').read_bytes()==before and (release/'original/brand-approved-2026.css').read_bytes()==before
 print('STATIC_TRANSACTION_CONCURRENT_EDIT_AND_ROLLBACK=PASS')

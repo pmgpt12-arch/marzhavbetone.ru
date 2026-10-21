@@ -45,7 +45,7 @@ try {
     $rows=json_decode((string)file_get_contents($dir.'/manifest.json'),true,512,JSON_THROW_ON_ERROR);
     demand(is_array($rows)&&count($rows)>0&&count($rows)<=100,'MANIFEST_COUNT'); $seen=[];
     foreach($rows as $r) {
-        $p=$r['path']; demand((bool)preg_match('~^(?:articles/|materialy/|products/|demo/)?[a-zA-Z0-9_-]+\.(?:html|js)$~D',$p),'UNSAFE_PATH');
+        $p=$r['path']; demand((bool)preg_match('~^(?:articles/|materialy/|products/|demo/)?[a-zA-Z0-9_-]+\.(?:html|js|css)$~D',$p),'UNSAFE_PATH');
         demand(!isset($seen[$p]),'DUPLICATE_PATH'); $seen[$p]=true;
         demand(strpos((string)realpath(dirname($root.'/'.$p)).'/',$root.'/')===0,'PATH_ESCAPE');
         foreach(['before','after'] as $k) demand((bool)preg_match('/^[a-f0-9]{64}$/D',$r[$k]),'HASH_FORMAT');

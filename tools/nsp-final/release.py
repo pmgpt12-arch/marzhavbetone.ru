@@ -17,6 +17,7 @@ def main(action):
     call(['php','-l','tools/nsp-final/transaction.php'])
     call(['python3','tools/nsp-final/test_transaction.py'])
     call(['node','--check','app.js'])
+    (EVIDENCE/'email-checkout.json').write_bytes(call(['python3','tools/nsp-ui-audit-20261021/test_email_checkout.py']))
     call(['sh','-n','tools/nsp_backup_config.sh'])
     run=os.environ['GITHUB_RUN_ID']; attempt=os.environ['GITHUB_RUN_ATTEMPT']; assert run.isdigit() and attempt.isdigit()
     port=os.environ['PORT']; host=os.environ['HOST']; user=os.environ['SSH_USER']; assert port.isdigit()

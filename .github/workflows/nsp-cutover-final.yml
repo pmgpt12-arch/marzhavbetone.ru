@@ -1,7 +1,7 @@
 name: NSP final targeted corrections
 on:
   push:
-    branches: [fix/nsp-cutover-final-20261021, fix/nsp-dzen-20261021]
+    branches: [fix/nsp-cutover-final-20261021, fix/nsp-dzen-20261021, fix/nsp-audit-ui-20261021]
     paths: [tools/nsp-final/request.json]
 permissions:
   contents: write
@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   targeted:
-    if: github.ref_name == 'fix/nsp-cutover-final-20261021' || github.ref_name == 'fix/nsp-dzen-20261021'
+    if: github.ref_name == 'fix/nsp-cutover-final-20261021' || github.ref_name == 'fix/nsp-dzen-20261021' || github.ref_name == 'fix/nsp-audit-ui-20261021'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
