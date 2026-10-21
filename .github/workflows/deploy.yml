@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      submit_all_new_sitemap_urls:
+        description: 'Validate full new-domain sitemap and notify IndexNow once'
+        type: boolean
+        default: false
       update_nsp_admin_email:
         description: 'Switch ADMIN_EMAIL only, preserve payment secret and mail From'
         type: boolean
@@ -1445,6 +1449,94 @@ jobs:
           php -l "$file" >/dev/null || { cp -p "$backup" "$file"; echo "ADMIN_EMAIL_ROLLBACK_ON_LINT_FAILURE"; exit 1; }
           php -r 'require $argv[1]; if(ADMIN_EMAIL!=="nastoronepodryadchika@yandex.ru" || YOOKASSA_SHOP_ID!=="1502106" || DELIVERY_TTL_SECONDS!==3600)exit(1); echo "ADMIN_EMAIL_CONFIG_VERIFIED\n";' "$file"
           REMOTE
+
+  nsp-full-sitemap-indexnow:
+    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.submit_all_new_sitemap_urls == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Check IndexNow ownership key on live site
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/indexnow_key
+          chmod 600 ~/.ssh/indexnow_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/indexnow_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          site="$HOME/www/nastoronepodryadchika.ru"
+          key="07e706758d2b3889c5bf9c7b3760d86d"
+          file="$site/$key.txt"
+          if test -e "$file"; then
+            test "$(cat "$file")" = "$key" || { echo "INDEXNOW_EXISTING_KEY_MISMATCH"; exit 2; }
+            echo 'INDEXNOW_KEY_EXISTING=VERIFIED'
+          else
+            tmp="$(mktemp "$site/.indexnow-key-XXXXXX")"
+            printf '%s\n' "$key" > "$tmp"
+            chmod 644 "$tmp"
+            mv "$tmp" "$file"
+            test "$(cat "$file")" = "$key"
+            echo 'INDEXNOW_KEY_CREATED=VERIFIED'
+          fi
+          REMOTE
+      - name: Audit public URLs and submit new-domain migration to IndexNow
+        run: |
+          python3 - <<'PY'
+          import concurrent.futures,html,json,re,urllib.error,urllib.request,xml.etree.ElementTree as ET
+          base="https://nastoronepodryadchika.ru"
+          key="07e706758d2b3889c5bf9c7b3760d86d"
+          def get(url):
+              req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 NSP-SEO-IndexNow-Audit"})
+              with urllib.request.urlopen(req,timeout=14) as resp:
+                  return resp.status,dict(resp.headers),resp.read()
+          status,_,robots=get(base+"/robots.txt")
+          assert status==200 and b"Sitemap: https://nastoronepodryadchika.ru/sitemap.xml" in robots and b"Disallow: /\n" not in robots,"ROBOTS_GATE"
+          status,_,keybody=get(base+"/"+key+".txt")
+          assert status==200 and keybody.decode().strip()==key,"KEY_GATE"
+          status,_,xml=get(base+"/sitemap.xml")
+          assert status==200,"SITEMAP_GATE"
+          urls=[x.text.strip() for x in ET.fromstring(xml).findall(".//{*}loc") if x.text]
+          assert len(urls)==len(set(urls)) and len(urls)>=80 and all(u.startswith(base+"/") for u in urls),"URL_LIST_GATE"
+          def check(url):
+              try:
+                  code,headers,body=get(url)
+                  if code!=200:return url,"HTTP_"+str(code)
+                  if "noindex" in headers.get("X-Robots-Tag","").lower():return url,"HEADER_NOINDEX"
+                  s=body.decode("utf-8","replace")
+                  if re.search(r'<meta\b[^>]*name=["\']robots["\'][^>]*content=["\'][^"\']*noindex',s,re.I):return url,"META_NOINDEX"
+                  tags=re.findall(r'<link\b[^>]*rel=["\']canonical["\'][^>]*>',s,re.I)
+                  if len(tags)!=1:return url,"CANONICAL_COUNT"
+                  m=re.search(r'href=["\']([^"\']+)',tags[0],re.I)
+                  if not m or html.unescape(m.group(1))!=url:return url,"CANONICAL_MISMATCH"
+                  return url,"PASS"
+              except Exception as e:return url,"FETCH_"+type(e).__name__
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool: results=list(pool.map(check,urls))
+          bad=[x for x in results if x[1]!="PASS"]
+          print("SITEMAP_URL_COUNT="+str(len(urls)))
+          print("INDEXABLE_CANONICAL_PASS="+str(len(results)-len(bad)))
+          print("INDEXABILITY_ERRORS="+str(len(bad)))
+          for x in bad[:10]:print("BAD_URL="+repr(x))
+          if bad:raise SystemExit("INDEXABILITY_GATE_FAILED")
+          payload=json.dumps({"host":"nastoronepodryadchika.ru","key":key,"urlList":urls},ensure_ascii=False).encode()
+          for endpoint in ("https://yandex.com/indexnow","https://api.indexnow.org/indexnow"):
+              req=urllib.request.Request(endpoint,data=payload,method="POST",headers={"Content-Type":"application/json; charset=utf-8","User-Agent":"NSP-Domain-Migration/1.0"})
+              try:
+                  with urllib.request.urlopen(req,timeout=16) as resp: code=resp.status
+              except urllib.error.HTTPError as e:code=e.code
+              except Exception as e:
+                  print("INDEXNOW_ENDPOINT_ERROR="+endpoint+" "+type(e).__name__)
+                  continue
+              print("INDEXNOW_ENDPOINT="+endpoint+" HTTP="+str(code))
+              if code in (200,202):
+                  print("INDEXNOW_SUBMISSION="+("ACCEPTED" if code==200 else "KEY_PENDING_VERIFICATION"))
+                  print("INDEXNOW_URLS_SENT="+str(len(urls)))
+                  break
+          else:raise SystemExit("INDEXNOW_NOT_ACCEPTED")
+          PY
 
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
