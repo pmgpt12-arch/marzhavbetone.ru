@@ -621,6 +621,48 @@ jobs:
           echo "HOSTING_YANDEX_API_HTTP=$code"
           REMOTE
 
+  nsp-seo-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Read-only audit of new-site SEO signals
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/seo_key
+          chmod 600 ~/.ssh/seo_key
+          ssh-keyscan -T 8 -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/seo_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$USER@$HOST" 'sh -s' <<'REMOTE'
+          set -eu
+          root="$HOME/www/nastoronepodryadchika.ru"
+          old="$HOME/www/marzhavbetone.ru"
+          for file in sitemap.xml robots.txt index.html; do
+            if test -f "$root/$file"; then
+              echo "NEW_$file=PRESENT"
+              printf 'OLD_DOMAIN_REFERENCES_%s=' "$file"
+              grep -o 'marzhavbetone.ru' "$root/$file" | wc -l || true
+              printf 'NEW_DOMAIN_REFERENCES_%s=' "$file"
+              grep -o 'nastoronepodryadchika.ru' "$root/$file" | wc -l || true
+            else echo "NEW_$file=MISSING"; fi
+          done
+          echo 'NEW_HOME_CANONICAL'
+          grep -m 1 'rel="canonical"' "$root/index.html" || true
+          echo 'NEW_ROBOTS_SITEMAP'
+          grep '^Sitemap:' "$root/robots.txt" || true
+          echo 'OLD_SITE_REDIRECT_RULES'
+          grep -nE 'RewriteRule|Redirect 301' "$old/.htaccess" | head -12 || true
+          echo 'NEW_SITEMAP_URL_COUNT'
+          grep -c '<loc>' "$root/sitemap.xml" || true
+          REMOTE
+          for url in 'https://marzhavbetone.ru/articles/' 'https://nastoronepodryadchika.ru/articles/' 'https://nastoronepodryadchika.ru/sitemap.xml'; do
+            echo "HTTP_CHECK=$url"
+            curl -sS -I --connect-timeout 5 --max-time 10 "$url" | grep -Ei '^HTTP/|^location:' | head -5 || true
+          done
+
   deploy:
     if: ${{ github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
