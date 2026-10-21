@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      compare_live_sitemap_source:
+        description: 'Compare published sitemap with migration branch before deploy'
+        type: boolean
+        default: false
       submit_all_new_sitemap_urls:
         description: 'Validate full new-domain sitemap and notify IndexNow once'
         type: boolean
@@ -1536,6 +1540,29 @@ jobs:
                   print("INDEXNOW_URLS_SENT="+str(len(urls)))
                   break
           else:raise SystemExit("INDEXNOW_NOT_ACCEPTED")
+          PY
+
+  nsp-compare-sitemap-source:
+    if: ${{ github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.compare_live_sitemap_source == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: migration/nsp-domain-20261020
+      - name: Compare live sitemap to migration branch
+        run: |
+          python3 - <<'PY'
+          import urllib.request,xml.etree.ElementTree as ET
+          def locs(data):
+              return {e.text.strip() for e in ET.fromstring(data).findall('.//{*}loc') if e.text}
+          source=locs(open("sitemap.xml","rb").read())
+          with urllib.request.urlopen("https://nastoronepodryadchika.ru/sitemap.xml",timeout=15) as resp:live=locs(resp.read())
+          print("SOURCE_SITEMAP_COUNT="+str(len(source)))
+          print("LIVE_SITEMAP_COUNT="+str(len(live)))
+          for url in sorted(live-source):print("LIVE_ONLY="+url)
+          for url in sorted(source-live):print("SOURCE_ONLY="+url)
+          print("SITEMAP_DIFF_COUNT="+str(len(source^live)))
           PY
 
   deploy:
