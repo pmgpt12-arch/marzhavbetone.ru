@@ -44,3 +44,7 @@
 PR #674 слит в main коммитом `6482c32e097222d5254c59b9a748c769652b0591`. Перед слиянием HEAD main повторно сверён, конкурирующих изменений не было. Проверка diff: изменений products-storage и production PHP нет. Условие ENABLE_LEGACY_DEPLOY и запрет запуска при `[skip deploy]` сохранены. Каталог после слияния повторно получен по HTTPS и совпал с опубликованным кандидатом. Статус: **VERIFIED_DONE для адресных исправлений этого ТЗ**, с перечисленными выше ограничениями общего CI, Дзена и полного ребрендинга.
 
 На main: [NSP catalog contract 39566032725](https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39566032725) — PASS; [Deploy to server 39566032701](https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39566032701) — SKIPPED.
+
+## Дополнение: адрес Дзена подтверждён и опубликован
+
+Владелец предоставил https://m.dzen.ru/nastoronepodryadchika. Адрес опубликован на всех 76 страницах, где стояла прежняя ссылка. [Actions 39570052487](https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39570052487) — PASS, 76/76 точных HTTPS-сверок. Ограничение пункта 1 о неизвестном новом адресе Дзена снято. Подробности и исправление пропуска публичной папки demo — tools/nsp-dzen-20261021/REPORT_RU.md.
