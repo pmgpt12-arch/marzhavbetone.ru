@@ -47,6 +47,7 @@ with tempfile.TemporaryDirectory() as tmp:
     d=stage('create');run(d,'dry-run');assert not target.parent.exists()
     target.parent.mkdir();target.write_bytes(b'concurrent');run(d,'apply',False);assert target.read_bytes()==b'concurrent'
     target.unlink();target.parent.rmdir();run(d,'apply');run(d,'verify');assert target.read_bytes()==payload
+    assert target.stat().st_mode&0o777==0o644 and target.parent.stat().st_mode&0o777==0o755
     run(d,'rollback');assert not target.parent.exists();run(d,'rollback')
     target.parent.mkdir();(target.parent/'unrelated.txt').write_text('keep')
     d=stage('existing-dir');run(d,'apply');run(d,'rollback');assert (target.parent/'unrelated.txt').read_text()=='keep'

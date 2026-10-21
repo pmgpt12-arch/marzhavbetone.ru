@@ -89,6 +89,7 @@ try {
     $createdDirs=[];
     if(isset($seen['downloads/checklist-zakrytiya-rabot.pdf'])&&!is_dir($root.'/downloads')) { demand(!file_exists($root.'/downloads')&&!is_link($root.'/downloads'),'DOWNLOADS_CONCURRENT_EDIT'); demand(mkdir($root.'/downloads',0755),'CREATE_DOWNLOADS'); $createdDirs[]='downloads'; }
     file_put_contents($dir.'/created-dirs.json',json_encode($createdDirs,JSON_THROW_ON_ERROR)); chmod($dir.'/created-dirs.json',0600);
+    foreach($createdDirs as $name) demand(chmod($root.'/'.$name,0755),'PUBLIC_DIRECTORY_MODE');
     foreach($rows as $r) {
         $p=$root.'/'.$r['path']; demand(current_sha($p)===$r['before'],'LIVE_CONCURRENT_EDIT_'.$r['path']);
         write_atomic($p,(string)file_get_contents($dir.'/candidate/'.$r['path'])); $changed[]=$r['path']; demand(sha($p)===$r['after'],'WRITE_HASH');
