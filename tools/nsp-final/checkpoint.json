@@ -10,7 +10,7 @@
   "publication_run": 39565483988,
   "pull_request": 674,
   "audit_workflow_fix_commit": "249c1a92cf0bf08dfbbfc375cccc0de216eb86b0",
-  "status": "VERIFIED_PUBLISHED_MAIN_SYNC_PENDING",
+  "status": "VERIFIED_DONE_TARGETED_SCOPE",
   "not_accepted_as_green": [
     "legacy public release checks",
     "historical P3/site snapshot checks",
@@ -23,5 +23,10 @@
   ],
   "https_verified_files": 85,
   "production_master_directory_files_unchanged": 442,
-  "production_unique_config_backups": 2
+  "production_unique_config_backups": 2,
+  "main_sync_commit": "6482c32e097222d5254c59b9a748c769652b0591",
+  "legacy_deploy": "FROZEN",
+  "main_catalog_gate_run": 39566032725,
+  "main_legacy_deploy_run": 39566032701,
+  "main_legacy_deploy_result": "SKIPPED"
 }

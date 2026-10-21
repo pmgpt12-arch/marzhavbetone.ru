@@ -38,3 +38,9 @@
 4. Проверка рендером 39560956960 остановилась на DNS `playwright.download.prss.microsoft.com`; это инфраструктурная ошибка установки браузера, не результат визуальной проверки. Визуальная приёмка этим запуском не подтверждена.
 
 Фактические протоколы публикации сохранены рядом: `evidence/source-validation.json`, `dry-run.json`, `apply.json`, `https.json`, `verify.json`, `backup-receipts.txt`. Исторические снимки 2026-10-12 и покупательские мастера не изменены.
+
+## Закрепление результата
+
+PR #674 слит в main коммитом `6482c32e097222d5254c59b9a748c769652b0591`. Перед слиянием HEAD main повторно сверён, конкурирующих изменений не было. Проверка diff: изменений products-storage и production PHP нет. Условие ENABLE_LEGACY_DEPLOY и запрет запуска при `[skip deploy]` сохранены. Каталог после слияния повторно получен по HTTPS и совпал с опубликованным кандидатом. Статус: **VERIFIED_DONE для адресных исправлений этого ТЗ**, с перечисленными выше ограничениями общего CI, Дзена и полного ребрендинга.
+
+На main: [NSP catalog contract 39566032725](https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39566032725) — PASS; [Deploy to server 39566032701](https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39566032701) — SKIPPED.
