@@ -2,7 +2,7 @@
 
 Статус: **P0 исправлены в отдельной локальной staging-версии; НЕ ОПУБЛИКОВАНО.** Основная сессия и её продуктовая ветка не изменялись. Никаких merge/deploy, реальных заказов, платежей, писем, записей в секреты или системные настройки.
 
-База: `c7e32ecc7ad5d8d4b0a3e425ccfe8eeccafe8433`. Ветка: `fix/nsp-customer-route-20261022`. Проверенный исходный commit: `e7ae51361c16054ae2961ffd23946ca33d0d3c6d`. Полный состав изменений и SHA-256 — PUBLIC_FILES.json; сохранность — PROTECTED_RECEIPT.json.
+База: `c7e32ecc7ad5d8d4b0a3e425ccfe8eeccafe8433`. Ветка: `fix/nsp-customer-route-20261022`. Проверенный исходный commit: `2bb7e3f00eda3682e6ac422206e9be985bee7c46`. Полный состав изменений и SHA-256 — PUBLIC_FILES.json; сохранность — PROTECTED_RECEIPT.json.
 
 ## Подтверждённая исходная точка
 
@@ -30,16 +30,17 @@
 | app.js | `9924f5c20b4046f0eecabaea8be47c0342adaf67cb1d25c0155dc3d7b33bc6fc` | `08d5b398445d5b83abcdc4d827b73b3a4e8109631c8fdfa43a997dbe81d38361` |
 | diagnostika.html | `00ed4c4f6e3bd51939923cbd0be9f156f484a5b9a64ec5a618ea9aa56f72e028` | `11c029b4640e0d93805fd80607e9524480676ffa500019b23922f2d0cfc51232` |
 | katalog.html | `a4346219b8d1c266f25cac8f93787dbebfe2a127b9c5a0c884648b9b5d8cd340` | `b1a52136d21f4db078cd4b16e36d39ce6fd4e25fdd1e5978c256464ecaf0cb30` |
-| materialy/akt-skrytyh-rabot.html | `40dfd613150ba9569c8c5ecfbbd9b3dc40989db1dea70ca37e97dbbf49dfdd10` | `5c6aa7329f7346a2681455e75a022c20190e26e50ad648a83c013d9a717a4a93` |
-| materialy/avans.html | `42c4e0d9b4ee8e565385dd089d5e953e25bfd3bab58ecb681403b7260a95a590` | `9f51c6f57ca8d86f6cb25b37552cb4ea6d945e4fbe49c79ffbb646fcb194b33b` |
-| materialy/bankrotstvo.html | `ad366b640731ad16a0e38dd08e0236034dc564405dbbc9ce4f2ad61f2087ed63` | `94df1632287d948d26c6341dae8853ca98e5413e00226605f741e7888f62270a` |
-| materialy/dengi.html | `be1ed489a3d19bd42a510ef15918c507684f7e05a4294f9bd02495c805ffd09e` | `435dd9a2b3ae70c4f0378c4f79ab4430f478881174ade1c8b2d85181c0e801e3` |
-| materialy/dogovor.html | `785dcd1bc6a7d41896b9f0ceba92c000613db9b3669889852e6e43c609bbdd8c` | `ff653d20416e46536db97102c3de98a87df333aeb719bed3ef22c00be0cc5997` |
-| materialy/dop-raboty.html | `847d448ffcd917a22a6c49b69039cf825a0b2c672846685eab745a9bfc28e414` | `cd674adf34b450fbcc7282b521ac8f42eac6c8c848f824e9113eb21d1b396b35` |
-| materialy/ispolnitelnaya-dokumentaciya.html | `5a5bb905cb0468915378d04786e16c11a9053b782a22bf84b48d6ead7f20e53c` | `c23a434b6d99174137be2af25b8c35dadd663c03c6bc85b1243def4baf1e24d2` |
-| materialy/raschet-metrami.html | `e56e44338b31b3ed84d6faba03f34d10c2eb8be062ba58854fdd12f80d06a5ff` | `96a9b70413947fa2ad7e80d5be887c90e265b67813e37447524dcdb88170799b` |
-| materialy/uderzhaniya.html | `5e3d776f5e184ebf98db4b7b993d00622a40591fb558428297f98ae46cfae9c6` | `7488a4a5fb61c8ad2c4ad7cfa4ec25f633a15447e932c65fcc4f5f5b88b0cf48` |
-| materialy/vozvrat-ks.html | `fcdfdc8e7092be48da964f737abbac062541dc7dad9f1cc1f516fa4d73acfcfa` | `0a1694430e77ef6689fca6f9fd6bcaf58a448bcb51ef861814471bf329e31c36` |
+| lead.css | `799c8a0fa57c1be290b302906878e5fcf7a2a82eb318a02111b2e198477f8b1a` | `9f4ffef1496592325b56ac267c7f47b71281121093b6937d1cda67beba3cc544` |
+| materialy/akt-skrytyh-rabot.html | `40dfd613150ba9569c8c5ecfbbd9b3dc40989db1dea70ca37e97dbbf49dfdd10` | `2898d0c2e847610f4bbdfca30545eb926ceb33e32f10e4488fbed87c799349a9` |
+| materialy/avans.html | `42c4e0d9b4ee8e565385dd089d5e953e25bfd3bab58ecb681403b7260a95a590` | `d69faee1b4ba73f21455baaeed858c49a7084f70585d84a816260874081e013b` |
+| materialy/bankrotstvo.html | `ad366b640731ad16a0e38dd08e0236034dc564405dbbc9ce4f2ad61f2087ed63` | `60312309257f4e0346a2d64d3083d45faaeabb989da933286c1155b55d7272ac` |
+| materialy/dengi.html | `be1ed489a3d19bd42a510ef15918c507684f7e05a4294f9bd02495c805ffd09e` | `ef121e40f9b321467016f1880c57d09b2a69594c1120fa96f3cd22bcfbce4276` |
+| materialy/dogovor.html | `785dcd1bc6a7d41896b9f0ceba92c000613db9b3669889852e6e43c609bbdd8c` | `bd8d7e1a301b1d7b4c34b0852f2be640127797293dede4f04792b5eece3eb00f` |
+| materialy/dop-raboty.html | `847d448ffcd917a22a6c49b69039cf825a0b2c672846685eab745a9bfc28e414` | `2afbcba8e78b380db896563c7c322640941d8a306d95afb0b3034d1995bfbb1d` |
+| materialy/ispolnitelnaya-dokumentaciya.html | `5a5bb905cb0468915378d04786e16c11a9053b782a22bf84b48d6ead7f20e53c` | `c1f913cec2c974fc4db2f97f63e4e7bce4ac39f7e7b1b384c4176d6ca6bfd0c0` |
+| materialy/raschet-metrami.html | `e56e44338b31b3ed84d6faba03f34d10c2eb8be062ba58854fdd12f80d06a5ff` | `ace0340de968330a4f58c7a78d8ba9200df6eecb9f59dbdf4028415bf61bae7b` |
+| materialy/uderzhaniya.html | `5e3d776f5e184ebf98db4b7b993d00622a40591fb558428297f98ae46cfae9c6` | `3cce9b97524586d75d1f8e38142270cd1d1e8e37624024cd0dd28386f9942ec4` |
+| materialy/vozvrat-ks.html | `fcdfdc8e7092be48da964f737abbac062541dc7dad9f1cc1f516fa4d73acfcfa` | `c113dd639e9dc402c0e58862efbdb1524cc2c50441d5828d867049c12d7fdc74` |
 | products/p11-raschet-metrami.html | `c58684948b8b5573694e60010e15193592e238bd3115d7c2f2d56374575fff88` | `ef83b6f3cb51feb4a9fd1157f270440c3b2a3562dc9e260fe5717d29468f47ba` |
 | products/p3-shablony-ks2-ks3.html | `28a3614e8824610fba76470fe902a98c559c1c8e9414bde472aef77254521945` | `568593e0610bfbdd786783ef1845d6fb206c5642279c52f7dd9315577cb164dc` |
 | products/t2-peredacha-ispolnitelnoy-dokumentacii.html | `da3367b12c0ef939d096ac6266b67538554328bbb07395809733d764b1a65180` | `47dce084410772f7cd74c2841842912f85f832061fc79113c50819524f066a4b` |
@@ -48,8 +49,8 @@
 ## Проверки
 
 - Основной Chromium smoke: 62/62, desktop 1366×850 и mobile 390×844; 0 JS errors. Финальный прогон использует настоящий локальный PHP. DOM и скриншоты сохранены по сценариям.
-- Дополнительная регрессия: 34/34. Все 13 SKU дают правильные название/цену; повторный клик не удваивает позицию; исторические T1/T4/T5 работают через свои существующие ссылки. Автоматические редиректы им не добавлялись.
-- Главная: исходник, CSS и attribution.js побайтно прежние; геометрия и computed styles hero/заголовка/кнопок/этапов/следующего блока совпали на обеих ширинах. На ноутбуке следующий блок виден без прокрутки.
+- Дополнительная регрессия: 54/54, включая размеры полей на всех десяти страницах материалов. Все 13 SKU дают правильные название/цену; повторный клик не удваивает позицию; исторические T1/T4/T5 работают через свои существующие ссылки. Автоматические редиректы им не добавлялись.
+- Главная: исходник, CSS и attribution.js побайтно прежние; геометрия и computed styles hero/заголовка/кнопок/этапов/следующего блока совпали на обеих ширинах. Полные изображения главной до/после также совпали пиксельно на обеих ширинах. На ноутбуке следующий блок виден без прокрутки.
 - P8: 24 900 ₽, один товар, «В корзине», обязательный email и согласие, необязательный контакт; пустая форма не инициирует POST. Escape, закрытие и возврат фокуса проверены.
 - Серверный PHP: тест авторитетной цены; 16 случаев обработчиков с локальным перехватчиком почты; 11 бесплатных маршрутов; HTTP app-script.php отдаёт точный app.js и прежние no-store headers. Это локальные проверки исходников, не тест отправки с рабочего хостинга.
 - 8 контрактных тестов новой задачи и существующие preview/diagnostic/attribution/browser-events/run_checks tests — PASS. build_preview.py --check — без расхождений на всей линейке.
@@ -78,3 +79,9 @@
 - https://klerk.systems/docs/fz_127_2002/article/63/
 - https://kad.arbitr.ru/
 - https://bankrot.fedresurs.ru/
+
+## Сохранение ветки
+
+Ветка и все коммиты сохранены локально. Попытка push автоматически отклонена до выполнения: проверка разрешений требует явного согласия на передачу исходников и доказательств в pmgpt12-arch/marzhavbetone.ru. Обход другим инструментом не выполнялся. Готовый route.patch прошёл git apply --check на чистой исходной базе. Архив передачи содержит отчёт, исходники изменений, patch, DOM, скриншоты и SHA; он не содержит покупательских архивов или продуктовых мастеров.
+
+Дополнительная визуальная правка: email-поля получили тот же размер и оформление, что остальные поля; версия lead.css обновлена только на десяти страницах материалов. Общая главная визуально не изменилась.

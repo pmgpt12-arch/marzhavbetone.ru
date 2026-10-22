@@ -236,10 +236,29 @@ index 3a47e1e..b421831 100644
    <script type="application/ld+json">{
    "@context": "https://schema.org",
    "@graph": [
+diff --git a/lead.css b/lead.css
+index ca6da84..f1b7557 100644
+--- a/lead.css
++++ b/lead.css
+@@ -1 +1,4 @@
+-.lead-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:650px;margin:26px 0 14px}.lead-form input[type="text"]{width:100%;border:1px solid #8c8982;border-radius:4px;background:#f8f6f0;padding:14px;font:inherit}.lead-form label{grid-column:1/-1;font-size:12px}.lead-form button{justify-self:start}.lead-form #lead-status{grid-column:1/-1;margin:4px 0}.checklist-preview{border:0;background:none;cursor:pointer}.telegram-promo,.personal-review{display:flex;align-items:center;justify-content:space-between;gap:60px}.telegram-promo{background:#242629;color:#e9e5dc}.telegram-promo h2,.personal-review h2{font-size:clamp(42px,6vw,76px)}.telegram-promo .lead{color:#bab7b0}.personal-review{background:#ff5a00;color:#fff}.personal-review .eyebrow{color:#242629}.personal-review .lead{color:#fff}.personal-review .button{background:#242629}@media(max-width:800px){.lead-form{grid-template-columns:1fr}.telegram-promo,.personal-review{align-items:flex-start;flex-direction:column}}.lead-ready{margin:0 0 10px;font-weight:700}.lead-continue{grid-column:1/-1;margin:10px 0 0;font-size:14px}
++.lead-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:650px;margin:26px 0 14px}.lead-form input[type="text"],.lead-form input[type="email"]{width:100%;border:1px solid #8c8982;border-radius:4px;background:#f8f6f0;padding:14px;font:inherit}.lead-form label{grid-column:1/-1;font-size:12px}.lead-form button{justify-self:start}.lead-form #lead-status{grid-column:1/-1;margin:4px 0}.checklist-preview{border:0;background:none;cursor:pointer}.telegram-promo,.personal-review{display:flex;align-items:center;justify-content:space-between;gap:60px}.telegram-promo{background:#242629;color:#e9e5dc}.telegram-promo h2,.personal-review h2{font-size:clamp(42px,6vw,76px)}.telegram-promo .lead{color:#bab7b0}.personal-review{background:#ff5a00;color:#fff}.personal-review .eyebrow{color:#242629}.personal-review .lead{color:#fff}.personal-review .button{background:#242629}@media(max-width:800px){.lead-form{grid-template-columns:1fr}.telegram-promo,.personal-review{align-items:flex-start;flex-direction:column}}.lead-ready{margin:0 0 10px;font-weight:700}.lead-continue{grid-column:1/-1;margin:10px 0 0;font-size:14px}
++
++/* Dedicated free-material fields; the homepage combined-contact layout is unchanged. */
++.lead-form label>input[type="email"],.lead-form label>input[type="text"]{display:block;margin-top:6px;box-sizing:border-box}
 diff --git a/materialy/akt-skrytyh-rabot.html b/materialy/akt-skrytyh-rabot.html
-index 446ff69..ef8718e 100644
+index 446ff69..573bb08 100644
 --- a/materialy/akt-skrytyh-rabot.html
 +++ b/materialy/akt-skrytyh-rabot.html
+@@ -15,7 +15,7 @@
+   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
+   <link rel="stylesheet" href="../catalog.css?v=0870b18a">
+   <link rel="stylesheet" href="../product.css?v=6f1c826e">
+-  <link rel="stylesheet" href="../lead.css?v=0de0682f">
++  <link rel="stylesheet" href="../lead.css?v=9f4ffef1">
+   <link rel="stylesheet" href="../cart.css?v=dbf0bfa0">
+   <link rel="stylesheet" href="../desktop.css?v=9ebabe34">
+   <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
 @@ -82,7 +82,8 @@
          <input name="material" type="hidden" value="akt-skrytyh-rabot">
          <input name="source" type="hidden" value="site-akt-skrytyh-rabot">
@@ -251,9 +270,18 @@ index 446ff69..ef8718e 100644
          <button class="button" type="submit">Получить материалы</button>
          <p id="lead-status" role="status"></p>
 diff --git a/materialy/avans.html b/materialy/avans.html
-index af4aa06..ec127e8 100644
+index af4aa06..12f413f 100644
 --- a/materialy/avans.html
 +++ b/materialy/avans.html
+@@ -15,7 +15,7 @@
+   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
+   <link rel="stylesheet" href="../catalog.css?v=0870b18a">
+   <link rel="stylesheet" href="../product.css?v=6f1c826e">
+-  <link rel="stylesheet" href="../lead.css?v=0de0682f">
++  <link rel="stylesheet" href="../lead.css?v=9f4ffef1">
+   <link rel="stylesheet" href="../cart.css?v=dbf0bfa0">
+   <link rel="stylesheet" href="../desktop.css?v=9ebabe34">
+   <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
 @@ -78,23 +78,23 @@
      <section class="section">
        <h2>Куда прислать</h2>
@@ -284,9 +312,18 @@ index af4aa06..ec127e8 100644
      </section>
  
 diff --git a/materialy/bankrotstvo.html b/materialy/bankrotstvo.html
-index d569121..ecf1080 100644
+index d569121..b1be283 100644
 --- a/materialy/bankrotstvo.html
 +++ b/materialy/bankrotstvo.html
+@@ -15,7 +15,7 @@
+   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
+   <link rel="stylesheet" href="../catalog.css?v=0870b18a">
+   <link rel="stylesheet" href="../product.css?v=6f1c826e">
+-  <link rel="stylesheet" href="../lead.css?v=0de0682f">
++  <link rel="stylesheet" href="../lead.css?v=9f4ffef1">
+   <link rel="stylesheet" href="../cart.css?v=dbf0bfa0">
+   <link rel="stylesheet" href="../desktop.css?v=9ebabe34">
+   <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
 @@ -78,23 +78,23 @@
      <section class="section">
        <h2>Куда прислать</h2>
@@ -317,9 +354,18 @@ index d569121..ecf1080 100644
      </section>
  
 diff --git a/materialy/dengi.html b/materialy/dengi.html
-index ddaf712..350257b 100644
+index ddaf712..da66e3b 100644
 --- a/materialy/dengi.html
 +++ b/materialy/dengi.html
+@@ -15,7 +15,7 @@
+   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
+   <link rel="stylesheet" href="../catalog.css?v=0870b18a">
+   <link rel="stylesheet" href="../product.css?v=6f1c826e">
+-  <link rel="stylesheet" href="../lead.css?v=0de0682f">
++  <link rel="stylesheet" href="../lead.css?v=9f4ffef1">
+   <link rel="stylesheet" href="../cart.css?v=dbf0bfa0">
+   <link rel="stylesheet" href="../desktop.css?v=9ebabe34">
+   <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
 @@ -62,6 +62,7 @@
        <p class="eyebrow">БЕСПЛАТНО · 5 ФАЙЛОВ</p>
        <h1>КС подписаны, денег нет: первые 7 проверок</h1>
@@ -362,9 +408,18 @@ index ddaf712..350257b 100644
      </section>
  
 diff --git a/materialy/dogovor.html b/materialy/dogovor.html
-index abe410b..a58ae33 100644
+index abe410b..98a42c3 100644
 --- a/materialy/dogovor.html
 +++ b/materialy/dogovor.html
+@@ -15,7 +15,7 @@
+   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
+   <link rel="stylesheet" href="../catalog.css?v=0870b18a">
+   <link rel="stylesheet" href="../product.css?v=6f1c826e">
+-  <link rel="stylesheet" href="../lead.css?v=0de0682f">
++  <link rel="stylesheet" href="../lead.css?v=9f4ffef1">
+   <link rel="stylesheet" href="../cart.css?v=dbf0bfa0">
+   <link rel="stylesheet" href="../desktop.css?v=9ebabe34">
+   <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
 @@ -82,12 +82,13 @@
          <input name="material" type="hidden" value="dogovor">
          <input name="source" type="hidden" value="site-dogovor">
@@ -382,9 +437,18 @@ index abe410b..a58ae33 100644
  
      <section class="section related">
 diff --git a/materialy/dop-raboty.html b/materialy/dop-raboty.html
-index 97c57ff..7d3d067 100644
+index 97c57ff..f7f9b66 100644
 --- a/materialy/dop-raboty.html
 +++ b/materialy/dop-raboty.html
+@@ -15,7 +15,7 @@
+   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
+   <link rel="stylesheet" href="../catalog.css?v=0870b18a">
+   <link rel="stylesheet" href="../product.css?v=6f1c826e">
+-  <link rel="stylesheet" href="../lead.css?v=0de0682f">
++  <link rel="stylesheet" href="../lead.css?v=9f4ffef1">
+   <link rel="stylesheet" href="../cart.css?v=dbf0bfa0">
+   <link rel="stylesheet" href="../desktop.css?v=9ebabe34">
+   <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
 @@ -82,12 +82,13 @@
          <input name="material" type="hidden" value="dop-raboty">
          <input name="source" type="hidden" value="site-dop-raboty">
@@ -402,9 +466,18 @@ index 97c57ff..7d3d067 100644
  
      <section class="section related">
 diff --git a/materialy/ispolnitelnaya-dokumentaciya.html b/materialy/ispolnitelnaya-dokumentaciya.html
-index e2ecfea..27f1261 100644
+index e2ecfea..687d181 100644
 --- a/materialy/ispolnitelnaya-dokumentaciya.html
 +++ b/materialy/ispolnitelnaya-dokumentaciya.html
+@@ -15,7 +15,7 @@
+   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
+   <link rel="stylesheet" href="../catalog.css?v=0870b18a">
+   <link rel="stylesheet" href="../product.css?v=6f1c826e">
+-  <link rel="stylesheet" href="../lead.css?v=0de0682f">
++  <link rel="stylesheet" href="../lead.css?v=9f4ffef1">
+   <link rel="stylesheet" href="../cart.css?v=dbf0bfa0">
+   <link rel="stylesheet" href="../desktop.css?v=9ebabe34">
+   <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
 @@ -82,7 +82,8 @@
          <input name="material" type="hidden" value="ispolnitelnaya-dokumentaciya">
          <input name="source" type="hidden" value="site-ispolnitelnaya-dokumentaciya">
@@ -416,9 +489,18 @@ index e2ecfea..27f1261 100644
          <button class="button" type="submit">Получить материалы</button>
          <p id="lead-status" role="status"></p>
 diff --git a/materialy/raschet-metrami.html b/materialy/raschet-metrami.html
-index 59b55f0..6259044 100644
+index 59b55f0..ca84c96 100644
 --- a/materialy/raschet-metrami.html
 +++ b/materialy/raschet-metrami.html
+@@ -15,7 +15,7 @@
+   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
+   <link rel="stylesheet" href="../catalog.css?v=0870b18a">
+   <link rel="stylesheet" href="../product.css?v=6f1c826e">
+-  <link rel="stylesheet" href="../lead.css?v=0de0682f">
++  <link rel="stylesheet" href="../lead.css?v=9f4ffef1">
+   <link rel="stylesheet" href="../cart.css?v=dbf0bfa0">
+   <link rel="stylesheet" href="../desktop.css?v=9ebabe34">
+   <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
 @@ -79,7 +79,8 @@
          <input name="material" type="hidden" value="raschet-metrami">
          <input name="source" type="hidden" value="site-raschet-metrami">
@@ -430,9 +512,18 @@ index 59b55f0..6259044 100644
          <button class="button" type="submit">Получить материалы</button>
          <p id="lead-status" role="status"></p>
 diff --git a/materialy/uderzhaniya.html b/materialy/uderzhaniya.html
-index c80ad1a..b503f0c 100644
+index c80ad1a..9bfb916 100644
 --- a/materialy/uderzhaniya.html
 +++ b/materialy/uderzhaniya.html
+@@ -15,7 +15,7 @@
+   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
+   <link rel="stylesheet" href="../catalog.css?v=0870b18a">
+   <link rel="stylesheet" href="../product.css?v=6f1c826e">
+-  <link rel="stylesheet" href="../lead.css?v=0de0682f">
++  <link rel="stylesheet" href="../lead.css?v=9f4ffef1">
+   <link rel="stylesheet" href="../cart.css?v=dbf0bfa0">
+   <link rel="stylesheet" href="../desktop.css?v=9ebabe34">
+   <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
 @@ -82,12 +82,13 @@
          <input name="material" type="hidden" value="uderzhaniya">
          <input name="source" type="hidden" value="site-uderzhaniya">
@@ -450,9 +541,18 @@ index c80ad1a..b503f0c 100644
  
      <section class="section related">
 diff --git a/materialy/vozvrat-ks.html b/materialy/vozvrat-ks.html
-index cbb6634..694cf21 100644
+index cbb6634..b119ca5 100644
 --- a/materialy/vozvrat-ks.html
 +++ b/materialy/vozvrat-ks.html
+@@ -15,7 +15,7 @@
+   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
+   <link rel="stylesheet" href="../catalog.css?v=0870b18a">
+   <link rel="stylesheet" href="../product.css?v=6f1c826e">
+-  <link rel="stylesheet" href="../lead.css?v=0de0682f">
++  <link rel="stylesheet" href="../lead.css?v=9f4ffef1">
+   <link rel="stylesheet" href="../cart.css?v=dbf0bfa0">
+   <link rel="stylesheet" href="../desktop.css?v=9ebabe34">
+   <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
 @@ -82,12 +82,13 @@
          <input name="material" type="hidden" value="vozvrat-ks">
          <input name="source" type="hidden" value="site-vozvrat-ks">

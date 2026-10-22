@@ -13,6 +13,12 @@ const ROOT=path.resolve(__dirname,'../..'),BEFORE=process.env.ROUTE_BEFORE,rows=
    await page.goto(`http://127.0.0.1:${port}/`);geometry.push(await page.evaluate(()=>['.hero','#home-title','.hero-actions','.stage-solutions','#situations'].map(s=>{const el=document.querySelector(s),r=el.getBoundingClientRect(),c=getComputedStyle(el);return {s,x:r.x,y:r.y,width:r.width,height:r.height,font:c.font,color:c.color,background:c.background};})));
   }
   assert.deepEqual(geometry[0],geometry[1]);if(label==='desktop')assert.ok(geometry[1][4].y<850);rows.push({id:label==='desktop'?'H01':'H02',status:'PASS',label,geometry:geometry[1]});
+  for(const filename of fs.readdirSync(path.join(ROOT,'materialy'))){
+   if(!filename.endsWith('.html')||!fs.readFileSync(path.join(ROOT,'materialy',filename),'utf8').includes('id="lead-form"'))continue;
+   await page.goto('http://127.0.0.1:8094/materialy/'+filename);
+   const field=await page.locator('#lead-form [type=email]').evaluate(el=>({width:el.getBoundingClientRect().width,labelWidth:el.parentElement.getBoundingClientRect().width,height:el.getBoundingClientRect().height}));
+   assert.ok(field.width>=field.labelWidth-2);assert.ok(field.height>=44);rows.push({id:'FORM-STYLE-'+filename,label,status:'PASS',actual:field});
+  }
   for(const [sku,expected]of Object.entries(catalog)){
    await page.evaluate(()=>localStorage.removeItem('marzhavbetone-cart'));const filename=fs.readdirSync(path.join(ROOT,'products')).find(p=>p.startsWith(sku+'-'));await page.goto('http://127.0.0.1:8094/products/'+filename);await page.locator('.add-to-cart').first().click();
    const actual=await page.evaluate(()=>JSON.parse(localStorage.getItem('marzhavbetone-cart')));assert.deepEqual(actual,[expected]);await page.keyboard.press('Escape');await page.locator('.add-to-cart').first().click();assert.equal(await page.locator('#cart-count').innerText(),'1');

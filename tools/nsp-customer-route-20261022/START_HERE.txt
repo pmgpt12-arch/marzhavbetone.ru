@@ -1,7 +1,7 @@
 НСП — пользовательский маршрут, отдельная ветка fix/nsp-customer-route-20261022.
 
 1. Прочитать ROUTE_REPORT.md, ROUTE_RECEIPT.json, PUBLIC_FILES.json, PROTECTED_RECEIPT.json.
-2. База main c7e32ecc7ad5d8d4b0a3e425ccfe8eeccafe8433; исходный commit проверенной версии e7ae51361c16054ae2961ffd23946ca33d0d3c6d. Не смешивать с fix/nsp-product-guides-norms-20261021. Не переносить продуктовые документы и архивы.
+2. База main c7e32ecc7ad5d8d4b0a3e425ccfe8eeccafe8433; исходный commit проверенной версии 2bb7e3f00eda3682e6ac422206e9be985bee7c46. Не смешивать с fix/nsp-product-guides-norms-20261021. Не переносить продуктовые документы и архивы.
 3. P0 исправлены локально. Браузерные результаты BROWSER_RESULTS.json + REGRESSION_RESULTS.json; нативный локальный PHP NATIVE_PHP_RESULTS.json; DOM и screenshots before/after приложены.
 4. Самостоятельно ничего не публиковать и не сливать в main. Не запускать платежи, реальные письма или реальную выдачу. Не менять секреты/системные настройки.
 5. Остаток: форма PDF на главной (старый общий contact; изменение mobile home отдельно разрешить); реальные download_served/выдача и боевые цели Метрики требуют отдельной приёмки.
@@ -9,3 +9,5 @@
    Это сервер только для чтения на 127.0.0.1; PHP endpoint-ы заблокированы, app-script.php отдаёт точный app.js. Не вводить реальные контакты. Остановка Ctrl+C.
 7. Повторные browser tests: нужен Playwright и явный ROUTE_CHROMIUM; browser_tests.cjs запускает локальный сервер и блокирует внешнюю сеть/POST. Для нативного PHP указать ROUTE_PHP. Отдельный regression_tests.cjs требует ROUTE_BEFORE — изолированный checkout исходного main.
 8. Перед возможной публикацией заново проверить live SHA и main: этот отчёт не разрешает публикацию и не доказывает будущую неизменность сайта.
+
+9. Ветка существует локально. Push автоматически отклонён: требуется явное разрешение владельца на передачу исходников и доказательств в pmgpt12-arch/marzhavbetone.ru. Не обходить отклонение другим инструментом. Patch проверен git apply --check на чистой базе.

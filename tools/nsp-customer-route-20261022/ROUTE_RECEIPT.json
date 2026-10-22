@@ -4,7 +4,7 @@
   "repository": "pmgpt12-arch/marzhavbetone.ru",
   "branch": "fix/nsp-customer-route-20261022",
   "base": "c7e32ecc7ad5d8d4b0a3e425ccfe8eeccafe8433",
-  "source_commit": "e7ae51361c16054ae2961ffd23946ca33d0d3c6d",
+  "source_commit": "2bb7e3f00eda3682e6ac422206e9be985bee7c46",
   "live_equals_base_files": 16,
   "live_dom_cases": 12,
   "browser": {
@@ -12,15 +12,19 @@
     "pass": 62,
     "fail": 0,
     "js_errors": 0,
-    "supplementary_pass": 34,
+    "supplementary_pass": 54,
     "viewports": [
       "1366x850",
       "390x844"
     ],
     "diagnostic_max_questions": 8,
-    "diagnostic_leaves": 25
+    "diagnostic_leaves": 25,
+    "homepage_fullpage_pixels_equal": {
+      "desktop": true,
+      "mobile": true
+    }
   },
-  "public_files": 17,
+  "public_files": 18,
   "screenshots": 80,
   "dom_snapshots": 42,
   "native_php": {
@@ -78,6 +82,18 @@
       "id": "DEPLOY",
       "status": "NOT_AUTHORIZED",
       "reason": "Local staging only. No merge/publication."
+    },
+    {
+      "id": "REMOTE-PUSH",
+      "status": "AUTO_REVIEW_REJECTED",
+      "reason": "Explicit owner approval required for remote push; no retry or alternative upload attempted."
     }
-  ]
+  ],
+  "remote_branch": {
+    "status": "PUSH_BLOCKED_AUTO_REVIEW",
+    "attempted_action": "git push -u origin fix/nsp-customer-route-20261022",
+    "reason": "Reviewer requires explicit permission to transmit source and evidence to this GitHub repository",
+    "pushed": false
+  },
+  "patch_apply_check": "PASS_ON_CLEAN_BASE"
 }
