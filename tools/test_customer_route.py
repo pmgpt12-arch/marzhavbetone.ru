@@ -73,6 +73,7 @@ class RouteContracts(unittest.TestCase):
         text=(ROOT/'products/p3-shablony-ks2-ks3.html').read_text()
         self.assertIn('6 файлов DOCX, 2 таблицы XLSX, 2 файла PDF',text)
         self.assertIn('КС-6а',text)
+        self.assertNotIn('реестр сверки объёмов',text)
 
     def test_success_does_not_claim_order(self):
         text=(ROOT/'success.html').read_text()
