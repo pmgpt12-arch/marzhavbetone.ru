@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NATIVE_OPEN_EXPORT_AND_HEADER_REPAIR_ONLY",
+  "canonical_source_sha256": "0e3fd94bcb4023652d40de96c22890ef494f0d089d565b1ef6017374c19923fe",
+  "candidate_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+  "candidate_bytes": 20192,
+  "parent_v3_sha256": "f7bd3a6fc8cfbb9e478448b2d217c6c4e3b667a5548f421373a7816978e5874e",
+  "parent_corexml_sha256": "044d9aa899b2278c9fe6c525f4b54e3f8ea07d4b12d755a8df145741756ee8c2",
+  "zip_parts_changed": [
+    "docProps/core.xml",
+    "xl/worksheets/sheet1.xml",
+    "xl/worksheets/sheet2.xml",
+    "xl/worksheets/sheet3.xml",
+    "xl/worksheets/sheet4.xml"
+  ],
+  "formulas_preserved": 251,
+  "corrected_cells": {
+    "sheet1": [
+      "A47"
+    ],
+    "sheet2": [
+      "A48"
+    ],
+    "sheet3": [
+      "A15",
+      "A16",
+      "A17",
+      "A18",
+      "A19"
+    ]
+  },
+  "core_timestamp_replacements": 2,
+  "native_header_row_height": {
+    "sheet": "Пример заполнения",
+    "row": 15,
+    "before_pt": 38,
+    "after_pt": 54
+  },
+  "native_job_id": "p1-395-native-header-20261013-v1",
+  "native_report_sha256": "4e89ad0e0c4ba5349bf092564959f22988173405edf40c28c815f179ccd48f87",
+  "native_pdf_sha256": "c080a7f04c960fce60d5be0c2ff109088508ca03255a2085f9128406f6e76306",
+  "native_page_count": 5,
+  "native_page_format": "A4, mixed portrait/landscape",
+  "native_excel_version": "16.0",
+  "native_excel_build": "4324",
+  "page_review": {
+    "status": "PASS_HEADER_FIX_ONLY_WITH_OPEN_PAGINATION",
+    "renderer": "pdftoppm 130 dpi",
+    "pages": [
+      {
+        "page": 1,
+        "sha256": "888a5c287742aa9dc93569d32f80ab51283567e32398d7a58bf80560553e84d6",
+        "same_as_reviewed_parent": true
+      },
+      {
+        "page": 2,
+        "sha256": "613c3c237f0cdc96769193834e1ed66ddf516617a201036ea0c14b0e0d43be36",
+        "same_as_reviewed_parent": true
+      },
+      {
+        "page": 3,
+        "sha256": "01818faefef3f09f049044ee7867c0bd2e85a8587e18979bf83c516e625fdeff",
+        "same_as_reviewed_parent": true
+      },
+      {
+        "page": 4,
+        "sha256": "2231819215d00bf545047259e073cf464f0726782ddc3129d86abc5025fbaba5",
+        "same_as_reviewed_parent": true
+      },
+      {
+        "page": 5,
+        "sha256": "2f598bf09716576f97b91fb0cf5d5903ab5c3503fa310dab49c180c8ef47e073",
+        "same_as_reviewed_parent": false
+      }
+    ],
+    "page_5_review": "Entire updated page inspected: G15 heading fully visible; no new clipping, overlap or missing text",
+    "remaining_layout_note": "Calculation notes occupy page 3; pagination compactness remains open, not silently accepted"
+  },
+  "scope_exclusions": [
+    "native numeric scenarios",
+    "filled buyer scenario",
+    "normative/legal acceptance",
+    "independent buyer acceptance",
+    "G1-G8",
+    "canonical replacement",
+    "release/publication/delivery"
+  ],
+  "verified_utc": "2026-10-13T01:58:28.197133+00:00",
+  "production_modified": false
+}
