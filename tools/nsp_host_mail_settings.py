@@ -100,4 +100,67 @@ for directory in (HOME / 'passwd', HOME / 'etc/passwd', HOME / 'email/passwd'):
             result['project_mailbox_entries'].append({'path': safe(directory), 'site_old_mentioned': 'site@marzhavbetone.ru' in text, 'site_new_mentioned': 'site@nastoronepodryadchika.ru' in text})
         except OSError:
             pass
+def dkim_options(text):
+    result = {}
+    for line in text.splitlines():
+        match = re.match(r'^\s*(dkim_domain|dkim_selector|dkim_private_key|dkim_strict|dkim_canon)\s*=\s*(.*)', line)
+        if not match:
+            continue
+        name, value = match.groups()
+        row = {'configured': True}
+        if name == 'dkim_private_key':
+            row['uses_authenticated_sender_condition'] = 'authenticated' in value.lower()
+            row['uses_sender_domain'] = 'sender_address_domain' in value
+            row['private_value'] = 'NOT_DISCLOSED'
+        else:
+            row['value'] = safe(value[:1000])
+        result[name] = row
+    return result
+
+dkim = {'files': [], 'transport': None, 'private_keys_read': 0, 'writes': 0}
+def path_metadata(name):
+    row = {'path': name, 'readable': os.access(name, os.R_OK), 'writable': os.access(name, os.W_OK), 'executable': os.access(name, os.X_OK)}
+    try:
+        row['exists'] = Path(name).exists()
+    except OSError as exc:
+        row.update(exists=None, stat_error=type(exc).__name__)
+    return row
+
+for name in ('/etc/exim/exim.conf', '/etc/exim.conf', '/etc/exim4/exim4.conf', '/etc/exim4/exim4.conf.template'):
+    path = Path(name)
+    row = path_metadata(name)
+    if row['exists'] and row['readable']:
+        try:
+            with path.open() as stream:
+                row['dkim_options'] = dkim_options(stream.read(2_000_000))
+        except OSError as exc:
+            row['error'] = type(exc).__name__
+    dkim['files'].append(row)
+for binary in ('/usr/sbin/exim', '/usr/sbin/exim4'):
+    if not os.access(binary, os.X_OK):
+        continue
+    try:
+        proc = subprocess.run([binary, '-bP', 'transport', 'remote_smtp'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, timeout=8)
+        dkim['transport'] = {'exit': proc.returncode, 'dkim_options': dkim_options(proc.stdout), 'error': safe(proc.stderr[:500])}
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        dkim['transport'] = {'error': type(exc).__name__}
+    break
+dkim['panel_cli'] = [path_metadata(p) for p in ('/usr/local/mgr5/sbin/mgrctl', '/usr/local/mgr5/bin/core')]
+if os.access('/usr/local/mgr5/sbin/mgrctl', os.X_OK):
+    import xml.etree.ElementTree as ET
+    try:
+        proc = subprocess.run(['/usr/local/mgr5/sbin/mgrctl', '-m', 'ispmgr', '-o', 'xml', 'emaildomain'], input='', stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, timeout=8)
+        query = {'exit': proc.returncode, 'error': safe(proc.stderr[:500]), 'project_domains': []}
+        try:
+            root = ET.fromstring(proc.stdout)
+            query['errors'] = [{'type': e.get('type'), 'message': safe(e.findtext('msg') or '')} for e in root.iter('error')]
+            for elem in root.iter('elem'):
+                if elem.findtext('name') in DOMAINS:
+                    query['project_domains'].append({'name': elem.findtext('name'), 'dkim': elem.findtext('dkim'), 'dmarc': elem.findtext('dmarc'), 'available_fields': [e.tag for e in elem]})
+        except ET.ParseError:
+            query['response_format'] = 'NON_XML_NOT_DISCLOSED'
+        dkim['panel_readonly_query'] = query
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        dkim['panel_readonly_query'] = {'error': type(exc).__name__}
+result['dkim_signing_readonly'] = dkim
 print(json.dumps(result, ensure_ascii=False))

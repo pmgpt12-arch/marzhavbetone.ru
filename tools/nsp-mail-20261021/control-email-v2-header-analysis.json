@@ -1,0 +1,20 @@
+{
+  "source": "user-provided complete headers; hosting login and tracking value redacted in stored copy",
+  "message_id": "<nsp-control-new-from-20261022-v2@nastoronepodryadchika.ru>",
+  "subject": "НСП: проверка отправителя №2",
+  "from": "site@nastoronepodryadchika.ru",
+  "return_path": "site@nastoronepodryadchika.ru",
+  "recipient": "nastoronepodryadchika@yandex.ru",
+  "authentication_results": "mail-nwsmtp-mxfront-production-main-65; spf=pass (mail-nwsmtp-mxfront-production-main-65: domain of nastoronepodryadchika.ru designates 37.140.192.133 as permitted sender, rule=[a]) smtp.mail=site@nastoronepodryadchika.ru",
+  "spf": "PASS_AS_REPORTED_BY_YANDEX",
+  "dkim_signature_present": false,
+  "dkim_result": "NOT_REPORTED",
+  "dmarc_result": "NOT_REPORTED",
+  "from_return_path_match": true,
+  "sender_ip": "37.140.192.133",
+  "sender_host": "server116.hosting.reg.ru",
+  "exim_queue_id": "1xJhil-00000001Yen-41iv",
+  "x_yandex_spam": "4; not interpreted as a documented reason code",
+  "folder": "SPAM_AS_REPORTED_BY_RECIPIENT",
+  "spam_root_cause": "NOT_PROVEN; missing DKIM is a confirmed authentication gap"
+}

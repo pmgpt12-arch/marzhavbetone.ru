@@ -115,3 +115,18 @@ Run 39706588831 / job 119587947193 SUCCESS, audit commit 22ca3f424313e4f639161e4
 Причина классификации UNKNOWN. Наличие DNS SPF/default DKIM не доказывает результаты проверки конкретного письма. Нужны Authentication-Results, DKIM-Signature, Received, Return-Path из свойств полученного письма. Не добавлять и не заменять SPF/DKIM/DMARC вслепую и не считать отметку «Не спам» в одном ящике общей проверкой доставки клиентам. Третий контроль не отправлялся; Header From рабочих обработчиков пока прежний.
 
 Актуальные инструкции Яндекса просмотрены: свойства письма — https://yandex.ru/support/yandex-360/customers/mail/ru/web/letter/properties ; сообщение в Спаме — https://yandex.ru/support/yandex-360/customers/mail/ru/web/spam .
+
+
+## Разбор полученных заголовков и DKIM
+
+Владелец передал полный исходник письма v2. Факты: Message-ID совпадает; Яндекс сообщил `spf=pass` для site@nastoronepodryadchika.ru и IP 37.140.192.133 (правило a). From/Return-Path совпадают с site@nastoronepodryadchika.ru; доставка через server116.hosting.reg.ru, очередь Exim 1xJhil-00000001Yen-41iv. DKIM-Signature отсутствует; результаты DKIM и DMARC в Authentication-Results не приведены. Это не DKIM=fail: подписи в переданном письме нет. X-Yandex-Spam: 4 сохранён без недокументированной трактовки. Классификация в Спам подтверждена владельцем, её точная причина пока не доказана.
+
+Нормализованная копия исходника — control-email-v2-received-headers.txt (логин хостинга и tracking value скрыты); машинный разбор — control-email-v2-header-analysis.json. Наличие TXT default DKIM в DNS в прежнем замере не подтверждает фактическую подпись исходящего сообщения.
+
+Read-only проверка 39708511828 / job 119594066396 SUCCESS: Exim remote_smtp содержит параметры DKIM, домен выбирается из envelope sender. Конфигурация Exim недоступна для чтения/изменения через SSH пользователя. Поддержка DKIM на уровне транспорта не доказывает наличие и правильность ключа конкретного домена. Закрытые ключи не читались, письма не отправлялись, записей на хостинге 0. Утилита панели mgrctl существует; запрос списка почтовых доменов без передачи credentials исчерпал timeout 8 секунд. Состояние флага DKIM нового домена через этот канал UNKNOWN; слепого повтора или увеличения timeout не было. Квитанция — dkim-signing-inspection-39708511828.json.
+
+Следующий шаг с панелью REG.RU: Почта → Почтовые домены → nastoronepodryadchika.ru → Изменить → проверить «Включить DKIM для домена». Если выключено — включить; если уже включено — исследовать привязку ключа и подпись local/PHP mail по показанным настройкам, не регенерировать ключи вслепую. Официальная инструкция: https://help.reg.ru/support/hosting/nastroyka-pochty-regru/nastroyka-pochty-i-pochtovykh-kliyentovv/kak-nastroit-dkim-i-dmarc-dlya-pochty-regru . Включение через панель в этой сессии не выполнено.
+
+Проверяемый DONE для подписи: новое письмо содержит DKIM-Signature с d=nastoronepodryadchika.ru, Яндекс сообщает dkim=pass; SPF остаётся pass и From/Return-Path согласованы. Доставка во Входящие проверяется отдельно. DNS и рабочие PHP не изменялись; реальных контрольных попыток остаётся 2.
+
+При первой проверке 39708223795 инспектор завершился на PermissionError в pathlib.is_file для закрытого системного каталога. Исправлен класс ошибки диагностики: запрет доступа к metadata отражается как exists=UNKNOWN/stat_error=PermissionError, а не считается отсутствием файла и не прерывает сбор независимых фактов. Следующие прогоны 39708356527 и 39708511828 PASS.

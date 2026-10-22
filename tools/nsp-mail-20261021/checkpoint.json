@@ -8,7 +8,7 @@
   "forms_status": "VERIFIED_DONE_RUNTIME_AND_SOURCE",
   "current_from": "site@marzhavbetone.ru",
   "target_from": "site@nastoronepodryadchika.ru",
-  "from_status": "V2_RECEIVED_IN_SPAM_AUTHENTICATION_REVIEW_OPEN",
+  "from_status": "SPF_PASS_DKIM_SIGNING_REVIEW_OPEN",
   "pdf_status": "REVIEW_OWNER_APPROVAL_REQUIRED",
   "dc_account": "nastorone",
   "dc_device": "ai-workstation",
@@ -31,7 +31,8 @@
     "hosting_mail_before": 39705389883,
     "hosting_envelope_apply": 39705632440,
     "hosting_envelope_readback": 39705798300,
-    "control_email_v2": 39706588831
+    "control_email_v2": 39706588831,
+    "dkim_readonly": 39708511828
   },
   "legacy_deploy": "FROZEN",
   "legacy_ci": "VERIFIED_PASS_39630689199",
@@ -51,5 +52,9 @@
   "control_mail_gate": "PASS_WRONG_CONFIG_AND_ENVELOPE_BLOCKED_BEFORE_MAIL",
   "updated_date": "2026-10-22",
   "control_email_v2_delivery": "CONFIRMED_BY_RECIPIENT",
-  "control_email_v2_folder": "SPAM"
+  "control_email_v2_folder": "SPAM",
+  "control_email_v2_spf": "PASS",
+  "control_email_v2_dkim": "SIGNATURE_ABSENT",
+  "dkim_panel_state": "UNKNOWN_PANEL_CLI_TIMEOUT_8S",
+  "dkim_next_step": "REG.RU panel: mail domain DKIM setting"
 }
