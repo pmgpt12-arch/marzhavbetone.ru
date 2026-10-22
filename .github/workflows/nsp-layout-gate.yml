@@ -22,6 +22,10 @@ jobs:
         env:
           NODE_PATH: /tmp/nsp-layout-deps/node_modules
           NSP_TEST_OUTPUT: /tmp/nsp-layout-evidence
+      - run: node tools/nsp-layout-v3-20261021/verify_compact.cjs after
+        env:
+          NODE_PATH: /tmp/nsp-layout-deps/node_modules
+          NSP_COMPACT_OUTPUT: /tmp/nsp-compact-evidence
       - run: node tools/nsp-ui-audit-20261021/verify_ui.cjs
         env:
           NODE_PATH: /tmp/nsp-layout-deps/node_modules
@@ -33,4 +37,5 @@ jobs:
           path: |
             /tmp/nsp-layout-evidence/
             /tmp/nsp-layout-regression/
+            /tmp/nsp-compact-evidence/
           retention-days: 30

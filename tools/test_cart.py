@@ -29,9 +29,31 @@ import subprocess
 import sys
 import time
 from pathlib import Path
+from check_desktop import retired_skus, archive_screen
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "products-config.php"
+
+
+def purchase_route(path: Path) -> tuple[str | None, str | None]:
+    """Only an explicit retired redirect can alias the original filename SKU."""
+    sku = path.name.split('-', 1)[0]
+    if sku not in retired_skus():
+        return sku, None
+    html = path.read_text()
+    refresh = re.search(r'<meta\s+http-equiv="refresh"\s+content="0;url=([^"<>]+)"', html)
+    if not refresh:
+        return None, None
+    target = refresh[1]
+    name = Path(target).name
+    target_sku = name.split('-', 1)[0]
+    if (target != '/products/' + name or target_sku in retired_skus()
+            or not re.fullmatch(r'[pt]\d+-[a-z0-9-]+\.html', name)
+            or not (ROOT / 'products' / name).is_file()
+            or 'name="robots" content="noindex,follow"' not in html
+            or f'rel="canonical" href="https://nastoronepodryadchika.ru{target}"' not in html):
+        raise ValueError(f'{path.name}: invalid retired product redirect')
+    return target_sku, target
 
 
 def catalog() -> dict[str, int]:
@@ -102,10 +124,22 @@ def main() -> int:
             page = browser.new_page(viewport={"width": 1366, "height": 900})
             for path in pages:
                 rel = path.relative_to(ROOT).as_posix()
+                try:
+                    expected, redirect = purchase_route(path)
+                except ValueError as error:
+                    bad.append(str(error))
+                    continue
                 page.goto(f"http://127.0.0.1:{port}/{rel}", wait_until="load")
+                if redirect:
+                    page.wait_for_url(f"**{redirect}", wait_until="load")
+                if expected is None:
+                    bad.extend(f"{rel}: {error}" for error in archive_screen(page, 900, path.name.split('-',1)[0]))
+                    if page.locator('main .add-to-cart').count():
+                        bad.append(f"{rel}: retired route has a purchase button")
+                    continue
                 page.evaluate("localStorage.clear()")
                 page.reload(wait_until="load")
-                button = page.locator(".product-hero .add-to-cart").first
+                button = page.locator("main .add-to-cart").first
                 if button.count() == 0:
                     bad.append(f"{rel}: кнопки покупки нет в первом экране")
                     continue
@@ -115,7 +149,6 @@ def main() -> int:
                 # цена сходилась с кассой — просто с ценой чужого товара.
                 # Имя файла здесь независимый свидетель: оно задано планом
                 # линейки и проверяется `check_products.py`.
-                expected = path.name.split("-", 1)[0]
                 if sku != expected:
                     bad.append(f"{rel}: кнопка продаёт {sku!r}, "
                                f"страница про {expected!r}")

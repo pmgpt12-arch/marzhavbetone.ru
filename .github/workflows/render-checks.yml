@@ -23,6 +23,12 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      checks:
+        description: Ограниченный повтор затронутой проверки
+        type: choice
+        default: all
+        options: [all, cart, attribution]
 
 jobs:
   render:
@@ -40,9 +46,14 @@ jobs:
       # Хромиум ставится вместе с playwright: без него обе проверки
       # отвечают кодом 2 «не запускалась», а не «прошла».
       - name: Поставить playwright с хромиумом
+        id: browser
         run: |
           python3 -m pip install --quiet playwright
           python3 -m playwright install --with-deps chromium
+
+      - name: Контракт браузерной проверки
+        if: ${{ !cancelled() && steps.browser.conclusion == 'success' }}
+        run: python3 tools/test_desktop_contract.py
 
       # Карта сайта и фид собираются при выкладке, а проверки на них
       # смотрят. Без сборки здесь они мерят вчерашний артефакт.
@@ -52,9 +63,11 @@ jobs:
           python3 tools/build_rss.py --write
 
       - name: Телефон — 390px
+        if: ${{ !cancelled() && steps.browser.conclusion == 'success' && (github.event_name != 'workflow_dispatch' || inputs.checks == 'all') }}
         run: python3 tools/check_mobile.py
 
       - name: Десктоп — 1366, 1440, 1600, 1920
+        if: ${{ !cancelled() && steps.browser.conclusion == 'success' && (github.event_name != 'workflow_dispatch' || inputs.checks == 'all') }}
         run: python3 tools/check_desktop.py
 
       # Корзина проверяется кликом, а не чтением разметки: связь страницы
@@ -63,6 +76,7 @@ jobs:
       # PHP — `app.js` подключён через `app-script.php`, и без PHP браузер
       # получил бы исходник вместо кода.
       - name: Корзина — sku и цена
+        if: ${{ !cancelled() && steps.browser.conclusion == 'success' && (github.event_name != 'workflow_dispatch' || inputs.checks == 'all' || inputs.checks == 'cart') }}
         run: python3 tools/test_cart.py
 
       # Атрибуция проверяется тем же способом и по той же причине: метку
@@ -70,4 +84,5 @@ jobs:
       # любом обнуляет ответ на вопрос, какой канал принёс деньги. Покупка
       # не совершается — заказ не создаётся, счётчик подменён заглушкой.
       - name: Атрибуция — от метки канала до цели purchase
+        if: ${{ !cancelled() && steps.browser.conclusion == 'success' && (github.event_name != 'workflow_dispatch' || inputs.checks == 'all' || inputs.checks == 'attribution') }}
         run: python3 tools/test_attribution_chain.py

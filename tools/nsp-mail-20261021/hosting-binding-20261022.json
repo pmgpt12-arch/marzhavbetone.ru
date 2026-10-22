@@ -1,0 +1,27 @@
+{
+  "status": "LIVE_DNS_AND_HTTPS_PASS",
+  "source": "ai-workstation read-only lookup, process 2839301",
+  "observed": {
+    "root_ipv4": [
+      "37.140.192.133"
+    ],
+    "www_ipv4": [
+      "37.140.192.133"
+    ],
+    "server116_ipv4": [
+      "37.140.192.133"
+    ],
+    "https_status": 200,
+    "final_url": "https://nastoronepodryadchika.ru/"
+  },
+  "user_screenshots": {
+    "reg_service_card": "Домен не настроен для этого хостинга",
+    "earlier_other_host_ip": "31.31.196.75",
+    "mail_panel_host": "server116.hosting.reg.ru",
+    "empty_mailbox_list_does_not_establish_mail_domain_absence": true
+  },
+  "conclusion": "Live website DNS and HTTPS point to server116; control-panel warning reason not established. Do not infer DNS failure from the warning alone.",
+  "next_step": "Inspect mail domains on server116 and configure new-domain DKIM signing; this is separate from website binding.",
+  "writes_to_host": 0,
+  "mail_attempts": 0
+}

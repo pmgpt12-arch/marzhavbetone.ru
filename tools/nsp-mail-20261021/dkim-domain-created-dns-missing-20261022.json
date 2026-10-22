@@ -1,0 +1,42 @@
+{
+  "status": "DKIM_ENABLED_IN_PANEL_PUBLIC_TXT_MISSING",
+  "panel": {
+    "host": "server116.hosting.reg.ru",
+    "ip": "37.140.192.133",
+    "domain": "nastoronepodryadchika.ru",
+    "dkim_enabled_confirmation": "Observed in user screenshot notification",
+    "selector": "dkim",
+    "mailbox_creation": "FORM_OPEN_NOT_YET_CONFIRMED"
+  },
+  "public_dns": {
+    "nameservers": [
+      "ns1.hosting.reg.ru",
+      "ns2.hosting.reg.ru"
+    ],
+    "queried_name": "dkim._domainkey.nastoronepodryadchika.ru",
+    "query_type": "TXT",
+    "authoritative_responses": [
+      {
+        "server": "ns1.hosting.reg.ru",
+        "rcode": "NXDOMAIN",
+        "aa": true
+      },
+      {
+        "server": "ns2.hosting.reg.ru",
+        "rcode": "NXDOMAIN",
+        "aa": true
+      }
+    ],
+    "soa_mname": "server39.hosting.reg.ru",
+    "soa_serial": "2026101505",
+    "negative_ttl": 3600
+  },
+  "evidence_processes": [
+    2907203,
+    2907686
+  ],
+  "next_step": "Obtain the full public TXT value from Expand in the panel notification and add exactly dkim._domainkey to the active DNS zone; verify authoritative answers before another mail test.",
+  "site_dns_reset": "NOT_REQUIRED",
+  "mail_attempts": 0,
+  "writes_to_host": 0
+}

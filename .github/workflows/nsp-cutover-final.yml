@@ -1,7 +1,7 @@
 name: NSP final targeted corrections
 on:
   push:
-    branches: [fix/nsp-cutover-final-20261021, fix/nsp-dzen-20261021, fix/nsp-audit-ui-20261021, fix/nsp-free-checklist-20261021, fix/nsp-free-downloads-20261021, fix/nsp-layout-v3-20261021]
+    branches: [fix/nsp-cutover-final-20261021, fix/nsp-dzen-20261021, fix/nsp-audit-ui-20261021, fix/nsp-free-checklist-20261021, fix/nsp-free-downloads-20261021, fix/nsp-layout-v3-20261021, fix/nsp-stage-links-20261022, fix/nsp-inner-background-20261022]
     paths: [tools/nsp-final/request.json]
 permissions:
   contents: write
@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   targeted:
-    if: github.ref_name == 'fix/nsp-cutover-final-20261021' || github.ref_name == 'fix/nsp-dzen-20261021' || github.ref_name == 'fix/nsp-audit-ui-20261021' || github.ref_name == 'fix/nsp-free-checklist-20261021' || github.ref_name == 'fix/nsp-free-downloads-20261021' || github.ref_name == 'fix/nsp-layout-v3-20261021'
+    if: github.ref_name == 'fix/nsp-cutover-final-20261021' || github.ref_name == 'fix/nsp-dzen-20261021' || github.ref_name == 'fix/nsp-audit-ui-20261021' || github.ref_name == 'fix/nsp-free-checklist-20261021' || github.ref_name == 'fix/nsp-free-downloads-20261021' || github.ref_name == 'fix/nsp-layout-v3-20261021' || github.ref_name == 'fix/nsp-stage-links-20261022' || github.ref_name == 'fix/nsp-inner-background-20261022'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -93,9 +93,38 @@ jobs:
       - name: Install bounded public PDF validation dependency
         if: (env.NSP_ACTION == 'dry-run' || env.NSP_ACTION == 'publish') && (github.ref_name == 'fix/nsp-free-checklist-20261021' || github.ref_name == 'fix/nsp-free-downloads-20261021')
         run: python3 -m pip install --disable-pip-version-check --timeout 20 --retries 0 pypdf==6.10.0 lxml==6.0.2
+      - name: Check stage links and unchanged appearance before release
+        if: github.ref_name == 'fix/nsp-stage-links-20261022'
+        run: |
+          npm install --prefix /tmp/nsp-stage-deps --no-audit --no-fund playwright@1.64.1
+          NODE_PATH=/tmp/nsp-stage-deps/node_modules timeout 120s node tools/nsp-stage-links-20261022/verify.cjs
+      - name: Prepare and preserve interior background release source
+        if: github.ref_name == 'fix/nsp-inner-background-20261022'
+        run: |
+          python3 tools/nsp-inner-background-20261022/prepare.py
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -- '*.html' brand-approved-2026.css tools/nsp-final/manifest.json tools/nsp-final/static-before.json tools/nsp-inner-background-20261022/pages.json tools/nsp-inner-background-20261022/build.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Preserve generated interior background source and versioned stylesheet links [skip deploy]'
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+          npm install --prefix /tmp/nsp-background-deps --no-audit --no-fund playwright@1.64.1
+          NODE_PATH=/tmp/nsp-background-deps/node_modules timeout 150s node tools/nsp-inner-background-20261022/verify.cjs
       - name: Targeted dry-run or publication
         if: env.NSP_ACTION == 'dry-run' || env.NSP_ACTION == 'publish'
         run: python3 tools/nsp-final/release.py "$NSP_ACTION"
+      - name: Verify published interior backgrounds
+        if: env.NSP_ACTION == 'publish' && github.ref_name == 'fix/nsp-inner-background-20261022'
+        run: NODE_PATH=/tmp/nsp-background-deps/node_modules NSP_LIVE=1 timeout 150s node tools/nsp-inner-background-20261022/verify.cjs
+      - name: Check published stage links
+        if: env.NSP_ACTION == 'publish' && github.ref_name == 'fix/nsp-stage-links-20261022'
+        run: NODE_PATH=/tmp/nsp-stage-deps/node_modules NSP_LIVE=1 timeout 120s node tools/nsp-stage-links-20261022/verify.cjs
+      - name: Verify compact desktop and preserved mobile on actual production
+        if: env.NSP_ACTION == 'publish' && github.ref_name == 'fix/nsp-layout-v3-20261021'
+        run: |
+          npm install --prefix /tmp/nsp-compact-live-deps --no-audit --no-fund playwright@1.64.1
+          NODE_PATH=/tmp/nsp-compact-live-deps/node_modules NSP_LIVE=1 NSP_COMPACT_OUTPUT=/tmp/nsp-final-evidence/compact-live node tools/nsp-layout-v3-20261021/verify_compact.cjs after
       - uses: actions/upload-artifact@v4
         if: always()
         with:

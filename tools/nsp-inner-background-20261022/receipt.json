@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "owner_source": "NSP_background_documents.png attached in this conversation",
+  "scope": "Interior pages only; homepage excluded",
+  "pages": 87,
+  "public_files": 89,
+  "image_bytes": 38278,
+  "css_version": "129e847b",
+  "homepage_sha256": "e809e3f5263c32e092a5ec6cd63b81421abe6a752d906818b6e407953495a3e5",
+  "homepage": "BYTE_IDENTICAL",
+  "dry_run": {
+    "run": 39734428021,
+    "job": 119676695849,
+    "status": "SUCCESS"
+  },
+  "publication": {
+    "run": 39734679026,
+    "job": 119677487344,
+    "commit": "fa8b31d9a2d9a2bc085136b69bfbec903c494eae",
+    "status": "SUCCESS",
+    "https_exact_files": 89
+  },
+  "browser": {
+    "local": {
+      "interior_cases": 18,
+      "homepage_cases": 6,
+      "status": "PASS"
+    },
+    "production": {
+      "interior_cases": 18,
+      "homepage_cases": 6,
+      "status": "PASS"
+    },
+    "homepage_gate": "HTML byte-identical, body DOM geometry and computed appearance unchanged at six widths, zero new background requests",
+    "visual_review": [
+      "catalog desktop",
+      "free material mobile"
+    ],
+    "cart_surface": "OPAQUE_SOLID_UNCHANGED"
+  },
+  "protected": {
+    "php": "UNCHANGED",
+    "masters_count": 442,
+    "sku": 13,
+    "prices": "UNCHANGED",
+    "ttl": 3600
+  },
+  "artifact": {
+    "id": 12406444576,
+    "sha256": "673645869bd0b113aade620e88a8b78961c94ec6e8789511421b0945a942adb9"
+  },
+  "failed_preflight": {
+    "run": 39734063754,
+    "public_writes": 0,
+    "classification": "NONDETERMINISTIC_SCREENSHOT_BYTE_COMPARISON",
+    "recovery": "Replaced PNG-byte comparison with strict DOM geometry/computed appearance equality and retained fresh-page screenshots; source candidate unchanged"
+  },
+  "mail_work": "UNCHANGED"
+}

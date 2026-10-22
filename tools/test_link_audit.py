@@ -37,8 +37,8 @@ BROKEN = {
 # Ссылки, на которые проверка ругаться не должна: внешние, якоря, почта,
 # версии ассетов и выдача кассы, которой в репозитории нет по устройству.
 QUIET = [
-    '<a href="https://dzen.ru/marzhavbetone">Дзен</a>',
-    '<a href="mailto:marzhavbetone@yandex.ru">почта</a>',
+    '<a href="https://m.dzen.ru/nastoronepodryadchika">Дзен</a>',
+    '<a href="mailto:nastoronepodryadchika@yandex.ru">почта</a>',
     '<a href="tel:+70000000000">телефон</a>',
     '<a href="#catalog">каталог</a>',
     '<a href="/">главная</a>',
@@ -133,6 +133,24 @@ def test_generated_files_are_skipped_by_name_and_counted() -> None:
 def test_site_is_clean_today() -> None:
     """Состояние сайта, а не устройство проверки: падает — значит дефект внесён."""
     assert link_integrity() == []
+
+
+def test_current_domain_and_bad_canonicals_remain_checked() -> None:
+    """A domain migration must keep foreign and missing canonical targets red."""
+    assert SITE == 'https://nastoronepodryadchika.ru'
+    try:
+        write_probe('<a href="/">главная</a>')
+        original = PROBE.read_text(encoding='utf-8')
+        assert not [f for f in link_integrity() if '.link-audit-probe' in f]
+        for target in [
+            'https://marzhavbetone.ru/.link-audit-probe.html',
+            'https://example.invalid/.link-audit-probe.html',
+            SITE + '/.link-audit-missing-canonical.html',
+        ]:
+            PROBE.write_text(original.replace(SITE + '/.link-audit-probe.html',target),encoding='utf-8')
+            assert [f for f in link_integrity() if '.link-audit-probe' in f], target
+    finally:
+        PROBE.unlink(missing_ok=True)
 
 
 def main() -> int:

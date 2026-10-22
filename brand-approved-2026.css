@@ -442,3 +442,60 @@ body.home-v3 .topbar{flex-wrap:wrap}
 body.home-v3 .topbar .brand{min-width:0}
 body.home-v3 .topbar .brand span{overflow-wrap:anywhere}
 body.home-v3 .topbar nav{min-width:0;flex-wrap:wrap}
+
+/* 2026-10-21 owner addendum: compact desktop variant 2; phone CSS is unchanged. */
+.home-opening{display:contents}
+@media(min-width:1200px){
+ @font-face{font-family:"NSP Existing Plex";src:url("/assets/nsp-plex-sans-semibold.woff2") format("woff2");font-style:normal;font-weight:600;font-display:swap}
+ body.home-v3 .home-opening{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:64px;align-items:center;position:relative;isolation:isolate;padding:16px max(32px,calc((100% - 1280px)/2)) 12px;background:#F5F3ED}
+ body.home-v3 .hero{position:static;min-height:0;background:transparent;isolation:auto}
+ body.home-v3 .hero-art{inset:0;opacity:.45}
+ body.home-v3 .hero-art img{object-fit:cover;object-position:right center}
+ body.home-v3 .hero-copy{padding:0;max-width:none;margin:0}
+ body.home-v3 .hero h1{font-family:"NSP Existing Plex","IBM Plex Sans","Segoe UI",Arial,sans-serif;font-synthesis:none;font-size:48px;font-weight:600;line-height:1.1;letter-spacing:-.015em;max-width:640px}
+ body.home-v3 .hero .lead{font-size:18px;line-height:1.5;margin:20px 0 26px;max-width:600px}
+ body.home-v3 .hero-actions{gap:24px;align-items:center}
+ body.home-v3 .hero-actions .button{font-size:16px;min-height:52px;padding:14px 22px;gap:18px}
+ body.home-v3 .hero-actions .text-link{font-size:16px}
+ body.home-v3 main h2,body.home-v3 .section-head h2{font-family:"NSP Existing Plex","IBM Plex Sans","Segoe UI",Arial,sans-serif;font-synthesis:none;font-size:32px;font-weight:600;line-height:1.15;letter-spacing:-.01em}
+ body.home-v3 .stage-solutions{padding:0;background:transparent;min-width:0}
+ body.home-v3 .stage-solutions h2{font-size:28px;margin:0 0 10px}
+ body.home-v3 .stage-grid{grid-template-columns:1fr}
+ body.home-v3 .stage-grid article,body.home-v3 .stage-grid article:first-child,body.home-v3 .stage-grid article:last-child{position:relative;padding:10px 56px 10px 0;gap:20px;border:0;border-bottom:1px solid #D9D8D2;align-items:center}
+ body.home-v3 .stage-grid article:last-child{border-bottom:0}
+ body.home-v3 .stage-grid svg{width:36px;height:36px;flex-basis:36px}
+ body.home-v3 .stage-grid h3{font-family:"NSP Existing Plex","IBM Plex Sans","Segoe UI",Arial,sans-serif;font-synthesis:none;font-size:22px;font-weight:600;line-height:1.2;letter-spacing:0;margin:0 0 6px}
+ body.home-v3 .stage-grid p{font-size:16px;line-height:1.4;margin:0;max-width:none}
+ body.home-v3 .stage-grid .text-link{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:0;border:0;width:44px;height:44px;justify-content:center}
+ body.home-v3 .stage-grid .text-link::after{content:"→";font-size:24px;color:#806238}
+ body.home-v3 .stage-help{font-size:14px;gap:8px;margin:12px 0 0;padding-top:10px}
+ body.home-v3 .stage-help svg{width:24px;height:24px;flex-basis:24px}
+ body.home-v3 .stage-help a{font-size:14px;min-height:36px}
+ body.home-v3 #situations{padding:24px max(32px,calc((100% - 1280px)/2)) 40px}
+ body.home-v3 #situations .section-head{margin-bottom:16px}
+ body.home-v3 #situations .eyebrow{display:none}
+ body.home-v3 #situations h2{font-size:30px;margin:0}
+ body.home-v3 #situations .section-head .lead{font-size:16px;line-height:1.4;margin:8px 0 0;max-width:none}
+ body.home-v3 #situations .topic-grid h3{font-size:20px;line-height:1.2;margin:0 0 10px;letter-spacing:0}
+ body.home-v3 #situations .topic-grid article{padding-top:16px;padding-bottom:16px}
+ body.home-v3 #situations .topic-grid p{font-size:16px;line-height:1.4}
+}
+
+/* Owner-selected drawing/document background for interior pages only. */
+body.rebrand-approved:not(.home-v3){
+  background-color:#F7F6F2;
+  background-image:linear-gradient(180deg,transparent 55%,#F7F6F2 100%),url('/assets/nsp-background-documents.webp');
+  background-position:center 80px;
+  background-size:100% clamp(320px,66.667vw,1024px);
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+}
+body.rebrand-approved:not(.home-v3)::before{display:none}
+body.rebrand-approved:not(.home-v3) .sales-solutions{background-color:transparent}
+@media(max-width:700px){
+  body.rebrand-approved:not(.home-v3){
+    background-image:linear-gradient(180deg,rgba(247,246,242,.5),#F7F6F2),url('/assets/nsp-background-documents.webp');
+    background-position:center 70px;
+  }
+}
+@media print{body.rebrand-approved:not(.home-v3){background-image:none}}

@@ -1,0 +1,38 @@
+{
+  "status": "DKIM_DNS_PARTIALLY_PUBLISHED",
+  "domain": "nastoronepodryadchika.ru",
+  "record": "dkim._domainkey.nastoronepodryadchika.ru",
+  "expected_txt_sha256": "cb64f2d1d9a95c7747fa0f7202c66533998f93f25ea8436879c951f717ed08ce",
+  "evidence_processes": [
+    2923519,
+    2923605,
+    2924008
+  ],
+  "authoritative_servers": {
+    "ns1.hosting.reg.ru": {
+      "records": 1,
+      "exact_match": true
+    },
+    "ns2.hosting.reg.ru": {
+      "records": 0,
+      "exact_match": false,
+      "last_full_response": "NXDOMAIN"
+    }
+  },
+  "panel_evidence": {
+    "server116": "duplicate TXT exists",
+    "server39": "owner opened new-domain DNS zone and added supplied public key"
+  },
+  "classification": "DNS_ZONE_OWNERSHIP_AND_SECONDARY_SYNCHRONIZATION",
+  "rule": "Before editing DNS, verify selected domain and active zone; a panel record alone does not prove public publication.",
+  "acceptance_gate": [
+    "Both authoritative servers return exactly one TXT whose combined strings match expected SHA256",
+    "A new separately identified control message uses actual site PHP configuration and correct envelope",
+    "Received message contains DKIM-Signature for new domain and recipient reports dkim=pass",
+    "Record recipient folder; do not infer Inbox delivery from PHP mail acceptance"
+  ],
+  "automatic_retry": false,
+  "new_mail_attempts": 0,
+  "production_sender_switch": "NOT_APPLIED",
+  "next_step": "Recheck ns2 after synchronization; if persistent, inspect zone serials and REG zone publication without resetting records."
+}

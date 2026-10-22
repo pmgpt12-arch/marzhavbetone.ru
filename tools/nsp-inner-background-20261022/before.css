@@ -1,0 +1,482 @@
+/*
+ * "На стороне подрядчика" — owner-approved Engineer Premium UI, 2026-10-15.
+ * Scoped to rebrand-approved pages, preserving current production styling.
+ * Graphite #24292F | warm white #F7F6F2 | muted gold #B08D57 | steel #737C83.
+ * Do not touch checkout IDs, product prices, business logic or buyer files.
+ */
+body.rebrand-approved {
+  --paper:#F7F6F2;
+  --ink:#24292F;
+  --ink-soft:#4F5B65;
+  --concrete:#D9D8D2;
+  --orange:#B08D57; /* compatibility with existing component tokens */
+  --white:#fff;
+  --line:rgba(36,41,47,.16);
+  --brand-text-accent:#806238; /* readable small text on white */
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Sans","Segoe UI",Arial,sans-serif;
+}
+.rebrand-approved .topbar,
+.rebrand-approved .article-nav{
+  background:rgba(247,246,242,.97);
+  border-bottom:1px solid var(--line);
+  box-shadow:none;
+  padding-top:18px;padding-bottom:18px;
+}
+.rebrand-approved .brand{
+  max-width:245px;flex:0 1 auto;line-height:1.12;
+  font-size:16px;letter-spacing:-.015em;white-space:normal;
+}
+.rebrand-approved .brand-mark{display:none}
+.rebrand-approved .brand span:last-child{max-width:220px;overflow-wrap:normal}
+.rebrand-approved .topbar nav{gap:clamp(13px,2vw,28px)}
+.rebrand-approved .topbar nav a{font-size:14px;font-weight:650}
+.rebrand-approved .topbar a:hover,
+.rebrand-approved .article-nav a:hover{color:var(--brand-text-accent)}
+.rebrand-approved .button,
+.rebrand-approved button.button{
+  background:#24292F;color:#fff;
+  border:1px solid #24292F;border-radius:7px;
+  font-weight:700;box-shadow:none;
+  transition:background .15s ease,color .15s ease;
+}
+.rebrand-approved .button:hover,
+.rebrand-approved button.button:hover{background:#38414B;border-color:#38414B}
+.rebrand-approved .button:focus-visible,
+.rebrand-approved a:focus-visible,
+.rebrand-approved button:focus-visible{
+  outline:3px solid #B08D57;outline-offset:3px;
+}
+.rebrand-approved .eyebrow,
+.rebrand-approved .product-number,
+.rebrand-approved .case-label{
+  color:var(--brand-text-accent);letter-spacing:.08em;
+}
+.rebrand-approved .lead,
+.rebrand-approved .section p,
+.rebrand-approved .article-page>p{color:#4F5B65;line-height:1.55}
+.rebrand-approved .hero{min-height:0;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:stretch}
+.rebrand-approved .hero-copy{padding:clamp(44px,6vw,86px) clamp(22px,5vw,76px)}
+.rebrand-approved .hero h1{
+  color:var(--ink);
+  font-size:clamp(35px,4.2vw,64px);line-height:1.09;
+  letter-spacing:-.042em;max-width:740px;
+}
+.rebrand-approved .hero h1 em{color:var(--ink)}
+.rebrand-approved .hero .lead{font-size:clamp(16px,1.45vw,19px)}
+.rebrand-approved .hero-scheme{
+  min-height:0;background:#24292F;color:#F7F6F2;
+  padding:clamp(30px,4vw,60px);gap:18px;
+}
+.rebrand-approved .hero-scheme figcaption{
+  color:#D2B88B;background:transparent;box-shadow:none;
+  font-size:13px;letter-spacing:.08em;
+}
+.rebrand-approved .scheme li{border-color:rgba(255,255,255,.19)}
+.rebrand-approved .scheme li:first-child{border-color:rgba(255,255,255,.19)}
+.rebrand-approved .scheme b{color:#C9A96D}
+.rebrand-approved .scheme span{font-size:clamp(16px,1.35vw,20px);color:#F7F6F2}
+.rebrand-approved .scheme-money span,
+.rebrand-approved .scheme-money b{color:#D2B88B}
+.rebrand-approved .scheme-note{color:#D6D9DC}
+.rebrand-approved .hero-scheme .text-link{border-color:#D2B88B;color:#F7F6F2}
+.rebrand-approved .hero-scheme .text-link span{color:#D2B88B}
+.rebrand-approved .hero-actions{gap:20px;flex-wrap:wrap}
+.rebrand-approved .hero-facts{gap:32px;margin-top:38px}
+.rebrand-approved .section{padding-top:clamp(54px,6vw,86px);padding-bottom:clamp(54px,6vw,86px)}
+.rebrand-approved .section h2,
+.rebrand-approved .section-head h2{
+  font-size:clamp(29px,3.7vw,52px);line-height:1.1;letter-spacing:-.035em;
+}
+.rebrand-approved #situations{background:#EEECE6}
+.rebrand-approved #situations .topic-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;border:0;
+}
+.rebrand-approved #situations .topic-grid article,
+.rebrand-approved #situations .topic-grid article+article{
+  padding:22px 24px 25px;background:#fff;
+  border:1px solid #D9D8D2;border-radius:8px;
+  min-width:0;box-shadow:none;
+}
+.rebrand-approved #situations .topic-grid h3{
+  margin:12px 0 12px;font-size:clamp(20px,1.9vw,25px);
+  line-height:1.2;letter-spacing:-.023em;
+}
+.rebrand-approved #situations .topic-grid p{
+  font-size:14px;line-height:1.5;color:#4F5B65;
+}
+.rebrand-approved .product-card,
+.rebrand-approved .case-card,
+.rebrand-approved .showcase-card{
+  border:1px solid #D9D8D2;border-radius:9px;box-shadow:none;
+}
+.rebrand-approved .product-card{
+  background:#fff;color:#24292F;
+  padding:clamp(22px,2.6vw,34px);
+}
+.rebrand-approved .product-card.featured{background:#24292F;color:#F7F6F2;box-shadow:none}
+.rebrand-approved .product-card.featured p{color:#D5DADF}
+.rebrand-approved .product-card h3{
+  line-height:1.13;letter-spacing:-.03em;overflow-wrap:anywhere;
+}
+.rebrand-approved .product-documents li::marker{color:#B08D57}
+.rebrand-approved .product-card p,
+.rebrand-approved .product-group-note{color:#4F5B65}
+.rebrand-approved .product-card.featured>p{color:#D5DADF}
+.rebrand-approved .product-footer strong{font-size:20px}
+.rebrand-approved .product-group summary{border-color:#D9D8D2}
+.rebrand-approved .cart-panel{background:#F7F6F2}
+.rebrand-approved .contact-form{
+  background:#24292F;color:#fff;box-shadow:none;
+  border-radius:9px;
+}
+.rebrand-approved .contact-form input,
+.rebrand-approved .contact-form textarea,
+.rebrand-approved .contact-form select{
+  border-radius:6px;
+}
+.rebrand-approved .ticker,
+.rebrand-approved .sales-result,
+.rebrand-approved .channel-banner{
+  background:#24292F;color:#F7F6F2;
+}
+.rebrand-approved .ticker{animation:none}
+.rebrand-approved .sales-result .result-list b{color:#D2B88B}
+.rebrand-approved .social-dock .social-primary{background:#806238}
+.rebrand-approved .social-dock a:hover{background:#47515D}
+.rebrand-approved footer{border-top:1px solid var(--line)}
+.rebrand-approved .article-page h1{letter-spacing:-.04em;line-height:1.09}
+@media(max-width:1050px){
+  .rebrand-approved .topbar{gap:12px}
+  .rebrand-approved .hero{grid-template-columns:1fr}
+  .rebrand-approved .hero-copy{padding-bottom:42px}
+  .rebrand-approved #situations .topic-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .rebrand-approved .topbar{padding:13px 20px}
+  .rebrand-approved .brand{max-width:178px;font-size:14px}
+  .rebrand-approved .hero-copy{padding:40px 20px 30px}
+  .rebrand-approved .hero h1{font-size:clamp(33px,8.8vw,46px);line-height:1.11}
+  .rebrand-approved .hero .lead{font-size:16px;margin:18px 0 21px}
+  .rebrand-approved .hero-scheme{padding:28px 20px;gap:12px;min-height:0}
+  .rebrand-approved .scheme li{padding:12px 0}
+  .rebrand-approved .scheme span{font-size:17px}
+  .rebrand-approved .hero-actions{align-items:stretch}
+  .rebrand-approved .hero-actions .button{width:100%;text-align:center}
+  .rebrand-approved .section{padding:48px 20px}
+  .rebrand-approved #situations .topic-grid{grid-template-columns:1fr;gap:12px}
+  .rebrand-approved #situations .topic-grid article,
+  .rebrand-approved #situations .topic-grid article+article{padding:20px}
+  .rebrand-approved .product-card h3{font-size:clamp(22px,5.8vw,27px)}
+  .rebrand-approved .product-footer{gap:12px}
+  .rebrand-approved .product-footer .button{width:100%}
+  .rebrand-approved .sales-result{padding:42px 20px}
+}
+@media(prefers-reduced-motion:reduce){
+  .rebrand-approved *, .rebrand-approved *::before, .rebrand-approved *::after{
+    animation-duration:.01ms!important;transition-duration:.01ms!important;
+  }
+}
+
+/* Mobile header regression: preserve the brand instead of shrinking to 0px.
+ * Root cause: legacy nav/checkout button display overrides compete for flex
+ * width. The new brand must remain visible at 390px with cart and menu.
+ */
+@media(max-width:700px){
+  body.rebrand-approved .topbar{
+    justify-content:space-between;
+    gap:8px;
+    padding-left:16px;padding-right:16px;
+    min-width:0;
+  }
+  body.rebrand-approved .topbar .brand{
+    flex:0 0 158px;
+    width:158px;
+    min-width:158px;
+    max-width:158px;
+    font-size:13px;
+    line-height:1.12;
+  }
+  body.rebrand-approved .topbar .nav-cta{display:none!important}
+  body.rebrand-approved .topbar .cart-toggle{
+    display:inline-flex!important;
+    flex:0 0 auto;
+    width:auto;
+    margin-left:auto;
+    padding:9px 10px;
+    font-size:12px;
+    white-space:nowrap;
+  }
+  body.rebrand-approved .topbar .nav-toggle{
+    flex:0 0 44px;
+    min-width:44px;
+    width:44px;height:44px;
+    margin:0;padding:8px;
+  }
+}
+
+/* Legacy styles.css @max-width:600 intentionally hides the old brand text.
+ * The newly approved wordmark must remain visible on mobile. */
+@media(max-width:700px){
+  body.rebrand-approved .topbar .brand span:not(.brand-mark){
+    display:inline!important;
+    max-width:158px;
+    overflow-wrap:normal;
+  }
+}
+
+/* Prevent 2px page-wide overflow from the old catalog-jump margin:-22px
+ * inside a section with 20px approved mobile padding. Keep horizontal
+ * scrolling of category chips within the navigation strip itself. */
+@media(max-width:600px){
+  body.rebrand-approved .catalog-jump{
+    margin-left:0;margin-right:0;
+    width:100%;max-width:100%;
+    padding-left:0;padding-right:0;
+  }
+}
+
+/* The legacy mobile topic strip used -22px margins, but approved sections
+ * have 20px padding. Keep chip scrolling inside its own full-width track. */
+@media(max-width:600px){
+  body.rebrand-approved .topic-filter{
+    margin-left:0;
+    margin-right:0;
+    width:100%;
+    max-width:100%;
+    padding-left:0;
+    padding-right:0;
+  }
+}
+
+/* R4: Responsive editorial index cards. Prevent min-content grid tracks from
+ * forcing the "Практика и решения" index beyond the viewport. */
+body.rebrand-approved .showcase-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+body.rebrand-approved .showcase-card{
+  min-width:0;
+}
+body.rebrand-approved .showcase-card h2{
+  overflow-wrap:anywhere;
+}
+@media (min-width:701px) and (max-width:1100px){
+  body.rebrand-approved .showcase-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media (max-width:700px){
+  body.rebrand-approved .showcase-grid{
+    grid-template-columns:minmax(0,1fr);
+  }
+}
+
+/* The index headline is longer and more descriptive than the former slogan;
+ * reduce headline dominance, keep the explanation close on small screens. */
+body.rebrand-approved .showcase-intro h1{
+  font-size:clamp(36px,5.5vw,72px);
+  line-height:1.06;
+  letter-spacing:-.042em;
+  text-wrap:balance;
+}
+@media(max-width:900px){
+  body.rebrand-approved .showcase-intro{
+    gap:24px;
+  }
+}
+
+/* Approved long navigation label: keep proper spacing at intermediate desktop widths. */
+@media (min-width:901px) and (max-width:1439px){
+  body.rebrand-approved .topbar nav{
+    gap:clamp(8px,1vw,16px);
+  }
+}
+
+/* NSP migration 20261020: section headings must not size article-card titles. */
+body.rebrand-approved .showcase-card h2{
+  font-size:clamp(22px,1.9vw,28px);
+  line-height:1.2;
+  letter-spacing:-.025em;
+  overflow-wrap:normal;
+  word-break:normal;
+}
+
+/* Audit 2026-10-21: contrast, intrinsic grid sizing and usable touch targets. */
+.rebrand-approved .brand{font-size:22px}
+.rebrand-approved .dark p,
+.rebrand-approved .case-card .case-tag,
+.rebrand-approved .case-card .case-facts dt,
+.rebrand-approved .case-card .case-error,
+.rebrand-approved .author-value p{color:#D5DADF}
+.rebrand-approved .dark .eyebrow,
+.rebrand-approved .case-card .case-label,
+.rebrand-approved .case-card .case-error span,
+.rebrand-approved .dark .material-card p{color:#D2B88B}
+.rebrand-approved .author-stage b{color:#806238}
+.rebrand-approved .contact-copy p{color:#414C56}
+.rebrand-approved .contact-form .fine{color:#D5DADF}
+.rebrand-approved .checklist{grid-template-columns:minmax(0,1fr) minmax(0,.72fr)}
+.rebrand-approved .checklist>*{min-width:0}
+.rebrand-approved .lead-form{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rebrand-approved .lead-form input{min-width:0;max-width:100%}
+.rebrand-approved .document{width:calc(100% - 24px);max-width:440px;margin-right:24px}
+.rebrand-approved footer a{display:inline-flex;align-items:center;min-height:32px;padding:5px 0}
+.rebrand-approved footer .socials{flex-wrap:wrap}
+.rebrand-approved .quick-choice{margin-top:20px;border-top:1px solid var(--line);padding-top:14px;max-width:580px;font-size:14px}
+.rebrand-approved .quick-choice summary{cursor:pointer;font-weight:700;padding:8px 0}
+.rebrand-approved .quick-choice ul{list-style:none;margin:8px 0 0;padding:0}
+.rebrand-approved .quick-choice a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;min-height:44px;padding:8px 0;border-bottom:1px solid var(--line)}
+.rebrand-approved .quick-choice strong{white-space:nowrap}
+.rebrand-approved .dresult h2,
+.rebrand-approved .dnext a,
+.rebrand-approved .calculator-result strong{color:#D2B88B}
+.rebrand-approved .dbar i{background:#B08D57}
+.rebrand-approved .dpromise,
+.rebrand-approved .calculator-cta{border-left-color:#B08D57}
+.rebrand-approved .dresult p,
+.rebrand-approved .calculator-result p{color:#D5DADF}
+/* Decoration stays in the outer page margin, clear of content. */
+body.rebrand-approved::before{content:"";position:fixed;left:0;top:120px;width:4vw;max-width:64px;height:calc(100vh - 140px);background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20110%20460%22%20fill%3D%22none%22%20stroke%3D%22%23806238%22%20stroke-width%3D%221.2%22%3E%3Cpath%20d%3D%22M62%2020v390M78%2020v390M48%20410h46M54%20422h34M62%2040l16%2024-16%2024%2016%2024-16%2024%2016%2024-16%2024%2016%2024-16%2024%2016%2024-16%2024%2016%2024-16%2024%2016%2024-16%2024%2016%2024M8%2082h94v12H8zM12%2082l50-52%2038%2052M12%2094l18-12%2018%2012%2018-12%2018%2012M23%2094v106m-5%200h10m-5%200v12m0%200c-10%2010%2012%2014%208%200M3%20442h100M3%20448v-12m100%2012v-12M42%2012h50M5%20240h20m-10-10v20M5%20264h20m-10-10v20%22%2F%3E%3C%2Fsvg%3E%0A") left center/contain no-repeat;opacity:.18;pointer-events:none;z-index:1}
+@media(max-width:1100px){
+  body.rebrand-approved::before{display:none}
+  .rebrand-approved .social-dock{position:static;inset:auto;transform:none;flex-direction:row;width:fit-content;max-width:calc(100% - 40px);margin:12px 20px 0 auto;padding:5px}
+  .rebrand-approved .social-dock a:hover{transform:none}
+}
+@media(max-width:900px){.rebrand-approved .checklist{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:700px){
+  body.rebrand-approved .topbar .brand{font-size:19px}
+  .rebrand-approved .document{transform:none;padding:28px 22px;box-shadow:12px 12px 0 var(--concrete);margin-right:12px;width:calc(100% - 12px)}
+  .rebrand-approved .document h3{font-size:clamp(26px,7vw,34px)}
+  .rebrand-approved .lead-form{grid-template-columns:minmax(0,1fr)}
+}
+.rebrand-approved .cases .eyebrow{color:#D2B88B}
+.rebrand-approved .cases .lead{color:#D5DADF}
+@media(max-width:700px){
+  .rebrand-approved .section h1{font-size:clamp(34px,9vw,48px);overflow-wrap:anywhere}
+}
+.rebrand-approved .price,
+.rebrand-approved .topbar .is-current,
+.rebrand-approved .article-nav .is-current,
+.rebrand-approved .solution-grid article>span{color:#806238}
+.rebrand-approved .breadcrumbs span{color:#4F5B65}
+.rebrand-approved .topic-grid article>span{color:#806238}
+@media(min-width:1101px){.rebrand-approved .topbar .cart-toggle{margin-left:10px}}
+
+/* Owner-selected homepage composition v3. Existing product and checkout styles stay shared. */
+body.home-v3{--paper:#F5F3ED;--ink:#252A2E;--ink-soft:#4F5B65;--orange:#A58B56}
+body.home-v3::before{display:none}
+body.home-v3 .topbar{min-height:86px;padding:16px max(32px,calc((100% - 1280px)/2));gap:28px;background:#F5F3ED;backdrop-filter:none}
+body.home-v3 .topbar .brand{flex:0 0 auto;max-width:none;font-size:24px;line-height:1.02;letter-spacing:-.035em}
+body.home-v3 .brand span:last-child{max-width:none}
+body.home-v3 .topbar nav{flex:1;justify-content:flex-start;gap:32px;margin-left:28px}
+body.home-v3 .topbar nav a{font-size:16px;font-weight:500}
+body.home-v3 .topbar nav .nav-secondary{display:none}
+body.home-v3 .topbar .cart-toggle{margin-left:auto;white-space:nowrap}
+body.home-v3 .social-dock{display:none}
+body.home-v3 .hero{position:relative;display:block;min-height:520px;isolation:isolate;background:#F5F3ED}
+body.home-v3 .hero-art{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+body.home-v3 .hero-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:right top;mix-blend-mode:multiply;opacity:.72}
+body.home-v3 .hero-copy{max-width:1408px;margin:0 auto;padding:86px 64px 70px;display:block}
+body.home-v3 .hero h1{max-width:790px;font-size:64px;line-height:1.08;font-weight:800;letter-spacing:-.045em;color:#252A2E}
+body.home-v3 .hero .lead{max-width:670px;font-size:20px;line-height:1.5;margin:26px 0 32px;color:#4F5B65}
+body.home-v3 .hero-actions{display:flex;gap:38px;margin:0;flex-wrap:wrap}
+body.home-v3 .hero-actions .button{font-size:18px;min-height:60px;padding:17px 26px;border-radius:4px;gap:24px}
+body.home-v3 .hero-actions .button span{color:#D2B88B;font-size:26px;line-height:1}
+body.home-v3 .hero-actions .text-link{font-size:18px;font-weight:500;border-color:#A58B56;min-height:44px;display:inline-flex;align-items:center}
+body.home-v3 .stage-solutions{background:#fff;padding:38px max(32px,calc((100% - 1280px)/2)) 24px}
+body.home-v3 .stage-solutions h2{font-size:38px;line-height:1.15;letter-spacing:-.035em;margin:0 0 32px}
+body.home-v3 .stage-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+body.home-v3 .stage-grid article{display:flex;gap:24px;padding:0 30px;min-width:0;border-right:1px solid #D9D8D2}
+body.home-v3 .stage-grid article:first-child{padding-left:0}
+body.home-v3 .stage-grid article:last-child{border:0;padding-right:0}
+body.home-v3 .stage-grid article>div{min-width:0}
+body.home-v3 .stage-grid svg,body.home-v3 .stage-help svg{width:48px;height:48px;flex:0 0 48px;color:#A58B56}
+body.home-v3 .stage-grid h3{font-size:24px;line-height:1.15;margin:6px 0 16px;letter-spacing:-.025em}
+body.home-v3 .stage-grid p{font-size:18px;line-height:1.4;margin:0 0 18px;color:#4F5B65;max-width:280px}
+body.home-v3 .stage-grid .text-link{font-size:17px;display:inline-flex;align-items:center;min-height:44px;border-color:#A58B56;font-weight:600}
+body.home-v3 .stage-help{display:flex;align-items:center;flex-wrap:wrap;gap:24px;margin:28px 0 0;padding-top:18px;border-top:1px solid #A58B56;font-size:17px}
+body.home-v3 .stage-help svg{width:36px;height:36px;flex-basis:36px}
+body.home-v3 .stage-help a{display:inline-flex;align-items:center;min-height:44px;border-color:#A58B56;font-weight:500}
+body.home-v3 :is(a,button):focus-visible{outline:3px solid #806238;outline-offset:4px}
+#selection-oplata{scroll-margin-top:110px}
+@media(min-width:1200px){body.home-v3 .topbar .nav-toggle{display:none}}
+@media(min-width:768px) and (max-width:1199px){body.home-v3 .hero h1{font-size:50px;max-width:620px}body.home-v3 .hero-copy{padding:72px 32px}body.home-v3 .hero .lead{max-width:570px}body.home-v3 .hero-art{left:15%;opacity:.65}}
+@media(max-width:1199px){
+ body.home-v3 .topbar{padding:16px 24px;gap:12px;flex-wrap:wrap;min-height:80px}
+ body.home-v3 .topbar nav{display:none;flex-basis:100%;order:4;margin:0;padding:12px 0 0}
+ body.home-v3 .topbar nav.is-open{display:flex;flex-direction:column;gap:0}
+ body.home-v3 .topbar nav a,body.home-v3 .topbar nav .nav-secondary{display:flex;align-items:center;min-height:44px;padding:12px 0;font-size:16px;border-bottom:1px solid var(--line)}
+ body.home-v3 .nav-toggle{display:inline-flex;margin:0;flex:0 0 44px}
+ body.home-v3 .topbar:not(:has(.nav-toggle))::after{content:"";display:block;width:44px;height:44px;margin:0;flex:0 0 44px}
+ body.home-v3 .stage-grid{grid-template-columns:1fr}
+ body.home-v3 .stage-grid article,body.home-v3 .stage-grid article:first-child,body.home-v3 .stage-grid article:last-child{border:0;border-bottom:1px solid #D9D8D2;padding:24px 0}
+ body.home-v3 .stage-grid p{max-width:none}
+ body.home-v3 .stage-solutions{padding:32px 24px 24px}
+}
+@media(max-width:767px){
+ body.home-v3 .topbar{min-height:76px;padding:14px 20px;gap:8px}
+ body.home-v3 .topbar .brand{font-size:19px;max-width:174px}
+ body.home-v3 .topbar .cart-toggle{padding:10px!important;min-width:44px;min-height:44px;font-size:12px!important}
+ body.home-v3 .hero{min-height:0}
+ body.home-v3 .hero-copy{padding:60px 24px 42px}
+ body.home-v3 .hero h1{font-size:40px;line-height:1.1;max-width:360px;letter-spacing:-.045em}
+ body.home-v3 .hero .lead{font-size:18px;line-height:1.5;margin:22px 0 28px;max-width:360px}
+ body.home-v3 .hero-art{left:24%;opacity:.38}
+ body.home-v3 .hero-art img{object-position:right top;opacity:.65}
+ body.home-v3 .hero-actions{display:flex;flex-direction:column;align-items:stretch;gap:20px}
+ body.home-v3 .hero-actions .button{font-size:17px;min-height:52px;padding:14px 18px;justify-content:space-between}
+ body.home-v3 .hero-actions .text-link{align-self:flex-start;font-size:18px}
+ body.home-v3 .stage-solutions h2{font-size:32px;line-height:1.15;margin-bottom:12px}
+ body.home-v3 .stage-grid article{gap:24px}
+ body.home-v3 .stage-grid h3{font-size:24px;margin-top:0}
+ body.home-v3 .stage-help{gap:16px;font-size:16px}
+ body.home-v3 .stage-help a{margin-left:0}
+}
+@media(max-width:374px){body.home-v3 .hero h1{font-size:38px}body.home-v3 .topbar .brand{font-size:18px}body.home-v3 .hero-copy{padding-top:48px}}
+@media(min-width:1200px){body.home-v3 .hero h1>span{display:block}}
+/* Long labels and enlarged text must reflow within their own components. */
+body.home-v3{overflow-wrap:anywhere}
+body.home-v3 .topbar{flex-wrap:wrap}
+body.home-v3 .topbar .brand{min-width:0}
+body.home-v3 .topbar .brand span{overflow-wrap:anywhere}
+body.home-v3 .topbar nav{min-width:0;flex-wrap:wrap}
+
+/* 2026-10-21 owner addendum: compact desktop variant 2; phone CSS is unchanged. */
+.home-opening{display:contents}
+@media(min-width:1200px){
+ @font-face{font-family:"NSP Existing Plex";src:url("/assets/nsp-plex-sans-semibold.woff2") format("woff2");font-style:normal;font-weight:600;font-display:swap}
+ body.home-v3 .home-opening{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:64px;align-items:center;position:relative;isolation:isolate;padding:16px max(32px,calc((100% - 1280px)/2)) 12px;background:#F5F3ED}
+ body.home-v3 .hero{position:static;min-height:0;background:transparent;isolation:auto}
+ body.home-v3 .hero-art{inset:0;opacity:.45}
+ body.home-v3 .hero-art img{object-fit:cover;object-position:right center}
+ body.home-v3 .hero-copy{padding:0;max-width:none;margin:0}
+ body.home-v3 .hero h1{font-family:"NSP Existing Plex","IBM Plex Sans","Segoe UI",Arial,sans-serif;font-synthesis:none;font-size:48px;font-weight:600;line-height:1.1;letter-spacing:-.015em;max-width:640px}
+ body.home-v3 .hero .lead{font-size:18px;line-height:1.5;margin:20px 0 26px;max-width:600px}
+ body.home-v3 .hero-actions{gap:24px;align-items:center}
+ body.home-v3 .hero-actions .button{font-size:16px;min-height:52px;padding:14px 22px;gap:18px}
+ body.home-v3 .hero-actions .text-link{font-size:16px}
+ body.home-v3 main h2,body.home-v3 .section-head h2{font-family:"NSP Existing Plex","IBM Plex Sans","Segoe UI",Arial,sans-serif;font-synthesis:none;font-size:32px;font-weight:600;line-height:1.15;letter-spacing:-.01em}
+ body.home-v3 .stage-solutions{padding:0;background:transparent;min-width:0}
+ body.home-v3 .stage-solutions h2{font-size:28px;margin:0 0 10px}
+ body.home-v3 .stage-grid{grid-template-columns:1fr}
+ body.home-v3 .stage-grid article,body.home-v3 .stage-grid article:first-child,body.home-v3 .stage-grid article:last-child{position:relative;padding:10px 56px 10px 0;gap:20px;border:0;border-bottom:1px solid #D9D8D2;align-items:center}
+ body.home-v3 .stage-grid article:last-child{border-bottom:0}
+ body.home-v3 .stage-grid svg{width:36px;height:36px;flex-basis:36px}
+ body.home-v3 .stage-grid h3{font-family:"NSP Existing Plex","IBM Plex Sans","Segoe UI",Arial,sans-serif;font-synthesis:none;font-size:22px;font-weight:600;line-height:1.2;letter-spacing:0;margin:0 0 6px}
+ body.home-v3 .stage-grid p{font-size:16px;line-height:1.4;margin:0;max-width:none}
+ body.home-v3 .stage-grid .text-link{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:0;border:0;width:44px;height:44px;justify-content:center}
+ body.home-v3 .stage-grid .text-link::after{content:"→";font-size:24px;color:#806238}
+ body.home-v3 .stage-help{font-size:14px;gap:8px;margin:12px 0 0;padding-top:10px}
+ body.home-v3 .stage-help svg{width:24px;height:24px;flex-basis:24px}
+ body.home-v3 .stage-help a{font-size:14px;min-height:36px}
+ body.home-v3 #situations{padding:24px max(32px,calc((100% - 1280px)/2)) 40px}
+ body.home-v3 #situations .section-head{margin-bottom:16px}
+ body.home-v3 #situations .eyebrow{display:none}
+ body.home-v3 #situations h2{font-size:30px;margin:0}
+ body.home-v3 #situations .section-head .lead{font-size:16px;line-height:1.4;margin:8px 0 0;max-width:none}
+ body.home-v3 #situations .topic-grid h3{font-size:20px;line-height:1.2;margin:0 0 10px;letter-spacing:0}
+ body.home-v3 #situations .topic-grid article{padding-top:16px;padding-bottom:16px}
+ body.home-v3 #situations .topic-grid p{font-size:16px;line-height:1.4}
+}

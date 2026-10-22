@@ -122,7 +122,7 @@ def main() -> int:
             if after.get("last", {}).get("source") != "telegram":
                 bad.append("последнее касание подменилось своим же переходом")
 
-            page.click(".product-hero .add-to-cart")
+            page.click("main .add-to-cart")
             page.wait_for_timeout(200)
             checkout = page.locator("#cart-checkout")
             if checkout.count():

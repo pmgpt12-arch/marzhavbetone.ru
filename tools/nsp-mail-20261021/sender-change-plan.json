@@ -1,0 +1,34 @@
+{
+  "status": "DRAFT_NOT_APPLIED",
+  "from_before": "site@marzhavbetone.ru",
+  "from_after": "site@nastoronepodryadchika.ru",
+  "files": [
+    {
+      "path": "contact.php",
+      "before_sha256": "f266b010b3a01201d7c2b51a34819f0d0a73136e299f86cee4523661c8a16373",
+      "after_sha256": "78c5fa978478e9f2eb1ac4f1988fc71898ab083433408636f57be0d4dfe97288",
+      "replacements": 1
+    },
+    {
+      "path": "lead.php",
+      "before_sha256": "9a37f0cd34efddddcbbc16ede01789ceea54fcefbd50395995c1e7115b046c8e",
+      "after_sha256": "44033788dffc232f8694074c6508f5c056834a3c05b0837b1ec0222771a0dcd9",
+      "replacements": 1
+    },
+    {
+      "path": "webhook.php",
+      "before_sha256": "c8d758c1234e47466b212dbe91ddd3466aa24b64f6d50ecd669a16bc6655cb2d",
+      "after_sha256": "239b4433934b59647315ae8728b582cdc83a34d01a0be7dc85f513c163dc60d5",
+      "replacements": 1
+    },
+    {
+      "path": "products-config.php",
+      "before_sha256": "10739a7aff2a98e676c1e15b3499c64ad82703d0d6a3c6650b3dab751ce70551",
+      "after_sha256": "2c04a7f0d021aa29272be2d9c09b7ba78dfc5f0ee4909320389fdf843c37dce6",
+      "replacements": 1
+    }
+  ],
+  "all_other_bytes": "must stay unchanged",
+  "activation": "after one explicitly authorized control email and delivery/header acceptance",
+  "real_messages_sent": 0
+}

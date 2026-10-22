@@ -25,6 +25,7 @@ import ast
 import hashlib
 import importlib.util
 import shutil
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -129,14 +130,24 @@ def test_карточка_платного_на_странице_материа�
 # --- Настоящее расхождение P5 -------------------------------------------------
 
 
-def test_расхождение_p5_обнаруживается(инструмент):
-    """P5 отдаёт 11 файлов; всякое «12 файлов» про него — устаревшее число."""
+def внести_расхождение_p5(корень, факт):
+    page = корень / "materialy" / "uderzhaniya.html"
+    text = page.read_text(encoding="utf-8")
+    cards = list(re.finditer(r'<article\b[^>]*>.*?</article>', text, re.S))
+    card = next(m for m in cards if 'products/p5-shtrafy-uderzhaniya.html' in m[0])
+    changed, count = re.subn(r'\d+ файлов', f"{факт + 1} файлов", card[0])
+    assert count == 1, "в карточке P5 должен быть один счёт файлов"
+    page.write_text(text[:card.start()] + changed + text[card.end():], encoding="utf-8")
+    return page
+
+
+def test_расхождение_p5_обнаруживается(копия, инструмент):
+    """Отрицательный сценарий не зависит от исторического числа файлов P5."""
     факт = инструмент.счёт()["p5"]
-    assert факт == 11, f"в выдаче P5 сейчас {факт} файлов, тест устарел"
-    итог = прогон(КОРЕНЬ, "--check")
-    названо = [s for s in итог.stdout.splitlines() if "p5: 12→11" in s]
-    assert названо or итог.returncode == 0, (
-        "проверка не называет расхождение P5 и при этом не зелёная")
+    внести_расхождение_p5(копия, факт)
+    итог = прогон(копия, "--check")
+    assert итог.returncode == 1
+    assert f"p5: {факт + 1}→{факт}" in итог.stdout
 
 
 # --- Изолированная копия: --write не трогает бесплатные страницы --------------
@@ -202,12 +213,8 @@ def test_write_в_копии_правит_расхождение_платног�
     """
     факт = инструмент.счёт()["p5"]
     устаревшее = факт + 1
-    страница = копия / "materialy" / "uderzhaniya.html"
-    текст = страница.read_text(encoding="utf-8")
+    страница = внести_расхождение_p5(копия, факт)
     карточка = f"{факт} файлов"
-    assert карточка in текст, "в копии нет карточки P5 — фикстура не та"
-    страница.write_text(текст.replace(карточка, f"{устаревшее} файлов"),
-                        encoding="utf-8")
 
     прогон(копия, "--write")
 
@@ -226,11 +233,7 @@ def test_после_правок_проверка_становится_зелё�
     инструмента, а момент времени.
     """
     факт = инструмент.счёт()["p5"]
-    страница = копия / "materialy" / "uderzhaniya.html"
-    текст = страница.read_text(encoding="utf-8")
-    assert f"{факт} файлов" in текст, "в копии нет карточки P5 — фикстура не та"
-    страница.write_text(текст.replace(f"{факт} файлов", f"{факт + 1} файлов"),
-                        encoding="utf-8")
+    страница = внести_расхождение_p5(копия, факт)
 
     первый = прогон(копия, "--check")
     assert первый.returncode == 1, "внесённое расхождение не замечено"

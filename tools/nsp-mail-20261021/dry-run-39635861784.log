@@ -1,0 +1,187 @@
+﻿2026-10-21T16:33:43.8084441Z Current runner version: '2.338.0'
+2026-10-21T16:33:43.8110362Z ##[group]Runner Image Provisioner
+2026-10-21T16:33:43.8111572Z Hosted Compute Agent
+2026-10-21T16:33:43.8112306Z Version: 20261015.610
+2026-10-21T16:33:43.8113155Z Commit: 267fdb4e8bbec4ab5ea31367f3a00d5c480c7656
+2026-10-21T16:33:43.8114064Z Build Date: 2026-10-14T17:06:54Z
+2026-10-21T16:33:43.8114934Z Worker ID: {2cdac191-454f-491d-8d9e-fac7239449e0}
+2026-10-21T16:33:43.8115810Z Region: centralus
+2026-10-21T16:33:43.8116513Z Cloud: Azure
+2026-10-21T16:33:43.8117206Z ##[endgroup]
+2026-10-21T16:33:43.8118760Z ##[group]Operating System
+2026-10-21T16:33:43.8119508Z Ubuntu
+2026-10-21T16:33:43.8120258Z 24.04.5
+2026-10-21T16:33:43.8120902Z LTS
+2026-10-21T16:33:43.8121525Z ##[endgroup]
+2026-10-21T16:33:43.8122178Z ##[group]Runner Image
+2026-10-21T16:33:43.8122915Z Image: ubuntu-24.04
+2026-10-21T16:33:43.8123620Z Version: 20261018.339.1
+2026-10-21T16:33:43.8125021Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261018.339/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-21T16:33:43.8126774Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261018.339
+2026-10-21T16:33:43.8127926Z ##[endgroup]
+2026-10-21T16:33:43.8129223Z ##[group]GITHUB_TOKEN Permissions
+2026-10-21T16:33:43.8131722Z Contents: write
+2026-10-21T16:33:43.8132475Z Metadata: read
+2026-10-21T16:33:43.8133125Z ##[endgroup]
+2026-10-21T16:33:43.8135331Z Secret source: Actions
+2026-10-21T16:33:43.8136380Z Cache mode: write
+2026-10-21T16:33:43.8137465Z Prepare workflow directory
+2026-10-21T16:33:43.8632470Z Prepare all required actions
+2026-10-21T16:33:43.8683176Z Getting action download info
+2026-10-21T16:33:44.1263928Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-21T16:33:44.2468409Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-21T16:33:44.4913037Z Complete job name: targeted
+2026-10-21T16:33:44.5603200Z ##[group]Run actions/checkout@v4
+2026-10-21T16:33:44.5604208Z with:
+2026-10-21T16:33:44.5604881Z   repository: pmgpt12-arch/marzhavbetone.ru
+2026-10-21T16:33:44.5609335Z   token: ***
+2026-10-21T16:33:44.5610130Z   ssh-strict: true
+2026-10-21T16:33:44.5610764Z   ssh-user: git
+2026-10-21T16:33:44.5611406Z   persist-credentials: true
+2026-10-21T16:33:44.5612082Z   clean: true
+2026-10-21T16:33:44.5612666Z   sparse-checkout-cone-mode: true
+2026-10-21T16:33:44.5613360Z   fetch-depth: 1
+2026-10-21T16:33:44.5613988Z   fetch-tags: false
+2026-10-21T16:33:44.5614599Z   show-progress: true
+2026-10-21T16:33:44.5615226Z   lfs: false
+2026-10-21T16:33:44.5615803Z   submodules: false
+2026-10-21T16:33:44.5616418Z   set-safe-directory: true
+2026-10-21T16:33:44.5617081Z   allow-unsafe-pr-checkout: false
+2026-10-21T16:33:44.5617965Z env:
+2026-10-21T16:33:44.5618572Z   HOST: ***
+2026-10-21T16:33:44.5619212Z   SSH_USER: ***
+2026-10-21T16:33:44.5622792Z   KEY: ***
+2026-10-21T16:33:44.5623402Z   PORT: 22
+2026-10-21T16:33:44.5624113Z ##[endgroup]
+2026-10-21T16:33:44.6614364Z Syncing repository: pmgpt12-arch/marzhavbetone.ru
+2026-10-21T16:33:44.6617786Z ##[group]Getting Git version info
+2026-10-21T16:33:44.6618805Z Working directory is '/home/runner/work/marzhavbetone.ru/marzhavbetone.ru'
+2026-10-21T16:33:44.6620926Z [command]/usr/bin/git version
+2026-10-21T16:33:44.6690175Z git version 2.55.0
+2026-10-21T16:33:44.6708979Z ##[endgroup]
+2026-10-21T16:33:44.6723573Z Temporarily overriding HOME='/home/runner/work/_temp/e950f6fa-cf06-491e-8970-40b145c47266' before making global git config changes
+2026-10-21T16:33:44.6725918Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-21T16:33:44.6731929Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/marzhavbetone.ru/marzhavbetone.ru
+2026-10-21T16:33:44.6789169Z Deleting the contents of '/home/runner/work/marzhavbetone.ru/marzhavbetone.ru'
+2026-10-21T16:33:44.6793684Z ##[group]Initializing the repository
+2026-10-21T16:33:44.6798888Z [command]/usr/bin/git init /home/runner/work/marzhavbetone.ru/marzhavbetone.ru
+2026-10-21T16:33:44.6885212Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-21T16:33:44.6886601Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-21T16:33:44.6887740Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-21T16:33:44.6888666Z hint: call:
+2026-10-21T16:33:44.6889288Z hint:
+2026-10-21T16:33:44.6890346Z hint: 	git config --global init.defaultBranch <name>
+2026-10-21T16:33:44.6891221Z hint:
+2026-10-21T16:33:44.6891968Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-21T16:33:44.6893167Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-21T16:33:44.6894061Z hint:
+2026-10-21T16:33:44.6894660Z hint: 	git branch -m <name>
+2026-10-21T16:33:44.6895302Z hint:
+2026-10-21T16:33:44.6896174Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-21T16:33:44.6902147Z Initialized empty Git repository in /home/runner/work/marzhavbetone.ru/marzhavbetone.ru/.git/
+2026-10-21T16:33:44.6913015Z [command]/usr/bin/git remote add origin https://github.com/pmgpt12-arch/marzhavbetone.ru
+2026-10-21T16:33:44.6960446Z ##[endgroup]
+2026-10-21T16:33:44.6961981Z ##[group]Disabling automatic garbage collection
+2026-10-21T16:33:44.6963993Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-21T16:33:44.6996140Z ##[endgroup]
+2026-10-21T16:33:44.6997404Z ##[group]Setting up auth
+2026-10-21T16:33:44.7003744Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-21T16:33:44.7033777Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-21T16:33:44.7487334Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-21T16:33:44.7525875Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-21T16:33:44.7724598Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-21T16:33:44.7760889Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-21T16:33:44.7965346Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-21T16:33:44.8007851Z ##[endgroup]
+2026-10-21T16:33:44.8009067Z ##[group]Fetching the repository
+2026-10-21T16:33:44.8018540Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +7db2b19b95772c591786efb3512d389c3fa9301a:refs/remotes/origin/fix/nsp-layout-v3-20261021
+2026-10-21T16:33:49.0936760Z From https://github.com/pmgpt12-arch/marzhavbetone.ru
+2026-10-21T16:33:49.0938992Z  * [new ref]         7db2b19b95772c591786efb3512d389c3fa9301a -> origin/fix/nsp-layout-v3-20261021
+2026-10-21T16:33:49.0944698Z ##[endgroup]
+2026-10-21T16:33:49.0946244Z ##[group]Determining the checkout info
+2026-10-21T16:33:49.0947778Z ##[endgroup]
+2026-10-21T16:33:49.0953861Z [command]/usr/bin/git sparse-checkout disable
+2026-10-21T16:33:49.1016477Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-21T16:33:49.1054702Z ##[group]Checking out the ref
+2026-10-21T16:33:49.1057621Z [command]/usr/bin/git checkout --progress --force -B fix/nsp-layout-v3-20261021 refs/remotes/origin/fix/nsp-layout-v3-20261021
+2026-10-21T16:33:49.6736413Z Switched to a new branch 'fix/nsp-layout-v3-20261021'
+2026-10-21T16:33:49.6739403Z branch 'fix/nsp-layout-v3-20261021' set up to track 'origin/fix/nsp-layout-v3-20261021'.
+2026-10-21T16:33:49.6768352Z ##[endgroup]
+2026-10-21T16:33:49.6814625Z [command]/usr/bin/git log -1 --format=%H
+2026-10-21T16:33:49.6843304Z 7db2b19b95772c591786efb3512d389c3fa9301a
+2026-10-21T16:33:49.7124584Z ##[group]Run set -euo pipefail
+2026-10-21T16:33:49.7126363Z [36;1mset -euo pipefail[0m
+2026-10-21T16:33:49.7131034Z [36;1maction=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","inspect-checklist","inspect-free-downloads","inspect-layout"]; print(x["action"])')[0m
+2026-10-21T16:33:49.7135853Z [36;1mecho "NSP_ACTION=$action" >> "$GITHUB_ENV"[0m
+2026-10-21T16:33:49.7137818Z [36;1mtest -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"[0m
+2026-10-21T16:33:49.7139815Z [36;1m[[ "$PORT" =~ ^[0-9]+$ ]][0m
+2026-10-21T16:33:49.7141335Z [36;1minstall -d -m 700 ~/.ssh[0m
+2026-10-21T16:33:49.7143008Z [36;1mprintf '%s\n' "$KEY" > ~/.ssh/nsp_final_key[0m
+2026-10-21T16:33:49.7144720Z [36;1mchmod 600 ~/.ssh/nsp_final_key[0m
+2026-10-21T16:33:49.7146979Z [36;1mtimeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null[0m
+2026-10-21T16:33:49.7150025Z [36;1mmkdir -p /tmp/nsp-final-evidence[0m
+2026-10-21T16:33:49.7287602Z shell: /usr/bin/bash -e {0}
+2026-10-21T16:33:49.7289178Z env:
+2026-10-21T16:33:49.7291022Z   HOST: ***
+2026-10-21T16:33:49.7292287Z   SSH_USER: ***
+2026-10-21T16:33:49.7300935Z   KEY: ***
+2026-10-21T16:33:49.7302144Z   PORT: 22
+2026-10-21T16:33:49.7303276Z ##[endgroup]
+2026-10-21T16:33:51.3922116Z ##[group]Run python3 tools/nsp-final/release.py "$NSP_ACTION"
+2026-10-21T16:33:51.3922833Z [36;1mpython3 tools/nsp-final/release.py "$NSP_ACTION"[0m
+2026-10-21T16:33:51.3963388Z shell: /usr/bin/bash -e {0}
+2026-10-21T16:33:51.3963906Z env:
+2026-10-21T16:33:51.3964613Z   HOST: ***
+2026-10-21T16:33:51.3965081Z   SSH_USER: ***
+2026-10-21T16:33:51.3967042Z   KEY: ***
+2026-10-21T16:33:51.3967469Z   PORT: 22
+2026-10-21T16:33:51.3967920Z   NSP_ACTION: dry-run
+2026-10-21T16:33:51.3968373Z ##[endgroup]
+2026-10-21T16:34:02.9208283Z {"status": "PASS", "static_files": 172, "changed_files": 1, "paid_sku": 13, "prices": "UNCHANGED", "buy_buttons_and_robots": "UNCHANGED", "groups": [4, 2, 4, 2, 1], "free_materials": 10, "dzen": "OWNER_CONFIRMED: https://m.dzen.ru/nastoronepodryadchika"}
+2026-10-21T16:34:02.9209972Z {"status":"PASS","mode":"dry-run","files":1,"sku":13,"masters_count":442,"runtime_paths_read":true,"writes_to_public":0}
+2026-10-21T16:34:02.9434567Z ##[group]Run actions/upload-artifact@v4
+2026-10-21T16:34:02.9435034Z with:
+2026-10-21T16:34:02.9435444Z   name: nsp-final-evidence-39635861784
+2026-10-21T16:34:02.9435961Z   path: /tmp/nsp-final-evidence/
+2026-10-21T16:34:02.9436409Z   retention-days: 30
+2026-10-21T16:34:02.9436813Z   if-no-files-found: warn
+2026-10-21T16:34:02.9437367Z   compression-level: 6
+2026-10-21T16:34:02.9437787Z   overwrite: false
+2026-10-21T16:34:02.9438210Z   include-hidden-files: false
+2026-10-21T16:34:02.9438582Z env:
+2026-10-21T16:34:02.9439113Z   HOST: ***
+2026-10-21T16:34:02.9439536Z   SSH_USER: ***
+2026-10-21T16:34:02.9441579Z   KEY: ***
+2026-10-21T16:34:02.9441944Z   PORT: 22
+2026-10-21T16:34:02.9442325Z   NSP_ACTION: dry-run
+2026-10-21T16:34:02.9442754Z ##[endgroup]
+2026-10-21T16:34:03.1127457Z (node:2357) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-21T16:34:03.1129120Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-21T16:34:03.1222203Z With the provided path, there will be 3 files uploaded
+2026-10-21T16:34:03.1223817Z Artifact name is valid!
+2026-10-21T16:34:03.1224878Z Root directory input is valid!
+2026-10-21T16:34:03.4168090Z Beginning upload of artifact content to blob storage
+2026-10-21T16:34:03.4370462Z (node:2357) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-21T16:34:03.6269495Z Uploaded bytes 792
+2026-10-21T16:34:03.6802917Z Finished uploading artifact content to blob storage!
+2026-10-21T16:34:03.6803950Z SHA256 digest of uploaded artifact zip is d6ae4fed0cf3b486b311fcc1d658f52ccb784ac75825f134883101e9930c2808
+2026-10-21T16:34:03.6805774Z Finalizing artifact upload
+2026-10-21T16:34:03.9587136Z Artifact nsp-final-evidence-39635861784.zip successfully finalized. Artifact ID 12361705847
+2026-10-21T16:34:03.9588252Z Artifact nsp-final-evidence-39635861784 has been successfully uploaded! Final size is 792 bytes. Artifact ID is 12361705847
+2026-10-21T16:34:03.9594732Z Artifact download URL: https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39635861784/artifacts/12361705847
+2026-10-21T16:34:03.9831059Z Post job cleanup.
+2026-10-21T16:34:04.0695721Z [command]/usr/bin/git version
+2026-10-21T16:34:04.0747986Z git version 2.55.0
+2026-10-21T16:34:04.0789925Z Temporarily overriding HOME='/home/runner/work/_temp/022075d9-0369-4b88-8eb6-6e71b2c2eb9e' before making global git config changes
+2026-10-21T16:34:04.0791389Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-21T16:34:04.0796611Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/marzhavbetone.ru/marzhavbetone.ru
+2026-10-21T16:34:04.0841217Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-21T16:34:04.0876903Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-21T16:34:04.1102993Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-21T16:34:04.1133385Z http.https://github.com/.extraheader
+2026-10-21T16:34:04.1147714Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-21T16:34:04.1187178Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-21T16:34:04.1465256Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-21T16:34:04.1502015Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-21T16:34:04.1915026Z Cleaning up orphan processes
+2026-10-21T16:34:04.2238180Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

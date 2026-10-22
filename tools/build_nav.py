@@ -41,13 +41,10 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def страницы() -> list[Path]:
-    out = []
-    for путь in sorted(ROOT.glob("**/*.html")):
-        rel = путь.relative_to(ROOT).as_posix()
-        if rel.startswith(ПРОПУСК_КАТАЛОГОВ) or путь.name in ПРОПУСК_ФАЙЛОВ:
-            continue
-        out.append(путь)
-    return out
+    # Та же граница публикации, что у проверки ссылок: архивные доказательства
+    # внутри tools/ не являются страницами сайта и никогда не перезаписываются.
+    from link_audit import site_html_files
+    return [p for p in site_html_files() if p.name not in ПРОПУСК_ФАЙЛОВ]
 
 
 def активный(rel: str, правила: list[dict]) -> str | None:
@@ -69,6 +66,8 @@ def нужна_корзина(rel: str, правила: list) -> bool:
 
 
 def собрать(данные: dict, rel: str, корзина: str | None) -> str:
+    if rel in данные.get("header_overrides", {}):
+        return данные["header_overrides"][rel].strip()
     brand = данные["brand"]
     текущий = активный(rel, данные.get("active", []))
 

@@ -1,0 +1,84 @@
+{
+  "status": "READ_ONLY_DIAGNOSTIC",
+  "mail_attempts": 0,
+  "public_writes": 0,
+  "sendmail_binary": "/usr/sbin/sendmail",
+  "sendmail_realpath": "/usr/sbin/exim",
+  "envelope_override_configured": false,
+  "marker_exists": true,
+  "logs": [
+    {
+      "path": "[HOME]/logs/mail.log",
+      "readable": false
+    },
+    {
+      "path": "[HOME]/logs/exim.log",
+      "readable": false
+    },
+    {
+      "path": "/var/log/mail.log",
+      "readable": false
+    },
+    {
+      "path": "/var/log/maillog",
+      "readable": false
+    },
+    {
+      "path": "/var/log/exim4/mainlog",
+      "readable": false
+    },
+    {
+      "path": "/var/log/exim/mainlog",
+      "readable": false
+    }
+  ],
+  "queue": {
+    "binary": "/usr/sbin/exim",
+    "exit": 1,
+    "matching_blocks": [],
+    "error": "exim:  permission denied; not admin",
+    "output_empty": true
+  },
+  "dns": {
+    "nastoronepodryadchika.ru": {
+      "mx": [
+        {
+          "priority": 20,
+          "host": "mx2.hosting.reg.ru"
+        },
+        {
+          "priority": 10,
+          "host": "mx1.hosting.reg.ru"
+        }
+      ],
+      "spf": [
+        "v=spf1 ip4:31.31.196.75 a mx include:_spf.hosting.reg.ru ~all"
+      ],
+      "dmarc": [],
+      "default_dkim_txt_present": true
+    },
+    "marzhavbetone.ru": {
+      "mx": [
+        {
+          "priority": 20,
+          "host": "mx2.hosting.reg.ru"
+        },
+        {
+          "priority": 10,
+          "host": "mx1.hosting.reg.ru"
+        }
+      ],
+      "spf": [
+        "v=spf1 ip4:37.140.192.133 a mx include:_spf.hosting.reg.ru ~all"
+      ],
+      "dmarc": [],
+      "default_dkim_txt_present": true
+    }
+  },
+  "protected_php": "UNCHANGED",
+  "run_id": 39695613264,
+  "job_id": 119552127660,
+  "recipient_report": "Пусто",
+  "actual_delivery": "NOT_RECEIVED_AS_REPORTED",
+  "root_cause": "UNKNOWN_HOST_MAIL_LOG_ACCESS_REQUIRED"
+}
