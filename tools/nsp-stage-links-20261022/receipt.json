@@ -1,0 +1,36 @@
+{
+  "status": "VERIFIED_DONE",
+  "scope": "Homepage stage titles and full rows clickable; existing destinations preserved",
+  "public_files": [
+    "index.html"
+  ],
+  "before_sha256": "00dc09ba367e7fd4a74d9447012ff221d32fc4bfed45ce0d505bd0f70bec5e2a",
+  "after_sha256": "e809e3f5263c32e092a5ec6cd63b81421abe6a752d906818b6e407953495a3e5",
+  "release_run": 39731993956,
+  "release_job": 119668903251,
+  "release_commit": "a012611690dba2d01faea38e63ff3c00820759b5",
+  "dry_run": 39731500232,
+  "local_browser": {
+    "status": "PASS",
+    "viewports": 6,
+    "click_checks": 90,
+    "appearance": "PIXEL_IDENTICAL"
+  },
+  "production_browser": {
+    "status": "PASS",
+    "viewports": 6,
+    "click_checks": 90
+  },
+  "https_bytes": "MATCH_CANDIDATE",
+  "protected_php": "UNCHANGED",
+  "masters_count": 442,
+  "sku": 13,
+  "prices": "UNCHANGED",
+  "ttl": 3600,
+  "artifact": {
+    "id": 12406195031,
+    "sha256": "ed7bc9bde34d4b6829e4c6277ef724734c4a762c0c60c5d2e9ba518f12af4e53"
+  },
+  "recovery_evidence": "screenshot-recovery.json",
+  "mail_work": "UNCHANGED"
+}
