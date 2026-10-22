@@ -1,0 +1,187 @@
+{
+  "sku": "P8",
+  "status": "FULL_PRODUCT_QA_CANDIDATE",
+  "source_head": "203b39a390c09157adcd6760aa04318df332bedc",
+  "steps": [
+    {
+      "files": [
+        "00",
+        "01"
+      ],
+      "result": "Read order, field mapping and evidence of delivery; Start gains source links, support, example and exception route"
+    },
+    {
+      "files": [
+        "02",
+        "03",
+        "04"
+      ],
+      "result": "Compare funding and guarantee cost; no recalculation/reopening of accepted unchanged workbooks"
+    },
+    {
+      "files": [
+        "05",
+        "06"
+      ],
+      "result": "Proposed terms need agreement; existing contract amendment is separated from negotiations"
+    },
+    {
+      "files": [
+        "07"
+      ],
+      "result": "Use only for agreed advance, satisfied payout condition and elapsed deadline"
+    },
+    {
+      "files": [
+        "08",
+        "09",
+        "10"
+      ],
+      "result": "Separate termination ground, documented work and payments; statement is not a court decision"
+    }
+  ],
+  "example": {
+    "unit": "million RUB",
+    "work": 4,
+    "advance": 3,
+    "additional_paid": 0.5,
+    "balance_due_to_contractor": 0.5,
+    "method": "Independent arithmetic illustration, not a new Excel acceptance"
+  },
+  "reused_word_native": [
+    {
+      "sku": "P8",
+      "file": "05-protokol-raznoglasiy-avansovye-punkty.docx",
+      "sha256": "37a909e5e08f47fcffe5e3ed130f385f05bd628cdad6910b19c7d5ecff3977ec",
+      "job": "r3-word-p8-1-20261018",
+      "tag": "p8-03",
+      "status": "PASS",
+      "fresh": false,
+      "pdf_sha256": "57b939d937032cdf872c9e9359251854634ad3992a1af6c7c94a3840a915e674",
+      "proof": "word-native/r3-word-p8-1-20261018",
+      "visual_review": "REUSED_PREVIOUS_REVIEW"
+    },
+    {
+      "sku": "P8",
+      "file": "03-razbor-chetyrekh-usloviy-avansa.docx",
+      "sha256": "3602cb07f9052c146a70aefbe591a5c0d2a3d4bbdfdd64a14db7ce521c55c57d",
+      "job": "r3-word-p8-1-20261018",
+      "tag": "p8-01",
+      "status": "PASS",
+      "fresh": false,
+      "pdf_sha256": "96c8cdd441ef58ef253277b696175f68a4b6a42d8bfcc12061bc6f16c85458cb",
+      "proof": "word-native/r3-word-p8-1-20261018",
+      "visual_review": "REUSED_PREVIOUS_REVIEW"
+    },
+    {
+      "sku": "P8",
+      "file": "01-slovar-poley-avans.docx",
+      "sha256": "aa9f9d54ac7d3e699a0ed007b1718d45877e89849d700e5b9e01b458f81c4160",
+      "job": "r3-word-p8-1-20261018",
+      "tag": "p8-00",
+      "status": "PASS",
+      "fresh": false,
+      "pdf_sha256": "f0741d1d316ec9d2a42ad3ed908eebaac30ce7cfddc17c8d7633a774baafb1d2",
+      "proof": "word-native/r3-word-p8-1-20261018",
+      "visual_review": "REUSED_PREVIOUS_REVIEW"
+    },
+    {
+      "sku": "P8",
+      "file": "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx",
+      "sha256": "c21fdf8cfcdf8b0e83283ace243c533ba79c12a8c89f05357683c831a21e4fee",
+      "job": "r3-word-p8-2-20261018",
+      "tag": "p8-04",
+      "status": "PASS",
+      "fresh": false,
+      "pdf_sha256": "d1b860eb7a518fb1e0b43f7f6da4843da802d03305ec91a55e2dd610df1c87b2",
+      "proof": "word-native/r3-word-p8-2-20261018",
+      "visual_review": "REUSED_PREVIOUS_REVIEW"
+    },
+    {
+      "sku": "P8",
+      "file": "04-algoritm-peregovorov-ob-avanse.docx",
+      "sha256": "c0292cc68cc84777a47fca0f31ccf70b828c85d95fd8ac759345875536696414",
+      "job": "r3g-word-p8-1-20261019",
+      "tag": "p8-0",
+      "status": "PASS",
+      "fresh": true,
+      "pdf_sha256": "fc634be0866b7215f656f0fb400e0284387d7e9098d85ce7c285cd3d35805de6",
+      "proof": "word-current-proofs.tar.xz:r3g-word-p8-1-20261019",
+      "visual_review": "PASS"
+    }
+  ],
+  "accepted_unchanged": [
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/02-kalkulyator-usloviy-avansa.xlsx",
+      "filename": "02-kalkulyator-usloviy-avansa.xlsx",
+      "accepted_sha256": "0ca0ab6e8bfd65733f9ec5dc6c8a9af394ee9a7dd80a953011a68ce318e3b45f",
+      "previous_sha256": "781f36e37f22ed428561f10b9cb9eebece39a32bcb2f4eb24800121a00400551",
+      "accepted_git_blob": "f91d920ef4c4cc4f606dcaa28dadd3806fe8ab03",
+      "previous_git_blob": "e601651bfde5678d2380d9424c0407d32ea7002f",
+      "bytes": 39683,
+      "acceptance": "OWNER_MANUAL_ACCEPTANCE_PASS",
+      "evidence_path": "tools/nsp-product-audit-fixes-20261021/p8-02-candidate/OWNER_ACCEPTANCE.json",
+      "source_commit": "111f12f45ff5bce98ffbd37391b9b637ae8a1ac8",
+      "main_observation": "KNOWN_PREVIOUS_VERSION"
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "filename": "07-trebovanie-o-vyplate-avansa.docx",
+      "accepted_sha256": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db",
+      "previous_sha256": "634e1194539436eecce1d748c275071ee15a3b5e20e8e78f0b73c8eb578b8201",
+      "accepted_git_blob": "a95e3599028eb2dd22631b0d88bd5bb24d78a9e0",
+      "previous_git_blob": "d9f54f11c4c2695a10193af138b6a4959eb54de4",
+      "bytes": 38549,
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "evidence_path": "tools/nsp-product-audit-fixes-20261021/native-word/acceptance.json",
+      "source_commit": "111f12f45ff5bce98ffbd37391b9b637ae8a1ac8",
+      "main_observation": "KNOWN_PREVIOUS_VERSION"
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "filename": "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "accepted_sha256": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1",
+      "previous_sha256": "52994b8f90bfcd9659d26c1cf967dc020a48abafbd19341da460134659581e14",
+      "accepted_git_blob": "dc48a951dbc05501cab90eebbca2d31561ff812b",
+      "previous_git_blob": "554fa3c8f74130c9aa3a7dc5da0d867bbed8e994",
+      "bytes": 39413,
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "evidence_path": "tools/nsp-product-audit-fixes-20261021/native-word/acceptance.json",
+      "source_commit": "111f12f45ff5bce98ffbd37391b9b637ae8a1ac8",
+      "main_observation": "KNOWN_PREVIOUS_VERSION"
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "filename": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "accepted_sha256": "33c5d803759a45e48690bcf9af593aa9f505cb8c19366131915e8fd4dc670732",
+      "previous_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+      "accepted_git_blob": "bf247787aa474a56f41145fa72f94fd16802fdf8",
+      "previous_git_blob": "63f3e13ff6df8ec2ce8b24eae67e72644054ee4d",
+      "bytes": 31749,
+      "acceptance": "OWNER_MANUAL_ACCEPTANCE_PASS",
+      "evidence_path": "tools/nsp-product-audit-fixes-20261021/p8-09-candidate/OWNER_ACCEPTANCE.json",
+      "source_commit": "111f12f45ff5bce98ffbd37391b9b637ae8a1ac8",
+      "main_observation": "KNOWN_PREVIOUS_VERSION"
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "filename": "10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "accepted_sha256": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f",
+      "previous_sha256": "fb9258f6b9517a84d4cde3b7162e4f8ac728d4af6916ed21359019934ed8ce9e",
+      "accepted_git_blob": "92c5644e575e11fc6c9164354bd53572380b3fcc",
+      "previous_git_blob": "f244ed7016d8266538dd683057b7ebebfd7213cb",
+      "bytes": 38649,
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "evidence_path": "tools/nsp-product-audit-fixes-20261021/native-word/acceptance.json",
+      "source_commit": "111f12f45ff5bce98ffbd37391b9b637ae8a1ac8",
+      "main_observation": "KNOWN_PREVIOUS_VERSION"
+    }
+  ],
+  "manual_recheck_requested": false,
+  "production_release": false
+}
