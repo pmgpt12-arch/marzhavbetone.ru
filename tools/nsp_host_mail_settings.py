@@ -3,6 +3,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 from pathlib import Path
 
 HOME = Path.home().resolve()
@@ -53,6 +54,27 @@ for pattern in ('php-bin*/php.ini', 'php-bin*/*/php.ini', 'php-bin*/*/php', 'php
     for path in HOME.glob(pattern):
         if path.is_file():
             paths.add(path)
+runtime = []
+for domain in DOMAINS:
+    wrapper = HOME / f'php-bin-regru-php83/{domain}/php'
+    if not wrapper.is_file():
+        continue
+    env = os.environ.copy()
+    for line in wrapper.read_text().splitlines():
+        if line.startswith(('PHPRC=', 'PHP_INI_SCAN_DIR=')):
+            key, value = line.split('=', 1)
+            env[key] = value.strip("'\"")
+    for key in ('PHPRC', 'PHP_INI_SCAN_DIR'):
+        for directory in env.get(key, '').split(':'):
+            if directory and Path(directory).is_dir():
+                paths.update(Path(directory).glob('*.ini'))
+    php = Path('/opt/php/8.3/bin/php')
+    code = "echo json_encode(['loaded_ini'=>php_ini_loaded_file(),'scanned_ini'=>php_ini_scanned_files(),'sendmail_path'=>ini_get('sendmail_path'),'forced_parameters'=>ini_get('mail.force_extra_parameters'),'mail_enabled'=>function_exists('mail')]);"
+    try:
+        proc = subprocess.run([str(php), '-r', code], env=env, capture_output=True, text=True, timeout=10)
+        runtime.append({'domain': domain, 'exit': proc.returncode, 'selected_config_values': safe(proc.stdout[:6000])})
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        runtime.append({'domain': domain, 'error': type(exc).__name__})
 for domain in DOMAINS:
     for relative in (f'www/{domain}/.user.ini', f'www/{domain}/php.ini', f'www/{domain}/.htaccess'):
         path = HOME / relative
@@ -69,7 +91,7 @@ for domain in DOMAINS:
         (f'email/{domain}/site', f'mail/{domain}/site', f'etc/{domain}', f'email/{domain}')}
 result = {'status': 'READ_ONLY_HOST_MAIL_SETTINGS', 'mail_attempts': 0, 'public_writes': 0,
           'configs': [inspect(p) for p in sorted(paths)][:50],
-          'mailbox_directory_hints_not_authoritative': mailboxes}
+          'mailbox_directory_hints_not_authoritative': mailboxes, 'wrapper_selected_php_config': runtime}
 result['project_mailbox_entries'] = []
 for directory in (HOME / 'passwd', HOME / 'etc/passwd', HOME / 'email/passwd'):
     if directory.is_file():
