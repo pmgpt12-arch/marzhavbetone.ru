@@ -1,0 +1,35 @@
+{
+  "php": "8.2.32 local extracted binary + mbstring; no system installation",
+  "results": [
+    {
+      "command": "php /workspace/scratch/47c4b49f6ebf/route-repo/tools/test_price_authority.php",
+      "exit": 0,
+      "stdout": "Цену назначает сервер: p1 — подделка цены, имени и несуществующий товар отвергнуты (эталон 2990000 коп.).\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 /workspace/scratch/47c4b49f6ebf/route-repo/tools/test_nsp_form_mail.py --handlers-only",
+      "exit": 0,
+      "stdout": "{\"status\": \"PASS\", \"handler_cases\": 16, \"transaction_cases\": 0, \"real_messages_sent\": 0, \"free_routes_verified\": 11, \"sender\": \"UNCHANGED\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": "Native PHP GET app-script.php?v=21",
+      "status": 200,
+      "body_sha256": "08d5b398445d5b83abcdc4d827b73b3a4e8109631c8fdfa43a997dbe81d38361",
+      "body_equals_app_js": true,
+      "headers": {
+        "Host": "127.0.0.1:32931",
+        "Date": "Thu, 22 Oct 2026 15:17:41 GMT",
+        "Connection": "close",
+        "X-Powered-By": "PHP/8.2.32",
+        "Content-Type": "application/javascript; charset=UTF-8",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
+      }
+    }
+  ],
+  "real_messages_sent": 0,
+  "real_orders_created": 0
+}

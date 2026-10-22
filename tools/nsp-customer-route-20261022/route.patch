@@ -1,0 +1,863 @@
+diff --git a/app.js b/app.js
+index 2ca704a..2adfa38 100644
+--- a/app.js
++++ b/app.js
+@@ -15,8 +15,12 @@ const formStatus = document.querySelector('#form-status');
+ // app.js — только на двадцати пяти, и статей среди них нет. Здесь остался
+ // вызов, чтобы места вызова целей ниже не переписывать. Запасная ветка нужна
+ // на случай, если attribution.js не загрузился: тогда цель просто не уйдёт.
+-function trackGoal(name) {
+-  if (typeof window.mvbTrackGoal === 'function') window.mvbTrackGoal(name);
++function trackGoal(name, params) {
++  if (params && typeof window.ym === 'function' && window.METRIKA_ID) {
++    window.ym(window.METRIKA_ID, 'reachGoal', name, params);
++    return;
++  }
++  if (typeof window.mvbTrackGoal === 'function') window.mvbTrackGoal(name, params);
+ }
+ // Клик по ссылке на Дзен считает attribution.js делегированием — здесь
+ // обработчика больше нет, иначе одно событие уходило бы дважды.
+@@ -29,29 +33,60 @@ const cartEmpty = document.querySelector('#cart-empty');
+ const cartTotal = document.querySelector('#cart-total');
+ const cartCount = document.querySelector('#cart-count');
+ const cartCheckout = document.querySelector('#cart-checkout');
++// route-catalog:begin (tools/sync_customer_route.py; products-config.php)
++const CART_CATALOG = {"p1":{"sku":"p1","name":"Система получения оплаты за выполненные работы","price":2990000},"p2":{"sku":"p2","name":"Система оформления и получения оплаты за дополнительные работы","price":2490000},"p3":{"sku":"p3","name":"Комплект «КС-2 без возврата: сдайте с первой попытки»","price":1790000},"p4":{"sku":"p4","name":"Система ведения, проверки и передачи исполнительной документации","price":2490000},"p5":{"sku":"p5","name":"Система защиты подрядчика от претензий, штрафов, удержаний и зачётов","price":2990000},"t2":{"sku":"t2","name":"Система документального подтверждения передачи исполнительной документации","price":990000},"t3":{"sku":"t3","name":"Система подготовки возражений на односторонний акт или списание в одностороннем порядке","price":1490000},"p7":{"sku":"p7","name":"Система проверки и согласования договора субподряда","price":2490000},"p8":{"sku":"p8","name":"Система управления авансами и расчётами по договору подряда","price":2490000},"p9":{"sku":"p9","name":"Система защиты требований подрядчика при банкротстве генподрядчика","price":2490000},"p10":{"sku":"p10","name":"Система подготовки ответа на претензию заказчика","price":1790000},"p11":{"sku":"p11","name":"Расчёты в неденежной форме: жилые и офисные помещения, машино-места","price":2490000},"p13":{"sku":"p13","name":"Система проверки сметной документации и выявления неоплачиваемых затрат","price":1790000}};
++// route-catalog:end
++function cartProduct(sku) {
++  return typeof sku === 'string' && Object.hasOwn(CART_CATALOG, sku) ? CART_CATALOG[sku] : null;
++}
+ let cart = [];
+-try { cart = JSON.parse(localStorage.getItem('marzhavbetone-cart') || '[]'); } catch (_) { cart = []; }
++let cartUpdated = false;
++try {
++  const saved = JSON.parse(localStorage.getItem('marzhavbetone-cart') || '[]');
++  for (const item of Array.isArray(saved) ? saved : []) {
++    const product = item && cartProduct(item.sku);
++    if (product && !cart.some(row => row.sku === product.sku)) cart.push({...product});
++  }
++  cartUpdated = JSON.stringify(saved) !== JSON.stringify(cart);
++} catch (_) { cart = []; }
++let cartOpener = null;
+ 
+ function money(value) { return new Intl.NumberFormat('ru-RU').format(value / 100) + '\u00a0₽'; }
+ function saveCart() { localStorage.setItem('marzhavbetone-cart', JSON.stringify(cart)); }
+ function openCart() {
++  cartOpener = document.activeElement;
+   cartPanel.hidden = false;
+   cartBackdrop.hidden = false;
+   if (cartToggle) cartToggle.setAttribute('aria-expanded', 'true');
++  cartPanel.setAttribute('role', 'dialog');
++  cartPanel.setAttribute('aria-modal', 'true');
++  cartPanel.setAttribute('aria-label', 'Корзина');
++  if (cartClose) cartClose.focus();
+ }
+ function closeCart() {
+   cartPanel.hidden = true;
+   cartBackdrop.hidden = true;
+   if (cartToggle) cartToggle.setAttribute('aria-expanded', 'false');
++  if (cartOpener?.isConnected) cartOpener.focus();
+ }
+ function renderCart() {
++  if (cartUpdated) {
++    let note = document.getElementById('cart-update-note');
++    if (!note) {
++      note = document.createElement('p'); note.id = 'cart-update-note';
++      note.setAttribute('role', 'status');
++      cartItems.before(note);
++    }
++    note.textContent = 'Сохранённая корзина обновлена по действующему каталогу. Проверьте состав и сумму.';
++    saveCart();
++  }
+   cartItems.replaceChildren();
+   cart.forEach(item => {
+     const row = document.createElement('li'); row.className = 'cart-item';
+     const name = document.createElement('strong'); name.textContent = item.name;
+     const price = document.createElement('span'); price.className = 'cart-item-price'; price.textContent = money(item.price);
+     const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'cart-remove'; remove.textContent = 'Удалить';
+-    remove.addEventListener('click', () => { cart = cart.filter(product => product.name !== item.name); saveCart(); renderCart(); });
++    remove.addEventListener('click', () => { cart = cart.filter(product => product.sku !== item.sku); saveCart(); renderCart(); cartClose?.focus(); });
+     row.append(name, price, remove); cartItems.append(row);
+   });
+   const total = cart.reduce((sum, item) => sum + item.price, 0);
+@@ -60,7 +95,7 @@ function renderCart() {
+   cartEmpty.hidden = cart.length > 0;
+   cartCheckout.disabled = cart.length === 0;
+   document.querySelectorAll('.add-to-cart').forEach(button => {
+-    const added = cart.some(item => item.name === button.dataset.product);
++    const added = cart.some(item => item.sku === button.dataset.sku);
+     button.classList.toggle('added', added);
+     button.textContent = added ? 'В корзине' : 'Добавить в корзину';
+   });
+@@ -76,10 +111,21 @@ const cartClose = document.querySelector('#cart-close');
+ if (cartToggle) cartToggle.addEventListener('click', openCart);
+ if (cartClose) cartClose.addEventListener('click', closeCart);
+ if (cartBackdrop) cartBackdrop.addEventListener('click', closeCart);
++if (cartPanel) cartPanel.addEventListener('keydown', event => {
++  if (event.key === 'Escape') { event.preventDefault(); closeCart(); }
++  if (event.key !== 'Tab') return;
++  const focusable = [...cartPanel.querySelectorAll('a[href],button,input')].filter(el => !el.disabled && el.getClientRects().length);
++  const first = focusable[0], last = focusable[focusable.length - 1];
++  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
++  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
++});
+ document.querySelectorAll('.add-to-cart').forEach(button => button.addEventListener('click', () => {
+-  if (!cart.some(item => item.name === button.dataset.product)) cart.push({ sku: button.dataset.sku || '', name: button.dataset.product, price: Number(button.dataset.price) });
++  const product = cartProduct(button.dataset.sku);
++  if (!product) return;
++  const exists = cart.some(item => item.sku === button.dataset.sku);
++  if (!exists) cart.push({...product});
+   saveCart(); renderCart(); openCart();
+-  trackGoal('add_to_cart');
++  if (!exists) trackGoal('add_to_cart');
+ }));
+ 
+ // ===================== ОПЛАТА ЧЕРЕЗ ЮКАССА =====================
+@@ -210,15 +256,36 @@ if (form) {
+ const leadForm = document.querySelector('#lead-form');
+ const leadStatus = document.querySelector('#lead-status');
+ if (leadForm) {
++  let leadPending = false;
+   leadForm.addEventListener('submit', async event => {
+     event.preventDefault();
++    if (leadPending || !leadForm.reportValidity()) return;
++    leadPending = true;
+     const button = leadForm.querySelector('button');
+     button.disabled = true;
++    const data = new FormData(leadForm);
++    // lead.php accepts one contact string. Keep its contract and retain the
++    // optional contact in that same field; no email sending is promised here.
++    const extra = String(data.get('additional_contact') || '').trim();
++    if (extra) data.set('contact', String(data.get('contact')).trim() + '; дополнительный контакт: ' + extra);
++    data.delete('additional_contact');
++    const attribution = typeof window.mvbAttribution === 'function' ? window.mvbAttribution() : {};
++    const context = {material: String(data.get('material') || 'checklist'), source: String(data.get('source') || 'site')};
++    for (const touch of ['first', 'last']) {
++      if (!attribution[touch]) continue;
++      context[touch] = {};
++      for (const key of ['source', 'medium', 'campaign', 'content']) {
++        if (attribution[touch][key]) context[touch][key] = String(attribution[touch][key]).slice(0, 200);
++      }
++    }
++    trackGoal('lead_submit', context);
+     leadStatus.textContent = 'Готовим ссылку…';
+     try {
+-      const response = await fetch(leadForm.action, { method: 'POST', body: new FormData(leadForm), headers: { Accept: 'application/json' } });
++      const response = await fetch(leadForm.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+       const result = await response.json();
+       if (!response.ok || !result.ok) throw new Error(result.message || 'Не удалось получить чек-лист');
++      const download = new URL(result.download, location.href);
++      if (download.origin !== location.origin || !download.pathname.startsWith('/downloads/')) throw new Error('Ссылка на материал не подтверждена. Повторите позже.');
+       // Второй строкой — один ненавязчивый переход по этой же ситуации.
+       // Адрес объявлен на самой форме (data-continue) и собирается из
+       // страницы набора: своей таблицы соответствий здесь не заводится.
+@@ -227,10 +294,14 @@ if (leadForm) {
+       const продолжение = дальше
+         ? `<p class="lead-continue"><a class="text-link" href="${дальше}">Разобраться, что делать дальше →</a></p>`
+         : '';
+-      leadStatus.innerHTML = `<p class="lead-ready">Материал готов.</p><a class="button" href="${result.download}" download>${result.label || 'Скачать материалы'}</a> <a class="text-link" href="https://t.me/nastoronepodryadchika" target="_blank">Разборы выходят в Telegram</a>${продолжение}`;
++      leadStatus.innerHTML = `<p class="lead-ready">Материал готов.</p><a class="button" data-download-link download></a> <a class="text-link" href="https://t.me/nastoronepodryadchika" target="_blank" rel="noopener">Разборы выходят в Telegram</a>${продолжение}`;
++      const link = leadStatus.querySelector('[data-download-link]');
++      link.href = download.href;
++      link.textContent = result.label || 'Скачать материалы';
++      link.addEventListener('click', () => trackGoal('download_click', context), {once: true});
+       leadForm.reset();
+-      trackGoal('checklist_download');
++      trackGoal('lead_ready', context);
+     } catch (error) { leadStatus.textContent = error.message; }
+-    finally { button.disabled = false; }
++    finally { button.disabled = false; leadPending = false; }
+   });
+ }
+diff --git a/diagnostika.html b/diagnostika.html
+index cc8c99a..2d64139 100644
+--- a/diagnostika.html
++++ b/diagnostika.html
+@@ -157,6 +157,34 @@
+               <button type="button" data-a="no" aria-pressed="false">Нет</button>
+             </div>
+           </fieldset>
++          <fieldset class="dq" data-q="procedure">
++            <legend>Какая судебная стадия подтверждена?</legend>
++            <p class="dq-hint">Проверьте определение суда в Картотеке арбитражных дел и сообщение в ЕФРСБ. Иски и исполнительные производства — признаки риска, но не судебная процедура.</p>
++            <div class="dopts dopts-list">
++              <button type="button" data-a="none" aria-pressed="false">Процедуры и принятого заявления нет</button>
++              <button type="button" data-a="accepted" aria-pressed="false">Заявление принято, процедура ещё не введена</button>
++              <button type="button" data-a="observation" aria-pressed="false">Введено наблюдение</button>
++              <button type="button" data-a="other" aria-pressed="false">Введена иная процедура банкротства</button>
++              <button type="button" data-a="unknown" aria-pressed="false">Стадия неизвестна или не проверена</button>
++            </div>
++          </fieldset>
++          <fieldset class="dq" data-q="publication">
++            <legend>Источник и даты проверены?</legend>
++            <p class="dq-hint">Сохраните номер дела, судебный акт, дату принятия заявления, дату и источник публикации о введённой процедуре.</p>
++            <div class="dopts dopts-list">
++              <button type="button" data-a="yes" aria-pressed="false">Да, судебный акт и публикация проверены</button>
++              <button type="button" data-a="no" aria-pressed="false">Нет или сведений недостаточно</button>
++            </div>
++          </fieldset>
++          <fieldset class="dq" data-q="claim">
++            <legend>Какой характер у вашего требования?</legend>
++            <p class="dq-hint">Сопоставьте дату принятия заявления с датой возникновения обязательства и выполнения работ. Одна дата оплаты не определяет, является ли платёж текущим (ст. 5 Закона № 127-ФЗ).</p>
++            <div class="dopts dopts-list">
++              <button type="button" data-a="registry" aria-pressed="false">Реестровое: основание и даты проверены</button>
++              <button type="button" data-a="current" aria-pressed="false">Текущий платёж: основание и даты проверены</button>
++              <button type="button" data-a="unknown" aria-pressed="false">Пока не определён</button>
++            </div>
++          </fieldset>
+           <fieldset class="dq" data-q="signed">
+             <legend>В каком состоянии договор?</legend>
+             <div class="dopts dopts-list">
+@@ -243,7 +271,7 @@
+   // (решение владельца MB007) — сторожит tools/test_diagnostic_sku_standalone.js:
+   // он прогоняет рендер этой страницы прямо из её разметки и сверяет цены
+   // пары с products-config.php.
+-  const SCENARIOS = [{"id":"S-7","when":{"bankrot":true},"verdict":"Контрагент неплатёжеспособен","means":"Обычный маршрут «претензия — иск» здесь не работает: требование заявляется в деле о банкротстве и в ограниченный срок. Срок считается не с того дня, когда вы узнали, а от публикации сведений о процедуре.","pain":"Контрагент становится неплатёжеспособным","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","situation":null,"stage":"insolvent"},{"id":"S-11","when":{"bankrot":false,"signed":"terminated"},"verdict":"Договор расторгнут, требуют вернуть аванс","means":"Требование приходит одной цифрой, и, пока вашей нет, спорить нечем. Считается отработанная часть аванса и сальдо расчётов, а срок на ответ берётся из договора, а не из ощущения «успеем». Молчание здесь читается как согласие с их цифрой.","pain":"Опасные условия договора","pain_id":"dogovor","situation":"avans","stage":"after_termination","free":"/materialy/avans.html","core":{"url":"/products/p8-avans-po-dogovoru-subpodryada.html","price":24900},"entry":null},{"id":"S-6","when":{"bankrot":false,"signed":false,"predmet":"dogovor"},"verdict":"Условия договора до подписи","means":"Условия оплаты, приёмки и удержаний правятся только сейчас. После подписи каждая из этих строк стоит денег, и правится она уже спором.","pain":"Опасные условия договора","free":"/materialy/dogovor.html","core":{"url":"/products/p7-dogovor-podryada.html","price":24900},"pain_id":"dogovor","situation":"dogovor_do_podpisi","stage":"before_work"},{"id":"S-8","when":{"bankrot":false,"signed":false,"predmet":"avans"},"verdict":"Аванс: условия ещё можно поменять","means":"Аванс — не деньги вперёд, а обязательство с порядком погашения и сроком отработки. Спорят потом не о самом авансе, а о том, как записаны четыре условия: размер, порядок погашения, срок отработки и что считается неотработанным остатком. Сейчас они правятся протоколом разногласий, после подписи — только соглашением сторон.","pain":"Опасные условия договора","pain_id":"dogovor","situation":"avans","stage":"before_work","free":"/materialy/avans.html","core":{"url":"/products/p8-avans-po-dogovoru-subpodryada.html","price":24900}},{"id":"S-9","when":{"bankrot":false,"signed":false,"predmet":"metry"},"verdict":"Расчёт квартирами или метрами вместо денег","means":"Платёж метрами — не цена со скидкой, а перенос на подрядчика сроков продажи и рисков объекта. До подписи проверяются статус объекта и состояние эскроу: после подписи эти два вопроса задавать уже поздно, а отвечать на них придётся деньгами.","pain":"Опасные условия договора","pain_id":"dogovor","situation":"raschet_metrami","stage":"before_work","free":"/materialy/raschet-metrami.html","core":{"url":"/products/p11-raschet-metrami.html","price":24900},"entry":null},{"id":"S-10","when":{"bankrot":false,"signed":false,"predmet":"smeta"},"verdict":"Смета и состав цены до подписания","means":"Часть потерь маржи заложена в смету до начала работ: накладные и сметная прибыль, зимнее удорожание и ВЗиС, мусор, транспорт и непредвиденные. Проверяется состав цены один раз — сейчас, потому что после подписи он меняется только соглашением.","pain":"Опасные условия договора","pain_id":"dogovor","situation":"smeta","stage":"before_work","core":{"url":"/products/p13-chto-v-smete-ne-oplatyat.html","price":17900}},{"id":"S-3","when":{"bankrot":false,"signed":true,"done":true,"extra":true},"verdict":"Спор об оплате дополнительных работ","means":"Решает не факт выполнения, а доказанность поручения до начала работ. Проверять надо, чем зафиксировано задание и согласована ли стоимость.","pain":"Не оплачивают дополнительные работы","free":"/materialy/dop-raboty.html","core":{"url":"/products/p2-dopolnitelnye-raboty.html","price":24900},"pain_id":"dop_raboty","situation":null,"stage":"in_progress"},{"id":"S-5","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":true},"verdict":"Документация блокирует приёмку и оплату","means":"Пока комплект не принят, не двигаются ни приёмка, ни срок оплаты. Возвращают почти всегда по одним и тем же причинам, и они проверяемы у себя до передачи.","pain":"Исполнительная документация блокирует приёмку и оплату","free":"/materialy/ispolnitelnaya-dokumentaciya.html","core":{"url":"/products/p4-ispolnitelnaya-dokumentaciya-pto.html","price":24900},"entry":{"url":"/products/t2-peredacha-ispolnitelnoy-dokumentacii.html","price":9900},"pain_id":"ispolnitelnaya","situation":null,"stage":"in_progress"},{"id":"S-2","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":false,"accepted":false},"verdict":"Работы выполнены, но не приняты","means":"Срок оплаты не начинает течь, пока работы не приняты или пока не сработал порядок одностороннего оформления. Спор идёт о приёмке, а не о деньгах — пока.","pain":"Не принимают и не подписывают КС","free":"/materialy/vozvrat-ks.html","core":{"url":"/products/p3-shablony-ks2-ks3.html","price":17900},"entry":{"url":"/products/t3-odnostoronniy-akt-i-zachet.html","price":14900},"pain_id":"ks","situation":null,"stage":"submitted"},{"id":"S-4","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":false,"accepted":true,"retention":true},"verdict":"Часть суммы удержана","means":"Спор не о выполнении, а об основании и сроке возврата. Проверять надо условие договора, событие отсчёта срока и обоснованность удержания.","pain":"Не возвращают удержания","free":"/materialy/uderzhaniya.html","core":{"url":"/products/p5-shtrafy-uderzhaniya.html","price":29900},"entry":{"url":"/products/t3-odnostoronniy-akt-i-zachet.html","price":14900},"pain_id":"uderzhanie","situation":null,"stage":"contested"},{"id":"S-1","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":false,"accepted":true,"retention":false,"overdue":true},"verdict":"Просрочка оплаты принятых работ","means":"Работы приняты, срок прошёл, удержаний нет — предмет спора только деньги. Дальше порядок один: сверить свои документы, зафиксировать просрочку, предъявить требование.","pain":"Работы выполнены — денег нет","free":"/materialy/dengi.html","core":{"url":"/products/p1-oplata-po-ks2.html","price":29900},"entry":null,"pain_id":"neoplata","situation":null,"stage":"overdue"},{"id":"S-0","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":false,"accepted":true,"retention":false,"overdue":false},"verdict":"Работы приняты, срок оплаты ещё не наступил","means":"Требовать пока нечего, и это хорошая новость: время есть на то, чтобы проверить собственные документы до наступления срока. Половина отказов в оплате держится на расхождениях в них, а не на нежелании платить.","pain":"Работы выполнены — денег нет","free":"/materialy/dengi.html","core":{"url":"/products/p1-oplata-po-ks2.html","price":29900},"entry":null,"pain_id":"neoplata","situation":null,"stage":"accepted_unpaid"}];
++  const SCENARIOS = [{"id":"S-7-risk","when":{"bankrot":true,"procedure":"none"},"verdict":"Есть признаки риска: проверьте контрагента","means":"Массовые иски и исполнительные производства сами по себе не означают введённую процедуру банкротства и не исключают претензию или иск. Сначала найдите определение суда в <a href=\"https://kad.arbitr.ru/\" target=\"_blank\" rel=\"noopener\">Картотеке арбитражных дел</a> и сообщение в <a href=\"https://bankrot.fedresurs.ru/\" target=\"_blank\" rel=\"noopener\">ЕФРСБ</a>. Сохраните номер дела, судебную стадию, дату принятия заявления, дату и источник публикации. Затем сопоставьте срок оплаты и документы по вашему требованию.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-accepted","when":{"bankrot":true,"procedure":"accepted"},"verdict":"Заявление принято: уточните стадию дела","means":"Принятие заявления ещё не означает введение наблюдения. Сначала найдите определение суда в <a href=\"https://kad.arbitr.ru/\" target=\"_blank\" rel=\"noopener\">Картотеке арбитражных дел</a> и сообщение в <a href=\"https://bankrot.fedresurs.ru/\" target=\"_blank\" rel=\"noopener\">ЕФРСБ</a>. Сохраните номер дела, судебную стадию, дату принятия заявления, дату и источник публикации. Отдельно проверьте дату возникновения обязательства и характер требования; порядок взыскания зависит от этих обстоятельств.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-unknown","when":{"bankrot":true,"procedure":"unknown"},"verdict":"Требуется уточнить судебную стадию","means":"Сначала найдите определение суда в <a href=\"https://kad.arbitr.ru/\" target=\"_blank\" rel=\"noopener\">Картотеке арбитражных дел</a> и сообщение в <a href=\"https://bankrot.fedresurs.ru/\" target=\"_blank\" rel=\"noopener\">ЕФРСБ</a>. Сохраните номер дела, судебную стадию, дату принятия заявления, дату и источник публикации. Пока эти сведения не проверены, выбирать реестровый маршрут и считать срок включения преждевременно.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-observation-dates","when":{"bankrot":true,"procedure":"observation","publication":false},"verdict":"Требуется проверить даты и публикацию","means":"Сначала найдите определение суда в <a href=\"https://kad.arbitr.ru/\" target=\"_blank\" rel=\"noopener\">Картотеке арбитражных дел</a> и сообщение в <a href=\"https://bankrot.fedresurs.ru/\" target=\"_blank\" rel=\"noopener\">ЕФРСБ</a>. Сохраните номер дела, судебную стадию, дату принятия заявления, дату и источник публикации. После проверки вернитесь к определению характера требования. Один срок для всех процедур не применяется.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-observation-registry","when":{"bankrot":true,"procedure":"observation","publication":true,"claim":"registry"},"verdict":"Введено наблюдение: реестровое требование","means":"Проверьте основание и размер долга, определение суда, публикацию и адресатов направления требования. При наблюдении реестровый порядок связан со ст. 63 и 71 Закона № 127-ФЗ; в других процедурах порядок и сроки отличаются. Не считайте срок со дня, когда вы узнали о деле: определите применимое правило по процедуре и публикации. <a href=\"https://www.consultant.ru/document/cons_doc_LAW_39331/\" target=\"_blank\" rel=\"noopener\">Закон № 127-ФЗ</a>.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-observation-current","when":{"bankrot":true,"procedure":"observation","publication":true,"claim":"current"},"verdict":"Введено наблюдение: текущий платёж","means":"Текущие платежи не включаются в реестр требований кредиторов (ст. 5 Закона № 127-ФЗ). Сопоставьте дату принятия заявления с возникновением обязательства и выполнением работ; срок оплаты сам по себе не определяет характер долга. Порядок предъявления и удовлетворения текущего требования проверяется отдельно. <a href=\"https://www.consultant.ru/document/cons_doc_LAW_39331/\" target=\"_blank\" rel=\"noopener\">Закон № 127-ФЗ</a>.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-observation-unknown","when":{"bankrot":true,"procedure":"observation","publication":true,"claim":"unknown"},"verdict":"Требуется определить характер требования","means":"Сопоставьте определение о принятии заявления с договором, актами и датами выполнения работ. По ст. 5 Закона № 127-ФЗ текущие платежи проверяются отдельно от реестровых требований. До проверки не направляйте заявление о включении в реестр автоматически. <a href=\"https://www.consultant.ru/document/cons_doc_LAW_39331/\" target=\"_blank\" rel=\"noopener\">Закон № 127-ФЗ</a>.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-other-dates","when":{"bankrot":true,"procedure":"other","publication":false},"verdict":"Требуется проверить даты и публикацию","means":"Сначала найдите определение суда в <a href=\"https://kad.arbitr.ru/\" target=\"_blank\" rel=\"noopener\">Картотеке арбитражных дел</a> и сообщение в <a href=\"https://bankrot.fedresurs.ru/\" target=\"_blank\" rel=\"noopener\">ЕФРСБ</a>. Сохраните номер дела, судебную стадию, дату принятия заявления, дату и источник публикации. После проверки вернитесь к определению характера требования. Один срок для всех процедур не применяется.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-other-registry","when":{"bankrot":true,"procedure":"other","publication":true,"claim":"registry"},"verdict":"Введена иная процедура: реестровое требование","means":"Проверьте основание и размер долга, определение суда, публикацию и адресатов направления требования. При наблюдении реестровый порядок связан со ст. 63 и 71 Закона № 127-ФЗ; в других процедурах порядок и сроки отличаются. Не считайте срок со дня, когда вы узнали о деле: определите применимое правило по процедуре и публикации. <a href=\"https://www.consultant.ru/document/cons_doc_LAW_39331/\" target=\"_blank\" rel=\"noopener\">Закон № 127-ФЗ</a>.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-other-current","when":{"bankrot":true,"procedure":"other","publication":true,"claim":"current"},"verdict":"Введена иная процедура: текущий платёж","means":"Текущие платежи не включаются в реестр требований кредиторов (ст. 5 Закона № 127-ФЗ). Сопоставьте дату принятия заявления с возникновением обязательства и выполнением работ; срок оплаты сам по себе не определяет характер долга. Порядок предъявления и удовлетворения текущего требования проверяется отдельно. <a href=\"https://www.consultant.ru/document/cons_doc_LAW_39331/\" target=\"_blank\" rel=\"noopener\">Закон № 127-ФЗ</a>.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-other-unknown","when":{"bankrot":true,"procedure":"other","publication":true,"claim":"unknown"},"verdict":"Требуется определить характер требования","means":"Сопоставьте определение о принятии заявления с договором, актами и датами выполнения работ. По ст. 5 Закона № 127-ФЗ текущие платежи проверяются отдельно от реестровых требований. До проверки не направляйте заявление о включении в реестр автоматически. <a href=\"https://www.consultant.ru/document/cons_doc_LAW_39331/\" target=\"_blank\" rel=\"noopener\">Закон № 127-ФЗ</a>.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-11","when":{"bankrot":false,"signed":"terminated"},"verdict":"Договор расторгнут, требуют вернуть аванс","means":"Требование приходит одной цифрой, и, пока вашей нет, спорить нечем. Считается отработанная часть аванса и сальдо расчётов, а срок на ответ берётся из договора, а не из ощущения «успеем». Молчание здесь читается как согласие с их цифрой.","pain":"Опасные условия договора","pain_id":"dogovor","situation":"avans","stage":"after_termination","free":"/materialy/avans.html","core":{"url":"/products/p8-avans-po-dogovoru-subpodryada.html","price":24900},"entry":null},{"id":"S-6","when":{"bankrot":false,"signed":false,"predmet":"dogovor"},"verdict":"Условия договора до подписи","means":"Условия оплаты, приёмки и удержаний правятся только сейчас. После подписи каждая из этих строк стоит денег, и правится она уже спором.","pain":"Опасные условия договора","free":"/materialy/dogovor.html","core":{"url":"/products/p7-dogovor-podryada.html","price":24900},"pain_id":"dogovor","situation":"dogovor_do_podpisi","stage":"before_work"},{"id":"S-8","when":{"bankrot":false,"signed":false,"predmet":"avans"},"verdict":"Аванс: условия ещё можно поменять","means":"Аванс — не деньги вперёд, а обязательство с порядком погашения и сроком отработки. Спорят потом не о самом авансе, а о том, как записаны четыре условия: размер, порядок погашения, срок отработки и что считается неотработанным остатком. Сейчас они правятся протоколом разногласий, после подписи — только соглашением сторон.","pain":"Опасные условия договора","pain_id":"dogovor","situation":"avans","stage":"before_work","free":"/materialy/avans.html","core":{"url":"/products/p8-avans-po-dogovoru-subpodryada.html","price":24900}},{"id":"S-9","when":{"bankrot":false,"signed":false,"predmet":"metry"},"verdict":"Расчёт квартирами или метрами вместо денег","means":"Платёж метрами — не цена со скидкой, а перенос на подрядчика сроков продажи и рисков объекта. До подписи проверяются статус объекта и состояние эскроу: после подписи эти два вопроса задавать уже поздно, а отвечать на них придётся деньгами.","pain":"Опасные условия договора","pain_id":"dogovor","situation":"raschet_metrami","stage":"before_work","free":"/materialy/raschet-metrami.html","core":{"url":"/products/p11-raschet-metrami.html","price":24900},"entry":null},{"id":"S-10","when":{"bankrot":false,"signed":false,"predmet":"smeta"},"verdict":"Смета и состав цены до подписания","means":"Часть потерь маржи заложена в смету до начала работ: накладные и сметная прибыль, зимнее удорожание и ВЗиС, мусор, транспорт и непредвиденные. Проверяется состав цены один раз — сейчас, потому что после подписи он меняется только соглашением.","pain":"Опасные условия договора","pain_id":"dogovor","situation":"smeta","stage":"before_work","core":{"url":"/products/p13-chto-v-smete-ne-oplatyat.html","price":17900}},{"id":"S-3","when":{"bankrot":false,"signed":true,"done":true,"extra":true},"verdict":"Спор об оплате дополнительных работ","means":"Решает не факт выполнения, а доказанность поручения до начала работ. Проверять надо, чем зафиксировано задание и согласована ли стоимость.","pain":"Не оплачивают дополнительные работы","free":"/materialy/dop-raboty.html","core":{"url":"/products/p2-dopolnitelnye-raboty.html","price":24900},"pain_id":"dop_raboty","situation":null,"stage":"in_progress"},{"id":"S-5","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":true},"verdict":"Документация блокирует приёмку и оплату","means":"Пока комплект не принят, не двигаются ни приёмка, ни срок оплаты. Возвращают почти всегда по одним и тем же причинам, и они проверяемы у себя до передачи.","pain":"Исполнительная документация блокирует приёмку и оплату","free":"/materialy/ispolnitelnaya-dokumentaciya.html","core":{"url":"/products/p4-ispolnitelnaya-dokumentaciya-pto.html","price":24900},"entry":{"url":"/products/t2-peredacha-ispolnitelnoy-dokumentacii.html","price":9900},"pain_id":"ispolnitelnaya","situation":null,"stage":"in_progress"},{"id":"S-2","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":false,"accepted":false},"verdict":"Работы выполнены, но не приняты","means":"Срок оплаты не начинает течь, пока работы не приняты или пока не сработал порядок одностороннего оформления. Спор идёт о приёмке, а не о деньгах — пока.","pain":"Не принимают и не подписывают КС","free":"/materialy/vozvrat-ks.html","core":{"url":"/products/p3-shablony-ks2-ks3.html","price":17900},"entry":{"url":"/products/t3-odnostoronniy-akt-i-zachet.html","price":14900},"pain_id":"ks","situation":null,"stage":"submitted"},{"id":"S-4","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":false,"accepted":true,"retention":true},"verdict":"Часть суммы удержана","means":"Спор не о выполнении, а об основании и сроке возврата. Проверять надо условие договора, событие отсчёта срока и обоснованность удержания.","pain":"Не возвращают удержания","free":"/materialy/uderzhaniya.html","core":{"url":"/products/p5-shtrafy-uderzhaniya.html","price":29900},"entry":{"url":"/products/t3-odnostoronniy-akt-i-zachet.html","price":14900},"pain_id":"uderzhanie","situation":null,"stage":"contested"},{"id":"S-1","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":false,"accepted":true,"retention":false,"overdue":true},"verdict":"Просрочка оплаты принятых работ","means":"Работы приняты, срок прошёл, удержаний нет — предмет спора только деньги. Дальше порядок один: сверить свои документы, зафиксировать просрочку, предъявить требование.","pain":"Работы выполнены — денег нет","free":"/materialy/dengi.html","core":{"url":"/products/p1-oplata-po-ks2.html","price":29900},"entry":null,"pain_id":"neoplata","situation":null,"stage":"overdue"},{"id":"S-0","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":false,"accepted":true,"retention":false,"overdue":false},"verdict":"Работы приняты, срок оплаты ещё не наступил","means":"Требовать пока нечего, и это хорошая новость: время есть на то, чтобы проверить собственные документы до наступления срока. Половина отказов в оплате держится на расхождениях в них, а не на нежелании платить.","pain":"Работы выполнены — денег нет","free":"/materialy/dengi.html","core":{"url":"/products/p1-oplata-po-ks2.html","price":29900},"entry":null,"pain_id":"neoplata","situation":null,"stage":"accepted_unpaid"}];
+   const answers = {};
+   const order = [];            // порядок ответов — чтобы можно было вернуться
+   const MAXQ = 8;   // самая длинная ветка, замер перебором 1536 сочетаний
+diff --git a/katalog.html b/katalog.html
+index 3a47e1e..b421831 100644
+--- a/katalog.html
++++ b/katalog.html
+@@ -27,6 +27,14 @@
+   <link rel="stylesheet" href="author.css?v=c7b4fb74">
+   <link rel="stylesheet" href="desktop-wide.css?v=2895ce06">
+   <link rel="stylesheet" href="brand-approved-2026.css?v=129e847b">
++  <style>
++    @media (min-width: 1001px) {
++      #catalog { padding-top: 24px; }
++      #catalog > .section-head { margin-bottom: 24px; }
++      #catalog > .section-head h1 { font-size: 40px; line-height: 1.12; margin: 8px 0 12px; }
++      #catalog > .section-head .lead { max-width: 900px; margin: 0; font-size: 17px; line-height: 1.5; }
++    }
++  </style>
+   <script type="application/ld+json">{
+   "@context": "https://schema.org",
+   "@graph": [
+diff --git a/materialy/akt-skrytyh-rabot.html b/materialy/akt-skrytyh-rabot.html
+index 446ff69..ef8718e 100644
+--- a/materialy/akt-skrytyh-rabot.html
++++ b/materialy/akt-skrytyh-rabot.html
+@@ -82,7 +82,8 @@
+         <input name="material" type="hidden" value="akt-skrytyh-rabot">
+         <input name="source" type="hidden" value="site-akt-skrytyh-rabot">
+         <input name="name" type="text" maxlength="80" placeholder="Имя" required>
+-        <input name="contact" type="text" maxlength="120" placeholder="Telegram или email" required>
++        <label>Email для связи<input name="contact" type="email" autocomplete="email" maxlength="120" placeholder="Email" required></label>
++        <label>Telegram или телефон · необязательно<input name="additional_contact" type="text" maxlength="120" placeholder="@username или +7…"></label>
+         <label><input name="consent" type="checkbox" value="yes" required> Согласен на обработку данных</label>
+         <button class="button" type="submit">Получить материалы</button>
+         <p id="lead-status" role="status"></p>
+diff --git a/materialy/avans.html b/materialy/avans.html
+index af4aa06..ec127e8 100644
+--- a/materialy/avans.html
++++ b/materialy/avans.html
+@@ -78,23 +78,23 @@
+     <section class="section">
+       <h2>Куда прислать</h2>
+       <p>Файлы придут архивом сразу после отправки формы — ждать письма не нужно.</p>
+-      <form class="lead-form" id="lead-form" data-continue="https://nastoronepodryadchika.ru/products/t5-trebuyut-vernut-avans.html?utm_source=site&amp;utm_medium=post-delivery&amp;utm_campaign=dogovor&amp;utm_content=avans-primary" action="../lead.php" method="post">
++      <form class="lead-form" id="lead-form" data-continue="https://nastoronepodryadchika.ru/products/p8-avans-po-dogovoru-subpodryada.html?utm_source=site&amp;utm_medium=post-delivery&amp;utm_campaign=dogovor&amp;utm_content=avans-primary" action="../lead.php" method="post">
+         <input name="material" type="hidden" value="avans">
+         <input name="source" type="hidden" value="site-avans">
+         <input name="name" type="text" maxlength="80" placeholder="Имя" required>
+-        <input name="contact" type="text" maxlength="120" placeholder="Telegram или email" required>
++        <label>Email для связи<input name="contact" type="email" autocomplete="email" maxlength="120" placeholder="Email" required></label>
++        <label>Telegram или телефон · необязательно<input name="additional_contact" type="text" maxlength="120" placeholder="@username или +7…"></label>
+         <label><input name="consent" type="checkbox" value="yes" required> Согласен на обработку данных</label>
+         <button class="button" type="submit">Получить материалы</button>
+         <p id="lead-status" role="status"></p>
+       </form>
+-      <p class="note">Материалы — редактируемые шаблоны. Их нужно адаптировать под ваш договор и обстоятельства объекта; они не заменяют юридическую консультацию.</p>
++      <p class="note">Формы и расчёты заполняются по вашему договору, документам и обстоятельствам объекта.</p>
+     </section>
+ 
+     <section class="section related">
+       <h2>Если требование уже пришло</h2>
+       <div class="product-grid compact">
+-        <article class="product-card"><h3>Требуют вернуть аванс: первый ответ в срок</h3><p>Требование получено, срок ответа идёт, расчёта ещё нет: порядок первых дней, ответ без цифры, запрос документов по требованию, словарь полей. 5 файлов, 990 ₽.</p><a href="../products/t5-trebuyut-vernut-avans.html">Подробнее →</a></article>
+-        <article class="product-card"><h3>Комплект «Аванс по договору подряда и неотработанный остаток»</h3><p>Кассовый профиль по месяцам, переговоры, протокол разногласий, расчёт отработанной части, ответ на требование о возврате. 11 файлов.</p><a href="../products/p8-avans-po-dogovoru-subpodryada.html">Подробнее →</a></article>
++        <article class="product-card"><h3>Система управления авансами и расчётами по договору подряда</h3><p>Проверка условий аванса, расчёт отработанной части и сальдо, документы для согласования условий и ответа на требование. 11 файлов, включая инструкцию.</p><p><strong>24 900 ₽</strong></p><a href="../products/p8-avans-po-dogovoru-subpodryada.html">Посмотреть систему →</a></article>
+       </div>
+     </section>
+ 
+diff --git a/materialy/bankrotstvo.html b/materialy/bankrotstvo.html
+index d569121..ecf1080 100644
+--- a/materialy/bankrotstvo.html
++++ b/materialy/bankrotstvo.html
+@@ -78,23 +78,23 @@
+     <section class="section">
+       <h2>Куда прислать</h2>
+       <p>Файлы придут архивом сразу после отправки формы — ждать письма не нужно.</p>
+-      <form class="lead-form" id="lead-form" data-continue="https://nastoronepodryadchika.ru/products/t4-genpodryadchik-bankrotitsya.html?utm_source=site&amp;utm_medium=post-delivery&amp;utm_campaign=bankrotstvo&amp;utm_content=bankrotstvo-primary" action="../lead.php" method="post">
++      <form class="lead-form" id="lead-form" data-continue="https://nastoronepodryadchika.ru/products/p9-bankrotstvo-genpodryadchika.html?utm_source=site&amp;utm_medium=post-delivery&amp;utm_campaign=bankrotstvo&amp;utm_content=bankrotstvo-primary" action="../lead.php" method="post">
+         <input name="material" type="hidden" value="bankrotstvo">
+         <input name="source" type="hidden" value="site-bankrotstvo">
+         <input name="name" type="text" maxlength="80" placeholder="Имя" required>
+-        <input name="contact" type="text" maxlength="120" placeholder="Telegram или email" required>
++        <label>Email для связи<input name="contact" type="email" autocomplete="email" maxlength="120" placeholder="Email" required></label>
++        <label>Telegram или телефон · необязательно<input name="additional_contact" type="text" maxlength="120" placeholder="@username или +7…"></label>
+         <label><input name="consent" type="checkbox" value="yes" required> Согласен на обработку данных</label>
+         <button class="button" type="submit">Получить материалы</button>
+         <p id="lead-status" role="status"></p>
+       </form>
+-      <p class="note">Материалы — редактируемые шаблоны. Их нужно адаптировать под ваш договор и обстоятельства объекта; они не заменяют юридическую консультацию.</p>
++      <p class="note">Формы и расчёты заполняются по вашему договору, документам и обстоятельствам объекта.</p>
+     </section>
+ 
+     <section class="section related">
+       <h2>Если банкротство уже началось</h2>
+       <div class="product-grid compact">
+-        <article class="product-card"><h3>Генподрядчик банкротится: первые действия</h3><p>Один день, в который вы узнали о банкротстве: найти публикацию, посчитать срок, отправить уведомление управляющему. Отдельно — ветка «срок уже прошёл». 5 файлов, 990 ₽.</p><a href="../products/t4-genpodryadchik-bankrotitsya.html">Подробнее →</a></article>
+-        <article class="product-card"><h3>Комплект «Реестр требований кредиторов»</h3><p>Заявление о включении, сроки, переписка с управляющим. 10 файлов.</p><a href="../products/p9-bankrotstvo-genpodryadchika.html">Подробнее →</a></article>
++        <article class="product-card"><h3>Система защиты требований подрядчика при банкротстве генподрядчика</h3><p>Проверка судебной стадии и публикаций, характера требования и сроков, подготовка документов и учёт дат. 10 файлов, включая инструкцию. Текущие платежи проверяются отдельно от реестровых требований.</p><p><strong>24 900 ₽</strong></p><a href="../products/p9-bankrotstvo-genpodryadchika.html">Посмотреть систему →</a></article>
+       </div>
+     </section>
+ 
+diff --git a/materialy/dengi.html b/materialy/dengi.html
+index ddaf712..350257b 100644
+--- a/materialy/dengi.html
++++ b/materialy/dengi.html
+@@ -62,6 +62,7 @@
+       <p class="eyebrow">БЕСПЛАТНО · 5 ФАЙЛОВ</p>
+       <h1>КС подписаны, денег нет: первые 7 проверок</h1>
+       <p class="lead">Что проверить до того, как идти к юристу. Чаще всего оплату держит не злой умысел заказчика, а расхождение в собственных документах — и находится оно за час.</p>
++      <p><a class="button" href="#get-materials">Получить бесплатные материалы</a></p>
+     </section>
+ 
+     <section class="section">
+@@ -75,26 +76,26 @@
+       </div>
+     </section>
+ 
+-    <section class="section">
++    <section class="section" id="get-materials">
+       <h2>Куда прислать</h2>
+       <p>Файлы придут архивом сразу после отправки формы — ждать письма не нужно.</p>
+-      <form class="lead-form" id="lead-form" data-continue="https://nastoronepodryadchika.ru/products/t1-pervyy-shag-pri-neoplate.html?utm_source=site&amp;utm_medium=post-delivery&amp;utm_campaign=neoplata&amp;utm_content=dengi-primary" action="../lead.php" method="post">
++      <form class="lead-form" id="lead-form" data-continue="https://nastoronepodryadchika.ru/products/p1-oplata-po-ks2.html?utm_source=site&amp;utm_medium=post-delivery&amp;utm_campaign=neoplata&amp;utm_content=dengi-primary" action="../lead.php" method="post">
+         <input name="material" type="hidden" value="dengi">
+         <input name="source" type="hidden" value="site-dengi">
+         <input name="name" type="text" maxlength="80" placeholder="Имя" required>
+-        <input name="contact" type="text" maxlength="120" placeholder="Telegram или email" required>
++        <label>Email для связи<input name="contact" type="email" autocomplete="email" maxlength="120" placeholder="Email" required></label>
++        <label>Telegram или телефон · необязательно<input name="additional_contact" type="text" maxlength="120" placeholder="@username или +7…"></label>
+         <label><input name="consent" type="checkbox" value="yes" required> Согласен на обработку данных</label>
+         <button class="button" type="submit">Получить материалы</button>
+         <p id="lead-status" role="status"></p>
+       </form>
+-      <p class="note">Материалы — редактируемые шаблоны. Их нужно адаптировать под ваш договор и обстоятельства объекта; они не заменяют юридическую консультацию.</p>
++      <p class="note">Формы и расчёты заполняются по вашему договору, документам и обстоятельствам объекта.</p>
+     </section>
+ 
+     <section class="section related">
+       <h2>Если нужен полный порядок действий</h2>
+       <div class="product-grid compact">
+-        <article class="product-card"><h3>Заказчик не оплачивает работы</h3><p>Ступень входа: досудебная часть целиком — уведомление о просрочке, претензия, расчёт процентов по ст. 395 ГК РФ, словарь полей и алгоритм действий. Типовая редакция сверена с текстом действующих норм 16.08.2026; вычиткой юристом нормативная сверка не является. 6 файлов, 990 ₽. <a href="../demo/pretenziya-na-neoplatu.html">Первая страница претензии открыта</a> — можно прочитать до покупки.</p><a href="../products/t1-pervyy-shag-pri-neoplate.html">Подробнее →</a></article>
+-        <article class="product-card"><h3>Комплект «Акты выполненных работ, КС-2 и КС-3: закрытие и взыскание оплаты»</h3><p>Формы закрытия и блок при неоплате: уведомление о просрочке, претензия, расчёт процентов по ст. 395 ГК РФ, исковое заявление, алгоритм действий. Шаблоны не вычитаны юристом и в спорной ситуации не применяются — об этом сказано внутри каждого документа. 20 файлов.</p><a href="../products/p1-oplata-po-ks2.html">Подробнее →</a></article>
++        <article class="product-card"><h3>Система получения оплаты за выполненные работы</h3><p>На входе — договор, акты, оплаты и переписка. Система помогает сверить остаток к оплате, подготовить документы закрытия, расчёт процентов и претензию; первый шаг — проверить основание и срок оплаты. Применимость форм определяется условиями договора и обстоятельствами объекта. 20 файлов, включая инструкцию.</p><p><strong>29 900 ₽</strong></p><a href="../products/p1-oplata-po-ks2.html">Посмотреть систему →</a></article>
+       </div>
+     </section>
+ 
+diff --git a/materialy/dogovor.html b/materialy/dogovor.html
+index abe410b..a58ae33 100644
+--- a/materialy/dogovor.html
++++ b/materialy/dogovor.html
+@@ -82,12 +82,13 @@
+         <input name="material" type="hidden" value="dogovor">
+         <input name="source" type="hidden" value="site-dogovor">
+         <input name="name" type="text" maxlength="80" placeholder="Имя" required>
+-        <input name="contact" type="text" maxlength="120" placeholder="Telegram или email" required>
++        <label>Email для связи<input name="contact" type="email" autocomplete="email" maxlength="120" placeholder="Email" required></label>
++        <label>Telegram или телефон · необязательно<input name="additional_contact" type="text" maxlength="120" placeholder="@username или +7…"></label>
+         <label><input name="consent" type="checkbox" value="yes" required> Согласен на обработку данных</label>
+         <button class="button" type="submit">Получить материалы</button>
+         <p id="lead-status" role="status"></p>
+       </form>
+-      <p class="note">Материалы — редактируемые шаблоны. Их нужно адаптировать под ваш договор и обстоятельства объекта; они не заменяют юридическую консультацию.</p>
++      <p class="note">Формы и расчёты заполняются по вашему договору, документам и обстоятельствам объекта.</p>
+     </section>
+ 
+     <section class="section related">
+diff --git a/materialy/dop-raboty.html b/materialy/dop-raboty.html
+index 97c57ff..7d3d067 100644
+--- a/materialy/dop-raboty.html
++++ b/materialy/dop-raboty.html
+@@ -82,12 +82,13 @@
+         <input name="material" type="hidden" value="dop-raboty">
+         <input name="source" type="hidden" value="site-dop-raboty">
+         <input name="name" type="text" maxlength="80" placeholder="Имя" required>
+-        <input name="contact" type="text" maxlength="120" placeholder="Telegram или email" required>
++        <label>Email для связи<input name="contact" type="email" autocomplete="email" maxlength="120" placeholder="Email" required></label>
++        <label>Telegram или телефон · необязательно<input name="additional_contact" type="text" maxlength="120" placeholder="@username или +7…"></label>
+         <label><input name="consent" type="checkbox" value="yes" required> Согласен на обработку данных</label>
+         <button class="button" type="submit">Получить материалы</button>
+         <p id="lead-status" role="status"></p>
+       </form>
+-      <p class="note">Материалы — редактируемые шаблоны. Их нужно адаптировать под ваш договор и обстоятельства объекта; они не заменяют юридическую консультацию.</p>
++      <p class="note">Формы и расчёты заполняются по вашему договору, документам и обстоятельствам объекта.</p>
+     </section>
+ 
+     <section class="section related">
+diff --git a/materialy/ispolnitelnaya-dokumentaciya.html b/materialy/ispolnitelnaya-dokumentaciya.html
+index e2ecfea..27f1261 100644
+--- a/materialy/ispolnitelnaya-dokumentaciya.html
++++ b/materialy/ispolnitelnaya-dokumentaciya.html
+@@ -82,7 +82,8 @@
+         <input name="material" type="hidden" value="ispolnitelnaya-dokumentaciya">
+         <input name="source" type="hidden" value="site-ispolnitelnaya-dokumentaciya">
+         <input name="name" type="text" maxlength="80" placeholder="Имя" required>
+-        <input name="contact" type="text" maxlength="120" placeholder="Telegram или email" required>
++        <label>Email для связи<input name="contact" type="email" autocomplete="email" maxlength="120" placeholder="Email" required></label>
++        <label>Telegram или телефон · необязательно<input name="additional_contact" type="text" maxlength="120" placeholder="@username или +7…"></label>
+         <label><input name="consent" type="checkbox" value="yes" required> Согласен на обработку данных</label>
+         <button class="button" type="submit">Получить материалы</button>
+         <p id="lead-status" role="status"></p>
+diff --git a/materialy/raschet-metrami.html b/materialy/raschet-metrami.html
+index 59b55f0..6259044 100644
+--- a/materialy/raschet-metrami.html
++++ b/materialy/raschet-metrami.html
+@@ -79,7 +79,8 @@
+         <input name="material" type="hidden" value="raschet-metrami">
+         <input name="source" type="hidden" value="site-raschet-metrami">
+         <input name="name" type="text" maxlength="80" placeholder="Имя" required>
+-        <input name="contact" type="text" maxlength="120" placeholder="Telegram или email" required>
++        <label>Email для связи<input name="contact" type="email" autocomplete="email" maxlength="120" placeholder="Email" required></label>
++        <label>Telegram или телефон · необязательно<input name="additional_contact" type="text" maxlength="120" placeholder="@username или +7…"></label>
+         <label><input name="consent" type="checkbox" value="yes" required> Согласен на обработку данных</label>
+         <button class="button" type="submit">Получить материалы</button>
+         <p id="lead-status" role="status"></p>
+diff --git a/materialy/uderzhaniya.html b/materialy/uderzhaniya.html
+index c80ad1a..b503f0c 100644
+--- a/materialy/uderzhaniya.html
++++ b/materialy/uderzhaniya.html
+@@ -82,12 +82,13 @@
+         <input name="material" type="hidden" value="uderzhaniya">
+         <input name="source" type="hidden" value="site-uderzhaniya">
+         <input name="name" type="text" maxlength="80" placeholder="Имя" required>
+-        <input name="contact" type="text" maxlength="120" placeholder="Telegram или email" required>
++        <label>Email для связи<input name="contact" type="email" autocomplete="email" maxlength="120" placeholder="Email" required></label>
++        <label>Telegram или телефон · необязательно<input name="additional_contact" type="text" maxlength="120" placeholder="@username или +7…"></label>
+         <label><input name="consent" type="checkbox" value="yes" required> Согласен на обработку данных</label>
+         <button class="button" type="submit">Получить материалы</button>
+         <p id="lead-status" role="status"></p>
+       </form>
+-      <p class="note">Материалы — редактируемые шаблоны. Их нужно адаптировать под ваш договор и обстоятельства объекта; они не заменяют юридическую консультацию.</p>
++      <p class="note">Формы и расчёты заполняются по вашему договору, документам и обстоятельствам объекта.</p>
+     </section>
+ 
+     <section class="section related">
+diff --git a/materialy/vozvrat-ks.html b/materialy/vozvrat-ks.html
+index cbb6634..694cf21 100644
+--- a/materialy/vozvrat-ks.html
++++ b/materialy/vozvrat-ks.html
+@@ -82,12 +82,13 @@
+         <input name="material" type="hidden" value="vozvrat-ks">
+         <input name="source" type="hidden" value="site-vozvrat-ks">
+         <input name="name" type="text" maxlength="80" placeholder="Имя" required>
+-        <input name="contact" type="text" maxlength="120" placeholder="Telegram или email" required>
++        <label>Email для связи<input name="contact" type="email" autocomplete="email" maxlength="120" placeholder="Email" required></label>
++        <label>Telegram или телефон · необязательно<input name="additional_contact" type="text" maxlength="120" placeholder="@username или +7…"></label>
+         <label><input name="consent" type="checkbox" value="yes" required> Согласен на обработку данных</label>
+         <button class="button" type="submit">Получить материалы</button>
+         <p id="lead-status" role="status"></p>
+       </form>
+-      <p class="note">Материалы — редактируемые шаблоны. Их нужно адаптировать под ваш договор и обстоятельства объекта; они не заменяют юридическую консультацию.</p>
++      <p class="note">Формы и расчёты заполняются по вашему договору, документам и обстоятельствам объекта.</p>
+     </section>
+ 
+     <section class="section related">
+diff --git a/products/p11-raschet-metrami.html b/products/p11-raschet-metrami.html
+index bb63172..7410f4e 100644
+--- a/products/p11-raschet-metrami.html
++++ b/products/p11-raschet-metrami.html
+@@ -185,7 +185,7 @@
+     <section class="section">
+       <h2>Три направления проверки неденежного расчёта</h2>
+       <p><strong>Наполнение счетов эскроу по передаваемому ДДУ.</strong> Счёт открыт и пополнен на сумму договора — вам передают оплаченное право требования, дальше вопрос экономики. Счёт пуст, а обязанность внести деньги переходит по уступке — вы отдаёте работы и остаётесь должны за «свои» квартиры. Это не оттенок формулировки, это знак суммы, и проверяется он справкой банка, а не письмом застройщика.</p>
+-      <p><strong>Состояние застройщика и проектного финансирования.</strong> Предложение метров вместо денег само по себе признак: платить деньгами нечем. Если финансирование остановлено, квартиры, которыми рассчитываются, обеспечивают долг застройщика перед банком — при недостройке они уйдут на его погашение раньше, чем к вам.</p>
++      <p><strong>Состояние застройщика и проектного финансирования.</strong> Предложение неденежного расчёта само по себе не доказывает неплатёжеспособность. Проверьте финансирование проекта, права и обременения, состояние эскроу и условия передаваемого договора. Последствия остановки строительства зависят от правовой схемы и документов по конкретному объекту.</p>
+       <p><strong>Экономика метра.</strong> Дисконт от заявленной стоимости — не подтверждённая прибыль до реализации объекта. Ожидаемая рыночная цена по сопоставимым предложениям, срок экспозиции, налоги вашего режима и стоимость денег на период до продажи считаются до подписания — и могут съесть скидку целиком.</p>
+       <p>Каждая проверка — день работы по открытым источникам и двум письменным запросам. Формы запросов в комплекте.</p>
+     </section>
+@@ -227,21 +227,21 @@
+       <div class="kit-preview">
+         <h3 class="preview-head">Как это выглядит внутри</h3>
+         <p class="preview-note">Первые строки самих файлов комплекта — заголовок документа и строка, которой он себя объясняет. Не описание для витрины: текст читается из файлов при сборке страницы. Здесь 3 документа из 5; тело шаблонов, формулировки требований и расчёты открываются после покупки.</p>
+-        <article class="preview-item">
+-          <p class="preview-file">50-slovar-poley-raschet-metrami.docx</p>
+-          <h3>&lt;/w:pBdr&gt;&lt;w:spacing w:after=&quot;60&quot; w:before=&quot;0&quot;/&gt;&lt;/w:pPr&gt;&lt;w:r&gt;&lt;w:rPr&gt;&lt;w:rFonts w:ascii=&quot;Times New Roman&quot; w:cs=&quot;Times New Roman&quot; w:eastAsia=&quot;Times New Roman&quot; w:hAnsi=&quot;Times New…</h3>
+-          <p>Ключ к заполнению документов комплекта: каждое поле в двойных фигурных скобках — что в него вписать и откуда взять значение.</p>
+-        </article>
+         <article class="preview-item">
+           <p class="preview-file">52-chek-list-raschet-metrami.docx</p>
+-          <h3>&lt;/w:pBdr&gt;&lt;w:spacing w:after=&quot;80&quot; w:before=&quot;240&quot;/&gt;&lt;/w:pPr&gt;&lt;w:r&gt;&lt;w:rPr&gt;&lt;w:rFonts w:ascii=&quot;Times New Roman&quot; w:cs=&quot;Times New Roman&quot; w:eastAsia=&quot;Times New Roman&quot; w:hAnsi=&quot;Times New…</h3>
++          <h3>Чек-лист проверки расчётов в неденежной форме</h3>
+           <p>Рабочий лист к «Алгоритму: проверка расчёта метрами до входа»: алгоритм ведёт по шагам, лист фиксирует ответы. Заполняется до подписания договора подряда и любых бумаг по метрам. Не…</p>
+         </article>
+         <article class="preview-item">
+           <p class="preview-file">53-zapros-status-obekta.docx</p>
+-          <h3>&lt;/w:pBdr&gt;&lt;w:spacing w:after=&quot;80&quot; w:before=&quot;240&quot;/&gt;&lt;/w:pPr&gt;&lt;w:r&gt;&lt;w:rPr&gt;&lt;w:rFonts w:ascii=&quot;Times New Roman&quot; w:cs=&quot;Times New Roman&quot; w:eastAsia=&quot;Times New Roman&quot; w:hAnsi=&quot;Times New…</h3>
++          <h3>Запрос о правовом и строительном статусе объекта</h3>
+           <p>Письменно установить, в каком состоянии объект на самом деле: итоговая проверка, ЗОС, разрешение на строительство, ввод. Отправляется — текст письма ниже; страница «Как пользоваться этим…</p>
+         </article>
++        <article class="preview-item">
++          <p class="preview-file">54-zapros-sostoyanie-escrow.docx</p>
++          <h3>Запрос о наполнении счёта эскроу по передаваемому ДДУ</h3>
++          <p>Документальное подтверждение наполнения счёта эскроу по ДДУ, права по которому предлагаются в счёт выполненных работ. Отправляется — текст письма ниже; страница «Как пользоваться этим…</p>
++        </article>
+       </div>
+     </section>
+ 
+diff --git a/products/p3-shablony-ks2-ks3.html b/products/p3-shablony-ks2-ks3.html
+index 2c6a266..83393ff 100644
+--- a/products/p3-shablony-ks2-ks3.html
++++ b/products/p3-shablony-ks2-ks3.html
+@@ -3,10 +3,10 @@
+ <head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+-  <meta name="description" content="Комплект для подготовки КС-2 без возврата: шаблоны, реестры, алгоритм проверки, типовые замечания и ответы. 10 документов и инструкция. Цена 17 900 ₽.">
++  <meta name="description" content="Комплект для подготовки КС-2 без возврата: шаблоны, реестры, алгоритм проверки, типовые замечания и ответы. 10 рабочих файлов (6 DOCX, 2 XLSX, 2 PDF) и инструкция TXT. Цена 17 900 ₽.">
+   <meta name="keywords" content="кс-2 без возврата, как сдать кс-2 с первого раза, ошибки кс-2, почему возвращают кс-2, шаблон кс-2 без замечаний">
+   <meta property="og:title" content="Комплект «КС-2 без возврата»: сдайте с первой попытки — 17 900 ₽">
+-  <meta property="og:description" content="10 документов и инструкция для подготовки КС-2 без возврата. Шаблоны, реестры, алгоритм проверки, типовые замечания и ответы.">
++  <meta property="og:description" content="10 рабочих файлов (6 DOCX, 2 XLSX, 2 PDF) и инструкция TXT для подготовки КС-2 без возврата. Шаблоны, реестры, алгоритм проверки, типовые замечания и ответы.">
+   <meta property="og:image" content="https://nastoronepodryadchika.ru/assets/podpisannaya-ks2-ne-znachit-chto-zaplatyat.jpg">
+   <meta property="og:type" content="product">
+   <meta property="og:url" content="https://nastoronepodryadchika.ru/products/p3-shablony-ks2-ks3.html">
+@@ -30,7 +30,7 @@
+       "@type": "Product",
+       "name": "Комплект «КС-2 без возврата: сдайте с первой попытки»",
+       "image": "https://nastoronepodryadchika.ru/assets/podpisannaya-ks2-ne-znachit-chto-zaplatyat.jpg",
+-      "description": "Шаблоны, реестры, алгоритм проверки и типовые замечания для подготовки КС-2 без возврата. 10 документов и инструкция.",
++      "description": "Шаблоны, реестры, алгоритм проверки и типовые замечания для подготовки КС-2 без возврата. 10 рабочих файлов (6 DOCX, 2 XLSX, 2 PDF) и инструкция TXT.",
+       "brand": {
+         "@type": "Brand",
+         "name": "На стороне подрядчика"
+@@ -55,7 +55,7 @@
+           "name": "Что входит в комплект?",
+           "acceptedAnswer": {
+             "@type": "Answer",
+-            "text": "10 рабочих документов в Word, Excel и PDF плюс инструкция; полный перечень — в разделе «Что входит» выше."
++            "text": "10 рабочих файлов: 6 DOCX, 2 XLSX и 2 PDF, плюс инструкция TXT; полный перечень — в разделе «Что входит» выше."
+           }
+         },
+         {
+@@ -71,7 +71,7 @@
+           "name": "Можно ли редактировать документы под свой договор?",
+           "acceptedAnswer": {
+             "@type": "Answer",
+-            "text": "Да, для этого они и сделаны: файлы редактируются в Word и Excel, поля для заполнения выделены в самих документах. Шаблоны нужно адаптировать под ваш договор, вид работ и правила заказчика."
++            "text": "Формы DOCX и таблицы XLSX заполняются в Word и Excel. Два файла PDF — форма АОСР на четырёх страницах и алгоритм проверки. Применяйте документы с учётом договора, вида работ и порядка приёмки."
+           }
+         },
+         {
+@@ -131,7 +131,7 @@
+ 
+       <p class="eyebrow">КОМПЛЕКТ P3 / 10 ДОКУМЕНТОВ + ИНСТРУКЦИЯ</p>
+       <h1>Комплект «КС-2 без возврата: сдайте с первой попытки»</h1>
+-      <p class="lead">КС-2 вернули с замечаниями, и цикл сдачи начинается заново — а вместе с ним сдвигается срок оплаты. Здесь то, что проверяют до передачи: шаблоны, реестр сверки объёмов, алгоритм самопроверки и типовые ответы на замечания.</p>
++      <p class="lead">КС-2 вернули с замечаниями, и цикл сдачи начинается заново — а вместе с ним сдвигается срок оплаты. Здесь то, что проверяют до передачи: формы, реестр приложений, алгоритм самопроверки и типовые ответы на замечания.</p>
+ 
+       <div class="product-hero">
+         <img src="../assets/podpisannaya-ks2-ne-znachit-chto-zaplatyat.jpg" alt="Шаблоны КС-2 без возврата" width="1536" height="954" loading="lazy" decoding="async">
+@@ -184,10 +184,11 @@
+ 
+     <section class="section">
+       <h2>Что входит в комплект</h2>
++      <p>6 файлов DOCX, 2 таблицы XLSX, 2 файла PDF и инструкция TXT. Журнал передачи фиксирует отправку документов. Общий журнал работ КС-6 и накопительный журнал КС-6а имеют другое назначение и в этот комплект не входят.</p>
+       <div class="document-list">
+         <article class="doc-item"><h3>Проверочный лист комплекта КС</h3><p>Что должно быть в комплекте до отправки генподрядчику.</p></article>
+-        <article class="doc-item"><h3>Реестр приложений</h3><p>Excel: перечень приложений к КС-2 с отметками о наличии.</p></article>
+-        <article class="doc-item"><h3>Акт скрытых работ</h3><p>Форма освидетельствования — частая причина возврата.</p></article>
++        <article class="doc-item"><h3>Реестр приложений</h3><p>Excel: перечень передаваемых приложений с датой, версией и отметками о наличии; для сверки комплекта при передаче. Не заменяет проверку объёмов и стоимости КС-2.</p></article>
++        <article class="doc-item"><h3>Акт скрытых работ</h3><p>Подлинная форма АОСР в PDF на четырёх страницах. Заполняется для работ, подлежащих освидетельствованию; исходный бланк сохранён.</p></article>
+         <article class="doc-item"><h3>Протокол внутренней проверки</h3><p>Проверка комплекта своими силами до передачи.</p></article>
+         <article class="doc-item"><h3>Письмо о недостатках</h3><p>Ответ на замечания генподрядчика по комплекту.</p></article>
+         <article class="doc-item"><h3>Журнал передачи</h3><p>Excel: что и когда передано, под чью подпись.</p></article>
+@@ -199,7 +200,7 @@
+ 
+       <div class="kit-preview">
+         <h3 class="preview-head">Как это выглядит внутри</h3>
+-        <p class="preview-note">Первые строки самих файлов комплекта — заголовок документа и строка, которой он себя объясняет. Не описание для витрины: текст читается из файлов при сборке страницы. Здесь 3 документа из 7; тело шаблонов, формулировки требований и расчёты открываются после покупки.</p>
++        <p class="preview-note">Первые строки самих файлов комплекта — заголовок документа и строка, которой он себя объясняет. Не описание для витрины: текст читается из файлов при сборке страницы. Здесь 3 фрагмента из 10 рабочих файлов; тело шаблонов, формулировки требований и расчёты открываются после покупки.</p>
+         <article class="preview-item"><p class="preview-file">03-akt-skrytyh-rabot.pdf</p><h3>Акт освидетельствования скрытых работ</h3><p>Полная опубликованная форма приложения № 3 к приказу Минстроя России № 344/пр. Текст, реквизиты, графы и подписи сохранены. Порядок применения указан в инструкции.</p></article>
+         <article class="preview-item">
+           <p class="preview-file">07-sroki-hraneniya.docx</p>
+@@ -222,9 +223,9 @@
+     <section class="section faq">
+       <h2>Вопросы до покупки</h2>
+       <div class="faq-list">
+-        <details><summary>Что входит в комплект?</summary><p>10 рабочих документов в Word, Excel и PDF плюс инструкция; полный перечень — в разделе «Что входит» выше.</p></details>
++        <details><summary>Что входит в комплект?</summary><p>10 рабочих файлов: 6 DOCX, 2 XLSX и 2 PDF, плюс инструкция TXT; полный перечень — в разделе «Что входит» выше.</p></details>
+         <details><summary>Как я получу файлы после оплаты?</summary><p>Ссылка на скачивание придёт на указанный при заказе email после подтверждения оплаты. Плановый срок автоматической доставки — до 5 минут. Если письмо не пришло или ссылка не открывается, напишите на <a href="mailto:nastoronepodryadchika@yandex.ru">nastoronepodryadchika@yandex.ru</a> — отправим файлы письмом.</p></details>
+-        <details><summary>Можно ли редактировать документы под свой договор?</summary><p>Да, для этого они и сделаны: файлы редактируются в Word и Excel, поля для заполнения выделены в самих документах. Шаблоны нужно адаптировать под ваш договор, вид работ и правила заказчика.</p></details>
++        <details><summary>Можно ли редактировать документы под свой договор?</summary><p>Формы DOCX и таблицы XLSX заполняются в Word и Excel. Два файла PDF — форма АОСР на четырёх страницах и алгоритм проверки. Применяйте документы с учётом договора, вида работ и порядка приёмки.</p></details>
+         <details><summary>Можно ли пользоваться комплектом на нескольких объектах?</summary><p>Да. Лицензия действует для одной компании и не ограничивает количество её объектов. Передавать файлы другим компаниям нельзя.</p></details>
+       </div>
+     </section>
+diff --git a/products/t2-peredacha-ispolnitelnoy-dokumentacii.html b/products/t2-peredacha-ispolnitelnoy-dokumentacii.html
+index b3f6a45..5600be8 100644
+--- a/products/t2-peredacha-ispolnitelnoy-dokumentacii.html
++++ b/products/t2-peredacha-ispolnitelnoy-dokumentacii.html
+@@ -63,7 +63,7 @@
+           "name": "Здесь есть формы актов скрытых работ и исполнительных схем?",
+           "acceptedAnswer": {
+             "@type": "Answer",
+-            "text": "Формы актов освидетельствования, исполнительной схемы, журналов и реестров находятся в комплекте «Акты скрытых работ и исполнительная документация» за 2 990 ₽."
++            "text": "Формы актов освидетельствования, исполнительной схемы, журналов и реестров находятся в комплекте «Система ведения, проверки и передачи исполнительной документации» за 24 900 ₽."
+           }
+         },
+         {
+@@ -229,7 +229,7 @@
+ 
+     <section class="section">
+       <h2>Состав и границы применения</h2>
+-      <p><strong>Форм производственных документов.</strong> Актов освидетельствования скрытых работ и ответственных конструкций, исполнительной схемы, общего журнала работ, журнала входного контроля, реестра паспортов и реестра документации. Всё это — в комплекте <a href="p4-ispolnitelnaya-dokumentaciya-pto.html">«Акты скрытых работ и исполнительная документация»</a> за 2 990 ₽.</p>
++      <p><strong>Форм производственных документов.</strong> Актов освидетельствования скрытых работ и ответственных конструкций, исполнительной схемы, общего журнала работ, журнала входного контроля, реестра паспортов и реестра документации. Всё это — в комплекте <a href="p4-ispolnitelnaya-dokumentaciya-pto.html">«Система ведения, проверки и передачи исполнительной документации»</a> за 24 900 ₽.</p>
+       <p><strong>Работы с замечаниями.</strong> Перечень типовых замечаний с ответами, письмо-ответ по пунктам, реестр замечаний и график устранения, служебная записка о блокировке оплаты. Этот комплект доводит до подписанного акта передачи и заканчивается ровно там, где комплект вернули: дальше нужен разбор по пунктам, а он в старшем комплекте.</p>
+       <p><strong>Ответа на вопрос, из чего должен состоять ваш комплект.</strong> Состав определяется договором, проектом и действующими обязательными требованиями. Увидеть состав по группам и сверить его у себя до передачи даёт <a href="../materialy/ispolnitelnaya-dokumentaciya.html">бесплатный проверочный лист</a>.</p>
+     </section>
+@@ -245,7 +245,7 @@
+     <section class="section ladder-bridge">
+       <h2>Когда этого шага уже недостаточно</h2>
+       <p>Эта ступень закрывает день передачи: комплект собран, его надо сдать под подпись и зафиксировать дату. Если комплект вернули с замечаниями и оплата встала на них, ситуация вышла за границы этого шага — дальше нужны формы производственных документов, реестр устранения и порядок ответа по пунктам.</p>
+-      <p><a class="text-link" href="p4-ispolnitelnaya-dokumentaciya-pto.html?utm_source=site&amp;utm_medium=product-ladder&amp;utm_campaign=ispolnitelnaya&amp;utm_content=t2-to-p4">Комплект «Акты скрытых работ и исполнительная документация», 2 990 ₽ →</a></p>
++      <p><a class="text-link" href="p4-ispolnitelnaya-dokumentaciya-pto.html?utm_source=site&amp;utm_medium=product-ladder&amp;utm_campaign=ispolnitelnaya&amp;utm_content=t2-to-p4">Комплект «Система ведения, проверки и передачи исполнительной документации», 24 900 ₽ →</a></p>
+       <p style="color:var(--ink-soft);font-size:14px;">Это отдельный комплект, а не расширение этой ступени: её стоимость из его цены не вычитается.</p>
+     </section>
+ 
+@@ -253,7 +253,7 @@
+       <h2>Вопросы до покупки</h2>
+       <div class="faq-list">
+         <details><summary>Что входит в комплект?</summary><p>6 файлов в форматах PDF, Word и Excel: инструкция, словарь полей, письмо, опись, акт и порядок передачи.</p></details>
+-        <details><summary>Здесь есть формы актов скрытых работ и исполнительных схем?</summary><p>Формы актов освидетельствования, исполнительной схемы, журналов и реестров находятся в комплекте <a href="p4-ispolnitelnaya-dokumentaciya-pto.html">«Акты скрытых работ и исполнительная документация»</a> за 2 990 ₽.</p></details>
++        <details><summary>Здесь есть формы актов скрытых работ и исполнительных схем?</summary><p>Формы актов освидетельствования, исполнительной схемы, журналов и реестров находятся в комплекте <a href="p4-ispolnitelnaya-dokumentaciya-pto.html">«Система ведения, проверки и передачи исполнительной документации»</a> за 24 900 ₽.</p></details>
+         <details><summary>Как я получу файлы после оплаты?</summary><p>Ссылка на скачивание придёт на указанный при заказе email после подтверждения оплаты. Плановый срок автоматической доставки — до 5 минут. Если письмо не пришло или ссылка не открывается, напишите на <a href="mailto:nastoronepodryadchika@yandex.ru">nastoronepodryadchika@yandex.ru</a> — отправим файлы письмом.</p></details>
+         <details><summary>Можно ли редактировать документы под свой договор?</summary><p>Да, для этого они и сделаны: файлы редактируются в Word и Excel, поля для заполнения выделены в самих документах. Шаблоны нужно адаптировать под ваш договор, объект и правила заказчика — приоритет всегда у договора.</p></details>
+         <details><summary>Можно ли пользоваться комплектом на нескольких объектах?</summary><p>Да. Лицензия действует для одной компании и не ограничивает количество её объектов. Передавать файлы другим компаниям нельзя.</p></details>
+@@ -263,7 +263,7 @@
+     <section class="section related">
+       <h2>Если нужно больше</h2>
+       <div class="product-grid compact">
+-        <article class="product-card"><h3>Комплект «Акты скрытых работ и исполнительная документация»</h3><p>Формы актов и схем, журналы и реестры, работа с замечаниями и снятие блокировки оплаты. 25 файла.</p><a href="p4-ispolnitelnaya-dokumentaciya-pto.html">Подробнее →</a></article>
++        <article class="product-card"><h3>Комплект «Система ведения, проверки и передачи исполнительной документации»</h3><p>Формы актов и схем, журналы и реестры, работа с замечаниями и снятие блокировки оплаты. 25 файла.</p><a href="p4-ispolnitelnaya-dokumentaciya-pto.html">Подробнее →</a></article>
+         <article class="product-card"><h3>Комплект «КС-2 без возврата»</h3><p>Если возвращают не документацию, а сами акты выполненных работ: что проверить до предъявления.</p><a href="p3-shablony-ks2-ks3.html">Подробнее →</a></article>
+       </div>
+     </section>
+@@ -273,7 +273,7 @@
+       <div class="cross-grid">
+         <article class="cross-card"><p class="cross-when">Работы выполнены — денег нет</p><h3><a href="p1-oplata-po-ks2.html">Акты выполненных работ, КС-2 и КС-3</a></h3><a class="text-link" href="p1-oplata-po-ks2.html">Посмотреть комплект →</a></article>
+         <article class="cross-card"><p class="cross-when">Не принимают и не подписывают КС</p><h3><a href="p3-shablony-ks2-ks3.html">КС-2 без возврата</a></h3><a class="text-link" href="p3-shablony-ks2-ks3.html">Посмотреть комплект →</a></article>
+-        <article class="cross-card"><p class="cross-when">Исполнительная документация блокирует приёмку и оплату</p><h3><a href="p4-ispolnitelnaya-dokumentaciya-pto.html">Акты скрытых работ и исполнительная документация</a></h3><a class="text-link" href="p4-ispolnitelnaya-dokumentaciya-pto.html">Посмотреть комплект →</a></article>
++        <article class="cross-card"><p class="cross-when">Исполнительная документация блокирует приёмку и оплату</p><h3><a href="p4-ispolnitelnaya-dokumentaciya-pto.html">Система ведения, проверки и передачи исполнительной документации</a></h3><a class="text-link" href="p4-ispolnitelnaya-dokumentaciya-pto.html">Посмотреть комплект →</a></article>
+       </div>
+     </section>
+     <section class="section related-articles">
+diff --git a/success.html b/success.html
+index d383db5..229c847 100644
+--- a/success.html
++++ b/success.html
+@@ -8,8 +8,10 @@
+        подресурсов не грузит, но полагаться на это нельзя — один
+        добавленный сюда счётчик отправил бы ключ третьей стороне. -->
+   <meta name="referrer" content="no-referrer">
+-  <meta name="description" content="Оплата успешно завершена. Документы будут отправлены на email.">
+-  <title>Оплата прошла успешно — На стороне подрядчика</title>
++  <meta name="description" content="Проверка статуса оплаты и получение документов после подтверждения заказа.">
++  <meta name="robots" content="noindex,nofollow">
++  <link rel="canonical" href="https://nastoronepodryadchika.ru/success.html">
++  <title>Статус оплаты — На стороне подрядчика</title>
+   <link rel="stylesheet" href="styles.css?v=fda7e0ac">
+   <link rel="stylesheet" href="cart.css?v=dbf0bfa0">
+   <link rel="stylesheet" href="brand-approved-2026.css?v=129e847b">
+@@ -86,7 +88,7 @@
+     <div id="error-content" class="hidden">
+       <div class="result-icon" style="background:#c62828">✕</div>
+       <h1>Не удалось подтвердить оплату</h1>
+-      <p class="lead">Что-то пошло не так. Не волнутесь — ваш заказ сохранён.</p>
++      <p class="lead">Статус оплаты не подтверждён. Если вы уже оплатили, проверьте письмо с подтверждением или свяжитесь с нами.</p>
+       <p>Если деньги списались, но документы не пришли — напишите нам: <a href="mailto:nastoronepodryadchika@yandex.ru">nastoronepodryadchika@yandex.ru</a></p>
+       <div class="btn-group">
+         <a href="/" class="button">Вернуться в каталог</a>
+diff --git a/tools/ci_checks.yaml b/tools/ci_checks.yaml
+index 1cecba4..0ac16a4 100644
+--- a/tools/ci_checks.yaml
++++ b/tools/ci_checks.yaml
+@@ -21,6 +21,20 @@
+ #
+ # Прогон: python3 tools/run_checks.py --class public
+ проверки:
++- id: test_customer_route
++  команда: python3 tools/test_customer_route.py
++  класс: public
++  блокирует: true
++  зачем: XML Word не попадает в предпросмотр; снятые SKU и старые цены не возвращаются в маршрут
++  требует: []
++  решение: 'Негативные проверки извлечения DOCX, совместимости формы, цен и корзины без сети и платежей.'
++- id: sync_customer_route
++  команда: python3 tools/sync_customer_route.py
++  класс: public
++  блокирует: true
++  зачем: снимок корзины и цена P4 в T2 согласованы с серверным каталогом
++  требует: []
++  решение: 'Серверный products-config.php остаётся единственным источником цен; запись в него не выполняется.'
+ - id: test_nsp_form_mail
+   команда: python3 tools/test_nsp_form_mail.py --handlers-only
+   класс: public
+diff --git a/tools/docx_text.py b/tools/docx_text.py
+index 2ad92f1..fec872f 100644
+--- a/tools/docx_text.py
++++ b/tools/docx_text.py
+@@ -13,6 +13,7 @@ from __future__ import annotations
+ 
+ import re
+ import zipfile
++import xml.etree.ElementTree as ET
+ from pathlib import Path
+ 
+ PARA = re.compile(r"<w:p[ >].*?</w:p>", re.S)
+@@ -24,11 +25,12 @@ UNESCAPE = (("&amp;", "&"), ("&lt;", "<"), ("&gt;", ">"),
+ def paragraphs(path: Path) -> list[str]:
+     with zipfile.ZipFile(path) as archive:
+         xml = archive.read("word/document.xml").decode("utf-8", "replace")
++    # Match namespace-qualified elements, not tag prefixes: the old <w:t[^>]*>
++    # also matched <w:top .../> and swallowed paragraph properties as text.
++    ns = '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
+     out = []
+-    for block in PARA.findall(xml):
+-        text = "".join(TEXT.findall(block))
+-        for src, dst in UNESCAPE:
+-            text = text.replace(src, dst)
++    for block in ET.fromstring(xml).iter(ns + 'p'):
++        text = ''.join(node.text or '' for node in block.iter(ns + 't'))
+         text = re.sub(r"\s+", " ", text).strip()
+         if text:
+             out.append(text)
+diff --git a/tools/sync_customer_route.py b/tools/sync_customer_route.py
+new file mode 100644
+index 0000000..4dc5143
+--- /dev/null
++++ b/tools/sync_customer_route.py
+@@ -0,0 +1,28 @@
++"""Sync route presentation from the existing server catalog; never change prices."""
++import argparse, json, re
++from pathlib import Path
++from sync_catalog import paid_products
++from check_desktop import retired_skus
++ROOT = Path(__file__).resolve().parent.parent
++
++def projection():
++    return {sku: {'sku':sku, 'name':name, 'price':rub*100}
++            for sku,(name,rub) in paid_products().items() if sku not in retired_skus()}
++
++def render_cart(text):
++    data=json.dumps(projection(),ensure_ascii=False,separators=(',',':'))
++    return re.sub(r'// route-catalog:begin.*?// route-catalog:end',
++        '// route-catalog:begin (tools/sync_customer_route.py; products-config.php)\nconst CART_CATALOG = '+data+';\n// route-catalog:end',text,flags=re.S)
++
++def main():
++    parser=argparse.ArgumentParser();parser.add_argument('--write',action='store_true');args=parser.parse_args()
++    path=ROOT/'app.js';old=path.read_text();new=render_cart(old)
++    assert len(projection())==13, 'Active SKU count changed: review before syncing'
++    if args.write:path.write_text(new)
++    else:assert old==new, 'Cart projection stale; run tools/sync_customer_route.py --write'
++    # Protect both visible copy and FAQ structured data from the same price drift.
++    text=(ROOT/'products/t2-peredacha-ispolnitelnoy-dokumentacii.html').read_text()
++    name,rub=paid_products()['p4'];assert text.count(f'{rub:,}'.replace(',',' ')+' ₽')>=4
++    assert name in text and '2 990' not in text
++    print('PASS: 13 catalog SKU, cart snapshot, P4 cross-links and price')
++if __name__=='__main__':main()
+diff --git a/tools/test_customer_route.py b/tools/test_customer_route.py
+new file mode 100644
+index 0000000..73c2706
+--- /dev/null
++++ b/tools/test_customer_route.py
+@@ -0,0 +1,84 @@
++"""Contracts and negative controls for route fixes; no writes or API calls."""
++import collections, hashlib, json, re, tempfile, unittest, zipfile
++from pathlib import Path
++import docx_text, build_preview, sync_customer_route
++ROOT=Path(__file__).resolve().parent.parent
++
++class RouteContracts(unittest.TestCase):
++    def test_bankruptcy_route_requires_evidence_and_claim_type(self):
++        text=(ROOT/'diagnostika.html').read_text()
++        scenarios=json.loads(re.search(r'const SCENARIOS = (\[.*?\]);',text,re.S)[1])
++        def match(answers):
++            return next((s for s in scenarios if all(answers.get(q)==v for q,v in s['when'].items())),None)
++        self.assertIsNone(match({'bankrot':True}))
++        risk=match({'bankrot':True,'procedure':'none'})
++        self.assertIn('признаки риска',risk['verdict'])
++        self.assertNotIn('здесь не работает',risk['means'])
++        for nature in ['registry','current']:
++            answers={'bankrot':True,'procedure':'observation','publication':True,'claim':nature}
++            result=match(answers);self.assertIsNotNone(result)
++            if nature=='current':self.assertIn('не включаются в реестр',result['means'])
++            answers.pop('publication');self.assertIsNone(match(answers))
++        self.assertIn('Требуется уточнить',match({'bankrot':True,'procedure':'unknown'})['verdict'])
++
++    def test_docx_exact_namespaced_text_only(self):
++        with tempfile.TemporaryDirectory() as d:
++            path=Path(d)/'fixture.docx'
++            xml='<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body><w:p><w:pPr><w:pBdr><w:top w:val="single"/></w:pBdr></w:pPr><w:r><w:t>Акт &amp; &lt;образец&gt;</w:t></w:r><w:r><w:t> второй фрагмент</w:t></w:r></w:p></w:body></w:document>'
++            with zipfile.ZipFile(path,'w') as z:z.writestr('word/document.xml',xml)
++            self.assertEqual(docx_text.paragraphs(path),['Акт & <образец> второй фрагмент'])
++            # The historical regex really swallowed the w:top properties.
++            block=docx_text.PARA.findall(xml)[0]
++            self.assertIn('w:pPr',''.join(docx_text.TEXT.findall(block)))
++
++    def test_p11_rebuild_is_stable_and_no_markup(self):
++        path=ROOT/'products/p11-raschet-metrami.html';text=path.read_text()
++        self.assertNotRegex(text,r'&lt;/?w:|</?w:|w:pPr')
++        new,reason=build_preview.render(path,build_preview.catalog())
++        self.assertEqual((new,reason),(text,''))
++        self.assertNotIn('платить деньгами нечем',text)
++
++    def test_free_pages_active_offer_and_form_contract(self):
++        for topic,sku in [('dengi','p1'),('bankrotstvo','p9'),('avans','p8')]:
++            text=(ROOT/f'materialy/{topic}.html').read_text()
++            self.assertNotRegex(text,r'/t[145]-|990 ₽|в спорной ситуации не применяются')
++            self.assertIn('/'+sku+'-',text)
++            self.assertIn(sync_customer_route.projection()[sku]['name'],text)
++        for path in (ROOT/'materialy').glob('*.html'):
++            text=path.read_text()
++            if 'id="lead-form"' not in text:continue
++            self.assertRegex(text,r'name="contact" type="email"[^>]+required')
++            self.assertNotRegex(text,r'name="additional_contact"[^>]+required')
++        server=(ROOT/'lead.php').read_text()
++        self.assertIn("$_POST['contact']",server)
++        self.assertIn("$consent!=='yes'",server)
++
++    def test_catalog_projection_and_retired_skus(self):
++        products=sync_customer_route.projection();self.assertEqual(len(products),13)
++        self.assertTrue({'t1','t4','t5'}.isdisjoint(products))
++        text=(ROOT/'app.js').read_text();self.assertEqual(text,sync_customer_route.render_cart(text))
++        self.assertEqual(products['p8']['price'],2490000)
++        self.assertIn("localStorage.getItem('marzhavbetone-cart')",text)
++
++    def test_server_still_owns_price_and_rejects_retired(self):
++        payment=(ROOT/'payment.php').read_text();config=(ROOT/'products-config.php').read_text()
++        self.assertIn('mvb_resolve_product((array)$item)',payment)
++        self.assertIn("$total += $product['price']",payment)
++        for sku in ['t1','t4','t5']:self.assertIn(f"if ($sku === '{sku}') return null;",config)
++
++    def test_p3_inventory_matches_copy_and_source_unchanged(self):
++        folder=ROOT/'products-storage/05-ks-bez-vozvrata'
++        counts=collections.Counter(p.suffix for p in folder.iterdir() if p.suffix in ['.docx','.xlsx','.pdf','.txt'])
++        self.assertEqual(dict(counts),{'.docx':6,'.xlsx':2,'.pdf':2,'.txt':1})
++        text=(ROOT/'products/p3-shablony-ks2-ks3.html').read_text()
++        self.assertIn('6 файлов DOCX, 2 таблицы XLSX, 2 файла PDF',text)
++        self.assertIn('КС-6а',text)
++        self.assertNotIn('реестр сверки объёмов',text)
++
++    def test_success_does_not_claim_order(self):
++        text=(ROOT/'success.html').read_text()
++        self.assertNotIn('ваш заказ сохранён',text)
++        self.assertIn('if (!orderId || !statusKey)',text)
++        self.assertIn("if (order.status === 'paid')",text)
++
++if __name__=='__main__':unittest.main()
