@@ -1,0 +1,22 @@
+{
+  "baseline_ref": "af71f8212767dc4dbff71924848cd06c52f8e4d4",
+  "candidate_ref": "800280b28f014841bf38a4dd97f90fb52ee690f5",
+  "baseline_run": 39816434047,
+  "candidate_run": 39822886948,
+  "baseline_blockers": [
+    "asset_versions",
+    "check_goals"
+  ],
+  "candidate_blockers": [
+    "asset_versions"
+  ],
+  "candidate_summary": "63 public checks executed, 62 passed; asset_versions remains failed",
+  "new_relevant_checks": {
+    "test_metrika_readonly": "PASS_REMOTE_CI",
+    "test_customer_route": "PASS_REMOTE_CI",
+    "check_goals": "PASS_REMOTE_CI"
+  },
+  "remaining_asset_versions": "Inherited broad CSS/JS cache URL drift; 105 stale links in 88 files on 800280b. Followup updates only the homepage lead.css URL needed by the new email field; broad site cache cleanup not performed.",
+  "frozen_wrapper_contract": "Source fingerprint expected app.js from the older frozen inventory; both baseline and candidate workflows failed. Old evidence was not rewritten or accepted as current.",
+  "release_gate": "NOT_PASSED"
+}

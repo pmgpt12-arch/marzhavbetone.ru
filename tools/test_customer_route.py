@@ -39,6 +39,8 @@ class RouteContracts(unittest.TestCase):
         self.assertNotIn('платить деньгами нечем',text)
 
     def test_free_pages_active_offer_and_form_contract(self):
+        css_version=hashlib.sha1((ROOT/'lead.css').read_bytes()).hexdigest()[:8]
+        self.assertIn('href="lead.css?v='+css_version+'"',(ROOT/'index.html').read_text())
         for topic,sku in [('dengi','p1'),('bankrotstvo','p9'),('avans','p8')]:
             text=(ROOT/f'materialy/{topic}.html').read_text()
             self.assertNotRegex(text,r'/t[145]-|990 ₽|в спорной ситуации не применяются')
