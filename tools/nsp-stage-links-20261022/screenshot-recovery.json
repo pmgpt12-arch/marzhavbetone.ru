@@ -1,0 +1,16 @@
+{
+  "failed_run": 39731725287,
+  "publication_started": false,
+  "diagnostic_process": 2929974,
+  "changed_pixels": 27,
+  "diff_bbox": [
+    205,
+    17,
+    340,
+    60
+  ],
+  "affected_region": "cart button; outside changed stage section",
+  "classification": "SCREENSHOT_HARNESS_STATE_CONTAMINATION",
+  "fix": "Compare fresh candidate and baseline pages before scroll/click/focus; maintain strict pixel equality",
+  "code_candidate": "UNCHANGED"
+}

@@ -20,6 +20,14 @@ const server=http.createServer((req,res)=>{
     await p.route('**/*',r=>new URL(r.request().url()).origin===base&&r.request().method()==='GET'?r.continue():r.abort());
     await p.goto(base+'/',{waitUntil:'networkidle'});await p.evaluate(()=>document.fonts.ready);
     const after=await p.screenshot({path:OUT+'/'+(process.env.NSP_LIVE?'live-':'after-')+width+'.png',fullPage:width<768});
+    if(!process.env.NSP_LIVE){
+      // Compare fresh pages before click/scroll/focus changes sticky-header rendering.
+      const baseline=await ctx.newPage();
+      await baseline.goto(local+'/before',{waitUntil:'networkidle'});await baseline.evaluate(()=>document.fonts.ready);
+      const before=await baseline.screenshot({path:OUT+'/before-'+width+'.png',fullPage:width<768});
+      assert(before.equals(after),'appearance changed at '+width);
+      await baseline.close();await p.bringToFront();
+    }
     assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'horizontal overflow');
     await p.evaluate(()=>{window.stageClicks=[];document.addEventListener('click',e=>{const a=e.target.closest('a');if(a){e.preventDefault();window.stageClicks.push(a.getAttribute('href'))}},true)});
     for(let i=0;i<3;i++){
@@ -36,11 +44,6 @@ const server=http.createServer((req,res)=>{
       await title.focus();await p.keyboard.press('Enter');
       assert.equal(await p.evaluate(()=>window.stageClicks.pop()),expected[i],'keyboard Enter');
       const target=fs.readFileSync(path.join(ROOT,'katalog.html'),'utf8');assert(target.includes('id="'+expected[i].split('#')[1]+'"'));
-    }
-    if(!process.env.NSP_LIVE){
-      await p.goto(local+'/before',{waitUntil:'networkidle'});await p.evaluate(()=>document.fonts.ready);
-      const before=await p.screenshot({path:OUT+'/before-'+width+'.png',fullPage:width<768});
-      assert(before.equals(after),'appearance changed at '+width);
     }
     results.push({width,height,title_description_icon_whitespace_keyboard:'PASS',appearance:process.env.NSP_LIVE?'published screenshot saved':'PIXEL_IDENTICAL'});
     await ctx.close();
