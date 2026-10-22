@@ -18,6 +18,10 @@ try{
   echo json_encode(['status'=>'EXISTING_NO_RESEND','receipt'=>$saved],JSON_UNESCAPED_UNICODE).PHP_EOL;exit;
  }
  need($mode!=='inspect','NO_PRIOR_RECEIPT');need(function_exists('mail'),'MAIL_UNAVAILABLE');
+ $loaded=(string)php_ini_loaded_file()."\n".(string)php_ini_scanned_files();
+ need(strpos($loaded,'/nastoronepodryadchika.ru/')!==false,'SITE_PHP_CONFIG_NOT_LOADED');
+ preg_match_all('/(?:^|\s)-f\s*(\S+)/',(string)ini_get('sendmail_path'),$envelope);
+ need($envelope[1]===['site@nastoronepodryadchika.ru']&&(string)ini_get('mail.force_extra_parameters')==='','SITE_ENVELOPE_MISMATCH');
  $receipt=['status'=>'READY','from'=>'site@nastoronepodryadchika.ru','to'=>'nastoronepodryadchika@yandex.ru','reply_to'=>'nastoronepodryadchika@yandex.ru','message_id'=>'<nsp-control-new-from-20261022-v1@nastoronepodryadchika.ru>','subject'=>'НСП: проверка нового адреса отправителя','actual_delivery'=>'NOT_VERIFIED','production_sender'=>'UNCHANGED','orders_created'=>0,'public_writes'=>0];
  if($mode==='dry-run'){echo json_encode($receipt+['mail_attempts'=>0],JSON_UNESCAPED_UNICODE).PHP_EOL;exit;}
  $claim=fopen($marker,'x');need($claim!==false,'ALREADY_CLAIMED_NO_RETRY');chmod($marker,0600);
