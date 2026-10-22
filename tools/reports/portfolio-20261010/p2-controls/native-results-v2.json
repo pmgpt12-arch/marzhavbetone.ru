@@ -1,0 +1,58 @@
+{
+  "engine": "LibreOfficeDev26.8.0.0.alpha0",
+  "input_sha256": "d826e39c8add8f120b3b6ecb1bb5def9dc0a7aa290a92164db9a563fba6ce989",
+  "output_sha256": "2437395a5d962fe6ad343c8772d66684c9efcade1ea2eb7784c7fa90fdfbc9d5",
+  "output_newer_than_input": true,
+  "scope": "arithmetic only; no UI validation or MSExcel",
+  "cases": [
+    {
+      "cell": "I4",
+      "scenario": "positive",
+      "expected": 575,
+      "actual": 575.0,
+      "pass": true
+    },
+    {
+      "cell": "I5",
+      "scenario": "blank_coefficient",
+      "expected": 500,
+      "actual": 500.0,
+      "pass": true
+    },
+    {
+      "cell": "I6",
+      "scenario": "zero_quantity",
+      "expected": 0,
+      "actual": 0.0,
+      "pass": true
+    },
+    {
+      "cell": "I7",
+      "scenario": "zero_coefficient",
+      "expected": 0,
+      "actual": 0.0,
+      "pass": true
+    },
+    {
+      "cell": "I8",
+      "scenario": "blank_quantity",
+      "expected": "",
+      "actual": "",
+      "pass": true
+    },
+    {
+      "cell": "I9",
+      "scenario": "negative",
+      "expected": -400,
+      "actual": -400.0,
+      "pass": true
+    },
+    {
+      "cell": "I10",
+      "scenario": "invalid_text",
+      "expected": "#VALUE!",
+      "actual": "#VALUE!",
+      "pass": true
+    }
+  ]
+}

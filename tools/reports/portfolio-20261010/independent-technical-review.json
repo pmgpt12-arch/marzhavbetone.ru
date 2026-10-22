@@ -1,0 +1,10 @@
+{
+  "result": "PASS_P2_ROUTE_A_DETERMINISTIC_SCOPE_ONLY",
+  "reviewer": "independent session agent /root/p1_residual",
+  "date": "2026-10-10",
+  "base_sha": "b85a2e716d501cbc54c840f58027ecfd6a60964b",
+  "archive_sha256": "cb3aae752db4bed41cbc0493997135021f00b2570f88d7a72f7c10650d08d5a4",
+  "checks": ["15 source Git blobs and sizes match pinned main inventory", "15 unique ZIP members; CRC, SHA256, bytes and Git blobs match", "exactly 2 DOCX and derived PDF changed; other12 byte-identical", "each DOCX only word/document.xml changes; C14N equals expected one-node substitution", "all other DOCX parts byte-identical", "replacement texts match preserved #569 builders", "PDF4pages contains DOCX paragraphs in order", "all5fullresolution PNG reviewed without visible clipping/overlap/blankpages"],
+  "limits": ["not normative acceptance", "not native Microsoft Office", "not filled buyer scenario", "not full G1-G8", "not release permission"],
+  "mutations_by_reviewer": 0
+}
