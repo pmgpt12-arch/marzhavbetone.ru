@@ -18,7 +18,7 @@ save('P8_WALKTHROUGH.json',walk)
 sys.path.insert(0,str(R/'tools'));from check_xlsx_print_contract import snapshot,compare
 prints=[]
 for f in load('new-workbook-manifest.json'):
- diff=compare(snapshot(R/f['path']),snapshot(Q/'candidates'/f['path']));assert not diff,(f['path'],diff);prints.append({'path':f['path'],'sha256':f['sha256'],'print_metadata':'UNCHANGED','native_print':'BLOCKED'})
+ diff=compare(snapshot(R/f['path']),snapshot(Q/'candidates'/f['path']));assert not diff,(f['path'],diff);prints.append({'path':f['path'],'sha256':f['sha256'],'print_metadata':('EXISTING_PRESERVED_ADDED_SCOPED_PRINT_AREAS' if '/22-reestr-garantiynyh-uderzhaniy.xlsx' in f['path'] else 'UNCHANGED'),'native_print':'BLOCKED'})
 save('PRINT_CONTRACTS.json',prints)
 # Bounded native manifests are prepared in QA only. Nothing is sent to current.xml.
 word=[]

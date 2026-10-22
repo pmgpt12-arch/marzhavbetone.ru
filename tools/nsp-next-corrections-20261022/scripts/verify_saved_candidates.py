@@ -30,7 +30,17 @@ for f in archives['archives']:
    assert sha(b)not in {x['sha256']for x in held},('UNACCEPTED_HELD_FILE_INCLUDED',f['sku'],m['name'])
 assert (count,changed,accepted)==(172,17,13)
 results=load('lo-regression-results.json');after=[x for x in results if x['phase']=='after'];before=[x for x in results if x['phase']=='before'];assert len(after)==39 and all(x['expectations_pass']for x in after);assert len(before)==9 and all(not x['expectations_pass']for x in before)
-for f in load('PRINT_CONTRACTS.json'):assert f['print_metadata']=='UNCHANGED'and f['native_print']=='BLOCKED'
+import sys
+sys.path.insert(0,str(R/'tools'))
+from check_xlsx_print_contract import snapshot,compare
+for f in load('PRINT_CONTRACTS.json'):
+ original=snapshot(R/f['path']);candidate=snapshot(H/'candidates'/f['path']);assert not compare(original,candidate),('PRINT_CONTRACT_CHANGED',f['path']);assert f['native_print']=='BLOCKED'
+ if '/22-reestr-garantiynyh-uderzhaniy.xlsx' in f['path']:
+  assert f['print_metadata']=='EXISTING_PRESERVED_ADDED_SCOPED_PRINT_AREAS'
+  assert not original['print_names']
+  assert candidate['print_names']=={'_xlnm.Print_Area:'+str(i):r['area']for i,r in enumerate(load('HELPER_PRINT_SCOPE.json')['P5_added_print_areas'])}
+ else:
+  assert f['print_metadata']=='UNCHANGED';assert original['print_names']==candidate['print_names']
 for p in (H/'prepared-office').glob('*/*/job.xml'):
  root=E.parse(p).getroot();assert 1<=len(root.findall('file'))<=4;assert p.stat().st_size<=65536
  for f in root.findall('file'):assert sha((p.parent/f.get('name')).read_bytes())==f.get('sha256');assert f.get('sha256')not in {x['accepted_sha256']for x in protected}
