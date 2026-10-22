@@ -31,5 +31,20 @@ with tempfile.TemporaryDirectory() as directory:
     for mode in ['send','inspect']:
         assert run(mode)['status']=='EXISTING_NO_RESEND' and capture.read_bytes()==raw
     assert len(list(private.iterdir()))==1
+    marker_before={p.name:p.read_bytes() for p in private.iterdir()}
+    command=['php','-c',str(ini),'-d',f'sendmail_path=python3 {fake} {capture} -f site@nastoronepodryadchika.ru',str(ROOT/'tools/nsp_control_email.php'),'send',str(site),str(private),'site-config-v2']
+    second=subprocess.run(command,capture_output=True,text=True,timeout=10)
+    assert second.returncode==0,second.stderr
+    second_receipt=json.loads(second.stdout)
+    assert second_receipt['message_id']=='<nsp-control-new-from-20261022-v2@nastoronepodryadchika.ru>'
+    assert second_receipt['subject']=='НСП: проверка отправителя №2'
+    raw_second=capture.read_bytes();assert len(raw_second)>len(raw)
+    for mode in ['send','inspect']:
+        command[-4]=mode
+        repeat=subprocess.run(command,capture_output=True,text=True,timeout=10)
+        assert repeat.returncode==0 and json.loads(repeat.stdout)['status']=='EXISTING_NO_RESEND'
+        assert capture.read_bytes()==raw_second
+    assert len(list(private.iterdir()))==2
+    assert all((private/name).read_bytes()==value for name,value in marker_before.items())
     assert sorted(p.name for p in site.iterdir())==['config.php','mail-test.ini']
-print(json.dumps({'status':'PASS','real_messages_sent':0,'captured_messages':1,'repeat_and_inspect_no_resend':True,'wrong_php_config_and_envelope_blocked_before_send':True}))
+print(json.dumps({'status':'PASS','real_messages_sent':0,'captured_messages':2,'repeat_and_inspect_no_resend':True,'v1_marker_preserved_for_separately_authorized_v2':True,'wrong_php_config_and_envelope_blocked_before_send':True}))

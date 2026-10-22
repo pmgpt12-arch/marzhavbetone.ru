@@ -4,15 +4,16 @@ declare(strict_types=1);
 function need(bool $ok,string $why):void{if(!$ok)throw new RuntimeException($why);}
 function php_hashes(string $root):array{$out=[];foreach(glob($root.'/*.php') as $p){need(!is_link($p),'PHP_SYMLINK');$out[basename($p)]=hash_file('sha256',$p);}ksort($out);return $out;}
 try{
- need($argc===4&&in_array($argv[1],['dry-run','send','inspect','diagnose'],true),'ARGS');
+ need(($argc===4||($argc===5&&$argv[4]==='site-config-v2'))&&in_array($argv[1],['dry-run','send','inspect','diagnose'],true),'ARGS');
+ $version=$argc===5?'v2':'v1';
  $mode=$argv[1];$root=realpath($argv[2]);$private=realpath($argv[3]);
  need(is_string($root)&&basename($root)==='nastoronepodryadchika.ru','SITE_ROOT');
  need(is_string($private)&&!is_link($argv[3])&&strpos($private,$root.'/')!==0&&$private!==$root,'PRIVATE_ROOT');
  need((fileperms($private)&0077)===0,'PRIVATE_PERMISSIONS');
  $before=php_hashes($root);require $root.'/config.php';
  need(SITE_URL==='https://nastoronepodryadchika.ru'&&ADMIN_EMAIL==='nastoronepodryadchika@yandex.ru','RUNTIME_IDENTITY');
- $marker=$private.'/control-email-new-from-20261022-v1.json';
- if($mode==='diagnose'){echo json_encode(diagnose_mail($root,$private,$before),JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;exit;}
+ $marker=$private.'/control-email-new-from-20261022-'.$version.'.json';
+ if($mode==='diagnose'){echo json_encode(diagnose_mail($root,$private,$before,$version),JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;exit;}
  if(is_file($marker)){
   $saved=json_decode(file_get_contents($marker),true,512,JSON_THROW_ON_ERROR);
   echo json_encode(['status'=>'EXISTING_NO_RESEND','receipt'=>$saved],JSON_UNESCAPED_UNICODE).PHP_EOL;exit;
@@ -22,7 +23,7 @@ try{
  need(strpos($loaded,'/nastoronepodryadchika.ru/')!==false,'SITE_PHP_CONFIG_NOT_LOADED');
  preg_match_all('/(?:^|\s)-f\s*(\S+)/',(string)ini_get('sendmail_path'),$envelope);
  need($envelope[1]===['site@nastoronepodryadchika.ru']&&(string)ini_get('mail.force_extra_parameters')==='','SITE_ENVELOPE_MISMATCH');
- $receipt=['status'=>'READY','from'=>'site@nastoronepodryadchika.ru','to'=>'nastoronepodryadchika@yandex.ru','reply_to'=>'nastoronepodryadchika@yandex.ru','message_id'=>'<nsp-control-new-from-20261022-v1@nastoronepodryadchika.ru>','subject'=>'НСП: проверка нового адреса отправителя','actual_delivery'=>'NOT_VERIFIED','production_sender'=>'UNCHANGED','orders_created'=>0,'public_writes'=>0];
+ $receipt=['status'=>'READY','from'=>'site@nastoronepodryadchika.ru','to'=>'nastoronepodryadchika@yandex.ru','reply_to'=>'nastoronepodryadchika@yandex.ru','message_id'=>'<nsp-control-new-from-20261022-'.$version.'@nastoronepodryadchika.ru>','subject'=>$version==='v2'?'НСП: проверка отправителя №2':'НСП: проверка нового адреса отправителя','actual_delivery'=>'NOT_VERIFIED','production_sender'=>'UNCHANGED','orders_created'=>0,'public_writes'=>0,'site_php_config_loaded'=>true,'envelope_sender'=>'site@nastoronepodryadchika.ru'];
  if($mode==='dry-run'){echo json_encode($receipt+['mail_attempts'=>0],JSON_UNESCAPED_UNICODE).PHP_EOL;exit;}
  $claim=fopen($marker,'x');need($claim!==false,'ALREADY_CLAIMED_NO_RETRY');chmod($marker,0600);
  $receipt['status']='ATTEMPT_CLAIMED';$receipt['attempted_at_utc']=gmdate('c');$receipt['mail_attempts']=1;
@@ -37,15 +38,15 @@ try{
  need($receipt['protected_php']==='UNCHANGED','PHP_CHANGED');need($accepted,'MAIL_TRANSPORT_REJECTED_NO_AUTO_RETRY');
 }catch(Throwable $e){fwrite(STDERR,$e->getMessage().PHP_EOL);exit(1);}
 
-function diagnose_mail(string $root,string $private,array $before):array{
- $home=dirname($private);$id='nsp-control-new-from-20261022-v1';$to='nastoronepodryadchika@yandex.ru';
+function diagnose_mail(string $root,string $private,array $before,string $version='v1'):array{
+ $home=dirname($private);$id='nsp-control-new-from-20261022-'.$version;$to='nastoronepodryadchika@yandex.ru';
  $clean=static function(string $line)use($home,$to):string{
   $line=str_replace($home,'[HOME]',$line);
   $line=preg_replace('/\bU=\S+/','U=[hosting-user]',$line);
   return preg_replace_callback('/[A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,}/i',static function($m)use($to){return in_array(strtolower($m[0]),[$to,'site@nastoronepodryadchika.ru','site@marzhavbetone.ru'],true)?$m[0]:'[OTHER_EMAIL]';},$line);
  };
  $path=trim((string)ini_get('sendmail_path'));$binary=preg_split('/\s+/',$path)[0]??'';
- $result=['status'=>'READ_ONLY_DIAGNOSTIC','mail_attempts'=>0,'public_writes'=>0,'sendmail_binary'=>$binary,'sendmail_realpath'=>realpath($binary)?:null,'envelope_override_configured'=>(bool)preg_match('/(?:^|\s)-f/',$path),'marker_exists'=>is_file($private.'/control-email-new-from-20261022-v1.json'),'logs'=>[],'queue'=>[],'dns'=>[]];
+ $result=['status'=>'READ_ONLY_DIAGNOSTIC','mail_attempts'=>0,'public_writes'=>0,'sendmail_binary'=>$binary,'sendmail_realpath'=>realpath($binary)?:null,'envelope_override_configured'=>(bool)preg_match('/(?:^|\s)-f/',$path),'marker_exists'=>is_file($private.'/control-email-new-from-20261022-'.$version.'.json'),'logs'=>[],'queue'=>[],'dns'=>[]];
  foreach([$home.'/logs/mail.log',$home.'/logs/exim.log','/var/log/mail.log','/var/log/maillog','/var/log/exim4/mainlog','/var/log/exim/mainlog'] as $log){
   $row=['path'=>$clean($log),'readable'=>is_readable($log)];
   if($row['readable']&&is_file($log)){
