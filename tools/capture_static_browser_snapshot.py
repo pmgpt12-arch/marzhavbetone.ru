@@ -22,7 +22,7 @@ import sys
 import time
 from urllib.parse import urlparse
 
-EXPECTED_REPORT_SHA256 = "029e2d0763775a05afd8f6fa86c01a6c9fe94af67e597602e4b3779edfaeecbb"
+EXPECTED_REPORT_SHA256 = "8c7dbd5a4b7ca3fd43ccb9d760c83dbd181d35b22d966a9e15ffed9f1fb3489a"
 EXPECTED_PAGE_COUNT = 88
 VIEWPORTS = {
     "mobile-390x844": {"width": 390, "height": 844},
