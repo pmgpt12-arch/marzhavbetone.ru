@@ -98,7 +98,11 @@ class P3LegacySnapshotBridgeTests(unittest.TestCase):
         self.assertIsNotNone(price)
         self.assertEqual(int(price.group(1)), 1790000)
         diagnostic = (root / "diagnostika.html").read_text(encoding="utf-8")
-        self.assertIn('"url": "/products/p3-shablony-ks2-ks3.html", "price": 17900', diagnostic)
+        scenarios = json.loads(re.search(r'const SCENARIOS\s*=\s*(\[.*?\]);', diagnostic, re.S).group(1))
+        prices = [offer['price'] for row in scenarios for offer in (row.get('core') or {}, row.get('entry') or {})
+                  if offer.get('url') == '/products/p3-shablony-ks2-ks3.html']
+        self.assertTrue(prices)
+        self.assertTrue(all(price == 17900 for price in prices))
         pages = ("index.html", "katalog.html",
                  "products/p3-shablony-ks2-ks3.html",
                  "articles/proverka-ks-2-pered-sdachey.html",
