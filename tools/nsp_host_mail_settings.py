@@ -16,7 +16,7 @@ def safe(value):
     if user:
         value = value.replace(user, '[hosting-user]')
     return re.sub(r'[A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,}',
-                  lambda m: m[0] if m[0].lower() in ALLOWED else '[OTHER_EMAIL]', value, flags=re.I)
+                  lambda m: m[0] if m[0].lower() in ALLOWED or m[0].lower().split('@')[-1] in DOMAINS else '[OTHER_EMAIL]', value, flags=re.I)
 
 def inspect(path):
     record = {'path': safe(path), 'symlink': path.is_symlink()}
@@ -38,8 +38,10 @@ def inspect(path):
                 matches.append({'line': number, 'mail_disabled': bool(re.search(r'\bmail\b', s.split('=', 1)[1]))})
             elif any('@' + d in s for d in DOMAINS) and ('sendmail' in s or 'ServerAdmin' in s or 'php_admin' in s):
                 matches.append({'line': number, 'setting': safe(s[:1000])})
-            elif 'PHPRC' in s and not re.search(r'pass|token|secret', s, re.I):
+            elif ('PHPRC' in s or 'PHP_INI_SCAN_DIR' in s or s.startswith('exec ')) and not re.search(r'pass|token|secret', s, re.I):
                 matches.append({'line': number, 'setting': safe(s[:1000])})
+        if path.name == 'php' and len(raw) < 1000:
+            record['wrapper'] = safe(text)
         record['mail_settings'] = matches[:30]
     except (OSError, ValueError) as e:
         record['error'] = type(e).__name__
@@ -68,4 +70,12 @@ for domain in DOMAINS:
 result = {'status': 'READ_ONLY_HOST_MAIL_SETTINGS', 'mail_attempts': 0, 'public_writes': 0,
           'configs': [inspect(p) for p in sorted(paths)][:50],
           'mailbox_directory_hints_not_authoritative': mailboxes}
+result['project_mailbox_entries'] = []
+for directory in (HOME / 'passwd', HOME / 'etc/passwd', HOME / 'email/passwd'):
+    if directory.is_file():
+        try:
+            text = directory.read_text(errors='replace')
+            result['project_mailbox_entries'].append({'path': safe(directory), 'site_old_mentioned': 'site@marzhavbetone.ru' in text, 'site_new_mentioned': 'site@nastoronepodryadchika.ru' in text})
+        except OSError:
+            pass
 print(json.dumps(result, ensure_ascii=False))
