@@ -82,12 +82,13 @@
         <input name="material" type="hidden" value="uderzhaniya">
         <input name="source" type="hidden" value="site-uderzhaniya">
         <input name="name" type="text" maxlength="80" placeholder="Имя" required>
-        <input name="contact" type="text" maxlength="120" placeholder="Telegram или email" required>
+        <label>Email для связи<input name="contact" type="email" autocomplete="email" maxlength="120" placeholder="Email" required></label>
+        <label>Telegram или телефон · необязательно<input name="additional_contact" type="text" maxlength="120" placeholder="@username или +7…"></label>
         <label><input name="consent" type="checkbox" value="yes" required> Согласен на обработку данных</label>
         <button class="button" type="submit">Получить материалы</button>
         <p id="lead-status" role="status"></p>
       </form>
-      <p class="note">Материалы — редактируемые шаблоны. Их нужно адаптировать под ваш договор и обстоятельства объекта; они не заменяют юридическую консультацию.</p>
+      <p class="note">Формы и расчёты заполняются по вашему договору, документам и обстоятельствам объекта.</p>
     </section>
 
     <section class="section related">

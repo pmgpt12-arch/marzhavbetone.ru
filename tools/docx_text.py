@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import re
 import zipfile
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 PARA = re.compile(r"<w:p[ >].*?</w:p>", re.S)
@@ -24,11 +25,12 @@ UNESCAPE = (("&amp;", "&"), ("&lt;", "<"), ("&gt;", ">"),
 def paragraphs(path: Path) -> list[str]:
     with zipfile.ZipFile(path) as archive:
         xml = archive.read("word/document.xml").decode("utf-8", "replace")
+    # Match namespace-qualified elements, not tag prefixes: the old <w:t[^>]*>
+    # also matched <w:top .../> and swallowed paragraph properties as text.
+    ns = '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
     out = []
-    for block in PARA.findall(xml):
-        text = "".join(TEXT.findall(block))
-        for src, dst in UNESCAPE:
-            text = text.replace(src, dst)
+    for block in ET.fromstring(xml).iter(ns + 'p'):
+        text = ''.join(node.text or '' for node in block.iter(ns + 't'))
         text = re.sub(r"\s+", " ", text).strip()
         if text:
             out.append(text)

@@ -21,6 +21,20 @@
 #
 # Прогон: python3 tools/run_checks.py --class public
 проверки:
+- id: test_customer_route
+  команда: python3 tools/test_customer_route.py
+  класс: public
+  блокирует: true
+  зачем: XML Word не попадает в предпросмотр; снятые SKU и старые цены не возвращаются в маршрут
+  требует: []
+  решение: 'Негативные проверки извлечения DOCX, совместимости формы, цен и корзины без сети и платежей.'
+- id: sync_customer_route
+  команда: python3 tools/sync_customer_route.py
+  класс: public
+  блокирует: true
+  зачем: снимок корзины и цена P4 в T2 согласованы с серверным каталогом
+  требует: []
+  решение: 'Серверный products-config.php остаётся единственным источником цен; запись в него не выполняется.'
 - id: test_nsp_form_mail
   команда: python3 tools/test_nsp_form_mail.py --handlers-only
   класс: public
