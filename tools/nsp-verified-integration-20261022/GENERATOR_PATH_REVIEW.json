@@ -1,0 +1,11 @@
+{
+  "status": "PASS_FOR_ACTUAL_PACKAGING_PATH",
+  "runtime_builder": "mvb_build_product_zip",
+  "runtime_source_sha256": "10739a7aff2a98e676c1e15b3499c64ad82703d0d6a3c6650b3dab751ce70551",
+  "accepted_members_verified_end_to_end": 13,
+  "legacy_generator_sha256": "c8bbec1b52bf33634303cf23cb5d19924605146a3d63e310eaeebd2c16b4661c",
+  "legacy_generator_executed": false,
+  "legacy_generator_changed": false,
+  "source_rewrite_in_runtime_builder": false,
+  "rollback_gate": "verify_nsp_accepted_masters: exact accepted SHA256 and Git blob, enforced by existing CI registry"
+}

@@ -866,3 +866,12 @@
   зачем: мастер P8/02 совпадает с версией, принятой владельцем вручную в Excel
   требует: []
   решение: ""
+
+- id: verify_nsp_accepted_masters
+  команда: python3 tools/nsp-verified-integration-20261022/verify_handoff.py --source-root . --target-root . --phase after
+  класс: public
+  блокирует: true
+  требует:
+    - tools/nsp-verified-integration-20261022/MANIFEST_VERIFIED_FILES.json
+    - tools/nsp-verified-integration-20261022/verify_handoff.py
+  зачем: Точные принятые байты 13 мастеров; обнаруживает откат историческим генератором до упаковки.
