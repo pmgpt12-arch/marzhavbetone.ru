@@ -8,7 +8,7 @@
   "forms_status": "VERIFIED_DONE_RUNTIME_AND_SOURCE",
   "current_from": "site@marzhavbetone.ru",
   "target_from": "site@nastoronepodryadchika.ru",
-  "from_status": "V2_SENT_WITH_SITE_CONFIG_AWAITING_DELIVERY",
+  "from_status": "V2_RECEIVED_IN_SPAM_AUTHENTICATION_REVIEW_OPEN",
   "pdf_status": "REVIEW_OWNER_APPROVAL_REQUIRED",
   "dc_account": "nastorone",
   "dc_device": "ai-workstation",
@@ -49,5 +49,7 @@
   "hosting_envelope": "site@nastoronepodryadchika.ru",
   "hosting_envelope_status": "APPLIED_VERIFIED_PHP83_WRAPPER_SELECTED_CONFIG",
   "control_mail_gate": "PASS_WRONG_CONFIG_AND_ENVELOPE_BLOCKED_BEFORE_MAIL",
-  "updated_date": "2026-10-22"
+  "updated_date": "2026-10-22",
+  "control_email_v2_delivery": "CONFIRMED_BY_RECIPIENT",
+  "control_email_v2_folder": "SPAM"
 }
