@@ -85,9 +85,12 @@
     }
   ],
   "remote_branch": {
-    "status": "OWNER_AUTHORIZED_READY_TO_PUSH",
-    "prior_auto_review_rejection": "Resolved by explicit user permission in current turn",
-    "pushed": false
+    "status": "PUSH_VERIFIED",
+    "verified_commit": "63c393c17c2cd779b83a95af2d89b65e9f5bbed7",
+    "local_equals_remote": true,
+    "files_match": 198,
+    "pushed": true,
+    "note": "This commit was verified before this documentation-only receipt update; PR records final head."
   },
   "patch_apply_check": "PASS_ON_CLEAN_BASE",
   "site_acceptance": "NOT_FINAL; 116 browser scenarios are staging tests only",
