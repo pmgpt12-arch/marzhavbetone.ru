@@ -21,6 +21,13 @@
 #
 # Прогон: python3 tools/run_checks.py --class public
 проверки:
+- id: test_metrika_readonly
+  команда: python3 tools/test_metrika_readonly.py
+  класс: public
+  блокирует: true
+  зачем: проверка аналитики только чтением не создаёт цели и не записывает снимки
+  требует: []
+  решение: 'Настоящий shell-шаг проверяется с локальным регистратором аргументов без сети.'
 - id: test_customer_route
   команда: python3 tools/test_customer_route.py
   класс: public

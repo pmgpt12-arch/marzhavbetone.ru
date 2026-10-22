@@ -57,6 +57,9 @@ TIMEOUT = 40
 # Цели, ради которых всё и делалось. Порядок — путь читателя, а не алфавит.
 GOAL_ORDER = [
     "article_to_product", "article_to_magnet", "magnet_opened", "product_opened",
+    # Different stages: form request, link readiness and the first download click.
+    # None of them confirms that the server sent the complete file.
+    "lead_submit", "lead_ready", "download_click",
     "checklist_download", "lead_sent", "calculator_use", "calculator_to_product",
     "product_selected", "add_to_cart", "checkout_open", "purchase", "dzen_click",
     # Заведены 15.08.2026. Первые две страница диагностики слала с самого

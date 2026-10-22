@@ -44,7 +44,7 @@ class RouteContracts(unittest.TestCase):
             self.assertNotRegex(text,r'/t[145]-|990 ₽|в спорной ситуации не применяются')
             self.assertIn('/'+sku+'-',text)
             self.assertIn(sync_customer_route.projection()[sku]['name'],text)
-        for path in (ROOT/'materialy').glob('*.html'):
+        for path in [ROOT/'index.html', *(ROOT/'materialy').glob('*.html')]:
             text=path.read_text()
             if 'id="lead-form"' not in text:continue
             self.assertRegex(text,r'name="contact" type="email"[^>]+required')

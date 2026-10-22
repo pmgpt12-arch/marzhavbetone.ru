@@ -181,7 +181,7 @@ function createCheckoutModal() {
   modal.querySelector('#checkout-form').addEventListener('submit', async event => {
     event.preventDefault();
     const form=event.target, errorEl=modal.querySelector('#checkout-error'), loadingEl=modal.querySelector('#checkout-loading'), submitBtn=form.querySelector('.checkout-submit');
-    if (!form.reportValidity() || cart.length===0) return;
+    if (submitBtn.disabled || !form.reportValidity() || cart.length===0) return;
     errorEl.textContent=''; submitBtn.disabled=true; loadingEl.hidden=false;
     const data={items:cart,email:form.elements.email.value.trim(),phone:form.elements.phone.value.trim(),attribution:typeof window.mvbAttribution==='function'?window.mvbAttribution():{}};
     try {

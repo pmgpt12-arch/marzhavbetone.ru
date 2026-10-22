@@ -1,0 +1,34 @@
+{
+  "observed_utc": "2026-10-22T17:18:41.783420+00:00",
+  "scope": "published site; two explicitly requested synthetic free-material submissions",
+  "paid_orders": 0,
+  "rows": [
+    {
+      "material": "checklist",
+      "expected_path": "/downloads/checklist-zakrytiya-rabot.pdf",
+      "form_http": 200,
+      "download_http": 200,
+      "bytes": 58666,
+      "mime": "application/pdf",
+      "sha256": "65ec8f7880adc4bf9d611888bf16f332415bc7b6da97fcf577fd29e38dba42c4",
+      "status": "PASS_REAL_BYTES"
+    },
+    {
+      "material": "dengi",
+      "expected_path": "/downloads/dengi.zip",
+      "form_http": 200,
+      "download_http": 200,
+      "bytes": 160276,
+      "mime": "application/zip",
+      "sha256": "f8166b4c029df501d53ea3b3b7d57b17e15a1ffbbc8d20f315b3333a19e9cc33",
+      "archive_entries": 5,
+      "status": "PASS_REAL_BYTES"
+    }
+  ],
+  "limits": [
+    "admin notification delivery is not checked",
+    "not an acceptance of the unpublished candidate form",
+    "HTTP receipt does not prove an analytics download_served event",
+    "no paid-provider or buyer-email acceptance"
+  ]
+}

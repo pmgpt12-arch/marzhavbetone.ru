@@ -1,0 +1,309 @@
+{
+  "scope": "isolated staging; no external payment or analytics",
+  "rows": [
+    {
+      "id": "HOME-UNCHANGED-HERO",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "geometry": [
+          {
+            "s": ".hero",
+            "x": 43,
+            "y": 134.96875,
+            "width": 650.40625,
+            "height": 261.59375,
+            "font": "16px \"IBM Plex Sans\", \"Segoe UI\", Arial, sans-serif"
+          },
+          {
+            "s": "#home-title",
+            "x": 43,
+            "y": 134.96875,
+            "width": 640,
+            "height": 105.59375,
+            "font": "600 48px / 52.8px \"NSP Existing Plex\", \"IBM Plex Sans\", \"Segoe UI\", Arial, sans-serif"
+          },
+          {
+            "s": ".hero-actions",
+            "x": 43,
+            "y": 340.5625,
+            "width": 650.40625,
+            "height": 56,
+            "font": "16px \"IBM Plex Sans\", \"Segoe UI\", Arial, sans-serif"
+          },
+          {
+            "s": ".stage-solutions",
+            "x": 757.40625,
+            "y": 102,
+            "width": 565.578125,
+            "height": 327.53125,
+            "font": "16px \"IBM Plex Sans\", \"Segoe UI\", Arial, sans-serif"
+          },
+          {
+            "s": "#situations",
+            "x": 0,
+            "y": 441.53125,
+            "width": 1366,
+            "height": 602.015625,
+            "font": "16px \"IBM Plex Sans\", \"Segoe UI\", Arial, sans-serif"
+          }
+        ],
+        "viewport_pixel_sha256": "e576dab2a35fe176e3bf16c7a6a260eaede3e7df1d624942126f4342dc409d7e"
+      }
+    },
+    {
+      "id": "HOME-FORM-CONTRACT",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "email": {
+          "x": 407.375,
+          "y": 5140.8125,
+          "width": 299.765625,
+          "height": 49
+        },
+        "optional_contact": {
+          "x": 95.609375,
+          "y": 5201.8125,
+          "width": 299.765625,
+          "height": 49
+        },
+        "invalid_email_rejected": true
+      }
+    },
+    {
+      "id": "HOME-NATIVE-LEAD-AND-PDF",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "native_php": true,
+        "mail_transport": "disabled",
+        "posts": 1,
+        "bytes": 58666,
+        "sha256": "65ec8f7880adc4bf9d611888bf16f332415bc7b6da97fcf577fd29e38dba42c4",
+        "goals": [
+          {
+            "name": "lead_submit",
+            "params": {
+              "material": "checklist",
+              "source": "site"
+            }
+          },
+          {
+            "name": "lead_ready",
+            "params": {
+              "material": "checklist",
+              "source": "site"
+            }
+          },
+          {
+            "name": "download_click",
+            "params": {
+              "material": "checklist",
+              "source": "site"
+            }
+          }
+        ],
+        "download_served_event": "ABSENT"
+      }
+    },
+    {
+      "id": "CHECKOUT-DOUBLE-SUBMIT",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "posts_for_double_submit": 1,
+        "retry_after_failure": true,
+        "add_to_cart": 1,
+        "external_payments": 0
+      }
+    },
+    {
+      "id": "PURCHASE-PENDING-IS-NOT-SALE",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "purchase": 0
+      }
+    },
+    {
+      "id": "PURCHASE-PAID-RELOAD-DEDUPE",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "paid_status": "synthetic API response",
+        "first_purchase": 1,
+        "first_ecommerce": 1,
+        "repeat": {
+          "goals": 0,
+          "ecommerce": 0
+        }
+      }
+    },
+    {
+      "id": "NO-JS-ERRORS",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "errors": []
+      }
+    },
+    {
+      "id": "HOME-UNCHANGED-HERO",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "geometry": [
+          {
+            "s": ".hero",
+            "x": 0,
+            "y": 76,
+            "width": 390,
+            "height": 485,
+            "font": "16px \"IBM Plex Sans\", \"Segoe UI\", Arial, sans-serif"
+          },
+          {
+            "s": "#home-title",
+            "x": 24,
+            "y": 136,
+            "width": 342,
+            "height": 132,
+            "font": "800 40px / 44px \"IBM Plex Sans\", \"Segoe UI\", Arial, sans-serif"
+          },
+          {
+            "s": ".hero-actions",
+            "x": 24,
+            "y": 399,
+            "width": 342,
+            "height": 120,
+            "font": "16px \"IBM Plex Sans\", \"Segoe UI\", Arial, sans-serif"
+          },
+          {
+            "s": ".stage-solutions",
+            "x": 0,
+            "y": 561,
+            "width": 390,
+            "height": 899.5,
+            "font": "16px \"IBM Plex Sans\", \"Segoe UI\", Arial, sans-serif"
+          },
+          {
+            "s": "#situations",
+            "x": 0,
+            "y": 1460.5,
+            "width": 390,
+            "height": 1726.046875,
+            "font": "16px \"IBM Plex Sans\", \"Segoe UI\", Arial, sans-serif"
+          }
+        ],
+        "viewport_pixel_sha256": "970ef59896e115c22d7fd8d287c93916efc04a7501884368f005bcf35c0200aa"
+      }
+    },
+    {
+      "id": "HOME-FORM-CONTRACT",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "email": {
+          "x": 20,
+          "y": 11439.734375,
+          "width": 350,
+          "height": 49
+        },
+        "optional_contact": {
+          "x": 20,
+          "y": 11500.734375,
+          "width": 350,
+          "height": 49
+        },
+        "invalid_email_rejected": true
+      }
+    },
+    {
+      "id": "HOME-NATIVE-LEAD-AND-PDF",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "native_php": true,
+        "mail_transport": "disabled",
+        "posts": 1,
+        "bytes": 58666,
+        "sha256": "65ec8f7880adc4bf9d611888bf16f332415bc7b6da97fcf577fd29e38dba42c4",
+        "goals": [
+          {
+            "name": "lead_submit",
+            "params": {
+              "material": "checklist",
+              "source": "site"
+            }
+          },
+          {
+            "name": "lead_ready",
+            "params": {
+              "material": "checklist",
+              "source": "site"
+            }
+          },
+          {
+            "name": "download_click",
+            "params": {
+              "material": "checklist",
+              "source": "site"
+            }
+          }
+        ],
+        "download_served_event": "ABSENT"
+      }
+    },
+    {
+      "id": "CHECKOUT-DOUBLE-SUBMIT",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "posts_for_double_submit": 1,
+        "retry_after_failure": true,
+        "add_to_cart": 1,
+        "external_payments": 0
+      }
+    },
+    {
+      "id": "PURCHASE-PENDING-IS-NOT-SALE",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "purchase": 0
+      }
+    },
+    {
+      "id": "PURCHASE-PAID-RELOAD-DEDUPE",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "paid_status": "synthetic API response",
+        "first_purchase": 1,
+        "first_ecommerce": 1,
+        "repeat": {
+          "goals": 0,
+          "ecommerce": 0
+        }
+      }
+    },
+    {
+      "id": "NO-JS-ERRORS",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "errors": []
+      }
+    },
+    {
+      "id": "NATIVE-LEAD-OUTBOX",
+      "viewport": "server",
+      "status": "PASS",
+      "actual": {
+        "events": 2,
+        "magnet_delivered": 2,
+        "meaning": "link issued; not downloaded"
+      }
+    }
+  ]
+}
