@@ -1,0 +1,72 @@
+{
+  "status": "PASS_FOR_AUTHORIZED_PUSH",
+  "observed_utc": "2026-10-22T16:18:10.692592+00:00",
+  "authorization": "User explicitly authorized push of this branch, including source/tests/reports/evidence, to pmgpt12-arch/marzhavbetone.ru; no repeat approval required. PR without merging requested.",
+  "scanned_head": "c420f4e07e3e6f6c1545f037319beeaf2e1e4ce9",
+  "commits_scanned": 5,
+  "unique_blobs_scanned": 210,
+  "text_blobs_scanned": 135,
+  "binary_blobs": 75,
+  "high_risk_secret_findings": [],
+  "contact_review": {
+    "non_public_personal_data_findings": 0,
+    "public_project_email": "retained from published site",
+    "synthetic_email_domains": [
+      "example.invalid",
+      "email.com placeholder"
+    ],
+    "phone": "placeholder +7 900 000-00-00"
+  },
+  "evidence_integrity": "SHA256SUMS verified, including all 80 screenshots and 42 DOM files",
+  "image_review": {
+    "provenance": "Public live pages or controlled local staging; no real form submissions, orders or payment data. All corresponding DOM and sources scanned.",
+    "targeted_ocr": [
+      {
+        "path": "screens/after/checkout-desktop.png",
+        "exit": 0,
+        "emails": [],
+        "credential_pattern": false
+      },
+      {
+        "path": "screens/after/checkout-mobile.png",
+        "exit": 0,
+        "emails": [],
+        "credential_pattern": false
+      },
+      {
+        "path": "screens/after/lead-ready-desktop.png",
+        "exit": 0,
+        "emails": [],
+        "credential_pattern": false
+      },
+      {
+        "path": "screens/after/lead-ready-mobile.png",
+        "exit": 0,
+        "emails": [],
+        "credential_pattern": false
+      }
+    ],
+    "initial_fullpage_ocr": "Aborted at 18s bound on long homepage images; narrowed to form/checkout crops, without increasing timeout."
+  },
+  "protected_remote_refs_before": {
+    "main": "c7e32ecc7ad5d8d4b0a3e425ccfe8eeccafe8433",
+    "fix/nsp-product-guides-norms-20261021": "637a22fe1b34ded1db64a929a363f0fad14d466e"
+  },
+  "remote_branch_before": "ABSENT",
+  "workflow_review": "Deployment push triggers exclude fix/nsp-customer-route-20261022; deploy.yml has no pull_request trigger; no workflow files changed.",
+  "site_acceptance": "116 browser cases are STAGING_ONLY, not final site acceptance",
+  "open_tasks": [
+    "PDF form on homepage",
+    "Real delivery/download confirmation",
+    "Production analytics verification"
+  ],
+  "allowed_mutation": "Only refs/heads/fix/nsp-customer-route-20261022 and PR metadata",
+  "prohibited_actions": [
+    "merge",
+    "deploy",
+    "publication",
+    "main/product branch writes",
+    "payment changes",
+    "buyer archive changes"
+  ]
+}

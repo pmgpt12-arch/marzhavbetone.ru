@@ -82,18 +82,18 @@
       "id": "DEPLOY",
       "status": "NOT_AUTHORIZED",
       "reason": "Local staging only. No merge/publication."
-    },
-    {
-      "id": "REMOTE-PUSH",
-      "status": "AUTO_REVIEW_REJECTED",
-      "reason": "Explicit owner approval required for remote push; no retry or alternative upload attempted."
     }
   ],
   "remote_branch": {
-    "status": "PUSH_BLOCKED_AUTO_REVIEW",
-    "attempted_action": "git push -u origin fix/nsp-customer-route-20261022",
-    "reason": "Reviewer requires explicit permission to transmit source and evidence to this GitHub repository",
+    "status": "OWNER_AUTHORIZED_READY_TO_PUSH",
+    "prior_auto_review_rejection": "Resolved by explicit user permission in current turn",
     "pushed": false
   },
-  "patch_apply_check": "PASS_ON_CLEAN_BASE"
+  "patch_apply_check": "PASS_ON_CLEAN_BASE",
+  "site_acceptance": "NOT_FINAL; 116 browser scenarios are staging tests only",
+  "open_tasks": [
+    "PDF form",
+    "Real delivery",
+    "Analytics"
+  ]
 }
