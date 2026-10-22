@@ -146,5 +146,21 @@ for binary in ('/usr/sbin/exim', '/usr/sbin/exim4'):
         dkim['transport'] = {'error': type(exc).__name__}
     break
 dkim['panel_cli'] = [path_metadata(p) for p in ('/usr/local/mgr5/sbin/mgrctl', '/usr/local/mgr5/bin/core')]
+if os.access('/usr/local/mgr5/sbin/mgrctl', os.X_OK):
+    import xml.etree.ElementTree as ET
+    try:
+        proc = subprocess.run(['/usr/local/mgr5/sbin/mgrctl', '-m', 'ispmgr', '-o', 'xml', 'emaildomain'], input='', stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, timeout=8)
+        query = {'exit': proc.returncode, 'error': safe(proc.stderr[:500]), 'project_domains': []}
+        try:
+            root = ET.fromstring(proc.stdout)
+            query['errors'] = [{'type': e.get('type'), 'message': safe(e.findtext('msg') or '')} for e in root.iter('error')]
+            for elem in root.iter('elem'):
+                if elem.findtext('name') in DOMAINS:
+                    query['project_domains'].append({'name': elem.findtext('name'), 'dkim': elem.findtext('dkim'), 'dmarc': elem.findtext('dmarc'), 'available_fields': [e.tag for e in elem]})
+        except ET.ParseError:
+            query['response_format'] = 'NON_XML_NOT_DISCLOSED'
+        dkim['panel_readonly_query'] = query
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        dkim['panel_readonly_query'] = {'error': type(exc).__name__}
 result['dkim_signing_readonly'] = dkim
 print(json.dumps(result, ensure_ascii=False))
