@@ -78,9 +78,9 @@ def verify_lineage(value: str) -> None:
         )
 
 
-def verify_sources(root: Path) -> tuple[list[dict], bytes]:
+def verify_sources(root: Path, expected_sources: dict | None = None) -> tuple[list[dict], bytes]:
     records = []
-    for name, expected in EXPECTED_SOURCES.items():
+    for name, expected in (EXPECTED_SOURCES if expected_sources is None else expected_sources).items():
         payload = (root / name).read_bytes()
         actual = {"bytes": len(payload), "sha256": sha256_bytes(payload)}
         if actual != expected:
@@ -320,6 +320,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--staging-source", action="store_true")
     parser.add_argument(
         "--predecessor-report-sha256",
         default=EXPECTED_PREDECESSOR_REPORT_SHA256,
@@ -334,7 +335,14 @@ def main() -> int:
         previous_handlers[signum] = signal.signal(signum, interrupted)
     try:
         verify_lineage(args.predecessor_report_sha256)
-        sources, expected_body = verify_sources(root)
+        expected_sources, staging = None, None
+        if args.staging_source:
+            try:
+                from tools.check_p3_current_site_delta import staging_wrapper_sources
+            except ModuleNotFoundError:
+                from check_p3_current_site_delta import staging_wrapper_sources
+            expected_sources, staging = staging_wrapper_sources(root)
+        sources, expected_body = verify_sources(root, expected_sources)
         runtime, samples = run_http_contract(
             root,
             output,
@@ -343,6 +351,8 @@ def main() -> int:
             args.request_timeout,
         )
         report = build_report(args.predecessor_report_sha256, sources, runtime, samples)
+        if staging is not None:
+            report["lineage"]["staging_scope"] = staging
         write_evidence(output, report, 0)
     except BaseException as error:
         report = failure_report(error, args.predecessor_report_sha256)

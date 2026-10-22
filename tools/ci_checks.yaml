@@ -21,6 +21,20 @@
 #
 # Прогон: python3 tools/run_checks.py --class public
 проверки:
+- id: test_payment_test_mode
+  команда: python3 -m unittest tools.test_payment_test_mode
+  класс: public
+  блокирует: true
+  зачем: предварительная проверка не выбирает боевой ключ для теста без списания денег и не выводит секреты
+  требует: []
+  решение: 'Синтетические конфигурации; сетевые запросы отсутствуют.'
+- id: test_staging_source_scope
+  команда: python3 -m unittest tools.test_staging_source_scope
+  класс: public
+  блокирует: true
+  зачем: известная staging-версия не разрешает произвольные изменения сайта, оплаты и продуктовых файлов
+  требует: []
+  решение: 'Негативные сценарии выполняются в изолированном Git-репозитории; исторические снимки сохранены.'
 - id: test_metrika_readonly
   команда: python3 tools/test_metrika_readonly.py
   класс: public

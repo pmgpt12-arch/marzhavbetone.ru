@@ -39,6 +39,77 @@ HISTORICAL_REPORTS = (
     "tools/reports/site-static-content-snapshot-20261012/report.json",
 )
 
+# A separately verified staging point, not a production release. Keep the
+# historic P3 exception below intact; it cannot describe later site work.
+CUSTOMER_ROUTE_SOURCE = "046e47009147b892b9efa87ed1c3e3136fd42ab5"
+CUSTOMER_ROUTE_BASE = "c7e32ecc7ad5d8d4b0a3e425ccfe8eeccafe8433"
+
+
+def verify_staging_source_scope(root: Path, reference: str) -> int:
+    """Reject any public/product drift from a pinned Git object, including dirty files."""
+    def run(*args):
+        return subprocess.check_output(["git", "-C", str(root), *args], timeout=15)
+
+    def relevant(path):
+        return not path.startswith(("tools/", ".github/", ".codex/"))
+
+    def tree(ref):
+        rows = run("ls-tree", "-r", "-z", "--full-tree", ref).split(b"\0")
+        return {p.decode(): meta.decode() for row in rows if row
+                for meta, p in [row.split(b"\t", 1)] if relevant(p.decode())}
+
+    run("merge-base", "--is-ancestor", reference, "HEAD")
+    expected, actual = tree(reference), tree("HEAD")
+    if expected != actual:
+        changed = sorted(p for p in expected.keys() | actual.keys()
+                         if expected.get(p) != actual.get(p))
+        raise ValueError("unreviewed staging source delta: " + repr(changed))
+    dirty = [p for p in run("diff", "--name-only", "HEAD").decode().splitlines() if relevant(p)]
+    extra = [p for p in run("ls-files", "--others", "--exclude-standard", "--",
+                           "*.php", "*.html", "*.css", "*.js").decode().splitlines() if relevant(p)]
+    if dirty or extra:
+        raise ValueError("unreviewed staging worktree: " + repr(sorted(dirty + extra)))
+    return len(expected)
+
+
+def validate_current_customer_route_delta() -> dict:
+    count = verify_staging_source_scope(ROOT, CUSTOMER_ROUTE_SOURCE)
+    protected = ["payment.php", "webhook.php", "download.php", "lead.php",
+                 "products-config.php", "config.php", ".htaccess", "products-storage", "downloads"]
+    if git("diff", "--name-only", CUSTOMER_ROUTE_BASE, CUSTOMER_ROUTE_SOURCE, "--", *protected).strip():
+        raise ValueError("staging reference changed protected payment/product source")
+    # Neither a commit nor a dirty worktree may rewrite the old evidence.
+    if git("diff", "--name-only", CUSTOMER_ROUTE_SOURCE, "HEAD", "--", "tools/reports").strip():
+        raise ValueError("historical report tree changed")
+    if git("diff", "--name-only", "HEAD", "--", "tools/reports").strip():
+        raise ValueError("historical report worktree changed")
+    return {"verdict": "PASS_PINNED_CUSTOMER_ROUTE_STAGING_ONLY",
+            "head": git("rev-parse", "HEAD").decode().strip(),
+            "source_ref": CUSTOMER_ROUTE_SOURCE, "source_paths": count,
+            "historical_snapshot_preserved": True, "protected_product_payment_source_unchanged": True,
+            "release_accepted": False, "publication_accepted": False}
+
+
+def validate_known_site_delta() -> dict:
+    try:
+        subprocess.run(["git", "-C", str(ROOT), "merge-base", "--is-ancestor",
+                        CUSTOMER_ROUTE_SOURCE, "HEAD"], check=True,
+                       capture_output=True, timeout=15)
+    except subprocess.CalledProcessError:
+        return validate_current_p3_delta()
+    return validate_current_customer_route_delta()
+
+
+def staging_wrapper_sources(root: Path) -> tuple[dict, dict]:
+    if root.resolve() != ROOT.resolve():
+        raise ValueError("staging source scope requires this repository root")
+    receipt = validate_current_customer_route_delta()
+    expected = {}
+    for name in ("app-script.php", "app.js"):
+        raw = git("show", CUSTOMER_ROUTE_SOURCE + ":" + name)
+        expected[name] = {"bytes": len(raw), "sha256": sha(raw)}
+    return expected, receipt
+
 
 def git(*args: str) -> bytes:
     return subprocess.check_output(["git", "-C", str(ROOT), *args], timeout=15)
@@ -157,7 +228,7 @@ def validate_current_p3_delta() -> dict:
 
 def main() -> int:
     try:
-        print(json.dumps(validate_current_p3_delta(), ensure_ascii=False, indent=2))
+        print(json.dumps(validate_known_site_delta(), ensure_ascii=False, indent=2))
         return 0
     except (ValueError, AssertionError, KeyError, OSError, subprocess.CalledProcessError, zipfile.BadZipFile) as exc:
         print("P3_CURRENT_SITE_DELTA_FAIL " + str(exc))
