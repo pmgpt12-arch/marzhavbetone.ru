@@ -1,0 +1,24 @@
+{
+  "status": "DKIM_DNS_VERIFIED_BOTH_AUTHORITATIVE_SERVERS",
+  "domain": "nastoronepodryadchika.ru",
+  "record": "dkim._domainkey.nastoronepodryadchika.ru",
+  "expected_txt_sha256": "cb64f2d1d9a95c7747fa0f7202c66533998f93f25ea8436879c951f717ed08ce",
+  "evidence_process": 2925313,
+  "authoritative_servers": {
+    "ns1.hosting.reg.ru": {
+      "records": 1,
+      "exact_match": true
+    },
+    "ns2.hosting.reg.ru": {
+      "records": 1,
+      "exact_match": true
+    }
+  },
+  "checked": "joined quoted TXT strings and compared SHA256 with validated owner-provided public key",
+  "mail_attempts_total": 2,
+  "new_mail_attempts": 0,
+  "received_dkim_pass": "NOT_YET_VERIFIED",
+  "production_sender_switch": "NOT_APPLIED",
+  "previous_evidence": "dkim-dns-publication-20261022.json",
+  "next_step": "Prepare one new uniquely identified control message using selected site PHP config, verify received DKIM-Signature and Yandex dkim=pass, SPF remains pass and recipient folder checked."
+}
