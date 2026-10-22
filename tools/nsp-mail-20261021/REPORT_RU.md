@@ -95,3 +95,14 @@ Run 39693950891 / job 119546674758 SUCCESS: только nsp-control-email-once 
 Один диагностический запуск 39705311662 завершился ошибкой совместимости Python 3.6 (`capture_output` недоступен). Причина исправлена на уровне API subprocess: PIPE и universal_newlines; следующий 39705389883 SUCCESS. Правило для hosting inspector: совместимость синтаксиса Python 3.6 и API стандартной библиотеки, bounded subprocess.
 
 Независимое перечитывание 39705798300 / job 119585427417 SUCCESS: новый envelope site@nastoronepodryadchika.ru сохранён, старый webmaster@marzhavbetone.ru сохранён. PHP lint PASS; тест блокировки неправильной конфигурации/envelope и запрета повторов PASS. Всего 52 jobs: выполнялся только nsp-host-mail-settings, остальные 51 SKIPPED. Квитанции hosting-mail-before-39705389883.json, hosting-envelope-apply-39705632440.json, hosting-mail-readback-39705798300.json.
+
+
+## Второе контрольное письмо после настройки хостинга
+
+После прямого поручения владельца «Ну так отправляй, надо проверять» выполнена ровно одна новая отправка. Отдельная идентичность v2: Message-ID `<nsp-control-new-from-20261022-v2@nastoronepodryadchika.ru>`, тема «НСП: проверка отправителя №2», From/envelope site@nastoronepodryadchika.ru, To/Reply-To nastoronepodryadchika@yandex.ru. Хостинг принял письмо 22.10.2026 в 08:35:55 по Красноярску (01:35:55 UTC). Это подтверждает принятие локальным транспортом; получение и Authentication-Results пока неизвестны.
+
+Run 39706588831 / job 119587947193 SUCCESS, audit commit 22ca3f424313e4f639161e49c6afba8babd6223c. PHP запущен с PHPRC/PHP_INI_SCAN_DIR, прочитанными из запускателя нового домена. До mail() gate подтвердил загрузку конфигурации домена и единственный правильный envelope sender. Только nsp-control-email-site-v2 выполнялся; остальные 52 из 53 jobs SKIPPED. Root PHP, рабочий Header From, публичные файлы и заказы не изменены.
+
+Старый закрытый маркер v1 не удалялся; для v2 используется новый закрытый маркер. Офлайн-тест с локальным перехватом проверил обе идентичности, сохранность v1 и запрет повторов v2; реальных писем в тесте 0. PHP lint PASS. Перезапуск v2 вернёт сохранённую квитанцию без нового mail().
+
+Квитанция control-email-20261022-v2-receipt.json; полный лог control-email-39706588831.log. Общее число реальных контрольных попыток за сессию — 2, каждая отдельно разрешена владельцем. Следующий шаг — подтверждение получения и заголовков, затем применение подготовленной смены Header From; доставка не объявляется DONE по mail()=true.
