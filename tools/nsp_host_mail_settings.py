@@ -71,7 +71,7 @@ for domain in DOMAINS:
     php = Path('/opt/php/8.3/bin/php')
     code = "echo json_encode(['loaded_ini'=>php_ini_loaded_file(),'scanned_ini'=>php_ini_scanned_files(),'sendmail_path'=>ini_get('sendmail_path'),'forced_parameters'=>ini_get('mail.force_extra_parameters'),'mail_enabled'=>function_exists('mail')]);"
     try:
-        proc = subprocess.run([str(php), '-r', code], env=env, capture_output=True, text=True, timeout=10)
+        proc = subprocess.run([str(php), '-r', code], env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, timeout=10)
         runtime.append({'domain': domain, 'exit': proc.returncode, 'selected_config_values': safe(proc.stdout[:6000])})
     except (OSError, subprocess.TimeoutExpired) as exc:
         runtime.append({'domain': domain, 'error': type(exc).__name__})
