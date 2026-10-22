@@ -1,6 +1,7 @@
 const {chromium}=require('playwright');
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
 const ROOT=path.resolve(__dirname,'../..'),OUT='/tmp/nsp-final-evidence/inner-background';fs.mkdirSync(OUT,{recursive:true});
+const homeSnapshot=()=>[document.body,...document.body.querySelectorAll('*')].map(x=>{const s=getComputedStyle(x),r=x.getBoundingClientRect();return {tag:x.tagName,rect:[r.x,r.y,r.width,r.height].map(v=>Math.round(v*1000)/1000),style:['display','position','color','backgroundColor','backgroundImage','fontFamily','fontSize','fontWeight','lineHeight','padding','margin','border','boxShadow','transform','opacity'].map(k=>s[k])}});
 const server=http.createServer((req,res)=>{let p=decodeURIComponent(new URL(req.url,'http://local').pathname);if(p==='/app-script.php')p='/app.js';if(p.endsWith('/'))p+='index.html';const f=path.resolve(ROOT,'.'+p);if(!f.startsWith(ROOT+'/')){res.writeHead(403);return res.end()}try{res.setHeader('Content-Type',({'.html':'text/html','.css':'text/css','.js':'text/javascript','.svg':'image/svg+xml','.webp':'image/webp','.woff2':'font/woff2'})[path.extname(f)]||'application/octet-stream');res.end(fs.readFileSync(f))}catch{res.writeHead(404);res.end()}});
 (async()=>{
 await new Promise(r=>server.listen(0,'127.0.0.1',r));const local='http://127.0.0.1:'+server.address().port,base=process.env.NSP_LIVE?'https://nastoronepodryadchika.ru':local;
@@ -20,7 +21,7 @@ try{
  for(const width of [360,390,1280,1366,1440,1920]){
   const ctx=await browser.newContext({viewport:{width,height:900}}),p=await ctx.newPage();await p.goto(base+'/',{waitUntil:'networkidle'});await p.evaluate(()=>document.fonts.ready);
   assert.equal(await p.evaluate(()=>performance.getEntriesByType('resource').filter(x=>x.name.includes('nsp-background-documents')).length),0,'homepage must not load interior image');
-  if(!process.env.NSP_LIVE){const after=await p.screenshot();const b=await ctx.newPage();await b.route('**/brand-approved-2026.css*',r=>r.fulfill({contentType:'text/css',body:fs.readFileSync(path.join(__dirname,'before.css'))}));await b.goto(local+'/',{waitUntil:'networkidle'});await b.evaluate(()=>document.fonts.ready);assert(after.equals(await b.screenshot()),'homepage pixel change '+width);}
+  if(!process.env.NSP_LIVE){const after=await p.evaluate(homeSnapshot);await p.screenshot({path:OUT+'/home-after-'+width+'.png'});const b=await ctx.newPage();await b.route('**/brand-approved-2026.css*',r=>r.fulfill({contentType:'text/css',body:fs.readFileSync(path.join(__dirname,'before.css'))}));await b.goto(local+'/',{waitUntil:'networkidle'});await b.evaluate(()=>document.fonts.ready);await b.screenshot({path:OUT+'/home-before-'+width+'.png'});assert.deepEqual(after,await b.evaluate(homeSnapshot),'homepage computed layout/style change '+width);}
   results.push({name:'index.html',width,interior_image_requests:0,status:'PASS'});await ctx.close();
  }
 }finally{await browser.close();server.close()}
