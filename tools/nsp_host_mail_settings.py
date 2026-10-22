@@ -118,9 +118,17 @@ def dkim_options(text):
     return result
 
 dkim = {'files': [], 'transport': None, 'private_keys_read': 0, 'writes': 0}
+def path_metadata(name):
+    row = {'path': name, 'readable': os.access(name, os.R_OK), 'writable': os.access(name, os.W_OK), 'executable': os.access(name, os.X_OK)}
+    try:
+        row['exists'] = Path(name).exists()
+    except OSError as exc:
+        row.update(exists=None, stat_error=type(exc).__name__)
+    return row
+
 for name in ('/etc/exim/exim.conf', '/etc/exim.conf', '/etc/exim4/exim4.conf', '/etc/exim4/exim4.conf.template'):
     path = Path(name)
-    row = {'path': name, 'exists': path.is_file(), 'readable': os.access(name, os.R_OK), 'writable': os.access(name, os.W_OK)}
+    row = path_metadata(name)
     if row['exists'] and row['readable']:
         try:
             with path.open() as stream:
@@ -137,6 +145,6 @@ for binary in ('/usr/sbin/exim', '/usr/sbin/exim4'):
     except (OSError, subprocess.TimeoutExpired) as exc:
         dkim['transport'] = {'error': type(exc).__name__}
     break
-dkim['panel_cli'] = [{'path': p, 'exists': Path(p).exists(), 'executable': os.access(p, os.X_OK)} for p in ('/usr/local/mgr5/sbin/mgrctl', '/usr/local/mgr5/bin/core')]
+dkim['panel_cli'] = [path_metadata(p) for p in ('/usr/local/mgr5/sbin/mgrctl', '/usr/local/mgr5/bin/core')]
 result['dkim_signing_readonly'] = dkim
 print(json.dumps(result, ensure_ascii=False))
