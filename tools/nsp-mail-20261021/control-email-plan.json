@@ -1,5 +1,5 @@
 {
-  "status": "DELIVERY_UNRESOLVED_HOST_LOG_ACCESS_REQUIRED",
+  "status": "HOSTING_ENVELOPE_FIXED_DELIVERY_UNVERIFIED",
   "from": "site@nastoronepodryadchika.ru",
   "to": "nastoronepodryadchika@yandex.ru",
   "reply_to": "nastoronepodryadchika@yandex.ru",
@@ -23,5 +23,7 @@
   "mail_attempts": 1,
   "diagnostic_run": 39695613264,
   "root_cause": "UNKNOWN; Exim queue denied and mail logs unreadable",
-  "next_step": "Read hosting delivery logs for exact Message-ID; no resend and no production From switch"
+  "next_step": "Any separately authorized follow-up must use the domain-selected PHP configuration and a new single-use message identity; prior marker must stay intact.",
+  "hosting_envelope": "site@nastoronepodryadchika.ru",
+  "previous_control_runtime": "CLI default PHP did not select the domain-specific site.ini; not equivalent to website mail configuration"
 }

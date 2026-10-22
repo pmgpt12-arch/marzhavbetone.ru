@@ -78,3 +78,20 @@ Run 39693950891 / job 119546674758 SUCCESS: только nsp-control-email-once 
 Причина остаётся UNKNOWN. Для продолжения нужен журнал доставки REG.RU по Message-ID `<nsp-control-new-from-20261022-v1@nastoronepodryadchika.ru>`, время 21.10.2026 23:31:34 UTC / 22.10.2026 06:31:34 Красноярск, From site@nastoronepodryadchika.ru, To nastoronepodryadchika@yandex.ru. Требуются очередь/статус, envelope sender, SMTP-ответ принимающего сервера и причина deferred/rejected/bounced, если есть. Запрос в поддержку не отправлялся.
 
 Квитанция: control-email-diagnostics-39695613264.json. Закрытый маркер первой отправки сохранён. From production остаётся прежним; sender-change.patch не применён.
+
+
+## Адрес отправителя на REG.RU — 22.10.2026
+
+Поиск истории не дал подтверждённой реплики о первоначальном вводе site@marzhavbetone.ru в панели. Проверены реальные файлы хостинга. Header From site@marzhavbetone.ru находится в четырёх PHP-обработчиках. В конфигурации, выбранной запускателем PHP 8.3, старый домен фактически использовал `/var/www/php-bin-regru-php83/[hosting-user]/marzhavbetone.ru/site.ini`: `sendmail_path = /usr/sbin/sendmail -t -i -f webmaster@marzhavbetone.ru`. Новый домен использовал одноимённый site.ini с `-f nastoronepodryadchika@yandex.ru`. Отдельные `~/php-bin/<domain>/php.ini` содержат info@<domain>, но выбранный запускателем PHP 8.3 набор настроек берёт sendmail_path из site.ini. Это подтверждено чтением ini_get с PHPRC/PHP_INI_SCAN_DIR из обоих запускателей; внешний HTTP-контекст отдельно не проверялся.
+
+По поручению владельца настроить новый адрес по аналогии изменён ровно один литерал в site.ini нового домена: nastoronepodryadchika@yandex.ru → site@nastoronepodryadchika.ru. Dry-run 39705564193 / job 119584669797 READY; apply 39705632440 / job 119584895480 APPLIED_VERIFIED_RUNTIME. SHA до: 8cc8379ddbabec817b66b8823759c6e34ccef0c3cea30d533d523775d9fcaaa1; после: c8508122bb098c3a209917dfe80d0131fc5dbbcabf0c461cf2284e8f8d8dd191. Закрытая резервная копия: ~/nsp-migration-private/hosting-envelope-20261022/site.ini. Права сохранены. Старый домен, все root PHP обоих сайтов не изменены. Почтовый ящик не создавался; его существование и доставка не подтверждены. Правка выполнена в файле конфигурации; значение в базе панели ISPmanager отдельно не менялось и не проверялось.
+
+### Исправление класса проверки
+
+Первое контрольное письмо запускалось обычным CLI php и не использовало site.ini нового домена. Его результат нельзя считать эквивалентом отправки из PHP сайта. Установленная ошибка проверки: неверно выбранный контекст PHP; причина недоставки первого письма остаётся неизвестной. Правило: приёмка почты должна различать From заголовка, envelope sender и выбранную конфигурацию PHP.
+
+В существующий nsp_control_email.php добавлен отказ до mail() и до создания маркера, если конфигурация домена не загружена или envelope отличается от целевого. Тест использует только локальный перехват; проверяет блокировку обычного CLI, неверного envelope и отсутствие повторной отправки. Прежний закрытый маркер сохранён. Новых реальных писем и заказов не создавалось; смена Header From в четырёх боевых обработчиках не выполнена.
+
+Один диагностический запуск 39705311662 завершился ошибкой совместимости Python 3.6 (`capture_output` недоступен). Причина исправлена на уровне API subprocess: PIPE и universal_newlines; следующий 39705389883 SUCCESS. Правило для hosting inspector: совместимость синтаксиса Python 3.6 и API стандартной библиотеки, bounded subprocess.
+
+Независимое перечитывание 39705798300 / job 119585427417 SUCCESS: новый envelope site@nastoronepodryadchika.ru сохранён, старый webmaster@marzhavbetone.ru сохранён. PHP lint PASS; тест блокировки неправильной конфигурации/envelope и запрета повторов PASS. Всего 52 jobs: выполнялся только nsp-host-mail-settings, остальные 51 SKIPPED. Квитанции hosting-mail-before-39705389883.json, hosting-envelope-apply-39705632440.json, hosting-mail-readback-39705798300.json.

@@ -1,0 +1,274 @@
+{
+  "status": "READ_ONLY_HOST_MAIL_SETTINGS",
+  "mail_attempts": 0,
+  "public_writes": 0,
+  "configs": [
+    {
+      "path": "/etc/httpd/conf/vhosts/[hosting-user]/marzhavbetone.ru.conf",
+      "symlink": false,
+      "error": "PermissionError"
+    },
+    {
+      "path": "/etc/httpd/conf/vhosts/[hosting-user]/nastoronepodryadchika.ru.conf",
+      "symlink": false,
+      "error": "PermissionError"
+    },
+    {
+      "path": "/var/www/php-bin-regru-php83/[hosting-user]/marzhavbetone.ru/site.ini",
+      "symlink": false,
+      "sha256": "5b005fb75e0dd58a6a966d5b31d2e8291abad597ccfc8fcf3773bef7369c8148",
+      "size": 71,
+      "mail_settings": [
+        {
+          "line": 1,
+          "setting": "sendmail_path = /usr/sbin/sendmail -t -i -f webmaster@marzhavbetone.ru"
+        }
+      ]
+    },
+    {
+      "path": "/var/www/php-bin-regru-php83/[hosting-user]/nastoronepodryadchika.ru/site.ini",
+      "symlink": false,
+      "sha256": "c8508122bb098c3a209917dfe80d0131fc5dbbcabf0c461cf2284e8f8d8dd191",
+      "size": 74,
+      "mail_settings": [
+        {
+          "line": 1,
+          "setting": "sendmail_path = /usr/sbin/sendmail -t -i -f site@nastoronepodryadchika.ru"
+        }
+      ]
+    },
+    {
+      "path": "/var/www/php-bin-regru-php83/[hosting-user]/php.ini",
+      "symlink": false,
+      "sha256": "ea4e8ac19e3f525b701568b9b577423121ce47ee2d763774e7d4bf97d021995d",
+      "size": 323,
+      "mail_settings": [
+        {
+          "line": 5,
+          "setting": "mail.log = \"[HOME]/mail.log\""
+        }
+      ]
+    },
+    {
+      "path": "[HOME]/php-bin/marzhavbetone.ru/php",
+      "symlink": false,
+      "sha256": "b35a1c5ba4e46e0004f28f5217aa856c58bad0e75787fbb65e9dea0fac8a099a",
+      "size": 26,
+      "wrapper": "#!/opt/php/8.3/bin/php-cgi",
+      "mail_settings": []
+    },
+    {
+      "path": "[HOME]/php-bin/marzhavbetone.ru/php.ini",
+      "symlink": false,
+      "sha256": "2dfc1c4bf6a1583415020936d6a969617d31e96cbade067a0db94fd15b1f9374",
+      "size": 395,
+      "mail_settings": [
+        {
+          "line": 13,
+          "setting": "sendmail_path = \"/usr/sbin/sendmail -t -i -f info@marzhavbetone.ru\""
+        },
+        {
+          "line": 15,
+          "setting": "mail.log = \"[HOME]/mail.log\""
+        }
+      ]
+    },
+    {
+      "path": "[HOME]/php-bin/nastoronepodryadchika.ru/php",
+      "symlink": false,
+      "sha256": "b35a1c5ba4e46e0004f28f5217aa856c58bad0e75787fbb65e9dea0fac8a099a",
+      "size": 26,
+      "wrapper": "#!/opt/php/8.3/bin/php-cgi",
+      "mail_settings": []
+    },
+    {
+      "path": "[HOME]/php-bin/nastoronepodryadchika.ru/php.ini",
+      "symlink": false,
+      "sha256": "05cdfe580fdfd733bea0249622a6bf227ed910489bdfd0252f97cff963279acf",
+      "size": 403,
+      "mail_settings": [
+        {
+          "line": 13,
+          "setting": "sendmail_path = \"/usr/sbin/sendmail -t -i -f info@nastoronepodryadchika.ru\""
+        },
+        {
+          "line": 15,
+          "setting": "mail.log = \"[HOME]/mail.log\""
+        }
+      ]
+    },
+    {
+      "path": "[HOME]/php-bin/php",
+      "symlink": false,
+      "sha256": "4591067dac447198403f68dd4d305d2a6f1d9f117ebb3e4e1cb284c5dee1b84b",
+      "size": 19,
+      "wrapper": "#!/usr/bin/php-cgi\n",
+      "mail_settings": []
+    },
+    {
+      "path": "[HOME]/php-bin/php.ini",
+      "symlink": false,
+      "sha256": "e27f5d2e3eb85127b6ffb38c83b33e7922531a7c43d9ee0c1cf991a9b4cdc4e4",
+      "size": 65130,
+      "mail_settings": [
+        {
+          "line": 314,
+          "mail_disabled": false
+        },
+        {
+          "line": 959,
+          "setting": "SMTP = localhost"
+        },
+        {
+          "line": 961,
+          "setting": "smtp_port = 25"
+        },
+        {
+          "line": 969,
+          "setting": "sendmail_path = /usr/sbin/sendmail -t -i"
+        },
+        {
+          "line": 1800,
+          "setting": "mail.log = \"[HOME]/mail.log\""
+        }
+      ]
+    },
+    {
+      "path": "[HOME]/php-bin-regru-php83/marzhavbetone.ru/php",
+      "symlink": false,
+      "sha256": "a7870910cba556fa557392c10fd2a1f8afca74a4f923ca52a528ad58187c2d41",
+      "size": 198,
+      "wrapper": "#!/bin/sh\nPHP_INI_SCAN_DIR='/var/www/php-bin-regru-php83/[hosting-user]/marzhavbetone.ru:'\nPHPRC='/var/www/php-bin-regru-php83/[hosting-user]'\nexport PHP_INI_SCAN_DIR\nexport PHPRC\nexec /opt/php/8.3/bin/php-cgi\n",
+      "mail_settings": [
+        {
+          "line": 2,
+          "setting": "PHP_INI_SCAN_DIR='/var/www/php-bin-regru-php83/[hosting-user]/marzhavbetone.ru:'"
+        },
+        {
+          "line": 3,
+          "setting": "PHPRC='/var/www/php-bin-regru-php83/[hosting-user]'"
+        },
+        {
+          "line": 4,
+          "setting": "export PHP_INI_SCAN_DIR"
+        },
+        {
+          "line": 5,
+          "setting": "export PHPRC"
+        },
+        {
+          "line": 6,
+          "setting": "exec /opt/php/8.3/bin/php-cgi"
+        }
+      ]
+    },
+    {
+      "path": "[HOME]/php-bin-regru-php83/nastoronepodryadchika.ru/php",
+      "symlink": false,
+      "sha256": "963ef43bebd3464a1ceb2454ba49c1112f82aa058819064f91c42c01648879f9",
+      "size": 206,
+      "wrapper": "#!/bin/sh\nPHP_INI_SCAN_DIR='/var/www/php-bin-regru-php83/[hosting-user]/nastoronepodryadchika.ru:'\nPHPRC='/var/www/php-bin-regru-php83/[hosting-user]'\nexport PHP_INI_SCAN_DIR\nexport PHPRC\nexec /opt/php/8.3/bin/php-cgi\n",
+      "mail_settings": [
+        {
+          "line": 2,
+          "setting": "PHP_INI_SCAN_DIR='/var/www/php-bin-regru-php83/[hosting-user]/nastoronepodryadchika.ru:'"
+        },
+        {
+          "line": 3,
+          "setting": "PHPRC='/var/www/php-bin-regru-php83/[hosting-user]'"
+        },
+        {
+          "line": 4,
+          "setting": "export PHP_INI_SCAN_DIR"
+        },
+        {
+          "line": 5,
+          "setting": "export PHPRC"
+        },
+        {
+          "line": 6,
+          "setting": "exec /opt/php/8.3/bin/php-cgi"
+        }
+      ]
+    },
+    {
+      "path": "[HOME]/php-bin-regru-php83/php",
+      "symlink": false,
+      "sha256": "bf0fca4a51ae240338e7b025d8ddd0b2e43d214824ff9d95e2e5985d8d807632",
+      "size": 27,
+      "wrapper": "#!/opt/php/8.3/bin/php-cgi\n",
+      "mail_settings": []
+    },
+    {
+      "path": "[HOME]/php-bin-regru-php83/php.ini",
+      "symlink": false,
+      "sha256": "ea4e8ac19e3f525b701568b9b577423121ce47ee2d763774e7d4bf97d021995d",
+      "size": 323,
+      "mail_settings": [
+        {
+          "line": 5,
+          "setting": "mail.log = \"[HOME]/mail.log\""
+        }
+      ]
+    },
+    {
+      "path": "[HOME]/www/marzhavbetone.ru/.htaccess",
+      "symlink": false,
+      "sha256": "ba77a2e82a2b17a271a3805e74d32cdad22186b54942e9eb7535a7dd42fb319a",
+      "size": 10788,
+      "mail_settings": []
+    },
+    {
+      "path": "[HOME]/www/marzhavbetone.ru/.user.ini",
+      "symlink": false,
+      "sha256": "a910e9ebcd0cd9dc939c02e4925966e2b3d39b8e79663d87b9793eaaff5fabea",
+      "size": 626,
+      "mail_settings": []
+    },
+    {
+      "path": "[HOME]/www/nastoronepodryadchika.ru/.htaccess",
+      "symlink": false,
+      "sha256": "c4f4908b0e4972077edb00ef32b5c707ebef410cf99c44dbc65eebd209f834a6",
+      "size": 10941,
+      "mail_settings": []
+    }
+  ],
+  "mailbox_directory_hints_not_authoritative": {
+    "marzhavbetone.ru": {
+      "email/marzhavbetone.ru/site": false,
+      "mail/marzhavbetone.ru/site": false,
+      "etc/marzhavbetone.ru": false,
+      "email/marzhavbetone.ru": false
+    },
+    "nastoronepodryadchika.ru": {
+      "email/nastoronepodryadchika.ru/site": false,
+      "mail/nastoronepodryadchika.ru/site": false,
+      "etc/nastoronepodryadchika.ru": false,
+      "email/nastoronepodryadchika.ru": false
+    }
+  },
+  "wrapper_selected_php_config": [
+    {
+      "domain": "marzhavbetone.ru",
+      "exit": 0,
+      "selected_config_values": "{\"loaded_ini\":\"\\/var\\/www\\/php-bin-regru-php83\\/[hosting-user]\\/php.ini\",\"scanned_ini\":\"\\/var\\/www\\/php-bin-regru-php83\\/[hosting-user]\\/marzhavbetone.ru\\/site.ini,\\n\\/opt\\/php\\/8.3\\/etc\\/php.d\\/imagick.ini,\\n\\/opt\\/php\\/8.3\\/etc\\/php.d\\/memcache.ini,\\n\\/opt\\/php\\/8.3\\/etc\\/php.d\\/memcached.ini,\\n\\/opt\\/php\\/8.3\\/etc\\/php.d\\/opcache.ini\\n\",\"sendmail_path\":\"\\/usr\\/sbin\\/sendmail -t -i -f webmaster@marzhavbetone.ru\",\"forced_parameters\":\"\",\"mail_enabled\":true}"
+    },
+    {
+      "domain": "nastoronepodryadchika.ru",
+      "exit": 0,
+      "selected_config_values": "{\"loaded_ini\":\"\\/var\\/www\\/php-bin-regru-php83\\/[hosting-user]\\/php.ini\",\"scanned_ini\":\"\\/var\\/www\\/php-bin-regru-php83\\/[hosting-user]\\/nastoronepodryadchika.ru\\/site.ini,\\n\\/opt\\/php\\/8.3\\/etc\\/php.d\\/imagick.ini,\\n\\/opt\\/php\\/8.3\\/etc\\/php.d\\/memcache.ini,\\n\\/opt\\/php\\/8.3\\/etc\\/php.d\\/memcached.ini,\\n\\/opt\\/php\\/8.3\\/etc\\/php.d\\/opcache.ini\\n\",\"sendmail_path\":\"\\/usr\\/sbin\\/sendmail -t -i -f site@nastoronepodryadchika.ru\",\"forced_parameters\":\"\",\"mail_enabled\":true}"
+    }
+  ],
+  "project_mailbox_entries": [],
+  "run_id": 39705798300,
+  "job_id": 119585427417,
+  "acceptance": {
+    "php_lint": "PASS",
+    "offline_gate": "PASS",
+    "wrong_config_and_envelope_blocked_before_mail": true,
+    "real_messages_sent": 0,
+    "jobs_total": 52,
+    "only_executed_job": "nsp-host-mail-settings",
+    "other_jobs_skipped": 51
+  }
+}
