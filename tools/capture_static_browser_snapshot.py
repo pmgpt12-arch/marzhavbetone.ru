@@ -22,6 +22,10 @@ import subprocess
 import sys
 import time
 from urllib.parse import urlparse
+try:
+    from tools.browser_isolation import handle_external
+except ModuleNotFoundError:
+    from browser_isolation import handle_external
 
 EXPECTED_REPORT_SHA256 = "029e2d0763775a05afd8f6fa86c01a6c9fe94af67e597602e4b3779edfaeecbb"
 EXPECTED_PAGE_COUNT = 88
@@ -164,8 +168,10 @@ def dynamic_disposition(path: str, excluded: set[str]) -> str:
     return "inert_204_stub_not_executed"
 
 
-def make_dynamic_route_handler(excluded: set[str], observed: list[dict]):
+def make_dynamic_route_handler(excluded: set[str], observed: list[dict], origin=None, external=None):
     def handler(route_object, request) -> None:
+        if origin and handle_external(route_object, request, origin, external):
+            return
         parsed = urlparse(request.url)
         disposition = dynamic_disposition(parsed.path, excluded)
         if disposition == "not_dynamic":
@@ -293,6 +299,7 @@ def capture(root: Path, report_path: Path, output: Path, staging_source: bool = 
     manifest: list[dict] = []
     failures: list[dict] = []
     dynamic_requests_observed: list[dict] = []
+    external_requests_observed: list[dict] = []
     environment = {
         "python": platform.python_version(),
         "platform": platform.platform(),
@@ -373,7 +380,7 @@ def capture(root: Path, report_path: Path, output: Path, staging_source: bool = 
                         page.on("requestfailed", on_request_failed)
                         page.on("response", on_response)
 
-                        page.route("**/*", make_dynamic_route_handler(excluded, seen_dynamic))
+                        page.route("**/*", make_dynamic_route_handler(excluded, seen_dynamic, base, external_requests_observed))
                         try:
                             response = page.goto(base + route, wait_until="load", timeout=15000)
                             page.evaluate("document.fonts && document.fonts.ready")
@@ -449,6 +456,7 @@ def capture(root: Path, report_path: Path, output: Path, staging_source: bool = 
                                 "failure_reasons": reasons,
                             }
                             manifest.append(item)
+                            print(f"[{len(manifest)}/{EXPECTED_PAGE_COUNT * len(VIEWPORTS)}] {viewport_name} {route}: {item['status']}", flush=True)
                             if reasons:
                                 failures.append({"public_route": route, "viewport": viewport_name, "reasons": reasons})
                         except Exception as exc:
@@ -518,9 +526,11 @@ def capture(root: Path, report_path: Path, output: Path, staging_source: bool = 
         },
         "failures": failures,
         "dynamic_requests_observed": dynamic_requests_observed,
+        "external_requests_observed": external_requests_observed,
         "acceptance_limits": {
             "browser_render_snapshot_accepted": status.startswith("PASS_"),
             "dynamic_endpoints_accepted": False,
+            "external_services_accepted": False,
             "substantive_content_quality_accepted": False,
             "legal_accepted": False,
             "deploy_accepted": False,

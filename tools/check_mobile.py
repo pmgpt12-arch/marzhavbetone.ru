@@ -42,6 +42,7 @@ import socket
 import sys
 import threading
 from pathlib import Path
+from browser_isolation import isolate_local_page
 
 ROOT = Path(__file__).resolve().parent.parent
 WIDTH_PHONE = 390
@@ -120,6 +121,9 @@ def chromium_nearby() -> Path | None:
     """Хромиум, поставленный окружением, а не playwright'ом."""
     import os
 
+    explicit = os.environ.get("NSP_BROWSER_EXECUTABLE")
+    if explicit:
+        return Path(explicit)
     roots = [Path(os.environ.get("PLAYWRIGHT_BROWSERS_PATH", "/opt/pw-browsers"))]
     for root in roots:
         if not root.is_dir():
@@ -154,6 +158,7 @@ CLS_SCRIPT = """() => new Promise(resolve => {
 def check_page(browser, base: str, rel: str) -> list[str]:
     bad: list[str] = []
     page = browser.new_page(viewport={"width": WIDTH_PHONE, "height": HEIGHT_PHONE})
+    isolate_local_page(page, base)
     weight = {"bytes": 0}
 
     def count(response):
@@ -373,6 +378,7 @@ def check_cards(browser, base: str, rel: str) -> list[str]:
             viewport={"width": width, "height": HEIGHT_PHONE},
             device_scale_factor=3, is_mobile=True, has_touch=True)
         page = context.new_page()
+        isolate_local_page(page, base)
         try:
             page.goto(f"{base}/{rel}", wait_until="load")
             page.wait_for_timeout(250)
@@ -398,6 +404,7 @@ def check_cards(browser, base: str, rel: str) -> list[str]:
 def check_desktop(browser, base: str) -> list[str]:
     bad: list[str] = []
     page = browser.new_page(viewport={"width": 1440, "height": 900})
+    isolate_local_page(page, base)
     try:
         page.goto(f"{base}/index.html", wait_until="domcontentloaded")
         page.wait_for_timeout(250)

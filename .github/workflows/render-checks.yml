@@ -30,6 +30,10 @@ on:
         default: all
         options: [all, cart, attribution]
 
+concurrency:
+  group: render-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   render:
     runs-on: ubuntu-latest
@@ -47,9 +51,16 @@ jobs:
       # отвечают кодом 2 «не запускалась», а не «прошла».
       - name: Поставить playwright с хромиумом
         id: browser
+        timeout-minutes: 5
         run: |
           python3 -m pip install --quiet playwright
-          python3 -m playwright install --with-deps chromium
+          browser="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          if [ -n "$browser" ]; then
+            echo "NSP_BROWSER_EXECUTABLE=$browser" >> "$GITHUB_ENV"
+            "$browser" --version
+          else
+            timeout 240s python3 -m playwright install --with-deps chromium
+          fi
 
       - name: Контракт браузерной проверки
         if: ${{ !cancelled() && steps.browser.conclusion == 'success' }}

@@ -1,0 +1,91 @@
+{
+  "tested_commit": "134d5e76fe2831d394366a0372f03627ef8a6f4f",
+  "public": {
+    "run_id": 39873744019,
+    "job_id": 120154161529,
+    "passed": 65,
+    "failed": 0,
+    "skipped": 0,
+    "conclusion": "success",
+    "log_excerpt": [
+      "2026-10-22T23:45:21.9018163Z прогнано 65, прошли 65, упали 0 (блокирующих 0, предупреждений 0), пропущено без данных 0",
+      "2026-10-22T23:45:21.9018650Z ИТОГ: PASS — все обязательные проверки прошли."
+    ]
+  },
+  "workflows": [
+    {
+      "id": 39873744031,
+      "name": "Static browser snapshot",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 39873744090,
+      "name": "NSP public checklist contract",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39873744065,
+      "name": "Dynamic endpoint source inventory",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39873744058,
+      "name": "NSP free downloads contract",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39873744099,
+      "name": "NSP catalog contract",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39873744068,
+      "name": "Site app-script wrapper source contract",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39873744112,
+      "name": "Reviewed site source delta gate",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39873744127,
+      "name": "Site route discovery",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39873744056,
+      "name": "Site static content snapshot",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39873744087,
+      "name": "Site app-script local HTTP runtime contract",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39873744019,
+      "name": "Проверки",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39873744042,
+      "name": "Проверки рендером",
+      "status": "in_progress",
+      "conclusion": null
+    }
+  ],
+  "note": "Observed before final browser isolation changes. Browser snapshot superseded; final browser runs must be verified separately.",
+  "release_accepted": false
+}

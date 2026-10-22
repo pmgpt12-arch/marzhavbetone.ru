@@ -29,6 +29,7 @@ import subprocess
 import sys
 import time
 from pathlib import Path
+from browser_isolation import isolate_local_page
 from check_desktop import retired_skus, archive_screen
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -93,6 +94,9 @@ def serve() -> tuple[subprocess.Popen, int]:
 
 
 def chromium_nearby() -> Path | None:
+    explicit = os.environ.get("NSP_BROWSER_EXECUTABLE")
+    if explicit:
+        return Path(explicit)
     root = Path(os.environ.get("PLAYWRIGHT_BROWSERS_PATH", "/opt/pw-browsers"))
     for candidate in sorted(root.glob("chromium-*/chrome-linux/chrome"), reverse=True):
         if candidate.exists():
@@ -122,6 +126,7 @@ def main() -> int:
                       file=sys.stderr)
                 return 2
             page = browser.new_page(viewport={"width": 1366, "height": 900})
+            isolate_local_page(page, "http://127.0.0.1:%d" % port)
             for path in pages:
                 rel = path.relative_to(ROOT).as_posix()
                 try:

@@ -1,0 +1,36 @@
+--- a/download.php
++++ b/download.php
+@@ -134,4 +134,32 @@
+ header('Content-Disposition: attachment; filename="' . $downloadName . '"');
+ header('Content-Length: ' . filesize($zipPath));
+ header('X-Content-Type-Options: nosniff');
+-readfile($zipPath);
++$sent = readfile($zipPath);
++// Наблюдение завершённого сервером GET, а не подтверждение сохранения у покупателя.
++if (($_SERVER['REQUEST_METHOD'] ?? '') === 'GET'
++    && $sent !== false && $sent === filesize($zipPath) && !connection_aborted()) {
++    try {
++        $funnel = __DIR__ . '/mvb_funnel.php';
++        if (is_file($funnel)) {
++            require_once $funnel;
++            mvb_funnel_release();
++            mvb_with_order_lock_strict($orderFile, function (array &$locked) use ($orderId, $sku) {
++                if (!empty($locked['delivery']['served_events'][$sku])) {
++                    return null;
++                }
++                // Один и тот же UUID сохраняет идентичность при сбое записи заказа.
++                $h = hash('sha256', "nsp:product-served\0" . $orderId . "\0" . $sku);
++                $uuid = substr($h, 0, 8) . '-' . substr($h, 8, 4) . '-4'
++                    . substr($h, 13, 3) . '-8' . substr($h, 17, 3) . '-' . substr($h, 20, 12);
++                if (mvb_funnel_event('funnel.product_delivered', [
++                    'event_uuid' => $uuid, 'sku' => $sku, 'source' => 'site',
++                ])) {
++                    $locked['delivery']['served_events'][$sku] = gmdate('c');
++                }
++                return null;
++            });
++        }
++    } catch (Throwable $ignored) {
++        // Выдача уже завершена; аналитика не меняет ответ и доступ к товару.
++    }
++}

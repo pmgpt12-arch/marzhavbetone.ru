@@ -52,7 +52,7 @@ jobs:
           fi
 
       - name: Verify deterministic contract tests
-        run: python3 -m unittest tools/test_static_browser_snapshot.py
+        run: python3 -m unittest tools/test_static_browser_snapshot.py tools/test_browser_isolation.py
 
       - name: Capture exact 88-page package
         env:

@@ -28,6 +28,7 @@ import subprocess
 import sys
 import urllib.parse
 from pathlib import Path
+from browser_isolation import isolate_local_page
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 # Сервер именно PHP и поиск соседнего хромиума — там же, где у корзины:
@@ -99,6 +100,7 @@ def main() -> int:
                       file=sys.stderr)
                 return 2
             page = browser.new_page(viewport={"width": 1366, "height": 900})
+            isolate_local_page(page, base)
             page.add_init_script(YM_STUB)
 
             page.goto(tg_url, wait_until="load")
