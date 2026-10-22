@@ -122,6 +122,38 @@ env:
   SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
 
 jobs:
+  nsp-host-mail-settings:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.migration_action == 'nsp-host-mail-settings' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate read-only settings inspector
+        run: |
+          python3 -m py_compile tools/nsp_host_mail_settings.py
+      - name: Read old and new domain mail settings without sending
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          SSH_USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          [[ "$PORT" =~ ^[0-9]+$ ]]
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/mail_diag_key
+          chmod 600 ~/.ssh/mail_diag_key
+          timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          SSH=(ssh -p "$PORT" -i ~/.ssh/mail_diag_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 -o ServerAliveInterval=10 -o ServerAliveCountMax=3 "$SSH_USER@$HOST")
+          timeout 45s "${SSH[@]}" "python3 -" < tools/nsp_host_mail_settings.py | tee /tmp/nsp-mail-settings.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nsp-mail-settings-${{ github.run_id }}
+          path: /tmp/nsp-mail-settings.json
+          retention-days: 30
+
   nsp-control-email-diagnostics:
     if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'audit/nsp-hosting-readonly-20261020' && inputs.migration_action == 'nsp-control-email-diagnostics' }}
     runs-on: ubuntu-latest
