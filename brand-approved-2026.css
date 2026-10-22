@@ -480,3 +480,22 @@ body.home-v3 .topbar nav{min-width:0;flex-wrap:wrap}
  body.home-v3 #situations .topic-grid article{padding-top:16px;padding-bottom:16px}
  body.home-v3 #situations .topic-grid p{font-size:16px;line-height:1.4}
 }
+
+/* Owner-selected drawing/document background for interior pages only. */
+body.rebrand-approved:not(.home-v3){
+  background-color:#F7F6F2;
+  background-image:linear-gradient(180deg,transparent 55%,#F7F6F2 100%),url('/assets/nsp-background-documents.webp');
+  background-position:center 80px;
+  background-size:100% clamp(320px,66.667vw,1024px);
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+}
+body.rebrand-approved:not(.home-v3)::before{display:none}
+body.rebrand-approved:not(.home-v3) .sales-solutions{background-color:transparent}
+@media(max-width:700px){
+  body.rebrand-approved:not(.home-v3){
+    background-image:linear-gradient(180deg,rgba(247,246,242,.5),#F7F6F2),url('/assets/nsp-background-documents.webp');
+    background-position:center 70px;
+  }
+}
+@media print{body.rebrand-approved:not(.home-v3){background-image:none}}
