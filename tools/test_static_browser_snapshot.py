@@ -219,6 +219,29 @@ class ApprovedP3PriceTitleTests(unittest.TestCase):
                     target.P3_APPROVED_TITLE)
 
 
+class StagingRenderSourceTests(unittest.TestCase):
+    def test_uses_pinned_title_h1_canonical_and_preserves_original_report(self):
+        from tools import check_p3_current_site_delta as gate
+        source = {'pages': [{'source_path': 'index.html', 'title': 'Historic',
+                             'h1': ['Historic'], 'canonical': 'https://old.invalid/'}]}
+        original = copy.deepcopy(source)
+        html = b'<title>Staging title</title><h1>Staging heading</h1><link rel="canonical" href="https://new.invalid/">'
+        with mock.patch.object(gate, 'validate_current_customer_route_delta', return_value={'source_ref': 'pinned'}):
+            with mock.patch.object(gate, 'git', return_value=html) as read:
+                projected = target.staging_render_source(source, gate.ROOT)
+        self.assertEqual(source, original)
+        self.assertEqual(projected['pages'][0]['title'], 'Staging title')
+        self.assertEqual(projected['pages'][0]['h1'], ['Staging heading'])
+        self.assertEqual(projected['pages'][0]['canonical'], 'https://new.invalid/')
+        read.assert_called_once_with('show', 'pinned:index.html')
+
+    def test_unreviewed_staging_scope_cannot_become_browser_expectation(self):
+        from tools import check_p3_current_site_delta as gate
+        with mock.patch.object(gate, 'validate_current_customer_route_delta', side_effect=ValueError('unreviewed source')):
+            with self.assertRaisesRegex(ValueError, 'unreviewed source'):
+                target.staging_render_source({'pages': []}, gate.ROOT)
+
+
 
 if __name__ == "__main__":
     unittest.main()

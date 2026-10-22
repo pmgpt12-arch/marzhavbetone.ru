@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import contextlib
+import copy
 import datetime as dt
 import hashlib
 import json
@@ -46,6 +47,28 @@ def accepted_title_match(source_page: dict, observed_title: str) -> bool:
         from check_p3_current_site_delta import validate_current_p3_delta
     validate_current_p3_delta()
     return True
+
+
+def staging_render_source(source: dict, root: Path) -> dict:
+    """Project render expectations from the pinned staging source; keep history intact."""
+    try:
+        from tools import check_p3_current_site_delta as gate
+        from tools.build_static_content_snapshot import analyze_html
+    except ModuleNotFoundError:
+        import check_p3_current_site_delta as gate
+        from build_static_content_snapshot import analyze_html
+    if root.resolve() != gate.ROOT.resolve():
+        raise ValueError("staging render scope requires this repository root")
+    scope = gate.validate_current_customer_route_delta()
+    projected = copy.deepcopy(source)
+    for page in projected['pages']:
+        path = page['source_path']
+        html = gate.git('show', scope['source_ref'] + ':' + path).decode('utf-8')
+        info = analyze_html(path, html)
+        for key in ('title', 'h1', 'canonical'):
+            page[key] = info[key]
+    projected.setdefault('lineage', {})['render_staging_scope'] = scope
+    return projected
 
 
 
@@ -257,7 +280,8 @@ def make_contact_sheets(output: Path, manifest: list[dict]) -> list[dict]:
     return results
 
 
-def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
+def capture(root: Path, report_path: Path, output: Path, staging_source: bool = False,
+            browser_executable: str | None = None) -> tuple[dict, int]:
     started = dt.datetime.now(dt.timezone.utc).isoformat()
     output.mkdir(parents=True, exist_ok=True)
     raw = b""
@@ -284,6 +308,9 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
     try:
         raw = report_path.read_bytes()
         source = validate_source_report(raw)
+        if staging_source:
+            source = staging_render_source(source, root)
+            environment['staging_source_scope'] = source['lineage']['render_staging_scope']
         port = free_port()
         try:
             from playwright.sync_api import sync_playwright
@@ -303,7 +330,8 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
 
         with sync_playwright() as playwright:
             environment["playwright"] = getattr(sys.modules.get("playwright"), "__version__", "unknown")
-            browser = playwright.chromium.launch(headless=True)
+            browser = playwright.chromium.launch(headless=True, executable_path=browser_executable)
+            environment['browser_executable'] = browser_executable or 'playwright-managed'
             environment["chromium"] = browser.version
             for viewport_name, viewport in VIEWPORTS.items():
                 context = browser.new_context(
@@ -523,15 +551,19 @@ def main() -> int:
     parser.add_argument("--report", type=Path, default=Path("tools/reports/site-static-content-snapshot-20261012/report.json"))
     parser.add_argument("--output", type=Path, default=Path("browser-snapshot-artifact"))
     parser.add_argument("--validate-only", action="store_true")
+    parser.add_argument("--staging-source", action="store_true")
+    parser.add_argument("--browser-executable", default=os.getenv('BROWSER_SNAPSHOT_EXECUTABLE') or None)
     args = parser.parse_args()
     root = args.root.resolve()
     report_path = args.report if args.report.is_absolute() else root / args.report
     if args.validate_only:
         source = validate_source_report(report_path.read_bytes())
+        if args.staging_source:
+            source = staging_render_source(source, root)
         print(f"source contract PASS: {len(source['pages'])} pages")
         return 0
     output = args.output if args.output.is_absolute() else root / args.output
-    report, exit_code = capture(root, report_path, output)
+    report, exit_code = capture(root, report_path, output, args.staging_source, args.browser_executable)
     print(json.dumps({"status": report["status"], "counts": report["counts"]}, ensure_ascii=False))
     return exit_code
 

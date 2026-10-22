@@ -22,6 +22,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: browser-snapshot-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   capture:
     runs-on: ubuntu-latest
@@ -36,9 +40,16 @@ jobs:
           python-version: '3.11'
 
       - name: Install browser harness
+        timeout-minutes: 5
         run: |
           python3 -m pip install --quiet playwright pillow
-          python3 -m playwright install --with-deps chromium
+          browser="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          if [ -n "$browser" ]; then
+            echo "BROWSER_SNAPSHOT_EXECUTABLE=$browser" >> "$GITHUB_ENV"
+            "$browser" --version
+          else
+            timeout 240s python3 -m playwright install --with-deps chromium
+          fi
 
       - name: Verify deterministic contract tests
         run: python3 -m unittest tools/test_static_browser_snapshot.py
@@ -48,6 +59,7 @@ jobs:
           EVIDENCE_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: >-
           python3 tools/capture_static_browser_snapshot.py
+          --staging-source
           --output browser-snapshot-artifact
 
       - name: Upload evidence even on failure
