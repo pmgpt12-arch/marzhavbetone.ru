@@ -1,0 +1,5 @@
+На ноутбуке с Office выполнить в PowerShell одну команду и передать вывод. Она только читает список процессов и названия окон, не закрывает приложения и не меняет настройки.
+
+Get-Process EXCEL,WINWORD -ErrorAction SilentlyContinue | Select-Object Name,Id,Responding,MainWindowTitle | Format-Table -AutoSize
+
+Пустой вывод означает отсутствие этих процессов в момент проверки. False в Responding требует отдельной диагностики. Наличие окна или диалога проверить вручную; не завершать процессы до сохранения своей работы.
