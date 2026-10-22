@@ -1,0 +1,239 @@
+{
+  "status": "OWNER_MANUAL_ACCEPTANCE_PASS",
+  "project": "nastoronepodryadchika.ru",
+  "reported_date": "2026-10-22",
+  "recorded_at_utc": "2026-10-22T05:36:15.586422+00:00",
+  "reviewer": "Денис, владелец проекта",
+  "evidence_type": "EXPLICIT_USER_ATTESTATION_IN_CURRENT_CONVERSATION",
+  "owner_statement": "Тест пройден, открывается без ошибок расчеты все пройдены результаты получены как ожидались, области печати корректны",
+  "accepted_candidate_commit": "33ff01f39778685da702b81cdfc12b788b9f95b1",
+  "candidate_path": "tools/nsp-product-audit-fixes-20261021/p8-09-candidate/P8_09_for_manual_check_2026-10-22.xlsx",
+  "master_path": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+  "accepted_sha256": "33c5d803759a45e48690bcf9af593aa9f505cb8c19366131915e8fd4dc670732",
+  "accepted_git_blob_sha": "bf247787aa474a56f41145fa72f94fd16802fdf8",
+  "bytes": 31749,
+  "previous_master_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+  "identity_basis": "The owner reports on the exact candidate link supplied immediately before this message; no edited workbook or screenshot was returned.",
+  "reported_results": {
+    "open_without_errors": "PASS_REPORTED_BY_OWNER",
+    "calculations_match_expected": "PASS_REPORTED_BY_OWNER",
+    "print_areas_correct": "PASS_REPORTED_BY_OWNER"
+  },
+  "per_scenario_native_execution_log": null,
+  "automated_native_excel_run": "NOT_RUN_FOR_THIS_CANDIDATE",
+  "specific_checks_not_individually_enumerated_by_owner": [
+    "dropdown interaction",
+    "save and reopen"
+  ],
+  "acceptance_scope": "P8/09 candidate only. Owner manual acceptance replaces the unavailable agent-run prerequisite for this workbook; not an acceptance of all P8 or the whole product line.",
+  "promotion": "BYTE_IDENTICAL_COPY_IN_ISOLATED_AUDIT_BRANCH_ONLY",
+  "print_contract_baseline": {
+    "print_names": {
+      "_xlnm.Print_Area:0": "'Как читать'!$A$1:$A$26",
+      "_xlnm.Print_Area:1": "'Договор и аванс'!$A$1:$C$29",
+      "_xlnm.Print_Area:2": "'Выполнено'!$A$1:$L$57",
+      "_xlnm.Print_Titles:2": "'Выполнено'!$1:$5",
+      "_xlnm.Print_Area:3": "'Встречное'!$A$1:$G$41",
+      "_xlnm.Print_Titles:3": "'Встречное'!$1:$5",
+      "_xlnm.Print_Area:4": "'Сальдо'!$A$1:$C$44",
+      "_xlnm.Print_Titles:4": "'Сальдо'!$1:$3",
+      "_xlnm.Print_Area:5": "'Акт сверки'!$A$6:$D$23",
+      "_xlnm.Print_Area:6": "'Пример заполнения'!$A$1:$C$25"
+    },
+    "sheet_print_metadata": {
+      "xl/worksheets/sheet1.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "9",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      },
+      "xl/worksheets/sheet2.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "9",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      },
+      "xl/worksheets/sheet3.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "8",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      },
+      "xl/worksheets/sheet4.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "8",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      },
+      "xl/worksheets/sheet5.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "9",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      },
+      "xl/worksheets/sheet6.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "9",
+            "fitToHeight": "1",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      },
+      "xl/worksheets/sheet7.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "9",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      }
+    }
+  },
+  "release_authorized": false,
+  "production_changed": false,
+  "buyer_archives_rebuilt": false,
+  "followup": "Continue P8/02 and remaining audit items; reconcile artifact inventory and buyer ZIPs before release."
+}

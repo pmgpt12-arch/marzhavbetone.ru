@@ -1,5 +1,5 @@
 {
-  "status": "CANDIDATE_STRUCTURAL_PASS_NATIVE_PENDING",
+  "status": "P8_09_OWNER_MANUAL_ACCEPTED_MASTER_IN_AUDIT_BRANCH",
   "date": "2026-10-22",
   "project": "nastoronepodryadchika.ru",
   "base_commit": "20acba38b2a732d79862d0eb955abf24f7481c85",
@@ -7,8 +7,8 @@
   "source_sha256": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
   "candidate_sha256": "33c5d803759a45e48690bcf9af593aa9f505cb8c19366131915e8fd4dc670732",
   "candidate_location": "ai-workstation:/home/denis/projects/nsp-audit-fixes-20261021/qa/p8-09-20261022/p8-09-candidate.xlsx",
-  "candidate_committed_to_repository": false,
-  "customer_master_changed": false,
+  "candidate_committed_to_repository": true,
+  "customer_master_changed": true,
   "production_changed": false,
   "buyer_archives_rebuilt": false,
   "scope": "P8/09 only: act-status list, incomplete and invalid inputs, partial payments, balance readiness and reconciliation output. P8/02 is outside this batch.",
@@ -50,9 +50,29 @@
     "diagnosis": "Cause of agent stop is not established; this does not prove an Excel fault",
     "additional_preflight": "Tool execution was blocked before execution",
     "new_job_submitted": false,
-    "queue_changed": false
+    "queue_changed": false,
+    "historical_preflight_only": true
   },
   "durable_server_directory": "/home/denis/projects/nsp-audit-fixes-20261021/qa/p8-09-20261022",
-  "server_artifacts": ["p8-09-candidate.xlsx", "patch-payload.json", "expanded-cells.json", "package-preservation.json", "assemble_candidate.py", "native-case-plan.json", "build_native_cases.py", "preflight_and_prepare_jobs.py"],
-  "next": "Restore the existing native Excel agent and pass execution preflight. Run the 22 saved cases in groups no larger than 8, verify validation behavior, save/reopen and visually review printed sheets. Do not replace the customer master or release archives before acceptance."
+  "server_artifacts": [
+    "p8-09-candidate.xlsx",
+    "patch-payload.json",
+    "expanded-cells.json",
+    "package-preservation.json",
+    "assemble_candidate.py",
+    "native-case-plan.json",
+    "build_native_cases.py",
+    "preflight_and_prepare_jobs.py"
+  ],
+  "next": "P8/09 owner acceptance recorded. Continue P8/02 and remaining independent audit work; reconcile inventory and buyer archives before release. Do not require an Office-agent restart to re-prove this reported manual result.",
+  "candidate_repository_path": "tools/nsp-product-audit-fixes-20261021/p8-09-candidate/P8_09_for_manual_check_2026-10-22.xlsx",
+  "master_change_scope": "isolated audit branch only; published buyer files unchanged",
+  "accepted_sha256": "33c5d803759a45e48690bcf9af593aa9f505cb8c19366131915e8fd4dc670732",
+  "owner_acceptance_record": "tools/nsp-product-audit-fixes-20261021/p8-09-candidate/OWNER_ACCEPTANCE.json",
+  "manual_excel_acceptance": {
+    "status": "PASS",
+    "basis": "owner explicit confirmation",
+    "date": "2026-10-22",
+    "agent_rerun_required_for_this_acceptance": false
+  }
 }
