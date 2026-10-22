@@ -3,7 +3,7 @@ declare(strict_types=1);
 // Bounded static-file transaction; all configuration, orders and masters are excluded.
 function demand(bool $ok,string $why): void { if(!$ok) throw new RuntimeException($why); }
 function sha(string $p): string { demand(is_file($p)&&!is_link($p),'MISSING_OR_SYMLINK'); return (string)hash_file('sha256',$p); }
-function public_payload(string $p): bool { return in_array($p,['assets/nsp-plex-sans-semibold.woff2','assets/nsp-hero-desktop.webp','assets/nsp-hero-mobile.webp','assets/nsp-stage-icons.svg','sitemap.xml','downloads/checklist-zakrytiya-rabot.pdf','downloads/dengi.zip','downloads/dop-raboty.zip','downloads/vozvrat-ks.zip','downloads/uderzhaniya.zip','downloads/dogovor.zip','downloads/bankrotstvo.zip','downloads/avans.zip','downloads/raschet-metrami.zip','downloads/ispolnitelnaya-dokumentaciya.zip','downloads/akt-skrytyh-rabot.zip'],true); }
+function public_payload(string $p): bool { return in_array($p,['assets/nsp-background-documents.webp','assets/nsp-plex-sans-semibold.woff2','assets/nsp-hero-desktop.webp','assets/nsp-hero-mobile.webp','assets/nsp-stage-icons.svg','sitemap.xml','downloads/checklist-zakrytiya-rabot.pdf','downloads/dengi.zip','downloads/dop-raboty.zip','downloads/vozvrat-ks.zip','downloads/uderzhaniya.zip','downloads/dogovor.zip','downloads/bankrotstvo.zip','downloads/avans.zip','downloads/raschet-metrami.zip','downloads/ispolnitelnaya-dokumentaciya.zip','downloads/akt-skrytyh-rabot.zip'],true); }
 function current_sha(string $p): ?string { if(!file_exists($p)&&!is_link($p)) return null; return sha($p); }
 function remove_created_dirs(string $root,string $dir): void {
     $p=$dir.'/created-dirs.json'; if(!is_file($p)) return;
