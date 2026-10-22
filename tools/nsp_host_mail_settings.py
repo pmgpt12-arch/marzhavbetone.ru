@@ -100,4 +100,43 @@ for directory in (HOME / 'passwd', HOME / 'etc/passwd', HOME / 'email/passwd'):
             result['project_mailbox_entries'].append({'path': safe(directory), 'site_old_mentioned': 'site@marzhavbetone.ru' in text, 'site_new_mentioned': 'site@nastoronepodryadchika.ru' in text})
         except OSError:
             pass
+def dkim_options(text):
+    result = {}
+    for line in text.splitlines():
+        match = re.match(r'^\s*(dkim_domain|dkim_selector|dkim_private_key|dkim_strict|dkim_canon)\s*=\s*(.*)', line)
+        if not match:
+            continue
+        name, value = match.groups()
+        row = {'configured': True}
+        if name == 'dkim_private_key':
+            row['uses_authenticated_sender_condition'] = 'authenticated' in value.lower()
+            row['uses_sender_domain'] = 'sender_address_domain' in value
+            row['private_value'] = 'NOT_DISCLOSED'
+        else:
+            row['value'] = safe(value[:1000])
+        result[name] = row
+    return result
+
+dkim = {'files': [], 'transport': None, 'private_keys_read': 0, 'writes': 0}
+for name in ('/etc/exim/exim.conf', '/etc/exim.conf', '/etc/exim4/exim4.conf', '/etc/exim4/exim4.conf.template'):
+    path = Path(name)
+    row = {'path': name, 'exists': path.is_file(), 'readable': os.access(name, os.R_OK), 'writable': os.access(name, os.W_OK)}
+    if row['exists'] and row['readable']:
+        try:
+            with path.open() as stream:
+                row['dkim_options'] = dkim_options(stream.read(2_000_000))
+        except OSError as exc:
+            row['error'] = type(exc).__name__
+    dkim['files'].append(row)
+for binary in ('/usr/sbin/exim', '/usr/sbin/exim4'):
+    if not os.access(binary, os.X_OK):
+        continue
+    try:
+        proc = subprocess.run([binary, '-bP', 'transport', 'remote_smtp'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, timeout=8)
+        dkim['transport'] = {'exit': proc.returncode, 'dkim_options': dkim_options(proc.stdout), 'error': safe(proc.stderr[:500])}
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        dkim['transport'] = {'error': type(exc).__name__}
+    break
+dkim['panel_cli'] = [{'path': p, 'exists': Path(p).exists(), 'executable': os.access(p, os.X_OK)} for p in ('/usr/local/mgr5/sbin/mgrctl', '/usr/local/mgr5/bin/core')]
+result['dkim_signing_readonly'] = dkim
 print(json.dumps(result, ensure_ascii=False))
