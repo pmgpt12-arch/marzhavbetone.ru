@@ -14,7 +14,7 @@ class StagingScopeTests(unittest.TestCase):
         self.run_git('init', '-q')
         self.run_git('config', 'user.name', 'Synthetic QA')
         self.run_git('config', 'user.email', 'qa@example.invalid')
-        for name in ['index.html', 'app.js', 'payment.php',
+        for name in ['index.html', 'app.js', 'payment.php', 'download.php',
                      'products-storage/master.txt', 'downloads/free.pdf']:
             p = self.root / name
             p.parent.mkdir(parents=True, exist_ok=True)
@@ -34,17 +34,17 @@ class StagingScopeTests(unittest.TestCase):
         return gate.verify_staging_source_scope(self.root, self.reference)
 
     def test_exact_reference(self):
-        self.assertEqual(self.verify(), 5)
+        self.assertEqual(self.verify(), 6)
 
     def test_internal_test_change_is_allowed(self):
         p = self.root / 'tools/test_new.py'
         p.parent.mkdir()
         p.write_text('pass\n')
         self.commit()
-        self.assertEqual(self.verify(), 5)
+        self.assertEqual(self.verify(), 6)
 
     def test_dirty_app_payment_product_and_download_are_rejected(self):
-        for name in ['app.js', 'payment.php', 'products-storage/master.txt', 'downloads/free.pdf']:
+        for name in ['app.js', 'payment.php', 'download.php', 'products-storage/master.txt', 'downloads/free.pdf']:
             with self.subTest(path=name):
                 p = self.root / name
                 before = p.read_bytes()
@@ -64,6 +64,12 @@ class StagingScopeTests(unittest.TestCase):
     def test_untracked_php_route_is_rejected(self):
         (self.root / 'unexpected.php').write_text('<?php')
         with self.assertRaisesRegex(ValueError, 'unreviewed staging worktree'):
+            self.verify()
+
+    def test_later_committed_download_change_is_rejected(self):
+        (self.root / 'download.php').write_text('unreviewed endpoint\n')
+        self.commit()
+        with self.assertRaisesRegex(ValueError, 'unreviewed staging source delta'):
             self.verify()
 
     def test_deleted_product_is_rejected(self):

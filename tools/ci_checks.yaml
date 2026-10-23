@@ -306,6 +306,13 @@
   зачем: синтаксис всех PHP корня
   требует: []
   решение: ''
+- id: test_download_events
+  команда: python3 tools/test_download_events.py
+  класс: public
+  блокирует: true
+  зачем: фактическая выдача ZIP, ошибки и повторные GET без двойного учёта на синтетических заказах
+  требует: []
+  решение: ''
 - id: test_order_lock
   команда: php tools/test_order_lock.php
   класс: public

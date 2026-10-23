@@ -42,7 +42,11 @@ HISTORICAL_REPORTS = (
 # A separately verified staging point, not a production release. Keep the
 # historic P3 exception below intact; it cannot describe later site work.
 CUSTOMER_ROUTE_PREVIOUS_SOURCE = "046e47009147b892b9efa87ed1c3e3136fd42ab5"
-CUSTOMER_ROUTE_SOURCE = "67e07d75ac1fdf4d512d9076d64e3329c114efb5"
+CUSTOMER_ROUTE_CONTACTS_SOURCE = "67e07d75ac1fdf4d512d9076d64e3329c114efb5"
+# Separate owner authorization: download accounting only in draft PR #676.
+# This exact reviewed object is an exception, never permission for later drift.
+CUSTOMER_ROUTE_SOURCE = "edf9007ca32908cfec83966dcb2129f6236c0ffe"
+DOWNLOAD_ACCOUNTING_SHA256 = "da9106dc24fd255c9523e352fab8a14e04f3d6fda86d8a03972a4d85861e7b2e"
 CUSTOMER_ROUTE_BASE = "c7e32ecc7ad5d8d4b0a3e425ccfe8eeccafe8433"
 
 
@@ -75,17 +79,22 @@ def verify_staging_source_scope(root: Path, reference: str) -> int:
 
 def validate_current_customer_route_delta() -> dict:
     count = verify_staging_source_scope(ROOT, CUSTOMER_ROUTE_SOURCE)
-    # The only public change after the prior pin is the observed contact-table
+    # The only public change between the original pins is the contact-table
     # overflow fix. Verify its exact bytes rather than accepting a new HEAD.
     changed = [p for p in git('diff', '--name-only', CUSTOMER_ROUTE_PREVIOUS_SOURCE,
-                             CUSTOMER_ROUTE_SOURCE).decode().splitlines()
+                             CUSTOMER_ROUTE_CONTACTS_SOURCE).decode().splitlines()
                if not p.startswith(('tools/', '.github/', '.codex/'))]
     wrap = b'<style id="contacts-mobile-wrap">@media(max-width:600px){.legal-table{overflow-wrap:anywhere}}</style>'
     before = git('show', CUSTOMER_ROUTE_PREVIOUS_SOURCE + ':contacts.html')
-    after = git('show', CUSTOMER_ROUTE_SOURCE + ':contacts.html')
+    after = git('show', CUSTOMER_ROUTE_CONTACTS_SOURCE + ':contacts.html')
     if changed != ['contacts.html'] or after != before.replace(b'</head>', wrap + b'</head>', 1):
         raise ValueError('unreviewed change between staging source pins')
-    protected = ["payment.php", "webhook.php", "download.php", "lead.php",
+    changed = [p for p in git('diff', '--name-only', CUSTOMER_ROUTE_CONTACTS_SOURCE,
+                             CUSTOMER_ROUTE_SOURCE).decode().splitlines()
+               if not p.startswith(('tools/', '.github/', '.codex/'))]
+    if changed != ['download.php'] or sha(git('show', CUSTOMER_ROUTE_SOURCE + ':download.php')) != DOWNLOAD_ACCOUNTING_SHA256:
+        raise ValueError('unreviewed download accounting exception')
+    protected = ["payment.php", "webhook.php", "lead.php",
                  "products-config.php", "config.php", ".htaccess", "products-storage", "downloads"]
     if git("diff", "--name-only", CUSTOMER_ROUTE_BASE, CUSTOMER_ROUTE_SOURCE, "--", *protected).strip():
         raise ValueError("staging reference changed protected payment/product source")
@@ -98,6 +107,8 @@ def validate_current_customer_route_delta() -> dict:
             "head": git("rev-parse", "HEAD").decode().strip(),
             "source_ref": CUSTOMER_ROUTE_SOURCE, "source_paths": count,
             "historical_snapshot_preserved": True, "protected_product_payment_source_unchanged": True,
+            "download_accounting_exception": {"draft_pr": 676, "source_ref": CUSTOMER_ROUTE_SOURCE,
+                                              "sha256": DOWNLOAD_ACCOUNTING_SHA256},
             "release_accepted": False, "publication_accepted": False}
 
 
