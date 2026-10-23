@@ -5,6 +5,7 @@ from pathlib import Path
 import tempfile
 import test_cart
 import check_desktop as desktop
+from capture_static_browser_snapshot import materialize_lazy_images
 
 HEIGHT = 768
 BASE = '<style>body{margin:0} .lead,p{margin:10px} h2{font-size:24px}</style>'
@@ -73,6 +74,12 @@ def main():
                     mobile.route('**/*',route)
                     mobile.goto(base+'/index.html',wait_until='networkidle')
                     mobile.evaluate('document.fonts.ready')
+                    # A full-page screenshot can trigger native lazy loading.
+                    # Settle it before both images so resource timing is not
+                    # confused with the effect of removing the desktop rule.
+                    lazy = materialize_lazy_images(mobile)
+                    assert not lazy['unresolved'], lazy
+                    mobile.add_style_tag(content='*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}')
                     if width<768:
                         after=mobile.screenshot(full_page=True,animations='disabled')
                         mobile.locator('#checklist-title-fit').evaluate('(e)=>e.remove()')

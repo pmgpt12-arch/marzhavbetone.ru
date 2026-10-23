@@ -17,6 +17,7 @@ import json
 import os
 from pathlib import Path
 import platform
+import re
 import socket
 import subprocess
 import sys
@@ -57,18 +58,44 @@ def staging_render_source(source: dict, root: Path) -> dict:
     """Project render expectations from the pinned staging source; keep history intact."""
     try:
         from tools import check_p3_current_site_delta as gate
-        from tools.build_static_content_snapshot import analyze_html
+        from tools.build_static_content_snapshot import analyze_html, attributes
     except ModuleNotFoundError:
         import check_p3_current_site_delta as gate
-        from build_static_content_snapshot import analyze_html
+        from build_static_content_snapshot import analyze_html, attributes
     if root.resolve() != gate.ROOT.resolve():
         raise ValueError("staging render scope requires this repository root")
     scope = gate.validate_current_customer_route_delta()
     projected = copy.deepcopy(source)
+    paths = {page['source_path'] for page in projected['pages']}
+    blobs = {}
+    def pinned(path):
+        if path not in blobs:
+            blobs[path] = gate.git('show', scope['source_ref'] + ':' + path)
+        return blobs[path]
     for page in projected['pages']:
         path = page['source_path']
-        html = gate.git('show', scope['source_ref'] + ':' + path).decode('utf-8')
-        info = analyze_html(path, html)
+        raw = pinned(path)
+        html = raw.decode('utf-8')
+        render_path = path
+        page['expected_final_route'] = page['public_route']
+        for tag in re.findall(r'<meta\b[^>]*>', html, re.I):
+            attrs = attributes(tag)
+            if attrs.get('http-equiv', '').lower() != 'refresh':
+                continue
+            redirect = re.fullmatch(r'0\s*;\s*url=(/[^?#]+)', attrs.get('content', ''), re.I)
+            if not redirect or redirect.group(1).lstrip('/') not in paths:
+                raise ValueError('staging redirect must target a pinned static page')
+            page['expected_final_route'] = redirect.group(1)
+            render_path = redirect.group(1).lstrip('/')
+        render_raw = pinned(render_path)
+        info = analyze_html(render_path, render_raw.decode('utf-8'))
+        page['historical_source_sha256'] = page.get('source_sha256')
+        page['source_ref'] = scope['source_ref']
+        page['source_sha256'] = sha256_bytes(raw)
+        page['source_bytes'] = len(raw)
+        page['source_blob'] = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+        page['render_source_path'] = render_path
+        page['render_source_sha256'] = sha256_bytes(render_raw)
         for key in ('title', 'h1', 'canonical'):
             page[key] = info[key]
     projected.setdefault('lineage', {})['render_staging_scope'] = scope
@@ -383,6 +410,8 @@ def capture(root: Path, report_path: Path, output: Path, staging_source: bool = 
                         page.route("**/*", make_dynamic_route_handler(excluded, seen_dynamic, base, external_requests_observed))
                         try:
                             response = page.goto(base + route, wait_until="load", timeout=15000)
+                            if source_page.get('expected_final_route', route) != route:
+                                page.wait_for_url(base + source_page['expected_final_route'], wait_until='load', timeout=15000)
                             page.evaluate("document.fonts && document.fonts.ready")
                             lazy_images = materialize_lazy_images(page)
                             title = page.title()
@@ -410,6 +439,7 @@ def capture(root: Path, report_path: Path, output: Path, staging_source: bool = 
                             ]
                             checks = {
                                 "navigation_status": response.status if response else None,
+                                "final_route_match": page.url == base + source_page.get('expected_final_route', route),
                                 "title_match": accepted_title_match(source_page, title),
                                 "h1_match": h1 == source_page["h1"],
                                 "canonical_match": canonical == source_page["canonical"],
@@ -424,7 +454,7 @@ def capture(root: Path, report_path: Path, output: Path, staging_source: bool = 
                             reasons = []
                             if checks["navigation_status"] != 200:
                                 reasons.append("navigation_status")
-                            for key in ("title_match", "h1_match", "canonical_match", "horizontal_overflow_pass"):
+                            for key in ("final_route_match", "title_match", "h1_match", "canonical_match", "horizontal_overflow_pass"):
                                 if not checks[key]:
                                     reasons.append(key)
                             if console_errors:
@@ -443,6 +473,12 @@ def capture(root: Path, report_path: Path, output: Path, staging_source: bool = 
                                 "public_route": route,
                                 "source_path": source_page["source_path"],
                                 "source_sha256": source_page["source_sha256"],
+                                "source_ref": source_page.get("source_ref"),
+                                "historical_source_sha256": source_page.get("historical_source_sha256"),
+                                "render_source_path": source_page.get("render_source_path"),
+                                "render_source_sha256": source_page.get("render_source_sha256"),
+                                "expected_final_route": source_page.get("expected_final_route", route),
+                                "observed_url": page.url,
                                 "viewport": viewport_name,
                                 "viewport_size": viewport,
                                 "relative_path": screenshot_rel.as_posix(),
