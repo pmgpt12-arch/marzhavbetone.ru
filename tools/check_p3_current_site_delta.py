@@ -41,7 +41,8 @@ HISTORICAL_REPORTS = (
 
 # A separately verified staging point, not a production release. Keep the
 # historic P3 exception below intact; it cannot describe later site work.
-CUSTOMER_ROUTE_SOURCE = "046e47009147b892b9efa87ed1c3e3136fd42ab5"
+CUSTOMER_ROUTE_PREVIOUS_SOURCE = "046e47009147b892b9efa87ed1c3e3136fd42ab5"
+CUSTOMER_ROUTE_SOURCE = "67e07d75ac1fdf4d512d9076d64e3329c114efb5"
 CUSTOMER_ROUTE_BASE = "c7e32ecc7ad5d8d4b0a3e425ccfe8eeccafe8433"
 
 
@@ -74,6 +75,16 @@ def verify_staging_source_scope(root: Path, reference: str) -> int:
 
 def validate_current_customer_route_delta() -> dict:
     count = verify_staging_source_scope(ROOT, CUSTOMER_ROUTE_SOURCE)
+    # The only public change after the prior pin is the observed contact-table
+    # overflow fix. Verify its exact bytes rather than accepting a new HEAD.
+    changed = [p for p in git('diff', '--name-only', CUSTOMER_ROUTE_PREVIOUS_SOURCE,
+                             CUSTOMER_ROUTE_SOURCE).decode().splitlines()
+               if not p.startswith(('tools/', '.github/', '.codex/'))]
+    wrap = b'<style id="contacts-mobile-wrap">@media(max-width:600px){.legal-table{overflow-wrap:anywhere}}</style>'
+    before = git('show', CUSTOMER_ROUTE_PREVIOUS_SOURCE + ':contacts.html')
+    after = git('show', CUSTOMER_ROUTE_SOURCE + ':contacts.html')
+    if changed != ['contacts.html'] or after != before.replace(b'</head>', wrap + b'</head>', 1):
+        raise ValueError('unreviewed change between staging source pins')
     protected = ["payment.php", "webhook.php", "download.php", "lead.php",
                  "products-config.php", "config.php", ".htaccess", "products-storage", "downloads"]
     if git("diff", "--name-only", CUSTOMER_ROUTE_BASE, CUSTOMER_ROUTE_SOURCE, "--", *protected).strip():

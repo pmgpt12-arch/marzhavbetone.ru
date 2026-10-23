@@ -2,6 +2,8 @@
 """Real browser fixtures: accepted product layouts and deliberate regressions."""
 from playwright.sync_api import sync_playwright
 from pathlib import Path
+import io
+import json
 import tempfile
 import test_cart
 import check_desktop as desktop
@@ -84,11 +86,22 @@ def main():
                         after=mobile.screenshot(full_page=True,animations='disabled')
                         mobile.locator('#checklist-title-fit').evaluate('(e)=>e.remove()')
                         before=mobile.screenshot(full_page=True,animations='disabled')
-                        assert after==before, f'mobile pixels changed at {width}'
+                        if after != before:
+                            from PIL import Image, ImageChops
+                            output = Path('render-contract-artifacts')
+                            output.mkdir(exist_ok=True)
+                            (output/f'{width}-after.png').write_bytes(after)
+                            (output/f'{width}-before.png').write_bytes(before)
+                            a, b = [Image.open(io.BytesIO(raw)).convert('RGB') for raw in (after,before)]
+                            bbox = ImageChops.difference(a,b).getbbox() if a.size == b.size else 'size_changed'
+                            metrics = {'width': width, 'after_size': a.size, 'before_size': b.size, 'diff_bbox': bbox}
+                            (output/f'{width}-diff.json').write_text(json.dumps(metrics))
+                            raise AssertionError(f'mobile pixels changed: {metrics}')
                     else:
                         size=mobile.locator('.checklist .document h3').evaluate('(e)=>getComputedStyle(e).fontSize')
                         assert size=='38px', size
-                        assert not mobile.evaluate(desktop.WORDBREAK_SCRIPT)
+                        errors = mobile.evaluate(desktop.WORDBREAK_SCRIPT)
+                        assert not errors, errors
                     mobile.close()
                     cases+=1
             finally:
