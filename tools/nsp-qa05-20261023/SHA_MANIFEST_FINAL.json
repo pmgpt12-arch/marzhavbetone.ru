@@ -1,0 +1,78 @@
+{
+  "status": "FULL_QA_PASS",
+  "evidence_level": "native_office_plus_visual",
+  "date_utc": "2026-10-23T12:22:33.680933+00:00",
+  "source_archive_sha256": "2fba5c593f34d77caf50b42ff4d00c82ee7a5980dac0bc4b6df1977e39e5d263",
+  "archive_sha256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
+  "archive_bytes": 157884,
+  "archive_name": "dogovor-QA05-FULL-QA.zip",
+  "files": [
+    {
+      "name": "01-checklist-krasnye-flagi.docx",
+      "status": "PASS",
+      "original_sha256": "9cae27e96497832171452bf084a7b95fb2c74d0c9638459b5908433424bb53b2",
+      "candidate_sha256": "5614954e7e2ddc717812e872d90d67f044bea1eafa339096c18daaee18d91c75",
+      "bytes": 41432
+    },
+    {
+      "name": "02-reestr-proverki-usloviy.xlsx",
+      "status": "PASS",
+      "original_sha256": "93cd996baa69b01926ec06bb8156e3cfa6a18ec2bcf0e8b52e2ce5247afb7c91",
+      "candidate_sha256": "c2058082f9aa54015fa7239626a895a890ab96e68a392426265704eaf7cc4697",
+      "bytes": 10390
+    },
+    {
+      "name": "03-chto-nelzya-podpisyvat-ne-pokazav-yuristu.docx",
+      "status": "PASS",
+      "original_sha256": "f6fbeaf9000c855c2c46a43b3e51ac43cb692cbda6ad9af731ad634cf1b21692",
+      "candidate_sha256": "d6241c33444d1422cb650977e64d0e7e0ddca2c23c896600c5d97e15b20240ef",
+      "bytes": 40606
+    },
+    {
+      "name": "04-zapros-na-korrektirovku-do-podpisi.docx",
+      "status": "PASS",
+      "original_sha256": "dd507730cbb19f1e4419748b86cdd9cad20d2fb543d4bd28b55a57f7a34487bf",
+      "candidate_sha256": "0522e5d7fb47ed7e440f168eb32d3e90f7c33fe21f58fd2c25e24d56e614e5e8",
+      "bytes": 40069
+    },
+    {
+      "name": "99-chto-dalshe.pdf",
+      "status": "PASS",
+      "original_sha256": "eb5270d92d555af521737504b3a69b637ef36c95e8660c67c96c1e4d81912ca4",
+      "candidate_sha256": "0154ff3d9cbe1c28bd861dc52aba291178e1c308810d6a2c530a19745dcaf734",
+      "bytes": 38299
+    }
+  ],
+  "links": {
+    "01-checklist-krasnye-flagi.docx": [],
+    "02-reestr-proverki-usloviy.xlsx": [],
+    "03-chto-nelzya-podpisyvat-ne-pokazav-yuristu.docx": [],
+    "04-zapros-na-korrektirovku-do-podpisi.docx": [],
+    "99-chto-dalshe.pdf": [
+      "https://nastoronepodryadchika.ru/materialy/dogovor.html",
+      "https://nastoronepodryadchika.ru/diagnostika.html",
+      "https://nastoronepodryadchika.ru/products/p7-dogovor-podryada.html"
+    ]
+  },
+  "native_word_report_sha256": "8605281e04f19b011c40b82d50c201867262c2bdc7d540dc27872a5bfbeac86e",
+  "native_excel_report_sha256": "8eb5e0510ad834c7ed5393a8bc1e85567f23e2a12cc6edb4491d7e06ecb7ca6b",
+  "excel_saved_file_report_sha256": "7583ee8d38f81dfbcde57058a3419206d5b3125361339b0bba018a178d778786",
+  "docx_pages": [
+    3,
+    3,
+    2
+  ],
+  "final_excel_print_pages": 4,
+  "source_pdf_pages": 1,
+  "all_final_pages_reviewed": 13,
+  "original_excel_has_formulas": false,
+  "qualitative_registry_20_rows": true,
+  "edit_scope": "Standalone QA05 five files only",
+  "previous_QA04_zip_sha256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+  "previous_QA04_evidence_sha256": "2e2c05d035591f8cdeb7b39f09caa3c8459be6281cd5fb12151fdd37915c211e",
+  "previous_QA01_QA02_QA03_untouched": true,
+  "publish_status": "HOLD",
+  "merge": false,
+  "deploy": false,
+  "qa06_started": false
+}
