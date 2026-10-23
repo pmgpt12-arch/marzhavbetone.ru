@@ -1,0 +1,453 @@
+[
+  {
+    "channel": "native",
+    "job": "nsp-avans-xlsx-v1-20261023",
+    "status": "PASS",
+    "files": [
+      {
+        "file": "02-reestr-izyatiy-po-obektu.xlsx",
+        "source_sha256": "0c02dbad883a0eb1f33ee44c30250d901490a852d0d0482d0e9d276b7ddc701d",
+        "pdf_sha256": "6a095a58081e9dfc12f3a535769f71bb03dcde47690ab3b4f226805c15105a66",
+        "pdf_info": "Creator:         Microsoft® Excel® 2016\nProducer:        Microsoft® Excel® 2016\nCreationDate:    Fri Oct 23 07:15:02 2026 +07\nModDate:         Fri Oct 23 07:15:02 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           2\nEncrypted:       no\nPage size:       1190.52 x 841.92 pts (A3)\nPage rot:        0\nFile size:       392565 bytes\nOptimized:       no\nPDF version:     1.5\n",
+        "visual_review": "PASS_ALL_NATIVE_PAGES"
+      }
+    ],
+    "receipt_sha256": "0589993eeb4d8b8d0f3c930f351a83941082ee57f63185756f45ec32fc9ef2ac",
+    "error": null,
+    "checks": [
+      {
+        "name": "av1:input_sha",
+        "pass": "True",
+        "expected": "0c02dbad883a0eb1f33ee44c30250d901490a852d0d0482d0e9d276b7ddc701d",
+        "actual": "0c02dbad883a0eb1f33ee44c30250d901490a852d0d0482d0e9d276b7ddc701d"
+      },
+      {
+        "name": "av1:missing-date:D12",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "av1:missing-date:D13",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "av1:missing-date:D14",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "av1:missing-date:D15",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "av1:missing-date:D16",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "av1:verified-zero:D12",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:verified-zero:D13",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:verified-zero:D14",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:verified-zero:D15",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:verified-zero:D16",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:advance-only:D12",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:advance-only:D13",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:advance-only:D14",
+        "pass": "True",
+        "expected": "number:1000000",
+        "actual": "System.Double:1000000"
+      },
+      {
+        "name": "av1:advance-only:D15",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:advance-only:D16",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:separate-categories:D12",
+        "pass": "True",
+        "expected": "number:80000",
+        "actual": "System.Double:80000"
+      },
+      {
+        "name": "av1:separate-categories:D13",
+        "pass": "True",
+        "expected": "number:5000",
+        "actual": "System.Double:5000"
+      },
+      {
+        "name": "av1:separate-categories:D14",
+        "pass": "True",
+        "expected": "number:600000",
+        "actual": "System.Double:600000"
+      },
+      {
+        "name": "av1:separate-categories:D15",
+        "pass": "True",
+        "expected": "number:100000",
+        "actual": "System.Double:100000"
+      },
+      {
+        "name": "av1:separate-categories:D16",
+        "pass": "True",
+        "expected": "number:4000",
+        "actual": "System.Double:4000"
+      },
+      {
+        "name": "av1:missing-held-only:D12",
+        "pass": "True",
+        "expected": "text:НЕ ПРОВЕРЕНО",
+        "actual": "System.String:НЕ ПРОВЕРЕНО"
+      },
+      {
+        "name": "av1:missing-held-only:D13",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:missing-held-only:D14",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:missing-held-only:D15",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:missing-held-only:D16",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:negative-held:D12",
+        "pass": "True",
+        "expected": "text:ОШИБКА: сумма меньше нуля",
+        "actual": "System.String:ОШИБКА: сумма меньше нуля"
+      },
+      {
+        "name": "av1:negative-held:D13",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:negative-held:D14",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:negative-held:D15",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:negative-held:D16",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:text-fee:D12",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:text-fee:D13",
+        "pass": "True",
+        "expected": "text:НЕ ПРОВЕРЕНО",
+        "actual": "System.String:НЕ ПРОВЕРЕНО"
+      },
+      {
+        "name": "av1:text-fee:D14",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:text-fee:D15",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:text-fee:D16",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:boolean-advance:D12",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:boolean-advance:D13",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:boolean-advance:D14",
+        "pass": "True",
+        "expected": "text:НЕ ПРОВЕРЕНО",
+        "actual": "System.String:НЕ ПРОВЕРЕНО"
+      },
+      {
+        "name": "av1:boolean-advance:D15",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:boolean-advance:D16",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:work-includes-retention:D12",
+        "pass": "True",
+        "expected": "number:10000",
+        "actual": "System.Double:10000"
+      },
+      {
+        "name": "av1:work-includes-retention:D13",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:work-includes-retention:D14",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:work-includes-retention:D15",
+        "pass": "True",
+        "expected": "number:100000",
+        "actual": "System.Double:100000"
+      },
+      {
+        "name": "av1:work-includes-retention:D16",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:offset-is-separate:D12",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:offset-is-separate:D13",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:offset-is-separate:D14",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:offset-is-separate:D15",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:offset-is-separate:D16",
+        "pass": "True",
+        "expected": "number:25000",
+        "actual": "System.Double:25000"
+      },
+      {
+        "name": "av1:money-decimals:D12",
+        "pass": "True",
+        "expected": "number:80001.05",
+        "actual": "System.Double:80001.05"
+      },
+      {
+        "name": "av1:money-decimals:D13",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:money-decimals:D14",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:money-decimals:D15",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:money-decimals:D16",
+        "pass": "True",
+        "expected": "number:0",
+        "actual": "System.Double:0"
+      },
+      {
+        "name": "av1:invalid-date:D12",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "av1:invalid-date:D13",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "av1:invalid-date:D14",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "av1:invalid-date:D15",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "av1:invalid-date:D16",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "av1:export_source_first",
+        "pass": "True",
+        "expected": "direct source export; IgnorePrintAreas=False",
+        "actual": "direct source export; IgnorePrintAreas=False"
+      },
+      {
+        "name": "av1:pdf_export",
+        "pass": "True",
+        "expected": "%PDF-",
+        "actual": "bytes=392565"
+      },
+      {
+        "name": "av1:source_unchanged",
+        "pass": "True",
+        "expected": "0c02dbad883a0eb1f33ee44c30250d901490a852d0d0482d0e9d276b7ddc701d",
+        "actual": "0c02dbad883a0eb1f33ee44c30250d901490a852d0d0482d0e9d276b7ddc701d"
+      }
+    ],
+    "file_receipts": []
+  },
+  {
+    "channel": "word",
+    "job": "nsp-avans-docx-v2-20261023",
+    "status": "PASS",
+    "files": [
+      {
+        "file": "01-proverochnyy-list-usloviy-avansa.docx",
+        "source_sha256": "842f187c0d0035dd67d627bdd8083e99d8b4f1ffc69fef57d57fd9d8a7be6253",
+        "pdf_sha256": "a507a42cd0edc1afa9472f1bf2bac2f5f8a428eb9d307db09b9d79106d990520",
+        "pdf_info": "Creator:         Microsoft® Word 2016\nProducer:        Microsoft® Word 2016\nCreationDate:    Fri Oct 23 07:15:29 2026 +07\nModDate:         Fri Oct 23 07:15:29 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           5\nEncrypted:       no\nPage size:       612 x 792 pts (letter)\nPage rot:        0\nFile size:       334980 bytes\nOptimized:       no\nPDF version:     1.5\n",
+        "visual_review": "PASS_ALL_NATIVE_PAGES"
+      },
+      {
+        "file": "03-formulirovki-lovushki.docx",
+        "source_sha256": "367f62cd3d7c81730160a00118d4b7d8128d11ef04a9e88d1218959fcd2dda5e",
+        "pdf_sha256": "2df50fa59a84d0bacb5a0c9438244658315b5642149518b3fce05e0812d562ee",
+        "pdf_info": "Creator:         Microsoft® Word 2016\nProducer:        Microsoft® Word 2016\nCreationDate:    Fri Oct 23 07:15:34 2026 +07\nModDate:         Fri Oct 23 07:15:34 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           4\nEncrypted:       no\nPage size:       612 x 792 pts (letter)\nPage rot:        0\nFile size:       311332 bytes\nOptimized:       no\nPDF version:     1.5\n",
+        "visual_review": "PASS_ALL_NATIVE_PAGES"
+      },
+      {
+        "file": "04-zapros-ob-usloviyah-avansa.docx",
+        "source_sha256": "9e8790df7613e30e6dde7e61f86a4fd001fcba6fa65714638cdb27a9c213725e",
+        "pdf_sha256": "8bd5cf220d08ebceb6692cb00c02cbd8f49be6e153a98f79331487d762c93e30",
+        "pdf_info": "Creator:         Microsoft® Word 2016\nProducer:        Microsoft® Word 2016\nCreationDate:    Fri Oct 23 07:15:38 2026 +07\nModDate:         Fri Oct 23 07:15:38 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           3\nEncrypted:       no\nPage size:       612 x 792 pts (letter)\nPage rot:        0\nFile size:       306414 bytes\nOptimized:       no\nPDF version:     1.5\n",
+        "visual_review": "PASS_ALL_NATIVE_PAGES"
+      }
+    ],
+    "receipt_sha256": "9e95b5af472591cb1e0568dc59a0293e9bc7f7abf7e7d0cb5f4b53026fb66bc8",
+    "error": null,
+    "checks": [],
+    "file_receipts": [
+      {
+        "tag": "avd1",
+        "status": "PASS",
+        "pdf_sha256": "a507a42cd0edc1afa9472f1bf2bac2f5f8a428eb9d307db09b9d79106d990520"
+      },
+      {
+        "tag": "avd2",
+        "status": "PASS",
+        "pdf_sha256": "2df50fa59a84d0bacb5a0c9438244658315b5642149518b3fce05e0812d562ee"
+      },
+      {
+        "tag": "avd3",
+        "status": "PASS",
+        "pdf_sha256": "8bd5cf220d08ebceb6692cb00c02cbd8f49be6e153a98f79331487d762c93e30"
+      }
+    ]
+  }
+]
