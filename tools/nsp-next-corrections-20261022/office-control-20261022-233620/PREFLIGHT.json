@@ -1,0 +1,23 @@
+{
+  "created_utc": "2026-10-22T23:36:20.990123+00:00",
+  "hypothesis": "Fresh ONLINE statuses after prior failures suggest agents restarted; one known-good source per channel distinguishes runtime recovery from pending product inputs.",
+  "states": {
+    "native": {
+      "time": 1792712029.5391114,
+      "source": "192.168.1.140",
+      "state": "ONLINE"
+    },
+    "word": {
+      "time": 1792712029.4341388,
+      "source": "192.168.1.140",
+      "state": "ONLINE"
+    }
+  },
+  "task_validity": "Explicit request to check Word and Excel",
+  "atomicity": "One source file per channel, sequential",
+  "contract": "PASS requires exact source SHA, native opening and PDF; Excel additionally calculates four expected values",
+  "budget_seconds_per_channel": 240,
+  "source_authoring": false,
+  "office_or_worker_settings_changed": false,
+  "preflight": "PASS"
+}

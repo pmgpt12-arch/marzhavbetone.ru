@@ -1,0 +1,74 @@
+{
+  "status": "SOURCE_DEFECTS_CONFIRMED_CORRECTIONS_NOT_AUTHORED",
+  "formula": "Изъятия!D12=SUM(D4:D11)",
+  "issues": [
+    {
+      "id": "AVANS-01",
+      "severity": "critical",
+      "where": "Изъятия!A4,D12 and Как считать!C5,C8,C9",
+      "defect": "Outstanding received advance, withheld/blocked money, costs and gross unaccepted work are summed as cash not held. Stock, cost flow and contractual exposure are not additive cash shortages.",
+      "counterexample": {
+        "assumption": "Advance of 1000000 received today and remains fully available; no work, withholdings, expenses or security deposit.",
+        "inputs_D4_D11": [
+          1000000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "source_SUM_result": 1000000,
+        "cash_unavailable_due_to_listed_deductions": 0,
+        "native_execution": false
+      },
+      "fix_rule": "Separate advance exposure, actual withheld/blocked money, paid costs and work receivable. Remove the single money-not-with-us total and the claim that its ratio to monthly need proves funding runway. Require actual cash, dates and forecast payments for liquidity assessment.",
+      "gates": [
+        "Advance-only case must not become an unavailable-cash amount.",
+        "Guarantee face amount is not cash expenditure. Fee and actual collateral are separate.",
+        "100000 gross work including 10000 retained must not be added to the same 10000 again.",
+        "Retention base follows contract and underlying certificates, not an unconditional percent of net payments."
+      ]
+    },
+    {
+      "id": "AVANS-02",
+      "severity": "high",
+      "where": "01 checklist: no explicit suspension right means advance exists only on paper",
+      "defect": "Categorical loss of statutory protection is unsupported.",
+      "law": [
+        "GK 328 paragraphs 2 and 4",
+        "GK 719 paragraphs 1 and 2"
+      ],
+      "fix_rule": "Check due advance, linkage to work, obstruction, contract terms and written notice; absence of a repeated clause is not by itself absence of a statutory remedy."
+    },
+    {
+      "id": "AVANS-03",
+      "severity": "high",
+      "where": "01/03 guarantee descriptions",
+      "defect": "Irrevocability is equated with automatic payment; end-of-obligations wording is treated as a valid unlimited guarantee.",
+      "law": [
+        "GK 368 paragraph 4"
+      ],
+      "fix_rule": "Review the guarantee itself, stated term, circumstances, documentary demand and bank agreement. Irrevocability describes amendment/revocation, not automatic compliance of any demand."
+    },
+    {
+      "id": "AVANS-04",
+      "severity": "high",
+      "where": "01/03 offset and unsigned work clauses",
+      "defect": "Unilateral setoff is presented as necessarily improper; unsigned work is described as automatically zeroed.",
+      "law": [
+        "GK 410"
+      ],
+      "fix_rule": "Distinguish contractual advance deduction, payment adjustment and statutory setoff. Check statement, grounds and restrictions. Distinguish contractual evidentiary risk from established loss of the value of completed work."
+    },
+    {
+      "id": "AVANS-05",
+      "severity": "medium",
+      "where": "04 reply interpretation",
+      "defect": "Reply consistency promises no surprises; absence of reply predicts all future correspondence.",
+      "fix_rule": "Remove outcome guarantees and predictions; preserve correspondence, reconcile final contract text and identify unresolved matters."
+    }
+  ],
+  "primary_work_next": "Author separate revised candidates; validate model semantics before native numeric checks; 99 PDF and full bundle/native/visual gates remain open."
+}

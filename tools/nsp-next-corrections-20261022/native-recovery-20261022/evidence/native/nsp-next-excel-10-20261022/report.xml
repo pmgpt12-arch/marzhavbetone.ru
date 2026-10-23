@@ -1,0 +1,14 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-next-excel-10-20261022" excel_version="16.0" excel_build="4324">
+  <check name="n10:input_sha" pass="True" expected="132df7f97cdcf477d27e8e73066c85b545b3a6537ba1478c2110a39e51547644" actual="132df7f97cdcf477d27e8e73066c85b545b3a6537ba1478c2110a39e51547644" />
+  <print_preflight tag="n10" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр допработ" print_area="" print_title_rows="" print_title_columns="" />
+  </print_preflight>
+  <check name="n10:baseline:G5" pass="True" expected="number:127500" actual="System.Double:127500" />
+  <check name="n10:additional:G5" pass="True" expected="number:147500" actual="System.Double:147500" />
+  <check name="n10:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="n10:pdf_export" pass="True" expected="%PDF-" actual="bytes=175292" />
+  <print_preflight tag="n10" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр допработ" print_area="" print_title_rows="" print_title_columns="" />
+  </print_preflight>
+  <check name="n10:source_unchanged" pass="True" expected="132df7f97cdcf477d27e8e73066c85b545b3a6537ba1478c2110a39e51547644" actual="132df7f97cdcf477d27e8e73066c85b545b3a6537ba1478c2110a39e51547644" />
+</report>

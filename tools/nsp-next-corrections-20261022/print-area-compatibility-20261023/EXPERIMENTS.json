@@ -1,0 +1,78 @@
+[
+  {
+    "experiment": "print-area-diagnostic-20261023",
+    "job": "nsp-print-area-diagnostic-v1-20261023",
+    "runtime": "PASS",
+    "print_scope": "FAIL",
+    "checks": 12,
+    "files": [
+      {
+        "tag": "pd1",
+        "outside_marker_printed": true,
+        "native_pdf_sha256": "b2fcd631191fcc1315f66b8386360e294cac2bc1e5ae4ce439678150bd1b2f79"
+      },
+      {
+        "tag": "pd2",
+        "outside_marker_printed": true,
+        "native_pdf_sha256": "3ec013c71c53688a5c230ad2a52761fbafe3c85672eafb9b8794c4ae6cf09e2c"
+      }
+    ]
+  },
+  {
+    "experiment": "print-area-default-ns-20261023",
+    "job": "nsp-print-area-default-ns-v1-20261023",
+    "runtime": "PASS",
+    "print_scope": "FAIL",
+    "checks": 12,
+    "files": [
+      {
+        "tag": "pd1",
+        "outside_marker_printed": true,
+        "native_pdf_sha256": "65df4f77afe1478d1a79e93810f2c0ddff3611af9859d09c22865473ca404b93"
+      },
+      {
+        "tag": "pd2",
+        "outside_marker_printed": true,
+        "native_pdf_sha256": "c9f76bf00f0f4faddfed3adb904e0adbeaa13d3e7442a61f741a6725fee8cdd2"
+      }
+    ]
+  },
+  {
+    "experiment": "print-area-name-matrix-20261023",
+    "job": "nsp-print-area-name-matrix-v1-20261023",
+    "runtime": "PASS",
+    "print_scope": "FAIL",
+    "checks": 18,
+    "files": [
+      {
+        "tag": "pd1",
+        "outside_marker_printed": true,
+        "native_pdf_sha256": "75cd12b76a484c8b2dd01aca97044a5799aebf306276e7855ed288a34c965be9"
+      },
+      {
+        "tag": "pd2",
+        "outside_marker_printed": false,
+        "native_pdf_sha256": "08bd26a2369ebae149a7ac10f76f3a67658a2cb9f0e96e1c84b6172a0a1015f9"
+      },
+      {
+        "tag": "pd3",
+        "outside_marker_printed": false,
+        "native_pdf_sha256": "224ab670256c20cfca4a24844f7b1fe340db44a6b6b9243441a58175daedb3e9"
+      }
+    ]
+  },
+  {
+    "experiment": "print-area-reopen-20261023",
+    "job": "nsp-print-area-reopen-v1-20261023",
+    "runtime": "PASS",
+    "print_scope": "FAIL",
+    "checks": 6,
+    "files": [
+      {
+        "tag": "pd1",
+        "outside_marker_printed": true,
+        "native_pdf_sha256": "dc6deac08d7547c92c297930f13cf5ccf1d4bddde1dbe84633b0624992cc9405"
+      }
+    ]
+  }
+]

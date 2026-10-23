@@ -1,0 +1,65 @@
+[
+  {
+    "check": "registry-reconcile",
+    "exit": 0,
+    "status": "PASS",
+    "skipped": false,
+    "log": "registry-reconcile.log"
+  },
+  {
+    "check": "registry-check",
+    "exit": 0,
+    "status": "PASS",
+    "skipped": false,
+    "log": "registry-check.log"
+  },
+  {
+    "check": "historical-inventory-check",
+    "exit": 124,
+    "status": "BLOCKED",
+    "skipped": false,
+    "log": "historical-inventory-check.log"
+  },
+  {
+    "check": "test_nsp_audit_documents",
+    "exit": 1,
+    "status": "BLOCKED",
+    "skipped": false,
+    "log": "test_nsp_audit_documents.log"
+  },
+  {
+    "check": "test_nsp_p5_print_preservation",
+    "exit": 1,
+    "status": "BLOCKED",
+    "skipped": false,
+    "log": "test_nsp_p5_print_preservation.log"
+  },
+  {
+    "check": "test_nsp_p5_calendar_year",
+    "exit": 1,
+    "status": "BLOCKED",
+    "skipped": false,
+    "log": "test_nsp_p5_calendar_year.log"
+  },
+  {
+    "check": "test_nsp_p8_09_owner_acceptance",
+    "exit": 1,
+    "status": "BLOCKED",
+    "skipped": false,
+    "log": "test_nsp_p8_09_owner_acceptance.log"
+  },
+  {
+    "check": "test_nsp_p8_02_owner_acceptance",
+    "exit": 1,
+    "status": "BLOCKED",
+    "skipped": false,
+    "log": "test_nsp_p8_02_owner_acceptance.log"
+  },
+  {
+    "check": "verify_nsp_accepted_masters",
+    "exit": 1,
+    "status": "BLOCKED",
+    "skipped": false,
+    "log": "verify_nsp_accepted_masters.log"
+  }
+]

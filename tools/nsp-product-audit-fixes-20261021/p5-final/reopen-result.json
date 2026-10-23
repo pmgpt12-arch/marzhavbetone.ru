@@ -1,0 +1,82 @@
+{
+  "job": "p5-reopen-20261021-233001",
+  "status": "PASS",
+  "started_at": "2026-10-21T23:30:01.749799+07:00",
+  "source_sha256": "254b2a4daf0321a144b2c6ce21eaf68a6231005d2f71bf1008c577085dac2563",
+  "queue_restored": true,
+  "checks": [
+    {
+      "name": "p5reopen:input_sha",
+      "pass": "True",
+      "expected": "254b2a4daf0321a144b2c6ce21eaf68a6231005d2f71bf1008c577085dac2563",
+      "actual": "254b2a4daf0321a144b2c6ce21eaf68a6231005d2f71bf1008c577085dac2563"
+    },
+    {
+      "name": "p5reopen:change-base-after-reopen:D27",
+      "pass": "True",
+      "expected": "number:3",
+      "actual": "System.Double:3"
+    },
+    {
+      "name": "p5reopen:change-base-after-reopen:G27",
+      "pass": "True",
+      "expected": "number:600",
+      "actual": "System.Double:600"
+    },
+    {
+      "name": "p5reopen:change-base-after-reopen:G32",
+      "pass": "True",
+      "expected": "number:600",
+      "actual": "System.Double:600"
+    },
+    {
+      "name": "p5reopen:change-base-after-reopen:H27",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5reopen:change-base-after-reopen:H32",
+      "pass": "True",
+      "expected": "blank:",
+      "actual": "System.String:"
+    },
+    {
+      "name": "p5reopen:export_source_first",
+      "pass": "True",
+      "expected": "direct source export; IgnorePrintAreas=False",
+      "actual": "direct source export; IgnorePrintAreas=False"
+    },
+    {
+      "name": "p5reopen:pdf_export",
+      "pass": "True",
+      "expected": "%PDF-",
+      "actual": "bytes=203570"
+    },
+    {
+      "name": "p5reopen:source_unchanged",
+      "pass": "True",
+      "expected": "254b2a4daf0321a144b2c6ce21eaf68a6231005d2f71bf1008c577085dac2563",
+      "actual": "254b2a4daf0321a144b2c6ce21eaf68a6231005d2f71bf1008c577085dac2563"
+    }
+  ],
+  "errors": [],
+  "report_sha256": "98f3562b1fb9f1e80503fa00e0927afe1659c7451c1a8f258770eb418db12507",
+  "excel_version": "16.0",
+  "excel_build": "4324",
+  "files": {
+    "xlsx": {
+      "path": "/home/denis/projects/nsp-audit-fixes-20261021/qa/p5-final-20261021/p5reopen-filled.xlsx",
+      "sha256": "a51722c1d9e453d3f753338883f6f55b87f67079053e5688fc2df55d66e02dc2",
+      "bytes": 16021
+    },
+    "pdf": {
+      "path": "/home/denis/projects/nsp-audit-fixes-20261021/qa/p5-final-20261021/p5reopen-filled.pdf",
+      "sha256": "301ea3bee367a19eb51d09d13e3318a7796f9f0643ed171420e18ec281d5fa0f",
+      "bytes": 203570
+    }
+  },
+  "verified": true,
+  "source_unchanged": true,
+  "finished_at": "2026-10-21T23:30:11.191728+07:00"
+}

@@ -1,0 +1,14 @@
+{
+  "path": "08-pto-bez-zamechaniy/07-grafik-ustraneniya.xlsx",
+  "sku": "P4",
+  "issue": "P4-07-progress-without-empty-rows",
+  "base_sha256": "4784093d37ba69d3054aafd9d0c88c8d9c5d57ebf7baf11d2d8aabc20e002a89",
+  "edits": [
+    {
+      "sheet": "График устранения замечаний",
+      "cell": "G4",
+      "old": "=AVERAGE(G2:G3)",
+      "value": "=IF(SUMPRODUCT((B2:B3<>\"\")*1)=0,\"НЕТ ДАННЫХ\",IF(OR(AND(B2<>\"\",OR(NOT(ISNUMBER(G2)),G2<0,G2>1)),AND(B3<>\"\",OR(NOT(ISNUMBER(G3)),G3<0,G3>1))),\"ПРОВЕРЬТЕ ПРОЦЕНТ\",SUMPRODUCT((B2:B3<>\"\")*G2:G3)/SUMPRODUCT((B2:B3<>\"\")*1)))"
+    }
+  ]
+}

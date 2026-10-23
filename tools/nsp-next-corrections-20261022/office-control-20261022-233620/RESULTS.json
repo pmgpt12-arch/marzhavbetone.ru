@@ -1,0 +1,27 @@
+[
+  {
+    "channel": "native",
+    "job": "nsp-office-control-native-20261022-233620",
+    "status": "FAIL",
+    "checked_utc": "2026-10-22T23:38:54.040334+00:00",
+    "receipt_sha256": "13c3c46e170dfd67021fc6dd0e923dfaa5d06818724cf1b2b181770ecb787709",
+    "error": "System.Runtime.InteropServices.COMException (0x80080005): Сбой при получении производства объектов класса COM для компонента с CLSID {00024500-0000-0000-C000-000000000046} в результате следующей ошибки: 80080005.\n   в System.Runtime.Remoting.RemotingServices.AllocateUninitializedObject(RuntimeType objectType)\n   в System.Runtime.Remoting.Activation.ActivationServices.CreateInstance(Type serverType)\n   в System.Runtime.Remoting.Activation.ActivationServices.IsCurrentContextOK(Type serverType, Object[] props, Boolean bNewObj)\n   в System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandle& ctor, Boolean& bNeedSecurityCheck)\n   в System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean fillCache)\n   в System.RuntimeType.CreateInstanceImpl(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean fillCache)\n   в System.Activator.CreateInstance(Type type, Boolean nonPublic)\n   в System.RuntimeType.CreateInstanceImpl(BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes)\n   в Microsoft.PowerShell.Commands.NewObjectCommand.SafeCreateInstance(Type t, Object[] args) \nC:\\Users\\x6\\AppData\\Local\\MB-ExcelQA\\native.ps1:22 знак:24\n+     $excel = New-Object <<<<  -ComObject Excel.Application",
+    "file_receipts": [],
+    "checks": []
+  },
+  {
+    "channel": "word",
+    "job": "nsp-office-control-word-20261022-233620",
+    "status": "FAIL",
+    "checked_utc": "2026-10-22T23:40:36.066858+00:00",
+    "receipt_sha256": "fb3f122106b15c6c89520a3567aa226003311065e06b89e7d45152076e22def3",
+    "error": null,
+    "file_receipts": [
+      {
+        "tag": "controlw",
+        "status": "TIMEOUT"
+      }
+    ],
+    "checks": []
+  }
+]

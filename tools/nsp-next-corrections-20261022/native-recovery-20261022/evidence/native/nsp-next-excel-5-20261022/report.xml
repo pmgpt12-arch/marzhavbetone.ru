@@ -1,0 +1,28 @@
+<report status="FAIL" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-next-excel-5-20261022" excel_version="16.0" excel_build="4324">
+  <check name="n5:input_sha" pass="True" expected="d68c8e54195286d6a3960da6a89aebbc296f389205bcdbd8df37644214513de4" actual="d68c8e54195286d6a3960da6a89aebbc296f389205bcdbd8df37644214513de4" />
+  <print_preflight tag="n5" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Инструкция" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Инструкция!Print_Area" refers_to="=Инструкция!$A$1:$A$3" />
+    <print_name name="Реестр!Print_Area" refers_to="=Реестр!$A$1:$J$107" />
+    <print_name name="Реестр!Print_Titles" refers_to="=Реестр!$1:$3" />
+  </print_preflight>
+  <check name="n5:incomplete:I104" pass="True" expected="number:1150" actual="System.Double:1150" />
+  <check name="n5:incomplete:A104" pass="True" expected="text:Предварительно; неполных: 1" actual="System.String:Предварительно; неполных: 1" />
+  <check name="n5:complete:I104" pass="True" expected="number:1350" actual="System.Double:1350" />
+  <check name="n5:complete:A104" pass="True" expected="text:Позиции заполнены" actual="System.String:Позиции заполнены" />
+  <check name="n5:negative:I4" pass="True" expected="text:НЕ ЗАВЕРШЕНО" actual="System.String:НЕ ЗАВЕРШЕНО" />
+  <check name="n5:text:I4" pass="False" expected="text:НЕ ЗАВЕРШЕНО" actual="System.Double:20" />
+  <check name="n5:empty-registry:A104" pass="True" expected="text:НЕТ ДАННЫХ" actual="System.String:НЕТ ДАННЫХ" />
+  <check name="n5:empty-registry:I104" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="n5:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="n5:pdf_export" pass="True" expected="%PDF-" actual="bytes=334644" />
+  <print_preflight tag="n5" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Инструкция" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Инструкция!Print_Area" refers_to="=Инструкция!$A$1:$A$3" />
+    <print_name name="Реестр!Print_Area" refers_to="=Реестр!$A$1:$J$107" />
+    <print_name name="Реестр!Print_Titles" refers_to="=Реестр!$1:$3" />
+  </print_preflight>
+  <check name="n5:source_unchanged" pass="True" expected="d68c8e54195286d6a3960da6a89aebbc296f389205bcdbd8df37644214513de4" actual="d68c8e54195286d6a3960da6a89aebbc296f389205bcdbd8df37644214513de4" />
+</report>

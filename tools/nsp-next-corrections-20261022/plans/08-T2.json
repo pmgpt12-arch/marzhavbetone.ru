@@ -1,0 +1,752 @@
+{
+  "path": "14-peredacha-id-pod-podpis/03-opis-peredavaemogo-komplekta.xlsx",
+  "sku": "T2",
+  "issue": "T2-03-whole-positive-leaf-count",
+  "base_sha256": "6bf7ca0c4dc15ff132b91269542adaf8f80c689e9dc99b180d4f26586a808ae6",
+  "edits": [
+    {
+      "sheet": "Опись",
+      "cell": "C133",
+      "old": "=SUMPRODUCT(('Опись'!$B$11:$B$130<>\"\")*('Опись'!$F$11:$F$130=\"\"))",
+      "value": "=COUNTIF(J11:J130,\"НЕ ПРОВЕРЕНО*\")"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "E132",
+      "old": "=SUM('Опись'!$F$11:$F$130)",
+      "value": "=IF(C133>0,\"ПРОВЕРЬТЕ СТРОКИ\",SUM(F11:F130))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "A133",
+      "old": "Позиций без листажа",
+      "value": "Неполных / неверных строк"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J10",
+      "old": null,
+      "value": "Контроль строки"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J11",
+      "old": null,
+      "value": "=IF(COUNTA(B11:D11,F11)=0,\"\",IF(IFERROR(AND(B11<>\"\",C11<>\"\",D11<>\"\",ISNUMBER(F11),F11>0,MOD(F11,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J12",
+      "old": null,
+      "value": "=IF(COUNTA(B12:D12,F12)=0,\"\",IF(IFERROR(AND(B12<>\"\",C12<>\"\",D12<>\"\",ISNUMBER(F12),F12>0,MOD(F12,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J13",
+      "old": null,
+      "value": "=IF(COUNTA(B13:D13,F13)=0,\"\",IF(IFERROR(AND(B13<>\"\",C13<>\"\",D13<>\"\",ISNUMBER(F13),F13>0,MOD(F13,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J14",
+      "old": null,
+      "value": "=IF(COUNTA(B14:D14,F14)=0,\"\",IF(IFERROR(AND(B14<>\"\",C14<>\"\",D14<>\"\",ISNUMBER(F14),F14>0,MOD(F14,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J15",
+      "old": null,
+      "value": "=IF(COUNTA(B15:D15,F15)=0,\"\",IF(IFERROR(AND(B15<>\"\",C15<>\"\",D15<>\"\",ISNUMBER(F15),F15>0,MOD(F15,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J16",
+      "old": null,
+      "value": "=IF(COUNTA(B16:D16,F16)=0,\"\",IF(IFERROR(AND(B16<>\"\",C16<>\"\",D16<>\"\",ISNUMBER(F16),F16>0,MOD(F16,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J17",
+      "old": null,
+      "value": "=IF(COUNTA(B17:D17,F17)=0,\"\",IF(IFERROR(AND(B17<>\"\",C17<>\"\",D17<>\"\",ISNUMBER(F17),F17>0,MOD(F17,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J18",
+      "old": null,
+      "value": "=IF(COUNTA(B18:D18,F18)=0,\"\",IF(IFERROR(AND(B18<>\"\",C18<>\"\",D18<>\"\",ISNUMBER(F18),F18>0,MOD(F18,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J19",
+      "old": null,
+      "value": "=IF(COUNTA(B19:D19,F19)=0,\"\",IF(IFERROR(AND(B19<>\"\",C19<>\"\",D19<>\"\",ISNUMBER(F19),F19>0,MOD(F19,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J20",
+      "old": null,
+      "value": "=IF(COUNTA(B20:D20,F20)=0,\"\",IF(IFERROR(AND(B20<>\"\",C20<>\"\",D20<>\"\",ISNUMBER(F20),F20>0,MOD(F20,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J21",
+      "old": null,
+      "value": "=IF(COUNTA(B21:D21,F21)=0,\"\",IF(IFERROR(AND(B21<>\"\",C21<>\"\",D21<>\"\",ISNUMBER(F21),F21>0,MOD(F21,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J22",
+      "old": null,
+      "value": "=IF(COUNTA(B22:D22,F22)=0,\"\",IF(IFERROR(AND(B22<>\"\",C22<>\"\",D22<>\"\",ISNUMBER(F22),F22>0,MOD(F22,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J23",
+      "old": null,
+      "value": "=IF(COUNTA(B23:D23,F23)=0,\"\",IF(IFERROR(AND(B23<>\"\",C23<>\"\",D23<>\"\",ISNUMBER(F23),F23>0,MOD(F23,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J24",
+      "old": null,
+      "value": "=IF(COUNTA(B24:D24,F24)=0,\"\",IF(IFERROR(AND(B24<>\"\",C24<>\"\",D24<>\"\",ISNUMBER(F24),F24>0,MOD(F24,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J25",
+      "old": null,
+      "value": "=IF(COUNTA(B25:D25,F25)=0,\"\",IF(IFERROR(AND(B25<>\"\",C25<>\"\",D25<>\"\",ISNUMBER(F25),F25>0,MOD(F25,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J26",
+      "old": null,
+      "value": "=IF(COUNTA(B26:D26,F26)=0,\"\",IF(IFERROR(AND(B26<>\"\",C26<>\"\",D26<>\"\",ISNUMBER(F26),F26>0,MOD(F26,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J27",
+      "old": null,
+      "value": "=IF(COUNTA(B27:D27,F27)=0,\"\",IF(IFERROR(AND(B27<>\"\",C27<>\"\",D27<>\"\",ISNUMBER(F27),F27>0,MOD(F27,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J28",
+      "old": null,
+      "value": "=IF(COUNTA(B28:D28,F28)=0,\"\",IF(IFERROR(AND(B28<>\"\",C28<>\"\",D28<>\"\",ISNUMBER(F28),F28>0,MOD(F28,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J29",
+      "old": null,
+      "value": "=IF(COUNTA(B29:D29,F29)=0,\"\",IF(IFERROR(AND(B29<>\"\",C29<>\"\",D29<>\"\",ISNUMBER(F29),F29>0,MOD(F29,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J30",
+      "old": null,
+      "value": "=IF(COUNTA(B30:D30,F30)=0,\"\",IF(IFERROR(AND(B30<>\"\",C30<>\"\",D30<>\"\",ISNUMBER(F30),F30>0,MOD(F30,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J31",
+      "old": null,
+      "value": "=IF(COUNTA(B31:D31,F31)=0,\"\",IF(IFERROR(AND(B31<>\"\",C31<>\"\",D31<>\"\",ISNUMBER(F31),F31>0,MOD(F31,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J32",
+      "old": null,
+      "value": "=IF(COUNTA(B32:D32,F32)=0,\"\",IF(IFERROR(AND(B32<>\"\",C32<>\"\",D32<>\"\",ISNUMBER(F32),F32>0,MOD(F32,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J33",
+      "old": null,
+      "value": "=IF(COUNTA(B33:D33,F33)=0,\"\",IF(IFERROR(AND(B33<>\"\",C33<>\"\",D33<>\"\",ISNUMBER(F33),F33>0,MOD(F33,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J34",
+      "old": null,
+      "value": "=IF(COUNTA(B34:D34,F34)=0,\"\",IF(IFERROR(AND(B34<>\"\",C34<>\"\",D34<>\"\",ISNUMBER(F34),F34>0,MOD(F34,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J35",
+      "old": null,
+      "value": "=IF(COUNTA(B35:D35,F35)=0,\"\",IF(IFERROR(AND(B35<>\"\",C35<>\"\",D35<>\"\",ISNUMBER(F35),F35>0,MOD(F35,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J36",
+      "old": null,
+      "value": "=IF(COUNTA(B36:D36,F36)=0,\"\",IF(IFERROR(AND(B36<>\"\",C36<>\"\",D36<>\"\",ISNUMBER(F36),F36>0,MOD(F36,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J37",
+      "old": null,
+      "value": "=IF(COUNTA(B37:D37,F37)=0,\"\",IF(IFERROR(AND(B37<>\"\",C37<>\"\",D37<>\"\",ISNUMBER(F37),F37>0,MOD(F37,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J38",
+      "old": null,
+      "value": "=IF(COUNTA(B38:D38,F38)=0,\"\",IF(IFERROR(AND(B38<>\"\",C38<>\"\",D38<>\"\",ISNUMBER(F38),F38>0,MOD(F38,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J39",
+      "old": null,
+      "value": "=IF(COUNTA(B39:D39,F39)=0,\"\",IF(IFERROR(AND(B39<>\"\",C39<>\"\",D39<>\"\",ISNUMBER(F39),F39>0,MOD(F39,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J40",
+      "old": null,
+      "value": "=IF(COUNTA(B40:D40,F40)=0,\"\",IF(IFERROR(AND(B40<>\"\",C40<>\"\",D40<>\"\",ISNUMBER(F40),F40>0,MOD(F40,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J41",
+      "old": null,
+      "value": "=IF(COUNTA(B41:D41,F41)=0,\"\",IF(IFERROR(AND(B41<>\"\",C41<>\"\",D41<>\"\",ISNUMBER(F41),F41>0,MOD(F41,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J42",
+      "old": null,
+      "value": "=IF(COUNTA(B42:D42,F42)=0,\"\",IF(IFERROR(AND(B42<>\"\",C42<>\"\",D42<>\"\",ISNUMBER(F42),F42>0,MOD(F42,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J43",
+      "old": null,
+      "value": "=IF(COUNTA(B43:D43,F43)=0,\"\",IF(IFERROR(AND(B43<>\"\",C43<>\"\",D43<>\"\",ISNUMBER(F43),F43>0,MOD(F43,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J44",
+      "old": null,
+      "value": "=IF(COUNTA(B44:D44,F44)=0,\"\",IF(IFERROR(AND(B44<>\"\",C44<>\"\",D44<>\"\",ISNUMBER(F44),F44>0,MOD(F44,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J45",
+      "old": null,
+      "value": "=IF(COUNTA(B45:D45,F45)=0,\"\",IF(IFERROR(AND(B45<>\"\",C45<>\"\",D45<>\"\",ISNUMBER(F45),F45>0,MOD(F45,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J46",
+      "old": null,
+      "value": "=IF(COUNTA(B46:D46,F46)=0,\"\",IF(IFERROR(AND(B46<>\"\",C46<>\"\",D46<>\"\",ISNUMBER(F46),F46>0,MOD(F46,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J47",
+      "old": null,
+      "value": "=IF(COUNTA(B47:D47,F47)=0,\"\",IF(IFERROR(AND(B47<>\"\",C47<>\"\",D47<>\"\",ISNUMBER(F47),F47>0,MOD(F47,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J48",
+      "old": null,
+      "value": "=IF(COUNTA(B48:D48,F48)=0,\"\",IF(IFERROR(AND(B48<>\"\",C48<>\"\",D48<>\"\",ISNUMBER(F48),F48>0,MOD(F48,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J49",
+      "old": null,
+      "value": "=IF(COUNTA(B49:D49,F49)=0,\"\",IF(IFERROR(AND(B49<>\"\",C49<>\"\",D49<>\"\",ISNUMBER(F49),F49>0,MOD(F49,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J50",
+      "old": null,
+      "value": "=IF(COUNTA(B50:D50,F50)=0,\"\",IF(IFERROR(AND(B50<>\"\",C50<>\"\",D50<>\"\",ISNUMBER(F50),F50>0,MOD(F50,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J51",
+      "old": null,
+      "value": "=IF(COUNTA(B51:D51,F51)=0,\"\",IF(IFERROR(AND(B51<>\"\",C51<>\"\",D51<>\"\",ISNUMBER(F51),F51>0,MOD(F51,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J52",
+      "old": null,
+      "value": "=IF(COUNTA(B52:D52,F52)=0,\"\",IF(IFERROR(AND(B52<>\"\",C52<>\"\",D52<>\"\",ISNUMBER(F52),F52>0,MOD(F52,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J53",
+      "old": null,
+      "value": "=IF(COUNTA(B53:D53,F53)=0,\"\",IF(IFERROR(AND(B53<>\"\",C53<>\"\",D53<>\"\",ISNUMBER(F53),F53>0,MOD(F53,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J54",
+      "old": null,
+      "value": "=IF(COUNTA(B54:D54,F54)=0,\"\",IF(IFERROR(AND(B54<>\"\",C54<>\"\",D54<>\"\",ISNUMBER(F54),F54>0,MOD(F54,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J55",
+      "old": null,
+      "value": "=IF(COUNTA(B55:D55,F55)=0,\"\",IF(IFERROR(AND(B55<>\"\",C55<>\"\",D55<>\"\",ISNUMBER(F55),F55>0,MOD(F55,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J56",
+      "old": null,
+      "value": "=IF(COUNTA(B56:D56,F56)=0,\"\",IF(IFERROR(AND(B56<>\"\",C56<>\"\",D56<>\"\",ISNUMBER(F56),F56>0,MOD(F56,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J57",
+      "old": null,
+      "value": "=IF(COUNTA(B57:D57,F57)=0,\"\",IF(IFERROR(AND(B57<>\"\",C57<>\"\",D57<>\"\",ISNUMBER(F57),F57>0,MOD(F57,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J58",
+      "old": null,
+      "value": "=IF(COUNTA(B58:D58,F58)=0,\"\",IF(IFERROR(AND(B58<>\"\",C58<>\"\",D58<>\"\",ISNUMBER(F58),F58>0,MOD(F58,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J59",
+      "old": null,
+      "value": "=IF(COUNTA(B59:D59,F59)=0,\"\",IF(IFERROR(AND(B59<>\"\",C59<>\"\",D59<>\"\",ISNUMBER(F59),F59>0,MOD(F59,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J60",
+      "old": null,
+      "value": "=IF(COUNTA(B60:D60,F60)=0,\"\",IF(IFERROR(AND(B60<>\"\",C60<>\"\",D60<>\"\",ISNUMBER(F60),F60>0,MOD(F60,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J61",
+      "old": null,
+      "value": "=IF(COUNTA(B61:D61,F61)=0,\"\",IF(IFERROR(AND(B61<>\"\",C61<>\"\",D61<>\"\",ISNUMBER(F61),F61>0,MOD(F61,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J62",
+      "old": null,
+      "value": "=IF(COUNTA(B62:D62,F62)=0,\"\",IF(IFERROR(AND(B62<>\"\",C62<>\"\",D62<>\"\",ISNUMBER(F62),F62>0,MOD(F62,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J63",
+      "old": null,
+      "value": "=IF(COUNTA(B63:D63,F63)=0,\"\",IF(IFERROR(AND(B63<>\"\",C63<>\"\",D63<>\"\",ISNUMBER(F63),F63>0,MOD(F63,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J64",
+      "old": null,
+      "value": "=IF(COUNTA(B64:D64,F64)=0,\"\",IF(IFERROR(AND(B64<>\"\",C64<>\"\",D64<>\"\",ISNUMBER(F64),F64>0,MOD(F64,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J65",
+      "old": null,
+      "value": "=IF(COUNTA(B65:D65,F65)=0,\"\",IF(IFERROR(AND(B65<>\"\",C65<>\"\",D65<>\"\",ISNUMBER(F65),F65>0,MOD(F65,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J66",
+      "old": null,
+      "value": "=IF(COUNTA(B66:D66,F66)=0,\"\",IF(IFERROR(AND(B66<>\"\",C66<>\"\",D66<>\"\",ISNUMBER(F66),F66>0,MOD(F66,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J67",
+      "old": null,
+      "value": "=IF(COUNTA(B67:D67,F67)=0,\"\",IF(IFERROR(AND(B67<>\"\",C67<>\"\",D67<>\"\",ISNUMBER(F67),F67>0,MOD(F67,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J68",
+      "old": null,
+      "value": "=IF(COUNTA(B68:D68,F68)=0,\"\",IF(IFERROR(AND(B68<>\"\",C68<>\"\",D68<>\"\",ISNUMBER(F68),F68>0,MOD(F68,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J69",
+      "old": null,
+      "value": "=IF(COUNTA(B69:D69,F69)=0,\"\",IF(IFERROR(AND(B69<>\"\",C69<>\"\",D69<>\"\",ISNUMBER(F69),F69>0,MOD(F69,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J70",
+      "old": null,
+      "value": "=IF(COUNTA(B70:D70,F70)=0,\"\",IF(IFERROR(AND(B70<>\"\",C70<>\"\",D70<>\"\",ISNUMBER(F70),F70>0,MOD(F70,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J71",
+      "old": null,
+      "value": "=IF(COUNTA(B71:D71,F71)=0,\"\",IF(IFERROR(AND(B71<>\"\",C71<>\"\",D71<>\"\",ISNUMBER(F71),F71>0,MOD(F71,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J72",
+      "old": null,
+      "value": "=IF(COUNTA(B72:D72,F72)=0,\"\",IF(IFERROR(AND(B72<>\"\",C72<>\"\",D72<>\"\",ISNUMBER(F72),F72>0,MOD(F72,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J73",
+      "old": null,
+      "value": "=IF(COUNTA(B73:D73,F73)=0,\"\",IF(IFERROR(AND(B73<>\"\",C73<>\"\",D73<>\"\",ISNUMBER(F73),F73>0,MOD(F73,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J74",
+      "old": null,
+      "value": "=IF(COUNTA(B74:D74,F74)=0,\"\",IF(IFERROR(AND(B74<>\"\",C74<>\"\",D74<>\"\",ISNUMBER(F74),F74>0,MOD(F74,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J75",
+      "old": null,
+      "value": "=IF(COUNTA(B75:D75,F75)=0,\"\",IF(IFERROR(AND(B75<>\"\",C75<>\"\",D75<>\"\",ISNUMBER(F75),F75>0,MOD(F75,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J76",
+      "old": null,
+      "value": "=IF(COUNTA(B76:D76,F76)=0,\"\",IF(IFERROR(AND(B76<>\"\",C76<>\"\",D76<>\"\",ISNUMBER(F76),F76>0,MOD(F76,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J77",
+      "old": null,
+      "value": "=IF(COUNTA(B77:D77,F77)=0,\"\",IF(IFERROR(AND(B77<>\"\",C77<>\"\",D77<>\"\",ISNUMBER(F77),F77>0,MOD(F77,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J78",
+      "old": null,
+      "value": "=IF(COUNTA(B78:D78,F78)=0,\"\",IF(IFERROR(AND(B78<>\"\",C78<>\"\",D78<>\"\",ISNUMBER(F78),F78>0,MOD(F78,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J79",
+      "old": null,
+      "value": "=IF(COUNTA(B79:D79,F79)=0,\"\",IF(IFERROR(AND(B79<>\"\",C79<>\"\",D79<>\"\",ISNUMBER(F79),F79>0,MOD(F79,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J80",
+      "old": null,
+      "value": "=IF(COUNTA(B80:D80,F80)=0,\"\",IF(IFERROR(AND(B80<>\"\",C80<>\"\",D80<>\"\",ISNUMBER(F80),F80>0,MOD(F80,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J81",
+      "old": null,
+      "value": "=IF(COUNTA(B81:D81,F81)=0,\"\",IF(IFERROR(AND(B81<>\"\",C81<>\"\",D81<>\"\",ISNUMBER(F81),F81>0,MOD(F81,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J82",
+      "old": null,
+      "value": "=IF(COUNTA(B82:D82,F82)=0,\"\",IF(IFERROR(AND(B82<>\"\",C82<>\"\",D82<>\"\",ISNUMBER(F82),F82>0,MOD(F82,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J83",
+      "old": null,
+      "value": "=IF(COUNTA(B83:D83,F83)=0,\"\",IF(IFERROR(AND(B83<>\"\",C83<>\"\",D83<>\"\",ISNUMBER(F83),F83>0,MOD(F83,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J84",
+      "old": null,
+      "value": "=IF(COUNTA(B84:D84,F84)=0,\"\",IF(IFERROR(AND(B84<>\"\",C84<>\"\",D84<>\"\",ISNUMBER(F84),F84>0,MOD(F84,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J85",
+      "old": null,
+      "value": "=IF(COUNTA(B85:D85,F85)=0,\"\",IF(IFERROR(AND(B85<>\"\",C85<>\"\",D85<>\"\",ISNUMBER(F85),F85>0,MOD(F85,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J86",
+      "old": null,
+      "value": "=IF(COUNTA(B86:D86,F86)=0,\"\",IF(IFERROR(AND(B86<>\"\",C86<>\"\",D86<>\"\",ISNUMBER(F86),F86>0,MOD(F86,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J87",
+      "old": null,
+      "value": "=IF(COUNTA(B87:D87,F87)=0,\"\",IF(IFERROR(AND(B87<>\"\",C87<>\"\",D87<>\"\",ISNUMBER(F87),F87>0,MOD(F87,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J88",
+      "old": null,
+      "value": "=IF(COUNTA(B88:D88,F88)=0,\"\",IF(IFERROR(AND(B88<>\"\",C88<>\"\",D88<>\"\",ISNUMBER(F88),F88>0,MOD(F88,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J89",
+      "old": null,
+      "value": "=IF(COUNTA(B89:D89,F89)=0,\"\",IF(IFERROR(AND(B89<>\"\",C89<>\"\",D89<>\"\",ISNUMBER(F89),F89>0,MOD(F89,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J90",
+      "old": null,
+      "value": "=IF(COUNTA(B90:D90,F90)=0,\"\",IF(IFERROR(AND(B90<>\"\",C90<>\"\",D90<>\"\",ISNUMBER(F90),F90>0,MOD(F90,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J91",
+      "old": null,
+      "value": "=IF(COUNTA(B91:D91,F91)=0,\"\",IF(IFERROR(AND(B91<>\"\",C91<>\"\",D91<>\"\",ISNUMBER(F91),F91>0,MOD(F91,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J92",
+      "old": null,
+      "value": "=IF(COUNTA(B92:D92,F92)=0,\"\",IF(IFERROR(AND(B92<>\"\",C92<>\"\",D92<>\"\",ISNUMBER(F92),F92>0,MOD(F92,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J93",
+      "old": null,
+      "value": "=IF(COUNTA(B93:D93,F93)=0,\"\",IF(IFERROR(AND(B93<>\"\",C93<>\"\",D93<>\"\",ISNUMBER(F93),F93>0,MOD(F93,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J94",
+      "old": null,
+      "value": "=IF(COUNTA(B94:D94,F94)=0,\"\",IF(IFERROR(AND(B94<>\"\",C94<>\"\",D94<>\"\",ISNUMBER(F94),F94>0,MOD(F94,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J95",
+      "old": null,
+      "value": "=IF(COUNTA(B95:D95,F95)=0,\"\",IF(IFERROR(AND(B95<>\"\",C95<>\"\",D95<>\"\",ISNUMBER(F95),F95>0,MOD(F95,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J96",
+      "old": null,
+      "value": "=IF(COUNTA(B96:D96,F96)=0,\"\",IF(IFERROR(AND(B96<>\"\",C96<>\"\",D96<>\"\",ISNUMBER(F96),F96>0,MOD(F96,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J97",
+      "old": null,
+      "value": "=IF(COUNTA(B97:D97,F97)=0,\"\",IF(IFERROR(AND(B97<>\"\",C97<>\"\",D97<>\"\",ISNUMBER(F97),F97>0,MOD(F97,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J98",
+      "old": null,
+      "value": "=IF(COUNTA(B98:D98,F98)=0,\"\",IF(IFERROR(AND(B98<>\"\",C98<>\"\",D98<>\"\",ISNUMBER(F98),F98>0,MOD(F98,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J99",
+      "old": null,
+      "value": "=IF(COUNTA(B99:D99,F99)=0,\"\",IF(IFERROR(AND(B99<>\"\",C99<>\"\",D99<>\"\",ISNUMBER(F99),F99>0,MOD(F99,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J100",
+      "old": null,
+      "value": "=IF(COUNTA(B100:D100,F100)=0,\"\",IF(IFERROR(AND(B100<>\"\",C100<>\"\",D100<>\"\",ISNUMBER(F100),F100>0,MOD(F100,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J101",
+      "old": null,
+      "value": "=IF(COUNTA(B101:D101,F101)=0,\"\",IF(IFERROR(AND(B101<>\"\",C101<>\"\",D101<>\"\",ISNUMBER(F101),F101>0,MOD(F101,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J102",
+      "old": null,
+      "value": "=IF(COUNTA(B102:D102,F102)=0,\"\",IF(IFERROR(AND(B102<>\"\",C102<>\"\",D102<>\"\",ISNUMBER(F102),F102>0,MOD(F102,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J103",
+      "old": null,
+      "value": "=IF(COUNTA(B103:D103,F103)=0,\"\",IF(IFERROR(AND(B103<>\"\",C103<>\"\",D103<>\"\",ISNUMBER(F103),F103>0,MOD(F103,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J104",
+      "old": null,
+      "value": "=IF(COUNTA(B104:D104,F104)=0,\"\",IF(IFERROR(AND(B104<>\"\",C104<>\"\",D104<>\"\",ISNUMBER(F104),F104>0,MOD(F104,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J105",
+      "old": null,
+      "value": "=IF(COUNTA(B105:D105,F105)=0,\"\",IF(IFERROR(AND(B105<>\"\",C105<>\"\",D105<>\"\",ISNUMBER(F105),F105>0,MOD(F105,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J106",
+      "old": null,
+      "value": "=IF(COUNTA(B106:D106,F106)=0,\"\",IF(IFERROR(AND(B106<>\"\",C106<>\"\",D106<>\"\",ISNUMBER(F106),F106>0,MOD(F106,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J107",
+      "old": null,
+      "value": "=IF(COUNTA(B107:D107,F107)=0,\"\",IF(IFERROR(AND(B107<>\"\",C107<>\"\",D107<>\"\",ISNUMBER(F107),F107>0,MOD(F107,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J108",
+      "old": null,
+      "value": "=IF(COUNTA(B108:D108,F108)=0,\"\",IF(IFERROR(AND(B108<>\"\",C108<>\"\",D108<>\"\",ISNUMBER(F108),F108>0,MOD(F108,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J109",
+      "old": null,
+      "value": "=IF(COUNTA(B109:D109,F109)=0,\"\",IF(IFERROR(AND(B109<>\"\",C109<>\"\",D109<>\"\",ISNUMBER(F109),F109>0,MOD(F109,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J110",
+      "old": null,
+      "value": "=IF(COUNTA(B110:D110,F110)=0,\"\",IF(IFERROR(AND(B110<>\"\",C110<>\"\",D110<>\"\",ISNUMBER(F110),F110>0,MOD(F110,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J111",
+      "old": null,
+      "value": "=IF(COUNTA(B111:D111,F111)=0,\"\",IF(IFERROR(AND(B111<>\"\",C111<>\"\",D111<>\"\",ISNUMBER(F111),F111>0,MOD(F111,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J112",
+      "old": null,
+      "value": "=IF(COUNTA(B112:D112,F112)=0,\"\",IF(IFERROR(AND(B112<>\"\",C112<>\"\",D112<>\"\",ISNUMBER(F112),F112>0,MOD(F112,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J113",
+      "old": null,
+      "value": "=IF(COUNTA(B113:D113,F113)=0,\"\",IF(IFERROR(AND(B113<>\"\",C113<>\"\",D113<>\"\",ISNUMBER(F113),F113>0,MOD(F113,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J114",
+      "old": null,
+      "value": "=IF(COUNTA(B114:D114,F114)=0,\"\",IF(IFERROR(AND(B114<>\"\",C114<>\"\",D114<>\"\",ISNUMBER(F114),F114>0,MOD(F114,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J115",
+      "old": null,
+      "value": "=IF(COUNTA(B115:D115,F115)=0,\"\",IF(IFERROR(AND(B115<>\"\",C115<>\"\",D115<>\"\",ISNUMBER(F115),F115>0,MOD(F115,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J116",
+      "old": null,
+      "value": "=IF(COUNTA(B116:D116,F116)=0,\"\",IF(IFERROR(AND(B116<>\"\",C116<>\"\",D116<>\"\",ISNUMBER(F116),F116>0,MOD(F116,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J117",
+      "old": null,
+      "value": "=IF(COUNTA(B117:D117,F117)=0,\"\",IF(IFERROR(AND(B117<>\"\",C117<>\"\",D117<>\"\",ISNUMBER(F117),F117>0,MOD(F117,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J118",
+      "old": null,
+      "value": "=IF(COUNTA(B118:D118,F118)=0,\"\",IF(IFERROR(AND(B118<>\"\",C118<>\"\",D118<>\"\",ISNUMBER(F118),F118>0,MOD(F118,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J119",
+      "old": null,
+      "value": "=IF(COUNTA(B119:D119,F119)=0,\"\",IF(IFERROR(AND(B119<>\"\",C119<>\"\",D119<>\"\",ISNUMBER(F119),F119>0,MOD(F119,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J120",
+      "old": null,
+      "value": "=IF(COUNTA(B120:D120,F120)=0,\"\",IF(IFERROR(AND(B120<>\"\",C120<>\"\",D120<>\"\",ISNUMBER(F120),F120>0,MOD(F120,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J121",
+      "old": null,
+      "value": "=IF(COUNTA(B121:D121,F121)=0,\"\",IF(IFERROR(AND(B121<>\"\",C121<>\"\",D121<>\"\",ISNUMBER(F121),F121>0,MOD(F121,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J122",
+      "old": null,
+      "value": "=IF(COUNTA(B122:D122,F122)=0,\"\",IF(IFERROR(AND(B122<>\"\",C122<>\"\",D122<>\"\",ISNUMBER(F122),F122>0,MOD(F122,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J123",
+      "old": null,
+      "value": "=IF(COUNTA(B123:D123,F123)=0,\"\",IF(IFERROR(AND(B123<>\"\",C123<>\"\",D123<>\"\",ISNUMBER(F123),F123>0,MOD(F123,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J124",
+      "old": null,
+      "value": "=IF(COUNTA(B124:D124,F124)=0,\"\",IF(IFERROR(AND(B124<>\"\",C124<>\"\",D124<>\"\",ISNUMBER(F124),F124>0,MOD(F124,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J125",
+      "old": null,
+      "value": "=IF(COUNTA(B125:D125,F125)=0,\"\",IF(IFERROR(AND(B125<>\"\",C125<>\"\",D125<>\"\",ISNUMBER(F125),F125>0,MOD(F125,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J126",
+      "old": null,
+      "value": "=IF(COUNTA(B126:D126,F126)=0,\"\",IF(IFERROR(AND(B126<>\"\",C126<>\"\",D126<>\"\",ISNUMBER(F126),F126>0,MOD(F126,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J127",
+      "old": null,
+      "value": "=IF(COUNTA(B127:D127,F127)=0,\"\",IF(IFERROR(AND(B127<>\"\",C127<>\"\",D127<>\"\",ISNUMBER(F127),F127>0,MOD(F127,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J128",
+      "old": null,
+      "value": "=IF(COUNTA(B128:D128,F128)=0,\"\",IF(IFERROR(AND(B128<>\"\",C128<>\"\",D128<>\"\",ISNUMBER(F128),F128>0,MOD(F128,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J129",
+      "old": null,
+      "value": "=IF(COUNTA(B129:D129,F129)=0,\"\",IF(IFERROR(AND(B129<>\"\",C129<>\"\",D129<>\"\",ISNUMBER(F129),F129>0,MOD(F129,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    },
+    {
+      "sheet": "Опись",
+      "cell": "J130",
+      "old": null,
+      "value": "=IF(COUNTA(B130:D130,F130)=0,\"\",IF(IFERROR(AND(B130<>\"\",C130<>\"\",D130<>\"\",ISNUMBER(F130),F130>0,MOD(F130,1)=0),FALSE),\"\",\"НЕ ПРОВЕРЕНО: реквизиты или листаж\"))"
+    }
+  ]
+}

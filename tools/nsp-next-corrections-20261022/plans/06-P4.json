@@ -1,0 +1,32 @@
+{
+  "path": "08-pto-bez-zamechaniy/06-reestr-zamechaniy.xlsx",
+  "sku": "P4",
+  "issue": "P4-06-count-real-comments",
+  "base_sha256": "2a892c98e1c4f54a9f63b3308fc3c20479efae7c2de780ffa41e4652bc66a711",
+  "edits": [
+    {
+      "sheet": "Реестр замечаний по ИД",
+      "cell": "E6",
+      "old": "=COUNTIF(G2:G20,\"В работе\")",
+      "value": "=SUMPRODUCT(--(D2:D4<>\"\"))"
+    },
+    {
+      "sheet": "Реестр замечаний по ИД",
+      "cell": "H6",
+      "old": "",
+      "value": "=SUMPRODUCT(--(D2:D4<>\"\"),--(G2:G4<>\"Закрыто\"))"
+    },
+    {
+      "sheet": "Реестр замечаний по ИД",
+      "cell": "G7",
+      "old": "",
+      "value": "Закрыто"
+    },
+    {
+      "sheet": "Реестр замечаний по ИД",
+      "cell": "H7",
+      "old": "Закрыто",
+      "value": "=SUMPRODUCT(--(D2:D4<>\"\"),--(G2:G4=\"Закрыто\"))"
+    }
+  ]
+}

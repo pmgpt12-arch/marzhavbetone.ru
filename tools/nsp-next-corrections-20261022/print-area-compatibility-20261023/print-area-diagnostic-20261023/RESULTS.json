@@ -1,0 +1,94 @@
+{
+  "job": "nsp-print-area-diagnostic-v1-20261023",
+  "runtime": "PASS",
+  "checks": [
+    {
+      "name": "pd1:input_sha",
+      "pass": "True",
+      "expected": "f5c94ceebbb9812918d1cec39e940740906ff2a1b960b4111a9ff3c4d60762f9",
+      "actual": "f5c94ceebbb9812918d1cec39e940740906ff2a1b960b4111a9ff3c4d60762f9"
+    },
+    {
+      "name": "pd1:fixed-control:A2",
+      "pass": "True",
+      "expected": "number:123",
+      "actual": "System.Double:123"
+    },
+    {
+      "name": "pd1:fixed-control:B2",
+      "pass": "True",
+      "expected": "number:456",
+      "actual": "System.Double:456"
+    },
+    {
+      "name": "pd1:export_source_first",
+      "pass": "True",
+      "expected": "direct source export; IgnorePrintAreas=False",
+      "actual": "direct source export; IgnorePrintAreas=False"
+    },
+    {
+      "name": "pd1:pdf_export",
+      "pass": "True",
+      "expected": "%PDF-",
+      "actual": "bytes=4459"
+    },
+    {
+      "name": "pd1:source_unchanged",
+      "pass": "True",
+      "expected": "f5c94ceebbb9812918d1cec39e940740906ff2a1b960b4111a9ff3c4d60762f9",
+      "actual": "f5c94ceebbb9812918d1cec39e940740906ff2a1b960b4111a9ff3c4d60762f9"
+    },
+    {
+      "name": "pd2:input_sha",
+      "pass": "True",
+      "expected": "4fc6d8ab14e7ea4f22d4ca42cea24561c137f051a221809ddac76d0e28705d18",
+      "actual": "4fc6d8ab14e7ea4f22d4ca42cea24561c137f051a221809ddac76d0e28705d18"
+    },
+    {
+      "name": "pd2:fixed-control:A2",
+      "pass": "True",
+      "expected": "number:123",
+      "actual": "System.Double:123"
+    },
+    {
+      "name": "pd2:fixed-control:B2",
+      "pass": "True",
+      "expected": "number:456",
+      "actual": "System.Double:456"
+    },
+    {
+      "name": "pd2:export_source_first",
+      "pass": "True",
+      "expected": "direct source export; IgnorePrintAreas=False",
+      "actual": "direct source export; IgnorePrintAreas=False"
+    },
+    {
+      "name": "pd2:pdf_export",
+      "pass": "True",
+      "expected": "%PDF-",
+      "actual": "bytes=4478"
+    },
+    {
+      "name": "pd2:source_unchanged",
+      "pass": "True",
+      "expected": "4fc6d8ab14e7ea4f22d4ca42cea24561c137f051a221809ddac76d0e28705d18",
+      "actual": "4fc6d8ab14e7ea4f22d4ca42cea24561c137f051a221809ddac76d0e28705d18"
+    }
+  ],
+  "scope": "QA-only print-area import diagnostic; no product or worker changes",
+  "files": [
+    {
+      "tag": "pd1",
+      "outside_marker_printed": true,
+      "native_pdf_sha256": "b2fcd631191fcc1315f66b8386360e294cac2bc1e5ae4ce439678150bd1b2f79",
+      "pdf_info": "Creator:         Microsoft® Excel® 2016\nProducer:        Microsoft® Excel® 2016\nCreationDate:    Fri Oct 23 07:32:34 2026 +07\nModDate:         Fri Oct 23 07:32:34 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       595.32 x 841.92 pts (A4)\nPage rot:        0\nFile size:       4459 bytes\nOptimized:       no\nPDF version:     1.5\n"
+    },
+    {
+      "tag": "pd2",
+      "outside_marker_printed": true,
+      "native_pdf_sha256": "3ec013c71c53688a5c230ad2a52761fbafe3c85672eafb9b8794c4ae6cf09e2c",
+      "pdf_info": "Creator:         Microsoft® Excel® 2016\nProducer:        Microsoft® Excel® 2016\nCreationDate:    Fri Oct 23 07:32:35 2026 +07\nModDate:         Fri Oct 23 07:32:35 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       595.32 x 841.92 pts (A4)\nPage rot:        0\nFile size:       4478 bytes\nOptimized:       no\nPDF version:     1.5\n"
+    }
+  ],
+  "print_scope": "FAIL"
+}

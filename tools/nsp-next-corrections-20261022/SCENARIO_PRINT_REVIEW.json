@@ -1,0 +1,42 @@
+{
+  "engine": "LibreOffice, not native Excel",
+  "checks": [
+    {
+      "file": "old-01.pdf",
+      "pages": 18,
+      "status_pages": [
+        15
+      ],
+      "sha256": "5e96d18c7a343044bc50530721645c8ad73a625432b30301c8d2a9a0c1502f9a"
+    },
+    {
+      "file": "new-01-02.pdf",
+      "pages": 19,
+      "status_pages": [
+        16
+      ],
+      "sha256": "750e93db37ec1501fbb13aeb8074feb734cef49bd48de706be89c2f9b1102a6a"
+    },
+    {
+      "file": "new-04-00.pdf",
+      "pages": 5,
+      "status_pages": [
+        4
+      ],
+      "sha256": "13390412510be1a856fcaad443c9694eadd85cc39ccae85f4cc8b0ac6322685b"
+    }
+  ],
+  "P2_status_readable": true,
+  "P5_summary_horizontal_split": "OBSERVED_IN_OLD_AND_CANDIDATE_LO_PRINT; native Excel verification and print layout acceptance OPEN",
+  "source_masters_changed": false,
+  "final_helper_print_fix": {
+    "sha256": "d8eda717442ddeecf5f96fdb9973cbc90725a8db7629131e44f7485f94d57532",
+    "pages": 18,
+    "before_candidate_pages": 19,
+    "source_pages": 18,
+    "new_helper_excluded": true,
+    "scope": "Print area only, all 3 sheets; no page setup/global Office settings changes",
+    "native_excel": "BLOCKED",
+    "horizontal_summary_split": "Remains open; reproduced in source LO too"
+  }
+}

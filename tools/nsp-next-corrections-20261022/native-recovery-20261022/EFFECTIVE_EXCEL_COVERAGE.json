@@ -1,0 +1,93 @@
+{
+  "jobs": [
+    {
+      "job": "nsp-free-print-v2-20261022",
+      "files": 2,
+      "scenarios": 16,
+      "checks": 37,
+      "report_sha256": "95012e2373a0805043f0510afc37daedf13ca597ee6beb9f960997274504a01a",
+      "report_status": "PASS"
+    },
+    {
+      "job": "nsp-next-excel-1-20261022",
+      "files": 1,
+      "scenarios": 5,
+      "checks": 10,
+      "report_sha256": "727b8bcdf9b127516a6e351bda15123a0b411ba14c31ebab07feab20f058c555",
+      "report_status": "PASS"
+    },
+    {
+      "job": "nsp-next-excel-2-20261022",
+      "files": 1,
+      "scenarios": 4,
+      "checks": 12,
+      "report_sha256": "21b3637b285666c348575747b1b67e99c0df160ecf3bb7dea02e0ffd71069bdf",
+      "report_status": "PASS"
+    },
+    {
+      "job": "nsp-next-excel-3-20261022",
+      "files": 1,
+      "scenarios": 5,
+      "checks": 9,
+      "report_sha256": "73dc7cb190c782d194a557a8136aaa47b8b424d68a7a24b1ab96ddc2cab7b033",
+      "report_status": "PASS"
+    },
+    {
+      "job": "nsp-next-excel-4-20261022",
+      "files": 1,
+      "scenarios": 5,
+      "checks": 9,
+      "report_sha256": "ccb4bff5e7fed0f765f0e8c5ff2fedb18e1ef7e31b60352fe82f25782351a9f5",
+      "report_status": "PASS"
+    },
+    {
+      "job": "nsp-next-excel-5-coercion-v2-20261022",
+      "files": 1,
+      "scenarios": 6,
+      "checks": 14,
+      "report_sha256": "00fae7d16ef17709cf86ff192b15c8d92d8c2c34462dd6ddd9c32b401e9a0a63",
+      "report_status": "PASS"
+    },
+    {
+      "job": "nsp-next-excel-6-20261022",
+      "files": 1,
+      "scenarios": 3,
+      "checks": 11,
+      "report_sha256": "5ddb4c4035ea75b9f730740adf5ebc6429c2ee4a27f69a1a2b1c8ecfbd977338",
+      "report_status": "PASS"
+    },
+    {
+      "job": "nsp-next-excel-7-20261022",
+      "files": 1,
+      "scenarios": 4,
+      "checks": 8,
+      "report_sha256": "420b3b8d8d3a5bc1d5f01c7cc0290a09f23328058b4f80e61c0df7029b8ee859",
+      "report_status": "PASS"
+    },
+    {
+      "job": "nsp-next-excel-8-coercion-v2-20261022",
+      "files": 1,
+      "scenarios": 6,
+      "checks": 12,
+      "report_sha256": "326aa43408879ba4590a17acc2f76108da9503a24912a832f39ae3f4f3aaf585",
+      "report_status": "PASS"
+    },
+    {
+      "job": "nsp-next-excel-9-20261022",
+      "files": 1,
+      "scenarios": 3,
+      "checks": 9,
+      "report_sha256": "516acb012971feeed8aee29d8816596645a8ae384746e1f23d70c86feb950e13",
+      "report_status": "PASS"
+    }
+  ],
+  "files": 11,
+  "scenarios": 57,
+  "checks": 131,
+  "limits": [
+    "9 paid books print gate still open",
+    "Numeric-string COM conversion is not rejected as nonnumeric input",
+    "Only latest free print-v2 source SHA used for final 2 free books",
+    "Read-only/locale telemetry absent; no worker or Office setting changes"
+  ]
+}

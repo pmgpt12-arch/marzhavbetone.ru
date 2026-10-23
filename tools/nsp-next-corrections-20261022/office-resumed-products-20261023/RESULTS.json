@@ -1,0 +1,357 @@
+[
+  {
+    "channel": "native",
+    "job": "nsp-avans-reopen-v1-20261023",
+    "status": "PASS",
+    "files": [
+      {
+        "file": "avans-native-saved.xlsx",
+        "source_sha256": "aad26f1c4b3cb65ec99a538083a150e85b9494480854a200c2addf1c4e4b09c8",
+        "pdf_sha256": "33c14bd2420b14f4345b473b51aad57b3fc1bd58f81fa48e3edf15f1cdb18a5e",
+        "pdf_info": "Creator:         Microsoft® Excel® 2016\nProducer:        Microsoft® Excel® 2016\nCreationDate:    Fri Oct 23 07:17:38 2026 +07\nModDate:         Fri Oct 23 07:17:38 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           2\nEncrypted:       no\nPage size:       1190.52 x 841.92 pts (A3)\nPage rot:        0\nFile size:       392565 bytes\nOptimized:       no\nPDF version:     1.5\n",
+        "visual_review": "PASS_BOTH_NATIVE_PAGES_VIEWED"
+      }
+    ],
+    "receipt_sha256": "5b4602431228c4bbea67836807e158397994dfbc17f8e3440e1898ff7ea02104",
+    "error": null,
+    "checks": [
+      {
+        "name": "avr:input_sha",
+        "pass": "True",
+        "expected": "aad26f1c4b3cb65ec99a538083a150e85b9494480854a200c2addf1c4e4b09c8",
+        "actual": "aad26f1c4b3cb65ec99a538083a150e85b9494480854a200c2addf1c4e4b09c8"
+      },
+      {
+        "name": "avr:saved-blank-input-state:D12",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "avr:saved-blank-input-state:D13",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "avr:saved-blank-input-state:D14",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "avr:saved-blank-input-state:D15",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "avr:saved-blank-input-state:D16",
+        "pass": "True",
+        "expected": "text:УКАЖИТЕ ДАТУ",
+        "actual": "System.String:УКАЖИТЕ ДАТУ"
+      },
+      {
+        "name": "avr:export_source_first",
+        "pass": "True",
+        "expected": "direct source export; IgnorePrintAreas=False",
+        "actual": "direct source export; IgnorePrintAreas=False"
+      },
+      {
+        "name": "avr:pdf_export",
+        "pass": "True",
+        "expected": "%PDF-",
+        "actual": "bytes=392565"
+      },
+      {
+        "name": "avr:source_unchanged",
+        "pass": "True",
+        "expected": "aad26f1c4b3cb65ec99a538083a150e85b9494480854a200c2addf1c4e4b09c8",
+        "actual": "aad26f1c4b3cb65ec99a538083a150e85b9494480854a200c2addf1c4e4b09c8"
+      }
+    ],
+    "file_receipts": [],
+    "scope": "Saved-copy persistence check; does not replace source calculation tests"
+  },
+  {
+    "channel": "word",
+    "job": "nsp-p11-final-letters-r2-20261023",
+    "status": "PASS",
+    "files": [
+      {
+        "file": "54-zapros-sostoyanie-escrow.docx",
+        "source_sha256": "4feddee928e1436173345735598cbc8c5e38d74b6f4c892441994fc94f1744cf",
+        "pdf_sha256": "d6f57e3aaac7a29fc03a4dd10804a0cb44ed9bb8a830059142e9aebe4cfcc37e",
+        "pdf_info": "Creator:         Microsoft® Word 2016\nProducer:        Microsoft® Word 2016\nCreationDate:    Fri Oct 23 07:18:12 2026 +07\nModDate:         Fri Oct 23 07:18:12 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           3\nEncrypted:       no\nPage size:       595.32 x 841.92 pts (A4)\nPage rot:        0\nFile size:       165317 bytes\nOptimized:       no\nPDF version:     1.5\n",
+        "visual_review": "PASS_ALL_3_NATIVE_PAGES_VIEWED",
+        "content_review": "GUIDE_RECIPIENT_WORDING_OPEN; this does not establish full P11 release acceptance"
+      },
+      {
+        "file": "example-53-filled.docx",
+        "source_sha256": "baa83302b33b105e96fef8c74a3b8887ed42c8c46c47c262c000e8641503f1c0",
+        "pdf_sha256": "471e60b154c4a6fd8a939b03628142556ca48c2322702db41031a8863633c34d",
+        "pdf_info": "Creator:         Microsoft® Word 2016\nProducer:        Microsoft® Word 2016\nCreationDate:    Fri Oct 23 07:18:15 2026 +07\nModDate:         Fri Oct 23 07:18:15 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           3\nEncrypted:       no\nPage size:       595.32 x 841.92 pts (A4)\nPage rot:        0\nFile size:       146490 bytes\nOptimized:       no\nPDF version:     1.5\n",
+        "visual_review": "PASS_ALL_3_NATIVE_PAGES_VIEWED",
+        "content_review": "GUIDE_RECIPIENT_WORDING_OPEN; this does not establish full P11 release acceptance"
+      },
+      {
+        "file": "example-54-filled.docx",
+        "source_sha256": "ed27962f8259dba038948b0c02f3a0488d071bb3dc73ce6f14dc9f207d1d00b7",
+        "pdf_sha256": "58a1ec0ea85b5665dd14e295de1cf50ef7c9dd689e2771004e16379c3a5588fc",
+        "pdf_info": "Creator:         Microsoft® Word 2016\nProducer:        Microsoft® Word 2016\nCreationDate:    Fri Oct 23 07:18:19 2026 +07\nModDate:         Fri Oct 23 07:18:19 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           3\nEncrypted:       no\nPage size:       595.32 x 841.92 pts (A4)\nPage rot:        0\nFile size:       162418 bytes\nOptimized:       no\nPDF version:     1.5\n",
+        "visual_review": "PASS_ALL_3_NATIVE_PAGES_VIEWED",
+        "content_review": "GUIDE_RECIPIENT_WORDING_OPEN; this does not establish full P11 release acceptance"
+      }
+    ],
+    "receipt_sha256": "7fa7a5ae7244385fa883bbbcb3f60a699e026e643aefa8c3e9eeca6a8b81fa86",
+    "error": null,
+    "checks": [],
+    "file_receipts": [
+      {
+        "tag": "pt1",
+        "status": "PASS",
+        "pdf_sha256": "d6f57e3aaac7a29fc03a4dd10804a0cb44ed9bb8a830059142e9aebe4cfcc37e"
+      },
+      {
+        "tag": "pt2",
+        "status": "PASS",
+        "pdf_sha256": "471e60b154c4a6fd8a939b03628142556ca48c2322702db41031a8863633c34d"
+      },
+      {
+        "tag": "pt3",
+        "status": "PASS",
+        "pdf_sha256": "58a1ec0ea85b5665dd14e295de1cf50ef7c9dd689e2771004e16379c3a5588fc"
+      }
+    ]
+  },
+  {
+    "channel": "native",
+    "job": "nsp-p5-final-print-r2-20261023",
+    "status": "PASS",
+    "files": [
+      {
+        "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+        "source_sha256": "db3c68e205ac31659d54c55c572bd512fa654657c426125dc1a603c17ba6b350",
+        "pdf_sha256": "2c86db15f5785776c685de25efae9b7bffea398089480a8e0dff84175f023498",
+        "pdf_info": "Creator:         Microsoft® Excel® 2016\nProducer:        Microsoft® Excel® 2016\nCreationDate:    Fri Oct 23 07:19:09 2026 +07\nModDate:         Fri Oct 23 07:19:09 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           5\nEncrypted:       no\nPage size:       1190.52 x 841.92 pts (A3)\nPage rot:        0\nFile size:       276953 bytes\nOptimized:       no\nPDF version:     1.5\n",
+        "visual_review": "PRINT_REJECTED; partial visual inspection is sufficient to reject, not accept"
+      },
+      {
+        "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+        "source_sha256": "a8febac121cac24a0c4e34c5cc202192a11009199644d2cb6d5289ed3718e8fe",
+        "pdf_sha256": "9aa14bd07136b8ed6f5f1ec5da351a66ee353473e99b48f77c21b93779a45090",
+        "pdf_info": "Creator:         Microsoft® Excel® 2016\nProducer:        Microsoft® Excel® 2016\nCreationDate:    Fri Oct 23 07:19:19 2026 +07\nModDate:         Fri Oct 23 07:19:19 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           6\nEncrypted:       no\nPage size:       1190.52 x 841.92 pts (A3)\nPage rot:        0\nFile size:       198263 bytes\nOptimized:       no\nPDF version:     1.5\n",
+        "visual_review": "PRINT_REJECTED; partial visual inspection is sufficient to reject, not accept"
+      },
+      {
+        "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+        "source_sha256": "1894f2c0719db637e5fedae0df6951588bd43338cdae098f430a8aa0edb899af",
+        "pdf_sha256": "3dd43f5ea618993851480d8663e7bf7e30084e98f08942e4de464e516995d202",
+        "pdf_info": "Creator:         Microsoft® Excel® 2016\nProducer:        Microsoft® Excel® 2016\nCreationDate:    Fri Oct 23 07:19:25 2026 +07\nModDate:         Fri Oct 23 07:19:25 2026 +07\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           8\nEncrypted:       no\nPage size:       841.92 x 595.32 pts (A4)\nPage rot:        0\nFile size:       496299 bytes\nOptimized:       no\nPDF version:     1.5\n",
+        "visual_review": "PRINT_REJECTED; partial visual inspection is sufficient to reject, not accept"
+      }
+    ],
+    "receipt_sha256": "295e5dba65b9ac6c497513c760f7fcf7bd2df46c4fd2fb76ec607e1d97000b6b",
+    "error": null,
+    "checks": [
+      {
+        "name": "pp2:input_sha",
+        "pass": "True",
+        "expected": "db3c68e205ac31659d54c55c572bd512fa654657c426125dc1a603c17ba6b350",
+        "actual": "db3c68e205ac31659d54c55c572bd512fa654657c426125dc1a603c17ba6b350"
+      },
+      {
+        "name": "pp2:same-date-select-open:B13",
+        "pass": "True",
+        "expected": "text:открытый-2",
+        "actual": "System.String:открытый-2"
+      },
+      {
+        "name": "pp2:same-date-select-open:C13",
+        "pass": "True",
+        "expected": "text:объект 2",
+        "actual": "System.String:объект 2"
+      },
+      {
+        "name": "pp2:returned-positive:D4",
+        "pass": "True",
+        "expected": "text:ОШИБКА: статус возврата или превышение возврата. Сверьте реестр.",
+        "actual": "System.String:ОШИБКА: статус возврата или превышение возврата. Сверьте реестр."
+      },
+      {
+        "name": "pp2:returned-positive:B13",
+        "pass": "True",
+        "expected": "text:закрытый-1",
+        "actual": "System.String:закрытый-1"
+      },
+      {
+        "name": "pp2:over-return:D4",
+        "pass": "True",
+        "expected": "text:ОШИБКА: статус возврата или превышение возврата. Сверьте реестр.",
+        "actual": "System.String:ОШИБКА: статус возврата или превышение возврата. Сверьте реестр."
+      },
+      {
+        "name": "pp2:over-return:B4",
+        "pass": "True",
+        "expected": "number:10000",
+        "actual": "System.Double:10000"
+      },
+      {
+        "name": "pp2:two-dates:B13",
+        "pass": "True",
+        "expected": "text:закрытый-1",
+        "actual": "System.String:закрытый-1"
+      },
+      {
+        "name": "pp2:two-dates:B14",
+        "pass": "True",
+        "expected": "text:открытый-2",
+        "actual": "System.String:открытый-2"
+      },
+      {
+        "name": "pp2:export_source_first",
+        "pass": "True",
+        "expected": "direct source export; IgnorePrintAreas=False",
+        "actual": "direct source export; IgnorePrintAreas=False"
+      },
+      {
+        "name": "pp2:pdf_export",
+        "pass": "True",
+        "expected": "%PDF-",
+        "actual": "bytes=276953"
+      },
+      {
+        "name": "pp2:source_unchanged",
+        "pass": "True",
+        "expected": "db3c68e205ac31659d54c55c572bd512fa654657c426125dc1a603c17ba6b350",
+        "actual": "db3c68e205ac31659d54c55c572bd512fa654657c426125dc1a603c17ba6b350"
+      },
+      {
+        "name": "pp3:input_sha",
+        "pass": "True",
+        "expected": "a8febac121cac24a0c4e34c5cc202192a11009199644d2cb6d5289ed3718e8fe",
+        "actual": "a8febac121cac24a0c4e34c5cc202192a11009199644d2cb6d5289ed3718e8fe"
+      },
+      {
+        "name": "pp3:empty:C8",
+        "pass": "True",
+        "expected": "text:НЕТ ДАННЫХ",
+        "actual": "System.String:НЕТ ДАННЫХ"
+      },
+      {
+        "name": "pp3:unknown-ks:C8",
+        "pass": "True",
+        "expected": "text:НЕТ ДАННЫХ",
+        "actual": "System.String:НЕТ ДАННЫХ"
+      },
+      {
+        "name": "pp3:unknown-blocking:C8",
+        "pass": "True",
+        "expected": "text:НЕ ПРОВЕРЕНО",
+        "actual": "System.String:НЕ ПРОВЕРЕНО"
+      },
+      {
+        "name": "pp3:blocked:C8",
+        "pass": "True",
+        "expected": "text:К закрытию не готов: 1",
+        "actual": "System.String:К закрытию не готов: 1"
+      },
+      {
+        "name": "pp3:signed:C8",
+        "pass": "True",
+        "expected": "text:По внесённым строкам блокирующих нет",
+        "actual": "System.String:По внесённым строкам блокирующих нет"
+      },
+      {
+        "name": "pp3:export_source_first",
+        "pass": "True",
+        "expected": "direct source export; IgnorePrintAreas=False",
+        "actual": "direct source export; IgnorePrintAreas=False"
+      },
+      {
+        "name": "pp3:pdf_export",
+        "pass": "True",
+        "expected": "%PDF-",
+        "actual": "bytes=198263"
+      },
+      {
+        "name": "pp3:source_unchanged",
+        "pass": "True",
+        "expected": "a8febac121cac24a0c4e34c5cc202192a11009199644d2cb6d5289ed3718e8fe",
+        "actual": "a8febac121cac24a0c4e34c5cc202192a11009199644d2cb6d5289ed3718e8fe"
+      },
+      {
+        "name": "pp4:input_sha",
+        "pass": "True",
+        "expected": "1894f2c0719db637e5fedae0df6951588bd43338cdae098f430a8aa0edb899af",
+        "actual": "1894f2c0719db637e5fedae0df6951588bd43338cdae098f430a8aa0edb899af"
+      },
+      {
+        "name": "pp4:only-type:U7",
+        "pass": "True",
+        "expected": "text:НЕ ПРОВЕРЕНО: наличие или обязательность",
+        "actual": "System.String:НЕ ПРОВЕРЕНО: наличие или обязательность"
+      },
+      {
+        "name": "pp4:missing-required:U7",
+        "pass": "True",
+        "expected": "text:дыра: обязательного документа нет, запрос не направлен",
+        "actual": "System.String:дыра: обязательного документа нет, запрос не направлен"
+      },
+      {
+        "name": "pp4:requested:U7",
+        "pass": "True",
+        "expected": "text:запрошен, не получен",
+        "actual": "System.String:запрошен, не получен"
+      },
+      {
+        "name": "pp4:expert-no-date:U7",
+        "pass": "True",
+        "expected": "text:передан без следа: эксперт или дата",
+        "actual": "System.String:передан без следа: эксперт или дата"
+      },
+      {
+        "name": "pp4:minimum-still-open:A15",
+        "pass": "True",
+        "expected": "text:Есть незакрытые обязательные документы или блоки минимума. Закройте дыры или направьте запрос.",
+        "actual": "System.String:Есть незакрытые обязательные документы или блоки минимума. Закройте дыры или направьте запрос."
+      },
+      {
+        "name": "pp4:export_source_first",
+        "pass": "True",
+        "expected": "direct source export; IgnorePrintAreas=False",
+        "actual": "direct source export; IgnorePrintAreas=False"
+      },
+      {
+        "name": "pp4:pdf_export",
+        "pass": "True",
+        "expected": "%PDF-",
+        "actual": "bytes=496299"
+      },
+      {
+        "name": "pp4:source_unchanged",
+        "pass": "True",
+        "expected": "1894f2c0719db637e5fedae0df6951588bd43338cdae098f430a8aa0edb899af",
+        "actual": "1894f2c0719db637e5fedae0df6951588bd43338cdae098f430a8aa0edb899af"
+      }
+    ],
+    "file_receipts": [],
+    "print_findings": [
+      {
+        "tag": "pp2",
+        "page": 5,
+        "finding": "Example label for alternative return is clipped at an adjacent occupied cell"
+      },
+      {
+        "tag": "pp3",
+        "page": 6,
+        "finding": "Example print extends beyond the intended column L"
+      },
+      {
+        "tag": "pp4",
+        "page": 2,
+        "finding": "21-column inventory shrinks across one A3 width; intended three print bands not applied"
+      }
+    ]
+  }
+]

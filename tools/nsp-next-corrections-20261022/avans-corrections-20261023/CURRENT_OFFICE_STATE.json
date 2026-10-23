@@ -1,0 +1,27 @@
+{
+  "observed_utc": "2026-10-23T00:11:14.734844+00:00",
+  "channels": {
+    "native": {
+      "current_job": "nsp-office-control-native-20261022-233620",
+      "status": "FAIL",
+      "report_sha256": "13c3c46e170dfd67021fc6dd0e923dfaa5d06818724cf1b2b181770ecb787709",
+      "agent_status": {
+        "time": 1792713037.887559,
+        "source": "192.168.1.140",
+        "state": "ONLINE"
+      }
+    },
+    "word": {
+      "current_job": "nsp-office-control-word-20261022-233620",
+      "status": "FAIL",
+      "report_sha256": "fb3f122106b15c6c89520a3567aa226003311065e06b89e7d45152076e22def3",
+      "agent_status": {
+        "time": 1792713040.3255816,
+        "source": "192.168.1.140",
+        "state": "ONLINE"
+      }
+    }
+  },
+  "new_jobs_submitted": false,
+  "network_online_not_office_recovery": true
+}
