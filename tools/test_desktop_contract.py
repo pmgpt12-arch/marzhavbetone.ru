@@ -55,6 +55,7 @@ def main():
     with sync_playwright() as p:
         near = desktop.chromium_nearby()
         browser = p.chromium.launch(**({'executable_path':str(near)} if near else {}))
+        print(f'Desktop contract browser: {browser.version}', flush=True)
         page = browser.new_page(viewport={'width':1366,'height':HEIGHT})
         try:
             for label, html, rel, accepted in [

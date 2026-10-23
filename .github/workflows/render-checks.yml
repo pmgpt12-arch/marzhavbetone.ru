@@ -38,6 +38,8 @@ jobs:
   render:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/nsp-playwright-browsers
     steps:
       - uses: actions/checkout@v4
         with:
@@ -54,13 +56,9 @@ jobs:
         timeout-minutes: 5
         run: |
           python3 -m pip install --quiet playwright pillow
-          browser="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
-          if [ -n "$browser" ]; then
-            echo "NSP_BROWSER_EXECUTABLE=$browser" >> "$GITHUB_ENV"
-            "$browser" --version
-          else
-            timeout 240s python3 -m playwright install --with-deps chromium
-          fi
+          # Use the renderer matched to Playwright for exact pixel comparisons.
+          # The runner already has Chrome's runtime libraries; avoid apt downloads.
+          timeout 240s python3 -m playwright install --only-shell chromium
 
       - name: Контракт браузерной проверки
         if: ${{ !cancelled() && steps.browser.conclusion == 'success' }}
