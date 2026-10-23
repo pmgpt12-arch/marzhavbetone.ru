@@ -1,0 +1,1086 @@
+{
+  "engine": "@oai/artifact-tool",
+  "cases": 56,
+  "checks": 106,
+  "passed": 46,
+  "results": [
+    {
+      "name": "weekend-transfer",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B7",
+          "expected": 46314,
+          "actual": 46314,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B8",
+          "expected": 2,
+          "actual": 2,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 200,
+          "actual": 200,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B20",
+          "expected": 100000,
+          "actual": 100000,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": 100200,
+          "actual": 100200,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "ordinary-15-days",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B7",
+          "expected": 46301,
+          "actual": 46301,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B8",
+          "expected": 15,
+          "actual": 15,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 1500,
+          "actual": 1500,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "holiday-working",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B7",
+          "expected": 46331,
+          "actual": 46331,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "holiday-calendar",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B7",
+          "expected": 46331,
+          "actual": 46331,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "march-transfer",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B7",
+          "expected": 46091,
+          "actual": 46091,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "january-transfer",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B7",
+          "expected": 46034,
+          "actual": 46034,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "may-transfer",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B7",
+          "expected": 46154,
+          "actual": 46154,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "deadline-day",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B8",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B20",
+          "expected": 100000,
+          "actual": 100000,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "before-deadline",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B8",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "one-day-late",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B8",
+          "expected": 1,
+          "actual": 1,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "zero-term",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B7",
+          "expected": 46311,
+          "actual": 46311,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B8",
+          "expected": 5,
+          "actual": 5,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 500,
+          "actual": 500,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "partial-before-due",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 120,
+          "actual": 120,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B20",
+          "expected": 60000,
+          "actual": 60000,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B21",
+          "expected": 40000,
+          "actual": 40000,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "partial-during-period",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B8",
+          "expected": 5,
+          "actual": 5,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 420,
+          "actual": 420,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B20",
+          "expected": 60000,
+          "actual": 60000,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": 60420,
+          "actual": 60420,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "partial-needs-split",
+      "status": "FAIL",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": "ПРОВЕРЬТЕ ПЕРИОДЫ",
+          "actual": "НЕПОЛНОЕ ПОКРЫТИЕ",
+          "pass": false
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": "ПРОВЕРЬТЕ ВВОД",
+          "actual": "ПРОВЕРЬТЕ ВВОД",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "payment-on-last-day",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 200,
+          "actual": 200,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B20",
+          "expected": 60000,
+          "actual": 60000,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "full-payment-first-day",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B20",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "future-payment",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 200,
+          "actual": 200,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B20",
+          "expected": 100000,
+          "actual": 100000,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B22",
+          "expected": 40000,
+          "actual": 40000,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "overpayment",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B20",
+          "expected": "ОПЛАТЫ БОЛЬШЕ ДОЛГА",
+          "actual": "ОПЛАТЫ БОЛЬШЕ ДОЛГА",
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": "ПРОВЕРЬТЕ ВВОД",
+          "actual": "ПРОВЕРЬТЕ ВВОД",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "daily-rate-change",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 300,
+          "actual": 300,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "interest-365",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 54.79,
+          "actual": 54.79,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B23",
+          "expected": 54.79,
+          "actual": 54.79,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B24",
+          "expected": "НЕ ВЫБРАНО",
+          "actual": "НЕ ВЫБРАНО",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "annual-rate-change",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 82.19,
+          "actual": 82.19,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "interest-partial-payment",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 43.84,
+          "actual": 43.84,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B20",
+          "expected": 60000,
+          "actual": 60000,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "leap-year",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B8",
+          "expected": 3,
+          "actual": 3,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 300,
+          "actual": 300,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "calendar-year-boundary",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B8",
+          "expected": 2,
+          "actual": 2,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 199.73,
+          "actual": 199.73,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "full-intermediate-year",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 73100,
+          "actual": 73100,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "zero-debt",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B20",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "zero-rate",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": 100000,
+          "actual": 100000,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "principal-only",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B23",
+          "expected": "НЕ ВЫБРАНО",
+          "actual": "НЕ ВЫБРАНО",
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B24",
+          "expected": "НЕ ВЫБРАНО",
+          "actual": "НЕ ВЫБРАНО",
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": 100000,
+          "actual": 100000,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "double-mode-rejected",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": "ВЫБЕРИТЕ РЕЖИМ",
+          "actual": "ВЫБЕРИТЕ РЕЖИМ",
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": "ПРОВЕРЬТЕ ВВОД",
+          "actual": "ПРОВЕРЬТЕ ВВОД",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "395-with-penalty-rejected",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": "ПРОВЕРЬТЕ НЕУСТОЙКУ",
+          "actual": "ПРОВЕРЬТЕ НЕУСТОЙКУ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "unknown-penalty-basis",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": "ПРОВЕРЬТЕ НЕУСТОЙКУ",
+          "actual": "ПРОВЕРЬТЕ НЕУСТОЙКУ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "negative-debt",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B19",
+          "expected": "СУММА ДОЛГА",
+          "actual": "СУММА ДОЛГА",
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": "ПРОВЕРЬТЕ ВВОД",
+          "actual": "ПРОВЕРЬТЕ ВВОД",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "text-debt",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B19",
+          "expected": "СУММА ДОЛГА",
+          "actual": "СУММА ДОЛГА",
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": "ПРОВЕРЬТЕ ВВОД",
+          "actual": "ПРОВЕРЬТЕ ВВОД",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "boolean-debt",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B19",
+          "expected": "СУММА ДОЛГА",
+          "actual": "СУММА ДОЛГА",
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": "ПРОВЕРЬТЕ ВВОД",
+          "actual": "ПРОВЕРЬТЕ ВВОД",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "fractional-kopek",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B19",
+          "expected": "СУММА ДОЛГА",
+          "actual": "СУММА ДОЛГА",
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": "ПРОВЕРЬТЕ ВВОД",
+          "actual": "ПРОВЕРЬТЕ ВВОД",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "negative-daily-rate",
+      "status": "FAIL",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": "ПРОВЕРЬТЕ ПЕРИОДЫ",
+          "actual": "НЕПОЛНОЕ ПОКРЫТИЕ",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "name": "text-daily-rate",
+      "status": "FAIL",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": "ПРОВЕРЬТЕ ПЕРИОДЫ",
+          "actual": "НЕПОЛНОЕ ПОКРЫТИЕ",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "name": "negative-annual-rate",
+      "status": "FAIL",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": "ПРОВЕРЬТЕ ПЕРИОДЫ",
+          "actual": "НЕПОЛНОЕ ПОКРЫТИЕ",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "name": "fractional-days",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B7",
+          "expected": "ЦЕЛЫЕ ДНИ 0–366",
+          "actual": "ЦЕЛЫЕ ДНИ 0–366",
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B19",
+          "expected": "ПРОВЕРЬТЕ СРОК",
+          "actual": "ПРОВЕРЬТЕ СРОК",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "negative-days",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B7",
+          "expected": "ЦЕЛЫЕ ДНИ 0–366",
+          "actual": "ЦЕЛЫЕ ДНИ 0–366",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "text-event-date",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B7",
+          "expected": "ДАТА СОБЫТИЯ",
+          "actual": "ДАТА СОБЫТИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "fractional-end-date",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B19",
+          "expected": "ДАТА РАСЧЁТА",
+          "actual": "ДАТА РАСЧЁТА",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "text-end-date",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B19",
+          "expected": "ДАТА РАСЧЁТА",
+          "actual": "ДАТА РАСЧЁТА",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "calendar-not-confirmed",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B7",
+          "expected": "ПОДТВЕРДИТЕ ДАТУ",
+          "actual": "ПОДТВЕРДИТЕ ДАТУ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "basis-not-confirmed",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": "ПОДТВЕРДИТЕ ОСНОВАНИЕ",
+          "actual": "ПОДТВЕРДИТЕ ОСНОВАНИЕ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "outside-auto-calendar",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B7",
+          "expected": "НУЖНА РУЧНАЯ ДАТА",
+          "actual": "НУЖНА РУЧНАЯ ДАТА",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "negative-payment",
+      "status": "FAIL",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B19",
+          "expected": "ПРОВЕРЬТЕ ПЛАТЕЖИ",
+          "actual": "ГОТОВО",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "name": "text-payment",
+      "status": "FAIL",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B19",
+          "expected": "ПРОВЕРЬТЕ ПЛАТЕЖИ",
+          "actual": "ГОТОВО",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "name": "payment-without-proof",
+      "status": "FAIL",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B19",
+          "expected": "ПРОВЕРЬТЕ ПЛАТЕЖИ",
+          "actual": "ГОТОВО",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "name": "missing-payment-date",
+      "status": "FAIL",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B19",
+          "expected": "ПРОВЕРЬТЕ ПЛАТЕЖИ",
+          "actual": "ГОТОВО",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "name": "duplicate-period-start",
+      "status": "FAIL",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": "ПРОВЕРЬТЕ ПЕРИОДЫ",
+          "actual": "НЕПОЛНОЕ ПОКРЫТИЕ",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "name": "period-gap",
+      "status": "FAIL",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": "ПРОВЕРЬТЕ ПЕРИОДЫ",
+          "actual": 200,
+          "pass": false
+        }
+      ]
+    },
+    {
+      "name": "future-rate-period",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 200,
+          "actual": 200,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "twentieth-period",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 2000,
+          "actual": 2000,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B8",
+          "expected": 20,
+          "actual": 20,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "twentieth-payment",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B12",
+          "expected": 196,
+          "actual": 196,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B20",
+          "expected": 98000,
+          "actual": 98000,
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B21",
+          "expected": 2000,
+          "actual": 2000,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B19",
+          "expected": "ПРОВЕРЬТЕ СРОК",
+          "actual": "ПРОВЕРЬТЕ СРОК",
+          "pass": true
+        },
+        {
+          "sheet": "Калькулятор срока оплаты",
+          "cell": "B25",
+          "expected": "ПРОВЕРЬТЕ ВВОД",
+          "actual": "ПРОВЕРЬТЕ ВВОД",
+          "pass": true
+        }
+      ]
+    }
+  ]
+}

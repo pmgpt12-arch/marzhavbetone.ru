@@ -1,0 +1,100 @@
+{
+  "engine": "artifact-tool; six source defect reproductions, not native acceptance",
+  "clock_control": "Only B8 TODAY clock replaced by a fixed serial in memory; no source or public file written",
+  "source_sha256": "4c23401703d64eae9818919dfa4598c2944f1bd7816ed2255bd9d38061ad4077",
+  "results": [
+    {
+      "name": "weekend",
+      "event": "2026-10-16",
+      "days": 2,
+      "type": "календарные",
+      "end": "2026-10-21",
+      "sum": 100000,
+      "rate": 0.001,
+      "expected_due": 46314,
+      "expected_penalty": 200,
+      "actual": {
+        "due": 46313,
+        "days": 3,
+        "penalty": 300
+      }
+    },
+    {
+      "name": "holiday",
+      "event": "2026-11-03",
+      "days": 1,
+      "type": "рабочие",
+      "end": "2026-11-06",
+      "sum": 100000,
+      "rate": 0.001,
+      "expected_due": 46331,
+      "expected_penalty": 100,
+      "actual": {
+        "due": 46330,
+        "days": 2,
+        "penalty": 200
+      }
+    },
+    {
+      "name": "fractional-days",
+      "event": "2026-10-01",
+      "days": 1.5,
+      "type": "календарные",
+      "end": "2026-10-21",
+      "sum": 100000,
+      "rate": 0.001,
+      "expected": "REJECT_FRACTION",
+      "actual": {
+        "due": 46297.5,
+        "days": 18.5,
+        "penalty": 1850
+      }
+    },
+    {
+      "name": "negative-debt",
+      "event": "2026-10-01",
+      "days": 5,
+      "type": "календарные",
+      "end": "2026-10-21",
+      "sum": -100000,
+      "rate": 0.001,
+      "expected": "REJECT_NEGATIVE",
+      "actual": {
+        "due": 46301,
+        "days": 15,
+        "penalty": -1500
+      }
+    },
+    {
+      "name": "negative-rate",
+      "event": "2026-10-01",
+      "days": 5,
+      "type": "календарные",
+      "end": "2026-10-21",
+      "sum": 100000,
+      "rate": -0.001,
+      "expected": "REJECT_NEGATIVE",
+      "actual": {
+        "due": 46301,
+        "days": 15,
+        "penalty": -1500
+      }
+    },
+    {
+      "name": "partial-paid-before-period",
+      "event": "2026-10-01",
+      "days": 5,
+      "type": "календарные",
+      "end": "2026-10-21",
+      "sum": 100000,
+      "rate": 0.001,
+      "payment": 40000,
+      "expected_penalty": 900,
+      "actual": {
+        "due": 46301,
+        "days": 15,
+        "penalty": 1500
+      }
+    }
+  ]
+}

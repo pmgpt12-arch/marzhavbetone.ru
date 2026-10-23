@@ -1,0 +1,14 @@
+[
+  {
+    "cell": "B7",
+    "formula": "IF(OR(NOT(ISNUMBER(B6)),NOT(ISNUMBER(B4)),B4<0,AND(B5<>\"рабочие\",B5<>\"календарные\")),\"\",IF(B5=\"рабочие\",WORKDAY(B6,B4),B6+B4))"
+  },
+  {
+    "cell": "B8",
+    "formula": "IF(NOT(ISNUMBER(B7)),\"\",MAX(0,TODAY()-B7))"
+  },
+  {
+    "cell": "B12",
+    "formula": "IF(OR(NOT(ISNUMBER(B8)),NOT(ISNUMBER(B10)),NOT(ISNUMBER(B11))),\"\",B8*B10*B11)"
+  }
+]

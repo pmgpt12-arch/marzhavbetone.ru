@@ -1,0 +1,53 @@
+{
+  "jobs": [
+    {
+      "channel": "native",
+      "id": "nsp-qa02-excel-b1-v1-20261023",
+      "job_sha256": "0e9d4253da342964ff47f3eb5b558155073171af57b64a98ec0ee33bff70156c"
+    },
+    {
+      "channel": "native",
+      "id": "nsp-qa02-excel-b2-v1-20261023",
+      "job_sha256": "f295e64a5aebbe475e9d72c40c80d3b61f14fc10b6dacd811b6cbcc44b5527ef"
+    },
+    {
+      "channel": "native",
+      "id": "nsp-qa02-excel-b3-v1-20261023",
+      "job_sha256": "b0cb94055b16bb1a542cdcc18d5a7704234225429ec39ed802c9950fffa99a92"
+    },
+    {
+      "channel": "native",
+      "id": "nsp-qa02-excel-b4-v1-20261023",
+      "job_sha256": "e269e04180576ee4106f41c8d988c49cc28f941f39c077f61fbd507a27c9d4bb"
+    },
+    {
+      "channel": "native",
+      "id": "nsp-qa02-excel-b5-v1-20261023",
+      "job_sha256": "0952d3a649b9f40618660e9245c0b24dfd6377494fd709102a5253b17176c2b4"
+    },
+    {
+      "channel": "native",
+      "id": "nsp-qa02-excel-b6-v1-20261023",
+      "job_sha256": "fc3c657463488b3517e9511f0f649712a80632a1dd65d354d5c615bad8dfb871"
+    },
+    {
+      "channel": "native",
+      "id": "nsp-qa02-excel-b7-v1-20261023",
+      "job_sha256": "a8e2bcf4c6ee53ab609815ce1e4ac5238a264e7b99c1f7cedf20345e7c2d28d4"
+    },
+    {
+      "channel": "word",
+      "id": "nsp-qa02-word-v1-20261023",
+      "job_sha256": "ef93c3a640fe6c96e0a003d3e47fd261d27ee302fab8d537ddf1296dde291f0b"
+    }
+  ],
+  "reopen_expected": {
+    "Калькулятор срока оплаты": {
+      "B8": 5,
+      "B12": 420,
+      "B20": 60000,
+      "B25": 60420
+    }
+  },
+  "filled_source_job": "nsp-qa02-excel-b7-v1-20261023"
+}

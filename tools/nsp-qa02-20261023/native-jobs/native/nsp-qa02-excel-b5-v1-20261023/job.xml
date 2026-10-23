@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job id="nsp-qa02-excel-b5-v1-20261023" qa_only="true">
+  <file name="02-kalkulyator-sroka-oplaty.xlsx" tag="q2x" sheet="Калькулятор срока оплаты" sha256="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" export_source_first="true" print_preflight="true">
+    <case name="text-debt">
+      <set sheet="Калькулятор срока оплаты" cell="B4" kind="number" value="2" />
+      <set sheet="Калькулятор срока оплаты" cell="B5" kind="text" value="календарные" />
+      <set sheet="Калькулятор срока оплаты" cell="B6" kind="number" value="46311" />
+      <set sheet="Калькулятор срока оплаты" cell="B9" kind="number" value="46316" />
+      <set sheet="Калькулятор срока оплаты" cell="B10" kind="number" value="0.001" />
+      <set sheet="Калькулятор срока оплаты" cell="B11" kind="text" value="сумма" />
+      <set sheet="Калькулятор срока оплаты" cell="B13" kind="text" value="пеня" />
+      <set sheet="Калькулятор срока оплаты" cell="B14" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B16" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B17" kind="text" value="да" />
+      <expect sheet="Калькулятор срока оплаты" cell="B19" kind="text" value="СУММА ДОЛГА" />
+      <expect sheet="Калькулятор срока оплаты" cell="B25" kind="text" value="ПРОВЕРЬТЕ ВВОД" />
+    </case>
+    <case name="boolean-debt">
+      <set sheet="Калькулятор срока оплаты" cell="B4" kind="number" value="2" />
+      <set sheet="Калькулятор срока оплаты" cell="B5" kind="text" value="календарные" />
+      <set sheet="Калькулятор срока оплаты" cell="B6" kind="number" value="46311" />
+      <set sheet="Калькулятор срока оплаты" cell="B9" kind="number" value="46316" />
+      <set sheet="Калькулятор срока оплаты" cell="B10" kind="number" value="0.001" />
+      <set sheet="Калькулятор срока оплаты" cell="B11" kind="boolean" value="true" />
+      <set sheet="Калькулятор срока оплаты" cell="B13" kind="text" value="пеня" />
+      <set sheet="Калькулятор срока оплаты" cell="B14" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B16" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B17" kind="text" value="да" />
+      <expect sheet="Калькулятор срока оплаты" cell="B19" kind="text" value="СУММА ДОЛГА" />
+      <expect sheet="Калькулятор срока оплаты" cell="B25" kind="text" value="ПРОВЕРЬТЕ ВВОД" />
+    </case>
+    <case name="fractional-kopek">
+      <set sheet="Калькулятор срока оплаты" cell="B4" kind="number" value="2" />
+      <set sheet="Калькулятор срока оплаты" cell="B5" kind="text" value="календарные" />
+      <set sheet="Калькулятор срока оплаты" cell="B6" kind="number" value="46311" />
+      <set sheet="Калькулятор срока оплаты" cell="B9" kind="number" value="46316" />
+      <set sheet="Калькулятор срока оплаты" cell="B10" kind="number" value="0.001" />
+      <set sheet="Калькулятор срока оплаты" cell="B11" kind="number" value="1.001" />
+      <set sheet="Калькулятор срока оплаты" cell="B13" kind="text" value="пеня" />
+      <set sheet="Калькулятор срока оплаты" cell="B14" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B16" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B17" kind="text" value="да" />
+      <expect sheet="Калькулятор срока оплаты" cell="B19" kind="text" value="СУММА ДОЛГА" />
+      <expect sheet="Калькулятор срока оплаты" cell="B25" kind="text" value="ПРОВЕРЬТЕ ВВОД" />
+    </case>
+    <case name="negative-daily-rate">
+      <set sheet="Калькулятор срока оплаты" cell="B4" kind="number" value="2" />
+      <set sheet="Калькулятор срока оплаты" cell="B5" kind="text" value="календарные" />
+      <set sheet="Калькулятор срока оплаты" cell="B6" kind="number" value="46311" />
+      <set sheet="Калькулятор срока оплаты" cell="B9" kind="number" value="46316" />
+      <set sheet="Калькулятор срока оплаты" cell="B10" kind="number" value="-0.001" />
+      <set sheet="Калькулятор срока оплаты" cell="B11" kind="number" value="100000" />
+      <set sheet="Калькулятор срока оплаты" cell="B13" kind="text" value="пеня" />
+      <set sheet="Калькулятор срока оплаты" cell="B14" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B16" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B17" kind="text" value="да" />
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="text" value="ПРОВЕРЬТЕ ПЕРИОДЫ" />
+    </case>
+    <case name="text-daily-rate">
+      <set sheet="Калькулятор срока оплаты" cell="B4" kind="number" value="2" />
+      <set sheet="Калькулятор срока оплаты" cell="B5" kind="text" value="календарные" />
+      <set sheet="Калькулятор срока оплаты" cell="B6" kind="number" value="46311" />
+      <set sheet="Калькулятор срока оплаты" cell="B9" kind="number" value="46316" />
+      <set sheet="Калькулятор срока оплаты" cell="B10" kind="text" value="ставка" />
+      <set sheet="Калькулятор срока оплаты" cell="B11" kind="number" value="100000" />
+      <set sheet="Калькулятор срока оплаты" cell="B13" kind="text" value="пеня" />
+      <set sheet="Калькулятор срока оплаты" cell="B14" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B16" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B17" kind="text" value="да" />
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="text" value="ПРОВЕРЬТЕ ПЕРИОДЫ" />
+    </case>
+    <case name="negative-annual-rate">
+      <set sheet="Калькулятор срока оплаты" cell="B4" kind="number" value="2" />
+      <set sheet="Калькулятор срока оплаты" cell="B5" kind="text" value="календарные" />
+      <set sheet="Калькулятор срока оплаты" cell="B6" kind="number" value="46311" />
+      <set sheet="Калькулятор срока оплаты" cell="B9" kind="number" value="46316" />
+      <set sheet="Калькулятор срока оплаты" cell="B10" kind="number" value="0.001" />
+      <set sheet="Калькулятор срока оплаты" cell="B11" kind="number" value="100000" />
+      <set sheet="Калькулятор срока оплаты" cell="B13" kind="text" value="проценты 395" />
+      <set sheet="Калькулятор срока оплаты" cell="B14" kind="text" value="нет" />
+      <set sheet="Калькулятор срока оплаты" cell="B16" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B17" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B15" kind="number" value="-0.1" />
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="text" value="ПРОВЕРЬТЕ ПЕРИОДЫ" />
+    </case>
+    <case name="fractional-days">
+      <set sheet="Калькулятор срока оплаты" cell="B15" kind="blank" value="" />
+      <set sheet="Калькулятор срока оплаты" cell="B4" kind="number" value="1.5" />
+      <set sheet="Калькулятор срока оплаты" cell="B5" kind="text" value="календарные" />
+      <set sheet="Калькулятор срока оплаты" cell="B6" kind="number" value="46311" />
+      <set sheet="Калькулятор срока оплаты" cell="B9" kind="number" value="46316" />
+      <set sheet="Калькулятор срока оплаты" cell="B10" kind="number" value="0.001" />
+      <set sheet="Калькулятор срока оплаты" cell="B11" kind="number" value="100000" />
+      <set sheet="Калькулятор срока оплаты" cell="B13" kind="text" value="пеня" />
+      <set sheet="Калькулятор срока оплаты" cell="B14" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B16" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B17" kind="text" value="да" />
+      <expect sheet="Калькулятор срока оплаты" cell="B7" kind="text" value="ЦЕЛЫЕ ДНИ 0–366" />
+      <expect sheet="Калькулятор срока оплаты" cell="B19" kind="text" value="ПРОВЕРЬТЕ СРОК" />
+    </case>
+    <case name="negative-days">
+      <set sheet="Калькулятор срока оплаты" cell="B4" kind="number" value="-1" />
+      <set sheet="Калькулятор срока оплаты" cell="B5" kind="text" value="календарные" />
+      <set sheet="Калькулятор срока оплаты" cell="B6" kind="number" value="46311" />
+      <set sheet="Калькулятор срока оплаты" cell="B9" kind="number" value="46316" />
+      <set sheet="Калькулятор срока оплаты" cell="B10" kind="number" value="0.001" />
+      <set sheet="Калькулятор срока оплаты" cell="B11" kind="number" value="100000" />
+      <set sheet="Калькулятор срока оплаты" cell="B13" kind="text" value="пеня" />
+      <set sheet="Калькулятор срока оплаты" cell="B14" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B16" kind="text" value="да" />
+      <set sheet="Калькулятор срока оплаты" cell="B17" kind="text" value="да" />
+      <expect sheet="Калькулятор срока оплаты" cell="B7" kind="text" value="ЦЕЛЫЕ ДНИ 0–366" />
+    </case>
+  </file>
+</job>

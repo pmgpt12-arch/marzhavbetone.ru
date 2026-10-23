@@ -1,0 +1,1683 @@
+{
+  "status": "FULL_QA_PASS",
+  "scope": "Exact QA candidate only; supervising review and separate publication approval remain required.",
+  "source_head": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
+  "archive_sha256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+  "artifact_cases": 56,
+  "artifact_checks": 106,
+  "native_cases": 56,
+  "native_checks": 106,
+  "native_version": "Microsoft Excel / Word 2016 16.0 build 4324",
+  "native_cases_detail": [
+    {
+      "name": "weekend-transfer",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-b1-v1-20261023",
+          "receipt_sha256": "85987eac69f6453b52bc7bb792a3d6f95a710c5a0b80c5262c4ffee360d9e708",
+          "tag": "q2x",
+          "checks": [
+            {
+              "cell": "B7",
+              "expected": 46314,
+              "actual": "System.Double:46314",
+              "passed": true
+            },
+            {
+              "cell": "B8",
+              "expected": 2,
+              "actual": "System.Double:2",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 200,
+              "actual": "System.Double:200",
+              "passed": true
+            },
+            {
+              "cell": "B20",
+              "expected": 100000,
+              "actual": "System.Double:100000",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": 100200,
+              "actual": "System.Double:100200",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ordinary-15-days",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-b1-v1-20261023",
+          "receipt_sha256": "85987eac69f6453b52bc7bb792a3d6f95a710c5a0b80c5262c4ffee360d9e708",
+          "tag": "q2x",
+          "checks": [
+            {
+              "cell": "B7",
+              "expected": 46301,
+              "actual": "System.Double:46301",
+              "passed": true
+            },
+            {
+              "cell": "B8",
+              "expected": 15,
+              "actual": "System.Double:15",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 1500,
+              "actual": "System.Double:1500",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "holiday-working",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-b1-v1-20261023",
+          "receipt_sha256": "85987eac69f6453b52bc7bb792a3d6f95a710c5a0b80c5262c4ffee360d9e708",
+          "tag": "q2x",
+          "checks": [
+            {
+              "cell": "B7",
+              "expected": 46331,
+              "actual": "System.Double:46331",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 100,
+              "actual": "System.Double:100",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "holiday-calendar",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-b1-v1-20261023",
+          "receipt_sha256": "85987eac69f6453b52bc7bb792a3d6f95a710c5a0b80c5262c4ffee360d9e708",
+          "tag": "q2x",
+          "checks": [
+            {
+              "cell": "B7",
+              "expected": 46331,
+              "actual": "System.Double:46331",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 100,
+              "actual": "System.Double:100",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "march-transfer",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-b1-v1-20261023",
+          "receipt_sha256": "85987eac69f6453b52bc7bb792a3d6f95a710c5a0b80c5262c4ffee360d9e708",
+          "tag": "q2x",
+          "checks": [
+            {
+              "cell": "B7",
+              "expected": 46091,
+              "actual": "System.Double:46091",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 100,
+              "actual": "System.Double:100",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "january-transfer",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-b1-v1-20261023",
+          "receipt_sha256": "85987eac69f6453b52bc7bb792a3d6f95a710c5a0b80c5262c4ffee360d9e708",
+          "tag": "q2x",
+          "checks": [
+            {
+              "cell": "B7",
+              "expected": 46034,
+              "actual": "System.Double:46034",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 100,
+              "actual": "System.Double:100",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "may-transfer",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-b1-v1-20261023",
+          "receipt_sha256": "85987eac69f6453b52bc7bb792a3d6f95a710c5a0b80c5262c4ffee360d9e708",
+          "tag": "q2x",
+          "checks": [
+            {
+              "cell": "B7",
+              "expected": 46154,
+              "actual": "System.Double:46154",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 100,
+              "actual": "System.Double:100",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "deadline-day",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-b1-v1-20261023",
+          "receipt_sha256": "85987eac69f6453b52bc7bb792a3d6f95a710c5a0b80c5262c4ffee360d9e708",
+          "tag": "q2x",
+          "checks": [
+            {
+              "cell": "B8",
+              "expected": 0,
+              "actual": "System.Double:0",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 0,
+              "actual": "System.Double:0",
+              "passed": true
+            },
+            {
+              "cell": "B20",
+              "expected": 100000,
+              "actual": "System.Double:100000",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "before-deadline",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B8",
+              "expected": 0,
+              "actual": "System.Double:0",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 0,
+              "actual": "System.Double:0",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "one-day-late",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B8",
+              "expected": 1,
+              "actual": "System.Double:1",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 100,
+              "actual": "System.Double:100",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "zero-term",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B7",
+              "expected": 46311,
+              "actual": "System.Double:46311",
+              "passed": true
+            },
+            {
+              "cell": "B8",
+              "expected": 5,
+              "actual": "System.Double:5",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 500,
+              "actual": "System.Double:500",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "partial-before-due",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check1-v2-20261023",
+          "receipt_sha256": "7c2e69808f5a597c658ffb60f0d3048a9c6a768ba474a90f8925a44f8fb473b7",
+          "tag": "q2v1",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 120,
+              "actual": "System.Double:120",
+              "passed": true
+            },
+            {
+              "cell": "B20",
+              "expected": 60000,
+              "actual": "System.Double:60000",
+              "passed": true
+            },
+            {
+              "cell": "B21",
+              "expected": 40000,
+              "actual": "System.Double:40000",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "partial-during-period",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check1-v2-20261023",
+          "receipt_sha256": "7c2e69808f5a597c658ffb60f0d3048a9c6a768ba474a90f8925a44f8fb473b7",
+          "tag": "q2v2",
+          "checks": [
+            {
+              "cell": "B8",
+              "expected": 5,
+              "actual": "System.Double:5",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 420,
+              "actual": "System.Double:420",
+              "passed": true
+            },
+            {
+              "cell": "B20",
+              "expected": 60000,
+              "actual": "System.Double:60000",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": 60420,
+              "actual": "System.Double:60420",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "partial-needs-split",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check1-v2-20261023",
+          "receipt_sha256": "7c2e69808f5a597c658ffb60f0d3048a9c6a768ba474a90f8925a44f8fb473b7",
+          "tag": "q2v3",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": "ПРОВЕРЬТЕ ПЕРИОДЫ",
+              "actual": "System.String:ПРОВЕРЬТЕ ПЕРИОДЫ",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": "ПРОВЕРЬТЕ ВВОД",
+              "actual": "System.String:ПРОВЕРЬТЕ ВВОД",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "payment-on-last-day",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check1-v2-20261023",
+          "receipt_sha256": "7c2e69808f5a597c658ffb60f0d3048a9c6a768ba474a90f8925a44f8fb473b7",
+          "tag": "q2v4",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 200,
+              "actual": "System.Double:200",
+              "passed": true
+            },
+            {
+              "cell": "B20",
+              "expected": 60000,
+              "actual": "System.Double:60000",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "full-payment-first-day",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check2a-v4-20261023",
+          "receipt_sha256": "f265bb45b3794f0a33b9e05ccc2cdfba947ae65b820cd8329dbbfc9965be8270",
+          "tag": "q2v1",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 100,
+              "actual": "System.Double:100",
+              "passed": true
+            },
+            {
+              "cell": "B20",
+              "expected": 0,
+              "actual": "System.Double:0",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": 100,
+              "actual": "System.Double:100",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "future-payment",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check2a-v4-20261023",
+          "receipt_sha256": "f265bb45b3794f0a33b9e05ccc2cdfba947ae65b820cd8329dbbfc9965be8270",
+          "tag": "q2v2",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 200,
+              "actual": "System.Double:200",
+              "passed": true
+            },
+            {
+              "cell": "B20",
+              "expected": 100000,
+              "actual": "System.Double:100000",
+              "passed": true
+            },
+            {
+              "cell": "B22",
+              "expected": 40000,
+              "actual": "System.Double:40000",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "overpayment",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check2b-v4-20261023",
+          "receipt_sha256": "4912a7b7c449fc715b415437d3b1a6efe21979eecab15e0184591100b9088c99",
+          "tag": "q2v1",
+          "checks": [
+            {
+              "cell": "B20",
+              "expected": "ОПЛАТЫ БОЛЬШЕ ДОЛГА",
+              "actual": "System.String:ОПЛАТЫ БОЛЬШЕ ДОЛГА",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": "ПРОВЕРЬТЕ ВВОД",
+              "actual": "System.String:ПРОВЕРЬТЕ ВВОД",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "daily-rate-change",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check2b-v4-20261023",
+          "receipt_sha256": "4912a7b7c449fc715b415437d3b1a6efe21979eecab15e0184591100b9088c99",
+          "tag": "q2v2",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 300,
+              "actual": "System.Double:300",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "interest-365",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 54.79,
+              "actual": "System.Double:54.79",
+              "passed": true
+            },
+            {
+              "cell": "B23",
+              "expected": 54.79,
+              "actual": "System.Double:54.79",
+              "passed": true
+            },
+            {
+              "cell": "B24",
+              "expected": "НЕ ВЫБРАНО",
+              "actual": "System.String:НЕ ВЫБРАНО",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "annual-rate-change",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check3a-v4-20261023",
+          "receipt_sha256": "b1ad8b397c9a149ebf0447f3873000c8a2806e5904bfb8b9c417debe57110d15",
+          "tag": "q2v1",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 82.19,
+              "actual": "System.Double:82.19",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "interest-partial-payment",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check3a-v4-20261023",
+          "receipt_sha256": "b1ad8b397c9a149ebf0447f3873000c8a2806e5904bfb8b9c417debe57110d15",
+          "tag": "q2v2",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 43.84,
+              "actual": "System.Double:43.84",
+              "passed": true
+            },
+            {
+              "cell": "B20",
+              "expected": 60000,
+              "actual": "System.Double:60000",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "leap-year",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B8",
+              "expected": 3,
+              "actual": "System.Double:3",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 300,
+              "actual": "System.Double:300",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "calendar-year-boundary",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B8",
+              "expected": 2,
+              "actual": "System.Double:2",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 199.73,
+              "actual": "System.Double:199.73",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "full-intermediate-year",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 73100,
+              "actual": "System.Double:73100",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "zero-debt",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B20",
+              "expected": 0,
+              "actual": "System.Double:0",
+              "passed": true
+            },
+            {
+              "cell": "B12",
+              "expected": 0,
+              "actual": "System.Double:0",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": 0,
+              "actual": "System.Double:0",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "zero-rate",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 0,
+              "actual": "System.Double:0",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": 100000,
+              "actual": "System.Double:100000",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "principal-only",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 0,
+              "actual": "System.Double:0",
+              "passed": true
+            },
+            {
+              "cell": "B23",
+              "expected": "НЕ ВЫБРАНО",
+              "actual": "System.String:НЕ ВЫБРАНО",
+              "passed": true
+            },
+            {
+              "cell": "B24",
+              "expected": "НЕ ВЫБРАНО",
+              "actual": "System.String:НЕ ВЫБРАНО",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": 100000,
+              "actual": "System.Double:100000",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "double-mode-rejected",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": "ВЫБЕРИТЕ РЕЖИМ",
+              "actual": "System.String:ВЫБЕРИТЕ РЕЖИМ",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": "ПРОВЕРЬТЕ ВВОД",
+              "actual": "System.String:ПРОВЕРЬТЕ ВВОД",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "395-with-penalty-rejected",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": "ПРОВЕРЬТЕ НЕУСТОЙКУ",
+              "actual": "System.String:ПРОВЕРЬТЕ НЕУСТОЙКУ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "unknown-penalty-basis",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": "ПРОВЕРЬТЕ НЕУСТОЙКУ",
+              "actual": "System.String:ПРОВЕРЬТЕ НЕУСТОЙКУ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "negative-debt",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B19",
+              "expected": "СУММА ДОЛГА",
+              "actual": "System.String:СУММА ДОЛГА",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": "ПРОВЕРЬТЕ ВВОД",
+              "actual": "System.String:ПРОВЕРЬТЕ ВВОД",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "text-debt",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main1-v3-20261023",
+          "receipt_sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B19",
+              "expected": "СУММА ДОЛГА",
+              "actual": "System.String:СУММА ДОЛГА",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": "ПРОВЕРЬТЕ ВВОД",
+              "actual": "System.String:ПРОВЕРЬТЕ ВВОД",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "boolean-debt",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B19",
+              "expected": "СУММА ДОЛГА",
+              "actual": "System.String:СУММА ДОЛГА",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": "ПРОВЕРЬТЕ ВВОД",
+              "actual": "System.String:ПРОВЕРЬТЕ ВВОД",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "fractional-kopek",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B19",
+              "expected": "СУММА ДОЛГА",
+              "actual": "System.String:СУММА ДОЛГА",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": "ПРОВЕРЬТЕ ВВОД",
+              "actual": "System.String:ПРОВЕРЬТЕ ВВОД",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "negative-daily-rate",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": "ПРОВЕРЬТЕ ПЕРИОДЫ",
+              "actual": "System.String:ПРОВЕРЬТЕ ПЕРИОДЫ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "text-daily-rate",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": "ПРОВЕРЬТЕ ПЕРИОДЫ",
+              "actual": "System.String:ПРОВЕРЬТЕ ПЕРИОДЫ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "negative-annual-rate",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": "ПРОВЕРЬТЕ ПЕРИОДЫ",
+              "actual": "System.String:ПРОВЕРЬТЕ ПЕРИОДЫ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "fractional-days",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B7",
+              "expected": "ЦЕЛЫЕ ДНИ 0–366",
+              "actual": "System.String:ЦЕЛЫЕ ДНИ 0–366",
+              "passed": true
+            },
+            {
+              "cell": "B19",
+              "expected": "ПРОВЕРЬТЕ СРОК",
+              "actual": "System.String:ПРОВЕРЬТЕ СРОК",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "negative-days",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B7",
+              "expected": "ЦЕЛЫЕ ДНИ 0–366",
+              "actual": "System.String:ЦЕЛЫЕ ДНИ 0–366",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "text-event-date",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B7",
+              "expected": "ДАТА СОБЫТИЯ",
+              "actual": "System.String:ДАТА СОБЫТИЯ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "fractional-end-date",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B19",
+              "expected": "ДАТА РАСЧЁТА",
+              "actual": "System.String:ДАТА РАСЧЁТА",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "text-end-date",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B19",
+              "expected": "ДАТА РАСЧЁТА",
+              "actual": "System.String:ДАТА РАСЧЁТА",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "calendar-not-confirmed",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B7",
+              "expected": "ПОДТВЕРДИТЕ ДАТУ",
+              "actual": "System.String:ПОДТВЕРДИТЕ ДАТУ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "basis-not-confirmed",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": "ПОДТВЕРДИТЕ ОСНОВАНИЕ",
+              "actual": "System.String:ПОДТВЕРДИТЕ ОСНОВАНИЕ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "outside-auto-calendar",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B7",
+              "expected": "НУЖНА РУЧНАЯ ДАТА",
+              "actual": "System.String:НУЖНА РУЧНАЯ ДАТА",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "negative-payment",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check3b-v4-20261023",
+          "receipt_sha256": "05aecedc457fd81bdcbe9ebe70ce63ccccc479f9c88a7b1d1e4283efcbec34f6",
+          "tag": "q2v1",
+          "checks": [
+            {
+              "cell": "B19",
+              "expected": "ПРОВЕРЬТЕ ПЛАТЕЖИ",
+              "actual": "System.String:ПРОВЕРЬТЕ ПЛАТЕЖИ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "text-payment",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check3b-v4-20261023",
+          "receipt_sha256": "05aecedc457fd81bdcbe9ebe70ce63ccccc479f9c88a7b1d1e4283efcbec34f6",
+          "tag": "q2v2",
+          "checks": [
+            {
+              "cell": "B19",
+              "expected": "ПРОВЕРЬТЕ ПЛАТЕЖИ",
+              "actual": "System.String:ПРОВЕРЬТЕ ПЛАТЕЖИ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "payment-without-proof",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check4a-v4-20261023",
+          "receipt_sha256": "51442b9c058dbe1342b4b1b90ebb6de2738c0c5c506af74ffeec6cb1101c10ca",
+          "tag": "q2v1",
+          "checks": [
+            {
+              "cell": "B19",
+              "expected": "ПРОВЕРЬТЕ ПЛАТЕЖИ",
+              "actual": "System.String:ПРОВЕРЬТЕ ПЛАТЕЖИ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "missing-payment-date",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check4a-v4-20261023",
+          "receipt_sha256": "51442b9c058dbe1342b4b1b90ebb6de2738c0c5c506af74ffeec6cb1101c10ca",
+          "tag": "q2v2",
+          "checks": [
+            {
+              "cell": "B19",
+              "expected": "ПРОВЕРЬТЕ ПЛАТЕЖИ",
+              "actual": "System.String:ПРОВЕРЬТЕ ПЛАТЕЖИ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "duplicate-period-start",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check4b-v4-20261023",
+          "receipt_sha256": "ae6bea4abbaa6bfeceecf98294ea3bbac4f72382297b68714a576097ba4f894f",
+          "tag": "q2v1",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": "ПРОВЕРЬТЕ ПЕРИОДЫ",
+              "actual": "System.String:ПРОВЕРЬТЕ ПЕРИОДЫ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "period-gap",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check4b-v4-20261023",
+          "receipt_sha256": "ae6bea4abbaa6bfeceecf98294ea3bbac4f72382297b68714a576097ba4f894f",
+          "tag": "q2v2",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": "ПРОВЕРЬТЕ ПЕРИОДЫ",
+              "actual": "System.String:ПРОВЕРЬТЕ ПЕРИОДЫ",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "future-rate-period",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check5a-v4-20261023",
+          "receipt_sha256": "dbba93d7bc7f358b62a3884fd6704d4998b39d357ccf13d221c16917554e5bd2",
+          "tag": "q2v1",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 200,
+              "actual": "System.Double:200",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "twentieth-period",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check5a-v4-20261023",
+          "receipt_sha256": "dbba93d7bc7f358b62a3884fd6704d4998b39d357ccf13d221c16917554e5bd2",
+          "tag": "q2v2",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 2000,
+              "actual": "System.Double:2000",
+              "passed": true
+            },
+            {
+              "cell": "B8",
+              "expected": 20,
+              "actual": "System.Double:20",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "twentieth-payment",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-check5b-v4-20261023",
+          "receipt_sha256": "46ad2c5b93ed4aba9762d926f4c7d13882c92255b8fad471eef8ffbd65f78029",
+          "tag": "q2v1",
+          "checks": [
+            {
+              "cell": "B12",
+              "expected": 196,
+              "actual": "System.Double:196",
+              "passed": true
+            },
+            {
+              "cell": "B20",
+              "expected": 98000,
+              "actual": "System.Double:98000",
+              "passed": true
+            },
+            {
+              "cell": "B21",
+              "expected": 2000,
+              "actual": "System.Double:2000",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "status": "PASS",
+      "evidence": [
+        {
+          "job": "nsp-qa02-excel-main2-v3-20261023",
+          "receipt_sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+          "tag": "q2m",
+          "checks": [
+            {
+              "cell": "B19",
+              "expected": "ПРОВЕРЬТЕ СРОК",
+              "actual": "System.String:ПРОВЕРЬТЕ СРОК",
+              "passed": true
+            },
+            {
+              "cell": "B25",
+              "expected": "ПРОВЕРЬТЕ ВВОД",
+              "actual": "System.String:ПРОВЕРЬТЕ ВВОД",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "native_fill_save_reopen_chains": [
+    {
+      "case": "partial-before-due",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "43a7eee5f1c98a8dcc2826cd204df5fe9a2d1d380e3f0614876ce0698acb06ed",
+      "fill_job": "nsp-qa02-excel-fill1-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check1-v2-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "partial-during-period",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "6f5db989ad7adfad6c2837e4fa8b1fee919b0186201dbdc8882179458f93ddfc",
+      "fill_job": "nsp-qa02-excel-fill1-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check1-v2-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "partial-needs-split",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "6c0e0ccd436c55511c5f8ce57ffcf7eb3b9e3803b24b22104a3cdba9b8a216f5",
+      "fill_job": "nsp-qa02-excel-fill1-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check1-v2-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "payment-on-last-day",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "991b218138289716967781cbd1fb00f0a7b8940ed1288d4b3d8dba1599ebf850",
+      "fill_job": "nsp-qa02-excel-fill1-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check1-v2-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "full-payment-first-day",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "8c94d9318374c6b38c8bae4b63c106cfee98ea0b5b7370127003a410052459be",
+      "fill_job": "nsp-qa02-excel-fill2-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check2a-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "future-payment",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "1cac2397030b82702b0503cd0707b54cd736637dc47aceaa8710e41c77902eb0",
+      "fill_job": "nsp-qa02-excel-fill2-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check2a-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "overpayment",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "ddeef3ade1b85153e6f6bf249e406532a29aa8f143eb82d30a12a79ac2d865c4",
+      "fill_job": "nsp-qa02-excel-fill2-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check2b-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "daily-rate-change",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "d3e68df1391693900e7ebdb8ac39588be158dfa330e610ddd4ff9a84a7412778",
+      "fill_job": "nsp-qa02-excel-fill2-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check2b-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "annual-rate-change",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "d51630a033bb8a2c7e2078938155a29877ec9aeaac50822aff51bee3b9796255",
+      "fill_job": "nsp-qa02-excel-fill3-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check3a-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "interest-partial-payment",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "606522113cb96bf99b7972b58ff78af41485061a1966b3f4ca81f2912c316ad5",
+      "fill_job": "nsp-qa02-excel-fill3-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check3a-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "negative-payment",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "4d2a8063b685702c01001c2b8a9602e7c1d0d071e3ed5b18d8ddfbff01a8562d",
+      "fill_job": "nsp-qa02-excel-fill3-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check3b-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "text-payment",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "69cecb3a3d0596c46348a7d1dd07d7a48ca2ef65e8dc32e58eb33fb849e3f452",
+      "fill_job": "nsp-qa02-excel-fill3-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check3b-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "payment-without-proof",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "a285cec895dd6be9c521f830c1c627c7e1bb7bfb1cc44cbdca9008c5edb5d014",
+      "fill_job": "nsp-qa02-excel-fill4-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check4a-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "missing-payment-date",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "6be9c2f260584da085b374acfadbd30f33c227e91cd69aa6cba4a299406aed34",
+      "fill_job": "nsp-qa02-excel-fill4-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check4a-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "duplicate-period-start",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "8ea83764585d9f9ced7a2ba4374bd920f85faac6f51b506a102a0935c9dd3666",
+      "fill_job": "nsp-qa02-excel-fill4-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check4b-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "period-gap",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "65b6d26b28decf7fceac3eba209d2c37142a8a5cd1dd63ea395f51c08cefb27c",
+      "fill_job": "nsp-qa02-excel-fill4-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check4b-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "future-rate-period",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "fc49aa9228b3acdbea8d087ec8e10ce1661c1b01d3d7c3fe5b3f032ed1697545",
+      "fill_job": "nsp-qa02-excel-fill5-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check5a-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "twentieth-period",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "749ed0564b2d5214b0fb4e70ea1f3e8e7dde948451d3f4229b06733fbf9f49f8",
+      "fill_job": "nsp-qa02-excel-fill5-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check5a-v4-20261023",
+      "status": "PASS"
+    },
+    {
+      "case": "twentieth-payment",
+      "source_candidate_sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb",
+      "native_saved_sha256": "52c4f0902aab5696f8df1002d6c27ba96aa06e5276bc4e46b1eea695663717ac",
+      "fill_job": "nsp-qa02-excel-fill5-v2-20261023",
+      "reopen_job": "nsp-qa02-excel-check5b-v4-20261023",
+      "status": "PASS"
+    }
+  ],
+  "word": [
+    {
+      "file": "01-algoritm-pervichnoy-proverki.docx",
+      "source_sha256": "75cdb0b12e421d247a60e11349c0535b655e8d5deb77a81e38ae9c4de2b9a261",
+      "receipt_sha256": "fc4b35355b554a23edb4abf0ad803f549f8a5b1d5b80e2f483ac491035d9269c",
+      "pdf_sha256": "3c6ddca8a40161395d825466bdd328d67ee27bdeb4aaf4d9de7ae3594766ffb0",
+      "actual_pdf_pages": 3,
+      "status": "PASS"
+    },
+    {
+      "file": "03-perechen-dokumentov.docx",
+      "source_sha256": "1f0aba0b0d7861b044f4e7acee4ad39df68dea64e673a33f052508b7313969be",
+      "receipt_sha256": "fc4b35355b554a23edb4abf0ad803f549f8a5b1d5b80e2f483ac491035d9269c",
+      "pdf_sha256": "6a19ff7280766b7edd4b0aa1e5308b99222b4ee7a7c3e9caedb92b92ee32857e",
+      "actual_pdf_pages": 2,
+      "status": "PASS"
+    },
+    {
+      "file": "04-shablon-pisma.docx",
+      "source_sha256": "a08380d399f73f5bea7309a2ee6c4996272edce980dedc88fa471b1eb1eb4a1c",
+      "receipt_sha256": "fc4b35355b554a23edb4abf0ad803f549f8a5b1d5b80e2f483ac491035d9269c",
+      "pdf_sha256": "00d0abaa12132dc8663ed172b2ac6581ef770a25234560ea1b399c1c744fa607",
+      "actual_pdf_pages": 2,
+      "status": "PASS"
+    }
+  ],
+  "all_native_receipts": [
+    {
+      "job": "nsp-qa02-excel-b1-v1-20261023",
+      "status": "PASS",
+      "sha256": "85987eac69f6453b52bc7bb792a3d6f95a710c5a0b80c5262c4ffee360d9e708",
+      "path": "native-evidence/native/nsp-qa02-excel-b1-v1-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-b2-v1-20261023",
+      "status": "FAIL",
+      "sha256": "c21f9c245702304c4e825afa6485007c17d6189a183898334b9961563439e444",
+      "path": "native-evidence/native/nsp-qa02-excel-b2-v1-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-check1-v2-20261023",
+      "status": "PASS",
+      "sha256": "7c2e69808f5a597c658ffb60f0d3048a9c6a768ba474a90f8925a44f8fb473b7",
+      "path": "native-evidence/native/nsp-qa02-excel-check1-v2-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-check2-v2-20261023",
+      "status": "FAIL",
+      "sha256": "fc4384887d904fc86a4918d15a7273bd07ec08c1d2eaba3a5305debd50eb24dd",
+      "path": "native-evidence/native/nsp-qa02-excel-check2-v2-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-check2a-v4-20261023",
+      "status": "PASS",
+      "sha256": "f265bb45b3794f0a33b9e05ccc2cdfba947ae65b820cd8329dbbfc9965be8270",
+      "path": "native-evidence/native/nsp-qa02-excel-check2a-v4-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-check2b-v4-20261023",
+      "status": "PASS",
+      "sha256": "4912a7b7c449fc715b415437d3b1a6efe21979eecab15e0184591100b9088c99",
+      "path": "native-evidence/native/nsp-qa02-excel-check2b-v4-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-check3a-v4-20261023",
+      "status": "PASS",
+      "sha256": "b1ad8b397c9a149ebf0447f3873000c8a2806e5904bfb8b9c417debe57110d15",
+      "path": "native-evidence/native/nsp-qa02-excel-check3a-v4-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-check3b-v4-20261023",
+      "status": "PASS",
+      "sha256": "05aecedc457fd81bdcbe9ebe70ce63ccccc479f9c88a7b1d1e4283efcbec34f6",
+      "path": "native-evidence/native/nsp-qa02-excel-check3b-v4-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-check4a-v4-20261023",
+      "status": "PASS",
+      "sha256": "51442b9c058dbe1342b4b1b90ebb6de2738c0c5c506af74ffeec6cb1101c10ca",
+      "path": "native-evidence/native/nsp-qa02-excel-check4a-v4-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-check4b-v4-20261023",
+      "status": "PASS",
+      "sha256": "ae6bea4abbaa6bfeceecf98294ea3bbac4f72382297b68714a576097ba4f894f",
+      "path": "native-evidence/native/nsp-qa02-excel-check4b-v4-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-check5a-v4-20261023",
+      "status": "PASS",
+      "sha256": "dbba93d7bc7f358b62a3884fd6704d4998b39d357ccf13d221c16917554e5bd2",
+      "path": "native-evidence/native/nsp-qa02-excel-check5a-v4-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-check5b-v4-20261023",
+      "status": "PASS",
+      "sha256": "46ad2c5b93ed4aba9762d926f4c7d13882c92255b8fad471eef8ffbd65f78029",
+      "path": "native-evidence/native/nsp-qa02-excel-check5b-v4-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-fill1-v2-20261023",
+      "status": "PASS",
+      "sha256": "c304a6de4f320fd49f161efea2816dc1dcbb9f001a2282ce76be59f1253ff9e1",
+      "path": "native-evidence/native/nsp-qa02-excel-fill1-v2-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-fill2-v2-20261023",
+      "status": "PASS",
+      "sha256": "fc61ebb7363816f7c4c56d4c2eca041dd54848e5ac8ea155ebaf8880b6d19fdd",
+      "path": "native-evidence/native/nsp-qa02-excel-fill2-v2-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-fill3-v2-20261023",
+      "status": "PASS",
+      "sha256": "5ca31c9e036c07513edd721cefb1463aaa555a7e4af8316cbe35af5d0a9eaa78",
+      "path": "native-evidence/native/nsp-qa02-excel-fill3-v2-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-fill4-v2-20261023",
+      "status": "PASS",
+      "sha256": "caeae8b5ac3e47089fe73d409176eddcb6b5d311da1b83bf56e61e5434da1e74",
+      "path": "native-evidence/native/nsp-qa02-excel-fill4-v2-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-fill5-v2-20261023",
+      "status": "PASS",
+      "sha256": "39e51411b302c17e07df8eb8a8d390ad57b21c5e423ffb45d9a10247f31ab4d5",
+      "path": "native-evidence/native/nsp-qa02-excel-fill5-v2-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-main-v2-20261023",
+      "status": "FAIL",
+      "sha256": "ac01eedd49ff83a42d319a9c8399e715356ebc20867a7ef9020a4299266509ee",
+      "path": "native-evidence/native/nsp-qa02-excel-main-v2-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-main1-v3-20261023",
+      "status": "PASS",
+      "sha256": "6d07871dc7769a27e874626e2693b02030234a13b4972cd56340ab3d87507267",
+      "path": "native-evidence/native/nsp-qa02-excel-main1-v3-20261023/report.xml"
+    },
+    {
+      "job": "nsp-qa02-excel-main2-v3-20261023",
+      "status": "PASS",
+      "sha256": "087dc3bb5d10d66a69578ee858fee77a3031f6aaeb180ade52a9188e842a8998",
+      "path": "native-evidence/native/nsp-qa02-excel-main2-v3-20261023/report.xml"
+    }
+  ],
+  "known_failed_attempts": "Preserved unmodified: cross-sheet preflight checks wrong sheet; >20 case agent limit; multi-file COM NULL on third reopen. Final accepted jobs isolate these harness limits without changing candidate, protection, Office worker or OS.",
+  "remaining_product_blockers": [],
+  "release_status": "HOLD_NO_MERGE_DEPLOY_PUBLIC_REPLACEMENT",
+  "ui_typing_paste": "Not manually exercised; direct native COM input and formula-level rejection tested. Physical paper output not tested; native print PDF pages visually accepted."
+}

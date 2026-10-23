@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job id="nsp-qa02-excel-check4a-v4-20261023" qa_only="true">
+  <file name="native-saved-1.xlsx" tag="q2v1" sheet="Калькулятор срока оплаты" sha256="a285cec895dd6be9c521f830c1c627c7e1bb7bfb1cc44cbdca9008c5edb5d014" export_source_first="true" print_preflight="true">
+    <case name="payment-without-proof">
+      <expect sheet="Калькулятор срока оплаты" cell="B19" kind="text" value="ПРОВЕРЬТЕ ПЛАТЕЖИ" />
+    </case>
+  </file>
+  <file name="native-saved-2.xlsx" tag="q2v2" sheet="Калькулятор срока оплаты" sha256="6be9c2f260584da085b374acfadbd30f33c227e91cd69aa6cba4a299406aed34" export_source_first="true" print_preflight="true">
+    <case name="missing-payment-date">
+      <expect sheet="Калькулятор срока оплаты" cell="B19" kind="text" value="ПРОВЕРЬТЕ ПЛАТЕЖИ" />
+    </case>
+  </file>
+</job>

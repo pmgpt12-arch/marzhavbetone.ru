@@ -1,0 +1,74 @@
+{
+  "checked_at_utc": "2026-10-23T04:32:09.742073+00:00",
+  "commands": [
+    {
+      "args": [
+        "git",
+        "-C",
+        "/home/denis/projects/nsp-audit-fixes-20261021/qa/integration-20261022/repo",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "-C",
+        "/home/denis/projects/nsp-audit-fixes-20261021/qa/integration-20261022/repo",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "65c176aa554397c12652a86fe2393942faa546a7\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "-C",
+        "/home/denis/projects/nsp-audit-fixes-20261021/qa/integration-20261022/repo",
+        "ls-remote",
+        "--heads",
+        "origin",
+        "main",
+        "fix/nsp-product-guides-norms-20261021",
+        "qa/nsp-qa01-products-20261023",
+        "qa/nsp-qa02-dengi-20261023"
+      ],
+      "returncode": 0,
+      "stdout": "65c176aa554397c12652a86fe2393942faa546a7\trefs/heads/fix/nsp-product-guides-norms-20261021\nc7e32ecc7ad5d8d4b0a3e425ccfe8eeccafe8433\trefs/heads/main\n5361c80125107d9bb47d355bd5730f8b6e2da2c1\trefs/heads/qa/nsp-qa01-products-20261023\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "gh",
+        "pr",
+        "view",
+        "676",
+        "--repo",
+        "pmgpt12-arch/marzhavbetone.ru",
+        "--json",
+        "number,headRefName,headRefOid,statusCheckRollup"
+      ],
+      "returncode": 0,
+      "stdout": "{\"headRefName\":\"fix/nsp-customer-route-20261022\",\"headRefOid\":\"792d6467e81e2c46dabd93b3c2f18bc972d8cb94\",\"number\":676,\"statusCheckRollup\":[{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:04:33Z\",\"conclusion\":\"SUCCESS\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552520/job/120199163375\",\"name\":\"inventory\",\"startedAt\":\"2026-10-23T02:04:24Z\",\"status\":\"COMPLETED\",\"workflowName\":\"Dynamic endpoint source inventory\"},{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:04:33Z\",\"conclusion\":\"SUCCESS\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552587/job/120199163480\",\"name\":\"catalog\",\"startedAt\":\"2026-10-23T02:04:24Z\",\"status\":\"COMPLETED\",\"workflowName\":\"NSP catalog contract\"},{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:04:41Z\",\"conclusion\":\"SUCCESS\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552628/job/120199163805\",\"name\":\"verify-free-downloads\",\"startedAt\":\"2026-10-23T02:04:24Z\",\"status\":\"COMPLETED\",\"workflowName\":\"NSP free downloads contract\"},{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:04:38Z\",\"conclusion\":\"SUCCESS\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552754/job/120199164327\",\"name\":\"pdf-contract\",\"startedAt\":\"2026-10-23T02:04:24Z\",\"status\":\"COMPLETED\",\"workflowName\":\"NSP public checklist contract\"},{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:04:37Z\",\"conclusion\":\"SUCCESS\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552524/job/120199163393\",\"name\":\"exact-current-delta\",\"startedAt\":\"2026-10-23T02:04:24Z\",\"status\":\"COMPLETED\",\"workflowName\":\"P3 current site delta gate\"},{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:04:36Z\",\"conclusion\":\"SUCCESS\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552516/job/120199163445\",\"name\":\"local-http-runtime-contract\",\"startedAt\":\"2026-10-23T02:04:24Z\",\"status\":\"COMPLETED\",\"workflowName\":\"Site app-script local HTTP runtime contract\"},{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:04:38Z\",\"conclusion\":\"SUCCESS\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552577/job/120199163628\",\"name\":\"wrapper-source-contract\",\"startedAt\":\"2026-10-23T02:04:24Z\",\"status\":\"COMPLETED\",\"workflowName\":\"Site app-script wrapper source contract\"},{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:04:39Z\",\"conclusion\":\"SUCCESS\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552515/job/120199163272\",\"name\":\"discovery\",\"startedAt\":\"2026-10-23T02:04:23Z\",\"status\":\"COMPLETED\",\"workflowName\":\"Site route discovery\"},{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:04:41Z\",\"conclusion\":\"SUCCESS\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552600/job/120199163673\",\"name\":\"static-snapshot\",\"startedAt\":\"2026-10-23T02:04:24Z\",\"status\":\"COMPLETED\",\"workflowName\":\"Site static content snapshot\"},{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:07:46Z\",\"conclusion\":\"SUCCESS\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552507/job/120199347947\",\"name\":\"capture\",\"startedAt\":\"2026-10-23T02:04:59Z\",\"status\":\"COMPLETED\",\"workflowName\":\"Static browser snapshot\"},{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:05:33Z\",\"conclusion\":\"SUCCESS\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552646/job/120199163984\",\"name\":\"Публичный релиз\",\"startedAt\":\"2026-10-23T02:04:24Z\",\"status\":\"COMPLETED\",\"workflowName\":\"Проверки\"},{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:06:32Z\",\"conclusion\":\"SUCCESS\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552598/job/120199163814\",\"name\":\"render\",\"startedAt\":\"2026-10-23T02:04:24Z\",\"status\":\"COMPLETED\",\"workflowName\":\"Проверки рендером\"},{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:05:15Z\",\"conclusion\":\"SUCCESS\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552646/job/120199163683\",\"name\":\"Внутренний контур (не блокирует)\",\"startedAt\":\"2026-10-23T02:04:24Z\",\"status\":\"COMPLETED\",\"workflowName\":\"Проверки\"},{\"__typename\":\"CheckRun\",\"completedAt\":\"2026-10-23T02:04:22Z\",\"conclusion\":\"SKIPPED\",\"detailsUrl\":\"https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/39887552646/job/120199164639\",\"name\":\"payment-mode-preflight\",\"startedAt\":\"2026-10-23T02:04:22Z\",\"status\":\"COMPLETED\",\"workflowName\":\"Проверки\"}]}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "-C",
+        "/home/denis/projects/nsp-audit-fixes-20261021/qa/integration-20261022/repo",
+        "cat-file",
+        "-t",
+        "5361c80125107d9bb47d355bd5730f8b6e2da2c1"
+      ],
+      "returncode": 0,
+      "stdout": "commit\n",
+      "stderr": ""
+    }
+  ]
+}

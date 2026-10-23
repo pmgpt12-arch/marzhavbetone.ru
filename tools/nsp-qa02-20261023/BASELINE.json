@@ -1,0 +1,184 @@
+{
+  "source_head": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
+  "source_zip_sha256": "f8166b4c029df501d53ea3b3b7d57b17e15a1ffbbc8d20f315b3333a19e9cc33",
+  "source_files": [
+    {
+      "name": "01-algoritm-pervichnoy-proverki.docx",
+      "bytes": 38165,
+      "sha256": "3585ffc68ff5f70aa4f64f5cab40aa8d31b4f7bd532b353b9e4233670b74b3da",
+      "git_blob": "7106ce1d1d5747a27cfe53c7c86cf7deb76971da"
+    },
+    {
+      "name": "02-kalkulyator-sroka-oplaty.xlsx",
+      "bytes": 5507,
+      "sha256": "4c23401703d64eae9818919dfa4598c2944f1bd7816ed2255bd9d38061ad4077",
+      "git_blob": "76b26e28173e070a5ad40d6f738a9936cefd643e"
+    },
+    {
+      "name": "03-perechen-dokumentov.docx",
+      "bytes": 37666,
+      "sha256": "98720f80f2b1d61e8bd31fb519656ae68191c618cb41d36174d09ddcddc89ec5",
+      "git_blob": "ad43d22e8153f755d011e76725f31df8c1588984"
+    },
+    {
+      "name": "04-shablon-pisma.docx",
+      "bytes": 38400,
+      "sha256": "4cc7029db1088e27ee6618124508b8dcaa236242434c2f5ca39eb1976333ba5d",
+      "git_blob": "44654b5221d156eba470baaf66aeb85bb8ea9cfe"
+    },
+    {
+      "name": "99-chto-dalshe.pdf",
+      "bytes": 51945,
+      "sha256": "5da4242386b77bce83c1f2b433fa479b5e3976aae55483b31580b2f4024139da",
+      "git_blob": "f8141d1d9d4c7db906add86dc493c2ad779e4b05"
+    }
+  ],
+  "QA01_status": {
+    "id": "FREE/dengi",
+    "name": "КС подписаны, денег нет",
+    "files": 5,
+    "public_path": "downloads/dengi.zip",
+    "public_sha256": "f8166b4c029df501d53ea3b3b7d57b17e15a1ffbbc8d20f315b3333a19e9cc33",
+    "public_fresh_get": "PASS_EXACT_SHA",
+    "status": "RELEASE_BLOCKED",
+    "candidate_sha256": null,
+    "remaining": "Срок оплаты: выходные/праздники, целые дни, неотрицательная сумма/ставка, контрольная и подтверждённая конечная даты, неизменная база против частичных оплат. Новый XLSX не принят.",
+    "public_replacement_authorized": false
+  },
+  "preserved_13": [
+    {
+      "sku": "P5",
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/03-vozrazhenie-na-zachet.docx",
+      "sha256": "fcd8d6e811f846921982cd555e1b487688b48e266120ead0e74d01c34a2976d9",
+      "git_blob": "1600968e6d4b176e2f3d021e47e06afae3b56569",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P5",
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/04-raschet-ubytkov.xlsx",
+      "sha256": "f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3",
+      "git_blob": "59ff9a6fb1b699cfc176031062743e1d7c9860e4",
+      "acceptance": "P5_S01_NATIVE_EXCEL_ACCEPTED",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/02-kalkulyator-usloviy-avansa.xlsx",
+      "sha256": "0ca0ab6e8bfd65733f9ec5dc6c8a9af394ee9a7dd80a953011a68ce318e3b45f",
+      "git_blob": "f91d920ef4c4cc4f606dcaa28dadd3806fe8ab03",
+      "acceptance": "OWNER_MANUAL_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "sha256": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db",
+      "git_blob": "a95e3599028eb2dd22631b0d88bd5bb24d78a9e0",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "sha256": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1",
+      "git_blob": "dc48a951dbc05501cab90eebbca2d31561ff812b",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "sha256": "33c5d803759a45e48690bcf9af593aa9f505cb8c19366131915e8fd4dc670732",
+      "git_blob": "bf247787aa474a56f41145fa72f94fd16802fdf8",
+      "acceptance": "OWNER_MANUAL_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "sha256": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f",
+      "git_blob": "92c5644e575e11fc6c9164354bd53572380b3fcc",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P9",
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/02-algoritm-genpodryadchik-bankrotitsya.docx",
+      "sha256": "434449ca7b0bc8b843c72f543f0cdbce7afd9ea9cc8df0eb77766abc272a8590",
+      "git_blob": "2b8f55650e41e1f242f40aa16f0cd951e89b835f",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P9",
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/05-perechen-paketa-dlya-zayavleniya-trebovaniya.docx",
+      "sha256": "c9b30e8db8831425f49f6f5706953216afafbba69ff5b970a58671e939e668d7",
+      "git_blob": "f8799c73fd74e15d36a69edb05cf6890da6369c4",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P9",
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/08-zayavlenie-o-vklyuchenii-v-reestr-zagotovka.docx",
+      "sha256": "17fab19bab44698ff0280b0b7b91de3530273bae4bdb990cbeda212bbfedc5d1",
+      "git_blob": "0431624c7914a4bc6b88ab0b68545968a55b99a8",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P9",
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/09-chto-delat-esli-srok-propushchen.docx",
+      "sha256": "8a6ab62df5300cfe6dc89947bf90ddd3206b54692b2db11856939cbd098d8728",
+      "git_blob": "9b810185b3b7e5fcdc2574aa7acb425fc4182b26",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P11",
+      "path": "products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+      "sha256": "df15df36e99e23ed76faa97a5afc2fe350ac301ec6ea2baf5eeb6255fc83fd6d",
+      "git_blob": "077ea3bb235c1570873b4b886d0dd552ee842d95",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P11",
+      "path": "products-storage/13-raschet-metrami/56-pervyy-den-do-podpisi.docx",
+      "sha256": "8830cb6d0407ea0e740216327e1ba119d4cf391cd449773ab021efee3b858a41",
+      "git_blob": "8b6b672a28aeb1f29e07fd2357211f192e744fb7",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    }
+  ],
+  "other_candidate_policy": "No writes outside tools/nsp-qa02-20261023",
+  "main": "c7e32ecc7ad5d8d4b0a3e425ccfe8eeccafe8433",
+  "product_pr675": "65c176aa554397c12652a86fe2393942faa546a7",
+  "publication": false
+}

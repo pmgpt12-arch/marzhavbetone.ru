@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job id="nsp-qa02-excel-check1-v2-20261023" qa_only="true">
+  <file name="native-saved-1.xlsx" tag="q2v1" sheet="Калькулятор срока оплаты" sha256="43a7eee5f1c98a8dcc2826cd204df5fe9a2d1d380e3f0614876ce0698acb06ed" export_source_first="true" print_preflight="true">
+    <case name="partial-before-due">
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="number" value="120" />
+      <expect sheet="Калькулятор срока оплаты" cell="B20" kind="number" value="60000" />
+      <expect sheet="Калькулятор срока оплаты" cell="B21" kind="number" value="40000" />
+    </case>
+  </file>
+  <file name="native-saved-2.xlsx" tag="q2v2" sheet="Калькулятор срока оплаты" sha256="6f5db989ad7adfad6c2837e4fa8b1fee919b0186201dbdc8882179458f93ddfc" export_source_first="true" print_preflight="true">
+    <case name="partial-during-period">
+      <expect sheet="Калькулятор срока оплаты" cell="B8" kind="number" value="5" />
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="number" value="420" />
+      <expect sheet="Калькулятор срока оплаты" cell="B20" kind="number" value="60000" />
+      <expect sheet="Калькулятор срока оплаты" cell="B25" kind="number" value="60420" />
+    </case>
+  </file>
+  <file name="native-saved-3.xlsx" tag="q2v3" sheet="Калькулятор срока оплаты" sha256="6c0e0ccd436c55511c5f8ce57ffcf7eb3b9e3803b24b22104a3cdba9b8a216f5" export_source_first="true" print_preflight="true">
+    <case name="partial-needs-split">
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="text" value="ПРОВЕРЬТЕ ПЕРИОДЫ" />
+      <expect sheet="Калькулятор срока оплаты" cell="B25" kind="text" value="ПРОВЕРЬТЕ ВВОД" />
+    </case>
+  </file>
+  <file name="native-saved-4.xlsx" tag="q2v4" sheet="Калькулятор срока оплаты" sha256="991b218138289716967781cbd1fb00f0a7b8940ed1288d4b3d8dba1599ebf850" export_source_first="true" print_preflight="true">
+    <case name="payment-on-last-day">
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="number" value="200" />
+      <expect sheet="Калькулятор срока оплаты" cell="B20" kind="number" value="60000" />
+    </case>
+  </file>
+</job>

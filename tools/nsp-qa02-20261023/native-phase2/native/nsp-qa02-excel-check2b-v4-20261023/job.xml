@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job id="nsp-qa02-excel-check2b-v4-20261023" qa_only="true">
+  <file name="native-saved-1.xlsx" tag="q2v1" sheet="Калькулятор срока оплаты" sha256="ddeef3ade1b85153e6f6bf249e406532a29aa8f143eb82d30a12a79ac2d865c4" export_source_first="true" print_preflight="true">
+    <case name="overpayment">
+      <expect sheet="Калькулятор срока оплаты" cell="B20" kind="text" value="ОПЛАТЫ БОЛЬШЕ ДОЛГА" />
+      <expect sheet="Калькулятор срока оплаты" cell="B25" kind="text" value="ПРОВЕРЬТЕ ВВОД" />
+    </case>
+  </file>
+  <file name="native-saved-2.xlsx" tag="q2v2" sheet="Калькулятор срока оплаты" sha256="d3e68df1391693900e7ebdb8ac39588be158dfa330e610ddd4ff9a84a7412778" export_source_first="true" print_preflight="true">
+    <case name="daily-rate-change">
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="number" value="300" />
+    </case>
+  </file>
+</job>

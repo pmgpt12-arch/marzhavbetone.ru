@@ -1,0 +1,68 @@
+from pathlib import Path
+from datetime import date
+import json
+O=Path(__file__).resolve().parent;M='Калькулятор срока оплаты'
+def d(s):return (date.fromisoformat(s)-date(1899,12,30)).days
+base={'B4':2,'B5':'календарные','B6':d('2026-10-16'),'B9':d('2026-10-21'),'B10':0.001,'B11':100000,'B13':'пеня','B14':'да','B16':'да','B17':'да'}
+cases=[]
+def add(name,changes=None,extra=None,expected=None):
+    values={M:dict(base)};values[M].update(changes or {});values.update(extra or {})
+    cases.append(dict(name=name,inputs=values,expected=expected or {}))
+def num(**kwargs):return {M:{k:v for k,v in kwargs.items()}}
+add('weekend-transfer',expected=num(B7=d('2026-10-19'),B8=2,B12=200,B20=100000,B25=100200))
+add('ordinary-15-days',{'B6':d('2026-10-01'),'B4':5},expected=num(B7=d('2026-10-06'),B8=15,B12=1500))
+add('holiday-working',{'B6':d('2026-11-03'),'B4':1,'B5':'рабочие','B9':d('2026-11-06')},expected=num(B7=d('2026-11-05'),B12=100))
+add('holiday-calendar',{'B6':d('2026-11-03'),'B4':1,'B9':d('2026-11-06')},expected=num(B7=d('2026-11-05'),B12=100))
+add('march-transfer',{'B6':d('2026-03-06'),'B4':1,'B5':'рабочие','B9':d('2026-03-11')},expected=num(B7=d('2026-03-10'),B12=100))
+add('january-transfer',{'B6':d('2026-01-08'),'B4':1,'B5':'рабочие','B9':d('2026-01-13')},expected=num(B7=d('2026-01-12'),B12=100))
+add('may-transfer',{'B6':d('2026-05-08'),'B4':1,'B5':'рабочие','B9':d('2026-05-13')},expected=num(B7=d('2026-05-12'),B12=100))
+add('deadline-day',{'B9':d('2026-10-19')},expected=num(B8=0,B12=0,B20=100000))
+add('before-deadline',{'B9':d('2026-10-18')},expected=num(B8=0,B12=0))
+add('one-day-late',{'B9':d('2026-10-20')},expected=num(B8=1,B12=100))
+add('zero-term',{'B4':0},expected=num(B7=d('2026-10-16'),B8=5,B12=500))
+add('partial-before-due',extra={'Платежи':{'A5':d('2026-10-18'),'B5':40000,'C5':'Банк ПП-1'}},expected=num(B12=120,B20=60000,B21=40000))
+manual={'B5':'дата','B18':d('2026-10-16')}
+add('partial-during-period',manual,{'Платежи':{'A5':d('2026-10-19'),'B5':40000,'C5':'Банк ПП-2'},'Периоды':{'A6':d('2026-10-20')}},num(B8=5,B12=420,B20=60000,B25=60420))
+add('partial-needs-split',extra={'Платежи':{'A5':d('2026-10-20'),'B5':40000,'C5':'Банк ПП-3'}},expected=num(B12='ПРОВЕРЬТЕ ПЕРИОДЫ',B25='ПРОВЕРЬТЕ ВВОД'))
+add('payment-on-last-day',extra={'Платежи':{'A5':d('2026-10-21'),'B5':40000,'C5':'Банк ПП-4'}},expected=num(B12=200,B20=60000))
+add('full-payment-first-day',extra={'Платежи':{'A5':d('2026-10-20'),'B5':100000,'C5':'Банк ПП-5'},'Периоды':{'A6':d('2026-10-21')}},expected=num(B12=100,B20=0,B25=100))
+add('future-payment',extra={'Платежи':{'A5':d('2026-10-22'),'B5':40000,'C5':'Банк ПП-6'}},expected=num(B12=200,B20=100000,B22=40000))
+add('overpayment',extra={'Платежи':{'A5':d('2026-10-20'),'B5':110000,'C5':'Банк ПП-7'},'Периоды':{'A6':d('2026-10-21')}},expected=num(B20='ОПЛАТЫ БОЛЬШЕ ДОЛГА',B25='ПРОВЕРЬТЕ ВВОД'))
+add('daily-rate-change',extra={'Периоды':{'A6':d('2026-10-21'),'E6':0.002}},expected=num(B12=300))
+interest={'B13':'проценты 395','B14':'нет','B15':0.1}
+add('interest-365',interest,expected=num(B12=54.79,B23=54.79,B24='НЕ ВЫБРАНО'))
+add('annual-rate-change',interest,{'Периоды':{'A6':d('2026-10-21'),'D6':0.2}},num(B12=82.19))
+add('interest-partial-payment',interest,{'Платежи':{'A5':d('2026-10-20'),'B5':40000,'C5':'Банк ПП-8'},'Периоды':{'A6':d('2026-10-21')}},num(B12=43.84,B20=60000))
+add('leap-year',dict(interest,B5='дата',B18=d('2024-02-27'),B9=d('2024-03-01'),B11=366000),expected=num(B8=3,B12=300))
+add('calendar-year-boundary',dict(interest,B5='дата',B18=d('2023-12-30'),B9=d('2024-01-01'),B11=365000),expected=num(B8=2,B12=199.73))
+add('full-intermediate-year',dict(interest,B5='дата',B18=d('2022-12-31'),B9=d('2025-01-01'),B11=365000),expected=num(B12=73100))
+add('zero-debt',{'B11':0},expected=num(B20=0,B12=0,B25=0))
+add('zero-rate',{'B10':0},expected=num(B12=0,B25=100000))
+add('principal-only',{'B13':'без санкций','B14':None,'B10':None,'B17':None},expected=num(B12=0,B23='НЕ ВЫБРАНО',B24='НЕ ВЫБРАНО',B25=100000))
+add('double-mode-rejected',{'B13':'395+пеня'},expected=num(B12='ВЫБЕРИТЕ РЕЖИМ',B25='ПРОВЕРЬТЕ ВВОД'))
+add('395-with-penalty-rejected',dict(interest,B14='да'),expected=num(B12='ПРОВЕРЬТЕ НЕУСТОЙКУ'))
+add('unknown-penalty-basis',{'B14':'неизвестно'},expected=num(B12='ПРОВЕРЬТЕ НЕУСТОЙКУ'))
+for name,cell,value,expected in [('negative-debt','B11',-1,'СУММА ДОЛГА'),('text-debt','B11','сумма','СУММА ДОЛГА'),('boolean-debt','B11',True,'СУММА ДОЛГА'),('fractional-kopek','B11',1.001,'СУММА ДОЛГА')]:add(name,{cell:value},expected=num(B19=expected,B25='ПРОВЕРЬТЕ ВВОД'))
+for name,value in [('negative-daily-rate',-0.001),('text-daily-rate','ставка')]:add(name,{'B10':value},expected=num(B12='ПРОВЕРЬТЕ ПЕРИОДЫ'))
+add('negative-annual-rate',dict(interest,B15=-0.1),expected=num(B12='ПРОВЕРЬТЕ ПЕРИОДЫ'))
+add('fractional-days',{'B4':1.5},expected=num(B7='ЦЕЛЫЕ ДНИ 0–366',B19='ПРОВЕРЬТЕ СРОК'))
+add('negative-days',{'B4':-1},expected=num(B7='ЦЕЛЫЕ ДНИ 0–366'))
+add('text-event-date',{'B6':'дата'},expected=num(B7='ДАТА СОБЫТИЯ'))
+add('fractional-end-date',{'B9':d('2026-10-21')+0.5},expected=num(B19='ДАТА РАСЧЁТА'))
+add('text-end-date',{'B9':'дата'},expected=num(B19='ДАТА РАСЧЁТА'))
+add('calendar-not-confirmed',{'B16':'нет'},expected=num(B7='ПОДТВЕРДИТЕ ДАТУ'))
+add('basis-not-confirmed',{'B17':'нет'},expected=num(B12='ПОДТВЕРДИТЕ ОСНОВАНИЕ'))
+add('outside-auto-calendar',{'B6':d('2027-01-01'),'B9':d('2027-01-10')},expected=num(B7='НУЖНА РУЧНАЯ ДАТА'))
+add('negative-payment',extra={'Платежи':{'A5':d('2026-10-18'),'B5':-1,'C5':'Банк'}},expected=num(B19='ПРОВЕРЬТЕ ПЛАТЕЖИ'))
+add('text-payment',extra={'Платежи':{'A5':d('2026-10-18'),'B5':'сумма','C5':'Банк'}},expected=num(B19='ПРОВЕРЬТЕ ПЛАТЕЖИ'))
+add('payment-without-proof',extra={'Платежи':{'A5':d('2026-10-18'),'B5':100}},expected=num(B19='ПРОВЕРЬТЕ ПЛАТЕЖИ'))
+add('missing-payment-date',extra={'Платежи':{'B5':100,'C5':'Банк'}},expected=num(B19='ПРОВЕРЬТЕ ПЛАТЕЖИ'))
+add('duplicate-period-start',extra={'Периоды':{'A6':d('2026-10-20')}},expected=num(B12='ПРОВЕРЬТЕ ПЕРИОДЫ'))
+add('period-gap',extra={'Периоды':{'A7':d('2026-10-21')}},expected=num(B12='ПРОВЕРЬТЕ ПЕРИОДЫ'))
+add('future-rate-period',extra={'Периоды':{'A6':d('2026-10-22'),'E6':0.1}},expected=num(B12=200))
+changes={'B5':'дата','B18':d('2026-09-30'),'B9':d('2026-10-20')}
+add('twentieth-period',changes,{'Периоды':{'A'+str(i+4):d('2026-10-'+str(i).zfill(2))for i in range(2,21)}},num(B12=2000,B8=20))
+add('twentieth-payment',extra={'Платежи':{k:v for i in range(5,25)for k,v in [('A'+str(i),d('2026-10-18')),('B'+str(i),100),('C'+str(i),'Банк-'+str(i))]}},expected=num(B12=196,B20=98000,B21=2000))
+cases.append(dict(name='empty',inputs={},expected=num(B19='ПРОВЕРЬТЕ СРОК',B25='ПРОВЕРЬТЕ ВВОД')))
+(O/'CASES.json').write_text(json.dumps(dict(main_sheet=M,cases=cases,expectation_basis='Pinned literal expected results from independent calendar/day arithmetic; synthetic amounts and rates, not factual CBR rate history.'),ensure_ascii=False,indent=2)+'\n')
+print(len(cases),'cases')

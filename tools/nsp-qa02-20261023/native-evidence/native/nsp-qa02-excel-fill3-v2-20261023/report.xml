@@ -1,0 +1,98 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-qa02-excel-fill3-v2-20261023" excel_version="16.0" excel_build="4324">
+  <check name="q2c1:input_sha" pass="True" expected="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" actual="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" />
+  <print_preflight tag="q2c1" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Калькулятор срока оплаты" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Периоды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Платежи" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Календарь" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Календарь!Print_Area" refers_to="=Календарь!$A$1:$C$22" />
+    <print_name name="'Калькулятор срока оплаты'!Print_Area" refers_to="='Калькулятор срока оплаты'!$A$1:$C$32" />
+    <print_name name="Периоды!Print_Area" refers_to="=Периоды!$A$1:$M$30" />
+    <print_name name="Платежи!Print_Area" refers_to="=Платежи!$A$1:$F$28" />
+  </print_preflight>
+  <check name="q2c1:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="q2c1:pdf_export" pass="True" expected="%PDF-" actual="bytes=229723" />
+  <print_preflight tag="q2c1" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Калькулятор срока оплаты" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Периоды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Платежи" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Календарь" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Календарь!Print_Area" refers_to="=Календарь!$A$1:$C$22" />
+    <print_name name="'Калькулятор срока оплаты'!Print_Area" refers_to="='Калькулятор срока оплаты'!$A$1:$C$32" />
+    <print_name name="Периоды!Print_Area" refers_to="=Периоды!$A$1:$M$30" />
+    <print_name name="Платежи!Print_Area" refers_to="=Платежи!$A$1:$F$28" />
+  </print_preflight>
+  <check name="q2c1:source_unchanged" pass="True" expected="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" actual="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" />
+  <check name="q2c2:input_sha" pass="True" expected="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" actual="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" />
+  <print_preflight tag="q2c2" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Калькулятор срока оплаты" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Периоды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Платежи" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Календарь" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Календарь!Print_Area" refers_to="=Календарь!$A$1:$C$22" />
+    <print_name name="'Калькулятор срока оплаты'!Print_Area" refers_to="='Калькулятор срока оплаты'!$A$1:$C$32" />
+    <print_name name="Периоды!Print_Area" refers_to="=Периоды!$A$1:$M$30" />
+    <print_name name="Платежи!Print_Area" refers_to="=Платежи!$A$1:$F$28" />
+  </print_preflight>
+  <check name="q2c2:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="q2c2:pdf_export" pass="True" expected="%PDF-" actual="bytes=230593" />
+  <print_preflight tag="q2c2" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Калькулятор срока оплаты" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Периоды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Платежи" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Календарь" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Календарь!Print_Area" refers_to="=Календарь!$A$1:$C$22" />
+    <print_name name="'Калькулятор срока оплаты'!Print_Area" refers_to="='Калькулятор срока оплаты'!$A$1:$C$32" />
+    <print_name name="Периоды!Print_Area" refers_to="=Периоды!$A$1:$M$30" />
+    <print_name name="Платежи!Print_Area" refers_to="=Платежи!$A$1:$F$28" />
+  </print_preflight>
+  <check name="q2c2:source_unchanged" pass="True" expected="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" actual="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" />
+  <check name="q2c3:input_sha" pass="True" expected="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" actual="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" />
+  <print_preflight tag="q2c3" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Калькулятор срока оплаты" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Периоды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Платежи" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Календарь" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Календарь!Print_Area" refers_to="=Календарь!$A$1:$C$22" />
+    <print_name name="'Калькулятор срока оплаты'!Print_Area" refers_to="='Калькулятор срока оплаты'!$A$1:$C$32" />
+    <print_name name="Периоды!Print_Area" refers_to="=Периоды!$A$1:$M$30" />
+    <print_name name="Платежи!Print_Area" refers_to="=Платежи!$A$1:$F$28" />
+  </print_preflight>
+  <check name="q2c3:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="q2c3:pdf_export" pass="True" expected="%PDF-" actual="bytes=229386" />
+  <print_preflight tag="q2c3" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Калькулятор срока оплаты" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Периоды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Платежи" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Календарь" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Календарь!Print_Area" refers_to="=Календарь!$A$1:$C$22" />
+    <print_name name="'Калькулятор срока оплаты'!Print_Area" refers_to="='Калькулятор срока оплаты'!$A$1:$C$32" />
+    <print_name name="Периоды!Print_Area" refers_to="=Периоды!$A$1:$M$30" />
+    <print_name name="Платежи!Print_Area" refers_to="=Платежи!$A$1:$F$28" />
+  </print_preflight>
+  <check name="q2c3:source_unchanged" pass="True" expected="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" actual="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" />
+  <check name="q2c4:input_sha" pass="True" expected="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" actual="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" />
+  <print_preflight tag="q2c4" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Калькулятор срока оплаты" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Периоды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Платежи" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Календарь" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Календарь!Print_Area" refers_to="=Календарь!$A$1:$C$22" />
+    <print_name name="'Калькулятор срока оплаты'!Print_Area" refers_to="='Калькулятор срока оплаты'!$A$1:$C$32" />
+    <print_name name="Периоды!Print_Area" refers_to="=Периоды!$A$1:$M$30" />
+    <print_name name="Платежи!Print_Area" refers_to="=Платежи!$A$1:$F$28" />
+  </print_preflight>
+  <check name="q2c4:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="q2c4:pdf_export" pass="True" expected="%PDF-" actual="bytes=229381" />
+  <print_preflight tag="q2c4" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Калькулятор срока оплаты" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Периоды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Платежи" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Календарь" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Календарь!Print_Area" refers_to="=Календарь!$A$1:$C$22" />
+    <print_name name="'Калькулятор срока оплаты'!Print_Area" refers_to="='Калькулятор срока оплаты'!$A$1:$C$32" />
+    <print_name name="Периоды!Print_Area" refers_to="=Периоды!$A$1:$M$30" />
+    <print_name name="Платежи!Print_Area" refers_to="=Платежи!$A$1:$F$28" />
+  </print_preflight>
+  <check name="q2c4:source_unchanged" pass="True" expected="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" actual="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" />
+</report>

@@ -1,0 +1,58 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-qa02-excel-main1-v3-20261023" excel_version="16.0" excel_build="4324">
+  <check name="q2m:input_sha" pass="True" expected="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" actual="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" />
+  <print_preflight tag="q2m" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Калькулятор срока оплаты" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Периоды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Платежи" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Календарь" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Календарь!Print_Area" refers_to="=Календарь!$A$1:$C$22" />
+    <print_name name="'Калькулятор срока оплаты'!Print_Area" refers_to="='Калькулятор срока оплаты'!$A$1:$C$32" />
+    <print_name name="Периоды!Print_Area" refers_to="=Периоды!$A$1:$M$30" />
+    <print_name name="Платежи!Print_Area" refers_to="=Платежи!$A$1:$F$28" />
+  </print_preflight>
+  <check name="q2m:before-deadline:B8" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q2m:before-deadline:B12" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q2m:one-day-late:B8" pass="True" expected="number:1" actual="System.Double:1" />
+  <check name="q2m:one-day-late:B12" pass="True" expected="number:100" actual="System.Double:100" />
+  <check name="q2m:zero-term:B7" pass="True" expected="number:46311" actual="System.Double:46311" />
+  <check name="q2m:zero-term:B8" pass="True" expected="number:5" actual="System.Double:5" />
+  <check name="q2m:zero-term:B12" pass="True" expected="number:500" actual="System.Double:500" />
+  <check name="q2m:interest-365:B12" pass="True" expected="number:54.79" actual="System.Double:54.79" />
+  <check name="q2m:interest-365:B23" pass="True" expected="number:54.79" actual="System.Double:54.79" />
+  <check name="q2m:interest-365:B24" pass="True" expected="text:НЕ ВЫБРАНО" actual="System.String:НЕ ВЫБРАНО" />
+  <check name="q2m:leap-year:B8" pass="True" expected="number:3" actual="System.Double:3" />
+  <check name="q2m:leap-year:B12" pass="True" expected="number:300" actual="System.Double:300" />
+  <check name="q2m:calendar-year-boundary:B8" pass="True" expected="number:2" actual="System.Double:2" />
+  <check name="q2m:calendar-year-boundary:B12" pass="True" expected="number:199.73" actual="System.Double:199.73" />
+  <check name="q2m:full-intermediate-year:B12" pass="True" expected="number:73100" actual="System.Double:73100" />
+  <check name="q2m:zero-debt:B20" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q2m:zero-debt:B12" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q2m:zero-debt:B25" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q2m:zero-rate:B12" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q2m:zero-rate:B25" pass="True" expected="number:100000" actual="System.Double:100000" />
+  <check name="q2m:principal-only:B12" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q2m:principal-only:B23" pass="True" expected="text:НЕ ВЫБРАНО" actual="System.String:НЕ ВЫБРАНО" />
+  <check name="q2m:principal-only:B24" pass="True" expected="text:НЕ ВЫБРАНО" actual="System.String:НЕ ВЫБРАНО" />
+  <check name="q2m:principal-only:B25" pass="True" expected="number:100000" actual="System.Double:100000" />
+  <check name="q2m:double-mode-rejected:B12" pass="True" expected="text:ВЫБЕРИТЕ РЕЖИМ" actual="System.String:ВЫБЕРИТЕ РЕЖИМ" />
+  <check name="q2m:double-mode-rejected:B25" pass="True" expected="text:ПРОВЕРЬТЕ ВВОД" actual="System.String:ПРОВЕРЬТЕ ВВОД" />
+  <check name="q2m:395-with-penalty-rejected:B12" pass="True" expected="text:ПРОВЕРЬТЕ НЕУСТОЙКУ" actual="System.String:ПРОВЕРЬТЕ НЕУСТОЙКУ" />
+  <check name="q2m:unknown-penalty-basis:B12" pass="True" expected="text:ПРОВЕРЬТЕ НЕУСТОЙКУ" actual="System.String:ПРОВЕРЬТЕ НЕУСТОЙКУ" />
+  <check name="q2m:negative-debt:B19" pass="True" expected="text:СУММА ДОЛГА" actual="System.String:СУММА ДОЛГА" />
+  <check name="q2m:negative-debt:B25" pass="True" expected="text:ПРОВЕРЬТЕ ВВОД" actual="System.String:ПРОВЕРЬТЕ ВВОД" />
+  <check name="q2m:text-debt:B19" pass="True" expected="text:СУММА ДОЛГА" actual="System.String:СУММА ДОЛГА" />
+  <check name="q2m:text-debt:B25" pass="True" expected="text:ПРОВЕРЬТЕ ВВОД" actual="System.String:ПРОВЕРЬТЕ ВВОД" />
+  <check name="q2m:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="q2m:pdf_export" pass="True" expected="%PDF-" actual="bytes=226094" />
+  <print_preflight tag="q2m" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Калькулятор срока оплаты" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Периоды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Платежи" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Календарь" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Календарь!Print_Area" refers_to="=Календарь!$A$1:$C$22" />
+    <print_name name="'Калькулятор срока оплаты'!Print_Area" refers_to="='Калькулятор срока оплаты'!$A$1:$C$32" />
+    <print_name name="Периоды!Print_Area" refers_to="=Периоды!$A$1:$M$30" />
+    <print_name name="Платежи!Print_Area" refers_to="=Платежи!$A$1:$F$28" />
+  </print_preflight>
+  <check name="q2m:source_unchanged" pass="True" expected="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" actual="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" />
+</report>

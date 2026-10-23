@@ -1,0 +1,23 @@
+<report status="FAIL" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-qa02-excel-b2-v1-20261023" excel_version="16.0" excel_build="4324">
+  <check name="q2x:input_sha" pass="True" expected="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" actual="744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb" />
+  <print_preflight tag="q2x" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Калькулятор срока оплаты" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Периоды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Платежи" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Календарь" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Календарь!Print_Area" refers_to="=Календарь!$A$1:$C$22" />
+    <print_name name="'Калькулятор срока оплаты'!Print_Area" refers_to="='Калькулятор срока оплаты'!$A$1:$C$32" />
+    <print_name name="Периоды!Print_Area" refers_to="=Периоды!$A$1:$M$30" />
+    <print_name name="Платежи!Print_Area" refers_to="=Платежи!$A$1:$F$28" />
+  </print_preflight>
+  <check name="q2x:before-deadline:B8" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q2x:before-deadline:B12" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q2x:one-day-late:B8" pass="True" expected="number:1" actual="System.Double:1" />
+  <check name="q2x:one-day-late:B12" pass="True" expected="number:100" actual="System.Double:100" />
+  <check name="q2x:zero-term:B7" pass="True" expected="number:46311" actual="System.Double:46311" />
+  <check name="q2x:zero-term:B8" pass="True" expected="number:5" actual="System.Double:5" />
+  <check name="q2x:zero-term:B12" pass="True" expected="number:500" actual="System.Double:500" />
+  <error>System.Management.Automation.RuntimeException: Attempted write to locked cell: A5 
+C:\Users\x6\AppData\Local\MB-ExcelQA\native.ps1:97 знак:116
++                 if ([bool]$sheet.ProtectContents -and [bool][ProductCells]::Read($sheet,$address,'Locked')) { throw &lt;&lt;&lt;&lt;  ('Attempted write to locked cell: '+$address) }</error>
+</report>

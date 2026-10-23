@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job id="nsp-qa02-excel-check2-v2-20261023" qa_only="true">
+  <file name="native-saved-1.xlsx" tag="q2v1" sheet="Калькулятор срока оплаты" sha256="8c94d9318374c6b38c8bae4b63c106cfee98ea0b5b7370127003a410052459be" export_source_first="true" print_preflight="true">
+    <case name="full-payment-first-day">
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="number" value="100" />
+      <expect sheet="Калькулятор срока оплаты" cell="B20" kind="number" value="0" />
+      <expect sheet="Калькулятор срока оплаты" cell="B25" kind="number" value="100" />
+    </case>
+  </file>
+  <file name="native-saved-2.xlsx" tag="q2v2" sheet="Калькулятор срока оплаты" sha256="1cac2397030b82702b0503cd0707b54cd736637dc47aceaa8710e41c77902eb0" export_source_first="true" print_preflight="true">
+    <case name="future-payment">
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="number" value="200" />
+      <expect sheet="Калькулятор срока оплаты" cell="B20" kind="number" value="100000" />
+      <expect sheet="Калькулятор срока оплаты" cell="B22" kind="number" value="40000" />
+    </case>
+  </file>
+  <file name="native-saved-3.xlsx" tag="q2v3" sheet="Калькулятор срока оплаты" sha256="ddeef3ade1b85153e6f6bf249e406532a29aa8f143eb82d30a12a79ac2d865c4" export_source_first="true" print_preflight="true">
+    <case name="overpayment">
+      <expect sheet="Калькулятор срока оплаты" cell="B20" kind="text" value="ОПЛАТЫ БОЛЬШЕ ДОЛГА" />
+      <expect sheet="Калькулятор срока оплаты" cell="B25" kind="text" value="ПРОВЕРЬТЕ ВВОД" />
+    </case>
+  </file>
+  <file name="native-saved-4.xlsx" tag="q2v4" sheet="Калькулятор срока оплаты" sha256="d3e68df1391693900e7ebdb8ac39588be158dfa330e610ddd4ff9a84a7412778" export_source_first="true" print_preflight="true">
+    <case name="daily-rate-change">
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="number" value="300" />
+    </case>
+  </file>
+</job>

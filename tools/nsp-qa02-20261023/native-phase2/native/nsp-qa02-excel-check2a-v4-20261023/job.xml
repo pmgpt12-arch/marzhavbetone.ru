@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job id="nsp-qa02-excel-check2a-v4-20261023" qa_only="true">
+  <file name="native-saved-1.xlsx" tag="q2v1" sheet="Калькулятор срока оплаты" sha256="8c94d9318374c6b38c8bae4b63c106cfee98ea0b5b7370127003a410052459be" export_source_first="true" print_preflight="true">
+    <case name="full-payment-first-day">
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="number" value="100" />
+      <expect sheet="Калькулятор срока оплаты" cell="B20" kind="number" value="0" />
+      <expect sheet="Калькулятор срока оплаты" cell="B25" kind="number" value="100" />
+    </case>
+  </file>
+  <file name="native-saved-2.xlsx" tag="q2v2" sheet="Калькулятор срока оплаты" sha256="1cac2397030b82702b0503cd0707b54cd736637dc47aceaa8710e41c77902eb0" export_source_first="true" print_preflight="true">
+    <case name="future-payment">
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="number" value="200" />
+      <expect sheet="Калькулятор срока оплаты" cell="B20" kind="number" value="100000" />
+      <expect sheet="Калькулятор срока оплаты" cell="B22" kind="number" value="40000" />
+    </case>
+  </file>
+</job>

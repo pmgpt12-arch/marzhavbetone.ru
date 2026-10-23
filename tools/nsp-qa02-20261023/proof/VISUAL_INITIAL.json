@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "actual_word_pdf_pages": [
+    3,
+    2,
+    2
+  ],
+  "word_statistics": "Worker ComputeStatistics reports 4/3/3; actual PDF page counts verified as 3/2/2 and used for acceptance.",
+  "excel_blank_pages": 4,
+  "excel_print_areas": "Excel returns empty PageSetup.PrintArea despite imported Print_Area names. Actual whole used ranges print on exactly four legible pages; no clipping. No worker/OS configuration changed.",
+  "pages": [
+    {
+      "path": "proof/native-pages/excel-blank-1.png",
+      "sha256": "904114902efb5671d50afd85330009aeefef62852b47864d70c117d453af0b93",
+      "review": "PASS: visually inspected; readable, no cut text or unintended blank pages"
+    },
+    {
+      "path": "proof/native-pages/excel-blank-2.png",
+      "sha256": "c4331701b9a72c8308a7f15ac3f9aa5be0fc7e86e2f2596545d9d34176057db4",
+      "review": "PASS: visually inspected; readable, no cut text or unintended blank pages"
+    },
+    {
+      "path": "proof/native-pages/excel-blank-3.png",
+      "sha256": "29bc866c501ad2260bc51d2cf186584535d8624ae035c1b8b461e8cdf6a1d1f1",
+      "review": "PASS: visually inspected; readable, no cut text or unintended blank pages"
+    },
+    {
+      "path": "proof/native-pages/excel-blank-4.png",
+      "sha256": "08eea7c44a4cda68176fb5404922da7e544640b8f03041270cd5b5d8b978cf05",
+      "review": "PASS: visually inspected; readable, no cut text or unintended blank pages"
+    },
+    {
+      "path": "proof/native-pages/word-q2d1-1.png",
+      "sha256": "c861f057111141a65b5131b0c27fe9a9055d99425c784f0de9550e7b67929314",
+      "review": "PASS: visually inspected; readable, no cut text or unintended blank pages"
+    },
+    {
+      "path": "proof/native-pages/word-q2d1-2.png",
+      "sha256": "f7d5e403f771fba97214b2d26615200432fe7d87d42b4fea57cc91f44c097542",
+      "review": "PASS: visually inspected; readable, no cut text or unintended blank pages"
+    },
+    {
+      "path": "proof/native-pages/word-q2d1-3.png",
+      "sha256": "efa4f369a8052753088a1a8c8463f7f897fd40399fab2a3496ee15bb9e606196",
+      "review": "PASS: visually inspected; readable, no cut text or unintended blank pages"
+    },
+    {
+      "path": "proof/native-pages/word-q2d2-1.png",
+      "sha256": "1097aeadbd6947a66b66e797bf8fc514b73210ce729dc70c6829085ca7b4b396",
+      "review": "PASS: visually inspected; readable, no cut text or unintended blank pages"
+    },
+    {
+      "path": "proof/native-pages/word-q2d2-2.png",
+      "sha256": "7ad8ad2d65880436bc3bea508b25ec87777e80dfc12d0443c2f52a8019b9549d",
+      "review": "PASS: visually inspected; readable, no cut text or unintended blank pages"
+    },
+    {
+      "path": "proof/native-pages/word-q2d3-1.png",
+      "sha256": "b1853bbd688748c0c92b9952879573be2e968b1ada96771efdb33806dbfa237c",
+      "review": "PASS: visually inspected; readable, no cut text or unintended blank pages"
+    },
+    {
+      "path": "proof/native-pages/word-q2d3-2.png",
+      "sha256": "61ce7e3002c73cc93bfec4dd710ce55932c19685924a67ab6fbf560b15a9284a",
+      "review": "PASS: visually inspected; readable, no cut text or unintended blank pages"
+    },
+    {
+      "path": "proof/native-pages/source-pdf-99-1.png",
+      "sha256": "137db946a4223a8a724d974ed12c78ec1178f8afd2539b1aab0c6c96f8ae357a",
+      "review": "PASS: visually inspected; readable, no cut text or unintended blank pages"
+    }
+  ]
+}

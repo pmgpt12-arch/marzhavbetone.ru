@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job id="nsp-qa02-excel-check3a-v4-20261023" qa_only="true">
+  <file name="native-saved-1.xlsx" tag="q2v1" sheet="Калькулятор срока оплаты" sha256="d51630a033bb8a2c7e2078938155a29877ec9aeaac50822aff51bee3b9796255" export_source_first="true" print_preflight="true">
+    <case name="annual-rate-change">
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="number" value="82.19" />
+    </case>
+  </file>
+  <file name="native-saved-2.xlsx" tag="q2v2" sheet="Калькулятор срока оплаты" sha256="606522113cb96bf99b7972b58ff78af41485061a1966b3f4ca81f2912c316ad5" export_source_first="true" print_preflight="true">
+    <case name="interest-partial-payment">
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="number" value="43.84" />
+      <expect sheet="Калькулятор срока оплаты" cell="B20" kind="number" value="60000" />
+    </case>
+  </file>
+</job>

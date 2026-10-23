@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job id="nsp-qa02-excel-check4b-v4-20261023" qa_only="true">
+  <file name="native-saved-1.xlsx" tag="q2v1" sheet="Калькулятор срока оплаты" sha256="8ea83764585d9f9ced7a2ba4374bd920f85faac6f51b506a102a0935c9dd3666" export_source_first="true" print_preflight="true">
+    <case name="duplicate-period-start">
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="text" value="ПРОВЕРЬТЕ ПЕРИОДЫ" />
+    </case>
+  </file>
+  <file name="native-saved-2.xlsx" tag="q2v2" sheet="Калькулятор срока оплаты" sha256="65b6d26b28decf7fceac3eba209d2c37142a8a5cd1dd63ea395f51c08cefb27c" export_source_first="true" print_preflight="true">
+    <case name="period-gap">
+      <expect sheet="Калькулятор срока оплаты" cell="B12" kind="text" value="ПРОВЕРЬТЕ ПЕРИОДЫ" />
+    </case>
+  </file>
+</job>
