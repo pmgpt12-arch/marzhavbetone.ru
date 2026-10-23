@@ -1,0 +1,110 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-p5-final-print-r2-20261023" excel_version="16.0" excel_build="4324">
+  <check name="pp2:input_sha" pass="True" expected="db3c68e205ac31659d54c55c572bd512fa654657c426125dc1a603c17ba6b350" actual="db3c68e205ac31659d54c55c572bd512fa654657c426125dc1a603c17ba6b350" />
+  <print_preflight tag="pp2" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Сводка" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Пример заполнения'!Print_Area" refers_to="='Пример заполнения'!$A$1:$N$28" />
+    <print_name name="Реестр!Print_Area" refers_to="=Реестр!$A$1:$N$158" />
+    <print_name name="Сводка!Print_Area" refers_to="=Сводка!$A$1:$I$28" />
+    <print_name name="'Пример заполнения'!Print_Titles" refers_to="='Пример заполнения'!$5:$5" />
+    <print_name name="Реестр!Print_Titles" refers_to="=Реестр!$6:$6" />
+  </print_preflight>
+  <check name="pp2:same-date-select-open:B13" pass="True" expected="text:открытый-2" actual="System.String:открытый-2" />
+  <check name="pp2:same-date-select-open:C13" pass="True" expected="text:объект 2" actual="System.String:объект 2" />
+  <check name="pp2:returned-positive:D4" pass="True" expected="text:ОШИБКА: статус возврата или превышение возврата. Сверьте реестр." actual="System.String:ОШИБКА: статус возврата или превышение возврата. Сверьте реестр." />
+  <check name="pp2:returned-positive:B13" pass="True" expected="text:закрытый-1" actual="System.String:закрытый-1" />
+  <check name="pp2:over-return:D4" pass="True" expected="text:ОШИБКА: статус возврата или превышение возврата. Сверьте реестр." actual="System.String:ОШИБКА: статус возврата или превышение возврата. Сверьте реестр." />
+  <check name="pp2:over-return:B4" pass="True" expected="number:10000" actual="System.Double:10000" />
+  <check name="pp2:two-dates:B13" pass="True" expected="text:закрытый-1" actual="System.String:закрытый-1" />
+  <check name="pp2:two-dates:B14" pass="True" expected="text:открытый-2" actual="System.String:открытый-2" />
+  <check name="pp2:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="pp2:pdf_export" pass="True" expected="%PDF-" actual="bytes=276953" />
+  <print_preflight tag="pp2" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Сводка" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Пример заполнения'!Print_Area" refers_to="='Пример заполнения'!$A$1:$N$28" />
+    <print_name name="Реестр!Print_Area" refers_to="=Реестр!$A$1:$N$158" />
+    <print_name name="Сводка!Print_Area" refers_to="=Сводка!$A$1:$I$28" />
+    <print_name name="'Пример заполнения'!Print_Titles" refers_to="='Пример заполнения'!$5:$5" />
+    <print_name name="Реестр!Print_Titles" refers_to="=Реестр!$6:$6" />
+  </print_preflight>
+  <check name="pp2:source_unchanged" pass="True" expected="db3c68e205ac31659d54c55c572bd512fa654657c426125dc1a603c17ba6b350" actual="db3c68e205ac31659d54c55c572bd512fa654657c426125dc1a603c17ba6b350" />
+  <check name="pp3:input_sha" pass="True" expected="a8febac121cac24a0c4e34c5cc202192a11009199644d2cb6d5289ed3718e8fe" actual="a8febac121cac24a0c4e34c5cc202192a11009199644d2cb6d5289ed3718e8fe" />
+  <print_preflight tag="pp3" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Сводка" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Виды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Виды!Print_Area" refers_to="=Виды!$A$1:$I$28" />
+    <print_name name="'Пример заполнения'!Print_Area" refers_to="='Пример заполнения'!$A$1:$L$28" />
+    <print_name name="Реестр!Print_Area" refers_to="=Реестр!$A$1:$L$158" />
+    <print_name name="Сводка!Print_Area" refers_to="=Сводка!$A$1:$I$28" />
+    <print_name name="'Пример заполнения'!Print_Titles" refers_to="='Пример заполнения'!$5:$5" />
+    <print_name name="Реестр!Print_Titles" refers_to="=Реестр!$6:$6" />
+  </print_preflight>
+  <check name="pp3:empty:C8" pass="True" expected="text:НЕТ ДАННЫХ" actual="System.String:НЕТ ДАННЫХ" />
+  <check name="pp3:unknown-ks:C8" pass="True" expected="text:НЕТ ДАННЫХ" actual="System.String:НЕТ ДАННЫХ" />
+  <check name="pp3:unknown-blocking:C8" pass="True" expected="text:НЕ ПРОВЕРЕНО" actual="System.String:НЕ ПРОВЕРЕНО" />
+  <check name="pp3:blocked:C8" pass="True" expected="text:К закрытию не готов: 1" actual="System.String:К закрытию не готов: 1" />
+  <check name="pp3:signed:C8" pass="True" expected="text:По внесённым строкам блокирующих нет" actual="System.String:По внесённым строкам блокирующих нет" />
+  <check name="pp3:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="pp3:pdf_export" pass="True" expected="%PDF-" actual="bytes=198263" />
+  <print_preflight tag="pp3" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Сводка" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Виды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Виды!Print_Area" refers_to="=Виды!$A$1:$I$28" />
+    <print_name name="'Пример заполнения'!Print_Area" refers_to="='Пример заполнения'!$A$1:$L$28" />
+    <print_name name="Реестр!Print_Area" refers_to="=Реестр!$A$1:$L$158" />
+    <print_name name="Сводка!Print_Area" refers_to="=Сводка!$A$1:$I$28" />
+    <print_name name="'Пример заполнения'!Print_Titles" refers_to="='Пример заполнения'!$5:$5" />
+    <print_name name="Реестр!Print_Titles" refers_to="=Реестр!$6:$6" />
+  </print_preflight>
+  <check name="pp3:source_unchanged" pass="True" expected="a8febac121cac24a0c4e34c5cc202192a11009199644d2cb6d5289ed3718e8fe" actual="a8febac121cac24a0c4e34c5cc202192a11009199644d2cb6d5289ed3718e8fe" />
+  <check name="pp4:input_sha" pass="True" expected="1894f2c0719db637e5fedae0df6951588bd43338cdae098f430a8aa0edb899af" actual="1894f2c0719db637e5fedae0df6951588bd43338cdae098f430a8aa0edb899af" />
+  <print_preflight tag="pp4" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Спорная зона" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Опись" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Обязательный минимум" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Сводка" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Виды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Виды!Print_Area" refers_to="=Виды!$A$1:$I$28" />
+    <print_name name="'Обязательный минимум'!Print_Area" refers_to="='Обязательный минимум'!$A$1:$J$65" />
+    <print_name name="Опись!Print_Area" refers_to="=Опись!$A$6:$H$206;Опись!$I$6:$O$206;Опись!$P$6:$U$206" />
+    <print_name name="'Пример заполнения'!Print_Area" refers_to="='Пример заполнения'!$A$5:$H$9;'Пример заполнения'!$I$5:$O$9;'Пример заполнения'!$P$5:$U$9;'Пример заполнения'!$A$13:$F$18" />
+    <print_name name="Сводка!Print_Area" refers_to="=Сводка!$A$1:$I$28" />
+    <print_name name="'Спорная зона'!Print_Area" refers_to="='Спорная зона'!$A$1:$I$28" />
+    <print_name name="'Обязательный минимум'!Print_Titles" refers_to="='Обязательный минимум'!$4:$4" />
+    <print_name name="Опись!Print_Titles" refers_to="=Опись!$A:$C;Опись!$6:$6" />
+    <print_name name="'Пример заполнения'!Print_Titles" refers_to="='Пример заполнения'!$A:$C" />
+  </print_preflight>
+  <check name="pp4:only-type:U7" pass="True" expected="text:НЕ ПРОВЕРЕНО: наличие или обязательность" actual="System.String:НЕ ПРОВЕРЕНО: наличие или обязательность" />
+  <check name="pp4:missing-required:U7" pass="True" expected="text:дыра: обязательного документа нет, запрос не направлен" actual="System.String:дыра: обязательного документа нет, запрос не направлен" />
+  <check name="pp4:requested:U7" pass="True" expected="text:запрошен, не получен" actual="System.String:запрошен, не получен" />
+  <check name="pp4:expert-no-date:U7" pass="True" expected="text:передан без следа: эксперт или дата" actual="System.String:передан без следа: эксперт или дата" />
+  <check name="pp4:minimum-still-open:A15" pass="True" expected="text:Есть незакрытые обязательные документы или блоки минимума. Закройте дыры или направьте запрос." actual="System.String:Есть незакрытые обязательные документы или блоки минимума. Закройте дыры или направьте запрос." />
+  <check name="pp4:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="pp4:pdf_export" pass="True" expected="%PDF-" actual="bytes=496299" />
+  <print_preflight tag="pp4" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Спорная зона" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Опись" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Обязательный минимум" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Сводка" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Виды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Виды!Print_Area" refers_to="=Виды!$A$1:$I$28" />
+    <print_name name="'Обязательный минимум'!Print_Area" refers_to="='Обязательный минимум'!$A$1:$J$65" />
+    <print_name name="Опись!Print_Area" refers_to="=Опись!$A$6:$H$206;Опись!$I$6:$O$206;Опись!$P$6:$U$206" />
+    <print_name name="'Пример заполнения'!Print_Area" refers_to="='Пример заполнения'!$A$5:$H$9;'Пример заполнения'!$I$5:$O$9;'Пример заполнения'!$P$5:$U$9;'Пример заполнения'!$A$13:$F$18" />
+    <print_name name="Сводка!Print_Area" refers_to="=Сводка!$A$1:$I$28" />
+    <print_name name="'Спорная зона'!Print_Area" refers_to="='Спорная зона'!$A$1:$I$28" />
+    <print_name name="'Обязательный минимум'!Print_Titles" refers_to="='Обязательный минимум'!$4:$4" />
+    <print_name name="Опись!Print_Titles" refers_to="=Опись!$A:$C;Опись!$6:$6" />
+    <print_name name="'Пример заполнения'!Print_Titles" refers_to="='Пример заполнения'!$A:$C" />
+  </print_preflight>
+  <check name="pp4:source_unchanged" pass="True" expected="1894f2c0719db637e5fedae0df6951588bd43338cdae098f430a8aa0edb899af" actual="1894f2c0719db637e5fedae0df6951588bd43338cdae098f430a8aa0edb899af" />
+</report>
