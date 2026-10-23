@@ -38,8 +38,6 @@ jobs:
   render:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    env:
-      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/nsp-playwright-browsers
     steps:
       - uses: actions/checkout@v4
         with:
@@ -55,6 +53,8 @@ jobs:
         id: browser
         timeout-minutes: 5
         run: |
+          export PLAYWRIGHT_BROWSERS_PATH="$RUNNER_TEMP/nsp-playwright-browsers"
+          echo "PLAYWRIGHT_BROWSERS_PATH=$PLAYWRIGHT_BROWSERS_PATH" >> "$GITHUB_ENV"
           python3 -m pip install --quiet playwright pillow
           # Use the renderer matched to Playwright for exact pixel comparisons.
           # The runner already has Chrome's runtime libraries; avoid apt downloads.
