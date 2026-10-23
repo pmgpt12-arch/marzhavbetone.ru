@@ -1,0 +1,17 @@
+{
+  "status": "PASS_PUBLISHED_FREE_FORM_HTTP_AND_FULL_PDF",
+  "observed_utc": "2026-10-23T01:56:59.683668+00:00",
+  "form_posts": 1,
+  "contact_scope": "synthetic email, no optional contact",
+  "form_http": 200,
+  "download_http": 200,
+  "bytes": 58666,
+  "mime": "application/pdf",
+  "sha256": "65ec8f7880adc4bf9d611888bf16f332415bc7b6da97fcf577fd29e38dba42c4",
+  "paid_requests": 0,
+  "limits": [
+    "HTTP probe, not browser acceptance of the unpublished email-field layout",
+    "The existing free-lead handler may notify the site administrator; receipt of that notification is not asserted",
+    "Static PDF GET is a separate byte receipt; lead_ready or download_click does not mean file served"
+  ]
+}

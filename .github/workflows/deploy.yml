@@ -103,7 +103,7 @@ jobs:
           path: /tmp/nsp-owner-corroboration.json
           retention-days: 30
   deploy:
-    if: ${{ github.ref_name == 'main' && vars.ENABLE_LEGACY_DEPLOY == 'true' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
+    if: ${{ github.ref_name == 'main' && vars.ENABLE_LEGACY_DEPLOY == 'true' && !contains(github.event.head_commit.message, '[skip deploy]') && (github.event_name != 'workflow_dispatch' || (inputs.inspect_owner_test_order != true && inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_review_export != true && inputs.t2_only != true && inputs.t2_link_probe != true && inputs.t3_only != true && inputs.t3_link_probe != true)) }}
     runs-on: ubuntu-latest
     steps:
       # Пока секреты не заданы, workflow завершается зелёным и ничего не делает —

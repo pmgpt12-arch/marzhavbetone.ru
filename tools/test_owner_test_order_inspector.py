@@ -25,6 +25,7 @@ class OwnerOrderInspector(unittest.TestCase):
                 self.assertNotIn('||', condition)
             elif name == 'deploy':
                 self.assertIn("github.ref_name == 'main' &&", condition)
+                self.assertIn('inputs.inspect_owner_test_order != true', condition)
             elif name == 'deploy-remaining-only':
                 self.assertIn('inputs.remaining_only == true', condition)
                 self.assertIn("github.event_name == 'push'", condition)
