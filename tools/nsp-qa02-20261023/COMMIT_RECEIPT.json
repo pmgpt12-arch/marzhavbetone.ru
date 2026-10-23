@@ -1,0 +1,22 @@
+{
+  "artifact_commit": "906493b7dd149b3d0bb6e464b80aa6a24a590b57",
+  "base_commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
+  "branch": "qa/nsp-qa02-dengi-20261023",
+  "archive_sha256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+  "archive_bytes": 184834,
+  "report_sha256": "63b0fb0ee801cc38411adcd8f0470334b6b1de89a9972546c737a532ab33adf7",
+  "final_gate_sha256": "bc9d94eb157f9c6df435f296eb883a853122320115a01a1d34ba2e178fc45dd0",
+  "status": "FULL_QA_PASS",
+  "native_cases": 56,
+  "native_checks": 106,
+  "native_fill_save_reopen_cases": 19,
+  "visual_pages": 22,
+  "release_status": "HOLD: supervising review and separate publication decision",
+  "protected_refs": {
+    "main": "c7e32ecc7ad5d8d4b0a3e425ccfe8eeccafe8433",
+    "draft_675": "65c176aa554397c12652a86fe2393942faa546a7",
+    "draft_676": "792d6467e81e2c46dabd93b3c2f18bc972d8cb94"
+  },
+  "commit_byte_evidence": "All five candidate files and raw native report.xml blobs in artifact commit match tested disk bytes exactly",
+  "delivery_note": "This receipt identifies the tested artifact commit. The final delivery HEAD also contains this receipt; its SHA is returned in the session handoff."
+}
