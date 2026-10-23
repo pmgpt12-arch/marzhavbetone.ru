@@ -1,0 +1,135 @@
+{
+  "tested_commit": "2c961c89c208d63791059a45619d0792b81d0c50",
+  "staging_source": "67e07d75ac1fdf4d512d9076d64e3329c114efb5",
+  "public": {
+    "run": 39876648868,
+    "job": 120163753290,
+    "passed": 65,
+    "failed": 0,
+    "skipped": 0,
+    "log_excerpt": [
+      "2026-10-23T00:12:59.9091596Z прогнано 65, прошли 65, упали 0 (блокирующих 0, предупреждений 0), пропущено без данных 0",
+      "2026-10-23T00:12:59.9092121Z ИТОГ: PASS — все обязательные проверки прошли."
+    ]
+  },
+  "browser_snapshot": {
+    "run": 39876649050,
+    "job": 120163754065,
+    "status": "PASS_BROWSER_RENDER_SNAPSHOT_ONLY",
+    "source_pages": 88,
+    "captures": 176,
+    "failures": 0,
+    "contact_sheets": 8,
+    "artifact": {
+      "id": 12468174471,
+      "name": "static-browser-snapshot-39876649050-1",
+      "size_in_bytes": 99652648,
+      "url": "https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/actions/artifacts/12468174471",
+      "archive_download_url": "https://api.github.com/repos/pmgpt12-arch/marzhavbetone.ru/actions/artifacts/12468174471/zip",
+      "expired": false,
+      "created_at": "2026-10-23T00:14:38Z",
+      "expires_at": "2026-11-06T00:14:34Z",
+      "updated_at": "2026-10-23T00:14:38Z",
+      "digest": "sha256:ffa151bf2fc0a447788555e95899d28afd9fb2d28709b60d7826dcda5bfc1f71",
+      "workflow_run": {
+        "id": 39876649050,
+        "repository_id": 1312138694,
+        "head_repository_id": 1312138694,
+        "head_branch": "fix/nsp-customer-route-20261022",
+        "head_sha": "2c961c89c208d63791059a45619d0792b81d0c50"
+      }
+    }
+  },
+  "render": {
+    "run": 39876648869,
+    "job": 120163753500,
+    "mobile": "success",
+    "desktop": "success",
+    "cart": "success",
+    "attribution": "success",
+    "desktop_contract": "failure",
+    "failure_bbox": [
+      234,
+      17,
+      328,
+      58
+    ],
+    "diagnostic_artifact_id": 12467739015
+  },
+  "workflows": [
+    {
+      "id": 39876648868,
+      "name": "Проверки",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39876648869,
+      "name": "Проверки рендером",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 39876648675,
+      "name": "NSP catalog contract",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39876648874,
+      "name": "Site app-script local HTTP runtime contract",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39876648881,
+      "name": "NSP public checklist contract",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39876648670,
+      "name": "Site app-script wrapper source contract",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39876648712,
+      "name": "Dynamic endpoint source inventory",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39876648849,
+      "name": "Reviewed site source delta gate",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39876648757,
+      "name": "NSP free downloads contract",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39876648669,
+      "name": "Site route discovery",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39876648689,
+      "name": "Site static content snapshot",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39876649050,
+      "name": "Static browser snapshot",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "release_accepted": false,
+  "publication_accepted": false
+}
