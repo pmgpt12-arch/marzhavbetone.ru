@@ -1,0 +1,33 @@
+{
+  "scope": "published home GET and public PDF GET only; no form POST, order or payment request",
+  "home_http": 200,
+  "home_sha256": "e809e3f5263c32e092a5ec6cd63b81421abe6a752d906818b6e407953495a3e5",
+  "form": {
+    "action": "lead.php",
+    "method": "post"
+  },
+  "fields": [
+    {
+      "name": "name",
+      "type": "text",
+      "required": null
+    },
+    {
+      "name": "contact",
+      "type": "text",
+      "required": null
+    },
+    {
+      "name": "consent",
+      "type": "checkbox",
+      "required": null
+    }
+  ],
+  "pdf": {
+    "http": 200,
+    "bytes": 58666,
+    "sha256": "65ec8f7880adc4bf9d611888bf16f332415bc7b6da97fcf577fd29e38dba42c4",
+    "mime": "application/pdf"
+  },
+  "paid_requests": 0
+}

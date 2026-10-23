@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "consumer_file_sha256": {
+    "events.py": "15bfa74039c7d2c11eddbb20c6dcf3c00354c3822efc10cef12853148200355f",
+    "db.py": "b56b00e0f17421227326534185701c1d3197e5a73a96e6f466dbcb73582167fd",
+    "connector.py": "07e67a2a9b123985d8842f573a931180a0d3df499aa5aae38e6636298b417ca8"
+  },
+  "database": ":memory:",
+  "live_database_modified": false,
+  "network_requests": 0,
+  "identical_uuid_attempts": 2,
+  "identical_uuid_event_rows": 1,
+  "different_uuid_total_rows": 2,
+  "ingestion_forwards_uuid": true,
+  "scope": "actual record() and actual unique index; no live receiver acceptance claimed"
+}
+

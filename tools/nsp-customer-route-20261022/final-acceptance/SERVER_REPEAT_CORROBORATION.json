@@ -1,0 +1,69 @@
+{
+  "status": "READ_ONLY_SERVER_CORROBORATION",
+  "python_version": [
+    3,
+    6,
+    8
+  ],
+  "selection": "latest created order containing only test1 and total=100; owner identity not inferred",
+  "matching_service_orders": 2,
+  "order_ref_sha256": "f0fbf10e73d296ffeffb7c4128061a013c43f28341c674e8573b436220e719c6",
+  "order": {
+    "created_at": "2026-10-23T04:28:34+03:00",
+    "status": "paid",
+    "amount_kopeks": 100,
+    "payment_id_present": true,
+    "paid_at": "2026-10-23T04:29:05+03:00",
+    "email_sent_at": "2026-10-23T04:29:05+03:00",
+    "download_reservations": 2,
+    "last_download_at": "2026-10-23T05:01:26+03:00",
+    "archive_present": true,
+    "archive_bytes": 158841
+  },
+  "source_sha256": {
+    "index.html": "e809e3f5263c32e092a5ec6cd63b81421abe6a752d906818b6e407953495a3e5",
+    "app.js": "9924f5c20b4046f0eecabaea8be47c0342adaf67cb1d25c0155dc3d7b33bc6fc",
+    "lead.php": "9a37f0cd34efddddcbbc16ede01789ceea54fcefbd50395995c1e7115b046c8e",
+    "payment.php": "394f003be37dd2904e9b20fea733392e87859fb2dc9a4b16f61642a205317929",
+    "webhook.php": "c8d758c1234e47466b212dbe91ddd3466aa24b64f6d50ecd669a16bc6655cb2d",
+    "products-config.php": "10739a7aff2a98e676c1e15b3499c64ad82703d0d6a3c6650b3dab751ce70551",
+    "download.php": "8c90c5abf5900d1ab7e14d663a584e304fcf9ef8e37a953a4ac5b231e1b6ec55"
+  },
+  "new_download_observer_present": false,
+  "readable_log_files": 15,
+  "log_tail_bytes_per_file": 2097152,
+  "matching_access_records": [
+    {
+      "at": "2026-10-23T04:29:41+03:00",
+      "method": "GET",
+      "http_status": 200,
+      "body_bytes": 158841,
+      "full_archive_bytes": true
+    },
+    {
+      "at": "2026-10-23T05:01:26+03:00",
+      "method": "GET",
+      "http_status": 200,
+      "body_bytes": 158841,
+      "full_archive_bytes": true
+    }
+  ],
+  "access_records_truncated": false,
+  "nearby_buyer_mail_transport_records": 1,
+  "default_outbox_observations": [],
+  "limits": [
+    "No HTTP requests, mail, payment or hosting writes performed.",
+    "Two matching orders are not automatically the same owner transaction.",
+    "Reservation counters alone do not prove complete archive delivery.",
+    "Log search is bounded; absence is not proof of no event.",
+    "Mail acceptance is not inbox delivery; owner attestation remains separate.",
+    "Default outbox only; a custom PHP environment outbox is not inferred."
+  ],
+  "inspection_run": {
+    "id": 39887372305,
+    "job_id": 120198583847,
+    "head_sha": "20ffcf463fc9f45061a1910943725efb349fce97",
+    "executed_jobs": 1,
+    "skipped_jobs": 10
+  }
+}

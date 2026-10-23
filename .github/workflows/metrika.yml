@@ -21,6 +21,10 @@ on:
         description: 'Записать снимок в content/metrics/ и закоммитить'
         type: boolean
         default: true
+      create_goals:
+        description: 'Создать недостающие цели; false для проверки только чтением'
+        type: boolean
+        default: true
 
 concurrency:
   group: metrika-snapshot
@@ -61,7 +65,9 @@ jobs:
           # Метрика считает только объявленные цели и по необъявленной молчит,
           # а не ошибается: без этого шага новая цель из кода не считалась бы
           # и заметить это было бы нечем. Шаг добавляющий и идемпотентный.
-          python3 tools/metrika_report.py --days "$days" --create-goals $write \
+          goal_args=()
+          if [ "${{ inputs.create_goals }}" != "false" ]; then goal_args+=(--create-goals); fi
+          python3 tools/metrika_report.py --days "$days" "${goal_args[@]}" $write \
             | tee /tmp/metrika.txt
           {
             echo '## Числа сайта'

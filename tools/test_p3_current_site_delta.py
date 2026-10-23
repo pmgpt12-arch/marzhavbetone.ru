@@ -11,12 +11,19 @@ class P3LegacySnapshotBridgeTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.baseline = json.loads(gate.git("show", gate.BASE + ":products-storage/ARTIFACT-REGISTRY.json"))
-        cls.current = json.loads(gate.checked_blob("products-storage/ARTIFACT-REGISTRY.json"))
+        # Negative controls for the historic P3 projection use its fixed
+        # fixture; the actual site has since moved to a later staging scope.
+        cls.current = copy.deepcopy(cls.baseline)
+        p3 = next(row for row in cls.current["product_sources"] if row["runtime_sku"] == "p3")
+        p3["git_tree_sha"], p3["bytes"] = gate.P3_TREE, gate.P3_BYTES
 
-    def test_actual_approved_candidate(self):
-        result = gate.validate_current_p3_delta()
-        self.assertEqual(result["verdict"], "PASS_CURRENT_P3_SITE_DELTA_ONLY")
-        self.assertEqual(result["current_registry_p3_tree"], gate.P3_TREE)
+    def test_actual_known_site_scope(self):
+        result = gate.validate_known_site_delta()
+        self.assertIn(result["verdict"], {"PASS_CURRENT_P3_SITE_DELTA_ONLY", "PASS_PINNED_CUSTOMER_ROUTE_STAGING_ONLY"})
+        self.assertTrue(result["historical_snapshot_preserved"])
+        if result["verdict"] == "PASS_PINNED_CUSTOMER_ROUTE_STAGING_ONLY":
+            self.assertFalse(result["release_accepted"])
+            self.assertTrue(result["protected_product_payment_source_unchanged"])
 
     def test_exact_projected_registry(self):
         gate.validate_registry_projection(self.baseline, self.current)
@@ -91,7 +98,11 @@ class P3LegacySnapshotBridgeTests(unittest.TestCase):
         self.assertIsNotNone(price)
         self.assertEqual(int(price.group(1)), 1790000)
         diagnostic = (root / "diagnostika.html").read_text(encoding="utf-8")
-        self.assertIn('"url": "/products/p3-shablony-ks2-ks3.html", "price": 17900', diagnostic)
+        scenarios = json.loads(re.search(r'const SCENARIOS\s*=\s*(\[.*?\]);', diagnostic, re.S).group(1))
+        prices = [offer['price'] for row in scenarios for offer in (row.get('core') or {}, row.get('entry') or {})
+                  if offer.get('url') == '/products/p3-shablony-ks2-ks3.html']
+        self.assertTrue(prices)
+        self.assertTrue(all(price == 17900 for price in prices))
         pages = ("index.html", "katalog.html",
                  "products/p3-shablony-ks2-ks3.html",
                  "articles/proverka-ks-2-pered-sdachey.html",

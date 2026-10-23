@@ -1,0 +1,746 @@
+{
+  "results": [
+    {
+      "id": "RENDER-home",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/home-desktop.png"
+      }
+    },
+    {
+      "id": "RENDER-diagnostic",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/diagnostic-desktop.png"
+      }
+    },
+    {
+      "id": "RENDER-money",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/money-desktop.png"
+      }
+    },
+    {
+      "id": "RENDER-bankrupt",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/bankrupt-desktop.png"
+      }
+    },
+    {
+      "id": "RENDER-advance",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/advance-desktop.png"
+      }
+    },
+    {
+      "id": "RENDER-t2",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/t2-desktop.png"
+      }
+    },
+    {
+      "id": "RENDER-p11",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/p11-desktop.png"
+      }
+    },
+    {
+      "id": "RENDER-p3",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/p3-desktop.png"
+      }
+    },
+    {
+      "id": "RENDER-p8",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/p8-desktop.png"
+      }
+    },
+    {
+      "id": "RENDER-catalog",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/catalog-desktop.png"
+      }
+    },
+    {
+      "id": "RENDER-success",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/success-desktop.png"
+      }
+    },
+    {
+      "id": "D01",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "none"
+        },
+        "screenshot": "screens/after/D01-desktop.png"
+      }
+    },
+    {
+      "id": "D02",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "observation",
+          "publication": "yes",
+          "claim": "registry"
+        },
+        "screenshot": "screens/after/D02-desktop.png"
+      }
+    },
+    {
+      "id": "D03",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "observation",
+          "publication": "yes",
+          "claim": "current"
+        },
+        "screenshot": "screens/after/D03-desktop.png"
+      }
+    },
+    {
+      "id": "D04",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "unknown"
+        },
+        "screenshot": "screens/after/D04-desktop.png"
+      }
+    },
+    {
+      "id": "D04-DATE",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "observation",
+          "publication": "no"
+        },
+        "screenshot": "screens/after/D04-DATE-desktop.png"
+      }
+    },
+    {
+      "id": "D04-CLAIM",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "other",
+          "publication": "yes",
+          "claim": "unknown"
+        },
+        "screenshot": "screens/after/D04-CLAIM-desktop.png"
+      }
+    },
+    {
+      "id": "D04-ACCEPTED",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "accepted"
+        },
+        "screenshot": "screens/after/D04-ACCEPTED-desktop.png"
+      }
+    },
+    {
+      "id": "D05",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "no"
+        },
+        "screenshot": "screens/after/D05-desktop.png"
+      }
+    },
+    {
+      "id": "D-ALL",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "leaves": 25,
+        "max": 8
+      }
+    },
+    {
+      "id": "L01",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "url": "http://127.0.0.1:8092/products/p1-oplata-po-ks2.html"
+      }
+    },
+    {
+      "id": "L02",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "url": "http://127.0.0.1:8092/products/p9-bankrotstvo-genpodryadchika.html"
+      }
+    },
+    {
+      "id": "L03",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "url": "http://127.0.0.1:8092/products/p8-avans-po-dogovoru-subpodryada.html"
+      }
+    },
+    {
+      "id": "T01",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "links": [
+          {
+            "href": "p4-ispolnitelnaya-dokumentaciya-pto.html",
+            "text": "«Система ведения, проверки и передачи исполнительной документации»"
+          },
+          {
+            "href": "p4-ispolnitelnaya-dokumentaciya-pto.html?utm_source=site&utm_medium=product-ladder&utm_campaign=ispolnitelnaya&utm_content=t2-to-p4",
+            "text": "Комплект «Система ведения, проверки и передачи исполнительной документации», 24 900 ₽ →"
+          },
+          {
+            "href": "p4-ispolnitelnaya-dokumentaciya-pto.html",
+            "text": "«Система ведения, проверки и передачи исполнительной документации»"
+          },
+          {
+            "href": "p4-ispolnitelnaya-dokumentaciya-pto.html",
+            "text": "Подробнее →"
+          },
+          {
+            "href": "p4-ispolnitelnaya-dokumentaciya-pto.html",
+            "text": "Система ведения, проверки и передачи исполнительной документации"
+          },
+          {
+            "href": "p4-ispolnitelnaya-dokumentaciya-pto.html",
+            "text": "Посмотреть комплект →"
+          }
+        ],
+        "price": "24 900 ₽",
+        "t2": "9 900 ₽"
+      }
+    },
+    {
+      "id": "C01-C03-A01",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/checkout-desktop.png",
+        "paymentPosts": 0
+      }
+    },
+    {
+      "id": "CART-MIGRATION",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": [
+        {
+          "sku": "p8",
+          "name": "Система управления авансами и расчётами по договору подряда",
+          "price": 2490000
+        }
+      ]
+    },
+    {
+      "id": "F01-F02-MOCK",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "goals": [
+          {
+            "name": "lead_submit",
+            "params": {
+              "material": "dengi",
+              "source": "site-dengi",
+              "last": {
+                "source": "synthetic",
+                "medium": "test",
+                "campaign": "route-qa"
+              }
+            }
+          },
+          {
+            "name": "lead_ready",
+            "params": {
+              "material": "dengi",
+              "source": "site-dengi",
+              "last": {
+                "source": "synthetic",
+                "medium": "test",
+                "campaign": "route-qa"
+              }
+            }
+          },
+          {
+            "name": "download_click",
+            "params": {
+              "material": "dengi",
+              "source": "site-dengi",
+              "last": {
+                "source": "synthetic",
+                "medium": "test",
+                "campaign": "route-qa"
+              }
+            }
+          }
+        ],
+        "screenshot": "screens/after/lead-ready-desktop.png",
+        "server_served": "NOT_EXECUTED; local mocked response only"
+      }
+    },
+    {
+      "id": "F-ERROR",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "ready": 0,
+        "click": 0
+      }
+    },
+    {
+      "id": "E01",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "no_id": "unconfirmed",
+        "mock_status": "pending"
+      }
+    },
+    {
+      "id": "H03",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "links": [
+          "/katalog.html#group-do-podpisaniya",
+          "/katalog.html#group-do-podpisaniya",
+          "/katalog.html#group-zakrytie-i-oplata",
+          "/katalog.html#group-zakrytie-i-oplata",
+          "/katalog.html#selection-oplata",
+          "/katalog.html#selection-oplata"
+        ]
+      }
+    },
+    {
+      "id": "CATALOG-FOLD",
+      "viewport": "desktop",
+      "status": "PASS",
+      "actual": {
+        "first_card_top": 452.1875
+      }
+    },
+    {
+      "id": "RENDER-home",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/home-mobile.png"
+      }
+    },
+    {
+      "id": "RENDER-diagnostic",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/diagnostic-mobile.png"
+      }
+    },
+    {
+      "id": "RENDER-money",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/money-mobile.png"
+      }
+    },
+    {
+      "id": "RENDER-bankrupt",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/bankrupt-mobile.png"
+      }
+    },
+    {
+      "id": "RENDER-advance",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/advance-mobile.png"
+      }
+    },
+    {
+      "id": "RENDER-t2",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/t2-mobile.png"
+      }
+    },
+    {
+      "id": "RENDER-p11",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/p11-mobile.png"
+      }
+    },
+    {
+      "id": "RENDER-p3",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/p3-mobile.png"
+      }
+    },
+    {
+      "id": "RENDER-p8",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/p8-mobile.png"
+      }
+    },
+    {
+      "id": "RENDER-catalog",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/catalog-mobile.png"
+      }
+    },
+    {
+      "id": "RENDER-success",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/success-mobile.png"
+      }
+    },
+    {
+      "id": "D01",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "none"
+        },
+        "screenshot": "screens/after/D01-mobile.png"
+      }
+    },
+    {
+      "id": "D02",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "observation",
+          "publication": "yes",
+          "claim": "registry"
+        },
+        "screenshot": "screens/after/D02-mobile.png"
+      }
+    },
+    {
+      "id": "D03",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "observation",
+          "publication": "yes",
+          "claim": "current"
+        },
+        "screenshot": "screens/after/D03-mobile.png"
+      }
+    },
+    {
+      "id": "D04",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "unknown"
+        },
+        "screenshot": "screens/after/D04-mobile.png"
+      }
+    },
+    {
+      "id": "D04-DATE",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "observation",
+          "publication": "no"
+        },
+        "screenshot": "screens/after/D04-DATE-mobile.png"
+      }
+    },
+    {
+      "id": "D04-CLAIM",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "other",
+          "publication": "yes",
+          "claim": "unknown"
+        },
+        "screenshot": "screens/after/D04-CLAIM-mobile.png"
+      }
+    },
+    {
+      "id": "D04-ACCEPTED",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "yes",
+          "procedure": "accepted"
+        },
+        "screenshot": "screens/after/D04-ACCEPTED-mobile.png"
+      }
+    },
+    {
+      "id": "D05",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "answers": {
+          "bankrot": "no"
+        },
+        "screenshot": "screens/after/D05-mobile.png"
+      }
+    },
+    {
+      "id": "D-ALL",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "leaves": 25,
+        "max": 8
+      }
+    },
+    {
+      "id": "L01",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "url": "http://127.0.0.1:8092/products/p1-oplata-po-ks2.html"
+      }
+    },
+    {
+      "id": "L02",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "url": "http://127.0.0.1:8092/products/p9-bankrotstvo-genpodryadchika.html"
+      }
+    },
+    {
+      "id": "L03",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "url": "http://127.0.0.1:8092/products/p8-avans-po-dogovoru-subpodryada.html"
+      }
+    },
+    {
+      "id": "T01",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "links": [
+          {
+            "href": "p4-ispolnitelnaya-dokumentaciya-pto.html",
+            "text": "«Система ведения, проверки и передачи исполнительной документации»"
+          },
+          {
+            "href": "p4-ispolnitelnaya-dokumentaciya-pto.html?utm_source=site&utm_medium=product-ladder&utm_campaign=ispolnitelnaya&utm_content=t2-to-p4",
+            "text": "Комплект «Система ведения, проверки и передачи исполнительной документации», 24 900 ₽ →"
+          },
+          {
+            "href": "p4-ispolnitelnaya-dokumentaciya-pto.html",
+            "text": "«Система ведения, проверки и передачи исполнительной документации»"
+          },
+          {
+            "href": "p4-ispolnitelnaya-dokumentaciya-pto.html",
+            "text": "Подробнее →"
+          },
+          {
+            "href": "p4-ispolnitelnaya-dokumentaciya-pto.html",
+            "text": "Система ведения, проверки и передачи исполнительной документации"
+          },
+          {
+            "href": "p4-ispolnitelnaya-dokumentaciya-pto.html",
+            "text": "Посмотреть комплект →"
+          }
+        ],
+        "price": "24 900 ₽",
+        "t2": "9 900 ₽"
+      }
+    },
+    {
+      "id": "C01-C03-A01",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "screenshot": "screens/after/checkout-mobile.png",
+        "paymentPosts": 0
+      }
+    },
+    {
+      "id": "CART-MIGRATION",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": [
+        {
+          "sku": "p8",
+          "name": "Система управления авансами и расчётами по договору подряда",
+          "price": 2490000
+        }
+      ]
+    },
+    {
+      "id": "F01-F02-MOCK",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "goals": [
+          {
+            "name": "lead_submit",
+            "params": {
+              "material": "dengi",
+              "source": "site-dengi",
+              "last": {
+                "source": "synthetic",
+                "medium": "test",
+                "campaign": "route-qa"
+              }
+            }
+          },
+          {
+            "name": "lead_ready",
+            "params": {
+              "material": "dengi",
+              "source": "site-dengi",
+              "last": {
+                "source": "synthetic",
+                "medium": "test",
+                "campaign": "route-qa"
+              }
+            }
+          },
+          {
+            "name": "download_click",
+            "params": {
+              "material": "dengi",
+              "source": "site-dengi",
+              "last": {
+                "source": "synthetic",
+                "medium": "test",
+                "campaign": "route-qa"
+              }
+            }
+          }
+        ],
+        "screenshot": "screens/after/lead-ready-mobile.png",
+        "server_served": "NOT_EXECUTED; local mocked response only"
+      }
+    },
+    {
+      "id": "F-ERROR",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "ready": 0,
+        "click": 0
+      }
+    },
+    {
+      "id": "E01",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "no_id": "unconfirmed",
+        "mock_status": "pending"
+      }
+    },
+    {
+      "id": "H03",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "links": [
+          "/katalog.html#group-do-podpisaniya",
+          "/katalog.html#group-do-podpisaniya",
+          "/katalog.html#group-zakrytie-i-oplata",
+          "/katalog.html#group-zakrytie-i-oplata",
+          "/katalog.html#selection-oplata",
+          "/katalog.html#selection-oplata"
+        ]
+      }
+    },
+    {
+      "id": "MOBILE-MENU",
+      "viewport": "mobile",
+      "status": "PASS",
+      "actual": {
+        "closed": true
+      }
+    }
+  ],
+  "errors": [],
+  "backend": "NATIVE_PHP",
+  "network_summary": {
+    "external_blocked": 134,
+    "real_payment_posts": 0,
+    "real_lead_posts": 0
+  },
+  "limits": "Free and status responses mocked. Payment POST blocked. Real paid E2E and download_served NOT_EXECUTED."
+}

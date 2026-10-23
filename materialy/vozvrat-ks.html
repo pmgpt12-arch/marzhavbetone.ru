@@ -15,10 +15,10 @@
   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
   <link rel="stylesheet" href="../catalog.css?v=0870b18a">
   <link rel="stylesheet" href="../product.css?v=6f1c826e">
-  <link rel="stylesheet" href="../lead.css?v=0de0682f">
+  <link rel="stylesheet" href="../lead.css?v=a62ae9a0">
   <link rel="stylesheet" href="../cart.css?v=dbf0bfa0">
   <link rel="stylesheet" href="../desktop.css?v=9ebabe34">
-  <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
+  <link rel="stylesheet" href="../brand-approved-2026.css?v=6badf6ba">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -82,12 +82,13 @@
         <input name="material" type="hidden" value="vozvrat-ks">
         <input name="source" type="hidden" value="site-vozvrat-ks">
         <input name="name" type="text" maxlength="80" placeholder="Имя" required>
-        <input name="contact" type="text" maxlength="120" placeholder="Telegram или email" required>
+        <label>Email для связи<input name="contact" type="email" autocomplete="email" maxlength="120" placeholder="Email" required></label>
+        <label>Telegram или телефон · необязательно<input name="additional_contact" type="text" maxlength="120" placeholder="@username или +7…"></label>
         <label><input name="consent" type="checkbox" value="yes" required> Согласен на обработку данных</label>
         <button class="button" type="submit">Получить материалы</button>
         <p id="lead-status" role="status"></p>
       </form>
-      <p class="note">Материалы — редактируемые шаблоны. Их нужно адаптировать под ваш договор и обстоятельства объекта; они не заменяют юридическую консультацию.</p>
+      <p class="note">Формы и расчёты заполняются по вашему договору, документам и обстоятельствам объекта.</p>
     </section>
 
     <section class="section related">

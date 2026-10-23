@@ -28,7 +28,11 @@ on:
         description: Ограниченный повтор затронутой проверки
         type: choice
         default: all
-        options: [all, cart, attribution]
+        options: [all, contract, cart, attribution]
+
+concurrency:
+  group: render-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   render:
@@ -47,13 +51,27 @@ jobs:
       # отвечают кодом 2 «не запускалась», а не «прошла».
       - name: Поставить playwright с хромиумом
         id: browser
+        timeout-minutes: 5
         run: |
-          python3 -m pip install --quiet playwright
-          python3 -m playwright install --with-deps chromium
+          export PLAYWRIGHT_BROWSERS_PATH="$RUNNER_TEMP/nsp-playwright-browsers"
+          echo "PLAYWRIGHT_BROWSERS_PATH=$PLAYWRIGHT_BROWSERS_PATH" >> "$GITHUB_ENV"
+          python3 -m pip install --quiet playwright pillow
+          # Use the renderer matched to Playwright for exact pixel comparisons.
+          # The runner already has Chrome's runtime libraries; avoid apt downloads.
+          timeout 240s python3 -m playwright install --only-shell chromium
 
       - name: Контракт браузерной проверки
         if: ${{ !cancelled() && steps.browser.conclusion == 'success' }}
         run: python3 tools/test_desktop_contract.py
+
+      - name: Сохранить различающиеся снимки контракта
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: render-contract-${{ github.run_id }}
+          path: render-contract-artifacts/
+          if-no-files-found: ignore
+          retention-days: 7
 
       # Карта сайта и фид собираются при выкладке, а проверки на них
       # смотрят. Без сборки здесь они мерят вчерашний артефакт.

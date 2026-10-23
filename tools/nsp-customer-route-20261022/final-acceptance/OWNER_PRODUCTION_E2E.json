@@ -1,0 +1,31 @@
+{
+  "status": "OWNER_PRODUCTION_E2E_PASS",
+  "evidence_class": "OWNER_ATTESTATION",
+  "reported_date": "2026-10-23",
+  "timezone": "Asia/Krasnoyarsk",
+  "origin": "https://nastoronepodryadchika.ru",
+  "product_scope": "currently published service/test product",
+  "amount_rub": "1.00",
+  "results": {
+    "payment": "PASS",
+    "confirmation_page": "PASS",
+    "buyer_email": "PASS",
+    "archive_download": "PASS",
+    "repeat_download": "PASS"
+  },
+  "exact_live_commit": "NOT_ESTABLISHED_BY_OWNER_REPORT",
+  "applies_to_draft_pr_676_download_php": false,
+  "automated_real_purchase_repeated": false,
+  "release_authorization": false,
+  "notes": [
+    "Owner directly performed and reported the purchase.",
+    "Server-side corroboration is separate evidence and must not be inferred from this attestation.",
+    "No personal information, raw order/payment IDs, tokens or archive contents are retained here."
+  ],
+  "current_live_download_sha256": "8c90c5abf5900d1ab7e14d663a584e304fcf9ef8e37a953a4ac5b231e1b6ec55",
+  "server_corroboration": "SERVER_CORROBORATION.json",
+  "scope_binding": "Owner attestation is for published service product; live file fingerprint is a separate later read-only snapshot.",
+  "owner_repeat_reconfirmed": true,
+  "server_complete_gets_after_reconfirmation": 2,
+  "server_repeat_corroboration": "SERVER_REPEAT_CORROBORATION.json"
+}

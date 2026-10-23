@@ -21,6 +21,41 @@
 #
 # Прогон: python3 tools/run_checks.py --class public
 проверки:
+- id: test_payment_test_mode
+  команда: python3 -m unittest tools.test_payment_test_mode
+  класс: public
+  блокирует: true
+  зачем: предварительная проверка не выбирает боевой ключ для теста без списания денег и не выводит секреты
+  требует: []
+  решение: 'Синтетические конфигурации; сетевые запросы отсутствуют.'
+- id: test_staging_source_scope
+  команда: python3 -m unittest tools.test_staging_source_scope
+  класс: public
+  блокирует: true
+  зачем: известная staging-версия не разрешает произвольные изменения сайта, оплаты и продуктовых файлов
+  требует: []
+  решение: 'Негативные сценарии выполняются в изолированном Git-репозитории; исторические снимки сохранены.'
+- id: test_metrika_readonly
+  команда: python3 tools/test_metrika_readonly.py
+  класс: public
+  блокирует: true
+  зачем: проверка аналитики только чтением не создаёт цели и не записывает снимки
+  требует: []
+  решение: 'Настоящий shell-шаг проверяется с локальным регистратором аргументов без сети.'
+- id: test_customer_route
+  команда: python3 tools/test_customer_route.py
+  класс: public
+  блокирует: true
+  зачем: XML Word не попадает в предпросмотр; снятые SKU и старые цены не возвращаются в маршрут
+  требует: []
+  решение: 'Негативные проверки извлечения DOCX, совместимости формы, цен и корзины без сети и платежей.'
+- id: sync_customer_route
+  команда: python3 tools/sync_customer_route.py
+  класс: public
+  блокирует: true
+  зачем: снимок корзины и цена P4 в T2 согласованы с серверным каталогом
+  требует: []
+  решение: 'Серверный products-config.php остаётся единственным источником цен; запись в него не выполняется.'
 - id: test_nsp_form_mail
   команда: python3 tools/test_nsp_form_mail.py --handlers-only
   класс: public
@@ -269,6 +304,13 @@
   класс: public
   блокирует: true
   зачем: синтаксис всех PHP корня
+  требует: []
+  решение: ''
+- id: test_download_events
+  команда: python3 tools/test_download_events.py
+  класс: public
+  блокирует: true
+  зачем: фактическая выдача ZIP, ошибки и повторные GET без двойного учёта на синтетических заказах
   требует: []
   решение: ''
 - id: test_order_lock

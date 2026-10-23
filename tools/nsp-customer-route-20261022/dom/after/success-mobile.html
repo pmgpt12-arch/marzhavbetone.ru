@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="ru"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Ключ статуса стоит в адресе этой страницы. Referer с ним не уйдёт
+       никуда: ни на внешний домен, ни на свой. Страница внешних
+       подресурсов не грузит, но полагаться на это нельзя — один
+       добавленный сюда счётчик отправил бы ключ третьей стороне. -->
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="Проверка статуса оплаты и получение документов после подтверждения заказа.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://nastoronepodryadchika.ru/success.html">
+  <title>Статус оплаты — На стороне подрядчика</title>
+  <link rel="stylesheet" href="styles.css?v=fda7e0ac">
+  <link rel="stylesheet" href="cart.css?v=dbf0bfa0">
+  <link rel="stylesheet" href="brand-approved-2026.css?v=129e847b">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    .result-page{max-width:680px;margin:0 auto;padding:60px 24px;text-align:center}
+    .result-page .brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:40px;font-size:20px;font-weight:700}
+    .result-icon{width:80px;height:80px;margin:0 auto 24px;border-radius:50%;background:#2e7d32;display:flex;align-items:center;justify-content:center;color:#fff;font-size:40px}
+    .result-page h1{font-size:32px;margin-bottom:16px}
+    .result-page .lead{color:#65676a;margin-bottom:32px}
+    .order-details{background:#f4f1ea;border-radius:12px;padding:24px;margin:24px 0;text-align:left}
+    .order-details h3{margin-top:0;font-size:18px}
+    .order-items{list-style:none;margin:0;padding:0}
+    .order-items li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e0dcd3}
+    .order-items li:last-child{border-bottom:none;font-weight:700;font-size:18px}
+    .delivery-info{background:#e8f5e9;border-radius:8px;padding:16px;margin-top:24px}
+    .delivery-info p{margin:0;color:#2e7d32}
+    .btn-group{display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+    .spinner{width:40px;height:40px;border:3px solid #e0dcd3;border-top-color:#242629;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 24px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .hidden{display:none}
+  </style>
+<meta name="robots" content="noindex,nofollow,noarchive"></head>
+<body class="rebrand-approved">
+  <div class="result-page">
+    <a href="/" class="brand"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a>
+    
+    <div id="loading" class="hidden">
+      <div class="spinner"></div>
+      <p>Проверяем статус оплаты...</p>
+    </div>
+    
+    <div id="success-content" class="hidden">
+      <div class="result-icon">✓</div>
+      <h1>Оплата прошла успешно</h1>
+      <p class="lead">Спасибо за покупку! Документы будут отправлены на ваш email в течение 5 минут.</p>
+      
+      <div class="order-details">
+        <h3>Ваш заказ</h3>
+        <ul class="order-items" id="order-items"></ul>
+      </div>
+
+      <div class="order-details hidden" id="downloads-block">
+        <h3>Скачать материалы</h3>
+        <ul class="order-items" id="download-links"></ul>
+        <p style="margin:12px 0 0;color:#65676a;font-size:14px">Ссылки действуют 30 дней — сохраните файлы на компьютер.</p>
+      </div>
+
+      <!-- Заполняется скриптом ниже по фактически купленному товару.
+           Пустой и скрытый, пока предложения нет: случайный товар здесь
+           хуже, чем ничего. -->
+      <section class="upsell" id="upsell" hidden=""></section>
+
+      <div class="delivery-info">
+        <p><strong>📧 Доставка:</strong> Эти же ссылки отправлены на указанный email. Если письма нет — проверьте папку «Спам».</p>
+      </div>
+      
+      <div class="btn-group">
+        <a href="/" class="button">Вернуться в каталог</a>
+        <a href="https://t.me/nastoronepodryadchika" target="_blank" class="button">Telegram-канал</a>
+      </div>
+    </div>
+    
+    <div id="pending-content" class="hidden">
+      <div class="result-icon" style="background:#f9a825">⏳</div>
+      <h1>Платёж обрабатывается</h1>
+      <p class="lead">Мы получили ваш заказ, но оплата ещё не подтверждена. Это может занять несколько минут.</p>
+      <p>Если оплата не пройдёт — свяжемся с вами по указанному email или телефону.</p>
+      <div class="btn-group">
+        <a href="/" class="button">Вернуться в каталог</a>
+      </div>
+    </div>
+    
+    <div id="error-content" class="">
+      <div class="result-icon" style="background:#c62828">✕</div>
+      <h1>Не удалось подтвердить оплату</h1>
+      <p class="lead">Статус оплаты не подтверждён. Если вы уже оплатили, проверьте письмо с подтверждением или свяжитесь с нами.</p>
+      <p>Если деньги списались, но документы не пришли — напишите нам: <a href="mailto:nastoronepodryadchika@yandex.ru">nastoronepodryadchika@yandex.ru</a></p>
+      <div class="btn-group">
+        <a href="/" class="button">Вернуться в каталог</a>
+        <a href="contacts.html" class="button">Связаться с нами</a>
+      </div>
+    </div>
+  </div>
+
+  <script async="" src="https://mc.yandex.ru/metrika/tag.js?id=111149105"></script><script>
+    // Контейнер электронной коммерции. Создаётся здесь, а не в attribution.js,
+    // потому что должен существовать до инициализации счётчика (требование
+    // Метрики), а этот скрипт выполняется синхронно раньше attribution.js.
+    window.dataLayer = window.dataLayer || [];
+
+    (async function() {
+      const params = new URLSearchParams(location.search);
+      const orderId = params.get('order');
+      // Ключ статуса: без него check-payment.php не отдаёт ни статуса, ни
+      // ссылок. Приходит в адресе возврата от кассы вместе с номером заказа.
+      const statusKey = params.get('k') || params.get('key');
+      
+      if (!orderId || !statusKey) {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('error-content').classList.remove('hidden');
+        return;
+      }
+      
+      try {
+        const res = await fetch('/check-payment.php?order=' + encodeURIComponent(orderId)
+          + '&key=' + encodeURIComponent(statusKey));
+        const data = await res.json();
+        
+        document.getElementById('loading').classList.add('hidden');
+        
+        if (!data.ok || !data.order) {
+          document.getElementById('error-content').classList.remove('hidden');
+          return;
+        }
+        
+        const order = data.order;
+        const itemsList = document.getElementById('order-items');
+        
+        // Заполняем список товаров
+        (order.items || []).forEach(item => {
+          const li = document.createElement('li');
+          const price = new Intl.NumberFormat('ru-RU').format(item.price / 100) + ' ₽';
+          li.innerHTML = '<span>' + (item.name || 'Товар') + '</span><span>' + price + '</span>';
+          itemsList.appendChild(li);
+        });
+        
+        // Итого
+        const totalLi = document.createElement('li');
+        totalLi.innerHTML = '<span>Итого</span><span>' + new Intl.NumberFormat('ru-RU').format(order.total / 100) + ' ₽</span>';
+        itemsList.appendChild(totalLi);
+        
+        if (order.status === 'paid') {
+          // Покупатель возвращается сюда за ссылками, пока те живы, и каждый
+          // повторный заход слал бы purchase заново — одна продажа считалась
+          // бы несколькими. Отметка по номеру заказа отправляет её один раз;
+          // недоступное хранилище (приватный режим) даёт повтор, а не потерю.
+          var alreadyTracked = false;
+          var trackedKey = 'marzhavbetone-purchase-' + orderId;
+          try { alreadyTracked = !!localStorage.getItem(trackedKey); } catch (e) {}
+          if (!alreadyTracked) {
+          // Цель ставится только здесь: success.html открывается и при
+          // неоплаченном заказе, и снаружи этой проверки покупкой считался бы
+          // каждый заход. Сервер отдаёт сумму в копейках.
+          if (typeof window.ym === 'function' && window.METRIKA_ID) {
+            // Источник перехода: без него нельзя сказать, какой канал
+            // принёс деньги, а значит нельзя решить, где публиковать.
+            // Первое касание переживает все переходы по сайту, последнее
+            // называет, откуда пришёл этот визит.
+            var attribution = (typeof window.mvbAttribution === 'function'
+              ? window.mvbAttribution() : {}) || {};
+            var firstTouch = attribution.first || {};
+            var lastTouch = attribution.last || {};
+            // Почта и телефон покупателя в заказе есть и сюда не идут:
+            // в аналитику уходит только то, что нужно для решения о канале.
+            window.ym(window.METRIKA_ID, 'reachGoal', 'purchase', {
+              order_id: orderId,
+              product_id: (order.items || []).map(function (i) { return i.sku; })
+                .filter(Boolean).join(','),
+              revenue: order.total / 100,
+              order_price: order.total / 100,
+              currency: 'RUB',
+              first_touch_source: firstTouch.source || 'direct',
+              first_touch_medium: firstTouch.medium || '',
+              first_touch_campaign: firstTouch.campaign || '',
+              last_touch_source: lastTouch.source || firstTouch.source || 'direct',
+              landing_page: firstTouch.landing || ''
+            });
+          }
+          // Отчёт «Электронная коммерция»: те же данные заказа, что и в цели
+          // purchase выше — id, сумма в рублях, валюта; позиции из ответа
+          // check-payment.php (sku, name, цена в копейках).
+          window.dataLayer.push({
+            ecommerce: {
+              currencyCode: 'RUB',
+              purchase: {
+                actionField: { id: orderId, revenue: order.total / 100 },
+                products: (order.items || []).map(item => ({
+                  id: item.sku,
+                  name: item.name || 'Товар',
+                  price: item.price / 100,
+                  quantity: 1
+                }))
+              }
+            }
+          });
+          try { localStorage.setItem(trackedKey, new Date().toISOString()); } catch (e) {}
+          }
+          // Что дальше: предложение по фактически купленному товару.
+          // Таблицу собирает tools/build_upsell.py из product-map.csv;
+          // если для sku в ней ничего нет, блок не появляется вовсе.
+          (function () {
+            var table = window.MVB_UPSELL || {};
+            var offer = null;
+            (order.items || []).some(function (item) {
+              if (item.sku && table[item.sku]) { offer = table[item.sku]; return true; }
+              return false;
+            });
+            var host = document.getElementById('upsell');
+            if (!offer || !host) return;
+            // Два разных предложения и потому два разных текста.
+            // «Ступень вверх» — та же ситуация, взятая целиком: купившему
+            // порядок одного дня незачем рассказывать про следующую беду.
+            // «Следом» — соседняя ситуация по процессу.
+            if (offer.kind === 'step') {
+              host.innerHTML =
+                '<p class="eyebrow">СЛЕДУЮЩИЙ ШАГ ПО ЭТОЙ ЖЕ СИТУАЦИИ</p>' +
+                '<h2>' + offer.closed + '</h2>' +
+                '<p class="lead">Вы взяли первый ход. Весь порядок по этой ' +
+                'ситуации собран в комплекте — вместе с формами, которые ' +
+                'понадобятся дальше.</p>' +
+                '<a class="button" href="' + offer.url + '" id="upsell-link">' +
+                offer.name + ' →</a>';
+            } else {
+              host.innerHTML =
+                '<p class="eyebrow">ЧТО ЧАСТО ИДЁТ СЛЕДОМ</p>' +
+                '<h2>' + offer.next + '</h2>' +
+                '<p class="lead">Вы закрыли ситуацию «' + offer.closed +
+                '». Следующая по процессу — та, что выше.</p>' +
+                '<a class="button" href="' + offer.url + '" id="upsell-link">' +
+                offer.name + ' →</a>';
+            }
+            host.hidden = false;
+            var link = document.getElementById('upsell-link');
+            if (link) {
+              link.addEventListener('click', function () {
+                if (typeof window.mvbTrackGoal === 'function') {
+                  window.mvbTrackGoal('upsell_click');
+                }
+              });
+            }
+          })();
+
+          // Показываем ссылки на скачивание, если они готовы
+          if (Array.isArray(order.downloads) && order.downloads.length) {
+            const linksList = document.getElementById('download-links');
+            order.downloads.forEach(d => {
+              const li = document.createElement('li');
+              const a = document.createElement('a');
+              a.href = d.url;
+              a.textContent = d.name || 'Скачать архив';
+              li.appendChild(a);
+              linksList.appendChild(li);
+            });
+            document.getElementById('downloads-block').classList.remove('hidden');
+          }
+          document.getElementById('success-content').classList.remove('hidden');
+          // Очищаем корзину
+          localStorage.removeItem('marzhavbetone-cart');
+        } else if (order.status === 'pending' || order.status === 'waiting_for_capture') {
+          document.getElementById('pending-content').classList.remove('hidden');
+          // Платёж мог ещё не подтвердиться — перепроверяем через 8 секунд
+          setTimeout(() => location.reload(), 8000);
+        } else {
+          document.getElementById('error-content').classList.remove('hidden');
+        }
+      } catch (e) {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('error-content').classList.remove('hidden');
+      }
+    })();
+  </script>
+  <script src="/attribution.js?v=e5aab965"></script>
+  <!-- upsell:begin -->
+  <script>
+    // Таблица собирается tools/build_upsell.py из data/sales/product-map.csv.
+    // Руками не правится: разойдётся с каталогом на первой правке состава.
+    window.MVB_UPSELL = {
+  "p1": {
+    "url": "/products/p5-shtrafy-uderzhaniya.html",
+    "name": "Гарантийное удержание",
+    "closed": "Работы выполнены — денег нет",
+    "next": "Не возвращают удержания",
+    "kind": "next"
+  },
+  "p2": {
+    "url": "/products/p13-chto-v-smete-ne-oplatyat.html",
+    "name": "Что в смете не оплатят",
+    "closed": "Не оплачивают дополнительные работы",
+    "next": "Опасные условия договора",
+    "kind": "next"
+  },
+  "p3": {
+    "url": "/products/p10-otvet-na-pretenziyu.html",
+    "name": "Ответ на претензию заказчика или генподрядчика",
+    "closed": "Не принимают и не подписывают КС",
+    "next": "Не возвращают удержания",
+    "kind": "next"
+  },
+  "p4": {
+    "url": "/products/p3-shablony-ks2-ks3.html",
+    "name": "КС-2 без возврата",
+    "closed": "Исполнительная документация блокирует приёмку и оплату",
+    "next": "Не принимают и не подписывают КС",
+    "kind": "next"
+  },
+  "p5": {
+    "url": "/products/p1-oplata-po-ks2.html",
+    "name": "Акты выполненных работ, КС-2 и КС-3",
+    "closed": "Не возвращают удержания",
+    "next": "Не принимают и не подписывают КС",
+    "kind": "next"
+  },
+  "p7": {
+    "url": "/products/p13-chto-v-smete-ne-oplatyat.html",
+    "name": "Что в смете не оплатят",
+    "closed": "Опасные условия договора",
+    "next": "Не оплачивают дополнительные работы",
+    "kind": "next"
+  },
+  "p9": {
+    "url": "/products/p1-oplata-po-ks2.html",
+    "name": "Акты выполненных работ, КС-2 и КС-3",
+    "closed": "Контрагент становится неплатёжеспособным",
+    "next": "Работы выполнены — денег нет",
+    "kind": "next"
+  },
+  "t1": {
+    "url": "/products/p1-oplata-po-ks2.html",
+    "name": "Акты выполненных работ, КС-2 и КС-3",
+    "closed": "Работы выполнены — денег нет",
+    "next": "",
+    "kind": "step"
+  },
+  "t2": {
+    "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+    "name": "Акты скрытых работ и исполнительная документация",
+    "closed": "Исполнительная документация блокирует приёмку и оплату",
+    "next": "",
+    "kind": "step"
+  },
+  "t3": {
+    "url": "/products/p3-shablony-ks2-ks3.html",
+    "name": "КС-2 без возврата",
+    "closed": "Не принимают и не подписывают КС",
+    "next": "",
+    "kind": "step"
+  },
+  "t4": {
+    "url": "/products/p9-bankrotstvo-genpodryadchika.html",
+    "name": "Реестр требований кредиторов",
+    "closed": "Контрагент становится неплатёжеспособным",
+    "next": "",
+    "kind": "step"
+  },
+  "t5": {
+    "url": "/products/p7-dogovor-podryada.html",
+    "name": "Договор субподряда",
+    "closed": "Опасные условия договора",
+    "next": "",
+    "kind": "step"
+  },
+  "t6": {
+    "url": "/products/p7-dogovor-podryada.html",
+    "name": "Договор субподряда",
+    "closed": "Опасные условия договора",
+    "next": "",
+    "kind": "step"
+  }
+};
+  </script>
+  <!-- upsell:end -->
+
+
+</body></html>

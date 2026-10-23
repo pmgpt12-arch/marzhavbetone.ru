@@ -15,8 +15,12 @@ const formStatus = document.querySelector('#form-status');
 // app.js — только на двадцати пяти, и статей среди них нет. Здесь остался
 // вызов, чтобы места вызова целей ниже не переписывать. Запасная ветка нужна
 // на случай, если attribution.js не загрузился: тогда цель просто не уйдёт.
-function trackGoal(name) {
-  if (typeof window.mvbTrackGoal === 'function') window.mvbTrackGoal(name);
+function trackGoal(name, params) {
+  if (params && typeof window.ym === 'function' && window.METRIKA_ID) {
+    window.ym(window.METRIKA_ID, 'reachGoal', name, params);
+    return;
+  }
+  if (typeof window.mvbTrackGoal === 'function') window.mvbTrackGoal(name, params);
 }
 // Клик по ссылке на Дзен считает attribution.js делегированием — здесь
 // обработчика больше нет, иначе одно событие уходило бы дважды.
@@ -29,29 +33,60 @@ const cartEmpty = document.querySelector('#cart-empty');
 const cartTotal = document.querySelector('#cart-total');
 const cartCount = document.querySelector('#cart-count');
 const cartCheckout = document.querySelector('#cart-checkout');
+// route-catalog:begin (tools/sync_customer_route.py; products-config.php)
+const CART_CATALOG = {"p1":{"sku":"p1","name":"Система получения оплаты за выполненные работы","price":2990000},"p2":{"sku":"p2","name":"Система оформления и получения оплаты за дополнительные работы","price":2490000},"p3":{"sku":"p3","name":"Комплект «КС-2 без возврата: сдайте с первой попытки»","price":1790000},"p4":{"sku":"p4","name":"Система ведения, проверки и передачи исполнительной документации","price":2490000},"p5":{"sku":"p5","name":"Система защиты подрядчика от претензий, штрафов, удержаний и зачётов","price":2990000},"t2":{"sku":"t2","name":"Система документального подтверждения передачи исполнительной документации","price":990000},"t3":{"sku":"t3","name":"Система подготовки возражений на односторонний акт или списание в одностороннем порядке","price":1490000},"p7":{"sku":"p7","name":"Система проверки и согласования договора субподряда","price":2490000},"p8":{"sku":"p8","name":"Система управления авансами и расчётами по договору подряда","price":2490000},"p9":{"sku":"p9","name":"Система защиты требований подрядчика при банкротстве генподрядчика","price":2490000},"p10":{"sku":"p10","name":"Система подготовки ответа на претензию заказчика","price":1790000},"p11":{"sku":"p11","name":"Расчёты в неденежной форме: жилые и офисные помещения, машино-места","price":2490000},"p13":{"sku":"p13","name":"Система проверки сметной документации и выявления неоплачиваемых затрат","price":1790000}};
+// route-catalog:end
+function cartProduct(sku) {
+  return typeof sku === 'string' && Object.hasOwn(CART_CATALOG, sku) ? CART_CATALOG[sku] : null;
+}
 let cart = [];
-try { cart = JSON.parse(localStorage.getItem('marzhavbetone-cart') || '[]'); } catch (_) { cart = []; }
+let cartUpdated = false;
+try {
+  const saved = JSON.parse(localStorage.getItem('marzhavbetone-cart') || '[]');
+  for (const item of Array.isArray(saved) ? saved : []) {
+    const product = item && cartProduct(item.sku);
+    if (product && !cart.some(row => row.sku === product.sku)) cart.push({...product});
+  }
+  cartUpdated = JSON.stringify(saved) !== JSON.stringify(cart);
+} catch (_) { cart = []; }
+let cartOpener = null;
 
 function money(value) { return new Intl.NumberFormat('ru-RU').format(value / 100) + '\u00a0₽'; }
 function saveCart() { localStorage.setItem('marzhavbetone-cart', JSON.stringify(cart)); }
 function openCart() {
+  cartOpener = document.activeElement;
   cartPanel.hidden = false;
   cartBackdrop.hidden = false;
   if (cartToggle) cartToggle.setAttribute('aria-expanded', 'true');
+  cartPanel.setAttribute('role', 'dialog');
+  cartPanel.setAttribute('aria-modal', 'true');
+  cartPanel.setAttribute('aria-label', 'Корзина');
+  if (cartClose) cartClose.focus();
 }
 function closeCart() {
   cartPanel.hidden = true;
   cartBackdrop.hidden = true;
   if (cartToggle) cartToggle.setAttribute('aria-expanded', 'false');
+  if (cartOpener?.isConnected) cartOpener.focus();
 }
 function renderCart() {
+  if (cartUpdated) {
+    let note = document.getElementById('cart-update-note');
+    if (!note) {
+      note = document.createElement('p'); note.id = 'cart-update-note';
+      note.setAttribute('role', 'status');
+      cartItems.before(note);
+    }
+    note.textContent = 'Сохранённая корзина обновлена по действующему каталогу. Проверьте состав и сумму.';
+    saveCart();
+  }
   cartItems.replaceChildren();
   cart.forEach(item => {
     const row = document.createElement('li'); row.className = 'cart-item';
     const name = document.createElement('strong'); name.textContent = item.name;
     const price = document.createElement('span'); price.className = 'cart-item-price'; price.textContent = money(item.price);
     const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'cart-remove'; remove.textContent = 'Удалить';
-    remove.addEventListener('click', () => { cart = cart.filter(product => product.name !== item.name); saveCart(); renderCart(); });
+    remove.addEventListener('click', () => { cart = cart.filter(product => product.sku !== item.sku); saveCart(); renderCart(); cartClose?.focus(); });
     row.append(name, price, remove); cartItems.append(row);
   });
   const total = cart.reduce((sum, item) => sum + item.price, 0);
@@ -60,7 +95,7 @@ function renderCart() {
   cartEmpty.hidden = cart.length > 0;
   cartCheckout.disabled = cart.length === 0;
   document.querySelectorAll('.add-to-cart').forEach(button => {
-    const added = cart.some(item => item.name === button.dataset.product);
+    const added = cart.some(item => item.sku === button.dataset.sku);
     button.classList.toggle('added', added);
     button.textContent = added ? 'В корзине' : 'Добавить в корзину';
   });
@@ -76,10 +111,21 @@ const cartClose = document.querySelector('#cart-close');
 if (cartToggle) cartToggle.addEventListener('click', openCart);
 if (cartClose) cartClose.addEventListener('click', closeCart);
 if (cartBackdrop) cartBackdrop.addEventListener('click', closeCart);
+if (cartPanel) cartPanel.addEventListener('keydown', event => {
+  if (event.key === 'Escape') { event.preventDefault(); closeCart(); }
+  if (event.key !== 'Tab') return;
+  const focusable = [...cartPanel.querySelectorAll('a[href],button,input')].filter(el => !el.disabled && el.getClientRects().length);
+  const first = focusable[0], last = focusable[focusable.length - 1];
+  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+});
 document.querySelectorAll('.add-to-cart').forEach(button => button.addEventListener('click', () => {
-  if (!cart.some(item => item.name === button.dataset.product)) cart.push({ sku: button.dataset.sku || '', name: button.dataset.product, price: Number(button.dataset.price) });
+  const product = cartProduct(button.dataset.sku);
+  if (!product) return;
+  const exists = cart.some(item => item.sku === button.dataset.sku);
+  if (!exists) cart.push({...product});
   saveCart(); renderCart(); openCart();
-  trackGoal('add_to_cart');
+  if (!exists) trackGoal('add_to_cart');
 }));
 
 // ===================== ОПЛАТА ЧЕРЕЗ ЮКАССА =====================
@@ -135,7 +181,7 @@ function createCheckoutModal() {
   modal.querySelector('#checkout-form').addEventListener('submit', async event => {
     event.preventDefault();
     const form=event.target, errorEl=modal.querySelector('#checkout-error'), loadingEl=modal.querySelector('#checkout-loading'), submitBtn=form.querySelector('.checkout-submit');
-    if (!form.reportValidity() || cart.length===0) return;
+    if (submitBtn.disabled || !form.reportValidity() || cart.length===0) return;
     errorEl.textContent=''; submitBtn.disabled=true; loadingEl.hidden=false;
     const data={items:cart,email:form.elements.email.value.trim(),phone:form.elements.phone.value.trim(),attribution:typeof window.mvbAttribution==='function'?window.mvbAttribution():{}};
     try {
@@ -210,15 +256,36 @@ if (form) {
 const leadForm = document.querySelector('#lead-form');
 const leadStatus = document.querySelector('#lead-status');
 if (leadForm) {
+  let leadPending = false;
   leadForm.addEventListener('submit', async event => {
     event.preventDefault();
+    if (leadPending || !leadForm.reportValidity()) return;
+    leadPending = true;
     const button = leadForm.querySelector('button');
     button.disabled = true;
+    const data = new FormData(leadForm);
+    // lead.php accepts one contact string. Keep its contract and retain the
+    // optional contact in that same field; no email sending is promised here.
+    const extra = String(data.get('additional_contact') || '').trim();
+    if (extra) data.set('contact', String(data.get('contact')).trim() + '; дополнительный контакт: ' + extra);
+    data.delete('additional_contact');
+    const attribution = typeof window.mvbAttribution === 'function' ? window.mvbAttribution() : {};
+    const context = {material: String(data.get('material') || 'checklist'), source: String(data.get('source') || 'site')};
+    for (const touch of ['first', 'last']) {
+      if (!attribution[touch]) continue;
+      context[touch] = {};
+      for (const key of ['source', 'medium', 'campaign', 'content']) {
+        if (attribution[touch][key]) context[touch][key] = String(attribution[touch][key]).slice(0, 200);
+      }
+    }
+    trackGoal('lead_submit', context);
     leadStatus.textContent = 'Готовим ссылку…';
     try {
-      const response = await fetch(leadForm.action, { method: 'POST', body: new FormData(leadForm), headers: { Accept: 'application/json' } });
+      const response = await fetch(leadForm.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.message || 'Не удалось получить чек-лист');
+      const download = new URL(result.download, location.href);
+      if (download.origin !== location.origin || !download.pathname.startsWith('/downloads/')) throw new Error('Ссылка на материал не подтверждена. Повторите позже.');
       // Второй строкой — один ненавязчивый переход по этой же ситуации.
       // Адрес объявлен на самой форме (data-continue) и собирается из
       // страницы набора: своей таблицы соответствий здесь не заводится.
@@ -227,10 +294,14 @@ if (leadForm) {
       const продолжение = дальше
         ? `<p class="lead-continue"><a class="text-link" href="${дальше}">Разобраться, что делать дальше →</a></p>`
         : '';
-      leadStatus.innerHTML = `<p class="lead-ready">Материал готов.</p><a class="button" href="${result.download}" download>${result.label || 'Скачать материалы'}</a> <a class="text-link" href="https://t.me/nastoronepodryadchika" target="_blank">Разборы выходят в Telegram</a>${продолжение}`;
+      leadStatus.innerHTML = `<p class="lead-ready">Материал готов.</p><a class="button" data-download-link download></a> <a class="text-link" href="https://t.me/nastoronepodryadchika" target="_blank" rel="noopener">Разборы выходят в Telegram</a>${продолжение}`;
+      const link = leadStatus.querySelector('[data-download-link]');
+      link.href = download.href;
+      link.textContent = result.label || 'Скачать материалы';
+      link.addEventListener('click', () => trackGoal('download_click', context), {once: true});
       leadForm.reset();
-      trackGoal('checklist_download');
+      trackGoal('lead_ready', context);
     } catch (error) { leadStatus.textContent = error.message; }
-    finally { button.disabled = false; }
+    finally { button.disabled = false; leadPending = false; }
   });
 }

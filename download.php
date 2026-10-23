@@ -8,8 +8,73 @@ declare(strict_types=1);
 require __DIR__ . '/config.php';
 require __DIR__ . '/products-config.php';
 
+/** Private, idempotent observations; never a condition of serving the archive. */
+function mvb_download_observe(string $orderId, string $requestedSku, array $outcome): void
+{
+    try {
+        $funnel = __DIR__ . '/mvb_funnel.php';
+        if (!is_file($funnel)) return;
+        require_once $funnel;
+        mvb_funnel_release();
+        $reason = null;
+        if (!mvb_funnel_outbox_usable($reason)) return;
+        // This is a receipt journal, not another delivery queue. The existing
+        // collector receives only the canonical successful-delivery event.
+        $dir = mvb_funnel_outbox_dir() . '/download-receipts';
+        if (mvb_funnel_outbox_inside_docroot($dir)) return;
+        if (!is_dir($dir) && !@mkdir($dir, 0700, true) && !is_dir($dir)) return;
+        $file = $dir . '/' . hash('sha256', $orderId) . '.json';
+        // Initialise under the SAME lock used by the existing atomic writer.
+        // Never overwrite a receipt created by a concurrent first request.
+        $init = @fopen($file . '.lock', 'c');
+        if ($init === false) return;
+        if (!@flock($init, LOCK_EX)) { fclose($init); return; }
+        try {
+            if (!is_file($file) && !mvb_write_order($file, ['events' => new stdClass()], false)) return;
+        } finally {
+            @flock($init, LOCK_UN);
+            fclose($init);
+        }
+        $sku = isset(mvb_products()[$requestedSku]) ? $requestedSku : null;
+        mvb_with_order_lock_strict($file, function (array &$receipt) use ($orderId, $sku, $outcome) {
+            foreach ([['event_type' => 'download.link_opened', 'status' => null, 'reason' => null], $outcome] as $observation) {
+                $type = $observation['event_type'];
+                $key = $type . ':' . ($sku ?? 'unknown') . ':' . ($observation['reason'] ?? '');
+                if (!isset($receipt['events'][$key])) {
+                    $h = hash('sha256', "nsp:download\0" . $orderId . "\0" . $key);
+                    $receipt['events'][$key] = [
+                        'event_type' => $type,
+                        'event_uuid' => substr($h, 0, 8) . '-' . substr($h, 8, 4) . '-4'
+                            . substr($h, 13, 3) . '-8' . substr($h, 17, 3) . '-' . substr($h, 20, 12),
+                        'occurred_at' => gmdate('c'), 'sku' => $sku,
+                        'status' => $observation['status'], 'reason' => $observation['reason'],
+                    ];
+                }
+                $event = &$receipt['events'][$key];
+                if ($type === 'download.file_served' && $sku !== null && empty($event['queued'])) {
+                    // Stable UUID also protects downstream counting if a process
+                    // dies after append but before the receipt's atomic rename.
+                    $event['queued'] = mvb_funnel_event('funnel.product_delivered', [
+                        'event_uuid' => $event['event_uuid'], 'occurred_at' => $event['occurred_at'],
+                        'sku' => $sku, 'source' => 'site',
+                    ]);
+                }
+                unset($event);
+            }
+            return null;
+        });
+    } catch (Throwable $ignored) {
+        // No telemetry failure changes the file, HTTP response, or access policy.
+    }
+}
+
 function deny(int $code, string $message): void
 {
+    global $downloadOutcome;
+    $downloadOutcome = ['event_type' => 'download.failed', 'status' => $code,
+        'reason' => [400 => 'invalid_link', 403 => 'access_denied', 404 => 'not_found',
+                     410 => 'expired', 429 => 'download_limit', 500 => 'file_unavailable',
+                     503 => 'server_error'][$code] ?? 'server_error'];
     http_response_code($code);
     header('Content-Type: text/html; charset=utf-8');
     echo '<!doctype html><meta charset="utf-8"><title>Скачивание недоступно</title>'
@@ -31,6 +96,15 @@ if (!preg_match('/^order_[0-9_]+_[a-z0-9]+$/i', $orderId) || $token === '' || $s
 $orderFile = ORDERS_DIR . '/' . $orderId . '.json';
 if (!is_file($orderFile)) {
     deny(404, 'Заказ не найден.');
+}
+
+// GET means an endpoint was opened, not that a file was received. HEAD is
+// excluded. Observe only existing orders, so invented IDs cannot fill storage.
+$downloadOutcome = ['event_type' => 'download.failed', 'status' => 500, 'reason' => 'server_error'];
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'GET') {
+    register_shutdown_function(function () use ($orderId, $sku, &$downloadOutcome) {
+        mvb_download_observe($orderId, $sku, $downloadOutcome);
+    });
 }
 
 /**
@@ -134,4 +208,10 @@ $downloadName = $decision['pinned'] ? (mvb_products()[$sku]['zip'] ?? basename($
 header('Content-Disposition: attachment; filename="' . $downloadName . '"');
 header('Content-Length: ' . filesize($zipPath));
 header('X-Content-Type-Options: nosniff');
-readfile($zipPath);
+$sent = readfile($zipPath);
+// A full server-side write, not a click or proof of saving on the buyer's device.
+if ($sent !== false && $sent === filesize($zipPath) && !connection_aborted()) {
+    $downloadOutcome = ['event_type' => 'download.file_served', 'status' => 200, 'reason' => null];
+} else {
+    $downloadOutcome = ['event_type' => 'download.failed', 'status' => 500, 'reason' => 'read_failed'];
+}
