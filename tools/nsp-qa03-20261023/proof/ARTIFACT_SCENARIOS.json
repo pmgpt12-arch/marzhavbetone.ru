@@ -1,0 +1,1792 @@
+{
+  "engine": "@oai/artifact-tool",
+  "cases": 57,
+  "checks": 206,
+  "passed": 57,
+  "results": [
+    {
+      "name": "accepted-qa01-no-double-subtraction",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I9",
+          "expected": "К ВОЗВРАТУ",
+          "actual": "К ВОЗВРАТУ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "historical-dates-per-contract",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I9",
+          "expected": "К ВОЗВРАТУ",
+          "actual": "К ВОЗВРАТУ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "negative-excel-date",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ДАТА РАСЧЁТА",
+          "actual": "ДАТА РАСЧЁТА",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "out-of-excel-date-range",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ДАТА РАСЧЁТА",
+          "actual": "ДАТА РАСЧЁТА",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "no-returns",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 100000,
+          "actual": 100000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 100000,
+          "actual": 100000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "E5",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 100000,
+          "actual": 100000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 100000,
+          "actual": 100000,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "fully-returned",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I9",
+          "expected": "ПОГАШЕНО ПОЛНОСТЬЮ",
+          "actual": "ПОГАШЕНО ПОЛНОСТЬЮ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "other-confirmed-discharge",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 70000,
+          "actual": 70000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 70000,
+          "actual": 70000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "F5",
+          "expected": 10000,
+          "actual": 10000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 70000,
+          "actual": 70000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 70000,
+          "actual": 70000,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "fully-discharged-mixed",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "not-yet-due",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I9",
+          "expected": "СРОК НЕ НАСТУПИЛ",
+          "actual": "СРОК НЕ НАСТУПИЛ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "deadline-day",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I9",
+          "expected": "К ВОЗВРАТУ",
+          "actual": "К ВОЗВРАТУ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "conditions-not-met",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I9",
+          "expected": "УСЛОВИЯ НЕ ВЫПОЛНЕНЫ",
+          "actual": "УСЛОВИЯ НЕ ВЫПОЛНЕНЫ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "conditions-unknown",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ПОДТВЕРДИТЕ УСЛОВИЯ",
+          "actual": "ПОДТВЕРДИТЕ УСЛОВИЯ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "conditions-disputed",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "СПОРНЫЕ УСЛОВИЯ",
+          "actual": "СПОРНЫЕ УСЛОВИЯ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "first-demand-starts-period",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "НАПРАВЬТЕ ТРЕБОВАНИЕ",
+          "actual": "НАПРАВЬТЕ ТРЕБОВАНИЕ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "delivered-demand-due",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I9",
+          "expected": "К ВОЗВРАТУ",
+          "actual": "К ВОЗВРАТУ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "delivered-demand-future-due",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I9",
+          "expected": "СРОК НЕ НАСТУПИЛ",
+          "actual": "СРОК НЕ НАСТУПИЛ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "demand-before-event-if-contract-allows",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I9",
+          "expected": "К ВОЗВРАТУ",
+          "actual": "К ВОЗВРАТУ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "missing-event-date",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ПОДТВЕРДИТЕ СОБЫТИЕ",
+          "actual": "ПОДТВЕРДИТЕ СОБЫТИЕ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "event-future-but-confirmed",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ПОДТВЕРДИТЕ СОБЫТИЕ",
+          "actual": "ПОДТВЕРДИТЕ СОБЫТИЕ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "text-event-date",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ПОДТВЕРДИТЕ СОБЫТИЕ",
+          "actual": "ПОДТВЕРДИТЕ СОБЫТИЕ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "missing-deadline",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ПОДТВЕРДИТЕ СРОК",
+          "actual": "ПОДТВЕРДИТЕ СРОК",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "deadline-before-event",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ПОДТВЕРДИТЕ СРОК",
+          "actual": "ПОДТВЕРДИТЕ СРОК",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "text-deadline",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ПОДТВЕРДИТЕ СРОК",
+          "actual": "ПОДТВЕРДИТЕ СРОК",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "missing-clause",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ОСНОВАНИЕ И СРОК",
+          "actual": "ОСНОВАНИЕ И СРОК",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "missing-event-proof",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ОСНОВАНИЕ И СРОК",
+          "actual": "ОСНОВАНИЕ И СРОК",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "missing-term-basis",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ОСНОВАНИЕ И СРОК",
+          "actual": "ОСНОВАНИЕ И СРОК",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "unknown-return-mode",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ВИД ВОЗВРАТА",
+          "actual": "ВИД ВОЗВРАТА",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "future-demand-delivery",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ПОДТВЕРДИТЕ ДОСТАВКУ",
+          "actual": "ПОДТВЕРДИТЕ ДОСТАВКУ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "text-demand-delivery",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ПОДТВЕРДИТЕ ДОСТАВКУ",
+          "actual": "ПОДТВЕРДИТЕ ДОСТАВКУ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "deadline-before-delivery",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "ПОДТВЕРДИТЕ СРОК",
+          "actual": "ПОДТВЕРДИТЕ СРОК",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "negative-held",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПРОВЕРЬТЕ СУММЫ",
+          "actual": "ПРОВЕРЬТЕ СУММЫ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "negative-return",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПРОВЕРЬТЕ СУММЫ",
+          "actual": "ПРОВЕРЬТЕ СУММЫ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "negative-other-discharge",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПРОВЕРЬТЕ СУММЫ",
+          "actual": "ПРОВЕРЬТЕ СУММЫ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "text-held",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПРОВЕРЬТЕ СУММЫ",
+          "actual": "ПРОВЕРЬТЕ СУММЫ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "text-return",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПРОВЕРЬТЕ СУММЫ",
+          "actual": "ПРОВЕРЬТЕ СУММЫ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "boolean-held",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПРОВЕРЬТЕ СУММЫ",
+          "actual": "ПРОВЕРЬТЕ СУММЫ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "fractional-kopeck",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПРОВЕРЬТЕ СУММЫ",
+          "actual": "ПРОВЕРЬТЕ СУММЫ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "missing-return-not-zero",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПРОВЕРЬТЕ СУММЫ",
+          "actual": "ПРОВЕРЬТЕ СУММЫ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "missing-other-not-zero",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПРОВЕРЬТЕ СУММЫ",
+          "actual": "ПРОВЕРЬТЕ СУММЫ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "missing-act",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "УКАЖИТЕ АКТ",
+          "actual": "УКАЖИТЕ АКТ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "held-exceeds-act",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "УДЕРЖАНО > АКТА",
+          "actual": "УДЕРЖАНО > АКТА",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "over-return",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПОГАШЕНО > УДЕРЖАНО",
+          "actual": "ПОГАШЕНО > УДЕРЖАНО",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "combined-over-discharge",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПОГАШЕНО > УДЕРЖАНО",
+          "actual": "ПОГАШЕНО > УДЕРЖАНО",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "missing-cash-date",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ВОЗВРАТ: ДАННЫЕ",
+          "actual": "ВОЗВРАТ: ДАННЫЕ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "cash-date-future",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ВОЗВРАТ: ДАННЫЕ",
+          "actual": "ВОЗВРАТ: ДАННЫЕ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "missing-cash-proof",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ВОЗВРАТ: ДАННЫЕ",
+          "actual": "ВОЗВРАТ: ДАННЫЕ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "missing-other-date",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПОГАШЕНИЕ: ДАННЫЕ",
+          "actual": "ПОГАШЕНИЕ: ДАННЫЕ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "other-date-future",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПОГАШЕНИЕ: ДАННЫЕ",
+          "actual": "ПОГАШЕНИЕ: ДАННЫЕ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "text-calculation-date",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ДАТА РАСЧЁТА",
+          "actual": "ДАТА РАСЧЁТА",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "fractional-calculation-date",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ДАТА РАСЧЁТА",
+          "actual": "ДАТА РАСЧЁТА",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "zero-retention",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I9",
+          "expected": "УДЕРЖАНИЯ НЕТ",
+          "actual": "УДЕРЖАНИЯ НЕТ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "kopeck-precision",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": 79.99,
+          "actual": 79.99,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": 79.99,
+          "actual": 79.99,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 79.99,
+          "actual": 79.99,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 79.99,
+          "actual": 79.99,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "twelfth-record",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G20",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H20",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I5",
+          "expected": 1,
+          "actual": 1,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "mixed-due-and-future-records",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 130000,
+          "actual": 130000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 80000,
+          "actual": 80000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G10",
+          "expected": 50000,
+          "actual": 50000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H10",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I5",
+          "expected": 2,
+          "actual": 2,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "duplicate-act-blocked",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "ПОВТОР АКТА",
+          "actual": "ПОВТОР АКТА",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G10",
+          "expected": "ПОВТОР АКТА",
+          "actual": "ПОВТОР АКТА",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "ПРОВЕРЬТЕ РЕЕСТР",
+          "actual": "ПРОВЕРЬТЕ РЕЕСТР",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "actual": "ПРОВЕРЬТЕ УСЛОВИЯ",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "all-twelve-records",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "D5",
+          "expected": 1200000,
+          "actual": 1200000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "E5",
+          "expected": 240000,
+          "actual": 240000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "F5",
+          "expected": 0,
+          "actual": 0,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": 960000,
+          "actual": 960000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": 960000,
+          "actual": 960000,
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I5",
+          "expected": 12,
+          "actual": 12,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "empty-template",
+      "status": "PASS",
+      "checks": [
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G9",
+          "expected": "",
+          "actual": "",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H9",
+          "expected": "",
+          "actual": "",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "G5",
+          "expected": "НЕТ ДАННЫХ",
+          "actual": "НЕТ ДАННЫХ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "H5",
+          "expected": "НЕТ ДАННЫХ",
+          "actual": "НЕТ ДАННЫХ",
+          "pass": true
+        },
+        {
+          "sheet": "Реестр удержаний",
+          "cell": "I5",
+          "expected": "НЕТ ДАННЫХ",
+          "actual": "НЕТ ДАННЫХ",
+          "pass": true
+        }
+      ]
+    }
+  ]
+}

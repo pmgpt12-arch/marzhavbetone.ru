@@ -1,0 +1,185 @@
+{
+  "source_head": "1ee5055b63611cd91bb09bb61a8b33bf1efba1b8",
+  "branch": "qa/nsp-qa03-uderzhaniya-20261023",
+  "source_zip_sha256": "07f372b8cd43b3a6a31f20834290e99ac25a2012ed91472ec01cd12004281122",
+  "qa01_zip_sha256": "cc1ea3b27757c2eaa1ce716a4a4b2742f745450fe79555976427eba200e10ebf",
+  "accepted_qa01_letter_sha256": "5647f33e362ed59338ea3fc46783f2d61572093bd0378353e6b3e459b1337e60",
+  "source_files": [
+    {
+      "name": "01-proverochnyy-list-usloviy-uderzhaniya.docx",
+      "bytes": 42068,
+      "sha256": "10a1f8eaab78c425e16d5347297023e98ce2ac28b152733fcfd87198515f1d33",
+      "starting_candidate_sha256": "10a1f8eaab78c425e16d5347297023e98ce2ac28b152733fcfd87198515f1d33"
+    },
+    {
+      "name": "02-reestr-uderzhaniy-po-obektu.xlsx",
+      "bytes": 8192,
+      "sha256": "e8424bea88cfb06c62deaeb3b4e6a924117e2ccea1eeb4a1fb45ce914d97e933",
+      "starting_candidate_sha256": "e8424bea88cfb06c62deaeb3b4e6a924117e2ccea1eeb4a1fb45ce914d97e933"
+    },
+    {
+      "name": "03-tipovye-formulirovki-lovushki.docx",
+      "bytes": 40760,
+      "sha256": "ebacceb0dfe59c34ad02cdcba8250a96b2d46b35fbb7e5996645024751fe69c1",
+      "starting_candidate_sha256": "ebacceb0dfe59c34ad02cdcba8250a96b2d46b35fbb7e5996645024751fe69c1"
+    },
+    {
+      "name": "04-pismo-o-vozvrate-uderzhaniya.docx",
+      "bytes": 40579,
+      "sha256": "5883699288303dde26cae8b2616f20eea86a1386e34c0998c5e6556046cf9623",
+      "starting_candidate_sha256": "5647f33e362ed59338ea3fc46783f2d61572093bd0378353e6b3e459b1337e60"
+    },
+    {
+      "name": "99-chto-dalshe.pdf",
+      "bytes": 52798,
+      "sha256": "c6f3080d658d788f580076b2581ae7efed4afd5677805636871971604c428343",
+      "starting_candidate_sha256": "c6f3080d658d788f580076b2581ae7efed4afd5677805636871971604c428343"
+    }
+  ],
+  "qa01_matrix": {
+    "id": "FREE/uderzhaniya",
+    "name": "Гарантийное удержание",
+    "files": 5,
+    "public_path": "downloads/uderzhaniya.zip",
+    "public_sha256": "07f372b8cd43b3a6a31f20834290e99ac25a2012ed91472ec01cd12004281122",
+    "public_fresh_get": "PASS_EXACT_SHA",
+    "status": "RELEASE_BLOCKED",
+    "candidate_sha256": "cc1ea3b27757c2eaa1ce716a4a4b2742f745450fe79555976427eba200e10ebf",
+    "remaining": "FL10 закрыт точечной правкой и Word по точному SHA; полный QA ZIP с одним заменённым DOCX проверен. Открыты FL12, событие/требование, категоричные фразы, ссылки/поддержка и исходная вёрстка (отдельная почти пустая страница и глиф).",
+    "public_replacement_authorized": false
+  },
+  "protected_13": [
+    {
+      "sku": "P5",
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/03-vozrazhenie-na-zachet.docx",
+      "sha256": "fcd8d6e811f846921982cd555e1b487688b48e266120ead0e74d01c34a2976d9",
+      "git_blob": "1600968e6d4b176e2f3d021e47e06afae3b56569",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P5",
+      "path": "products-storage/07-uderzhaniya-shtrafy-zachety/04-raschet-ubytkov.xlsx",
+      "sha256": "f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3",
+      "git_blob": "59ff9a6fb1b699cfc176031062743e1d7c9860e4",
+      "acceptance": "P5_S01_NATIVE_EXCEL_ACCEPTED",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/02-kalkulyator-usloviy-avansa.xlsx",
+      "sha256": "0ca0ab6e8bfd65733f9ec5dc6c8a9af394ee9a7dd80a953011a68ce318e3b45f",
+      "git_blob": "f91d920ef4c4cc4f606dcaa28dadd3806fe8ab03",
+      "acceptance": "OWNER_MANUAL_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/07-trebovanie-o-vyplate-avansa.docx",
+      "sha256": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db",
+      "git_blob": "a95e3599028eb2dd22631b0d88bd5bb24d78a9e0",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "sha256": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1",
+      "git_blob": "dc48a951dbc05501cab90eebbca2d31561ff812b",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/09-raschet-otrabotannoy-chasti-avansa.xlsx",
+      "sha256": "33c5d803759a45e48690bcf9af593aa9f505cb8c19366131915e8fd4dc670732",
+      "git_blob": "bf247787aa474a56f41145fa72f94fd16802fdf8",
+      "acceptance": "OWNER_MANUAL_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P8",
+      "path": "products-storage/10-avans-usloviya-i-pribyl/10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "sha256": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f",
+      "git_blob": "92c5644e575e11fc6c9164354bd53572380b3fcc",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P9",
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/02-algoritm-genpodryadchik-bankrotitsya.docx",
+      "sha256": "434449ca7b0bc8b843c72f543f0cdbce7afd9ea9cc8df0eb77766abc272a8590",
+      "git_blob": "2b8f55650e41e1f242f40aa16f0cd951e89b835f",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P9",
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/05-perechen-paketa-dlya-zayavleniya-trebovaniya.docx",
+      "sha256": "c9b30e8db8831425f49f6f5706953216afafbba69ff5b970a58671e939e668d7",
+      "git_blob": "f8799c73fd74e15d36a69edb05cf6890da6369c4",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P9",
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/08-zayavlenie-o-vklyuchenii-v-reestr-zagotovka.docx",
+      "sha256": "17fab19bab44698ff0280b0b7b91de3530273bae4bdb990cbeda212bbfedc5d1",
+      "git_blob": "0431624c7914a4bc6b88ab0b68545968a55b99a8",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P9",
+      "path": "products-storage/11-bankrotstvo-genpodryadchika/09-chto-delat-esli-srok-propushchen.docx",
+      "sha256": "8a6ab62df5300cfe6dc89947bf90ddd3206b54692b2db11856939cbd098d8728",
+      "git_blob": "9b810185b3b7e5fcdc2574aa7acb425fc4182b26",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P11",
+      "path": "products-storage/13-raschet-metrami/52-chek-list-raschet-metrami.docx",
+      "sha256": "df15df36e99e23ed76faa97a5afc2fe350ac301ec6ea2baf5eeb6255fc83fd6d",
+      "git_blob": "077ea3bb235c1570873b4b886d0dd552ee842d95",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    },
+    {
+      "sku": "P11",
+      "path": "products-storage/13-raschet-metrami/56-pervyy-den-do-podpisi.docx",
+      "sha256": "8830cb6d0407ea0e740216327e1ba119d4cf391cd449773ab021efee3b858a41",
+      "git_blob": "8b6b672a28aeb1f29e07fd2357211f192e744fb7",
+      "acceptance": "NATIVE_WORD_ACCEPTANCE_PASS",
+      "status": "EXACT_ACCEPTANCE_REUSED",
+      "reopened": false,
+      "resaved": false
+    }
+  ],
+  "qa02_manifest_sha256": "53d7b24f866ef83622d1c40bd51f705fd4f249e01dedfa66858405f2aba4da3f",
+  "qa02_archive_sha256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1"
+}

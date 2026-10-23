@@ -1,0 +1,33 @@
+{
+  "scope": "The original 12 records and all 14 original fields remain available; blank buyer template, no source customer data",
+  "source_sheet": "Реестр удержаний",
+  "source_rows": "3:14",
+  "candidate_rows_both_sheets": "9:20",
+  "fields": {
+    "A №": "Реестр удержаний A; Условия возврата A",
+    "B act number; C act date": "Реестр удержаний B: one act identifier including its date",
+    "D act amount": "Реестр удержаний C",
+    "E retention before refunds": "Реестр удержаний D",
+    "F contract clause": "Условия возврата B",
+    "G triggering event": "Условия возврата C",
+    "H event evidence": "Условия возврата C",
+    "I planned/actual event date": "Условия возврата D; status I confirms whether event occurred",
+    "J date letter sent; K request status; N notes": "Условия возврата L (dates sent/delivered separately labelled)",
+    "L returned money aggregate": "Реестр удержаний E",
+    "M last refund date": "Условия возврата J"
+  },
+  "additions": {
+    "Реестр удержаний B3": "Fixed as-of date, no volatile TODAY",
+    "Реестр удержаний F": "Other confirmed discharge, disjoint from cash refunds",
+    "Реестр удержаний G": "Validated remaining principal, one subtraction of each category",
+    "Реестр удержаний H": "Refund amount after confirmation of conditions and deadline",
+    "Реестр удержаний I": "Business eligibility or specific missing evidence",
+    "Условия возврата E:I": "Contract return mode, required delivery, verified due date and basis, confirmed conditions",
+    "Условия возврата K; M": "Credit evidence and other discharge date"
+  },
+  "capacity": 12,
+  "deadline": "Manually verify the contract and applicable calendar; no universal seven-day or holiday algorithm is assumed",
+  "operation_deduplication": "Each operation classified once by the user with evidence; no bank transaction ID importer or automatic identity reconciliation is claimed",
+  "formula_editing_model": "Source had no sheet protection; retained. Gray formula cells are labelled; native calculations check their intact exported formulas",
+  "print": "Main A4 landscape; conditions A3 landscape. Final acceptance depends on actual native exported pages"
+}

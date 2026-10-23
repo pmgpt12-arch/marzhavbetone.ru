@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "before_sha256": "0ca176b3bb75adf7d4b185cbf76d290131c1497b1dbdb26d457239a6da16cac7",
+  "after_sha256": "34b07ca16d6f0ca9fde1fba200f50f994dd8cf86d890da426bcc824c7e18ec92",
+  "formula_and_all_other_cell_payloads_identical": true,
+  "diff": [
+    {
+      "sheet": "xl/worksheets/sheet2.xml",
+      "cell": "I8",
+      "before": [
+        "str",
+        "Условия подтверждены"
+      ],
+      "after": [
+        "str",
+        "Условия: да/нет/спор"
+      ]
+    }
+  ],
+  "regression": "57 native cases reuse exact formula payload; final SHA independently opened/recalculated/saved/reopened/printed"
+}

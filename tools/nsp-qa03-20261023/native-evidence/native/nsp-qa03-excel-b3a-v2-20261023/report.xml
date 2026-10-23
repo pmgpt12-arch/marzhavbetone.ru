@@ -1,0 +1,77 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-qa03-excel-b3a-v2-20261023" excel_version="16.0" excel_build="4324">
+  <check name="q3x:input_sha" pass="True" expected="0ca176b3bb75adf7d4b185cbf76d290131c1497b1dbdb26d457239a6da16cac7" actual="0ca176b3bb75adf7d4b185cbf76d290131c1497b1dbdb26d457239a6da16cac7" />
+  <print_preflight tag="q3x" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр удержаний" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Условия возврата" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр удержаний'!Print_Area" refers_to="='Реестр удержаний'!$A$1:$I$25" />
+    <print_name name="'Условия возврата'!Print_Area" refers_to="='Условия возврата'!$A$1:$M$26" />
+  </print_preflight>
+  <check name="q3x:missing-other-not-zero:G9" pass="True" expected="text:ПРОВЕРЬТЕ СУММЫ" actual="System.String:ПРОВЕРЬТЕ СУММЫ" />
+  <check name="q3x:missing-other-not-zero:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:missing-other-not-zero:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:missing-act:G9" pass="True" expected="text:УКАЖИТЕ АКТ" actual="System.String:УКАЖИТЕ АКТ" />
+  <check name="q3x:missing-act:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:missing-act:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:held-exceeds-act:G9" pass="True" expected="text:УДЕРЖАНО &gt; АКТА" actual="System.String:УДЕРЖАНО &gt; АКТА" />
+  <check name="q3x:held-exceeds-act:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:held-exceeds-act:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:over-return:G9" pass="True" expected="text:ПОГАШЕНО &gt; УДЕРЖАНО" actual="System.String:ПОГАШЕНО &gt; УДЕРЖАНО" />
+  <check name="q3x:over-return:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:over-return:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:combined-over-discharge:G9" pass="True" expected="text:ПОГАШЕНО &gt; УДЕРЖАНО" actual="System.String:ПОГАШЕНО &gt; УДЕРЖАНО" />
+  <check name="q3x:combined-over-discharge:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:combined-over-discharge:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:missing-cash-date:G9" pass="True" expected="text:ВОЗВРАТ: ДАННЫЕ" actual="System.String:ВОЗВРАТ: ДАННЫЕ" />
+  <check name="q3x:missing-cash-date:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:missing-cash-date:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:cash-date-future:G9" pass="True" expected="text:ВОЗВРАТ: ДАННЫЕ" actual="System.String:ВОЗВРАТ: ДАННЫЕ" />
+  <check name="q3x:cash-date-future:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:cash-date-future:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:missing-cash-proof:G9" pass="True" expected="text:ВОЗВРАТ: ДАННЫЕ" actual="System.String:ВОЗВРАТ: ДАННЫЕ" />
+  <check name="q3x:missing-cash-proof:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:missing-cash-proof:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:missing-other-date:G9" pass="True" expected="text:ПОГАШЕНИЕ: ДАННЫЕ" actual="System.String:ПОГАШЕНИЕ: ДАННЫЕ" />
+  <check name="q3x:missing-other-date:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:missing-other-date:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:other-date-future:G9" pass="True" expected="text:ПОГАШЕНИЕ: ДАННЫЕ" actual="System.String:ПОГАШЕНИЕ: ДАННЫЕ" />
+  <check name="q3x:other-date-future:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:other-date-future:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:text-calculation-date:G9" pass="True" expected="text:ДАТА РАСЧЁТА" actual="System.String:ДАТА РАСЧЁТА" />
+  <check name="q3x:text-calculation-date:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:text-calculation-date:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:fractional-calculation-date:G9" pass="True" expected="text:ДАТА РАСЧЁТА" actual="System.String:ДАТА РАСЧЁТА" />
+  <check name="q3x:fractional-calculation-date:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:fractional-calculation-date:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:zero-retention:G9" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:zero-retention:H9" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:zero-retention:G5" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:zero-retention:H5" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:zero-retention:I9" pass="True" expected="text:УДЕРЖАНИЯ НЕТ" actual="System.String:УДЕРЖАНИЯ НЕТ" />
+  <check name="q3x:kopeck-precision:G9" pass="True" expected="number:79.99" actual="System.Double:79.99" />
+  <check name="q3x:kopeck-precision:H9" pass="True" expected="number:79.99" actual="System.Double:79.99" />
+  <check name="q3x:kopeck-precision:G5" pass="True" expected="number:79.99" actual="System.Double:79.99" />
+  <check name="q3x:kopeck-precision:H5" pass="True" expected="number:79.99" actual="System.Double:79.99" />
+  <check name="q3x:twelfth-record:G20" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:twelfth-record:H20" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:twelfth-record:G5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:twelfth-record:H5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:twelfth-record:I5" pass="True" expected="number:1" actual="System.Double:1" />
+  <check name="q3x:mixed-due-and-future-records:G5" pass="True" expected="number:130000" actual="System.Double:130000" />
+  <check name="q3x:mixed-due-and-future-records:H5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:mixed-due-and-future-records:G10" pass="True" expected="number:50000" actual="System.Double:50000" />
+  <check name="q3x:mixed-due-and-future-records:H10" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:mixed-due-and-future-records:I5" pass="True" expected="number:2" actual="System.Double:2" />
+  <check name="q3x:duplicate-act-blocked:G9" pass="True" expected="text:ПОВТОР АКТА" actual="System.String:ПОВТОР АКТА" />
+  <check name="q3x:duplicate-act-blocked:G10" pass="True" expected="text:ПОВТОР АКТА" actual="System.String:ПОВТОР АКТА" />
+  <check name="q3x:duplicate-act-blocked:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:duplicate-act-blocked:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="q3x:pdf_export" pass="True" expected="%PDF-" actual="bytes=137434" />
+  <print_preflight tag="q3x" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр удержаний" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Условия возврата" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр удержаний'!Print_Area" refers_to="='Реестр удержаний'!$A$1:$I$25" />
+    <print_name name="'Условия возврата'!Print_Area" refers_to="='Условия возврата'!$A$1:$M$26" />
+  </print_preflight>
+  <check name="q3x:source_unchanged" pass="True" expected="0ca176b3bb75adf7d4b185cbf76d290131c1497b1dbdb26d457239a6da16cac7" actual="0ca176b3bb75adf7d4b185cbf76d290131c1497b1dbdb26d457239a6da16cac7" />
+</report>

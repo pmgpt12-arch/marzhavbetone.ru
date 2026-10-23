@@ -1,0 +1,56 @@
+{
+  "engine": "@oai/artifact-tool",
+  "source_modified": false,
+  "results": [
+    {
+      "name": "negative-held",
+      "held_input": -100000,
+      "returned_input": 0,
+      "held_total": -100000,
+      "returned_total": 0,
+      "manually_inferred_difference": -100000,
+      "source_has_no_residual_formula": true,
+      "source_has_no_error_guard": true
+    },
+    {
+      "name": "text-held",
+      "held_input": "ошибка",
+      "returned_input": 0,
+      "held_total": 0,
+      "returned_total": 0,
+      "manually_inferred_difference": 0,
+      "source_has_no_residual_formula": true,
+      "source_has_no_error_guard": true
+    },
+    {
+      "name": "over-return",
+      "held_input": 100000,
+      "returned_input": 120000,
+      "held_total": 100000,
+      "returned_total": 120000,
+      "manually_inferred_difference": -20000,
+      "source_has_no_residual_formula": true,
+      "source_has_no_error_guard": true
+    },
+    {
+      "name": "negative-return",
+      "held_input": 100000,
+      "returned_input": -20000,
+      "held_total": 100000,
+      "returned_total": -20000,
+      "manually_inferred_difference": 120000,
+      "source_has_no_residual_formula": true,
+      "source_has_no_error_guard": true
+    },
+    {
+      "name": "accepted-example",
+      "held_input": 100000,
+      "returned_input": 20000,
+      "held_total": 100000,
+      "returned_total": 20000,
+      "manually_inferred_difference": 80000,
+      "source_has_no_residual_formula": true,
+      "source_has_no_error_guard": true
+    }
+  ]
+}

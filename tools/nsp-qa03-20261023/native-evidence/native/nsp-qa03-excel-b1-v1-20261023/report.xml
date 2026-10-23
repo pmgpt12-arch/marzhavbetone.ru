@@ -1,0 +1,97 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-qa03-excel-b1-v1-20261023" excel_version="16.0" excel_build="4324">
+  <check name="q3x:input_sha" pass="True" expected="0ca176b3bb75adf7d4b185cbf76d290131c1497b1dbdb26d457239a6da16cac7" actual="0ca176b3bb75adf7d4b185cbf76d290131c1497b1dbdb26d457239a6da16cac7" />
+  <print_preflight tag="q3x" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр удержаний" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Условия возврата" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр удержаний'!Print_Area" refers_to="='Реестр удержаний'!$A$1:$I$25" />
+    <print_name name="'Условия возврата'!Print_Area" refers_to="='Условия возврата'!$A$1:$M$26" />
+  </print_preflight>
+  <check name="q3x:accepted-qa01-no-double-subtraction:G9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:accepted-qa01-no-double-subtraction:H9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:accepted-qa01-no-double-subtraction:G5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:accepted-qa01-no-double-subtraction:H5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:accepted-qa01-no-double-subtraction:I9" pass="True" expected="text:К ВОЗВРАТУ" actual="System.String:К ВОЗВРАТУ" />
+  <check name="q3x:historical-dates-per-contract:G9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:historical-dates-per-contract:H9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:historical-dates-per-contract:G5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:historical-dates-per-contract:H5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:historical-dates-per-contract:I9" pass="True" expected="text:К ВОЗВРАТУ" actual="System.String:К ВОЗВРАТУ" />
+  <check name="q3x:negative-excel-date:G9" pass="True" expected="text:ДАТА РАСЧЁТА" actual="System.String:ДАТА РАСЧЁТА" />
+  <check name="q3x:negative-excel-date:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:out-of-excel-date-range:G9" pass="True" expected="text:ДАТА РАСЧЁТА" actual="System.String:ДАТА РАСЧЁТА" />
+  <check name="q3x:out-of-excel-date-range:G5" pass="True" expected="text:ПРОВЕРЬТЕ РЕЕСТР" actual="System.String:ПРОВЕРЬТЕ РЕЕСТР" />
+  <check name="q3x:no-returns:G9" pass="True" expected="number:100000" actual="System.Double:100000" />
+  <check name="q3x:no-returns:H9" pass="True" expected="number:100000" actual="System.Double:100000" />
+  <check name="q3x:no-returns:E5" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:no-returns:G5" pass="True" expected="number:100000" actual="System.Double:100000" />
+  <check name="q3x:no-returns:H5" pass="True" expected="number:100000" actual="System.Double:100000" />
+  <check name="q3x:fully-returned:G9" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:fully-returned:H9" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:fully-returned:G5" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:fully-returned:H5" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:fully-returned:I9" pass="True" expected="text:ПОГАШЕНО ПОЛНОСТЬЮ" actual="System.String:ПОГАШЕНО ПОЛНОСТЬЮ" />
+  <check name="q3x:other-confirmed-discharge:G9" pass="True" expected="number:70000" actual="System.Double:70000" />
+  <check name="q3x:other-confirmed-discharge:H9" pass="True" expected="number:70000" actual="System.Double:70000" />
+  <check name="q3x:other-confirmed-discharge:F5" pass="True" expected="number:10000" actual="System.Double:10000" />
+  <check name="q3x:other-confirmed-discharge:G5" pass="True" expected="number:70000" actual="System.Double:70000" />
+  <check name="q3x:other-confirmed-discharge:H5" pass="True" expected="number:70000" actual="System.Double:70000" />
+  <check name="q3x:fully-discharged-mixed:G9" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:fully-discharged-mixed:H9" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:fully-discharged-mixed:G5" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:fully-discharged-mixed:H5" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:not-yet-due:G9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:not-yet-due:H9" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:not-yet-due:G5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:not-yet-due:H5" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:not-yet-due:I9" pass="True" expected="text:СРОК НЕ НАСТУПИЛ" actual="System.String:СРОК НЕ НАСТУПИЛ" />
+  <check name="q3x:deadline-day:G9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:deadline-day:H9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:deadline-day:G5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:deadline-day:H5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:deadline-day:I9" pass="True" expected="text:К ВОЗВРАТУ" actual="System.String:К ВОЗВРАТУ" />
+  <check name="q3x:conditions-not-met:G9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:conditions-not-met:H9" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:conditions-not-met:G5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:conditions-not-met:H5" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:conditions-not-met:I9" pass="True" expected="text:УСЛОВИЯ НЕ ВЫПОЛНЕНЫ" actual="System.String:УСЛОВИЯ НЕ ВЫПОЛНЕНЫ" />
+  <check name="q3x:conditions-unknown:G9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:conditions-unknown:H9" pass="True" expected="text:ПОДТВЕРДИТЕ УСЛОВИЯ" actual="System.String:ПОДТВЕРДИТЕ УСЛОВИЯ" />
+  <check name="q3x:conditions-unknown:G5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:conditions-unknown:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:conditions-disputed:G9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:conditions-disputed:H9" pass="True" expected="text:СПОРНЫЕ УСЛОВИЯ" actual="System.String:СПОРНЫЕ УСЛОВИЯ" />
+  <check name="q3x:conditions-disputed:G5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:conditions-disputed:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:first-demand-starts-period:G9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:first-demand-starts-period:H9" pass="True" expected="text:НАПРАВЬТЕ ТРЕБОВАНИЕ" actual="System.String:НАПРАВЬТЕ ТРЕБОВАНИЕ" />
+  <check name="q3x:first-demand-starts-period:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:delivered-demand-due:G9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:delivered-demand-due:H9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:delivered-demand-due:G5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:delivered-demand-due:H5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:delivered-demand-due:I9" pass="True" expected="text:К ВОЗВРАТУ" actual="System.String:К ВОЗВРАТУ" />
+  <check name="q3x:delivered-demand-future-due:G9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:delivered-demand-future-due:H9" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:delivered-demand-future-due:H5" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="q3x:delivered-demand-future-due:I9" pass="True" expected="text:СРОК НЕ НАСТУПИЛ" actual="System.String:СРОК НЕ НАСТУПИЛ" />
+  <check name="q3x:demand-before-event-if-contract-allows:G9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:demand-before-event-if-contract-allows:H9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:demand-before-event-if-contract-allows:G5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:demand-before-event-if-contract-allows:H5" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:demand-before-event-if-contract-allows:I9" pass="True" expected="text:К ВОЗВРАТУ" actual="System.String:К ВОЗВРАТУ" />
+  <check name="q3x:missing-event-date:G9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:missing-event-date:H9" pass="True" expected="text:ПОДТВЕРДИТЕ СОБЫТИЕ" actual="System.String:ПОДТВЕРДИТЕ СОБЫТИЕ" />
+  <check name="q3x:missing-event-date:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:event-future-but-confirmed:G9" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="q3x:event-future-but-confirmed:H9" pass="True" expected="text:ПОДТВЕРДИТЕ СОБЫТИЕ" actual="System.String:ПОДТВЕРДИТЕ СОБЫТИЕ" />
+  <check name="q3x:event-future-but-confirmed:H5" pass="True" expected="text:ПРОВЕРЬТЕ УСЛОВИЯ" actual="System.String:ПРОВЕРЬТЕ УСЛОВИЯ" />
+  <check name="q3x:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="q3x:pdf_export" pass="True" expected="%PDF-" actual="bytes=137434" />
+  <print_preflight tag="q3x" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр удержаний" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Условия возврата" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр удержаний'!Print_Area" refers_to="='Реестр удержаний'!$A$1:$I$25" />
+    <print_name name="'Условия возврата'!Print_Area" refers_to="='Условия возврата'!$A$1:$M$26" />
+  </print_preflight>
+  <check name="q3x:source_unchanged" pass="True" expected="0ca176b3bb75adf7d4b185cbf76d290131c1497b1dbdb26d457239a6da16cac7" actual="0ca176b3bb75adf7d4b185cbf76d290131c1497b1dbdb26d457239a6da16cac7" />
+</report>

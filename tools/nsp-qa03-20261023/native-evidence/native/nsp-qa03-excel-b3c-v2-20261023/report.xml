@@ -1,0 +1,23 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-qa03-excel-b3c-v2-20261023" excel_version="16.0" excel_build="4324">
+  <check name="q3x:input_sha" pass="True" expected="0ca176b3bb75adf7d4b185cbf76d290131c1497b1dbdb26d457239a6da16cac7" actual="0ca176b3bb75adf7d4b185cbf76d290131c1497b1dbdb26d457239a6da16cac7" />
+  <print_preflight tag="q3x" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр удержаний" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Условия возврата" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр удержаний'!Print_Area" refers_to="='Реестр удержаний'!$A$1:$I$25" />
+    <print_name name="'Условия возврата'!Print_Area" refers_to="='Условия возврата'!$A$1:$M$26" />
+  </print_preflight>
+  <check name="q3x:empty-template:G9" pass="True" expected="text:" actual="System.String:" />
+  <check name="q3x:empty-template:H9" pass="True" expected="text:" actual="System.String:" />
+  <check name="q3x:empty-template:G5" pass="True" expected="text:НЕТ ДАННЫХ" actual="System.String:НЕТ ДАННЫХ" />
+  <check name="q3x:empty-template:H5" pass="True" expected="text:НЕТ ДАННЫХ" actual="System.String:НЕТ ДАННЫХ" />
+  <check name="q3x:empty-template:I5" pass="True" expected="text:НЕТ ДАННЫХ" actual="System.String:НЕТ ДАННЫХ" />
+  <check name="q3x:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="q3x:pdf_export" pass="True" expected="%PDF-" actual="bytes=140963" />
+  <print_preflight tag="q3x" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр удержаний" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Условия возврата" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр удержаний'!Print_Area" refers_to="='Реестр удержаний'!$A$1:$I$25" />
+    <print_name name="'Условия возврата'!Print_Area" refers_to="='Условия возврата'!$A$1:$M$26" />
+  </print_preflight>
+  <check name="q3x:source_unchanged" pass="True" expected="0ca176b3bb75adf7d4b185cbf76d290131c1497b1dbdb26d457239a6da16cac7" actual="0ca176b3bb75adf7d4b185cbf76d290131c1497b1dbdb26d457239a6da16cac7" />
+</report>

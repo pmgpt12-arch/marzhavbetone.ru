@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job id="nsp-qa03-excel-final-worked-v3-20261023" qa_only="true">
+  <file name="02-reestr-uderzhaniy-po-obektu.xlsx" tag="q3f" sheet="Реестр удержаний" sha256="34b07ca16d6f0ca9fde1fba200f50f994dd8cf86d890da426bcc824c7e18ec92" export_source_first="true" print_preflight="true">
+    <case name="accepted-qa01-no-double-subtraction">
+      <set sheet="Реестр удержаний" cell="B3" kind="number" value="46318" />
+      <set sheet="Реестр удержаний" cell="B9" kind="text" value="КС-2 №1 от 15.10.2025" />
+      <set sheet="Реестр удержаний" cell="C9" kind="number" value="1000000" />
+      <set sheet="Реестр удержаний" cell="D9" kind="number" value="100000" />
+      <set sheet="Реестр удержаний" cell="E9" kind="number" value="20000" />
+      <set sheet="Реестр удержаний" cell="F9" kind="number" value="0" />
+      <set sheet="Условия возврата" cell="B9" kind="text" value="п. 8.1 и 8.2 договора" />
+      <set sheet="Условия возврата" cell="C9" kind="text" value="Истечение гарантии. Акт №1 от 15.10.2025" />
+      <set sheet="Условия возврата" cell="D9" kind="number" value="46310" />
+      <set sheet="Условия возврата" cell="E9" kind="text" value="автоматически" />
+      <set sheet="Условия возврата" cell="G9" kind="number" value="46317" />
+      <set sheet="Условия возврата" cell="H9" kind="text" value="5 рабочих дней после события" />
+      <set sheet="Условия возврата" cell="I9" kind="text" value="да" />
+      <set sheet="Условия возврата" cell="J9" kind="number" value="46315" />
+      <set sheet="Условия возврата" cell="K9" kind="text" value="ПП №2 от 20.10.2026" />
+      <set sheet="Условия возврата" cell="L9" kind="text" value="Ответ и доставка по договорному каналу" />
+      <expect sheet="Реестр удержаний" cell="G9" kind="number" value="80000" />
+      <expect sheet="Реестр удержаний" cell="H9" kind="number" value="80000" />
+      <expect sheet="Реестр удержаний" cell="G5" kind="number" value="80000" />
+      <expect sheet="Реестр удержаний" cell="H5" kind="number" value="80000" />
+      <expect sheet="Реестр удержаний" cell="I9" kind="text" value="К ВОЗВРАТУ" />
+    </case>
+    <case name="no-returns">
+      <set sheet="Условия возврата" cell="J9" kind="blank" value="" />
+      <set sheet="Условия возврата" cell="K9" kind="blank" value="" />
+      <set sheet="Реестр удержаний" cell="B3" kind="number" value="46318" />
+      <set sheet="Реестр удержаний" cell="B9" kind="text" value="КС-2 №1 от 15.10.2025" />
+      <set sheet="Реестр удержаний" cell="C9" kind="number" value="1000000" />
+      <set sheet="Реестр удержаний" cell="D9" kind="number" value="100000" />
+      <set sheet="Реестр удержаний" cell="E9" kind="number" value="0" />
+      <set sheet="Реестр удержаний" cell="F9" kind="number" value="0" />
+      <set sheet="Условия возврата" cell="B9" kind="text" value="п. 8.1 и 8.2 договора" />
+      <set sheet="Условия возврата" cell="C9" kind="text" value="Истечение гарантии. Акт №1 от 15.10.2025" />
+      <set sheet="Условия возврата" cell="D9" kind="number" value="46310" />
+      <set sheet="Условия возврата" cell="E9" kind="text" value="автоматически" />
+      <set sheet="Условия возврата" cell="G9" kind="number" value="46317" />
+      <set sheet="Условия возврата" cell="H9" kind="text" value="5 рабочих дней после события" />
+      <set sheet="Условия возврата" cell="I9" kind="text" value="да" />
+      <set sheet="Условия возврата" cell="L9" kind="text" value="Ответ и доставка по договорному каналу" />
+      <expect sheet="Реестр удержаний" cell="G9" kind="number" value="100000" />
+      <expect sheet="Реестр удержаний" cell="H9" kind="number" value="100000" />
+      <expect sheet="Реестр удержаний" cell="E5" kind="number" value="0" />
+      <expect sheet="Реестр удержаний" cell="G5" kind="number" value="100000" />
+      <expect sheet="Реестр удержаний" cell="H5" kind="number" value="100000" />
+    </case>
+    <case name="fully-returned">
+      <set sheet="Реестр удержаний" cell="B3" kind="number" value="46318" />
+      <set sheet="Реестр удержаний" cell="B9" kind="text" value="КС-2 №1 от 15.10.2025" />
+      <set sheet="Реестр удержаний" cell="C9" kind="number" value="1000000" />
+      <set sheet="Реестр удержаний" cell="D9" kind="number" value="100000" />
+      <set sheet="Реестр удержаний" cell="E9" kind="number" value="100000" />
+      <set sheet="Реестр удержаний" cell="F9" kind="number" value="0" />
+      <set sheet="Условия возврата" cell="B9" kind="text" value="п. 8.1 и 8.2 договора" />
+      <set sheet="Условия возврата" cell="C9" kind="text" value="Истечение гарантии. Акт №1 от 15.10.2025" />
+      <set sheet="Условия возврата" cell="D9" kind="number" value="46310" />
+      <set sheet="Условия возврата" cell="E9" kind="text" value="автоматически" />
+      <set sheet="Условия возврата" cell="G9" kind="number" value="46317" />
+      <set sheet="Условия возврата" cell="H9" kind="text" value="5 рабочих дней после события" />
+      <set sheet="Условия возврата" cell="I9" kind="text" value="да" />
+      <set sheet="Условия возврата" cell="J9" kind="number" value="46315" />
+      <set sheet="Условия возврата" cell="K9" kind="text" value="ПП №2 от 20.10.2026" />
+      <set sheet="Условия возврата" cell="L9" kind="text" value="Ответ и доставка по договорному каналу" />
+      <expect sheet="Реестр удержаний" cell="G9" kind="number" value="0" />
+      <expect sheet="Реестр удержаний" cell="H9" kind="number" value="0" />
+      <expect sheet="Реестр удержаний" cell="G5" kind="number" value="0" />
+      <expect sheet="Реестр удержаний" cell="H5" kind="number" value="0" />
+      <expect sheet="Реестр удержаний" cell="I9" kind="text" value="ПОГАШЕНО ПОЛНОСТЬЮ" />
+    </case>
+    <case name="other-confirmed-discharge">
+      <set sheet="Реестр удержаний" cell="B3" kind="number" value="46318" />
+      <set sheet="Реестр удержаний" cell="B9" kind="text" value="КС-2 №1 от 15.10.2025" />
+      <set sheet="Реестр удержаний" cell="C9" kind="number" value="1000000" />
+      <set sheet="Реестр удержаний" cell="D9" kind="number" value="100000" />
+      <set sheet="Реестр удержаний" cell="E9" kind="number" value="20000" />
+      <set sheet="Реестр удержаний" cell="F9" kind="number" value="10000" />
+      <set sheet="Условия возврата" cell="B9" kind="text" value="п. 8.1 и 8.2 договора" />
+      <set sheet="Условия возврата" cell="C9" kind="text" value="Истечение гарантии. Акт №1 от 15.10.2025" />
+      <set sheet="Условия возврата" cell="D9" kind="number" value="46310" />
+      <set sheet="Условия возврата" cell="E9" kind="text" value="автоматически" />
+      <set sheet="Условия возврата" cell="G9" kind="number" value="46317" />
+      <set sheet="Условия возврата" cell="H9" kind="text" value="5 рабочих дней после события" />
+      <set sheet="Условия возврата" cell="I9" kind="text" value="да" />
+      <set sheet="Условия возврата" cell="J9" kind="number" value="46315" />
+      <set sheet="Условия возврата" cell="K9" kind="text" value="ПП №2; соглашение №3 от 18.10" />
+      <set sheet="Условия возврата" cell="L9" kind="text" value="Ответ и доставка по договорному каналу" />
+      <set sheet="Условия возврата" cell="M9" kind="number" value="46313" />
+      <expect sheet="Реестр удержаний" cell="G9" kind="number" value="70000" />
+      <expect sheet="Реестр удержаний" cell="H9" kind="number" value="70000" />
+      <expect sheet="Реестр удержаний" cell="F5" kind="number" value="10000" />
+      <expect sheet="Реестр удержаний" cell="G5" kind="number" value="70000" />
+      <expect sheet="Реестр удержаний" cell="H5" kind="number" value="70000" />
+    </case>
+    <case name="negative-held">
+      <set sheet="Условия возврата" cell="M9" kind="blank" value="" />
+      <set sheet="Реестр удержаний" cell="B3" kind="number" value="46318" />
+      <set sheet="Реестр удержаний" cell="B9" kind="text" value="КС-2 №1 от 15.10.2025" />
+      <set sheet="Реестр удержаний" cell="C9" kind="number" value="1000000" />
+      <set sheet="Реестр удержаний" cell="D9" kind="number" value="-100000" />
+      <set sheet="Реестр удержаний" cell="E9" kind="number" value="20000" />
+      <set sheet="Реестр удержаний" cell="F9" kind="number" value="0" />
+      <set sheet="Условия возврата" cell="B9" kind="text" value="п. 8.1 и 8.2 договора" />
+      <set sheet="Условия возврата" cell="C9" kind="text" value="Истечение гарантии. Акт №1 от 15.10.2025" />
+      <set sheet="Условия возврата" cell="D9" kind="number" value="46310" />
+      <set sheet="Условия возврата" cell="E9" kind="text" value="автоматически" />
+      <set sheet="Условия возврата" cell="G9" kind="number" value="46317" />
+      <set sheet="Условия возврата" cell="H9" kind="text" value="5 рабочих дней после события" />
+      <set sheet="Условия возврата" cell="I9" kind="text" value="да" />
+      <set sheet="Условия возврата" cell="J9" kind="number" value="46315" />
+      <set sheet="Условия возврата" cell="K9" kind="text" value="ПП №2 от 20.10.2026" />
+      <set sheet="Условия возврата" cell="L9" kind="text" value="Ответ и доставка по договорному каналу" />
+      <expect sheet="Реестр удержаний" cell="G9" kind="text" value="ПРОВЕРЬТЕ СУММЫ" />
+      <expect sheet="Реестр удержаний" cell="G5" kind="text" value="ПРОВЕРЬТЕ РЕЕСТР" />
+      <expect sheet="Реестр удержаний" cell="H5" kind="text" value="ПРОВЕРЬТЕ УСЛОВИЯ" />
+    </case>
+    <print>
+      <set sheet="Реестр удержаний" cell="B3" kind="number" value="46318" />
+      <set sheet="Реестр удержаний" cell="B9" kind="text" value="КС-2 №1 от 15.10.2025" />
+      <set sheet="Реестр удержаний" cell="C9" kind="number" value="1000000" />
+      <set sheet="Реестр удержаний" cell="D9" kind="number" value="100000" />
+      <set sheet="Реестр удержаний" cell="E9" kind="number" value="20000" />
+      <set sheet="Реестр удержаний" cell="F9" kind="number" value="0" />
+      <set sheet="Условия возврата" cell="B9" kind="text" value="п. 8.1 и 8.2 договора" />
+      <set sheet="Условия возврата" cell="C9" kind="text" value="Истечение гарантии. Акт №1 от 15.10.2025" />
+      <set sheet="Условия возврата" cell="D9" kind="number" value="46310" />
+      <set sheet="Условия возврата" cell="E9" kind="text" value="автоматически" />
+      <set sheet="Условия возврата" cell="G9" kind="number" value="46317" />
+      <set sheet="Условия возврата" cell="H9" kind="text" value="5 рабочих дней после события" />
+      <set sheet="Условия возврата" cell="I9" kind="text" value="да" />
+      <set sheet="Условия возврата" cell="J9" kind="number" value="46315" />
+      <set sheet="Условия возврата" cell="K9" kind="text" value="ПП №2 от 20.10.2026" />
+      <set sheet="Условия возврата" cell="L9" kind="text" value="Ответ и доставка по договорному каналу" />
+    </print>
+  </file>
+</job>

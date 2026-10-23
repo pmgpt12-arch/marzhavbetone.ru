@@ -1,0 +1,24 @@
+{
+  "jobs": [
+    {
+      "channel": "native",
+      "id": "nsp-qa03-excel-final-blank-v3-20261023",
+      "job_sha256": "5b82567259be1cfe6b46908004da3e983c473f92acafddf33bd72c212dbed646"
+    },
+    {
+      "channel": "native",
+      "id": "nsp-qa03-excel-final-worked-v3-20261023",
+      "job_sha256": "0606eee6c2d98d52555846d002681633d9d282d1573570cc097225e0cb37f206"
+    }
+  ],
+  "reopen_expected": {
+    "Реестр удержаний": {
+      "G9": 80000,
+      "H9": 80000,
+      "G5": 80000,
+      "H5": 80000,
+      "I9": "К ВОЗВРАТУ"
+    }
+  },
+  "filled_source_job": "nsp-qa03-excel-final-worked-v3-20261023"
+}

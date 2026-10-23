@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job id="nsp-qa03-excel-final-reopen-v3-20261023" qa_only="true">
+  <file name="native-saved.xlsx" tag="q3fr" sheet="Реестр удержаний" sha256="cb9bee9f461bcc4c7701af02cef2d26124f78db6869992bac23dcbb3393f703e" export_source_first="true" print_preflight="true">
+    <case name="native-saved-worked-example">
+      <expect sheet="Реестр удержаний" cell="G9" kind="number" value="80000" />
+      <expect sheet="Реестр удержаний" cell="H9" kind="number" value="80000" />
+      <expect sheet="Реестр удержаний" cell="G5" kind="number" value="80000" />
+      <expect sheet="Реестр удержаний" cell="H5" kind="number" value="80000" />
+      <expect sheet="Реестр удержаний" cell="I9" kind="text" value="К ВОЗВРАТУ" />
+    </case>
+  </file>
+</job>

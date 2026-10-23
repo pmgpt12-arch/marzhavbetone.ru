@@ -1,0 +1,43 @@
+[
+  {
+    "stage": "SUBMITTED",
+    "channel": "native",
+    "id": "nsp-qa03-excel-b1-v1-20261023"
+  },
+  {
+    "stage": "RECEIPT",
+    "channel": "native",
+    "id": "nsp-qa03-excel-b1-v1-20261023",
+    "status": "PASS",
+    "receipt_sha256": "e5e6cf19e65a14c6f2fb42f2bf179511473639af32ef0554b72c9f2af6934abb",
+    "seconds": 56.0
+  },
+  {
+    "stage": "SUBMITTED",
+    "channel": "native",
+    "id": "nsp-qa03-excel-b2-v1-20261023"
+  },
+  {
+    "stage": "RECEIPT",
+    "channel": "native",
+    "id": "nsp-qa03-excel-b2-v1-20261023",
+    "status": "PASS",
+    "receipt_sha256": "e79e36f86de85e150b09ef1383fb254071f52777a522750b717b697b1c63ce46",
+    "seconds": 58.0
+  },
+  {
+    "stage": "SUBMITTED",
+    "channel": "native",
+    "id": "nsp-qa03-excel-b3-v1-20261023"
+  },
+  {
+    "stage": "BLOCKED_NO_RECEIPT",
+    "channel": "native",
+    "id": "nsp-qa03-excel-b3-v1-20261023",
+    "seconds": 240
+  },
+  {
+    "stage": "STOPPED",
+    "error": "No receipt; current job left intact. Do not blindly resubmit."
+  }
+]
