@@ -3,6 +3,7 @@ import hashlib
 import io
 import json
 from pathlib import Path
+import re
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -10,6 +11,27 @@ from tools.inspect_owner_test_order import inspect, orders_path
 
 
 class OwnerOrderInspector(unittest.TestCase):
+    def test_manual_dispatch_uses_existing_entrypoint_and_keeps_other_jobs_off(self):
+        root = Path(__file__).resolve().parents[1]
+        workflow = (root / '.github/workflows/deploy.yml').read_text()
+        self.assertFalse((root / '.github/workflows/nsp-hosting-readonly.yml').exists(),
+                         'new workflow paths may be unregistered; use the existing entrypoint')
+        self.assertRegex(workflow, r'inspect_owner_test_order:\n\s+description:.*\n\s+type: boolean\n\s+default: false')
+        jobs = re.findall(r'^  ([\w-]+):\n    if: (.+)', workflow, re.M)
+        self.assertTrue(jobs)
+        for name, condition in jobs:
+            if name == 'inspect-owner-test-order':
+                self.assertIn("github.ref_name == 'fix/nsp-customer-route-20261022' && inputs.inspect_owner_test_order == true", condition)
+                self.assertNotIn('||', condition)
+            elif name == 'deploy':
+                self.assertIn("github.ref_name == 'main' &&", condition)
+            elif name == 'deploy-remaining-only':
+                self.assertIn('inputs.remaining_only == true', condition)
+                self.assertIn("github.event_name == 'push'", condition)
+            else:
+                self.assertRegex(condition, r'inputs\.(?!inspect_owner_test_order)\w+ == true')
+                self.assertNotIn('||', condition)
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
