@@ -7,7 +7,7 @@ import re
 import tempfile
 import unittest
 from unittest.mock import patch
-from tools.inspect_owner_test_order import inspect, orders_path
+from tools.inspect_owner_test_order import inspect, orders_path, timestamp
 
 
 class OwnerOrderInspector(unittest.TestCase):
@@ -91,6 +91,15 @@ class OwnerOrderInspector(unittest.TestCase):
         report = inspect(self.site, self.home)
         self.assertEqual(report['matching_service_orders'], 2)
         self.assertIn('owner identity not inferred', report['selection'])
+
+    def test_legacy_json_and_python36_timestamp_contract(self):
+        (self.orders / 'order_legacy.json').write_text('[]')
+        self.assertEqual(inspect(self.site, self.home)['matching_service_orders'], 1)
+        self.assertEqual(timestamp('2026-10-23T08:00:00+07:00'), '2026-10-23T08:00:00+07:00')
+        self.assertEqual(timestamp('2026-10-23T01:00:00.123Z'), '2026-10-23T01:00:00.123000+00:00')
+        self.assertIsNone(timestamp('PRIVATE_INVALID_TIMESTAMP'))
+        source = (Path(__file__).parent / 'inspect_owner_test_order.py').read_text()
+        self.assertNotIn('datetime.fromisoformat(', source)
 
     def test_unsupported_config_fails_without_execution(self):
         (self.site / 'config.php').write_text("<?php\ndefine('ORDERS_DIR', getenv('SECRET')); file_put_contents('BAD','BAD');")

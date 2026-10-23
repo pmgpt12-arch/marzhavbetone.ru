@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 import re
 import sys
+import traceback
 from urllib.parse import parse_qs, urlsplit
 
 LIMIT = 2 * 1024 * 1024
@@ -18,11 +19,22 @@ REASONS = {'invalid_link', 'access_denied', 'not_found', 'expired', 'download_li
            'file_unavailable', 'server_error', 'read_failed'}
 
 
+def parsed_time(value):
+    # Hosting may have Python 3.6: fromisoformat is not available there.
+    text = str(value).replace('Z', '+0000')
+    text = re.sub(r'([+-]\d{2}):(\d{2})$', r'\1\2', text)
+    for shape in ['%Y-%m-%dT%H:%M:%S.%f%z', '%Y-%m-%dT%H:%M:%S%z',
+                  '%Y-%m-%dT%H:%M:%S.%f', '%Y-%m-%dT%H:%M:%S']:
+        try:
+            return dt.datetime.strptime(text, shape)
+        except ValueError:
+            pass
+    return None
+
+
 def timestamp(value):
-    try:
-        return dt.datetime.fromisoformat(str(value).replace('Z', '+00:00')).isoformat()
-    except (ValueError, TypeError):
-        return None
+    parsed = parsed_time(value)
+    return parsed.isoformat() if parsed else None
 
 
 def tail(path):
@@ -63,6 +75,8 @@ def inspect(site, home):
         try:
             order = json.loads(path.read_text())
         except (ValueError, OSError):
+            continue
+        if not isinstance(order, dict):
             continue
         items = order.get('items', [])
         if (order.get('total') == 100 and items
@@ -132,7 +146,7 @@ def inspect(site, home):
                 if date_match and sent_at:
                     try:
                         mail_time = dt.datetime.strptime(date_match[1], '%d-%b-%Y %H:%M:%S')
-                        sent_time = dt.datetime.fromisoformat(sent_at)
+                        sent_time = parsed_time(sent_at)
                         # PHP's mail log may use a named timezone; require exact
                         # local wall-clock proximity rather than invent an offset.
                         if abs((mail_time - sent_time.replace(tzinfo=None)).total_seconds()) <= 10:
@@ -152,7 +166,7 @@ def inspect(site, home):
                         'at': timestamp(event.get('occurred_at'))})
     except (OSError, ValueError):
         pass
-    return {'status': 'READ_ONLY_SERVER_CORROBORATION',
+    return {'status': 'READ_ONLY_SERVER_CORROBORATION', 'python_version': list(sys.version_info[:3]),
         'selection': 'latest created order containing only test1 and total=100; owner identity not inferred',
         'matching_service_orders': len(matches),
         'order_ref_sha256': hashlib.sha256(('nsp-owner-e2e:' + oid).encode()).hexdigest(),
@@ -181,5 +195,7 @@ if __name__ == '__main__':
     try:
         print(json.dumps(inspect(Path(sys.argv[1]), Path.home()), ensure_ascii=False, indent=2))
     except Exception as error:
-        print(json.dumps({'status': 'INSPECTION_UNAVAILABLE', 'error_type': type(error).__name__}))
+        frame = traceback.extract_tb(sys.exc_info()[2])[-1]
+        print(json.dumps({'status': 'INSPECTION_UNAVAILABLE', 'error_type': type(error).__name__,
+            'python_version': list(sys.version_info[:3]), 'function': frame.name, 'line': frame.lineno}))
         raise SystemExit(1)
