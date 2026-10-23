@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/home/denis/projects/nsp-qa01-20261023/retention/run_native.py", line 13, in <module>
+    assert "192.168.1.140" in journal and "GET /word/" in journal,"No fresh Word polling"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No fresh Word polling

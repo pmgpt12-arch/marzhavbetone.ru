@@ -1,0 +1,273 @@
+{
+  "source_head": "65c176aa554397c12652a86fe2393942faa546a7",
+  "paid": [
+    {
+      "sku": "P1",
+      "name": "Закрытие работ и получение оплаты",
+      "files": 20,
+      "candidate_archive": "tools/nsp-next-corrections-20261022/candidate-archives/01-ks-podpisany-deneg-net.zip",
+      "candidate_sha256": "c50e647720eb8315daac355e8d3bd7b3b92167ec232e5fc05ac98e0b47bb298e",
+      "technical_package": "PASS_CRC_COMPOSITION_ALL_MEMBER_SHA",
+      "status": "RELEASE_BLOCKED",
+      "remaining": "Калькулятор 14: неполный период, изменения ставки/остатка и платежи после даты расчёта; выбор приказа/иска и доказательства отправления; отсутствие срока и неподписанные акты. Нового закрывающего кандидата нет."
+    },
+    {
+      "sku": "P2",
+      "name": "Допработы без потерь",
+      "files": 15,
+      "candidate_archive": "tools/nsp-next-corrections-20261022/candidate-archives/02-dopy-ne-v-podarok.zip",
+      "candidate_sha256": "601a9715c3d591ad43e26527c56dd83d684a9dc7da9442a62eb8d7baaccf44a1",
+      "technical_package": "PASS_CRC_COMPOSITION_ALL_MEMBER_SHA",
+      "status": "RELEASE_BLOCKED",
+      "remaining": "07: расчётные сценарии Excel и reopen закрыты; печать новой книги не принята. Нужна сквозная приёмка инструкции по 743(3–4), выполненному объёму и итоговой суммы при незавершённых строках."
+    },
+    {
+      "sku": "P3",
+      "name": "КС без возврата",
+      "files": 11,
+      "candidate_archive": "tools/nsp-next-corrections-20261022/candidate-archives/05-ks-bez-vozvrata.zip",
+      "candidate_sha256": "e3dfe51b4f6d5c61c235037d7e737cb2dee3e688ecde844c1eb120a450c5e2b2",
+      "technical_package": "PASS_CRC_COMPOSITION_ALL_MEMBER_SHA",
+      "status": "RELEASE_BLOCKED",
+      "remaining": "Применимость форм и приложений, срок хранения по функции документа, навигация и точный состав; общей содержательной приёмки комплекта нет. Правки страницы сайта выделены за пределы QA-01."
+    },
+    {
+      "sku": "P4",
+      "name": "ПТО без замечаний",
+      "files": 25,
+      "candidate_archive": "tools/nsp-next-corrections-20261022/candidate-archives/08-pto-bez-zamechaniy.zip",
+      "candidate_sha256": "1f715a0477c1a35b8bbef97b479f372f440ae3ccad32a9684202a8538ace6caf",
+      "technical_package": "PASS_CRC_COMPOSITION_ALL_MEMBER_SHA",
+      "status": "RELEASE_BLOCKED",
+      "remaining": "06/07: расчётные дефекты счётчика и прогресса закрыты в точных кандидатах Excel; печать не принята. 38: версия, опись, адресат, подтверждение получения; инструкция по журналу и полная сверка комплекта открыты."
+    },
+    {
+      "sku": "P5",
+      "name": "Удержания, штрафы и списания",
+      "files": 30,
+      "candidate_archive": "tools/nsp-next-corrections-20261022/paid-followup-20261023/candidate-archives/07-uderzhaniya-shtrafy-zachety.zip",
+      "candidate_sha256": "c99d209997835223f15d04f09964c1efed946e5567264bc749507b3c626b59cd",
+      "technical_package": "PASS_CRC_COMPOSITION_ALL_MEMBER_SHA",
+      "status": "RELEASE_BLOCKED",
+      "remaining": "22/23/29: расчётные сценарии закрыты, последние печатные варианты ОТКЛОНЕНЫ по обрезаниям/лишним колонкам/отсутствующим группам. Требуется исправить печать и завершить согласованность санкций, удержания, зачёта и убытков; 03/04 сохранены."
+    },
+    {
+      "sku": "P7",
+      "name": "Договор субподряда",
+      "files": 13,
+      "candidate_archive": "tools/nsp-next-corrections-20261022/native-recovery-20261022/scoped-paid-candidates/03-dogovor-podryada.zip",
+      "candidate_sha256": "5d633203aed5f2666ed31b22509ca9b63ed8a303365e7f4818f64f5022224730",
+      "technical_package": "PASS_CRC_COMPOSITION_ALL_MEMBER_SHA",
+      "status": "RELEASE_BLOCKED",
+      "remaining": "Два удержанных DOCX прошли Word в исходных SHA и вошли в полный 13-файловый QA ZIP. Открыта согласованность с прочими приложениями и PDF-инструкцией, примеры и полная приёмка Excel комплекта."
+    },
+    {
+      "sku": "P8",
+      "name": "Аванс по договору",
+      "files": 11,
+      "candidate_archive": "tools/nsp-next-corrections-20261022/candidate-archives/10-avans-usloviya-i-pribyl.zip",
+      "candidate_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "technical_package": "PASS_CRC_COMPOSITION_ALL_MEMBER_SHA",
+      "status": "READY_CANDIDATE",
+      "remaining": "Сквозной сценарий FULL_PRODUCT_QA_CANDIDATE сохранён; 11 файлов и полный ZIP проверены. Неизменённые 02/09 и Word приняты по прежним точным SHA. Выпуск/E2E новой версии запрещён до отдельного решения."
+    },
+    {
+      "sku": "P9",
+      "name": "Банкротство генподрядчика",
+      "files": 10,
+      "candidate_archive": "tools/nsp-next-corrections-20261022/candidate-archives/11-bankrotstvo-genpodryadchika.zip",
+      "candidate_sha256": "0e1bd35bb50749855db7e5afba76313239440e57c92a9e6fb3704a9d407ebe06",
+      "technical_package": "PASS_CRC_COMPOSITION_ALL_MEMBER_SHA",
+      "status": "RELEASE_BLOCKED",
+      "remaining": "04: полнота строк и недопущение признания суммы документов размером требования закрыты выбранными Excel-сценариями; печать не принята. Осталась сквозная сверка сумм требований, дат обязательств, санкций и соседних документов."
+    },
+    {
+      "sku": "P10",
+      "name": "Ответ на претензию",
+      "files": 8,
+      "candidate_archive": "tools/nsp-next-corrections-20261022/candidate-archives/15-otvet-na-pretenziyu-baza.zip",
+      "candidate_sha256": "78e71b527102586192a37f08ef2b9ab13baf49f7458f7a5f6435414ba26ade4d",
+      "technical_package": "PASS_CRC_COMPOSITION_ALL_MEMBER_SHA",
+      "status": "RELEASE_BLOCKED",
+      "remaining": "Остались предметные заполненные случаи ответа, доказательства, ясность полей, конкретные нормы, поддержка и согласованность комплекта. Техническая упаковка не закрывает эти задачи."
+    },
+    {
+      "sku": "P11",
+      "name": "Расчёты помещениями",
+      "files": 8,
+      "candidate_archive": "tools/nsp-next-corrections-20261022/p11-guide-r4-20261023/candidate-archives/13-raschet-metrami.zip",
+      "candidate_sha256": "fca8d1c4d525dce05b0760367d0c9ae4dcd60085ace8f9d2b22d97c580415ac9",
+      "technical_package": "PASS_CRC_COMPOSITION_ALL_MEMBER_SHA",
+      "status": "RELEASE_BLOCKED",
+      "remaining": "Точные новые 53/54 и два заполненных примера прошли Word; PDF 51/55 и маршруты разобраны ранее, полный ZIP 8 файлов пересобран. Сквозная итоговая сверка всех восьми файлов с принятыми 52/56 и экономическим сценарием не оформлена как FULL_PRODUCT_PASS."
+    },
+    {
+      "sku": "P13",
+      "name": "Проверка сметных затрат",
+      "files": 10,
+      "candidate_archive": "tools/nsp-next-corrections-20261022/candidate-archives/16-chto-v-smete-ne-oplatyat.zip",
+      "candidate_sha256": "f9787ace9311e84c9909fcbd136fd945e9727905f6f55cf31efb51b3e8a3d457",
+      "technical_package": "PASS_CRC_COMPOSITION_ALL_MEMBER_SHA",
+      "status": "RELEASE_BLOCKED",
+      "remaining": "63: противоречивый статус покрытия и незавершённые строки проверены в Excel и reopen; печать не принята. Требуется полная карта применимости норм, примеры полного/частичного покрытия и согласованность прочих файлов."
+    },
+    {
+      "sku": "T2",
+      "name": "Передача ИД под подпись",
+      "files": 6,
+      "candidate_archive": "tools/nsp-next-corrections-20261022/native-recovery-20261022/scoped-paid-candidates/14-peredacha-id-pod-podpis.zip",
+      "candidate_sha256": "dd24f04c3e0e1e77f7377794bb5072e0d5ac4fda6b9d3b8681999d3137bb7a2a",
+      "technical_package": "PASS_CRC_COMPOSITION_ALL_MEMBER_SHA",
+      "status": "RELEASE_BLOCKED",
+      "remaining": "02/05: Word принят по удержанным SHA, полный ZIP 6 файлов проверен. 03: расчётные негативные сценарии и reopen закрыты, печать не принята; сквозное различие отправки/получения и состав подтверждений ещё требуют приёмки."
+    },
+    {
+      "sku": "T3",
+      "name": "Возражения на односторонний акт",
+      "files": 5,
+      "candidate_archive": "tools/nsp-next-corrections-20261022/candidate-archives/17-odnostoronniy-akt-i-zachet.zip",
+      "candidate_sha256": "c2a6fe378393005a6c9f507625dd8ac5e89918200b0ce945160ed0f69795804b",
+      "technical_package": "PASS_CRC_COMPOSITION_ALL_MEMBER_SHA",
+      "status": "RELEASE_BLOCKED",
+      "remaining": "Остались заполненные предметные примеры, адресные основания возражений, контроль полей, нормативные ссылки и поддержка; общей содержательной приёмки нет."
+    }
+  ],
+  "free": [
+    {
+      "id": "FREE/akt-skrytyh-rabot",
+      "name": "Акт скрытых работ",
+      "files": 5,
+      "public_path": "downloads/akt-skrytyh-rabot.zip",
+      "public_sha256": "ff75bfd6bbb989317747bbd1ad1b36592e30dcf2f2db00189a75a05f789c1e0b",
+      "public_fresh_get": "PASS_EXACT_SHA",
+      "status": "RELEASE_BLOCKED",
+      "candidate_sha256": null,
+      "remaining": "Роли подписантов, полномочия на дату, связь материалов и приложений с узлом; не приравнивать любой дефект к недействительности. Нативная приёмка исправленной версии не выполнена.",
+      "public_replacement_authorized": false
+    },
+    {
+      "id": "FREE/avans",
+      "name": "Аванс и обеспечение",
+      "files": 5,
+      "public_path": "downloads/avans.zip",
+      "public_sha256": "7e87570bbd42da3326823261a842e6544c5b7588bc3487633e70e3d5c9b6999b",
+      "public_fresh_get": "PASS_EXACT_SHA",
+      "status": "READY_CANDIDATE",
+      "candidate_sha256": "5430fc6ea7781fadf586e7c601436ff6f10bd3a927b263358069b3c66cd35c16",
+      "remaining": "12 сценариев / 60 значений Excel + 4 проверки артефакта; reopen 9; Word 3 файла / 12 страниц; полный ZIP 5 файлов. Данные о read-only/locale не заявлены.",
+      "public_replacement_authorized": false
+    },
+    {
+      "id": "FREE/bankrotstvo",
+      "name": "Проверка контрагента",
+      "files": 5,
+      "public_path": "downloads/bankrotstvo.zip",
+      "public_sha256": "0de62a32042330fba008dfcd7ac61dbbe43eba9ab7b9dff24f752c498a47edfa",
+      "public_fresh_get": "PASS_EXACT_SHA",
+      "status": "RELEASE_BLOCKED",
+      "candidate_sha256": null,
+      "remaining": "Возбуждение дела против введённой процедуры; дата возникновения обязательства и текущие платежи; соответствующая ветка действий и ссылки. Новой полной исправленной версии нет.",
+      "public_replacement_authorized": false
+    },
+    {
+      "id": "FREE/checklist-zakrytiya-rabot",
+      "name": "Чек-лист закрытия работ",
+      "files": 1,
+      "public_path": "downloads/checklist-zakrytiya-rabot.pdf",
+      "public_sha256": "65ec8f7880adc4bf9d611888bf16f332415bc7b6da97fcf577fd29e38dba42c4",
+      "public_fresh_get": "PASS_EXACT_SHA",
+      "status": "RELEASE_BLOCKED",
+      "candidate_sha256": null,
+      "remaining": "Применимость каждого пункта и договорного/законного события оплаты, вариант «не требуется» с основанием, действие/ответственный/срок по пробелу. Новой выверенной PDF-редакции нет.",
+      "public_replacement_authorized": false
+    },
+    {
+      "id": "FREE/dengi",
+      "name": "КС подписаны, денег нет",
+      "files": 5,
+      "public_path": "downloads/dengi.zip",
+      "public_sha256": "f8166b4c029df501d53ea3b3b7d57b17e15a1ffbbc8d20f315b3333a19e9cc33",
+      "public_fresh_get": "PASS_EXACT_SHA",
+      "status": "RELEASE_BLOCKED",
+      "candidate_sha256": null,
+      "remaining": "Срок оплаты: выходные/праздники, целые дни, неотрицательная сумма/ставка, контрольная и подтверждённая конечная даты, неизменная база против частичных оплат. Новый XLSX не принят.",
+      "public_replacement_authorized": false
+    },
+    {
+      "id": "FREE/dogovor",
+      "name": "Договор до подписи",
+      "files": 5,
+      "public_path": "downloads/dogovor.zip",
+      "public_sha256": "be4df3d43d23361ac9c8c200ffce5839c862cb078a91d949aae5da46735efa9a",
+      "public_fresh_get": "PASS_EXACT_SHA",
+      "status": "RELEASE_BLOCKED",
+      "candidate_sha256": null,
+      "remaining": "Запрет уступки денежного требования и последствия нарушения; отсутствие срока не исключает требование оплаты; проверка зачёта/гарантии и применимости. Полная новая версия не принята.",
+      "public_replacement_authorized": false
+    },
+    {
+      "id": "FREE/dop-raboty",
+      "name": "Допработы",
+      "files": 5,
+      "public_path": "downloads/dop-raboty.zip",
+      "public_sha256": "66544cb03c67218a988db0413de339ca48abf36af93f02d9a842d014b8991157",
+      "public_fresh_get": "PASS_EXACT_SHA",
+      "status": "READY_CANDIDATE",
+      "candidate_sha256": "6149e4409c7a1c8033dd08ce8bbc91a76c6ed3ca958a375e24178b6604e7d8ec",
+      "remaining": "Word 3 окончательных файла, Excel 8 сценариев из общего задания 16; печать 1 A4 landscape и reopen; полный ZIP 5 файлов. Расширение за 3 штатные строки не принято.",
+      "public_replacement_authorized": false
+    },
+    {
+      "id": "FREE/ispolnitelnaya-dokumentaciya",
+      "name": "Исполнительная документация",
+      "files": 5,
+      "public_path": "downloads/ispolnitelnaya-dokumentaciya.zip",
+      "public_sha256": "3a7f0ef027b946c06e5f8c038ef31894c39184f9b7ad3db53ee8aa67f6825e72",
+      "public_fresh_get": "PASS_EXACT_SHA",
+      "status": "RELEASE_BLOCKED",
+      "candidate_sha256": null,
+      "remaining": "Отсутствие квитанции не равно юридическому отсутствию передачи; полномочия/дата, допустимые доказательства и основание задержки оплаты. Новой полной версии нет.",
+      "public_replacement_authorized": false
+    },
+    {
+      "id": "FREE/raschet-metrami",
+      "name": "Работы за квартиры",
+      "files": 2,
+      "public_path": "downloads/raschet-metrami.zip",
+      "public_sha256": "d89df86e44fb5cac1cbc2b2b5b9ae1cf483c635eb95b78d65d56bdf423c9d52a",
+      "public_fresh_get": "PASS_EXACT_SHA",
+      "status": "RELEASE_BLOCKED",
+      "candidate_sha256": null,
+      "remaining": "Существующий ДДУ/уступка/готовая недвижимость, оплаченная цена и переходящие обязанности; убрать универсальный исход «банк заберёт». Не переносить приёмку платного P11 на этот бесплатный DOCX.",
+      "public_replacement_authorized": false
+    },
+    {
+      "id": "FREE/uderzhaniya",
+      "name": "Гарантийное удержание",
+      "files": 5,
+      "public_path": "downloads/uderzhaniya.zip",
+      "public_sha256": "07f372b8cd43b3a6a31f20834290e99ac25a2012ed91472ec01cd12004281122",
+      "public_fresh_get": "PASS_EXACT_SHA",
+      "status": "RELEASE_BLOCKED",
+      "candidate_sha256": "cc1ea3b27757c2eaa1ce716a4a4b2742f745450fe79555976427eba200e10ebf",
+      "remaining": "FL10 закрыт точечной правкой и Word по точному SHA; полный QA ZIP с одним заменённым DOCX проверен. Открыты FL12, событие/требование, категоричные фразы, ссылки/поддержка и исходная вёрстка (отдельная почти пустая страница и глиф).",
+      "public_replacement_authorized": false
+    },
+    {
+      "id": "FREE/vozvrat-ks",
+      "name": "КС без возврата",
+      "files": 5,
+      "public_path": "downloads/vozvrat-ks.zip",
+      "public_sha256": "c1cb90e49e4bca59d236782da15ff2d92b6738c2fcb5c5702509d835a3fa3ad4",
+      "public_fresh_get": "PASS_EXACT_SHA",
+      "status": "READY_CANDIDATE",
+      "candidate_sha256": "d9585b46988ef4320ddf455e3ea6418f8dfd502e991cf4291b196ffceff5f67a",
+      "remaining": "Word 3 окончательных файла, Excel 8 сценариев из общего задания 16; печать 1 A4 landscape и reopen; полный ZIP 5 файлов. Расширение за 5 штатных строк не принято.",
+      "public_replacement_authorized": false
+    }
+  ],
+  "scope": "13 active paid offers from approved QA product-map; excludes retired steps, service test SKU and product expansion.",
+  "ready_candidates": 4,
+  "public_release": false,
+  "limits": "READY_CANDIDATE is a scoped QA decision, not production publication; 20 units retain open tasks."
+}

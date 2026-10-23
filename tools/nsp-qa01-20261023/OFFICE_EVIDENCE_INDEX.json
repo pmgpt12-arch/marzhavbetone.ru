@@ -1,0 +1,568 @@
+{
+  "effective_previous_excel": [
+    {
+      "job": "nsp-free-print-v2-20261022",
+      "files": 2,
+      "scenarios": 16,
+      "checks": 37,
+      "report_sha256": "95012e2373a0805043f0510afc37daedf13ca597ee6beb9f960997274504a01a",
+      "report_status": "PASS",
+      "inputs": [
+        {
+          "name": "04-reestr-doprabot.xlsx",
+          "tag": "fp10",
+          "sheet": "Реестр допработ",
+          "sha256": "6f5f8dc406f69f70f0529dbf31a192bf7b87089d77662f299e99e6dca7039923",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        },
+        {
+          "name": "02-reestr-prilozheniy.xlsx",
+          "tag": "fp11",
+          "sheet": "Реестр приложений к КС",
+          "sha256": "2374965c6f64525e36d9e0389b19bf6114a1ede574a806e503d61ec01ad4ba38",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "actual_xml_verified": true
+    },
+    {
+      "job": "nsp-next-excel-1-20261022",
+      "files": 1,
+      "scenarios": 5,
+      "checks": 10,
+      "report_sha256": "727b8bcdf9b127516a6e351bda15123a0b411ba14c31ebab07feab20f058c555",
+      "report_status": "PASS",
+      "inputs": [
+        {
+          "name": "04-reestr-dokumentov-i-dat-po-obektu.xlsx",
+          "tag": "n1",
+          "sheet": "Объект и должник",
+          "sha256": "4eec739ea4bb420815afbbb6e59a5e185aed25404058d62e1b6c36b828a7f3d4",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "actual_xml_verified": true
+    },
+    {
+      "job": "nsp-next-excel-2-20261022",
+      "files": 1,
+      "scenarios": 4,
+      "checks": 12,
+      "report_sha256": "21b3637b285666c348575747b1b67e99c0df160ecf3bb7dea02e0ffd71069bdf",
+      "report_status": "PASS",
+      "inputs": [
+        {
+          "name": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+          "tag": "n2",
+          "sheet": "Реестр",
+          "sha256": "a6009315aa553e7f0436e4dccdf0d911605fc246dd8a300520dc144a296c810b",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "actual_xml_verified": true
+    },
+    {
+      "job": "nsp-next-excel-3-20261022",
+      "files": 1,
+      "scenarios": 5,
+      "checks": 9,
+      "report_sha256": "73dc7cb190c782d194a557a8136aaa47b8b424d68a7a24b1ab96ddc2cab7b033",
+      "report_status": "PASS",
+      "inputs": [
+        {
+          "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+          "tag": "n3",
+          "sheet": "Реестр",
+          "sha256": "8d9be68debdbe343da03a5e7603e4549aa1409bf97cfaaf403510bd57b0200bc",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "actual_xml_verified": true
+    },
+    {
+      "job": "nsp-next-excel-4-20261022",
+      "files": 1,
+      "scenarios": 5,
+      "checks": 9,
+      "report_sha256": "ccb4bff5e7fed0f765f0e8c5ff2fedb18e1ef7e31b60352fe82f25782351a9f5",
+      "report_status": "PASS",
+      "inputs": [
+        {
+          "name": "29-opis-dokazatelstv-po-defektu.xlsx",
+          "tag": "n4",
+          "sheet": "Спорная зона",
+          "sha256": "1f7ae8af946eba0b79178047f5bea4c2c615f197e7109114b97fd4e269e689b1",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "actual_xml_verified": true
+    },
+    {
+      "job": "nsp-next-excel-5-coercion-v2-20261022",
+      "files": 1,
+      "scenarios": 6,
+      "checks": 14,
+      "report_sha256": "00fae7d16ef17709cf86ff192b15c8d92d8c2c34462dd6ddd9c32b401e9a0a63",
+      "report_status": "PASS",
+      "inputs": [
+        {
+          "name": "07-raschet-stoimosti.xlsx",
+          "tag": "n5",
+          "sheet": "Реестр",
+          "sha256": "d68c8e54195286d6a3960da6a89aebbc296f389205bcdbd8df37644214513de4",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "actual_xml_verified": true
+    },
+    {
+      "job": "nsp-next-excel-6-20261022",
+      "files": 1,
+      "scenarios": 3,
+      "checks": 11,
+      "report_sha256": "5ddb4c4035ea75b9f730740adf5ebc6429c2ee4a27f69a1a2b1c8ecfbd977338",
+      "report_status": "PASS",
+      "inputs": [
+        {
+          "name": "06-reestr-zamechaniy.xlsx",
+          "tag": "n6",
+          "sheet": "Реестр замечаний по ИД",
+          "sha256": "dc7419ff23333abab78e23bb7620d9c4ad7aac3b82eebad0b94e7d183173fde3",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "actual_xml_verified": true
+    },
+    {
+      "job": "nsp-next-excel-7-20261022",
+      "files": 1,
+      "scenarios": 4,
+      "checks": 8,
+      "report_sha256": "420b3b8d8d3a5bc1d5f01c7cc0290a09f23328058b4f80e61c0df7029b8ee859",
+      "report_status": "PASS",
+      "inputs": [
+        {
+          "name": "07-grafik-ustraneniya.xlsx",
+          "tag": "n7",
+          "sheet": "График устранения замечаний",
+          "sha256": "e5ad05993c1eeaad116d64456b4a2e38d3ae5b5e08869673f7ed031f0e3b30df",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "actual_xml_verified": true
+    },
+    {
+      "job": "nsp-next-excel-8-coercion-v2-20261022",
+      "files": 1,
+      "scenarios": 6,
+      "checks": 12,
+      "report_sha256": "326aa43408879ba4590a17acc2f76108da9503a24912a832f39ae3f4f3aaf585",
+      "report_status": "PASS",
+      "inputs": [
+        {
+          "name": "03-opis-peredavaemogo-komplekta.xlsx",
+          "tag": "n8",
+          "sheet": "Опись",
+          "sha256": "5da1754d3b320a8e8067b5e54820d71a6f1a2a43fa05d0ad993854623e66cf46",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "actual_xml_verified": true
+    },
+    {
+      "job": "nsp-next-excel-9-20261022",
+      "files": 1,
+      "scenarios": 3,
+      "checks": 9,
+      "report_sha256": "516acb012971feeed8aee29d8816596645a8ae384746e1f23d70c86feb950e13",
+      "report_status": "PASS",
+      "inputs": [
+        {
+          "name": "63-reestr-zatrat-po-obektu.xlsx",
+          "tag": "n9",
+          "sheet": "Реестр затрат",
+          "sha256": "c444880c809f28f7e125dded060ea2d9a11900f5eb2bd74a4e25b2bf01af5fc5",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "actual_xml_verified": true
+    }
+  ],
+  "actual_receipts": [
+    {
+      "path": "tools/nsp-next-corrections-20261022/avans-corrections-20261023/evidence/native/nsp-avans-xlsx-v1-20261023/report.xml",
+      "sha256": "0589993eeb4d8b8d0f3c930f351a83941082ee57f63185756f45ec32fc9ef2ac",
+      "job": "nsp-avans-xlsx-v1-20261023",
+      "status": "PASS",
+      "checks": 64,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/avans-corrections-20261023/evidence/word/nsp-avans-docx-v2-20261023/report.xml",
+      "sha256": "9e95b5af472591cb1e0568dc59a0293e9bc7f7abf7e7d0cb5f4b53026fb66bc8",
+      "job": "nsp-avans-docx-v2-20261023",
+      "status": "PASS",
+      "checks": 0,
+      "files": 3
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-free-negative-controls-20261022/report.xml",
+      "sha256": "9af404bbe1df8bc12deb4eb5d67646de6b6288568eae99fc3de9e3b203fc14b2",
+      "job": "nsp-free-negative-controls-20261022",
+      "status": "PASS",
+      "checks": 37,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-free-print-v2-20261022/report.xml",
+      "sha256": "95012e2373a0805043f0510afc37daedf13ca597ee6beb9f960997274504a01a",
+      "job": "nsp-free-print-v2-20261022",
+      "status": "PASS",
+      "checks": 37,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-free-print-v2-reopen-20261022/report.xml",
+      "sha256": "35afb84b28c8582368f7b2f2df11112ffc1593885abe0706b1e84ed5a56e3808",
+      "job": "nsp-free-print-v2-reopen-20261022",
+      "status": "PASS",
+      "checks": 12,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-native-reopen-b1-20261022/report.xml",
+      "sha256": "3e5d570dd59e02d208aa80d6bc65b064bdc0d6fffaaf73aa49539a6a01f5c09e",
+      "job": "nsp-native-reopen-b1-20261022",
+      "status": "PASS",
+      "checks": 26,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-native-reopen-b2-20261022/report.xml",
+      "sha256": "ebd988b02418771a758c2abe098d925113b04ccf62f3378ee55d48885e4a5139",
+      "job": "nsp-native-reopen-b2-20261022",
+      "status": "PASS",
+      "checks": 25,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-native-reopen-b3-20261022/report.xml",
+      "sha256": "7542c04a8d51871dddeeec20013087afa2f2ed5c55586c38b279a69b60cc5d5f",
+      "job": "nsp-native-reopen-b3-20261022",
+      "status": "PASS",
+      "checks": 18,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-next-excel-1-20261022/report.xml",
+      "sha256": "727b8bcdf9b127516a6e351bda15123a0b411ba14c31ebab07feab20f058c555",
+      "job": "nsp-next-excel-1-20261022",
+      "status": "PASS",
+      "checks": 10,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-next-excel-10-20261022/report.xml",
+      "sha256": "fcd9b9d42ce859ea8e6a32e81bf323b2f975cb609f9d1aa7667b28d440fafa57",
+      "job": "nsp-next-excel-10-20261022",
+      "status": "PASS",
+      "checks": 6,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-next-excel-11-20261022/report.xml",
+      "sha256": "a9205cb0978c85c01ebf7d0cd5731789e2d994a4bd9e654d811d0dd3f3c4b670",
+      "job": "nsp-next-excel-11-20261022",
+      "status": "PASS",
+      "checks": 6,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-next-excel-2-20261022/report.xml",
+      "sha256": "21b3637b285666c348575747b1b67e99c0df160ecf3bb7dea02e0ffd71069bdf",
+      "job": "nsp-next-excel-2-20261022",
+      "status": "PASS",
+      "checks": 12,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-next-excel-3-20261022/report.xml",
+      "sha256": "73dc7cb190c782d194a557a8136aaa47b8b424d68a7a24b1ab96ddc2cab7b033",
+      "job": "nsp-next-excel-3-20261022",
+      "status": "PASS",
+      "checks": 9,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-next-excel-4-20261022/report.xml",
+      "sha256": "ccb4bff5e7fed0f765f0e8c5ff2fedb18e1ef7e31b60352fe82f25782351a9f5",
+      "job": "nsp-next-excel-4-20261022",
+      "status": "PASS",
+      "checks": 9,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-next-excel-5-20261022/report.xml",
+      "sha256": "f03b8276a3038fb2ffa8e899b97284c2d333d75d4ab7e6672ebaf49ccbb64cee",
+      "job": "nsp-next-excel-5-20261022",
+      "status": "FAIL",
+      "checks": 12,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-next-excel-5-coercion-v2-20261022/report.xml",
+      "sha256": "00fae7d16ef17709cf86ff192b15c8d92d8c2c34462dd6ddd9c32b401e9a0a63",
+      "job": "nsp-next-excel-5-coercion-v2-20261022",
+      "status": "PASS",
+      "checks": 14,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-next-excel-6-20261022/report.xml",
+      "sha256": "5ddb4c4035ea75b9f730740adf5ebc6429c2ee4a27f69a1a2b1c8ecfbd977338",
+      "job": "nsp-next-excel-6-20261022",
+      "status": "PASS",
+      "checks": 11,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-next-excel-7-20261022/report.xml",
+      "sha256": "420b3b8d8d3a5bc1d5f01c7cc0290a09f23328058b4f80e61c0df7029b8ee859",
+      "job": "nsp-next-excel-7-20261022",
+      "status": "PASS",
+      "checks": 8,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-next-excel-8-20261022/report.xml",
+      "sha256": "76e12f5faebdbb3cdcd7d55f04e3fb43fd369d11d4d8b52bd741f68679967de6",
+      "job": "nsp-next-excel-8-20261022",
+      "status": "FAIL",
+      "checks": 10,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-next-excel-8-coercion-v2-20261022/report.xml",
+      "sha256": "326aa43408879ba4590a17acc2f76108da9503a24912a832f39ae3f4f3aaf585",
+      "job": "nsp-next-excel-8-coercion-v2-20261022",
+      "status": "PASS",
+      "checks": 12,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/native/nsp-next-excel-9-20261022/report.xml",
+      "sha256": "516acb012971feeed8aee29d8816596645a8ae384746e1f23d70c86feb950e13",
+      "job": "nsp-next-excel-9-20261022",
+      "status": "PASS",
+      "checks": 9,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/word/nsp-free-content-docx-20261022/report.xml",
+      "sha256": "dd0f2cde499018314b83286bc626bfad77f55670600ed999bd078098cd61940f",
+      "job": "nsp-free-content-docx-20261022",
+      "status": "PASS",
+      "checks": 0,
+      "files": 4
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/word/nsp-free-content-v2-20261022/report.xml",
+      "sha256": "bb2523c7c2155008425885b177bcfa358f9de662718fcbc3ee77ff65233f0e18",
+      "job": "nsp-free-content-v2-20261022",
+      "status": "PASS",
+      "checks": 0,
+      "files": 4
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/word/nsp-free-word-layout-v2-20261022/report.xml",
+      "sha256": "6608bdb6b9f9c6f63cb91ffa29efdfb1923d4b45967121167bef04308680e76e",
+      "job": "nsp-free-word-layout-v2-20261022",
+      "status": "PASS",
+      "checks": 0,
+      "files": 2
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/word/nsp-next-word-b1-20261022/report.xml",
+      "sha256": "d6c76a1b2e1e71f5f3084d167e782afd835a65319e6dc5b7476410decab9f03b",
+      "job": "nsp-next-word-b1-20261022",
+      "status": "PASS",
+      "checks": 0,
+      "files": 4
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/native-recovery-20261022/evidence/word/nsp-next-word-b2-20261022/report.xml",
+      "sha256": "409199e3d3e9287269d44af98d0d0206635028e682d4c30c3ea36a6f0f572a58",
+      "job": "nsp-next-word-b2-20261022",
+      "status": "PASS",
+      "checks": 0,
+      "files": 4
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/office-control-20261022-233620/evidence/native/nsp-office-control-native-20261022-233620/report.xml",
+      "sha256": "13c3c46e170dfd67021fc6dd0e923dfaa5d06818724cf1b2b181770ecb787709",
+      "job": "nsp-office-control-native-20261022-233620",
+      "status": "FAIL",
+      "checks": 0,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/office-control-20261022-233620/evidence/word/nsp-office-control-word-20261022-233620/report.xml",
+      "sha256": "fb3f122106b15c6c89520a3567aa226003311065e06b89e7d45152076e22def3",
+      "job": "nsp-office-control-word-20261022-233620",
+      "status": "FAIL",
+      "checks": 0,
+      "files": 1
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/office-recovery-20261023/evidence/native/nsp-office-control-native-20261023-001210/report.xml",
+      "sha256": "d350717685e2b680340717c874b2e34684288ee5374e535615ea52fc65f0b0cb",
+      "job": "nsp-office-control-native-20261023-001210",
+      "status": "PASS",
+      "checks": 8,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/office-recovery-20261023/evidence/word/nsp-office-control-word-20261023-001210/report.xml",
+      "sha256": "24f501364810cc94ba243b88aa38689828c713035437fcec58ab92c42edf7ca3",
+      "job": "nsp-office-control-word-20261023-001210",
+      "status": "PASS",
+      "checks": 0,
+      "files": 1
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/office-resumed-products-20261023/evidence/native/nsp-avans-reopen-v1-20261023/report.xml",
+      "sha256": "5b4602431228c4bbea67836807e158397994dfbc17f8e3440e1898ff7ea02104",
+      "job": "nsp-avans-reopen-v1-20261023",
+      "status": "PASS",
+      "checks": 9,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/office-resumed-products-20261023/evidence/native/nsp-p5-final-print-r2-20261023/report.xml",
+      "sha256": "295e5dba65b9ac6c497513c760f7fcf7bd2df46c4fd2fb76ec607e1d97000b6b",
+      "job": "nsp-p5-final-print-r2-20261023",
+      "status": "PASS",
+      "checks": 30,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/office-resumed-products-20261023/evidence/word/nsp-p11-final-letters-r2-20261023/report.xml",
+      "sha256": "7fa7a5ae7244385fa883bbbcb3f60a699e026e643aefa8c3e9eeca6a8b81fa86",
+      "job": "nsp-p11-final-letters-r2-20261023",
+      "status": "PASS",
+      "checks": 0,
+      "files": 3
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/office-retry-r1-20261023/evidence/native/nsp-p5-final-print-r1-20261023/report.xml",
+      "sha256": "1eb4f12c86d197ae1f0812bf355a9150ebffb9d461d81063be86eee318d9d79a",
+      "job": "nsp-p5-final-print-r1-20261023",
+      "status": "FAIL",
+      "checks": 0,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/office-retry-r1-20261023/evidence/word/nsp-p11-final-letters-r1-20261023/report.xml",
+      "sha256": "3a561fb5723a4485dcbfe1b89e709715e08d0012cf90de051a150a42b6cd2ef2",
+      "job": "nsp-p11-final-letters-r1-20261023",
+      "status": "FAIL",
+      "checks": 0,
+      "files": 1
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/p11-guide-r4-20261023/evidence/report.xml",
+      "sha256": "29a8bf09e073682df00a9e875b2d7db276b66a65e7c3d5d02c6bc5ab5a81dd12",
+      "job": "nsp-p11-guide-r4-20261023",
+      "status": "PASS",
+      "checks": 0,
+      "files": 4
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/paid-followup-20261023/evidence/native/nsp-p5-print-v2-20261023/report.xml",
+      "sha256": "e306a5b822ceebee1b899958371a55ced0358bd77f2a7ba6e85e315d37d85cf3",
+      "job": "nsp-p5-print-v2-20261023",
+      "status": "FAIL",
+      "checks": 0,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/paid-followup-20261023/evidence/word/nsp-p11-final-letter-tests-20261023/report.xml",
+      "sha256": "71c2f77df2cbacca833fc2722977868c21d7670d68f3ac7e461b15482b554cf9",
+      "job": "nsp-p11-final-letter-tests-20261023",
+      "status": "FAIL",
+      "checks": 0,
+      "files": 1
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/paid-followup-20261023/evidence/word/nsp-p11-letter-layout-v2-20261023/report.xml",
+      "sha256": "4b4af6f40cbd4695ed79cb535e1f1d6f19041658bbf10539e2dc5b53295dfc35",
+      "job": "nsp-p11-letter-layout-v2-20261023",
+      "status": "PASS",
+      "checks": 0,
+      "files": 1
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/paid-followup-20261023/evidence/word/nsp-p11-letter-layout-v3-20261023/report.xml",
+      "sha256": "4c3ad504d6ccc53d59e61bb746c51ddc7d2acbce406893cd9a531eef3ec26dc1",
+      "job": "nsp-p11-letter-layout-v3-20261023",
+      "status": "PASS",
+      "checks": 0,
+      "files": 1
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/paid-followup-20261023/evidence/word/nsp-p11-remaining-word-20261023/report.xml",
+      "sha256": "1fb0431a8ca7cb7b45c7770b10722a4589bae6251ccee991f48dd20b778b4b40",
+      "job": "nsp-p11-remaining-word-20261023",
+      "status": "PASS",
+      "checks": 0,
+      "files": 2
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/print-area-compatibility-20261023/print-area-default-ns-20261023/evidence/report.xml",
+      "sha256": "fb864e3ee1a565570ae5047829189b43518fc0a63135de590c23dab1ecc58a8b",
+      "job": "nsp-print-area-default-ns-v1-20261023",
+      "status": "PASS",
+      "checks": 12,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/print-area-compatibility-20261023/print-area-diagnostic-20261023/evidence/report.xml",
+      "sha256": "a565f784bde62def02868464cffcc31401aa676ab2eee158ee60208fab19b591",
+      "job": "nsp-print-area-diagnostic-v1-20261023",
+      "status": "PASS",
+      "checks": 12,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/print-area-compatibility-20261023/print-area-name-matrix-20261023/evidence/report.xml",
+      "sha256": "83cbad84a5c58f5305a561118375358ab96eaa70ad379657ba2025845c229f96",
+      "job": "nsp-print-area-name-matrix-v1-20261023",
+      "status": "PASS",
+      "checks": 18,
+      "files": 0
+    },
+    {
+      "path": "tools/nsp-next-corrections-20261022/print-area-compatibility-20261023/print-area-reopen-20261023/evidence/report.xml",
+      "sha256": "8324abe36f3a14ff0c30fa9e625bf01c667360707befad939700f7e63cbbfc1e",
+      "job": "nsp-print-area-reopen-v1-20261023",
+      "status": "PASS",
+      "checks": 6,
+      "files": 0
+    }
+  ],
+  "previous_excel_files": 11,
+  "previous_excel_scenarios": 57,
+  "previous_excel_checks": 131,
+  "limits": "No unchanged P8 workbook was reopened; later Avans and P11 remain separately scoped."
+}

@@ -1,0 +1,128 @@
+{
+  "issue": "FL10",
+  "status": "SCOPED_FIX_NATIVE_PASS_FULL_PRODUCT_BLOCKED",
+  "candidate_sha256": "5647f33e362ed59338ea3fc46783f2d61572093bd0378353e6b3e459b1337e60",
+  "source_zip_sha256": "07f372b8cd43b3a6a31f20834290e99ac25a2012ed91472ec01cd12004281122",
+  "qa_zip_sha256": "cc1ea3b27757c2eaa1ce716a4a4b2742f745450fe79555976427eba200e10ebf",
+  "native_job": "nsp-qa01-retention-fl10-20261023",
+  "native_receipt_sha256": "12e9baa6050d0b0f1a41530134afe7f501c4628419c41143db0e170773a2c90f",
+  "native_pdf_sha256": "128e629f45e3c17518f636bd200d9704c3ca14434520ec7667ab096ff6ef94ce",
+  "native_pdf_pages_viewed": 5,
+  "canonical_pages_viewed": 5,
+  "word_statistics_pages": "6",
+  "page_count_limit": "Word ComputeStatistics reports 6 for both before and after; actual exported PDF contains 5. Five actual pages reviewed; no claim of six PDF pages.",
+  "visual_scope": "Changed paragraph readable; no new clipping. Existing split letter and near-empty page 5 with missing link glyph remain product layout blockers.",
+  "arithmetic_cases": 3,
+  "changed_docx_parts": [
+    "word/document.xml"
+  ],
+  "changed_members": [
+    "04-pismo-o-vozvrate-uderzhaniya.docx"
+  ],
+  "members": [
+    {
+      "name": "01-proverochnyy-list-usloviy-uderzhaniya.docx",
+      "sha256": "10a1f8eaab78c425e16d5347297023e98ce2ac28b152733fcfd87198515f1d33",
+      "changed": false
+    },
+    {
+      "name": "02-reestr-uderzhaniy-po-obektu.xlsx",
+      "sha256": "e8424bea88cfb06c62deaeb3b4e6a924117e2ccea1eeb4a1fb45ce914d97e933",
+      "changed": false
+    },
+    {
+      "name": "03-tipovye-formulirovki-lovushki.docx",
+      "sha256": "ebacceb0dfe59c34ad02cdcba8250a96b2d46b35fbb7e5996645024751fe69c1",
+      "changed": false
+    },
+    {
+      "name": "04-pismo-o-vozvrate-uderzhaniya.docx",
+      "sha256": "5647f33e362ed59338ea3fc46783f2d61572093bd0378353e6b3e459b1337e60",
+      "changed": true
+    },
+    {
+      "name": "99-chto-dalshe.pdf",
+      "sha256": "c6f3080d658d788f580076b2581ae7efed4afd5677805636871971604c428343",
+      "changed": false
+    }
+  ],
+  "other_members_byte_exact": true,
+  "visual": [
+    {
+      "engine": "canonical",
+      "path": "visual/canonical/page-1.webp",
+      "sha256": "6397aa3d797da2c81fe918839b01fcccba56c0a723820b2a9270d4308a123808",
+      "pixels_identical": true,
+      "reviewed": true
+    },
+    {
+      "engine": "canonical",
+      "path": "visual/canonical/page-2.webp",
+      "sha256": "25e931e45517aef982cb5cb77e22a52ed804560f483c0c9a3b6d9a05f0931db6",
+      "pixels_identical": true,
+      "reviewed": true
+    },
+    {
+      "engine": "canonical",
+      "path": "visual/canonical/page-3.webp",
+      "sha256": "7036df32def83f4398a609007e2e57405f4668e7b9e5952549ddbf3415ac2537",
+      "pixels_identical": true,
+      "reviewed": true
+    },
+    {
+      "engine": "canonical",
+      "path": "visual/canonical/page-4.webp",
+      "sha256": "3f60cd301db61f752c6b85dfe998ec6a836ca1da3739242ec46c4a589520f33d",
+      "pixels_identical": true,
+      "reviewed": true
+    },
+    {
+      "engine": "canonical",
+      "path": "visual/canonical/page-5.webp",
+      "sha256": "4c45d3f81479bcefe34ad2d3d9fbdc51a66cabb2a64869843d93522b73ca3bc9",
+      "pixels_identical": true,
+      "reviewed": true
+    },
+    {
+      "engine": "native",
+      "path": "visual/native/native-retention-1.webp",
+      "sha256": "9f6aed919ba3660ec3cd1d7f61cefbfb4b03b181417a2ef0102f8088306bca15",
+      "pixels_identical": true,
+      "reviewed": true
+    },
+    {
+      "engine": "native",
+      "path": "visual/native/native-retention-2.webp",
+      "sha256": "7a944dd872274be489924a2e55235a2b3d07a4fed6069203a83fae64316aa6a6",
+      "pixels_identical": true,
+      "reviewed": true
+    },
+    {
+      "engine": "native",
+      "path": "visual/native/native-retention-3.webp",
+      "sha256": "6a59216584a6dc05fa13b8529b61f7de860f8765437fece491d72a7cdd810753",
+      "pixels_identical": true,
+      "reviewed": true
+    },
+    {
+      "engine": "native",
+      "path": "visual/native/native-retention-4.webp",
+      "sha256": "a39d013a239383fa0af502f67898e4598d79a81bbb65044616516a8534e0d888",
+      "pixels_identical": true,
+      "reviewed": true
+    },
+    {
+      "engine": "native",
+      "path": "visual/native/native-retention-5.webp",
+      "sha256": "e606bb979a28990f1ac442282a54bb4fc872d573bf86920ebf182202b9e15b66",
+      "pixels_identical": true,
+      "reviewed": true
+    }
+  ],
+  "publication": false,
+  "remaining": [
+    "FL12: event already occurred versus expected; actual demand for return versus request for date.",
+    "Other categorical legal statements, support and applicable clickable norms require review.",
+    "Existing Word layout and glyph defect; no whole-product visual PASS."
+  ]
+}

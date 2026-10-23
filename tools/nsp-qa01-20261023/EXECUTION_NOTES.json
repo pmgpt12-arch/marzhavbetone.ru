@@ -1,0 +1,38 @@
+{
+  "scope": "Errors corrected before acceptance; none caused production or source changes",
+  "items": [
+    {
+      "error": "Initial remote audit snapshot root was treated as a Git checkout",
+      "correction": "Used the existing qa/integration-20261022/repo checkout and pinned 65c176aa554397c12652a86fe2393942faa546a7",
+      "writes_before_correction": false
+    },
+    {
+      "error": "Requested a nonexistent documents task resource edit.md",
+      "correction": "Used the already retrieved documents SKILL.md and its actual render_docx.py contract",
+      "artifact_acceptance_affected": false
+    },
+    {
+      "error": "Git sparse-checkout add does not support --no-cone on this Git version",
+      "correction": "Reused the initialized non-cone mode and supplied paths via --stdin",
+      "sources_changed": false
+    },
+    {
+      "error": "Native preflight queried the system service journal rather than the existing user service journal",
+      "correction": "Read-only query corrected to journalctl --user. First attempt stopped before submission; subsequent actual Word job passed",
+      "details": "retention/native/PREFLIGHT_CORRECTION.json",
+      "settings_changed": false
+    },
+    {
+      "observation": "Word ComputeStatistics reports 6 pages for original and candidate, while each exported PDF actually has 5",
+      "acceptance_limit": "Five actual candidate PDF pages were rendered and viewed. Six viewed PDF pages are not claimed"
+    },
+    {
+      "observation": "Fetching failed CI logs returned no extracted diagnostic lines",
+      "acceptance_limit": "Existing failure names, run URLs and statuses are recorded; no cause or fix is invented"
+    },
+    {
+      "observation": "Default git diff --check flags native Windows XML CRLF line endings",
+      "correction": "Preserved exact receipt bytes and SHA; checked with command-scoped core.whitespace=cr-at-eol rather than rewriting evidence"
+    }
+  ]
+}

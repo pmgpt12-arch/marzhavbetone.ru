@@ -1,0 +1,42 @@
+{
+  "issue": "FL10_DOUBLE_SUBTRACTION",
+  "status": "CANDIDATE_TESTED_NATIVE_PENDING",
+  "source_zip_sha256": "07f372b8cd43b3a6a31f20834290e99ac25a2012ed91472ec01cd12004281122",
+  "source_docx_sha256": "5883699288303dde26cae8b2616f20eea86a1386e34c0998c5e6556046cf9623",
+  "candidate_docx_sha256": "5647f33e362ed59338ea3fc46783f2d61572093bd0378353e6b3e459b1337e60",
+  "changed_parts": [
+    "word/document.xml"
+  ],
+  "other_parts_byte_exact": true,
+  "change_count": 1,
+  "old": "Итог по колонке «Разница» за вычетом подтверждённых возвратов — это сумма вашего обращения. Она должна совпадать с суммой в тексте письма.",
+  "new": "Итог по колонке «Разница» — сумма вашего обращения: возвраты уже учтены в каждой строке. Повторно их не вычитайте. Итог должен совпадать с суммой в письме.",
+  "cases": [
+    {
+      "held": 100000,
+      "returned": 20000,
+      "difference": 80000,
+      "old_instruction_result": 60000,
+      "corrected_instruction_result": 80000,
+      "pass_": true
+    },
+    {
+      "held": 100000,
+      "returned": 0,
+      "difference": 100000,
+      "old_instruction_result": 100000,
+      "corrected_instruction_result": 100000,
+      "pass_": true
+    },
+    {
+      "held": 100000,
+      "returned": 100000,
+      "difference": 0,
+      "old_instruction_result": -100000,
+      "corrected_instruction_result": 0,
+      "pass_": true
+    }
+  ],
+  "remaining": "FL12 and other whole-product issues remain open; this is one arithmetic instruction fix.",
+  "publication": false
+}
