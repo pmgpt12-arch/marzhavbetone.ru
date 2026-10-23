@@ -1,0 +1,59 @@
+{
+  "status": "FULL_QA_PASS",
+  "time_utc": "2026-10-23T15:48:25.106623+00:00",
+  "original_published_archive_sha256": "ff75bfd6bbb989317747bbd1ad1b36592e30dcf2f2db00189a75a05f789c1e0b",
+  "original_repo_archive_sha256": "554fddf42ea62d1b0599ec65a2c982cde6228cbb2701814a470001c1c0243f26",
+  "candidate_archive_sha256": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
+  "archive_name": "akt-skrytyh-rabot-QA07-FULL-QA.zip",
+  "files": [
+    {
+      "name": "01-perechen-rabot-trebuyushchih-akta.docx",
+      "status": "PASS",
+      "source_sha256": "52388d3d911542afeae5198df5baf4b2aaaa51750bd56b0a1ca4b0addaed4cd5",
+      "candidate_sha256": "c2af884cd67cf9071185f2e4a70e417a31d900cfa0fb1c3a66e9c1c6a435a4c4",
+      "bytes": 41152
+    },
+    {
+      "name": "02-proverochnyy-list-akta.docx",
+      "status": "PASS",
+      "source_sha256": "49bbf2e9360256187e4eb9e83457ebfa441d0dd6e008ba93bb791e7fbdbb57f4",
+      "candidate_sha256": "79a4f678c46ceb429de66d651e77d8554dfc13d47defc9aedc049d44f1110a9c",
+      "bytes": 41008
+    },
+    {
+      "name": "03-reestr-aktov-po-obektu.xlsx",
+      "status": "PASS",
+      "source_sha256": "8fb5ec6cf5409c39ce2db67205f6ae8f2e6850597f37f083bd877dc256a89644",
+      "candidate_sha256": "413c8309fcd845d0fde4a43286748c7756db9d880ac7ae531fa695fdb55f2112",
+      "bytes": 7488
+    },
+    {
+      "name": "04-zapros-o-poryadke-osvidetelstvovaniya.docx",
+      "status": "PASS",
+      "source_sha256": "ab49c5e9d157416e31947744901d4a497033b0498ff4b55adbeb58d6c37c86a4",
+      "candidate_sha256": "b71db29371059c3c72372ab8d8d23996cb620b7996ab4ceaad17f3d575b04186",
+      "bytes": 40059
+    },
+    {
+      "name": "99-chto-dalshe.pdf",
+      "status": "UNCHANGED_ACCEPTED",
+      "source_sha256": "64d5c0069a5954551d4af5d4d9815314cfd32cbc7dca84e847f6c1170ccefcc6",
+      "candidate_sha256": "64d5c0069a5954551d4af5d4d9815314cfd32cbc7dca84e847f6c1170ccefcc6",
+      "bytes": 52523
+    }
+  ],
+  "word_receipt_sha256": "2c001ee27b3107cde3f7a5b2bb1d22595f37563c040ee0efdbbdda8c27b97c25",
+  "excel_receipt_sha256": "08ec1625076420e4a25799c901436b81f0dbdf47807ee0c0bef085d0840da9e7",
+  "excel_reopen_receipt_sha256": "8fe0fd7654ff98cc0536fb8b0fe53a911406da8b70c4adc162f647a00407a637",
+  "page_counts": {
+    "word01": 4,
+    "word02": 4,
+    "excel03": 2,
+    "word04": 3,
+    "pdf99": 1
+  },
+  "total_pages_reviewed": 14,
+  "scope": "Standalone QA; no production or main mutation",
+  "publishing": "HOLD",
+  "qa08_started": false
+}
