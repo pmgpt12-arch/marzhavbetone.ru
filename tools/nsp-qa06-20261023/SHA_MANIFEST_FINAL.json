@@ -1,0 +1,94 @@
+{
+  "status": "FULL_QA_PASS",
+  "date_utc": "2026-10-23T14:26:37.581729+00:00",
+  "source_zip_name": "ispolnitelnaya-dokumentaciya.zip",
+  "source_live_sha256": "3a7f0ef027b946c06e5f8c038ef31894c39184f9b7ad3db53ee8aa67f6825e72",
+  "source_repo_sha256": "939faa551001abe754cad87e6bae0812d286acc1eaf4a0c360c95649702e8e19",
+  "actual_live_differs_from_repo": true,
+  "archive_name": "ispolnitelnaya-dokumentaciya-QA06-FULL-QA.zip",
+  "archive_sha256": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
+  "archive_bytes": 164540,
+  "files": [
+    {
+      "name": "01-proverochnyy-list-komplekta-id.docx",
+      "status": "PASS",
+      "original_live_sha256": "a7f5204a965b8dc1b605bad1328b9cda99bfa5127655c13ca9e1c5a6c0a93bc2",
+      "original_repo_sha256": "fca1ed689ca14848a5491a486d7989f9ca9785daec48eee400a81e2b46927d32",
+      "candidate_sha256": "763497647f3579692ff31ffe3758a2a49e86bb52c4ee56dae3893c9c624931ef",
+      "bytes": 42218
+    },
+    {
+      "name": "02-reestr-sverki-ks2-i-id.xlsx",
+      "status": "PASS",
+      "original_live_sha256": "8b88f8ce55581e7894e4c0ccb38ed5a2aed6cab76b9a17145473a663843efd0d",
+      "original_repo_sha256": "8b88f8ce55581e7894e4c0ccb38ed5a2aed6cab76b9a17145473a663843efd0d",
+      "candidate_sha256": "77ede946355331b76af11a42e32bd69c81f3f6e4b998ba9f9a2a15e572931d5d",
+      "bytes": 9767
+    },
+    {
+      "name": "03-prichiny-vozvrata-komplekta.docx",
+      "status": "PASS",
+      "original_live_sha256": "5ae77d48857ebe3b24f2b12e73b72308bfce4f8e87623b87a2ec92ac6665f828",
+      "original_repo_sha256": "8255ec9d1201ecfe85238ea17ef8a3d24fe9c7569e89ef64c08cdfa9c016c58d",
+      "candidate_sha256": "96ffb3b62cdb05595b3a846393e987e83b14f06a0e1973183cf9dab1371ff737",
+      "bytes": 40772
+    },
+    {
+      "name": "04-zapros-o-poryadke-peredachi-id.docx",
+      "status": "PASS",
+      "original_live_sha256": "37b36f51f9236f59d2e77e0aa595bac2af8ec07d0a71a336b0c1d43117ef7b86",
+      "original_repo_sha256": "fef3e1869b20e500850dbf3096f525a9be1bffadbeb22efe934e5c1d70862190",
+      "candidate_sha256": "8f03ecda37a0121e415a4bd7d725cb978903358fd8bf30ad2eed580dca4ad7eb",
+      "bytes": 40586
+    },
+    {
+      "name": "99-chto-dalshe.pdf",
+      "status": "PASS",
+      "original_live_sha256": "a532425657b4e0c68982b6ddee6f875c71447c2c38b13786e4fb694f56f080a1",
+      "original_repo_sha256": "529255ec3901596a98ef973810f47e0373c9ef1372708d46dc0e394b5c9f3f01",
+      "candidate_sha256": "575020d38759a7efd6eb2f8422fe83a5e1b422257055bc0168963d9a2da2c73e",
+      "bytes": 45227
+    }
+  ],
+  "final_word_receipt_sha256": "9804c0ee71b9955e41149f705df41a589446895c753eff07a933d2923c748edc",
+  "final_excel_receipt_sha256": "0af942b69a0bf71217dba768d9ac32f309e268d597e1281364e0e4c1fd9a2dc5",
+  "final_reopen_receipt_sha256": "f2c3a46f2a0b655953954b282c1caa1fd3f5455d75edb57514dfe5cc82a7af57",
+  "native_word_pass": 3,
+  "native_excel_cases": 6,
+  "native_excel_saved_reopen": "PASS",
+  "final_pages_reviewed": 16,
+  "native_visual_evidence": [
+    {
+      "file": "word01",
+      "pages": 5,
+      "sha256": "0c4a1d767bdb9f567a51071bc1895b15ebd8205c09dab8a1e6ce02be77913924"
+    },
+    {
+      "file": "excel02",
+      "pages": 3,
+      "sha256": "96c716d169c20044d755881d19683f274b2e23e7969dd17b55c57ba3347bce89"
+    },
+    {
+      "file": "word03",
+      "pages": 3,
+      "sha256": "0a7b9c41a2cf1005636c8b50691d35cfd96aee273cad6a9f635958b1b095ac60"
+    },
+    {
+      "file": "word04",
+      "pages": 4,
+      "sha256": "814934e1d9e3d5e40ee48ba983ad0ee7cb2650f4ee37703f6d9b90b6130116cd"
+    },
+    {
+      "file": "pdf99",
+      "pages": 1,
+      "sha256": "575020d38759a7efd6eb2f8422fe83a5e1b422257055bc0168963d9a2da2c73e"
+    }
+  ],
+  "qa05_portable_evidence_sha256": "c30f2d69f3a1218f80f30b95c748826b66cc738b272a55a5d3639be132684dac",
+  "qa05_uploaded_readback": true,
+  "scope": "Only separate QA06 candidate; live public site, main, QA01-QA05 unmodified",
+  "release": "HOLD",
+  "merge": false,
+  "deploy": false,
+  "next_QA07_started": false
+}
