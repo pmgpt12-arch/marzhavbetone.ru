@@ -1,0 +1,60 @@
+{
+  "status": "FULL_QA_PASS",
+  "created_utc": "2026-10-24T03:10:51.676866+00:00",
+  "public_zip_sha256": "7e87570bbd42da3326823261a842e6544c5b7588bc3487633e70e3d5c9b6999b",
+  "git_zip_sha256": "d9c29eb2a01d6a5484eabc5eb588a826addc0f28e23a9de4d85e0b549bad573e",
+  "old_candidate_sha256": "5430fc6ea7781fadf586e7c601436ff6f10bd3a927b263358069b3c66cd35c16",
+  "qa_zip_sha256": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
+  "archive_name": "avans-QA12-FULL-QA.zip",
+  "files": [
+    {
+      "name": "01-proverochnyy-list-usloviy-avansa.docx",
+      "status": "PASS",
+      "public_sha256": "cf723795b29b348b5487942588e129d5df3d9ca283e6f1dda508803ee0073e06",
+      "final_sha256": "b463a813e9909919fe40b830ab5fae03279fa2b0457f0e8b9540672dbea895d1",
+      "bytes": 42964
+    },
+    {
+      "name": "02-reestr-izyatiy-po-obektu.xlsx",
+      "status": "PASS",
+      "public_sha256": "46e09cd199c4b4f09dd141ac4aebbfbcd89b0b84df87b325225fd90a8d8f838d",
+      "final_sha256": "a0df16f013f7d1e9be514eec50bb0f91905a6838d1b0c72455616003703711b9",
+      "bytes": 7986
+    },
+    {
+      "name": "03-formulirovki-lovushki.docx",
+      "status": "PASS",
+      "public_sha256": "eb843b899b733bb2efb2e71cced399b0773ba3d650ed352f1da72dc927f4515b",
+      "final_sha256": "387a666a599cd3e982d5f95ea1c2e5514bb1897f1f33ce39616f108a88a43164",
+      "bytes": 41517
+    },
+    {
+      "name": "04-zapros-ob-usloviyah-avansa.docx",
+      "status": "PASS",
+      "public_sha256": "c3f6cf03969d3bf58c7e849c47add49907eb51ad2318f446cf10921ec95dd0d2",
+      "final_sha256": "331c71d3a2ca0da055f6a2cd05b31c538dbb5636d28b08fde168af36f39f1e3e",
+      "bytes": 40814
+    },
+    {
+      "name": "99-chto-dalshe.pdf",
+      "status": "UNCHANGED_ACCEPTED",
+      "public_sha256": "dbb806e80627e9c451baca2a50a18edfb454db7ea5aed572f0205c9c57e71c26",
+      "final_sha256": "dbb806e80627e9c451baca2a50a18edfb454db7ea5aed572f0205c9c57e71c26",
+      "bytes": 52081
+    }
+  ],
+  "native_receipts": {
+    "word": "fab8ebb370eb7efec0cdd8ec141831a5d2ba861274dc1b47be414907300c6f90",
+    "excel": "6228fc562fa2f0c41c116993f758541e1a5fccb70b43aa35804bbf07b3d5a37c",
+    "reopen": "6a3a89ffbf079c5e90897957f58ec4a5029e8e167f1ec0c08221c12246245d33"
+  },
+  "native_word_pages": 14,
+  "native_excel_pages": 2,
+  "unchanged_pdf_pages": 1,
+  "all_reviewed_pages": 17,
+  "excel_scenarios": "8/8 + save/reopen",
+  "control": "QA01-QA11 unchanged; main/production/public archives unchanged",
+  "publication": "HOLD",
+  "merge": false,
+  "deploy": false
+}
