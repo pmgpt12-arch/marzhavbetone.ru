@@ -1,0 +1,58 @@
+{
+  "schema": "QA13_RESUME_MANIFEST_v1",
+  "status": "PAUSED_WAITING_FOR_OWNER_ACCESS",
+  "full_qa_pass": false,
+  "branch": "qa/nsp-qa13-p1-continuation-20261024",
+  "calculator": {
+    "name": "14-raschet-procentov-395-gk.xlsx",
+    "sha256": "5deb085cd3d7b2d248fd52db8e18d0a6bc29f4b6b8838ea6e203463fd5b9ac30",
+    "status": "QA_PASS",
+    "native_scenarios_pass": 9,
+    "visual_pages_pass": 12,
+    "evidence_sha256": "77ca3bb61e6d412e38c874fa90cf2b8d7c7000df9999aae0127efc50092d354a"
+  },
+  "buyer_qa_zip": {
+    "files": 20,
+    "sha256": "2ab35d0638f8cae83f53aa7910b1ab0fa4970254baa7a306d8a8ce98aa64afaf",
+    "status": "NONRELEASE"
+  },
+  "original_xls": [
+    {
+      "name": "01-ks-2.xls",
+      "sha256": "b09296147561df5afd9a38bbb196860a1a3a3268a8b26d9751c88d4c5bca6281"
+    },
+    {
+      "name": "02-ks-3.xls",
+      "sha256": "d6922089bffcde2a00a30d62d8d7ea1d87676fe4de9ae44a3d0e9af4d821ed0a"
+    },
+    {
+      "name": "06-zhurnal-ucheta-rabot-ks-6a.xls",
+      "sha256": "053c5f1603478ca08fbab8f522ed4448546941d4009c79a76bdc8af13248aa29"
+    }
+  ],
+  "oneshot": {
+    "sha256": "53a1ae2f3588fe609330ee732309a4b6c6e474d23bd6128b44d284f20125cbcc",
+    "executed": false,
+    "powershell_2_compatible": false,
+    "compatibility_fix_required_if_ps2": true
+  },
+  "release_blocker": "HEAD_19_VS_QA_20",
+  "protected_files_unchanged": true,
+  "links": [
+    "QA-13-REPORT.md",
+    "SHA_MANIFEST_FINAL.json",
+    "QA-13-PORTABLE-EVIDENCE.zip",
+    "QA-13-CALCULATOR-V4-REPORT.md",
+    "QA13-CALCULATOR-V4-PORTABLE-EVIDENCE.zip",
+    "P1-QA13-20-FILES-CALC-V4-NONRELEASE.zip",
+    "QA13-XLS-ONESHOT-PORTABLE-20261024.zip"
+  ],
+  "resume": [
+    "owner_access",
+    "check_powershell_version",
+    "run_isolated_native_xls_test",
+    "verify_pdf_and_sha",
+    "resolve_release_contract",
+    "update_matrix"
+  ]
+}
