@@ -1,0 +1,112 @@
+{
+  "sku": "P2",
+  "name": "Допработы без потерь",
+  "status": "RELEASE_BLOCKED",
+  "source_archive_sha256": "601a9715c3d591ad43e26527c56dd83d684a9dc7da9442a62eb8d7baaccf44a1",
+  "qa_archive_sha256": "601a9715c3d591ad43e26527c56dd83d684a9dc7da9442a62eb8d7baaccf44a1",
+  "count": 15,
+  "files": [
+    {
+      "name": "00-INSTRUKCIYA.docx",
+      "sha256": "8ba6c3b9bf61d51ffa7d78211f522ff69a7c60f68333a511d1330ae6a8986042",
+      "size": 42773,
+      "type": "docx"
+    },
+    {
+      "name": "00-INSTRUKCIYA.pdf",
+      "sha256": "4855380b0cca0d575b08e8c3c3f4ff04f4b164c76e8a4d0047678c799b2d3545",
+      "size": 104860,
+      "type": "pdf"
+    },
+    {
+      "name": "00-START-HERE.txt",
+      "sha256": "48113e1991b9b466de92c66419f5d9fcd590c0431032203b1e2ec29fd9604de6",
+      "size": 8962,
+      "type": "txt"
+    },
+    {
+      "name": "01-prikaz-na-dopobem.docx",
+      "sha256": "f2d021b28e5cd064e978188b1866b9b24ade27ddcf7c6905afd9d48a5bd1bfdb",
+      "size": 39703,
+      "type": "docx"
+    },
+    {
+      "name": "02-soglasovanie-obema.docx",
+      "sha256": "a5df4ba95be6cf07c3ae1391386924ec1c672339e3e870ac3d52373d1e53665b",
+      "size": 40360,
+      "type": "docx"
+    },
+    {
+      "name": "03-uvedomlenie-o-doprabotah.docx",
+      "sha256": "070f7499feff291d6f5bf03ddc58822b1365daa065e21f7e9db5255c0b77afce",
+      "size": 39904,
+      "type": "docx"
+    },
+    {
+      "name": "04-akt-skrytyh-rabot.pdf",
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4",
+      "size": 261891,
+      "type": "pdf"
+    },
+    {
+      "name": "05-izmenenie-srokov.docx",
+      "sha256": "cf56b952d61b2e502e5903ce11a8932b245b003ba568d2ba8b35c81166c1a138",
+      "size": 39512,
+      "type": "docx"
+    },
+    {
+      "name": "06-pismo-o-priostanovke.docx",
+      "sha256": "aa9ac91fa7a038731262a2f29df1322faa9efaf9fc818fde009359495fe790eb",
+      "size": 39671,
+      "type": "docx"
+    },
+    {
+      "name": "07-raschet-stoimosti.xlsx",
+      "sha256": "d68c8e54195286d6a3960da6a89aebbc296f389205bcdbd8df37644214513de4",
+      "size": 16052,
+      "type": "xlsx",
+      "sheets": [
+        "Реестр",
+        "Инструкция"
+      ],
+      "formulas": 203
+    },
+    {
+      "name": "08-zhurnal-doprabot.xlsx",
+      "sha256": "05127fdb8e298adbc3090063560a88c61fe6896dfb452b429502399fe8a127ec",
+      "size": 10149,
+      "type": "xlsx",
+      "sheets": [
+        "Реестр",
+        "Инструкция"
+      ],
+      "formulas": 0
+    },
+    {
+      "name": "09-checklist-fotofiksacii.pdf",
+      "sha256": "7306b4f7711b6b03ed75f4005eda59e41647685ab529e99e96bcccbd1de64d94",
+      "size": 28200,
+      "type": "pdf"
+    },
+    {
+      "name": "10-algoritm-doprabot.pdf",
+      "sha256": "fdda508ae349196fb80cab2f036fb83ef887186bceb5e0db02854ab4dac28f1c",
+      "size": 30858,
+      "type": "pdf"
+    },
+    {
+      "name": "11-dopsoglashenie-obem-i-cena.docx",
+      "sha256": "6252e4445dfb9dba0909e633b06671c31a04962216ddd5e9ac6d55ccec823bb0",
+      "size": 39854,
+      "type": "docx"
+    },
+    {
+      "name": "12-dopsoglashenie-sroki-doprabot.docx",
+      "sha256": "139f4007719e105a5add8f927b307609afbe192abf7f63312e6cca5e1aa0fceb",
+      "size": 39558,
+      "type": "docx"
+    }
+  ],
+  "technical_gate": "CRC_AND_OOXML_PASS",
+  "content_and_native_gate": "OPEN"
+}
