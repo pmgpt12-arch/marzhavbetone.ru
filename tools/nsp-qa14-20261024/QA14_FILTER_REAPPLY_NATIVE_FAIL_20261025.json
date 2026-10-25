@@ -1,0 +1,91 @@
+{
+  "test": "QA14_FILTER_REAPPLY_NATIVE_20261025",
+  "status": "FAIL",
+  "product": "P2",
+  "file": "07-raschet-stoimosti.xlsx",
+  "source_sha256": "367f93b32822c9911a42a1687f1f483bb8e1de36687323b92f54c60a8605add9",
+  "native_excel_version": "16.0",
+  "native_excel_build": "4324",
+  "method": "Excel.CommandBars.ExecuteMso(FilterReapply) on active Печать",
+  "receipt_sha256": "f87cbc053834cd91f4501d60c2dafe1c9c6e2534cb9d22b007b49334266d4add",
+  "checks": {
+    "f14:input_sha": {
+      "pass": "True",
+      "expected": "367f93b32822c9911a42a1687f1f483bb8e1de36687323b92f54c60a8605add9",
+      "actual": "367f93b32822c9911a42a1687f1f483bb8e1de36687323b92f54c60a8605add9"
+    },
+    "f14:pre_reapply_row4_hidden": {
+      "pass": "True",
+      "expected": "True",
+      "actual": "True"
+    },
+    "f14:execute_mso_reapply_row4_visible": {
+      "pass": "False",
+      "expected": "False",
+      "actual": "True"
+    },
+    "f14:execute_mso_reapply_row5_hidden": {
+      "pass": "False",
+      "expected": "True",
+      "actual": "False"
+    },
+    "f14:one-position-ribbon-reapply:A4": {
+      "pass": "True",
+      "expected": "number:1",
+      "actual": "System.Double:1"
+    },
+    "f14:one-position-ribbon-reapply:F4": {
+      "pass": "True",
+      "expected": "number:500",
+      "actual": "System.Double:500"
+    },
+    "f14:one-position-ribbon-reapply:I4": {
+      "pass": "True",
+      "expected": "number:575",
+      "actual": "System.Double:575"
+    },
+    "f14:one-position-ribbon-reapply:I104": {
+      "pass": "True",
+      "expected": "number:575",
+      "actual": "System.Double:575"
+    },
+    "f14:active_sheet_export": {
+      "pass": "True",
+      "expected": "single selected print sheet",
+      "actual": "single selected print sheet"
+    },
+    "f14:pdf_export": {
+      "pass": "True",
+      "expected": "%PDF-",
+      "actual": "bytes=109432"
+    },
+    "f14:source_unchanged": {
+      "pass": "True",
+      "expected": "367f93b32822c9911a42a1687f1f483bb8e1de36687323b92f54c60a8605add9",
+      "actual": "367f93b32822c9911a42a1687f1f483bb8e1de36687323b92f54c60a8605add9"
+    }
+  },
+  "before_print_sheet": {
+    "filter_range": "A3:J103",
+    "row4_hidden": "1",
+    "row5_hidden": "1",
+    "row104_hidden": "0",
+    "row105_hidden": "0"
+  },
+  "after_saved_print_sheet": {
+    "filter_range": "A3:J107",
+    "row4_hidden": "1",
+    "row5_hidden": "0",
+    "row104_hidden": "1",
+    "row105_hidden": "1"
+  },
+  "native_active_sheet_pdf_pages": 4,
+  "native_pdf_sha256": "bc538784da17e880ca61f58ae8d76961a44971d9d95763f9d2e6ed0355be5a09",
+  "control_source_unchanged": true,
+  "calculation_12_of_12_previously_passed": true,
+  "experimental_module_sha256": "42dc229f9e74987e49eaaa2a1db2b99ed89de2749212ad18536366e7fa983f3b",
+  "office_module_restored_sha256": "191d8f19e1803194309cff1a27d92948684066be6fbe3fb4df3c94e0b0659c48",
+  "controller_queue_restored_sha256": "d011ce0a94e5d47812853befdea2ad49d494fab269f9fd87e709eee7c888a83b",
+  "release_blocked": true,
+  "controller_queue_later_changed_by_qa08_job": "6706fb4ca6bdac725bcd73fdcb2693e9bbcd22c82e034669ec0329861ca8b369"
+}

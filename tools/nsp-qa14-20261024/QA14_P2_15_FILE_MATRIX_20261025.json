@@ -1,0 +1,246 @@
+{
+  "id": "QA14_P2_MATRIX_20261025",
+  "basis_commit": "6c1d49ec156bd74a41e7790fbbf64c604999295a",
+  "branch": "qa/nsp-qa14-p2-20261024",
+  "status": "RELEASE_BLOCKED",
+  "total": 15,
+  "static_integrity_pass": 15,
+  "full_qa_pass": false,
+  "sha256_qa_v9_zip": "5162ca81750440e5a7f24f49e41508cdafa53916e7980e449c88304f8fe12905",
+  "sha256_live_zip": "c66736bce0eedbac3c83688222883085e79de03371cc5a356741cdf898b0fbcc",
+  "archive_difference": {
+    "qa_only": [
+      "04-akt-skrytyh-rabot.pdf"
+    ],
+    "production_only": [
+      "04-akt-skrytyh-rabot.docx"
+    ],
+    "shared_different_sha": {
+      "00-INSTRUKCIYA.docx": {
+        "qa_sha": "8ba6c3b9bf61d51ffa7d78211f522ff69a7c60f68333a511d1330ae6a8986042",
+        "prod_sha": "286ac2c7bb3069fbcbe6d02c0daa86250f421ee3d88e988c4783670ac5c12d2b"
+      },
+      "00-INSTRUKCIYA.pdf": {
+        "qa_sha": "4855380b0cca0d575b08e8c3c3f4ff04f4b164c76e8a4d0047678c799b2d3545",
+        "prod_sha": "68a598cb74151e2e2bb63bacd572b72788adefb93a0e76f6cb7cff668a90d300"
+      },
+      "00-START-HERE.txt": {
+        "qa_sha": "48113e1991b9b466de92c66419f5d9fcd590c0431032203b1e2ec29fd9604de6",
+        "prod_sha": "3973706aaedb3ab21c350c1bad660d616c215aba29256923c4696a4bbce813f5"
+      },
+      "01-prikaz-na-dopobem.docx": {
+        "qa_sha": "f2d021b28e5cd064e978188b1866b9b24ade27ddcf7c6905afd9d48a5bd1bfdb",
+        "prod_sha": "1911ae5673ccc1930079a725e75e4ad1b45c1dcfb2da7325db365ea812d41d77"
+      },
+      "02-soglasovanie-obema.docx": {
+        "qa_sha": "a5df4ba95be6cf07c3ae1391386924ec1c672339e3e870ac3d52373d1e53665b",
+        "prod_sha": "0702129e13bbeb35efd6064dcaf49495f9b2c0eccf213d8304324a6042ccf3e9"
+      },
+      "03-uvedomlenie-o-doprabotah.docx": {
+        "qa_sha": "070f7499feff291d6f5bf03ddc58822b1365daa065e21f7e9db5255c0b77afce",
+        "prod_sha": "0d9f4caf61fd71ec92615ee75baa445e91cebd32d1d7d654e1cf3e76937842aa"
+      },
+      "05-izmenenie-srokov.docx": {
+        "qa_sha": "cf56b952d61b2e502e5903ce11a8932b245b003ba568d2ba8b35c81166c1a138",
+        "prod_sha": "3ca5e970ea0a551791579f6d4a86295de90eacdf09ed361ce2b981d4febf0d7e"
+      },
+      "06-pismo-o-priostanovke.docx": {
+        "qa_sha": "aa9ac91fa7a038731262a2f29df1322faa9efaf9fc818fde009359495fe790eb",
+        "prod_sha": "e072326fd2057c753b80e4ac0bfa176b9684a38b199ac3b9966d4403e11885c7"
+      },
+      "07-raschet-stoimosti.xlsx": {
+        "qa_sha": "367f93b32822c9911a42a1687f1f483bb8e1de36687323b92f54c60a8605add9",
+        "prod_sha": "b38587d98bf4e045d77e0411eb75576d03d5841efa04e2f3cf16e6038c628c80"
+      },
+      "08-zhurnal-doprabot.xlsx": {
+        "qa_sha": "05127fdb8e298adbc3090063560a88c61fe6896dfb452b429502399fe8a127ec",
+        "prod_sha": "0204f914ceb0c78ae78aeeeacd2a5a834318ea6327b20028775821e38b40edb7"
+      },
+      "09-checklist-fotofiksacii.pdf": {
+        "qa_sha": "7306b4f7711b6b03ed75f4005eda59e41647685ab529e99e96bcccbd1de64d94",
+        "prod_sha": "80590f62711cd55e405d3122eeeb33d6f1a44e1a5a19b56ee00e59c5a5f3a202"
+      },
+      "10-algoritm-doprabot.pdf": {
+        "qa_sha": "fdda508ae349196fb80cab2f036fb83ef887186bceb5e0db02854ab4dac28f1c",
+        "prod_sha": "1bc3c0ccd967b1e1ea6cfdba5f5b2bd75986a20453dc63a8ec8356e29be937e6"
+      },
+      "11-dopsoglashenie-obem-i-cena.docx": {
+        "qa_sha": "6252e4445dfb9dba0909e633b06671c31a04962216ddd5e9ac6d55ccec823bb0",
+        "prod_sha": "6540bc6740189a2d6312cb287b1c84d810234ada960736f711dc3fc4a5b4f2c9"
+      },
+      "12-dopsoglashenie-sroki-doprabot.docx": {
+        "qa_sha": "139f4007719e105a5add8f927b307609afbe192abf7f63312e6cca5e1aa0fceb",
+        "prod_sha": "8bad81f8b2584878d9741084f4da1596f734c622929b72e470c7ad0eb14fbdca"
+      }
+    }
+  },
+  "files": [
+    {
+      "number": 1,
+      "file": "00-INSTRUKCIYA.docx",
+      "sha256": "8ba6c3b9bf61d51ffa7d78211f522ff69a7c60f68333a511d1330ae6a8986042",
+      "bytes": 42773,
+      "static": "PASS",
+      "visual": "LO render first page",
+      "native": "OPEN",
+      "gate": "P1_BLOCKED",
+      "finding": "P1: позднее уведомление; 743/744; старый e-mail"
+    },
+    {
+      "number": 2,
+      "file": "00-INSTRUKCIYA.pdf",
+      "sha256": "4855380b0cca0d575b08e8c3c3f4ff04f4b164c76e8a4d0047678c799b2d3545",
+      "bytes": 104860,
+      "static": "PASS",
+      "visual": "PDF extracted only",
+      "native": "N/A",
+      "gate": "P1_BLOCKED",
+      "finding": "P1: аналогичные замечания и синхронизация с DOCX"
+    },
+    {
+      "number": 3,
+      "file": "00-START-HERE.txt",
+      "sha256": "48113e1991b9b466de92c66419f5d9fcd590c0431032203b1e2ec29fd9604de6",
+      "bytes": 8962,
+      "static": "PASS",
+      "visual": "N/A",
+      "native": "N/A",
+      "gate": "OPEN",
+      "finding": "Содержательное чтение выполнено; итоговый gate открыт"
+    },
+    {
+      "number": 4,
+      "file": "01-prikaz-na-dopobem.docx",
+      "sha256": "f2d021b28e5cd064e978188b1866b9b24ade27ddcf7c6905afd9d48a5bd1bfdb",
+      "bytes": 39703,
+      "static": "PASS",
+      "visual": "LO render first page",
+      "native": "OPEN",
+      "gate": "OPEN",
+      "finding": "Содержательное чтение выполнено; итоговый gate открыт"
+    },
+    {
+      "number": 5,
+      "file": "02-soglasovanie-obema.docx",
+      "sha256": "a5df4ba95be6cf07c3ae1391386924ec1c672339e3e870ac3d52373d1e53665b",
+      "bytes": 40360,
+      "static": "PASS",
+      "visual": "LO render first page",
+      "native": "OPEN",
+      "gate": "OPEN",
+      "finding": "Содержательное чтение выполнено; итоговый gate открыт"
+    },
+    {
+      "number": 6,
+      "file": "03-uvedomlenie-o-doprabotah.docx",
+      "sha256": "070f7499feff291d6f5bf03ddc58822b1365daa065e21f7e9db5255c0b77afce",
+      "bytes": 39904,
+      "static": "PASS",
+      "visual": "LO render first page",
+      "native": "OPEN",
+      "gate": "P1_BLOCKED",
+      "finding": "P1: уточнить правовые последствия маршрута Б"
+    },
+    {
+      "number": 7,
+      "file": "04-akt-skrytyh-rabot.pdf",
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4",
+      "bytes": 261891,
+      "static": "PASS",
+      "visual": "4/4 PDF pages PASS",
+      "native": "N/A",
+      "gate": "OPEN",
+      "finding": "Содержательное чтение выполнено; итоговый gate открыт"
+    },
+    {
+      "number": 8,
+      "file": "05-izmenenie-srokov.docx",
+      "sha256": "cf56b952d61b2e502e5903ce11a8932b245b003ba568d2ba8b35c81166c1a138",
+      "bytes": 39512,
+      "static": "PASS",
+      "visual": "LO render first page",
+      "native": "OPEN",
+      "gate": "OPEN",
+      "finding": "Содержательное чтение выполнено; итоговый gate открыт"
+    },
+    {
+      "number": 9,
+      "file": "06-pismo-o-priostanovke.docx",
+      "sha256": "aa9ac91fa7a038731262a2f29df1322faa9efaf9fc818fde009359495fe790eb",
+      "bytes": 39671,
+      "static": "PASS",
+      "visual": "LO render first page",
+      "native": "OPEN",
+      "gate": "OPEN",
+      "finding": "Содержательное чтение выполнено; итоговый gate открыт"
+    },
+    {
+      "number": 10,
+      "file": "07-raschet-stoimosti.xlsx",
+      "sha256": "367f93b32822c9911a42a1687f1f483bb8e1de36687323b92f54c60a8605add9",
+      "bytes": 27837,
+      "static": "PASS",
+      "visual": "OOXML only",
+      "native": "12/12 CALC PASS; PRINT FAIL",
+      "gate": "P1_BLOCKED",
+      "finding": "P1: FilterReapply FAIL; 4 страницы PDF вместо ожидаемого компактного листа"
+    },
+    {
+      "number": 11,
+      "file": "08-zhurnal-doprabot.xlsx",
+      "sha256": "05127fdb8e298adbc3090063560a88c61fe6896dfb452b429502399fe8a127ec",
+      "bytes": 10149,
+      "static": "PASS",
+      "visual": "OOXML only",
+      "native": "OPEN",
+      "gate": "OPEN",
+      "finding": "OPEN: нативный Excel 2016 и визуальная печать"
+    },
+    {
+      "number": 12,
+      "file": "09-checklist-fotofiksacii.pdf",
+      "sha256": "7306b4f7711b6b03ed75f4005eda59e41647685ab529e99e96bcccbd1de64d94",
+      "bytes": 28200,
+      "static": "PASS",
+      "visual": "PDF extracted only",
+      "native": "N/A",
+      "gate": "OPEN",
+      "finding": "Содержательное чтение выполнено; итоговый gate открыт"
+    },
+    {
+      "number": 13,
+      "file": "10-algoritm-doprabot.pdf",
+      "sha256": "fdda508ae349196fb80cab2f036fb83ef887186bceb5e0db02854ab4dac28f1c",
+      "bytes": 30858,
+      "static": "PASS",
+      "visual": "PDF extracted only",
+      "native": "N/A",
+      "gate": "P1_BLOCKED",
+      "finding": "P1: ограничения маршрута Б"
+    },
+    {
+      "number": 14,
+      "file": "11-dopsoglashenie-obem-i-cena.docx",
+      "sha256": "6252e4445dfb9dba0909e633b06671c31a04962216ddd5e9ac6d55ccec823bb0",
+      "bytes": 39854,
+      "static": "PASS",
+      "visual": "LO render first page",
+      "native": "OPEN",
+      "gate": "OPEN",
+      "finding": "Содержательное чтение выполнено; итоговый gate открыт"
+    },
+    {
+      "number": 15,
+      "file": "12-dopsoglashenie-sroki-doprabot.docx",
+      "sha256": "139f4007719e105a5add8f927b307609afbe192abf7f63312e6cca5e1aa0fceb",
+      "bytes": 39558,
+      "static": "PASS",
+      "visual": "LO render first page",
+      "native": "OPEN",
+      "gate": "OPEN",
+      "finding": "Содержательное чтение выполнено; итоговый gate открыт"
+    }
+  ],
+  "native_filter_receipt_sha256": "f87cbc053834cd91f4501d60c2dafe1c9c6e2534cb9d22b007b49334266d4add",
+  "no_merge_deploy": true
+}
