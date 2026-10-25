@@ -1,0 +1,106 @@
+{
+  "schema": "QA14_EXCEL07_V11_PARTIAL",
+  "status": "RELEASE_BLOCKED_PARTIAL_NATIVE",
+  "legal_v2_archive_sha256": "bd45f80bab5034195fa5aef9453a919ec2d9b239bf680c95091b789f6ed9d182",
+  "excel07_sha256": "fe432915ee16c61decce5a968866767e3d605caf92738a05c69cdd71a211f237",
+  "qa_zip_sha256": "ab4c34fbb6ccd4e9d4ba57d0e2a961cd0b65a9f9d65346b94053c338fd848e86",
+  "count": 15,
+  "unchanged_count": 14,
+  "members": [
+    {
+      "name": "11-dopsoglashenie-obem-i-cena.docx",
+      "sha256": "6252e4445dfb9dba0909e633b06671c31a04962216ddd5e9ac6d55ccec823bb0",
+      "bytes": 39854
+    },
+    {
+      "name": "08-zhurnal-doprabot.xlsx",
+      "sha256": "05127fdb8e298adbc3090063560a88c61fe6896dfb452b429502399fe8a127ec",
+      "bytes": 10149
+    },
+    {
+      "name": "02-soglasovanie-obema.docx",
+      "sha256": "a5df4ba95be6cf07c3ae1391386924ec1c672339e3e870ac3d52373d1e53665b",
+      "bytes": 40360
+    },
+    {
+      "name": "09-checklist-fotofiksacii.pdf",
+      "sha256": "7306b4f7711b6b03ed75f4005eda59e41647685ab529e99e96bcccbd1de64d94",
+      "bytes": 28200
+    },
+    {
+      "name": "07-raschet-stoimosti.xlsx",
+      "sha256": "fe432915ee16c61decce5a968866767e3d605caf92738a05c69cdd71a211f237",
+      "bytes": 32123
+    },
+    {
+      "name": "01-prikaz-na-dopobem.docx",
+      "sha256": "f2d021b28e5cd064e978188b1866b9b24ade27ddcf7c6905afd9d48a5bd1bfdb",
+      "bytes": 39703
+    },
+    {
+      "name": "05-izmenenie-srokov.docx",
+      "sha256": "cf56b952d61b2e502e5903ce11a8932b245b003ba568d2ba8b35c81166c1a138",
+      "bytes": 39512
+    },
+    {
+      "name": "04-akt-skrytyh-rabot.pdf",
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4",
+      "bytes": 261891
+    },
+    {
+      "name": "03-uvedomlenie-o-doprabotah.docx",
+      "sha256": "070f7499feff291d6f5bf03ddc58822b1365daa065e21f7e9db5255c0b77afce",
+      "bytes": 39904
+    },
+    {
+      "name": "06-pismo-o-priostanovke.docx",
+      "sha256": "aa9ac91fa7a038731262a2f29df1322faa9efaf9fc818fde009359495fe790eb",
+      "bytes": 39671
+    },
+    {
+      "name": "10-algoritm-doprabot.pdf",
+      "sha256": "fdda508ae349196fb80cab2f036fb83ef887186bceb5e0db02854ab4dac28f1c",
+      "bytes": 30858
+    },
+    {
+      "name": "00-START-HERE.txt",
+      "sha256": "e919a430b45e3c1fcaf36b4a8e8006d747a2fbaa67be813249c3c6d42be7837b",
+      "bytes": 11695
+    },
+    {
+      "name": "00-INSTRUKCIYA.docx",
+      "sha256": "4ae6d9e35d8e4ce154cc611d3ea1bc1d08c49ac56fb9a85731c3f1a6c30d5390",
+      "bytes": 43237
+    },
+    {
+      "name": "00-INSTRUKCIYA.pdf",
+      "sha256": "e10888a2422b6ea2f587760ca900069f26b7dbc414eda7997bc9853fc6d1cdcc",
+      "bytes": 329411
+    },
+    {
+      "name": "12-dopsoglashenie-sroki-doprabot.docx",
+      "sha256": "139f4007719e105a5add8f927b307609afbe192abf7f63312e6cca5e1aa0fceb",
+      "bytes": 39558
+    }
+  ],
+  "original_register_203_formulas": "EXACT_XML_UNCHANGED",
+  "native_excel_2016": "16.0",
+  "native_build": "4324",
+  "native_blank_single": "PASS",
+  "native_checks": 28,
+  "native_receipt_sha256": "e9c511cf715f7bb737f11c45544e2266e306c2e7b4d8d2de55cc09b99e41bda1",
+  "blank_pdf_sha256": "9e252f31520253d9776f4731dab29d958aa7276ca53b7b64aaad6d12f14891b0",
+  "single_pdf_sha256": "b77b84f851eaa1ce551e14f06271003346ba1c1bc48e1f63d1e703be78196fb4",
+  "other_scenarios": [
+    "sparse",
+    "partial",
+    "row103",
+    "100rows",
+    "reopen",
+    "buyer_ui_print"
+  ],
+  "other_scenarios_gate": "OPEN_NO_RECEIPT",
+  "office_queue_write": "BLOCKED_BY_PLATFORM_SAFETY",
+  "no_workaround": true,
+  "main_prod_qa13_qa15_untouched": true
+}
