@@ -1,0 +1,53 @@
+{
+  "schema": "QA14_OFFICE_CHANNEL_BLOCKER_V1",
+  "date": "2026-10-25",
+  "runbook": {
+    "repo": "pmgpt12-arch/ai-business-os",
+    "ref": "codex/office-laptop-ssh-qa-20261025",
+    "path": "docs/handoffs/NSP_OFFICE_LAPTOP_REMOTE_ACCESS_2026-10-25.md",
+    "github_blob_sha": "02b10ee7b2939a8e30f01dd5a7f7c586fa9d6caa",
+    "read": true
+  },
+  "pr702": {
+    "state": "open",
+    "merged": false,
+    "checked": true
+  },
+  "connection": {
+    "status": "DEPENDENCY_BLOCKED",
+    "reason": "Remote Desktop Commander ai-workstation device Offline",
+    "accounts_checked": [
+      "nastorone",
+      "bush",
+      "Primary"
+    ],
+    "server_executed": false,
+    "ssh_test_executed": false,
+    "sftp_test_executed": false,
+    "word_excel_busy_state": "UNKNOWN"
+  },
+  "currentTask": {
+    "sku": "P2",
+    "qa": "QA-14",
+    "status": "RELEASE_BLOCKED",
+    "filename": "07-raschet-stoimosti.xlsx",
+    "native_calc_previous_scenarios_pass": 12,
+    "final_candidate_sha256": "367f93b32822c9911a42a1687f1f483bb8e1de36687323b92f54c60a8605add9",
+    "filter_ui_gate": "OPEN",
+    "legal_crosscheck": "PARTIAL"
+  },
+  "recovery": [
+    "Do not create alternate access channel or request owner commands while plugin offline",
+    "After DC reconnect: list_devices then nsp-office-laptop status",
+    "Inspect Word/Excel busy state, supervisor and queues",
+    "Perform one isolated native Reapply test with source backup and SHA; no agent replacement unless explicitly needed and safe",
+    "Reconcile release manifest only in isolated QA"
+  ],
+  "prohibited": [
+    "touch Office QA agent while busy",
+    "new SSH tunneling path",
+    "touch production/main",
+    "merge/deploy",
+    "FULL_QA_PASS based on partial evidence"
+  ]
+}
