@@ -1,0 +1,119 @@
+{
+  "schema": "NSP_QA14_FINAL_SHA_MANIFEST_V1",
+  "state": "QA_NONRELEASE_READY_FOR_OWNER_REVIEW",
+  "archive_name": "P2-QA14-FINAL-15-FILES-NONRELEASE-20261025.zip",
+  "archive_sha256": "46df12e8e23da593917d666502931d6e97a1b02b783d225ebe4e628ba4ed509a",
+  "count": 15,
+  "formats": {
+    ".docx": 8,
+    ".pdf": 4,
+    ".txt": 1,
+    ".xlsx": 2
+  },
+  "basis_legal_v2_sha256": "bd45f80bab5034195fa5aef9453a919ec2d9b239bf680c95091b789f6ed9d182",
+  "sha_reg_working_formula_xml": "86a1d9d496689b30610c8c409dd1b3494a92838d0672afa5971ce7fc167758d7",
+  "files": [
+    {
+      "filename": "00-INSTRUKCIYA.docx",
+      "sha256": "4ae6d9e35d8e4ce154cc611d3ea1bc1d08c49ac56fb9a85731c3f1a6c30d5390",
+      "bytes": 43237,
+      "status": "PASS"
+    },
+    {
+      "filename": "00-INSTRUKCIYA.pdf",
+      "sha256": "e10888a2422b6ea2f587760ca900069f26b7dbc414eda7997bc9853fc6d1cdcc",
+      "bytes": 329411,
+      "status": "PASS"
+    },
+    {
+      "filename": "00-START-HERE.txt",
+      "sha256": "f860e0b6057466def70fc67662a29caee76b05399ef7cc4c77c234329d207fc2",
+      "bytes": 13764,
+      "status": "PASS"
+    },
+    {
+      "filename": "01-prikaz-na-dopobem.docx",
+      "sha256": "f2d021b28e5cd064e978188b1866b9b24ade27ddcf7c6905afd9d48a5bd1bfdb",
+      "bytes": 39703,
+      "status": "PASS"
+    },
+    {
+      "filename": "02-soglasovanie-obema.docx",
+      "sha256": "a5df4ba95be6cf07c3ae1391386924ec1c672339e3e870ac3d52373d1e53665b",
+      "bytes": 40360,
+      "status": "PASS"
+    },
+    {
+      "filename": "03-uvedomlenie-o-doprabotah.docx",
+      "sha256": "070f7499feff291d6f5bf03ddc58822b1365daa065e21f7e9db5255c0b77afce",
+      "bytes": 39904,
+      "status": "PASS"
+    },
+    {
+      "filename": "04-akt-skrytyh-rabot.pdf",
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4",
+      "bytes": 261891,
+      "status": "PASS"
+    },
+    {
+      "filename": "05-izmenenie-srokov.docx",
+      "sha256": "cf56b952d61b2e502e5903ce11a8932b245b003ba568d2ba8b35c81166c1a138",
+      "bytes": 39512,
+      "status": "PASS"
+    },
+    {
+      "filename": "06-pismo-o-priostanovke.docx",
+      "sha256": "aa9ac91fa7a038731262a2f29df1322faa9efaf9fc818fde009359495fe790eb",
+      "bytes": 39671,
+      "status": "PASS"
+    },
+    {
+      "filename": "07-raschet-stoimosti.xlsx",
+      "sha256": "03533acacaa50e4704369c9772c01ec6a0c425c4ca8672e2b9bd388c9e9162d9",
+      "bytes": 30201,
+      "status": "PASS"
+    },
+    {
+      "filename": "08-zhurnal-doprabot.xlsx",
+      "sha256": "73dd9e938488dc9ca238b8407caddf420a082dfad099f0eb8e53a06b04315936",
+      "bytes": 10276,
+      "status": "PASS"
+    },
+    {
+      "filename": "09-checklist-fotofiksacii.pdf",
+      "sha256": "7306b4f7711b6b03ed75f4005eda59e41647685ab529e99e96bcccbd1de64d94",
+      "bytes": 28200,
+      "status": "PASS"
+    },
+    {
+      "filename": "10-algoritm-doprabot.pdf",
+      "sha256": "fdda508ae349196fb80cab2f036fb83ef887186bceb5e0db02854ab4dac28f1c",
+      "bytes": 30858,
+      "status": "PASS"
+    },
+    {
+      "filename": "11-dopsoglashenie-obem-i-cena.docx",
+      "sha256": "6252e4445dfb9dba0909e633b06671c31a04962216ddd5e9ac6d55ccec823bb0",
+      "bytes": 39854,
+      "status": "PASS"
+    },
+    {
+      "filename": "12-dopsoglashenie-sroki-doprabot.docx",
+      "sha256": "139f4007719e105a5add8f927b307609afbe192abf7f63312e6cca5e1aa0fceb",
+      "bytes": 39558,
+      "status": "PASS"
+    }
+  ],
+  "native_receipts_sha256": {
+    "qa14-p2-v10c-named-20261025": "f0e976f7b975dca1665aef2356bf20d0aa7c5966c9559c2f258a26ef0e1cde32",
+    "qa14-p2-v10c-six-cases-20261025": "8bff0a80d32406d4915b61684dd67aee1345d3c6127ee9578ff10b0b89f6591c",
+    "qa14-p2-v10c-hundred-fix-20261025": "5c0c0c4cabdb2f18e7bbe8367d8d75576276a4b508112d4fc39862d87c8cf2e0",
+    "qa14-p2-08-named-print-v3b-20261025": "bb7aad0b30846aff1d0d7f45c202d6485de2e2f16f6c7dfcfd58fbc27663480c",
+    "qa14-p2-07-08-reopen-v3b-20261025": "61d424698fc4bf1c88103c45a061d9157bd09e6d612d5714c955cfdc30ff69c7",
+    "qa14-p2-08-native-20261025": "ec1b076e29d42046a6bed2ca05e17c62250c783bacad49c25a271542d6f9cc9c",
+    "qa14-p2-08-reopen-20261025": "81873312ee5f5b846082346a24867ce09e61499d71df8d8f4ba889937e46c854",
+    "qa14-p2-source-word-1-20261025": "b479e4d18e9b5b31df22015750f593f81d72c4074961a5881b17e86f043113be",
+    "qa14-p2-source-word-2-20261025": "773f09c87461be1edf7a7ba606f18900279afba3cc4bc53e00f44c17c44be6f6",
+    "qa14-p2-guide-legal-v2-20261025": "0ec2f3ae4285da4c0ce8ec3032a7e5d2c0081e0b33579800030df2e83c76b9ed"
+  }
+}
