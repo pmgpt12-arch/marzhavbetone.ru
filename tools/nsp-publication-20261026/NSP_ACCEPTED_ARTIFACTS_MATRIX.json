@@ -1,6 +1,6 @@
 {
-  "schema": "NSP_ACCEPTED_ARTIFACTS_MATRIX_V2",
-  "status": "ACCEPTED_QA_UNRELEASED",
+  "schema": "NSP_ACCEPTED_ARTIFACTS_MATRIX_V3",
+  "status": "12_OF_12_ISOLATED_BYTES_PASS;RELEASE_HOLD;QA04_GIT_ORIGIN_MISSING",
   "source_qa12": "qa/nsp-qa12-avans-20261024:tools/nsp-qa12-20261024/FREE_11_FINAL_READONLY_MATRIX.json",
   "qa04_source": "local /home/denis/projects/nsp-qa04-20261023/qa04-delivery; exact SHA verified before workstation became offline",
   "rows": [
@@ -15,8 +15,8 @@
       "archive_source_name": "checklist-zakrytiya-rabot.pdf",
       "member_manifest": "tools/nsp-qa09-20261024/SHA_MANIFEST_FINAL.json",
       "file_count": 1,
-      "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_delivery_sha256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
       "release_permission": "HOLD",
       "url": "/materialy/checklist-zakrytiya-rabot.html",
       "price_kopeks": 0,
@@ -31,7 +31,15 @@
           "sha256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394"
         }
       ],
-      "git_source_verification": "PASS_EXACT_GIT_SOURCE"
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "PASS",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "STAGING_NOTE": "Synthetic paid download.php returns application/zip even for PDF; content bytes valid, not a public free-route MIME test."
     },
     {
       "SKU": "FREE/dengi",
@@ -44,8 +52,8 @@
       "archive_source_name": "dengi-QA02-20261023.zip",
       "member_manifest": "tools/nsp-qa02-20261023/MANIFEST.json",
       "file_count": 5,
-      "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_delivery_sha256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
       "release_permission": "HOLD",
       "url": "/materialy/dengi.html",
       "price_kopeks": 0,
@@ -76,7 +84,14 @@
           "sha256": "5da4242386b77bce83c1f2b433fa479b5e3976aae55483b31580b2f4024139da"
         }
       ],
-      "git_source_verification": "PASS_EXACT_GIT_SOURCE"
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "PASS",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
     },
     {
       "SKU": "FREE/dop-raboty",
@@ -89,8 +104,8 @@
       "archive_source_name": "dop-raboty-QA10-FULL-QA.zip",
       "member_manifest": "tools/nsp-qa10-20261024/SHA_MANIFEST_FINAL.json",
       "file_count": 5,
-      "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_delivery_sha256": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
       "release_permission": "HOLD",
       "url": "/materialy/dop-raboty.html",
       "price_kopeks": 0,
@@ -121,7 +136,14 @@
           "sha256": "37e6718cf2fb8040f3841ce4cbe3c96eb63ae6f288d07f21860115738b8be3bb"
         }
       ],
-      "git_source_verification": "PASS_EXACT_GIT_SOURCE"
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "PASS",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
     },
     {
       "SKU": "FREE/vozvrat-ks",
@@ -134,8 +156,8 @@
       "archive_source_name": "vozvrat-ks-QA11-FULL-QA.zip",
       "member_manifest": "tools/nsp-qa11-20261024/SHA_MANIFEST_FINAL.json",
       "file_count": 5,
-      "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_delivery_sha256": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
       "release_permission": "HOLD",
       "url": "/materialy/vozvrat-ks.html",
       "price_kopeks": 0,
@@ -166,7 +188,14 @@
           "sha256": "bda7163b4c6af2897108b49a88c793b61c18d972827e4ae10e98d05e29e75032"
         }
       ],
-      "git_source_verification": "PASS_EXACT_GIT_SOURCE"
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "PASS",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
     },
     {
       "SKU": "FREE/uderzhaniya",
@@ -179,8 +208,8 @@
       "archive_source_name": "uderzhaniya-QA03-only.zip",
       "member_manifest": "tools/nsp-qa03-20261023/MANIFEST.json",
       "file_count": 5,
-      "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_delivery_sha256": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
       "release_permission": "HOLD",
       "url": "/materialy/uderzhaniya.html",
       "price_kopeks": 0,
@@ -211,7 +240,14 @@
           "sha256": "c6f3080d658d788f580076b2581ae7efed4afd5677805636871971604c428343"
         }
       ],
-      "git_source_verification": "PASS_EXACT_GIT_SOURCE"
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "PASS",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
     },
     {
       "SKU": "FREE/dogovor",
@@ -224,8 +260,8 @@
       "archive_source_name": "dogovor-QA05-FULL-QA.zip",
       "member_manifest": "tools/nsp-qa05-20261023/SHA_MANIFEST_FINAL.json",
       "file_count": 5,
-      "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_delivery_sha256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
       "release_permission": "HOLD",
       "url": "/materialy/dogovor.html",
       "price_kopeks": 0,
@@ -256,7 +292,14 @@
           "sha256": "0154ff3d9cbe1c28bd861dc52aba291178e1c308810d6a2c530a19745dcaf734"
         }
       ],
-      "git_source_verification": "PASS_EXACT_GIT_SOURCE"
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "PASS",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
     },
     {
       "SKU": "FREE/bankrotstvo",
@@ -269,8 +312,8 @@
       "archive_source_name": "bankrotstvo-QA04-FULL-QA.zip",
       "member_manifest": "local QA04 delivery manifest / Git provenance not located",
       "file_count": 5,
-      "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_delivery_sha256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
       "release_permission": "HOLD",
       "url": "/materialy/bankrotstvo.html",
       "price_kopeks": 0,
@@ -301,7 +344,14 @@
           "sha256": "0947e76e9ef81e15e3090c4085b34a2a65bdf619ab2e0531b63f18da3074a9c4"
         }
       ],
-      "git_source_verification": "EVIDENCE_MISSING"
+      "git_source_verification": "EVIDENCE_MISSING",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "PASS",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "EVIDENCE_MISSING_GIT_ORIGIN",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
     },
     {
       "SKU": "FREE/avans",
@@ -314,8 +364,8 @@
       "archive_source_name": "avans-QA12-FULL-QA.zip",
       "member_manifest": "tools/nsp-qa12-20261024/SHA_MANIFEST_FINAL.json",
       "file_count": 5,
-      "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_delivery_sha256": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
       "release_permission": "HOLD",
       "url": "/materialy/avans.html",
       "price_kopeks": 0,
@@ -346,7 +396,14 @@
           "sha256": "dbb806e80627e9c451baca2a50a18edfb454db7ea5aed572f0205c9c57e71c26"
         }
       ],
-      "git_source_verification": "PASS_EXACT_GIT_SOURCE"
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "PASS",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
     },
     {
       "SKU": "FREE/raschet-metrami",
@@ -359,8 +416,8 @@
       "archive_source_name": "raschet-metrami-QA08-FULL-QA.zip",
       "member_manifest": "tools/nsp-qa08-20261024/SHA_MANIFEST_FINAL.json",
       "file_count": 2,
-      "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_delivery_sha256": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
       "release_permission": "HOLD",
       "url": "/materialy/raschet-metrami.html",
       "price_kopeks": 0,
@@ -379,7 +436,14 @@
           "sha256": "1651324d84496c23b5301865870b172e34de4766b273214187e388249b9589aa"
         }
       ],
-      "git_source_verification": "PASS_EXACT_GIT_SOURCE"
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "PASS",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
     },
     {
       "SKU": "FREE/ispolnitelnaya-dokumentaciya",
@@ -392,8 +456,8 @@
       "archive_source_name": "ispolnitelnaya-dokumentaciya-QA06-FULL-QA.zip",
       "member_manifest": "tools/nsp-qa06-20261023/SHA_MANIFEST_FINAL.json",
       "file_count": 5,
-      "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_delivery_sha256": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
       "release_permission": "HOLD",
       "url": "/materialy/ispolnitelnaya-dokumentaciya.html",
       "price_kopeks": 0,
@@ -424,7 +488,14 @@
           "sha256": "575020d38759a7efd6eb2f8422fe83a5e1b422257055bc0168963d9a2da2c73e"
         }
       ],
-      "git_source_verification": "PASS_EXACT_GIT_SOURCE"
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "PASS",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
     },
     {
       "SKU": "FREE/akt-skrytyh-rabot",
@@ -437,8 +508,8 @@
       "archive_source_name": "akt-skrytyh-rabot-QA07-FULL-QA.zip",
       "member_manifest": "tools/nsp-qa07-20261023/SHA_MANIFEST_FINAL.json",
       "file_count": 5,
-      "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_delivery_sha256": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
       "release_permission": "HOLD",
       "url": "/materialy/akt-skrytyh-rabot.html",
       "price_kopeks": 0,
@@ -469,7 +540,14 @@
           "sha256": "64d5c0069a5954551d4af5d4d9815314cfd32cbc7dca84e847f6c1170ccefcc6"
         }
       ],
-      "git_source_verification": "PASS_EXACT_GIT_SOURCE"
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "PASS",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
     },
     {
       "SKU": "P8",
@@ -482,8 +560,8 @@
       "archive_source_name": "tools/nsp-next-corrections-20261022/candidate-archives/10-avans-usloviya-i-pribyl.zip",
       "member_manifest": "tools/nsp-qa01-20261023/CURRENT_CANDIDATE_PACKAGES.json",
       "file_count": 11,
-      "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_delivery_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
       "release_permission": "HOLD",
       "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
       "price_kopeks": 2490000,
@@ -537,7 +615,14 @@
           "sha256": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c"
         }
       ],
-      "git_source_verification": "PASS_EXACT_GIT_SOURCE"
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "PASS",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "READY_CANDIDATE_ONLY",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
-  "schema": "NSP_STAGING_QA_REPORT_V1",
+  "schema": "NSP_STAGING_QA_REPORT_V2",
   "observed_date": "2026-10-27",
   "scope": "STAGING_ONLY",
-  "state": "PARTIAL_READY_WITH_BLOCKERS",
+  "state": "PARTIAL_READY_WITH_EXTERNAL_RELEASE_BLOCKERS",
   "source_branch": "codex/nsp-publication-catalog-20261026",
   "code_commit": "a04ef01262bd4adbe8bcd6c77d04064df690d182",
   "draft_pr": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/677",
@@ -16,50 +16,73 @@
     "checkout_current_p3_p5": "SOURCE_UNMODIFIED"
   },
   "stages": {
+    "F0": {
+      "status": "PASS",
+      "remote_head_pre_change": "acdef035fe6c34e76cce54a6f9a0f838a032a208",
+      "draft_pr_number": 677,
+      "working_tree_original": "DIRTY_32_PATHS_PRESERVED_UNMODIFIED",
+      "isolated_worktree": "DETACHED_AT_REMOTE_HEAD",
+      "new_branch_created": false,
+      "main_modified": false,
+      "deploy": false
+    },
     "F1": {
-      "status": "PASS_LOCAL_HOLD_HTTP; FINAL_ARCHIVE_HTTP_NOT_VERIFIED",
-      "http_get_200": 24,
-      "hold_post_409": 22,
-      "hold_free": 11,
-      "hold_paid": 11,
-      "legacy_direct_downloads_200": [
-        "dengi.zip",
-        "avans.zip",
-        "checklist-zakrytiya-rabot.pdf"
-      ],
-      "new_accepted_zip_delivery_sha256": null
+      "status": "PASS_ISOLATED_DELIVERY_HOLD",
+      "free_artifacts": 11,
+      "free_sha_count_member_pass": 11,
+      "free_http_get_sha_match": 11,
+      "repeat_get_sha_match": 11,
+      "public_lead_hold_post_409": 11,
+      "public_delivery": "HOLD",
+      "pdf_mime_fixture_limit": "CHECKLIST_PDF_VIA_SYNTHETIC_DOWNLOAD_PHP_RETURNS_APPLICATION_ZIP; NOT PROOF OF REAL_FREE_PDF_ROUTE"
     },
     "F2": {
-      "status": "PASS_SYNTHETIC_PAID_ORDER",
-      "first_download": 200,
-      "repeat_download": 200,
-      "wrong_token": 403,
-      "expired_token": 410,
-      "fixture_sha256": "abbf6722dd831b8654b0f507d7568a5f384ed25c5f079ba10be1794fb8f05d53",
-      "real_orders_accessed": false
+      "status": "PASS_ISOLATED; PROVIDER_E2E_NOT_TESTED",
+      "paid_skus": 13,
+      "hold_paid_post_409": 11,
+      "p8_candidate_sha_verified": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "p8_isolated_get_sha_match": true,
+      "p3_p5_synthetic_http_500_reason": "FAKE_GATEWAY_LOOPBACK_REFUSED; GUARD_NOT_BLOCKING",
+      "p3_p5_real_provider_checkout": "NOT_TESTED_NO_PAYMENT",
+      "synthetic_mixed_cart_hold_409": 2
     },
     "F3": {
-      "status": "PASS_AUTOMATED; FULL_MANUAL_120_SCREENSHOTS_NOT_CLAIMED",
-      "pages": 24,
-      "widths": [
-        390,
-        430,
-        1280,
-        1366,
-        1920
-      ],
-      "screenshots": 120,
-      "max_overflow_px": 0,
-      "baseline_main_p3_p5_unchanged": true,
-      "manual_sample_reviewed": 8
+      "status": "PASS_SYNTHETIC_EXISTING_PAID_DOWNLOAD",
+      "existing_first": 200,
+      "repeat": 200,
+      "bad_token": 403,
+      "expired": 410,
+      "missing_archive": 500,
+      "analytics_failure": "NOT_APPLICABLE_NO_ANALYTICS_HOOK_IN_DOWNLOAD_PHP",
+      "real_orders_touched": false
     },
     "F4": {
-      "status": "SOURCE_VERIFIED_11_OF_12; QA04_GIT_EVIDENCE_MISSING",
-      "accepted_archives": 12,
-      "git_verified": 11,
-      "qa04": "EVIDENCE_MISSING_GIT_ORIGIN",
-      "p8": "READY_CANDIDATE_ONLY",
-      "release_allowed": 0
+      "status": "STATIC_PASS; BROWSER_RETEST_PENDING_NEW_COMMIT",
+      "unique_24_seo_source_check": "PASS",
+      "internal_relative_links_checked": 406,
+      "broken_internal_links": 0,
+      "prior_browser_screenshots": 120,
+      "prior_browser_result": "PASS_120_ON_PREVIOUS_COMMIT",
+      "P1_P2_DATE": "REMOVED_UNSUPPORTED_2_8_NOVEMBER",
+      "protected_index_p3_p5": "EXACT_SHA_VS_MAIN_PASS"
+    },
+    "F5": {
+      "status": "EVIDENCE_MISSING_FOR_QA04_GIT_ORIGIN",
+      "qa04_local_archive_sha": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "qa04_local_archive_members": 5,
+      "qa04_git_origin": null,
+      "search_scope": "GitHub QA branches/PRs/commits and second AI Business OS repo; local traces; no original acceptance Git commit found"
+    },
+    "F6": {
+      "status": "PASS_INTERNAL_VERSION_GATE; PUBLIC_HOLD",
+      "accepted_artifacts": 12,
+      "actual_isolated_get_and_repeat_sha_pass": 12,
+      "negative_archive_mutation_cases": 8,
+      "negative_token_expiry_missing_file": 3,
+      "source_git_verified": 11,
+      "source_git_unverified": 1,
+      "release_allowed": 0,
+      "new_public_artifacts_delivered": 0
     }
   },
   "ci_diagnostics": [
@@ -83,8 +106,8 @@
       "result": "PASS"
     }
   ],
-  "verification_assertion": "NO HTTP/GUI PASS is claimed until receipt exists",
-  "release_permission": "HOLD",
+  "verification_assertion": "HTTP delivery receipts exist exclusively for 12 isolated localhost test-only archives; public new buyer journey remains HOLD",
+  "release_permission": "HOLD_FOR_ALL_22_NEW_SKUS; EXISTING_P3_P5_PRESERVED",
   "production_modifications": false,
   "workflow_status": "PASS_ISOLATED_STAGING_SUITE",
   "evidence": {
@@ -95,7 +118,9 @@
     "artifact_zip_sha256": "562e5f98e00ce96736fc6a4b4ccb7c926d809de732e3422730db9b57d16d0bbb",
     "crc": "PASS",
     "screenshots": 120,
-    "sampled_visual_review": 8
+    "sampled_visual_review": 8,
+    "isolated_delivery": "NSP_ISOLATED_DELIVERY_RECEIPT.json",
+    "paid_checkout": "NSP_PAID_SYNTHETIC_RECEIPT.json"
   },
   "open_blockers": [
     "QA04: локальный QA PASS есть, исходный Git commit не установлен",
@@ -106,5 +131,14 @@
     "Старые CI-контракты ожидают кнопки продаж в HOLD и 10 бесплатных SKU; проверки baseline по P3 дрейфуют",
     "Внешнего staging-деплоя нет: пройден реальный HTTP на локальном изолированном сервере GitHub Actions"
   ],
-  "final_status": "PARTIAL_READY_WITH_BLOCKERS"
+  "final_status": "PARTIAL_READY_WITH_EXTERNAL_RELEASE_BLOCKERS",
+  "new_external_blockers": [
+    "QA04: Git acceptance provenance not found, local archive SHA and member integrity PASS",
+    "P8: QA01 candidate valid but cannot assert no later accepted revision",
+    "All 11 free and P8 release permission HOLD; no public new product delivery",
+    "P3/P5 provider E2E (real sandbox processor) not run; fake loopback checkout guard PASS",
+    "Legacy static direct downloads intentionally retained for historical links; new lead POST 409",
+    "Separate external staging host not deployed (GitHub Actions localhost staging only)",
+    "Legacy CI contracts for HOLD differ from prior 13 buy button catalog; assess separately"
+  ]
 }
