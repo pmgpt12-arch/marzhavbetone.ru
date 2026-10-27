@@ -187,7 +187,7 @@
   "STAGING_STATUS": "BLOCKED_WRONG_EDITION_RELATIVE_TO_LAST_WHOLE_OWNER_ACCEPTANCE",
   "RELEASE_PERMISSION": "HOLD",
   "selected_new_release_archive_sha": null,
-  "next_gate": "Obtain full product QA and owner nomination of complete 11-file buyer ZIP after accepted 2026-10-22 P8/02 and P8/09, reconcile 3 pending DOCX and 00-START-HERE, then repackage/test exact final SHA under existing release mechanism. The R3 accepted whole ZIP remains a historical reference and no new public edition may be inferred.",
+  "next_gate": "Owner accepted QA01 member 00 by exact SHA; 02 and 09 are separately accepted; 07/08/10 have visual layout acceptance only. Next: owner editorial/content sign-off on exact 07/08/10 SHA, product-level QA of complete 11-file buyer ZIP, new edition ID+outer/member SHA+acceptance evidence. Keep R3 historical and HOLD; separate publication authorization required.",
   "no_quality_qa_restart": true,
   "no_release_change": true,
   "state": "HISTORICAL_R3_ACCEPTED_CURRENT_QA01_NOT_FINAL_CONFIRMED_HOLD",
@@ -196,7 +196,6 @@
   "gate_test_receipt": "P8_EDITION_GATE_TEST_RECEIPT.json",
   "EDITION_GATE_STATUS": "EDITION_NOT_ACCEPTED",
   "missing_owner_component_decisions": [
-    "00-START-HERE.txt (QA01 file not equal git master)",
     "07-trebovanie-o-vyplate-avansa.docx",
     "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
     "10-otvet-na-trebovanie-o-vozvrate-avansa.docx"
@@ -204,5 +203,10 @@
   "missing_full_qa": "New 11-file whole package acceptance after later 02/09 component approvals and three DOCX repairs",
   "no_automatic_R3_revert": true,
   "no_automatic_QA01_nomination": true,
-  "edition_gate_regression_passed": 17
+  "edition_gate_regression_passed": 17,
+  "owner_00_20261027_accepted_member_sha256": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
+  "owner_00_20261027_evidence": "P8_OWNER_COMPONENT_DECISIONS_20261027.json",
+  "owner_00_source_master_mismatch_resolved_by_exact_member_acceptance": true,
+  "owner_07_08_10_visual_layout_approved_as_is": true,
+  "owner_07_08_10_editorial_content_decision": "PENDING"
 }

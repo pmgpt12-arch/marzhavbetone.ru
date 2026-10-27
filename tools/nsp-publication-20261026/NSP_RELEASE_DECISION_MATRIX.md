@@ -12,6 +12,8 @@ P8: последняя целиком принятая покупательск�
 
 Бесплатные товары: все 11 текущих страниц не содержат формы; lead.php отвечает 409. Изолированная одноразовая копия: 11/11 POST, GET, повтор и SHA PASS, но обнаружены нарушения требований email, SKU, повторного submit и прямой исторической выдачи. Действующий маршрут FREE_FORM_E2E_PASS не достигнут. Письма и реальные заявки не создавались. [Квитанция](https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_FREE_FORM_E2E_REPORT.json).
 
+**Дополнение 27.10 — поштучная приёмка P8:** владелец принял содержание и вид ровно того `00-START-HERE.txt`, который находится в QA01 ZIP (SHA-256 `3ee7489f…bd6c`; файл отличается от QA01 Git-мастера). Внешний вид актуальных DOCX №07/08/10 одобрен **без переделки**, но их редакционные изменения отдельно ещё не приняты. 5 неизменённых R3 файлов и два индивидуально принятых XLSX 02/09 сохраняют прежние решения. Сейчас **8/11 файлов** имеют принятие содержания/своей версии, ещё **3/11** ожидают содержательного решения; новый 11-файловый ZIP целиком не принят и выпуск не разрешён. [Точная запись решения](https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/P8_OWNER_COMPONENT_DECISIONS_20261027.json).
+
 ## Единая матрица 24 SKU
 
 | SKU и название | QA_STATUS / QA_EVIDENCE | FINAL_ARCHIVE_SHA | ACTUAL_ARCHIVE_SHA | ARTIFACT_STATUS | STAGING_STATUS | RELEASE_PERMISSION | SITE_STATUS / URL | BLOCKER | NEXT_ACTION |

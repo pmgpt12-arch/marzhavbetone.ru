@@ -142,7 +142,7 @@ def main():
         "R3_UNCHANGED_INHERITS_WHOLE_OWNER_APPROVAL":5,
         "LATER_OWNER_ACCEPTED_SINGLE_FILE_NOT_NEW_ZIP":2,
         "DRAFT_EDITORIAL_QA_ONLY_NO_WHOLE_OWNER_ACCEPTANCE":3,
-        "QA01_PACKAGED_TEXT_NOT_OWNER_ACCEPTED_AND_NOT_QA01_MASTER_BYTES":1}
+        "OWNER_ACCEPTED_SINGLE_FILE_FROM_QA01_ZIP_NOT_GIT_MASTER":1}
     record("all_11_file_reconciliation_SHA_and_acceptance_roles_match",
            roles==exact_roles and recon["release_permission"]=="HOLD"
            and recon["selected_new_release_edition"] is None,
@@ -154,8 +154,32 @@ def main():
            by_name["00-START-HERE.txt"]["qa01_zip_member_matches_git_master"] is False,
            {"QA01_member_sha":own_members["00-START-HERE.txt"],
             "QA01_git_master_sha":sha(master),
-            "owner_acceptance_for_changed_candidate":"NOT_FOUND"})
+            "owner_acceptance_for_changed_candidate":"OWNER_ACCEPTED_EXACT_QA01_MEMBER_NOT_WHOLE_EDITION"})
 
+    # The owner's consent to file 00 is pinned to QA01 ZIP bytes, never the Git master.
+    owner_review=json.loads((HERE/"P8_OWNER_COMPONENT_DECISIONS_20261027.json").read_text("utf-8"))
+    approval=owner_review["owner_component_acceptances"]["00-START-HERE.txt"]
+    actual_start_sha=own_members["00-START-HERE.txt"]
+    reviewed_copy=(HERE/"p8-owner-reviewed/00-START-HERE.txt").read_bytes()
+    record("P8_00_exact_member_owner_accepted_but_whole_edition_STILL_BLOCKED",
+           sha(reviewed_copy)==approval["accepted_sha256"]==actual_start_sha
+           and by_name["00-START-HERE.txt"]["owner_accepted_latest_component_sha256"]==actual_start_sha
+           and approval["scope"]=="SINGLE_FILE_CONTENT_AND_APPEARANCE_ONLY"
+           and sha(master)!=actual_start_sha
+           and recon["selected_new_release_edition"] is None
+           and recon["release_permission"]=="HOLD",
+           {"owner_approved_member_sha":actual_start_sha,
+            "git_master_sha":sha(master),"whole_edition":"NOT_ACCEPTED","public_release":"HOLD"})
+    record("P8_07_08_10_owner_layout_not_editorial_or_whole_acceptance",
+           all(
+             owner_review["owner_layout_approvals"][n]["scope"]=="VISUAL_LAYOUT_ONLY"
+             and owner_review["owner_layout_approvals"][n]["reviewed_sha256"]==own_members[n]
+             and owner_review["owner_layout_approvals"][n]["editorial_content_acceptance"]=="PENDING_SEPARATE_OWNER_DECISION"
+             and by_name[n]["owner_accepted_latest_component_sha256"] is None
+             for n in owner_review["owner_layout_approvals"])
+           and len(owner_review["owner_layout_approvals"])==3,
+           {"owner_layout_accepted_files":sorted(owner_review["owner_layout_approvals"]),
+            "editorial_content_owner_approval":"PENDING"})
     # The real gate's P8 row performs its own technical source SHA+member checks
     # before the independently anchored owner-edition rejection.
     from archive_version_gate import verify

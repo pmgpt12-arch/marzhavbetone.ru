@@ -58,6 +58,19 @@ def main():
           "acceptance_record_path":path,"accepted_sha256":receipt["accepted_sha256"],
           "scope":"SINGLE_FILE_ONLY_NOT_COMPLETE_ZIP"}
 
+    # Later owner decisions are component-scoped and do NOT supersede R3 whole-edition gate.
+    review=json.loads((HERE/"P8_OWNER_COMPONENT_DECISIONS_20261027.json").read_text("utf-8"))
+    assert review["release_permission"]=="HOLD"
+    assert review["qa01_candidate_archive_sha256"]==sha(current)
+    approved_start=review["owner_component_acceptances"]["00-START-HERE.txt"]
+    assert approved_start["accepted_sha256"]==current_members["00-START-HERE.txt"]["sha256"]
+    assert approved_start["scope"]=="SINGLE_FILE_CONTENT_AND_APPEARANCE_ONLY"
+    assert sha((HERE/"p8-owner-reviewed/00-START-HERE.txt").read_bytes())==approved_start["accepted_sha256"]
+    for name,layout in review["owner_layout_approvals"].items():
+        assert name.startswith(("07-","08-","10-")) and name in current_members
+        assert layout["reviewed_sha256"]==current_members[name]["sha256"]
+        assert layout["scope"]=="VISUAL_LAYOUT_ONLY"
+        assert layout["editorial_content_acceptance"]=="PENDING_SEPARATE_OWNER_DECISION"
     qa01_pack=json.loads(git_bytes(QA01_COMMIT,"tools/nsp-qa01-20261023/CURRENT_CANDIDATE_PACKAGES.json"))
     candidate=next(x for x in qa01_pack["paid"] if x.get("sku")=="P8")
     assert candidate["sha256"]==sha(current)
@@ -88,12 +101,16 @@ def main():
             approved_component=None;basis={"date":"2026-10-21","commit":p8_fixes_commit,
               "pull_request":675,"state":"DRAFT_NOT_MERGED",
               "evidence":"tools/nsp-product-audit-fixes-20261021/REPORT_RU.md",
-              "status":"33_SCOPED_TESTS_NOT_WHOLE_PRODUCT_ACCEPTANCE"}
+              "status":"33_SCOPED_TESTS_NOT_WHOLE_PRODUCT_ACCEPTANCE",
+              "owner_layout_approval":review["owner_layout_approvals"][name],
+              "editorial_content_owner_acceptance":"PENDING"}
         elif name=="00-START-HERE.txt":
-            role="QA01_PACKAGED_TEXT_NOT_OWNER_ACCEPTED_AND_NOT_QA01_MASTER_BYTES"
-            approved_component=None;basis={"date":"2026-10-23","record":"tools/nsp-qa01-20261023/CURRENT_CANDIDATE_PACKAGES.json",
-              "commit":QA01_COMMIT,"status":"READY_CANDIDATE_ONLY",
-              "master_sha256":sha(res.stdout) if present else None}
+            role="OWNER_ACCEPTED_SINGLE_FILE_FROM_QA01_ZIP_NOT_GIT_MASTER"
+            approved_component=current_sha
+            basis=dict(approved_start)
+            basis.update({"date":"2026-10-27",
+                "record":"tools/nsp-publication-20261026/P8_OWNER_COMPONENT_DECISIONS_20261027.json",
+                "status":"OWNER_ACCEPTED_EXACT_QA01_MEMBER_NOT_WHOLE_EDITION"})
         else:raise AssertionError("Unexpected unapproved changed member "+name)
         branch_replacement_checks.append({
             "filename":name,
@@ -190,6 +207,34 @@ def main():
         "edition_anchor_path":"tools/nsp-publication-20261026/P8_ACCEPTED_EDITION_ANCHOR.json",
         "release_permission":"HOLD",
         "production_changed":False,"protected_archives_changed":False}
+    result["reviewed_revisions"].append({
+        "date":"2026-10-27","id":"P8-00-QA01-MEMBER-OWNER-ACCEPTED",
+        "member_sha256":approved_start["accepted_sha256"],
+        "source":approved_start["reviewed_source"],"status":"SINGLE_FILE_CONTENT_AND_LAYOUT_ACCEPTED_NOT_WHOLE"})
+    result["reviewed_revisions"].append({
+        "date":"2026-10-27","id":"P8-07-08-10-OWNER-LAYOUT-ACCEPTED",
+        "status":"VISUAL_LAYOUT_ONLY_CONTENT_ACCEPTANCE_PENDING","files":sorted(review["owner_layout_approvals"])})
+    result["necessary_owner_decisions"]=[
+        item for item in result["necessary_owner_decisions"]
+        if item["id"] not in ("P8-DECISION-01","P8-DECISION-03")]
+    for item in result["necessary_owner_decisions"]:
+        if item["id"]=="P8-DECISION-02":
+            item["required"]="Owner already approved the displayed layout. Remaining: owner content/editorial acceptance of exact 07/08/10 DOCX SHA from draft PR #675; no layout rework is requested."
+    result["completed_owner_decisions"]=[
+        {"subject":"00-START-HERE.txt","date":"2026-10-27","scope":"SINGLE_FILE_CONTENT_AND_APPEARANCE_ONLY",
+         "sha256":approved_start["accepted_sha256"],"evidence":"P8_OWNER_COMPONENT_DECISIONS_20261027.json"},
+        {"subject":"P8/02 and P8/09 XLSX","date":"2026-10-22",
+         "scope":"TWO_INDIVIDUAL_FILE_ACCEPTANCES","evidence":"OWNER_ACCEPTANCE.json at pinned historic commits"},
+        {"subject":"07/08/10 DOCX","date":"2026-10-27","scope":"VISUAL_LAYOUT_ONLY",
+         "evidence":"P8_OWNER_COMPONENT_DECISIONS_20261027.json"}]
+    result["unresolved_owner_content_files"]=sorted(review["owner_layout_approvals"])
+    result["owner_decisions_evidence_path"]="tools/nsp-publication-20261026/P8_OWNER_COMPONENT_DECISIONS_20261027.json"
+    assert result["component_acceptance_summary"]=={
+        "R3_UNCHANGED_INHERITS_WHOLE_OWNER_APPROVAL":5,
+        "LATER_OWNER_ACCEPTED_SINGLE_FILE_NOT_NEW_ZIP":2,
+        "DRAFT_EDITORIAL_QA_ONLY_NO_WHOLE_OWNER_ACCEPTANCE":3,
+        "OWNER_ACCEPTED_SINGLE_FILE_FROM_QA01_ZIP_NOT_GIT_MASTER":1}
+    assert result["selected_new_release_edition"] is None and result["release_permission"]=="HOLD"
     (HERE/"P8_ACCEPTED_EDITION_ANCHOR.json").write_text(json.dumps(anchor,ensure_ascii=False,indent=2)+"\n")
     (HERE/"P8_EDITION_RECONCILIATION.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n")
     print(json.dumps({"status":result["status"],"r3":accepted["sha256"],

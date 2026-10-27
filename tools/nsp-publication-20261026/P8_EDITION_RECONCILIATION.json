@@ -68,6 +68,23 @@
       "archive_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
       "members": 11,
       "status": "TECHNICAL_SHA_CRC_MEMBER_PASS_READY_CANDIDATE_NOT_OWNER_ACCEPTED"
+    },
+    {
+      "date": "2026-10-27",
+      "id": "P8-00-QA01-MEMBER-OWNER-ACCEPTED",
+      "member_sha256": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
+      "source": "QA01_ZIP_MEMBER_NOT_QA01_GIT_MASTER",
+      "status": "SINGLE_FILE_CONTENT_AND_LAYOUT_ACCEPTED_NOT_WHOLE"
+    },
+    {
+      "date": "2026-10-27",
+      "id": "P8-07-08-10-OWNER-LAYOUT-ACCEPTED",
+      "status": "VISUAL_LAYOUT_ONLY_CONTENT_ACCEPTANCE_PENDING",
+      "files": [
+        "07-trebovanie-o-vyplate-avansa.docx",
+        "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+        "10-otvet-na-trebovanie-o-vozvrate-avansa.docx"
+      ]
     }
   ],
   "per_file_decisions": [
@@ -79,15 +96,17 @@
       "qa01_git_master_sha256": "75c3617962a431314b84d798cdb2c596dd9e138a06032fc7b8d77afeee7d2554",
       "qa01_zip_member_matches_git_master": false,
       "changed_since_approved_R3": true,
-      "owner_accepted_latest_component_sha256": null,
+      "owner_accepted_latest_component_sha256": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
       "owner_acceptance_basis": {
-        "date": "2026-10-23",
-        "record": "tools/nsp-qa01-20261023/CURRENT_CANDIDATE_PACKAGES.json",
-        "commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
-        "status": "READY_CANDIDATE_ONLY",
-        "master_sha256": "75c3617962a431314b84d798cdb2c596dd9e138a06032fc7b8d77afeee7d2554"
+        "date": "2026-10-27",
+        "record": "tools/nsp-publication-20261026/P8_OWNER_COMPONENT_DECISIONS_20261027.json",
+        "status": "OWNER_ACCEPTED_EXACT_QA01_MEMBER_NOT_WHOLE_EDITION",
+        "scope": "SINGLE_FILE_CONTENT_AND_APPEARANCE_ONLY",
+        "accepted_sha256": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
+        "source_archive_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+        "reviewed_source": "QA01_ZIP_MEMBER_NOT_QA01_GIT_MASTER"
       },
-      "approval_classification": "QA01_PACKAGED_TEXT_NOT_OWNER_ACCEPTED_AND_NOT_QA01_MASTER_BYTES",
+      "approval_classification": "OWNER_ACCEPTED_SINGLE_FILE_FROM_QA01_ZIP_NOT_GIT_MASTER",
       "current_complete_zip_accepted": false,
       "release_permission": "HOLD"
     },
@@ -223,7 +242,16 @@
         "pull_request": 675,
         "state": "DRAFT_NOT_MERGED",
         "evidence": "tools/nsp-product-audit-fixes-20261021/REPORT_RU.md",
-        "status": "33_SCOPED_TESTS_NOT_WHOLE_PRODUCT_ACCEPTANCE"
+        "status": "33_SCOPED_TESTS_NOT_WHOLE_PRODUCT_ACCEPTANCE",
+        "owner_layout_approval": {
+          "scope": "VISUAL_LAYOUT_ONLY",
+          "status": "OWNER_LAYOUT_ACCEPTED_AS_IS",
+          "reviewed_sha256": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db",
+          "preview_pdf_path": "tools/nsp-publication-20261026/p8-layout-preview-20261027/07-trebovanie-o-vyplate-avansa.pdf",
+          "owner_statement": "Нормально",
+          "editorial_content_acceptance": "PENDING_SEPARATE_OWNER_DECISION"
+        },
+        "editorial_content_owner_acceptance": "PENDING"
       },
       "approval_classification": "DRAFT_EDITORIAL_QA_ONLY_NO_WHOLE_OWNER_ACCEPTANCE",
       "current_complete_zip_accepted": false,
@@ -244,7 +272,16 @@
         "pull_request": 675,
         "state": "DRAFT_NOT_MERGED",
         "evidence": "tools/nsp-product-audit-fixes-20261021/REPORT_RU.md",
-        "status": "33_SCOPED_TESTS_NOT_WHOLE_PRODUCT_ACCEPTANCE"
+        "status": "33_SCOPED_TESTS_NOT_WHOLE_PRODUCT_ACCEPTANCE",
+        "owner_layout_approval": {
+          "scope": "VISUAL_LAYOUT_ONLY",
+          "status": "OWNER_LAYOUT_ACCEPTED_AS_IS",
+          "reviewed_sha256": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1",
+          "preview_pdf_path": "tools/nsp-publication-20261026/p8-layout-preview-20261027/08-algoritm-s-vas-trebuyut-vernut-avans.pdf",
+          "owner_statement": "Нормально",
+          "editorial_content_acceptance": "PENDING_SEPARATE_OWNER_DECISION"
+        },
+        "editorial_content_owner_acceptance": "PENDING"
       },
       "approval_classification": "DRAFT_EDITORIAL_QA_ONLY_NO_WHOLE_OWNER_ACCEPTANCE",
       "current_complete_zip_accepted": false,
@@ -287,7 +324,16 @@
         "pull_request": 675,
         "state": "DRAFT_NOT_MERGED",
         "evidence": "tools/nsp-product-audit-fixes-20261021/REPORT_RU.md",
-        "status": "33_SCOPED_TESTS_NOT_WHOLE_PRODUCT_ACCEPTANCE"
+        "status": "33_SCOPED_TESTS_NOT_WHOLE_PRODUCT_ACCEPTANCE",
+        "owner_layout_approval": {
+          "scope": "VISUAL_LAYOUT_ONLY",
+          "status": "OWNER_LAYOUT_ACCEPTED_AS_IS",
+          "reviewed_sha256": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f",
+          "preview_pdf_path": "tools/nsp-publication-20261026/p8-layout-preview-20261027/10-otvet-na-trebovanie-o-vozvrate-avansa.pdf",
+          "owner_statement": "Нормально",
+          "editorial_content_acceptance": "PENDING_SEPARATE_OWNER_DECISION"
+        },
+        "editorial_content_owner_acceptance": "PENDING"
       },
       "approval_classification": "DRAFT_EDITORIAL_QA_ONLY_NO_WHOLE_OWNER_ACCEPTANCE",
       "current_complete_zip_accepted": false,
@@ -295,10 +341,10 @@
     }
   ],
   "component_acceptance_summary": {
-    "QA01_PACKAGED_TEXT_NOT_OWNER_ACCEPTED_AND_NOT_QA01_MASTER_BYTES": 1,
     "R3_UNCHANGED_INHERITS_WHOLE_OWNER_APPROVAL": 5,
     "LATER_OWNER_ACCEPTED_SINGLE_FILE_NOT_NEW_ZIP": 2,
-    "DRAFT_EDITORIAL_QA_ONLY_NO_WHOLE_OWNER_ACCEPTANCE": 3
+    "DRAFT_EDITORIAL_QA_ONLY_NO_WHOLE_OWNER_ACCEPTANCE": 3,
+    "OWNER_ACCEPTED_SINGLE_FILE_FROM_QA01_ZIP_NOT_GIT_MASTER": 1
   },
   "r3_to_qa01_changed_members": 6,
   "r3_to_qa01_unchanged_members": 5,
@@ -313,19 +359,9 @@
   "final_whole_package_qa_gate": "MISSING_AFTER_LATER_2026_10_21_22_COMPONENT_EDITS",
   "necessary_owner_decisions": [
     {
-      "id": "P8-DECISION-01",
-      "subject": "00-START-HERE.txt",
-      "required": "Accept exact QA01 filename/content SHA (currently does not match QA01 Git master), or approve an exact corrected instruction file and verify all buyer references."
-    },
-    {
       "id": "P8-DECISION-02",
       "subject": "07/08/10 DOCX",
-      "required": "Review and accept legal/editorial changes from draft PR #675 and their exact SHA or reject and nominate corrected files."
-    },
-    {
-      "id": "P8-DECISION-03",
-      "subject": "P8/02 and P8/09",
-      "required": "Acknowledge individual accepted SHA 0ca0/33c5 as inputs to the new whole package; no repeat native QA merely because of the earlier candidate."
+      "required": "Owner approved displayed layout. Pending: review content/editorial changes from PR #675 and accept exact 07/08/10 SHA, or nominate replacement."
     },
     {
       "id": "P8-DECISION-04",
@@ -341,5 +377,32 @@
   "edition_anchor_path": "tools/nsp-publication-20261026/P8_ACCEPTED_EDITION_ANCHOR.json",
   "release_permission": "HOLD",
   "production_changed": false,
-  "protected_archives_changed": false
+  "protected_archives_changed": false,
+  "completed_owner_decisions": [
+    {
+      "subject": "00-START-HERE.txt",
+      "date": "2026-10-27",
+      "scope": "SINGLE_FILE_CONTENT_AND_APPEARANCE_ONLY",
+      "sha256": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
+      "evidence": "P8_OWNER_COMPONENT_DECISIONS_20261027.json"
+    },
+    {
+      "subject": "P8/02 and P8/09 XLSX",
+      "date": "2026-10-22",
+      "scope": "TWO_INDIVIDUAL_FILE_ACCEPTANCES",
+      "evidence": "OWNER_ACCEPTANCE.json at pinned historic commits"
+    },
+    {
+      "subject": "07/08/10 DOCX",
+      "date": "2026-10-27",
+      "scope": "VISUAL_LAYOUT_ONLY",
+      "evidence": "P8_OWNER_COMPONENT_DECISIONS_20261027.json"
+    }
+  ],
+  "unresolved_owner_content_files": [
+    "07-trebovanie-o-vyplate-avansa.docx",
+    "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+    "10-otvet-na-trebovanie-o-vozvrate-avansa.docx"
+  ],
+  "owner_decisions_evidence_path": "tools/nsp-publication-20261026/P8_OWNER_COMPONENT_DECISIONS_20261027.json"
 }
