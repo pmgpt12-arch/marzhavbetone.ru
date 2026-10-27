@@ -80,6 +80,14 @@ $key = (string)($_POST['material'] ?? 'checklist');
 if (!isset(MVB_MATERIALS[$key])) { $key = 'checklist'; }
 $material = MVB_MATERIALS[$key];
 
+// Отдельное разрешение выпуска отсутствует. Старый ZIP из downloads/
+// нельзя возвращать пользователю вместо принятой QA-редакции.
+// Исторические оплаченные заказы и сами архивы не изменяются.
+http_response_code(409);
+echo json_encode(['ok' => false, 'message' => 'Документы прошли проверку. Новая выдача откроется после разрешения на выпуск.'], JSON_UNESCAPED_UNICODE);
+exit;
+
+
 // Откуда пришёл человек: канал и слово. Нужно, чтобы понимать, что сработало
 $source = preg_replace('/[^a-zA-Z0-9_\-.]/', '', (string)($_POST['source'] ?? ''));
 if ($source === '') { $source = 'сайт'; }

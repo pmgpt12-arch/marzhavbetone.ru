@@ -11,13 +11,6 @@ require __DIR__ . '/products-config.php';
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 
-// Проверка, что ключи ЮKassa заполнены в config.php
-if (YOOKASSA_SHOP_ID === 'ВАШ_SHOP_ID' || YOOKASSA_SECRET_KEY === 'ВАШ_SECRET_KEY') {
-    http_response_code(500);
-    echo json_encode(['ok' => false, 'message' => 'Оплата временно недоступна. Напишите нам в Telegram — поможем оформить заказ.'], JSON_UNESCAPED_UNICODE);
-    @file_put_contents(ORDERS_DIR . '/payment-errors.log', date('c') . " config: не заполнены YOOKASSA_SHOP_ID / YOOKASSA_SECRET_KEY\n", FILE_APPEND);
-    exit;
-}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -100,6 +93,25 @@ foreach ($items as $item) {
         'name'  => $product['name'],
         'price' => $product['price'],
     ];
+}
+// ARCHIVE_VERSION_GATE: запрет новых заказов незавершённых QA-редакций.
+// На существующие оплаченные заказы, download.php и webhook.php не влияет.
+// Разрешение выпуска — отдельный gate, который здесь не пройден.
+$pendingPublicationSkus = ['p1','p2','p4','p7','p8','p9','p10','p11','p13','t2','t3'];
+foreach ($validatedItems as $position) {
+    if (in_array((string)($position['sku'] ?? ''), $pendingPublicationSkus, true)) {
+        http_response_code(409);
+        echo json_encode(['ok' => false, 'message' => 'Комплект готовится к выпуску. Оплата пока недоступна.'], JSON_UNESCAPED_UNICODE);
+        exit;
+    }
+}
+
+// Проверка, что ключи ЮKassa заполнены в config.php
+if (YOOKASSA_SHOP_ID === 'ВАШ_SHOP_ID' || YOOKASSA_SECRET_KEY === 'ВАШ_SECRET_KEY') {
+    http_response_code(500);
+    echo json_encode(['ok' => false, 'message' => 'Оплата временно недоступна. Напишите нам в Telegram — поможем оформить заказ.'], JSON_UNESCAPED_UNICODE);
+    @file_put_contents(ORDERS_DIR . '/payment-errors.log', date('c') . " config: не заполнены YOOKASSA_SHOP_ID / YOOKASSA_SECRET_KEY\n", FILE_APPEND);
+    exit;
 }
 // Издание P1 фиксируется до заказа и обращения к кассе.
 // Клиентское поле edition не используется: снимок создаёт сервер.
