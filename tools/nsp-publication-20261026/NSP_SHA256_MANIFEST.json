@@ -1,6 +1,6 @@
 {
-  "schema": "NSP_SHA256_MANIFEST_V2",
-  "status": "SOURCE_VERIFIED_11_OF_12; NEW_STAGING_DELIVERY_PENDING",
+  "schema": "NSP_SHA256_MANIFEST_V4_3",
+  "status": "12_TECHNICAL_BYTE_SHA_MATCH;QA04_EVIDENCE_VERIFIED;P8_FINAL_SELECTION_BLOCKED;FREE_FORM_BLOCKED",
   "source_snapshots": [
     "QA12 FREE_11_FINAL_READONLY_MATRIX.json",
     "QA01 CURRENT_CANDIDATE_PACKAGES.json"
@@ -27,7 +27,9 @@
       "release_permission": "HOLD",
       "release_gate": "BLOCKED",
       "STAGING_DELIVERY_SHA256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
-      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY"
+      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY",
+      "FREE_FORM_E2E_PASS": false,
+      "RELEASE_PERMISSION": "HOLD"
     },
     {
       "SKU": "FREE/dengi",
@@ -66,7 +68,9 @@
       "release_permission": "HOLD",
       "release_gate": "BLOCKED",
       "STAGING_DELIVERY_SHA256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
-      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY"
+      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY",
+      "FREE_FORM_E2E_PASS": false,
+      "RELEASE_PERMISSION": "HOLD"
     },
     {
       "SKU": "FREE/dop-raboty",
@@ -105,7 +109,9 @@
       "release_permission": "HOLD",
       "release_gate": "BLOCKED",
       "STAGING_DELIVERY_SHA256": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
-      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY"
+      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY",
+      "FREE_FORM_E2E_PASS": false,
+      "RELEASE_PERMISSION": "HOLD"
     },
     {
       "SKU": "FREE/vozvrat-ks",
@@ -144,7 +150,9 @@
       "release_permission": "HOLD",
       "release_gate": "BLOCKED",
       "STAGING_DELIVERY_SHA256": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
-      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY"
+      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY",
+      "FREE_FORM_E2E_PASS": false,
+      "RELEASE_PERMISSION": "HOLD"
     },
     {
       "SKU": "FREE/uderzhaniya",
@@ -183,7 +191,9 @@
       "release_permission": "HOLD",
       "release_gate": "BLOCKED",
       "STAGING_DELIVERY_SHA256": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
-      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY"
+      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY",
+      "FREE_FORM_E2E_PASS": false,
+      "RELEASE_PERMISSION": "HOLD"
     },
     {
       "SKU": "FREE/dogovor",
@@ -222,7 +232,9 @@
       "release_permission": "HOLD",
       "release_gate": "BLOCKED",
       "STAGING_DELIVERY_SHA256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
-      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY"
+      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY",
+      "FREE_FORM_E2E_PASS": false,
+      "RELEASE_PERMISSION": "HOLD"
     },
     {
       "SKU": "FREE/bankrotstvo",
@@ -261,7 +273,17 @@
       "release_permission": "HOLD",
       "release_gate": "BLOCKED",
       "STAGING_DELIVERY_SHA256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
-      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY"
+      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY",
+      "QA_EVIDENCE_SHA256": {
+        "QA-04-REPORT.md": "89acae591bc7d0c8fa43a3bd39492f50672b97e52e101393441728cfb8fd383c",
+        "SHA_MANIFEST_FINAL.json": "76c7515183fbe63591110eadd7735c28cc7bf6d737880dbd6b28f4aabd5fea6c",
+        "QA-04-EVIDENCE-RECEIPT.json": "56945731477b9ac9570acd6fe29824f5d0330b1f15663770f12e6c54103ef683"
+      },
+      "QA_ORIGINAL_GIT_COMMIT": null,
+      "QA_EVIDENCE_RECOVERY_COMMIT": "67c2fe029e07377fd07a34204c4c324a8adc09ad",
+      "QA_EVIDENCE_STATUS": "PRIMARY_LOCAL_QA_PASS_VERIFIED",
+      "FREE_FORM_E2E_PASS": false,
+      "RELEASE_PERMISSION": "HOLD"
     },
     {
       "SKU": "FREE/avans",
@@ -300,7 +322,9 @@
       "release_permission": "HOLD",
       "release_gate": "BLOCKED",
       "STAGING_DELIVERY_SHA256": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
-      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY"
+      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY",
+      "FREE_FORM_E2E_PASS": false,
+      "RELEASE_PERMISSION": "HOLD"
     },
     {
       "SKU": "FREE/raschet-metrami",
@@ -327,7 +351,9 @@
       "release_permission": "HOLD",
       "release_gate": "BLOCKED",
       "STAGING_DELIVERY_SHA256": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
-      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY"
+      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY",
+      "FREE_FORM_E2E_PASS": false,
+      "RELEASE_PERMISSION": "HOLD"
     },
     {
       "SKU": "FREE/ispolnitelnaya-dokumentaciya",
@@ -366,7 +392,9 @@
       "release_permission": "HOLD",
       "release_gate": "BLOCKED",
       "STAGING_DELIVERY_SHA256": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
-      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY"
+      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY",
+      "FREE_FORM_E2E_PASS": false,
+      "RELEASE_PERMISSION": "HOLD"
     },
     {
       "SKU": "FREE/akt-skrytyh-rabot",
@@ -405,7 +433,9 @@
       "release_permission": "HOLD",
       "release_gate": "BLOCKED",
       "STAGING_DELIVERY_SHA256": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
-      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY"
+      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY",
+      "FREE_FORM_E2E_PASS": false,
+      "RELEASE_PERMISSION": "HOLD"
     },
     {
       "SKU": "P8",
@@ -468,7 +498,13 @@
       "release_permission": "HOLD",
       "release_gate": "BLOCKED",
       "STAGING_DELIVERY_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
-      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY"
+      "STAGING_SCOPE": "SYNTHETIC_LOCALHOST_ONLY",
+      "technical_qa01_candidate_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "last_owner_accepted_whole_archive_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+      "selected_new_release_sha256": null,
+      "staging_version_matches_owner_accepted": false,
+      "QA_STATUS": "NOT_FULLY_CONFIRMED",
+      "STAGING_VERSION_GATE": "BLOCKED"
     }
   ],
   "source_gate_result": {
@@ -482,9 +518,12 @@
   "isolated_download_verified": 12,
   "isolated_delivery_receipt": "NSP_ISOLATED_DELIVERY_RECEIPT.json",
   "public_delivery_activated": false,
-  "release_permission": "HOLD",
+  "release_permission": "HOLD_NEW_22_SKU;P3_P5_PREVIOUS_RELEASE_UNCHANGED",
   "qa04_original_local_receipts_recovered": true,
   "qa04_original_git_commit": "NOT_FOUND",
   "qa04_recovery_sha256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
-  "latest_browser_artifact_sha256": "6320f2255121d0d19ff47c80aa52915babad093927e7f19684aae2ea18ab7b73"
+  "latest_browser_artifact_sha256": "6320f2255121d0d19ff47c80aa52915babad093927e7f19684aae2ea18ab7b73",
+  "qa04_provenance_report": "QA04_PROVENANCE_REPORT.json",
+  "p8_final_edition_decision": "P8_FINAL_EDITION_DECISION.json",
+  "free_form_e2e_report": "NSP_FREE_FORM_E2E_REPORT.json"
 }

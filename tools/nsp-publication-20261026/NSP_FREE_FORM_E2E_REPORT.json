@@ -1,0 +1,388 @@
+{
+  "schema": "NSP_FREE_FORM_E2E_V1",
+  "test_date_utc": "2026-10-27T06:52:52.995945+00:00",
+  "scope": "LOCALHOST_ONLY; NO REAL_CUSTOMER_LEADS; NO EMAIL_OR_PAYMENTS",
+  "actual_lead_php_sha256": "fbd44531d9d9d32885472cc7b94439db80d48a63e8da72eab5c8cb0c111a6b64",
+  "test_only_guard_removed_lead_php_sha256": "6ff73e7c2864f2b6b9ff3ca162633867fc2223047342307124fe2b178ac19bf0",
+  "source_pages_unchanged": true,
+  "source_lead_php_unchanged": true,
+  "mail_delivery": "DISABLED_PHP_SENDMAIL_PATH_/bin/true_ONLY_TEST_COPY",
+  "funnel_events": "NOOP_STUB_ONLY_IN_TEMP_TEST",
+  "actual_pages_checked": 11,
+  "actual_pages_with_form": 0,
+  "actual_free_hold_post_409": 11,
+  "sandbox_replay_pages_forms_post_get_repeat_sha_pass": 11,
+  "sandbox_replay_does_not_verify_undeployed_public_code": true,
+  "real_checkout_or_free_customer_email": "NOT_INVOKED",
+  "required_email_semantics": "NOT_IMPLEMENTED_CURRENT_HANDLER_ACCEPTS_GENERIC_CONTACT",
+  "current_lead_material_unknown_fallback": "CHECKLIST_FALLBACK",
+  "duplicate_submit_protection": "NOT_IMPLEMENTED_IN_OLD_HANDLER",
+  "current_no_form_blocker": "11/11 HOLD PAGES HAVE NO FORM BY DESIGN",
+  "public_hold": "REMAINS_HOLD_11_OF_11",
+  "previous_direct_historical_archive": {
+    "http": 200,
+    "sha256": "f8166b4c029df501d53ea3b3b7d57b17e15a1ffbbc8d20f315b3333a19e9cc33",
+    "identity": "UNCHANGED_HISTORICAL_STATIC_PUBLIC_URL"
+  },
+  "actual_hold_basic_validation": {
+    "empty_name": {
+      "http": 422,
+      "returned_download": false
+    },
+    "missing_contact": {
+      "http": 422,
+      "returned_download": false
+    },
+    "no_consent": {
+      "http": 422,
+      "returned_download": false
+    },
+    "invalid_email_format_with_nonempty_contact": {
+      "http": 409,
+      "returned_download": false
+    }
+  },
+  "actual_pages": [
+    {
+      "SKU": "FREE/checklist",
+      "page_http": 200,
+      "h1": "Чек-лист закрытия выполненных работ",
+      "form_present": false,
+      "current_lead_post": 409,
+      "hold_response_download_field": false,
+      "page_sha256": "cd427c5e6d50ac537c7a0b6be0ba976e162f04125e490b22595e6d8286bbe56c",
+      "stage": "PAGE_200_FORM_ABSENT_HOLD_409"
+    },
+    {
+      "SKU": "FREE/dengi",
+      "page_http": 200,
+      "h1": "КС подписаны, денег нет: первые 7 проверок",
+      "form_present": false,
+      "current_lead_post": 409,
+      "hold_response_download_field": false,
+      "page_sha256": "7018b4b5ff27eb709ef4616e2af5fdc4825b569519bb4682a648fa459cb38c6d",
+      "stage": "PAGE_200_FORM_ABSENT_HOLD_409"
+    },
+    {
+      "SKU": "FREE/dop-raboty",
+      "page_http": 200,
+      "h1": "Допработы: как зафиксировать поручение до начала",
+      "form_present": false,
+      "current_lead_post": 409,
+      "hold_response_download_field": false,
+      "page_sha256": "f1da371506f674ee99dd77bad3ca8d0a24aa8bc152f18fb00257f1c53f6af285",
+      "stage": "PAGE_200_FORM_ABSENT_HOLD_409"
+    },
+    {
+      "SKU": "FREE/vozvrat-ks",
+      "page_http": 200,
+      "h1": "КС без возврата: проверочный лист комплекта",
+      "form_present": false,
+      "current_lead_post": 409,
+      "hold_response_download_field": false,
+      "page_sha256": "ad0df715853ae182e615d3d34baf32a22411a99426cbe49edc6b181c5cc6f9b2",
+      "stage": "PAGE_200_FORM_ABSENT_HOLD_409"
+    },
+    {
+      "SKU": "FREE/uderzhaniya",
+      "page_http": 200,
+      "h1": "Гарантийное удержание: что проверить до подписи",
+      "form_present": false,
+      "current_lead_post": 409,
+      "hold_response_download_field": false,
+      "page_sha256": "ec8f97d5ef99efa20cdeabdc763f3f446c6d4bfdfb0e00579f4bae3772fc7a0f",
+      "stage": "PAGE_200_FORM_ABSENT_HOLD_409"
+    },
+    {
+      "SKU": "FREE/dogovor",
+      "page_http": 200,
+      "h1": "Договор субподряда: красные флаги до подписи",
+      "form_present": false,
+      "current_lead_post": 409,
+      "hold_response_download_field": false,
+      "page_sha256": "4dd907945bf60a1df452e59fe58f8ef1775df0babd3ef95da24ad9159c12e383",
+      "stage": "PAGE_200_FORM_ABSENT_HOLD_409"
+    },
+    {
+      "SKU": "FREE/bankrotstvo",
+      "page_http": 200,
+      "h1": "Банкротство заказчика: проверка контрагента до подписи",
+      "form_present": false,
+      "current_lead_post": 409,
+      "hold_response_download_field": false,
+      "page_sha256": "f605a34ebce61719f7fadfa5bac8b3e382064d60bd3c09dc161c8ff64d761504",
+      "stage": "PAGE_200_FORM_ABSENT_HOLD_409"
+    },
+    {
+      "SKU": "FREE/avans",
+      "page_http": 200,
+      "h1": "Аванс и обеспечение: что проверить до подписи",
+      "form_present": false,
+      "current_lead_post": 409,
+      "hold_response_download_field": false,
+      "page_sha256": "3b494b14306256f586b7ba7b6a69efe1ecfc793267e886b249d5498cf3836f1b",
+      "stage": "PAGE_200_FORM_ABSENT_HOLD_409"
+    },
+    {
+      "SKU": "FREE/raschet-metrami",
+      "page_http": 200,
+      "h1": "Красные флаги сделки «работы за квартиры»",
+      "form_present": false,
+      "current_lead_post": 409,
+      "hold_response_download_field": false,
+      "page_sha256": "3b75e3cce7153749a2a0f0815c95c0615eca0f15d8be53cb9bdafc1aee438aec",
+      "stage": "PAGE_200_FORM_ABSENT_HOLD_409"
+    },
+    {
+      "SKU": "FREE/ispolnitelnaya-dokumentaciya",
+      "page_http": 200,
+      "h1": "Исполнительная документация: проверка комплекта до передачи",
+      "form_present": false,
+      "current_lead_post": 409,
+      "hold_response_download_field": false,
+      "page_sha256": "20a35edf4bbb81239247131c69f63cf8641fb79180a9b959407dec09fa14b3c6",
+      "stage": "PAGE_200_FORM_ABSENT_HOLD_409"
+    },
+    {
+      "SKU": "FREE/akt-skrytyh-rabot",
+      "page_http": 200,
+      "h1": "Акт скрытых работ: какие работы его требуют и что в нём проверяют",
+      "form_present": false,
+      "current_lead_post": 409,
+      "hold_response_download_field": false,
+      "page_sha256": "578a3bf653581c1e349c9e8801997781ebf015b81e3e3b57a94b92c12b092f86",
+      "stage": "PAGE_200_FORM_ABSENT_HOLD_409"
+    }
+  ],
+  "isolated_replay_positive": [
+    {
+      "SKU": "FREE/checklist",
+      "form_source": "SYNTHETIC_FORM_INJECTED_ONLY_IN_TEMP_WEBROOT",
+      "server_source": "UNCHANGED_LEAD_PHP_EXCEPT_GUARD_REMOVED_IN_TEMP_COPY",
+      "page_http": 200,
+      "post_http": 200,
+      "selected_archive": "/downloads/checklist-zakrytiya-rabot.pdf",
+      "delivery_http": 200,
+      "received_sha256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
+      "accepted_sha256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
+      "repeat_http": 200,
+      "repeat_sha256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
+      "mime": "application/pdf",
+      "stage": "SIMULATED_HTTP_PASS_NOT_CURRENT_USER_JOURNEY"
+    },
+    {
+      "SKU": "FREE/dengi",
+      "form_source": "SYNTHETIC_FORM_INJECTED_ONLY_IN_TEMP_WEBROOT",
+      "server_source": "UNCHANGED_LEAD_PHP_EXCEPT_GUARD_REMOVED_IN_TEMP_COPY",
+      "page_http": 200,
+      "post_http": 200,
+      "selected_archive": "/downloads/dengi.zip",
+      "delivery_http": 200,
+      "received_sha256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+      "accepted_sha256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+      "repeat_http": 200,
+      "repeat_sha256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+      "mime": "application/zip",
+      "stage": "SIMULATED_HTTP_PASS_NOT_CURRENT_USER_JOURNEY"
+    },
+    {
+      "SKU": "FREE/dop-raboty",
+      "form_source": "SYNTHETIC_FORM_INJECTED_ONLY_IN_TEMP_WEBROOT",
+      "server_source": "UNCHANGED_LEAD_PHP_EXCEPT_GUARD_REMOVED_IN_TEMP_COPY",
+      "page_http": 200,
+      "post_http": 200,
+      "selected_archive": "/downloads/dop-raboty.zip",
+      "delivery_http": 200,
+      "received_sha256": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
+      "accepted_sha256": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
+      "repeat_http": 200,
+      "repeat_sha256": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
+      "mime": "application/zip",
+      "stage": "SIMULATED_HTTP_PASS_NOT_CURRENT_USER_JOURNEY"
+    },
+    {
+      "SKU": "FREE/vozvrat-ks",
+      "form_source": "SYNTHETIC_FORM_INJECTED_ONLY_IN_TEMP_WEBROOT",
+      "server_source": "UNCHANGED_LEAD_PHP_EXCEPT_GUARD_REMOVED_IN_TEMP_COPY",
+      "page_http": 200,
+      "post_http": 200,
+      "selected_archive": "/downloads/vozvrat-ks.zip",
+      "delivery_http": 200,
+      "received_sha256": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
+      "accepted_sha256": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
+      "repeat_http": 200,
+      "repeat_sha256": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
+      "mime": "application/zip",
+      "stage": "SIMULATED_HTTP_PASS_NOT_CURRENT_USER_JOURNEY"
+    },
+    {
+      "SKU": "FREE/uderzhaniya",
+      "form_source": "SYNTHETIC_FORM_INJECTED_ONLY_IN_TEMP_WEBROOT",
+      "server_source": "UNCHANGED_LEAD_PHP_EXCEPT_GUARD_REMOVED_IN_TEMP_COPY",
+      "page_http": 200,
+      "post_http": 200,
+      "selected_archive": "/downloads/uderzhaniya.zip",
+      "delivery_http": 200,
+      "received_sha256": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
+      "accepted_sha256": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
+      "repeat_http": 200,
+      "repeat_sha256": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
+      "mime": "application/zip",
+      "stage": "SIMULATED_HTTP_PASS_NOT_CURRENT_USER_JOURNEY"
+    },
+    {
+      "SKU": "FREE/dogovor",
+      "form_source": "SYNTHETIC_FORM_INJECTED_ONLY_IN_TEMP_WEBROOT",
+      "server_source": "UNCHANGED_LEAD_PHP_EXCEPT_GUARD_REMOVED_IN_TEMP_COPY",
+      "page_http": 200,
+      "post_http": 200,
+      "selected_archive": "/downloads/dogovor.zip",
+      "delivery_http": 200,
+      "received_sha256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
+      "accepted_sha256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
+      "repeat_http": 200,
+      "repeat_sha256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
+      "mime": "application/zip",
+      "stage": "SIMULATED_HTTP_PASS_NOT_CURRENT_USER_JOURNEY"
+    },
+    {
+      "SKU": "FREE/bankrotstvo",
+      "form_source": "SYNTHETIC_FORM_INJECTED_ONLY_IN_TEMP_WEBROOT",
+      "server_source": "UNCHANGED_LEAD_PHP_EXCEPT_GUARD_REMOVED_IN_TEMP_COPY",
+      "page_http": 200,
+      "post_http": 200,
+      "selected_archive": "/downloads/bankrotstvo.zip",
+      "delivery_http": 200,
+      "received_sha256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "accepted_sha256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "repeat_http": 200,
+      "repeat_sha256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "mime": "application/zip",
+      "stage": "SIMULATED_HTTP_PASS_NOT_CURRENT_USER_JOURNEY"
+    },
+    {
+      "SKU": "FREE/avans",
+      "form_source": "SYNTHETIC_FORM_INJECTED_ONLY_IN_TEMP_WEBROOT",
+      "server_source": "UNCHANGED_LEAD_PHP_EXCEPT_GUARD_REMOVED_IN_TEMP_COPY",
+      "page_http": 200,
+      "post_http": 200,
+      "selected_archive": "/downloads/avans.zip",
+      "delivery_http": 200,
+      "received_sha256": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
+      "accepted_sha256": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
+      "repeat_http": 200,
+      "repeat_sha256": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
+      "mime": "application/zip",
+      "stage": "SIMULATED_HTTP_PASS_NOT_CURRENT_USER_JOURNEY"
+    },
+    {
+      "SKU": "FREE/raschet-metrami",
+      "form_source": "SYNTHETIC_FORM_INJECTED_ONLY_IN_TEMP_WEBROOT",
+      "server_source": "UNCHANGED_LEAD_PHP_EXCEPT_GUARD_REMOVED_IN_TEMP_COPY",
+      "page_http": 200,
+      "post_http": 200,
+      "selected_archive": "/downloads/raschet-metrami.zip",
+      "delivery_http": 200,
+      "received_sha256": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
+      "accepted_sha256": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
+      "repeat_http": 200,
+      "repeat_sha256": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
+      "mime": "application/zip",
+      "stage": "SIMULATED_HTTP_PASS_NOT_CURRENT_USER_JOURNEY"
+    },
+    {
+      "SKU": "FREE/ispolnitelnaya-dokumentaciya",
+      "form_source": "SYNTHETIC_FORM_INJECTED_ONLY_IN_TEMP_WEBROOT",
+      "server_source": "UNCHANGED_LEAD_PHP_EXCEPT_GUARD_REMOVED_IN_TEMP_COPY",
+      "page_http": 200,
+      "post_http": 200,
+      "selected_archive": "/downloads/ispolnitelnaya-dokumentaciya.zip",
+      "delivery_http": 200,
+      "received_sha256": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
+      "accepted_sha256": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
+      "repeat_http": 200,
+      "repeat_sha256": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
+      "mime": "application/zip",
+      "stage": "SIMULATED_HTTP_PASS_NOT_CURRENT_USER_JOURNEY"
+    },
+    {
+      "SKU": "FREE/akt-skrytyh-rabot",
+      "form_source": "SYNTHETIC_FORM_INJECTED_ONLY_IN_TEMP_WEBROOT",
+      "server_source": "UNCHANGED_LEAD_PHP_EXCEPT_GUARD_REMOVED_IN_TEMP_COPY",
+      "page_http": 200,
+      "post_http": 200,
+      "selected_archive": "/downloads/akt-skrytyh-rabot.zip",
+      "delivery_http": 200,
+      "received_sha256": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
+      "accepted_sha256": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
+      "repeat_http": 200,
+      "repeat_sha256": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
+      "mime": "application/zip",
+      "stage": "SIMULATED_HTTP_PASS_NOT_CURRENT_USER_JOURNEY"
+    }
+  ],
+  "isolated_negative_cases": {
+    "required_email_missing": {
+      "http": 200,
+      "download": "/downloads/dengi.zip",
+      "expected": "REJECT_INVALID_OR_UNAUTHORIZED_INPUT",
+      "contract_pass": false
+    },
+    "email_invalid": {
+      "http": 200,
+      "download": "/downloads/dengi.zip",
+      "expected": "REJECT_INVALID_OR_UNAUTHORIZED_INPUT",
+      "contract_pass": false
+    },
+    "unknown_sku": {
+      "http": 200,
+      "download": "/downloads/checklist-zakrytiya-rabot.pdf",
+      "expected": "REJECT_INVALID_OR_UNAUTHORIZED_INPUT",
+      "contract_pass": false
+    },
+    "sku_of_paid_product": {
+      "http": 200,
+      "download": "/downloads/checklist-zakrytiya-rabot.pdf",
+      "expected": "REJECT_INVALID_OR_UNAUTHORIZED_INPUT",
+      "contract_pass": false
+    },
+    "optional_contact_omitted": {
+      "http": 422,
+      "download": null,
+      "expected": "ALLOW_WITH_VALID_EMAIL_ONLY",
+      "contract_pass": false
+    },
+    "duplicate_submit": {
+      "first_http": 200,
+      "repeat_http": 200,
+      "contract_pass": false,
+      "same_download": true
+    },
+    "direct_get_bypass_form": {
+      "http": 200,
+      "sha256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+      "contract_pass": false
+    },
+    "historical_archive_same_filename": {
+      "http": 200,
+      "accepted_sha256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+      "received_sha256": "f8166b4c029df501d53ea3b3b7d57b17e15a1ffbbc8d20f315b3333a19e9cc33",
+      "contract_pass": false
+    }
+  },
+  "negative_contract_gaps": [
+    "required_email_missing",
+    "email_invalid",
+    "unknown_sku",
+    "sku_of_paid_product",
+    "optional_contact_omitted",
+    "duplicate_submit",
+    "direct_get_bypass_form",
+    "historical_archive_same_filename"
+  ],
+  "full_chain_requirement": "PAGE→FORM→VALIDATION→SKU→FINAL_ARCHIVE→DELIVERY→RECEIVED_SHA",
+  "FREE_FORM_E2E_PASS": false,
+  "STAGING_STATUS": "BLOCKED_REAL_ROUTE_HOLD_AND_MISSING_FORM_AND_VALIDATION",
+  "FINAL_STATUS": "PARTIAL_READY_WITH_BLOCKERS",
+  "next_action": "Separate owner authorization required for final version-pinned lead/form implementation with email validation, anti-replay, unknown SKU rejection, final SHA gate and historical entitlement preservation. No live handler changed."
+}

@@ -1,6 +1,6 @@
 {
-  "schema": "NSP_ACCEPTED_ARTIFACTS_MATRIX_V3",
-  "status": "12_OF_12_ISOLATED_BYTES_PASS;RELEASE_HOLD;QA04_GIT_ORIGIN_MISSING",
+  "schema": "NSP_ACCEPTED_ARTIFACTS_MATRIX_V4_3",
+  "status": "QA04_LOCAL_EVIDENCE_RESTORED;P8_NEW_FINAL_QA_NOT_CONFIRMED;FREE_FORM_E2E_BLOCKED;RELEASE_HOLD",
   "source_qa12": "qa/nsp-qa12-avans-20261024:tools/nsp-qa12-20261024/FREE_11_FINAL_READONLY_MATRIX.json",
   "qa04_source": "RECOVERED_ORIGINAL_LOCAL_ACCEPTANCE_DOCUMENTS;NO_HISTORICAL_GIT_QA_COMMIT",
   "rows": [
@@ -33,13 +33,15 @@
       ],
       "git_source_verification": "PASS_EXACT_GIT_SOURCE",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
       "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
       "STAGING_DELIVERY_SHA256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
       "RELEASE_PERMISSION": "HOLD",
       "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
       "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
-      "STAGING_NOTE": "Synthetic paid download.php returns application/zip even for PDF; content bytes valid, not a public free-route MIME test."
+      "STAGING_NOTE": "Synthetic paid download.php returns application/zip even for PDF; content bytes valid, not a public free-route MIME test.",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
     },
     {
       "SKU": "FREE/dengi",
@@ -86,12 +88,14 @@
       ],
       "git_source_verification": "PASS_EXACT_GIT_SOURCE",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
       "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
       "STAGING_DELIVERY_SHA256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
       "RELEASE_PERMISSION": "HOLD",
       "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
-      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
     },
     {
       "SKU": "FREE/dop-raboty",
@@ -138,12 +142,14 @@
       ],
       "git_source_verification": "PASS_EXACT_GIT_SOURCE",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
       "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
       "STAGING_DELIVERY_SHA256": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
       "RELEASE_PERMISSION": "HOLD",
       "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
-      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
     },
     {
       "SKU": "FREE/vozvrat-ks",
@@ -190,12 +196,14 @@
       ],
       "git_source_verification": "PASS_EXACT_GIT_SOURCE",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
       "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
       "STAGING_DELIVERY_SHA256": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
       "RELEASE_PERMISSION": "HOLD",
       "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
-      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
     },
     {
       "SKU": "FREE/uderzhaniya",
@@ -242,12 +250,14 @@
       ],
       "git_source_verification": "PASS_EXACT_GIT_SOURCE",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
       "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
       "STAGING_DELIVERY_SHA256": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
       "RELEASE_PERMISSION": "HOLD",
       "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
-      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
     },
     {
       "SKU": "FREE/dogovor",
@@ -294,12 +304,14 @@
       ],
       "git_source_verification": "PASS_EXACT_GIT_SOURCE",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
       "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
       "STAGING_DELIVERY_SHA256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
       "RELEASE_PERMISSION": "HOLD",
       "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
-      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
     },
     {
       "SKU": "FREE/bankrotstvo",
@@ -319,7 +331,7 @@
       "price_kopeks": 0,
       "status": "BLOCKED",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "QA04 original Git QA commit not found. Recovered original LOCAL receipt + manifest/Office evidence PASS; owner release HOLD.",
+      "blocker": "Original Git QA04 commit NOT_FOUND (disclosed); original local native manifest/receipt sufficient for recorded FULL_QA_PASS; release HOLD and form route blocked",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "member_sha": [
@@ -346,13 +358,19 @@
       ],
       "git_source_verification": "EVIDENCE_MISSING",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
       "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
       "STAGING_DELIVERY_SHA256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
       "RELEASE_PERMISSION": "HOLD",
-      "QA_EVIDENCE_STATUS": "ORIGINAL_LOCAL_QA04_REPORT_MANIFEST_NATIVE_RECEIPT_VERIFIED;ORIGINAL_GIT_ORIGIN_MISSING",
+      "QA_EVIDENCE_STATUS": "PRIMARY_LOCAL_QA04_FULL_QA_PASS_SUFFICIENT_ORIGINAL_GIT_NOT_FOUND",
       "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
-      "qa_source_local_receipt_path": "tools/nsp-publication-20261026/qa04-recovered-original-local-receipts/NSP_QA04_RECOVERY_RECEIPT.json"
+      "qa_source_local_receipt_path": "tools/nsp-publication-20261026/qa04-recovered-original-local-receipts/NSP_QA04_RECOVERY_RECEIPT.json",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/QA04_PROVENANCE_REPORT.json",
+      "QA_EVIDENCE_COMMIT": "67c2fe029e07377fd07a34204c4c324a8adc09ad",
+      "ORIGINAL_QA_COMMIT": null,
+      "QA_STATUS": "FULL_QA_PASS_PRIMARY_LOCAL_EVIDENCE",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
     },
     {
       "SKU": "FREE/avans",
@@ -399,12 +417,14 @@
       ],
       "git_source_verification": "PASS_EXACT_GIT_SOURCE",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
       "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
       "STAGING_DELIVERY_SHA256": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
       "RELEASE_PERMISSION": "HOLD",
       "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
-      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
     },
     {
       "SKU": "FREE/raschet-metrami",
@@ -439,12 +459,14 @@
       ],
       "git_source_verification": "PASS_EXACT_GIT_SOURCE",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
       "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
       "STAGING_DELIVERY_SHA256": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
       "RELEASE_PERMISSION": "HOLD",
       "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
-      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
     },
     {
       "SKU": "FREE/ispolnitelnaya-dokumentaciya",
@@ -491,12 +513,14 @@
       ],
       "git_source_verification": "PASS_EXACT_GIT_SOURCE",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
       "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
       "STAGING_DELIVERY_SHA256": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
       "RELEASE_PERMISSION": "HOLD",
       "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
-      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
     },
     {
       "SKU": "FREE/akt-skrytyh-rabot",
@@ -543,18 +567,20 @@
       ],
       "git_source_verification": "PASS_EXACT_GIT_SOURCE",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
       "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
       "STAGING_DELIVERY_SHA256": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
       "RELEASE_PERMISSION": "HOLD",
       "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
-      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
     },
     {
       "SKU": "P8",
       "name": "Аванс и расчёты по договору подряда",
       "type": "PAID",
-      "qa_status": "READY_CANDIDATE",
+      "qa_status": "NOT_FULLY_CONFIRMED",
       "qa_branch": "qa/nsp-qa01-products-20261023",
       "qa_commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
       "accepted_archive_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
@@ -568,7 +594,7 @@
       "price_kopeks": 2490000,
       "status": "BLOCKED",
       "action": "Оставить анонс, серверный POST=409",
-      "blocker": "P8 later accepted edition unverified; HOLD",
+      "blocker": "6/11 member SHA differ from 2026-10-20 owner-accepted R3; later 02/09 member acceptance but no new whole-package acceptance; HOLD",
       "latest_accepted_qa": "QA01 READY_CANDIDATE; newer approval not established",
       "member_sha": [
         {
@@ -618,12 +644,18 @@
       ],
       "git_source_verification": "PASS_EXACT_GIT_SOURCE",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
+      "STAGING_STATUS": "BLOCKED_QA01_VERSION_SELECTION",
       "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
       "STAGING_DELIVERY_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
       "RELEASE_PERMISSION": "HOLD",
-      "QA_EVIDENCE_STATUS": "READY_CANDIDATE_ONLY",
-      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
+      "QA_EVIDENCE_STATUS": "HISTORICAL_R3_WHOLE_OWNER_ACCEPTED_QA01_NEWER_CANDIDATE_ONLY",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/P8_FINAL_EDITION_DECISION.json",
+      "QA_STATUS": "NOT_FULLY_CONFIRMED",
+      "HISTORICAL_OWNER_ACCEPTED_R3_SHA256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+      "QA01_CANDIDATE_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "FINAL_RELEASE_SHA256": null,
+      "STAGING_VERSION_GATE": "BLOCKED_CANDIDATE_DIFFERS_FROM_HISTORIC_OWNER_ACCEPTED_R3"
     }
   ],
   "qa04_source_snapshot": "tools/nsp-publication-20261026/qa04-recovered-original-local-receipts/"

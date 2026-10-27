@@ -1,9 +1,9 @@
 {
-  "schema": "NSP_PRODUCT_PUBLICATION_MATRIX_V3",
+  "schema": "NSP_PRODUCT_PUBLICATION_MATRIX_V4_3",
   "snapshot_date": "2026-10-27",
   "branch": "codex/nsp-publication-catalog-20261026",
   "base_head": "a4c055ca289a19f7183a3d4941af66ca190ae165",
-  "status": "STAGING_ISOLATED_VERIFIED; OWNER_RELEASE_HOLD_FOR_22_NEW_SKUS",
+  "status": "PARTIAL_READY_WITH_BLOCKERS;QA04_LOCAL_EVIDENCE_PASS;P8_NOT_FULLY_CONFIRMED;FREE_FORM_E2E_BLOCKED",
   "total": 24,
   "paid": 13,
   "free": 11,
@@ -44,7 +44,11 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
       "STAGING_ROUTE_SCOPE": "PAGE_200;NEGATIVE_DIRECT_PAYMENT_POST_409",
       "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409",
-      "RELEASE_DATE": "NOT_CONFIRMED; REMOVED_UNSUPPORTED_NOVEMBER_2_8"
+      "RELEASE_DATE": "NOT_CONFIRMED; REMOVED_UNSUPPORTED_NOVEMBER_2_8",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+      "FINAL_ARCHIVE_SHA": null,
+      "ACTUAL_ARCHIVE_SHA": null,
+      "NEXT_ACTION": "Сохранить анонс; покупку блокировать"
     },
     {
       "SKU": "P2",
@@ -82,7 +86,11 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
       "STAGING_ROUTE_SCOPE": "PAGE_200;NEGATIVE_DIRECT_PAYMENT_POST_409",
       "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409",
-      "RELEASE_DATE": "NOT_CONFIRMED; REMOVED_UNSUPPORTED_NOVEMBER_2_8"
+      "RELEASE_DATE": "NOT_CONFIRMED; REMOVED_UNSUPPORTED_NOVEMBER_2_8",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+      "FINAL_ARCHIVE_SHA": null,
+      "ACTUAL_ARCHIVE_SHA": null,
+      "NEXT_ACTION": "Сохранить анонс; покупку блокировать"
     },
     {
       "SKU": "P3",
@@ -119,7 +127,11 @@
       "ACTION": "Не менять; сохранить существующих покупателей",
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
       "STAGING_ROUTE_SCOPE": "PAYMENT_PHP_WITH_LOOPBACK_FAKE_GATEWAY",
-      "BLOCKER": "Existing masters and P3/P5 pages unchanged; real provider checkout and production buyer archive E2E not tested; no new release requested"
+      "BLOCKER": "Existing masters and P3/P5 pages unchanged; real provider checkout and production buyer archive E2E not tested; no new release requested",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+      "FINAL_ARCHIVE_SHA": null,
+      "ACTUAL_ARCHIVE_SHA": null,
+      "NEXT_ACTION": "Не менять ранее опубликованную редакцию; сохранить старые заказы. Провайдерский E2E отдельно, если будет затронут checkout."
     },
     {
       "SKU": "P4",
@@ -156,7 +168,11 @@
       "ACTION": "Сохранить анонс; покупку блокировать",
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
       "STAGING_ROUTE_SCOPE": "PAGE_200;NEGATIVE_DIRECT_PAYMENT_POST_409",
-      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409"
+      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+      "FINAL_ARCHIVE_SHA": null,
+      "ACTUAL_ARCHIVE_SHA": null,
+      "NEXT_ACTION": "Сохранить анонс; покупку блокировать"
     },
     {
       "SKU": "P5",
@@ -193,7 +209,11 @@
       "ACTION": "Не менять; сохранить существующих покупателей",
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
       "STAGING_ROUTE_SCOPE": "PAYMENT_PHP_WITH_LOOPBACK_FAKE_GATEWAY",
-      "BLOCKER": "Existing masters and P3/P5 pages unchanged; real provider checkout and production buyer archive E2E not tested; no new release requested"
+      "BLOCKER": "Existing masters and P3/P5 pages unchanged; real provider checkout and production buyer archive E2E not tested; no new release requested",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+      "FINAL_ARCHIVE_SHA": null,
+      "ACTUAL_ARCHIVE_SHA": null,
+      "NEXT_ACTION": "Не менять ранее опубликованную редакцию; сохранить старые заказы. Провайдерский E2E отдельно, если будет затронут checkout."
     },
     {
       "SKU": "P7",
@@ -230,13 +250,17 @@
       "ACTION": "Сохранить анонс; покупку блокировать",
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
       "STAGING_ROUTE_SCOPE": "PAGE_200;NEGATIVE_DIRECT_PAYMENT_POST_409",
-      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409"
+      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+      "FINAL_ARCHIVE_SHA": null,
+      "ACTUAL_ARCHIVE_SHA": null,
+      "NEXT_ACTION": "Сохранить анонс; покупку блокировать"
     },
     {
       "SKU": "P8",
       "name": "Аванс и расчёты по договору подряда",
       "type": "PAID",
-      "qa_status": "READY_CANDIDATE",
+      "qa_status": "NOT_FULLY_CONFIRMED",
       "qa_branch": "qa/nsp-qa01-products-20261023",
       "qa_commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
       "accepted_archive_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
@@ -248,16 +272,16 @@
       "release_permission": "HOLD",
       "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
       "price_kopeks": 2490000,
-      "status": "BLOCKED_LATEST_QA",
+      "status": "BLOCKED_QA_FINAL_EDITION",
       "action": "Оставить анонс, серверный POST=409",
-      "blocker": "QA01 11-file candidate SHA confirmed; later final accepted QA version not established; buyer POST 409; HOLD",
+      "blocker": "Current staging QA01 07a16f differs in 6/11 members from last owner-approved whole R3 a22b2a; QA01 only READY_CANDIDATE; HOLD.",
       "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
       "external_staging_site": "NOT_DEPLOYED",
-      "QA_STATUS": "READY_CANDIDATE",
+      "QA_STATUS": "NOT_FULLY_CONFIRMED",
       "QA_COMMIT": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
       "ARCHIVE_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
+      "STAGING_STATUS": "BLOCKED_VERSION_MISMATCH;TECHNICAL_DELIVERY_SHA_PASS",
       "STAGING_SCOPE": "ISOLATED_STAGING_LOCALHOST_ONLY",
       "STAGING_PUBLIC_STATUS": "BLOCKED_HOLD",
       "RELEASE_PERMISSION": "HOLD",
@@ -268,7 +292,13 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
       "STAGING_DELIVERY_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
       "STAGING_ROUTE_SCOPE": "EXISTING_DOWNLOAD_PHP_WITH_LOCAL_SYNTHETIC_TEST_ORDER",
-      "BLOCKER": "QA01 11-file candidate SHA confirmed; later final accepted QA version not established; buyer POST 409; HOLD"
+      "BLOCKER": "Current staging QA01 07a16f differs in 6/11 members from last owner-approved whole R3 a22b2a; QA01 only READY_CANDIDATE; HOLD.",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/P8_FINAL_EDITION_DECISION.json",
+      "FINAL_ARCHIVE_SHA": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+      "ACTUAL_ARCHIVE_SHA": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "NEXT_ACTION": "Nominate and fully QA-accept exact 11-file complete P8 revision after 22 Oct workbook acceptance; repackage; verify SHA; separate owner release.",
+      "HISTORICAL_LAST_OWNER_ACCEPTED_WHOLE_SHA": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+      "FINAL_ARCHIVE_SELECTION": "NONE_CURRENT_NOT_FULLY_CONFIRMED"
     },
     {
       "SKU": "P9",
@@ -305,7 +335,11 @@
       "ACTION": "Сохранить анонс; покупку блокировать",
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
       "STAGING_ROUTE_SCOPE": "PAGE_200;NEGATIVE_DIRECT_PAYMENT_POST_409",
-      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409"
+      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+      "FINAL_ARCHIVE_SHA": null,
+      "ACTUAL_ARCHIVE_SHA": null,
+      "NEXT_ACTION": "Сохранить анонс; покупку блокировать"
     },
     {
       "SKU": "P10",
@@ -342,7 +376,11 @@
       "ACTION": "Сохранить анонс; покупку блокировать",
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
       "STAGING_ROUTE_SCOPE": "PAGE_200;NEGATIVE_DIRECT_PAYMENT_POST_409",
-      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409"
+      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+      "FINAL_ARCHIVE_SHA": null,
+      "ACTUAL_ARCHIVE_SHA": null,
+      "NEXT_ACTION": "Сохранить анонс; покупку блокировать"
     },
     {
       "SKU": "P11",
@@ -379,7 +417,11 @@
       "ACTION": "Сохранить анонс; покупку блокировать",
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
       "STAGING_ROUTE_SCOPE": "PAGE_200;NEGATIVE_DIRECT_PAYMENT_POST_409",
-      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409"
+      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+      "FINAL_ARCHIVE_SHA": null,
+      "ACTUAL_ARCHIVE_SHA": null,
+      "NEXT_ACTION": "Сохранить анонс; покупку блокировать"
     },
     {
       "SKU": "P13",
@@ -416,7 +458,11 @@
       "ACTION": "Сохранить анонс; покупку блокировать",
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
       "STAGING_ROUTE_SCOPE": "PAGE_200;NEGATIVE_DIRECT_PAYMENT_POST_409",
-      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409"
+      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+      "FINAL_ARCHIVE_SHA": null,
+      "ACTUAL_ARCHIVE_SHA": null,
+      "NEXT_ACTION": "Сохранить анонс; покупку блокировать"
     },
     {
       "SKU": "T2",
@@ -453,7 +499,11 @@
       "ACTION": "Сохранить анонс; покупку блокировать",
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
       "STAGING_ROUTE_SCOPE": "PAGE_200;NEGATIVE_DIRECT_PAYMENT_POST_409",
-      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409"
+      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+      "FINAL_ARCHIVE_SHA": null,
+      "ACTUAL_ARCHIVE_SHA": null,
+      "NEXT_ACTION": "Сохранить анонс; покупку блокировать"
     },
     {
       "SKU": "T3",
@@ -490,7 +540,11 @@
       "ACTION": "Сохранить анонс; покупку блокировать",
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
       "STAGING_ROUTE_SCOPE": "PAGE_200;NEGATIVE_DIRECT_PAYMENT_POST_409",
-      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409"
+      "BLOCKER": "Product final QA/release pending; page-only staging PASS; direct order POST 409",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+      "FINAL_ARCHIVE_SHA": null,
+      "ACTUAL_ARCHIVE_SHA": null,
+      "NEXT_ACTION": "Сохранить анонс; покупку блокировать"
     },
     {
       "SKU": "FREE/checklist",
@@ -510,7 +564,7 @@
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified",
+      "blocker": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
@@ -519,8 +573,8 @@
       "QA_COMMIT": "087a48e9c3c9433dfd74a3d9daf7165e9ea1e2a4",
       "ARCHIVE_SHA256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
-      "STAGING_SCOPE": "ISOLATED_STAGING_LOCALHOST_ONLY",
+      "STAGING_STATUS": "ARCHIVE_BYTES_PASS_FREE_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "ISOLATED_DOWNLOAD_SHA_PASS;TEST_ONLY_FORM_REPLAY_PASS;REAL_FORM_E2E_FAIL",
       "STAGING_PUBLIC_STATUS": "BLOCKED_HOLD",
       "RELEASE_PERMISSION": "HOLD",
       "RELEASE_SCOPE": "NO_PUBLIC_NEW_DELIVERY_OR_SALE",
@@ -530,7 +584,12 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
       "STAGING_DELIVERY_SHA256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
       "STAGING_ROUTE_SCOPE": "EXISTING_DOWNLOAD_PHP_WITH_LOCAL_SYNTHETIC_TEST_ORDER",
-      "BLOCKER": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified"
+      "BLOCKER": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
+      "FINAL_ARCHIVE_SHA": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
+      "ACTUAL_ARCHIVE_SHA": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
+      "NEXT_ACTION": "Implement authorized version-pinned free form with required email validation, strict SKU, anti-repeat and SHA archive gate; repeat E2E on accepted code; then request owner release.",
+      "FREE_FORM_E2E_STATUS": "BLOCKED_CURRENT_PAGES_NO_FORM_AND_LEGACY_HANDLER_VALIDATION"
     },
     {
       "SKU": "FREE/dengi",
@@ -550,7 +609,7 @@
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified",
+      "blocker": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
@@ -559,8 +618,8 @@
       "QA_COMMIT": "1ee5055b63611cd91bb09bb61a8b33bf1efba1b8",
       "ARCHIVE_SHA256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
-      "STAGING_SCOPE": "ISOLATED_STAGING_LOCALHOST_ONLY",
+      "STAGING_STATUS": "ARCHIVE_BYTES_PASS_FREE_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "ISOLATED_DOWNLOAD_SHA_PASS;TEST_ONLY_FORM_REPLAY_PASS;REAL_FORM_E2E_FAIL",
       "STAGING_PUBLIC_STATUS": "BLOCKED_HOLD",
       "RELEASE_PERMISSION": "HOLD",
       "RELEASE_SCOPE": "NO_PUBLIC_NEW_DELIVERY_OR_SALE",
@@ -570,7 +629,12 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
       "STAGING_DELIVERY_SHA256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
       "STAGING_ROUTE_SCOPE": "EXISTING_DOWNLOAD_PHP_WITH_LOCAL_SYNTHETIC_TEST_ORDER",
-      "BLOCKER": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified"
+      "BLOCKER": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
+      "FINAL_ARCHIVE_SHA": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+      "ACTUAL_ARCHIVE_SHA": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+      "NEXT_ACTION": "Implement authorized version-pinned free form with required email validation, strict SKU, anti-repeat and SHA archive gate; repeat E2E on accepted code; then request owner release.",
+      "FREE_FORM_E2E_STATUS": "BLOCKED_CURRENT_PAGES_NO_FORM_AND_LEGACY_HANDLER_VALIDATION"
     },
     {
       "SKU": "FREE/dop-raboty",
@@ -590,7 +654,7 @@
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified",
+      "blocker": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
@@ -599,8 +663,8 @@
       "QA_COMMIT": "e42fe796905e2aafb09701395833c4a711224613",
       "ARCHIVE_SHA256": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
-      "STAGING_SCOPE": "ISOLATED_STAGING_LOCALHOST_ONLY",
+      "STAGING_STATUS": "ARCHIVE_BYTES_PASS_FREE_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "ISOLATED_DOWNLOAD_SHA_PASS;TEST_ONLY_FORM_REPLAY_PASS;REAL_FORM_E2E_FAIL",
       "STAGING_PUBLIC_STATUS": "BLOCKED_HOLD",
       "RELEASE_PERMISSION": "HOLD",
       "RELEASE_SCOPE": "NO_PUBLIC_NEW_DELIVERY_OR_SALE",
@@ -610,7 +674,12 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
       "STAGING_DELIVERY_SHA256": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
       "STAGING_ROUTE_SCOPE": "EXISTING_DOWNLOAD_PHP_WITH_LOCAL_SYNTHETIC_TEST_ORDER",
-      "BLOCKER": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified"
+      "BLOCKER": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
+      "FINAL_ARCHIVE_SHA": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
+      "ACTUAL_ARCHIVE_SHA": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
+      "NEXT_ACTION": "Implement authorized version-pinned free form with required email validation, strict SKU, anti-repeat and SHA archive gate; repeat E2E on accepted code; then request owner release.",
+      "FREE_FORM_E2E_STATUS": "BLOCKED_CURRENT_PAGES_NO_FORM_AND_LEGACY_HANDLER_VALIDATION"
     },
     {
       "SKU": "FREE/vozvrat-ks",
@@ -630,7 +699,7 @@
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified",
+      "blocker": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
@@ -639,8 +708,8 @@
       "QA_COMMIT": "f06429549928959cba6305a27f41b336d1068a00",
       "ARCHIVE_SHA256": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
-      "STAGING_SCOPE": "ISOLATED_STAGING_LOCALHOST_ONLY",
+      "STAGING_STATUS": "ARCHIVE_BYTES_PASS_FREE_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "ISOLATED_DOWNLOAD_SHA_PASS;TEST_ONLY_FORM_REPLAY_PASS;REAL_FORM_E2E_FAIL",
       "STAGING_PUBLIC_STATUS": "BLOCKED_HOLD",
       "RELEASE_PERMISSION": "HOLD",
       "RELEASE_SCOPE": "NO_PUBLIC_NEW_DELIVERY_OR_SALE",
@@ -650,7 +719,12 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
       "STAGING_DELIVERY_SHA256": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
       "STAGING_ROUTE_SCOPE": "EXISTING_DOWNLOAD_PHP_WITH_LOCAL_SYNTHETIC_TEST_ORDER",
-      "BLOCKER": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified"
+      "BLOCKER": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
+      "FINAL_ARCHIVE_SHA": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
+      "ACTUAL_ARCHIVE_SHA": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
+      "NEXT_ACTION": "Implement authorized version-pinned free form with required email validation, strict SKU, anti-repeat and SHA archive gate; repeat E2E on accepted code; then request owner release.",
+      "FREE_FORM_E2E_STATUS": "BLOCKED_CURRENT_PAGES_NO_FORM_AND_LEGACY_HANDLER_VALIDATION"
     },
     {
       "SKU": "FREE/uderzhaniya",
@@ -670,7 +744,7 @@
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified",
+      "blocker": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
@@ -679,8 +753,8 @@
       "QA_COMMIT": "dc187d9563ac159a1600e599cf6999456b8a0731",
       "ARCHIVE_SHA256": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
-      "STAGING_SCOPE": "ISOLATED_STAGING_LOCALHOST_ONLY",
+      "STAGING_STATUS": "ARCHIVE_BYTES_PASS_FREE_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "ISOLATED_DOWNLOAD_SHA_PASS;TEST_ONLY_FORM_REPLAY_PASS;REAL_FORM_E2E_FAIL",
       "STAGING_PUBLIC_STATUS": "BLOCKED_HOLD",
       "RELEASE_PERMISSION": "HOLD",
       "RELEASE_SCOPE": "NO_PUBLIC_NEW_DELIVERY_OR_SALE",
@@ -690,7 +764,12 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
       "STAGING_DELIVERY_SHA256": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
       "STAGING_ROUTE_SCOPE": "EXISTING_DOWNLOAD_PHP_WITH_LOCAL_SYNTHETIC_TEST_ORDER",
-      "BLOCKER": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified"
+      "BLOCKER": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
+      "FINAL_ARCHIVE_SHA": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
+      "ACTUAL_ARCHIVE_SHA": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
+      "NEXT_ACTION": "Implement authorized version-pinned free form with required email validation, strict SKU, anti-repeat and SHA archive gate; repeat E2E on accepted code; then request owner release.",
+      "FREE_FORM_E2E_STATUS": "BLOCKED_CURRENT_PAGES_NO_FORM_AND_LEGACY_HANDLER_VALIDATION"
     },
     {
       "SKU": "FREE/dogovor",
@@ -710,7 +789,7 @@
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified",
+      "blocker": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
@@ -719,8 +798,8 @@
       "QA_COMMIT": "079eebabc7aac535b460e55269ab1715710ef29a",
       "ARCHIVE_SHA256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
-      "STAGING_SCOPE": "ISOLATED_STAGING_LOCALHOST_ONLY",
+      "STAGING_STATUS": "ARCHIVE_BYTES_PASS_FREE_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "ISOLATED_DOWNLOAD_SHA_PASS;TEST_ONLY_FORM_REPLAY_PASS;REAL_FORM_E2E_FAIL",
       "STAGING_PUBLIC_STATUS": "BLOCKED_HOLD",
       "RELEASE_PERMISSION": "HOLD",
       "RELEASE_SCOPE": "NO_PUBLIC_NEW_DELIVERY_OR_SALE",
@@ -730,7 +809,12 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
       "STAGING_DELIVERY_SHA256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
       "STAGING_ROUTE_SCOPE": "EXISTING_DOWNLOAD_PHP_WITH_LOCAL_SYNTHETIC_TEST_ORDER",
-      "BLOCKER": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified"
+      "BLOCKER": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
+      "FINAL_ARCHIVE_SHA": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
+      "ACTUAL_ARCHIVE_SHA": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
+      "NEXT_ACTION": "Implement authorized version-pinned free form with required email validation, strict SKU, anti-repeat and SHA archive gate; repeat E2E on accepted code; then request owner release.",
+      "FREE_FORM_E2E_STATUS": "BLOCKED_CURRENT_PAGES_NO_FORM_AND_LEGACY_HANDLER_VALIDATION"
     },
     {
       "SKU": "FREE/bankrotstvo",
@@ -748,19 +832,19 @@
       "release_permission": "HOLD",
       "url": "/materialy/bankrotstvo.html",
       "price_kopeks": 0,
-      "status": "BLOCKED_QA_PROVENANCE",
+      "status": "ANNOUNCEMENT_READY_HOLD",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Git QA04 original commit missing; original FULL_QA_PASS local report SHA/member native evidence recovered; HOLD still applies",
+      "blocker": "QA04 original Git commit NOT_FOUND but locally recovered 23 Oct report/manifest/Office PDFs pass. Free form E2E blocked; release HOLD.",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
       "external_staging_site": "NOT_DEPLOYED",
-      "QA_STATUS": "FULL_QA_PASS_LOCAL_ORIGINAL_QA04_RECEIPT",
+      "QA_STATUS": "FULL_QA_PASS_PRIMARY_LOCAL_EVIDENCE",
       "QA_COMMIT": null,
       "ARCHIVE_SHA256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
-      "STAGING_SCOPE": "ISOLATED_STAGING_LOCALHOST_ONLY",
+      "STAGING_STATUS": "ARCHIVE_BYTES_PASS_FREE_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "ISOLATED_DOWNLOAD_SHA_PASS;TEST_ONLY_FORM_REPLAY_PASS;REAL_FORM_E2E_FAIL",
       "STAGING_PUBLIC_STATUS": "BLOCKED_HOLD",
       "RELEASE_PERMISSION": "HOLD",
       "RELEASE_SCOPE": "NO_PUBLIC_NEW_DELIVERY_OR_SALE",
@@ -770,8 +854,14 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/qa04-recovered-original-local-receipts/NSP_QA04_RECOVERY_RECEIPT.json",
       "STAGING_DELIVERY_SHA256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
       "STAGING_ROUTE_SCOPE": "EXISTING_DOWNLOAD_PHP_WITH_LOCAL_SYNTHETIC_TEST_ORDER",
-      "BLOCKER": "Git QA04 original commit missing; original FULL_QA_PASS local report SHA/member native evidence recovered; HOLD still applies",
-      "QA_EVIDENCE_STATUS": "ORIGINAL_LOCAL_QA04_REPORT_MANIFEST_NATIVE_RECEIPT_VERIFIED;GIT_ORIGINAL_COMMIT_MISSING"
+      "BLOCKER": "QA04 original Git commit NOT_FOUND but locally recovered 23 Oct report/manifest/Office PDFs pass. Free form E2E blocked; release HOLD.",
+      "QA_EVIDENCE_STATUS": "ORIGINAL_LOCAL_QA04_REPORT_MANIFEST_NATIVE_RECEIPT_VERIFIED;GIT_ORIGINAL_COMMIT_MISSING",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/QA04_PROVENANCE_REPORT.json",
+      "FINAL_ARCHIVE_SHA": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "ACTUAL_ARCHIVE_SHA": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "NEXT_ACTION": "Implement authorized version-pinned free form with required email validation, strict SKU, anti-repeat and SHA archive gate; repeat E2E on accepted code; then request owner release.",
+      "QA_EVIDENCE_COMMIT": "67c2fe029e07377fd07a34204c4c324a8adc09ad",
+      "FREE_FORM_E2E_STATUS": "BLOCKED_CURRENT_PAGES_NO_FORM_AND_LEGACY_HANDLER_VALIDATION"
     },
     {
       "SKU": "FREE/avans",
@@ -791,7 +881,7 @@
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified",
+      "blocker": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
@@ -800,8 +890,8 @@
       "QA_COMMIT": "0cc873b70e307a205de8d240d993476c5cf42911",
       "ARCHIVE_SHA256": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
-      "STAGING_SCOPE": "ISOLATED_STAGING_LOCALHOST_ONLY",
+      "STAGING_STATUS": "ARCHIVE_BYTES_PASS_FREE_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "ISOLATED_DOWNLOAD_SHA_PASS;TEST_ONLY_FORM_REPLAY_PASS;REAL_FORM_E2E_FAIL",
       "STAGING_PUBLIC_STATUS": "BLOCKED_HOLD",
       "RELEASE_PERMISSION": "HOLD",
       "RELEASE_SCOPE": "NO_PUBLIC_NEW_DELIVERY_OR_SALE",
@@ -811,7 +901,12 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
       "STAGING_DELIVERY_SHA256": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
       "STAGING_ROUTE_SCOPE": "EXISTING_DOWNLOAD_PHP_WITH_LOCAL_SYNTHETIC_TEST_ORDER",
-      "BLOCKER": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified"
+      "BLOCKER": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
+      "FINAL_ARCHIVE_SHA": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
+      "ACTUAL_ARCHIVE_SHA": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
+      "NEXT_ACTION": "Implement authorized version-pinned free form with required email validation, strict SKU, anti-repeat and SHA archive gate; repeat E2E on accepted code; then request owner release.",
+      "FREE_FORM_E2E_STATUS": "BLOCKED_CURRENT_PAGES_NO_FORM_AND_LEGACY_HANDLER_VALIDATION"
     },
     {
       "SKU": "FREE/raschet-metrami",
@@ -831,7 +926,7 @@
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified",
+      "blocker": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
@@ -840,8 +935,8 @@
       "QA_COMMIT": "43d1a3d236aeb42e87e50e50af30d3d97c5d5db2",
       "ARCHIVE_SHA256": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
-      "STAGING_SCOPE": "ISOLATED_STAGING_LOCALHOST_ONLY",
+      "STAGING_STATUS": "ARCHIVE_BYTES_PASS_FREE_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "ISOLATED_DOWNLOAD_SHA_PASS;TEST_ONLY_FORM_REPLAY_PASS;REAL_FORM_E2E_FAIL",
       "STAGING_PUBLIC_STATUS": "BLOCKED_HOLD",
       "RELEASE_PERMISSION": "HOLD",
       "RELEASE_SCOPE": "NO_PUBLIC_NEW_DELIVERY_OR_SALE",
@@ -851,7 +946,12 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
       "STAGING_DELIVERY_SHA256": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
       "STAGING_ROUTE_SCOPE": "EXISTING_DOWNLOAD_PHP_WITH_LOCAL_SYNTHETIC_TEST_ORDER",
-      "BLOCKER": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified"
+      "BLOCKER": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
+      "FINAL_ARCHIVE_SHA": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
+      "ACTUAL_ARCHIVE_SHA": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
+      "NEXT_ACTION": "Implement authorized version-pinned free form with required email validation, strict SKU, anti-repeat and SHA archive gate; repeat E2E on accepted code; then request owner release.",
+      "FREE_FORM_E2E_STATUS": "BLOCKED_CURRENT_PAGES_NO_FORM_AND_LEGACY_HANDLER_VALIDATION"
     },
     {
       "SKU": "FREE/ispolnitelnaya-dokumentaciya",
@@ -871,7 +971,7 @@
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified",
+      "blocker": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
@@ -880,8 +980,8 @@
       "QA_COMMIT": "3a23df2e7b27fdf9af768c33adc90ecb19bf87d4",
       "ARCHIVE_SHA256": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
-      "STAGING_SCOPE": "ISOLATED_STAGING_LOCALHOST_ONLY",
+      "STAGING_STATUS": "ARCHIVE_BYTES_PASS_FREE_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "ISOLATED_DOWNLOAD_SHA_PASS;TEST_ONLY_FORM_REPLAY_PASS;REAL_FORM_E2E_FAIL",
       "STAGING_PUBLIC_STATUS": "BLOCKED_HOLD",
       "RELEASE_PERMISSION": "HOLD",
       "RELEASE_SCOPE": "NO_PUBLIC_NEW_DELIVERY_OR_SALE",
@@ -891,7 +991,12 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
       "STAGING_DELIVERY_SHA256": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
       "STAGING_ROUTE_SCOPE": "EXISTING_DOWNLOAD_PHP_WITH_LOCAL_SYNTHETIC_TEST_ORDER",
-      "BLOCKER": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified"
+      "BLOCKER": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
+      "FINAL_ARCHIVE_SHA": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
+      "ACTUAL_ARCHIVE_SHA": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
+      "NEXT_ACTION": "Implement authorized version-pinned free form with required email validation, strict SKU, anti-repeat and SHA archive gate; repeat E2E on accepted code; then request owner release.",
+      "FREE_FORM_E2E_STATUS": "BLOCKED_CURRENT_PAGES_NO_FORM_AND_LEGACY_HANDLER_VALIDATION"
     },
     {
       "SKU": "FREE/akt-skrytyh-rabot",
@@ -911,7 +1016,7 @@
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified",
+      "blocker": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
@@ -920,8 +1025,8 @@
       "QA_COMMIT": "5157d2b01bfcea291fd41591628b8dfe3864b7bc",
       "ARCHIVE_SHA256": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
       "ARTIFACT_STATUS": "PASS",
-      "STAGING_STATUS": "PASS",
-      "STAGING_SCOPE": "ISOLATED_STAGING_LOCALHOST_ONLY",
+      "STAGING_STATUS": "ARCHIVE_BYTES_PASS_FREE_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "ISOLATED_DOWNLOAD_SHA_PASS;TEST_ONLY_FORM_REPLAY_PASS;REAL_FORM_E2E_FAIL",
       "STAGING_PUBLIC_STATUS": "BLOCKED_HOLD",
       "RELEASE_PERMISSION": "HOLD",
       "RELEASE_SCOPE": "NO_PUBLIC_NEW_DELIVERY_OR_SALE",
@@ -931,7 +1036,12 @@
       "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
       "STAGING_DELIVERY_SHA256": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
       "STAGING_ROUTE_SCOPE": "EXISTING_DOWNLOAD_PHP_WITH_LOCAL_SYNTHETIC_TEST_ORDER",
-      "BLOCKER": "Owner HOLD; final archive bytes PASS on isolated download.php, but lead-to-free public delivery NOT authorized or verified"
+      "BLOCKER": "Current HOLD page has no form; lead.php POST 409; test-only replay 200/GET SHA PASS but required validation and anti-repeat absent.",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
+      "FINAL_ARCHIVE_SHA": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
+      "ACTUAL_ARCHIVE_SHA": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
+      "NEXT_ACTION": "Implement authorized version-pinned free form with required email validation, strict SKU, anti-repeat and SHA archive gate; repeat E2E on accepted code; then request owner release.",
+      "FREE_FORM_E2E_STATUS": "BLOCKED_CURRENT_PAGES_NO_FORM_AND_LEGACY_HANDLER_VALIDATION"
     }
   ],
   "evidence": {
@@ -940,7 +1050,10 @@
     "hold_409": 22,
     "browser_screenshots": 120,
     "source_git_verified": 11,
-    "source_git_total": 12
+    "source_git_total": 12,
+    "QA04_PROVENANCE_REPORT": "QA04_PROVENANCE_REPORT.json",
+    "P8_FINAL_EDITION_DECISION": "P8_FINAL_EDITION_DECISION.json",
+    "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
   },
   "four_groups": {
     "PUBLISHED_PREEXISTING": [
@@ -984,5 +1097,48 @@
   "latest_browser_staging_run_id": 40461221833,
   "latest_browser_staging_run_sha256": "6320f2255121d0d19ff47c80aa52915babad093927e7f19684aae2ea18ab7b73",
   "latest_browser_code_commit": "aa38cec3ce73ad9e23da1f632bf5287bc3b90c8d",
-  "latest_browser_staging_status": "PASS_120_SCREENSHOTS_24_PAGES_22_HOLD_DENIALS"
+  "latest_browser_staging_status": "PASS_120_SCREENSHOTS_24_PAGES_22_HOLD_DENIALS",
+  "five_groups": {
+    "previously_published_preexisting_release": [
+      "P3",
+      "P5"
+    ],
+    "technically_integral_free_hold": [
+      "FREE/checklist",
+      "FREE/dengi",
+      "FREE/dop-raboty",
+      "FREE/vozvrat-ks",
+      "FREE/uderzhaniya",
+      "FREE/dogovor",
+      "FREE/bankrotstvo",
+      "FREE/avans",
+      "FREE/raschet-metrami",
+      "FREE/ispolnitelnaya-dokumentaciya",
+      "FREE/akt-skrytyh-rabot"
+    ],
+    "unfinished_full_product_qa": [
+      "P1",
+      "P2",
+      "P4",
+      "P7",
+      "P8",
+      "P9",
+      "P10",
+      "P11",
+      "P13",
+      "T2",
+      "T3"
+    ],
+    "missing_evidence": [
+      {
+        "SKU": "P8",
+        "missing": "Current 11-file QA01 final whole-package approval; 2026-10-20 R3 exists and is materially different"
+      },
+      {
+        "SKU": "FREE/bankrotstvo",
+        "missing": "Original Git acceptance commit; primary local QA evidence recovered and verified, sufficient with provenance gap disclosed"
+      }
+    ],
+    "ready_for_owner_only_release_without_other_work": []
+  }
 }

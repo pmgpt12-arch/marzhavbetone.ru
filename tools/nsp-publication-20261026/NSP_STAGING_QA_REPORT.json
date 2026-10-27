@@ -1,8 +1,8 @@
 {
-  "schema": "NSP_STAGING_QA_REPORT_V2",
+  "schema": "NSP_STAGING_QA_REPORT_V4_3",
   "observed_date": "2026-10-27",
   "scope": "STAGING_ONLY",
-  "state": "PARTIAL_READY_WITH_EXTERNAL_RELEASE_BLOCKERS",
+  "state": "PARTIAL_READY_WITH_BLOCKERS",
   "source_branch": "codex/nsp-publication-catalog-20261026",
   "code_commit": "a04ef01262bd4adbe8bcd6c77d04064df690d182",
   "draft_pr": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/677",
@@ -159,16 +159,59 @@
     "Старые CI-контракты ожидают кнопки продаж в HOLD и 10 бесплатных SKU; проверки baseline по P3 дрейфуют",
     "Внешнего staging-деплоя нет: пройден реальный HTTP на локальном изолированном сервере GitHub Actions"
   ],
-  "final_status": "PARTIAL_READY_WITH_EXTERNAL_RELEASE_BLOCKERS",
+  "final_status": "PARTIAL_READY_WITH_BLOCKERS",
   "new_external_blockers": [
-    "QA04: full original LOCAL report/manifest/native receipt recovered and copied exactly; no historical Git QA commit found. Hold remains",
-    "P8 QA01 READY_CANDIDATE SHA verified, final/later QA revision not established",
-    "All 11 free and P8 release permission HOLD; new public product journeys not activated",
-    "P3/P5 fake gateway checkout guard PASS, real payment provider E2E NOT TESTED",
-    "Legacy static /downloads remain accessible 200 for existing links; new lead POST 409",
-    "No separate external staging host/deploy (only real localhost HTTP in CI)",
-    "Legacy CI contract pipelines FAIL and need scope-specific versioning; not considered staging PASS"
+    "P8 current 07a QA01 differs from historical owner-accepted R3 a22 in six members; later 02/09 individually accepted but no complete new final approval",
+    "11 actual free HOLD pages have no form; lead.php refuses 409; for post-HOLD the existing handler cannot enforce required email, strict SKU, anti-duplicate or final SHA before issuing URL",
+    "Historic /downloads direct links remain HTTP 200 to preserve existing links; not proof of guarded new delivery",
+    "QA04 original Git commit not found; original local FULL_QA_PASS records are now committed, hashed and verified, sufficiency recorded independently",
+    "Release permissions HOLD for 11 free and P8; owner decision not issued",
+    "Legacy general CI contracts still expect old active cart/free routes; publication-specific staging CI #40461221833 was PASS"
   ],
   "code_commit_of_successful_browser_run": "aa38cec3ce73ad9e23da1f632bf5287bc3b90c8d",
-  "updated_after_latest_browser_test": "2026-10-27"
+  "updated_after_latest_browser_test": "2026-10-27",
+  "tz43": {
+    "A": {
+      "status": "VERIFIED_PRIMARY_LOCAL_EVIDENCE;ORIGINAL_QA_COMMIT_NOT_FOUND",
+      "qa04_sha": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "original_qa_date": "2026-10-23T11:45:49.078968+00:00",
+      "recovered_evidence_commit": "67c2fe029e07377fd07a34204c4c324a8adc09ad"
+    },
+    "B": {
+      "status": "BLOCKED_NEW_FULL_P8_ACCEPTANCE",
+      "last_whole_owner_accepted_sha": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+      "newer_qa01_candidate_sha": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "changed_member_count": 6,
+      "targeted_p8_workbooks_owner_accepted": 2,
+      "release_permission": "HOLD"
+    },
+    "C": {
+      "status": "BLOCKED_REAL_FORM_E2E;ISOLATED_TEST_REPLAY_PASS_11_OF_11",
+      "actual_pages_without_form": 11,
+      "actual_lead_hold_409": 11,
+      "isolated_form_replay_final_bytes_pass": 11,
+      "negative_contract_gaps": [
+        "required_email_missing",
+        "email_invalid",
+        "unknown_sku",
+        "sku_of_paid_product",
+        "optional_contact_omitted",
+        "duplicate_submit",
+        "direct_get_bypass_form",
+        "historical_archive_same_filename"
+      ],
+      "real_mail_sent": false,
+      "public_customer_download_enabled": false
+    },
+    "D": {
+      "status": "SOURCE_REGRESSION_NOT_CHANGED; TARGETED_NEGATIVE_TEST_PASS",
+      "prior_browser_staging_evidence_reused": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40461221833"
+    },
+    "E": {
+      "status": "EXISTING_24_SKU_MATRIX_UPDATED;ZERO_READY_FOR_IMMEDIATE_OWNER_ONLY_RELEASE"
+    },
+    "F": {
+      "status": "PENDING_COMMIT"
+    }
+  }
 }

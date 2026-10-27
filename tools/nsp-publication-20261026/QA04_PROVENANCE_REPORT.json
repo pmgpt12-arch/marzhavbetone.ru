@@ -1,0 +1,78 @@
+{
+  "schema": "QA04_PROVENANCE_REPORT_V1",
+  "report_date": "2026-10-27",
+  "SKU": "FREE/bankrotstvo",
+  "name": "Банкротство контрагента",
+  "qa_status": "FULL_QA_PASS_PRIMARY_LOCAL_RECEIPT_VERIFIED",
+  "original_acceptance_date_utc": "2026-10-23T11:45:49.078968+00:00",
+  "original_native_receipt_created_utc": "2026-10-23T11:55:38.601891+00:00",
+  "original_source": "Existing ai-workstation QA-04 workspace /home/denis/projects/nsp-qa04-20261023/qa04-delivery",
+  "origin_type": "PRIMARY_LOCAL_QA_EVIDENCE_NOT_ORIGINAL_GIT_COMMIT",
+  "recovered_evidence_commit": "67c2fe029e07377fd07a34204c4c324a8adc09ad",
+  "recovered_evidence_directory": "tools/nsp-publication-20261026/qa04-recovered-original-local-receipts",
+  "original_qa_commit": "NOT_FOUND",
+  "original_qa_commit_status": "NOT_FOUND_AFTER_SCOPED_SEARCH",
+  "existing_qa04_remote_branches": [],
+  "existing_qa04_commit_messages_found": [
+    "67c2fe029e07377fd07a34204c4c324a8adc09ad",
+    "ea31987beb976721394ff0be25b2ec6189f78397"
+  ],
+  "searches_done": [
+    "local QA-04 original workspace",
+    "publication repo Git history/remote QA branches",
+    "GitHub PR search (QA04 / QA-04)",
+    "GitHub Actions known evidence runs",
+    "ai-business-os GitHub branches, PRs and commit search"
+  ],
+  "search_completeness": "SCOPED; remote deleted branches, expired CI artifacts and inaccessible external history not conclusively excluded",
+  "final_archive_name": "bankrotstvo-QA04-FULL-QA.zip",
+  "accepted_archive_sha256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+  "actual_staging_archive_sha256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+  "archive_bytes": 200450,
+  "crc": "PASS",
+  "member_sha256": {
+    "01-proverka-kontragenta-do-podpisi.docx": "c04c95a1293725788c1f4fe52601e1e28a6dfd8d034d33c438ef3b2381118dd6",
+    "02-reestr-priznakov-po-obektu.xlsx": "d4fed56a6effbcf078c7140bd9c95249f23c361bafe221aebc4600af18b7fadb",
+    "03-chto-delat-pri-pervyh-priznakah.docx": "5ff9638e4a87fa00adc5d5e19c746a695111a63af924be2e98e5f2782dd808b6",
+    "04-zapros-o-sostoyanii-raschetov.docx": "039ff3246687967bd47cda7db506b33153d22ed7d22212766bc89ee2148a1a4a",
+    "99-chto-dalshe.pdf": "0947e76e9ef81e15e3090c4085b34a2a65bdf619ab2e0531b63f18da3074a9c4"
+  },
+  "member_count": 5,
+  "evidence_document_sha256": {
+    "QA-04-REPORT.md": "89acae591bc7d0c8fa43a3bd39492f50672b97e52e101393441728cfb8fd383c",
+    "SHA_MANIFEST_FINAL.json": "76c7515183fbe63591110eadd7735c28cc7bf6d737880dbd6b28f4aabd5fea6c",
+    "QA-04-EVIDENCE-RECEIPT.json": "56945731477b9ac9570acd6fe29824f5d0330b1f15663770f12e6c54103ef683"
+  },
+  "original_portable_evidence_zip_sha256": "2e2c05d035591f8cdeb7b39f09caa3c8459be6281cd5fb12151fdd37915c211e",
+  "native_pdf_sha256_in_portable_evidence": {
+    "native-01.pdf": "66728c0f30c96868e617b85a070d9dde2dda1c591491feff3bc8856141a18611",
+    "native-02.pdf": "2fe4184b92c9d5e2ef9660b796f15f0363c76afaca3b985f8efe3667ef446eb3",
+    "native-03.pdf": "116863b3aa8f3388d043865fa7274488cee5b0dce02298e85f7f7eaf5347b738",
+    "native-04.pdf": "8bd9929bf82d9e48b630ebce5f0628b04c44aee32b4674791eb2b81934a030a0"
+  },
+  "original_native_checks": {
+    "excel_2016_scenarios": "48 PASS (as documented)",
+    "word_2016": "3 DOCX PASS (as documented)",
+    "visually_reviewed_pages": 27,
+    "native_main_jobs": "6/6 PASS (as documented)",
+    "native_final_jobs": "7/7 PASS (as documented)"
+  },
+  "verification": {
+    "original_documents_equal_preserved_git_bytes": "PASS",
+    "original_receipt_equals_manifest_and_archive_sha": "PASS",
+    "5_of_5_member_sha_and_zip_crc": "PASS",
+    "4_of_4_native_pdfs_match_original_receipt": "PASS",
+    "portable_evidence_embeds_exact_original_documents": "PASS",
+    "archived_and_staged_zip_identical_sha": "PASS"
+  },
+  "documentary_sufficiency": "SUFFICIENT_FOR_EXISTING_LOCAL_FULL_QA_PASS_CLAIM_WITH_GIT_ORIGIN_GAP_DISCLOSED",
+  "limitations": [
+    "The 67c2fe evidence commit was created on 2026-10-27 and is NOT the original 2026-10-23 QA commit",
+    "This verification authenticates consistency and hash continuity of found files, not cryptographic user identity or an absent historic remote commit",
+    "No new product quality review or native Office run performed",
+    "Owner release permission has NOT been granted for this new route"
+  ],
+  "release_permission": "HOLD",
+  "new_public_download": false,
+  "status": "QA04_LOCAL_PROVENANCE_DOCUMENTED_ORIGINAL_GIT_COMMIT_NOT_FOUND"
+}
