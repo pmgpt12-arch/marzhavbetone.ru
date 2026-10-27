@@ -1,0 +1,69 @@
+{
+  "schema": "NSP_STAGING_QA_REPORT_V1",
+  "observed_date": "2026-10-27",
+  "scope": "STAGING_ONLY",
+  "state": "PARTIAL_READY_WITH_BLOCKERS",
+  "source_branch": "codex/nsp-publication-catalog-20261026",
+  "code_commit": "a4c055ca289a19f7183a3d4941af66ca190ae165",
+  "draft_pr": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/677",
+  "source_integration": {
+    "catalog_html_files_modified": 24,
+    "php_modified": [
+      "lead.php",
+      "payment.php"
+    ],
+    "protected_current_orders_and_archives": "UNCHANGED_BY_GIT_TREE_DIFF",
+    "checkout_current_p3_p5": "SOURCE_UNMODIFIED"
+  },
+  "stages": {
+    "F1": {
+      "status": "PENDING_HTTP",
+      "notes": "No authenticated staging HTTP evidence. Free and paid HTTP denial must be measured."
+    },
+    "F2": {
+      "status": "PENDING_SYNTHETIC_ORDER",
+      "notes": "Existing download.php unchanged; test real synthetic paid/expired tokens without actual orders."
+    },
+    "F3": {
+      "status": "PENDING_BROWSER",
+      "widths": [
+        1366,
+        1920,
+        1280,
+        390,
+        430
+      ],
+      "notes": "Static HTML consistency still requires browser and SEO audits."
+    },
+    "F4": {
+      "status": "SOURCE_QA_SHA_VERIFIED_PREVIOUS_SESSION;_STAGING_HTTP_PENDING",
+      "archives": 12,
+      "qa04": "EVIDENCE_MISSING_GIT_COMMIT",
+      "p8": "READY_CANDIDATE_ONLY"
+    }
+  },
+  "ci_diagnostics": [
+    {
+      "name": "NSP catalog contract",
+      "result": "FAIL",
+      "classification": "LEGACY_CONTRACT_EXPECTS_13_BUY_BUTTONS"
+    },
+    {
+      "name": "NSP free downloads/checklist contract",
+      "result": "FAIL",
+      "classification": "LEGACY_CONTRACT_EXPECTS_OLD_PRODUCT_BUTTONS"
+    },
+    {
+      "name": "Static content/site route discovery",
+      "result": "FAIL",
+      "classification": "ANCESTRY_BASELINE_DRIFT; NOT_SCOPE_SPECIFIC"
+    },
+    {
+      "name": "Dynamic endpoint source inventory",
+      "result": "PASS"
+    }
+  ],
+  "verification_assertion": "NO HTTP/GUI PASS is claimed until receipt exists",
+  "release_permission": "HOLD",
+  "production_modifications": false
+}
