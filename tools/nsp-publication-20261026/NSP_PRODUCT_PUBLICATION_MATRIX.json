@@ -20,13 +20,15 @@
       "member_manifest": null,
       "file_count": null,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; order POST_409",
       "release_permission": "HOLD",
       "url": "/products/p1-oplata-po-ks2.html",
       "price_kopeks": 2990000,
       "status": "ANNOUNCEMENT_READY",
       "action": "Оставить анонс, серверный POST=409",
-      "blocker": "Final paid QA/release permission absent"
+      "blocker": "Final paid QA/release permission absent; latest archive HTTP delivery not authorized/verified",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "P2",
@@ -40,13 +42,15 @@
       "member_manifest": null,
       "file_count": null,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; order POST_409",
       "release_permission": "HOLD",
       "url": "/products/p2-dopolnitelnye-raboty.html",
       "price_kopeks": 2490000,
       "status": "ANNOUNCEMENT_READY",
       "action": "Оставить анонс, серверный POST=409",
-      "blocker": "Final paid QA/release permission absent"
+      "blocker": "Final paid QA/release permission absent; latest archive HTTP delivery not authorized/verified",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "P3",
@@ -60,13 +64,15 @@
       "member_manifest": null,
       "file_count": null,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; provider checkout not tested",
       "release_permission": "PREVIOUS_RELEASE_PRESERVED",
       "url": "/products/p3-shablony-ks2-ks3.html",
       "price_kopeks": 1790000,
       "status": "NEEDS_CORRECTION",
       "action": "Сохранить действующую продажу, проверить регрессию",
-      "blocker": "Existing buyer route E2E not reverified"
+      "blocker": "Existing buyer route E2E not reverified; latest archive HTTP delivery not authorized/verified",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "P4",
@@ -80,13 +86,15 @@
       "member_manifest": null,
       "file_count": null,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; order POST_409",
       "release_permission": "HOLD",
       "url": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
       "price_kopeks": 2490000,
       "status": "ANNOUNCEMENT_READY",
       "action": "Оставить анонс, серверный POST=409",
-      "blocker": "Final paid QA/release permission absent"
+      "blocker": "Final paid QA/release permission absent; latest archive HTTP delivery not authorized/verified",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "P5",
@@ -100,13 +108,15 @@
       "member_manifest": null,
       "file_count": null,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; provider checkout not tested",
       "release_permission": "PREVIOUS_RELEASE_PRESERVED",
       "url": "/products/p5-shtrafy-uderzhaniya.html",
       "price_kopeks": 2990000,
       "status": "NEEDS_CORRECTION",
       "action": "Сохранить действующую продажу, проверить регрессию",
-      "blocker": "Existing buyer route E2E not reverified"
+      "blocker": "Existing buyer route E2E not reverified; latest archive HTTP delivery not authorized/verified",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "P7",
@@ -120,13 +130,15 @@
       "member_manifest": null,
       "file_count": null,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; order POST_409",
       "release_permission": "HOLD",
       "url": "/products/p7-dogovor-podryada.html",
       "price_kopeks": 2490000,
       "status": "ANNOUNCEMENT_READY",
       "action": "Оставить анонс, серверный POST=409",
-      "blocker": "Final paid QA/release permission absent"
+      "blocker": "Final paid QA/release permission absent; latest archive HTTP delivery not authorized/verified",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "P8",
@@ -140,13 +152,15 @@
       "member_manifest": "tools/nsp-qa01-20261023/CURRENT_CANDIDATE_PACKAGES.json",
       "file_count": 11,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; order POST_409",
       "release_permission": "HOLD",
       "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
       "price_kopeks": 2490000,
       "status": "BLOCKED",
       "action": "Оставить анонс, серверный POST=409",
-      "blocker": "P8 later accepted edition unverified; HOLD"
+      "blocker": "P8 later accepted edition unverified; HOLD; latest archive HTTP delivery not authorized/verified",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "P9",
@@ -160,13 +174,15 @@
       "member_manifest": null,
       "file_count": null,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; order POST_409",
       "release_permission": "HOLD",
       "url": "/products/p9-bankrotstvo-genpodryadchika.html",
       "price_kopeks": 2490000,
       "status": "ANNOUNCEMENT_READY",
       "action": "Оставить анонс, серверный POST=409",
-      "blocker": "Final paid QA/release permission absent"
+      "blocker": "Final paid QA/release permission absent; latest archive HTTP delivery not authorized/verified",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "P10",
@@ -180,13 +196,15 @@
       "member_manifest": null,
       "file_count": null,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; order POST_409",
       "release_permission": "HOLD",
       "url": "/products/p10-otvet-na-pretenziyu.html",
       "price_kopeks": 1790000,
       "status": "ANNOUNCEMENT_READY",
       "action": "Оставить анонс, серверный POST=409",
-      "blocker": "Final paid QA/release permission absent"
+      "blocker": "Final paid QA/release permission absent; latest archive HTTP delivery not authorized/verified",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "P11",
@@ -200,13 +218,15 @@
       "member_manifest": null,
       "file_count": null,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; order POST_409",
       "release_permission": "HOLD",
       "url": "/products/p11-raschet-metrami.html",
       "price_kopeks": 2490000,
       "status": "ANNOUNCEMENT_READY",
       "action": "Оставить анонс, серверный POST=409",
-      "blocker": "Final paid QA/release permission absent"
+      "blocker": "Final paid QA/release permission absent; latest archive HTTP delivery not authorized/verified",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "P13",
@@ -220,13 +240,15 @@
       "member_manifest": null,
       "file_count": null,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; order POST_409",
       "release_permission": "HOLD",
       "url": "/products/p13-chto-v-smete-ne-oplatyat.html",
       "price_kopeks": 1790000,
       "status": "ANNOUNCEMENT_READY",
       "action": "Оставить анонс, серверный POST=409",
-      "blocker": "Final paid QA/release permission absent"
+      "blocker": "Final paid QA/release permission absent; latest archive HTTP delivery not authorized/verified",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "T2",
@@ -240,13 +262,15 @@
       "member_manifest": null,
       "file_count": null,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; order POST_409",
       "release_permission": "HOLD",
       "url": "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
       "price_kopeks": 990000,
       "status": "ANNOUNCEMENT_READY",
       "action": "Оставить анонс, серверный POST=409",
-      "blocker": "Final paid QA/release permission absent"
+      "blocker": "Final paid QA/release permission absent; latest archive HTTP delivery not authorized/verified",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "T3",
@@ -260,13 +284,15 @@
       "member_manifest": null,
       "file_count": null,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; order POST_409",
       "release_permission": "HOLD",
       "url": "/products/t3-odnostoronniy-akt-i-zachet.html",
       "price_kopeks": 1490000,
       "status": "ANNOUNCEMENT_READY",
       "action": "Оставить анонс, серверный POST=409",
-      "blocker": "Final paid QA/release permission absent"
+      "blocker": "Final paid QA/release permission absent; latest archive HTTP delivery not authorized/verified",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "FREE/checklist",
@@ -280,15 +306,17 @@
       "member_manifest": "tools/nsp-qa09-20261024/SHA_MANIFEST_FINAL.json",
       "file_count": 1,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; form POST_409",
       "release_permission": "HOLD",
       "url": "/materialy/checklist-zakrytiya-rabot.html",
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "blocker": "Release HOLD; staging HTTP and browser not verified; latest archive HTTP delivery not authorized/verified",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
-      "latest_accepted_qa": "QA-12 cumulative validated final matrix"
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "FREE/dengi",
@@ -302,15 +330,17 @@
       "member_manifest": "tools/nsp-qa02-20261023/MANIFEST.json",
       "file_count": 5,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; form POST_409",
       "release_permission": "HOLD",
       "url": "/materialy/dengi.html",
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "blocker": "Release HOLD; staging HTTP and browser not verified; latest archive HTTP delivery not authorized/verified",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
-      "latest_accepted_qa": "QA-12 cumulative validated final matrix"
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "FREE/dop-raboty",
@@ -324,15 +354,17 @@
       "member_manifest": "tools/nsp-qa10-20261024/SHA_MANIFEST_FINAL.json",
       "file_count": 5,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; form POST_409",
       "release_permission": "HOLD",
       "url": "/materialy/dop-raboty.html",
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "blocker": "Release HOLD; staging HTTP and browser not verified; latest archive HTTP delivery not authorized/verified",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
-      "latest_accepted_qa": "QA-12 cumulative validated final matrix"
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "FREE/vozvrat-ks",
@@ -346,15 +378,17 @@
       "member_manifest": "tools/nsp-qa11-20261024/SHA_MANIFEST_FINAL.json",
       "file_count": 5,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; form POST_409",
       "release_permission": "HOLD",
       "url": "/materialy/vozvrat-ks.html",
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "blocker": "Release HOLD; staging HTTP and browser not verified; latest archive HTTP delivery not authorized/verified",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
-      "latest_accepted_qa": "QA-12 cumulative validated final matrix"
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "FREE/uderzhaniya",
@@ -368,15 +402,17 @@
       "member_manifest": "tools/nsp-qa03-20261023/MANIFEST.json",
       "file_count": 5,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; form POST_409",
       "release_permission": "HOLD",
       "url": "/materialy/uderzhaniya.html",
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "blocker": "Release HOLD; staging HTTP and browser not verified; latest archive HTTP delivery not authorized/verified",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
-      "latest_accepted_qa": "QA-12 cumulative validated final matrix"
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "FREE/dogovor",
@@ -390,15 +426,17 @@
       "member_manifest": "tools/nsp-qa05-20261023/SHA_MANIFEST_FINAL.json",
       "file_count": 5,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; form POST_409",
       "release_permission": "HOLD",
       "url": "/materialy/dogovor.html",
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "blocker": "Release HOLD; staging HTTP and browser not verified; latest archive HTTP delivery not authorized/verified",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
-      "latest_accepted_qa": "QA-12 cumulative validated final matrix"
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "FREE/bankrotstvo",
@@ -412,15 +450,17 @@
       "member_manifest": "local QA04 delivery manifest / Git provenance not located",
       "file_count": 5,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; form POST_409",
       "release_permission": "HOLD",
       "url": "/materialy/bankrotstvo.html",
       "price_kopeks": 0,
       "status": "BLOCKED",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "QA04 Git provenance EVIDENCE_MISSING; release HOLD",
+      "blocker": "QA04 Git provenance EVIDENCE_MISSING; release HOLD; latest archive HTTP delivery not authorized/verified",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
-      "latest_accepted_qa": "QA-12 cumulative validated final matrix"
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "FREE/avans",
@@ -434,15 +474,17 @@
       "member_manifest": "tools/nsp-qa12-20261024/SHA_MANIFEST_FINAL.json",
       "file_count": 5,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; form POST_409",
       "release_permission": "HOLD",
       "url": "/materialy/avans.html",
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "blocker": "Release HOLD; staging HTTP and browser not verified; latest archive HTTP delivery not authorized/verified",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
-      "latest_accepted_qa": "QA-12 cumulative validated final matrix"
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "FREE/raschet-metrami",
@@ -456,15 +498,17 @@
       "member_manifest": "tools/nsp-qa08-20261024/SHA_MANIFEST_FINAL.json",
       "file_count": 2,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; form POST_409",
       "release_permission": "HOLD",
       "url": "/materialy/raschet-metrami.html",
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "blocker": "Release HOLD; staging HTTP and browser not verified; latest archive HTTP delivery not authorized/verified",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
-      "latest_accepted_qa": "QA-12 cumulative validated final matrix"
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "FREE/ispolnitelnaya-dokumentaciya",
@@ -478,15 +522,17 @@
       "member_manifest": "tools/nsp-qa06-20261023/SHA_MANIFEST_FINAL.json",
       "file_count": 5,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; form POST_409",
       "release_permission": "HOLD",
       "url": "/materialy/ispolnitelnaya-dokumentaciya.html",
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "blocker": "Release HOLD; staging HTTP and browser not verified; latest archive HTTP delivery not authorized/verified",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
-      "latest_accepted_qa": "QA-12 cumulative validated final matrix"
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     },
     {
       "SKU": "FREE/akt-skrytyh-rabot",
@@ -500,15 +546,25 @@
       "member_manifest": "tools/nsp-qa07-20261023/SHA_MANIFEST_FINAL.json",
       "file_count": 5,
       "staging_delivery_sha256": null,
-      "staging_http_status": "NOT_TESTED",
+      "staging_http_status": "PAGE_200; form POST_409",
       "release_permission": "HOLD",
       "url": "/materialy/akt-skrytyh-rabot.html",
       "price_kopeks": 0,
       "status": "ANNOUNCEMENT_READY",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "blocker": "Release HOLD; staging HTTP and browser not verified; latest archive HTTP delivery not authorized/verified",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
-      "latest_accepted_qa": "QA-12 cumulative validated final matrix"
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
+      "external_staging_site": "NOT_DEPLOYED"
     }
-  ]
+  ],
+  "evidence": {
+    "run_id": 40435072668,
+    "static_pages": 24,
+    "hold_409": 22,
+    "browser_screenshots": 120,
+    "source_git_verified": 11,
+    "source_git_total": 12
+  }
 }

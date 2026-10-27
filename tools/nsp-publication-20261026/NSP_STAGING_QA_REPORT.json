@@ -4,7 +4,7 @@
   "scope": "STAGING_ONLY",
   "state": "PARTIAL_READY_WITH_BLOCKERS",
   "source_branch": "codex/nsp-publication-catalog-20261026",
-  "code_commit": "a4c055ca289a19f7183a3d4941af66ca190ae165",
+  "code_commit": "a04ef01262bd4adbe8bcd6c77d04064df690d182",
   "draft_pr": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/677",
   "source_integration": {
     "catalog_html_files_modified": 24,
@@ -17,29 +17,49 @@
   },
   "stages": {
     "F1": {
-      "status": "PENDING_HTTP",
-      "notes": "No authenticated staging HTTP evidence. Free and paid HTTP denial must be measured."
+      "status": "PASS_LOCAL_HOLD_HTTP; FINAL_ARCHIVE_HTTP_NOT_VERIFIED",
+      "http_get_200": 24,
+      "hold_post_409": 22,
+      "hold_free": 11,
+      "hold_paid": 11,
+      "legacy_direct_downloads_200": [
+        "dengi.zip",
+        "avans.zip",
+        "checklist-zakrytiya-rabot.pdf"
+      ],
+      "new_accepted_zip_delivery_sha256": null
     },
     "F2": {
-      "status": "PENDING_SYNTHETIC_ORDER",
-      "notes": "Existing download.php unchanged; test real synthetic paid/expired tokens without actual orders."
+      "status": "PASS_SYNTHETIC_PAID_ORDER",
+      "first_download": 200,
+      "repeat_download": 200,
+      "wrong_token": 403,
+      "expired_token": 410,
+      "fixture_sha256": "abbf6722dd831b8654b0f507d7568a5f384ed25c5f079ba10be1794fb8f05d53",
+      "real_orders_accessed": false
     },
     "F3": {
-      "status": "PENDING_BROWSER",
+      "status": "PASS_AUTOMATED; FULL_MANUAL_120_SCREENSHOTS_NOT_CLAIMED",
+      "pages": 24,
       "widths": [
-        1366,
-        1920,
-        1280,
         390,
-        430
+        430,
+        1280,
+        1366,
+        1920
       ],
-      "notes": "Static HTML consistency still requires browser and SEO audits."
+      "screenshots": 120,
+      "max_overflow_px": 0,
+      "baseline_main_p3_p5_unchanged": true,
+      "manual_sample_reviewed": 8
     },
     "F4": {
-      "status": "SOURCE_QA_SHA_VERIFIED_PREVIOUS_SESSION;_STAGING_HTTP_PENDING",
-      "archives": 12,
-      "qa04": "EVIDENCE_MISSING_GIT_COMMIT",
-      "p8": "READY_CANDIDATE_ONLY"
+      "status": "SOURCE_VERIFIED_11_OF_12; QA04_GIT_EVIDENCE_MISSING",
+      "accepted_archives": 12,
+      "git_verified": 11,
+      "qa04": "EVIDENCE_MISSING_GIT_ORIGIN",
+      "p8": "READY_CANDIDATE_ONLY",
+      "release_allowed": 0
     }
   },
   "ci_diagnostics": [
@@ -65,5 +85,26 @@
   ],
   "verification_assertion": "NO HTTP/GUI PASS is claimed until receipt exists",
   "release_permission": "HOLD",
-  "production_modifications": false
+  "production_modifications": false,
+  "workflow_status": "PASS_ISOLATED_STAGING_SUITE",
+  "evidence": {
+    "run_id": 40435072668,
+    "url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+    "artifact_id": 12703497984,
+    "artifact_name": "nsp-publication-staging-40435072668-1",
+    "artifact_zip_sha256": "562e5f98e00ce96736fc6a4b4ccb7c926d809de732e3422730db9b57d16d0bbb",
+    "crc": "PASS",
+    "screenshots": 120,
+    "sampled_visual_review": 8
+  },
+  "open_blockers": [
+    "QA04: локальный QA PASS есть, исходный Git commit не установлен",
+    "12/12 байтов по новой разрешённой пользовательской выдаче не получены: release HOLD",
+    "Три существующие прямые /downloads/ ссылки возвращают старые архивы HTTP 200; нужна санкционированная стратегия миграции без нарушения старых ссылок",
+    "P8 позднейшая FULL_QA_PASS не подтверждена",
+    "P3/P5: положительный провайдерский checkout не проверялся",
+    "Старые CI-контракты ожидают кнопки продаж в HOLD и 10 бесплатных SKU; проверки baseline по P3 дрейфуют",
+    "Внешнего staging-деплоя нет: пройден реальный HTTP на локальном изолированном сервере GitHub Actions"
+  ],
+  "final_status": "PARTIAL_READY_WITH_BLOCKERS"
 }
