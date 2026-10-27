@@ -1,0 +1,80 @@
+{
+  "status": "FULL_QA_PASS",
+  "visual_review": "PASS",
+  "date_utc": "2026-10-23T11:45:49.078968+00:00",
+  "source_zip_sha256": "0de62a32042330fba008dfcd7ac61dbbe43eba9ab7b9dff24f752c498a47edfa",
+  "archive": "bankrotstvo-QA04-FULL-QA.zip",
+  "archive_sha256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+  "archive_bytes": 200450,
+  "files": [
+    {
+      "name": "01-proverka-kontragenta-do-podpisi.docx",
+      "status": "PASS",
+      "original_sha256": "94406369457f8be355a99b43d7c6a19e0cf1c5fccea1297991ad61af3cb14aa4",
+      "qa_sha256": "c04c95a1293725788c1f4fe52601e1e28a6dfd8d034d33c438ef3b2381118dd6",
+      "acceptance": "Word 2016 revised v3, visual 7 pages"
+    },
+    {
+      "name": "02-reestr-priznakov-po-obektu.xlsx",
+      "status": "PASS",
+      "original_sha256": "4afa325704c59c2de93c345b78768eec308a972b1a71238727aed727a7548c4b",
+      "qa_sha256": "d4fed56a6effbcf078c7140bd9c95249f23c361bafe221aebc4600af18b7fadb",
+      "acceptance": "Excel 2016 48 scenarios, native save/reopen, print 4 pages"
+    },
+    {
+      "name": "03-chto-delat-pri-pervyh-priznakah.docx",
+      "status": "PASS",
+      "original_sha256": "5a24a161ce2385930ca6416d8dc8d58efdd32eba4c9e69d6ef4c815b9d2bfa20",
+      "qa_sha256": "5ff9638e4a87fa00adc5d5e19c746a695111a63af924be2e98e5f2782dd808b6",
+      "acceptance": "Word 2016 revised v3, visual 8 pages"
+    },
+    {
+      "name": "04-zapros-o-sostoyanii-raschetov.docx",
+      "status": "PASS",
+      "original_sha256": "acd8d502949d89a9fd24a46e52a305c019329e3f1ff8d8abf9043994f6875f5c",
+      "qa_sha256": "039ff3246687967bd47cda7db506b33153d22ed7d22212766bc89ee2148a1a4a",
+      "acceptance": "Word 2016 final v2, visual 7 pages"
+    },
+    {
+      "name": "99-chto-dalshe.pdf",
+      "status": "UNCHANGED_ACCEPTED",
+      "original_sha256": "0947e76e9ef81e15e3090c4085b34a2a65bdf619ab2e0531b63f18da3074a9c4",
+      "qa_sha256": "0947e76e9ef81e15e3090c4085b34a2a65bdf619ab2e0531b63f18da3074a9c4",
+      "acceptance": "Original visual 1 page"
+    }
+  ],
+  "native_jobs_main": "6/6 PASS",
+  "native_jobs_final": "7/7 PASS",
+  "native_reflow_word": "PASS",
+  "reviewed_native_pages": 27,
+  "visual_page_breaks_fixed": "01: 8 to 7 pages, 03: 9 to 8 pages",
+  "documented_pdf_evidence": [
+    {
+      "label": "01",
+      "pages": 7,
+      "sha256": "66728c0f30c96868e617b85a070d9dde2dda1c591491feff3bc8856141a18611"
+    },
+    {
+      "label": "03",
+      "pages": 8,
+      "sha256": "116863b3aa8f3388d043865fa7274488cee5b0dce02298e85f7f7eaf5347b738"
+    },
+    {
+      "label": "04",
+      "pages": 7,
+      "sha256": "8bd9929bf82d9e48b630ebce5f0628b04c44aee32b4674791eb2b81934a030a0"
+    },
+    {
+      "label": "02",
+      "pages": 4,
+      "sha256": "2fe4184b92c9d5e2ef9660b796f15f0363c76afaca3b985f8efe3667ef446eb3"
+    },
+    {
+      "label": "99",
+      "pages": 1,
+      "sha256": "0947e76e9ef81e15e3090c4085b34a2a65bdf619ab2e0531b63f18da3074a9c4"
+    }
+  ],
+  "scope": "standalone QA artifact, main and production untouched",
+  "release": "HOLD_FOR_SUPERVISOR"
+}

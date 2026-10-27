@@ -2,7 +2,7 @@
   "schema": "NSP_ACCEPTED_ARTIFACTS_MATRIX_V3",
   "status": "12_OF_12_ISOLATED_BYTES_PASS;RELEASE_HOLD;QA04_GIT_ORIGIN_MISSING",
   "source_qa12": "qa/nsp-qa12-avans-20261024:tools/nsp-qa12-20261024/FREE_11_FINAL_READONLY_MATRIX.json",
-  "qa04_source": "local /home/denis/projects/nsp-qa04-20261023/qa04-delivery; exact SHA verified before workstation became offline",
+  "qa04_source": "RECOVERED_ORIGINAL_LOCAL_ACCEPTANCE_DOCUMENTS;NO_HISTORICAL_GIT_QA_COMMIT",
   "rows": [
     {
       "SKU": "FREE/checklist",
@@ -319,7 +319,7 @@
       "price_kopeks": 0,
       "status": "BLOCKED",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "QA04 Git provenance EVIDENCE_MISSING; release HOLD",
+      "blocker": "QA04 original Git QA commit not found. Recovered original LOCAL receipt + manifest/Office evidence PASS; owner release HOLD.",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "member_sha": [
@@ -350,8 +350,9 @@
       "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
       "STAGING_DELIVERY_SHA256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
       "RELEASE_PERMISSION": "HOLD",
-      "QA_EVIDENCE_STATUS": "EVIDENCE_MISSING_GIT_ORIGIN",
-      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
+      "QA_EVIDENCE_STATUS": "ORIGINAL_LOCAL_QA04_REPORT_MANIFEST_NATIVE_RECEIPT_VERIFIED;ORIGINAL_GIT_ORIGIN_MISSING",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "qa_source_local_receipt_path": "tools/nsp-publication-20261026/qa04-recovered-original-local-receipts/NSP_QA04_RECOVERY_RECEIPT.json"
     },
     {
       "SKU": "FREE/avans",
@@ -624,5 +625,6 @@
       "QA_EVIDENCE_STATUS": "READY_CANDIDATE_ONLY",
       "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD"
     }
-  ]
+  ],
+  "qa04_source_snapshot": "tools/nsp-publication-20261026/qa04-recovered-original-local-receipts/"
 }

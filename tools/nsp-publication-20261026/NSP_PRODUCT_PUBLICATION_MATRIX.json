@@ -750,12 +750,12 @@
       "price_kopeks": 0,
       "status": "BLOCKED_QA_PROVENANCE",
       "action": "Анонсировать до разрешённой новой выдачи",
-      "blocker": "QA04: локальный SHA и member SHA PASS, но исходный Git QA commit/квитанция отсутствует; owner release HOLD",
+      "blocker": "Git QA04 original commit missing; original FULL_QA_PASS local report SHA/member native evidence recovered; HOLD still applies",
       "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
       "latest_accepted_qa": "QA-12 cumulative validated final matrix",
       "browser_status": "PASS_5_VIEWPORTS_120_SCREENSHOTS",
       "external_staging_site": "NOT_DEPLOYED",
-      "QA_STATUS": "FULL_QA_PASS",
+      "QA_STATUS": "FULL_QA_PASS_LOCAL_ORIGINAL_QA04_RECEIPT",
       "QA_COMMIT": null,
       "ARCHIVE_SHA256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
       "ARTIFACT_STATUS": "PASS",
@@ -767,10 +767,11 @@
       "URL": "https://nastoronepodryadchika.ru/materialy/bankrotstvo.html",
       "SITE_STATUS": "Скоро",
       "ACTION": "Анонсировать; разрешение владельца обязательно",
-      "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/NSP_ISOLATED_DELIVERY_RECEIPT.json",
+      "EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/qa04-recovered-original-local-receipts/NSP_QA04_RECOVERY_RECEIPT.json",
       "STAGING_DELIVERY_SHA256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
       "STAGING_ROUTE_SCOPE": "EXISTING_DOWNLOAD_PHP_WITH_LOCAL_SYNTHETIC_TEST_ORDER",
-      "BLOCKER": "QA04: локальный SHA и member SHA PASS, но исходный Git QA commit/квитанция отсутствует; owner release HOLD"
+      "BLOCKER": "Git QA04 original commit missing; original FULL_QA_PASS local report SHA/member native evidence recovered; HOLD still applies",
+      "QA_EVIDENCE_STATUS": "ORIGINAL_LOCAL_QA04_REPORT_MANIFEST_NATIVE_RECEIPT_VERIFIED;GIT_ORIGINAL_COMMIT_MISSING"
     },
     {
       "SKU": "FREE/avans",
@@ -979,5 +980,9 @@
       "P3",
       "P5"
     ]
-  }
+  },
+  "latest_browser_staging_run_id": 40461221833,
+  "latest_browser_staging_run_sha256": "6320f2255121d0d19ff47c80aa52915babad093927e7f19684aae2ea18ab7b73",
+  "latest_browser_code_commit": "aa38cec3ce73ad9e23da1f632bf5287bc3b90c8d",
+  "latest_browser_staging_status": "PASS_120_SCREENSHOTS_24_PAGES_22_HOLD_DENIALS"
 }

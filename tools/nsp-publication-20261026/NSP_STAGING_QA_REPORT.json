@@ -57,21 +57,43 @@
       "real_orders_touched": false
     },
     "F4": {
-      "status": "STATIC_PASS; BROWSER_RETEST_PENDING_NEW_COMMIT",
+      "status": "PASS_120_OF_120_ON_UPDATED_20261027_CODE",
       "unique_24_seo_source_check": "PASS",
       "internal_relative_links_checked": 406,
       "broken_internal_links": 0,
       "prior_browser_screenshots": 120,
       "prior_browser_result": "PASS_120_ON_PREVIOUS_COMMIT",
       "P1_P2_DATE": "REMOVED_UNSUPPORTED_2_8_NOVEMBER",
-      "protected_index_p3_p5": "EXACT_SHA_VS_MAIN_PASS"
+      "protected_index_p3_p5": "EXACT_SHA_VS_MAIN_PASS",
+      "browser_screenshots": 120,
+      "browser_viewports": [
+        390,
+        430,
+        1280,
+        1366,
+        1920
+      ],
+      "browser_run_id": 40461221833,
+      "browser_commit": "aa38cec3ce73ad9e23da1f632bf5287bc3b90c8d",
+      "browser_qa_workflow_result": "SUCCESS",
+      "new_date_text_P1_P2_retested": true,
+      "proof_24_page_http_and_hold_post": "PASS_RE_RUN"
     },
     "F5": {
-      "status": "EVIDENCE_MISSING_FOR_QA04_GIT_ORIGIN",
+      "status": "ORIGINAL_LOCAL_QA_RECEIPTS_RECOVERED_AND_VERIFIED;ORIGINAL_GIT_QA_COMMIT_NOT_FOUND",
       "qa04_local_archive_sha": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
       "qa04_local_archive_members": 5,
       "qa04_git_origin": null,
-      "search_scope": "GitHub QA branches/PRs/commits and second AI Business OS repo; local traces; no original acceptance Git commit found"
+      "search_scope": "GitHub QA branches/PRs/commits and second AI Business OS repo; local traces; no original acceptance Git commit found",
+      "qa04_original_local_report": "qa04-recovered-original-local-receipts/QA-04-REPORT.md",
+      "qa04_original_local_sha_manifest": "qa04-recovered-original-local-receipts/SHA_MANIFEST_FINAL.json",
+      "qa04_original_native_receipt": "qa04-recovered-original-local-receipts/QA-04-EVIDENCE-RECEIPT.json",
+      "qa04_local_recovery_evidence": "qa04-recovered-original-local-receipts/NSP_QA04_RECOVERY_RECEIPT.json",
+      "qa04_original_full_qa_pass_documented": true,
+      "qa04_original_local_acceptance_sha_members_verified": true,
+      "qa04_original_portable_evidence_zip_sha256": "2e2c05d035591f8cdeb7b39f09caa3c8459be6281cd5fb12151fdd37915c211e",
+      "qa04_source_git_commit": null,
+      "new_git_snapshot_of_old_receipts_is_not_original_git_source": true
     },
     "F6": {
       "status": "PASS_INTERNAL_VERSION_GATE; PUBLIC_HOLD",
@@ -109,7 +131,7 @@
   "verification_assertion": "HTTP delivery receipts exist exclusively for 12 isolated localhost test-only archives; public new buyer journey remains HOLD",
   "release_permission": "HOLD_FOR_ALL_22_NEW_SKUS; EXISTING_P3_P5_PRESERVED",
   "production_modifications": false,
-  "workflow_status": "PASS_ISOLATED_STAGING_SUITE",
+  "workflow_status": "PASS_STAGING_RUN_40461221833_ON_20261027_CODE",
   "evidence": {
     "run_id": 40435072668,
     "url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
@@ -120,7 +142,13 @@
     "screenshots": 120,
     "sampled_visual_review": 8,
     "isolated_delivery": "NSP_ISOLATED_DELIVERY_RECEIPT.json",
-    "paid_checkout": "NSP_PAID_SYNTHETIC_RECEIPT.json"
+    "paid_checkout": "NSP_PAID_SYNTHETIC_RECEIPT.json",
+    "latest_browser_run_id": 40461221833,
+    "latest_browser_run_url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40461221833",
+    "latest_browser_artifact_id": 12714447040,
+    "latest_browser_artifact_url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40461221833/artifacts/12714447040",
+    "latest_browser_artifact_sha256": "6320f2255121d0d19ff47c80aa52915babad093927e7f19684aae2ea18ab7b73",
+    "qa04_recovered_local_original_receipt": "qa04-recovered-original-local-receipts/NSP_QA04_RECOVERY_RECEIPT.json"
   },
   "open_blockers": [
     "QA04: локальный QA PASS есть, исходный Git commit не установлен",
@@ -133,12 +161,14 @@
   ],
   "final_status": "PARTIAL_READY_WITH_EXTERNAL_RELEASE_BLOCKERS",
   "new_external_blockers": [
-    "QA04: Git acceptance provenance not found, local archive SHA and member integrity PASS",
-    "P8: QA01 candidate valid but cannot assert no later accepted revision",
-    "All 11 free and P8 release permission HOLD; no public new product delivery",
-    "P3/P5 provider E2E (real sandbox processor) not run; fake loopback checkout guard PASS",
-    "Legacy static direct downloads intentionally retained for historical links; new lead POST 409",
-    "Separate external staging host not deployed (GitHub Actions localhost staging only)",
-    "Legacy CI contracts for HOLD differ from prior 13 buy button catalog; assess separately"
-  ]
+    "QA04: full original LOCAL report/manifest/native receipt recovered and copied exactly; no historical Git QA commit found. Hold remains",
+    "P8 QA01 READY_CANDIDATE SHA verified, final/later QA revision not established",
+    "All 11 free and P8 release permission HOLD; new public product journeys not activated",
+    "P3/P5 fake gateway checkout guard PASS, real payment provider E2E NOT TESTED",
+    "Legacy static /downloads remain accessible 200 for existing links; new lead POST 409",
+    "No separate external staging host/deploy (only real localhost HTTP in CI)",
+    "Legacy CI contract pipelines FAIL and need scope-specific versioning; not considered staging PASS"
+  ],
+  "code_commit_of_successful_browser_run": "aa38cec3ce73ad9e23da1f632bf5287bc3b90c8d",
+  "updated_after_latest_browser_test": "2026-10-27"
 }

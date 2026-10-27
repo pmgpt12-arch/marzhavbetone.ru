@@ -1,6 +1,6 @@
 {
   "schema": "NSP_ISOLATED_FINAL_ARCHIVE_DELIVERY_V1",
-  "timestamp_utc": "2026-10-27T06:21:33.486185+00:00",
+  "timestamp_utc": "2026-10-27T06:37:07.717183+00:00",
   "source": "PREVIOUSLY_PREPARED_FINAL_QA_COPIES_NEVER_PUBLISHED",
   "route": "UNCHANGED_DOWNLOAD_PHP_TEST_HARNESS_LOCALHOST",
   "not_tested": "FREE_LEAD_PUBLIC_CUSTOMER_PATH_OR_PAYMENT_PROVIDER",
@@ -63,19 +63,24 @@
     "missing_qa_receipt": {
       "rejected": true,
       "reasons": [
-        "QA_RECEIPT_MISSING"
+        "QA_RECEIPT_MISSING",
+        "RELEASE_PERMISSION_HOLD",
+        "OWNER_APPROVAL_NOT_VERIFIED",
+        "NO_TRUSTED_LIVE_RELEASE_CHANNEL"
       ]
     },
     "missing_owner_release_permission": {
       "rejected": true,
       "reasons": [
-        "RELEASE_PERMISSION_HOLD"
+        "RELEASE_PERMISSION_HOLD",
+        "OWNER_APPROVAL_NOT_VERIFIED",
+        "NO_TRUSTED_LIVE_RELEASE_CHANNEL"
       ]
     },
     "forged_allow_without_owner_receipt": {
       "rejected": true,
       "reasons": [
-        "OWNER_RELEASE_RECEIPT_MISSING"
+        "NO_TRUSTED_LIVE_RELEASE_CHANNEL"
       ]
     }
   },

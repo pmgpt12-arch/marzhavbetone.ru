@@ -52,6 +52,27 @@ def validate_payload(row,data, filename):
  for name,body in items.items():
   if expected.get(name)!=SHA(body):errs.append('MEMBER_SHA_MISMATCH:'+name)
  return errs
+def release_preflight_failures(row, source_qa_record=None, owner_approval=None):
+    """Synthetic PRE-RELEASE gate only, NOT an owner-signature verifier and NOT the production PHP runtime.
+    A supplied ALLOW flag alone is never approval.
+    """
+    errors=[]
+    if not row.get('qa_commit') and not source_qa_record:
+        errors.append('QA_RECEIPT_MISSING')
+    if row.get('qa_status')!='FULL_QA_PASS':
+        errors.append('FINAL_QA_NOT_CONFIRMED')
+    if row.get('release_permission')!='ALLOW':
+        errors.append('RELEASE_PERMISSION_HOLD')
+    # Only an independently authenticated owner approval can remove this check;
+    # local JSON/files are not authority, even if they self-label as 'ALLOW'.
+    if not owner_approval or owner_approval.get('externally_verified_by_owner') is not True:
+        errors.append('OWNER_APPROVAL_NOT_VERIFIED')
+    # For safety, a self-declared 'externally_verified_by_owner' field cannot
+    # authorize a live release. This gate is diagnostic; live release requires
+    # a separately implemented verified authorization channel.
+    errors.append('NO_TRUSTED_LIVE_RELEASE_CHANNEL')
+    return errors
+
 def mutation_test(rows,stage):
  base=next(r for r in rows if r['SKU']=='FREE/dengi')
  src=(stage/staged_filename(base['SKU'])).read_bytes()
@@ -87,9 +108,12 @@ def mutation_test(rows,stage):
  errors=validate_payload(qa08,rezip(padded),staged_filename(qa08['SKU']))
  cases['qa08_wrongly_padded_to_five_members']={'rejected':'MEMBER_COUNT_MISMATCH' in errors,'reasons':errors}
  assert cases['qa08_wrongly_padded_to_five_members']['rejected']
- cases['missing_qa_receipt']={'rejected':not bool({**base,'qa_commit':None}.get('qa_commit')),'reasons':['QA_RECEIPT_MISSING']}
- cases['missing_owner_release_permission']={'rejected':base['release_permission']=='HOLD','reasons':['RELEASE_PERMISSION_HOLD']}
- cases['forged_allow_without_owner_receipt']={'rejected':True,'reasons':['OWNER_RELEASE_RECEIPT_MISSING']} # no public switch exists
+ missing_qa=release_preflight_failures({**base,'qa_commit':None})
+ cases['missing_qa_receipt']={'rejected':'QA_RECEIPT_MISSING' in missing_qa,'reasons':missing_qa}
+ no_release=release_preflight_failures(base)
+ cases['missing_owner_release_permission']={'rejected':'RELEASE_PERMISSION_HOLD' in no_release,'reasons':no_release}
+ forged=release_preflight_failures({**base,'release_permission':'ALLOW'},owner_approval={'approved_by':'OWNER','externally_verified_by_owner':True})
+ cases['forged_allow_without_owner_receipt']={'rejected':'NO_TRUSTED_LIVE_RELEASE_CHANNEL' in forged,'reasons':forged}
  assert all(v['rejected'] for v in cases.values())
  return cases
 def main():
