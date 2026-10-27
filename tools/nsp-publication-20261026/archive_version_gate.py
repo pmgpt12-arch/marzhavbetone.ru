@@ -4,6 +4,7 @@ This gate never activates a buyer route or infers permission from QA_PASS.
 """
 import argparse, hashlib, io, json, pathlib, subprocess, zipfile
 from datetime import datetime, timezone
+from p8_edition_binding import check_p8_edition
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 HERE = pathlib.Path(__file__).resolve().parent
@@ -73,9 +74,22 @@ def verify(entry):
         for name,raw in members:
             if source_manifest_sha(entry,name,man) != sha(raw):
                 out["failures"].append("MEMBER_SHA_MISMATCH:"+name)
-        # Status is SOURCE_VERIFIED only. Release requires separately authorized
-        # owner approval and actual staging GET; no editable PASS can override this.
-        if not out["failures"]:out["status"]="SOURCE_VERIFIED_HOLD"
+        # P8 technical CRC / own QA01 SHA is not the independent owner-approved edition.
+        # Compare the complete candidate to the OWNER decision + accepted edition ID
+        # + outer ZIP SHA + each MEMBER SHA, pinned to the original Git commit.
+        if not out["failures"] and sku == "P8":
+            out["technical_source_verified"] = True
+            out["candidate_edition_id"] = "P8-QA01-20261023-READY_CANDIDATE"
+            edition = check_p8_edition(data, out["candidate_edition_id"])
+            out["accepted_edition_validation"] = edition
+            if edition["status"] != "HISTORICAL_EDITION_ACCEPTED_HOLD":
+                out["status"] = "SOURCE_VERIFIED_EDITION_BLOCKED"
+                out["failures"].append(edition["status"])
+            else:
+                out["status"] = "SOURCE_VERIFIED_HISTORICAL_EDITION_HOLD"
+        # SOURCE_VERIFIED does not confer a separate owner release permission.
+        elif not out["failures"]:
+            out["status"] = "SOURCE_VERIFIED_HOLD"
     except (RuntimeError,ValueError,KeyError,zipfile.BadZipFile,subprocess.TimeoutExpired) as e:
         out["failures"].append(type(e).__name__+":"+str(e)[:180])
     return out
@@ -83,20 +97,35 @@ def verify(entry):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output",default=str(HERE/"ARCHIVE_VERSION_GATE_RECEIPT.json"))
+    parser.add_argument("--require-edition-accepted",action="store_true",
+                        help="strict nonzero exit when P8 edition is not the pinned owner-accepted whole ZIP")
     args=parser.parse_args()
     matrix=json.loads((HERE/"NSP_ACCEPTED_ARTIFACTS_MATRIX.json").read_text())
     rows = [verify(r) for r in matrix["rows"]]
-    result = {"schema":"NSP_ARCHIVE_VERSION_GATE_V1",
+    p8 = next(r for r in rows if r["SKU"] == "P8")
+    source_technical_verified = sum(r["status"] in (
+        "SOURCE_VERIFIED_HOLD", "SOURCE_VERIFIED_EDITION_BLOCKED",
+        "SOURCE_VERIFIED_HISTORICAL_EDITION_HOLD") for r in rows)
+    result = {"schema":"NSP_ARCHIVE_VERSION_GATE_V2_ACCEPTED_EDITION",
               "created_utc":datetime.now(timezone.utc).isoformat(),
               "total":len(rows),
-              "source_verified":sum(r["status"]=="SOURCE_VERIFIED_HOLD" for r in rows),
+              "source_verified":source_technical_verified,
+              "technical_source_verified":source_technical_verified,
+              "p8_edition_status":p8.get("accepted_edition_validation",{}).get("status","UNKNOWN"),
+              "edition_not_accepted":sum(r["status"]=="SOURCE_VERIFIED_EDITION_BLOCKED" for r in rows),
               "release_allowed":0,
-              "status":"BLOCKED_PENDING_OWNER_RELEASE_AND_STAGING_GET",
+              "status":"BLOCKED_P8_EDITION_NOT_ACCEPTED_RELEASE_HOLD",
               "rows":rows}
     pathlib.Path(args.output).write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n")
     print("ARCHIVE_VERSION_GATE",result["source_verified"],"/",result["total"],
           "source verified; release_allowed=0; status="+result["status"])
-    # A missing Git receipt is a documented BLOCKED, not a false PASS.
+    # Default mode is a nonrelease evidence collection, where HOLD is expected.
+    # Strict mode is for readiness decisions: reject a *correctly hashed* QA01
+    # with a nonzero exit instead of silently treating SOURCE_SHA_PASS as approval.
+    if args.require_edition_accepted and result["p8_edition_status"] != "HISTORICAL_EDITION_ACCEPTED_HOLD":
+        print("EDITION_NOT_ACCEPTED: P8 QA01 candidate SHA_PASS is not the pinned accepted whole owner edition")
+        return 2
+    # Even a historic accepted R3 SHA does not remove today's release HOLD.
     return 0
 
 if __name__=="__main__":

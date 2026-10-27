@@ -1,10 +1,13 @@
 {
-  "schema": "NSP_ARCHIVE_VERSION_GATE_V1",
-  "created_utc": "2026-10-27T06:20:51.782464+00:00",
+  "schema": "NSP_ARCHIVE_VERSION_GATE_V2_ACCEPTED_EDITION",
+  "created_utc": "2026-10-27T08:16:53.490780+00:00",
   "total": 12,
   "source_verified": 11,
+  "technical_source_verified": 11,
+  "p8_edition_status": "EDITION_NOT_ACCEPTED",
+  "edition_not_accepted": 1,
   "release_allowed": 0,
-  "status": "BLOCKED_PENDING_OWNER_RELEASE_AND_STAGING_GET",
+  "status": "BLOCKED_P8_EDITION_NOT_ACCEPTED_RELEASE_HOLD",
   "rows": [
     {
       "SKU": "FREE/checklist",
@@ -324,7 +327,7 @@
     },
     {
       "SKU": "P8",
-      "status": "SOURCE_VERIFIED_HOLD",
+      "status": "SOURCE_VERIFIED_EDITION_BLOCKED",
       "accepted_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
       "source_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
       "member_shas": [
@@ -377,7 +380,30 @@
       "qa_commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
       "release_permission": "HOLD",
       "staging_delivery_sha256": null,
-      "failures": []
+      "failures": [
+        "EDITION_NOT_ACCEPTED"
+      ],
+      "technical_source_verified": true,
+      "candidate_edition_id": "P8-QA01-20261023-READY_CANDIDATE",
+      "accepted_edition_validation": {
+        "status": "EDITION_NOT_ACCEPTED",
+        "claimed_edition_id": "P8-QA01-20261023-READY_CANDIDATE",
+        "ACCEPTED_EDITION_ID": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+        "ACCEPTANCE_EVIDENCE": {
+          "commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+          "path": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json",
+          "sha256": "bf260d1a8e2fea044199bf614fb4ea3cae59b693a90f83c1fa54f3f337e4d289"
+        },
+        "ARCHIVE_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+        "owner_accepted_archive_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+        "edition_id_match": false,
+        "archive_sha_match": false,
+        "member_sha_match": false,
+        "member_count": 11,
+        "expected_member_count": 11,
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      }
     }
   ]
 }

@@ -104,7 +104,9 @@
       "source_git_verified": 11,
       "source_git_unverified": 1,
       "release_allowed": 0,
-      "new_public_artifacts_delivered": 0
+      "new_public_artifacts_delivered": 0,
+      "p8_edition_gate": "EDITION_NOT_ACCEPTED",
+      "qa01_technical_source_sha_pass": true
     }
   },
   "ci_diagnostics": [
@@ -161,12 +163,11 @@
   ],
   "final_status": "PARTIAL_READY_WITH_BLOCKERS",
   "new_external_blockers": [
-    "P8 current 07a QA01 differs from historical owner-accepted R3 a22 in six members; later 02/09 individually accepted but no complete new final approval",
-    "11 actual free HOLD pages have no form; lead.php refuses 409; for post-HOLD the existing handler cannot enforce required email, strict SKU, anti-duplicate or final SHA before issuing URL",
-    "Historic /downloads direct links remain HTTP 200 to preserve existing links; not proof of guarded new delivery",
-    "QA04 original Git commit not found; original local FULL_QA_PASS records are now committed, hashed and verified, sufficiency recorded independently",
-    "Release permissions HOLD for 11 free and P8; owner decision not issued",
-    "Legacy general CI contracts still expect old active cart/free routes; publication-specific staging CI #40461221833 was PASS"
+    "P8 current QA01 archive 07a16f correct SHA but edition NOT ACCEPTED: 4 changed files lack owner decisions, 2 Excel files individually approved, whole updated package not approved",
+    "11 free FORM E2E is BLOCKED on current code (no forms; lead HOLD 409); staging form replay is a proof only for temporary test copy",
+    "Original QA04 Git commit NOT_FOUND; primary local acceptance evidence recovered in draft PR 677",
+    "Release permissions of P8 and all free products HOLD; no production changes",
+    "Legacy general CI contracts expect pre-HOLD routes, separate from scoped version gate CI"
   ],
   "code_commit_of_successful_browser_run": "aa38cec3ce73ad9e23da1f632bf5287bc3b90c8d",
   "updated_after_latest_browser_test": "2026-10-27",
@@ -178,12 +179,21 @@
       "recovered_evidence_commit": "67c2fe029e07377fd07a34204c4c324a8adc09ad"
     },
     "B": {
-      "status": "BLOCKED_NEW_FULL_P8_ACCEPTANCE",
+      "status": "RELEASE_BLOCKED_P8_EDITION_NOT_ACCEPTED",
       "last_whole_owner_accepted_sha": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
       "newer_qa01_candidate_sha": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
       "changed_member_count": 6,
       "targeted_p8_workbooks_owner_accepted": 2,
-      "release_permission": "HOLD"
+      "release_permission": "HOLD",
+      "reconciliation": "P8_EDITION_RECONCILIATION.json",
+      "owner_accepted_edition": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+      "qa01_correct_sha_but_edition_rejected": true,
+      "edition_gate_receipt": "P8_EDITION_GATE_TEST_RECEIPT.json",
+      "negative_tests_passed": 17,
+      "missing_component_decisions": 4,
+      "component_owner_approved_later": 2,
+      "unchanged_from_R3": 5,
+      "complete_new_p8_owner_qa": false
     },
     "C": {
       "status": "BLOCKED_REAL_FORM_E2E;ISOLATED_TEST_REPLAY_PASS_11_OF_11",
@@ -213,5 +223,6 @@
     "F": {
       "status": "PENDING_COMMIT"
     }
-  }
+  },
+  "status": "PARTIAL_READY_WITH_BLOCKERS"
 }

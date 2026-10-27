@@ -1,0 +1,345 @@
+{
+  "schema": "NSP_P8_ACCEPTED_EDITION_GATE_REGRESSION_V1",
+  "run_utc": "2026-10-27T08:16:52.966934+00:00",
+  "source": "IMMUTABLE_2026_10_20_OWNER_APPROVAL_GIT_COMMIT_AND_EXACT_ZIP",
+  "accepted_edition_id": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+  "owner_receipt_commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+  "r3_accepted_zip_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+  "qa01_own_valid_archive_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+  "qa01_own_valid_member_count": 11,
+  "tests": [
+    {
+      "test": "historical_whole_R3_acceptance_but_release_HOLD",
+      "pass": true,
+      "observed": {
+        "status": "HISTORICAL_EDITION_ACCEPTED_HOLD",
+        "claimed_edition_id": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+        "ACCEPTED_EDITION_ID": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+        "ACCEPTANCE_EVIDENCE": {
+          "commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+          "path": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json",
+          "sha256": "bf260d1a8e2fea044199bf614fb4ea3cae59b693a90f83c1fa54f3f337e4d289"
+        },
+        "ARCHIVE_SHA256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+        "owner_accepted_archive_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+        "edition_id_match": true,
+        "archive_sha_match": true,
+        "member_sha_match": true,
+        "member_count": 11,
+        "expected_member_count": 11,
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      }
+    },
+    {
+      "test": "QA01_correct_self_SHA_and_members_still_EDITION_NOT_ACCEPTED",
+      "pass": true,
+      "observed": {
+        "status": "EDITION_NOT_ACCEPTED",
+        "claimed_edition_id": "P8-QA01-20261023-READY_CANDIDATE",
+        "ACCEPTED_EDITION_ID": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+        "ACCEPTANCE_EVIDENCE": {
+          "commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+          "path": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json",
+          "sha256": "bf260d1a8e2fea044199bf614fb4ea3cae59b693a90f83c1fa54f3f337e4d289"
+        },
+        "ARCHIVE_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+        "owner_accepted_archive_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+        "edition_id_match": false,
+        "archive_sha_match": false,
+        "member_sha_match": false,
+        "member_count": 11,
+        "expected_member_count": 11,
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      },
+      "qa01_own_sha_pass": true,
+      "qa01_own_11_member_sha_pass": true
+    },
+    {
+      "test": "QA01_forged_R3_edition_label_rejected",
+      "pass": true,
+      "observed": {
+        "status": "EDITION_NOT_ACCEPTED",
+        "claimed_edition_id": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+        "ACCEPTED_EDITION_ID": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+        "ACCEPTANCE_EVIDENCE": {
+          "commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+          "path": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json",
+          "sha256": "bf260d1a8e2fea044199bf614fb4ea3cae59b693a90f83c1fa54f3f337e4d289"
+        },
+        "ARCHIVE_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+        "owner_accepted_archive_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+        "edition_id_match": true,
+        "archive_sha_match": false,
+        "member_sha_match": false,
+        "member_count": 11,
+        "expected_member_count": 11,
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      }
+    },
+    {
+      "test": "R3_bytes_but_wrong_edition_id_rejected",
+      "pass": true,
+      "observed": {
+        "status": "EDITION_NOT_ACCEPTED",
+        "claimed_edition_id": "P8-QA01-20261023-READY_CANDIDATE",
+        "ACCEPTED_EDITION_ID": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+        "ACCEPTANCE_EVIDENCE": {
+          "commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+          "path": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json",
+          "sha256": "bf260d1a8e2fea044199bf614fb4ea3cae59b693a90f83c1fa54f3f337e4d289"
+        },
+        "ARCHIVE_SHA256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+        "owner_accepted_archive_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+        "edition_id_match": false,
+        "archive_sha_match": true,
+        "member_sha_match": true,
+        "member_count": 11,
+        "expected_member_count": 11,
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      }
+    },
+    {
+      "test": "R3_repacked_same_11_members_but_different_outer_sha_rejected",
+      "pass": true,
+      "observed": {
+        "status": "EDITION_NOT_ACCEPTED",
+        "claimed_edition_id": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+        "ACCEPTED_EDITION_ID": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+        "ACCEPTANCE_EVIDENCE": {
+          "commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+          "path": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json",
+          "sha256": "bf260d1a8e2fea044199bf614fb4ea3cae59b693a90f83c1fa54f3f337e4d289"
+        },
+        "ARCHIVE_SHA256": "41867a4ad15aa0cbb3d0c5a7f8b45ccd0caef64f19de169d3777f150a06c466d",
+        "owner_accepted_archive_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+        "edition_id_match": true,
+        "archive_sha_match": false,
+        "member_sha_match": true,
+        "member_count": 11,
+        "expected_member_count": 11,
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      }
+    },
+    {
+      "test": "one_member_changed_and_archive_rehashed_rejected",
+      "pass": true,
+      "observed": {
+        "status": "EDITION_NOT_ACCEPTED",
+        "claimed_edition_id": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+        "ACCEPTED_EDITION_ID": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+        "ACCEPTANCE_EVIDENCE": {
+          "commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+          "path": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json",
+          "sha256": "bf260d1a8e2fea044199bf614fb4ea3cae59b693a90f83c1fa54f3f337e4d289"
+        },
+        "ARCHIVE_SHA256": "45a4a3704647689b632d1b06346f1b97f974a2969476fcf9ad863a77cadbbc47",
+        "owner_accepted_archive_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+        "edition_id_match": true,
+        "archive_sha_match": false,
+        "member_sha_match": false,
+        "member_count": 11,
+        "expected_member_count": 11,
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      }
+    },
+    {
+      "test": "owner_evidence_commit_forged",
+      "pass": true,
+      "observed": {
+        "status": "ACCEPTANCE_EVIDENCE_INVALID",
+        "reason": "EditionEvidenceError:P8_EDITABLE_ANCHOR_NOT_PINNED_TO_ORIGINAL_OWNER_DECISION",
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      }
+    },
+    {
+      "test": "owner_evidence_path_forged",
+      "pass": true,
+      "observed": {
+        "status": "ACCEPTANCE_EVIDENCE_INVALID",
+        "reason": "EditionEvidenceError:P8_EDITABLE_ANCHOR_NOT_PINNED_TO_ORIGINAL_OWNER_DECISION",
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      }
+    },
+    {
+      "test": "owner_evidence_sha_forged",
+      "pass": true,
+      "observed": {
+        "status": "ACCEPTANCE_EVIDENCE_INVALID",
+        "reason": "EditionEvidenceError:ORIGINAL_OWNER_EVIDENCE_SHA_MISMATCH",
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      }
+    },
+    {
+      "test": "accepted_edition_id_forged",
+      "pass": true,
+      "observed": {
+        "status": "ACCEPTANCE_EVIDENCE_INVALID",
+        "reason": "EditionEvidenceError:P8_EDITABLE_ANCHOR_NOT_PINNED_TO_ORIGINAL_OWNER_DECISION",
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      }
+    },
+    {
+      "test": "accepted_outer_sha_forged",
+      "pass": true,
+      "observed": {
+        "status": "ACCEPTANCE_EVIDENCE_INVALID",
+        "reason": "EditionEvidenceError:P8_EDITABLE_ANCHOR_NOT_PINNED_TO_ORIGINAL_OWNER_DECISION",
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      }
+    },
+    {
+      "test": "accepted_member_sha_forged",
+      "pass": true,
+      "observed": {
+        "status": "ACCEPTANCE_EVIDENCE_INVALID",
+        "reason": "EditionEvidenceError:OWNER_MANIFEST_MEMBER_SHA_MISMATCH",
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      }
+    },
+    {
+      "test": "owner_evidence_absent",
+      "pass": true,
+      "observed": {
+        "status": "ACCEPTANCE_EVIDENCE_INVALID",
+        "reason": "EditionEvidenceError:P8_EDITABLE_ANCHOR_NOT_PINNED_TO_ORIGINAL_OWNER_DECISION",
+        "RELEASE_PERMISSION": "HOLD",
+        "eligible_for_new_sales": false
+      }
+    },
+    {
+      "test": "all_11_file_reconciliation_SHA_and_acceptance_roles_match",
+      "pass": true,
+      "observed": {
+        "files": 11,
+        "acceptance_classes": {
+          "QA01_PACKAGED_TEXT_NOT_OWNER_ACCEPTED_AND_NOT_QA01_MASTER_BYTES": 1,
+          "R3_UNCHANGED_INHERITS_WHOLE_OWNER_APPROVAL": 5,
+          "LATER_OWNER_ACCEPTED_SINGLE_FILE_NOT_NEW_ZIP": 2,
+          "DRAFT_EDITORIAL_QA_ONLY_NO_WHOLE_OWNER_ACCEPTANCE": 3
+        },
+        "overall_release": "HOLD"
+      }
+    },
+    {
+      "test": "QA01_start_here_candidate_differs_from_own_QA01_git_master",
+      "pass": true,
+      "observed": {
+        "QA01_member_sha": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
+        "QA01_git_master_sha": "75c3617962a431314b84d798cdb2c596dd9e138a06032fc7b8d77afeee7d2554",
+        "owner_acceptance_for_changed_candidate": "NOT_FOUND"
+      }
+    },
+    {
+      "test": "archive_version_gate_P8_technical_pass_semantic_EDITION_NOT_ACCEPTED",
+      "pass": true,
+      "observed": {
+        "SKU": "P8",
+        "status": "SOURCE_VERIFIED_EDITION_BLOCKED",
+        "accepted_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+        "source_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+        "member_shas": [
+          {
+            "filename": "10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+            "sha256": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f"
+          },
+          {
+            "filename": "01-slovar-poley-avans.docx",
+            "sha256": "aa9f9d54ac7d3e699a0ed007b1718d45877e89849d700e5b9e01b458f81c4160"
+          },
+          {
+            "filename": "04-algoritm-peregovorov-ob-avanse.docx",
+            "sha256": "c0292cc68cc84777a47fca0f31ccf70b828c85d95fd8ac759345875536696414"
+          },
+          {
+            "filename": "05-protokol-raznoglasiy-avansovye-punkty.docx",
+            "sha256": "37a909e5e08f47fcffe5e3ed130f385f05bd628cdad6910b19c7d5ecff3977ec"
+          },
+          {
+            "filename": "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx",
+            "sha256": "c21fdf8cfcdf8b0e83283ace243c533ba79c12a8c89f05357683c831a21e4fee"
+          },
+          {
+            "filename": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+            "sha256": "33c5d803759a45e48690bcf9af593aa9f505cb8c19366131915e8fd4dc670732"
+          },
+          {
+            "filename": "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+            "sha256": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1"
+          },
+          {
+            "filename": "03-razbor-chetyrekh-usloviy-avansa.docx",
+            "sha256": "3602cb07f9052c146a70aefbe591a5c0d2a3d4bbdfdd64a14db7ce521c55c57d"
+          },
+          {
+            "filename": "07-trebovanie-o-vyplate-avansa.docx",
+            "sha256": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db"
+          },
+          {
+            "filename": "02-kalkulyator-usloviy-avansa.xlsx",
+            "sha256": "0ca0ab6e8bfd65733f9ec5dc6c8a9af394ee9a7dd80a953011a68ce318e3b45f"
+          },
+          {
+            "filename": "00-START-HERE.txt",
+            "sha256": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c"
+          }
+        ],
+        "origin": "qa/nsp-qa01-products-20261023",
+        "qa_commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
+        "release_permission": "HOLD",
+        "staging_delivery_sha256": null,
+        "failures": [
+          "EDITION_NOT_ACCEPTED"
+        ],
+        "technical_source_verified": true,
+        "candidate_edition_id": "P8-QA01-20261023-READY_CANDIDATE",
+        "accepted_edition_validation": {
+          "status": "EDITION_NOT_ACCEPTED",
+          "claimed_edition_id": "P8-QA01-20261023-READY_CANDIDATE",
+          "ACCEPTED_EDITION_ID": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+          "ACCEPTANCE_EVIDENCE": {
+            "commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+            "path": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json",
+            "sha256": "bf260d1a8e2fea044199bf614fb4ea3cae59b693a90f83c1fa54f3f337e4d289"
+          },
+          "ARCHIVE_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+          "owner_accepted_archive_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+          "edition_id_match": false,
+          "archive_sha_match": false,
+          "member_sha_match": false,
+          "member_count": 11,
+          "expected_member_count": 11,
+          "RELEASE_PERMISSION": "HOLD",
+          "eligible_for_new_sales": false
+        }
+      }
+    },
+    {
+      "test": "strict_accepted_edition_gate_refuses_QA01_exit_2",
+      "pass": true,
+      "observed": {
+        "exit_code": 2,
+        "p8_edition_status": "EDITION_NOT_ACCEPTED",
+        "source_technical_verified": 11,
+        "public_release_allowed": 0
+      }
+    }
+  ],
+  "count": 17,
+  "passed": 17,
+  "release_permission": "HOLD",
+  "production_modified": false,
+  "source_archives_modified": false,
+  "verdict": "PASS_ALL_TESTS_QA01_EDITION_NOT_ACCEPTED"
+}

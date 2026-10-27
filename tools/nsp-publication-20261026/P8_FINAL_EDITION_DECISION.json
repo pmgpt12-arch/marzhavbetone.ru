@@ -190,5 +190,19 @@
   "next_gate": "Obtain full product QA and owner nomination of complete 11-file buyer ZIP after accepted 2026-10-22 P8/02 and P8/09, reconcile 3 pending DOCX and 00-START-HERE, then repackage/test exact final SHA under existing release mechanism. The R3 accepted whole ZIP remains a historical reference and no new public edition may be inferred.",
   "no_quality_qa_restart": true,
   "no_release_change": true,
-  "state": "HISTORICAL_R3_ACCEPTED_CURRENT_QA01_NOT_FINAL_CONFIRMED_HOLD"
+  "state": "HISTORICAL_R3_ACCEPTED_CURRENT_QA01_NOT_FINAL_CONFIRMED_HOLD",
+  "reconciliation": "P8_EDITION_RECONCILIATION.json",
+  "owner_edition_anchor": "P8_ACCEPTED_EDITION_ANCHOR.json",
+  "gate_test_receipt": "P8_EDITION_GATE_TEST_RECEIPT.json",
+  "EDITION_GATE_STATUS": "EDITION_NOT_ACCEPTED",
+  "missing_owner_component_decisions": [
+    "00-START-HERE.txt (QA01 file not equal git master)",
+    "07-trebovanie-o-vyplate-avansa.docx",
+    "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+    "10-otvet-na-trebovanie-o-vozvrate-avansa.docx"
+  ],
+  "missing_full_qa": "New 11-file whole package acceptance after later 02/09 component approvals and three DOCX repairs",
+  "no_automatic_R3_revert": true,
+  "no_automatic_QA01_nomination": true,
+  "edition_gate_regression_passed": 17
 }

@@ -29,10 +29,20 @@ jobs:
         run: |
           python3 -m pip install --quiet --disable-pip-version-check beautifulsoup4 playwright
           python3 -m playwright install --with-deps chromium
-      - name: Verify accepted archive source SHA and members (release remains HOLD)
+      - name: P8 owner-edition gate negative checks (correct QA01 SHA must be rejected)
         run: |
           mkdir -p nsp-publication-staging-evidence
+          python3 tools/nsp-publication-20261026/test_p8_edition_binding.py --output nsp-publication-staging-evidence/P8_EDITION_GATE_TEST_RECEIPT.json
+      - name: Verify source SHA AND owner-accepted edition ID, evidence, ZIP and members (HOLD)
+        run: |
           python3 tools/nsp-publication-20261026/archive_version_gate.py --output nsp-publication-staging-evidence/ARCHIVE_VERSION_GATE_RECEIPT.json
+          python3 - <<'GATE'
+          import json
+          receipt=json.load(open('nsp-publication-staging-evidence/ARCHIVE_VERSION_GATE_RECEIPT.json'))
+          assert receipt['technical_source_verified']==11
+          assert receipt['p8_edition_status']=='EDITION_NOT_ACCEPTED'
+          assert receipt['release_allowed']==0
+          GATE
       - name: Execute actual isolated HTTP, synthetic old-order and 24x5 browser checks
         env:
           NSP_STAGING_EVIDENCE_DIR: nsp-publication-staging-evidence

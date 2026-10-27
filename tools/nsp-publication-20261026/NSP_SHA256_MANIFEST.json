@@ -1,6 +1,6 @@
 {
   "schema": "NSP_SHA256_MANIFEST_V4_3",
-  "status": "12_TECHNICAL_BYTE_SHA_MATCH;QA04_EVIDENCE_VERIFIED;P8_FINAL_SELECTION_BLOCKED;FREE_FORM_BLOCKED",
+  "status": "P8_EDITION_NOT_ACCEPTED_CORRECT_TECH_SHA;QA04_LOCAL_PASS;11_FREE_HOLD",
   "source_snapshots": [
     "QA12 FREE_11_FINAL_READONLY_MATRIX.json",
     "QA01 CURRENT_CANDIDATE_PACKAGES.json"
@@ -504,7 +504,35 @@
       "selected_new_release_sha256": null,
       "staging_version_matches_owner_accepted": false,
       "QA_STATUS": "NOT_FULLY_CONFIRMED",
-      "STAGING_VERSION_GATE": "BLOCKED"
+      "STAGING_VERSION_GATE": "BLOCKED",
+      "ACCEPTED_EDITION_ID": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+      "ACCEPTANCE_EVIDENCE": {
+        "commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+        "path": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json",
+        "sha256": "bf260d1a8e2fea044199bf614fb4ea3cae59b693a90f83c1fa54f3f337e4d289",
+        "type": "OWNER_ACCEPTED_WHOLE_BUYER_ZIP",
+        "accepted_at": "2026-10-20T13:09:31+07:00",
+        "approved_outer_zip_sha256": "37c1b22c092ef979b4dd2151f018b6812dad017532d842159be8cf0fb70f0789",
+        "scope": "HISTORICAL_RELEASE_2026_10_20_ONLY"
+      },
+      "OWNER_APPROVED_WHOLE_ZIP_SHA256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+      "ACTUAL_QA01_STAGING_ZIP_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "OWNER_APPROVED_MEMBERS_SHA256": {
+        "00-START-HERE.txt": "75c3617962a431314b84d798cdb2c596dd9e138a06032fc7b8d77afeee7d2554",
+        "01-slovar-poley-avans.docx": "aa9f9d54ac7d3e699a0ed007b1718d45877e89849d700e5b9e01b458f81c4160",
+        "02-kalkulyator-usloviy-avansa.xlsx": "781f36e37f22ed428561f10b9cb9eebece39a32bcb2f4eb24800121a00400551",
+        "03-razbor-chetyrekh-usloviy-avansa.docx": "3602cb07f9052c146a70aefbe591a5c0d2a3d4bbdfdd64a14db7ce521c55c57d",
+        "04-algoritm-peregovorov-ob-avanse.docx": "c0292cc68cc84777a47fca0f31ccf70b828c85d95fd8ac759345875536696414",
+        "05-protokol-raznoglasiy-avansovye-punkty.docx": "37a909e5e08f47fcffe5e3ed130f385f05bd628cdad6910b19c7d5ecff3977ec",
+        "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx": "c21fdf8cfcdf8b0e83283ace243c533ba79c12a8c89f05357683c831a21e4fee",
+        "07-trebovanie-o-vyplate-avansa.docx": "634e1194539436eecce1d748c275071ee15a3b5e20e8e78f0b73c8eb578b8201",
+        "08-algoritm-s-vas-trebuyut-vernut-avans.docx": "52994b8f90bfcd9659d26c1cf967dc020a48abafbd19341da460134659581e14",
+        "09-raschet-otrabotannoy-chasti-avansa.xlsx": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+        "10-otvet-na-trebovanie-o-vozvrate-avansa.docx": "fb9258f6b9517a84d4cde3b7162e4f8ac728d4af6916ed21359019934ed8ce9e"
+      },
+      "EDITION_GATE_STATUS": "EDITION_NOT_ACCEPTED",
+      "FULL_NEW_QA_ACCEPTED": false,
+      "RELEASE_PERMISSION": "HOLD"
     }
   ],
   "source_gate_result": {
@@ -525,5 +553,11 @@
   "latest_browser_artifact_sha256": "6320f2255121d0d19ff47c80aa52915babad093927e7f19684aae2ea18ab7b73",
   "qa04_provenance_report": "QA04_PROVENANCE_REPORT.json",
   "p8_final_edition_decision": "P8_FINAL_EDITION_DECISION.json",
-  "free_form_e2e_report": "NSP_FREE_FORM_E2E_REPORT.json"
+  "free_form_e2e_report": "NSP_FREE_FORM_E2E_REPORT.json",
+  "P8_ACCEPTED_EDITION_ID": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+  "P8_ACCEPTANCE_EVIDENCE_GIT_COMMIT": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+  "P8_EDITON_GATE_RESULT": "EDITION_NOT_ACCEPTED",
+  "P8_EDITION_RECONCILIATION": "P8_EDITION_RECONCILIATION.json",
+  "P8_ACCEPTED_EDITION_ANCHOR": "P8_ACCEPTED_EDITION_ANCHOR.json",
+  "P8_NEGATIVE_QA_RECEIPT": "P8_EDITION_GATE_TEST_RECEIPT.json"
 }
