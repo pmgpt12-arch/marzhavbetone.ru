@@ -1,6 +1,6 @@
 {
   "schema": "NSP_P8_ACCEPTED_EDITION_GATE_REGRESSION_V1",
-  "run_utc": "2026-10-27T08:16:52.966934+00:00",
+  "run_utc": "2026-10-27T11:29:23.125770+00:00",
   "source": "IMMUTABLE_2026_10_20_OWNER_APPROVAL_GIT_COMMIT_AND_EXACT_ZIP",
   "accepted_edition_id": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
   "owner_receipt_commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
@@ -137,7 +137,7 @@
           "path": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json",
           "sha256": "bf260d1a8e2fea044199bf614fb4ea3cae59b693a90f83c1fa54f3f337e4d289"
         },
-        "ARCHIVE_SHA256": "45a4a3704647689b632d1b06346f1b97f974a2969476fcf9ad863a77cadbbc47",
+        "ARCHIVE_SHA256": "93d9f35ea53142d1a49cb07d3fc09196fb0ef78fe68cc3e7068b2656d571b238",
         "owner_accepted_archive_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
         "edition_id_match": true,
         "archive_sha_match": false,
@@ -224,7 +224,7 @@
       "observed": {
         "files": 11,
         "acceptance_classes": {
-          "QA01_PACKAGED_TEXT_NOT_OWNER_ACCEPTED_AND_NOT_QA01_MASTER_BYTES": 1,
+          "OWNER_ACCEPTED_SINGLE_FILE_FROM_QA01_ZIP_NOT_GIT_MASTER": 1,
           "R3_UNCHANGED_INHERITS_WHOLE_OWNER_APPROVAL": 5,
           "LATER_OWNER_ACCEPTED_SINGLE_FILE_NOT_NEW_ZIP": 2,
           "DRAFT_EDITORIAL_QA_ONLY_NO_WHOLE_OWNER_ACCEPTANCE": 3
@@ -238,7 +238,29 @@
       "observed": {
         "QA01_member_sha": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
         "QA01_git_master_sha": "75c3617962a431314b84d798cdb2c596dd9e138a06032fc7b8d77afeee7d2554",
-        "owner_acceptance_for_changed_candidate": "NOT_FOUND"
+        "owner_acceptance_for_changed_candidate": "OWNER_ACCEPTED_EXACT_QA01_MEMBER_NOT_WHOLE_EDITION"
+      }
+    },
+    {
+      "test": "P8_00_exact_member_owner_accepted_but_whole_edition_STILL_BLOCKED",
+      "pass": true,
+      "observed": {
+        "owner_approved_member_sha": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
+        "git_master_sha": "75c3617962a431314b84d798cdb2c596dd9e138a06032fc7b8d77afeee7d2554",
+        "whole_edition": "NOT_ACCEPTED",
+        "public_release": "HOLD"
+      }
+    },
+    {
+      "test": "P8_07_08_10_owner_layout_not_editorial_or_whole_acceptance",
+      "pass": true,
+      "observed": {
+        "owner_layout_accepted_files": [
+          "07-trebovanie-o-vyplate-avansa.docx",
+          "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+          "10-otvet-na-trebovanie-o-vozvrate-avansa.docx"
+        ],
+        "editorial_content_owner_approval": "PENDING"
       }
     },
     {
@@ -336,8 +358,8 @@
       }
     }
   ],
-  "count": 17,
-  "passed": 17,
+  "count": 19,
+  "passed": 19,
   "release_permission": "HOLD",
   "production_modified": false,
   "source_archives_modified": false,

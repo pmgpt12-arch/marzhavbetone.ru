@@ -1,7 +1,7 @@
 {
   "schema": "P8_EDITION_RECONCILIATION_V1",
   "SKU": "P8",
-  "prepared_utc": "2026-10-27T08:03:00.427581+00:00",
+  "prepared_utc": "2026-10-27T11:29:22.262759+00:00",
   "status": "RELEASE_BLOCKED",
   "PRODUCT_QA_STATUS": "NOT_FULLY_CONFIRMED_FOR_NEW_COMBINED_EDITION",
   "last_accepted_complete_edition_id": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
@@ -98,13 +98,17 @@
       "changed_since_approved_R3": true,
       "owner_accepted_latest_component_sha256": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
       "owner_acceptance_basis": {
-        "date": "2026-10-27",
-        "record": "tools/nsp-publication-20261026/P8_OWNER_COMPONENT_DECISIONS_20261027.json",
-        "status": "OWNER_ACCEPTED_EXACT_QA01_MEMBER_NOT_WHOLE_EDITION",
         "scope": "SINGLE_FILE_CONTENT_AND_APPEARANCE_ONLY",
+        "status": "OWNER_ACCEPTED_EXACT_QA01_MEMBER_NOT_WHOLE_EDITION",
         "accepted_sha256": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
-        "source_archive_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
-        "reviewed_source": "QA01_ZIP_MEMBER_NOT_QA01_GIT_MASTER"
+        "accepted_size_bytes": 3474,
+        "reviewed_source": "QA01_ZIP_MEMBER_NOT_QA01_GIT_MASTER",
+        "reviewed_copy_path": "tools/nsp-publication-20261026/p8-owner-reviewed/00-START-HERE.txt",
+        "older_master_sha256": "75c3617962a431314b84d798cdb2c596dd9e138a06032fc7b8d77afeee7d2554",
+        "owner_statement": "Я посмотрел, ноль-ноль пойдет. И содержание достаточно корректное, нормальное, согласовываю",
+        "note": "Owner approval of member 00 does not accept the 11-file package, the archive SHA, the checkout, or production release.",
+        "date": "2026-10-27",
+        "record": "tools/nsp-publication-20261026/P8_OWNER_COMPONENT_DECISIONS_20261027.json"
       },
       "approval_classification": "OWNER_ACCEPTED_SINGLE_FILE_FROM_QA01_ZIP_NOT_GIT_MASTER",
       "current_complete_zip_accepted": false,
@@ -341,10 +345,10 @@
     }
   ],
   "component_acceptance_summary": {
+    "OWNER_ACCEPTED_SINGLE_FILE_FROM_QA01_ZIP_NOT_GIT_MASTER": 1,
     "R3_UNCHANGED_INHERITS_WHOLE_OWNER_APPROVAL": 5,
     "LATER_OWNER_ACCEPTED_SINGLE_FILE_NOT_NEW_ZIP": 2,
-    "DRAFT_EDITORIAL_QA_ONLY_NO_WHOLE_OWNER_ACCEPTANCE": 3,
-    "OWNER_ACCEPTED_SINGLE_FILE_FROM_QA01_ZIP_NOT_GIT_MASTER": 1
+    "DRAFT_EDITORIAL_QA_ONLY_NO_WHOLE_OWNER_ACCEPTANCE": 3
   },
   "r3_to_qa01_changed_members": 6,
   "r3_to_qa01_unchanged_members": 5,
@@ -361,7 +365,7 @@
     {
       "id": "P8-DECISION-02",
       "subject": "07/08/10 DOCX",
-      "required": "Owner approved displayed layout. Pending: review content/editorial changes from PR #675 and accept exact 07/08/10 SHA, or nominate replacement."
+      "required": "Owner already approved the displayed layout. Remaining: owner content/editorial acceptance of exact 07/08/10 DOCX SHA from draft PR #675; no layout rework is requested."
     },
     {
       "id": "P8-DECISION-04",
