@@ -1,0 +1,131 @@
+{
+  "schema": "NSP_P8_WORD2016_NATIVE_QA_V1",
+  "captured_utc": "2026-10-27T23:41:51.823273+00:00",
+  "source": "ai-workstation -> Windows7 Office 2016 SSH/SFTP, interactive user x6 Session 1",
+  "scope": "THREE_EXACT_UNMODIFIED_QA01_DOCX_07_08_10",
+  "owner_layout_decision": "OWNER_LAYOUT_ACCEPTED_AS_IS",
+  "editorial_content_owner_acceptance": "PENDING",
+  "root": "READ_ONLY_NATIVE_PRINT_TEST_IN_WINDOWS_TEMP_JOB_FOLDER",
+  "native_setup_changed": false,
+  "original_docx_changed": false,
+  "site_and_archive_changed": false,
+  "release_permission": "HOLD",
+  "archive_edition_status": "EDITION_NOT_ACCEPTED",
+  "files": [
+    {
+      "tag": "07",
+      "filename": "07-trebovanie-o-vyplate-avansa.docx",
+      "source_sha256": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db",
+      "native_pdf_file": "P8-07-Word2016.pdf",
+      "native_pdf_sha256": "9855a5fa7a9347db766b8725d94a906c3ca9d39aeaa42622978fb4fd7825802b",
+      "lo_preview_source_sha256": "fdf1c8ceb586f2c832f1b02c6c4b5c018ed7319d2920e0da916a6cb5f9fa267b",
+      "native_worker": {
+        "status": "PASS",
+        "pages": "1",
+        "characters": "1213",
+        "source_sha256": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db",
+        "word_version": "16.0",
+        "word_build": "16.0.4324"
+      },
+      "pdf_producer": "Microsoft® Word 2016",
+      "pdf_pages": 1,
+      "pdf_page_size": "595.32 x 841.92 pts (A4)",
+      "pdf_bbox_word_count": 151,
+      "bbox_overflow": [],
+      "lo_to_word_printed_text_similarity": 1.0,
+      "checks": {
+        "source_bytes_sha_match": true,
+        "native_word_worker_pass": true,
+        "worker_source_sha_match": true,
+        "word_2016_version": true,
+        "pdf_valid_and_generated_by_word_2016": true,
+        "pdf_print_is_one_A4_page": true,
+        "heading_in_native_print": true,
+        "footer_in_native_print": true,
+        "text_bbox_on_printable_page": true,
+        "printed_text_preserved_vs_prior_render": true
+      },
+      "pass": true,
+      "notes": []
+    },
+    {
+      "tag": "08",
+      "filename": "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "source_sha256": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1",
+      "native_pdf_file": "P8-08-Word2016.pdf",
+      "native_pdf_sha256": "c0301b09663fca02ddb3f7de31cd2ce4165f9ac31fed4d98d8d6faa6b2f288cf",
+      "lo_preview_source_sha256": "3933f7d52e35b7847b18f4f42bcb135a08c571140475000d656e01a7e6654d2c",
+      "native_worker": {
+        "status": "PASS",
+        "pages": "2",
+        "characters": "2672",
+        "source_sha256": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1",
+        "word_version": "16.0",
+        "word_build": "16.0.4324"
+      },
+      "pdf_producer": "Microsoft® Word 2016",
+      "pdf_pages": 1,
+      "pdf_page_size": "595.32 x 841.92 pts (A4)",
+      "pdf_bbox_word_count": 359,
+      "bbox_overflow": [],
+      "lo_to_word_printed_text_similarity": 1.0,
+      "checks": {
+        "source_bytes_sha_match": true,
+        "native_word_worker_pass": true,
+        "worker_source_sha_match": true,
+        "word_2016_version": true,
+        "pdf_valid_and_generated_by_word_2016": true,
+        "pdf_print_is_one_A4_page": true,
+        "heading_in_native_print": true,
+        "footer_in_native_print": true,
+        "text_bbox_on_printable_page": true,
+        "printed_text_preserved_vs_prior_render": true
+      },
+      "pass": true,
+      "notes": [
+        "Word ComputeStatistics reported 2, while Word-generated PDF has exactly 1 A4 page; use PDF actual printed page count as print authority."
+      ]
+    },
+    {
+      "tag": "10",
+      "filename": "10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+      "source_sha256": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f",
+      "native_pdf_file": "P8-10-Word2016.pdf",
+      "native_pdf_sha256": "cbc8ae99be54aed678f335404e4e72f6e2cec86f5b3e83a1c1629a5197fb02f9",
+      "lo_preview_source_sha256": "7ec8031e549d74ae59fedabfbd75409355d589b621577490027426f6a30a65d6",
+      "native_worker": {
+        "status": "PASS",
+        "pages": "1",
+        "characters": "1744",
+        "source_sha256": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f",
+        "word_version": "16.0",
+        "word_build": "16.0.4324"
+      },
+      "pdf_producer": "Microsoft® Word 2016",
+      "pdf_pages": 1,
+      "pdf_page_size": "595.32 x 841.92 pts (A4)",
+      "pdf_bbox_word_count": 227,
+      "bbox_overflow": [],
+      "lo_to_word_printed_text_similarity": 1.0,
+      "checks": {
+        "source_bytes_sha_match": true,
+        "native_word_worker_pass": true,
+        "worker_source_sha_match": true,
+        "word_2016_version": true,
+        "pdf_valid_and_generated_by_word_2016": true,
+        "pdf_print_is_one_A4_page": true,
+        "heading_in_native_print": true,
+        "footer_in_native_print": true,
+        "text_bbox_on_printable_page": true,
+        "printed_text_preserved_vs_prior_render": true
+      },
+      "pass": true,
+      "notes": []
+    }
+  ],
+  "files_passed": 3,
+  "files_total": 3,
+  "native_print_status": "PASS",
+  "formatting_visual_review": "ONE_PAGE_A4_EACH_NO_CLIPPING_OR_OVERLAP_OBSERVED_IN_RENDERED_WORD_PNG",
+  "limitation": "Does not validate filled letter variants, law for specific contracts, or final combined buyer ZIP."
+}

@@ -203,10 +203,39 @@
   "missing_full_qa": "New 11-file whole package acceptance after later 02/09 component approvals and three DOCX repairs",
   "no_automatic_R3_revert": true,
   "no_automatic_QA01_nomination": true,
-  "edition_gate_regression_passed": 17,
+  "edition_gate_regression_passed": 19,
   "owner_00_20261027_accepted_member_sha256": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
   "owner_00_20261027_evidence": "P8_OWNER_COMPONENT_DECISIONS_20261027.json",
   "owner_00_source_master_mismatch_resolved_by_exact_member_acceptance": true,
   "owner_07_08_10_visual_layout_approved_as_is": true,
-  "owner_07_08_10_editorial_content_decision": "PENDING"
+  "owner_07_08_10_editorial_content_decision": "PENDING",
+  "native_word2016_docx_print": {
+    "status": "WORD2016_NATIVE_PRINT_PASS_3_OF_3",
+    "receipt": "P8_WORD2016_NATIVE_PRINT_RECEIPT.json",
+    "source_docx_sha256": {
+      "10": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f",
+      "07": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db",
+      "08": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1"
+    },
+    "pdf_sha256": {
+      "10": "cbc8ae99be54aed678f335404e4e72f6e2cec86f5b3e83a1c1629a5197fb02f9",
+      "07": "9855a5fa7a9347db766b8725d94a906c3ca9d39aeaa42622978fb4fd7825802b",
+      "08": "c0301b09663fca02ddb3f7de31cd2ce4165f9ac31fed4d98d8d6faa6b2f288cf"
+    },
+    "exported_pdf_actual_pages": {
+      "10": 1,
+      "07": 1,
+      "08": 1
+    },
+    "word_internal_page_statistics": {
+      "10": 1,
+      "07": 1,
+      "08": 2
+    },
+    "word08_page_counter_pdf_count_discrepancy": "DOCUMENTED_PDF_ONE_A4_PAGE",
+    "owner_layout_accepted_as_is": true,
+    "owner_editorial_content_acceptance": "PENDING",
+    "full_11_file_archive_qa": "PENDING",
+    "release_permission": "HOLD"
+  }
 }

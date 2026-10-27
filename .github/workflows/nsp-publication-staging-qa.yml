@@ -33,6 +33,9 @@ jobs:
         run: |
           mkdir -p nsp-publication-staging-evidence
           python3 tools/nsp-publication-20261026/test_p8_edition_binding.py --output nsp-publication-staging-evidence/P8_EDITION_GATE_TEST_RECEIPT.json
+      - name: Verify immutable P8 Word2016 native print evidence and negative cases (still HOLD)
+        run: |
+          python3 tools/nsp-publication-20261026/verify_p8_word2016_native.py --output nsp-publication-staging-evidence/P8_WORD2016_NATIVE_SHA_GATE_RECEIPT.json
       - name: Verify source SHA AND owner-accepted edition ID, evidence, ZIP and members (HOLD)
         run: |
           python3 tools/nsp-publication-20261026/archive_version_gate.py --output nsp-publication-staging-evidence/ARCHIVE_VERSION_GATE_RECEIPT.json
