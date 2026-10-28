@@ -45,6 +45,7 @@ import socket
 import sys
 import threading
 from pathlib import Path
+from browser_isolation import isolate_local_page
 from urllib.parse import urljoin, urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -164,6 +165,9 @@ def chromium_nearby() -> Path | None:
     """Хромиум, поставленный окружением, а не playwright'ом."""
     import os
 
+    explicit = os.environ.get("NSP_BROWSER_EXECUTABLE")
+    if explicit:
+        return Path(explicit)
     root = Path(os.environ.get("PLAYWRIGHT_BROWSERS_PATH", "/opt/pw-browsers"))
     if not root.is_dir():
         return None
@@ -537,6 +541,7 @@ def check_page(browser, base: str, rel: str,
     bad: list[str] = []
     for width, height in WIDTHS:
         page = browser.new_page(viewport={"width": width, "height": height})
+        isolate_local_page(page, base)
         try:
             page.goto(f"{base}/{rel}", wait_until="load")
             page.wait_for_timeout(250)

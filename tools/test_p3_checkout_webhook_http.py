@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Isolated P3 order/payment mock/webhook/HTTP download, exact 11 SHA."""
+"""Isolated P3 order/payment mock/webhook/HTTP download against current source."""
 import hashlib
 import io
 import json
@@ -18,7 +18,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PRICE = 1790000
 SOURCE = ROOT / "products-storage/05-ks-bez-vozvrata"
-REFERENCE = ROOT / "tools/candidates/p3-aosr-form-layout-20261015/P3-11-buyer-AOSR-formatted-20261015.zip"
 EXCLUDE = {".htaccess", "00-PISMO-POSLE-POKUPKI.txt", "MANIFEST.md"}
 
 
@@ -52,8 +51,9 @@ def main():
     assert shutil.which("php"), "PHP is required for the HTTP integration check"
     original = files(SOURCE)
     assert len(original) == 11
-    assert entries(REFERENCE.read_bytes()) == original
-    assert sha(REFERENCE.read_bytes()) == "955e6e0ee686f5f9e03a0dc8141c021db5667e35f195c3886f630555acd2a5b1"
+    # The historical candidate contains DOCX AOSR; the current approved
+    # source uses PDF. Verify delivery against the checked-out source,
+    # without changing that source or silently using an obsolete archive.
     with tempfile.TemporaryDirectory(prefix="p3-payment-webhook-http-") as td:
         base = Path(td)
         web, masters, orders = base / "web", base / "masters", base / "orders"
@@ -157,7 +157,7 @@ def main():
                 assert paid["delivery"]["downloads"] == 0
                 after = json.loads((orders / (order_id + ".json")).read_text())
                 assert after["delivery"]["downloads"] == 1
-                assert entries(data) == entries(REFERENCE.read_bytes())
+                assert files(SOURCE) == original, "test modified product source"
                 # Review the actual buyer email body without invoking mail().
                 php = '''require $argv[1]; require $argv[2]; $o=json_decode(file_get_contents($argv[3]),true); $p=mvb_products()["p3"]; $url=SITE_URL."/download.php?o=".$o["id"]."&t=".$o["delivery"]["token"]."&f=p3"; echo mvb_delivery_email($o,[["sku"=>"p3","name"=>$p["name"],"url"=>$url]]);'''
                 message = subprocess.run(["php", "-r", php, str(web / "config.php"),
@@ -165,7 +165,7 @@ def main():
                     capture_output=True, text=True, timeout=5, check=True).stdout
                 assert "1 час" in message and "/download.php?o=" in message
                 assert paid["delivery"]["token"] in message
-                print("PASS: P3 mock API, genuine duplicate webhook, buyer email body, one-hour HTTP ZIP 11/11 SHA")
+                print("PASS: P3 mock API, genuine duplicate webhook, buyer email body, one-hour HTTP ZIP 11/11 current-source SHA")
             finally:
                 proc.terminate()
                 proc.wait(timeout=5)

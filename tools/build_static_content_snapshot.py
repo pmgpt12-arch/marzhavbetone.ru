@@ -117,11 +117,11 @@ def validate_registry_identity(actual, accepted):
 def assert_approved_p3_delta() -> None:
     """Accept only the exact P3-reviewed change, never arbitrary registry/page drift."""
     try:
-        from tools.check_p3_current_site_delta import validate_current_p3_delta
+        from tools.check_p3_current_site_delta import validate_known_site_delta
     except ModuleNotFoundError:
-        from check_p3_current_site_delta import validate_current_p3_delta
+        from check_p3_current_site_delta import validate_known_site_delta
     try:
-        validate_current_p3_delta()
+        validate_known_site_delta()
     except Exception as exc:
         raise SnapshotError(f"unapproved P3 candidate: {exc}") from exc
 
@@ -290,6 +290,14 @@ def validate_canonical(path: str, route_class: str, canonical: str | None) -> No
 
 
 def build_report() -> dict[str, object]:
+    scope_verified = False
+
+    def verify_known_scope():
+        nonlocal scope_verified
+        if not scope_verified:
+            assert_approved_p3_delta()
+            scope_verified = True
+
     assert_accepted_ancestry()
     actual_tree = str(git("rev-parse", f"{CONTENT_SOURCE_COMMIT}^{{tree}}")).strip()
     if actual_tree != CONTENT_SOURCE_TREE:
@@ -344,7 +352,7 @@ def build_report() -> dict[str, object]:
         if head_raw != raw:
             if head_raw != git("show", f"HEAD:{path}", text=False):
                 raise SnapshotError(f"working-tree static source drift: {path}")
-            assert_approved_p3_delta()
+            verify_known_scope()
 
         html = raw.decode("utf-8")
         info = analyze_html(path, html)
@@ -386,7 +394,9 @@ def build_report() -> dict[str, object]:
             raise SnapshotError(f"dependency size drift: {path}")
         head_path = ROOT / path
         if not head_path.is_file() or head_path.read_bytes() != raw:
-            raise SnapshotError(f"HEAD dependency drift: {path}")
+            if not head_path.is_file() or head_path.read_bytes() != git("show", f"HEAD:{path}", text=False):
+                raise SnapshotError(f"working-tree dependency drift: {path}")
+            verify_known_scope()
         dependencies.append({
             "path": path,
             "source_commit": CONTENT_SOURCE_COMMIT,

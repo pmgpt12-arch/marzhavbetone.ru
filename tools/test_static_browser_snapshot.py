@@ -219,6 +219,58 @@ class ApprovedP3PriceTitleTests(unittest.TestCase):
                     target.P3_APPROVED_TITLE)
 
 
+class StagingRenderSourceTests(unittest.TestCase):
+    def test_uses_pinned_title_h1_canonical_and_preserves_original_report(self):
+        from tools import check_p3_current_site_delta as gate
+        source = {'pages': [{'source_path': 'index.html', 'public_route': '/', 'title': 'Historic',
+                             'h1': ['Historic'], 'canonical': 'https://old.invalid/',
+                             'source_sha256': 'historic-sha'}]}
+        original = copy.deepcopy(source)
+        html = b'<title>Staging title</title><h1>Staging heading</h1><link rel="canonical" href="https://new.invalid/">'
+        with mock.patch.object(gate, 'validate_current_customer_route_delta', return_value={'source_ref': 'pinned'}):
+            with mock.patch.object(gate, 'git', return_value=html) as read:
+                projected = target.staging_render_source(source, gate.ROOT)
+        self.assertEqual(source, original)
+        self.assertEqual(projected['pages'][0]['title'], 'Staging title')
+        self.assertEqual(projected['pages'][0]['h1'], ['Staging heading'])
+        self.assertEqual(projected['pages'][0]['canonical'], 'https://new.invalid/')
+        self.assertEqual(projected['pages'][0]['source_sha256'], hashlib.sha256(html).hexdigest())
+        self.assertEqual(projected['pages'][0]['historical_source_sha256'], 'historic-sha')
+        self.assertEqual(projected['pages'][0]['source_ref'], 'pinned')
+        self.assertEqual(projected['pages'][0]['source_bytes'], len(html))
+        read.assert_called_once_with('show', 'pinned:index.html')
+
+    def test_redirect_checks_pinned_destination_and_keeps_alias_hash(self):
+        from tools import check_p3_current_site_delta as gate
+        alias = b'<meta http-equiv="refresh" content="0;url=/target.html"><title>Alias</title>'
+        destination = b'<title>Destination</title><h1>Target</h1>'
+        source = {'pages': [{'source_path': 'alias.html', 'public_route': '/alias.html'},
+                            {'source_path': 'target.html', 'public_route': '/target.html'}]}
+        with mock.patch.object(gate, 'validate_current_customer_route_delta', return_value={'source_ref': 'pinned'}):
+            with mock.patch.object(gate, 'git', side_effect=[alias, destination]):
+                projected = target.staging_render_source(source, gate.ROOT)
+        page = projected['pages'][0]
+        self.assertEqual(page['expected_final_route'], '/target.html')
+        self.assertEqual(page['title'], 'Destination')
+        self.assertEqual(page['source_sha256'], hashlib.sha256(alias).hexdigest())
+        self.assertEqual(page['render_source_sha256'], hashlib.sha256(destination).hexdigest())
+
+    def test_external_or_unknown_redirect_is_rejected(self):
+        from tools import check_p3_current_site_delta as gate
+        for destination in ['https://external.invalid/', '/unknown.html']:
+            html = ('<meta http-equiv="refresh" content="0;url=' + destination + '">').encode()
+            with mock.patch.object(gate, 'validate_current_customer_route_delta', return_value={'source_ref': 'pinned'}):
+                with mock.patch.object(gate, 'git', return_value=html):
+                    with self.assertRaisesRegex(ValueError, 'pinned static page'):
+                        target.staging_render_source({'pages': [{'source_path': 'alias.html', 'public_route': '/alias.html'}]}, gate.ROOT)
+
+    def test_unreviewed_staging_scope_cannot_become_browser_expectation(self):
+        from tools import check_p3_current_site_delta as gate
+        with mock.patch.object(gate, 'validate_current_customer_route_delta', side_effect=ValueError('unreviewed source')):
+            with self.assertRaisesRegex(ValueError, 'unreviewed source'):
+                target.staging_render_source({'pages': []}, gate.ROOT)
+
+
 
 if __name__ == "__main__":
     unittest.main()

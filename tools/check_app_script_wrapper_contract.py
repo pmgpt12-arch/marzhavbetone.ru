@@ -78,9 +78,9 @@ def execution_environment() -> dict[str, str]:
     return {name.lower(): os.environ[name] for name in names if os.environ.get(name)}
 
 
-def source_record(path: Path, root: Path) -> dict:
+def source_record(path: Path, root: Path, expected_sources: dict | None = None) -> dict:
     payload = path.read_bytes()
-    expected = EXPECTED_SOURCES[path.relative_to(root).as_posix()]
+    expected = (EXPECTED_SOURCES if expected_sources is None else expected_sources)[path.relative_to(root).as_posix()]
     actual = {"bytes": len(payload), "sha256": sha256_bytes(payload)}
     if actual != expected:
         raise ValueError(
@@ -120,13 +120,13 @@ def verify_wrapper(text: str) -> dict:
     }
 
 
-def build_report(root: Path, inventory_report_sha256: str) -> dict:
+def build_report(root: Path, inventory_report_sha256: str, expected_sources: dict | None = None) -> dict:
     if inventory_report_sha256 != EXPECTED_INVENTORY_REPORT_SHA256:
         raise ValueError(
             f"inventory lineage changed: {inventory_report_sha256}, "
             f"expected {EXPECTED_INVENTORY_REPORT_SHA256}"
         )
-    sources = [source_record(root / name, root) for name in EXPECTED_SOURCES]
+    sources = [source_record(root / name, root, expected_sources) for name in EXPECTED_SOURCES]
     wrapper_text = (root / "app-script.php").read_text(encoding="utf-8")
     return {
         "schema_version": 1,
@@ -183,6 +183,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--staging-source", action="store_true")
     parser.add_argument(
         "--inventory-report-sha256",
         default=EXPECTED_INVENTORY_REPORT_SHA256,
@@ -194,7 +195,16 @@ def main() -> int:
     for signum in (signal.SIGINT, signal.SIGTERM):
         previous_handlers[signum] = signal.signal(signum, interrupted)
     try:
-        report = build_report(root, args.inventory_report_sha256)
+        expected_sources, staging = None, None
+        if args.staging_source:
+            try:
+                from tools.check_p3_current_site_delta import staging_wrapper_sources
+            except ModuleNotFoundError:
+                from check_p3_current_site_delta import staging_wrapper_sources
+            expected_sources, staging = staging_wrapper_sources(root)
+        report = build_report(root, args.inventory_report_sha256, expected_sources)
+        if staging is not None:
+            report["lineage"]["staging_scope"] = staging
         write_evidence(output, report)
     except BaseException as error:
         failure = {

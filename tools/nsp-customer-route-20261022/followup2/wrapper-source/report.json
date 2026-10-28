@@ -1,0 +1,57 @@
+{
+  "acceptance_limits": {
+    "cache_behavior_accepted": false,
+    "delivery_accepted": false,
+    "deploy_accepted": false,
+    "http_runtime_equivalence_accepted": false,
+    "php_configuration_accepted": false,
+    "publication_accepted": false,
+    "reachability_accepted": false,
+    "release_accepted": false,
+    "security_accepted": false,
+    "source_wrapper_contract_accepted": true
+  },
+  "execution_environment": {},
+  "lineage": {
+    "accepted_inventory_report_sha256": "be4181ebd84b78f2fa83b7feb7df27f7f0bd955faaebf6b1de55cc719c72cf48",
+    "staging_scope": {
+      "head": "046e47009147b892b9efa87ed1c3e3136fd42ab5",
+      "historical_snapshot_preserved": true,
+      "protected_product_payment_source_unchanged": true,
+      "publication_accepted": false,
+      "release_accepted": false,
+      "source_paths": 694,
+      "source_ref": "046e47009147b892b9efa87ed1c3e3136fd42ab5",
+      "verdict": "PASS_PINNED_CUSTOMER_ROUTE_STAGING_ONLY"
+    }
+  },
+  "schema_version": 1,
+  "sources": [
+    {
+      "bytes": 239,
+      "path": "app-script.php",
+      "sha256": "7ba0130cbe199fe0018da9c5cf5794ef35b968906fa6b007d86b8640bd0e5461"
+    },
+    {
+      "bytes": 24142,
+      "path": "app.js",
+      "sha256": "3fab37d0ccf25834ff2674cb0f22923ddea53f75d597a1d21d0d3e4c162105c1"
+    }
+  ],
+  "status": "PASS_WRAPPER_SOURCE_CONTRACT_ONLY",
+  "wrapper_contract": {
+    "delegation": {
+      "line": 9,
+      "target": "app.js"
+    },
+    "forbidden_construct_count": 0,
+    "header_count": 4,
+    "header_lines": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "strict_types": true
+  }
+}

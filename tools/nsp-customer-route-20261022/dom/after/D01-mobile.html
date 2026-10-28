@@ -1,0 +1,401 @@
+<!DOCTYPE html><html lang="ru"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Восемь вопросов о вашей ситуации на объекте — и понятный сценарий: что происходит, что проверить и какие документы закрывают именно этот случай.">
+  <meta property="og:title" content="Диагностика: что происходит и что делать">
+  <meta property="og:description" content="Восемь вопросов о вашей ситуации на объекте — и понятный сценарий: что происходит, что проверить и какие документы закрывают именно этот случай.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nastoronepodryadchika.ru/diagnostika.html">
+  <link rel="canonical" href="https://nastoronepodryadchika.ru/diagnostika.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>Диагностика ситуации подрядчика: что происходит и что делать — На стороне подрядчика</title>
+  <link rel="stylesheet" href="styles.css?v=fda7e0ac">
+  <link rel="stylesheet" href="brand-approved-2026.css?v=129e847b">
+  <style>
+    /* Композиция: слева — что это и что человек получит, справа — сам
+       вопрос. До этого страница была узкой колонкой по центру, и на 1366px
+       её содержимое занимало 846px при экране 768 — то есть пол-экрана
+       пустоты под маленькой формой. Форму при этом на всю ширину не тянем:
+       строка ответа шириной в экран читается хуже, а не лучше. */
+    .dpage{max-width:1180px;margin:0 auto;padding:44px 24px 80px}
+    .dgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+      gap:clamp(32px,4vw,64px);align-items:start}
+    .dintro h1{margin:10px 0 14px;font-size:clamp(30px,3.2vw,46px);line-height:1.04;letter-spacing:-.03em}
+    .dintro .lead{margin:0 0 22px;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#4f5154}
+    /* Условия — списком, а не абзацем: их читают взглядом, а не по словам. */
+    .dfacts{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px;padding:0;list-style:none}
+    .dfacts li{padding:7px 13px;background:#242629;color:#e9e5dc;font-size:13.5px;font-weight:700}
+    .dpromise{margin:0;padding:20px 22px;background:#fff;border-left:5px solid #ff5a00}
+    .dpromise p{margin:0 0 10px;font-size:13px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#65676a}
+    .dpromise ol{margin:0;padding-left:20px;line-height:1.65}
+    .dpromise li{margin-bottom:4px}
+
+    .dcard{padding:clamp(24px,2.4vw,34px);background:#fff;border:1px solid #a9a49a;box-shadow:8px 8px 0 #c8c3b9}
+    .dstep{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    .dstep span{font-size:13px;font-weight:900;letter-spacing:.06em;color:#65676a;white-space:nowrap}
+    .dbar{flex:1;height:4px;background:#e2ddd3}
+    .dbar i{display:block;height:100%;background:#ff5a00;transition:width .25s ease}
+    .dq{margin:0;padding:0;border:0}
+    .dq[hidden]{display:none}
+    .dq legend{padding:0;font-size:clamp(21px,1.9vw,27px);font-weight:900;line-height:1.18;letter-spacing:-.02em}
+    .dq-hint{margin:12px 0 0;color:#65676a;font-size:14.5px;line-height:1.55}
+    .dq .dopts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+    /* Вопрос с тремя и более вариантами: колонка, а не сетка 1fr 1fr.
+       В два столбца три варианта дают сироту, а длинные подписи
+       («Расчёт квартирами или метрами») ломаются посреди слова. */
+    .dq .dopts-list{grid-template-columns:1fr}
+    .dq button{padding:17px 20px;border:2px solid #242629;background:#e9e5dc;
+      font:900 17px Arial;cursor:pointer;transition:background-color .12s,color .12s}
+    .dq button:hover{background:#242629;color:#e9e5dc}
+    .dq button:focus-visible{outline:3px solid #ff5a00;outline-offset:2px}
+    .dq button[aria-pressed="true"]{background:#242629;color:#e9e5dc;border-color:#ff5a00}
+    .dback{margin-top:18px;background:none;border:0;padding:0;color:#65676a;
+      font:14px Arial;text-decoration:underline;cursor:pointer}
+    .dback[hidden]{display:none}
+
+    .dresult{margin-top:0;padding:clamp(24px,2.4vw,34px);background:#242629;color:#e9e5dc}
+    .dresult h2{margin:0 0 8px;color:#c7ff2e;font-size:clamp(23px,2.4vw,32px);line-height:1.1}
+    .dresult .dpain{margin:0 0 16px;color:#a9a49a;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+    .dresult p{line-height:1.6}
+    .dsteps{margin:20px 0 0;padding-left:20px;line-height:1.6}
+    .dsteps li{margin-bottom:7px}
+    .dnext{margin-top:22px;padding-top:20px;border-top:1px solid rgba(233,229,220,.25)}
+    .dnext a{color:#c7ff2e}
+    .dnext .button{margin-top:12px}
+    .dagain{margin-top:20px;background:none;border:0;color:#a9a49a;font:14px Arial;text-decoration:underline;cursor:pointer}
+    /* На узком экране вопрос идёт первым. В одну колонку карточка иначе
+       уезжает под весь рассказ о пользе: замер на 390px — до первого
+       вопроса около тысячи пикселей прокрутки, то есть человек листает
+       мимо самого действия. Объяснение остаётся ниже, для тех, кому оно
+       нужно до начала. */
+    @media(max-width:1000px){.dgrid{grid-template-columns:1fr;gap:28px}
+      .dside{order:-1}}
+    @media(max-width:700px){.dpage{padding:30px 18px 64px}
+      .dq .dopts{grid-template-columns:1fr}}
+  </style>
+  <script async="" src="https://mc.yandex.ru/metrika/tag.js?id=111149105"></script><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Диагностика ситуации подрядчика",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RUB"
+      },
+      "url": "https://nastoronepodryadchika.ru/diagnostika.html"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://nastoronepodryadchika.ru/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Диагностика",
+          "item": "https://nastoronepodryadchika.ru/diagnostika.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="rebrand-approved">
+  <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация" id="primary-navigation"><a href="/diagnostika.html" class="is-current" aria-current="page">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Бесплатно</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/">Практика и судебные решения</a><a href="/#author">О проекте</a></nav><a class="button button-small nav-cta" href="/#contact">Разобрать объект</a><button type="button" class="nav-toggle" aria-label="Меню" aria-expanded="false" aria-controls="primary-navigation"><span></span></button></header>
+
+  <main class="dpage">
+    <nav aria-label="Хлебные крошки" class="breadcrumbs">
+      <a href="/">Главная</a> · <span>Диагностика</span>
+    </nav>
+
+    <div class="dgrid">
+      <div class="dintro">
+        <p class="eyebrow">БЕСПЛАТНО · БЕЗ РЕГИСТРАЦИИ</p>
+        <h1>Где на вашем объекте застряли деньги</h1>
+        <p class="lead">Объём сделан, а оплаты нет — и причина у каждого случая своя: договор, допработы, документация, приёмка или удержание. Ответьте на несколько вопросов о положении дел, и мы назовём сценарий и документы, которые его закрывают.</p>
+        <ul class="dfacts">
+          <li>8 вопросов максимум</li>
+          <li>меньше минуты</li>
+          <li>без регистрации</li>
+          <li>ответы остаются в браузере</li>
+        </ul>
+        <div class="dpromise">
+          <p>Что вы получите</p>
+          <ol>
+            <li>Название сценария — как эта ситуация называется на деле.</li>
+            <li>Что в ней решает исход и чем рискуют деньги.</li>
+            <li>Первый шаг — что сделать раньше остального.</li>
+            <li>Документы, которые этот случай закрывают.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="dside">
+        <div class="dcard" id="dcard" hidden="">
+          <div class="dstep" id="dstep">
+            <span id="dstep-label">Вопрос 2</span>
+            <span class="dbar"><i id="dbar" style="width: 13%;"></i></span>
+          </div>
+          <form id="dform">
+          <fieldset class="dq" data-q="bankrot" hidden="">
+            <legend>Есть признаки банкротства или неплатёжеспособности контрагента?</legend>
+            <p class="dq-hint">Заявление о банкротстве, публикации на Федресурсе, массовые иски, исполнительные производства.</p>
+            <div class="dopts">
+              <button type="button" data-a="yes" aria-pressed="true">Да</button>
+              <button type="button" data-a="no" aria-pressed="false">Нет</button>
+            </div>
+          </fieldset>
+          <fieldset class="dq" data-q="procedure" hidden="">
+            <legend>Какая судебная стадия подтверждена?</legend>
+            <p class="dq-hint">Проверьте определение суда в Картотеке арбитражных дел и сообщение в ЕФРСБ. Иски и исполнительные производства — признаки риска, но не судебная процедура.</p>
+            <div class="dopts dopts-list">
+              <button type="button" data-a="none" aria-pressed="true">Процедуры и принятого заявления нет</button>
+              <button type="button" data-a="accepted" aria-pressed="false">Заявление принято, процедура ещё не введена</button>
+              <button type="button" data-a="observation" aria-pressed="false">Введено наблюдение</button>
+              <button type="button" data-a="other" aria-pressed="false">Введена иная процедура банкротства</button>
+              <button type="button" data-a="unknown" aria-pressed="false">Стадия неизвестна или не проверена</button>
+            </div>
+          </fieldset>
+          <fieldset class="dq" data-q="publication" hidden="">
+            <legend>Источник и даты проверены?</legend>
+            <p class="dq-hint">Сохраните номер дела, судебный акт, дату принятия заявления, дату и источник публикации о введённой процедуре.</p>
+            <div class="dopts dopts-list">
+              <button type="button" data-a="yes" aria-pressed="false">Да, судебный акт и публикация проверены</button>
+              <button type="button" data-a="no" aria-pressed="false">Нет или сведений недостаточно</button>
+            </div>
+          </fieldset>
+          <fieldset class="dq" data-q="claim" hidden="">
+            <legend>Какой характер у вашего требования?</legend>
+            <p class="dq-hint">Сопоставьте дату принятия заявления с датой возникновения обязательства и выполнения работ. Одна дата оплаты не определяет, является ли платёж текущим (ст. 5 Закона № 127-ФЗ).</p>
+            <div class="dopts dopts-list">
+              <button type="button" data-a="registry" aria-pressed="false">Реестровое: основание и даты проверены</button>
+              <button type="button" data-a="current" aria-pressed="false">Текущий платёж: основание и даты проверены</button>
+              <button type="button" data-a="unknown" aria-pressed="false">Пока не определён</button>
+            </div>
+          </fieldset>
+          <fieldset class="dq" data-q="signed" hidden="">
+            <legend>В каком состоянии договор?</legend>
+            <div class="dopts dopts-list">
+              <button type="button" data-a="no" aria-pressed="false">Ещё не подписан</button>
+              <button type="button" data-a="yes" aria-pressed="false">Подписан и действует</button>
+              <button type="button" data-a="terminated" aria-pressed="false">Расторгнут или прекращён</button>
+            </div>
+          </fieldset>
+          <fieldset class="dq" data-q="predmet" hidden="">
+            <legend>Что именно вы сейчас проверяете до подписания?</legend>
+            <p class="dq-hint">До подписи правится всё перечисленное; после — только соглашением сторон.</p>
+            <div class="dopts dopts-list">
+              <button type="button" data-a="dogovor" aria-pressed="false">Условия договора</button>
+              <button type="button" data-a="avans" aria-pressed="false">Аванс</button>
+              <button type="button" data-a="metry" aria-pressed="false">Расчёт квартирами или метрами</button>
+              <button type="button" data-a="smeta" aria-pressed="false">Смету и состав цены</button>
+            </div>
+          </fieldset>
+          <fieldset class="dq" data-q="done" hidden="">
+            <legend>Работы выполнены?</legend>
+            <div class="dopts">
+              <button type="button" data-a="yes" aria-pressed="false">Да</button>
+              <button type="button" data-a="no" aria-pressed="false">Нет</button>
+            </div>
+          </fieldset>
+          <fieldset class="dq" data-q="extra" hidden="">
+            <legend>Спорный объём выполнен сверх договора?</legend>
+            <p class="dq-hint">Работы, о которых просили устно или «потом оформим».</p>
+            <div class="dopts">
+              <button type="button" data-a="yes" aria-pressed="false">Да</button>
+              <button type="button" data-a="no" aria-pressed="false">Нет</button>
+            </div>
+          </fieldset>
+          <fieldset class="dq" data-q="accepted" hidden="">
+            <legend>Работы приняты, КС-2 подписана?</legend>
+            <div class="dopts">
+              <button type="button" data-a="yes" aria-pressed="false">Да</button>
+              <button type="button" data-a="no" aria-pressed="false">Нет</button>
+            </div>
+          </fieldset>
+          <fieldset class="dq" data-q="docs" hidden="">
+            <legend>Документация возвращена с замечаниями или не принята?</legend>
+            <div class="dopts">
+              <button type="button" data-a="yes" aria-pressed="false">Да</button>
+              <button type="button" data-a="no" aria-pressed="false">Нет</button>
+            </div>
+          </fieldset>
+          <fieldset class="dq" data-q="overdue" hidden="">
+            <legend>Срок оплаты по договору наступил?</legend>
+            <div class="dopts">
+              <button type="button" data-a="yes" aria-pressed="false">Да</button>
+              <button type="button" data-a="no" aria-pressed="false">Нет</button>
+            </div>
+          </fieldset>
+          <fieldset class="dq" data-q="retention" hidden="">
+            <legend>Часть суммы удержана — гарантийное удержание, штраф, зачёт?</legend>
+            <div class="dopts">
+              <button type="button" data-a="yes" aria-pressed="false">Да</button>
+              <button type="button" data-a="no" aria-pressed="false">Нет</button>
+            </div>
+          </fieldset>
+          </form>
+          <button type="button" class="dback" id="dback">← Вернуться к предыдущему вопросу</button>
+        </div>
+        <div id="dresult" class="dresult"><p class="dpain">Риск неоплаты и банкротство контрагента</p><h2>Есть признаки риска: проверьте контрагента</h2><p>Массовые иски и исполнительные производства сами по себе не означают введённую процедуру банкротства и не исключают претензию или иск. Сначала найдите определение суда в <a href="https://kad.arbitr.ru/" target="_blank" rel="noopener">Картотеке арбитражных дел</a> и сообщение в <a href="https://bankrot.fedresurs.ru/" target="_blank" rel="noopener">ЕФРСБ</a>. Сохраните номер дела, судебную стадию, дату принятия заявления, дату и источник публикации. Затем сопоставьте срок оплаты и документы по вашему требованию.</p><div class="dnext"><p>Проверить у себя по <a href="/materialy/bankrotstvo.html">бесплатным материалам этого сценария</a>.</p><p><a class="button" href="/products/p9-bankrotstvo-genpodryadchika.html">Комплект по этому сценарию — 24900 ₽</a></p></div><button type="button" class="dagain" id="dagain">Пройти заново</button></div>
+      </div>
+    </div>
+  </main>
+
+  <footer><div class="footer-inner"><p>© «На стороне подрядчика»</p><p><a href="/contacts.html">Реквизиты</a> · <a href="/offer.html">Оферта</a> · <a href="/payment-delivery.html">Оплата и получение</a> · <a href="/refund.html">Возврат</a></p></div></footer>
+
+  <script>
+  // Сценарии правятся здесь руками, и это вынужденно. Блок собирался
+  // прогоном tools/build_diagnostic.py из data/business/diagnostic.yaml и
+  // money-pains.yaml; оба источника удалены коммитом a1373b0, восстанавливать
+  // их запрещено решением владельца, и генератор с 27.08.2026 падает на
+  // FileNotFoundError. Сторожем вместо него стоит проверка в Business OS
+  // (tests/test_diagnostic_routing.py): каждый маршрут сверяется с
+  // 00_Core/rules/Pains.yaml — боль, ситуация, стадия, ядро, вход — и с
+  // ценой из products-config.php. Маршрут обязан вести в комплект, который
+  // продаётся сейчас; проверяет это теперь тест, а не генератор.
+  // Семантику витрины — ступень и комплект как два самостоятельных товара
+  // под разный объём задачи, а не обязательная последовательность покупки
+  // (решение владельца MB007) — сторожит tools/test_diagnostic_sku_standalone.js:
+  // он прогоняет рендер этой страницы прямо из её разметки и сверяет цены
+  // пары с products-config.php.
+  const SCENARIOS = [{"id":"S-7-risk","when":{"bankrot":true,"procedure":"none"},"verdict":"Есть признаки риска: проверьте контрагента","means":"Массовые иски и исполнительные производства сами по себе не означают введённую процедуру банкротства и не исключают претензию или иск. Сначала найдите определение суда в <a href=\"https://kad.arbitr.ru/\" target=\"_blank\" rel=\"noopener\">Картотеке арбитражных дел</a> и сообщение в <a href=\"https://bankrot.fedresurs.ru/\" target=\"_blank\" rel=\"noopener\">ЕФРСБ</a>. Сохраните номер дела, судебную стадию, дату принятия заявления, дату и источник публикации. Затем сопоставьте срок оплаты и документы по вашему требованию.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-accepted","when":{"bankrot":true,"procedure":"accepted"},"verdict":"Заявление принято: уточните стадию дела","means":"Принятие заявления ещё не означает введение наблюдения. Сначала найдите определение суда в <a href=\"https://kad.arbitr.ru/\" target=\"_blank\" rel=\"noopener\">Картотеке арбитражных дел</a> и сообщение в <a href=\"https://bankrot.fedresurs.ru/\" target=\"_blank\" rel=\"noopener\">ЕФРСБ</a>. Сохраните номер дела, судебную стадию, дату принятия заявления, дату и источник публикации. Отдельно проверьте дату возникновения обязательства и характер требования; порядок взыскания зависит от этих обстоятельств.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-unknown","when":{"bankrot":true,"procedure":"unknown"},"verdict":"Требуется уточнить судебную стадию","means":"Сначала найдите определение суда в <a href=\"https://kad.arbitr.ru/\" target=\"_blank\" rel=\"noopener\">Картотеке арбитражных дел</a> и сообщение в <a href=\"https://bankrot.fedresurs.ru/\" target=\"_blank\" rel=\"noopener\">ЕФРСБ</a>. Сохраните номер дела, судебную стадию, дату принятия заявления, дату и источник публикации. Пока эти сведения не проверены, выбирать реестровый маршрут и считать срок включения преждевременно.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-observation-dates","when":{"bankrot":true,"procedure":"observation","publication":false},"verdict":"Требуется проверить даты и публикацию","means":"Сначала найдите определение суда в <a href=\"https://kad.arbitr.ru/\" target=\"_blank\" rel=\"noopener\">Картотеке арбитражных дел</a> и сообщение в <a href=\"https://bankrot.fedresurs.ru/\" target=\"_blank\" rel=\"noopener\">ЕФРСБ</a>. Сохраните номер дела, судебную стадию, дату принятия заявления, дату и источник публикации. После проверки вернитесь к определению характера требования. Один срок для всех процедур не применяется.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-observation-registry","when":{"bankrot":true,"procedure":"observation","publication":true,"claim":"registry"},"verdict":"Введено наблюдение: реестровое требование","means":"Проверьте основание и размер долга, определение суда, публикацию и адресатов направления требования. При наблюдении реестровый порядок связан со ст. 63 и 71 Закона № 127-ФЗ; в других процедурах порядок и сроки отличаются. Не считайте срок со дня, когда вы узнали о деле: определите применимое правило по процедуре и публикации. <a href=\"https://www.consultant.ru/document/cons_doc_LAW_39331/\" target=\"_blank\" rel=\"noopener\">Закон № 127-ФЗ</a>.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-observation-current","when":{"bankrot":true,"procedure":"observation","publication":true,"claim":"current"},"verdict":"Введено наблюдение: текущий платёж","means":"Текущие платежи не включаются в реестр требований кредиторов (ст. 5 Закона № 127-ФЗ). Сопоставьте дату принятия заявления с возникновением обязательства и выполнением работ; срок оплаты сам по себе не определяет характер долга. Порядок предъявления и удовлетворения текущего требования проверяется отдельно. <a href=\"https://www.consultant.ru/document/cons_doc_LAW_39331/\" target=\"_blank\" rel=\"noopener\">Закон № 127-ФЗ</a>.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-observation-unknown","when":{"bankrot":true,"procedure":"observation","publication":true,"claim":"unknown"},"verdict":"Требуется определить характер требования","means":"Сопоставьте определение о принятии заявления с договором, актами и датами выполнения работ. По ст. 5 Закона № 127-ФЗ текущие платежи проверяются отдельно от реестровых требований. До проверки не направляйте заявление о включении в реестр автоматически. <a href=\"https://www.consultant.ru/document/cons_doc_LAW_39331/\" target=\"_blank\" rel=\"noopener\">Закон № 127-ФЗ</a>.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-other-dates","when":{"bankrot":true,"procedure":"other","publication":false},"verdict":"Требуется проверить даты и публикацию","means":"Сначала найдите определение суда в <a href=\"https://kad.arbitr.ru/\" target=\"_blank\" rel=\"noopener\">Картотеке арбитражных дел</a> и сообщение в <a href=\"https://bankrot.fedresurs.ru/\" target=\"_blank\" rel=\"noopener\">ЕФРСБ</a>. Сохраните номер дела, судебную стадию, дату принятия заявления, дату и источник публикации. После проверки вернитесь к определению характера требования. Один срок для всех процедур не применяется.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-other-registry","when":{"bankrot":true,"procedure":"other","publication":true,"claim":"registry"},"verdict":"Введена иная процедура: реестровое требование","means":"Проверьте основание и размер долга, определение суда, публикацию и адресатов направления требования. При наблюдении реестровый порядок связан со ст. 63 и 71 Закона № 127-ФЗ; в других процедурах порядок и сроки отличаются. Не считайте срок со дня, когда вы узнали о деле: определите применимое правило по процедуре и публикации. <a href=\"https://www.consultant.ru/document/cons_doc_LAW_39331/\" target=\"_blank\" rel=\"noopener\">Закон № 127-ФЗ</a>.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-other-current","when":{"bankrot":true,"procedure":"other","publication":true,"claim":"current"},"verdict":"Введена иная процедура: текущий платёж","means":"Текущие платежи не включаются в реестр требований кредиторов (ст. 5 Закона № 127-ФЗ). Сопоставьте дату принятия заявления с возникновением обязательства и выполнением работ; срок оплаты сам по себе не определяет характер долга. Порядок предъявления и удовлетворения текущего требования проверяется отдельно. <a href=\"https://www.consultant.ru/document/cons_doc_LAW_39331/\" target=\"_blank\" rel=\"noopener\">Закон № 127-ФЗ</a>.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-7-other-unknown","when":{"bankrot":true,"procedure":"other","publication":true,"claim":"unknown"},"verdict":"Требуется определить характер требования","means":"Сопоставьте определение о принятии заявления с договором, актами и датами выполнения работ. По ст. 5 Закона № 127-ФЗ текущие платежи проверяются отдельно от реестровых требований. До проверки не направляйте заявление о включении в реестр автоматически. <a href=\"https://www.consultant.ru/document/cons_doc_LAW_39331/\" target=\"_blank\" rel=\"noopener\">Закон № 127-ФЗ</a>.","pain":"Риск неоплаты и банкротство контрагента","free":"/materialy/bankrotstvo.html","core":{"url":"/products/p9-bankrotstvo-genpodryadchika.html","price":24900},"entry":null,"pain_id":"bankrotstvo","stage":"verification"},{"id":"S-11","when":{"bankrot":false,"signed":"terminated"},"verdict":"Договор расторгнут, требуют вернуть аванс","means":"Требование приходит одной цифрой, и, пока вашей нет, спорить нечем. Считается отработанная часть аванса и сальдо расчётов, а срок на ответ берётся из договора, а не из ощущения «успеем». Молчание здесь читается как согласие с их цифрой.","pain":"Опасные условия договора","pain_id":"dogovor","situation":"avans","stage":"after_termination","free":"/materialy/avans.html","core":{"url":"/products/p8-avans-po-dogovoru-subpodryada.html","price":24900},"entry":null},{"id":"S-6","when":{"bankrot":false,"signed":false,"predmet":"dogovor"},"verdict":"Условия договора до подписи","means":"Условия оплаты, приёмки и удержаний правятся только сейчас. После подписи каждая из этих строк стоит денег, и правится она уже спором.","pain":"Опасные условия договора","free":"/materialy/dogovor.html","core":{"url":"/products/p7-dogovor-podryada.html","price":24900},"pain_id":"dogovor","situation":"dogovor_do_podpisi","stage":"before_work"},{"id":"S-8","when":{"bankrot":false,"signed":false,"predmet":"avans"},"verdict":"Аванс: условия ещё можно поменять","means":"Аванс — не деньги вперёд, а обязательство с порядком погашения и сроком отработки. Спорят потом не о самом авансе, а о том, как записаны четыре условия: размер, порядок погашения, срок отработки и что считается неотработанным остатком. Сейчас они правятся протоколом разногласий, после подписи — только соглашением сторон.","pain":"Опасные условия договора","pain_id":"dogovor","situation":"avans","stage":"before_work","free":"/materialy/avans.html","core":{"url":"/products/p8-avans-po-dogovoru-subpodryada.html","price":24900}},{"id":"S-9","when":{"bankrot":false,"signed":false,"predmet":"metry"},"verdict":"Расчёт квартирами или метрами вместо денег","means":"Платёж метрами — не цена со скидкой, а перенос на подрядчика сроков продажи и рисков объекта. До подписи проверяются статус объекта и состояние эскроу: после подписи эти два вопроса задавать уже поздно, а отвечать на них придётся деньгами.","pain":"Опасные условия договора","pain_id":"dogovor","situation":"raschet_metrami","stage":"before_work","free":"/materialy/raschet-metrami.html","core":{"url":"/products/p11-raschet-metrami.html","price":24900},"entry":null},{"id":"S-10","when":{"bankrot":false,"signed":false,"predmet":"smeta"},"verdict":"Смета и состав цены до подписания","means":"Часть потерь маржи заложена в смету до начала работ: накладные и сметная прибыль, зимнее удорожание и ВЗиС, мусор, транспорт и непредвиденные. Проверяется состав цены один раз — сейчас, потому что после подписи он меняется только соглашением.","pain":"Опасные условия договора","pain_id":"dogovor","situation":"smeta","stage":"before_work","core":{"url":"/products/p13-chto-v-smete-ne-oplatyat.html","price":17900}},{"id":"S-3","when":{"bankrot":false,"signed":true,"done":true,"extra":true},"verdict":"Спор об оплате дополнительных работ","means":"Решает не факт выполнения, а доказанность поручения до начала работ. Проверять надо, чем зафиксировано задание и согласована ли стоимость.","pain":"Не оплачивают дополнительные работы","free":"/materialy/dop-raboty.html","core":{"url":"/products/p2-dopolnitelnye-raboty.html","price":24900},"pain_id":"dop_raboty","situation":null,"stage":"in_progress"},{"id":"S-5","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":true},"verdict":"Документация блокирует приёмку и оплату","means":"Пока комплект не принят, не двигаются ни приёмка, ни срок оплаты. Возвращают почти всегда по одним и тем же причинам, и они проверяемы у себя до передачи.","pain":"Исполнительная документация блокирует приёмку и оплату","free":"/materialy/ispolnitelnaya-dokumentaciya.html","core":{"url":"/products/p4-ispolnitelnaya-dokumentaciya-pto.html","price":24900},"entry":{"url":"/products/t2-peredacha-ispolnitelnoy-dokumentacii.html","price":9900},"pain_id":"ispolnitelnaya","situation":null,"stage":"in_progress"},{"id":"S-2","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":false,"accepted":false},"verdict":"Работы выполнены, но не приняты","means":"Срок оплаты не начинает течь, пока работы не приняты или пока не сработал порядок одностороннего оформления. Спор идёт о приёмке, а не о деньгах — пока.","pain":"Не принимают и не подписывают КС","free":"/materialy/vozvrat-ks.html","core":{"url":"/products/p3-shablony-ks2-ks3.html","price":17900},"entry":{"url":"/products/t3-odnostoronniy-akt-i-zachet.html","price":14900},"pain_id":"ks","situation":null,"stage":"submitted"},{"id":"S-4","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":false,"accepted":true,"retention":true},"verdict":"Часть суммы удержана","means":"Спор не о выполнении, а об основании и сроке возврата. Проверять надо условие договора, событие отсчёта срока и обоснованность удержания.","pain":"Не возвращают удержания","free":"/materialy/uderzhaniya.html","core":{"url":"/products/p5-shtrafy-uderzhaniya.html","price":29900},"entry":{"url":"/products/t3-odnostoronniy-akt-i-zachet.html","price":14900},"pain_id":"uderzhanie","situation":null,"stage":"contested"},{"id":"S-1","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":false,"accepted":true,"retention":false,"overdue":true},"verdict":"Просрочка оплаты принятых работ","means":"Работы приняты, срок прошёл, удержаний нет — предмет спора только деньги. Дальше порядок один: сверить свои документы, зафиксировать просрочку, предъявить требование.","pain":"Работы выполнены — денег нет","free":"/materialy/dengi.html","core":{"url":"/products/p1-oplata-po-ks2.html","price":29900},"entry":null,"pain_id":"neoplata","situation":null,"stage":"overdue"},{"id":"S-0","when":{"bankrot":false,"signed":true,"done":true,"extra":false,"docs":false,"accepted":true,"retention":false,"overdue":false},"verdict":"Работы приняты, срок оплаты ещё не наступил","means":"Требовать пока нечего, и это хорошая новость: время есть на то, чтобы проверить собственные документы до наступления срока. Половина отказов в оплате держится на расхождениях в них, а не на нежелании платить.","pain":"Работы выполнены — денег нет","free":"/materialy/dengi.html","core":{"url":"/products/p1-oplata-po-ks2.html","price":29900},"entry":null,"pain_id":"neoplata","situation":null,"stage":"accepted_unpaid"}];
+  const answers = {};
+  const order = [];            // порядок ответов — чтобы можно было вернуться
+  const MAXQ = 8;   // самая длинная ветка, замер перебором 1536 сочетаний
+  const form = document.getElementById('dform');
+  const out = document.getElementById('dresult');
+  const card = document.getElementById('dcard');
+  const back = document.getElementById('dback');
+  const stepLabel = document.getElementById('dstep-label');
+  const bar = document.getElementById('dbar');
+
+  function match() {
+    return SCENARIOS.find(s =>
+      Object.entries(s.when).every(([q, v]) => answers[q] === v));
+  }
+
+  function nextUnanswered() {
+    // Спрашиваем только то, что ещё может изменить исход.
+    const asked = new Set(Object.keys(answers));
+    const alive = SCENARIOS.filter(s => Object.entries(s.when)
+      .every(([q, v]) => !(q in answers) || answers[q] === v));
+    for (const box of form.querySelectorAll('.dq')) {
+      const q = box.dataset.q;
+      if (asked.has(q)) continue;
+      if (alive.some(s => q in s.when)) return box;
+    }
+    return null;
+  }
+
+  function finish(block) {
+    form.querySelectorAll('.dq').forEach(b => b.hidden = true);
+    card.hidden = true;
+    out.innerHTML = block + '<button type="button" class="dagain" id="dagain">Пройти заново</button>';
+    out.hidden = false;
+    document.getElementById('dagain').addEventListener('click', reset);
+    out.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+  }
+
+  function render() {
+    const hit = match();
+    if (hit) {
+      let block = '<p class="dpain">' + hit.pain + '</p>';
+      block += '<h2>' + hit.verdict + '</h2><p>' + hit.means + '</p>';
+      block += '<div class="dnext">';
+      if (hit.free) block += '<p>Проверить у себя по <a href="' + hit.free + '">бесплатным материалам этого сценария</a>.</p>';
+      // MB007: ступень и комплект — два самостоятельных товара под разный
+      // объём задачи (MB005): выбор по ситуации, а не по цене и не по
+      // порядку покупки. Каждая из двух строк — законченный вариант «если
+      // у вас так», открытый собственным условием; одна не продолжает
+      // другую, и пара не читается сверху вниз как маршрут «сначала — потом».
+      if (hit.entry) block += '<p>' + (hit.entry_when || 'Если нужна только часть задачи') + ': <a href="' + hit.entry.url + '">от ' + hit.entry.price + ' ₽</a>.</p>';
+      if (hit.entry) block += '<p>' + (hit.core_when || 'Если ситуация требует всего маршрута по сценарию') + ':</p>';
+      block += '<p><a class="button" href="' + hit.core.url + '">Комплект по этому сценарию — ' + hit.core.price + ' ₽</a></p>';
+      block += '</div>';
+      finish(block);
+      if (typeof window.mvbTrackGoal === 'function') window.mvbTrackGoal('diagnostic_complete');
+      return;
+    }
+    const box = nextUnanswered();
+    if (!box) {
+      // Сочетание ответов, под которое сценария не написано. Перебор всех
+      // сочетаний даёт такие в 32 случаях из 256, и до этой правки страница
+      // просто гасила последний вопрос и не показывала ничего: пустой экран
+      // вместо ответа. Тупик закрыт выходом в разделы, а не выдуманным
+      // вердиктом — сочинить диагноз там, где его нет, хуже пустого экрана.
+      let block = '<p class="dpain">Смешанный случай</p>';
+      block += '<h2>Ситуация не сводится к одному сценарию</h2>';
+      block += '<p>По вашим ответам сошлись признаки сразу нескольких случаев, и одного маршрута для них нет. Это не тупик: ниже разделы, где сценарии разобраны по отдельности.</p>';
+      block += '<div class="dnext">';
+      block += '<p>Проверить у себя: <a href="/materialy/">бесплатные материалы</a> — проверочные листы по каждому этапу.</p>';
+      block += '<p>Разборы по темам — <a href="/articles/">все разборы</a>.</p>';
+      block += '<p><a class="button" href="/katalog.html">Открыть каталог комплектов</a></p>';
+      block += '</div>';
+      finish(block);
+      if (typeof window.mvbTrackGoal === 'function') window.mvbTrackGoal('diagnostic_complete');
+      return;
+    }
+    form.querySelectorAll('.dq').forEach(b => b.hidden = b !== box);
+    card.hidden = false;
+    out.hidden = true;
+    const n = order.length + 1;
+    stepLabel.textContent = 'Вопрос ' + n;
+    bar.style.width = Math.round((order.length / MAXQ) * 100) + '%';
+    back.hidden = order.length === 0;
+  }
+
+  function reset() {
+    for (const k of Object.keys(answers)) delete answers[k];
+    order.length = 0;
+    form.querySelectorAll('button[data-a]').forEach(b => b.setAttribute('aria-pressed', 'false'));
+    out.hidden = true;
+    card.hidden = false;
+    render();
+  }
+
+  back.addEventListener('click', () => {
+    const last = order.pop();
+    if (!last) return;
+    delete answers[last];
+    form.querySelectorAll('.dq[data-q="' + last + '"] button[data-a]')
+        .forEach(b => b.setAttribute('aria-pressed', 'false'));
+    out.hidden = true;
+    card.hidden = false;
+    render();
+  });
+
+  form.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-a]');
+    if (!btn) return;
+    const box = btn.closest('.dq');
+    const q = box.dataset.q;
+    const first = order.length === 0;
+    if (!(q in answers)) order.push(q);
+    // Значение ответа: да/нет остаются булевыми, любой другой вариант
+    // хранится строкой. Приводить всё к булеву нельзя — тогда третий
+    // вариант вопроса о договоре молча читался бы как «нет».
+    const a = btn.dataset.a;
+    answers[q] = a === 'yes' ? true : (a === 'no' ? false : a);
+    box.querySelectorAll('button[data-a]').forEach(b =>
+      b.setAttribute('aria-pressed', String(b === btn)));
+    if (first && typeof window.mvbTrackGoal === 'function') window.mvbTrackGoal('diagnostic_start');
+    render();
+  });
+
+  render();
+  </script>
+  <script src="/attribution.js?v=e5aab965"></script>
+
+
+</body></html>

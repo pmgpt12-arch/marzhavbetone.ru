@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "observed_utc": "2026-10-23T01:52:14.425610+00:00",
+  "download_sha256": "da9106dc24fd255c9523e352fab8a14e04f3d6fda86d8a03972a4d85861e7b2e",
+  "scope": "isolated synthetic orders/files; actual consumer in memory; no provider, live DB or mail delivery",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "tools/test_download_events.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_actual_readfile_failure_never_claims_delivery (__main__.DownloadEvents.test_actual_readfile_failure_never_claims_delivery) ... ok\ntest_expired_link (__main__.DownloadEvents.test_expired_link) ... ok\ntest_head_is_not_a_delivery_event (__main__.DownloadEvents.test_head_is_not_a_delivery_event) ... ok\ntest_initial_receipt_is_not_a_completed_observation (__main__.DownloadEvents.test_initial_receipt_is_not_a_completed_observation) ... ok\ntest_missing_analytics_library_keeps_download_available (__main__.DownloadEvents.test_missing_analytics_library_keeps_download_available) ... ok\ntest_missing_file_rolls_back_reservation (__main__.DownloadEvents.test_missing_file_rolls_back_reservation) ... ok\ntest_parallel_downloads_count_once_and_keep_limit_counter (__main__.DownloadEvents.test_parallel_downloads_count_once_and_keep_limit_counter) ... ok\ntest_queue_failure_never_breaks_download_and_retry_recovers (__main__.DownloadEvents.test_queue_failure_never_breaks_download_and_retry_recovers) ... ok\ntest_receipt_write_failure_replays_same_identity_not_a_new_event (__main__.DownloadEvents.test_receipt_write_failure_replays_same_identity_not_a_new_event) ... ok\ntest_server_error_does_not_rewrite_unreadable_order (__main__.DownloadEvents.test_server_error_does_not_rewrite_unreadable_order) ... ok\ntest_untrusted_sku_cannot_enter_analytics (__main__.DownloadEvents.test_untrusted_sku_cannot_enter_analytics) ... ok\ntest_valid_and_repeat_preserve_bytes_and_count_once (__main__.DownloadEvents.test_valid_and_repeat_preserve_bytes_and_count_once) ... ok\ntest_wrong_token_then_legal_retry (__main__.DownloadEvents.test_wrong_token_then_legal_retry) ... ok\n\n----------------------------------------------------------------------\nRan 13 tests in 0.967s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/check_download_consumer_replay.py",
+        "--consumer-root",
+        "/home/denis/projects/ai-business-os"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"consumer_file_sha256\": {\n    \"events.py\": \"15bfa74039c7d2c11eddbb20c6dcf3c00354c3822efc10cef12853148200355f\",\n    \"db.py\": \"b56b00e0f17421227326534185701c1d3197e5a73a96e6f466dbcb73582167fd\",\n    \"connector.py\": \"07e67a2a9b123985d8842f573a931180a0d3df499aa5aae38e6636298b417ca8\"\n  },\n  \"database\": \":memory:\",\n  \"live_database_modified\": false,\n  \"network_requests\": 0,\n  \"identical_uuid_attempts\": 2,\n  \"identical_uuid_event_rows\": 1,\n  \"different_uuid_total_rows\": 2,\n  \"ingestion_forwards_uuid\": true,\n  \"scope\": \"actual record() and actual unique index; no live receiver acceptance claimed\"\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "php",
+        "tools/test_download_limit.php"
+      ],
+      "exit_code": 0,
+      "stdout": "Д-2: лимит скачиваний атомарен\n  ok   успешных не больше предела\n  ok   лишние получили 429, а не 200\n  ok   других кодов не было\n  ok   счётчик равен числу успешных — обновления не потеряны\n  ok   заказ читается как JSON после конкурентной записи\n  ok   в download.php нет прямой записи заказа\n  ok   проверки доступа выполняются внутри блокировки\n\n  коды ответов: 200×30, 429×10, прочих 0; delivery.downloads = 30\n\n  ПРОПУЩЕНО  сквозной отрицательный сценарий: chattr +i недоступен\n             (проверки уровня функций ниже от него не зависят)\n  ok   mvb_write_order: успешная запись возвращает true\n  ok   mvb_write_order: не записался временный файл → false\n  ok   mvb_write_order: не прошёл rename → false и без мусора\n  ok   mvb_with_order_lock_strict: сорванная запись даёт ok: false\n  ok   mvb_with_order_lock_strict: успешная запись даёт ok: true\n\nвсе проверки пройдены\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "php",
+        "tools/test_order_lock.php"
+      ],
+      "exit_code": 0,
+      "stdout": "Гонка выдачи закрыта: 8 одновременных процессов, выдача одна, обновления не теряются.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "php",
+        "tools/test_delivery_one_hour.php"
+      ],
+      "exit_code": 0,
+      "stdout": "future HTTP=200 downloads=1 PASS\nboundary HTTP=410 downloads=0 PASS\nexpired HTTP=410 downloads=0 PASS\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "php",
+        "tools/test_delivery_cache_freshness.php"
+      ],
+      "exit_code": 0,
+      "stdout": "Свежесть архива выдачи: 4 проверки пройдено — архив переиспользуется, пока файлы продукта не тронуты, и пересобирается, как только они новее.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_p3_checkout_webhook_http.py"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS: P3 mock API, genuine duplicate webhook, buyer email body, one-hour HTTP ZIP 11/11 current-source SHA\n",
+      "stderr": ""
+    }
+  ]
+}

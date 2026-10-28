@@ -10,17 +10,23 @@ from __future__ import annotations
 
 import argparse
 import contextlib
+import copy
 import datetime as dt
 import hashlib
 import json
 import os
 from pathlib import Path
 import platform
+import re
 import socket
 import subprocess
 import sys
 import time
 from urllib.parse import urlparse
+try:
+    from tools.browser_isolation import handle_external
+except ModuleNotFoundError:
+    from browser_isolation import handle_external
 
 EXPECTED_REPORT_SHA256 = "029e2d0763775a05afd8f6fa86c01a6c9fe94af67e597602e4b3779edfaeecbb"
 EXPECTED_PAGE_COUNT = 88
@@ -46,6 +52,54 @@ def accepted_title_match(source_page: dict, observed_title: str) -> bool:
         from check_p3_current_site_delta import validate_current_p3_delta
     validate_current_p3_delta()
     return True
+
+
+def staging_render_source(source: dict, root: Path) -> dict:
+    """Project render expectations from the pinned staging source; keep history intact."""
+    try:
+        from tools import check_p3_current_site_delta as gate
+        from tools.build_static_content_snapshot import analyze_html, attributes
+    except ModuleNotFoundError:
+        import check_p3_current_site_delta as gate
+        from build_static_content_snapshot import analyze_html, attributes
+    if root.resolve() != gate.ROOT.resolve():
+        raise ValueError("staging render scope requires this repository root")
+    scope = gate.validate_current_customer_route_delta()
+    projected = copy.deepcopy(source)
+    paths = {page['source_path'] for page in projected['pages']}
+    blobs = {}
+    def pinned(path):
+        if path not in blobs:
+            blobs[path] = gate.git('show', scope['source_ref'] + ':' + path)
+        return blobs[path]
+    for page in projected['pages']:
+        path = page['source_path']
+        raw = pinned(path)
+        html = raw.decode('utf-8')
+        render_path = path
+        page['expected_final_route'] = page['public_route']
+        for tag in re.findall(r'<meta\b[^>]*>', html, re.I):
+            attrs = attributes(tag)
+            if attrs.get('http-equiv', '').lower() != 'refresh':
+                continue
+            redirect = re.fullmatch(r'0\s*;\s*url=(/[^?#]+)', attrs.get('content', ''), re.I)
+            if not redirect or redirect.group(1).lstrip('/') not in paths:
+                raise ValueError('staging redirect must target a pinned static page')
+            page['expected_final_route'] = redirect.group(1)
+            render_path = redirect.group(1).lstrip('/')
+        render_raw = pinned(render_path)
+        info = analyze_html(render_path, render_raw.decode('utf-8'))
+        page['historical_source_sha256'] = page.get('source_sha256')
+        page['source_ref'] = scope['source_ref']
+        page['source_sha256'] = sha256_bytes(raw)
+        page['source_bytes'] = len(raw)
+        page['source_blob'] = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+        page['render_source_path'] = render_path
+        page['render_source_sha256'] = sha256_bytes(render_raw)
+        for key in ('title', 'h1', 'canonical'):
+            page[key] = info[key]
+    projected.setdefault('lineage', {})['render_staging_scope'] = scope
+    return projected
 
 
 
@@ -141,8 +195,10 @@ def dynamic_disposition(path: str, excluded: set[str]) -> str:
     return "inert_204_stub_not_executed"
 
 
-def make_dynamic_route_handler(excluded: set[str], observed: list[dict]):
+def make_dynamic_route_handler(excluded: set[str], observed: list[dict], origin=None, external=None):
     def handler(route_object, request) -> None:
+        if origin and handle_external(route_object, request, origin, external):
+            return
         parsed = urlparse(request.url)
         disposition = dynamic_disposition(parsed.path, excluded)
         if disposition == "not_dynamic":
@@ -257,7 +313,8 @@ def make_contact_sheets(output: Path, manifest: list[dict]) -> list[dict]:
     return results
 
 
-def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
+def capture(root: Path, report_path: Path, output: Path, staging_source: bool = False,
+            browser_executable: str | None = None) -> tuple[dict, int]:
     started = dt.datetime.now(dt.timezone.utc).isoformat()
     output.mkdir(parents=True, exist_ok=True)
     raw = b""
@@ -269,6 +326,7 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
     manifest: list[dict] = []
     failures: list[dict] = []
     dynamic_requests_observed: list[dict] = []
+    external_requests_observed: list[dict] = []
     environment = {
         "python": platform.python_version(),
         "platform": platform.platform(),
@@ -284,6 +342,9 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
     try:
         raw = report_path.read_bytes()
         source = validate_source_report(raw)
+        if staging_source:
+            source = staging_render_source(source, root)
+            environment['staging_source_scope'] = source['lineage']['render_staging_scope']
         port = free_port()
         try:
             from playwright.sync_api import sync_playwright
@@ -303,7 +364,8 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
 
         with sync_playwright() as playwright:
             environment["playwright"] = getattr(sys.modules.get("playwright"), "__version__", "unknown")
-            browser = playwright.chromium.launch(headless=True)
+            browser = playwright.chromium.launch(headless=True, executable_path=browser_executable)
+            environment['browser_executable'] = browser_executable or 'playwright-managed'
             environment["chromium"] = browser.version
             for viewport_name, viewport in VIEWPORTS.items():
                 context = browser.new_context(
@@ -345,9 +407,11 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
                         page.on("requestfailed", on_request_failed)
                         page.on("response", on_response)
 
-                        page.route("**/*", make_dynamic_route_handler(excluded, seen_dynamic))
+                        page.route("**/*", make_dynamic_route_handler(excluded, seen_dynamic, base, external_requests_observed))
                         try:
                             response = page.goto(base + route, wait_until="load", timeout=15000)
+                            if source_page.get('expected_final_route', route) != route:
+                                page.wait_for_url(base + source_page['expected_final_route'], wait_until='load', timeout=15000)
                             page.evaluate("document.fonts && document.fonts.ready")
                             lazy_images = materialize_lazy_images(page)
                             title = page.title()
@@ -375,6 +439,7 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
                             ]
                             checks = {
                                 "navigation_status": response.status if response else None,
+                                "final_route_match": page.url == base + source_page.get('expected_final_route', route),
                                 "title_match": accepted_title_match(source_page, title),
                                 "h1_match": h1 == source_page["h1"],
                                 "canonical_match": canonical == source_page["canonical"],
@@ -389,7 +454,7 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
                             reasons = []
                             if checks["navigation_status"] != 200:
                                 reasons.append("navigation_status")
-                            for key in ("title_match", "h1_match", "canonical_match", "horizontal_overflow_pass"):
+                            for key in ("final_route_match", "title_match", "h1_match", "canonical_match", "horizontal_overflow_pass"):
                                 if not checks[key]:
                                     reasons.append(key)
                             if console_errors:
@@ -408,6 +473,12 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
                                 "public_route": route,
                                 "source_path": source_page["source_path"],
                                 "source_sha256": source_page["source_sha256"],
+                                "source_ref": source_page.get("source_ref"),
+                                "historical_source_sha256": source_page.get("historical_source_sha256"),
+                                "render_source_path": source_page.get("render_source_path"),
+                                "render_source_sha256": source_page.get("render_source_sha256"),
+                                "expected_final_route": source_page.get("expected_final_route", route),
+                                "observed_url": page.url,
                                 "viewport": viewport_name,
                                 "viewport_size": viewport,
                                 "relative_path": screenshot_rel.as_posix(),
@@ -421,6 +492,7 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
                                 "failure_reasons": reasons,
                             }
                             manifest.append(item)
+                            print(f"[{len(manifest)}/{EXPECTED_PAGE_COUNT * len(VIEWPORTS)}] {viewport_name} {route}: {item['status']}", flush=True)
                             if reasons:
                                 failures.append({"public_route": route, "viewport": viewport_name, "reasons": reasons})
                         except Exception as exc:
@@ -490,9 +562,11 @@ def capture(root: Path, report_path: Path, output: Path) -> tuple[dict, int]:
         },
         "failures": failures,
         "dynamic_requests_observed": dynamic_requests_observed,
+        "external_requests_observed": external_requests_observed,
         "acceptance_limits": {
             "browser_render_snapshot_accepted": status.startswith("PASS_"),
             "dynamic_endpoints_accepted": False,
+            "external_services_accepted": False,
             "substantive_content_quality_accepted": False,
             "legal_accepted": False,
             "deploy_accepted": False,
@@ -523,15 +597,19 @@ def main() -> int:
     parser.add_argument("--report", type=Path, default=Path("tools/reports/site-static-content-snapshot-20261012/report.json"))
     parser.add_argument("--output", type=Path, default=Path("browser-snapshot-artifact"))
     parser.add_argument("--validate-only", action="store_true")
+    parser.add_argument("--staging-source", action="store_true")
+    parser.add_argument("--browser-executable", default=os.getenv('BROWSER_SNAPSHOT_EXECUTABLE') or None)
     args = parser.parse_args()
     root = args.root.resolve()
     report_path = args.report if args.report.is_absolute() else root / args.report
     if args.validate_only:
         source = validate_source_report(report_path.read_bytes())
+        if args.staging_source:
+            source = staging_render_source(source, root)
         print(f"source contract PASS: {len(source['pages'])} pages")
         return 0
     output = args.output if args.output.is_absolute() else root / args.output
-    report, exit_code = capture(root, report_path, output)
+    report, exit_code = capture(root, report_path, output, args.staging_source, args.browser_executable)
     print(json.dumps({"status": report["status"], "counts": report["counts"]}, ensure_ascii=False))
     return exit_code
 

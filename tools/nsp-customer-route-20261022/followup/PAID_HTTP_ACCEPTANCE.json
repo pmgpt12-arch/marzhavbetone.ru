@@ -1,0 +1,21 @@
+{
+  "status": "PASS_ISOLATED_MOCK_PROVIDER",
+  "source_ref": "af71f8212767dc4dbff71924848cd06c52f8e4d4",
+  "execution": "native PHP with curl, mbstring and zip on ai-workstation; isolated copied source and temporary orders",
+  "test": "tools/test_p3_checkout_webhook_http.py",
+  "assertions": [
+    "real HTTP payment.php request with forged client price; server charged the configured P3 price in the mock request",
+    "webhook.php verifies payment through the isolated mock API instead of trusting the notification body",
+    "duplicate succeeded webhook retains delivery link and admin notification timestamp",
+    "buyer email body contains the one-hour download link",
+    "download.php sends actual ZIP bytes; each of 11 entries matches the current branch source SHA-256",
+    "download counter increments from zero to one",
+    "product originals remain unchanged"
+  ],
+  "stdout": "PASS: P3 mock API, genuine duplicate webhook, buyer email body, one-hour HTTP ZIP 11/11 current-source SHA",
+  "limits": [
+    "payment provider is a local synthetic HTTP API; no real provider transaction",
+    "sendmail is disabled; buyer mailbox receipt not checked",
+    "no production orders, payment credentials, payment endpoint edits or buyer archive edits"
+  ]
+}

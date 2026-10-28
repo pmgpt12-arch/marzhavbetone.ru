@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "tested_at": "2026-10-22T23:48:29.687296+00:00",
+  "original_download_sha256": "8c90c5abf5900d1ab7e14d663a584e304fcf9ef8e37a953a4ac5b231e1b6ec55",
+  "candidate_download_sha256": "3c4554a341dff943c9b2edf4f2be6c98f229ddadf1c24bdddc4d1cf0f5267b35",
+  "patch_applies_to_original": true,
+  "provider": "loopback mock only",
+  "real_charges": 0,
+  "mail_send": "disabled",
+  "working_branch_download_modified": false,
+  "scenarios": [
+    {
+      "mode": "healthy",
+      "exit_code": 0,
+      "stdout": "PROPOSAL PASS: healthy; HEAD/denied=0; repeat GET=1 event(s); ZIP SHA 11/11\nPASS: P3 mock API, genuine duplicate webhook, buyer email body, one-hour HTTP ZIP 11/11 current-source SHA\n",
+      "stderr": ""
+    },
+    {
+      "mode": "failure_recovery",
+      "exit_code": 0,
+      "stdout": "PROPOSAL PASS: failure_recovery; HEAD/denied=0; repeat GET=1 event(s); ZIP SHA 11/11\nPASS: P3 mock API, genuine duplicate webhook, buyer email body, one-hour HTTP ZIP 11/11 current-source SHA\n",
+      "stderr": ""
+    },
+    {
+      "mode": "missing_library",
+      "exit_code": 0,
+      "stdout": "PROPOSAL PASS: missing_library; HEAD/denied=0; repeat GET=0 event(s); ZIP SHA 11/11\nPASS: P3 mock API, genuine duplicate webhook, buyer email body, one-hour HTTP ZIP 11/11 current-source SHA\n",
+      "stderr": ""
+    }
+  ]
+}

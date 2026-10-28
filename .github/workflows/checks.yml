@@ -30,12 +30,18 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      payment_preflight:
+        description: 'Только определить режим ключа тестовой оплаты, без запросов провайдеру'
+        type: boolean
+        default: false
 
 jobs:
   # ЭТА РАБОТА — КАНДИДАТ В ОБЯЗАТЕЛЬНЫЕ ДЛЯ ЗАЩИТЫ ВЕТКИ. Она и только она
   # отвечает за то, что видит посетитель и получает покупатель. Имя работы
   # менять нельзя, не поменяв настройку защиты: защита ссылается на имя.
   public-release:
+    if: github.event_name != 'workflow_dispatch' || !inputs.payment_preflight
     name: Публичный релиз
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -72,6 +78,7 @@ jobs:
   # снимется сам, когда файл вернётся. Восстанавливать данные ради старого
   # теста не нужно.
   internal:
+    if: github.event_name != 'workflow_dispatch' || !inputs.payment_preflight
     name: Внутренний контур (не блокирует)
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -90,3 +97,22 @@ jobs:
 
       - name: Проверки внутреннего контура
         run: python3 tools/run_checks.py --class internal
+
+  payment-mode-preflight:
+    if: github.event_name == 'workflow_dispatch' && inputs.payment_preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Classify configured payment key without disclosure or provider access
+        env:
+          NSP_PAYMENT_KEY: ${{ secrets.NSP_YOOKASSA_KEY }}
+          NSP_PAYMENT_SHOP_ID: ${{ secrets.NSP_YOOKASSA_SHOP_ID || vars.NSP_YOOKASSA_SHOP_ID }}
+        run: python3 tools/check_payment_test_mode.py --output payment-test-mode.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: payment-test-mode-${{ github.run_id }}
+          path: payment-test-mode.json
+          retention-days: 7

@@ -1,0 +1,56 @@
+[
+  {
+    "command": "python3 tools/test_customer_route.py",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.028s\n\nOK\n"
+  },
+  {
+    "command": "python3 tools/sync_customer_route.py",
+    "exit": 0,
+    "stdout": "PASS: 13 catalog SKU, cart snapshot, P4 cross-links and price\n",
+    "stderr": ""
+  },
+  {
+    "command": "python3 tools/test_preview_contract.py",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.003s\n\nOK\n"
+  },
+  {
+    "command": "python3 tools/build_preview.py --check",
+    "exit": 0,
+    "stdout": "Страниц товаров: 18; с предпросмотром: 5\n   расхождений нет\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tools/test_diagnostic_sku_standalone.js",
+    "exit": 0,
+    "stdout": "  ok   цены пары на странице совпадают с products-config.php\n  ok   сценарий с парой показывает оба товара одновременно\n  ok   оба варианта открыты собственным условием, условия различны\n  ok   S-0/S-1 ведут в принятый P1 с учётом консолидации T1\n\nПроверок 4, упало 0.\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tools/test_attribution_goals.js",
+    "exit": 0,
+    "stdout": "Ссылок под целью: 283 (товар 196, бесплатный материал 87); из них записаны относительно: 129\nДефектов нет: каждая ссылка на товар и на бесплатный материал считается счётчиком.\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tools/test_browser_events.js",
+    "exit": 0,
+    "stdout": "события браузера\n  ok   test_session_started_once_per_session\n  ok   test_session_started_again_in_new_session\n  ok   test_content_viewed_emitted\n  ok   test_content_viewed_carries_sku_on_product_page\n  ok   test_browser_does_not_invent_pain\n  ok   test_events_carry_no_pii\n  ok   test_beacon_failure_does_not_break_navigation\n  ok   test_offline_receiver_does_not_break_page\n  ok   test_no_beacon_falls_back_without_throwing\n  ok   test_everything_broken_still_leaves_page_usable\n  ok   test_lead_form_gets_anonymous_id\n  ok   test_lead_source_article_slug_strips_query_and_hash\n  ok   test_lead_source_form_on_article_page_itself\n  ok   test_lead_source_absent_on_direct_or_non_article_entry\n  ok   test_lead_source_keeps_utm_and_existing_fields\n  ok   test_lead_form_serializes_source_with_all_fields\n\nвсе проверки пройдены\n",
+    "stderr": ""
+  },
+  {
+    "command": "python3 tools/test_run_checks.py",
+    "exit": 0,
+    "stdout": "Сторож раннера проверок\n  ✓ упала блокирующая — прогон FAIL\n  ✓ в итоге назван виновник\n  ✓ упала не блокирующая — прогон PASS\n  ✓ но провал напечатан\n  ✓ после падения остальные исполняются\n  ✓ сводка считает все три\n  ✓ нет входных данных — проверка не запускается\n  ✓ и путь назван\n  ✓ пропуск не считается прошедшей проверкой\n  ✓ дубликат id отвергается\n  ✓ внутренняя не может блокировать\n  ✓ все инструменты реестра на месте\n  ✓ имена в реестре уникальны\n  ✓ у каждой не блокирующей записано решение\n  ✓ публичный контур не пуст\n\nпровалов: 0\n",
+    "stderr": ""
+  },
+  {
+    "command": "git diff --check",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,72 @@
+{
+  "acceptance_limits": {
+    "cdn_cache_behavior_accepted": false,
+    "delivery_accepted": false,
+    "deploy_accepted": false,
+    "local_php_http_status_body_accepted": true,
+    "local_php_response_headers_accepted": true,
+    "predecessor_source_contract_accepted": true,
+    "production_php_or_proxy_accepted": false,
+    "public_reachability_accepted": false,
+    "publication_accepted": false,
+    "release_accepted": false,
+    "runtime_security_accepted": false
+  },
+  "lineage": {
+    "accepted_predecessor_report_sha256": "bea20349ede3700a51bd155b745ea2bc9749de2e35762105d0fd6474e6e8341a",
+    "staging_scope": {
+      "head": "046e47009147b892b9efa87ed1c3e3136fd42ab5",
+      "historical_snapshot_preserved": true,
+      "protected_product_payment_source_unchanged": true,
+      "publication_accepted": false,
+      "release_accepted": false,
+      "source_paths": 694,
+      "source_ref": "046e47009147b892b9efa87ed1c3e3136fd42ab5",
+      "verdict": "PASS_PINNED_CUSTOMER_ROUTE_STAGING_ONLY"
+    }
+  },
+  "samples": [
+    {
+      "body_bytes": 24142,
+      "body_sha256": "3fab37d0ccf25834ff2674cb0f22923ddea53f75d597a1d21d0d3e4c162105c1",
+      "headers": {
+        "cache-control": "no-cache, no-store, must-revalidate",
+        "content-type": "application/javascript; charset=UTF-8",
+        "expires": "0",
+        "pragma": "no-cache"
+      },
+      "index": 1,
+      "method": "GET",
+      "path": "/app-script.php",
+      "status": 200
+    },
+    {
+      "body_bytes": 24142,
+      "body_sha256": "3fab37d0ccf25834ff2674cb0f22923ddea53f75d597a1d21d0d3e4c162105c1",
+      "headers": {
+        "cache-control": "no-cache, no-store, must-revalidate",
+        "content-type": "application/javascript; charset=UTF-8",
+        "expires": "0",
+        "pragma": "no-cache"
+      },
+      "index": 2,
+      "method": "GET",
+      "path": "/app-script.php",
+      "status": 200
+    }
+  ],
+  "schema_version": 1,
+  "sources": [
+    {
+      "bytes": 239,
+      "path": "app-script.php",
+      "sha256": "7ba0130cbe199fe0018da9c5cf5794ef35b968906fa6b007d86b8640bd0e5461"
+    },
+    {
+      "bytes": 24142,
+      "path": "app.js",
+      "sha256": "3fab37d0ccf25834ff2674cb0f22923ddea53f75d597a1d21d0d3e4c162105c1"
+    }
+  ],
+  "status": "PASS_LOCAL_HTTP_RUNTIME_CONTRACT_ONLY"
+}

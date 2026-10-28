@@ -1,0 +1,51 @@
+{
+  "status": "PASS_REAL_COUNTER_CONFIGURATION; LIVE_EVENT_E2E_OPEN",
+  "counter_id": 111149105,
+  "source_ref": "800280b28f014841bf38a4dd97f90fb52ee690f5",
+  "before": {
+    "workflow_run": 39822946959,
+    "mode": {
+      "create_goals": false,
+      "write": false
+    },
+    "missing_goals": [
+      "lead_submit",
+      "lead_ready",
+      "download_click"
+    ]
+  },
+  "created": {
+    "workflow_run": 39823302901,
+    "mode": {
+      "create_goals": true,
+      "write": false
+    },
+    "goal_ids": {
+      "lead_submit": 673578058,
+      "lead_ready": 673578060,
+      "download_click": 673578061
+    }
+  },
+  "after": {
+    "workflow_run": 39823703686,
+    "job_id": 119981304055,
+    "mode": {
+      "create_goals": false,
+      "write": false
+    },
+    "present_goals": [
+      "lead_submit",
+      "lead_ready",
+      "download_click"
+    ],
+    "missing_goals": [],
+    "commit_snapshot_step": "SKIPPED",
+    "api_read": "actual Yandex Metrika counter via existing GitHub secret"
+  },
+  "limits": [
+    "Report period was 2026-10-21; zero reaches for newly created goals is not an E2E acceptance result",
+    "Candidate is not deployed; real lead_submit/lead_ready/download_click receipt is still unverified",
+    "download_served is not implemented; HTTP byte receipt is a separate fact",
+    "No production analytics events were synthesized to inflate goal counts"
+  ]
+}
