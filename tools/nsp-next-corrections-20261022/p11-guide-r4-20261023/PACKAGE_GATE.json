@@ -1,0 +1,50 @@
+{
+  "status": "FULL_P11_PACKAGE_REBUILT; CURRENT_53_54_NATIVE_VERIFIED; LINE_RELEASE_NOT_CLAIMED",
+  "archive": "candidate-archives/13-raschet-metrami.zip",
+  "sha256": "fca8d1c4d525dce05b0760367d0c9ae4dcd60085ace8f9d2b22d97c580415ac9",
+  "members": [
+    {
+      "name": "56-pervyy-den-do-podpisi.docx",
+      "sha256": "8830cb6d0407ea0e740216327e1ba119d4cf391cd449773ab021efee3b858a41"
+    },
+    {
+      "name": "50-slovar-poley-raschet-metrami.docx",
+      "sha256": "40c068ab8d7cfabebfc3f3933bd0d984b7beb08e8c2d2cad7abb274cb344da80"
+    },
+    {
+      "name": "51-algoritm-raschet-metrami.pdf",
+      "sha256": "26933a39e735b829089a6cfac3e6ed3cf89afd164894ae1a98d0b15bcb6c3033"
+    },
+    {
+      "name": "54-zapros-sostoyanie-escrow.docx",
+      "sha256": "38379c8e8c8ef03a4e7436a3eab5aaafe7e1fbcada5d8d2437e9408448537f44"
+    },
+    {
+      "name": "55-pamyatka-punkt-ustupki-escrow.pdf",
+      "sha256": "ebef8943a9744c704e0070df373caf089731700ffa68e06ea5551165a92cacc1"
+    },
+    {
+      "name": "00-START-HERE.txt",
+      "sha256": "5ae080f3ec510868433b9fafdc94fac6e8eeeb7780a55f969ec6615453cb0aec"
+    },
+    {
+      "name": "53-zapros-status-obekta.docx",
+      "sha256": "543f56a23bf1552be9bfefb8e859d6a67e1302298d96a99667ae32566a6b571c"
+    },
+    {
+      "name": "52-chek-list-raschet-metrami.docx",
+      "sha256": "df15df36e99e23ed76faa97a5afc2fe350ac301ec6ea2baf5eeb6255fc83fd6d"
+    }
+  ],
+  "member_count": 8,
+  "changed_vs_previous_full_p11_qa": [
+    "54-zapros-sostoyanie-escrow.docx",
+    "53-zapros-status-obekta.docx"
+  ],
+  "new_forms_native": "PASS_EXACT_SHA_2_BLANK_2_FILLED",
+  "synthetic_examples_in_buyer_archive": false,
+  "protected_52_56": "UNCHANGED_EXACT_SHA; prior acceptance reused",
+  "unchanged_00_50_51_52_55_56": "EXACT_BYTES_FROM_PREVIOUS_FULL_QA; historical review proof retained in prior commits",
+  "prior_norm_review": "paid-followup-20261023/P11_NORM_REVIEW.json; no new legal claims in this one-word patch",
+  "public_or_canonical_switch": false
+}

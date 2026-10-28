@@ -1,0 +1,184 @@
+{
+  "status": "INTEGRATION_READY_NOT_PUBLISHED",
+  "scope": "13-file byte-identical integration and four complete technical archive candidates; not full product release acceptance",
+  "date_utc": "2026-10-22T09:45:33.094798+00:00",
+  "branch": "fix/nsp-product-guides-norms-20261021",
+  "source_commit": "111f12f45ff5bce98ffbd37391b9b637ae8a1ac8",
+  "main_observed_and_preserved": "c7e32ecc7ad5d8d4b0a3e425ccfe8eeccafe8433",
+  "candidate_commit": "ac7c517e04bf9a9d89783cee5ec84dcf2e2590bf",
+  "source_verified": 13,
+  "already_accepted": 13,
+  "resaved_or_regenerated_accepted_documents": 0,
+  "known_previous_in_main": 13,
+  "package_verified": 4,
+  "total_archive_members": 59,
+  "accepted_archive_members": 13,
+  "unchanged_other_archive_members": 46,
+  "ci_registry_entries": 107,
+  "ci_registry_duplicates": 0,
+  "independent_main_paths_preserved": 221,
+  "existing_out_of_scope_branch_changes_preserved": [
+    "products-storage/02-dopraboty-bez-poter/00-START-HERE.txt",
+    "products-storage/05-ks-bez-vozvrata/00-START-HERE.txt"
+  ],
+  "registry": "CURRENT_ROOT_FACTS_RECONCILED_BY_EXISTING_TOOL",
+  "historical_inventory_sha256": "f9ea9acb1c39826599787ebdc9372765863a48b8f812eb14c41a39d12627da5f",
+  "historical_inventory": "UNCHANGED_AND_CHECKED_BY_EXISTING_TOOL",
+  "checks": [
+    {
+      "check": "registry-reconcile",
+      "status": "PASS"
+    },
+    {
+      "check": "registry-check",
+      "status": "PASS"
+    },
+    {
+      "check": "historical-inventory-check",
+      "exit": 0,
+      "status": "PASS",
+      "log": "verified-historical-inventory-check.log"
+    },
+    {
+      "check": "test_nsp_audit_documents",
+      "exit": 0,
+      "status": "PASS",
+      "log": "verified-test_nsp_audit_documents.log"
+    },
+    {
+      "check": "test_nsp_p5_print_preservation",
+      "exit": 0,
+      "status": "PASS",
+      "log": "verified-test_nsp_p5_print_preservation.log"
+    },
+    {
+      "check": "test_nsp_p5_calendar_year",
+      "exit": 0,
+      "status": "PASS",
+      "log": "verified-test_nsp_p5_calendar_year.log"
+    },
+    {
+      "check": "test_nsp_p8_09_owner_acceptance",
+      "exit": 0,
+      "status": "PASS",
+      "log": "verified-test_nsp_p8_09_owner_acceptance.log"
+    },
+    {
+      "check": "test_nsp_p8_02_owner_acceptance",
+      "exit": 0,
+      "status": "PASS",
+      "log": "verified-test_nsp_p8_02_owner_acceptance.log"
+    },
+    {
+      "check": "verify_nsp_accepted_masters",
+      "exit": 0,
+      "status": "PASS",
+      "log": "verified-verify_nsp_accepted_masters.log"
+    }
+  ],
+  "overall_ci": "NOT_CLAIMED_FROM_TARGETED_RUNS",
+  "archives": [
+    {
+      "sku": "p5",
+      "zip": "07-uderzhaniya-shtrafy-zachety.zip",
+      "count": 30,
+      "sha256": "62eb0fda0010bc6a2c3c5c1fdd8524675bf156f43e3463347c865ea077bb1a68",
+      "repository_candidate_path": "tools/nsp-verified-integration-20261022/candidate-archives/07-uderzhaniya-shtrafy-zachety.zip",
+      "release_status": "RELEASE_BLOCKED"
+    },
+    {
+      "sku": "p8",
+      "zip": "10-avans-usloviya-i-pribyl.zip",
+      "count": 11,
+      "sha256": "4da79ef8244b4d5391a188e61bcee13060563f7f1f54a7d7bf438d6365b6ac1f",
+      "repository_candidate_path": "tools/nsp-verified-integration-20261022/candidate-archives/10-avans-usloviya-i-pribyl.zip",
+      "release_status": "PACKAGE_VERIFIED_NOT_PUBLISHED"
+    },
+    {
+      "sku": "p9",
+      "zip": "11-bankrotstvo-genpodryadchika.zip",
+      "count": 10,
+      "sha256": "72276d438809fefc09af419e28937087e7fd78ed4f47282678b7ce952baf0c20",
+      "repository_candidate_path": "tools/nsp-verified-integration-20261022/candidate-archives/11-bankrotstvo-genpodryadchika.zip",
+      "release_status": "RELEASE_BLOCKED"
+    },
+    {
+      "sku": "p11",
+      "zip": "13-raschet-metrami.zip",
+      "count": 8,
+      "sha256": "9037dd89b0d35255ce5a0cf93ed9472435486d4ab3be2ab718c147104b6c99fe",
+      "repository_candidate_path": "tools/nsp-verified-integration-20261022/candidate-archives/13-raschet-metrami.zip",
+      "release_status": "RELEASE_BLOCKED"
+    }
+  ],
+  "related_materials": {
+    "P5": {
+      "start_pdf_count": 30,
+      "actual_zip_count": 30,
+      "release_status": "RELEASE_BLOCKED",
+      "remaining": "S01 calendar-year defect closed. Other previously reported calculation/control findings, including false positive readiness and date-based selection, are outside this 13-file transfer."
+    },
+    "P8": {
+      "start_list_count": 11,
+      "actual_zip_count": 11,
+      "reviewed": [
+        "01",
+        "03",
+        "04",
+        "05",
+        "06",
+        "00-START-HERE"
+      ],
+      "observed": "Referenced Comparison and Balance sheets exist in accepted workbooks; file order and 11-member start list match. No new filename/sheet-reference contradiction found in this bounded review. Not full legal or whole-product acceptance.",
+      "owner_acceptance_02_09": "REUSED_FOR_EXACT_UNCHANGED_SHA",
+      "release_status": "PACKAGE_VERIFIED_NOT_PUBLISHED"
+    },
+    "P9": {
+      "start_list_count": 10,
+      "actual_zip_count": 10,
+      "release_status": "RELEASE_BLOCKED",
+      "remaining_file": "04-reestr-dokumentov-i-dat-po-obektu.xlsx",
+      "remaining": "Debt register / potential duplicate summation and adjacent content findings not closed by accepted DOCX 02/05/08/09."
+    },
+    "P11": {
+      "start_list_count": 8,
+      "actual_zip_count": 8,
+      "release_status": "RELEASE_BLOCKED",
+      "remaining_files": [
+        "51-algoritm-raschet-metrami.pdf",
+        "54-zapros-sostoyanie-escrow.docx",
+        "55-pamyatka-punkt-ustupki-escrow.pdf"
+      ],
+      "remaining": "Complete alignment with accepted 52/56, party scheme and debt-extinguishment event remain open per handoff. Related files read and preserved; no silent out-of-allowlist edits."
+    }
+  },
+  "native_acceptance": "Existing exact-SHA Word/P5 Excel and owner P8/02/P8/09 records reused; no new Office job or manual request",
+  "protected_runtime_equals_main": [
+    "config.php",
+    "payment.php",
+    "webhook.php",
+    "download.php",
+    "products-config.php"
+  ],
+  "public_writes": 0,
+  "main_writes": 0,
+  "real_orders": 0,
+  "payments_or_secrets_changed": false,
+  "system_settings_changed": false,
+  "production_delivery_content": "NOT_OBSERVED_IN_THIS_CANDIDATE_ONLY_TASK",
+  "recovery": [
+    {
+      "class": "UNMATERIALIZED_NO_CHECKOUT_INDEX",
+      "rule": "Initialize clone index and explicitly populate the bounded worktree before dependent checks."
+    },
+    {
+      "class": "CI_REGISTRY_INDENTATION",
+      "rule": "Parse YAML and reject duplicate/missing IDs before scheduling checks.",
+      "gate": "ci-registry-preflight.json"
+    },
+    {
+      "class": "MISSING_HISTORICAL_PROMISOR_BLOBS",
+      "rule": "Batch-hydrate exact historical blob set before immutable inventory verification; no timeout increase or inventory rewrite."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+<report status="FAIL" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-p5-final-print-r1-20261023">
+  <error>System.Runtime.InteropServices.COMException (0x80080005): Сбой при получении производства объектов класса COM для компонента с CLSID {00024500-0000-0000-C000-000000000046} в результате следующей ошибки: 80080005.
+   в System.Runtime.Remoting.RemotingServices.AllocateUninitializedObject(RuntimeType objectType)
+   в System.Runtime.Remoting.Activation.ActivationServices.CreateInstance(Type serverType)
+   в System.Runtime.Remoting.Activation.ActivationServices.IsCurrentContextOK(Type serverType, Object[] props, Boolean bNewObj)
+   в System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean&amp; canBeCached, RuntimeMethodHandle&amp; ctor, Boolean&amp; bNeedSecurityCheck)
+   в System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean fillCache)
+   в System.RuntimeType.CreateInstanceImpl(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean fillCache)
+   в System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   в System.RuntimeType.CreateInstanceImpl(BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes)
+   в Microsoft.PowerShell.Commands.NewObjectCommand.SafeCreateInstance(Type t, Object[] args) 
+C:\Users\x6\AppData\Local\MB-ExcelQA\native.ps1:22 знак:24
++     $excel = New-Object &lt;&lt;&lt;&lt;  -ComObject Excel.Application</error>
+</report>

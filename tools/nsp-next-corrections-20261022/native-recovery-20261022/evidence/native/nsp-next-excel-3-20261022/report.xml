@@ -1,0 +1,23 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-next-excel-3-20261022" excel_version="16.0" excel_build="4324">
+  <check name="n3:input_sha" pass="True" expected="8d9be68debdbe343da03a5e7603e4549aa1409bf97cfaaf403510bd57b0200bc" actual="8d9be68debdbe343da03a5e7603e4549aa1409bf97cfaaf403510bd57b0200bc" />
+  <print_preflight tag="n3" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Сводка" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Виды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+  </print_preflight>
+  <check name="n3:empty:C8" pass="True" expected="text:НЕТ ДАННЫХ" actual="System.String:НЕТ ДАННЫХ" />
+  <check name="n3:unknown-ks:C8" pass="True" expected="text:НЕТ ДАННЫХ" actual="System.String:НЕТ ДАННЫХ" />
+  <check name="n3:unknown-blocking:C8" pass="True" expected="text:НЕ ПРОВЕРЕНО" actual="System.String:НЕ ПРОВЕРЕНО" />
+  <check name="n3:blocked:C8" pass="True" expected="text:К закрытию не готов: 1" actual="System.String:К закрытию не готов: 1" />
+  <check name="n3:signed:C8" pass="True" expected="text:По внесённым строкам блокирующих нет" actual="System.String:По внесённым строкам блокирующих нет" />
+  <check name="n3:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="n3:pdf_export" pass="True" expected="%PDF-" actual="bytes=221694" />
+  <print_preflight tag="n3" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Сводка" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Виды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+  </print_preflight>
+  <check name="n3:source_unchanged" pass="True" expected="8d9be68debdbe343da03a5e7603e4549aa1409bf97cfaaf403510bd57b0200bc" actual="8d9be68debdbe343da03a5e7603e4549aa1409bf97cfaaf403510bd57b0200bc" />
+</report>

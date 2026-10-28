@@ -1,0 +1,90 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="p5-native-final-20261021-232534" excel_version="16.0" excel_build="4324">
+  <check name="p5before:input_sha" pass="True" expected="20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31" actual="20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31" />
+  <print_preflight tag="p5before" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Расчёт требования" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Расчёт требования'!Print_Area" refers_to="='Расчёт требования'!$A$1:$H$42" />
+  </print_preflight>
+  <check name="p5before:baseline-leap-defect:D27" pass="True" expected="number:3" actual="System.Double:3" />
+  <check name="p5before:baseline-leap-defect:G27" pass="True" expected="number:300.82191780821915" actual="System.Double:300.821917808219" />
+  <check name="p5before:baseline-leap-defect:G32" pass="True" expected="number:300.82191780821915" actual="System.Double:300.821917808219" />
+  <check name="p5before:baseline-leap-defect:H27" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5before:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="p5before:pdf_export" pass="True" expected="%PDF-" actual="bytes=203417" />
+  <print_preflight tag="p5before" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Расчёт требования" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Расчёт требования'!Print_Area" refers_to="='Расчёт требования'!$A$1:$H$42" />
+  </print_preflight>
+  <check name="p5before:source_unchanged" pass="True" expected="20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31" actual="20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31" />
+  <check name="p5fixed:input_sha" pass="True" expected="f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3" actual="f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3" />
+  <print_preflight tag="p5fixed" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Расчёт требования" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Расчёт требования'!Print_Area" refers_to="='Расчёт требования'!$A$1:$H$42" />
+  </print_preflight>
+  <check name="p5fixed:leap-3-days:D27" pass="True" expected="number:3" actual="System.Double:3" />
+  <check name="p5fixed:leap-3-days:G27" pass="True" expected="number:300.0" actual="System.Double:300" />
+  <check name="p5fixed:leap-3-days:G32" pass="True" expected="number:300.0" actual="System.Double:300" />
+  <check name="p5fixed:leap-3-days:H27" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:leap-3-days:H32" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:ordinary-3-days:D27" pass="True" expected="number:3" actual="System.Double:3" />
+  <check name="p5fixed:ordinary-3-days:G27" pass="True" expected="number:300.0" actual="System.Double:300" />
+  <check name="p5fixed:ordinary-3-days:G32" pass="True" expected="number:300.0" actual="System.Double:300" />
+  <check name="p5fixed:ordinary-3-days:H27" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:ordinary-3-days:H32" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:cross-year:D27" pass="True" expected="number:2" actual="System.Double:2" />
+  <check name="p5fixed:cross-year:G27" pass="True" expected="number:199.72677595628414" actual="System.Double:199.726775954829" />
+  <check name="p5fixed:cross-year:G32" pass="True" expected="number:199.72677595628414" actual="System.Double:199.726775954829" />
+  <check name="p5fixed:cross-year:H27" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:cross-year:H32" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:full-leap-year:D27" pass="True" expected="number:366" actual="System.Double:366" />
+  <check name="p5fixed:full-leap-year:G27" pass="True" expected="number:36600.0" actual="System.Double:36600" />
+  <check name="p5fixed:full-leap-year:G32" pass="True" expected="number:36600.0" actual="System.Double:36600" />
+  <check name="p5fixed:full-leap-year:H27" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:full-leap-year:H32" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:two-full-years:D27" pass="True" expected="number:731" actual="System.Double:731" />
+  <check name="p5fixed:two-full-years:G27" pass="True" expected="number:20000.0" actual="System.Double:20000" />
+  <check name="p5fixed:two-full-years:G32" pass="True" expected="number:20000.0" actual="System.Double:20000" />
+  <check name="p5fixed:two-full-years:H27" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:two-full-years:H32" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:century-not-leap:D27" pass="True" expected="number:3" actual="System.Double:3" />
+  <check name="p5fixed:century-not-leap:G27" pass="True" expected="number:300.0" actual="System.Double:300" />
+  <check name="p5fixed:century-not-leap:G32" pass="True" expected="number:300.0" actual="System.Double:300" />
+  <check name="p5fixed:century-not-leap:H27" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:century-not-leap:H32" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:zero-rate:D27" pass="True" expected="number:3" actual="System.Double:3" />
+  <check name="p5fixed:zero-rate:G27" pass="True" expected="number:0.0" actual="System.Double:0" />
+  <check name="p5fixed:zero-rate:G32" pass="True" expected="number:0.0" actual="System.Double:0" />
+  <check name="p5fixed:zero-rate:H27" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:zero-rate:H32" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:numeric-rate-rejected:G27" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:numeric-rate-rejected:G32" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:numeric-rate-rejected:H27" pass="True" expected="text:Ставка вставлена числом — не видно, был ли знак %. Наберите её заново с апострофом впереди: '0,1 или '0,1%" actual="System.String:Ставка вставлена числом — не видно, был ли знак %. Наберите её заново с апострофом впереди: '0,1 или '0,1%" />
+  <check name="p5fixed:numeric-rate-rejected:H32" pass="True" expected="text:Итог не считается: исправьте строки с сообщением" actual="System.String:Итог не считается: исправьте строки с сообщением" />
+  <check name="p5fixed:missing-start-rejected:G27" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:missing-start-rejected:G32" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:missing-start-rejected:H27" pass="True" expected="text:Заполните все поля строки: начало, окончание, базу и ставку" actual="System.String:Заполните все поля строки: начало, окончание, базу и ставку" />
+  <check name="p5fixed:partial-payments:G27" pass="True" expected="number:500" actual="System.Double:500" />
+  <check name="p5fixed:partial-payments:G28" pass="True" expected="number:300" actual="System.Double:300" />
+  <check name="p5fixed:partial-payments:G32" pass="True" expected="number:800" actual="System.Double:800" />
+  <check name="p5fixed:partial-payments:H27" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:partial-payments:H28" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:partial-payments:H32" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:all-five-corrected-rows:G27" pass="True" expected="number:300" actual="System.Double:300" />
+  <check name="p5fixed:all-five-corrected-rows:G28" pass="True" expected="number:300" actual="System.Double:300" />
+  <check name="p5fixed:all-five-corrected-rows:G29" pass="True" expected="number:300" actual="System.Double:300" />
+  <check name="p5fixed:all-five-corrected-rows:G30" pass="True" expected="number:300" actual="System.Double:300" />
+  <check name="p5fixed:all-five-corrected-rows:G31" pass="True" expected="number:300" actual="System.Double:300" />
+  <check name="p5fixed:all-five-corrected-rows:G32" pass="True" expected="number:1500" actual="System.Double:1500" />
+  <check name="p5fixed:all-five-corrected-rows:H32" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:unchanged-contract-penalty:D18" pass="True" expected="number:10" actual="System.Double:10" />
+  <check name="p5fixed:unchanged-contract-penalty:G18" pass="True" expected="number:500" actual="System.Double:500" />
+  <check name="p5fixed:unchanged-contract-penalty:G23" pass="True" expected="number:500" actual="System.Double:500" />
+  <check name="p5fixed:unchanged-contract-penalty:H18" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5fixed:unchanged-contract-penalty:G32" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="p5fixed:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="p5fixed:pdf_export" pass="True" expected="%PDF-" actual="bytes=203334" />
+  <print_preflight tag="p5fixed" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Расчёт требования" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Расчёт требования'!Print_Area" refers_to="='Расчёт требования'!$A$1:$H$42" />
+  </print_preflight>
+  <check name="p5fixed:source_unchanged" pass="True" expected="f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3" actual="f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3" />
+</report>

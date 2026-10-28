@@ -1,0 +1,34 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-print-area-default-ns-v1-20261023" excel_version="16.0" excel_build="4324">
+  <check name="pd1:input_sha" pass="True" expected="7f8dc5e03f99db6efc6264b933cada4475c8e1d3921a50e0f6a8785632e26454" actual="7f8dc5e03f99db6efc6264b933cada4475c8e1d3921a50e0f6a8785632e26454" />
+  <print_preflight tag="pd1" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="PrintTest" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="PrintTest!Print_Area" refers_to="=PrintTest!$A$1:$A$3" />
+    <print_name name="PrintTest!Print_Titles" refers_to="=PrintTest!$1:$1" />
+  </print_preflight>
+  <check name="pd1:fixed-control:A2" pass="True" expected="number:123" actual="System.Double:123" />
+  <check name="pd1:fixed-control:B2" pass="True" expected="number:456" actual="System.Double:456" />
+  <check name="pd1:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="pd1:pdf_export" pass="True" expected="%PDF-" actual="bytes=4459" />
+  <print_preflight tag="pd1" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="PrintTest" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="PrintTest!Print_Area" refers_to="=PrintTest!$A$1:$A$3" />
+    <print_name name="PrintTest!Print_Titles" refers_to="=PrintTest!$1:$1" />
+  </print_preflight>
+  <check name="pd1:source_unchanged" pass="True" expected="7f8dc5e03f99db6efc6264b933cada4475c8e1d3921a50e0f6a8785632e26454" actual="7f8dc5e03f99db6efc6264b933cada4475c8e1d3921a50e0f6a8785632e26454" />
+  <check name="pd2:input_sha" pass="True" expected="e0f7704f6bf4868f5f6b500f92f75f0604a30068f7a4ba7bc8392e8a6b87444b" actual="e0f7704f6bf4868f5f6b500f92f75f0604a30068f7a4ba7bc8392e8a6b87444b" />
+  <print_preflight tag="pd2" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Печать" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Печать!Print_Area" refers_to="=Печать!$A$1:$A$3" />
+    <print_name name="Печать!Print_Titles" refers_to="=Печать!$1:$1" />
+  </print_preflight>
+  <check name="pd2:fixed-control:A2" pass="True" expected="number:123" actual="System.Double:123" />
+  <check name="pd2:fixed-control:B2" pass="True" expected="number:456" actual="System.Double:456" />
+  <check name="pd2:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="pd2:pdf_export" pass="True" expected="%PDF-" actual="bytes=4478" />
+  <print_preflight tag="pd2" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Печать" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Печать!Print_Area" refers_to="=Печать!$A$1:$A$3" />
+    <print_name name="Печать!Print_Titles" refers_to="=Печать!$1:$1" />
+  </print_preflight>
+  <check name="pd2:source_unchanged" pass="True" expected="e0f7704f6bf4868f5f6b500f92f75f0604a30068f7a4ba7bc8392e8a6b87444b" actual="e0f7704f6bf4868f5f6b500f92f75f0604a30068f7a4ba7bc8392e8a6b87444b" />
+</report>

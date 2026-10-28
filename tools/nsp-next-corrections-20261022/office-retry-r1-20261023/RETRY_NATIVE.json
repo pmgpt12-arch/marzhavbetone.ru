@@ -1,0 +1,11 @@
+{
+  "job": "nsp-p5-final-print-r1-20261023",
+  "channel": "native",
+  "status": "FAIL",
+  "files": [],
+  "scope": "Only exact source SHA; no UI or manual locale claim",
+  "receipt_sha256": "1eb4f12c86d197ae1f0812bf355a9150ebffb9d461d81063be86eee318d9d79a",
+  "error": "System.Runtime.InteropServices.COMException (0x80080005): Сбой при получении производства объектов класса COM для компонента с CLSID {00024500-0000-0000-C000-000000000046} в результате следующей ошибки: 80080005.\n   в System.Runtime.Remoting.RemotingServices.AllocateUninitializedObject(RuntimeType objectType)\n   в System.Runtime.Remoting.Activation.ActivationServices.CreateInstance(Type serverType)\n   в System.Runtime.Remoting.Activation.ActivationServices.IsCurrentContextOK(Type serverType, Object[] props, Boolean bNewObj)\n   в System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandle& ctor, Boolean& bNeedSecurityCheck)\n   в System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean fillCache)\n   в System.RuntimeType.CreateInstanceImpl(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean fillCache)\n   в System.Activator.CreateInstance(Type type, Boolean nonPublic)\n   в System.RuntimeType.CreateInstanceImpl(BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes)\n   в Microsoft.PowerShell.Commands.NewObjectCommand.SafeCreateInstance(Type t, Object[] args) \nC:\\Users\\x6\\AppData\\Local\\MB-ExcelQA\\native.ps1:22 знак:24\n+     $excel = New-Object <<<<  -ComObject Excel.Application",
+  "checks": [],
+  "file_receipts": []
+}

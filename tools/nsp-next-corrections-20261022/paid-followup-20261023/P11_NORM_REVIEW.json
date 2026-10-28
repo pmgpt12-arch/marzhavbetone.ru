@@ -1,0 +1,66 @@
+{
+  "date_local": "2026-10-23",
+  "scope": "Static consistency review of P11 candidate text; no transaction-specific legal approval; Office acceptance of new 54 pending",
+  "checks": [
+    {
+      "rule": "ДДy: внесение цены после регистрации; исполнение денежной обязанности связано с поступлением на эскроу",
+      "source": "https://www.consultant.ru/document/cons_doc_LAW_51038/57da6efc7ca337d428cf526d01e70925ce5bdcb0/",
+      "additional_source": "https://www.consultant.ru/document/cons_doc_LAW_51038/7e20edcc51ba599c70fb328204e3ac1226e7d912/",
+      "locations": [
+        "51: шаг 2 и три маршрута",
+        "54: применение к уступке; новый ДДУ отдельно",
+        "55: цена ДДУ и цена уступки"
+      ],
+      "result": "CONSISTENT_IN_REVIEWED_TEXT"
+    },
+    {
+      "rule": "Уступка: оплаченный ДДУ либо одновременный перевод долга; проверка стадии передачи; цена уступки от юрлица после регистрации",
+      "source": "https://www.consultant.ru/document/cons_doc_LAW_51038/26e3de2d783e453c4faf7fb26c33eecafddc2307/",
+      "locations": [
+        "51: шаги 1/6",
+        "54: запрос пункт 3",
+        "55: границы и документы"
+      ],
+      "result": "CONSISTENT_IN_REVIEWED_TEXT"
+    },
+    {
+      "rule": "Ст.15.5 ч.10: права и обязанности по договору счёта переходят по закону; сам переход банковского договора не доказывает непогашенный остаток цены",
+      "source": "https://www.consultant.ru/document/cons_doc_LAW_51038/7e20edcc51ba599c70fb328204e3ac1226e7d912/",
+      "locations": [
+        "55: оценка именно неполной оплаты; подтверждение банка",
+        "50: плательщик остатка и документы"
+      ],
+      "result": "NO_CONTRADICTION_IDENTIFIED; no new blanket statement added"
+    },
+    {
+      "rule": "Для ответчика-организации ИНН и ОГРН предусмотрены п.3 ч.2 ст.125 АПК; пример поля 50 относится к организации",
+      "source": "https://www.consultant.ru/document/cons_doc_LAW_37800/faa5e7dfaa0bfec48b19b0f862a9366a0dbf43e1/",
+      "locations": [
+        "50: стороны"
+      ],
+      "result": "NO_CHANGE_REQUIRED_FOR_ORGANIZATION_SCOPE"
+    }
+  ],
+  "independent_arithmetic": [
+    {
+      "expression": "8.3-3",
+      "expected": 5.3
+    },
+    {
+      "expression": "5.3-9",
+      "expected": -3.7
+    },
+    {
+      "expression": "6.5+3-9",
+      "expected": 0.5
+    }
+  ],
+  "pdf_replacement_character_check": {
+    "files": [
+      "51",
+      "55"
+    ],
+    "actual_U_FFFD_count_each": 0,
+    "observation": "Apparent replacement glyphs in tool text chunks were not present in source extraction; 51/page2 render confirms readable original words; no PDF was regenerated for this false alarm."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "status": "P8_02_OWNER_MANUAL_ACCEPTED_MASTER_IN_AUDIT_BRANCH",
+  "source_path": "products-storage/10-avans-usloviya-i-pribyl/02-kalkulyator-usloviy-avansa.xlsx",
+  "source_sha256": "781f36e37f22ed428561f10b9cb9eebece39a32bcb2f4eb24800121a00400551",
+  "candidate_sha256": "0ca0ab6e8bfd65733f9ec5dc6c8a9af394ee9a7dd80a953011a68ce318e3b45f",
+  "candidate_bytes": 39683,
+  "changed_cells": 1238,
+  "changed_package_parts": [
+    "xl/worksheets/sheet1.xml",
+    "xl/worksheets/sheet2.xml",
+    "xl/worksheets/sheet3.xml",
+    "xl/worksheets/sheet4.xml",
+    "xl/worksheets/sheet5.xml",
+    "xl/worksheets/sheet6.xml",
+    "xl/worksheets/sheet7.xml"
+  ],
+  "original_print_contract": "PASS",
+  "non_target_cells_preserved": true,
+  "other_package_parts_byte_identical": true,
+  "row_height_adjustments": {
+    "Условия": {
+      "26": 78
+    },
+    "Сравнение": {
+      "18": 36
+    },
+    "Пример заполнения": {
+      "8": 48,
+      "26": 72
+    }
+  },
+  "calculation_model_tests": 32,
+  "calculation_model_assertions": 132,
+  "native_excel": "MANUAL_OWNER_ACCEPTANCE_PASS; automated agent run not performed",
+  "visual_review_in_excel": "PASS_REPORTED_BY_OWNER_FOR_PRINTING",
+  "production_changed": false,
+  "customer_master_changed": true,
+  "created_at": "2026-10-22T06:30:32.001131+00:00",
+  "delivery_scope": "Accepted candidate bytes promoted to product master in audit branch only",
+  "master_change_scope": "Only isolated audit branch; published customer archives unchanged",
+  "accepted_sha256": "0ca0ab6e8bfd65733f9ec5dc6c8a9af394ee9a7dd80a953011a68ce318e3b45f",
+  "owner_acceptance_record": "tools/nsp-product-audit-fixes-20261021/p8-02-candidate/OWNER_ACCEPTANCE.json",
+  "manual_excel_acceptance": {
+    "status": "PASS",
+    "date": "2026-10-22",
+    "basis": "owner explicit confirmation",
+    "agent_rerun_required": false
+  }
+}

@@ -1,0 +1,30 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-next-excel-2-20261022" excel_version="16.0" excel_build="4324">
+  <check name="n2:input_sha" pass="True" expected="a6009315aa553e7f0436e4dccdf0d911605fc246dd8a300520dc144a296c810b" actual="a6009315aa553e7f0436e4dccdf0d911605fc246dd8a300520dc144a296c810b" />
+  <print_preflight tag="n2" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Сводка" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Пример заполнения'!Print_Area" refers_to="='Пример заполнения'!$A$1:$N$28" />
+    <print_name name="Реестр!Print_Area" refers_to="=Реестр!$A$1:$N$158" />
+    <print_name name="Сводка!Print_Area" refers_to="=Сводка!$A$1:$I$28" />
+  </print_preflight>
+  <check name="n2:same-date-select-open:B13" pass="True" expected="text:открытый-2" actual="System.String:открытый-2" />
+  <check name="n2:same-date-select-open:C13" pass="True" expected="text:объект 2" actual="System.String:объект 2" />
+  <check name="n2:returned-positive:D4" pass="True" expected="text:ОШИБКА: статус возврата или превышение возврата. Сверьте реестр." actual="System.String:ОШИБКА: статус возврата или превышение возврата. Сверьте реестр." />
+  <check name="n2:returned-positive:B13" pass="True" expected="text:закрытый-1" actual="System.String:закрытый-1" />
+  <check name="n2:over-return:D4" pass="True" expected="text:ОШИБКА: статус возврата или превышение возврата. Сверьте реестр." actual="System.String:ОШИБКА: статус возврата или превышение возврата. Сверьте реестр." />
+  <check name="n2:over-return:B4" pass="True" expected="number:10000" actual="System.Double:10000" />
+  <check name="n2:two-dates:B13" pass="True" expected="text:закрытый-1" actual="System.String:закрытый-1" />
+  <check name="n2:two-dates:B14" pass="True" expected="text:открытый-2" actual="System.String:открытый-2" />
+  <check name="n2:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="n2:pdf_export" pass="True" expected="%PDF-" actual="bytes=306721" />
+  <print_preflight tag="n2" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Сводка" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Пример заполнения'!Print_Area" refers_to="='Пример заполнения'!$A$1:$N$28" />
+    <print_name name="Реестр!Print_Area" refers_to="=Реестр!$A$1:$N$158" />
+    <print_name name="Сводка!Print_Area" refers_to="=Сводка!$A$1:$I$28" />
+  </print_preflight>
+  <check name="n2:source_unchanged" pass="True" expected="a6009315aa553e7f0436e4dccdf0d911605fc246dd8a300520dc144a296c810b" actual="a6009315aa553e7f0436e4dccdf0d911605fc246dd8a300520dc144a296c810b" />
+</report>

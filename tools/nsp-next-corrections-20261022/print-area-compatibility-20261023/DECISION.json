@@ -1,0 +1,13 @@
+{
+  "classification": "LANGUAGE_DEPENDENT_BUILTIN_PRINT_NAME_RECOGNITION_IN_CURRENT_AUTOMATION_PATH",
+  "observed_root_condition": "Standard English _xlnm.Print_Area is imported as ordinary Print_Area; Russian Область_печати is recognized as PageSetup.PrintArea. The exact installed opening code and Local/LCID are not proved.",
+  "namespace_qname": "No expanded-name error found",
+  "namespace_serialization": "Prefix/default representation changes did not fix either sheet-name case",
+  "localized_alias": "REJECTED_AS_PRODUCT_FIX: native SaveAs rewrites recognized localized print name to _xlnm.Print_Area; saved workbook loses print scope on reopen",
+  "title_alias": "UNRESOLVED: tested Russian title wording did not populate PrintTitleRows; do not claim title repair",
+  "secondary_engine": "Both original standard-name workbooks restrict output to A1:A3 in bundled LibreOffice",
+  "rule": "Do not change product print names to localized aliases to mask import behavior. Require source opening and native saved-copy reopening to preserve the intended PageSetup area and actual PDF scope. Test repeating headers separately.",
+  "gate": "P5_PRINT_BLOCKED; calculations remain separate PASS",
+  "worker_or_office_settings_changed": false,
+  "next_evidence": "Reviewed installed open implementation and explicit Local/LCID behavior are needed before attributing the exact cause to an opening argument. Existing prepared worker patch has not been installed by this stage."
+}

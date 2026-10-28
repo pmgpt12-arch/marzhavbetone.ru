@@ -1,0 +1,18 @@
+[
+  {
+    "error": "Postprocessor signature assertion failed after native PASS",
+    "root": "Blank P11 forms use {{ФИО_ПОДПИСАНТА}}, not the [подпись] marker of the free advance form",
+    "class": "QA_EXPECTATION_MISMATCH",
+    "rule": "Signature expectation must follow the exact form role; blank placeholders and filled signatures are separate expected cases",
+    "gate": "Exact source SHA, all sendable text on page 1, signature marker appropriate to source, guide starts after page 1",
+    "action": "Correct post-processing only; native job is not resubmitted"
+  },
+  {
+    "error": "Checkpoint TypeError before repo snapshot creation",
+    "root": "Path division bound before string suffix concatenation",
+    "class": "CHECKPOINT_PATH_CONSTRUCTION",
+    "rule": "Construct file name including suffix before joining Path",
+    "gate": "Snapshot destination absent before corrected checkpoint; no native job resubmission or document rebuild",
+    "action": "One exact code replacement; existing artifacts and receipts reused"
+  }
+]

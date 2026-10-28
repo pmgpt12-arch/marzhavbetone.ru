@@ -1,0 +1,19 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="p5-reopen-20261021-233001" excel_version="16.0" excel_build="4324">
+  <check name="p5reopen:input_sha" pass="True" expected="254b2a4daf0321a144b2c6ce21eaf68a6231005d2f71bf1008c577085dac2563" actual="254b2a4daf0321a144b2c6ce21eaf68a6231005d2f71bf1008c577085dac2563" />
+  <print_preflight tag="p5reopen" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Расчёт требования" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Расчёт требования'!Print_Area" refers_to="='Расчёт требования'!$A$1:$H$42" />
+  </print_preflight>
+  <check name="p5reopen:change-base-after-reopen:D27" pass="True" expected="number:3" actual="System.Double:3" />
+  <check name="p5reopen:change-base-after-reopen:G27" pass="True" expected="number:600" actual="System.Double:600" />
+  <check name="p5reopen:change-base-after-reopen:G32" pass="True" expected="number:600" actual="System.Double:600" />
+  <check name="p5reopen:change-base-after-reopen:H27" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5reopen:change-base-after-reopen:H32" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p5reopen:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="p5reopen:pdf_export" pass="True" expected="%PDF-" actual="bytes=203570" />
+  <print_preflight tag="p5reopen" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Расчёт требования" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Расчёт требования'!Print_Area" refers_to="='Расчёт требования'!$A$1:$H$42" />
+  </print_preflight>
+  <check name="p5reopen:source_unchanged" pass="True" expected="254b2a4daf0321a144b2c6ce21eaf68a6231005d2f71bf1008c577085dac2563" actual="254b2a4daf0321a144b2c6ce21eaf68a6231005d2f71bf1008c577085dac2563" />
+</report>

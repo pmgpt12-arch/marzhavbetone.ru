@@ -1,0 +1,21 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-next-excel-6-20261022" excel_version="16.0" excel_build="4324">
+  <check name="n6:input_sha" pass="True" expected="dc7419ff23333abab78e23bb7620d9c4ad7aac3b82eebad0b94e7d183173fde3" actual="dc7419ff23333abab78e23bb7620d9c4ad7aac3b82eebad0b94e7d183173fde3" />
+  <print_preflight tag="n6" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр замечаний по ИД" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр замечаний по ИД'!Print_Area" refers_to="='Реестр замечаний по ИД'!$A$1:$H$7" />
+  </print_preflight>
+  <check name="n6:empty:E6" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="n6:empty:H6" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="n6:empty:H7" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="n6:two-one-closed:E6" pass="True" expected="number:2" actual="System.Double:2" />
+  <check name="n6:two-one-closed:H6" pass="True" expected="number:1" actual="System.Double:1" />
+  <check name="n6:two-one-closed:H7" pass="True" expected="number:1" actual="System.Double:1" />
+  <check name="n6:unknown-is-open:H6" pass="True" expected="number:1" actual="System.Double:1" />
+  <check name="n6:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="n6:pdf_export" pass="True" expected="%PDF-" actual="bytes=175560" />
+  <print_preflight tag="n6" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр замечаний по ИД" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр замечаний по ИД'!Print_Area" refers_to="='Реестр замечаний по ИД'!$A$1:$H$7" />
+  </print_preflight>
+  <check name="n6:source_unchanged" pass="True" expected="dc7419ff23333abab78e23bb7620d9c4ad7aac3b82eebad0b94e7d183173fde3" actual="dc7419ff23333abab78e23bb7620d9c4ad7aac3b82eebad0b94e7d183173fde3" />
+</report>
