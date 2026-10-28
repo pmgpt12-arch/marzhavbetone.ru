@@ -1,0 +1,309 @@
+{
+  "schema": "NSP_PAID_CURRENT_PUBLICATION_READ_ONLY_V1",
+  "snapshot_date": "2026-10-28",
+  "source_site": "https://nastoronepodryadchika.ru/katalog.html",
+  "public_paid_page_total": 13,
+  "public_paid_page_http_200_total": 13,
+  "public_paid_enabled_buy_button_total": 13,
+  "public_price_attribute_match_total": 13,
+  "historically_owner_accepted_complete_paid_edition_total": 13,
+  "historic_r3_accepted_complete_archives": 9,
+  "historic_separately_accepted_paid_editions": 4,
+  "paid_products": [
+    {
+      "sku": "P1",
+      "product": "Система получения оплаты за выполненные работы",
+      "public_url": "https://nastoronepodryadchika.ru/products/p1-oplata-po-ks2.html",
+      "price_kopeks": 2990000,
+      "live_http_status": 200,
+      "live_buy_button_count": 1,
+      "live_buy_button_enabled": true,
+      "live_data_price_matches_matrix": true,
+      "previously_owner_accepted_buyer_edition": {
+        "edition": "R3 whole-owner-accepted 2026-10-20",
+        "accepted_sha256": "7b6306cf4fd8953491c286f5561390482e4ea0111f2a27d46706e01b5fc54981",
+        "file_count": 20,
+        "evidence": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json; production-verification.json",
+        "historically_released": "2026-10-20"
+      },
+      "next_edition_release_permission_in_draft": "HOLD",
+      "next_edition_status_in_draft": "ANNOUNCEMENT_READY",
+      "live_after_payment_e2e": "NOT_TESTED_2026_10_28",
+      "current_live_downloaded_buyer_zip_sha256": null
+    },
+    {
+      "sku": "P2",
+      "product": "Система оформления и получения оплаты за дополнительные работы",
+      "public_url": "https://nastoronepodryadchika.ru/products/p2-dopolnitelnye-raboty.html",
+      "price_kopeks": 2490000,
+      "live_http_status": 200,
+      "live_buy_button_count": 1,
+      "live_buy_button_enabled": true,
+      "live_data_price_matches_matrix": true,
+      "previously_owner_accepted_buyer_edition": {
+        "edition": "R3 whole-owner-accepted 2026-10-20",
+        "accepted_sha256": "60b19ed92288144b6f1c6e17c39a5b9cd01d308749877b4e11f862897de1eae0",
+        "file_count": 15,
+        "evidence": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json; production-verification.json",
+        "historically_released": "2026-10-20"
+      },
+      "next_edition_release_permission_in_draft": "HOLD",
+      "next_edition_status_in_draft": "ANNOUNCEMENT_READY",
+      "live_after_payment_e2e": "NOT_TESTED_2026_10_28",
+      "current_live_downloaded_buyer_zip_sha256": null
+    },
+    {
+      "sku": "P3",
+      "product": "Комплект «КС-2 без возврата»",
+      "public_url": "https://nastoronepodryadchika.ru/products/p3-shablony-ks2-ks3.html",
+      "price_kopeks": 1790000,
+      "live_http_status": 200,
+      "live_buy_button_count": 1,
+      "live_buy_button_enabled": true,
+      "live_data_price_matches_matrix": true,
+      "previously_owner_accepted_buyer_edition": {
+        "edition": "R3 whole-owner-accepted 2026-10-20",
+        "accepted_sha256": "ec3997051a59e2d4d86b9d0a5a0c9cfae554b1996612449c4ebc6f830bb4ab0a",
+        "file_count": 11,
+        "evidence": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json; production-verification.json",
+        "historically_released": "2026-10-20"
+      },
+      "next_edition_release_permission_in_draft": "ALLOW",
+      "next_edition_status_in_draft": "EXISTING_PUBLISHED_REGRESSION_SAFE",
+      "live_after_payment_e2e": "NOT_TESTED_2026_10_28",
+      "current_live_downloaded_buyer_zip_sha256": null
+    },
+    {
+      "sku": "P4",
+      "product": "Исполнительная документация без замечаний",
+      "public_url": "https://nastoronepodryadchika.ru/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+      "price_kopeks": 2490000,
+      "live_http_status": 200,
+      "live_buy_button_count": 1,
+      "live_buy_button_enabled": true,
+      "live_data_price_matches_matrix": true,
+      "previously_owner_accepted_buyer_edition": {
+        "edition": "R3 whole-owner-accepted 2026-10-20",
+        "accepted_sha256": "83a2dd9e513f437afc091197701c405e1caebc9f33bf99dde6a8f6627e0dca76",
+        "file_count": 25,
+        "evidence": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json; production-verification.json",
+        "historically_released": "2026-10-20"
+      },
+      "next_edition_release_permission_in_draft": "HOLD",
+      "next_edition_status_in_draft": "ANNOUNCEMENT_READY",
+      "live_after_payment_e2e": "NOT_TESTED_2026_10_28",
+      "current_live_downloaded_buyer_zip_sha256": null
+    },
+    {
+      "sku": "P5",
+      "product": "Удержания и штрафы подрядчика",
+      "public_url": "https://nastoronepodryadchika.ru/products/p5-shtrafy-uderzhaniya.html",
+      "price_kopeks": 2990000,
+      "live_http_status": 200,
+      "live_buy_button_count": 1,
+      "live_buy_button_enabled": true,
+      "live_data_price_matches_matrix": true,
+      "previously_owner_accepted_buyer_edition": {
+        "edition": "P5/P12 R6",
+        "accepted_sha256": "76a908cf4c575c0423b2bbe639182f44856518ae8466bd03bc2f38aad86de359",
+        "file_count": 30,
+        "evidence": "products release commit 0be86864537b36c36e96b71b3ea133bdeddc6f15",
+        "historically_released": "2026-10-17"
+      },
+      "next_edition_release_permission_in_draft": "ALLOW",
+      "next_edition_status_in_draft": "EXISTING_PUBLISHED_REGRESSION_SAFE",
+      "live_after_payment_e2e": "NOT_TESTED_2026_10_28",
+      "current_live_downloaded_buyer_zip_sha256": null
+    },
+    {
+      "sku": "P7",
+      "product": "Договор субподряда",
+      "public_url": "https://nastoronepodryadchika.ru/products/p7-dogovor-podryada.html",
+      "price_kopeks": 2490000,
+      "live_http_status": 200,
+      "live_buy_button_count": 1,
+      "live_buy_button_enabled": true,
+      "live_data_price_matches_matrix": true,
+      "previously_owner_accepted_buyer_edition": {
+        "edition": "R3 whole-owner-accepted 2026-10-20",
+        "accepted_sha256": "b656b706df76aa9ae40fe0a8d3f62af75748cdcd304fa10fa656cd5ef614f812",
+        "file_count": 13,
+        "evidence": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json; production-verification.json",
+        "historically_released": "2026-10-20"
+      },
+      "next_edition_release_permission_in_draft": "HOLD",
+      "next_edition_status_in_draft": "ANNOUNCEMENT_READY",
+      "live_after_payment_e2e": "NOT_TESTED_2026_10_28",
+      "current_live_downloaded_buyer_zip_sha256": null
+    },
+    {
+      "sku": "P8",
+      "product": "Аванс и расчёты по договору подряда",
+      "public_url": "https://nastoronepodryadchika.ru/products/p8-avans-po-dogovoru-subpodryada.html",
+      "price_kopeks": 2490000,
+      "live_http_status": 200,
+      "live_buy_button_count": 1,
+      "live_buy_button_enabled": true,
+      "live_data_price_matches_matrix": true,
+      "previously_owner_accepted_buyer_edition": {
+        "edition": "R3 whole-owner-accepted 2026-10-20",
+        "accepted_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+        "file_count": 11,
+        "evidence": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json; production-verification.json",
+        "historically_released": "2026-10-20"
+      },
+      "next_edition_release_permission_in_draft": "HOLD",
+      "next_edition_status_in_draft": "BLOCKED_QA_FINAL_EDITION",
+      "live_after_payment_e2e": "NOT_TESTED_2026_10_28",
+      "current_live_downloaded_buyer_zip_sha256": null
+    },
+    {
+      "sku": "P9",
+      "product": "Банкротство генподрядчика",
+      "public_url": "https://nastoronepodryadchika.ru/products/p9-bankrotstvo-genpodryadchika.html",
+      "price_kopeks": 2490000,
+      "live_http_status": 200,
+      "live_buy_button_count": 1,
+      "live_buy_button_enabled": true,
+      "live_data_price_matches_matrix": true,
+      "previously_owner_accepted_buyer_edition": {
+        "edition": "R3 whole-owner-accepted 2026-10-20",
+        "accepted_sha256": "010a4bbf89de760a05e18448d8498252952470e00252e1f5a26fc2d538525066",
+        "file_count": 10,
+        "evidence": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json; production-verification.json",
+        "historically_released": "2026-10-20"
+      },
+      "next_edition_release_permission_in_draft": "HOLD",
+      "next_edition_status_in_draft": "ANNOUNCEMENT_READY",
+      "live_after_payment_e2e": "NOT_TESTED_2026_10_28",
+      "current_live_downloaded_buyer_zip_sha256": null
+    },
+    {
+      "sku": "P10",
+      "product": "Ответ на претензию заказчика",
+      "public_url": "https://nastoronepodryadchika.ru/products/p10-otvet-na-pretenziyu.html",
+      "price_kopeks": 1790000,
+      "live_http_status": 200,
+      "live_buy_button_count": 1,
+      "live_buy_button_enabled": true,
+      "live_data_price_matches_matrix": true,
+      "previously_owner_accepted_buyer_edition": {
+        "edition": "R3 whole-owner-accepted 2026-10-20",
+        "accepted_sha256": "6571ba84d65db857e2270ae7e10b3550558aeb766df399336ac22c7a2a1302e8",
+        "file_count": 8,
+        "evidence": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json; production-verification.json",
+        "historically_released": "2026-10-20"
+      },
+      "next_edition_release_permission_in_draft": "HOLD",
+      "next_edition_status_in_draft": "ANNOUNCEMENT_READY",
+      "live_after_payment_e2e": "NOT_TESTED_2026_10_28",
+      "current_live_downloaded_buyer_zip_sha256": null
+    },
+    {
+      "sku": "P11",
+      "product": "Недежные расчёты помещениями",
+      "public_url": "https://nastoronepodryadchika.ru/products/p11-raschet-metrami.html",
+      "price_kopeks": 2490000,
+      "live_http_status": 200,
+      "live_buy_button_count": 1,
+      "live_buy_button_enabled": true,
+      "live_data_price_matches_matrix": true,
+      "previously_owner_accepted_buyer_edition": {
+        "edition": "P11 R1",
+        "accepted_sha256": "5f1ea256b4eec178e6cf13072e9b9b6c30104d5ad78194efd8afd60702671f5f",
+        "file_count": 8,
+        "evidence": "products release commit e85c575e (owner-accepted eight-file edition)",
+        "historically_released": "2026-10-16"
+      },
+      "next_edition_release_permission_in_draft": "HOLD",
+      "next_edition_status_in_draft": "ANNOUNCEMENT_READY",
+      "live_after_payment_e2e": "NOT_TESTED_2026_10_28",
+      "current_live_downloaded_buyer_zip_sha256": null
+    },
+    {
+      "sku": "P13",
+      "product": "Сметные затраты и риск неоплаты",
+      "public_url": "https://nastoronepodryadchika.ru/products/p13-chto-v-smete-ne-oplatyat.html",
+      "price_kopeks": 1790000,
+      "live_http_status": 200,
+      "live_buy_button_count": 1,
+      "live_buy_button_enabled": true,
+      "live_data_price_matches_matrix": true,
+      "previously_owner_accepted_buyer_edition": {
+        "edition": "R3 whole-owner-accepted 2026-10-20",
+        "accepted_sha256": "67db893ec122ff76379a6a61bc3eab29185a8a7daa0e8586af6a1c7392952dd2",
+        "file_count": 10,
+        "evidence": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json; production-verification.json",
+        "historically_released": "2026-10-20"
+      },
+      "next_edition_release_permission_in_draft": "HOLD",
+      "next_edition_status_in_draft": "ANNOUNCEMENT_READY",
+      "live_after_payment_e2e": "NOT_TESTED_2026_10_28",
+      "current_live_downloaded_buyer_zip_sha256": null
+    },
+    {
+      "sku": "T2",
+      "product": "Передача ИД под подпись",
+      "public_url": "https://nastoronepodryadchika.ru/products/t2-peredacha-ispolnitelnoy-dokumentacii.html",
+      "price_kopeks": 990000,
+      "live_http_status": 200,
+      "live_buy_button_count": 1,
+      "live_buy_button_enabled": true,
+      "live_data_price_matches_matrix": true,
+      "previously_owner_accepted_buyer_edition": {
+        "edition": "T2 R2",
+        "accepted_sha256": "f50e64138980e4ad0ad0f262a5201e43464b0c600b4cc023726f50d23cebe195",
+        "file_count": 6,
+        "evidence": "tools/candidates/t2-buyer-review-20261017/T2-PRODUCTION-VERIFICATION.md; production zip cc485e11fa68d88f239975cbb9d63421a5a1d3ca1d17c01ea857e09c5458c2c7",
+        "historically_released": "2026-10-17"
+      },
+      "next_edition_release_permission_in_draft": "HOLD",
+      "next_edition_status_in_draft": "ANNOUNCEMENT_READY",
+      "live_after_payment_e2e": "NOT_TESTED_2026_10_28",
+      "current_live_downloaded_buyer_zip_sha256": null
+    },
+    {
+      "sku": "T3",
+      "product": "Возражения на односторонний акт",
+      "public_url": "https://nastoronepodryadchika.ru/products/t3-odnostoronniy-akt-i-zachet.html",
+      "price_kopeks": 1490000,
+      "live_http_status": 200,
+      "live_buy_button_count": 1,
+      "live_buy_button_enabled": true,
+      "live_data_price_matches_matrix": true,
+      "previously_owner_accepted_buyer_edition": {
+        "edition": "T3 R2",
+        "accepted_sha256": "b5692cba2473f79b06241948fd75ff8e6483ffda31a110be60efaf31bd19e070",
+        "file_count": 5,
+        "evidence": "tools/candidates/t3-unilateral-writeoff-20261018/VERIFICATION.md; production zip af8678ecc0275458c7fa4c53a0a56b69cd57b89229ad41b52fcec11d38c61240",
+        "historically_released": "2026-10-18"
+      },
+      "next_edition_release_permission_in_draft": "HOLD",
+      "next_edition_status_in_draft": "ANNOUNCEMENT_READY",
+      "live_after_payment_e2e": "NOT_TESTED_2026_10_28",
+      "current_live_downloaded_buyer_zip_sha256": null
+    }
+  ],
+  "public_checkout_payment_and_buyer_download_e2e": "NOT_RECHECKED_NO_PAYMENTS_CREATED",
+  "current_live_paid_archive_contents_sha256": "NOT_VERIFIED_BY_PUBLIC_GET; NEVER_INFER_FROM_HISTORIC_RELEASE_RECEIPTS",
+  "new_candidate_vs_historic_production": "MUST_DISTINGUISH; a draft HOLD for a newer edition does not revoke historic owner release or authorize replacement",
+  "additional_paid_cards_to_publish": 0,
+  "reason_no_site_change": "ALL_CURRENT_13_PAID_CARDS_ALREADY_EXIST_ON_PUBLIC_SITE; USER_PROHIBITS_REPLACING_EXISTING_PRODUCTS",
+  "extra_historical_products": {
+    "P12": "consolidated_into_P5; do not publish duplicate",
+    "T1_T4_T5_T6": "legacy landing pages currently point to core paid systems; not counted in 13 current paid SKU; do not reactivate without edition decision"
+  },
+  "scope": {
+    "read_only_http_get": true,
+    "synthetic_purchase": false,
+    "real_payment": false,
+    "site_writes": false,
+    "replaced_existing_files": false,
+    "modified_customer_orders": false,
+    "merge": false,
+    "deploy": false,
+    "protected_archives_changed": false
+  },
+  "follow_up": "For newer candidates: resolve exact full-edition acceptance and buyer deliverability before separately authorized additive publication. Existing production stays untouched.",
+  "overall_status": "LIVE_13_OF_13_PAID_PAGES_EXISTS_NO_PUBLICATION_REQUIRED_NO_FILES_REPLACED"
+}
