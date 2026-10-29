@@ -23,9 +23,9 @@ jobs:
       - name: Read explicit action and configure bounded SSH
         run: |
           set -euo pipefail
-          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","inspect-checklist","inspect-free-downloads","inspect-layout","p2-snapshot","p2-publish"]; print(x["action"])')
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","inspect-checklist","inspect-free-downloads","inspect-layout","p2-snapshot","p2-preflight","p2-publish"]; print(x["action"])')
           echo "NSP_ACTION=$action" >> "$GITHUB_ENV"
-          if [ "$GITHUB_REF_NAME" = "codex/nsp-publication-catalog-20261026" ]; then [[ "$action" == p2-snapshot || "$action" == p2-publish ]]; fi
+          if [ "$GITHUB_REF_NAME" = "codex/nsp-publication-catalog-20261026" ]; then [[ "$action" == p2-snapshot || "$action" == p2-preflight || "$action" == p2-publish ]]; fi
           test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
           [[ "$PORT" =~ ^[0-9]+$ ]]
           install -d -m 700 ~/.ssh
