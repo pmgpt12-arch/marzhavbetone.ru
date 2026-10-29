@@ -157,7 +157,8 @@ task('preflight')
 print('P2_DRY_RUN_VERIFIED',flush=True)
 applied=False
 try:
-    task('apply',timeout=65);applied=True
+    applied=True  # rollback even if apply fails after the first atomic write
+    task('apply',timeout=65)
     task('verify',timeout=45)
     for n in ('products/p2-dopolnitelnye-raboty.html','katalog.html'):
         url='https://nastoronepodryadchika.ru/'+n+'?p2_v13='+os.environ['GITHUB_RUN_ID']
