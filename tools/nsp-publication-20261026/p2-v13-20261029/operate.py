@@ -46,7 +46,7 @@ def check_approved_zip():
     return approved,m
 
 action=sys.argv[1]
-if action not in ('p2-snapshot','p2-publish'): raise ValueError('ACTION')
+if action not in ('p2-snapshot','p2-preflight','p2-publish'): raise ValueError('ACTION')
 request=json.loads(Path('tools/nsp-final/request.json').read_text())
 assert request['sku']=='p2' and request['edition']=='P2-v13' and request['approved_archive_sha256']==EXPECTED
 port=os.environ['PORT']
@@ -155,6 +155,7 @@ def task(mode,timeout=55):
     return val
 task('preflight')
 print('P2_DRY_RUN_VERIFIED',flush=True)
+if action=='p2-preflight': raise SystemExit(0)
 applied=False
 try:
     applied=True  # rollback even if apply fails after the first atomic write
