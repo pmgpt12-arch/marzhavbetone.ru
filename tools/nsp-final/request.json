@@ -1,10 +1,11 @@
 {
-  "action": "p2-preflight",
+  "action": "p2-publish",
   "sku": "p2",
   "edition": "P2-v13",
   "request_id": "P2-V13-OWNER-PUBLISH-20261029",
   "owner_quote": "Размещай и переходи к проверке следующего",
   "approved_archive_sha256": "42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da",
   "approval_commit": "29a73bea7783c52924a3b85c4dfbeb563e3e550d",
-  "scope": "Verify approved ZIP, generated P2 page/catalogue and existing delivery prerequisites without production writes; publish only after gate PASS"
+  "scope": "Owner-authorized P2 v13 release only, exact SHA + current catalog/page, TTL 3600, automatic rollback on verification failure; no other SKUs",
+  "preflight_workflow_run": 40903431294
 }
