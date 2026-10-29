@@ -1,0 +1,104 @@
+{
+  "schema": "NSP_P2_V13_OWNER_REVIEW",
+  "as_of_utc": "2026-10-29T11:34:54.456093+00:00",
+  "status": "READY_FOR_OWNER_LAYOUT_REVIEW",
+  "edition": "P2 v13",
+  "archive": "P2-NSP-v13-13-files-20261029.zip",
+  "archive_sha256": "42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da",
+  "file_count": 13,
+  "formats": {
+    "docx": 8,
+    "xlsx": 2,
+    "pdf": 3
+  },
+  "single_instruction": "00-INSTRUKCIYA.pdf",
+  "word_table_count": 41,
+  "table_width_twips": 9866,
+  "separated_direction_signature_pairs": 5,
+  "seven_existing_form_texts_unchanged": true,
+  "act_source": "Owner-provided blank-akt-skrytyh-rabot.doc; editable reconstruction, four original signatory roles and original substantive clauses preserved",
+  "act_source_sha256": "48aebcc467ae372122c5b2578e62a2f9ac17f3861b077b99c56d6b47de467477",
+  "act_editorial_change": "председателей -> представителей, punctuation and ё normalized; fields relaid as tables",
+  "unchanged_files": [
+    "07-raschet-stoimosti.xlsx",
+    "08-zhurnal-doprabot.xlsx",
+    "09-checklist-fotofiksacii.pdf",
+    "10-algoritm-doprabot.pdf"
+  ],
+  "source_archive_unchanged": true,
+  "visual_review": "All 9 form pages and 5 final guide pages: direct PNG inspection; LibreOffice layout renderer, not a native MS Word test",
+  "native_word_retest": false,
+  "long_input_tests": false,
+  "save_reopen_cycles": false,
+  "Excel_retests": false,
+  "other_products_changed": false,
+  "full_product_pass": false,
+  "release_allowed": false,
+  "members": [
+    {
+      "name": "00-INSTRUKCIYA.pdf",
+      "bytes": 99324,
+      "sha256": "5ee1a09b820059d0da13537c707a8f0c764321e784225782256a5ab3e74ee2f3"
+    },
+    {
+      "name": "01-prikaz-na-dopobem.docx",
+      "bytes": 39849,
+      "sha256": "faef48f789b375d7fc3f67224cf3ef4cab3b24c1daa8d44e3394ab4deece5470"
+    },
+    {
+      "name": "02-soglasovanie-obema.docx",
+      "bytes": 40494,
+      "sha256": "5bfe1898d0f8931963e30ef2a838e8f1fc8c63e390cf0bbf4b9b0a348f5a28e2"
+    },
+    {
+      "name": "03-uvedomlenie-o-doprabotah.docx",
+      "bytes": 40068,
+      "sha256": "8c7b7853917df2789a0461b2d670f64edd78079880edad9ab533fa635b05b518"
+    },
+    {
+      "name": "04-akt-skrytyh-rabot.docx",
+      "bytes": 38295,
+      "sha256": "a0b0e8f48f7f0b8310a96358c226038a2066a17c159021d6f34f742b7969d7d7"
+    },
+    {
+      "name": "05-izmenenie-srokov.docx",
+      "bytes": 39659,
+      "sha256": "96a8e79d8410eede2da76bfb4be2fba08772a0455247a74e87f2e2f01ad213f4"
+    },
+    {
+      "name": "06-pismo-o-priostanovke.docx",
+      "bytes": 39786,
+      "sha256": "11544a50c7c5f013a41dd4722075b96245a7d3452d62fc0f5ae8524a1b98b919"
+    },
+    {
+      "name": "07-raschet-stoimosti.xlsx",
+      "bytes": 32210,
+      "sha256": "651277b08a6c87ce24b9befe7c444b8b14a10e68be342d20a3935defc6d3ba92"
+    },
+    {
+      "name": "08-zhurnal-doprabot.xlsx",
+      "bytes": 10149,
+      "sha256": "05127fdb8e298adbc3090063560a88c61fe6896dfb452b429502399fe8a127ec"
+    },
+    {
+      "name": "09-checklist-fotofiksacii.pdf",
+      "bytes": 28200,
+      "sha256": "7306b4f7711b6b03ed75f4005eda59e41647685ab529e99e96bcccbd1de64d94"
+    },
+    {
+      "name": "10-algoritm-doprabot.pdf",
+      "bytes": 30858,
+      "sha256": "fdda508ae349196fb80cab2f036fb83ef887186bceb5e0db02854ab4dac28f1c"
+    },
+    {
+      "name": "11-dopsoglashenie-obem-i-cena.docx",
+      "bytes": 39968,
+      "sha256": "8013aeea9085eef7abe928d985d52c7b788ab901301ad228316a34517b35f416"
+    },
+    {
+      "name": "12-dopsoglashenie-sroki-doprabot.docx",
+      "bytes": 39659,
+      "sha256": "e96ae633d50bf03bcfe91a64a54c5b413b1e77b4f03696664239739b13535148"
+    }
+  ]
+}
