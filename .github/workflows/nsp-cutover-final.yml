@@ -1,7 +1,7 @@
 name: NSP final targeted corrections
 on:
   push:
-    branches: [fix/nsp-cutover-final-20261021, fix/nsp-dzen-20261021, fix/nsp-audit-ui-20261021, fix/nsp-free-checklist-20261021, fix/nsp-free-downloads-20261021, fix/nsp-layout-v3-20261021, fix/nsp-stage-links-20261022, fix/nsp-inner-background-20261022]
+    branches: [fix/nsp-cutover-final-20261021, fix/nsp-dzen-20261021, fix/nsp-audit-ui-20261021, fix/nsp-free-checklist-20261021, fix/nsp-free-downloads-20261021, fix/nsp-layout-v3-20261021, fix/nsp-stage-links-20261022, fix/nsp-inner-background-20261022, codex/nsp-publication-catalog-20261026]
     paths: [tools/nsp-final/request.json]
 permissions:
   contents: write
@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   targeted:
-    if: github.ref_name == 'fix/nsp-cutover-final-20261021' || github.ref_name == 'fix/nsp-dzen-20261021' || github.ref_name == 'fix/nsp-audit-ui-20261021' || github.ref_name == 'fix/nsp-free-checklist-20261021' || github.ref_name == 'fix/nsp-free-downloads-20261021' || github.ref_name == 'fix/nsp-layout-v3-20261021' || github.ref_name == 'fix/nsp-stage-links-20261022' || github.ref_name == 'fix/nsp-inner-background-20261022'
+    if: github.ref_name == 'fix/nsp-cutover-final-20261021' || github.ref_name == 'fix/nsp-dzen-20261021' || github.ref_name == 'fix/nsp-audit-ui-20261021' || github.ref_name == 'fix/nsp-free-checklist-20261021' || github.ref_name == 'fix/nsp-free-downloads-20261021' || github.ref_name == 'fix/nsp-layout-v3-20261021' || github.ref_name == 'fix/nsp-stage-links-20261022' || github.ref_name == 'fix/nsp-inner-background-20261022' || github.ref_name == 'codex/nsp-publication-catalog-20261026'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -23,8 +23,9 @@ jobs:
       - name: Read explicit action and configure bounded SSH
         run: |
           set -euo pipefail
-          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","inspect-checklist","inspect-free-downloads","inspect-layout"]; print(x["action"])')
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","inspect-checklist","inspect-free-downloads","inspect-layout","p2-snapshot","p2-publish"]; print(x["action"])')
           echo "NSP_ACTION=$action" >> "$GITHUB_ENV"
+          if [ "$GITHUB_REF_NAME" = "codex/nsp-publication-catalog-20261026" ]; then [[ "$action" == p2-snapshot || "$action" == p2-publish ]]; fi
           test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
           [[ "$PORT" =~ ^[0-9]+$ ]]
           install -d -m 700 ~/.ssh
@@ -32,6 +33,9 @@ jobs:
           chmod 600 ~/.ssh/nsp_final_key
           timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
           mkdir -p /tmp/nsp-final-evidence
+      - name: Approved P2 v13 targeted publication
+        if: startsWith(env.NSP_ACTION, 'p2-') && github.ref_name == 'codex/nsp-publication-catalog-20261026'
+        run: python3 tools/nsp-publication-20261026/p2-v13-20261029/operate.py "$NSP_ACTION"
       - name: Save current production static source without secrets
         if: env.NSP_ACTION == 'snapshot'
         run: |
