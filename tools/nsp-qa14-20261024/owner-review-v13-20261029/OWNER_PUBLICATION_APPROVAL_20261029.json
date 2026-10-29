@@ -1,0 +1,50 @@
+{
+  "schema": "NSP_OWNER_PUBLICATION_APPROVAL_v1",
+  "decision_id": "NSP-P2-V13-OWNER-APPROVED-20261029",
+  "decision_date": "2026-10-29",
+  "decision_source": "Explicit owner message in the current NSP product acceptance conversation; recorded by the assistant",
+  "owner_quote": "Вот теперь хорошо получилось. Согласовано к публикации",
+  "sku": "p2",
+  "edition_id": "P2-v13",
+  "owner_product_acceptance": "APPROVED",
+  "release_permission": "ALLOW_EXACT_EDITION_ONLY",
+  "source_repository": "pmgpt12-arch/marzhavbetone.ru",
+  "source_commit": "46005303b5b0f4ca27d9742d23cb9456669034e5",
+  "source_directory": "tools/nsp-qa14-20261024/owner-review-v13-20261029",
+  "archive": "P2-NSP-v13-13-files-20261029.zip",
+  "archive_sha256": "42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da",
+  "archive_git_blob": "f8ffc3c0c00f5f69cf9ac2ef93d2d889c2d4f63b",
+  "archive_bytes": 438989,
+  "file_count": 13,
+  "formats": {"docx": 8, "xlsx": 2, "pdf": 3},
+  "source_manifest": "REVIEW_MANIFEST.json",
+  "source_manifest_sha256": "0b21feede98c5833cce447ac47c4e648cb51d8178199c2fe16ff6316bded3a96",
+  "source_manifest_git_blob": "c38df180199fa61e2623d0228abfb2e28b0363ce",
+  "accepted_properties": [
+    "One buyer instruction: 00-INSTRUKCIYA.pdf; no instructional TXT or DOCX in buyer ZIP",
+    "04-akt-skrytyh-rabot.docx is the editable reconstruction based on the owner-provided form",
+    "Uniform external table widths in all P2 Word forms; direction/response and signatures separated where applicable",
+    "Both Excel files and PDFs 09/10 unchanged from the prior reviewed edition"
+  ],
+  "verification_scope": {
+    "layout_review": "Completed and accepted by owner",
+    "additional_native_word_tests": "Not performed and not requested for this layout revision",
+    "historical_qa_receipts": "Remain unchanged; no synthetic FULL_QA_PASS is created by this approval"
+  },
+  "publication_route": {
+    "task": "Existing NSP TZ4 publication workflow",
+    "pull_request": 677,
+    "branch": "codex/nsp-publication-catalog-20261026",
+    "parallel_job_or_new_release_route": false
+  },
+  "publication_acceptance": [
+    "Bind p2 delivery to this exact archive and its 13 member hashes from the pinned source manifest",
+    "Update p2 product description, FAQ and structured data to 13 files: 8 DOCX, 2 XLSX, 3 PDF",
+    "Verify the actual delivered archive bytes and existing buyer route; preserve historical order entitlements",
+    "Do not change price, SKU, other product release permissions or unrelated production files"
+  ],
+  "other_editions_or_skus_approved": false,
+  "whole_pr_merge_approved": false,
+  "deployment_status": "NOT_DEPLOYED_BY_THIS_RECORD",
+  "historical_review_manifests_preserved": true
+}
