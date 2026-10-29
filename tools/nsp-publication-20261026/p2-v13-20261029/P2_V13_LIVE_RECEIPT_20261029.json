@@ -1,0 +1,40 @@
+{
+  "schema": "NSP_P2_V13_LIVE_PUBLICATION_VERIFICATION_v1",
+  "date": "2026-10-29",
+  "sku": "p2",
+  "edition": "P2-v13",
+  "owner_approval_commit": "29a73bea7783c52924a3b85c4dfbeb563e3e550d",
+  "approved_source_commit": "46005303b5b0f4ca27d9742d23cb9456669034e5",
+  "archive_filename": "P2-NSP-v13-13-files-20261029.zip",
+  "archive_sha256": "42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da",
+  "archive_members": 13,
+  "formats": {
+    "docx": 8,
+    "xlsx": 2,
+    "pdf": 3
+  },
+  "release_github_action": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40903655645",
+  "preflight_github_action": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40903431294",
+  "evidence": {
+    "preflight_status": "P2_PREFLIGHT_PASS",
+    "apply_status": "P2_APPLY_PASS",
+    "native_delivery_status": "P2_NATIVE_DELIVERY_PASS",
+    "public_status": "P2_V13_PUBLICATION_VERIFIED",
+    "https_exact_bytes_matches": 2,
+    "ttl_seconds": 3600
+  },
+  "changed_public_files": [
+    "products/p2-dopolnitelnye-raboty.html",
+    "katalog.html",
+    "products-config.php"
+  ],
+  "price_kopecks": 2490000,
+  "other_skus_modified": false,
+  "paid_gateway_checkout_performed": false,
+  "full_payment_email_download_e2e": "NOT_RUN",
+  "legacy_buyer_zip_retained": false,
+  "legacy_product_master_source_files_cleanup": "NOT_PART_OF_THIS_RELEASE",
+  "deployment_status": "VERIFIED_LIVE",
+  "source_readback": "GitHub Actions artifact nsp-final-evidence-40903655645, server SHA verified separately",
+  "note": "This result supersedes P2 'NOT_DEPLOYED' in prior QA staging documents; protected QA source files and other SKU permissions unchanged"
+}
