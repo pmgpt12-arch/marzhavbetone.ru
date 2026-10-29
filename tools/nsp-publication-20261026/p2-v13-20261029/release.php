@@ -6,6 +6,7 @@ function h(string $p): string { req(is_file($p)&&!is_link($p),'FILE_NOT_REGULAR:
 function atomic(string $from,string $to): void {
   req(is_file($from)&&is_dir(dirname($to))&&!is_link(dirname($to)),'ATOMIC_PATH');
   $tmp=tempnam(dirname($to),'.p2-v13-'); req($tmp!==false,'TEMP');
+  req(chmod($tmp,is_file($to)?(fileperms($to)&0777):0644),'FILE_MODE');
   try { req(copy($from,$tmp),'COPY'); req(h($tmp)===h($from),'COPY_HASH'); req(rename($tmp,$to),'RENAME'); }
   finally { if (is_file($tmp)) unlink($tmp); }
 }
