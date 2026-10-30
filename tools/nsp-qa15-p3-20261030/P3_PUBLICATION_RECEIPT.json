@@ -1,0 +1,31 @@
+{
+  "status": "P3_LAYOUT_V1_DEPLOYED_CURRENT_ARCHIVE_AND_HTTPS_VERIFIED",
+  "edition": "P3-layout-v1",
+  "archive_sha256": "54854b79366598cba9680c5c71451220a5de45929ff33bcf42eba9b97dbcb92b",
+  "file_count": 11,
+  "source_gate": "PASS",
+  "actual_server_builder_bytes": "EXACT_MATCH",
+  "public_pages": [
+    {
+      "path": "products/p3-shablony-ks2-ks3.html",
+      "status": 200,
+      "sha256": "fb7ca3b5a4825dd5147090e028f0175b28d387496ebadd29ca0592a3a9b7fdbc"
+    },
+    {
+      "path": "katalog.html",
+      "status": 200,
+      "sha256": "0a22fe5af092e166e5db2ce5376b7407cf9ce761ce49d212d46071df23114978"
+    }
+  ],
+  "ttl_seconds": 3600,
+  "price_kopeks": 1790000,
+  "old_product_files_retained": false,
+  "old_cache_retained": false,
+  "payment_and_download_unchanged": true,
+  "config_change": "extend existing exact-current archive branch to P3; P1 and P2 preserved",
+  "real_payment_tested": false,
+  "run_id": "41009592056",
+  "commit": "bf379b0497b82663976a3452f59b79afe6e0e7ff",
+  "owner_permission": "APPROVED",
+  "scope": "P3 current source/master/cache and page/catalog; existing current-archive builder extended to P3"
+}
