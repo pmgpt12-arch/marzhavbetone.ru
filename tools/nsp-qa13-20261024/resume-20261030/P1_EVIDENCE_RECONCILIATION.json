@@ -1,0 +1,47 @@
+{
+  "schema": "NSP_P1_LAYOUT_INHERITED_EVIDENCE_v1",
+  "archive_sha256": "99df41c33e25ce41b61b8e04e22e27871d08a2c383ddae234119a29df5f29ada",
+  "new_native_jobs": 0,
+  "new_legal_review": false,
+  "files": [
+    {
+      "file": "03-akt-vypolnennyh-rabot.docx",
+      "status": "MAIN_TEXT_PRESERVED_LAYOUT_CHANGED_OWNER_PENDING",
+      "original_sha256": "bf3d055ccc050d5f0e1c1b1f09963d436aed7fc81647d63a1d0285e3f3e8cbfe",
+      "candidate_sha256": "db1c348f6c7ac7b0d154df6633244a4db65be37ee76d36e82db63d66072ffe88",
+      "moved_notes": 0,
+      "new_word_test": false
+    },
+    {
+      "file": "04-akt-priemki.docx",
+      "status": "MAIN_TEXT_PRESERVED_LAYOUT_CHANGED_OWNER_PENDING",
+      "original_sha256": "bc7e68833b07223558e0cae648bf9f82c65cb590c48f104b935d1537cf15637e",
+      "candidate_sha256": "de9f55f3e3f36d94865dcc6e44a44c411c4638e7353cf2b3f3025b41197e6504",
+      "moved_notes": 0,
+      "new_word_test": false
+    },
+    {
+      "file": "05-peredatochnyy-akt.docx",
+      "status": "MAIN_TEXT_PRESERVED_LAYOUT_CHANGED_OWNER_PENDING",
+      "original_sha256": "226a92dc69184f169ef1bc8897c53ab30e6b2eeca4a6aa11f44fc76d8a884be1",
+      "candidate_sha256": "b4e8a55849f598b4e7b062e940ad5412aee85466cff154de607b3480a2cc0868",
+      "moved_notes": 0,
+      "new_word_test": false
+    }
+  ],
+  "checks": {
+    "03-akt-vypolnennyh-rabot.docx:main_text_unchanged": true,
+    "04-akt-priemki.docx:main_text_unchanged": true,
+    "05-peredatochnyy-akt.docx:main_text_unchanged": true,
+    "11-slovar-poley.docx:main_text_unchanged": true,
+    "11-slovar-poley.docx:moved_note_0": true,
+    "11-slovar-poley.docx:moved_note_1": true,
+    "11-slovar-poley.docx:moved_note_2": true,
+    "11-slovar-poley.docx:moved_note_3": true,
+    "11-slovar-poley.docx:moved_note_4": false
+  },
+  "release_allowed": false,
+  "owner_acceptance": "PENDING",
+  "status": "STOP_REVIEW_REQUIRED",
+  "error": "AssertionError: 11-slovar-poley.docx:moved_note_4"
+}
