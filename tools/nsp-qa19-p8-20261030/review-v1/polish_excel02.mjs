@@ -1,0 +1,10 @@
+import fs from 'node:fs/promises';
+import {FileBlob,SpreadsheetFile} from '@oai/artifact-tool';
+const R='/workspace/scratch/1c70cef937ec/qa19-p8';
+const f=(await fs.readdir(R+'/source')).find(n=>n.startsWith('02'));
+const w=await SpreadsheetFile.importXlsx(await FileBlob.load(R+'/source/'+f));
+const s=w.worksheets.getItem('Пример заполнения');
+s.getRange('B8:C8').format.wrapText=true;s.getRange('A8:C8').format.rowHeight=42;
+w.recalculate();const out=await SpreadsheetFile.exportXlsx(w);
+await out.save('/workspace/scratch/1c70cef937ec/outputs/p8-20261030/'+f);
+console.log('02 sample wrapping fixed');

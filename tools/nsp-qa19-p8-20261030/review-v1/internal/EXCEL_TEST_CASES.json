@@ -1,0 +1,72 @@
+[
+  {
+    "id": "09-blank",
+    "sheet": "Сальдо",
+    "cell": "B32",
+    "expected": null,
+    "artifactValue": ""
+  },
+  {
+    "id": "09-accepted-only",
+    "sheet": "Сальдо",
+    "cell": "B32",
+    "expected": 2450000,
+    "artifactValue": 2450000
+  },
+  {
+    "id": "09-full-example",
+    "sheet": "Сальдо",
+    "cell": "B32",
+    "expected": 870000,
+    "artifactValue": 870000
+  },
+  {
+    "id": "09-missing-cash",
+    "sheet": "Сальдо",
+    "cell": "B32",
+    "expected": null,
+    "artifactValue": 1500000
+  },
+  {
+    "id": "09-overallocated",
+    "sheet": "Сальдо",
+    "cell": "B32",
+    "expected": null,
+    "artifactValue": ""
+  },
+  {
+    "id": "09-negative-input",
+    "sheet": "Сальдо",
+    "cell": "B32",
+    "expected": null,
+    "artifactValue": ""
+  },
+  {
+    "id": "09-last-row",
+    "sheet": "Сальдо",
+    "cell": "B32",
+    "expected": 1950000,
+    "artifactValue": 1950000
+  },
+  {
+    "id": "09-creditor",
+    "sheet": "Сальдо",
+    "cell": "B32",
+    "expected": -1050000,
+    "artifactValue": -1050000
+  },
+  {
+    "id": "02-delay",
+    "sheet": "Сравнение",
+    "cell": "B7",
+    "expected": 800000,
+    "artifactValue": 800000
+  },
+  {
+    "id": "02-invalid-percent",
+    "sheet": "Сравнение",
+    "cell": "B7",
+    "expected": null,
+    "artifactValue": ""
+  }
+]

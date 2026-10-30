@@ -1,0 +1,12 @@
+P8 review v1 30.10.2026
+Pinned source ZIP SHA 07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038 at source_commit in REVIEW_MANIFEST.
+Extract source.zip to source; mkdir candidate,internal,output. Primary runtime Python/Node required.
+1 build_word.py (copies fresh source; must precede spreadsheet edits); render_word.py
+2 build_guide.py
+3 edit_excel.mjs via temporary node_modules link; finalize_excel.py
+4 polish_excel02.mjs; finalize_excel02.py
+5 compare_excel.py; test_excel.mjs (disposable scenarios); force_test_recalc.py; soffice with profile /tmp/p8-force-recalc to test-recalc-hard; verify_tests.py
+6 Render candidate XLSX to render-excel PDF with LibreOffice, inspect all pages; current outputs 02=9 pages,09 approx19.
+7 package.py after final visual review.
+Two workbooks retain all formulas, meaningful merges and validation.09 has11 targeted text edits;02 only sample wrapping and print fixes.
+No new Microsoft Office run; not FULL_QA_PASS; no publication until exact edition accepted.

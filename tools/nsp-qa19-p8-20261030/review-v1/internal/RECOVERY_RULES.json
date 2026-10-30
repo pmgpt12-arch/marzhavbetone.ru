@@ -1,0 +1,32 @@
+[
+  {
+    "cause": "Source example adds guarantee retention to a residual already calculated after all payments",
+    "class": "double counting of monetary positions",
+    "rule": "Reconcile cash-minus-performance and unamortized-advance-minus-unpaid-work; one sum appears once",
+    "gate": "Corrected example gives 870000; accepted-only gives2450000; scenarios and cross-document example aligned"
+  },
+  {
+    "cause": "Artifact Tool SUMPRODUCT/LEFT cached count missed incomplete input despite row warning",
+    "class": "calculation engine or cache inconsistency",
+    "rule": "Do not accept a cached PASS; force independent recalculation with caches removed for boundary scenarios",
+    "gate": "10 of10 LibreOffice hard-recalc; missing cash input blocks final saldo; Microsoft Office not run"
+  },
+  {
+    "cause": "Export omitted native print metadata",
+    "class": "serialization regression",
+    "rule": "Restore source print areas, titles, page setup after narrow spreadsheet edits",
+    "gate": "Formula/value/merge/validation preservation plus all-sheet PDF review"
+  },
+  {
+    "cause": "Render request used guessed sheet alias",
+    "class": "unobserved identifier",
+    "rule": "Use exact sheet name from workbook inventory",
+    "gate": "Resolved Пример заполнения before retry"
+  },
+  {
+    "cause": "Repeated fixed-height notes clipped in print",
+    "class": "layout overflow",
+    "rule": "Adjust only affected note/status row heights and wrapping; retain all records",
+    "gate": "Inspect final affected pages and text coverage"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "cause": "Artifact Tool roundtrip omitted source print areas, titles and fitToPage metadata",
+  "class": "spreadsheet serialization metadata loss",
+  "rule": "restore exact source print metadata after Artifact Tool narrow edits; preserve formulas and values",
+  "gate": "semantic comparison and LibreOffice PDF all-sheet review",
+  "fallback": "same unavailable print API established QA17/QA18"
+}
