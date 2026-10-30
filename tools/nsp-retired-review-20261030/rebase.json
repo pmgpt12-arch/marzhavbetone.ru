@@ -1,0 +1,25 @@
+{
+  "reason": "dry-run blocked concurrent changes; preserved live P1/P2/P3/catalog content, removed only exact retired CTA",
+  "files": [
+    {
+      "path": "katalog.html",
+      "before": "0a22fe5af092e166e5db2ce5376b7407cf9ce761ce49d212d46071df23114978",
+      "after": "b2fdc29ad83493972e4c8041d3b1490a14f8079500181810b6f03b3d3f7969e5"
+    },
+    {
+      "path": "products/p1-oplata-po-ks2.html",
+      "before": "d39f0115c54c58b816617a7f45c50245802052aadeab0b981eabd5256fda7a5b",
+      "after": "7198b1c893f8a2f482da29bdca7b94db9def1e4043c7a4e53b083b89049edbac"
+    },
+    {
+      "path": "products/p3-shablony-ks2-ks3.html",
+      "before": "fb7ca3b5a4825dd5147090e028f0175b28d387496ebadd29ca0592a3a9b7fdbc",
+      "after": "affb5343ae69dcb616bf55a9e8247b6245c5b094c6e237055764be2f14f0430a"
+    },
+    {
+      "path": "products/p2-dopolnitelnye-raboty.html",
+      "before": "f91cca6b2e3db1a3a22555ffdf14e08f670790de8a5fa711b93af65126144242",
+      "after": "87b90a575ffddea012eae1dfe3111d6172ac806a69a046e80503fc859443d6aa"
+    }
+  ]
+}
