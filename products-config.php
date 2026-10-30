@@ -328,7 +328,7 @@ function mvb_products(): array
         // Нормативная сверка (Р-026) для него предшествует продаже и
         // проведена 31.07.2026 — см. MANIFEST.md в папке продукта.
         'p9' => [
-            'name'  => 'Система защиты требований подрядчика при банкротстве генподрядчика',
+            'name'  => 'Генподрядчик банкротится: заявляем долг в реестр кредиторов',
             'price' => 2490000,
             'dir'   => '11-bankrotstvo-genpodryadchika',
             'zip'   => '11-bankrotstvo-genpodryadchika.zip',
@@ -496,13 +496,14 @@ function mvb_build_product_zip(string $sku): ?string
         return $edition === null ? null : mvb_p1_edition_path($edition);
     }
     // P2 v13: only the owner-approved current archive. No historical versions.
-    if ($sku === 'p2' || $sku === 'p3' || $sku === 'p4' || $sku === 'p5' || $sku === 'p7') {
+    if ($sku === 'p2' || $sku === 'p3' || $sku === 'p4' || $sku === 'p5' || $sku === 'p7' || $sku === 'p9') {
         $current = [
             'p2' => ['42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da', '/P2-v13-current.zip'],
             'p3' => ['54854b79366598cba9680c5c71451220a5de45929ff33bcf42eba9b97dbcb92b', '/P3-v1-current.zip'],
             'p4' => ['a581a2174e65184573fb56747431fd8afd37862ef418a84ffa613d1a630b05ea', '/P4-v1-current.zip'],
             'p5' => ['1a0ab501a008c9cae1b1baaaa6570d1123291630ac8ecff1db74fad411431286', '/P5-v1-current.zip'],
             'p7' => ['99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24', '/P7-v2-current.zip'],
+            'p9' => ['34bf03bcd3ed2e31d731dd8ac4c316cf9f94a8bb5dde1e4c9fc1aa3a7b7b23d9', '/P9-v1-current.zip'],
         ];
         [$approved, $currentMaster] = $current[$sku];
         $master = PRODUCTS_DIR . $currentMaster;
