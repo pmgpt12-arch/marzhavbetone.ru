@@ -1,0 +1,8 @@
+{
+  "failed_publish_run": 41026678179,
+  "rollback": "PASS",
+  "failure": "Old domain returns HTTP403 error code1010 to this HTTP client, including before any change; new domain old handler returns GET405 POST422 after rollback",
+  "class": "OLD_DOMAIN_CLIENT_ACCESS_RESTRICTION",
+  "rule": "New-domain retirement must return GET410 POST410 and exact PHP SHA; old-domain HTTP403 recorded separately, redirect verified in browser",
+  "verification": "Added execution tests GET and POST with synthetic input expecting HTTP410 and SERVICE_RETIRED; new-domain HTTP gate remains mandatory"
+}

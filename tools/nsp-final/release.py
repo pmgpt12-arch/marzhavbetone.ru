@@ -84,7 +84,10 @@ def main(action):
                     raise AssertionError('RETIRED_HANDLER_ACCEPTED_REQUEST')
                 except urllib.error.HTTPError as response:
                     data=response.read(10000)
-                    assert response.code==410 and json.loads(data)['code']=='SERVICE_RETIRED','RETIRED_HANDLER_RESPONSE'
+                    if domain=='marzhavbetone.ru' and response.code==403:
+                        retired.append({'domain':domain,'method':method,'status':403,'result':'OLD_DOMAIN_CLIENT_ACCESS_BLOCKED; verify redirect in browser separately'})
+                        continue
+                    assert response.code==410 and json.loads(data)['code']=='SERVICE_RETIRED',f'RETIRED_HANDLER_RESPONSE_{domain}_{method}_{response.code}'
                     retired.append({'domain':domain,'method':method,'status':410,'code':'SERVICE_RETIRED'})
         (EVIDENCE/'retired-endpoint.json').write_text(json.dumps(retired,indent=2)+'\n')
         req=urllib.request.Request('https://nastoronepodryadchika.ru/app-script.php?nsp_final='+run,headers={'Cache-Control':'no-cache'})

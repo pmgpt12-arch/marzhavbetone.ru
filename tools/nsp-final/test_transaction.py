@@ -19,6 +19,9 @@ with tempfile.TemporaryDirectory() as tmp:
     # The one allowed PHP change is the exact retired handler; every other PHP stays protected.
     contact_before=Path(__file__).with_name('contact-before.fixture').read_bytes()
     contact_after=Path('contact.php').read_bytes()
+    for method in ['GET','POST']:
+        probe=subprocess.run(['php','-r', '$_SERVER["REQUEST_METHOD"]=$argv[2]; $_POST=["contact"=>"synthetic@example.invalid","consent"=>"yes"]; include $argv[1]; fwrite(STDERR,(string)http_response_code());',str(Path('contact.php').resolve()),method],capture_output=True,timeout=10)
+        assert probe.returncode==0 and probe.stderr==b'410' and json.loads(probe.stdout)['code']=='SERVICE_RETIRED', (method,probe.stdout,probe.stderr)
     (site/'contact.php').write_bytes(contact_before)
     (site/'lead.php').write_bytes(b'<?php // protected delivery fixture')
     (release/'candidate/contact.php').write_bytes(contact_after)
