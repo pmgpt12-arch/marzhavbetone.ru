@@ -1,7 +1,7 @@
 name: NSP final targeted corrections
 on:
   push:
-    branches: [fix/nsp-remove-retired-review-20261030, fix/nsp-cutover-final-20261021, fix/nsp-dzen-20261021, fix/nsp-audit-ui-20261021, fix/nsp-free-checklist-20261021, fix/nsp-free-downloads-20261021, fix/nsp-layout-v3-20261021, fix/nsp-stage-links-20261022, fix/nsp-inner-background-20261022]
+    branches: [fix/nsp-legacy-data-cleanup-20261030, fix/nsp-remove-retired-review-20261030, fix/nsp-cutover-final-20261021, fix/nsp-dzen-20261021, fix/nsp-audit-ui-20261021, fix/nsp-free-checklist-20261021, fix/nsp-free-downloads-20261021, fix/nsp-layout-v3-20261021, fix/nsp-stage-links-20261022, fix/nsp-inner-background-20261022]
     paths: [tools/nsp-final/request.json]
 permissions:
   contents: write
@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   targeted:
-    if: github.ref_name == 'fix/nsp-remove-retired-review-20261030' || github.ref_name == 'fix/nsp-cutover-final-20261021' || github.ref_name == 'fix/nsp-dzen-20261021' || github.ref_name == 'fix/nsp-audit-ui-20261021' || github.ref_name == 'fix/nsp-free-checklist-20261021' || github.ref_name == 'fix/nsp-free-downloads-20261021' || github.ref_name == 'fix/nsp-layout-v3-20261021' || github.ref_name == 'fix/nsp-stage-links-20261022' || github.ref_name == 'fix/nsp-inner-background-20261022'
+    if: github.ref_name == 'fix/nsp-legacy-data-cleanup-20261030' || github.ref_name == 'fix/nsp-remove-retired-review-20261030' || github.ref_name == 'fix/nsp-cutover-final-20261021' || github.ref_name == 'fix/nsp-dzen-20261021' || github.ref_name == 'fix/nsp-audit-ui-20261021' || github.ref_name == 'fix/nsp-free-checklist-20261021' || github.ref_name == 'fix/nsp-free-downloads-20261021' || github.ref_name == 'fix/nsp-layout-v3-20261021' || github.ref_name == 'fix/nsp-stage-links-20261022' || github.ref_name == 'fix/nsp-inner-background-20261022'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -23,7 +23,7 @@ jobs:
       - name: Read explicit action and configure bounded SSH
         run: |
           set -euo pipefail
-          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","inspect-checklist","inspect-free-downloads","inspect-layout"]; print(x["action"])')
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","inspect-checklist","inspect-free-downloads","inspect-layout","privacy-audit"]; print(x["action"])')
           echo "NSP_ACTION=$action" >> "$GITHUB_ENV"
           test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
           [[ "$PORT" =~ ^[0-9]+$ ]]
@@ -32,6 +32,13 @@ jobs:
           chmod 600 ~/.ssh/nsp_final_key
           timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
           mkdir -p /tmp/nsp-final-evidence
+      - name: Read only legacy and current user data inventory
+        if: env.NSP_ACTION == 'privacy-audit'
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/nsp-privacy-20261030/inventory.py
+          timeout 80s ssh -p "$PORT" -i ~/.ssh/nsp_final_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$SSH_USER@$HOST" 'python3 - "$HOME"' < tools/nsp-privacy-20261030/inventory.py > /tmp/nsp-final-evidence/privacy-inventory.json
+          cat /tmp/nsp-final-evidence/privacy-inventory.json
       - name: Save current production static source without secrets
         if: env.NSP_ACTION == 'snapshot'
         run: |
