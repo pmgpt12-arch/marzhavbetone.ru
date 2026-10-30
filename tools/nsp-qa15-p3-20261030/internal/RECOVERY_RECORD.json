@@ -1,0 +1,23 @@
+{
+  "failures": [
+    {
+      "class": "SOURCE_PARAGRAPH_SHAPE_MISMATCH",
+      "cause": "Address and signature lines were inside one paragraph with line breaks",
+      "fix": "Parse observed lines explicitly before moving to separate tables",
+      "gate": "Required body text preservation plus 15-table geometry checks"
+    },
+    {
+      "class": "PDF_EXTRACTION_WHITESPACE_FALSE_NEGATIVE",
+      "cause": "A checked phrase wrapped across a PDF line",
+      "fix": "Normalize whitespace in extracted text",
+      "gate": "83 package checks including source phrase and exact member list"
+    },
+    {
+      "class": "EXEC_ARGUMENT_LIMIT",
+      "cause": "Large binary transfer embedded in one process argument",
+      "fix": "Bound chunks at 48000 base64 characters",
+      "gate": "Exact source ZIP SHA verified before extraction"
+    }
+  ],
+  "recovery_verified": true
+}
