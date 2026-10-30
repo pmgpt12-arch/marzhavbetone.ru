@@ -1,0 +1,3563 @@
+{
+  "schema": "NSP_QA17_P5_OWNER_REVIEW_v1",
+  "sku": "p5",
+  "edition": "P5-layout-v1",
+  "status": "READY_FOR_OWNER_REVIEW",
+  "owner_approval": "PENDING",
+  "release_allowed": false,
+  "production_changed": false,
+  "full_qa_pass": false,
+  "new_native_office_test_performed": false,
+  "source_archive_sha256": "c99d209997835223f15d04f09964c1efed946e5567264bc749507b3c626b59cd",
+  "file_count": 30,
+  "formats": {
+    "docx": 22,
+    "xlsx": 6,
+    "pdf": 2
+  },
+  "checks": [
+    {
+      "name": "30 buyer files",
+      "status": "PASS"
+    },
+    {
+      "name": "exact format composition",
+      "status": "PASS"
+    },
+    {
+      "name": "single PDF start guide",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged calculation workbook04",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged register05",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged algorithm07",
+      "status": "PASS"
+    },
+    {
+      "name": "04-raschet-ubytkov.xlsx worksheet identities",
+      "status": "PASS"
+    },
+    {
+      "name": "04-raschet-ubytkov.xlsx/Расчёт требования all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "04-raschet-ubytkov.xlsx/Расчёт требования scoped values",
+      "status": "PASS"
+    },
+    {
+      "name": "04-raschet-ubytkov.xlsx CRC",
+      "status": "PASS"
+    },
+    {
+      "name": "04-raschet-ubytkov.xlsx/xl/worksheets/sheet1.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "04-raschet-ubytkov.xlsx/xl/worksheets/sheet1.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "04-raschet-ubytkov.xlsx/xl/worksheets/sheet1.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "04-raschet-ubytkov.xlsx/xl/worksheets/sheet1.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "05-reestr-uderzhaniy.xlsx worksheet identities",
+      "status": "PASS"
+    },
+    {
+      "name": "05-reestr-uderzhaniy.xlsx/Реестр удержаний и штрафов all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "05-reestr-uderzhaniy.xlsx/Реестр удержаний и штрафов scoped values",
+      "status": "PASS"
+    },
+    {
+      "name": "05-reestr-uderzhaniy.xlsx CRC",
+      "status": "PASS"
+    },
+    {
+      "name": "05-reestr-uderzhaniy.xlsx/xl/worksheets/sheet1.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "05-reestr-uderzhaniy.xlsx/xl/worksheets/sheet1.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "05-reestr-uderzhaniy.xlsx/xl/worksheets/sheet1.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "05-reestr-uderzhaniy.xlsx/xl/worksheets/sheet1.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "06-grafik-vozmeshcheniya.xlsx worksheet identities",
+      "status": "PASS"
+    },
+    {
+      "name": "06-grafik-vozmeshcheniya.xlsx/График возмещения all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "06-grafik-vozmeshcheniya.xlsx/График возмещения scoped values",
+      "status": "PASS"
+    },
+    {
+      "name": "06-grafik-vozmeshcheniya.xlsx CRC",
+      "status": "PASS"
+    },
+    {
+      "name": "06-grafik-vozmeshcheniya.xlsx/xl/worksheets/sheet1.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "06-grafik-vozmeshcheniya.xlsx/xl/worksheets/sheet1.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "06-grafik-vozmeshcheniya.xlsx/xl/worksheets/sheet1.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "06-grafik-vozmeshcheniya.xlsx/xl/worksheets/sheet1.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx worksheet identities",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/Реестр all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/Реестр scoped values",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/Сводка all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/Сводка scoped values",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/Пример заполнения all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx CRC",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/xl/worksheets/sheet1.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/xl/worksheets/sheet1.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/xl/worksheets/sheet1.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/xl/worksheets/sheet1.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/xl/worksheets/sheet2.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/xl/worksheets/sheet2.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/xl/worksheets/sheet2.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/xl/worksheets/sheet2.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/xl/worksheets/sheet3.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/xl/worksheets/sheet3.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/xl/worksheets/sheet3.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx/xl/worksheets/sheet3.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx worksheet identities",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/Реестр all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/Реестр scoped values",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/Сводка all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/Сводка scoped values",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/Виды all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/Виды scoped values",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/Пример заполнения all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx CRC",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet1.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet1.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet1.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet1.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet2.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet2.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet2.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet2.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet3.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet3.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet3.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet3.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet4.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet4.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet4.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx/xl/worksheets/sheet4.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx worksheet identities",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/Спорная зона all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/Спорная зона scoped values",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/Опись all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/Опись scoped values",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/Обязательный минимум all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/Обязательный минимум scoped values",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/Сводка all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/Сводка scoped values",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/Виды all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/Виды scoped values",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/Пример заполнения all actual formulas unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx CRC",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet1.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet1.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet1.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet1.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet2.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet2.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet2.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet2.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet3.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet3.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet3.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet3.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet4.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet4.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet4.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet4.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet5.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet5.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet5.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet5.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet6.xml/dataValidations preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet6.xml/conditionalFormatting preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet6.xml/autoFilter preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx/xl/worksheets/sheet6.xml formula caches preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "01-pretenziya-na-uderzhanie.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "01-pretenziya-na-uderzhanie.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "01-pretenziya-na-uderzhanie.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "01-pretenziya-na-uderzhanie.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "01-pretenziya-na-uderzhanie.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "02-pretenziya-na-shtraf.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "02-pretenziya-na-shtraf.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "02-pretenziya-na-shtraf.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "02-pretenziya-na-shtraf.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "02-pretenziya-na-shtraf.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "03-vozrazhenie-na-zachet.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "03-vozrazhenie-na-zachet.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "03-vozrazhenie-na-zachet.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "03-vozrazhenie-na-zachet.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "03-vozrazhenie-na-zachet.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "08-tipovye-osnovaniya.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "09-konsultaciya-po-delu.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "09-konsultaciya-po-delu.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "09-konsultaciya-po-delu.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "09-konsultaciya-po-delu.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "09-konsultaciya-po-delu.docx table3 width",
+      "status": "PASS"
+    },
+    {
+      "name": "09-konsultaciya-po-delu.docx table3 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "09-konsultaciya-po-delu.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "10-trebovanie-o-vozvrate-uderzhaniya.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "10-trebovanie-o-vozvrate-uderzhaniya.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "10-trebovanie-o-vozvrate-uderzhaniya.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "10-trebovanie-o-vozvrate-uderzhaniya.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "10-trebovanie-o-vozvrate-uderzhaniya.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table3 width",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table3 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table4 width",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table4 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table5 width",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table5 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table6 width",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table6 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table7 width",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table7 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table8 width",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table8 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table9 width",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table9 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table10 width",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table10 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table11 width",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx table11 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "12-algoritm-pri-navyazannoy-vine.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "12-algoritm-pri-navyazannoy-vine.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "12-algoritm-pri-navyazannoy-vine.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "12-algoritm-pri-navyazannoy-vine.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "12-algoritm-pri-navyazannoy-vine.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx table3 width",
+      "status": "PASS"
+    },
+    {
+      "name": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx table3 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx table4 width",
+      "status": "PASS"
+    },
+    {
+      "name": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx table4 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "14-motivirovannyy-otvet-na-pretenziyu.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "14-motivirovannyy-otvet-na-pretenziyu.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "14-motivirovannyy-otvet-na-pretenziyu.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "14-motivirovannyy-otvet-na-pretenziyu.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "14-motivirovannyy-otvet-na-pretenziyu.docx table3 width",
+      "status": "PASS"
+    },
+    {
+      "name": "14-motivirovannyy-otvet-na-pretenziyu.docx table3 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "14-motivirovannyy-otvet-na-pretenziyu.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "15-vozrazhenie-na-odnostoronniy-akt.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "15-vozrazhenie-na-odnostoronniy-akt.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "15-vozrazhenie-na-odnostoronniy-akt.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "15-vozrazhenie-na-odnostoronniy-akt.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "15-vozrazhenie-na-odnostoronniy-akt.docx table3 width",
+      "status": "PASS"
+    },
+    {
+      "name": "15-vozrazhenie-na-odnostoronniy-akt.docx table3 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "15-vozrazhenie-na-odnostoronniy-akt.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "16-preduprezhdenie-po-st-716.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "16-preduprezhdenie-po-st-716.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "16-preduprezhdenie-po-st-716.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "16-preduprezhdenie-po-st-716.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "16-preduprezhdenie-po-st-716.docx table3 width",
+      "status": "PASS"
+    },
+    {
+      "name": "16-preduprezhdenie-po-st-716.docx table3 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "16-preduprezhdenie-po-st-716.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "17-otvet-na-garantiynuyu-pretenziyu.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "17-otvet-na-garantiynuyu-pretenziyu.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "17-otvet-na-garantiynuyu-pretenziyu.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "17-otvet-na-garantiynuyu-pretenziyu.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "17-otvet-na-garantiynuyu-pretenziyu.docx table3 width",
+      "status": "PASS"
+    },
+    {
+      "name": "17-otvet-na-garantiynuyu-pretenziyu.docx table3 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "17-otvet-na-garantiynuyu-pretenziyu.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "18-akt-peredachi-fronta-rabot.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "18-akt-peredachi-fronta-rabot.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "18-akt-peredachi-fronta-rabot.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "18-akt-peredachi-fronta-rabot.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "18-akt-peredachi-fronta-rabot.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "19-akt-vhodnogo-kontrolya-davalcheskih.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "19-akt-vhodnogo-kontrolya-davalcheskih.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "19-akt-vhodnogo-kontrolya-davalcheskih.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "19-akt-vhodnogo-kontrolya-davalcheskih.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "19-akt-vhodnogo-kontrolya-davalcheskih.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "20-vozrazhenie-na-zachet-uderzhanie.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "20-vozrazhenie-na-zachet-uderzhanie.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "20-vozrazhenie-na-zachet-uderzhanie.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "20-vozrazhenie-na-zachet-uderzhanie.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "20-vozrazhenie-na-zachet-uderzhanie.docx table3 width",
+      "status": "PASS"
+    },
+    {
+      "name": "20-vozrazhenie-na-zachet-uderzhanie.docx table3 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "20-vozrazhenie-na-zachet-uderzhanie.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "21-reglament-komissionnoy-fiksacii.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "21-reglament-komissionnoy-fiksacii.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "21-reglament-komissionnoy-fiksacii.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "21-reglament-komissionnoy-fiksacii.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "21-reglament-komissionnoy-fiksacii.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "24-pamyatka-kto-komu-otvechaet.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "24-pamyatka-kto-komu-otvechaet.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "24-pamyatka-kto-komu-otvechaet.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "24-pamyatka-kto-komu-otvechaet.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "24-pamyatka-kto-komu-otvechaet.docx table3 width",
+      "status": "PASS"
+    },
+    {
+      "name": "24-pamyatka-kto-komu-otvechaet.docx table3 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "24-pamyatka-kto-komu-otvechaet.docx table4 width",
+      "status": "PASS"
+    },
+    {
+      "name": "24-pamyatka-kto-komu-otvechaet.docx table4 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "24-pamyatka-kto-komu-otvechaet.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table3 width",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table3 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table4 width",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table4 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table5 width",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table5 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table6 width",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table6 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table7 width",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx table7 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx table3 width",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx table3 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx table4 width",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx table4 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx table5 width",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx table5 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx table6 width",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx table6 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx table3 width",
+      "status": "PASS"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx table3 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx table4 width",
+      "status": "PASS"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx table4 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx table5 width",
+      "status": "PASS"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx table5 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table1 width",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table1 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table2 width",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table2 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table3 width",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table3 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table4 width",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table4 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table5 width",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table5 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table6 width",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table6 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table7 width",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx table7 grid",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx unprotected editable",
+      "status": "PASS"
+    },
+    {
+      "name": "01 separate address and signature blocks",
+      "status": "PASS"
+    },
+    {
+      "name": "02 separate address and signature blocks",
+      "status": "PASS"
+    },
+    {
+      "name": "03 separate address and signature blocks",
+      "status": "PASS"
+    },
+    {
+      "name": "10 separate address and signature blocks",
+      "status": "PASS"
+    },
+    {
+      "name": "13 actual editable agreement appended",
+      "status": "PASS"
+    },
+    {
+      "name": "00-START-HERE.pdf rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "00-START-HERE.pdf no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "01-pretenziya-na-uderzhanie.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "01-pretenziya-na-uderzhanie.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "02-pretenziya-na-shtraf.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "02-pretenziya-na-shtraf.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "03-vozrazhenie-na-zachet.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "03-vozrazhenie-na-zachet.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "04-raschet-ubytkov.xlsx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "04-raschet-ubytkov.xlsx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "05-reestr-uderzhaniy.xlsx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "05-reestr-uderzhaniy.xlsx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "06-grafik-vozmeshcheniya.xlsx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "06-grafik-vozmeshcheniya.xlsx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "07-algoritm-proverki-uderzhaniy.pdf rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "07-algoritm-proverki-uderzhaniy.pdf no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "08-tipovye-osnovaniya.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "08-tipovye-osnovaniya.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "09-konsultaciya-po-delu.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "09-konsultaciya-po-delu.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "10-trebovanie-o-vozvrate-uderzhaniya.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "10-trebovanie-o-vozvrate-uderzhaniya.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "12-algoritm-pri-navyazannoy-vine.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "12-algoritm-pri-navyazannoy-vine.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "14-motivirovannyy-otvet-na-pretenziyu.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "14-motivirovannyy-otvet-na-pretenziyu.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "15-vozrazhenie-na-odnostoronniy-akt.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "15-vozrazhenie-na-odnostoronniy-akt.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "16-preduprezhdenie-po-st-716.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "16-preduprezhdenie-po-st-716.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "17-otvet-na-garantiynuyu-pretenziyu.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "17-otvet-na-garantiynuyu-pretenziyu.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "18-akt-peredachi-fronta-rabot.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "18-akt-peredachi-fronta-rabot.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "19-akt-vhodnogo-kontrolya-davalcheskih.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "19-akt-vhodnogo-kontrolya-davalcheskih.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "20-vozrazhenie-na-zachet-uderzhanie.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "20-vozrazhenie-na-zachet-uderzhanie.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "21-reglament-komissionnoy-fiksacii.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "21-reglament-komissionnoy-fiksacii.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "24-pamyatka-kto-komu-otvechaet.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "24-pamyatka-kto-komu-otvechaet.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx rendered PDF exists",
+      "status": "PASS"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx no empty PDF pages",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Контрольная дата возврата",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: СП-7, ООО «Условный генподрядчик»",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 18.03.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Порог жёлтого, дней",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 12.01.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Удержание не признаём; возражение — докуме",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Событие возврата",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 15.11.2025",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Лист «Реестр». Часть 2 из 2",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Пояснения к примеру",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Ставка альтернативной доходности, % годовы",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 05.06.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 25.02.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: ДП-12, ООО «Условный застройщик»",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 2 400 000,00",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: считается",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Удержано, ₽",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 5,00%",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Лист «Реестр». Часть 1 из 2",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 3 100 000,00",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 30.06.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: возвращено",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Дата запроса возврата",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: спор",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: истечение гарантийного срока",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: База удержания",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Объект / этап",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Статус",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Примечание",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: запрошен возврат",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Дата удержания",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 90 000,00",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Обратите внимание: у третьей строки контро",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: число дней, за которое вам нужно успеть по",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: подписание итогового акта",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Остаток, ₽",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Срок оценки, лет",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Здесь показан формат ввода, а не ваш случа",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: ЖК «Пример», корпус 1",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 20.03.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: ставка, которую вы задаёте сами — например",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Пример заполнения",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Ставка, %",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: письмо № 41",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Возвращено, ₽",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 1 800 000,00",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 10.12.2025",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: школа, отделка",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 0,5",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Договор",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: банковская гарантия взамен",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 20.03.2025",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: ЖК «Пример», корпус 2",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: 10,00%",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Дата возврата",
+      "status": "PASS"
+    },
+    {
+      "name": "22 printed example content: Лист «Сводка»",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Вид документа",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: 05.05.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: 22.04.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: подготовлен",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Способ передачи",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Лист «Реестр». Часть 2 из 2",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Дата передачи",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Пояснения к примеру",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Дата подготовки",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: 1 — исполнительная схема передана, но не п",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Дата подписания",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: передан",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: паспорт/сертификат",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Лист «Реестр». Часть 1 из 2",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: 15.04.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: акт скрытых работ",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: папка «Паспорта»",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: 20.04.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: передать с описью",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: 14.04.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: папка «Исполнилка»/АОСР-12.pdf",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: подписан",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Статус",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Примечание",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: исполнительная схема",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: КС-2 № 5",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Третья строка блокирует закрытие и ещё не ",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: да",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Привязка к работам",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: 1",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Наименование / участок",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: 2",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Пример заполнения",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: бетон B25, партия 218",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: подписание задерживается",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Запись КС в сводке дословно совпадает с ко",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: армирование плиты, отм. +3,300, корпус 2",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: 3",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Здесь показан формат ввода, а не ваш объек",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: 18.04.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: папка «Исполнилка»/СХ-07.pdf",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: КС-2 № 4",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: №",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: колонны 1-го этажа, оси 1–7",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Ссылка на скан",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: опись, письмо № 88",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Блокирует закрытие",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: ЭДО, № 517",
+      "status": "PASS"
+    },
+    {
+      "name": "23 printed example content: Лист «Сводка»",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: качество и соответствие",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: 02.06.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: К чему относится",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Где находится",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: переписка о работах смежника в зоне",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Первая дыра",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: оси 3–5, отм. +3,300",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Дата запроса",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: 4",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Лист «Опись». Часть 2 из 4",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: 12.05.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Кем подписан",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Обязательных для причины",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Что подтверждает",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: №",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Наличие",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: акт передачи фронта работ",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Лист «Опись». Часть 1 из 4",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Вид документа",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: состояние на дату сдачи",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Получен по запросу",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: подрядчик",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: оси 3–5, помещение 204",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Всего строк в описи",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: не найден, запрашивается у прораба",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: След передачи",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: скан",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: оригинал",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: в порядке",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Колонки «№» и «Состояние» в рабочем листе ",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: 30.04.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Примечание",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: запрос письмом № 104",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: да",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Ненулевое число дыр — это перечень дел на ",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: 1",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: передан без следа",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: запрошен, не получен",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: 2",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Запрошен у другой стороны",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: опись вложения, письмо № 88",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: фотофиксация",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: журнал входного контроля",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: акт допуска смежной организации",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: журнал за апрель 2026 (том 2)",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: доступ третьих лиц",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: искать в архиве участка",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: 18.06.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: 14.04.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Дыр: обязательных и отсутствующих",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Из них запрос не направлен",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: фото армирования от 13.04.2026, запись в о",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: съёмка зоны на дату сдачи участка",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Что ещё относится к этому обстоятельству",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Передан эксперту или в дело",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: генподрядчик, смежник",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Пример заполнения",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: 3",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: АОСР № 12 от 14.04.2026, армирование плиты",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Передан оппоненту",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: акт освидетельствования скрытых работ",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Лист «Опись». Часть 3 из 4",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Лист «Сводка»",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: 20.05.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: акт допуска от 12.05.2026 (у генподрядчика",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Пояснения к примеру",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Здесь показан формат ввода, а не ваш случа",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: папка «Исполнилка», кабинет ПТО",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Наименование и реквизиты",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: нет",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Состояние",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: у генподрядчика",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: дыра: обязательного документа нет, запрос ",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: 25.04.2026",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: облако, папка «Сдача участка»",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Дата передачи оппоненту",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Лист «Опись». Часть 4 из 4",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: подрядчик, генподрядчик, технадзор",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Обязателен для причины",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Дата передачи эксперту",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: Дата документа",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: зона в целом",
+      "status": "PASS"
+    },
+    {
+      "name": "29 printed example content: передавали в мессенджере",
+      "status": "PASS"
+    }
+  ],
+  "check_count": 542,
+  "render_engine": "LibreOffice; no new native Microsoft Office run",
+  "rendered_pages": 141,
+  "render_map": [
+    {
+      "file": "00-START-HERE.pdf",
+      "from_page": 1,
+      "pages": 4,
+      "source_sha256": "fa6972f4ac2f9758ed1e43d3e49560e5e8beeee178a94d287df388510c6e5ba2",
+      "render_pdf_sha256": "fa6972f4ac2f9758ed1e43d3e49560e5e8beeee178a94d287df388510c6e5ba2"
+    },
+    {
+      "file": "01-pretenziya-na-uderzhanie.docx",
+      "from_page": 5,
+      "pages": 1,
+      "source_sha256": "577a8b42464242ca462a190a06004d35fc10def400393cf92a10649c5bee2766",
+      "render_pdf_sha256": "c209e9ef995d39c2afa03659952ca6f366ab74116aa81a854fdc0a83f45042bc"
+    },
+    {
+      "file": "02-pretenziya-na-shtraf.docx",
+      "from_page": 6,
+      "pages": 1,
+      "source_sha256": "02e4c585d0abf9fafcd2a7b0a2768180b9a3539b3d7eef63b86a5b20ad587d62",
+      "render_pdf_sha256": "dc7f826557c8eae2813367c0330d366fa178f78564d44db84d992598e11aad91"
+    },
+    {
+      "file": "03-vozrazhenie-na-zachet.docx",
+      "from_page": 7,
+      "pages": 1,
+      "source_sha256": "8d0f8c303940f7e47e88400375f63c04ff4e1dfedb00b4a226f7f15de9a95248",
+      "render_pdf_sha256": "3abac93f715da2c6fb1a93a26a4b7b41caf98190cf7bd8dd638c791e8c544661"
+    },
+    {
+      "file": "04-raschet-ubytkov.xlsx",
+      "from_page": 8,
+      "pages": 1,
+      "source_sha256": "f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3",
+      "render_pdf_sha256": "955faa30c36ff808f93785a2dd9178002dc597f78a814a84c0bdb1d36353a853"
+    },
+    {
+      "file": "05-reestr-uderzhaniy.xlsx",
+      "from_page": 9,
+      "pages": 1,
+      "source_sha256": "db0d99f745e460b29654c3079483103e1bcc39d65ad9e8c36d002288ed5df9ae",
+      "render_pdf_sha256": "609779335e61940a6effaaa01fc40c76355a3ff94af22d2e3f2b8a6e4b97adbb"
+    },
+    {
+      "file": "06-grafik-vozmeshcheniya.xlsx",
+      "from_page": 10,
+      "pages": 1,
+      "source_sha256": "7c0e805d047e98c7d4846253bf0eb0c0d663bb83b6e8b526f61a8d9f83fdf4a7",
+      "render_pdf_sha256": "dbd6fce3193be3fd8ca0a6a93345368f86ae3c22c0b6ce36af27e3240faf9a6e"
+    },
+    {
+      "file": "07-algoritm-proverki-uderzhaniy.pdf",
+      "from_page": 11,
+      "pages": 2,
+      "source_sha256": "c9fd2392ab4cc9851ac0aaaea965ae0a5b75a1a5f8f9eb5aafd3587a9a88fe11",
+      "render_pdf_sha256": "c9fd2392ab4cc9851ac0aaaea965ae0a5b75a1a5f8f9eb5aafd3587a9a88fe11"
+    },
+    {
+      "file": "08-tipovye-osnovaniya.docx",
+      "from_page": 13,
+      "pages": 2,
+      "source_sha256": "7f2217c6c957398705a65c831517474f14972c8f1c7b0e2da427812848e71b07",
+      "render_pdf_sha256": "26e145e9c611eef5fa57dc1757a4043fb731ab2e643f2de4902eebbf08c3f54a"
+    },
+    {
+      "file": "09-konsultaciya-po-delu.docx",
+      "from_page": 15,
+      "pages": 2,
+      "source_sha256": "85ad2f79393d1575d15127a6a222aa9bf5c124b73ea6faf9164b80c5cfa43bd4",
+      "render_pdf_sha256": "404dcba3794333528f58e04dadee53f9ae207282ee2e9c4aa92043a4d1159c11"
+    },
+    {
+      "file": "10-trebovanie-o-vozvrate-uderzhaniya.docx",
+      "from_page": 17,
+      "pages": 1,
+      "source_sha256": "72237e9667884707a0ef6c68a54ea3eb0cb58ec08b8ec4b15e8080d4b0772e7f",
+      "render_pdf_sha256": "30a82d35dffd51414ff8043b39cde0caea2f5eebb14f34ecccfab56ecabad7c0"
+    },
+    {
+      "file": "11-slovar-poley-oborona.docx",
+      "from_page": 18,
+      "pages": 7,
+      "source_sha256": "a0e969089afad380de0935fc3b71839a9689e7e7a11bdc2307e9d49f8731cd34",
+      "render_pdf_sha256": "52966c859f018b06015aef24f736e8ec99a53d1dce5f5446001e5e89597454d0"
+    },
+    {
+      "file": "12-algoritm-pri-navyazannoy-vine.docx",
+      "from_page": 25,
+      "pages": 3,
+      "source_sha256": "aaaf2cfc3d41f101bbaeed9d798a89b31abad63863ef109b61f19e6985c1b6e7",
+      "render_pdf_sha256": "09380ef498c9467aa7de8122b59261f0cd0122aff6c0c24ebfe4693e2444f062"
+    },
+    {
+      "file": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx",
+      "from_page": 28,
+      "pages": 3,
+      "source_sha256": "0b14184ebd8ff030739a2f6361d0683ca2251a8a3c3ebc47238acacf2ef3df33",
+      "render_pdf_sha256": "d54ed5a6d6931891c14e9d81ad6725bcbd18b6beb4bd3a925eccd8429aea70ab"
+    },
+    {
+      "file": "14-motivirovannyy-otvet-na-pretenziyu.docx",
+      "from_page": 31,
+      "pages": 3,
+      "source_sha256": "08343df6f5346b91f65e37d2e105458903deb11c04966862a1541e8f97bb19b7",
+      "render_pdf_sha256": "7a4ca6e3a2b65136cdf79e35e07cae32e0e577c4dcbdbac5aa8fbb23e5165079"
+    },
+    {
+      "file": "15-vozrazhenie-na-odnostoronniy-akt.docx",
+      "from_page": 34,
+      "pages": 2,
+      "source_sha256": "aadb1bee6897027f865f174b31571b0b052ca3a727844292c6a2fc719a29d043",
+      "render_pdf_sha256": "6053f73ff3a08f5f4ce57ae2a36365e8002715746d4cdb9d20e4dcde96af2fee"
+    },
+    {
+      "file": "16-preduprezhdenie-po-st-716.docx",
+      "from_page": 36,
+      "pages": 2,
+      "source_sha256": "08d3c292e0310ea3a6fa121ea7cc087211aecc808bf2bfbba8821cbda3f25d83",
+      "render_pdf_sha256": "42d67cd3bc190c093fd608e60a89d77ed529078841b177282c8c4d7e1f71adb4"
+    },
+    {
+      "file": "17-otvet-na-garantiynuyu-pretenziyu.docx",
+      "from_page": 38,
+      "pages": 2,
+      "source_sha256": "b26f217be7f44fcae8784e22ba3a854399f44fb9da084d4a3bc61ca6ae252ab1",
+      "render_pdf_sha256": "0ce4abe3371033ec59c8f32334baa3ad03171c71cc499b1322d8703220a0d214"
+    },
+    {
+      "file": "18-akt-peredachi-fronta-rabot.docx",
+      "from_page": 40,
+      "pages": 2,
+      "source_sha256": "47ab16b914ab79fd2a69d53e7f0d03dd47fd040626049b8ef7863f592709a7e3",
+      "render_pdf_sha256": "26ba9a344c1e888855022f507f32561f3bc4c08875a8b276d38325b0f7da3e4d"
+    },
+    {
+      "file": "19-akt-vhodnogo-kontrolya-davalcheskih.docx",
+      "from_page": 42,
+      "pages": 2,
+      "source_sha256": "4157bed64323c9315cc51e28c77c35a94d553d0d07bbd6e757217b83f7f9789d",
+      "render_pdf_sha256": "84dfe5fb5c9783bb67d88131cf22479ebd681419eb122423a5a33c49c7313c04"
+    },
+    {
+      "file": "20-vozrazhenie-na-zachet-uderzhanie.docx",
+      "from_page": 44,
+      "pages": 2,
+      "source_sha256": "b387ff3d30e09432cdc8e61911461d3fd797a593f964809adf765c7c29dac4a9",
+      "render_pdf_sha256": "cc4b54a86a7f462298e9aeebbfbd06cf311455a220286d8735848b6642b1f52c"
+    },
+    {
+      "file": "21-reglament-komissionnoy-fiksacii.docx",
+      "from_page": 46,
+      "pages": 2,
+      "source_sha256": "04151cfdf01c28a7e3af61b9338bd517f870e4ced047aa5117ab58a6b1126f77",
+      "render_pdf_sha256": "d6a1d5b0856a709a234c9d63661a1d8fa7fd8c80031582a654bb64f06998bfb8"
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "from_page": 48,
+      "pages": 15,
+      "source_sha256": "e0f3e50655aec175f2d63fd508c8b1571660aec3b5a4e1822b03190174ce6129",
+      "render_pdf_sha256": "b34320318d62e8fcfd488fbe5dda8b0561279ba043371e930149194d0a07534b"
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "from_page": 63,
+      "pages": 16,
+      "source_sha256": "7362f583b3c7f3818428b1ab507f693a09e344f83e2c8ebef77b916c5aeb2a58",
+      "render_pdf_sha256": "f9b28bbd1e571a0330aa762d4a88f2ae86bc14a844b509cfd644b01ec5a21657"
+    },
+    {
+      "file": "24-pamyatka-kto-komu-otvechaet.docx",
+      "from_page": 79,
+      "pages": 5,
+      "source_sha256": "1699ebd2b30045affa8da2dc96bc911d53aecfc125310669fede69db157c4699",
+      "render_pdf_sha256": "1346f6d679dadf3278c0a343391889e03c77f4ecad13678aaa9d436e8a586c3a"
+    },
+    {
+      "file": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "from_page": 84,
+      "pages": 4,
+      "source_sha256": "96273be15e58fef97c3ca145bd8edbda383a1f1031b879091da7431f5b774db5",
+      "render_pdf_sha256": "86be960f135479c3be415a56d5f6c55bb89bb75ef575a5b9718f3c609766b0ab"
+    },
+    {
+      "file": "26-zayavlenie-ob-uchastii-v-osmotre.docx",
+      "from_page": 88,
+      "pages": 4,
+      "source_sha256": "80e3867ceae9d8f8a33d3fa57bddbbefb88beaf0debdfe281b65a46d5fcf5a6a",
+      "render_pdf_sha256": "12a6190f8e2ea0e15ce3fdbb0cf91aa0c4a435c3ef5f7097877ce1b94e81e1b3"
+    },
+    {
+      "file": "27-razbor-zaklyucheniya-ekspertizy.docx",
+      "from_page": 92,
+      "pages": 6,
+      "source_sha256": "cb2e2d09f99820131ee61e8107715578702f7a8f15f0474f060ce8727812a468",
+      "render_pdf_sha256": "086c0b68aadeb204d181698aa35de3905d017dc31fbe759b9abb4056017797ad"
+    },
+    {
+      "file": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx",
+      "from_page": 98,
+      "pages": 8,
+      "source_sha256": "d1a6042080d70d889241a45f5c40c745ce377b8e77d4aca4d9c6a1c065ef24fa",
+      "render_pdf_sha256": "aedacde7bb32b0853490e07ade97ff118b70d4b1dab5f8768fd7fb57abc08795"
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "from_page": 106,
+      "pages": 36,
+      "source_sha256": "d6a3ed805fa8bb480be9197a232a1b699d6cf1bfcdafcea7e026f114486b2fb3",
+      "render_pdf_sha256": "d10a2347ba2f97a74bc116f9c688a30ee53f5821f879fac3a8aec679d17335fb"
+    }
+  ],
+  "visual_representatives": 121,
+  "visual_contacts": [
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/word-contact-1.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/word-contact-2.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/word-contact-3.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/word-contact-4.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/word-contact-5.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/word-contact-6.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/word-contact-7.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/word-contact-8.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/word-contact-9.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/word-contact-10.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/word-contact-11.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/word-contact-12.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/excel-contact-1.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/excel-contact-2.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/excel-contact-3.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/excel-contact-4.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/excel-contact-5.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/excel-contact-6.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/excel-contact-7.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/excel-contact-8.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/excel-contact-9.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/excel-contact-10.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/excel-contact-11.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/excel-contact-12.png",
+    "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/excel-contact-13.png"
+  ],
+  "visual_coverage": [
+    {
+      "file": "00-START-HERE.pdf",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/00-START-HERE-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "00-START-HERE.pdf",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/00-START-HERE-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "00-START-HERE.pdf",
+      "page": 3,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/00-START-HERE-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "00-START-HERE.pdf",
+      "page": 4,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/00-START-HERE-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "01-pretenziya-na-uderzhanie.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/01-pretenziya-na-uderzhanie-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "02-pretenziya-na-shtraf.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/02-pretenziya-na-shtraf-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "03-vozrazhenie-na-zachet.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/03-vozrazhenie-na-zachet-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "04-raschet-ubytkov.xlsx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/04-raschet-ubytkov-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "05-reestr-uderzhaniy.xlsx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/05-reestr-uderzhaniy-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "06-grafik-vozmeshcheniya.xlsx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/06-grafik-vozmeshcheniya-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "07-algoritm-proverki-uderzhaniy.pdf",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/07-algoritm-proverki-uderzhaniy-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "07-algoritm-proverki-uderzhaniy.pdf",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/07-algoritm-proverki-uderzhaniy-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "08-tipovye-osnovaniya.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/08-tipovye-osnovaniya-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "08-tipovye-osnovaniya.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/08-tipovye-osnovaniya-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "09-konsultaciya-po-delu.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/09-konsultaciya-po-delu-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "09-konsultaciya-po-delu.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/09-konsultaciya-po-delu-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "10-trebovanie-o-vozvrate-uderzhaniya.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/10-trebovanie-o-vozvrate-uderzhaniya-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "11-slovar-poley-oborona.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/11-slovar-poley-oborona-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "11-slovar-poley-oborona.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/11-slovar-poley-oborona-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "11-slovar-poley-oborona.docx",
+      "page": 3,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/11-slovar-poley-oborona-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "11-slovar-poley-oborona.docx",
+      "page": 4,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/11-slovar-poley-oborona-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "11-slovar-poley-oborona.docx",
+      "page": 5,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/11-slovar-poley-oborona-5.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "11-slovar-poley-oborona.docx",
+      "page": 6,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/11-slovar-poley-oborona-6.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "11-slovar-poley-oborona.docx",
+      "page": 7,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/11-slovar-poley-oborona-7.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "12-algoritm-pri-navyazannoy-vine.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/12-algoritm-pri-navyazannoy-vine-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "12-algoritm-pri-navyazannoy-vine.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/12-algoritm-pri-navyazannoy-vine-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "12-algoritm-pri-navyazannoy-vine.docx",
+      "page": 3,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/12-algoritm-pri-navyazannoy-vine-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/13-soglashenie-o-razgranichenii-otvetstvennosti-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/13-soglashenie-o-razgranichenii-otvetstvennosti-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx",
+      "page": 3,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/13-soglashenie-o-razgranichenii-otvetstvennosti-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "14-motivirovannyy-otvet-na-pretenziyu.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/14-motivirovannyy-otvet-na-pretenziyu-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "14-motivirovannyy-otvet-na-pretenziyu.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/14-motivirovannyy-otvet-na-pretenziyu-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "14-motivirovannyy-otvet-na-pretenziyu.docx",
+      "page": 3,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/14-motivirovannyy-otvet-na-pretenziyu-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "15-vozrazhenie-na-odnostoronniy-akt.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/15-vozrazhenie-na-odnostoronniy-akt-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "15-vozrazhenie-na-odnostoronniy-akt.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/15-vozrazhenie-na-odnostoronniy-akt-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "16-preduprezhdenie-po-st-716.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/16-preduprezhdenie-po-st-716-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "16-preduprezhdenie-po-st-716.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/16-preduprezhdenie-po-st-716-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "17-otvet-na-garantiynuyu-pretenziyu.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/17-otvet-na-garantiynuyu-pretenziyu-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "17-otvet-na-garantiynuyu-pretenziyu.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/17-otvet-na-garantiynuyu-pretenziyu-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "18-akt-peredachi-fronta-rabot.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/18-akt-peredachi-fronta-rabot-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "18-akt-peredachi-fronta-rabot.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/18-akt-peredachi-fronta-rabot-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "19-akt-vhodnogo-kontrolya-davalcheskih.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/19-akt-vhodnogo-kontrolya-davalcheskih-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "19-akt-vhodnogo-kontrolya-davalcheskih.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/19-akt-vhodnogo-kontrolya-davalcheskih-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "20-vozrazhenie-na-zachet-uderzhanie.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/20-vozrazhenie-na-zachet-uderzhanie-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "20-vozrazhenie-na-zachet-uderzhanie.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/20-vozrazhenie-na-zachet-uderzhanie-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "21-reglament-komissionnoy-fiksacii.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/21-reglament-komissionnoy-fiksacii-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "21-reglament-komissionnoy-fiksacii.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/21-reglament-komissionnoy-fiksacii-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 3,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 4,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 5,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 6,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 7,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 8,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 9,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-9.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 10,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-10.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 11,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-11.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 12,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-12.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 13,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-13.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 14,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-14.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "page": 15,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/22-reestr-garantiynyh-uderzhaniy-15.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 3,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 4,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 5,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 6,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 7,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 8,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 9,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-9.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 10,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-10.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 11,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-11.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 12,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-12.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 13,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-13.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 14,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-14.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 15,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-15.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "page": 16,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/23-reestr-ispolnitelnoy-dokumentacii-16.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "24-pamyatka-kto-komu-otvechaet.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/24-pamyatka-kto-komu-otvechaet-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "24-pamyatka-kto-komu-otvechaet.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/24-pamyatka-kto-komu-otvechaet-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "24-pamyatka-kto-komu-otvechaet.docx",
+      "page": 3,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/24-pamyatka-kto-komu-otvechaet-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "24-pamyatka-kto-komu-otvechaet.docx",
+      "page": 4,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/24-pamyatka-kto-komu-otvechaet-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "24-pamyatka-kto-komu-otvechaet.docx",
+      "page": 5,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/24-pamyatka-kto-komu-otvechaet-5.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/25-otvet-na-pryamoe-trebovanie-zakazchika-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/25-otvet-na-pryamoe-trebovanie-zakazchika-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "page": 3,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/25-otvet-na-pryamoe-trebovanie-zakazchika-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "page": 4,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/25-otvet-na-pryamoe-trebovanie-zakazchika-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "26-zayavlenie-ob-uchastii-v-osmotre.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/26-zayavlenie-ob-uchastii-v-osmotre-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "26-zayavlenie-ob-uchastii-v-osmotre.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/26-zayavlenie-ob-uchastii-v-osmotre-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "26-zayavlenie-ob-uchastii-v-osmotre.docx",
+      "page": 3,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/26-zayavlenie-ob-uchastii-v-osmotre-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "26-zayavlenie-ob-uchastii-v-osmotre.docx",
+      "page": 4,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/26-zayavlenie-ob-uchastii-v-osmotre-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "27-razbor-zaklyucheniya-ekspertizy.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/27-razbor-zaklyucheniya-ekspertizy-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "27-razbor-zaklyucheniya-ekspertizy.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/27-razbor-zaklyucheniya-ekspertizy-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "27-razbor-zaklyucheniya-ekspertizy.docx",
+      "page": 3,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/27-razbor-zaklyucheniya-ekspertizy-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "27-razbor-zaklyucheniya-ekspertizy.docx",
+      "page": 4,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/27-razbor-zaklyucheniya-ekspertizy-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "27-razbor-zaklyucheniya-ekspertizy.docx",
+      "page": 5,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/27-razbor-zaklyucheniya-ekspertizy-5.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "27-razbor-zaklyucheniya-ekspertizy.docx",
+      "page": 6,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/27-razbor-zaklyucheniya-ekspertizy-6.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/28-voprosy-ekspertu-i-zagotovka-hodataystva-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/28-voprosy-ekspertu-i-zagotovka-hodataystva-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx",
+      "page": 3,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/28-voprosy-ekspertu-i-zagotovka-hodataystva-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx",
+      "page": 4,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/28-voprosy-ekspertu-i-zagotovka-hodataystva-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx",
+      "page": 5,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/28-voprosy-ekspertu-i-zagotovka-hodataystva-5.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx",
+      "page": 6,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/28-voprosy-ekspertu-i-zagotovka-hodataystva-6.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx",
+      "page": 7,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/28-voprosy-ekspertu-i-zagotovka-hodataystva-7.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx",
+      "page": 8,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/28-voprosy-ekspertu-i-zagotovka-hodataystva-8.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 1,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-1.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 2,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-2.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 3,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-3.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 4,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-4.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 5,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-5.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 6,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-6.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 7,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-7.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 8,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-8.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 9,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-9.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 10,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-10.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 11,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-7.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 12,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-8.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 13,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-9.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 14,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-10.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 15,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-7.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 16,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-8.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 17,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-9.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 18,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-10.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 19,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-7.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 20,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-8.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 21,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-9.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 22,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-10.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 23,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-23.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 24,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-24.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 25,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-25.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 26,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-26.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 27,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-27.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 28,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-28.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 29,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-29.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 30,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-30.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 31,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-31.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 32,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-32.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 33,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-33.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 34,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-34.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 35,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-35.png",
+      "pixel_equal_except_footer": true
+    },
+    {
+      "file": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "page": 36,
+      "representative": "/workspace/scratch/1c70cef937ec/qa17-p5/internal/visual-final/29-opis-dokazatelstv-po-defektu-36.png",
+      "pixel_equal_except_footer": true
+    }
+  ],
+  "preview": {
+    "name": "P5_predprosmotr_141str.pdf",
+    "sha256": "20ad72423f5b91920d262bc0b86dcce4a80365be08b8834d7a38f2d764986088"
+  },
+  "files": [
+    {
+      "name": "00-START-HERE.pdf",
+      "bytes": 61001,
+      "sha256": "fa6972f4ac2f9758ed1e43d3e49560e5e8beeee178a94d287df388510c6e5ba2"
+    },
+    {
+      "name": "01-pretenziya-na-uderzhanie.docx",
+      "bytes": 39853,
+      "sha256": "577a8b42464242ca462a190a06004d35fc10def400393cf92a10649c5bee2766"
+    },
+    {
+      "name": "02-pretenziya-na-shtraf.docx",
+      "bytes": 39664,
+      "sha256": "02e4c585d0abf9fafcd2a7b0a2768180b9a3539b3d7eef63b86a5b20ad587d62"
+    },
+    {
+      "name": "03-vozrazhenie-na-zachet.docx",
+      "bytes": 40176,
+      "sha256": "8d0f8c303940f7e47e88400375f63c04ff4e1dfedb00b4a226f7f15de9a95248"
+    },
+    {
+      "name": "04-raschet-ubytkov.xlsx",
+      "bytes": 12532,
+      "sha256": "f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3"
+    },
+    {
+      "name": "05-reestr-uderzhaniy.xlsx",
+      "bytes": 10851,
+      "sha256": "db0d99f745e460b29654c3079483103e1bcc39d65ad9e8c36d002288ed5df9ae"
+    },
+    {
+      "name": "06-grafik-vozmeshcheniya.xlsx",
+      "bytes": 4663,
+      "sha256": "7c0e805d047e98c7d4846253bf0eb0c0d663bb83b6e8b526f61a8d9f83fdf4a7"
+    },
+    {
+      "name": "07-algoritm-proverki-uderzhaniy.pdf",
+      "bytes": 55498,
+      "sha256": "c9fd2392ab4cc9851ac0aaaea965ae0a5b75a1a5f8f9eb5aafd3587a9a88fe11"
+    },
+    {
+      "name": "08-tipovye-osnovaniya.docx",
+      "bytes": 40093,
+      "sha256": "7f2217c6c957398705a65c831517474f14972c8f1c7b0e2da427812848e71b07"
+    },
+    {
+      "name": "09-konsultaciya-po-delu.docx",
+      "bytes": 40010,
+      "sha256": "85ad2f79393d1575d15127a6a222aa9bf5c124b73ea6faf9164b80c5cfa43bd4"
+    },
+    {
+      "name": "10-trebovanie-o-vozvrate-uderzhaniya.docx",
+      "bytes": 40164,
+      "sha256": "72237e9667884707a0ef6c68a54ea3eb0cb58ec08b8ec4b15e8080d4b0772e7f"
+    },
+    {
+      "name": "11-slovar-poley-oborona.docx",
+      "bytes": 23806,
+      "sha256": "a0e969089afad380de0935fc3b71839a9689e7e7a11bdc2307e9d49f8731cd34"
+    },
+    {
+      "name": "12-algoritm-pri-navyazannoy-vine.docx",
+      "bytes": 14127,
+      "sha256": "aaaf2cfc3d41f101bbaeed9d798a89b31abad63863ef109b61f19e6985c1b6e7"
+    },
+    {
+      "name": "13-soglashenie-o-razgranichenii-otvetstvennosti.docx",
+      "bytes": 14207,
+      "sha256": "0b14184ebd8ff030739a2f6361d0683ca2251a8a3c3ebc47238acacf2ef3df33"
+    },
+    {
+      "name": "14-motivirovannyy-otvet-na-pretenziyu.docx",
+      "bytes": 14066,
+      "sha256": "08343df6f5346b91f65e37d2e105458903deb11c04966862a1541e8f97bb19b7"
+    },
+    {
+      "name": "15-vozrazhenie-na-odnostoronniy-akt.docx",
+      "bytes": 12310,
+      "sha256": "aadb1bee6897027f865f174b31571b0b052ca3a727844292c6a2fc719a29d043"
+    },
+    {
+      "name": "16-preduprezhdenie-po-st-716.docx",
+      "bytes": 11820,
+      "sha256": "08d3c292e0310ea3a6fa121ea7cc087211aecc808bf2bfbba8821cbda3f25d83"
+    },
+    {
+      "name": "17-otvet-na-garantiynuyu-pretenziyu.docx",
+      "bytes": 12172,
+      "sha256": "b26f217be7f44fcae8784e22ba3a854399f44fb9da084d4a3bc61ca6ae252ab1"
+    },
+    {
+      "name": "18-akt-peredachi-fronta-rabot.docx",
+      "bytes": 11843,
+      "sha256": "47ab16b914ab79fd2a69d53e7f0d03dd47fd040626049b8ef7863f592709a7e3"
+    },
+    {
+      "name": "19-akt-vhodnogo-kontrolya-davalcheskih.docx",
+      "bytes": 11960,
+      "sha256": "4157bed64323c9315cc51e28c77c35a94d553d0d07bbd6e757217b83f7f9789d"
+    },
+    {
+      "name": "20-vozrazhenie-na-zachet-uderzhanie.docx",
+      "bytes": 12084,
+      "sha256": "b387ff3d30e09432cdc8e61911461d3fd797a593f964809adf765c7c29dac4a9"
+    },
+    {
+      "name": "21-reglament-komissionnoy-fiksacii.docx",
+      "bytes": 12183,
+      "sha256": "04151cfdf01c28a7e3af61b9338bd517f870e4ced047aa5117ab58a6b1126f77"
+    },
+    {
+      "name": "22-reestr-garantiynyh-uderzhaniy.xlsx",
+      "bytes": 30485,
+      "sha256": "e0f3e50655aec175f2d63fd508c8b1571660aec3b5a4e1822b03190174ce6129"
+    },
+    {
+      "name": "23-reestr-ispolnitelnoy-dokumentacii.xlsx",
+      "bytes": 26733,
+      "sha256": "7362f583b3c7f3818428b1ab507f693a09e344f83e2c8ebef77b916c5aeb2a58"
+    },
+    {
+      "name": "24-pamyatka-kto-komu-otvechaet.docx",
+      "bytes": 17653,
+      "sha256": "1699ebd2b30045affa8da2dc96bc911d53aecfc125310669fede69db157c4699"
+    },
+    {
+      "name": "25-otvet-na-pryamoe-trebovanie-zakazchika.docx",
+      "bytes": 15174,
+      "sha256": "96273be15e58fef97c3ca145bd8edbda383a1f1031b879091da7431f5b774db5"
+    },
+    {
+      "name": "26-zayavlenie-ob-uchastii-v-osmotre.docx",
+      "bytes": 15624,
+      "sha256": "80e3867ceae9d8f8a33d3fa57bddbbefb88beaf0debdfe281b65a46d5fcf5a6a"
+    },
+    {
+      "name": "27-razbor-zaklyucheniya-ekspertizy.docx",
+      "bytes": 19555,
+      "sha256": "cb2e2d09f99820131ee61e8107715578702f7a8f15f0474f060ce8727812a468"
+    },
+    {
+      "name": "28-voprosy-ekspertu-i-zagotovka-hodataystva.docx",
+      "bytes": 23196,
+      "sha256": "d1a6042080d70d889241a45f5c40c745ce377b8e77d4aca4d9c6a1c065ef24fa"
+    },
+    {
+      "name": "29-opis-dokazatelstv-po-defektu.xlsx",
+      "bytes": 65328,
+      "sha256": "d6a3ed805fa8bb480be9197a232a1b699d6cf1bfcdafcea7e026f114486b2fb3"
+    }
+  ],
+  "archive": {
+    "name": "P5_Uderzhaniya_shtrafy_zachety_v1.zip",
+    "bytes": 671994,
+    "sha256": "1a0ab501a008c9cae1b1baaaa6570d1123291630ac8ecff1db74fad411431286"
+  },
+  "visual_review": {
+    "status": "VISUAL_REVIEW_COMPLETED",
+    "pages": 141,
+    "representatives": 121,
+    "review_basis": "All representative contact sheets visually inspected; changed Word pages re-inspected after final render; pixel-identical register continuations covered by exact bitmap comparison excluding page-number footer.",
+    "limitations": "LibreOffice render only; no new native Microsoft Office test. Not FULL_QA_PASS.",
+    "preview_sha256": "20ad72423f5b91920d262bc0b86dcce4a80365be08b8834d7a38f2d764986088",
+    "reviewed_utc": "2026-10-30T10:39:23.543952+00:00",
+    "contacts": [
+      {
+        "name": "word-contact-1.png",
+        "sha256": "03153abc8241c840d0cedfa58bc273fcc04e5f5c9c277639ddfcf71c293b4ea1"
+      },
+      {
+        "name": "word-contact-2.png",
+        "sha256": "3f36080c3da353248d150b8baa1ad66fa54deccf7cabd5a782dc62dba680b9e3"
+      },
+      {
+        "name": "word-contact-3.png",
+        "sha256": "6c00f64576bf1ff4697d8b941d91147db8354b32c24740949175b6c093d89556"
+      },
+      {
+        "name": "word-contact-4.png",
+        "sha256": "718c2c32e977e650814373bb223e276f27b4e2a7adb624b4041969907bbb6e9a"
+      },
+      {
+        "name": "word-contact-5.png",
+        "sha256": "b3fbddcc4a706fb613312dae20c3566666511d6779fb6cfe5d5f85a5a77cfc27"
+      },
+      {
+        "name": "word-contact-6.png",
+        "sha256": "38df24e34b8f73e95f57ade4fc0a8518aac479ca0cdd9bf4276a200160fbc305"
+      },
+      {
+        "name": "word-contact-7.png",
+        "sha256": "e7a8ab5317bf3b159d2aa7380f2cc3d340af5fb3ea97e41fe4333a18343452ca"
+      },
+      {
+        "name": "word-contact-8.png",
+        "sha256": "7d342a3c1bfb9013a2355348df7f3f9f2fefe9df446a33e6ebbef1f09fb60bb2"
+      },
+      {
+        "name": "word-contact-9.png",
+        "sha256": "0393eebefd3177ed4a9364c9591cecb2c54087bfed9bbe42224d873068ec53e0"
+      },
+      {
+        "name": "word-contact-10.png",
+        "sha256": "1435342c46952c1d443292d8e23f61440195b8195e93cb0067a81d7088d3fb0f"
+      },
+      {
+        "name": "word-contact-11.png",
+        "sha256": "9f4c980b63db7d69bfab39e7d5531c96af623ff105326d43a81c33aa1238a73d"
+      },
+      {
+        "name": "word-contact-12.png",
+        "sha256": "bb209d71e89cdbf2285181a4ad4a16e05d842b49e2427b9e1210f67eea62e4ff"
+      },
+      {
+        "name": "excel-contact-1.png",
+        "sha256": "9a08ebf6040af9595ab62febc997bb34b0d29b6bad35a4b95ec2fa74fdeff177"
+      },
+      {
+        "name": "excel-contact-2.png",
+        "sha256": "96a859a1cdcd29011b48d25c46ce8e24c8c0f2a3cd7ba4368202e189c94fd0e9"
+      },
+      {
+        "name": "excel-contact-3.png",
+        "sha256": "761aacc52c455c278573d543db08087e9c8a3764bae45e7a84605a9c60a152aa"
+      },
+      {
+        "name": "excel-contact-4.png",
+        "sha256": "a0fc3e4310ecadf3c1c8540f864f8791835f7baca664644a2373d10067dae042"
+      },
+      {
+        "name": "excel-contact-5.png",
+        "sha256": "6a30e8894bd11e427b70a5153f816fc68d57feee63405fc161bfe58942cdaaff"
+      },
+      {
+        "name": "excel-contact-6.png",
+        "sha256": "3c62c1f9a7f85b68d48c7a716878f4ea0936e727fd399e0a27b2dd60575f97fa"
+      },
+      {
+        "name": "excel-contact-7.png",
+        "sha256": "23044c2f33909aa1a51f3d926b50c692067a31ceb4a1e1e225a826e0fc126e11"
+      },
+      {
+        "name": "excel-contact-8.png",
+        "sha256": "ec393b03414dc91b0965c26042ed5e5bf42c47485ebb79fe143e24d176906b20"
+      },
+      {
+        "name": "excel-contact-9.png",
+        "sha256": "e275145e75519c4d8cf4dd419416630556181ed0bdb04128b6289c0f71e41351"
+      },
+      {
+        "name": "excel-contact-10.png",
+        "sha256": "635cefa25de399a6f8a7f359f3db15639f8c3d582b1973a43173fabde39b109a"
+      },
+      {
+        "name": "excel-contact-11.png",
+        "sha256": "c066b198d7464ebc85fc283f74b98d12a74cee16a3e4bb086a3af3ec5cc987be"
+      },
+      {
+        "name": "excel-contact-12.png",
+        "sha256": "9c19b8eec9295994261a87fa4406e61bf45632c4d73ef4613aabd924054e0c9e"
+      },
+      {
+        "name": "excel-contact-13.png",
+        "sha256": "17dc809f91ae0577cecade7b9bd4276c79f9edfd1f566863c78e36619ba1849b"
+      }
+    ]
+  },
+  "artifact_refs": [
+    {
+      "name": "P5_Uderzhaniya_shtrafy_zachety_v1.zip",
+      "library_file_id": "libfile_f79eca340530819181f045bae15c0ff7",
+      "sha256": "1a0ab501a008c9cae1b1baaaa6570d1123291630ac8ecff1db74fad411431286"
+    },
+    {
+      "name": "P5_predprosmotr_141str.pdf",
+      "library_file_id": "libfile_5f202ea772988191b3152f095f55de53",
+      "sha256": "20ad72423f5b91920d262bc0b86dcce4a80365be08b8834d7a38f2d764986088"
+    }
+  ]
+}
