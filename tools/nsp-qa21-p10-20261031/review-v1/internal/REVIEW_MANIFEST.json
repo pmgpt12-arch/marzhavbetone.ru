@@ -1,0 +1,116 @@
+{
+  "sku": "p10",
+  "edition": "P10-review-v1",
+  "status": "READY_FOR_OWNER_REVIEW",
+  "title": "Претензия к подрядчику: проверяем требования и готовим ответ",
+  "subtitle": "Проверка оснований и суммы, контррасчёт и мотивированный ответ",
+  "title_owner_approval_pending": true,
+  "source_commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
+  "source_path": "tools/nsp-next-corrections-20261022/candidate-archives/15-otvet-na-pretenziyu-baza.zip",
+  "source_sha256": "78e71b527102586192a37f08ef2b9ab13baf49f7458f7a5f6435414ba26ade4d",
+  "files": [
+    {
+      "name": "00-INSTRUKCIYA.pdf",
+      "sha256": "c3e9e35caba7b274e67fb946f66f3003ae51473186ed031424e0187e05927fd2",
+      "bytes": 59234,
+      "preview_first_page": 1,
+      "preview_last_page": 3
+    },
+    {
+      "name": "01-karta-pretenzii.docx",
+      "sha256": "df260e4523b9307a3d39ac1f958e44c57b0e1829338591026e5bf501d5dfaf09",
+      "bytes": 39956,
+      "preview_first_page": 4,
+      "preview_last_page": 5
+    },
+    {
+      "name": "02-poryadok-otveta.docx",
+      "sha256": "8b59f856a863ac65e861a660e7e2cdac85bacafa0b3afdb2ebd1d8985f3373ab",
+      "bytes": 41828,
+      "preview_first_page": 6,
+      "preview_last_page": 8
+    },
+    {
+      "name": "03-otvet-na-pretenziyu.docx",
+      "sha256": "77fc435177d59fb180be26f79aa6d63636f1659720dd240e897d100541617eb6",
+      "bytes": 39094,
+      "preview_first_page": 9,
+      "preview_last_page": 9
+    },
+    {
+      "name": "04-otvet-na-garantiynuyu-pretenziyu.docx",
+      "sha256": "af9ca3d06d9aecd94df0b8fb5059062fb4ba700d353c8c196e3061611e0b5b7c",
+      "bytes": 39472,
+      "preview_first_page": 10,
+      "preview_last_page": 10
+    },
+    {
+      "name": "05-otvet-na-pryamoe-trebovanie.docx",
+      "sha256": "b05be39e03beac0678a6f382d508756a6cd15641d5b32efa38d0c61fc04283c2",
+      "bytes": 39108,
+      "preview_first_page": 11,
+      "preview_last_page": 11
+    },
+    {
+      "name": "06-uvedomlenie-kontragentu.docx",
+      "sha256": "12b8d265c2190734b153315e4ffc5c08268a9ba858fc1ed87e5be66b580ba17f",
+      "bytes": 38853,
+      "preview_first_page": 12,
+      "preview_last_page": 12
+    },
+    {
+      "name": "07-vstavnye-bloki.docx",
+      "sha256": "f5f999a517c1f6148c9a04b95c03d372ecfa36b56dc0bc7920d0f3067968a8dd",
+      "bytes": 39679,
+      "preview_first_page": 13,
+      "preview_last_page": 13
+    },
+    {
+      "name": "08-kontrraschet-i-sverka-trebovaniy.docx",
+      "sha256": "f5ffc93960d9c8286c2e117987d1638fafee8ec48d5e37b0513e0cd375433413",
+      "bytes": 40732,
+      "preview_first_page": 14,
+      "preview_last_page": 16
+    },
+    {
+      "name": "09-tri-zapolnennyh-primera-otveta.docx",
+      "sha256": "90c1c03f9d9016b2df2e3c56463a4b43b3770ce2388ff7fcdb3e14e3e540d422",
+      "bytes": 42973,
+      "preview_first_page": 17,
+      "preview_last_page": 22
+    }
+  ],
+  "file_count": 10,
+  "rendered_pages": 22,
+  "archive": {
+    "name": "P10_Pretenziya_k_podryadchiku_v1.zip",
+    "sha256": "90f9b78ba53e1fb59d751e0972594f4e7135e599946935a3c32d00b3fa9d2594",
+    "bytes": 393638
+  },
+  "preview": {
+    "name": "P10_predprosmotr_22str.pdf",
+    "sha256": "a164e4caae023f24d0c899b9a6215b5a38b4be28a6f018155f2f4bf578f95aec",
+    "bytes": 422101
+  },
+  "checks": {
+    "accepted_scoped_checks": [
+      "10_files_9_editable_Word_1_initial_PDF",
+      "all_tables_9866_twips",
+      "no_editing_protection_or_tracked_changes",
+      "example1_independent_decimal_arithmetic_dates_and_cross_file_reconciliation",
+      "three_examples_filled_consistent_numbers_dates_and_letters",
+      "all_22_pages_rendered_and_visually_reviewed",
+      "archive_CRC_exact_composition_and_all_member_SHA"
+    ],
+    "word_table_count": 33,
+    "word_table_width_twips": 9866,
+    "all_file_views_reviewed": true,
+    "legal_sources_checked": "2026-10-31",
+    "manual_calculation_no_automatic_formulas": true,
+    "new_native_microsoft_office_run": false,
+    "full_qa_pass": false,
+    "production_changed": false,
+    "owner_edition_approval_pending": true
+  },
+  "release_allowed": false
+}

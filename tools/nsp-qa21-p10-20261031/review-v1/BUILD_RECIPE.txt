@@ -1,0 +1,15 @@
+P10-review-v1 / 31.10.2026
+Pinned source: commit 5361c80125107d9bb47d355bd5730f8b6e2da2c1
+Path tools/nsp-next-corrections-20261022/candidate-archives/15-otvet-na-pretenziyu-baza.zip
+SHA256 78e71b527102586192a37f08ef2b9ab13baf49f7458f7a5f6435414ba26ade4d
+Fetch immutable source and extract into source/. Ensure candidate/, output/, internal/ exist.
+Use CODEX_PRIMARY_RUNTIME_PYTHON to run in sequence:
+build_word.py
+finalize_word.py
+build_guide.py
+render_word.py
+Inspect every generated page PNG. Then package.py.
+All 22 final pages visually reviewed. Native Microsoft Office was not run.
+No FULL_QA_PASS claim. Manual calculation only. Title and exact edition await owner acceptance.
+Final accepted artifact identity is the archive SHA in internal/REVIEW_MANIFEST.json.
+Recovery bundle omits duplicate unpacked candidate documents and renders. Extract output archive to recover candidate/; pinned source and scripts support rebuilding.

@@ -1,0 +1,48 @@
+{
+  "status": "VERIFIED_SCOPED_REVIEW",
+  "records": [
+    {
+      "error": "Legacy release blocked for missing filled cases and reconciliation",
+      "cause": "Form availability was treated as sufficient product utility",
+      "class": "TEMPLATE_WITHOUT_END_TO_END_EXAMPLE",
+      "rule": "Include a bounded filled case with facts, exact calculation, evidence, answer and delivery record",
+      "gate": "Three cases reviewed; example 1 independently recomputed and reconciled between 08 and 09",
+      "verified": true
+    },
+    {
+      "error": "Generic request for evidence can obscure warranty burden",
+      "cause": "One objection formula reused across distinct legal regimes",
+      "class": "LEGAL_REGIME_OVERGENERALIZATION",
+      "rule": "Select warranty regime and burden before composing the objection",
+      "gate": "Article 755 checked; contractor burden and limits of third-party-access argument stated in 02, 04, 07, 09 and guide",
+      "verified": true
+    },
+    {
+      "error": "A page image disappeared during inspection",
+      "cause": "Importing rendering helper executed batch rendering and cleared old images",
+      "class": "MODULE_IMPORT_SIDE_EFFECT",
+      "rule": "Batch execution belongs under __main__; wait for renderer completion before image inspection",
+      "gate": "render_word.py batch guarded; process completed before final inspection; PNG count equals actual PDF page count",
+      "verified": true
+    },
+    {
+      "error": "Table columns caused awkward wrapping and legal section continued without its heading",
+      "cause": "Generic three-column widths and automatic pagination",
+      "class": "DOCUMENT_LAYOUT_WITHOUT_CONTENT_AWARE_BREAKS",
+      "rule": "Choose columns for content and keep distinct legal section with heading",
+      "gate": "All 33 tables width 9866 twips; affected pages re-rendered and reviewed",
+      "verified": true
+    },
+    {
+      "error": "Remote write target directory did not exist",
+      "cause": "Directory creation was omitted before file transfer",
+      "class": "DESTINATION_PREFLIGHT_MISSING",
+      "rule": "Create and verify destination directory before writing chunks; await async writes before dependent actions",
+      "gate": "Directory created; both chunk writes awaited; full recovery SHA verified before extraction",
+      "verified": true
+    }
+  ],
+  "new_native_microsoft_office_run": false,
+  "full_qa_pass": false,
+  "production_changed": false
+}
