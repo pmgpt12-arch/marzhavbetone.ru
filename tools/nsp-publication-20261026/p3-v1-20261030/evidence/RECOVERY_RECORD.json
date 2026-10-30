@@ -1,0 +1,7 @@
+{
+  "class": "DISPLAY_LABEL_USED_AS_SKU_IDENTITY",
+  "observed": "P3 card uses visible label КС-2 instead of P3",
+  "rule": "Resolve target by exact data-sku=p3, require exactly one card, then derive actual product URL",
+  "gate": "Snapshot path is products/p3-shablony-ks2-ks3.html; catalog change reversibility checked",
+  "verified": true
+}
