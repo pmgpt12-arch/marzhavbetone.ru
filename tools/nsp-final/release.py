@@ -15,6 +15,8 @@ def main(action):
     assert action in ['dry-run','publish']
     validation=validate(); (EVIDENCE/'source-validation.json').write_text(json.dumps(validation,indent=2)+'\n')
     call(['php','-l','tools/nsp-final/transaction.php'])
+    call(['php','-l','contact.php'])
+    call(['python3','tools/check_nav.py'])
     (EVIDENCE/'transaction-tests.txt').write_bytes(call(['python3','tools/nsp-final/test_transaction.py']))
     call(['node','--check','app.js'])
     selected=json.loads((ROOT/'tools/nsp-final/manifest.json').read_text())
@@ -59,7 +61,7 @@ def main(action):
         rollback_needed=True
         (EVIDENCE/'apply.json').write_bytes(transaction('apply'))
         # Exact HTTPS bytes for every changed file and the effective JS endpoint.
-        paths=[r['path'] for r in manifest]
+        paths=[r['path'] for r in manifest if r['path']!='contact.php']
         deadline=time.monotonic()+180
         def inspect(path):
             assert time.monotonic()<deadline, 'HTTP_BUDGET'
@@ -73,6 +75,21 @@ def main(action):
             expected=(ROOT/path).read_bytes(); assert data==expected,'HTTPS_BYTES_'+path
             return {'path':path,'status':200,'sha256':hashlib.sha256(data).hexdigest()}
         with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool: rows=list(pool.map(inspect,paths))
+        retired=[]
+        for domain in ['nastoronepodryadchika.ru','marzhavbetone.ru']:
+            for method in ['GET','POST']:
+                req=urllib.request.Request('https://'+domain+'/contact.php',method=method,data=b'' if method=='POST' else None)
+                try:
+                    urllib.request.urlopen(req,timeout=15)
+                    raise AssertionError('RETIRED_HANDLER_ACCEPTED_REQUEST')
+                except urllib.error.HTTPError as response:
+                    data=response.read(10000)
+                    if domain=='marzhavbetone.ru' and response.code==403:
+                        retired.append({'domain':domain,'method':method,'status':403,'result':'OLD_DOMAIN_CLIENT_ACCESS_BLOCKED; verify redirect in browser separately'})
+                        continue
+                    assert response.code==410 and json.loads(data)['code']=='SERVICE_RETIRED',f'RETIRED_HANDLER_RESPONSE_{domain}_{method}_{response.code}'
+                    retired.append({'domain':domain,'method':method,'status':410,'code':'SERVICE_RETIRED'})
+        (EVIDENCE/'retired-endpoint.json').write_text(json.dumps(retired,indent=2)+'\n')
         req=urllib.request.Request('https://nastoronepodryadchika.ru/app-script.php?nsp_final='+run,headers={'Cache-Control':'no-cache'})
         with urllib.request.urlopen(req,timeout=15) as response: assert response.read()==(ROOT/'app.js').read_bytes(),'EFFECTIVE_JS_BYTES'
         (EVIDENCE/'https.json').write_text(json.dumps({'status':'PASS','files':rows,'effective_app_script':'PASS'},indent=2)+'\n')

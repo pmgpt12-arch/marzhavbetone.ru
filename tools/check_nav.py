@@ -141,7 +141,7 @@ def main() -> int:
     for текст, href, _ in канон:
         if not цель_существует(href):
             дефекты.append(f"канон: пункт «{текст}» ведёт в никуда — {href}")
-    if not цель_существует(данные["cta"]["href"]):
+    if данные.get("cta") and not цель_существует(данные["cta"]["href"]):
         дефекты.append(f"канон: призыв ведёт в никуда — {данные['cta']['href']}")
 
     for rel, override in данные.get("header_overrides", {}).items():
@@ -154,6 +154,8 @@ def main() -> int:
     for путь in список:
         rel = путь.relative_to(ROOT).as_posix()
         html = путь.read_text(encoding="utf-8", errors="replace")
+        if re.search(r'href=["\'][^"\']*#contact|id=["\']contact-form|Персональный разбор объекта|Запросить разбор', html):
+            дефекты.append(f"{rel}: возвращена прекращённая услуга индивидуального разбора")
         все = ШАПКА.findall(html)
         if not все:
             дефекты.append(f"{rel}: шапки нет вовсе")

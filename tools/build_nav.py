@@ -81,15 +81,16 @@ def собрать(данные: dict, rel: str, корзина: str | None) -> 
             отметка = ' class="is-current" aria-current="page"'
         пункты.append(f'<a href="{пункт["href"]}"{отметка}>{пункт["text"]}</a>')
 
-    cta = данные["cta"]
+    cta = данные.get("cta")
     части = [
         '<header class="topbar">',
         f'<a class="brand" href="{brand["href"]}" aria-label="{brand["aria"]}">'
         f'<span class="brand-mark">{brand["mark"]}</span>'
         f'<span>{brand["text"]}</span></a>',
         '<nav aria-label="Основная навигация">' + "".join(пункты) + "</nav>",
-        f'<a class="button button-small nav-cta" href="{cta["href"]}">{cta["text"]}</a>',
     ]
+    if cta:
+        части.append(f'<a class="button button-small nav-cta" href="{cta["href"]}">{cta["text"]}</a>')
     if корзина:
         части.append(корзина)
     части.append("</header>")
