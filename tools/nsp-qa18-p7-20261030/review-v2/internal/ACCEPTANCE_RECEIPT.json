@@ -1,0 +1,23 @@
+{
+  "status": "SCOPED_ACCEPTANCE_PASS",
+  "clean_specimen_numbered_clauses_exactly_present_in_annotation": 25,
+  "annotated_sections": 9,
+  "unchanged_files": [
+    "03-kalendarnyy-plan.xlsx",
+    "02-perechen-rabot.xlsx",
+    "04-poryadok-priemki.docx",
+    "06-dopsoglashenie-obem.docx",
+    "08-krasnye-flagi.pdf",
+    "10-protokol-raznoglasiy.docx",
+    "05-grafik-platezhey.xlsx",
+    "09-checklist-dogovora.pdf",
+    "07-dopsoglashenie-sroki.docx"
+  ],
+  "visual_review": "All changed pages inspected; unchanged views covered by predecessor exact-byte receipts. New title borders removed and final title/form pages inspected.",
+  "reference_form_access": "Catalog presence confirmed; full paywalled forms not read or incorporated",
+  "legal_sources_checked": "2026-10-30",
+  "new_native_office_run": false,
+  "production_changed": false,
+  "full_qa_pass": false,
+  "build_gate": "build.py requires v1 input; refuses v2 rerun to prevent duplicate termination clauses"
+}
