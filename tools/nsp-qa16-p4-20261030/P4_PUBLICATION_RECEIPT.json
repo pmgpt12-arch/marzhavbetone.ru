@@ -1,0 +1,31 @@
+{
+  "status": "P4_LAYOUT_V1_DEPLOYED_CURRENT_ARCHIVE_AND_HTTPS_VERIFIED",
+  "edition": "P4-layout-v1",
+  "archive_sha256": "a581a2174e65184573fb56747431fd8afd37862ef418a84ffa613d1a630b05ea",
+  "file_count": 26,
+  "source_gate": "PASS",
+  "actual_server_builder_bytes": "EXACT_MATCH",
+  "public_pages": [
+    {
+      "path": "products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+      "status": 200,
+      "sha256": "d0cc3e895af1cb7fe8a4994b51ed6f7953b129632b9e437fbe954d43064577cc"
+    },
+    {
+      "path": "katalog.html",
+      "status": 200,
+      "sha256": "45792eb00ab0a69a1686768a7002e5dbf47a7ed054e86696c303b4f395dd6376"
+    }
+  ],
+  "ttl_seconds": 3600,
+  "price_kopeks": 2490000,
+  "old_product_files_retained": false,
+  "old_cache_retained": false,
+  "payment_and_download_unchanged": true,
+  "config_change": "extend existing exact-current archive branch to P4; P1, P2 and P3 preserved",
+  "real_payment_tested": false,
+  "run_id": "41032072333",
+  "commit": "9554750d34429f89ba5dc6123bd452f046fc9a20",
+  "owner_permission": "APPROVED",
+  "scope": "P4 current source/master/cache and page/catalog; existing current-archive builder extended to P4"
+}
