@@ -1,0 +1,218 @@
+{
+  "status": "READ_ONLY",
+  "public_writes": 0,
+  "deleted_files": 0,
+  "sites": [
+    {
+      "domain": "marzhavbetone.ru",
+      "root_exists": true,
+      "config_sha256": "864f01b211c182f40a53964519c9d28dd78945a0328d6cba494656c945dd5343",
+      "orders_path_parsed": true,
+      "orders_path": "[HOME]/www/marzhavbetone.ru/orders",
+      "redirects_to_new_domain": true,
+      "mail_transport_mentions": {
+        "smtp": false,
+        "yandex": true,
+        "mail\\(": false
+      }
+    },
+    {
+      "domain": "nastoronepodryadchika.ru",
+      "root_exists": true,
+      "config_sha256": "d5ca6b6fa2b8a4660c493e8e3891f6eb4feafc44a54326c3800affd31af6b9db",
+      "orders_path_parsed": true,
+      "orders_path": "[HOME]/nsp-production-private/orders",
+      "redirects_to_new_domain": true,
+      "mail_transport_mentions": {
+        "smtp": false,
+        "yandex": true,
+        "mail\\(": false
+      }
+    }
+  ],
+  "stores": [
+    {
+      "path": "[HOME]/www/marzhavbetone.ru/orders",
+      "exists": true,
+      "symlink": false,
+      "files": 44,
+      "json_records": 18,
+      "invalid_json": 0,
+      "with_email": 18,
+      "with_phone": 15,
+      "statuses": {
+        "pending": 1,
+        "canceled": 9,
+        "paid": 8
+      },
+      "paid_records": 8,
+      "paid_100_kopeck": 8,
+      "recorded_downloads": 5,
+      "download_records": 5,
+      "old_origin": 0,
+      "new_origin": 0,
+      "unattributed_origin": 18,
+      "expired_unpaid_records": 10,
+      "other_file_types": {
+        "[none]": 3,
+        ".lock": 8,
+        ".zip": 15,
+        ".json": 18
+      },
+      "created_date_range": [
+        "2026-07-26",
+        "2026-10-15"
+      ]
+    },
+    {
+      "path": "[HOME]/nsp-production-private/orders",
+      "exists": true,
+      "symlink": false,
+      "files": 21,
+      "json_records": 2,
+      "invalid_json": 0,
+      "with_email": 2,
+      "with_phone": 0,
+      "statuses": {
+        "paid": 2
+      },
+      "paid_records": 2,
+      "paid_100_kopeck": 2,
+      "recorded_downloads": 3,
+      "download_records": 2,
+      "old_origin": 0,
+      "new_origin": 0,
+      "unattributed_origin": 2,
+      "expired_unpaid_records": 0,
+      "other_file_types": {
+        "[none]": 2,
+        ".lock": 3,
+        ".zip": 14,
+        ".json": 2
+      },
+      "created_date_range": [
+        "2026-10-21",
+        "2026-10-23"
+      ]
+    }
+  ],
+  "mailbox_hints": [
+    {
+      "path": "[HOME]/email/nastoronepodryadchika.ru",
+      "files": 6
+    }
+  ],
+  "project_backups": [
+    {
+      "path": "[HOME]/nsp-migration-private",
+      "files": 7725,
+      "archive_count": 99,
+      "archives_with_order_or_contact_paths": 16,
+      "loose_order_json_count": 39,
+      "archive_read_errors": 0,
+      "top_level_subdirectories": [
+        "run-39410371372-stage",
+        "final-39570052487-1",
+        "final-41026552225-1",
+        "final-39589311533-1",
+        "final-39636075626-1",
+        "remove-max-39559227742-1",
+        "final-41026678179-1",
+        "run-39405927779-rollback-drill",
+        "final-39580160302-1",
+        "final-39560891644-1",
+        "final-39588944283-1",
+        "final-39734679026-1",
+        "final-39593011389-1",
+        "backup-public-support-20261021",
+        "p2-v13-40903431294-1",
+        "final-41005871479-1",
+        "final-39584714874-1",
+        "final-39588718732-1",
+        "p3-current-41009592056-1",
+        "form-mail-39626569503-1",
+        "final-41027037728-1",
+        "final-39580367552-1",
+        "final-41026074629-1",
+        "p1-current-41002994365-1",
+        "backup-archived-sitemap-20261021",
+        "final-39584461275-1",
+        "final-39569884732-1",
+        "p2-v13-40903655645-1",
+        "final-39731993956-1",
+        "seo-noindex-backup-20261021",
+        "final-39591561102-1",
+        "run-39406896011-stage",
+        "final-39630935033-1",
+        "final-39635861784-1",
+        "final-41027166591-1",
+        "final-39590739799-1",
+        "final-39575956761-1",
+        "run-39423257078-stage",
+        "config-snapshots",
+        "final-39565483988-1",
+        "final-39631109352-1",
+        "final-39731500232-1",
+        "run-39423151819-rollback-drill",
+        "final-39734428021-1",
+        "hosting-envelope-20261022",
+        "run-39410166252-rollback-drill",
+        "final-39588414784-1",
+        "final-39575713468-1",
+        "final-39595940212-1"
+      ]
+    }
+  ],
+  "coverage_limits": [
+    "Yandex mailbox and hosting-provider backups require separate access; no email values exported"
+  ],
+  "store_count": 2,
+  "duplicate_order_records_between_stores": 0,
+  "telemetry": [
+    {
+      "path": "[HOME]/www/mvb-private/funnel-outbox",
+      "exists": true,
+      "files": 51,
+      "bytes": 611514,
+      "json_lines": 1637,
+      "invalid_lines": 0,
+      "event_types": {
+        "funnel.session_started": 721,
+        "funnel.content_viewed": 905,
+        "funnel.magnet_delivered": 11
+      },
+      "contact_field_lines": 0
+    },
+    {
+      "path": "[HOME]/mvb-private/funnel-outbox",
+      "exists": false,
+      "files": 0,
+      "bytes": 0,
+      "json_lines": 0,
+      "invalid_lines": 0,
+      "event_types": {},
+      "contact_field_lines": 0
+    }
+  ],
+  "home_directory_names": [
+    "p3-release-backups",
+    "nsp-migration-backups",
+    "p11-release-backups",
+    "php-bin",
+    "products-marzhavbetone",
+    "nsp-migration-private",
+    "php-bin-regru-php83",
+    "product-archive-vault",
+    "nsp-production-private",
+    "t3-release-backups",
+    "t2-release-backups",
+    "bin-tmp",
+    "email",
+    "p5-release-backups",
+    "www",
+    "remaining-release-backups",
+    "logs",
+    "tmp"
+  ],
+  "elapsed_seconds": 1.1
+}
