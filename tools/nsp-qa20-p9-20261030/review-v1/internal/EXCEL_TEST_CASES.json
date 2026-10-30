@@ -1,0 +1,32 @@
+[
+  {
+    "id": "valid",
+    "expectedPrefix": "Дней до",
+    "artifactValue": "Дней до указанной предельной даты: 3675"
+  },
+  {
+    "id": "missing-rule",
+    "expectedPrefix": "НЕ ЗАПОЛНЕНО",
+    "artifactValue": "НЕ ЗАПОЛНЕНО: процедура, даты, публикация, норма и проверяющий"
+  },
+  {
+    "id": "text-date",
+    "expectedPrefix": "ОШИБКА",
+    "artifactValue": "ОШИБКА: проверьте исходные даты"
+  },
+  {
+    "id": "before-publication",
+    "expectedPrefix": "ОШИБКА",
+    "artifactValue": "ОШИБКА: предельная дата раньше публикации"
+  },
+  {
+    "id": "missing-source",
+    "expectedPrefix": "НЕ ЗАПОЛНЕНО",
+    "artifactValue": "НЕ ЗАПОЛНЕНО: процедура, даты, публикация, норма и проверяющий"
+  },
+  {
+    "id": "expired",
+    "expectedPrefix": "Указанная предельная дата истекла",
+    "artifactValue": "Указанная предельная дата истекла: откройте файл 09"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "cause": "04 sums document values rather than principal claim",
+    "class": "semantic mismatch",
+    "rule": "One work position is counted once in separate manual calculation10; source inventory04 remains documentary evidence",
+    "gate": "500000 principal example reconciles works1000000 less advance200000 less cash300000; current400000 separately"
+  },
+  {
+    "cause": "Deadline gate ignored legal basis and text dates",
+    "class": "input validation",
+    "rule": "Require procedure, publication source/date, legal rule, verifier, valid dates",
+    "gate": "six independent LibreOffice hard recalculation cases"
+  },
+  {
+    "cause": "Artifact export omits print metadata",
+    "class": "serialization regression",
+    "rule": "restore source print metadata; choose exact*.xlsx rather than wildcard picking inspect.ndjson",
+    "gate": "final allsheet print review, 200 input rows preserved"
+  },
+  {
+    "cause": "Old PNG pages survived when a rerender reduced pages",
+    "class": "stale visual evidence",
+    "rule": "clear page PNGs before rendering; count PDF actual pages",
+    "gate": "clean final render all documents, 24page merged preview"
+  }
+]

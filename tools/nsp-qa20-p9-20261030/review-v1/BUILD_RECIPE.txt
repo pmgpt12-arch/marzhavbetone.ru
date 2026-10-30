@@ -1,0 +1,4 @@
+P9 review v1
+Pinned source SHA 0e1bd35bb50749855db7e5afba76313239440e57c92a9e6fb3704a9d407ebe06 at source commit5361c80125107d9bb47d355bd5730f8b6e2da2c1.
+Extract source; create candidate/internal/output. Run build_word.py, build_guide.py, render_word.py. Run edit_excel.mjs through primary Node with temporary node_modules link. Run finalize_excel.py. Run force_test_recalc.py, LibreOffice with /tmp/p9-force-recalc profile to test-recalc-hard, verify_excel.py. Render final XLSX to render-excel. Inspect final pages; package.py.
+Manual calculation10 has no formulas. Exact-edition owner acceptance pending. No new Microsoft Office run. Full QA pass false.

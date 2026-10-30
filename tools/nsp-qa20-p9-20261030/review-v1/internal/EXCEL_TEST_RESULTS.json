@@ -1,0 +1,44 @@
+[
+  {
+    "id": "valid",
+    "expectedPrefix": "Дней до",
+    "artifactValue": "Дней до указанной предельной даты: 3675",
+    "libreOfficeValue": "Дней до указанной предельной даты: 3675",
+    "passed": true
+  },
+  {
+    "id": "missing-rule",
+    "expectedPrefix": "НЕ ЗАПОЛНЕНО",
+    "artifactValue": "НЕ ЗАПОЛНЕНО: процедура, даты, публикация, норма и проверяющий",
+    "libreOfficeValue": "НЕ ЗАПОЛНЕНО: процедура, даты, публикация, норма и проверяющий",
+    "passed": true
+  },
+  {
+    "id": "text-date",
+    "expectedPrefix": "ОШИБКА",
+    "artifactValue": "ОШИБКА: проверьте исходные даты",
+    "libreOfficeValue": "ОШИБКА: проверьте исходные даты",
+    "passed": true
+  },
+  {
+    "id": "before-publication",
+    "expectedPrefix": "ОШИБКА",
+    "artifactValue": "ОШИБКА: предельная дата раньше публикации",
+    "libreOfficeValue": "ОШИБКА: предельная дата раньше публикации",
+    "passed": true
+  },
+  {
+    "id": "missing-source",
+    "expectedPrefix": "НЕ ЗАПОЛНЕНО",
+    "artifactValue": "НЕ ЗАПОЛНЕНО: процедура, даты, публикация, норма и проверяющий",
+    "libreOfficeValue": "НЕ ЗАПОЛНЕНО: процедура, даты, публикация, норма и проверяющий",
+    "passed": true
+  },
+  {
+    "id": "expired",
+    "expectedPrefix": "Указанная предельная дата истекла",
+    "artifactValue": "Указанная предельная дата истекла: откройте файл 09",
+    "libreOfficeValue": "Указанная предельная дата истекла: откройте файл 09",
+    "passed": true
+  }
+]
