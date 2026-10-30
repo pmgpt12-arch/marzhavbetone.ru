@@ -1,0 +1,21 @@
+{
+  "status": "P1_LOCAL_RELEASE_ACCEPTANCE_PASS",
+  "checks": [
+    "transaction_and_server_readback_exact",
+    "missing_cache_rebuilt_from_exact_master",
+    "capture_prepare_repeat_callback_ttl3600_not_extended",
+    "download_current_200",
+    "download_boundary_410",
+    "download_past_410",
+    "download_wrong_token_403",
+    "p2_existing_delivery_unchanged",
+    "old_sources_and_caches_removed_protected_files_unchanged",
+    "rollback_restores_old_sources_pages_config"
+  ],
+  "check_count": 10,
+  "archive_sha256": "99df41c33e25ce41b61b8e04e22e27871d08a2c383ddae234119a29df5f29ada",
+  "file_count": 18,
+  "real_payment_performed": false,
+  "production_modified": false,
+  "release_manifest_sha256": "2c80a2b26044d9683e38286b8c10cc5e94fb48098c7bc8de9324ec5897bd6797"
+}
