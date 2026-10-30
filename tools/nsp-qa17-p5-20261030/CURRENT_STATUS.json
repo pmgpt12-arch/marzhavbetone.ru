@@ -1,35 +1,20 @@
 {
+  "schema": "NSP_QA17_CURRENT_STATUS_v1",
   "sku": "p5",
   "edition": "P5-layout-v1",
-  "status": "READY_FOR_OWNER_REVIEW",
-  "owner_approval": "PENDING",
-  "release_allowed": false,
-  "production_changed": false,
-  "full_qa_pass": false,
-  "file_count": 30,
-  "formats": {
-    "docx": 22,
-    "xlsx": 6,
-    "pdf": 2
-  },
-  "check_count": 542,
-  "source_archive_sha256": "c99d209997835223f15d04f09964c1efed946e5567264bc749507b3c626b59cd",
-  "new_native_office_test_performed": false,
-  "rendered_pages": 141,
-  "render_engine": "LibreOffice; no new native Microsoft Office run",
-  "artifact_refs": [
-    {
-      "name": "P5_Uderzhaniya_shtrafy_zachety_v1.zip",
-      "library_file_id": "libfile_f79eca340530819181f045bae15c0ff7",
-      "sha256": "1a0ab501a008c9cae1b1baaaa6570d1123291630ac8ecff1db74fad411431286"
-    },
-    {
-      "name": "P5_predprosmotr_141str.pdf",
-      "library_file_id": "libfile_5f202ea772988191b3152f095f55de53",
-      "sha256": "20ad72423f5b91920d262bc0b86dcce4a80365be08b8834d7a38f2d764986088"
-    }
-  ],
+  "status": "OWNER_ACCEPTED_AND_PUBLICATION_VERIFIED",
   "archive_sha256": "1a0ab501a008c9cae1b1baaaa6570d1123291630ac8ecff1db74fad411431286",
-  "preview_sha256": "20ad72423f5b91920d262bc0b86dcce4a80365be08b8834d7a38f2d764986088",
-  "next_action": "Owner review of exact ZIP. P5 publication requires acceptance of P5-layout-v1."
+  "file_count": 30,
+  "owner_quote": "Размещай",
+  "workflow_url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/41046916876",
+  "source_publication_commit": "1867f85208f743abfa70eab86b08ac7864b441e1",
+  "local_delivery_checks": "17/17 PASS",
+  "live_current_archive_exact_match": true,
+  "public_pages_https": "2/2 PASS",
+  "ttl_seconds": 3600,
+  "old_source_and_cache_removed": true,
+  "new_real_payment": false,
+  "new_full_qa_pass_claimed": false,
+  "replaces_status": "READY_FOR_OWNER_REVIEW for this exact SHA",
+  "published_local_date": "2026-10-30"
 }
