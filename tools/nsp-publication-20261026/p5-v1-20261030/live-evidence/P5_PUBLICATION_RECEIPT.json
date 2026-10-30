@@ -1,0 +1,31 @@
+{
+  "status": "P5_LAYOUT_V1_DEPLOYED_CURRENT_ARCHIVE_AND_HTTPS_VERIFIED",
+  "edition": "P5-layout-v1",
+  "archive_sha256": "1a0ab501a008c9cae1b1baaaa6570d1123291630ac8ecff1db74fad411431286",
+  "file_count": 30,
+  "source_gate": "PASS",
+  "actual_server_builder_bytes": "EXACT_MATCH",
+  "public_pages": [
+    {
+      "path": "products/p5-shtrafy-uderzhaniya.html",
+      "status": 200,
+      "sha256": "c9315a8d21d77c48e7709317c2252d28cc98aa10287d1151d11b26b55acb67f2"
+    },
+    {
+      "path": "katalog.html",
+      "status": 200,
+      "sha256": "69e292ec55e5f21d41f5b333407498d9e8a3dc2c55cb77243961ad58edc0d5b0"
+    }
+  ],
+  "ttl_seconds": 3600,
+  "price_kopeks": 2990000,
+  "old_product_files_retained": false,
+  "old_cache_retained": false,
+  "payment_and_download_unchanged": true,
+  "config_change": "extend existing exact-current archive branch to P5; P1, P2 and P3 preserved",
+  "real_payment_tested": false,
+  "run_id": "41046916876",
+  "commit": "1867f85208f743abfa70eab86b08ac7864b441e1",
+  "owner_permission": "APPROVED",
+  "scope": "P5 current source/master/cache and page/catalog; existing current-archive builder extended to P5"
+}
