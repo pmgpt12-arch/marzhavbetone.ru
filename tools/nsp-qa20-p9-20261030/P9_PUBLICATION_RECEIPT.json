@@ -1,0 +1,31 @@
+{
+  "status": "P9_REVIEW_V1_DEPLOYED_CURRENT_ARCHIVE_AND_HTTPS_VERIFIED",
+  "edition": "P9-review-v1",
+  "archive_sha256": "34bf03bcd3ed2e31d731dd8ac4c316cf9f94a8bb5dde1e4c9fc1aa3a7b7b23d9",
+  "file_count": 12,
+  "source_gate": "PASS",
+  "actual_server_builder_bytes": "EXACT_MATCH",
+  "public_pages": [
+    {
+      "path": "products/p9-bankrotstvo-genpodryadchika.html",
+      "status": 200,
+      "sha256": "64591552c3adc9837f96a4fe70d87e3786cb06b3f342b3112c1aca067b921f0c"
+    },
+    {
+      "path": "katalog.html",
+      "status": 200,
+      "sha256": "11236e0c1eda5edd07282a8ed2e382c7dfb324772bfd8f435fc58f53abfa609d"
+    }
+  ],
+  "ttl_seconds": 3600,
+  "price_kopeks": 2490000,
+  "old_product_files_retained": false,
+  "old_cache_retained": false,
+  "payment_and_download_unchanged": true,
+  "config_change": "extend existing exact-current archive branch to P9; P1, P2 and P3 preserved",
+  "real_payment_tested": false,
+  "run_id": "41095360862",
+  "commit": "44eae10e635885ecc08ade945cb3353982279464",
+  "owner_permission": "APPROVED",
+  "scope": "P9 current source/master/cache and page/catalog; existing current-archive builder extended to P9"
+}
