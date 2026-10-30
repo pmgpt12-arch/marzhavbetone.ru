@@ -1,0 +1,46 @@
+{
+  "sku": "P9",
+  "date": "2026-10-30",
+  "status": "SOURCE_AUDIT_COMPLETE_REWORK_REQUIRED",
+  "source_commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
+  "source_path": "tools/nsp-next-corrections-20261022/candidate-archives/11-bankrotstvo-genpodryadchika.zip",
+  "source_sha256": "0e1bd35bb50749855db7e5afba76313239440e57c92a9e6fb3704a9d407ebe06",
+  "source_files": 10,
+  "proposed_title": "Генподрядчик банкротится: заявляем долг в реестр кредиторов",
+  "title_owner_accepted": false,
+  "findings": [
+    {
+      "file": "04",
+      "finding": "Document inventory amounts are not principal debt; no separate linked debt calculation",
+      "action": "Add distinct calculation per work item, duplicate-document mapping, payments, principal, sanctions and separate current claims; reconcile with08"
+    },
+    {
+      "file": "04 Объект и должник B27",
+      "finding": "Deadline gate ignores B23 legal basis; does not validate numeric date inB24",
+      "action": "Require applicable procedure, publication source, legal basis, valid date, verifier; distinguish internal control from statutory deadline"
+    },
+    {
+      "file": "09",
+      "finding": "Guidance exists but no editable restoration motion",
+      "action": "Provide separate editable motion with chronology, obstacle period, evidence and explicit judicial discretion"
+    },
+    {
+      "file": "00",
+      "finding": "TXT start file remains",
+      "action": "Replace with one PDF instruction"
+    },
+    {
+      "file": "06/07/08",
+      "finding": "Requisites and signatures not standardized",
+      "action": "Apply9866twips and separate fullwidth blocks"
+    }
+  ],
+  "sources": [
+    "https://www.consultant.ru/document/cons_doc_LAW_39331/9f7dd5ffc46b7e05caec5829696c1917d6c76de6/",
+    "https://vsrf.ru/documents/own/34137/",
+    "https://www.consultant.ru/document/cons_doc_LAW_28165/fd44625defd599290366d418d3be13d277f1515d/"
+  ],
+  "production_changed": false,
+  "release_allowed": false,
+  "p8": "P8-review-v1 still awaits exact-edition owner acceptance"
+}
