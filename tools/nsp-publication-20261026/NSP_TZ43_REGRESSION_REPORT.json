@@ -1,0 +1,62 @@
+{
+  "schema": "NSP_TZ43_TARGETED_REGRESSION_V1",
+  "verified_preflight_head": "67c2fe029e07377fd07a34204c4c324a8adc09ad",
+  "source_file_shas": {
+    "index.html": {
+      "sha256": "e809e3f5263c32e092a5ec6cd63b81421abe6a752d906818b6e407953495a3e5",
+      "unchanged_since_preflight_commit": true,
+      "same_bytes_as_main": true
+    },
+    "products/p3-shablony-ks2-ks3.html": {
+      "sha256": "28a3614e8824610fba76470fe902a98c559c1c8e9414bde472aef77254521945",
+      "unchanged_since_preflight_commit": true,
+      "same_bytes_as_main": true
+    },
+    "products/p5-shtrafy-uderzhaniya.html": {
+      "sha256": "292d614478c706d83c6a1d302cbe329b4af98b4b293fbda1fa330836141fc90b",
+      "unchanged_since_preflight_commit": true,
+      "same_bytes_as_main": true
+    },
+    "download.php": {
+      "sha256": "8c90c5abf5900d1ab7e14d663a584e304fcf9ef8e37a953a4ac5b231e1b6ec55",
+      "unchanged_since_preflight_commit": true
+    },
+    "webhook.php": {
+      "sha256": "c8d758c1234e47466b212dbe91ddd3466aa24b64f6d50ecd669a16bc6655cb2d",
+      "unchanged_since_preflight_commit": true
+    },
+    "payment.php": {
+      "sha256": "61a47ebff35c3b6bfca010d8ce30e6d9dfdd427b7aae52caabc2ed6d156366fa",
+      "unchanged_since_preflight_commit": true
+    },
+    "lead.php": {
+      "sha256": "fbd44531d9d9d32885472cc7b94439db80d48a63e8da72eab5c8cb0c111a6b64",
+      "unchanged_since_preflight_commit": true
+    },
+    "products-config.php": {
+      "sha256": "10739a7aff2a98e676c1e15b3499c64ad82703d0d6a3c6650b3dab751ce70551",
+      "unchanged_since_preflight_commit": true
+    }
+  },
+  "protected_diffs_since_preflight": [],
+  "protected_buyers_and_archives": "UNCHANGED_DOWNLOAD_WEBHOOK_PAYMENT_PRODUCTS_STORAGE_ORDERS_DOWNLOADS",
+  "old_paid_order": "PREVIOUS_SYNTHETIC_200_REPEAT_200_TOKEN_403_EXPIRED_410_FILE_500_PASS",
+  "prior_order_receipt": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40461221833",
+  "p3_p5": "BYTE_IDENTICAL_TO_MAIN; EXISTING_CHECKOUT_UNCHANGED",
+  "current_lead_hold_post_denied": 11,
+  "new_paid_hold_post_denied": 11,
+  "paid_hold_previous_run": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40461221833",
+  "test_copy_guard_removed_only_in_ephemeral_temporary_dir": true,
+  "real_mail_payments_orders": "NONE",
+  "new_public_free_delivery": "BLOCKED",
+  "historical_static_downloads": "REMAIN_HTTP_200_ISSUED_LINKS_PRESERVED",
+  "current_P8_matches_last_accepted": false,
+  "qa04_local_evidence": "PASS_ORIGINAL_GIT_SHA_NOT_FOUND",
+  "browser_proof_reused": "40461221833 24 pages x 5 widths; source files unmodified",
+  "relative_link_proof_reused": "406/406 unchanged pages",
+  "scope": "REPORTS_AND_LOCAL_TEST_ONLY",
+  "release_permission_changed": false,
+  "main_modified": false,
+  "production_deployed": false,
+  "status": "PASS_TARGETED_SOURCE_REGRESSION_WITH_DOCUMENTED_BLOCKERS"
+}

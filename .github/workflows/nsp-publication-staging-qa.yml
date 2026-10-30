@@ -1,0 +1,60 @@
+name: NSP publication staging QA (nonrelease)
+on:
+  pull_request:
+    paths:
+      - 'tools/nsp-publication-20261026/**'
+      - 'katalog.html'
+      - 'payment.php'
+      - 'lead.php'
+      - 'products/*.html'
+      - 'materialy/*.html'
+      - '.github/workflows/nsp-publication-staging-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  staging-isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify tools are available
+        run: php -v && python3 --version
+      - name: Install browser harness
+        run: |
+          python3 -m pip install --quiet --disable-pip-version-check beautifulsoup4 playwright
+          python3 -m playwright install --with-deps chromium
+      - name: P8 owner-edition gate negative checks (correct QA01 SHA must be rejected)
+        run: |
+          mkdir -p nsp-publication-staging-evidence
+          python3 tools/nsp-publication-20261026/test_p8_edition_binding.py --output nsp-publication-staging-evidence/P8_EDITION_GATE_TEST_RECEIPT.json
+      - name: Verify immutable P8 Word2016 native print evidence and negative cases (still HOLD)
+        run: |
+          python3 tools/nsp-publication-20261026/verify_p8_word2016_native.py --output nsp-publication-staging-evidence/P8_WORD2016_NATIVE_SHA_GATE_RECEIPT.json
+      - name: Verify source SHA AND owner-accepted edition ID, evidence, ZIP and members (HOLD)
+        run: |
+          python3 tools/nsp-publication-20261026/archive_version_gate.py --output nsp-publication-staging-evidence/ARCHIVE_VERSION_GATE_RECEIPT.json
+          python3 - <<'GATE'
+          import json
+          receipt=json.load(open('nsp-publication-staging-evidence/ARCHIVE_VERSION_GATE_RECEIPT.json'))
+          assert receipt['technical_source_verified']==11
+          assert receipt['p8_edition_status']=='EDITION_NOT_ACCEPTED'
+          assert receipt['release_allowed']==0
+          GATE
+      - name: Execute actual isolated HTTP, synthetic old-order and 24x5 browser checks
+        env:
+          NSP_STAGING_EVIDENCE_DIR: nsp-publication-staging-evidence
+        run: python3 tools/nsp-publication-20261026/staging_qa.py
+      - name: Upload full evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nsp-publication-staging-${{ github.run_id }}-${{ github.run_attempt }}
+          path: nsp-publication-staging-evidence/
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,0 +1,241 @@
+{
+  "schema": "P8_FINAL_EDITION_DECISION_V1",
+  "date": "2026-10-27",
+  "SKU": "P8",
+  "source_repositories": [
+    "pmgpt12-arch/marzhavbetone.ru",
+    "pmgpt12-arch/ai-business-os"
+  ],
+  "known_revisions": [
+    {
+      "revision": "R3_20261020_OWNER_ACCEPTED",
+      "filename": "P8-buyer-review-R3-20261020.zip",
+      "source": "tools/candidates/remaining-batch-r3-20261018/final-buyer-review-20261020/P8-buyer-review-R3-20261020.zip",
+      "archive_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+      "bytes": 344456,
+      "member_count": 11,
+      "crc": "PASS",
+      "members_sha256": {
+        "00-START-HERE.txt": "75c3617962a431314b84d798cdb2c596dd9e138a06032fc7b8d77afeee7d2554",
+        "01-slovar-poley-avans.docx": "aa9f9d54ac7d3e699a0ed007b1718d45877e89849d700e5b9e01b458f81c4160",
+        "02-kalkulyator-usloviy-avansa.xlsx": "781f36e37f22ed428561f10b9cb9eebece39a32bcb2f4eb24800121a00400551",
+        "03-razbor-chetyrekh-usloviy-avansa.docx": "3602cb07f9052c146a70aefbe591a5c0d2a3d4bbdfdd64a14db7ce521c55c57d",
+        "04-algoritm-peregovorov-ob-avanse.docx": "c0292cc68cc84777a47fca0f31ccf70b828c85d95fd8ac759345875536696414",
+        "05-protokol-raznoglasiy-avansovye-punkty.docx": "37a909e5e08f47fcffe5e3ed130f385f05bd628cdad6910b19c7d5ecff3977ec",
+        "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx": "c21fdf8cfcdf8b0e83283ace243c533ba79c12a8c89f05357683c831a21e4fee",
+        "07-trebovanie-o-vyplate-avansa.docx": "634e1194539436eecce1d748c275071ee15a3b5e20e8e78f0b73c8eb578b8201",
+        "08-algoritm-s-vas-trebuyut-vernut-avans.docx": "52994b8f90bfcd9659d26c1cf967dc020a48abafbd19341da460134659581e14",
+        "09-raschet-otrabotannoy-chasti-avansa.xlsx": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+        "10-otvet-na-trebovanie-o-vozvrate-avansa.docx": "fb9258f6b9517a84d4cde3b7162e4f8ac728d4af6916ed21359019934ed8ce9e"
+      },
+      "date": "2026-10-20",
+      "product_qa_decision": "OWNER_ACCEPTED_AND_RELEASE_AUTHORIZED_HISTORICAL_R3"
+    },
+    {
+      "revision": "R3_20261020_PRODUCTION_REPACK",
+      "filename": "P8-production-buyer.zip",
+      "source": "tools/candidates/remaining-batch-r3-20261018/release-20261020/production/P8-production-buyer.zip",
+      "archive_sha256": "41867a4ad15aa0cbb3d0c5a7f8b45ccd0caef64f19de169d3777f150a06c466d",
+      "bytes": 344105,
+      "member_count": 11,
+      "crc": "PASS",
+      "members_sha256": {
+        "08-algoritm-s-vas-trebuyut-vernut-avans.docx": "52994b8f90bfcd9659d26c1cf967dc020a48abafbd19341da460134659581e14",
+        "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx": "c21fdf8cfcdf8b0e83283ace243c533ba79c12a8c89f05357683c831a21e4fee",
+        "07-trebovanie-o-vyplate-avansa.docx": "634e1194539436eecce1d748c275071ee15a3b5e20e8e78f0b73c8eb578b8201",
+        "03-razbor-chetyrekh-usloviy-avansa.docx": "3602cb07f9052c146a70aefbe591a5c0d2a3d4bbdfdd64a14db7ce521c55c57d",
+        "02-kalkulyator-usloviy-avansa.xlsx": "781f36e37f22ed428561f10b9cb9eebece39a32bcb2f4eb24800121a00400551",
+        "10-otvet-na-trebovanie-o-vozvrate-avansa.docx": "fb9258f6b9517a84d4cde3b7162e4f8ac728d4af6916ed21359019934ed8ce9e",
+        "01-slovar-poley-avans.docx": "aa9f9d54ac7d3e699a0ed007b1718d45877e89849d700e5b9e01b458f81c4160",
+        "05-protokol-raznoglasiy-avansovye-punkty.docx": "37a909e5e08f47fcffe5e3ed130f385f05bd628cdad6910b19c7d5ecff3977ec",
+        "04-algoritm-peregovorov-ob-avanse.docx": "c0292cc68cc84777a47fca0f31ccf70b828c85d95fd8ac759345875536696414",
+        "00-START-HERE.txt": "75c3617962a431314b84d798cdb2c596dd9e138a06032fc7b8d77afeee7d2554",
+        "09-raschet-otrabotannoy-chasti-avansa.xlsx": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4"
+      },
+      "date": "2026-10-20",
+      "product_qa_decision": "REPRESENTATION_OF_APPROVED_R3_SAME_MEMBER_SHA"
+    },
+    {
+      "revision": "QA01_20261023_READY_CANDIDATE",
+      "filename": "P8-QA01-READY-CANDIDATE-NONRELEASE.zip",
+      "source": "ISOLATED_LOCAL_STAGING_P8_QA01_SOURCE",
+      "archive_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "bytes": 351081,
+      "member_count": 11,
+      "crc": "PASS",
+      "members_sha256": {
+        "10-otvet-na-trebovanie-o-vozvrate-avansa.docx": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f",
+        "01-slovar-poley-avans.docx": "aa9f9d54ac7d3e699a0ed007b1718d45877e89849d700e5b9e01b458f81c4160",
+        "04-algoritm-peregovorov-ob-avanse.docx": "c0292cc68cc84777a47fca0f31ccf70b828c85d95fd8ac759345875536696414",
+        "05-protokol-raznoglasiy-avansovye-punkty.docx": "37a909e5e08f47fcffe5e3ed130f385f05bd628cdad6910b19c7d5ecff3977ec",
+        "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx": "c21fdf8cfcdf8b0e83283ace243c533ba79c12a8c89f05357683c831a21e4fee",
+        "09-raschet-otrabotannoy-chasti-avansa.xlsx": "33c5d803759a45e48690bcf9af593aa9f505cb8c19366131915e8fd4dc670732",
+        "08-algoritm-s-vas-trebuyut-vernut-avans.docx": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1",
+        "03-razbor-chetyrekh-usloviy-avansa.docx": "3602cb07f9052c146a70aefbe591a5c0d2a3d4bbdfdd64a14db7ce521c55c57d",
+        "07-trebovanie-o-vyplate-avansa.docx": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db",
+        "02-kalkulyator-usloviy-avansa.xlsx": "0ca0ab6e8bfd65733f9ec5dc6c8a9af394ee9a7dd80a953011a68ce318e3b45f",
+        "00-START-HERE.txt": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c"
+      },
+      "date": "2026-10-23",
+      "product_qa_decision": "READY_CANDIDATE_ONLY"
+    }
+  ],
+  "earlier_R2": "R2 rejected and withdrawn, per tools/candidates/remaining-batch-r3-20261018/WORK-STATUS.md; exact historic ZIP not verified in this investigation",
+  "last_documented_whole_buyer_archive_acceptance": {
+    "status": "OWNER_ACCEPTED_AND_RELEASE_AUTHORIZED",
+    "date": "2026-10-20T13:09:31+07:00",
+    "source_git_commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+    "owner_receipt": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json",
+    "archive": "P8-buyer-review-R3-20261020.zip",
+    "sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+    "file_count": 11,
+    "historic_scope_only": "THE 2026-10-20 APPROVAL DOES NOT OVERRIDE CURRENT 2026-10-27 RELEASE HOLD"
+  },
+  "historic_production_repack": {
+    "sha256": "41867a4ad15aa0cbb3d0c5a7f8b45ccd0caef64f19de169d3777f150a06c466d",
+    "member_sha_match_approved_R3": true,
+    "source_commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+    "source_receipt": "tools/candidates/remaining-batch-r3-20261018/release-20261020/production/production-verification.json"
+  },
+  "later_targeted_owner_acceptance": [
+    {
+      "scope": "P8/02",
+      "owner_acceptance_commit": "111f12f45ff5bce98ffbd37391b9b637ae8a1ac8",
+      "record_path": "tools/nsp-product-audit-fixes-20261021/p8-02-candidate/OWNER_ACCEPTANCE.json",
+      "accepted_sha256": "0ca0ab6e8bfd65733f9ec5dc6c8a9af394ee9a7dd80a953011a68ce318e3b45f",
+      "recorded_utc": "2026-10-22T07:19:15.291746+00:00",
+      "status": "OWNER_MANUAL_ACCEPTANCE_PASS",
+      "full_package_acceptance": false,
+      "owner_statement": "Все тесты ок, открывается и закрывается без ошибок расчеты согласно алгоритма ок, печать ок"
+    },
+    {
+      "scope": "P8/09",
+      "owner_acceptance_commit": "281097a72dbba67a4563b4ad850d03808b66b365",
+      "record_path": "tools/nsp-product-audit-fixes-20261021/p8-09-candidate/OWNER_ACCEPTANCE.json",
+      "accepted_sha256": "33c5d803759a45e48690bcf9af593aa9f505cb8c19366131915e8fd4dc670732",
+      "recorded_utc": "2026-10-22T05:36:15.586422+00:00",
+      "status": "OWNER_MANUAL_ACCEPTANCE_PASS",
+      "full_package_acceptance": false,
+      "owner_statement": "Тест пройден, открывается без ошибок расчеты все пройдены результаты получены как ожидались, области печати корректны"
+    }
+  ],
+  "later_unreleased_docx_edits": {
+    "source_pr": 675,
+    "draft": true,
+    "merged": false,
+    "source_commit": "cd051f422ba5899999f6099fae1de689b089dbe7",
+    "files": [
+      "07-trebovanie-o-vyplate-avansa.docx",
+      "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+      "10-otvet-na-trebovanie-o-vozvrate-avansa.docx"
+    ],
+    "scope": "Targeted 3 DOCX patches are not a later accepted full 11-file buyer ZIP"
+  },
+  "qa01_candidate": {
+    "QA_COMMIT": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
+    "qa_manifest": "tools/nsp-qa01-20261023/CURRENT_CANDIDATE_PACKAGES.json",
+    "qa_matrix": "tools/nsp-qa01-20261023/READINESS_MATRIX.json",
+    "qa_status": "READY_CANDIDATE; FULL_PRODUCT_QA_CANDIDATE_ONLY",
+    "whole_package_owner_acceptance": "NOT_FOUND",
+    "sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+    "file_count": 11,
+    "matching_members_against_owner_R3": 5,
+    "changed_members_against_owner_R3": [
+      {
+        "name": "00-START-HERE.txt",
+        "owner_accepted_r3_sha": "75c3617962a431314b84d798cdb2c596dd9e138a06032fc7b8d77afeee7d2554",
+        "qa01_candidate_sha": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c"
+      },
+      {
+        "name": "02-kalkulyator-usloviy-avansa.xlsx",
+        "owner_accepted_r3_sha": "781f36e37f22ed428561f10b9cb9eebece39a32bcb2f4eb24800121a00400551",
+        "qa01_candidate_sha": "0ca0ab6e8bfd65733f9ec5dc6c8a9af394ee9a7dd80a953011a68ce318e3b45f"
+      },
+      {
+        "name": "07-trebovanie-o-vyplate-avansa.docx",
+        "owner_accepted_r3_sha": "634e1194539436eecce1d748c275071ee15a3b5e20e8e78f0b73c8eb578b8201",
+        "qa01_candidate_sha": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db"
+      },
+      {
+        "name": "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+        "owner_accepted_r3_sha": "52994b8f90bfcd9659d26c1cf967dc020a48abafbd19341da460134659581e14",
+        "qa01_candidate_sha": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1"
+      },
+      {
+        "name": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+        "owner_accepted_r3_sha": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+        "qa01_candidate_sha": "33c5d803759a45e48690bcf9af593aa9f505cb8c19366131915e8fd4dc670732"
+      },
+      {
+        "name": "10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+        "owner_accepted_r3_sha": "fb9258f6b9517a84d4cde3b7162e4f8ac728d4af6916ed21359019934ed8ce9e",
+        "qa01_candidate_sha": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f"
+      }
+    ]
+  },
+  "last_documentarily_accepted_whole_edition": "R3_20261020_OWNER_ACCEPTED",
+  "last_documentarily_accepted_whole_sha256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+  "staging_selected_candidate": "QA01_20261023_READY_CANDIDATE",
+  "staging_archive_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+  "staging_delivery_sha256_previous_evidence": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+  "staging_matches_last_whole_accepted_sha": false,
+  "all_member_hashes_match_last_whole_accepted_sha": false,
+  "latest_valid_full_package_for_new_release": "NOT_ESTABLISHED_AFTER_LATER_PARTIAL_ACCEPTANCES",
+  "FINAL_QA_STATUS": "NOT_FULLY_CONFIRMED",
+  "QA_STATUS": "NOT_FULLY_CONFIRMED",
+  "ARTIFACT_STATUS": "PASS_TECHNICAL_FOR_QA01_CANDIDATE_ONLY",
+  "STAGING_STATUS": "BLOCKED_WRONG_EDITION_RELATIVE_TO_LAST_WHOLE_OWNER_ACCEPTANCE",
+  "RELEASE_PERMISSION": "HOLD",
+  "selected_new_release_archive_sha": null,
+  "next_gate": "Owner accepted QA01 member 00 by exact SHA; 02 and 09 are separately accepted; 07/08/10 have visual layout acceptance only. Next: owner editorial/content sign-off on exact 07/08/10 SHA, product-level QA of complete 11-file buyer ZIP, new edition ID+outer/member SHA+acceptance evidence. Keep R3 historical and HOLD; separate publication authorization required.",
+  "no_quality_qa_restart": true,
+  "no_release_change": true,
+  "state": "HISTORICAL_R3_ACCEPTED_CURRENT_QA01_NOT_FINAL_CONFIRMED_HOLD",
+  "reconciliation": "P8_EDITION_RECONCILIATION.json",
+  "owner_edition_anchor": "P8_ACCEPTED_EDITION_ANCHOR.json",
+  "gate_test_receipt": "P8_EDITION_GATE_TEST_RECEIPT.json",
+  "EDITION_GATE_STATUS": "EDITION_NOT_ACCEPTED",
+  "missing_owner_component_decisions": [
+    "07-trebovanie-o-vyplate-avansa.docx",
+    "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+    "10-otvet-na-trebovanie-o-vozvrate-avansa.docx"
+  ],
+  "missing_full_qa": "New 11-file whole package acceptance after later 02/09 component approvals and three DOCX repairs",
+  "no_automatic_R3_revert": true,
+  "no_automatic_QA01_nomination": true,
+  "edition_gate_regression_passed": 19,
+  "owner_00_20261027_accepted_member_sha256": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
+  "owner_00_20261027_evidence": "P8_OWNER_COMPONENT_DECISIONS_20261027.json",
+  "owner_00_source_master_mismatch_resolved_by_exact_member_acceptance": true,
+  "owner_07_08_10_visual_layout_approved_as_is": true,
+  "owner_07_08_10_editorial_content_decision": "PENDING",
+  "native_word2016_docx_print": {
+    "status": "WORD2016_NATIVE_PRINT_PASS_3_OF_3",
+    "receipt": "P8_WORD2016_NATIVE_PRINT_RECEIPT.json",
+    "source_docx_sha256": {
+      "10": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f",
+      "07": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db",
+      "08": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1"
+    },
+    "pdf_sha256": {
+      "10": "cbc8ae99be54aed678f335404e4e72f6e2cec86f5b3e83a1c1629a5197fb02f9",
+      "07": "9855a5fa7a9347db766b8725d94a906c3ca9d39aeaa42622978fb4fd7825802b",
+      "08": "c0301b09663fca02ddb3f7de31cd2ce4165f9ac31fed4d98d8d6faa6b2f288cf"
+    },
+    "exported_pdf_actual_pages": {
+      "10": 1,
+      "07": 1,
+      "08": 1
+    },
+    "word_internal_page_statistics": {
+      "10": 1,
+      "07": 1,
+      "08": 2
+    },
+    "word08_page_counter_pdf_count_discrepancy": "DOCUMENTED_PDF_ONE_A4_PAGE",
+    "owner_layout_accepted_as_is": true,
+    "owner_editorial_content_acceptance": "PENDING",
+    "full_11_file_archive_qa": "PENDING",
+    "release_permission": "HOLD"
+  }
+}

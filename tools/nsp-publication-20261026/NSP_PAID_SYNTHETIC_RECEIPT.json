@@ -1,0 +1,79 @@
+{
+  "schema": "NSP_ACTIVE_PAID_CHECKOUT_SYNTHETIC_V1",
+  "timestamp_utc": "2026-10-27T06:15:23.577941+00:00",
+  "scope": "TEMP_TEST_WEBROOT_FAKE_YOOKASSA_127_0_0_1_PORT_1_NO_PROVIDER",
+  "real_orders_accessed": false,
+  "real_payments": false,
+  "cases": [
+    {
+      "case": "P3_EXISTING",
+      "skus": [
+        "p3"
+      ],
+      "http": 500,
+      "expected": 500,
+      "synthetic_order_created": 1,
+      "pass": true,
+      "gateway_call": "REFUSED_LOOPBACK_ONLY"
+    },
+    {
+      "case": "P5_EXISTING",
+      "skus": [
+        "p5"
+      ],
+      "http": 500,
+      "expected": 500,
+      "synthetic_order_created": 1,
+      "pass": true,
+      "gateway_call": "REFUSED_LOOPBACK_ONLY"
+    },
+    {
+      "case": "P8_HOLD",
+      "skus": [
+        "p8"
+      ],
+      "http": 409,
+      "expected": 409,
+      "synthetic_order_created": 0,
+      "pass": true,
+      "gateway_call": "NOT_ATTEMPTED"
+    },
+    {
+      "case": "P1_HOLD",
+      "skus": [
+        "p1"
+      ],
+      "http": 409,
+      "expected": 409,
+      "synthetic_order_created": 0,
+      "pass": true,
+      "gateway_call": "NOT_ATTEMPTED"
+    },
+    {
+      "case": "P3_PLUS_HOLD",
+      "skus": [
+        "p3",
+        "p8"
+      ],
+      "http": 409,
+      "expected": 409,
+      "synthetic_order_created": 0,
+      "pass": true,
+      "gateway_call": "NOT_ATTEMPTED"
+    },
+    {
+      "case": "P5_PLUS_HOLD",
+      "skus": [
+        "p5",
+        "p1"
+      ],
+      "http": 409,
+      "expected": 409,
+      "synthetic_order_created": 0,
+      "pass": true,
+      "gateway_call": "NOT_ATTEMPTED"
+    }
+  ],
+  "release_permission_P3_P5": "PREVIOUS_RELEASE_PRESERVED",
+  "status": "PASS_SYNTHETIC_CURRENT_P3_P5_AND_HOLD_MIXED_CART"
+}

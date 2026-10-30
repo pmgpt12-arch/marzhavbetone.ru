@@ -1,0 +1,19 @@
+{
+  "status": "RECOVERED_AND_VERIFIED",
+  "failures": [
+    {
+      "class": "PHP_FUNCTION_SCOPE",
+      "cause": "New master variable was omitted from global declaration in reused verification helper",
+      "fix": "Add exact master dependency to verify_current global scope",
+      "gate": "fresh CLI verify and exact read-current SHA"
+    },
+    {
+      "class": "TEST_HARNESS_LANGUAGE_AND_BOOTSTRAP",
+      "cause": "PHP concatenation and duplicate include in synthetic download harness",
+      "fix": "Generate order fixture before including actual download entrypoint exactly once",
+      "gate": "real unchanged download.php runs 200/410/403 cases"
+    }
+  ],
+  "source_of_truth": "LOCAL_TEST_RECEIPT.json",
+  "product_bytes_changed": false
+}

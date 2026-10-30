@@ -1,0 +1,56 @@
+{
+  "schema": "NSP_P8_OWNER_COMPONENT_DECISIONS_V1",
+  "SKU": "P8",
+  "decision_date": "2026-10-27",
+  "evidence_kind": "OWNER_CHAT_CONFIRMATION_RECORDED_AS_VERSION_PINNED_SCOPE",
+  "current_product_state": "RELEASE_BLOCKED",
+  "release_permission": "HOLD",
+  "qa01_candidate_archive_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+  "qa01_candidate_archive_git": {
+    "commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
+    "path": "tools/nsp-next-corrections-20261022/candidate-archives/10-avans-usloviya-i-pribyl.zip"
+  },
+  "owner_component_acceptances": {
+    "00-START-HERE.txt": {
+      "scope": "SINGLE_FILE_CONTENT_AND_APPEARANCE_ONLY",
+      "status": "OWNER_ACCEPTED_EXACT_QA01_MEMBER",
+      "accepted_sha256": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
+      "accepted_size_bytes": 3474,
+      "reviewed_source": "QA01_ZIP_MEMBER_NOT_QA01_GIT_MASTER",
+      "reviewed_copy_path": "tools/nsp-publication-20261026/p8-owner-reviewed/00-START-HERE.txt",
+      "older_master_sha256": "75c3617962a431314b84d798cdb2c596dd9e138a06032fc7b8d77afeee7d2554",
+      "owner_statement": "Я посмотрел, ноль-ноль пойдет. И содержание достаточно корректное, нормальное, согласовываю",
+      "note": "Owner approval of member 00 does not accept the 11-file package, the archive SHA, the checkout, or production release."
+    }
+  },
+  "owner_layout_approvals": {
+    "07-trebovanie-o-vyplate-avansa.docx": {
+      "scope": "VISUAL_LAYOUT_ONLY",
+      "status": "OWNER_LAYOUT_ACCEPTED_AS_IS",
+      "reviewed_sha256": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db",
+      "preview_pdf_path": "tools/nsp-publication-20261026/p8-layout-preview-20261027/07-trebovanie-o-vyplate-avansa.pdf",
+      "owner_statement": "Нормально",
+      "editorial_content_acceptance": "PENDING_SEPARATE_OWNER_DECISION"
+    },
+    "08-algoritm-s-vas-trebuyut-vernut-avans.docx": {
+      "scope": "VISUAL_LAYOUT_ONLY",
+      "status": "OWNER_LAYOUT_ACCEPTED_AS_IS",
+      "reviewed_sha256": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1",
+      "preview_pdf_path": "tools/nsp-publication-20261026/p8-layout-preview-20261027/08-algoritm-s-vas-trebuyut-vernut-avans.pdf",
+      "owner_statement": "Нормально",
+      "editorial_content_acceptance": "PENDING_SEPARATE_OWNER_DECISION"
+    },
+    "10-otvet-na-trebovanie-o-vozvrate-avansa.docx": {
+      "scope": "VISUAL_LAYOUT_ONLY",
+      "status": "OWNER_LAYOUT_ACCEPTED_AS_IS",
+      "reviewed_sha256": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f",
+      "preview_pdf_path": "tools/nsp-publication-20261026/p8-layout-preview-20261027/10-otvet-na-trebovanie-o-vozvrate-avansa.pdf",
+      "owner_statement": "Нормально",
+      "editorial_content_acceptance": "PENDING_SEPARATE_OWNER_DECISION"
+    }
+  },
+  "protected_r3_unmodified": true,
+  "qa01_zip_unmodified": true,
+  "staging_zip_unmodified": true,
+  "public_release_authorized": false
+}

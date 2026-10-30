@@ -1,0 +1,707 @@
+{
+  "schema": "NSP_ACCEPTED_ARTIFACTS_MATRIX_V4_3",
+  "status": "P8_TECHNICAL_SHA_PASS_BUT_EDITION_NOT_ACCEPTED;11_FREE_HOLD;QA04_EVIDENCE_RECOVERED",
+  "source_qa12": "qa/nsp-qa12-avans-20261024:tools/nsp-qa12-20261024/FREE_11_FINAL_READONLY_MATRIX.json",
+  "qa04_source": "RECOVERED_ORIGINAL_LOCAL_ACCEPTANCE_DOCUMENTS;NO_HISTORICAL_GIT_QA_COMMIT",
+  "rows": [
+    {
+      "SKU": "FREE/checklist",
+      "name": "checklist-zakrytiya-rabot.pdf",
+      "type": "FREE",
+      "qa_status": "FULL_QA_PASS",
+      "qa_branch": "qa/nsp-qa09-checklist-20261024",
+      "qa_commit": "087a48e9c3c9433dfd74a3d9daf7165e9ea1e2a4",
+      "accepted_archive_sha256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
+      "archive_source_name": "checklist-zakrytiya-rabot.pdf",
+      "member_manifest": "tools/nsp-qa09-20261024/SHA_MANIFEST_FINAL.json",
+      "file_count": 1,
+      "staging_delivery_sha256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
+      "release_permission": "HOLD",
+      "url": "/materialy/checklist-zakrytiya-rabot.html",
+      "price_kopeks": 0,
+      "status": "ANNOUNCEMENT_READY",
+      "action": "Анонсировать до разрешённой новой выдачи",
+      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "member_sha": [
+        {
+          "name": "checklist-zakrytiya-rabot.pdf",
+          "sha256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394"
+        }
+      ],
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "bd50ad14084fbf91f2c575718e9d5f66c533ee5d1fd5dfc34eeaae2c34455394",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "STAGING_NOTE": "Synthetic paid download.php returns application/zip even for PDF; content bytes valid, not a public free-route MIME test.",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
+    },
+    {
+      "SKU": "FREE/dengi",
+      "name": "dengi.zip",
+      "type": "FREE",
+      "qa_status": "FULL_QA_PASS",
+      "qa_branch": "qa/nsp-qa02-dengi-20261023",
+      "qa_commit": "1ee5055b63611cd91bb09bb61a8b33bf1efba1b8",
+      "accepted_archive_sha256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+      "archive_source_name": "dengi-QA02-20261023.zip",
+      "member_manifest": "tools/nsp-qa02-20261023/MANIFEST.json",
+      "file_count": 5,
+      "staging_delivery_sha256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
+      "release_permission": "HOLD",
+      "url": "/materialy/dengi.html",
+      "price_kopeks": 0,
+      "status": "ANNOUNCEMENT_READY",
+      "action": "Анонсировать до разрешённой новой выдачи",
+      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "member_sha": [
+        {
+          "name": "01-algoritm-pervichnoy-proverki.docx",
+          "sha256": "75cdb0b12e421d247a60e11349c0535b655e8d5deb77a81e38ae9c4de2b9a261"
+        },
+        {
+          "name": "02-kalkulyator-sroka-oplaty.xlsx",
+          "sha256": "744020f6e4fac6f33f7a4324b3e8bce0d334e675921daa6e0111c1a3431845cb"
+        },
+        {
+          "name": "03-perechen-dokumentov.docx",
+          "sha256": "1f0aba0b0d7861b044f4e7acee4ad39df68dea64e673a33f052508b7313969be"
+        },
+        {
+          "name": "04-shablon-pisma.docx",
+          "sha256": "a08380d399f73f5bea7309a2ee6c4996272edce980dedc88fa471b1eb1eb4a1c"
+        },
+        {
+          "name": "99-chto-dalshe.pdf",
+          "sha256": "5da4242386b77bce83c1f2b433fa479b5e3976aae55483b31580b2f4024139da"
+        }
+      ],
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "024fe485d70bf2e55775ad3d1aae45bccc2ebd94502a26f4f938366e551d9ff1",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
+    },
+    {
+      "SKU": "FREE/dop-raboty",
+      "name": "dop-raboty.zip",
+      "type": "FREE",
+      "qa_status": "FULL_QA_PASS",
+      "qa_branch": "qa/nsp-qa10-dop-raboty-20261024",
+      "qa_commit": "e42fe796905e2aafb09701395833c4a711224613",
+      "accepted_archive_sha256": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
+      "archive_source_name": "dop-raboty-QA10-FULL-QA.zip",
+      "member_manifest": "tools/nsp-qa10-20261024/SHA_MANIFEST_FINAL.json",
+      "file_count": 5,
+      "staging_delivery_sha256": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
+      "release_permission": "HOLD",
+      "url": "/materialy/dop-raboty.html",
+      "price_kopeks": 0,
+      "status": "ANNOUNCEMENT_READY",
+      "action": "Анонсировать до разрешённой новой выдачи",
+      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "member_sha": [
+        {
+          "name": "01-checklist-do-nachala-doprabot.docx",
+          "sha256": "ed61dbc09e570234467548573b43ff06eb718be99d5cb04c6c94b3f8078ec2b7"
+        },
+        {
+          "name": "02-shema-fiksacii-porucheniya.docx",
+          "sha256": "287e0f38256c82153e971760ba06c7150e333e433d13b982ad2ce4486ff631c9"
+        },
+        {
+          "name": "03-shablon-uvedomleniya.docx",
+          "sha256": "f57d98278c9922608d6dd6e78380ec91a041ae137a2439abf38f4c5ac3fd92ae"
+        },
+        {
+          "name": "04-reestr-doprabot.xlsx",
+          "sha256": "d4e26def495de9959722b0d1d62981c6ebfa9111dd6cf44789b5db8e0347881d"
+        },
+        {
+          "name": "99-chto-dalshe.pdf",
+          "sha256": "37e6718cf2fb8040f3841ce4cbe3c96eb63ae6f288d07f21860115738b8be3bb"
+        }
+      ],
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "e09176633507ec8c148547c89bcb278525d0df1d26274a385c6fc6751fd7a43e",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
+    },
+    {
+      "SKU": "FREE/vozvrat-ks",
+      "name": "vozvrat-ks.zip",
+      "type": "FREE",
+      "qa_status": "FULL_QA_PASS",
+      "qa_branch": "qa/nsp-qa11-vozvrat-ks-20261024",
+      "qa_commit": "f06429549928959cba6305a27f41b336d1068a00",
+      "accepted_archive_sha256": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
+      "archive_source_name": "vozvrat-ks-QA11-FULL-QA.zip",
+      "member_manifest": "tools/nsp-qa11-20261024/SHA_MANIFEST_FINAL.json",
+      "file_count": 5,
+      "staging_delivery_sha256": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
+      "release_permission": "HOLD",
+      "url": "/materialy/vozvrat-ks.html",
+      "price_kopeks": 0,
+      "status": "ANNOUNCEMENT_READY",
+      "action": "Анонсировать до разрешённой новой выдачи",
+      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "member_sha": [
+        {
+          "name": "01-proverochnyy-list-komplekta-ks.docx",
+          "sha256": "4a56a0006c74e638cba1da7ba8db615271b4701ec98542e7139e39534f747ce5"
+        },
+        {
+          "name": "02-reestr-prilozheniy.xlsx",
+          "sha256": "0bb7ec884ba3df55b571be3c9806afce985f97ad1d01423d25413480bf8c4090"
+        },
+        {
+          "name": "03-tipovye-prichiny-vozvrata.docx",
+          "sha256": "5d67dd62f064c23ebbcd2ebb9d93ca0c1d3634c02333b8a14025066b059e2d99"
+        },
+        {
+          "name": "04-poryadok-vnutrenney-proverki.docx",
+          "sha256": "0052a9340e155e5864ca2a8e5bc040431dddf731202cdedb58e63bda5561f6ce"
+        },
+        {
+          "name": "99-chto-dalshe.pdf",
+          "sha256": "bda7163b4c6af2897108b49a88c793b61c18d972827e4ae10e98d05e29e75032"
+        }
+      ],
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "f0ffd8d55a4468f1542bd59d0a02cf87d49027f43d141f1c23197953fea9fcbe",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
+    },
+    {
+      "SKU": "FREE/uderzhaniya",
+      "name": "uderzhaniya.zip",
+      "type": "FREE",
+      "qa_status": "FULL_QA_PASS",
+      "qa_branch": "qa/nsp-qa03-uderzhaniya-20261023",
+      "qa_commit": "dc187d9563ac159a1600e599cf6999456b8a0731",
+      "accepted_archive_sha256": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
+      "archive_source_name": "uderzhaniya-QA03-only.zip",
+      "member_manifest": "tools/nsp-qa03-20261023/MANIFEST.json",
+      "file_count": 5,
+      "staging_delivery_sha256": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
+      "release_permission": "HOLD",
+      "url": "/materialy/uderzhaniya.html",
+      "price_kopeks": 0,
+      "status": "ANNOUNCEMENT_READY",
+      "action": "Анонсировать до разрешённой новой выдачи",
+      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "member_sha": [
+        {
+          "name": "01-proverochnyy-list-usloviy-uderzhaniya.docx",
+          "sha256": "cb24f07adaa0434e9080f77bfb1cd505d66e7605a619d2f9025890e441558c53"
+        },
+        {
+          "name": "02-reestr-uderzhaniy-po-obektu.xlsx",
+          "sha256": "34b07ca16d6f0ca9fde1fba200f50f994dd8cf86d890da426bcc824c7e18ec92"
+        },
+        {
+          "name": "03-tipovye-formulirovki-lovushki.docx",
+          "sha256": "9c8755eef6517220034bdfd746712e8f7ff346c90000f3f51e244070994a93f3"
+        },
+        {
+          "name": "04-pismo-o-vozvrate-uderzhaniya.docx",
+          "sha256": "479d2e12c6394864dcf452baaafc2f25eb3df8c9633a5e5fed7f6f396891fb49"
+        },
+        {
+          "name": "99-chto-dalshe.pdf",
+          "sha256": "c6f3080d658d788f580076b2581ae7efed4afd5677805636871971604c428343"
+        }
+      ],
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "77ef9381b960176e152bee757e3d497e9c8bcaecc20bbeb96ed6b1f5de99e1e0",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
+    },
+    {
+      "SKU": "FREE/dogovor",
+      "name": "dogovor.zip",
+      "type": "FREE",
+      "qa_status": "FULL_QA_PASS",
+      "qa_branch": "qa/nsp-qa05-dogovor-20261023",
+      "qa_commit": "079eebabc7aac535b460e55269ab1715710ef29a",
+      "accepted_archive_sha256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
+      "archive_source_name": "dogovor-QA05-FULL-QA.zip",
+      "member_manifest": "tools/nsp-qa05-20261023/SHA_MANIFEST_FINAL.json",
+      "file_count": 5,
+      "staging_delivery_sha256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
+      "release_permission": "HOLD",
+      "url": "/materialy/dogovor.html",
+      "price_kopeks": 0,
+      "status": "ANNOUNCEMENT_READY",
+      "action": "Анонсировать до разрешённой новой выдачи",
+      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "member_sha": [
+        {
+          "name": "01-checklist-krasnye-flagi.docx",
+          "sha256": "5614954e7e2ddc717812e872d90d67f044bea1eafa339096c18daaee18d91c75"
+        },
+        {
+          "name": "02-reestr-proverki-usloviy.xlsx",
+          "sha256": "c2058082f9aa54015fa7239626a895a890ab96e68a392426265704eaf7cc4697"
+        },
+        {
+          "name": "03-chto-nelzya-podpisyvat-ne-pokazav-yuristu.docx",
+          "sha256": "d6241c33444d1422cb650977e64d0e7e0ddca2c23c896600c5d97e15b20240ef"
+        },
+        {
+          "name": "04-zapros-na-korrektirovku-do-podpisi.docx",
+          "sha256": "0522e5d7fb47ed7e440f168eb32d3e90f7c33fe21f58fd2c25e24d56e614e5e8"
+        },
+        {
+          "name": "99-chto-dalshe.pdf",
+          "sha256": "0154ff3d9cbe1c28bd861dc52aba291178e1c308810d6a2c530a19745dcaf734"
+        }
+      ],
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
+    },
+    {
+      "SKU": "FREE/bankrotstvo",
+      "name": "bankrotstvo.zip",
+      "type": "FREE",
+      "qa_status": "FULL_QA_PASS",
+      "qa_branch": null,
+      "qa_commit": null,
+      "accepted_archive_sha256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "archive_source_name": "bankrotstvo-QA04-FULL-QA.zip",
+      "member_manifest": "local QA04 delivery manifest / Git provenance not located",
+      "file_count": 5,
+      "staging_delivery_sha256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
+      "release_permission": "HOLD",
+      "url": "/materialy/bankrotstvo.html",
+      "price_kopeks": 0,
+      "status": "BLOCKED",
+      "action": "Анонсировать до разрешённой новой выдачи",
+      "blocker": "Original Git QA04 commit NOT_FOUND (disclosed); original local native manifest/receipt sufficient for recorded FULL_QA_PASS; release HOLD and form route blocked",
+      "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "member_sha": [
+        {
+          "name": "01-proverka-kontragenta-do-podpisi.docx",
+          "sha256": "c04c95a1293725788c1f4fe52601e1e28a6dfd8d034d33c438ef3b2381118dd6"
+        },
+        {
+          "name": "02-reestr-priznakov-po-obektu.xlsx",
+          "sha256": "d4fed56a6effbcf078c7140bd9c95249f23c361bafe221aebc4600af18b7fadb"
+        },
+        {
+          "name": "03-chto-delat-pri-pervyh-priznakah.docx",
+          "sha256": "5ff9638e4a87fa00adc5d5e19c746a695111a63af924be2e98e5f2782dd808b6"
+        },
+        {
+          "name": "04-zapros-o-sostoyanii-raschetov.docx",
+          "sha256": "039ff3246687967bd47cda7db506b33153d22ed7d22212766bc89ee2148a1a4a"
+        },
+        {
+          "name": "99-chto-dalshe.pdf",
+          "sha256": "0947e76e9ef81e15e3090c4085b34a2a65bdf619ab2e0531b63f18da3074a9c4"
+        }
+      ],
+      "git_source_verification": "EVIDENCE_MISSING",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "PRIMARY_LOCAL_QA04_FULL_QA_PASS_SUFFICIENT_ORIGINAL_GIT_NOT_FOUND",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "qa_source_local_receipt_path": "tools/nsp-publication-20261026/qa04-recovered-original-local-receipts/NSP_QA04_RECOVERY_RECEIPT.json",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/QA04_PROVENANCE_REPORT.json",
+      "QA_EVIDENCE_COMMIT": "67c2fe029e07377fd07a34204c4c324a8adc09ad",
+      "ORIGINAL_QA_COMMIT": null,
+      "QA_STATUS": "FULL_QA_PASS_PRIMARY_LOCAL_EVIDENCE",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
+    },
+    {
+      "SKU": "FREE/avans",
+      "name": "avans.zip",
+      "type": "FREE",
+      "qa_status": "FULL_QA_PASS",
+      "qa_branch": "qa/nsp-qa12-avans-20261024",
+      "qa_commit": "0cc873b70e307a205de8d240d993476c5cf42911",
+      "accepted_archive_sha256": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
+      "archive_source_name": "avans-QA12-FULL-QA.zip",
+      "member_manifest": "tools/nsp-qa12-20261024/SHA_MANIFEST_FINAL.json",
+      "file_count": 5,
+      "staging_delivery_sha256": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
+      "release_permission": "HOLD",
+      "url": "/materialy/avans.html",
+      "price_kopeks": 0,
+      "status": "ANNOUNCEMENT_READY",
+      "action": "Анонсировать до разрешённой новой выдачи",
+      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "member_sha": [
+        {
+          "name": "01-proverochnyy-list-usloviy-avansa.docx",
+          "sha256": "b463a813e9909919fe40b830ab5fae03279fa2b0457f0e8b9540672dbea895d1"
+        },
+        {
+          "name": "02-reestr-izyatiy-po-obektu.xlsx",
+          "sha256": "a0df16f013f7d1e9be514eec50bb0f91905a6838d1b0c72455616003703711b9"
+        },
+        {
+          "name": "03-formulirovki-lovushki.docx",
+          "sha256": "387a666a599cd3e982d5f95ea1c2e5514bb1897f1f33ce39616f108a88a43164"
+        },
+        {
+          "name": "04-zapros-ob-usloviyah-avansa.docx",
+          "sha256": "331c71d3a2ca0da055f6a2cd05b31c538dbb5636d28b08fde168af36f39f1e3e"
+        },
+        {
+          "name": "99-chto-dalshe.pdf",
+          "sha256": "dbb806e80627e9c451baca2a50a18edfb454db7ea5aed572f0205c9c57e71c26"
+        }
+      ],
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "06d8e851d8bc736fa56165dd73ef8cbd54bcc0702bd23525a6952575d3278a52",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
+    },
+    {
+      "SKU": "FREE/raschet-metrami",
+      "name": "raschet-metrami.zip",
+      "type": "FREE",
+      "qa_status": "FULL_QA_PASS",
+      "qa_branch": "qa/nsp-qa08-raschet-metrami-20261024",
+      "qa_commit": "43d1a3d236aeb42e87e50e50af30d3d97c5d5db2",
+      "accepted_archive_sha256": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
+      "archive_source_name": "raschet-metrami-QA08-FULL-QA.zip",
+      "member_manifest": "tools/nsp-qa08-20261024/SHA_MANIFEST_FINAL.json",
+      "file_count": 2,
+      "staging_delivery_sha256": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
+      "release_permission": "HOLD",
+      "url": "/materialy/raschet-metrami.html",
+      "price_kopeks": 0,
+      "status": "ANNOUNCEMENT_READY",
+      "action": "Анонсировать до разрешённой новой выдачи",
+      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "member_sha": [
+        {
+          "name": "01-krasnye-flagi-raschet-metrami.docx",
+          "sha256": "bea284ecd470f6042396d92b5e0adf44d26cd0c9822f047528638bd69e79ab10"
+        },
+        {
+          "name": "99-chto-dalshe.pdf",
+          "sha256": "1651324d84496c23b5301865870b172e34de4766b273214187e388249b9589aa"
+        }
+      ],
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "bacf5f6cfacbfaa5c16a90814fdc7e1ab59b1b0fa5d404c875bf44cb0dd74e74",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
+    },
+    {
+      "SKU": "FREE/ispolnitelnaya-dokumentaciya",
+      "name": "ispolnitelnaya-dokumentaciya.zip",
+      "type": "FREE",
+      "qa_status": "FULL_QA_PASS",
+      "qa_branch": "qa/nsp-qa06-ispolnitelnaya-20261023",
+      "qa_commit": "3a23df2e7b27fdf9af768c33adc90ecb19bf87d4",
+      "accepted_archive_sha256": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
+      "archive_source_name": "ispolnitelnaya-dokumentaciya-QA06-FULL-QA.zip",
+      "member_manifest": "tools/nsp-qa06-20261023/SHA_MANIFEST_FINAL.json",
+      "file_count": 5,
+      "staging_delivery_sha256": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
+      "release_permission": "HOLD",
+      "url": "/materialy/ispolnitelnaya-dokumentaciya.html",
+      "price_kopeks": 0,
+      "status": "ANNOUNCEMENT_READY",
+      "action": "Анонсировать до разрешённой новой выдачи",
+      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "member_sha": [
+        {
+          "name": "01-proverochnyy-list-komplekta-id.docx",
+          "sha256": "763497647f3579692ff31ffe3758a2a49e86bb52c4ee56dae3893c9c624931ef"
+        },
+        {
+          "name": "02-reestr-sverki-ks2-i-id.xlsx",
+          "sha256": "77ede946355331b76af11a42e32bd69c81f3f6e4b998ba9f9a2a15e572931d5d"
+        },
+        {
+          "name": "03-prichiny-vozvrata-komplekta.docx",
+          "sha256": "96ffb3b62cdb05595b3a846393e987e83b14f06a0e1973183cf9dab1371ff737"
+        },
+        {
+          "name": "04-zapros-o-poryadke-peredachi-id.docx",
+          "sha256": "8f03ecda37a0121e415a4bd7d725cb978903358fd8bf30ad2eed580dca4ad7eb"
+        },
+        {
+          "name": "99-chto-dalshe.pdf",
+          "sha256": "575020d38759a7efd6eb2f8422fe83a5e1b422257055bc0168963d9a2da2c73e"
+        }
+      ],
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "10c811a26bf0d45f3bd22fa338c03844a61d3f5495642e990421525020ecadac",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
+    },
+    {
+      "SKU": "FREE/akt-skrytyh-rabot",
+      "name": "akt-skrytyh-rabot.zip",
+      "type": "FREE",
+      "qa_status": "FULL_QA_PASS",
+      "qa_branch": "qa/nsp-qa07-akt-skrytyh-rabot-20261023",
+      "qa_commit": "5157d2b01bfcea291fd41591628b8dfe3864b7bc",
+      "accepted_archive_sha256": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
+      "archive_source_name": "akt-skrytyh-rabot-QA07-FULL-QA.zip",
+      "member_manifest": "tools/nsp-qa07-20261023/SHA_MANIFEST_FINAL.json",
+      "file_count": 5,
+      "staging_delivery_sha256": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
+      "release_permission": "HOLD",
+      "url": "/materialy/akt-skrytyh-rabot.html",
+      "price_kopeks": 0,
+      "status": "ANNOUNCEMENT_READY",
+      "action": "Анонсировать до разрешённой новой выдачи",
+      "blocker": "Release HOLD; staging HTTP and browser not verified",
+      "archive_byte_qa": "PREVIOUS_SERVER_EXACT_SHA_CRC_MEMBER_PASS",
+      "latest_accepted_qa": "QA-12 cumulative validated final matrix",
+      "member_sha": [
+        {
+          "name": "01-perechen-rabot-trebuyushchih-akta.docx",
+          "sha256": "c2af884cd67cf9071185f2e4a70e417a31d900cfa0fb1c3a66e9c1c6a435a4c4"
+        },
+        {
+          "name": "02-proverochnyy-list-akta.docx",
+          "sha256": "79a4f678c46ceb429de66d651e77d8554dfc13d47defc9aedc049d44f1110a9c"
+        },
+        {
+          "name": "03-reestr-aktov-po-obektu.xlsx",
+          "sha256": "413c8309fcd845d0fde4a43286748c7756db9d880ac7ae531fa695fdb55f2112"
+        },
+        {
+          "name": "04-zapros-o-poryadke-osvidetelstvovaniya.docx",
+          "sha256": "b71db29371059c3c72372ab8d8d23996cb620b7996ab4ceaad17f3d575b04186"
+        },
+        {
+          "name": "99-chto-dalshe.pdf",
+          "sha256": "64d5c0069a5954551d4af5d4d9815314cfd32cbc7dca84e847f6c1170ccefcc6"
+        }
+      ],
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "ARCHIVE_DELIVERY_PASS_FORM_E2E_BLOCKED",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "85836ca18e58c34e5008bd55e297ff98cbb710b67ffb2728820e434d08caab60",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "SOURCE_GIT_VERIFIED",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "FREE_FORM_E2E_PASS": false,
+      "FREE_FORM_E2E_REPORT": "NSP_FREE_FORM_E2E_REPORT.json"
+    },
+    {
+      "SKU": "P8",
+      "name": "Аванс и расчёты по договору подряда",
+      "type": "PAID",
+      "qa_status": "NOT_FULLY_CONFIRMED",
+      "qa_branch": "qa/nsp-qa01-products-20261023",
+      "qa_commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
+      "accepted_archive_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "archive_source_name": "tools/nsp-next-corrections-20261022/candidate-archives/10-avans-usloviya-i-pribyl.zip",
+      "member_manifest": "tools/nsp-qa01-20261023/CURRENT_CANDIDATE_PACKAGES.json",
+      "file_count": 11,
+      "staging_delivery_sha256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "staging_http_status": "ISOLATED_FIRST_200_REPEAT_200; PUBLIC_HOLD",
+      "release_permission": "HOLD",
+      "url": "/products/p8-avans-po-dogovoru-subpodryada.html",
+      "price_kopeks": 2490000,
+      "status": "BLOCKED",
+      "action": "Оставить анонс, серверный POST=409",
+      "blocker": "TECHNICAL_SHA_PASS not owner accepted complete P8 edition; 6 of 11 members differ from accepted R3, including 4 not independently owner accepted; owner complete edition gate missing",
+      "latest_accepted_qa": "QA01 READY_CANDIDATE; newer approval not established",
+      "member_sha": [
+        {
+          "name": "10-otvet-na-trebovanie-o-vozvrate-avansa.docx",
+          "sha256": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f"
+        },
+        {
+          "name": "01-slovar-poley-avans.docx",
+          "sha256": "aa9f9d54ac7d3e699a0ed007b1718d45877e89849d700e5b9e01b458f81c4160"
+        },
+        {
+          "name": "04-algoritm-peregovorov-ob-avanse.docx",
+          "sha256": "c0292cc68cc84777a47fca0f31ccf70b828c85d95fd8ac759345875536696414"
+        },
+        {
+          "name": "05-protokol-raznoglasiy-avansovye-punkty.docx",
+          "sha256": "37a909e5e08f47fcffe5e3ed130f385f05bd628cdad6910b19c7d5ecff3977ec"
+        },
+        {
+          "name": "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx",
+          "sha256": "c21fdf8cfcdf8b0e83283ace243c533ba79c12a8c89f05357683c831a21e4fee"
+        },
+        {
+          "name": "09-raschet-otrabotannoy-chasti-avansa.xlsx",
+          "sha256": "33c5d803759a45e48690bcf9af593aa9f505cb8c19366131915e8fd4dc670732"
+        },
+        {
+          "name": "08-algoritm-s-vas-trebuyut-vernut-avans.docx",
+          "sha256": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1"
+        },
+        {
+          "name": "03-razbor-chetyrekh-usloviy-avansa.docx",
+          "sha256": "3602cb07f9052c146a70aefbe591a5c0d2a3d4bbdfdd64a14db7ce521c55c57d"
+        },
+        {
+          "name": "07-trebovanie-o-vyplate-avansa.docx",
+          "sha256": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db"
+        },
+        {
+          "name": "02-kalkulyator-usloviy-avansa.xlsx",
+          "sha256": "0ca0ab6e8bfd65733f9ec5dc6c8a9af394ee9a7dd80a953011a68ce318e3b45f"
+        },
+        {
+          "name": "00-START-HERE.txt",
+          "sha256": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c"
+        }
+      ],
+      "git_source_verification": "PASS_EXACT_GIT_SOURCE",
+      "ARTIFACT_STATUS": "PASS",
+      "STAGING_STATUS": "BLOCKED_EDITION_NOT_ACCEPTED_TECHNICAL_SHA_PASS",
+      "STAGING_SCOPE": "LOCALHOST_EXISTING_DOWNLOAD_PHP_SYNTHETIC_ONLY",
+      "STAGING_DELIVERY_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "RELEASE_PERMISSION": "HOLD",
+      "QA_EVIDENCE_STATUS": "HISTORICAL_R3_WHOLE_OWNER_ACCEPTED_QA01_NEWER_CANDIDATE_ONLY",
+      "STAGING_CUSTOMER_JOURNEY": "NOT_TESTED_PUBLIC_HOLD",
+      "QA_EVIDENCE": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/codex/nsp-publication-catalog-20261026/tools/nsp-publication-20261026/P8_FINAL_EDITION_DECISION.json",
+      "QA_STATUS": "NOT_FULLY_CONFIRMED",
+      "HISTORICAL_OWNER_ACCEPTED_R3_SHA256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+      "QA01_CANDIDATE_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "FINAL_RELEASE_SHA256": null,
+      "STAGING_VERSION_GATE": "EDITION_NOT_ACCEPTED",
+      "ACCEPTED_EDITION_ID": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+      "ACCEPTANCE_EVIDENCE": {
+        "commit": "bf40053356b8bc1ab81eaab197dbbebf4068c752",
+        "path": "tools/candidates/remaining-batch-r3-20261018/release-20261020/owner-acceptance.json",
+        "sha256": "bf260d1a8e2fea044199bf614fb4ea3cae59b693a90f83c1fa54f3f337e4d289",
+        "type": "OWNER_ACCEPTED_WHOLE_BUYER_ZIP",
+        "accepted_at": "2026-10-20T13:09:31+07:00",
+        "approved_outer_zip_sha256": "37c1b22c092ef979b4dd2151f018b6812dad017532d842159be8cf0fb70f0789",
+        "scope": "HISTORICAL_RELEASE_2026_10_20_ONLY"
+      },
+      "OWNER_ACCEPTED_WHOLE_ARCHIVE_SHA256": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+      "TECHNICAL_QA01_ARCHIVE_SHA256": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "accepted_archive_sha256_kind": "TECHNICAL_QA01_CANDIDATE_SHA_ONLY_NOT_OWNER_ACCEPTED_WHOLE",
+      "TECHNICAL_QA01_MEMBER_SHA256": {
+        "00-START-HERE.txt": "3ee7489f9f06214144e3a20ed7cc1c6d3fad5f01124fc854a9c8a3ae977fbd6c",
+        "01-slovar-poley-avans.docx": "aa9f9d54ac7d3e699a0ed007b1718d45877e89849d700e5b9e01b458f81c4160",
+        "02-kalkulyator-usloviy-avansa.xlsx": "0ca0ab6e8bfd65733f9ec5dc6c8a9af394ee9a7dd80a953011a68ce318e3b45f",
+        "03-razbor-chetyrekh-usloviy-avansa.docx": "3602cb07f9052c146a70aefbe591a5c0d2a3d4bbdfdd64a14db7ce521c55c57d",
+        "04-algoritm-peregovorov-ob-avanse.docx": "c0292cc68cc84777a47fca0f31ccf70b828c85d95fd8ac759345875536696414",
+        "05-protokol-raznoglasiy-avansovye-punkty.docx": "37a909e5e08f47fcffe5e3ed130f385f05bd628cdad6910b19c7d5ecff3977ec",
+        "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx": "c21fdf8cfcdf8b0e83283ace243c533ba79c12a8c89f05357683c831a21e4fee",
+        "07-trebovanie-o-vyplate-avansa.docx": "920d620773ad3d31375378cd4929280e62ee4b5a8ebf5eb2bfd652fd381a24db",
+        "08-algoritm-s-vas-trebuyut-vernut-avans.docx": "3718fb79a9fb7ca2fea86f9e8e747f85570fba02826727124255e7491cb45af1",
+        "09-raschet-otrabotannoy-chasti-avansa.xlsx": "33c5d803759a45e48690bcf9af593aa9f505cb8c19366131915e8fd4dc670732",
+        "10-otvet-na-trebovanie-o-vozvrate-avansa.docx": "e51ff38963ad049e3c6c6ca9ee63602cf963a53bbe94742948e43ee5a796d14f"
+      },
+      "ACCEPTED_R3_MEMBER_SHA256": {
+        "00-START-HERE.txt": "75c3617962a431314b84d798cdb2c596dd9e138a06032fc7b8d77afeee7d2554",
+        "01-slovar-poley-avans.docx": "aa9f9d54ac7d3e699a0ed007b1718d45877e89849d700e5b9e01b458f81c4160",
+        "02-kalkulyator-usloviy-avansa.xlsx": "781f36e37f22ed428561f10b9cb9eebece39a32bcb2f4eb24800121a00400551",
+        "03-razbor-chetyrekh-usloviy-avansa.docx": "3602cb07f9052c146a70aefbe591a5c0d2a3d4bbdfdd64a14db7ce521c55c57d",
+        "04-algoritm-peregovorov-ob-avanse.docx": "c0292cc68cc84777a47fca0f31ccf70b828c85d95fd8ac759345875536696414",
+        "05-protokol-raznoglasiy-avansovye-punkty.docx": "37a909e5e08f47fcffe5e3ed130f385f05bd628cdad6910b19c7d5ecff3977ec",
+        "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx": "c21fdf8cfcdf8b0e83283ace243c533ba79c12a8c89f05357683c831a21e4fee",
+        "07-trebovanie-o-vyplate-avansa.docx": "634e1194539436eecce1d748c275071ee15a3b5e20e8e78f0b73c8eb578b8201",
+        "08-algoritm-s-vas-trebuyut-vernut-avans.docx": "52994b8f90bfcd9659d26c1cf967dc020a48abafbd19341da460134659581e14",
+        "09-raschet-otrabotannoy-chasti-avansa.xlsx": "9ed4b9af3d1bc1d51bf8be93846c931972843eb7d2446074b29f7bb91b277ab4",
+        "10-otvet-na-trebovanie-o-vozvrate-avansa.docx": "fb9258f6b9517a84d4cde3b7162e4f8ac728d4af6916ed21359019934ed8ce9e"
+      },
+      "P8_EDITION_RECONCILIATION_REPORT": "P8_EDITION_RECONCILIATION.json"
+    }
+  ],
+  "qa04_source_snapshot": "tools/nsp-publication-20261026/qa04-recovered-original-local-receipts/",
+  "edition_gate_status": {
+    "P8": "EDITION_NOT_ACCEPTED",
+    "source_technical_verified": "11/12",
+    "other_23_SKU": "UNCHANGED"
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "schema": "P2_V13_RELEASE_MATERIALS_CHECK_v1",
+  "status": "MATERIALS_VERIFIED_NOT_DEPLOYED",
+  "created_utc": "2026-10-29T14:36:46.168450+00:00",
+  "archive_sha256": "42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da",
+  "buyer_members": 13,
+  "buyer_formats": {
+    "docx": 8,
+    "xlsx": 2,
+    "pdf": 3
+  },
+  "all_13_member_sha_match": true,
+  "owner_permission_verified": true,
+  "page_member_names_exact": true,
+  "page_no_legacy_instruction_or_act_refs": true,
+  "header_footer_cart_scripts_styles_unchanged": true,
+  "price_kopeks_unchanged": 2490000,
+  "existing_gate_base_git_blob": "c4dfe6e9fde0dde662dd9c3c7f6a4d8276a79227",
+  "legacy_gate_path_byte_preserved": true,
+  "new_p2_gate_positive": {
+    "SKU": "P2",
+    "status": "SOURCE_VERIFIED_OWNER_APPROVED_NOT_DEPLOYED",
+    "failures": [],
+    "owner_acceptance": "APPROVED",
+    "release_permission": "ALLOW_EXACT_EDITION_ONLY",
+    "deployment_status": "NOT_DEPLOYED",
+    "production_delivery_verified": false,
+    "source_sha256": "42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da",
+    "member_shas": [
+      {
+        "name": "00-INSTRUKCIYA.pdf",
+        "bytes": 99324,
+        "sha256": "5ee1a09b820059d0da13537c707a8f0c764321e784225782256a5ab3e74ee2f3"
+      },
+      {
+        "name": "01-prikaz-na-dopobem.docx",
+        "bytes": 39849,
+        "sha256": "faef48f789b375d7fc3f67224cf3ef4cab3b24c1daa8d44e3394ab4deece5470"
+      },
+      {
+        "name": "02-soglasovanie-obema.docx",
+        "bytes": 40494,
+        "sha256": "5bfe1898d0f8931963e30ef2a838e8f1fc8c63e390cf0bbf4b9b0a348f5a28e2"
+      },
+      {
+        "name": "03-uvedomlenie-o-doprabotah.docx",
+        "bytes": 40068,
+        "sha256": "8c7b7853917df2789a0461b2d670f64edd78079880edad9ab533fa635b05b518"
+      },
+      {
+        "name": "04-akt-skrytyh-rabot.docx",
+        "bytes": 38295,
+        "sha256": "a0b0e8f48f7f0b8310a96358c226038a2066a17c159021d6f34f742b7969d7d7"
+      },
+      {
+        "name": "05-izmenenie-srokov.docx",
+        "bytes": 39659,
+        "sha256": "96a8e79d8410eede2da76bfb4be2fba08772a0455247a74e87f2e2f01ad213f4"
+      },
+      {
+        "name": "06-pismo-o-priostanovke.docx",
+        "bytes": 39786,
+        "sha256": "11544a50c7c5f013a41dd4722075b96245a7d3452d62fc0f5ae8524a1b98b919"
+      },
+      {
+        "name": "07-raschet-stoimosti.xlsx",
+        "bytes": 32210,
+        "sha256": "651277b08a6c87ce24b9befe7c444b8b14a10e68be342d20a3935defc6d3ba92"
+      },
+      {
+        "name": "08-zhurnal-doprabot.xlsx",
+        "bytes": 10149,
+        "sha256": "05127fdb8e298adbc3090063560a88c61fe6896dfb452b429502399fe8a127ec"
+      },
+      {
+        "name": "09-checklist-fotofiksacii.pdf",
+        "bytes": 28200,
+        "sha256": "7306b4f7711b6b03ed75f4005eda59e41647685ab529e99e96bcccbd1de64d94"
+      },
+      {
+        "name": "10-algoritm-doprabot.pdf",
+        "bytes": 30858,
+        "sha256": "fdda508ae349196fb80cab2f036fb83ef887186bceb5e0db02854ab4dac28f1c"
+      },
+      {
+        "name": "11-dopsoglashenie-obem-i-cena.docx",
+        "bytes": 39968,
+        "sha256": "8013aeea9085eef7abe928d985d52c7b788ab901301ad228316a34517b35f416"
+      },
+      {
+        "name": "12-dopsoglashenie-sroki-doprabot.docx",
+        "bytes": 39659,
+        "sha256": "e96ae633d50bf03bcfe91a64a54c5b413b1e77b4f03696664239739b13535148"
+      }
+    ],
+    "file_count": 13,
+    "source_commit": "46005303b5b0f4ca27d9742d23cb9456669034e5",
+    "approval_commit": "29a73bea7783c52924a3b85c4dfbeb563e3e550d"
+  },
+  "negative_cases": [
+    {
+      "case": "changed_SKU",
+      "pass": true,
+      "failures": [
+        "ValueError:P2_ACCEPTED_BINDING_MISMATCH"
+      ]
+    },
+    {
+      "case": "changed_edition_id",
+      "pass": true,
+      "failures": [
+        "ValueError:P2_ACCEPTED_BINDING_MISMATCH"
+      ]
+    },
+    {
+      "case": "changed_qa_commit",
+      "pass": true,
+      "failures": [
+        "ValueError:P2_ACCEPTED_BINDING_MISMATCH"
+      ]
+    },
+    {
+      "case": "changed_approval_commit",
+      "pass": true,
+      "failures": [
+        "ValueError:P2_ACCEPTED_BINDING_MISMATCH"
+      ]
+    },
+    {
+      "case": "changed_file_count",
+      "pass": true,
+      "failures": [
+        "ValueError:P2_ACCEPTED_BINDING_MISMATCH"
+      ]
+    },
+    {
+      "case": "changed_release_permission",
+      "pass": true,
+      "failures": [
+        "ValueError:P2_ACCEPTED_BINDING_MISMATCH"
+      ]
+    },
+    {
+      "case": "changed_accepted_archive_sha256",
+      "pass": true,
+      "failures": [
+        "ValueError:P2_ACCEPTED_BINDING_MISMATCH"
+      ]
+    },
+    {
+      "case": "changed_source_OWNER_PUBLICATION_APPROVAL_20261029.json",
+      "pass": true,
+      "failures": [
+        "ValueError:P2_OWNER_EVIDENCE_SHA_MISMATCH"
+      ]
+    },
+    {
+      "case": "changed_source_REVIEW_MANIFEST.json",
+      "pass": true,
+      "failures": [
+        "ValueError:P2_MEMBER_MANIFEST_SHA_MISMATCH"
+      ]
+    },
+    {
+      "case": "changed_source_P2-NSP-v13-13-files-20261029.zip",
+      "pass": true,
+      "failures": [
+        "ValueError:P2_ARCHIVE_SHA_OR_SIZE_MISMATCH"
+      ]
+    }
+  ],
+  "new_tests": "1 accepted + 10 rejected",
+  "test_scope": "Pure checker run with exact pinned artifact bytes; Git transport is not retested",
+  "deploy_runtime_implemented": false,
+  "production_status": "NOT_DEPLOYED",
+  "tool_safety_block": "Earlier blocked publication execution not retried or routed elsewhere",
+  "native_office_tests": 0,
+  "files": {
+    "P2_PRODUCT_PAGE.html": {
+      "sha256": "f91cca6b2e3db1a3a22555ffdf14e08f670790de8a5fa711b93af65126144242",
+      "bytes": 14095
+    },
+    "P2_CATALOG_CARD.html": {
+      "sha256": "4dc0d6a3783722abcadc802a9bdbab31470906367b615d121165194a70a61cda",
+      "bytes": 956
+    },
+    "P2_PRODUCT_JSON_LD.json": {
+      "sha256": "2b7bf2fe2e45a743ff5f25e85085c3fa8f3e4f77cfd94d923ad595e96393129a",
+      "bytes": 805
+    },
+    "P2_RELEASE_BINDING.json": {
+      "sha256": "c6066da152e64b11e4a116e3e21d05ba2515894814d725d0055a8cf4149a5172",
+      "bytes": 945
+    },
+    "archive_version_gate.py": {
+      "sha256": "ee49b8e540c18ec0c5f07896830df665e99997b661143035f6e1857b63bb38c8",
+      "bytes": 11566
+    }
+  }
+}

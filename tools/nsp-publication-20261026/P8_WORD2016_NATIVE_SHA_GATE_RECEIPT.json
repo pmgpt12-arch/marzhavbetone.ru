@@ -1,0 +1,25 @@
+{
+  "schema": "NSP_P8_WORD2016_EVIDENCE_GATE_V1",
+  "verified_utc": "2026-10-27T23:46:06.666638+00:00",
+  "source_receipt": "P8_WORD2016_NATIVE_PRINT_RECEIPT.json",
+  "native_evidence_files": 3,
+  "status": "PASS",
+  "failures": [],
+  "negative_tests": [
+    {
+      "name": "tampered_pdf_refused",
+      "pass": true
+    },
+    {
+      "name": "forged_owner_layout_sha_refused",
+      "pass": true
+    },
+    {
+      "name": "altered_release_gate_refused",
+      "pass": true
+    }
+  ],
+  "release_permission": "HOLD",
+  "edition_gate": "EDITION_NOT_ACCEPTED",
+  "editorial_owner_acceptance": "PENDING"
+}

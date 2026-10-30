@@ -1,0 +1,228 @@
+{
+  "schema": "NSP_STAGING_QA_REPORT_V4_3",
+  "observed_date": "2026-10-27",
+  "scope": "STAGING_ONLY",
+  "state": "PARTIAL_READY_WITH_BLOCKERS",
+  "source_branch": "codex/nsp-publication-catalog-20261026",
+  "code_commit": "a04ef01262bd4adbe8bcd6c77d04064df690d182",
+  "draft_pr": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/677",
+  "source_integration": {
+    "catalog_html_files_modified": 24,
+    "php_modified": [
+      "lead.php",
+      "payment.php"
+    ],
+    "protected_current_orders_and_archives": "UNCHANGED_BY_GIT_TREE_DIFF",
+    "checkout_current_p3_p5": "SOURCE_UNMODIFIED"
+  },
+  "stages": {
+    "F0": {
+      "status": "PASS",
+      "remote_head_pre_change": "acdef035fe6c34e76cce54a6f9a0f838a032a208",
+      "draft_pr_number": 677,
+      "working_tree_original": "DIRTY_32_PATHS_PRESERVED_UNMODIFIED",
+      "isolated_worktree": "DETACHED_AT_REMOTE_HEAD",
+      "new_branch_created": false,
+      "main_modified": false,
+      "deploy": false
+    },
+    "F1": {
+      "status": "PASS_ISOLATED_DELIVERY_HOLD",
+      "free_artifacts": 11,
+      "free_sha_count_member_pass": 11,
+      "free_http_get_sha_match": 11,
+      "repeat_get_sha_match": 11,
+      "public_lead_hold_post_409": 11,
+      "public_delivery": "HOLD",
+      "pdf_mime_fixture_limit": "CHECKLIST_PDF_VIA_SYNTHETIC_DOWNLOAD_PHP_RETURNS_APPLICATION_ZIP; NOT PROOF OF REAL_FREE_PDF_ROUTE"
+    },
+    "F2": {
+      "status": "PASS_ISOLATED; PROVIDER_E2E_NOT_TESTED",
+      "paid_skus": 13,
+      "hold_paid_post_409": 11,
+      "p8_candidate_sha_verified": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "p8_isolated_get_sha_match": true,
+      "p3_p5_synthetic_http_500_reason": "FAKE_GATEWAY_LOOPBACK_REFUSED; GUARD_NOT_BLOCKING",
+      "p3_p5_real_provider_checkout": "NOT_TESTED_NO_PAYMENT",
+      "synthetic_mixed_cart_hold_409": 2
+    },
+    "F3": {
+      "status": "PASS_SYNTHETIC_EXISTING_PAID_DOWNLOAD",
+      "existing_first": 200,
+      "repeat": 200,
+      "bad_token": 403,
+      "expired": 410,
+      "missing_archive": 500,
+      "analytics_failure": "NOT_APPLICABLE_NO_ANALYTICS_HOOK_IN_DOWNLOAD_PHP",
+      "real_orders_touched": false
+    },
+    "F4": {
+      "status": "PASS_120_OF_120_ON_UPDATED_20261027_CODE",
+      "unique_24_seo_source_check": "PASS",
+      "internal_relative_links_checked": 406,
+      "broken_internal_links": 0,
+      "prior_browser_screenshots": 120,
+      "prior_browser_result": "PASS_120_ON_PREVIOUS_COMMIT",
+      "P1_P2_DATE": "REMOVED_UNSUPPORTED_2_8_NOVEMBER",
+      "protected_index_p3_p5": "EXACT_SHA_VS_MAIN_PASS",
+      "browser_screenshots": 120,
+      "browser_viewports": [
+        390,
+        430,
+        1280,
+        1366,
+        1920
+      ],
+      "browser_run_id": 40461221833,
+      "browser_commit": "aa38cec3ce73ad9e23da1f632bf5287bc3b90c8d",
+      "browser_qa_workflow_result": "SUCCESS",
+      "new_date_text_P1_P2_retested": true,
+      "proof_24_page_http_and_hold_post": "PASS_RE_RUN"
+    },
+    "F5": {
+      "status": "ORIGINAL_LOCAL_QA_RECEIPTS_RECOVERED_AND_VERIFIED;ORIGINAL_GIT_QA_COMMIT_NOT_FOUND",
+      "qa04_local_archive_sha": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "qa04_local_archive_members": 5,
+      "qa04_git_origin": null,
+      "search_scope": "GitHub QA branches/PRs/commits and second AI Business OS repo; local traces; no original acceptance Git commit found",
+      "qa04_original_local_report": "qa04-recovered-original-local-receipts/QA-04-REPORT.md",
+      "qa04_original_local_sha_manifest": "qa04-recovered-original-local-receipts/SHA_MANIFEST_FINAL.json",
+      "qa04_original_native_receipt": "qa04-recovered-original-local-receipts/QA-04-EVIDENCE-RECEIPT.json",
+      "qa04_local_recovery_evidence": "qa04-recovered-original-local-receipts/NSP_QA04_RECOVERY_RECEIPT.json",
+      "qa04_original_full_qa_pass_documented": true,
+      "qa04_original_local_acceptance_sha_members_verified": true,
+      "qa04_original_portable_evidence_zip_sha256": "2e2c05d035591f8cdeb7b39f09caa3c8459be6281cd5fb12151fdd37915c211e",
+      "qa04_source_git_commit": null,
+      "new_git_snapshot_of_old_receipts_is_not_original_git_source": true
+    },
+    "F6": {
+      "status": "PASS_INTERNAL_VERSION_GATE; PUBLIC_HOLD",
+      "accepted_artifacts": 12,
+      "actual_isolated_get_and_repeat_sha_pass": 12,
+      "negative_archive_mutation_cases": 8,
+      "negative_token_expiry_missing_file": 3,
+      "source_git_verified": 11,
+      "source_git_unverified": 1,
+      "release_allowed": 0,
+      "new_public_artifacts_delivered": 0,
+      "p8_edition_gate": "EDITION_NOT_ACCEPTED",
+      "qa01_technical_source_sha_pass": true
+    }
+  },
+  "ci_diagnostics": [
+    {
+      "name": "NSP catalog contract",
+      "result": "FAIL",
+      "classification": "LEGACY_CONTRACT_EXPECTS_13_BUY_BUTTONS"
+    },
+    {
+      "name": "NSP free downloads/checklist contract",
+      "result": "FAIL",
+      "classification": "LEGACY_CONTRACT_EXPECTS_OLD_PRODUCT_BUTTONS"
+    },
+    {
+      "name": "Static content/site route discovery",
+      "result": "FAIL",
+      "classification": "ANCESTRY_BASELINE_DRIFT; NOT_SCOPE_SPECIFIC"
+    },
+    {
+      "name": "Dynamic endpoint source inventory",
+      "result": "PASS"
+    }
+  ],
+  "verification_assertion": "HTTP delivery receipts exist exclusively for 12 isolated localhost test-only archives; public new buyer journey remains HOLD",
+  "release_permission": "HOLD_FOR_ALL_22_NEW_SKUS; EXISTING_P3_P5_PRESERVED",
+  "production_modifications": false,
+  "workflow_status": "PASS_STAGING_RUN_40461221833_ON_20261027_CODE",
+  "evidence": {
+    "run_id": 40435072668,
+    "url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40435072668",
+    "artifact_id": 12703497984,
+    "artifact_name": "nsp-publication-staging-40435072668-1",
+    "artifact_zip_sha256": "562e5f98e00ce96736fc6a4b4ccb7c926d809de732e3422730db9b57d16d0bbb",
+    "crc": "PASS",
+    "screenshots": 120,
+    "sampled_visual_review": 8,
+    "isolated_delivery": "NSP_ISOLATED_DELIVERY_RECEIPT.json",
+    "paid_checkout": "NSP_PAID_SYNTHETIC_RECEIPT.json",
+    "latest_browser_run_id": 40461221833,
+    "latest_browser_run_url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40461221833",
+    "latest_browser_artifact_id": 12714447040,
+    "latest_browser_artifact_url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40461221833/artifacts/12714447040",
+    "latest_browser_artifact_sha256": "6320f2255121d0d19ff47c80aa52915babad093927e7f19684aae2ea18ab7b73",
+    "qa04_recovered_local_original_receipt": "qa04-recovered-original-local-receipts/NSP_QA04_RECOVERY_RECEIPT.json"
+  },
+  "open_blockers": [
+    "QA04: локальный QA PASS есть, исходный Git commit не установлен",
+    "12/12 байтов по новой разрешённой пользовательской выдаче не получены: release HOLD",
+    "Три существующие прямые /downloads/ ссылки возвращают старые архивы HTTP 200; нужна санкционированная стратегия миграции без нарушения старых ссылок",
+    "P8 позднейшая FULL_QA_PASS не подтверждена",
+    "P3/P5: положительный провайдерский checkout не проверялся",
+    "Старые CI-контракты ожидают кнопки продаж в HOLD и 10 бесплатных SKU; проверки baseline по P3 дрейфуют",
+    "Внешнего staging-деплоя нет: пройден реальный HTTP на локальном изолированном сервере GitHub Actions"
+  ],
+  "final_status": "PARTIAL_READY_WITH_BLOCKERS",
+  "new_external_blockers": [
+    "P8 current QA01 archive 07a16f correct SHA but edition NOT ACCEPTED: 4 changed files lack owner decisions, 2 Excel files individually approved, whole updated package not approved",
+    "11 free FORM E2E is BLOCKED on current code (no forms; lead HOLD 409); staging form replay is a proof only for temporary test copy",
+    "Original QA04 Git commit NOT_FOUND; primary local acceptance evidence recovered in draft PR 677",
+    "Release permissions of P8 and all free products HOLD; no production changes",
+    "Legacy general CI contracts expect pre-HOLD routes, separate from scoped version gate CI"
+  ],
+  "code_commit_of_successful_browser_run": "aa38cec3ce73ad9e23da1f632bf5287bc3b90c8d",
+  "updated_after_latest_browser_test": "2026-10-27",
+  "tz43": {
+    "A": {
+      "status": "VERIFIED_PRIMARY_LOCAL_EVIDENCE;ORIGINAL_QA_COMMIT_NOT_FOUND",
+      "qa04_sha": "68a1d82c16fb3c141dfa4778fc96ac03f2a058eafea5fd287103c0103903b393",
+      "original_qa_date": "2026-10-23T11:45:49.078968+00:00",
+      "recovered_evidence_commit": "67c2fe029e07377fd07a34204c4c324a8adc09ad"
+    },
+    "B": {
+      "status": "RELEASE_BLOCKED_P8_EDITION_NOT_ACCEPTED",
+      "last_whole_owner_accepted_sha": "a22b2a2fc4dec5e51298d2582b22608252948ff70cc30d47b47c7c346936bc76",
+      "newer_qa01_candidate_sha": "07a16f0d80fe9d3bfdc435acdc513aa4df45029450f0f7afe951d8c19819e038",
+      "changed_member_count": 6,
+      "targeted_p8_workbooks_owner_accepted": 2,
+      "release_permission": "HOLD",
+      "reconciliation": "P8_EDITION_RECONCILIATION.json",
+      "owner_accepted_edition": "P8-R3-20261020-WHOLE-OWNER-ACCEPTED",
+      "qa01_correct_sha_but_edition_rejected": true,
+      "edition_gate_receipt": "P8_EDITION_GATE_TEST_RECEIPT.json",
+      "negative_tests_passed": 17,
+      "missing_component_decisions": 4,
+      "component_owner_approved_later": 2,
+      "unchanged_from_R3": 5,
+      "complete_new_p8_owner_qa": false
+    },
+    "C": {
+      "status": "BLOCKED_REAL_FORM_E2E;ISOLATED_TEST_REPLAY_PASS_11_OF_11",
+      "actual_pages_without_form": 11,
+      "actual_lead_hold_409": 11,
+      "isolated_form_replay_final_bytes_pass": 11,
+      "negative_contract_gaps": [
+        "required_email_missing",
+        "email_invalid",
+        "unknown_sku",
+        "sku_of_paid_product",
+        "optional_contact_omitted",
+        "duplicate_submit",
+        "direct_get_bypass_form",
+        "historical_archive_same_filename"
+      ],
+      "real_mail_sent": false,
+      "public_customer_download_enabled": false
+    },
+    "D": {
+      "status": "SOURCE_REGRESSION_NOT_CHANGED; TARGETED_NEGATIVE_TEST_PASS",
+      "prior_browser_staging_evidence_reused": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/40461221833"
+    },
+    "E": {
+      "status": "EXISTING_24_SKU_MATRIX_UPDATED;ZERO_READY_FOR_IMMEDIATE_OWNER_ONLY_RELEASE"
+    },
+    "F": {
+      "status": "PENDING_COMMIT"
+    }
+  },
+  "status": "PARTIAL_READY_WITH_BLOCKERS"
+}
