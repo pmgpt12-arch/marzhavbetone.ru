@@ -23,7 +23,7 @@ jobs:
       - name: Read explicit action and configure bounded SSH
         run: |
           set -euo pipefail
-          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","inspect-checklist","inspect-free-downloads","inspect-layout","privacy-audit"]; print(x["action"])')
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","inspect-checklist","inspect-free-downloads","inspect-layout","privacy-audit","privacy-plan","privacy-apply"]; print(x["action"])')
           echo "NSP_ACTION=$action" >> "$GITHUB_ENV"
           test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
           [[ "$PORT" =~ ^[0-9]+$ ]]
@@ -39,6 +39,18 @@ jobs:
           python3 -m py_compile tools/nsp-privacy-20261030/inventory.py
           timeout 80s ssh -p "$PORT" -i ~/.ssh/nsp_final_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$SSH_USER@$HOST" 'python3 - "$HOME"' < tools/nsp-privacy-20261030/inventory.py > /tmp/nsp-final-evidence/privacy-inventory.json
           cat /tmp/nsp-final-evidence/privacy-inventory.json
+      - name: Exact-plan legacy contact cleanup
+        if: env.NSP_ACTION == 'privacy-plan' || env.NSP_ACTION == 'privacy-apply'
+        run: |
+          set -euo pipefail
+          mode=plan
+          expected=NONE
+          if [ "$NSP_ACTION" = privacy-apply ]; then
+            mode=apply
+            expected=$(python3 -c 'import json,re; x=json.load(open("tools/nsp-final/request.json"))["plan_digest"]; assert re.fullmatch("[a-f0-9]{64}",x); print(x)')
+          fi
+          timeout 165s ssh -p "$PORT" -i ~/.ssh/nsp_final_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$SSH_USER@$HOST" "python3 - \"\$HOME\" $mode $expected" < tools/nsp-privacy-20261030/cleanup.py > /tmp/nsp-final-evidence/privacy-cleanup.json
+          cat /tmp/nsp-final-evidence/privacy-cleanup.json
       - name: Save current production static source without secrets
         if: env.NSP_ACTION == 'snapshot'
         run: |
