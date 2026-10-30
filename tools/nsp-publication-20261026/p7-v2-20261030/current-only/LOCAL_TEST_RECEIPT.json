@@ -1,0 +1,29 @@
+{
+  "status": "P7_SCOPED_PUBLICATION_ACCEPTANCE_PASS",
+  "check_count": 18,
+  "checks": [
+    "unknown_existing_master_blocks_before_mutation",
+    "transaction_fresh_runtime_readback_exact",
+    "missing_cache_restores_exact_archive",
+    "corrupted_cache_restores_exact_archive",
+    "corrupted_master_rejected",
+    "p1_delivery_unchanged",
+    "p2_delivery_unchanged",
+    "p3_delivery_unchanged",
+    "p4_delivery_unchanged",
+    "p5_delivery_unchanged",
+    "delivery_ttl_3600_and_repeat_not_extended",
+    "download_current_200",
+    "download_boundary_410",
+    "download_past_410",
+    "download_wrong_token_403",
+    "current_only_cleanup_and_protected_handlers",
+    "rollback_restores_source_config_pages_and_cache",
+    "HTML_exact_composition_and_valid_JSONLD"
+  ],
+  "archive_sha256": "99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24",
+  "files": 13,
+  "release_manifest_sha256": "c843dcf5a82a382bc4ca03a9cda0609f3b75cc717e54af5940ccc9ef3c7997e5",
+  "production_modified": false,
+  "real_payment_performed": false
+}
