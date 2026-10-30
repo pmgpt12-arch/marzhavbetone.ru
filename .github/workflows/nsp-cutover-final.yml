@@ -1,7 +1,7 @@
 name: NSP final targeted corrections
 on:
   push:
-    branches: [fix/nsp-cutover-final-20261021, fix/nsp-dzen-20261021, fix/nsp-audit-ui-20261021, fix/nsp-free-checklist-20261021, fix/nsp-free-downloads-20261021, fix/nsp-layout-v3-20261021, fix/nsp-stage-links-20261022, fix/nsp-inner-background-20261022]
+    branches: [fix/nsp-remove-retired-review-20261030, fix/nsp-cutover-final-20261021, fix/nsp-dzen-20261021, fix/nsp-audit-ui-20261021, fix/nsp-free-checklist-20261021, fix/nsp-free-downloads-20261021, fix/nsp-layout-v3-20261021, fix/nsp-stage-links-20261022, fix/nsp-inner-background-20261022]
     paths: [tools/nsp-final/request.json]
 permissions:
   contents: write
@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   targeted:
-    if: github.ref_name == 'fix/nsp-cutover-final-20261021' || github.ref_name == 'fix/nsp-dzen-20261021' || github.ref_name == 'fix/nsp-audit-ui-20261021' || github.ref_name == 'fix/nsp-free-checklist-20261021' || github.ref_name == 'fix/nsp-free-downloads-20261021' || github.ref_name == 'fix/nsp-layout-v3-20261021' || github.ref_name == 'fix/nsp-stage-links-20261022' || github.ref_name == 'fix/nsp-inner-background-20261022'
+    if: github.ref_name == 'fix/nsp-remove-retired-review-20261030' || github.ref_name == 'fix/nsp-cutover-final-20261021' || github.ref_name == 'fix/nsp-dzen-20261021' || github.ref_name == 'fix/nsp-audit-ui-20261021' || github.ref_name == 'fix/nsp-free-checklist-20261021' || github.ref_name == 'fix/nsp-free-downloads-20261021' || github.ref_name == 'fix/nsp-layout-v3-20261021' || github.ref_name == 'fix/nsp-stage-links-20261022' || github.ref_name == 'fix/nsp-inner-background-20261022'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
