@@ -1,0 +1,17 @@
+{
+  "failures": [
+    {
+      "class": "API_LARGE_BLOB_TIMEOUT",
+      "cause": "Redundant transfer of 1.5 MB binary through JSON API exceeded 18-second operation limit",
+      "rule": "Reuse immutable existing QA git source for large approved binaries",
+      "gate": "Read exact QA commit archive; assert full SHA and all member hashes before deployment"
+    },
+    {
+      "class": "STALE_REPOSITORY_PAGE_ASSUMPTION",
+      "cause": "QA source still marked development while production page already had CTA",
+      "rule": "Build targeted releases from verified production snapshot; never infer live availability from stale source",
+      "gate": "Require exact snapshot hashes before any production mutation"
+    }
+  ],
+  "verified": true
+}
