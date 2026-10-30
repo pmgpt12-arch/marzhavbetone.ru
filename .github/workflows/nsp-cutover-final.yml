@@ -23,9 +23,9 @@ jobs:
       - name: Read explicit action and configure bounded SSH
         run: |
           set -euo pipefail
-          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","inspect-checklist","inspect-free-downloads","inspect-layout","p2-snapshot","p2-preflight","p2-publish","p1-snapshot","p1-publish"]; print(x["action"])')
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","inspect-checklist","inspect-free-downloads","inspect-layout","p2-snapshot","p2-preflight","p2-publish","p1-snapshot","p1-publish","p3-snapshot","p3-publish"]; print(x["action"])')
           echo "NSP_ACTION=$action" >> "$GITHUB_ENV"
-          if [ "$GITHUB_REF_NAME" = "codex/nsp-publication-catalog-20261026" ]; then [[ "$action" == p2-snapshot || "$action" == p2-preflight || "$action" == p2-publish || "$action" == p1-snapshot || "$action" == p1-publish ]]; fi
+          if [ "$GITHUB_REF_NAME" = "codex/nsp-publication-catalog-20261026" ]; then [[ "$action" == p2-snapshot || "$action" == p2-preflight || "$action" == p2-publish || "$action" == p1-snapshot || "$action" == p1-publish || "$action" == p3-snapshot || "$action" == p3-publish ]]; fi
           test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
           [[ "$PORT" =~ ^[0-9]+$ ]]
           install -d -m 700 ~/.ssh
@@ -33,6 +33,9 @@ jobs:
           chmod 600 ~/.ssh/nsp_final_key
           timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
           mkdir -p /tmp/nsp-final-evidence
+      - name: Approved P3 targeted publication
+        if: startsWith(env.NSP_ACTION, 'p3-') && github.ref_name == 'codex/nsp-publication-catalog-20261026'
+        run: python3 tools/nsp-publication-20261026/p3-v1-20261030/operate.py "$NSP_ACTION"
       - name: Approved P1 targeted publication
         if: startsWith(env.NSP_ACTION, 'p1-') && github.ref_name == 'codex/nsp-publication-catalog-20261026'
         run: python3 tools/nsp-publication-20261026/p1-v1-20261030/operate.py "$NSP_ACTION"
