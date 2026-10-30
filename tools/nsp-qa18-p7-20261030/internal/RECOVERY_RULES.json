@@ -1,0 +1,22 @@
+{
+  "rules": [
+    {
+      "class": "ARGUMENT_SIZE_LIMIT",
+      "cause": "Large base64 passed in a shell argument",
+      "rule": "Use bounded 48000-character text chunks and verify full decoded SHA",
+      "verified": true
+    },
+    {
+      "class": "OOXML_SCHEMA_API_MISMATCH",
+      "cause": "lxml attributes update accepts mapping, not keyword arguments",
+      "rule": "Use explicit dict for attribute updates; parse written XML and render",
+      "verified": true
+    },
+    {
+      "class": "HEADER_WIDTH_OVERFLOW",
+      "cause": "Expanded labels retain narrow source columns",
+      "rule": "Use concise unambiguous labels; require every nonempty string in rendered PDF and visual header review",
+      "verified": true
+    }
+  ]
+}
