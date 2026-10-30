@@ -84,6 +84,7 @@ php=php.replace(anchor,anchor+"\n    $state['old_caches']=[];foreach(array_merge
 anchor="$result=verify_current();clear_exact_dir($old,$before);"
 assert php.count(anchor)==1
 php=php.replace(anchor,"$result=verify_current();\n    $state=json_decode((string)file_get_contents($journal),true);\n    foreach($state['old_caches']as $file=>$expectedHash){if(is_file($file)){if(!hash_ok($file,$expectedHash))throw new RuntimeException('OLD_CACHE_CHANGED');if(!unlink($file))throw new RuntimeException('OLD_CACHE_CLEANUP');}}\n    clear_exact_dir($old,$before);",1)
+php=php.replace('global $source,$cache,$sha,$expected,$pages,$site,$p;','global $source,$cache,$master,$sha,$expected,$pages,$site,$p;')
 (T/'publish.php').write_text(php)
 for p in [T/'publish.php',T/'pages/products-config.php']:
  subprocess.run(['php','-l',str(p)],check=True,capture_output=True,timeout=8)

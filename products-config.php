@@ -448,75 +448,22 @@ function mvb_product_sources_newer_than(string $sourceDir, int $zipMtime): bool
     return false;
 }
 
-/**
- * P1: неизменяемое издание. Хешируется сам ZIP, а не время правки мастеров.
- * Снимок фиксируется до создания платежа. Исходники читаются повторно:
- * изменение состава во время сборки отменяет снимок.
- */
+/** P1: текущее согласованное издание; один общий кеш, срок ссылки 3600 секунд. */
 function mvb_capture_p1_edition(): ?array
 {
-    $product = mvb_products()['p1'];
-    $source = PRODUCTS_DIR . '/' . $product['dir'];
-    if (!is_dir($source)) {
-        return null;
-    }
-    $lock = @fopen(DELIVERY_DIR . '/.p1-edition.lock', 'c');
-    if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) {
-        if ($lock) fclose($lock);
-        return null;
-    }
-    $stage = null;
+    $sha = '99df41c33e25ce41b61b8e04e22e27871d08a2c383ddae234119a29df5f29ada';
+    $edition = ['zip' => 'p1-' . $sha . '.zip', 'sha256' => $sha];
+    $master = PRODUCTS_DIR . '/P1-v1-current.zip';
+    if (!is_file($master) || !hash_equals($sha,(string)@hash_file('sha256',$master))) return null;
+    $destination = DELIVERY_DIR . '/' . $edition['zip'];
+    if (is_file($destination) && hash_equals($sha,(string)@hash_file('sha256',$destination))) return $edition;
+    $stage = @tempnam(DELIVERY_DIR,'.p1-current-');
+    if ($stage === false) return null;
     try {
-        $read = static function () use ($source): array {
-            $files = [];
-            $iterator = new RecursiveIteratorIterator(
-                new RecursiveDirectoryIterator($source, FilesystemIterator::SKIP_DOTS)
-            );
-            foreach ($iterator as $file) {
-                if (!$file->isFile()
-                    || in_array($file->getBasename(), ['.htaccess', '00-PISMO-POSLE-POKUPKI.txt', 'MANIFEST.md'], true)) {
-                    continue;
-                }
-                $relative = substr($file->getPathname(), strlen($source) + 1);
-                $bytes = @file_get_contents($file->getPathname());
-                if ($bytes === false) throw new RuntimeException('cannot read edition source');
-                $files[$relative] = $bytes;
-            }
-            ksort($files, SORT_STRING);
-            return $files;
-        };
-        $files = $read();
-        if (!$files) return null;
-        $stage = tempnam(DELIVERY_DIR, '.p1-stage-');
-        if ($stage === false) return null;
-        $zip = new ZipArchive();
-        if ($zip->open($stage, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) return null;
-        foreach ($files as $name => $bytes) {
-            if (!$zip->addFromString($name, $bytes)
-                || !$zip->setMtimeName($name, 315532800)) {
-                $zip->close();
-                return null;
-            }
-        }
-        if (!$zip->close() || $read() !== $files) return null;
-        $sha = hash_file('sha256', $stage);
-        if ($sha === false) return null;
-        $edition = ['zip' => 'p1-' . $sha . '.zip', 'sha256' => $sha];
-        $destination = DELIVERY_DIR . '/' . $edition['zip'];
-        if (is_file($destination)) {
-            // Не заменять испорченный исторический снимок новой сборкой.
-            if (mvb_p1_edition_path($edition) === null) return null;
-        } elseif (!@rename($stage, $destination)) {
-            return null;
-        }
+        if (!copy($master,$stage) || !hash_equals($sha,(string)@hash_file('sha256',$stage))
+            || !chmod($stage,0644) || !@rename($stage,$destination)) return null;
         return $edition;
-    } catch (Throwable $error) {
-        return null;
-    } finally {
-        if (is_string($stage) && is_file($stage)) @unlink($stage);
-        flock($lock, LOCK_UN);
-        fclose($lock);
-    }
+    } finally { if (is_file($stage)) @unlink($stage); }
 }
 
 /** Без восстановления из текущих мастеров: повреждение снимает доступ. */
@@ -544,6 +491,23 @@ function mvb_build_product_zip(string $sku): ?string
     }
     $sourceDir = PRODUCTS_DIR . '/' . $catalog[$sku]['dir'];
     $zipPath = DELIVERY_DIR . '/' . $catalog[$sku]['zip'];
+    if ($sku === 'p1') {
+        $edition = mvb_capture_p1_edition();
+        return $edition === null ? null : mvb_p1_edition_path($edition);
+    }
+    // P2 v13: only the owner-approved current archive. No historical versions.
+    if ($sku === 'p2') {
+        $approved = '42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da';
+        $master = PRODUCTS_DIR . '/P2-v13-current.zip';
+        if (!is_file($master) || !hash_equals($approved,(string)@hash_file('sha256',$master))) return null;
+        if (is_file($zipPath) && hash_equals($approved,(string)@hash_file('sha256',$zipPath))) return $zipPath;
+        $tmp = @tempnam(DELIVERY_DIR,'.p2-current-');
+        if ($tmp === false) return null;
+        try {
+            if (!copy($master,$tmp) || !hash_equals($approved,(string)@hash_file('sha256',$tmp)) || !chmod($tmp,0644) || !@rename($tmp,$zipPath)) return null;
+            return $zipPath;
+        } finally { if (is_file($tmp)) @unlink($tmp); }
+    }
 
     // Кэш действителен, пока мастера не изменились. Раньше условием было
     // одно существование архива — и обновление файлов продукта до покупателя

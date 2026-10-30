@@ -1,0 +1,32 @@
+{
+  "status": "P1_LAYOUT_V1_DEPLOYED_CURRENT_ARCHIVE_AND_HTTPS_VERIFIED",
+  "edition": "P1-layout-v1",
+  "archive_sha256": "99df41c33e25ce41b61b8e04e22e27871d08a2c383ddae234119a29df5f29ada",
+  "file_count": 18,
+  "source_gate": "PASS",
+  "actual_server_builder_bytes": "EXACT_MATCH",
+  "public_pages": [
+    {
+      "path": "products/p1-oplata-po-ks2.html",
+      "status": 200,
+      "sha256": "d39f0115c54c58b816617a7f45c50245802052aadeab0b981eabd5256fda7a5b"
+    },
+    {
+      "path": "katalog.html",
+      "status": 200,
+      "sha256": "a68b74287ecb1885ec68f4ad6bb752e0ea24a80fb3c020b833177d61709a0f7e"
+    }
+  ],
+  "ttl_seconds": 3600,
+  "price_kopeks": 2990000,
+  "old_product_files_retained": false,
+  "old_cache_retained": false,
+  "payment_and_download_unchanged": true,
+  "config_change": "existing P1 edition capture uses exact approved current archive",
+  "real_payment_tested": false,
+  "real_payment_not_required_for_unchanged_code": true,
+  "run_id": "41002994365",
+  "commit": "22ea594e215f94b1fb2cd0c70a009d85a59da97a",
+  "owner_permission": "APPROVED",
+  "scope": "P1 current sources, master and shared cache; P1 page/catalog and existing P1 edition capture"
+}
