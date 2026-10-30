@@ -1,0 +1,37 @@
+{
+  "sku": "p4",
+  "edition": "P4-layout-v1",
+  "status": "READY_FOR_OWNER_REVIEW",
+  "owner_approval": "PENDING",
+  "release_allowed": false,
+  "production_changed": false,
+  "full_qa_pass": false,
+  "file_count": 26,
+  "formats": {
+    "docx": 13,
+    "xlsx": 6,
+    "pdf": 7
+  },
+  "table_count": 28,
+  "visual_pages": 38,
+  "check_count": 123,
+  "source_archive_sha256": "1f715a0477c1a35b8bbef97b479f372f440ae3ccad32a9684202a8538ace6caf",
+  "new_native_office_test_performed": false,
+  "archive_sha256": "a581a2174e65184573fb56747431fd8afd37862ef418a84ffa613d1a630b05ea",
+  "preview_sha256": "9f41233e3837ebfbe6ff87ade475387321d07ec9f38f4e6e839d4596eb3982cc",
+  "artifact_refs": [
+    {
+      "name": "P4_PTO_bez_zamechaniy_v1.zip",
+      "library_file_id": "libfile_640bd5e619888191b75e1c88ae8c48ce",
+      "sha256": "a581a2174e65184573fb56747431fd8afd37862ef418a84ffa613d1a630b05ea"
+    },
+    {
+      "name": "P4_predprosmotr_38str.pdf",
+      "library_file_id": "libfile_57ee00558d58819182f8d2087221c3b8",
+      "sha256": "9f41233e3837ebfbe6ff87ade475387321d07ec9f38f4e6e839d4596eb3982cc"
+    }
+  ],
+  "excel_06_07_changed": false,
+  "render_engine": "LibreOffice; not native Microsoft Office acceptance",
+  "next_action": "Owner review of exact candidate; product publication requires acceptance of this edition"
+}

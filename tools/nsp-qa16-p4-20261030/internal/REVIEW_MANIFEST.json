@@ -1,0 +1,814 @@
+{
+  "schema": "NSP_QA16_P4_OWNER_REVIEW_v1",
+  "sku": "p4",
+  "edition": "P4-layout-v1",
+  "status": "READY_FOR_OWNER_REVIEW",
+  "owner_approval": "PENDING",
+  "release_allowed": false,
+  "production_changed": false,
+  "full_qa_pass": false,
+  "scope": "Composition, editable working AOSR, Word table layout, 38 explicit workflow fields, LibreOffice visual print review",
+  "source_commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
+  "source_archive_sha256": "1f715a0477c1a35b8bbef97b479f372f440ae3ccad32a9684202a8538ace6caf",
+  "source_archive_path": "tools/nsp-next-corrections-20261022/candidate-archives/08-pto-bez-zamechaniy.zip",
+  "file_count": 26,
+  "formats": {
+    "docx": 13,
+    "xlsx": 6,
+    "pdf": 7
+  },
+  "table_count": 28,
+  "table_geometry": [
+    {
+      "file": "01-uvedomlenie-o-gotovnosti-id.docx",
+      "table": 1,
+      "width_twips": 9866
+    },
+    {
+      "file": "01-uvedomlenie-o-gotovnosti-id.docx",
+      "table": 2,
+      "width_twips": 9866
+    },
+    {
+      "file": "01-uvedomlenie-o-gotovnosti-id.docx",
+      "table": 3,
+      "width_twips": 9866
+    },
+    {
+      "file": "02-akt-priemki-id.docx",
+      "table": 1,
+      "width_twips": 9866
+    },
+    {
+      "file": "02-akt-priemki-id.docx",
+      "table": 2,
+      "width_twips": 9866
+    },
+    {
+      "file": "03-perechen-vozmozhnyh-zamechaniy.docx",
+      "table": 1,
+      "width_twips": 9866
+    },
+    {
+      "file": "04-pismo-na-zamechaniya.docx",
+      "table": 1,
+      "width_twips": 9866
+    },
+    {
+      "file": "04-pismo-na-zamechaniya.docx",
+      "table": 2,
+      "width_twips": 9866
+    },
+    {
+      "file": "04-pismo-na-zamechaniya.docx",
+      "table": 3,
+      "width_twips": 9866
+    },
+    {
+      "file": "05-sluzhebnaya-zapiska.docx",
+      "table": 1,
+      "width_twips": 9866
+    },
+    {
+      "file": "05-sluzhebnaya-zapiska.docx",
+      "table": 2,
+      "width_twips": 9866
+    },
+    {
+      "file": "31A-rabochiy-akt-skrytyh-rabot.docx",
+      "table": 1,
+      "width_twips": 9866
+    },
+    {
+      "file": "31A-rabochiy-akt-skrytyh-rabot.docx",
+      "table": 2,
+      "width_twips": 9866
+    },
+    {
+      "file": "31A-rabochiy-akt-skrytyh-rabot.docx",
+      "table": 3,
+      "width_twips": 9866
+    },
+    {
+      "file": "31A-rabochiy-akt-skrytyh-rabot.docx",
+      "table": 4,
+      "width_twips": 9866
+    },
+    {
+      "file": "32-kartochka-ispolnitelnoy-shemy.docx",
+      "table": 1,
+      "width_twips": 9866
+    },
+    {
+      "file": "32-kartochka-ispolnitelnoy-shemy.docx",
+      "table": 2,
+      "width_twips": 9866
+    },
+    {
+      "file": "33-akt-peredachi-komplekta-pto.docx",
+      "table": 1,
+      "width_twips": 9866
+    },
+    {
+      "file": "33-akt-peredachi-komplekta-pto.docx",
+      "table": 2,
+      "width_twips": 9866
+    },
+    {
+      "file": "34-sluzhebnaya-zapiska.docx",
+      "table": 1,
+      "width_twips": 9866
+    },
+    {
+      "file": "34-sluzhebnaya-zapiska.docx",
+      "table": 2,
+      "width_twips": 9866
+    },
+    {
+      "file": "34-sluzhebnaya-zapiska.docx",
+      "table": 3,
+      "width_twips": 9866
+    },
+    {
+      "file": "41-akt-peredachi-ploshchadki-fronta.docx",
+      "table": 1,
+      "width_twips": 9866
+    },
+    {
+      "file": "41-akt-peredachi-ploshchadki-fronta.docx",
+      "table": 2,
+      "width_twips": 9866
+    },
+    {
+      "file": "42-akt-vhodnogo-kontrolya-materialov.docx",
+      "table": 1,
+      "width_twips": 9866
+    },
+    {
+      "file": "42-akt-vhodnogo-kontrolya-materialov.docx",
+      "table": 2,
+      "width_twips": 9866
+    },
+    {
+      "file": "43-preduprezhdenie-po-st-716.docx",
+      "table": 1,
+      "width_twips": 9866
+    },
+    {
+      "file": "43-preduprezhdenie-po-st-716.docx",
+      "table": 2,
+      "width_twips": 9866
+    }
+  ],
+  "excel_06_07_changed": false,
+  "new_native_office_test_performed": false,
+  "render_engine": "LibreOffice; not native Microsoft Office acceptance",
+  "visual_pages": 38,
+  "visual_scope": "4 guide, 13 Word, 21 spreadsheet export pages; unchanged normative PDFs preserved by SHA",
+  "spreadsheet_pages": {
+    "06-reestr-zamechaniy.xlsx": 1,
+    "07-grafik-ustraneniya.xlsx": 1,
+    "35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx": 4,
+    "36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx": 4,
+    "37-reestr-pasportov.xlsx": 4,
+    "38-reestr-id.xlsx": 7
+  },
+  "checks": [
+    {
+      "name": "26 buyer files",
+      "status": "PASS"
+    },
+    {
+      "name": "format composition",
+      "status": "PASS"
+    },
+    {
+      "name": "one initial instruction",
+      "status": "PASS"
+    },
+    {
+      "name": "instruction exact composition",
+      "status": "PASS"
+    },
+    {
+      "name": "instruction distinguishes working forms",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged 06-reestr-zamechaniy.xlsx",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged 07-grafik-ustraneniya.xlsx",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged 08-algoritm-raboty-s-id.pdf",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged 31-akt-osvidetelstvovaniya-skrytyh-rabot.pdf",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged 35-obshiy-zhurnal-rabot.pdf",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged 35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged 36-zhurnal-vhodnoy-verifikacii.pdf",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged 36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged 37-reestr-pasportov.xlsx",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged 39-algoritm-zamechaniy.pdf",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged 40-ezhemesyachnaya-proverka.pdf",
+      "status": "PASS"
+    },
+    {
+      "name": "editable 01-uvedomlenie-o-gotovnosti-id.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "render exact input 01-uvedomlenie-o-gotovnosti-id.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "source body preserved 01-uvedomlenie-o-gotovnosti-id.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 01-uvedomlenie-o-gotovnosti-id.docx 1",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 01-uvedomlenie-o-gotovnosti-id.docx 2",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 01-uvedomlenie-o-gotovnosti-id.docx 3",
+      "status": "PASS"
+    },
+    {
+      "name": "single page 01-uvedomlenie-o-gotovnosti-id.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "page PNG exists 01-uvedomlenie-o-gotovnosti-id.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "editable 02-akt-priemki-id.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "render exact input 02-akt-priemki-id.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "source body preserved 02-akt-priemki-id.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 02-akt-priemki-id.docx 1",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 02-akt-priemki-id.docx 2",
+      "status": "PASS"
+    },
+    {
+      "name": "single page 02-akt-priemki-id.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "page PNG exists 02-akt-priemki-id.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "editable 03-perechen-vozmozhnyh-zamechaniy.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "render exact input 03-perechen-vozmozhnyh-zamechaniy.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "source body preserved 03-perechen-vozmozhnyh-zamechaniy.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 03-perechen-vozmozhnyh-zamechaniy.docx 1",
+      "status": "PASS"
+    },
+    {
+      "name": "single page 03-perechen-vozmozhnyh-zamechaniy.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "page PNG exists 03-perechen-vozmozhnyh-zamechaniy.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "editable 04-pismo-na-zamechaniya.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "render exact input 04-pismo-na-zamechaniya.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "source body preserved 04-pismo-na-zamechaniya.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 04-pismo-na-zamechaniya.docx 1",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 04-pismo-na-zamechaniya.docx 2",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 04-pismo-na-zamechaniya.docx 3",
+      "status": "PASS"
+    },
+    {
+      "name": "single page 04-pismo-na-zamechaniya.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "page PNG exists 04-pismo-na-zamechaniya.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "editable 05-sluzhebnaya-zapiska.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "render exact input 05-sluzhebnaya-zapiska.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "source body preserved 05-sluzhebnaya-zapiska.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 05-sluzhebnaya-zapiska.docx 1",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 05-sluzhebnaya-zapiska.docx 2",
+      "status": "PASS"
+    },
+    {
+      "name": "single page 05-sluzhebnaya-zapiska.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "page PNG exists 05-sluzhebnaya-zapiska.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "editable 09-krasnye-flagi.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "render exact input 09-krasnye-flagi.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "source body preserved 09-krasnye-flagi.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "single page 09-krasnye-flagi.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "page PNG exists 09-krasnye-flagi.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "editable 31A-rabochiy-akt-skrytyh-rabot.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "render exact input 31A-rabochiy-akt-skrytyh-rabot.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 31A-rabochiy-akt-skrytyh-rabot.docx 1",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 31A-rabochiy-akt-skrytyh-rabot.docx 2",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 31A-rabochiy-akt-skrytyh-rabot.docx 3",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 31A-rabochiy-akt-skrytyh-rabot.docx 4",
+      "status": "PASS"
+    },
+    {
+      "name": "single page 31A-rabochiy-akt-skrytyh-rabot.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "page PNG exists 31A-rabochiy-akt-skrytyh-rabot.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "editable 32-kartochka-ispolnitelnoy-shemy.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "render exact input 32-kartochka-ispolnitelnoy-shemy.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "source body preserved 32-kartochka-ispolnitelnoy-shemy.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 32-kartochka-ispolnitelnoy-shemy.docx 1",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 32-kartochka-ispolnitelnoy-shemy.docx 2",
+      "status": "PASS"
+    },
+    {
+      "name": "single page 32-kartochka-ispolnitelnoy-shemy.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "page PNG exists 32-kartochka-ispolnitelnoy-shemy.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "editable 33-akt-peredachi-komplekta-pto.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "render exact input 33-akt-peredachi-komplekta-pto.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "source body preserved 33-akt-peredachi-komplekta-pto.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 33-akt-peredachi-komplekta-pto.docx 1",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 33-akt-peredachi-komplekta-pto.docx 2",
+      "status": "PASS"
+    },
+    {
+      "name": "single page 33-akt-peredachi-komplekta-pto.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "page PNG exists 33-akt-peredachi-komplekta-pto.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "editable 34-sluzhebnaya-zapiska.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "render exact input 34-sluzhebnaya-zapiska.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "source body preserved 34-sluzhebnaya-zapiska.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 34-sluzhebnaya-zapiska.docx 1",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 34-sluzhebnaya-zapiska.docx 2",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 34-sluzhebnaya-zapiska.docx 3",
+      "status": "PASS"
+    },
+    {
+      "name": "single page 34-sluzhebnaya-zapiska.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "page PNG exists 34-sluzhebnaya-zapiska.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "editable 41-akt-peredachi-ploshchadki-fronta.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "render exact input 41-akt-peredachi-ploshchadki-fronta.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "source body preserved 41-akt-peredachi-ploshchadki-fronta.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 41-akt-peredachi-ploshchadki-fronta.docx 1",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 41-akt-peredachi-ploshchadki-fronta.docx 2",
+      "status": "PASS"
+    },
+    {
+      "name": "single page 41-akt-peredachi-ploshchadki-fronta.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "page PNG exists 41-akt-peredachi-ploshchadki-fronta.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "editable 42-akt-vhodnogo-kontrolya-materialov.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "render exact input 42-akt-vhodnogo-kontrolya-materialov.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "source body preserved 42-akt-vhodnogo-kontrolya-materialov.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 42-akt-vhodnogo-kontrolya-materialov.docx 1",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 42-akt-vhodnogo-kontrolya-materialov.docx 2",
+      "status": "PASS"
+    },
+    {
+      "name": "single page 42-akt-vhodnogo-kontrolya-materialov.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "page PNG exists 42-akt-vhodnogo-kontrolya-materialov.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "editable 43-preduprezhdenie-po-st-716.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "render exact input 43-preduprezhdenie-po-st-716.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "source body preserved 43-preduprezhdenie-po-st-716.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 43-preduprezhdenie-po-st-716.docx 1",
+      "status": "PASS"
+    },
+    {
+      "name": "width fixed 43-preduprezhdenie-po-st-716.docx 2",
+      "status": "PASS"
+    },
+    {
+      "name": "single page 43-preduprezhdenie-po-st-716.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "page PNG exists 43-preduprezhdenie-po-st-716.docx",
+      "status": "PASS"
+    },
+    {
+      "name": "accepted editable AOSR",
+      "status": "PASS"
+    },
+    {
+      "name": "38 sheets preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "38 original data preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "38 six explicit fields",
+      "status": "PASS"
+    },
+    {
+      "name": "38 print includes all fields",
+      "status": "PASS"
+    },
+    {
+      "name": "spreadsheet PDF 06-reestr-zamechaniy.xlsx",
+      "status": "PASS"
+    },
+    {
+      "name": "spreadsheet PDF 07-grafik-ustraneniya.xlsx",
+      "status": "PASS"
+    },
+    {
+      "name": "spreadsheet PDF 35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx",
+      "status": "PASS"
+    },
+    {
+      "name": "spreadsheet PDF 36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx",
+      "status": "PASS"
+    },
+    {
+      "name": "spreadsheet PDF 37-reestr-pasportov.xlsx",
+      "status": "PASS"
+    },
+    {
+      "name": "spreadsheet PDF 38-reestr-id.xlsx",
+      "status": "PASS"
+    },
+    {
+      "name": "38 all six fields printed",
+      "status": "PASS"
+    },
+    {
+      "name": "guide four pages",
+      "status": "PASS"
+    },
+    {
+      "name": "archive CRC and all hashes",
+      "status": "PASS"
+    },
+    {
+      "name": "preview 38 pages",
+      "status": "PASS"
+    }
+  ],
+  "check_count": 123,
+  "files": [
+    {
+      "name": "00-INSTRUKCIYA.pdf",
+      "bytes": 60346,
+      "sha256": "f640ef4b51516c69b8a1389aedce9e90177fcc05091ecb5b7d8ab58732a05692"
+    },
+    {
+      "name": "01-uvedomlenie-o-gotovnosti-id.docx",
+      "bytes": 38522,
+      "sha256": "32092992119f55ee6d9bad89f936670d9a0f904cf6f752873f239f837e55c3c8"
+    },
+    {
+      "name": "02-akt-priemki-id.docx",
+      "bytes": 38453,
+      "sha256": "35c9d86090c447decbcb751106ef0b2ce94b83db241be8839e9ce4dbcd3dc930"
+    },
+    {
+      "name": "03-perechen-vozmozhnyh-zamechaniy.docx",
+      "bytes": 39277,
+      "sha256": "8ab150a293ae5667dab575757b39e717f9913040c368274eba3e015bac669732"
+    },
+    {
+      "name": "04-pismo-na-zamechaniya.docx",
+      "bytes": 38419,
+      "sha256": "416b850f72db7118ee0826aa34a4f2f29e51c7cd8c0c8ff0f3a86bf9593585e0"
+    },
+    {
+      "name": "05-sluzhebnaya-zapiska.docx",
+      "bytes": 38256,
+      "sha256": "8efa8dd1b1df52f64ed94ed4efd393618e47456ade89345e43c312e766d71e7a"
+    },
+    {
+      "name": "06-reestr-zamechaniy.xlsx",
+      "bytes": 5810,
+      "sha256": "dc7419ff23333abab78e23bb7620d9c4ad7aac3b82eebad0b94e7d183173fde3"
+    },
+    {
+      "name": "07-grafik-ustraneniya.xlsx",
+      "bytes": 5772,
+      "sha256": "e5ad05993c1eeaad116d64456b4a2e38d3ae5b5e08869673f7ed031f0e3b30df"
+    },
+    {
+      "name": "08-algoritm-raboty-s-id.pdf",
+      "bytes": 25654,
+      "sha256": "28f3603225a7600406cd78588714da90e5b93ee9942fe80d577664f7b1f3140c"
+    },
+    {
+      "name": "09-krasnye-flagi.docx",
+      "bytes": 38833,
+      "sha256": "19620aa2352eb86bace6300c4ce7a623caa9167fd3dc78adb8d4ea0b23bb686e"
+    },
+    {
+      "name": "31-akt-osvidetelstvovaniya-skrytyh-rabot.pdf",
+      "bytes": 261891,
+      "sha256": "77d410e718af0ae379120edbde14be66b329fa707d5292c59ce0985f5ab6a9a4"
+    },
+    {
+      "name": "31A-rabochiy-akt-skrytyh-rabot.docx",
+      "bytes": 38295,
+      "sha256": "a0b0e8f48f7f0b8310a96358c226038a2066a17c159021d6f34f742b7969d7d7"
+    },
+    {
+      "name": "32-kartochka-ispolnitelnoy-shemy.docx",
+      "bytes": 38903,
+      "sha256": "c6d8eed0ae0a054b3bd75273fe43d0b7c249816d5f2e20fdc5286fefcee89a54"
+    },
+    {
+      "name": "33-akt-peredachi-komplekta-pto.docx",
+      "bytes": 39154,
+      "sha256": "b61101717556245bd7310a30c2d711f36edb893358687b46bb51c4589e7a4857"
+    },
+    {
+      "name": "34-sluzhebnaya-zapiska.docx",
+      "bytes": 39027,
+      "sha256": "ffcf568264b70db60aff2ae54474bc2793ae83cc5ce1bb682d10eb0b3e7a7613"
+    },
+    {
+      "name": "35-obshiy-zhurnal-rabot.pdf",
+      "bytes": 621166,
+      "sha256": "39c89abb6752b27a860044fed979ac2da3c9d5bb9636b333471fcff9e9ca3eed"
+    },
+    {
+      "name": "35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx",
+      "bytes": 9442,
+      "sha256": "54ef5d86e81ab120910cc5ad1889c54ff5253951ec06a180be655eaf4cf65cc4"
+    },
+    {
+      "name": "36-zhurnal-vhodnoy-verifikacii.pdf",
+      "bytes": 102072,
+      "sha256": "353cc2536e4c01fbcc7737ec70ccd17c503e3ac3d21c1ccde5753e1deb6eb216"
+    },
+    {
+      "name": "36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx",
+      "bytes": 9112,
+      "sha256": "e10f379069eb327133fe0b5bb30343b1d1f0604b792f26bf28baf9d9773a995e"
+    },
+    {
+      "name": "37-reestr-pasportov.xlsx",
+      "bytes": 9129,
+      "sha256": "d8a4d449ddf29b84e7ccaf0d812ed7d6ddd53308f28e9f79ffba4e3154f7f85d"
+    },
+    {
+      "name": "38-reestr-id.xlsx",
+      "bytes": 10712,
+      "sha256": "792ada310c16e823d04956c4ccdc1c64618206fc631c73500a9a4aa09726b67d"
+    },
+    {
+      "name": "39-algoritm-zamechaniy.pdf",
+      "bytes": 25767,
+      "sha256": "9392f1fd485987ff9feb387b2fe1ddd2074a6b70aa9158498f287af1b914aa57"
+    },
+    {
+      "name": "40-ezhemesyachnaya-proverka.pdf",
+      "bytes": 27859,
+      "sha256": "a5aac0df9011afce8436b7cd8a4ecf4aaa79801a44136d9f6a4994a6e5533d94"
+    },
+    {
+      "name": "41-akt-peredachi-ploshchadki-fronta.docx",
+      "bytes": 39075,
+      "sha256": "90906d230e42d145fdecb99ab874c38ccda00d134ad61e332da7f1f1b1b41b31"
+    },
+    {
+      "name": "42-akt-vhodnogo-kontrolya-materialov.docx",
+      "bytes": 39114,
+      "sha256": "de3f6bb50c5d6dd701d4c0da4be25a4f0bb12fbe9aace6a5c16942c8db601432"
+    },
+    {
+      "name": "43-preduprezhdenie-po-st-716.docx",
+      "bytes": 39062,
+      "sha256": "3734615a6dfdf1a538e253b29b810c80014d22e43c4c7a1f92f52554532b27d7"
+    }
+  ],
+  "archive": {
+    "name": "P4_PTO_bez_zamechaniy_v1.zip",
+    "sha256": "a581a2174e65184573fb56747431fd8afd37862ef418a84ffa613d1a630b05ea",
+    "bytes": 1497979
+  },
+  "preview": {
+    "name": "P4_predprosmotr_38str.pdf",
+    "sha256": "9f41233e3837ebfbe6ff87ade475387321d07ec9f38f4e6e839d4596eb3982cc",
+    "bytes": 729608
+  },
+  "remaining": "Owner review; no publication permission inferred from P3 approval. No new full native product pass claimed."
+}
