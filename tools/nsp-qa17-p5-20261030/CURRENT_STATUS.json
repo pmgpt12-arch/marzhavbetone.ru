@@ -1,0 +1,99 @@
+{
+  "schema": "NSP_QA17_P5_RUNTIME_INTERRUPTION_v1",
+  "sku": "p5",
+  "edition": "P5-layout-v1-DRAFT",
+  "status": "PAUSED_RUNTIME_UNAVAILABLE_PRINT_QA_OPEN",
+  "source_commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
+  "source_archive_path": "tools/nsp-next-corrections-20261022/paid-followup-20261023/candidate-archives/07-uderzhaniya-shtrafy-zachety.zip",
+  "source_archive_sha256": "c99d209997835223f15d04f09964c1efed946e5567264bc749507b3c626b59cd",
+  "file_count": 30,
+  "formats": {
+    "docx": 22,
+    "xlsx": 6,
+    "pdf": 2
+  },
+  "owner_scope": "Continue QA session3 after verified P4 publication; prepare next product for owner review. No P5 publication approval.",
+  "production_changed": false,
+  "owner_approval": "PENDING",
+  "release_allowed": false,
+  "full_qa_pass": false,
+  "new_native_office_run": false,
+  "local_workspace": "/workspace/scratch/1c70cef937ec/qa17-p5",
+  "runtime_failure": {
+    "observed": "exec-server transport disconnected; environment ccarenv reported unavailable",
+    "classification": "RUNTIME_HARNESS_ENVIRONMENT_UNAVAILABLE",
+    "capability_inference": false,
+    "blind_retry_prohibited": true
+  },
+  "server_persisted_before_failure": [
+    "source.zip",
+    "source/ (30 source files)",
+    "SOURCE_RECEIPT.json",
+    "READINESS_MATRIX.json",
+    "P5_PRELIMINARY_VISUAL.json",
+    "REPORT_RU.md"
+  ],
+  "local_artifacts_not_yet_recoverable": [
+    "build_candidate.py",
+    "build_guide.py",
+    "patch_print.py",
+    "render_word.py",
+    "candidate/ (working draft)",
+    "internal/XLSX_AUTHORED_PLAN.json",
+    "render-word/",
+    "render-excel/",
+    "/tmp/nsp-p5-artifact/edit.mjs"
+  ],
+  "completed_local_draft_work": [
+    "22 DOCX normalized to table width9866twips, margins1020twips, address and signature independent same-width blocks; dictionary first column4000twips",
+    "Removed obsolete standalone page breaks and trailing empty ready-text headings; corrected duplicate letter addressing; dictionary shrank12to8pages; document27 shrank9to6pages",
+    "Added actual editable agreement13 after existing explanation, with zone responsibilities, periods, access, notifications, materials, evidence and signatures",
+    "Draft four-page replacement 00-START-HERE.pdf; file count30 kept; original07 PDF and workbooks04/05/06 kept",
+    "Artifact Tool authored selected row heights and wrap settings for22/23/29; transplanted only targeted OOXML to preserve formulas, validations and conditional formats",
+    "Draft29 Сводка D9 no longer equates missing transmission evidence with no transmission; example summary A14:C18 labels and D14:F18 values"
+  ],
+  "observed_unresolved_defects": [
+    "Print22/23/29 examples: merged notes crossing horizontal panels still clipped, despite A4 landscape and narrower merges; not accepted",
+    "22 final draft print16pages,23=17,29=38; extra note-only pages and clipped labels remain",
+    "29 example repeated identifier columns must be verified on every horizontal panel; source groups previously omitted identifiers",
+    "10 letter signature had52-character second page; last local compact-spacing render was running when environment failed, outcome unknown",
+    "06 unchanged workbook has2-page source print, last page only40characters; classify separately, not fixed or accepted in this iteration",
+    "Final all-page visual QA, actual formula-preservation comparison, exact ZIP composition and hashes not yet completed; no deliverable ZIP exists"
+  ],
+  "next_atomic_task": {
+    "objective": "Recover existing scratch if available; otherwise rebuild draft from pinned server source and these patch specifications. Fix only remaining print defects before owner review.",
+    "acceptance": [
+      "No clipped example labels/notes or blank continuation pages",
+      "Wide register and example panels repeat stable identifiers",
+      "Preserve all actual formulas, cached values, validations, conditional formatting and protected unchanged workbook bytes",
+      "Word width9866twips and separate signatures; no blank pages or orphan signature",
+      "30 buyer files; one initialPDF; CRC and every memberSHA verified",
+      "Render and review actual final files; record engine truthfully",
+      "Save approved-for-review ZIP and preview to Library, then checkpoint Git and STATE; do not publish P5"
+    ],
+    "route": "VM_ONLY_NO_LAPTOP if native required; read current OFFICE_VM_SESSION_GUIDE_RU.md and AGENTS.md before touching VM"
+  },
+  "editorial_patch_spec": {
+    "13": "Remove automatic exclusion of unilateral acts from proof; court evaluates evidence(АПК71). Replace nonexistent checklist reference with22/23/29. Correct absolute table risk wording. Add actual editable agreement.",
+    "16": "Suspension notice does not automatically erase delay. Written insistence to continue does not automatically transfer all consequences; evaluate716 and proof.",
+    "17": "Preserve evidence, allow necessary safety/emergency measures with notice and recording; repairs may complicate analysis, not automatically make expert opinion impossible. Expired contractual guarantee requires724/756 review.",
+    "18": "Front handover act records actual dates/state; schedules depend on contract and proof, no automatic no-delay before act. State specific impediments, affected works and agreed schedule.",
+    "19": "Late act not automatically without evidential value; state actual examination/drafting dates. Act not sole evidence. Internal act alone not proof of notice716; signature refusal not automatic proof of validity.",
+    "20": "Disputed claim/no consent not universal setoff defect; absence of contractual retention clause alone not necessarily bars statutory setoff.",
+    "21": "Commission regulation cannot predetermine court evidence admissibility or automatically invalidate unilateral acts; emergency measures allowed with recording.",
+    "25": "Repair before inspection may complicate causation analysis; specialist assesses remaining evidence.",
+    "29": "Сводка D9: Сохраните подтверждение передачи; его отсутствие само по себе не доказывает, что документ не передан.",
+    "08": "Qualify acceptance without defects for visible vs hidden defects (720); warranty expiry alone not denial (724/756); late notice not automatic extinguishment; no-consent alone not invalid setoff."
+  },
+  "legal_sources_checked_20261030": [
+    "https://www.consultant.ru/document/cons_doc_LAW_9027/ (716/719/720/724/755/756)",
+    "https://www.consultant.ru/document/cons_doc_LAW_5142/ (394/395/410)",
+    "https://www.consultant.ru/document/cons_doc_LAW_37800/ (71)"
+  ],
+  "systemic_recovery_rules": [
+    "Bound JSON log output by bytes/parse fields, never head a minified one-line tree; a single line may exceed1MB",
+    "After rerender delete stale PNG pages beyond actual final PDF page count; old files inflated render count",
+    "On runtime-unavailable save verified source and incomplete status to remote durable checkpoint immediately; do not mark drafted files as delivered or accepted",
+    "Print acceptance requires actual rendered merged-cell notes and all horizontal panel identifiers, not only Print_Area metadata"
+  ]
+}
