@@ -104,6 +104,7 @@ def main(home, mode, expected=None, fixture=False):
     coverage = []
     unknown_loose_order_copies = 0
     unknown_archived_order_copies = 0
+    empty_synthetic_probe_records = 0
     for name in ('nsp-migration-private', 'nsp-migration-backups', 'p3-release-backups', 'p11-release-backups',
                  'p5-release-backups', 't2-release-backups', 't3-release-backups', 'remaining-release-backups'):
         root = home / name
@@ -122,7 +123,11 @@ def main(home, mode, expected=None, fixture=False):
                 if path.name in names:
                     loose.append((path, sha(path.read_bytes())))
                 elif path.name.startswith('order_') and path.suffix == '.json':
-                    unknown_loose_order_copies += 1
+                    probe = json.loads(path.read_bytes())
+                    if probe.get('migration_probe') and probe.get('provider_payment_performed') is False and not probe.get('email') and not probe.get('phone'):
+                        empty_synthetic_probe_records += 1
+                    else:
+                        unknown_loose_order_copies += 1
                 elif path.name.endswith(('.zip', '.tar', '.tgz', '.tar.gz')):
                     need(path.stat().st_size < 150000000, 'ARCHIVE_SIZE_LIMIT')
                     members = archive_members(path)
@@ -133,16 +138,24 @@ def main(home, mode, expected=None, fixture=False):
         coverage.append({'area': name, 'files_inspected': files})
     # Hosting-owned logs and the external Yandex inbox are explicitly not represented as erased.
     log_hints = []
+    log_targets = []
     logs = home / 'logs'
     if logs.is_dir():
         for path in logs.rglob('*'):
             budget()
-            if 'marzhavbetone.ru' in path.name and path.is_file():
-                log_hints.append({'kind': 'legacy_domain_log', 'bytes': path.stat().st_size,
-                                  'writable': os.access(str(path), os.W_OK), 'symlink': path.is_symlink()})
+            if re.fullmatch(r'marzhavbetone\.ru\.(?:access|error)\.log(?:\.\d+\.gz)?',path.name) and path.is_file():
+                need(not path.is_symlink(), 'LOG_SYMLINK')
+                stat = path.stat()
+                writable = os.access(str(path), os.W_OK)
+                rotated = path.name.endswith('.gz')
+                log_hints.append({'kind': 'legacy_domain_log', 'bytes': stat.st_size, 'writable': writable, 'rotated': rotated})
+                if writable:
+                    # Active append-only log contents may grow; exact inode/permissions still bind the scope.
+                    log_targets.append((path, sha(path.read_bytes()) if rotated else None, stat.st_ino, stat.st_mode, stat.st_uid))
     raw_plan = [(str(p.relative_to(home)), digest) for p, digest, _, _ in sources]
     raw_plan += [(str(p.relative_to(home)), digest, remove) for p, digest, remove in backups]
     raw_plan += [(str(p.relative_to(home)), digest) for p, digest in loose]
+    raw_plan += [(str(p.relative_to(home)), digest, inode, mode, uid) for p,digest,inode,mode,uid in log_targets]
     digest = sha(json.dumps(raw_plan, sort_keys=True).encode())
     report = {'status': 'PLAN', 'mode': mode, 'plan_digest': digest,
               'legacy_records': len(sources), 'unpaid_to_delete': sum(not r[3] for r in sources),
@@ -151,8 +164,11 @@ def main(home, mode, expected=None, fixture=False):
               'loose_backup_record_copies_to_delete': len(loose), 'backup_coverage': coverage,
               'unknown_loose_order_copies_preserved': unknown_loose_order_copies,
               'unknown_archived_order_copies_preserved': unknown_archived_order_copies,
+              'verified_empty_synthetic_probe_records_preserved': empty_synthetic_probe_records,
+              'legacy_rotated_logs_to_delete': sum(d is not None for _,d,_,_,_ in log_targets),
+              'legacy_active_logs_to_truncate': sum(d is None for _,d,_,_,_ in log_targets),
               'legacy_log_hints': log_hints, 'raw_user_data_exported': False,
-              'limits': ['Yandex inbox not accessed', 'Hosting-managed logs not deleted', 'Provider snapshots require separate confirmation',
+              'limits': ['Yandex inbox not accessed', 'New legacy redirect requests may create fresh security-log entries after cleanup', 'Provider snapshots require separate confirmation',
                          'Shared telemetry without contacts not removed by this order-contact cleanup']}
     if mode == 'plan':
         return report
@@ -184,6 +200,18 @@ def main(home, mode, expected=None, fixture=False):
         lock = path.with_name(path.name + '.lock')
         if lock.is_file() and not lock.is_symlink():
             lock.unlink()
+    for path, before, inode, mode_bits, owner in log_targets:
+        stat = path.stat()
+        need(not path.is_symlink() and (stat.st_ino,stat.st_mode,stat.st_uid)==(inode,mode_bits,owner),'LOG_IDENTITY_CHANGED')
+        if before is not None:
+            need(sha(path.read_bytes())==before,'ROTATED_LOG_CHANGED')
+            path.unlink()
+        else:
+            with path.open('r+b') as stream:
+                need(os.fstat(stream.fileno()).st_ino==inode,'ACTIVE_LOG_REPLACED')
+                stream.truncate(0)
+                stream.flush()
+                os.fsync(stream.fileno())
     need(not list(old.glob('order_*.json')), 'LEGACY_JSON_REMAINS')
     need(all((current / name).is_file() and sha((current/name).read_bytes()) == value for name,value in new_before.items()), 'CURRENT_ORDER_CHANGED')
     need(all(sha((home / p).read_bytes()) == value for p,value in php_before.items()), 'PHP_CHANGED')

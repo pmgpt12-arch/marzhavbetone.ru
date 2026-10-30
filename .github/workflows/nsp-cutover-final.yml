@@ -49,6 +49,7 @@ jobs:
         if: env.NSP_ACTION == 'privacy-plan' || env.NSP_ACTION == 'privacy-apply'
         run: |
           set -euo pipefail
+          python3 tools/nsp-privacy-20261030/test_cleanup.py > /tmp/nsp-final-evidence/privacy-tests.txt
           mode=plan
           expected=NONE
           if [ "$NSP_ACTION" = privacy-apply ]; then
