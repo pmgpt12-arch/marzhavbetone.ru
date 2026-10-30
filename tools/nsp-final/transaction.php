@@ -17,8 +17,12 @@ function write_atomic(string $p,string $bytes): void {
     try { demand(file_put_contents($tmp,$bytes,LOCK_EX)===strlen($bytes),'WRITE_FAILED'); chmod($tmp,$mode); demand(rename($tmp,$p),'RENAME_FAILED'); }
     finally { if(is_file($tmp)) unlink($tmp); }
 }
-function protected_state(string $root): array {
+function protected_state(string $root,array $rows): array {
     $php=[]; foreach(glob($root.'/*.php') as $p) $php[basename($p)]=sha($p); ksort($php);
+    foreach($rows as $r) if($r['path']==='contact.php') {
+        demand(in_array($php['contact.php']??null,[$r['before'],$r['after']],true),'CONTACT_HANDLER_DRIFT');
+        $php['contact.php']='EXACT_RETIRED_HANDLER_TRANSACTION';
+    }
     require_once $root.'/config.php'; require_once $root.'/products-config.php';
     $paths=[]; foreach(['PRODUCTS_DIR','ORDERS_DIR','DELIVERY_DIR'] as $key) {
         demand(defined($key),'MISSING_RUNTIME_PATH'); $path=realpath((string)constant($key)); demand(is_string($path)&&is_dir($path),'MISSING_RUNTIME_DIRECTORY'); $paths[$key]=$path;
@@ -55,7 +59,8 @@ try {
     $rows=json_decode((string)file_get_contents($dir.'/manifest.json'),true,512,JSON_THROW_ON_ERROR);
     demand(is_array($rows)&&count($rows)>0&&count($rows)<=100,'MANIFEST_COUNT'); $seen=[];
     foreach($rows as $r) {
-        $p=$r['path']; demand(public_payload($p)||(bool)preg_match('~^(?:articles/|materialy/|products/|demo/)?[a-zA-Z0-9_-]+\.(?:html|js|css)$~D',$p),'UNSAFE_PATH');
+        $p=$r['path']; demand($p==='contact.php'||public_payload($p)||(bool)preg_match('~^(?:articles/|materialy/|products/|demo/)?[a-zA-Z0-9_-]+\.(?:html|js|css)$~D',$p),'UNSAFE_PATH');
+        if($p==='contact.php') demand($r['before']==='f266b010b3a01201d7c2b51a34819f0d0a73136e299f86cee4523661c8a16373'&&$r['after']==='607998cf64f596c361788f9830c78a1f783e07576d2e5a62752325ea21e78d2e','ONLY_EXACT_RETIRED_CONTACT_HANDLER');
         demand(!isset($seen[$p]),'DUPLICATE_PATH'); $seen[$p]=true;
         $parent=dirname($root.'/'.$p);
         demand(!is_link($parent),'PARENT_SYMLINK');
@@ -66,7 +71,7 @@ try {
             demand(is_string($r[$k])&&(bool)preg_match('/^[a-f0-9]{64}$/D',$r[$k]),'HASH_FORMAT');
         }
     }
-    $state=protected_state($root);
+    $state=protected_state($root,$rows);
     if($mode==='verify'||$mode==='rollback') {
         $baseline=json_decode((string)file_get_contents($dir.'/protected.json'),true,512,JSON_THROW_ON_ERROR);
         demand($state===$baseline,'PROTECTED_STATE_CHANGED');
@@ -95,7 +100,7 @@ try {
         $p=$root.'/'.$r['path']; demand(current_sha($p)===$r['before'],'LIVE_CONCURRENT_EDIT_'.$r['path']);
         write_atomic($p,(string)file_get_contents($dir.'/candidate/'.$r['path'])); $changed[]=$r['path']; demand(sha($p)===$r['after'],'WRITE_HASH');
     }
-    demand(protected_state($root)===$state,'PROTECTED_STATE_CHANGED');
+    demand(protected_state($root,$rows)===$state,'PROTECTED_STATE_CHANGED');
     echo json_encode(['status'=>'PASS','mode'=>'apply','files'=>count($changed),'protected_php'=>'UNCHANGED','masters'=>'UNCHANGED'],JSON_THROW_ON_ERROR)."\n";
 } catch(Throwable $e) {
     if($changed) { try { restore($root,$dir,$rows,$changed); echo "AUTO_ROLLBACK=PASS\n"; } catch(Throwable $r) { fwrite(STDERR,'ROLLBACK_FAILED='.$r->getMessage()."\n"); } }

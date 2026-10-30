@@ -16,14 +16,30 @@ with tempfile.TemporaryDirectory() as tmp:
     sha=lambda b:hashlib.sha256(b).hexdigest()
     (site/'brand-approved-2026.css').write_bytes(before); (release/'candidate/brand-approved-2026.css').write_bytes(after)
     (release/'manifest.json').write_text(json.dumps([{'path':name,'before':sha(before),'after':sha(after)} for name in ['index.html','brand-approved-2026.css']]))
+    # The one allowed PHP change is the exact retired handler; every other PHP stays protected.
+    contact_before=Path(__file__).with_name('contact-before.fixture').read_bytes()
+    contact_after=Path('contact.php').read_bytes()
+    (site/'contact.php').write_bytes(contact_before)
+    (site/'lead.php').write_bytes(b'<?php // protected delivery fixture')
+    (release/'candidate/contact.php').write_bytes(contact_after)
+    manifest=json.loads((release/'manifest.json').read_text())
+    manifest.append({'path':'contact.php','before':sha(contact_before),'after':sha(contact_after)})
+    (release/'manifest.json').write_text(json.dumps(manifest))
     script=Path(__file__).with_name('transaction.php')
     def run(mode,ok=True):
         p=subprocess.run(['php',str(script),mode,str(site),str(release)],capture_output=True,timeout=15)
         assert (p.returncode==0)==ok,(mode,p.stdout,p.stderr)
+    altered=[dict(r) for r in manifest]; altered[-1]['after']=sha(b'<?php echo 1;')
+    (release/'manifest.json').write_text(json.dumps(altered)); run('dry-run',False)
+    altered[-1]['path']='lead.php'; (release/'manifest.json').write_text(json.dumps(altered)); run('dry-run',False)
+    (release/'manifest.json').write_text(json.dumps(manifest))
     run('dry-run'); assert (site/'index.html').read_bytes()==before and not (release/'original').exists()
     (site/'index.html').write_bytes(b'concurrent'); run('apply',False); assert (site/'index.html').read_bytes()==b'concurrent'
     (site/'index.html').write_bytes(before); run('apply'); assert (site/'index.html').read_bytes()==after
-    run('verify'); run('rollback'); assert (site/'index.html').read_bytes()==before
+    run('verify'); assert (site/'contact.php').read_bytes()==contact_after
+    assert (site/'lead.php').read_bytes()==b'<?php // protected delivery fixture'
+    run('rollback'); assert (site/'contact.php').read_bytes()==contact_before
+    assert (site/'index.html').read_bytes()==before
     assert (release/'original/index.html').read_bytes()==before
     assert (site/'brand-approved-2026.css').read_bytes()==before and (release/'original/brand-approved-2026.css').read_bytes()==before
 print('STATIC_TRANSACTION_CONCURRENT_EDIT_AND_ROLLBACK=PASS')
