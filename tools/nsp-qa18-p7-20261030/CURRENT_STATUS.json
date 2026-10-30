@@ -1,37 +1,21 @@
 {
+  "schema": "NSP_QA18_CURRENT_STATUS_v1",
   "sku": "p7",
   "edition": "P7-review-v2",
-  "product_title": "Договор подряда: корректируем в интересах исполнителя",
-  "status": "READY_FOR_OWNER_REVIEW",
-  "file_count": 13,
-  "formats": {
-    "docx": 7,
-    "xlsx": 3,
-    "pdf": 3
-  },
-  "rendered_pages": 42,
-  "new_native_office_test_performed": false,
-  "render_engine": "LibreOffice",
-  "owner_approval": "PENDING",
-  "release_allowed": false,
-  "production_changed": false,
-  "full_qa_pass": false,
-  "artifact_refs": [
-    {
-      "name": "P7_Dogovor_v_interesah_ispolnitelya_v2.zip",
-      "library_file_id": "libfile_25ba533df2bc8191a8d8159e82bf055e",
-      "version": 1,
-      "sha256": "99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24"
-    },
-    {
-      "name": "P7_predprosmotr_42str.pdf",
-      "library_file_id": "libfile_207ea99085b481919a66b75a4e7239cc",
-      "version": 1,
-      "sha256": "8618c52d2510c7fb69b10a7d1d3b601fd55512b81e410e0fb8ab9d64da6f5b3f"
-    }
-  ],
+  "status": "OWNER_ACCEPTED_AND_PUBLICATION_VERIFIED",
   "archive_sha256": "99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24",
-  "preview_sha256": "8618c52d2510c7fb69b10a7d1d3b601fd55512b81e410e0fb8ab9d64da6f5b3f",
-  "next_action": "Owner review exact P7 revision2: annotated specimen and customer-contract algorithm. No publication until accepted.",
-  "supersedes": "P7-layout-v1"
+  "file_count": 13,
+  "owner_quote": "Размещаем на сайте",
+  "workflow_url": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/41064018207",
+  "source_publication_commit": "64826878fbf9338b3fdc613689759f21d8118571",
+  "local_delivery_checks": "18/18 PASS",
+  "live_current_archive_exact_match": true,
+  "public_pages_https": "2/2 PASS",
+  "ttl_seconds": 3600,
+  "old_source_and_cache_removed": true,
+  "new_real_payment": false,
+  "new_full_qa_pass_claimed": false,
+  "replaces_status": "READY_FOR_OWNER_REVIEW for this exact SHA",
+  "published_local_date": "2026-10-30",
+  "product_title": "Договор подряда: корректируем в интересах исполнителя"
 }
