@@ -308,7 +308,7 @@ function mvb_products(): array
         ],
 
         'p7' => [
-            'name'  => 'Система проверки и согласования договора субподряда',
+            'name'  => 'Договор подряда: корректируем в интересах исполнителя',
             'price' => 2490000,
             'dir'   => '03-dogovor-podryada',
             'zip'   => '03-dogovor-podryada.zip',
@@ -496,12 +496,13 @@ function mvb_build_product_zip(string $sku): ?string
         return $edition === null ? null : mvb_p1_edition_path($edition);
     }
     // P2 v13: only the owner-approved current archive. No historical versions.
-    if ($sku === 'p2' || $sku === 'p3' || $sku === 'p4' || $sku === 'p5') {
+    if ($sku === 'p2' || $sku === 'p3' || $sku === 'p4' || $sku === 'p5' || $sku === 'p7') {
         $current = [
             'p2' => ['42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da', '/P2-v13-current.zip'],
             'p3' => ['54854b79366598cba9680c5c71451220a5de45929ff33bcf42eba9b97dbcb92b', '/P3-v1-current.zip'],
             'p4' => ['a581a2174e65184573fb56747431fd8afd37862ef418a84ffa613d1a630b05ea', '/P4-v1-current.zip'],
             'p5' => ['1a0ab501a008c9cae1b1baaaa6570d1123291630ac8ecff1db74fad411431286', '/P5-v1-current.zip'],
+            'p7' => ['99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24', '/P7-v2-current.zip'],
         ];
         [$approved, $currentMaster] = $current[$sku];
         $master = PRODUCTS_DIR . $currentMaster;

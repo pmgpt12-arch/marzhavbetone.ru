@@ -1,0 +1,31 @@
+{
+  "status": "P7_REVIEW_V2_DEPLOYED_CURRENT_ARCHIVE_AND_HTTPS_VERIFIED",
+  "edition": "P7-review-v2",
+  "archive_sha256": "99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24",
+  "file_count": 13,
+  "source_gate": "PASS",
+  "actual_server_builder_bytes": "EXACT_MATCH",
+  "public_pages": [
+    {
+      "path": "products/p7-dogovor-podryada.html",
+      "status": 200,
+      "sha256": "3ebb096f887fe6724606bb7f44fb2b6666e385076302519572b6b623cc95a3ac"
+    },
+    {
+      "path": "katalog.html",
+      "status": 200,
+      "sha256": "bc89775ac1ec84297ad6b2eeb926cf600f4f978ebc5cc2462f989331adb70faa"
+    }
+  ],
+  "ttl_seconds": 3600,
+  "price_kopeks": 2490000,
+  "old_product_files_retained": false,
+  "old_cache_retained": false,
+  "payment_and_download_unchanged": true,
+  "config_change": "extend existing exact-current archive branch to P7; P1, P2 and P3 preserved",
+  "real_payment_tested": false,
+  "run_id": "41064018207",
+  "commit": "64826878fbf9338b3fdc613689759f21d8118571",
+  "owner_permission": "APPROVED",
+  "scope": "P7 current source/master/cache and page/catalog; existing current-archive builder extended to P7"
+}

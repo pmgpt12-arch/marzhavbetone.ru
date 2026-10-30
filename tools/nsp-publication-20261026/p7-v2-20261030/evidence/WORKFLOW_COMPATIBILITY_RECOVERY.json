@@ -1,0 +1,7 @@
+{
+  "class": "STALE_WORKFLOW_INSERTION_ANCHOR",
+  "root_cause": "Copied preceding product script expected p4 at allowlist end although p5 had already extended current workflow",
+  "rule": "Read current workflow; require exactly one matching insertion anchor and validate new action and branch allowlists before any commit. Preserve halt on mismatch.",
+  "gate": "First attempt stopped before mutation; corrected current p5 anchor, snapshot run41063596874 succeeded with exact commit6e8b7934f34e66740a3d6b26828aac928be78173",
+  "verified": true
+}
