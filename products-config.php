@@ -496,9 +496,11 @@ function mvb_build_product_zip(string $sku): ?string
         return $edition === null ? null : mvb_p1_edition_path($edition);
     }
     // P2 v13: only the owner-approved current archive. No historical versions.
-    if ($sku === 'p2') {
-        $approved = '42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da';
-        $master = PRODUCTS_DIR . '/P2-v13-current.zip';
+    if ($sku === 'p2' || $sku === 'p3') {
+        $approved = $sku === 'p2'
+            ? '42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da'
+            : '54854b79366598cba9680c5c71451220a5de45929ff33bcf42eba9b97dbcb92b';
+        $master = PRODUCTS_DIR . ($sku === 'p2' ? '/P2-v13-current.zip' : '/P3-v1-current.zip');
         if (!is_file($master) || !hash_equals($approved,(string)@hash_file('sha256',$master))) return null;
         if (is_file($zipPath) && hash_equals($approved,(string)@hash_file('sha256',$zipPath))) return $zipPath;
         $tmp = @tempnam(DELIVERY_DIR,'.p2-current-');
