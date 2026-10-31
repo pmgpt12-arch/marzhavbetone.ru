@@ -1,0 +1,137 @@
+{
+  "sku": "p13",
+  "edition": "P13-review-v1",
+  "status": "READY_FOR_OWNER_REVIEW",
+  "title": "Проверяем смету до подписания: выявляем затраты за счёт подрядчика",
+  "title_owner_approved": false,
+  "subtitle": "Проверка покрытия расходов, оценка влияния на прибыль и документы для согласования цены",
+  "source_commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
+  "source_path": "tools/nsp-next-corrections-20261022/candidate-archives/16-chto-v-smete-ne-oplatyat.zip",
+  "source_sha256": "f9787ace9311e84c9909fcbd136fd945e9727905f6f55cf31efb51b3e8a3d457",
+  "files": [
+    {
+      "name": "00-INSTRUKCIYA.pdf",
+      "sha256": "47f2658aabf988c06ac097b466d015111f2325fbf6b09117da3a6f6ba0b8c206",
+      "bytes": 60429,
+      "preview_first_page": 1,
+      "preview_last_page": 3
+    },
+    {
+      "name": "60-slovar-poley-smeta.docx",
+      "sha256": "f75e2da39fe995351c0f4cf528276dbf8db534d9cb267e14b55a606eb7bbf277",
+      "bytes": 41056,
+      "preview_first_page": 4,
+      "preview_last_page": 5
+    },
+    {
+      "name": "61-algoritm-proverki-smety.docx",
+      "sha256": "e0a1d2db738e28a6f86cd42f52e91816cc0ff3c9bc974c1c01050cac746057d0",
+      "bytes": 39848,
+      "preview_first_page": 6,
+      "preview_last_page": 7
+    },
+    {
+      "name": "62-chek-list-vypadayushchih-zatrat.docx",
+      "sha256": "638a0c4877b498e2b07a40cebf1ff6a2441df7b8b546e2b01acbff58abe2914f",
+      "bytes": 41615,
+      "preview_first_page": 8,
+      "preview_last_page": 10
+    },
+    {
+      "name": "63-reestr-zatrat-po-obektu.xlsx",
+      "sha256": "59d6357e48d9bbd909b24b7ebbde29248026b02f71ec8067fe712b62f9062b81",
+      "bytes": 18159,
+      "preview_first_page": 11,
+      "preview_last_page": 16
+    },
+    {
+      "name": "64-zapros-o-vklyuchenii-zatrat.docx",
+      "sha256": "4e79d014ee9893b6d07d1b9c3ed39091e872284ea5a584093808f9681b7df89a",
+      "bytes": 39307,
+      "preview_first_page": 17,
+      "preview_last_page": 18
+    },
+    {
+      "name": "65-protokol-raznoglasiy-po-smete.docx",
+      "sha256": "d484a05f6ed74e2e15c827120c57e67b78e935f1b2abfa9d01b36b66f2021921",
+      "bytes": 39024,
+      "preview_first_page": 19,
+      "preview_last_page": 19
+    },
+    {
+      "name": "66-pamyatka-nakladnye-i-smetnaya-pribyl.docx",
+      "sha256": "49212bd44276504ab2f496e0b4fe323109f8a948d5ec0af7eed509704a2b7f95",
+      "bytes": 39797,
+      "preview_first_page": 20,
+      "preview_last_page": 20
+    },
+    {
+      "name": "67-pamyatka-zimnee-udorozhanie-i-vzis.docx",
+      "sha256": "effdfdcad73e46f2813d01664dd2c4f81b9fea93e642ccc138bae0d2a7e74658",
+      "bytes": 39479,
+      "preview_first_page": 21,
+      "preview_last_page": 21
+    },
+    {
+      "name": "68-pamyatka-musor-transport-nepredvidennye.docx",
+      "sha256": "d0793bd7c893c1d4e77fe4b351ba068cf31cb26f0f18df9f2ac285f01c4a84c4",
+      "bytes": 39585,
+      "preview_first_page": 22,
+      "preview_last_page": 22
+    },
+    {
+      "name": "69-karta-primenimosti-norm-i-pokrytiya.docx",
+      "sha256": "23b2a5feb9282a9836c0426de3f8068883a35fffbb6bbc8e4695280e36faad08",
+      "bytes": 40173,
+      "preview_first_page": 23,
+      "preview_last_page": 24
+    },
+    {
+      "name": "70-tri-sluchaya-i-zapolnennyy-zapros.docx",
+      "sha256": "b7018c1d114d4a45077e8ffdf541394203644fdde795c227b14a42f2af6d1a68",
+      "bytes": 40886,
+      "preview_first_page": 25,
+      "preview_last_page": 27
+    }
+  ],
+  "file_count": 12,
+  "rendered_pages": 27,
+  "archive": {
+    "name": "P13_Proverka_smety_do_podpisaniya_v1.zip",
+    "sha256": "0b1f777b9fb65952cd219d5e61e6b8500cdcd5f1c0039ceba80e3c8f6e67f955",
+    "bytes": 448389
+  },
+  "preview": {
+    "name": "P13_predprosmotr_27str.pdf",
+    "sha256": "2c79e41528b562bf56b2cab769b04692457bceb51f26c61a6efc5fbcd8b2bd49",
+    "bytes": 606915
+  },
+  "checks": {
+    "accepted_scoped_checks": [
+      "pinned_source_exact_SHA",
+      "12_files_10_DOCX_1_XLSX_1_PDF_one_initial_instruction",
+      "all_Word_tables_9866_twips",
+      "no_edit_protection_tracked_changes_or_title_borders",
+      "all_64_65_fields_documented_in_60",
+      "62_questions_51_Excel_groups_explicit",
+      "16_formula_scenarios_artifact_tool",
+      "10_changed_input_Calc_cases_reopened",
+      "accepted_risk_remains_in_total_and_blanks_block_completion",
+      "Excel_validation_named_range_and_print_includes_K",
+      "independent_Decimal_three_cases_and_profit_reconciliation",
+      "before_signature_and_existing_contract_routes_distinguished",
+      "all_27_rendered_pages_visual_review",
+      "ZIP_CRC_and_each_member_SHA"
+    ],
+    "table_count": 19,
+    "table_width_twips": 9866,
+    "all_file_views_reviewed": true,
+    "legal_sources_checked": "2026-10-31",
+    "new_native_microsoft_office_run": false,
+    "full_qa_pass": false,
+    "production_changed": false,
+    "owner_edition_approval_pending": true
+  },
+  "release_allowed": false,
+  "remote_state_update": "Not performed: Desktop Commander monthly quota exhausted. Git upload blocked by automatic approval review. Private recovery bundle is the durable checkpoint."
+}
