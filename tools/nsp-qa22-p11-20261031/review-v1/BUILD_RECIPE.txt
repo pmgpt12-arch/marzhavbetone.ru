@@ -1,0 +1,14 @@
+P11-review-v1 / 31.10.2026
+Approved product title: Расчёты объектами недвижимости.
+Pinned source commit: 5361c80125107d9bb47d355bd5730f8b6e2da2c1
+Source: tools/nsp-next-corrections-20261022/p11-guide-r4-20261023/candidate-archives/13-raschet-metrami.zip
+Source SHA256 fca8d1c4d525dce05b0760367d0c9ae4dcd60085ace8f9d2b22d97c580415ac9
+Use CODEX_PRIMARY_RUNTIME_PYTHON. Create source/, candidate/, output/, internal/.
+Recover pinned source.zip and extract to source/. Preserve internal/LEGAL_SOURCES.json.
+Run sequentially: build_word.py; finalize_word.py; build_pdf.py; render_word.py.
+Review every final PNG and actual PDF page. Run package.py only after visual acceptance.
+Result: 10 files (7 editable Word, 3 PDF), 23 pages.
+Manual economic forms; no automatic calculation engine or Excel file.
+New native Microsoft Office run: false. FULL_QA_PASS: false.
+Historical source reviews of 52/56 do not extend to this revised content. This exact edition awaits owner acceptance.
+Recovery package stores output archive, preview, scripts and scoped evidence. Unzip the final archive to recreate candidate/ without duplicating its members in the recovery bundle.

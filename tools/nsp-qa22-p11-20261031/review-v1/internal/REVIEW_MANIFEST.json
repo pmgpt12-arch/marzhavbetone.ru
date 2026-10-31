@@ -1,0 +1,121 @@
+{
+  "sku": "p11",
+  "edition": "P11-review-v1",
+  "status": "READY_FOR_OWNER_REVIEW",
+  "title": "Расчёты объектами недвижимости",
+  "title_owner_approved": true,
+  "subtitle": "Проверка прав и дополнительных обязательств, сравнение с денежной оплатой и условия погашения долга за работы",
+  "source_commit": "5361c80125107d9bb47d355bd5730f8b6e2da2c1",
+  "source_path": "tools/nsp-next-corrections-20261022/p11-guide-r4-20261023/candidate-archives/13-raschet-metrami.zip",
+  "source_sha256": "fca8d1c4d525dce05b0760367d0c9ae4dcd60085ace8f9d2b22d97c580415ac9",
+  "files": [
+    {
+      "name": "00-INSTRUKCIYA.pdf",
+      "sha256": "c350e56f30074017c26b030e6a5f10962d41ea7f673550c23a14d3f8253a394e",
+      "bytes": 54994,
+      "preview_first_page": 1,
+      "preview_last_page": 2
+    },
+    {
+      "name": "50-slovar-poley-raschet-metrami.docx",
+      "sha256": "50fa67ee5ab9d68469dd14e6ac2e4b125c36ae981a9dbcbacc215da826982aa1",
+      "bytes": 40745,
+      "preview_first_page": 3,
+      "preview_last_page": 4
+    },
+    {
+      "name": "51-algoritm-raschet-metrami.pdf",
+      "sha256": "f7d49e008dd9f72caf04fc5334938700e731f57483d1f14d6aea51e596a719f8",
+      "bytes": 61808,
+      "preview_first_page": 5,
+      "preview_last_page": 7
+    },
+    {
+      "name": "52-chek-list-raschet-metrami.docx",
+      "sha256": "0c41634c782a50add4f4c763a1e2a9b1dc72d2b92d50925b54d526e41f45ef77",
+      "bytes": 41439,
+      "preview_first_page": 8,
+      "preview_last_page": 10
+    },
+    {
+      "name": "53-zapros-status-obekta.docx",
+      "sha256": "95fb81a9e4b9120c4e8d533199c775f0d9e32acf297de81a18a18b6a2d7bf085",
+      "bytes": 39068,
+      "preview_first_page": 11,
+      "preview_last_page": 11
+    },
+    {
+      "name": "54-zapros-sostoyanie-escrow.docx",
+      "sha256": "97fc611df3392f77ae7f8dbb0d09ac09bc275867a008c10d3f8da6473f3eb239",
+      "bytes": 39206,
+      "preview_first_page": 12,
+      "preview_last_page": 12
+    },
+    {
+      "name": "55-pamyatka-punkt-ustupki-escrow.pdf",
+      "sha256": "0af1ae21e27c7dfc937bc627b4b50f2f9b3e6244e5ccd802d4ec897e36ea4a7a",
+      "bytes": 57677,
+      "preview_first_page": 13,
+      "preview_last_page": 14
+    },
+    {
+      "name": "56-pervyy-den-do-podpisi.docx",
+      "sha256": "86fa2df042b336f13872323cad74bfcdc31ba78da4880265916300a94ce31a0d",
+      "bytes": 39115,
+      "preview_first_page": 15,
+      "preview_last_page": 15
+    },
+    {
+      "name": "57-karta-sdelki-i-raschet-vygody.docx",
+      "sha256": "442061a23711dc6a6ba395bd9601950264ff6bc1d1a7aa21cf63a6dd6419b4ef",
+      "bytes": 40642,
+      "preview_first_page": 16,
+      "preview_last_page": 18
+    },
+    {
+      "name": "58-tri-primera-i-zapolnennye-zaprosy.docx",
+      "sha256": "f8a59ebc8f4b3feb02a107401066fcad011a362475c948d6680857732d5c6bf0",
+      "bytes": 42392,
+      "preview_first_page": 19,
+      "preview_last_page": 23
+    }
+  ],
+  "file_count": 10,
+  "rendered_pages": 23,
+  "archive": {
+    "name": "P11_Raschety_obektami_nedvizhimosti_v1.zip",
+    "sha256": "ff6cf9a7056cab90ee1203a93ddb964e0308b8bd418394f4ebd672a9b8b860da",
+    "bytes": 426646
+  },
+  "preview": {
+    "name": "P11_predprosmotr_23str.pdf",
+    "sha256": "57ac5da7e3407273947553ff630148d5cc63da52823d48d8f39e03a5f0cbe65c",
+    "bytes": 462176
+  },
+  "checks": {
+    "accepted_scoped_checks": [
+      "exact_10_files_7_editable_Word_3_PDF_one_initial_instruction",
+      "all_tables_width_9866_twips",
+      "no_editing_protection_or_tracked_changes",
+      "independent_Decimal_two_economic_examples_and_financing_interest",
+      "cross_file_reconciliation_52_57_58",
+      "three_routes_and_unknown_funding_not_assumed_zero",
+      "statutory_escrow_rights_distinguished_from_unpaid_DDU_price",
+      "single_unresolved_legal_obstacle_gate",
+      "three_filled_cases_two_filled_requests_no_unfilled_fields",
+      "all_23_final_pages_rendered_and_visually_reviewed",
+      "archive_CRC_exact_composition_and_each_member_SHA"
+    ],
+    "table_count": 25,
+    "table_width_twips": 9866,
+    "all_file_views_reviewed": true,
+    "legal_sources_checked": "2026-10-31",
+    "new_native_microsoft_office_run": false,
+    "full_qa_pass": false,
+    "production_changed": false,
+    "manual_calculation_no_automatic_formulas": true,
+    "owner_edition_approval_pending": true
+  },
+  "release_allowed": false,
+  "legacy_52_56": "Previously reviewed source retained by pinned archive; current content and layout revised and require owner acceptance of this exact edition"
+}
