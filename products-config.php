@@ -362,7 +362,7 @@ function mvb_products(): array
         // смежных запросах сделки («переуступка дду»), ядро узкое.
         // Цена — решение decision-price-p11-001 (ai-business-os).
         'p11' => [
-            'name'  => 'Расчёты в неденежной форме: жилые и офисные помещения, машино-места',
+            'name'  => 'Расчёты объектами недвижимости',
             'price' => 2490000,
             'dir'   => '13-raschet-metrami',
             'zip'   => '13-raschet-metrami.zip',
@@ -496,7 +496,7 @@ function mvb_build_product_zip(string $sku): ?string
         return $edition === null ? null : mvb_p1_edition_path($edition);
     }
     // P2 v13: only the owner-approved current archive. No historical versions.
-    if ($sku === 'p2' || $sku === 'p3' || $sku === 'p4' || $sku === 'p5' || $sku === 'p7' || $sku === 'p9' || $sku === 'p10') {
+    if ($sku === 'p2' || $sku === 'p3' || $sku === 'p4' || $sku === 'p5' || $sku === 'p7' || $sku === 'p9' || $sku === 'p10' || $sku === 'p11') {
         $current = [
             'p2' => ['42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da', '/P2-v13-current.zip'],
             'p3' => ['54854b79366598cba9680c5c71451220a5de45929ff33bcf42eba9b97dbcb92b', '/P3-v1-current.zip'],
@@ -505,6 +505,7 @@ function mvb_build_product_zip(string $sku): ?string
             'p7' => ['99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24', '/P7-v2-current.zip'],
             'p9' => ['34bf03bcd3ed2e31d731dd8ac4c316cf9f94a8bb5dde1e4c9fc1aa3a7b7b23d9', '/P9-v1-current.zip'],
             'p10' => ['90f9b78ba53e1fb59d751e0972594f4e7135e599946935a3c32d00b3fa9d2594', '/P10-v1-current.zip'],
+            'p11' => ['ff6cf9a7056cab90ee1203a93ddb964e0308b8bd418394f4ebd672a9b8b860da', '/P11-v1-current.zip'],
         ];
         [$approved, $currentMaster] = $current[$sku];
         $master = PRODUCTS_DIR . $currentMaster;

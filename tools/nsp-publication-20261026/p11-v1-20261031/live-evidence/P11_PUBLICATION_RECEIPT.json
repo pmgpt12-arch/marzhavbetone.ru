@@ -1,0 +1,31 @@
+{
+  "status": "P11_REVIEW_V1_DEPLOYED_CURRENT_ARCHIVE_AND_HTTPS_VERIFIED",
+  "edition": "P11-review-v1",
+  "archive_sha256": "ff6cf9a7056cab90ee1203a93ddb964e0308b8bd418394f4ebd672a9b8b860da",
+  "file_count": 10,
+  "source_gate": "PASS",
+  "actual_server_builder_bytes": "EXACT_MATCH",
+  "public_pages": [
+    {
+      "path": "products/p11-raschet-metrami.html",
+      "status": 200,
+      "sha256": "ea73383424659112a0ef1a2823f29852246cfb5fe72297da53d4a687f2cba2b9"
+    },
+    {
+      "path": "katalog.html",
+      "status": 200,
+      "sha256": "12fd0d33a663fdfe98070062691c765566b2c87126044c2ef9a49cf033b34b7d"
+    }
+  ],
+  "ttl_seconds": 3600,
+  "price_kopeks": 2490000,
+  "old_product_files_retained": false,
+  "old_cache_retained": false,
+  "payment_and_download_unchanged": true,
+  "config_change": "extend existing exact-current archive branch to P11; P1, P2 and P3 preserved",
+  "real_payment_tested": false,
+  "run_id": "41166533577",
+  "commit": "becad6420306d616727dee1d3d9edd4df62b6363",
+  "owner_permission": "APPROVED",
+  "scope": "P11 current source/master/cache and page/catalog; existing current-archive builder extended to P11"
+}
