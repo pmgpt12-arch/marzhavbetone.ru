@@ -375,7 +375,7 @@ function mvb_products(): array
         // смете не оплатят». Цена по нижней ступени линейки, как у p7, p8 и
         // p11: тот же покупатель и тот же момент «до подписания».
         'p13' => [
-            'name'  => 'Система проверки сметной документации и выявления неоплачиваемых затрат',
+            'name'  => 'Проверяем смету до подписания: выявляем затраты за счёт подрядчика',
             'price' => 1790000,
             'dir'   => '16-chto-v-smete-ne-oplatyat',
             'zip'   => '16-chto-v-smete-ne-oplatyat.zip',
@@ -496,7 +496,7 @@ function mvb_build_product_zip(string $sku): ?string
         return $edition === null ? null : mvb_p1_edition_path($edition);
     }
     // P2 v13: only the owner-approved current archive. No historical versions.
-    if ($sku === 'p2' || $sku === 'p3' || $sku === 'p4' || $sku === 'p5' || $sku === 'p7' || $sku === 'p9' || $sku === 'p10' || $sku === 'p11') {
+    if ($sku === 'p2' || $sku === 'p3' || $sku === 'p4' || $sku === 'p5' || $sku === 'p7' || $sku === 'p9' || $sku === 'p10' || $sku === 'p11' || $sku === 'p13') {
         $current = [
             'p2' => ['42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da', '/P2-v13-current.zip'],
             'p3' => ['54854b79366598cba9680c5c71451220a5de45929ff33bcf42eba9b97dbcb92b', '/P3-v1-current.zip'],
@@ -506,6 +506,7 @@ function mvb_build_product_zip(string $sku): ?string
             'p9' => ['34bf03bcd3ed2e31d731dd8ac4c316cf9f94a8bb5dde1e4c9fc1aa3a7b7b23d9', '/P9-v1-current.zip'],
             'p10' => ['90f9b78ba53e1fb59d751e0972594f4e7135e599946935a3c32d00b3fa9d2594', '/P10-v1-current.zip'],
             'p11' => ['ff6cf9a7056cab90ee1203a93ddb964e0308b8bd418394f4ebd672a9b8b860da', '/P11-v1-current.zip'],
+            'p13' => ['0b1f777b9fb65952cd219d5e61e6b8500cdcd5f1c0039ceba80e3c8f6e67f955', '/P13-v1-current.zip'],
         ];
         [$approved, $currentMaster] = $current[$sku];
         $master = PRODUCTS_DIR . $currentMaster;
@@ -906,7 +907,7 @@ function mvb_delivery_email(array $order, array $links): string
         return $body;
     }
     // Exact accepted entry file for each remaining product.
-    $acceptedStarts = ['p1' => '00-INSTRUKCIYA.pdf', 'p2' => '00-INSTRUKCIYA.pdf', 'p4' => '00-START-HERE.txt', 'p7' => '00-INSTRUKCIYA.pdf', 'p8' => '00-START-HERE.txt', 'p9' => '00-START-HERE.txt', 'p10' => '00-START-HERE.pdf', 'p13' => '00-START-HERE.pdf'];
+    $acceptedStarts = ['p1' => '00-INSTRUKCIYA.pdf', 'p2' => '00-INSTRUKCIYA.pdf', 'p4' => '00-START-HERE.txt', 'p7' => '00-INSTRUKCIYA.pdf', 'p8' => '00-START-HERE.txt', 'p9' => '00-START-HERE.txt', 'p10' => '00-START-HERE.pdf', 'p13' => '00-INSTRUKCIYA.pdf'];
     if (count($links) === 1 && isset($acceptedStarts[$links[0]["sku"] ?? ""])) {
         $body .= "Порядок действий:\n1. Распакуйте архив и откройте " . $acceptedStarts[$links[0]["sku"]] . ".\n2. Выберите порядок действий по вашей ситуации.\n3. Заполните документы по договору и материалам объекта.\n4. Проверьте реквизиты, расчёты, полномочия и подписи перед направлением.\n\nВопросы: " . ADMIN_EMAIL . "\n\nНа стороне подрядчика\n";
         return $body;

@@ -1,0 +1,31 @@
+{
+  "status": "P13_REVIEW_V1_DEPLOYED_CURRENT_ARCHIVE_AND_HTTPS_VERIFIED",
+  "edition": "P13-review-v1",
+  "archive_sha256": "0b1f777b9fb65952cd219d5e61e6b8500cdcd5f1c0039ceba80e3c8f6e67f955",
+  "file_count": 12,
+  "source_gate": "PASS",
+  "actual_server_builder_bytes": "EXACT_MATCH",
+  "public_pages": [
+    {
+      "path": "products/p13-chto-v-smete-ne-oplatyat.html",
+      "status": 200,
+      "sha256": "7761595671292456f6783bd3cceb937f2f043b7d56e45a378c8be63a07e95964"
+    },
+    {
+      "path": "katalog.html",
+      "status": 200,
+      "sha256": "4b432849f97e50314a358896504ce52d4c58569b745e3638adbd59ca39f7a6dc"
+    }
+  ],
+  "ttl_seconds": 3600,
+  "price_kopeks": 1790000,
+  "old_product_files_retained": false,
+  "old_cache_retained": false,
+  "payment_and_download_unchanged": true,
+  "config_change": "extend existing exact-current archive branch to P13; P1, P2 and P3 preserved",
+  "real_payment_tested": false,
+  "run_id": "41170040340",
+  "commit": "74ead286306bc62e7d5245c7d5f8ca353c91ef26",
+  "owner_permission": "APPROVED",
+  "scope": "P13 current source/master/cache and page/catalog; existing current-archive builder extended to P13"
+}
