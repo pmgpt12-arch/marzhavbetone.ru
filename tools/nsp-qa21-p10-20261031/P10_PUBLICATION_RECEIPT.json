@@ -1,0 +1,31 @@
+{
+  "status": "P10_REVIEW_V1_DEPLOYED_CURRENT_ARCHIVE_AND_HTTPS_VERIFIED",
+  "edition": "P10-review-v1",
+  "archive_sha256": "90f9b78ba53e1fb59d751e0972594f4e7135e599946935a3c32d00b3fa9d2594",
+  "file_count": 10,
+  "source_gate": "PASS",
+  "actual_server_builder_bytes": "EXACT_MATCH",
+  "public_pages": [
+    {
+      "path": "products/p10-otvet-na-pretenziyu.html",
+      "status": 200,
+      "sha256": "59da61e81f54b274d3ecfaabea486e95567965a0e6343fa71eb7a59a730fa9e2"
+    },
+    {
+      "path": "katalog.html",
+      "status": 200,
+      "sha256": "7644dcd8c922fec57b28f357bb396743ccf2c935fdef8a6ac7cf32765f6bfb3c"
+    }
+  ],
+  "ttl_seconds": 3600,
+  "price_kopeks": 1790000,
+  "old_product_files_retained": false,
+  "old_cache_retained": false,
+  "payment_and_download_unchanged": true,
+  "config_change": "extend existing exact-current archive branch to P10; P1, P2 and P3 preserved",
+  "real_payment_tested": false,
+  "run_id": "41166287717",
+  "commit": "1daf372fae69ec596cc6ee9c5def08720bb64170",
+  "owner_permission": "APPROVED",
+  "scope": "P10 current source/master/cache and page/catalog; existing current-archive builder extended to P10"
+}
