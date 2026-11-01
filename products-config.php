@@ -907,7 +907,7 @@ function mvb_delivery_email(array $order, array $links): string
         return $body;
     }
     // Exact accepted entry file for each remaining product.
-    $acceptedStarts = ['p1' => '00-INSTRUKCIYA.pdf', 'p2' => '00-INSTRUKCIYA.pdf', 'p4' => '00-START-HERE.txt', 'p7' => '00-INSTRUKCIYA.pdf', 'p8' => '00-START-HERE.txt', 'p9' => '00-START-HERE.txt', 'p10' => '00-START-HERE.pdf', 'p13' => '00-INSTRUKCIYA.pdf'];
+    $acceptedStarts = ['p1' => '00-INSTRUKCIYA.pdf', 'p2' => '00-INSTRUKCIYA.pdf', 'p4' => '00-INSTRUKCIYA.pdf', 'p5' => '00-START-HERE.pdf', 'p7' => '00-INSTRUKCIYA.pdf', 'p8' => '00-START-HERE.txt', 'p9' => '00-START-HERE.txt', 'p10' => '00-START-HERE.pdf', 'p13' => '00-INSTRUKCIYA.pdf'];
     if (count($links) === 1 && isset($acceptedStarts[$links[0]["sku"] ?? ""])) {
         $body .= "Порядок действий:\n1. Распакуйте архив и откройте " . $acceptedStarts[$links[0]["sku"]] . ".\n2. Выберите порядок действий по вашей ситуации.\n3. Заполните документы по договору и материалам объекта.\n4. Проверьте реквизиты, расчёты, полномочия и подписи перед направлением.\n\nВопросы: " . ADMIN_EMAIL . "\n\nНа стороне подрядчика\n";
         return $body;
