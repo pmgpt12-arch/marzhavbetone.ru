@@ -73,7 +73,9 @@ jobs:
       # Снимок агрегированный: ни адресов, ни телефонов в нём нет, и content/
       # не деплоится — числа остаются внутренними.
       - name: Commit snapshot
-        if: steps.check.outputs.enabled == 'true' && inputs.write != false
+        # schedule has no inputs.write; an absent input is not a user opt-out.
+        # The writer above defaults to --write for schedule, so this gate must agree.
+        if: steps.check.outputs.enabled == 'true' && (github.event_name == 'schedule' || inputs.write == true)
         run: |
           if [ -z "$(git status --porcelain content/metrics)" ]; then
             echo "::notice::Снимок не изменился — коммитить нечего."
