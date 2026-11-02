@@ -954,7 +954,7 @@ jobs:
         run: rm -f "$REMAINING_SSH_DIR/deploy_key" "$REMAINING_SSH_DIR/known_hosts"
 
   free11_readonly:
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true && inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_only != true && inputs.t3_only != true && inputs.t2_link_probe != true && inputs.t3_link_probe != true && inputs.t2_review_export != true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true && inputs.free11_release != true && inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_only != true && inputs.t3_only != true && inputs.t2_link_probe != true && inputs.t3_link_probe != true && inputs.t2_review_export != true }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
