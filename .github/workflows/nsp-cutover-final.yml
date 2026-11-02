@@ -23,7 +23,7 @@ jobs:
       - name: Read explicit action and configure bounded SSH
         run: |
           set -euo pipefail
-          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","p4p5-inspect"]; print(x["action"])')
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","p4p5-inspect","p4p5-preflight","p4p5-publish"]; print(x["action"])')
           echo "NSP_ACTION=$action" >> "$GITHUB_ENV"
           test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
           [[ "$PORT" =~ ^[0-9]+$ ]]
@@ -86,6 +86,9 @@ jobs:
           assert len(d['sku']['p4']['files'])>=26 and len(d['sku']['p5']['files'])>=30
           print('P4P5_LIVE_READONLY_INSPECTION_PASS')
           PY
+      - name: Publish P4v3 and P5v2 via SHA-pinned transactional runner
+        if: env.NSP_ACTION == 'p4p5-preflight' || env.NSP_ACTION == 'p4p5-publish'
+        run: python3 tools/nsp-final/p4p5-20261102/action.py
       - name: Targeted dry-run or publication
         if: env.NSP_ACTION == 'dry-run' || env.NSP_ACTION == 'publish'
         run: python3 tools/nsp-final/release.py "$NSP_ACTION"
