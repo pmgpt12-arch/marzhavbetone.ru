@@ -219,6 +219,25 @@ const СЦЕНАРИИ = сценарии();
   if (беды.length) throw new Error('\n         ' + беды.join('\n         '));
 });
 
+проверка('T2/T3 исключены из новых рекомендаций, но основные P4/P5/P3 доступны', () => {
+  const expected = { 'S-5': 'p4', 'S-2': 'p3', 'S-4': 'p5' };
+  for (const [id, sku] of Object.entries(expected)) {
+    const scenario = СЦЕНАРИИ.find(s => s.id === id);
+    if (!scenario) throw new Error(id + ': сценарий пропал');
+    равно(scenario.entry, null, id + ': снятая входная ступень');
+    равно(sku_из_адреса(scenario.core.url), sku, id + ': оставлен нужный комплект');
+    const result = отрендерить(scenario);
+    if (!result.includes(scenario.core.url)) throw new Error(id + ': основной продукт не виден');
+    if (/\/products\/t[23]-/.test(result)) throw new Error(id + ': старая T2/T3 ссылка в результате');
+  }
+  for (const scenario of СЦЕНАРИИ) {
+    for (const key of ['entry', 'core']) {
+      const url = scenario[key]?.url || '';
+      if (/\/products\/t[23]-/.test(url)) throw new Error(scenario.id + ': T2/T3 остались в ' + key);
+    }
+  }
+});
+
 проверка('S-0/S-1 ведут в принятый P1 с учётом консолидации T1', () => {
   for (const id of ['S-0', 'S-1']) {
     const s = СЦЕНАРИИ.find(x => x.id === id);
