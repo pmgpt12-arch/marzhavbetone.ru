@@ -1,0 +1,96 @@
+{
+  "status": "22_CURRENT_ARCHIVES_SAVED_AND_VERIFIED",
+  "source_manifest_sha256": "a4f92b6f9dd1c022228b37c0db6de9abfd0ed5703566067ca911805ccc903730",
+  "source_hdd_path": "/mnt/server-data/nsp/accepted-products-2026-11-02/",
+  "free_qa_accepted": 11,
+  "free_production_sha_verified": 11,
+  "free_postdeploy_run_id": 41437209046,
+  "paid_owner_release_receipts": 11,
+  "paid_archive_count_verified": 11,
+  "paid_list": [
+    {
+      "sku": "P1",
+      "edition": "P1-layout-v1",
+      "member_count": 18,
+      "sha256": "99df41c33e25ce41b61b8e04e22e27871d08a2c383ddae234119a29df5f29ada",
+      "release_run": 41002994365
+    },
+    {
+      "sku": "P2",
+      "edition": "P2-v13",
+      "member_count": 13,
+      "sha256": "42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da",
+      "release_run": 40903655645
+    },
+    {
+      "sku": "P3",
+      "edition": "P3-layout-v1",
+      "member_count": 11,
+      "sha256": "54854b79366598cba9680c5c71451220a5de45929ff33bcf42eba9b97dbcb92b",
+      "release_run": 41009592056
+    },
+    {
+      "sku": "P4",
+      "edition": "P4-v3",
+      "member_count": 30,
+      "sha256": "bcba234220c0f52e5a86b5ba3c70c527d086146301030d1f32197e9fa6e264fc",
+      "release_run": 41416994807
+    },
+    {
+      "sku": "P5",
+      "edition": "P5-v2",
+      "member_count": 30,
+      "sha256": "25ce378ee8fd84079b0edd2d57d816a2aaa77585a2a7e7172666e1f846f7dc05",
+      "release_run": 41416994807
+    },
+    {
+      "sku": "P7",
+      "edition": "P7-review-v2",
+      "member_count": 13,
+      "sha256": "99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24",
+      "release_run": 41064018207
+    },
+    {
+      "sku": "P8",
+      "edition": "P8-review-v1",
+      "member_count": 12,
+      "sha256": "31b4e22e5e3e006b0e1c5a1d40892efb2eff2cc8a582f4baa8cbbb2232e865aa",
+      "release_run": 41182080922
+    },
+    {
+      "sku": "P9",
+      "edition": "P9-review-v1",
+      "member_count": 12,
+      "sha256": "34bf03bcd3ed2e31d731dd8ac4c316cf9f94a8bb5dde1e4c9fc1aa3a7b7b23d9",
+      "release_run": 41095360862
+    },
+    {
+      "sku": "P10",
+      "edition": "P10-review-v1",
+      "member_count": 10,
+      "sha256": "90f9b78ba53e1fb59d751e0972594f4e7135e599946935a3c32d00b3fa9d2594",
+      "release_run": 41166287717
+    },
+    {
+      "sku": "P11",
+      "edition": "P11-review-v1",
+      "member_count": 10,
+      "sha256": "ff6cf9a7056cab90ee1203a93ddb964e0308b8bd418394f4ebd672a9b8b860da",
+      "release_run": 41166533577
+    },
+    {
+      "sku": "P13",
+      "edition": "P13-review-v1",
+      "member_count": 12,
+      "sha256": "0b1f777b9fb65952cd219d5e61e6b8500cdcd5f1c0039ceba80e3c8f6e67f955",
+      "release_run": 41170040340
+    }
+  ],
+  "not_confirmed": [
+    "all current paid editions FULL_QA_PASS",
+    "11 real paid checkout/email/delivery E2E",
+    "any new product publication in this audit"
+  ],
+  "actions_taken": "Only read-only verification and archival copying. No production, payment, QA13/QA14 or protected source modified.",
+  "next_task": "Review the remaining edition-specific legal/content/visual/native gates without repeating previously accepted QA; do not run deferred FREE-to-PAID optimization yet."
+}
