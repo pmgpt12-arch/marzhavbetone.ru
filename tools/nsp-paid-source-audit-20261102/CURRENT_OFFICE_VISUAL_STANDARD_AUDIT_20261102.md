@@ -48,3 +48,25 @@
 **Ограничения:** проверены OOXML, ZIP CRC, оформительские свойства и формульные адреса, но не проведён новый full native Office visual QA. Никакие текущие ZIP, цены, SKU, сайт и платёжный контур не менялись. Инструментальная среда Desktop Commander `db` при последней проверке 03.11 оказалась offline; новый файл Excel в этом этапе не исправлен.
 
 Локальные machine-readable evidence (созданы в предыдущем этапе): `CURRENT_DOCX_TABLE_GEOMETRY_AUDIT_20261102.json` и `CURRENT_OFFICE_PALETTE_FONT_EXCEL_AUDIT_20261102.json` в `/home/denis/projects/nsp-paid-source-audit-20261102/tools/nsp-paid-source-audit-20261102/`.
+
+
+## 03.11.2026 — targeted deterministic P4/P7 color gate (new evidence)
+
+Prior read-only XLSX OOXML sample recorded the legacy orange `#E85D22` as *assigned cell-fill styles* in exactly seven scoped workbooks. Breakdown by workbook (counts refer to styled XML cells, **not** verified native Excel-visible cells):
+
+| SKU | Workbook | Assigned orange cells |
+|---|---|---:|
+| P4 | 35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx | 11 |
+| P4 | 36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx | 10 |
+| P4 | 37-reestr-pasportov.xlsx | 10 |
+| P4 | 38-reestr-id.xlsx | 17 |
+| P7 | 02-perechen-rabot.xlsx | 9 |
+| P7 | 03-kalendarnyy-plan.xlsx | 9 |
+| P7 | 05-grafik-platezhey.xlsx | 10 |
+| **Total** | **7 workbooks** | **76 cells** |
+
+A separate **read-only** Python stdlib OOXML checker `nsp_p4_p7_excel_palette_gate.py` was created and tested in the conversation artifact space, SHA-256 `02da173fd47834a7ea0215a6df1beb50bd000ba19e681a0381f5d3f3a78341fd`. Local acceptance: `--selftest` **PASS** (assigned style, unassigned style, neutral substitution, wrong source archive SHA, exact member path) and Python compilation **PASS**.
+
+The checker pins the exact **P4 v3** archive SHA `bcba234220c0f52e5a86b5ba3c70c527d086146301030d1f32197e9fa6e264fc` and **P7** archive SHA `99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24`. It counts only *actually assigned* solid-fill `cellXfs` styles, not unused palette definitions. It does **not** verify conditional formatting, actual Excel rendering, formulas or production, and was **not** run against current exact archives in this turn because `ai-workstation` was OFFLINE in Desktop Commander `db`.
+
+**Next gate:** after the existing server connection is restored, run this one tool against the two SHA-pinned current archives, then the native Microsoft Excel visual check for **P4/35A** only. If visibly off-standard, prepare an isolated style-only candidate; exact formula, cell-value, validation and print-feature equality and final native preview must pass before nomination. Do not modify published ZIP/SKU or release from a static result alone.
