@@ -33,8 +33,15 @@
         "native": "CURRENT_SHA_NATIVE_395_CALCULATOR_NOT_EVIDENCED",
         "legal": "PRIOR_LEGAL_WORK_EXISTS; CURRENT_ALL_MEMBER_LEGAL_PASS_NOT_ESTABLISHED",
         "calc": "14-raschet-procentov-395-gk.xlsx current member SHA 5deb085cd3d7b2d248fd52db8e18d0a6bc29f4b6b8838ea6e203463fd5b9ac30; historical QA13 20-file scenario blockers do not automatically apply",
-        "action": "Find per-SHA calculator calculation receipts; if missing, one isolated rate-change/partial-payment/leap-year/rounding/termination test, then decide whether remediation needed",
-        "source": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/qa/nsp-qa19-p8-20261030/tools/nsp-publication-20261026/p1-v1-20261030/current-only/release.json"
+        "action": "First compare released 5deb085c... XLSX with natively accepted d29a0fd... by exact OOXML subpart/formula/content deltas; if calculation logic and native-sensitive parts unchanged, inherit the bounded 6/6 native evidence only for unchanged scope; otherwise run one isolated targeted 395 rate/partial/period test after tool gate.",
+        "source": "https://github.com/pmgpt12-arch/marzhavbetone.ru/blob/qa/nsp-qa19-p8-20261030/tools/nsp-publication-20261026/p1-v1-20261030/current-only/release.json",
+        "previous_native_candidate": {
+          "path": "tools/candidates/p1-395-owner-editorial-20261013/14-raschet-procentov-395-gk.xlsx",
+          "sha256": "d29a0fd17baa090d6d98443c984cf33109316ffda8a346e8ea5a7e74ae85b52d",
+          "native_excel_open_and_export": "6/6 PASS",
+          "native_receipt_source": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/610#issuecomment-6148534251",
+          "applicability_to_current_archive": "NOT_PROVEN — published 5deb085c... is a different member SHA; no member-by-member delta evidence located in reviewed issues #291/#597 and PR #610"
+        }
       },
       {
         "sku": "P2",
