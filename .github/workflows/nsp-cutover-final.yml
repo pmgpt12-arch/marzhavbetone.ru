@@ -23,7 +23,7 @@ jobs:
       - name: Read explicit action and configure bounded SSH
         run: |
           set -euo pipefail
-          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish"]; print(x["action"])')
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","p4p5-inspect"]; print(x["action"])')
           echo "NSP_ACTION=$action" >> "$GITHUB_ENV"
           test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
           [[ "$PORT" =~ ^[0-9]+$ ]]
@@ -72,6 +72,20 @@ jobs:
           git commit -m 'Preserve current NSP public production static source [skip deploy]'
           git push origin HEAD:fix/nsp-cutover-final-20261021
           git rev-parse HEAD > /tmp/nsp-final-evidence/snapshot-commit.txt
+      - name: Inspect private P4/P5 and legacy SKU hashes (READ ONLY)
+        if: env.NSP_ACTION == 'p4p5-inspect'
+        run: |
+          set -euo pipefail
+          timeout 60s ssh -p "$PORT" -i ~/.ssh/nsp_final_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 "$SSH_USER@$HOST" 'php /dev/stdin "$HOME/www/nastoronepodryadchika.ru"' < tools/nsp-qa-t2t3-consolidation-20261101/READONLY_RELEASE_PREFLIGHT.php > /tmp/nsp-final-evidence/p4p5-private-inspection.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('/tmp/nsp-final-evidence/p4p5-private-inspection.json'))
+          assert d['read_only'] is True and d['ttl']==3600
+          assert set(d['sku'])=={'p4','p5','t2','t3'}
+          assert {k:d['sku'][k]['price'] for k in d['sku']}=={'p4':2490000,'p5':2990000,'t2':990000,'t3':1490000}
+          assert len(d['sku']['p4']['files'])>=26 and len(d['sku']['p5']['files'])>=30
+          print('P4P5_LIVE_READONLY_INSPECTION_PASS')
+          PY
       - name: Targeted dry-run or publication
         if: env.NSP_ACTION != 'snapshot'
         run: python3 tools/nsp-final/release.py "$NSP_ACTION"
