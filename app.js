@@ -32,7 +32,7 @@ const cartCheckout = document.querySelector('#cart-checkout');
 let cart = [];
 try { cart = JSON.parse(localStorage.getItem('marzhavbetone-cart') || '[]'); } catch (_) { cart = []; }
 
-function money(value) { return new Intl.NumberFormat('ru-RU').format(value / 100) + ' ₽'; }
+function money(value) { return new Intl.NumberFormat('ru-RU').format(value / 100) + '\u00a0₽'; }
 function saveCart() { localStorage.setItem('marzhavbetone-cart', JSON.stringify(cart)); }
 function openCart() {
   cartPanel.hidden = false;
@@ -83,151 +83,80 @@ document.querySelectorAll('.add-to-cart').forEach(button => button.addEventListe
 }));
 
 // ===================== ОПЛАТА ЧЕРЕЗ ЮКАССА =====================
+// Native modal semantics keep focus inside checkout and restore its opener.
+let checkoutOpener = null;
 function createCheckoutModal() {
   if (document.getElementById('checkout-modal')) return;
-  
-  const modal = document.createElement('div');
+  const modal = document.createElement('dialog');
   modal.id = 'checkout-modal';
+  modal.setAttribute('aria-labelledby', 'checkout-title');
   modal.innerHTML = `
-    <div class="checkout-backdrop"></div>
     <div class="checkout-panel">
-      <div class="checkout-head">
-        <h2>Оформление заказа</h2>
-        <button type="button" class="checkout-close" aria-label="Закрыть">×</button>
-      </div>
+      <div class="checkout-head"><h2 id="checkout-title">Оформление заказа</h2><button type="button" class="checkout-close" aria-label="Закрыть оформление">×</button></div>
       <div class="checkout-body">
-        <div id="checkout-items"></div>
-        <div class="checkout-total" id="checkout-total"></div>
+        <div id="checkout-items"></div><div class="checkout-total" id="checkout-total"></div>
         <form id="checkout-form">
-          <label class="checkout-field">
-            <span>Email <small>(для отправки документов)</small></span>
-            <input type="email" name="email" placeholder="your@email.com" required>
-          </label>
-          <label class="checkout-field">
-            <span>Телефон или Telegram</span>
-            <input type="text" name="phone" placeholder="+7 900 000-00-00 или @username">
-          </label>
-          <label class="checkout-consent">
-            <input type="checkbox" name="consent" value="yes" required>
-            Принимаю <a href="/offer.html" target="_blank">условия оферты</a> и соглашаюсь с <a href="/privacy.html" target="_blank">обработкой персональных данных</a>
-          </label>
+          <label class="checkout-field"><span>Email для получения документов</span><input type="email" name="email" autocomplete="email" placeholder="your@email.com" required autofocus></label>
+          <fieldset class="checkout-optional"><legend>Дополнительный контакт · необязательно</legend><p>Удобный способ связаться с вами по заказу.</p><label class="checkout-field"><span>Telegram или телефон</span><input type="text" name="phone" maxlength="120" placeholder="@username или +7 900 000-00-00"></label></fieldset>
+          <label class="checkout-consent"><input type="checkbox" name="consent" value="yes" required><span>Принимаю <a href="/offer.html" target="_blank" rel="noopener">условия оферты</a> и соглашаюсь с <a href="/privacy.html" target="_blank" rel="noopener">обработкой персональных данных</a>.</span></label>
           <button type="submit" class="button checkout-submit">Перейти к оплате</button>
-          <p class="checkout-fine">🔒 Оплата через защищённый шлюз ЮКасса. Данные карты не сохраняются на нашем сервере.</p>
-          <p id="checkout-error" class="checkout-error" role="alert"></p>
+          <p class="checkout-fine">Оплата на защищённой странице ЮKassa.</p><p id="checkout-error" class="checkout-error" role="alert"></p>
         </form>
       </div>
-      <div class="checkout-loading" id="checkout-loading" hidden>
-        <div class="spinner"></div>
-        <p>Создаём платёж...</p>
-      </div>
-    </div>
-  `;
+      <div class="checkout-loading" id="checkout-loading" hidden><div class="spinner" aria-hidden="true"></div><p role="status">Создаём платёж…</p></div>
+    </div>`;
   document.body.appendChild(modal);
-  
-  // Стили
   const style = document.createElement('style');
   style.textContent = `
-    #checkout-modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center}
-    #checkout-modal.active{display:flex}
-    .checkout-backdrop{position:absolute;inset:0;background:rgba(36,38,41,.6)}
-    .checkout-panel{position:relative;background:#fff;border-radius:16px;width:min(480px,92vw);max-height:90vh;overflow:auto;padding:28px;box-shadow:0 24px 80px rgba(0,0,0,.25)}
-    .checkout-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
-    .checkout-head h2{margin:0;font-size:22px}
-    .checkout-close{border:0;background:none;font-size:32px;line-height:1;cursor:pointer;color:#65676a}
-    .checkout-item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee;font-size:15px}
-    .checkout-item strong{font-weight:600}
-    .checkout-total{display:flex;justify-content:space-between;padding:16px 0;margin-bottom:16px;font-size:18px;font-weight:700;border-top:2px solid #242629}
-    .checkout-field{display:block;margin-bottom:16px}
-    .checkout-field span{display:block;margin-bottom:6px;font-size:14px;font-weight:500}
-    .checkout-field input{width:100%;padding:12px 14px;border:1px solid #c8c3b9;border-radius:8px;font-size:15px;font-family:inherit;box-sizing:border-box}
-    .checkout-field input:focus{outline:none;border-color:#242629}
-    .checkout-consent{display:flex;align-items:flex-start;gap:8px;margin-bottom:20px;font-size:13px;color:#65676a}
-    .checkout-consent input{margin-top:2px}
-    .checkout-submit{width:100%;padding:14px;font-size:16px}
-    .checkout-fine{margin-top:12px;font-size:12px;color:#65676a;text-align:center}
-    .checkout-error{color:#c62828;font-size:14px;margin-top:8px;text-align:center}
-    .checkout-loading[hidden]{display:none}
-    .checkout-loading{position:absolute;inset:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:16px}
-    .checkout-loading .spinner{width:40px;height:40px;border:3px solid #e0dcd3;border-top-color:#242629;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:16px}
-    @keyframes spin{to{transform:rotate(360deg)}}
-  `;
+    #checkout-modal{position:fixed;inset:0;margin:auto;padding:0;border:0;border-radius:12px;width:min(540px,calc(100vw - 32px));max-width:none;max-height:calc(100dvh - 32px);height:fit-content;overflow:auto;background:#fff;color:#24292f;box-shadow:0 24px 80px #0004}
+    #checkout-modal:not([open]){display:none}#checkout-modal::backdrop{background:#24292fb3}
+    #checkout-modal *{box-sizing:border-box}.checkout-panel{position:relative;padding:clamp(20px,4vw,28px);min-width:0}
+    .checkout-head{display:flex;gap:16px;justify-content:space-between;align-items:flex-start;margin-bottom:16px}.checkout-head h2{margin:0;font-size:22px;line-height:1.25}.checkout-close{flex:0 0 40px;width:40px;height:40px;border:0;background:none;font-size:32px;line-height:1;cursor:pointer;color:#4b535b}
+    .checkout-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:10px 0;border-bottom:1px solid #ddd;font-size:15px}.checkout-item strong{font-weight:600;overflow-wrap:anywhere}.checkout-item>span,.checkout-total>span:last-child{white-space:nowrap}
+    .checkout-total{display:flex;justify-content:space-between;gap:16px;padding:16px 0;margin-bottom:12px;font-size:18px;font-weight:700;border-top:2px solid #24292f}
+    #checkout-modal .checkout-field{display:block;margin:0 0 16px;font-size:14px}#checkout-modal .checkout-field>span{display:block;margin-bottom:6px;font-weight:600}#checkout-modal .checkout-field input{display:block;width:100%;min-width:0;padding:12px 14px;border:1px solid #8b9196;border-radius:6px;background:#fff;color:#24292f;font:inherit;font-size:16px}
+    #checkout-modal input:focus-visible,#checkout-modal button:focus-visible,#checkout-modal a:focus-visible{outline:3px solid #806238;outline-offset:3px}
+    .checkout-optional{min-width:0;margin:0 0 20px;padding:14px;border:1px solid #d4d5d5;border-radius:6px}.checkout-optional legend{padding:0 5px;font-size:14px;font-weight:600}.checkout-optional p{margin:0 0 12px;color:#4b535b;font-size:13px;line-height:1.45}.checkout-optional .checkout-field:last-child{margin-bottom:0!important}
+    #checkout-modal .checkout-consent{display:grid;grid-template-columns:20px minmax(0,1fr);align-items:start;gap:10px;margin:0 0 20px;font-size:14px;font-weight:400;line-height:1.5;color:#4b535b}
+    #checkout-modal .checkout-consent>input{width:20px;height:20px;min-width:20px;margin:1px 0 0}#checkout-modal .checkout-consent>span{display:block;min-width:0}#checkout-modal .checkout-consent a{display:inline;text-decoration:underline;color:#24292f}
+    .checkout-submit{width:100%;padding:14px;font-size:16px}.checkout-fine{margin:12px 0 0;font-size:13px;color:#4b535b;text-align:center}.checkout-error{color:#a51c1c;font-size:14px;margin:10px 0 0;text-align:center}
+    .checkout-loading[hidden]{display:none}.checkout-loading{position:absolute;inset:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:12px}.checkout-loading .spinner{width:40px;height:40px;border:3px solid #ddd;border-top-color:#24292f;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:16px}@keyframes spin{to{transform:rotate(360deg)}}`;
   document.head.appendChild(style);
-  
-  // Закрытие
-  modal.querySelector('.checkout-close').addEventListener('click', () => modal.classList.remove('active'));
-  modal.querySelector('.checkout-backdrop').addEventListener('click', () => modal.classList.remove('active'));
-  
-  // Отправка формы
-  modal.querySelector('#checkout-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const errorEl = document.getElementById('checkout-error');
-    const loadingEl = document.getElementById('checkout-loading');
-    const submitBtn = form.querySelector('.checkout-submit');
-    
-    errorEl.textContent = '';
-    submitBtn.disabled = true;
-    loadingEl.hidden = false;
-    
-    const data = {
-      items: cart,
-      email: form.email.value.trim(),
-      phone: form.phone.value.trim(),
-      attribution: typeof window.mvbAttribution === 'function' ? window.mvbAttribution() : {},
-    };
-    
+  modal.querySelector('.checkout-close').addEventListener('click', () => modal.close());
+  modal.addEventListener('click', event => { if (event.target === modal) modal.close(); });
+  modal.addEventListener('close', () => { if (checkoutOpener?.isConnected) checkoutOpener.focus(); });
+  modal.addEventListener('keydown', event => {
+    if(event.key!=='Tab') return;
+    const focusable=[...modal.querySelectorAll('a[href],button,input')].filter(el=>!el.disabled&&el.getClientRects().length);
+    const first=focusable[0],last=focusable[focusable.length-1];
+    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+  });
+  modal.querySelector('#checkout-form').addEventListener('submit', async event => {
+    event.preventDefault();
+    const form=event.target, errorEl=modal.querySelector('#checkout-error'), loadingEl=modal.querySelector('#checkout-loading'), submitBtn=form.querySelector('.checkout-submit');
+    if (!form.reportValidity() || cart.length===0) return;
+    errorEl.textContent=''; submitBtn.disabled=true; loadingEl.hidden=false;
+    const data={items:cart,email:form.elements.email.value.trim(),phone:form.elements.phone.value.trim(),attribution:typeof window.mvbAttribution==='function'?window.mvbAttribution():{}};
     try {
-      const res = await fetch('/payment.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      const text = await res.text();
-      let result;
-      try {
-        result = JSON.parse(text);
-      } catch {
-        throw new Error('Сервер вернул ошибку (код ' + res.status + '). Попробуйте позже или напишите нам в Telegram.');
-      }
-      
-      if (result.ok && result.payment_url) {
-        // Редирект на страницу оплаты ЮКасса
-        window.location.href = result.payment_url;
-      } else {
-        throw new Error(result.message || 'Не удалось создать платёж');
-      }
-    } catch (err) {
-      errorEl.textContent = err.message;
-      submitBtn.disabled = false;
-      loadingEl.hidden = true;
-    }
+      const res=await fetch('/payment.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+      const text=await res.text(); let result;
+      try { result=JSON.parse(text); } catch { throw new Error('Сервер вернул ошибку (код '+res.status+'). Повторите попытку позднее или напишите нам в Telegram.'); }
+      if(result.ok&&result.payment_url) window.location.href=result.payment_url;
+      else throw new Error(result.message||'Не удалось создать платёж');
+    } catch(error) { errorEl.textContent=error.message; submitBtn.disabled=false; loadingEl.hidden=true; }
   });
 }
-
 function openCheckout() {
-  // Между «положил в корзину» и «заплатил» не было ни одной цели: отвал на
-  // форме e-mail не отличался от отвала уже на странице ЮKassa. Две цели
-  // ниже разделяют эти два случая, а без них любая правка воронки
-  // оценивается на глаз.
-  trackGoal('checkout_open');
-  createCheckoutModal();
-  const modal = document.getElementById('checkout-modal');
-  const itemsEl = document.getElementById('checkout-items');
-  const totalEl = document.getElementById('checkout-total');
-  
-  itemsEl.innerHTML = '';
-  cart.forEach(item => {
-    const div = document.createElement('div');
-    div.className = 'checkout-item';
-    div.innerHTML = `<strong>${item.name}</strong><span>${money(item.price)}</span>`;
-    itemsEl.appendChild(div);
-  });
-  
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
-  totalEl.innerHTML = `<span>Итого</span><span>${money(total)}</span>`;
-  
-  modal.classList.add('active');
-  closeCart();
+  if(cart.length===0) return;
+  trackGoal('checkout_open'); createCheckoutModal();
+  const modal=document.getElementById('checkout-modal'), itemsEl=modal.querySelector('#checkout-items'), totalEl=modal.querySelector('#checkout-total');
+  checkoutOpener=document.activeElement;
+  itemsEl.replaceChildren();
+  cart.forEach(item=>{const row=document.createElement('div'), name=document.createElement('strong'), price=document.createElement('span');row.className='checkout-item';name.textContent=item.name;price.textContent=money(item.price);row.append(name,price);itemsEl.append(row);});
+  totalEl.replaceChildren();const label=document.createElement('span'),value=document.createElement('span');label.textContent='Итого';value.textContent=money(cart.reduce((sum,item)=>sum+item.price,0));totalEl.append(label,value);
+  if(!modal.open) modal.showModal();
+  modal.querySelector('input[name=email]').focus();
 }
 
 if (cartCheckout) cartCheckout.addEventListener('click', openCheckout);
@@ -268,7 +197,7 @@ if (form) {
       const selectedProduct = document.querySelector('#product').value;
       form.reset();
       document.querySelector('#product').value = selectedProduct;
-      formStatus.textContent = 'Готово. Обращение отправлено — без торжественной приёмки.';
+      formStatus.textContent = 'Обращение отправлено. Свяжемся с вами по указанному контакту.';
       formStatus.className = 'form-status success';
       trackGoal('lead_sent');
     } catch (error) {
