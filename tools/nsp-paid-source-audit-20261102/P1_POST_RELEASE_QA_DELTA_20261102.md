@@ -26,7 +26,9 @@ Read-only extraction from `PAID_P1_current.zip` on 02.11.2026 yielded:
 
 Historical accepted calculator record: `/home/denis/projects/nsp-qa13-20261024/proof/QA13_V4_FINAL_GATE.json`, **11/11 named native receipts PASS**, calculation scenarios **9/9 PASS**, visual blank/filled pages **12/12 PASS**, exact workbook SHA above. The 30.10 reconciliation `resume-20261030/P1_EVIDENCE_RECONCILIATION_R1.json` binds that tested workbook to P1's current 18-member edition. **These are historical successful tests, not a new 02.11 Office execution.**
 
-The old Office 2016 agent's three `.xls` jobs were marked FAIL because the XLSX-only execution path did not prove native opening. The later VM evidence ledger contains each exact original XLS SHA, but this read-only delta does **not** claim a newly verified end-to-end VM receipt/print test for those files. Do not equate an executor/tool-schema limitation with corruption of the XLS or exclude an Office version on that basis.
+**Recovered and independently read back 02.11:** the original Windows Office 2024 native evidence ZIP `/home/denis/projects/nsp-office-vm/evidence/ROOT_QA13_NATIVE_20261029.zip` has SHA-256 `04bd5942bca86747f15e8f41a838661061d746efff14df9cf4156f4cab76d4fc` and CRC PASS. Its `worker-output\\native-receipt.json` and `supervisor-receipt.json` record all three exact current original XLS hashes as `NATIVE_PASS_VISUAL_PENDING`; for each, source SHA before/after is exact and the saved/reopened content and formulas match. Executor: Excel 2024, version 16.0 / build 17932, job `qa13-xls-office2024-20261029T022711971Z-1c68d856bcfb4000a138bd9b1a1a0006`. The earlier three Office 2016 XLSX-only agent FAILs were a tool/format routing limitation, **not an XLS corruption finding**. This is a reinspection of retained evidence; no new Office execution was performed.
+
+**Addressed 6-page print visual check:** the three native PDF exports have the SHA values recorded in the same native receipt and are readable (`pdfinfo`): `01-ks-2.pdf` = 2 A4 landscape pages, `02-ks-3.pdf` = 1 A4 portrait page, `06-zhurnal-ucheta-rabot-ks-6a.pdf` = 3 A4 landscape pages. All six pages were rendered to JPEG and reviewed as a contact sheet. There are no obvious blank or severely clipped pages or cut-off table boundaries in that overview, **not** a sign-off for fine typography or a completed filled-form customer print scenario. Contact sheet is durably stored on HDD at `/mnt/server-data/nsp/operations/p1-qa13-legacy-xls-evidence-20261102/qa13_legacy_xls_contact_sheet.jpg` (SHA-256 `6a4d1bbf693f268eae32f90d91f6c2f99216a6a4c173b933179adc7e21210d79`, 350111 bytes).
 
 ## 3. Legal delta — source check 02.11.2026
 
@@ -38,7 +40,7 @@ This is an **addressed legal-delta check**, not a complete fresh legal acceptanc
 
 ## 4. Remaining gaps and next atomic work
 
-- **P1-LEGACY-XLS-EVIDENCE:** inspect only the existing archived Windows VM XLS native receipt, its provenance and the accepted three input hashes. Gate = actual native result and print/readback evidence for exact current originals, or documented **EVIDENCE_INSUFFICIENT**; do not rerun all P1, modify its accepted ZIP, restart the XLSX-only Office 2016 agent or change Windows activation.
+- **P1-LEGACY-XLS-VISUAL:** opening, saving and reopening of three exact XLS originals is now **verified from historical Office 2024 native receipts**; all six exported PDF pages have been overview-inspected, with no evident gross clipping. If strict buyer-ready print acceptance is required, perform only an addressable **filled-form / detailed-print visual check**, not a broad native rerun, change to accepted ZIP, Office activation or new executor.
 - **P1-E2E-CURRENT:** the 30.10 release explicitly did **not** execute a new real paid checkout/email. Historical synthetic 200/403/410 and 3600-second expiry tests are not eleven independent live purchase E2Es. Any new payment action is a separate scope and permission gate.
 - **Other current paid editions:** use their exact release receipts and existing product-specific issues; the 11/11 release archive custody checkpoint does **not** award blanket `FULL_QA_PASS`.
 
@@ -50,7 +52,9 @@ This is an **addressed legal-delta check**, not a complete fresh legal acceptanc
 - [x] CALC V4 native receipts and precise scope read from retained QA-13 gate.
 - [x] Later 30.10 owner acceptance/release receipt supersedes older NOT_RELEASED assumptions without rewriting history.
 - [x] Current published legal sources checked for the 750 000 RUB and narrow 61-П applicability.
-- [ ] Legacy `.xls` VM native output independently revalidated in this turn.
+- [x] Exact legacy `.xls` VM native output, three source hashes and saved/reopened content independently revalidated from retained primary ZIP.
+- [x] 6/6 original VM PDF pages counted and inspected in a rendered contact sheet; no gross clipping observed.
+- [ ] Filled XLS customer scenario and detailed print-readability acceptance independently repeated.
 - [ ] Real paid checkout/email/delivery independently retested in this turn.
 
 **DONE for this atomic unit:** evidence-only delta recorded; no product content, production environment, prices, SKU, customer records, Windows/Office runtime or payment system changed.
