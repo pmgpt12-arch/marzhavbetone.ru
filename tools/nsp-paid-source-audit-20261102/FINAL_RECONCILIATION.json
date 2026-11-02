@@ -1,0 +1,34 @@
+{
+  "status": "P8_P13_CURRENT_EDITION_VERIFIED",
+  "date": "2026-11-02",
+  "source_audit_run": 41451705566,
+  "origin_audit_sha256": "16d3c4cc1d3001ef1b7f090ee1ea837db0a3e3a4aa3547950985a766aae0b3b7",
+  "prior_status": "SOURCE_COMPOSITION_CONFIRMED_APPROVAL_PROVENANCE_OPEN",
+  "supersedes_prior_conclusion": true,
+  "current_p8": {
+    "edition": "P8-review-v1",
+    "approval_source": "tools/nsp-publication-20261026/p8-v1-20261031/OWNER_APPROVAL.json",
+    "release_run_id": 41182080922,
+    "archive_sha256": "31b4e22e5e3e006b0e1c5a1d40892efb2eff2cc8a582f4baa8cbbb2232e865aa",
+    "source_files": 12,
+    "source_matches_approved_manifest": 12,
+    "published_archive_members": 12,
+    "crc": "PASS",
+    "builder_exact_zip": "PASS"
+  },
+  "current_p13": {
+    "edition": "P13-review-v1",
+    "approval_source": "tools/nsp-publication-20261026/p13-v1-20261031/OWNER_APPROVAL.json",
+    "release_run_id": 41170040340,
+    "archive_sha256": "0b1f777b9fb65952cd219d5e61e6b8500cdcd5f1c0039ceba80e3c8f6e67f955",
+    "source_files": 12,
+    "source_matches_approved_manifest": 12,
+    "published_archive_members": 12,
+    "crc": "PASS",
+    "builder_exact_zip": "PASS"
+  },
+  "hdd_manifest_sha256": "bb57fe7a487741554ac1f50590033be2d111de0fa6fe8cf61b17b7840c550abc",
+  "current_release_matrix_v2_sha256": "32be75cc6531e9339846a93c48eac11c6f192453d8da2bd33a2bba8f0198deda",
+  "release_and_production_claim": "No new production operations in this reconciliation; original releases happened 2026-10-31",
+  "unverified": "Real payment/email/download E2E and full content/legal QA are separate gates; no blanket FULL_QA_PASS"
+}
