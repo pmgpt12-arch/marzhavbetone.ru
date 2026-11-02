@@ -87,7 +87,7 @@ jobs:
           print('P4P5_LIVE_READONLY_INSPECTION_PASS')
           PY
       - name: Targeted dry-run or publication
-        if: env.NSP_ACTION != 'snapshot'
+        if: env.NSP_ACTION == 'dry-run' || env.NSP_ACTION == 'publish'
         run: python3 tools/nsp-final/release.py "$NSP_ACTION"
       - uses: actions/upload-artifact@v4
         if: always()
