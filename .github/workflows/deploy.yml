@@ -949,3 +949,33 @@ jobs:
         if: always()
         run: rm -f "$REMAINING_SSH_DIR/deploy_key" "$REMAINING_SSH_DIR/known_hosts"
 
+  free11_readonly:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true && inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_only != true && inputs.t3_only != true && inputs.t2_link_probe != true && inputs.t3_link_probe != true && inputs.t2_review_export != true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Read-only production free-file SHA-256
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          SITE: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$KEY" && test -n "$HOST" && test -n "$USER"
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/nsp_free11_readonly
+          chmod 600 ~/.ssh/nsp_free11_readonly
+          ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/nsp_free11_readonly -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=15 -p "$PORT" "$USER@$HOST" "for d in 'www/nastoronepodryadchika.ru/downloads' '$SITE/downloads'; do if test -d \"\$d\"; then cd \"\$d\"; sha256sum checklist-zakrytiya-rabot.pdf dengi.zip dop-raboty.zip vozvrat-ks.zip uderzhaniya.zip dogovor.zip bankrotstvo.zip avans.zip raschet-metrami.zip ispolnitelnaya-dokumentaciya.zip akt-skrytyh-rabot.zip; exit; fi; done; echo 'DOWNLOADS_DIRECTORY_NOT_FOUND' >&2; exit 2" > free11-production-sha256.txt
+          test "$(wc -l < free11-production-sha256.txt)" -eq 11
+          sha256sum free11-production-sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: free11-production-sha256
+          path: free11-production-sha256.txt
+          retention-days: 7
