@@ -15,6 +15,10 @@ on:
         description: "Адресный выпуск согласованной линейки R3"
         type: boolean
         default: false
+      free11_release:
+        description: 'Адресная замена 11 принятых бесплатных архивов с backup и SHA-gate'
+        type: boolean
+        default: false
       dry_run:
         description: 'Пробный прогон: показать изменения, ничего не заливать'
         type: boolean
@@ -979,3 +983,39 @@ jobs:
           name: free11-production-sha256
           path: free11-production-sha256.txt
           retention-days: 7
+
+  free11_release:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.free11_release == true && inputs.dry_run != true && inputs.remaining_only != true && inputs.p3_only != true && inputs.p11_only != true && inputs.p5_only != true && inputs.t2_only != true && inputs.t3_only != true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply only FREE-11 accepted archives with remote backup and SHA gate
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$KEY" && test -n "$HOST" && test -n "$USER"
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/nsp_free11_release
+          chmod 600 ~/.ssh/nsp_free11_release
+          ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh_args=(-i ~/.ssh/nsp_free11_release -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=15 -p "$PORT")
+          run_id="${{ github.run_id }}"
+          ssh "${ssh_args[@]}" "$USER@$HOST" "mkdir -m 700 -p \$HOME/.nsp-free11-stage-$run_id"
+          scp -i ~/.ssh/nsp_free11_release -o IdentitiesOnly=yes -P "$PORT" downloads/*.zip downloads/*.pdf tools/nsp-free11-release-20261102/expected.tsv "$USER@$HOST:.nsp-free11-stage-$run_id/"
+          ssh "${ssh_args[@]}" "$USER@$HOST" "bash -s -- '$run_id' 'www/nastoronepodryadchika.ru'" < tools/nsp-free11-release-20261102/apply_on_host.sh | tee free11-release-receipt.txt
+          grep -q '^FREE11_ATOMIC_REPLACE_PASS$' free11-release-receipt.txt
+          test "$(grep -cE '^[0-9a-f]{64}  /' free11-release-receipt.txt)" -eq 11
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: free11-release-receipt
+          path: free11-release-receipt.txt
+          retention-days: 14
