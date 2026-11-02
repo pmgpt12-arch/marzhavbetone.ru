@@ -11,6 +11,10 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
+      paid_source_readonly:
+        description: 'Только чтение текущих файлов P8/P13 на хостинге; без заказа, оплаты и деплоя'
+        type: boolean
+        default: false
       remaining_only:
         description: "Адресный выпуск согласованной линейки R3"
         type: boolean
@@ -948,4 +952,33 @@ jobs:
       - name: Remove job-scoped deployment credentials
         if: always()
         run: rm -f "$REMAINING_SSH_DIR/deploy_key" "$REMAINING_SSH_DIR/known_hosts"
-
+  paid_source_readonly:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.paid_source_readonly == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read-only audit of P8 and P13 private product sources
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$KEY" && test -n "$HOST" && test -n "$USER"
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/nsp_readonly_key
+          chmod 600 ~/.ssh/nsp_readonly_key
+          ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/nsp_readonly_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=15 -p "$PORT" "$USER@$HOST" 'bash -s' < tools/nsp-paid-source-audit-20261102/read_only.sh > paid-source-audit.txt
+          test "$(grep -c '^END ' paid-source-audit.txt)" -eq 2
+          sha256sum paid-source-audit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nsp-p8-p13-source-audit
+          path: paid-source-audit.txt
+          retention-days: 7
