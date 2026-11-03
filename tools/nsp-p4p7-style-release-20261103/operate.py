@@ -60,7 +60,7 @@ def main():
     assert re.fullmatch(r"[0-9]{6,16}",runid)
     assert os.uname().nodename=="ai-workstation","NOT_APPROVED_RUNNER"
     request=json.loads((HERE/"request.json").read_text())
-    assert request=={"action":"publish","revision":4},"WRONG_REQUEST"
+    assert request=={"action":"publish","revision":6},"WRONG_REQUEST"
     before=json.loads((EVIDENCE/"live-before.json").read_text())
     assert before["status"]=="P4_P7_PRODUCTION_READ_ONLY" and before["delivery_ttl"]==3600
     assert set(before["products"])=={"p4","p7"}
