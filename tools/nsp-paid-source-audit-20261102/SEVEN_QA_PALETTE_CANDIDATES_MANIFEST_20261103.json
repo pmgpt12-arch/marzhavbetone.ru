@@ -1,0 +1,101 @@
+{
+  "schema": "NSP_7_STYLE_CANDIDATES_ACCEPTANCE_BUNDLE_v1",
+  "created_utc": "2026-11-03T02:21:43.152760+00:00",
+  "status": "SEVEN_STATIC_STYLE_ONLY_PASS_NATIVE_VISUAL_PENDING",
+  "scope": "seven P4 and P7 candidate XLSX files; no changes to current buyer SKUs",
+  "original_archives": {
+    "P4": "bcba234220c0f52e5a86b5ba3c70c527d086146301030d1f32197e9fa6e264fc",
+    "P7": "99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24"
+  },
+  "candidate_count": 7,
+  "orange_cells_fixed": 76,
+  "source_files_unchanged": true,
+  "production_untouched": true,
+  "native_excel_final_sha": "NOT_EXECUTED_TOOL_SAFETY_BLOCK",
+  "native_original_35a": "VISUAL_ORANGE_DEFECT_CONFIRMED",
+  "contents": [
+    {
+      "archive_path": "candidates/P4-35A-REESTR-GRAPHITE-QA-ONLY.xlsx",
+      "sha256": "f0dbdbabfc59905826680fe6a740d106f29738062b63a563a6c1225680fcc230",
+      "bytes": 9444
+    },
+    {
+      "archive_path": "candidates/P4-36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx",
+      "sha256": "8de66938040d565e1cba8432fb1c4f9c4327d5b58b55a77d67813bac9c933c72",
+      "bytes": 9114
+    },
+    {
+      "archive_path": "candidates/P4-37-reestr-pasportov.xlsx",
+      "sha256": "301e0cde1f085a95d7a99cefd89f020064bf5e53838ec381a30e58257a7a34b9",
+      "bytes": 9131
+    },
+    {
+      "archive_path": "candidates/P4-38-reestr-id.xlsx",
+      "sha256": "54eed599371a6019c625a77cdae71563055120bf9a2b8d923a486b1c36ac67da",
+      "bytes": 10713
+    },
+    {
+      "archive_path": "candidates/P7-02-perechen-rabot.xlsx",
+      "sha256": "428886ad35b0963dbdca8a9421da019f8026e8ada201e54412507d1ad5700178",
+      "bytes": 8534
+    },
+    {
+      "archive_path": "candidates/P7-03-kalendarnyy-plan.xlsx",
+      "sha256": "f9ac7b8b9039b600b66244b183ea80ba97cbeb24b96e68ad85014d025df87b02",
+      "bytes": 8632
+    },
+    {
+      "archive_path": "candidates/P7-05-grafik-platezhey.xlsx",
+      "sha256": "bdf43009c00cfd9d341598220a25ba244e82face8044398c507e415d37d922a0",
+      "bytes": 8834
+    },
+    {
+      "archive_path": "evidence/first-candidate.json",
+      "sha256": "3dfeec8b3d2045dfe0f93081a86131d6cad501c7d942bdcc4cecad76e753234c",
+      "bytes": 1272
+    },
+    {
+      "archive_path": "evidence/six-candidates.json",
+      "sha256": "9b8d04d9374fb3e857af580bbb6c5f9e604d45ca0dcc69cbfc8c1b4fe886e7ae",
+      "bytes": 5947
+    },
+    {
+      "archive_path": "evidence/original-p4-35a-native-visual.json",
+      "sha256": "c43a6c2c51fb2cbb3c27a3d0bfd93a5df7e25c35b2805699c697aab59b95280a",
+      "bytes": 2443
+    },
+    {
+      "archive_path": "evidence/old-orange-printscreen.png",
+      "sha256": "4b72fabfb5c17302e1450ee46775fb6ef6692798e801f8409959cd01b115de07",
+      "bytes": 76363
+    },
+    {
+      "archive_path": "evidence/old-orange-print-preview.png",
+      "sha256": "f6c0fbc6631f6e2e0813f21a7067433f1392806a8ab63763ff719e20e374fa86",
+      "bytes": 59862
+    },
+    {
+      "archive_path": "scripts/build_35a_style_only.py",
+      "sha256": "369fb4b95dccb56b802d40e25c8943d132a310922c31588e20c13d753ec7feaf",
+      "bytes": 4361
+    },
+    {
+      "archive_path": "scripts/build_other_six_style_only.py",
+      "sha256": "aac539b1b6f2955b543c6865bf76c224bbe796985906f5eda13149ecc7151283",
+      "bytes": 5225
+    },
+    {
+      "archive_path": "scripts/current_palette_check.py",
+      "sha256": "9bdfed6bc64e378b0ff3edcc5bf2039fb3ba0713134501271487d4ebc732323a",
+      "bytes": 4547
+    }
+  ],
+  "gates": [
+    "source archive SHA and source XLSX SHA",
+    "only xl/styles.xml semantic delta",
+    "all other uncompressed XLSX members byte-identical",
+    "76 old-orange applied cells removed across 7 candidates",
+    "native Excel final-SHA and complete print preview still required"
+  ],
+  "publish_permission": false
+}
