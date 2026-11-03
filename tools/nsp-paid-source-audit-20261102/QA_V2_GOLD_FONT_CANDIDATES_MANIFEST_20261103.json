@@ -1,0 +1,161 @@
+{
+  "schema": "NSP_P4_P7_GOLD_FONT_QA_V2_v1",
+  "timestamp_utc": "2026-11-03T07:17:09.418464+00:00",
+  "status": "SEVEN_V2_STATIC_COLOR_ONLY_PASS_NATIVE_PENDING",
+  "scope": "7 existing v1 QA XLSX; font color A1 on instruction sheet only",
+  "old_orange_fills_after_v1": 0,
+  "old_orange_fonts_after_v2": 0,
+  "v1_count": 7,
+  "v2_count": 7,
+  "v2_candidates": [
+    {
+      "source": "P4-35A-REESTR-GRAPHITE-QA-ONLY.xlsx",
+      "source_sha256": "f0dbdbabfc59905826680fe6a740d106f29738062b63a563a6c1225680fcc230",
+      "candidate": "P4-35A-REESTR-GRAPHITE-QA-ONLY-GOLD-FONT-V2.xlsx",
+      "candidate_sha256": "60e5929fedd1f054c3d2f621972c89eb98728fc7036307e741331377450e60c1",
+      "size_bytes": 9444,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "single_token_before": "E85D22",
+      "single_token_after": "8E6F32",
+      "target_tag": "font/color rgb",
+      "target_address": "Инструкция!A1",
+      "source_applied_orange_count": 1,
+      "after_applied_orange_count": 0,
+      "all_non_style_zip_members_byte_identical": true,
+      "formulas_values_validation_print_unchanged": true,
+      "no_origin_or_production_mutations": true,
+      "native_final_sha": "PENDING"
+    },
+    {
+      "source": "P4-36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx",
+      "source_sha256": "8de66938040d565e1cba8432fb1c4f9c4327d5b58b55a77d67813bac9c933c72",
+      "candidate": "P4-36A-rabochiy-reestr-vhodnogo-kontrolya-GOLD-FONT-V2.xlsx",
+      "candidate_sha256": "da271987ea794b8bb6a769269682af24e5d18182214923cb33ce3494d7810b90",
+      "size_bytes": 9114,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "single_token_before": "E85D22",
+      "single_token_after": "8E6F32",
+      "target_tag": "font/color rgb",
+      "target_address": "Инструкция!A1",
+      "source_applied_orange_count": 1,
+      "after_applied_orange_count": 0,
+      "all_non_style_zip_members_byte_identical": true,
+      "formulas_values_validation_print_unchanged": true,
+      "no_origin_or_production_mutations": true,
+      "native_final_sha": "PENDING"
+    },
+    {
+      "source": "P4-37-reestr-pasportov.xlsx",
+      "source_sha256": "301e0cde1f085a95d7a99cefd89f020064bf5e53838ec381a30e58257a7a34b9",
+      "candidate": "P4-37-reestr-pasportov-GOLD-FONT-V2.xlsx",
+      "candidate_sha256": "a7b4d4fb0b5d2544d85197d9f71d16d9add619a1f823660979efafd27a074304",
+      "size_bytes": 9131,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "single_token_before": "E85D22",
+      "single_token_after": "8E6F32",
+      "target_tag": "font/color rgb",
+      "target_address": "Инструкция!A1",
+      "source_applied_orange_count": 1,
+      "after_applied_orange_count": 0,
+      "all_non_style_zip_members_byte_identical": true,
+      "formulas_values_validation_print_unchanged": true,
+      "no_origin_or_production_mutations": true,
+      "native_final_sha": "PENDING"
+    },
+    {
+      "source": "P4-38-reestr-id.xlsx",
+      "source_sha256": "54eed599371a6019c625a77cdae71563055120bf9a2b8d923a486b1c36ac67da",
+      "candidate": "P4-38-reestr-id-GOLD-FONT-V2.xlsx",
+      "candidate_sha256": "10ee4cce30327b56c909f0fb2ea6f60696624aeb60143bfba60ad80bc6a31d30",
+      "size_bytes": 10713,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "single_token_before": "E85D22",
+      "single_token_after": "8E6F32",
+      "target_tag": "font/color rgb",
+      "target_address": "Инструкция!A1",
+      "source_applied_orange_count": 1,
+      "after_applied_orange_count": 0,
+      "all_non_style_zip_members_byte_identical": true,
+      "formulas_values_validation_print_unchanged": true,
+      "no_origin_or_production_mutations": true,
+      "native_final_sha": "PENDING"
+    },
+    {
+      "source": "P7-02-perechen-rabot.xlsx",
+      "source_sha256": "428886ad35b0963dbdca8a9421da019f8026e8ada201e54412507d1ad5700178",
+      "candidate": "P7-02-perechen-rabot-GOLD-FONT-V2.xlsx",
+      "candidate_sha256": "14f4665e39cc17d2c4f2045544f427dab2dc145b13d6cc8a4553450649be283e",
+      "size_bytes": 8534,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "single_token_before": "E85D22",
+      "single_token_after": "8E6F32",
+      "target_tag": "font/color rgb",
+      "target_address": "Инструкция!A1",
+      "source_applied_orange_count": 1,
+      "after_applied_orange_count": 0,
+      "all_non_style_zip_members_byte_identical": true,
+      "formulas_values_validation_print_unchanged": true,
+      "no_origin_or_production_mutations": true,
+      "native_final_sha": "PENDING"
+    },
+    {
+      "source": "P7-03-kalendarnyy-plan.xlsx",
+      "source_sha256": "f9ac7b8b9039b600b66244b183ea80ba97cbeb24b96e68ad85014d025df87b02",
+      "candidate": "P7-03-kalendarnyy-plan-GOLD-FONT-V2.xlsx",
+      "candidate_sha256": "708f791eece55d62992d36d86368f2f6d2580d6391a7e16f095beb4a264bc4b6",
+      "size_bytes": 8632,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "single_token_before": "E85D22",
+      "single_token_after": "8E6F32",
+      "target_tag": "font/color rgb",
+      "target_address": "Инструкция!A1",
+      "source_applied_orange_count": 1,
+      "after_applied_orange_count": 0,
+      "all_non_style_zip_members_byte_identical": true,
+      "formulas_values_validation_print_unchanged": true,
+      "no_origin_or_production_mutations": true,
+      "native_final_sha": "PENDING"
+    },
+    {
+      "source": "P7-05-grafik-platezhey.xlsx",
+      "source_sha256": "bdf43009c00cfd9d341598220a25ba244e82face8044398c507e415d37d922a0",
+      "candidate": "P7-05-grafik-platezhey-GOLD-FONT-V2.xlsx",
+      "candidate_sha256": "0c594f63333b6e770bdcf71791e898839635625e9a49a4a4c639cd3b4474466b",
+      "size_bytes": 8834,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "single_token_before": "E85D22",
+      "single_token_after": "8E6F32",
+      "target_tag": "font/color rgb",
+      "target_address": "Инструкция!A1",
+      "source_applied_orange_count": 1,
+      "after_applied_orange_count": 0,
+      "all_non_style_zip_members_byte_identical": true,
+      "formulas_values_validation_print_unchanged": true,
+      "no_origin_or_production_mutations": true,
+      "native_final_sha": "PENDING"
+    }
+  ],
+  "staged_directory": "/mnt/server-data/nsp/operations/qa-style-candidates-v2-20261103",
+  "no_buyer_zip_or_published_changes": true,
+  "release_allowed": false,
+  "full_qa_pass": false,
+  "acceptance_remaining": [
+    "independent verifier over v2 and original source edition",
+    "Microsoft Excel LTSC 2024 native open and print for final v2 SHA",
+    "P4-35A header wrap review and owner release decision"
+  ]
+}
