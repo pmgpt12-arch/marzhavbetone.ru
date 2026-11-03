@@ -47,6 +47,10 @@ def archive_members(path, expected_sha, count):
 def invoke(cmd,timeout=45,inp=None):
     r=subprocess.run(cmd,input=inp,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=timeout)
     if r.returncode:
+        stderr=r.stderr.decode("utf-8","replace")
+        safe_gate=re.search(r"NSP_SCOPED_RELEASE_ERROR=([A-Z0-9_:-]{1,128})",stderr)
+        if safe_gate:
+            raise RuntimeError("REMOTE_RELEASE_GATE_"+safe_gate.group(1))
         raise RuntimeError("EXECUTOR_FAILED_CODE_"+str(r.returncode))
     return r.stdout
 def write(name,body):
@@ -56,7 +60,7 @@ def main():
     assert re.fullmatch(r"[0-9]{6,16}",runid)
     assert os.uname().nodename=="ai-workstation","NOT_APPROVED_RUNNER"
     request=json.loads((HERE/"request.json").read_text())
-    assert request=={"action":"publish","revision":2},"WRONG_REQUEST"
+    assert request=={"action":"publish","revision":4},"WRONG_REQUEST"
     before=json.loads((EVIDENCE/"live-before.json").read_text())
     assert before["status"]=="P4_P7_PRODUCTION_READ_ONLY" and before["delivery_ttl"]==3600
     assert set(before["products"])=={"p4","p7"}
