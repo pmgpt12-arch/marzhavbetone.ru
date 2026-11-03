@@ -1,0 +1,41 @@
+{
+  "schema": "NSP_P4_35A_EXACT_EDITION_NATIVE_VISUAL_QA_v1",
+  "date": "2026-11-03",
+  "status": "NATIVE_VISUAL_FORMAT_DEFECT_CONFIRMED_SOURCE_UNCHANGED",
+  "sku": "P4",
+  "edition": "P4-v3",
+  "archive": "PAID_P4_current.zip",
+  "archive_sha256": "bcba234220c0f52e5a86b5ba3c70c527d086146301030d1f32197e9fa6e264fc",
+  "member": "35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx",
+  "member_sha256": "54ef5d86e81ab120910cc5ad1889c54ff5253951ec06a180be655eaf4cf65cc4",
+  "office": "Microsoft Office LTSC Professional Plus 2024",
+  "environment": "Existing Windows VM on ai-workstation / nspqa Session 1; recovery overlay; no laptop",
+  "verification": {
+    "static_source_archive_sha": "PASS",
+    "static_ooxml_forbidden_orange_applied_cells": 11,
+    "guest_transfer_http": "GET 200 through existing loopback transport 8784",
+    "guest_certutil_sha_before_gui": "PASS",
+    "excel_native_file_open": "PASS",
+    "license_activation_wizard": "Dismissed by ESC, no activation",
+    "visible_orange_header": "#E85D22, CONFIRMED",
+    "word_breaks": "Column titles including Рабочие/техника, Материалы, Ответственный show awkward wrapping in row 3",
+    "print_preview": "Microsoft Print to PDF / A3 landscape / fit all columns on one page / page 1 of 3 inspected",
+    "all_preview_pages_reviewed": false,
+    "formula_recalculation": "NOT_APPLICABLE_TO_THIS_FILE_NO_FORMULAS",
+    "saved_in_excel": false,
+    "guest_certutil_sha_after_gui": "PASS",
+    "excel_process_cleanup": "PASS, tasklist/findstr returned no EXCEL.EXE or WINWORD.EXE",
+    "vm_still_running": true,
+    "office_state_active_job_released": true,
+    "buyer_archive_modified": false
+  },
+  "evidence": {
+    "original_screen_sha256": "4b72fabfb5c17302e1450ee46775fb6ef6692798e801f8409959cd01b115de07",
+    "original_screen_path": "P4_35A_NATIVE_ORANGE_20261103.png",
+    "print_screen_sha256": "f6c0fbc6631f6e2e0813f21a7067433f1392806a8ab63763ff719e20e374fa86",
+    "print_screen_path": "P4_35A_NATIVE_PRINT_PREVIEW_20261103.png"
+  },
+  "next_gate": "STYLE_ONLY_CANDIDATE: replace legacy orange in assigned header styles with approved graphite or neutral palette; fix awkward header wrapping only where visually justified; preserve cell values, all formulas, validations, row/column data, print format, exact original SHA. Native verify final candidate separately before publication",
+  "release_allowed": false,
+  "full_qa_pass": false
+}
