@@ -85,3 +85,10 @@ The checker pins the exact **P4 v3** archive SHA `bcba234220c0f52e5a86b5ba3c70c5
 - Durable JSON receipts are in this branch: `P4_P7_PALETTE_EXACT_READONLY_20261103.json` and `P4_35A_NATIVE_VISUAL_RECEIPT_20261103.json`; re-read-back PASS.
 
 **Next atomic work:** `P4/35A-STYLE-ONLY` candidate (not yet modified). Replace only legacy orange header fills with approved `#F2EFE9` and corresponding readable graphite text, or graphite header with white text if the canonical document standard for that table requires; improve row-3 wraps locally. Before accepting any patch, prove preserved input/formulas, workbook structure, data validation, layout/print settings, and perform native Excel visual/print at the *final* SHA. Then progress to the remaining six named files as separate bounded deltas. Do not modify accepted archives or automatically publish them. Status: `ONE_NATIVE_DEFECT_CONFIRMED / 6_STATIC_CANDIDATES / RELEASE_UNCHANGED`.
+
+
+### Дополнительный gate: белый шрифт, оранжевый фон только строки 3
+
+Read-only квитанция [`P4_P7_ROW3_FONT_FILL_READONLY_20261103.json`](P4_P7_ROW3_FONT_FILL_READONLY_20261103.json) доказала для всех 7 исходных XLSX: **76/76** ячеек `#E85D22` расположены исключительно на листе 1 в строке 3, а текст во всех них уже **белый и полужирный** (`00FFFFFF` / `FFFFFFFF`). Адреса: P4 `A3:K3`, `A3:J3`, `A3:J3`, `A3:Q3`; P7 `A3:I3`, `A3:I3`, `A3:J3`.
+
+**Минимально достаточный style-only патч:** только цвет заливки применяемого заголовочного стиля `#E85D22 → #262F37`. Оставить белый шрифт, формулы, значения, относительные ширины, границы, строку заголовка, проверки ввода и печатные параметры как есть. При таком выборе исходный контраст белого по графиту сохраняется и не нужен массовый рефакторинг форматирования. Вопрос читаемости переноса слов в `P4/35A` вынести в отдельный пункт локальной приёмки; не расширять его на остальные файлы без осмотра. Ни исходная книга, ни действующий архив при проверке не изменялись. **Это утверждённая техническая спецификация кандидата, а не уже применённая правка.**
