@@ -1,0 +1,1805 @@
+{
+  "schema": "NSP_P4_P7_V2_STATIC_PRINT_GEOMETRY_v1",
+  "timestamp_utc": "2026-11-03T08:00:36.117829+00:00",
+  "status": "PRINT_GEOMETRY_OBSERVED_NOT_NATIVE_PRINT_PASS",
+  "files": [
+    {
+      "file": "P4-35A-REESTR-GRAPHITE-QA-ONLY-GOLD-FONT-V2.xlsx",
+      "sha256": "60e5929fedd1f054c3d2f621972c89eb98728fc7036307e741331377450e60c1",
+      "sheets": [
+        {
+          "sheet": "Реестр",
+          "xml_part": "xl/worksheets/sheet1.xml",
+          "dimension": "A1:K103",
+          "col_widths_A_to_Q": [
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 14,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 18,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 16,
+              "hidden": false
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "row3": {
+            "height": null,
+            "customHeight": null,
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "Дата",
+              "char_count": 4,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "B3",
+              "label": "Смена",
+              "char_count": 5,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "C3",
+              "label": "Работы",
+              "char_count": 6,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "D3",
+              "label": "Оси/участок",
+              "char_count": 11,
+              "col_width": 14,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "E3",
+              "label": "Объём",
+              "char_count": 5,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "F3",
+              "label": "Рабочие/техника",
+              "char_count": 15,
+              "col_width": 18,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "G3",
+              "label": "Материалы",
+              "char_count": 9,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "H3",
+              "label": "Условия",
+              "char_count": 7,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "I3",
+              "label": "Контроль",
+              "char_count": 8,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "J3",
+              "label": "Фото",
+              "char_count": 4,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "K3",
+              "label": "Ответственный",
+              "char_count": 13,
+              "col_width": 16,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            }
+          ],
+          "page_setup": {
+            "orientation": "landscape",
+            "paperSize": "8",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "page_margins": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "print_options": null,
+          "page_set_up_pr": {
+            "fitToPage": "1"
+          }
+        },
+        {
+          "sheet": "Инструкция",
+          "xml_part": "xl/worksheets/sheet2.xml",
+          "dimension": "A1:A3",
+          "col_widths_A_to_Q": [
+            {
+              "width": 78,
+              "hidden": false
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "row3": {
+            "height": "100",
+            "customHeight": "1",
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "Порядок заполнения:\nВносите фактические даты, участки, объёмы и исполнителей раб",
+              "char_count": 237,
+              "col_width": 78,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "11"
+            }
+          ],
+          "page_setup": {
+            "orientation": "portrait",
+            "paperSize": "9",
+            "fitToHeight": "1",
+            "fitToWidth": "1"
+          },
+          "page_margins": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "print_options": null,
+          "page_set_up_pr": {
+            "fitToPage": "1"
+          }
+        }
+      ],
+      "defined_print_areas": [
+        {
+          "name": "_xlnm.Print_Area",
+          "value": "'Реестр'!$A$1:$K$103",
+          "localSheetId": "0"
+        },
+        {
+          "name": "_xlnm.Print_Area",
+          "value": "'Инструкция'!$A$1:$A$3",
+          "localSheetId": "1"
+        }
+      ]
+    },
+    {
+      "file": "P4-36A-rabochiy-reestr-vhodnogo-kontrolya-GOLD-FONT-V2.xlsx",
+      "sha256": "da271987ea794b8bb6a769269682af24e5d18182214923cb33ce3494d7810b90",
+      "sheets": [
+        {
+          "sheet": "Реестр",
+          "xml_part": "xl/worksheets/sheet1.xml",
+          "dimension": "A1:J103",
+          "col_widths_A_to_Q": [
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 20,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 13,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 16,
+              "hidden": false
+            },
+            {
+              "width": 17,
+              "hidden": false
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "row3": {
+            "height": null,
+            "customHeight": null,
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "№",
+              "char_count": 1,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "B3",
+              "label": "Материал",
+              "char_count": 8,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "C3",
+              "label": "Поставщик",
+              "char_count": 9,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "D3",
+              "label": "Партия",
+              "char_count": 6,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "E3",
+              "label": "Документ качества",
+              "char_count": 17,
+              "col_width": 20,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "F3",
+              "label": "Дата",
+              "char_count": 4,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "G3",
+              "label": "Количество",
+              "char_count": 10,
+              "col_width": 13,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "H3",
+              "label": "Результат",
+              "char_count": 9,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "I3",
+              "label": "Ответственный",
+              "char_count": 13,
+              "col_width": 16,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "J3",
+              "label": "Место хранения",
+              "char_count": 14,
+              "col_width": 17,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            }
+          ],
+          "page_setup": {
+            "orientation": "landscape",
+            "paperSize": "8",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "page_margins": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "print_options": null,
+          "page_set_up_pr": {
+            "fitToPage": "1"
+          }
+        },
+        {
+          "sheet": "Инструкция",
+          "xml_part": "xl/worksheets/sheet2.xml",
+          "dimension": "A1:A3",
+          "col_widths_A_to_Q": [
+            {
+              "width": 78,
+              "hidden": false
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "row3": {
+            "height": "100",
+            "customHeight": "1",
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "Порядок заполнения:\nПо каждой партии материалов укажите поставщика, количество, ",
+              "char_count": 206,
+              "col_width": 78,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "11"
+            }
+          ],
+          "page_setup": {
+            "orientation": "portrait",
+            "paperSize": "9",
+            "fitToHeight": "1",
+            "fitToWidth": "1"
+          },
+          "page_margins": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "print_options": null,
+          "page_set_up_pr": {
+            "fitToPage": "1"
+          }
+        }
+      ],
+      "defined_print_areas": [
+        {
+          "name": "_xlnm.Print_Area",
+          "value": "'Реестр'!$A$1:$J$103",
+          "localSheetId": "0"
+        },
+        {
+          "name": "_xlnm.Print_Area",
+          "value": "'Инструкция'!$A$1:$A$3",
+          "localSheetId": "1"
+        }
+      ]
+    },
+    {
+      "file": "P4-37-reestr-pasportov-GOLD-FONT-V2.xlsx",
+      "sha256": "a7b4d4fb0b5d2544d85197d9f71d16d9add619a1f823660979efafd27a074304",
+      "sheets": [
+        {
+          "sheet": "Реестр",
+          "xml_part": "xl/worksheets/sheet1.xml",
+          "dimension": "A1:J103",
+          "col_widths_A_to_Q": [
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 24,
+              "hidden": false
+            },
+            {
+              "width": 16,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 16,
+              "hidden": false
+            },
+            {
+              "width": 16,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "row3": {
+            "height": null,
+            "customHeight": null,
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "№",
+              "char_count": 1,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "B3",
+              "label": "Материал/оборудование",
+              "char_count": 21,
+              "col_width": 24,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "C3",
+              "label": "Производитель",
+              "char_count": 13,
+              "col_width": 16,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "D3",
+              "label": "Документ",
+              "char_count": 8,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "E3",
+              "label": "Номер",
+              "char_count": 5,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "F3",
+              "label": "Дата",
+              "char_count": 4,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "G3",
+              "label": "Партия",
+              "char_count": 6,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "H3",
+              "label": "Срок действия",
+              "char_count": 13,
+              "col_width": 16,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "I3",
+              "label": "Связанный акт",
+              "char_count": 13,
+              "col_width": 16,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "J3",
+              "label": "Файл",
+              "char_count": 4,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            }
+          ],
+          "page_setup": {
+            "orientation": "landscape",
+            "paperSize": "8",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "page_margins": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "print_options": null,
+          "page_set_up_pr": {
+            "fitToPage": "1"
+          }
+        },
+        {
+          "sheet": "Инструкция",
+          "xml_part": "xl/worksheets/sheet2.xml",
+          "dimension": "A1:A3",
+          "col_widths_A_to_Q": [
+            {
+              "width": 78,
+              "hidden": false
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "row3": {
+            "height": "100",
+            "customHeight": "1",
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "Порядок заполнения:\nСвяжите паспорт или сертификат с конкретной партией, поставк",
+              "char_count": 187,
+              "col_width": 78,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "11"
+            }
+          ],
+          "page_setup": {
+            "orientation": "portrait",
+            "paperSize": "9",
+            "fitToHeight": "1",
+            "fitToWidth": "1"
+          },
+          "page_margins": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "print_options": null,
+          "page_set_up_pr": {
+            "fitToPage": "1"
+          }
+        }
+      ],
+      "defined_print_areas": [
+        {
+          "name": "_xlnm.Print_Area",
+          "value": "'Реестр'!$A$1:$J$103",
+          "localSheetId": "0"
+        },
+        {
+          "name": "_xlnm.Print_Area",
+          "value": "'Инструкция'!$A$1:$A$3",
+          "localSheetId": "1"
+        }
+      ]
+    },
+    {
+      "file": "P4-38-reestr-id-GOLD-FONT-V2.xlsx",
+      "sha256": "10ee4cce30327b56c909f0fb2ea6f60696624aeb60143bfba60ad80bc6a31d30",
+      "sheets": [
+        {
+          "sheet": "Реестр",
+          "xml_part": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "col_widths_A_to_Q": [
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 13,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 16,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 22,
+              "hidden": false
+            },
+            {
+              "width": 22,
+              "hidden": false
+            },
+            {
+              "width": 22,
+              "hidden": false
+            },
+            {
+              "width": 22,
+              "hidden": false
+            },
+            {
+              "width": 22,
+              "hidden": false
+            },
+            {
+              "width": 22,
+              "hidden": false
+            }
+          ],
+          "row3": {
+            "height": "42",
+            "customHeight": "1",
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "№",
+              "char_count": 1,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "B3",
+              "label": "Раздел",
+              "char_count": 6,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "C3",
+              "label": "Документ",
+              "char_count": 8,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "D3",
+              "label": "Шифр",
+              "char_count": 4,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "E3",
+              "label": "Дата",
+              "char_count": 4,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "F3",
+              "label": "Участок",
+              "char_count": 7,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "G3",
+              "label": "Подписанты",
+              "char_count": 10,
+              "col_width": 13,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "H3",
+              "label": "Статус",
+              "char_count": 6,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "I3",
+              "label": "Дата передачи",
+              "char_count": 13,
+              "col_width": 16,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "J3",
+              "label": "Замечания",
+              "char_count": 9,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "K3",
+              "label": "Файл",
+              "char_count": 4,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "L3",
+              "label": "Версия документа",
+              "char_count": 16,
+              "col_width": 22,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "M3",
+              "label": "Опись номер и дата",
+              "char_count": 18,
+              "col_width": 22,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "N3",
+              "label": "Адресат и представитель",
+              "char_count": 23,
+              "col_width": 22,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "O3",
+              "label": "Дата получения",
+              "char_count": 14,
+              "col_width": 22,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "P3",
+              "label": "Подтверждение получения",
+              "char_count": 23,
+              "col_width": 22,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "Q3",
+              "label": "Ответ номер и дата",
+              "char_count": 18,
+              "col_width": 22,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            }
+          ],
+          "page_setup": {
+            "orientation": "landscape",
+            "paperSize": "9",
+            "fitToWidth": "2",
+            "fitToHeight": "0"
+          },
+          "page_margins": {
+            "left": "0.7",
+            "right": "0.7",
+            "top": "0.75",
+            "bottom": "0.75",
+            "header": "0.3",
+            "footer": "0.3"
+          },
+          "print_options": null,
+          "page_set_up_pr": {
+            "fitToPage": "1"
+          }
+        },
+        {
+          "sheet": "Инструкция",
+          "xml_part": "xl/worksheets/sheet2.xml",
+          "dimension": null,
+          "col_widths_A_to_Q": [
+            {
+              "width": 78,
+              "hidden": false
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "row3": {
+            "height": "150",
+            "customHeight": "1",
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "По каждой позиции сохраните исходные реквизиты в A:K. В L укажите версию докумен",
+              "char_count": 421,
+              "col_width": 78,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "11"
+            }
+          ],
+          "page_setup": null,
+          "page_margins": {
+            "left": "0.7",
+            "right": "0.7",
+            "top": "0.75",
+            "bottom": "0.75",
+            "header": "0.3",
+            "footer": "0.3"
+          },
+          "print_options": null,
+          "page_set_up_pr": null
+        }
+      ],
+      "defined_print_areas": [
+        {
+          "name": "_xlnm.Print_Area",
+          "value": "'Реестр'!$A$3:$Q$103",
+          "localSheetId": "0"
+        }
+      ]
+    },
+    {
+      "file": "P7-02-perechen-rabot-GOLD-FONT-V2.xlsx",
+      "sha256": "14f4665e39cc17d2c4f2045544f427dab2dc145b13d6cc8a4553450649be283e",
+      "sheets": [
+        {
+          "sheet": "Реестр",
+          "xml_part": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "col_widths_A_to_Q": [
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 19,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 16,
+              "hidden": false
+            },
+            {
+              "width": 18,
+              "hidden": false
+            },
+            {
+              "width": 13,
+              "hidden": false
+            },
+            {
+              "width": 22,
+              "hidden": false
+            },
+            {
+              "width": 17,
+              "hidden": false
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "row3": {
+            "height": "48",
+            "customHeight": "1",
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "№",
+              "char_count": 1,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "B3",
+              "label": "Работа/результат",
+              "char_count": 16,
+              "col_width": 19,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "C3",
+              "label": "Ед.",
+              "char_count": 3,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "D3",
+              "label": "Объём",
+              "char_count": 5,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "E3",
+              "label": "Проект/версия",
+              "char_count": 13,
+              "col_width": 16,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "F3",
+              "label": "Включено в цену",
+              "char_count": 15,
+              "col_width": 18,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "G3",
+              "label": "Исключение",
+              "char_count": 10,
+              "col_width": 13,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "H3",
+              "label": "Критерий готовности",
+              "char_count": 19,
+              "col_width": 22,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "I3",
+              "label": "Документ сдачи",
+              "char_count": 14,
+              "col_width": 17,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            }
+          ],
+          "page_setup": {
+            "paperSize": "9",
+            "orientation": "landscape",
+            "fitToWidth": "1",
+            "fitToHeight": "0"
+          },
+          "page_margins": {
+            "left": "0.25",
+            "right": "0.25",
+            "top": "0.35",
+            "bottom": "0.35",
+            "header": "0.15",
+            "footer": "0.15"
+          },
+          "print_options": null,
+          "page_set_up_pr": {
+            "fitToPage": "1"
+          }
+        },
+        {
+          "sheet": "Инструкция",
+          "xml_part": "xl/worksheets/sheet2.xml",
+          "dimension": null,
+          "col_widths_A_to_Q": [
+            {
+              "width": 86,
+              "hidden": false
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "row3": {
+            "height": "132",
+            "customHeight": "1",
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "Порядок заполнения\nДля каждой позиции укажите работу, единицу измерения, объём, ",
+              "char_count": 253,
+              "col_width": 86,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "11"
+            }
+          ],
+          "page_setup": {
+            "paperSize": "9",
+            "orientation": "portrait",
+            "fitToWidth": "1",
+            "fitToHeight": "0"
+          },
+          "page_margins": {
+            "left": "0.25",
+            "right": "0.25",
+            "top": "0.35",
+            "bottom": "0.35",
+            "header": "0.15",
+            "footer": "0.15"
+          },
+          "print_options": null,
+          "page_set_up_pr": {
+            "fitToPage": "1"
+          }
+        }
+      ],
+      "defined_print_areas": [
+        {
+          "name": "_xlnm.Print_Area",
+          "value": "'Реестр'!$A$1:$I$106",
+          "localSheetId": "0"
+        },
+        {
+          "name": "_xlnm.Print_Area",
+          "value": "'Инструкция'!$A$1:$A$3",
+          "localSheetId": "1"
+        }
+      ]
+    },
+    {
+      "file": "P7-03-kalendarnyy-plan-GOLD-FONT-V2.xlsx",
+      "sha256": "708f791eece55d62992d36d86368f2f6d2580d6391a7e16f095beb4a264bc4b6",
+      "sheets": [
+        {
+          "sheet": "Реестр",
+          "xml_part": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "col_widths_A_to_Q": [
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 15,
+              "hidden": false
+            },
+            {
+              "width": 14,
+              "hidden": false
+            },
+            {
+              "width": 24,
+              "hidden": false
+            },
+            {
+              "width": 16,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "row3": {
+            "height": "48",
+            "customHeight": "1",
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "Этап",
+              "char_count": 4,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "B3",
+              "label": "Работа",
+              "char_count": 6,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "C3",
+              "label": "Начало",
+              "char_count": 6,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "D3",
+              "label": "Окончание",
+              "char_count": 9,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "E3",
+              "label": "Длительность, календ. дни",
+              "char_count": 25,
+              "col_width": 15,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "F3",
+              "label": "Зависимость",
+              "char_count": 11,
+              "col_width": 14,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "G3",
+              "label": "Фронт/исходные данные",
+              "char_count": 21,
+              "col_width": 24,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "H3",
+              "label": "Ответственный",
+              "char_count": 13,
+              "col_width": 16,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            },
+            {
+              "address": "I3",
+              "label": "Статус",
+              "char_count": 6,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": null
+            }
+          ],
+          "page_setup": {
+            "paperSize": "9",
+            "orientation": "landscape",
+            "fitToWidth": "1",
+            "fitToHeight": "0"
+          },
+          "page_margins": {
+            "left": "0.25",
+            "right": "0.25",
+            "top": "0.35",
+            "bottom": "0.35",
+            "header": "0.15",
+            "footer": "0.15"
+          },
+          "print_options": null,
+          "page_set_up_pr": {
+            "fitToPage": "1"
+          }
+        },
+        {
+          "sheet": "Инструкция",
+          "xml_part": "xl/worksheets/sheet2.xml",
+          "dimension": null,
+          "col_widths_A_to_Q": [
+            {
+              "width": 86,
+              "hidden": false
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "row3": {
+            "height": "132",
+            "customHeight": "1",
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "Внесите начальную и конечную даты, зависимости, передачу фронта, исходных данных",
+              "char_count": 389,
+              "col_width": 86,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "11"
+            }
+          ],
+          "page_setup": {
+            "paperSize": "9",
+            "orientation": "portrait",
+            "fitToWidth": "1",
+            "fitToHeight": "0"
+          },
+          "page_margins": {
+            "left": "0.25",
+            "right": "0.25",
+            "top": "0.35",
+            "bottom": "0.35",
+            "header": "0.15",
+            "footer": "0.15"
+          },
+          "print_options": null,
+          "page_set_up_pr": {
+            "fitToPage": "1"
+          }
+        }
+      ],
+      "defined_print_areas": [
+        {
+          "name": "_xlnm.Print_Area",
+          "value": "'Реестр'!$A$1:$I$106",
+          "localSheetId": "0"
+        },
+        {
+          "name": "_xlnm.Print_Area",
+          "value": "'Инструкция'!$A$1:$A$3",
+          "localSheetId": "1"
+        }
+      ]
+    },
+    {
+      "file": "P7-05-grafik-platezhey-GOLD-FONT-V2.xlsx",
+      "sha256": "0c594f63333b6e770bdcf71791e898839635625e9a49a4a4c639cd3b4474466b",
+      "sheets": [
+        {
+          "sheet": "Реестр",
+          "xml_part": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "col_widths_A_to_Q": [
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 12,
+              "hidden": false
+            },
+            {
+              "width": 16,
+              "hidden": false
+            },
+            {
+              "width": 14,
+              "hidden": false
+            },
+            {
+              "width": 16,
+              "hidden": false
+            },
+            {
+              "width": 19,
+              "hidden": false
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "row3": {
+            "height": "48",
+            "customHeight": "1",
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "Этап",
+              "char_count": 4,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "B3",
+              "label": "Основание",
+              "char_count": 9,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "C3",
+              "label": "Сумма, ₽",
+              "char_count": 8,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "D3",
+              "label": "Погашение аванса, ₽",
+              "char_count": 19,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "E3",
+              "label": "Удержание, ₽",
+              "char_count": 12,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "F3",
+              "label": "К выплате, ₽",
+              "char_count": 12,
+              "col_width": 12,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "G3",
+              "label": "Дата события",
+              "char_count": 12,
+              "col_width": 16,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "H3",
+              "label": "Срок оплаты",
+              "char_count": 11,
+              "col_width": 14,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "I3",
+              "label": "План оплаты",
+              "char_count": 11,
+              "col_width": 16,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            },
+            {
+              "address": "J3",
+              "label": "Факт оплаты",
+              "char_count": 11,
+              "col_width": 19,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "10"
+            }
+          ],
+          "page_setup": {
+            "paperSize": "9",
+            "orientation": "landscape",
+            "fitToWidth": "1",
+            "fitToHeight": "0"
+          },
+          "page_margins": {
+            "left": "0.25",
+            "right": "0.25",
+            "top": "0.35",
+            "bottom": "0.35",
+            "header": "0.15",
+            "footer": "0.15"
+          },
+          "print_options": null,
+          "page_set_up_pr": {
+            "fitToPage": "1"
+          }
+        },
+        {
+          "sheet": "Инструкция",
+          "xml_part": "xl/worksheets/sheet2.xml",
+          "dimension": null,
+          "col_widths_A_to_Q": [
+            {
+              "width": 86,
+              "hidden": false
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "row3": {
+            "height": "132",
+            "customHeight": "1",
+            "spans": null
+          },
+          "header_row3": [
+            {
+              "address": "A3",
+              "label": "Все суммы и даты заполняются вручную: автоматических формул в шаблоне нет. Для о",
+              "char_count": 460,
+              "col_width": 86,
+              "wrap": "1",
+              "shrink": null,
+              "font_size": "11"
+            }
+          ],
+          "page_setup": {
+            "paperSize": "9",
+            "orientation": "portrait",
+            "fitToWidth": "1",
+            "fitToHeight": "0"
+          },
+          "page_margins": {
+            "left": "0.25",
+            "right": "0.25",
+            "top": "0.35",
+            "bottom": "0.35",
+            "header": "0.15",
+            "footer": "0.15"
+          },
+          "print_options": null,
+          "page_set_up_pr": {
+            "fitToPage": "1"
+          }
+        }
+      ],
+      "defined_print_areas": [
+        {
+          "name": "_xlnm.Print_Area",
+          "value": "'Реестр'!$A$1:$J$106",
+          "localSheetId": "0"
+        },
+        {
+          "name": "_xlnm.Print_Area",
+          "value": "'Инструкция'!$A$1:$A$3",
+          "localSheetId": "1"
+        }
+      ]
+    }
+  ],
+  "native_office": "NOT_RUN",
+  "note": "Some column headers may be wrapped or tiny when the sheet is scaled for A3; screen/print review still required."
+}
