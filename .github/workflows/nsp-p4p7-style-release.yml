@@ -34,7 +34,7 @@ jobs:
           python3 - <<'PY'
           import json
           q=json.load(open('tools/nsp-p4p7-style-release-20261103/request.json'))
-          assert q in ({'action':'inspect','revision':1},{'action':'inspect','revision':3},{'action':'publish','revision':4}),'UNEXPECTED_RELEASE_REQUEST'
+          assert q in ({'action':'inspect','revision':1},{'action':'inspect','revision':3},{'action':'publish','revision':6}),'UNEXPECTED_RELEASE_REQUEST'
           import os
           with open(os.environ['GITHUB_ENV'],'a',encoding='utf-8') as f:
               f.write('NSP_P4P7_ACTION='+q['action']+'\n')
@@ -45,10 +45,40 @@ jobs:
           install -d -m 700 "$RUNNER_TEMP/nsp-p4p7-ssh"
           printf '%s\n' "$KEY" > "$RUNNER_TEMP/nsp-p4p7-ssh/key"
           chmod 600 "$RUNNER_TEMP/nsp-p4p7-ssh/key"
-          timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > "$RUNNER_TEMP/nsp-p4p7-ssh/known_hosts" 2>/dev/null
+          echo NSP_SSH_SCAN_BEGIN
+          if timeout 13s ssh-keyscan -T 6 -p "$PORT" -H "$HOST" > "$RUNNER_TEMP/nsp-p4p7-ssh/known_hosts" 2>/dev/null; then
+            echo NSP_SSH_SCAN_PASS
+          else
+            python3 - <<'PY'
+          import os,socket
+          try:
+              infos=socket.getaddrinfo(os.environ['HOST'],int(os.environ['PORT']),type=socket.SOCK_STREAM)
+          except (OSError,ValueError) as e:
+              print('NSP_DEPLOY_DNS_FAIL_'+type(e).__name__)
+              raise SystemExit(18)
+          print('NSP_DEPLOY_DNS_PASS')
+          status='NSP_DEPLOY_TCP_UNREACHABLE'
+          for family,typ,proto,canon,address in infos[:3]:
+              s=socket.socket(family,typ,proto)
+              s.settimeout(2.5)
+              try:
+                  s.connect(address)
+                  status='NSP_DEPLOY_TCP_CONNECT_PASS'
+                  break
+              except (OSError,TimeoutError) as e:
+                  status='NSP_DEPLOY_TCP_'+type(e).__name__
+              finally:
+                  s.close()
+          print(status)
+          PY
+            echo NSP_SSH_SCAN_FAILED_STOP
+            exit 18
+          fi
           test -s "$RUNNER_TEMP/nsp-p4p7-ssh/known_hosts"
+          echo NSP_SSH_HOST_KEY_AVAILABLE
           mkdir -p "$RUNNER_TEMP/nsp-p4p7-evidence"
           timeout 60s ssh -p "$PORT" -i "$RUNNER_TEMP/nsp-p4p7-ssh/key" -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$RUNNER_TEMP/nsp-p4p7-ssh/known_hosts" -o ConnectTimeout=12 "$SSH_USER@$HOST" 'php /dev/stdin "$HOME/www/nastoronepodryadchika.ru"' < tools/nsp-p4p7-style-release-20261103/inspect.php > "$RUNNER_TEMP/nsp-p4p7-evidence/live-before.json"
+          echo NSP_LIVE_PRIVATE_INSPECTION_RETURNED
           python3 - <<'PY'
           import json,hashlib,zipfile,pathlib,os
           q=json.load(open('tools/nsp-p4p7-style-release-20261103/request.json'))
