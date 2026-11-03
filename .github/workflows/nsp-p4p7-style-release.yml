@@ -34,7 +34,7 @@ jobs:
           python3 - <<'PY'
           import json
           q=json.load(open('tools/nsp-p4p7-style-release-20261103/request.json'))
-          assert q in ({'action':'inspect','revision':1},{'action':'inspect','revision':3},{'action':'publish','revision':2}),'UNEXPECTED_RELEASE_REQUEST'
+          assert q in ({'action':'inspect','revision':1},{'action':'inspect','revision':3},{'action':'publish','revision':4}),'UNEXPECTED_RELEASE_REQUEST'
           import os
           with open(os.environ['GITHUB_ENV'],'a',encoding='utf-8') as f:
               f.write('NSP_P4P7_ACTION='+q['action']+'\n')
