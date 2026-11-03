@@ -15,7 +15,7 @@ concurrency:
 jobs:
   scoped:
     runs-on: [self-hosted, Linux, X64]
-    timeout-minutes: 6
+    timeout-minutes: 9
     env:
       HOST: ${{ secrets.DEPLOY_HOST }}
       SSH_USER: ${{ secrets.DEPLOY_USER }}
@@ -23,6 +23,10 @@ jobs:
       PORT: ${{ secrets.DEPLOY_PORT || '22' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            tools/nsp-p4p7-style-release-20261103
       - name: Read only live P4/P7 preflight
         shell: bash
         run: |
@@ -30,7 +34,10 @@ jobs:
           python3 - <<'PY'
           import json
           q=json.load(open('tools/nsp-p4p7-style-release-20261103/request.json'))
-          assert q=={'action':'inspect','revision':1},'UNEXPECTED_RELEASE_REQUEST'
+          assert q in ({'action':'inspect','revision':1},{'action':'publish','revision':2}),'UNEXPECTED_RELEASE_REQUEST'
+          import os
+          with open(os.environ['GITHUB_ENV'],'a',encoding='utf-8') as f:
+              f.write('NSP_P4P7_ACTION='+q['action']+'\n')
           PY
           test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
           [[ "$PORT" =~ ^[0-9]{1,5}$ ]]
@@ -63,6 +70,14 @@ jobs:
             assert p['sources']==x,'LIVE_SOURCE_DRIFT_'+sku
           print('P4_P7_EXACT_LIVE_PREFLIGHT_PASS')
           PY
+      - name: Scoped P4/P7 palette release with rollback
+        if: env.NSP_P4P7_ACTION == 'publish'
+        shell: bash
+        run: |
+          set -euo pipefail
+          php -l tools/nsp-p4p7-style-release-20261103/apply.php
+          python3 -m py_compile tools/nsp-p4p7-style-release-20261103/operate.py
+          timeout 270s python3 tools/nsp-p4p7-style-release-20261103/operate.py
       - name: Save redacted production inventory
         if: always()
         uses: actions/upload-artifact@v4
