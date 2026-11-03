@@ -1,0 +1,100 @@
+{
+  "schema": "NSP_QA_V2_INDEPENDENT_EXACT_ACCEPTANCE_v2",
+  "checked_utc": "2026-11-03T07:21:36.076620+00:00",
+  "status": "SEVEN_EXACT_STYLE_ONLY_STATIC_PASS_NATIVE_PENDING",
+  "file_count": 7,
+  "header_cells_corrected": 76,
+  "instruction_title_cells_corrected": 7,
+  "orange_applied_cells_remaining": 0,
+  "non_style_parts_changed": 0,
+  "source_archives_sha256": {
+    "P4": "bcba234220c0f52e5a86b5ba3c70c527d086146301030d1f32197e9fa6e264fc",
+    "P7": "99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24"
+  },
+  "negative_gate_tests": {
+    "non_style_mutation": "PASS_REJECTED",
+    "unrelated_style_mutation": "PASS_REJECTED"
+  },
+  "native_office_final_sha": "PENDING",
+  "release_allowed": false,
+  "buyer_archive_modified": false,
+  "records": [
+    {
+      "sku": "P4",
+      "member": "35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx",
+      "v1_sha256": "f0dbdbabfc59905826680fe6a740d106f29738062b63a563a6c1225680fcc230",
+      "v2_sha256": "60e5929fedd1f054c3d2f621972c89eb98728fc7036307e741331377450e60c1",
+      "source_sha256": "54ef5d86e81ab120910cc5ad1889c54ff5253951ec06a180be655eaf4cf65cc4",
+      "member_count": 10,
+      "row3_fixed": 11,
+      "A1_gold": true,
+      "other_uncompressed_parts_byte_identical": true
+    },
+    {
+      "sku": "P4",
+      "member": "36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx",
+      "v1_sha256": "8de66938040d565e1cba8432fb1c4f9c4327d5b58b55a77d67813bac9c933c72",
+      "v2_sha256": "da271987ea794b8bb6a769269682af24e5d18182214923cb33ce3494d7810b90",
+      "source_sha256": "e10f379069eb327133fe0b5bb30343b1d1f0604b792f26bf28baf9d9773a995e",
+      "member_count": 10,
+      "row3_fixed": 10,
+      "A1_gold": true,
+      "other_uncompressed_parts_byte_identical": true
+    },
+    {
+      "sku": "P4",
+      "member": "37-reestr-pasportov.xlsx",
+      "v1_sha256": "301e0cde1f085a95d7a99cefd89f020064bf5e53838ec381a30e58257a7a34b9",
+      "v2_sha256": "a7b4d4fb0b5d2544d85197d9f71d16d9add619a1f823660979efafd27a074304",
+      "source_sha256": "d8a4d449ddf29b84e7ccaf0d812ed7d6ddd53308f28e9f79ffba4e3154f7f85d",
+      "member_count": 10,
+      "row3_fixed": 10,
+      "A1_gold": true,
+      "other_uncompressed_parts_byte_identical": true
+    },
+    {
+      "sku": "P4",
+      "member": "38-reestr-id.xlsx",
+      "v1_sha256": "54eed599371a6019c625a77cdae71563055120bf9a2b8d923a486b1c36ac67da",
+      "v2_sha256": "10ee4cce30327b56c909f0fb2ea6f60696624aeb60143bfba60ad80bc6a31d30",
+      "source_sha256": "792ada310c16e823d04956c4ccdc1c64618206fc631c73500a9a4aa09726b67d",
+      "member_count": 9,
+      "row3_fixed": 17,
+      "A1_gold": true,
+      "other_uncompressed_parts_byte_identical": true
+    },
+    {
+      "sku": "P7",
+      "member": "02-perechen-rabot.xlsx",
+      "v1_sha256": "428886ad35b0963dbdca8a9421da019f8026e8ada201e54412507d1ad5700178",
+      "v2_sha256": "14f4665e39cc17d2c4f2045544f427dab2dc145b13d6cc8a4553450649be283e",
+      "source_sha256": "5dfac2b0a925a5f2dae1ad74e079cf60075430eb47112074866f8424d79b0f80",
+      "member_count": 9,
+      "row3_fixed": 9,
+      "A1_gold": true,
+      "other_uncompressed_parts_byte_identical": true
+    },
+    {
+      "sku": "P7",
+      "member": "03-kalendarnyy-plan.xlsx",
+      "v1_sha256": "f9ac7b8b9039b600b66244b183ea80ba97cbeb24b96e68ad85014d025df87b02",
+      "v2_sha256": "708f791eece55d62992d36d86368f2f6d2580d6391a7e16f095beb4a264bc4b6",
+      "source_sha256": "546b19dbeb3193eaa7691894dfc9a43baf56975acc1029749063d72242a1d202",
+      "member_count": 9,
+      "row3_fixed": 9,
+      "A1_gold": true,
+      "other_uncompressed_parts_byte_identical": true
+    },
+    {
+      "sku": "P7",
+      "member": "05-grafik-platezhey.xlsx",
+      "v1_sha256": "bdf43009c00cfd9d341598220a25ba244e82face8044398c507e415d37d922a0",
+      "v2_sha256": "0c594f63333b6e770bdcf71791e898839635625e9a49a4a4c639cd3b4474466b",
+      "source_sha256": "aabf6943b408dc5e6b9e60022af7f2e47d500ba5be7c75c6777d93818b2d7dc5",
+      "member_count": 9,
+      "row3_fixed": 10,
+      "A1_gold": true,
+      "other_uncompressed_parts_byte_identical": true
+    }
+  ]
+}
