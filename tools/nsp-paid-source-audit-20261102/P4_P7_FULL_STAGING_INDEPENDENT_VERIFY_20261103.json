@@ -1,0 +1,43 @@
+{
+  "schema": "NSP_FULL_P4_P7_STAGING_INDEPENDENT_READBACK_v1",
+  "verified_at_utc": "2026-11-03T10:30:56.290947+00:00",
+  "status": "QA_STAGING_VERIFIED_NO_PRODUCTION_CHANGE",
+  "stage_dir": "/mnt/server-data/nsp/operations/qa-product-staging-20261103",
+  "files_total": 43,
+  "modified_xlsx": 7,
+  "unchanged_files": 36,
+  "changed_color_fill_cells": 76,
+  "changed_color_font_cells": 7,
+  "products": [
+    {
+      "sku": "P4",
+      "sha256": "be45a7e77cc66e9806365b607a3ea659749c212927e64a9ff8814e494922e660",
+      "files": 30,
+      "changed_names": [
+        "35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx",
+        "36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx",
+        "37-reestr-pasportov.xlsx",
+        "38-reestr-id.xlsx"
+      ],
+      "unchanged_count": 26,
+      "crc": "PASS",
+      "native_office": "PENDING"
+    },
+    {
+      "sku": "P7",
+      "sha256": "31a303e85dab7b34586b7a7d64aa3b1ccba928e4345612381d299954a65e70d2",
+      "files": 13,
+      "changed_names": [
+        "02-perechen-rabot.xlsx",
+        "03-kalendarnyy-plan.xlsx",
+        "05-grafik-platezhey.xlsx"
+      ],
+      "unchanged_count": 10,
+      "crc": "PASS",
+      "native_office": "PENDING"
+    }
+  ],
+  "protected_source_zips_sha_verified": true,
+  "native_office_final_sha": "PENDING",
+  "publication_allowed": false
+}
