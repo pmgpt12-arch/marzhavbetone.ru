@@ -1,0 +1,73 @@
+name: NSP P4 P7 style-only release
+
+on:
+  push:
+    branches: [fix/nsp-cutover-final-20261021]
+    paths: [tools/nsp-p4p7-style-release-20261103/request.json]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  scoped:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 6
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read only live P4/P7 preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          q=json.load(open('tools/nsp-p4p7-style-release-20261103/request.json'))
+          assert q=={'action':'inspect','revision':1},'UNEXPECTED_RELEASE_REQUEST'
+          PY
+          test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
+          [[ "$PORT" =~ ^[0-9]{1,5}$ ]]
+          php -l tools/nsp-p4p7-style-release-20261103/inspect.php
+          install -d -m 700 "$RUNNER_TEMP/nsp-p4p7-ssh"
+          printf '%s\n' "$KEY" > "$RUNNER_TEMP/nsp-p4p7-ssh/key"
+          chmod 600 "$RUNNER_TEMP/nsp-p4p7-ssh/key"
+          timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > "$RUNNER_TEMP/nsp-p4p7-ssh/known_hosts" 2>/dev/null
+          test -s "$RUNNER_TEMP/nsp-p4p7-ssh/known_hosts"
+          mkdir -p "$RUNNER_TEMP/nsp-p4p7-evidence"
+          timeout 60s ssh -p "$PORT" -i "$RUNNER_TEMP/nsp-p4p7-ssh/key" -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$RUNNER_TEMP/nsp-p4p7-ssh/known_hosts" -o ConnectTimeout=12 "$SSH_USER@$HOST" 'php /dev/stdin "$HOME/www/nastoronepodryadchika.ru"' < tools/nsp-p4p7-style-release-20261103/inspect.php > "$RUNNER_TEMP/nsp-p4p7-evidence/live-before.json"
+          python3 - <<'PY'
+          import json,hashlib,zipfile,pathlib,os
+          q=json.load(open('tools/nsp-p4p7-style-release-20261103/request.json'))
+          r=json.load(open(pathlib.Path(os.environ['RUNNER_TEMP'])/'nsp-p4p7-evidence/live-before.json'))
+          assert r['status']=='P4_P7_PRODUCTION_READ_ONLY' and r['delivery_ttl']==3600
+          assert set(r['products'])=={'p4','p7'}
+          root=pathlib.Path('/mnt/server-data/nsp/product-library/accepted-current-20261102/paid')
+          for sku,name,directory,price,count,expected in (
+            ('p4','PAID_P4_current.zip','08-pto-bez-zamechaniy',2490000,30,'bcba234220c0f52e5a86b5ba3c70c527d086146301030d1f32197e9fa6e264fc'),
+            ('p7','PAID_P7_current.zip','03-dogovor-podryada',2490000,13,'99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24')):
+            p=r['products'][sku]
+            assert p['dir']==directory and p['price']==price and p['source_count']==count,'LIVE_SKU_DRIFT_'+sku
+            assert p['cache_sha256']==expected,'LIVE_CACHE_DRIFT_'+sku
+            buf=(root/name).read_bytes()
+            assert hashlib.sha256(buf).hexdigest()==expected,'LOCAL_SOURCE_DRIFT_'+sku
+            with zipfile.ZipFile(root/name) as z:
+                assert z.testzip() is None
+                x={n:hashlib.sha256(z.read(n)).hexdigest() for n in z.namelist()}
+            assert p['sources']==x,'LIVE_SOURCE_DRIFT_'+sku
+          print('P4_P7_EXACT_LIVE_PREFLIGHT_PASS')
+          PY
+      - name: Save redacted production inventory
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nsp-p4p7-live-inventory-${{ github.run_id }}
+          path: ${{ runner.temp }}/nsp-p4p7-evidence/
+          if-no-files-found: error
+          retention-days: 15
