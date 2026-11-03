@@ -50,6 +50,21 @@ try {
             'master_archives'=>$masters
         ];
     }
+    $attempt=getenv('HOME').'/nsp-p4p7-releases/style-41628988319';
+    $result['previous_attempt_probe']=[
+       'stage_present'=>is_dir($attempt),
+       'config_prepared'=>is_file($attempt.'/config-after.php'),
+       'rollback_dir'=>is_dir($attempt.'/rollback'),
+       'backup_config'=>is_file($attempt.'/rollback/products-config.php'),
+       'backup_cache_p4'=>is_file($attempt.'/rollback/cache-p4.zip'),
+       'backup_cache_p7'=>is_file($attempt.'/rollback/cache-p7.zip'),
+       'fresh_p4'=>is_dir($attempt.'/source-p4'),
+       'fresh_p7'=>is_dir($attempt.'/source-p7'),
+       'discard_p4'=>is_dir($attempt.'/rollback/discard-p4'),
+       'discard_p7'=>is_dir($attempt.'/rollback/discard-p7'),
+       'old_source_backup_p4'=>is_dir($attempt.'/rollback/source-p4'),
+       'old_source_backup_p7'=>is_dir($attempt.'/rollback/source-p7')
+    ];
     echo json_encode($result,JSON_UNESCAPED_UNICODE|JSON_THROW_ON_ERROR),"\n";
 }catch(Throwable $e){
     fwrite(STDERR,'P4P7_INSPECT_FAIL='.$e->getMessage()."\n");exit(2);
