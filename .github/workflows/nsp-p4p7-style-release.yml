@@ -85,10 +85,10 @@ jobs:
           r=json.load(open(pathlib.Path(os.environ['RUNNER_TEMP'])/'nsp-p4p7-evidence/live-before.json'))
           assert r['status']=='P4_P7_PRODUCTION_READ_ONLY' and r['delivery_ttl']==3600
           assert set(r['products'])=={'p4','p7'}
-          root=pathlib.Path('/mnt/server-data/nsp/product-library/accepted-current-20261102/paid')
+          root=pathlib.Path('/mnt/server-data/nsp/operations/qa-product-staging-20261104')
           for sku,name,directory,price,count,expected in (
-            ('p4','PAID_P4_current.zip','08-pto-bez-zamechaniy',2490000,30,'bcba234220c0f52e5a86b5ba3c70c527d086146301030d1f32197e9fa6e264fc'),
-            ('p7','PAID_P7_current.zip','03-dogovor-podryada',2490000,13,'99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24')):
+            ('p4','PAID_P4_v3_PALETTE_V3_QA_HOLD.zip','08-pto-bez-zamechaniy',2490000,30,'70a728babb810d6277388a5337decce6bfdf21a7e216bc0a512870860a3d3451'),
+            ('p7','PAID_P7_review-v2_PALETTE_V3_QA_HOLD.zip','03-dogovor-podryada',2490000,13,'6df6abf578c240ba9e76c9b0e40c7c4cb3bca34c65029e4260b97d82a25ca8a6')):
             p=r['products'][sku]
             assert p['dir']==directory and p['price']==price and p['source_count']==count,'LIVE_SKU_DRIFT_'+sku
             assert p['cache_sha256']==expected,'LIVE_CACHE_DRIFT_'+sku
