@@ -1,0 +1,198 @@
+{
+  "status": "PASS_SCOPED_LEGACY_CONTACT_CLEANUP",
+  "mode": "apply",
+  "plan_digest": "948436dd1b6e1c48d053c774d2a8822537c9ce52de1eef5e5c1f94d7d9cd4bf5",
+  "legacy_records": 18,
+  "unpaid_to_delete": 10,
+  "paid_minimum_records_to_retain_privately": 8,
+  "backup_archives_to_scrub": 2,
+  "archive_record_copies_to_delete": 36,
+  "loose_backup_record_copies_to_delete": 0,
+  "backup_coverage": [
+    {
+      "area": "nsp-migration-private",
+      "files_inspected": 7733
+    },
+    {
+      "area": "nsp-migration-backups",
+      "files_inspected": 5
+    },
+    {
+      "area": "p3-release-backups",
+      "files_inspected": 20
+    },
+    {
+      "area": "p11-release-backups",
+      "files_inspected": 37
+    },
+    {
+      "area": "p5-release-backups",
+      "files_inspected": 20
+    },
+    {
+      "area": "t2-release-backups",
+      "files_inspected": 20
+    },
+    {
+      "area": "t3-release-backups",
+      "files_inspected": 24
+    },
+    {
+      "area": "remaining-release-backups",
+      "files_inspected": 157
+    }
+  ],
+  "unknown_loose_order_copies_preserved": 0,
+  "unknown_archived_order_copies_preserved": 0,
+  "verified_empty_synthetic_probe_records_preserved": 39,
+  "legacy_rotated_logs_to_delete": 20,
+  "legacy_active_logs_to_truncate": 2,
+  "legacy_log_hints": [
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 1262,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 4433,
+      "writable": true,
+      "rotated": false
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 22220,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 17949,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 11248,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 19095,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 48717,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 1131,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 42597,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 16911,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 51002,
+      "writable": true,
+      "rotated": false
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 18610,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 19542,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 28968,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 7114,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 47203,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 7537,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 5108,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 16736,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 14164,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 1852,
+      "writable": true,
+      "rotated": true
+    },
+    {
+      "kind": "legacy_domain_log",
+      "bytes": 7535,
+      "writable": true,
+      "rotated": true
+    }
+  ],
+  "raw_user_data_exported": false,
+  "limits": [
+    "Yandex inbox not accessed",
+    "New legacy redirect requests may create fresh security-log entries after cleanup",
+    "Provider snapshots require separate confirmation",
+    "Shared telemetry without contacts not removed by this order-contact cleanup"
+  ],
+  "deleted_legacy_records": 18,
+  "legacy_contact_record_files_remaining": 0,
+  "financial_minimum_records": 8,
+  "financial_minimum_has_contact_fields": false,
+  "current_order_records_preserved": 2,
+  "runtime_php": "UNCHANGED",
+  "no_raw_contact_backup_created": true
+}
