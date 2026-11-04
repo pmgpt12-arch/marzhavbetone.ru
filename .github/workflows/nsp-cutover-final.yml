@@ -23,7 +23,7 @@ jobs:
       - name: Read explicit action and configure bounded SSH
         run: |
           set -euo pipefail
-          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","p4p5-inspect","p4p5-preflight","p4p5-publish"]; print(x["action"])')
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","p4p5-inspect","p4p5-preflight","p4p5-publish","titles-preflight","titles-publish"]; print(x["action"])')
           echo "NSP_ACTION=$action" >> "$GITHUB_ENV"
           test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
           [[ "$PORT" =~ ^[0-9]+$ ]]
@@ -89,6 +89,9 @@ jobs:
       - name: Publish P4v3 and P5v2 via SHA-pinned transactional runner
         if: env.NSP_ACTION == 'p4p5-preflight' || env.NSP_ACTION == 'p4p5-publish'
         run: python3 tools/nsp-final/p4p5-20261102/action.py
+      - name: Scoped public title sync P3 P7 P8 P9 P10 P11 P13
+        if: env.NSP_ACTION == 'titles-preflight' || env.NSP_ACTION == 'titles-publish'
+        run: python3 tools/nsp-final/titles-20261104/action.py "$NSP_ACTION"
       - name: Targeted dry-run or publication
         if: env.NSP_ACTION == 'dry-run' || env.NSP_ACTION == 'publish'
         run: python3 tools/nsp-final/release.py "$NSP_ACTION"
