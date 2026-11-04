@@ -1,0 +1,34 @@
+<report status="FAIL" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-next-excel-8-20261022" excel_version="16.0" excel_build="4324">
+  <check name="n8:input_sha" pass="True" expected="5da1754d3b320a8e8067b5e54820d71a6f1a2a43fa05d0ad993854623e66cf46" actual="5da1754d3b320a8e8067b5e54820d71a6f1a2a43fa05d0ad993854623e66cf46" />
+  <print_preflight tag="n8" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Опись" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Как заполнять" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Виды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Виды!Print_Area" refers_to="=Виды!$A$1:$E$15" />
+    <print_name name="'Как заполнять'!Print_Area" refers_to="='Как заполнять'!$A$1:$B$18" />
+    <print_name name="Опись!Print_Area" refers_to="=Опись!$A$1:$I$136" />
+    <print_name name="'Пример заполнения'!Print_Area" refers_to="='Пример заполнения'!$A$1:$I$14" />
+    <print_name name="Опись!Print_Titles" refers_to="=Опись!$10:$10" />
+  </print_preflight>
+  <check name="n8:positive:E132" pass="True" expected="number:3" actual="System.Double:3" />
+  <check name="n8:positive:C133" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="n8:negative:E132" pass="True" expected="text:ПРОВЕРЬТЕ СТРОКИ" actual="System.String:ПРОВЕРЬТЕ СТРОКИ" />
+  <check name="n8:fraction:E132" pass="True" expected="text:ПРОВЕРЬТЕ СТРОКИ" actual="System.String:ПРОВЕРЬТЕ СТРОКИ" />
+  <check name="n8:text:E132" pass="False" expected="text:ПРОВЕРЬТЕ СТРОКИ" actual="System.Double:3" />
+  <check name="n8:no-document:E132" pass="True" expected="text:ПРОВЕРЬТЕ СТРОКИ" actual="System.String:ПРОВЕРЬТЕ СТРОКИ" />
+  <check name="n8:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="n8:pdf_export" pass="True" expected="%PDF-" actual="bytes=297511" />
+  <print_preflight tag="n8" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Опись" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Как заполнять" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Виды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Виды!Print_Area" refers_to="=Виды!$A$1:$E$15" />
+    <print_name name="'Как заполнять'!Print_Area" refers_to="='Как заполнять'!$A$1:$B$18" />
+    <print_name name="Опись!Print_Area" refers_to="=Опись!$A$1:$I$136" />
+    <print_name name="'Пример заполнения'!Print_Area" refers_to="='Пример заполнения'!$A$1:$I$14" />
+    <print_name name="Опись!Print_Titles" refers_to="=Опись!$10:$10" />
+  </print_preflight>
+  <check name="n8:source_unchanged" pass="True" expected="5da1754d3b320a8e8067b5e54820d71a6f1a2a43fa05d0ad993854623e66cf46" actual="5da1754d3b320a8e8067b5e54820d71a6f1a2a43fa05d0ad993854623e66cf46" />
+</report>

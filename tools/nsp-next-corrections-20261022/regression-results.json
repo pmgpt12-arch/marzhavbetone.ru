@@ -1,0 +1,600 @@
+[
+  {
+    "issue": "P9-04-document-sums-and-completeness",
+    "case": "one-document",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Итоги!B8",
+        "expected": 100000,
+        "actual": 100000,
+        "pass": true
+      },
+      {
+        "key": "Реестр документов!M4",
+        "expected": "",
+        "actual": "",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P9-04-document-sums-and-completeness",
+    "case": "duplicate-evidence-not-debt",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Итоги!B8",
+        "expected": 200000,
+        "actual": 200000,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P9-04-document-sums-and-completeness",
+    "case": "unique-documents",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Итоги!B8",
+        "expected": 150000,
+        "actual": 150000,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P9-04-document-sums-and-completeness",
+    "case": "missing-date",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Реестр документов!M4",
+        "expected": {
+          "contains": "НЕ ЗАВЕРШЕНО"
+        },
+        "actual": "НЕ ЗАВЕРШЕНО: реквизиты, дата или включение копии",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P9-04-document-sums-and-completeness",
+    "case": "text-date",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Реестр документов!M4",
+        "expected": {
+          "contains": "НЕ ЗАВЕРШЕНО"
+        },
+        "actual": "НЕ ЗАВЕРШЕНО: реквизиты, дата или включение копии",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P5-22-open-position-date-ties",
+    "case": "same-date-select-open",
+    "pass": false,
+    "assertions": [
+      {
+        "key": "Сводка!B13",
+        "expected": "открытый-2",
+        "actual": "",
+        "pass": false
+      },
+      {
+        "key": "Сводка!C13",
+        "expected": "объект 2",
+        "actual": "",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "issue": "P5-22-open-position-date-ties",
+    "case": "returned-positive",
+    "pass": false,
+    "assertions": [
+      {
+        "key": "Сводка!D4",
+        "expected": {
+          "contains": "ОШИБКА"
+        },
+        "actual": "ОШИБКА: статус возврата или превышение возврата. Сверьте реестр.",
+        "pass": true
+      },
+      {
+        "key": "Сводка!B13",
+        "expected": "закрытый-1",
+        "actual": "",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "issue": "P5-22-open-position-date-ties",
+    "case": "over-return",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Сводка!D4",
+        "expected": {
+          "contains": "ОШИБКА"
+        },
+        "actual": "ОШИБКА: статус возврата или превышение возврата. Сверьте реестр.",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P5-22-open-position-date-ties",
+    "case": "two-dates",
+    "pass": false,
+    "assertions": [
+      {
+        "key": "Сводка!B13",
+        "expected": "закрытый-1",
+        "actual": "",
+        "pass": false
+      },
+      {
+        "key": "Сводка!B14",
+        "expected": "открытый-2",
+        "actual": "",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "issue": "P5-23-unknown-is-not-ready",
+    "case": "empty",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Сводка!C8",
+        "expected": "НЕТ ДАННЫХ",
+        "actual": "НЕТ ДАННЫХ",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P5-23-unknown-is-not-ready",
+    "case": "unknown-ks",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Сводка!C8",
+        "expected": "НЕТ ДАННЫХ",
+        "actual": "НЕТ ДАННЫХ",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P5-23-unknown-is-not-ready",
+    "case": "unknown-blocking",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Сводка!C8",
+        "expected": "НЕ ПРОВЕРЕНО",
+        "actual": "НЕ ПРОВЕРЕНО",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P5-23-unknown-is-not-ready",
+    "case": "blocked",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Сводка!C8",
+        "expected": {
+          "contains": "не готов"
+        },
+        "actual": "К закрытию не готов: 1",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P5-23-unknown-is-not-ready",
+    "case": "signed",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Сводка!C8",
+        "expected": "По внесённым строкам блокирующих нет",
+        "actual": "По внесённым строкам блокирующих нет",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P5-29-unknown-preserve-gaps-and-minimum",
+    "case": "only-type",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Опись!U7",
+        "expected": {
+          "contains": "НЕ ПРОВЕРЕНО"
+        },
+        "actual": "НЕ ПРОВЕРЕНО: наличие или обязательность",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P5-29-unknown-preserve-gaps-and-minimum",
+    "case": "missing-required",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Опись!U7",
+        "expected": {
+          "contains": "дыра"
+        },
+        "actual": "дыра: обязательного документа нет, запрос не направлен",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P5-29-unknown-preserve-gaps-and-minimum",
+    "case": "requested",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Опись!U7",
+        "expected": {
+          "contains": "запрошен"
+        },
+        "actual": "запрошен, не получен",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P5-29-unknown-preserve-gaps-and-minimum",
+    "case": "expert-no-date",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Опись!U7",
+        "expected": {
+          "contains": "передан без следа"
+        },
+        "actual": "передан без следа: эксперт или дата",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P5-29-unknown-preserve-gaps-and-minimum",
+    "case": "minimum-still-open",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Сводка!A15",
+        "expected": {
+          "contains": "незакрытые"
+        },
+        "actual": "Есть незакрытые обязательные документы или блоки минимума. Закройте дыры или направьте запрос.",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P2-07-incomplete-cost",
+    "case": "incomplete",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Реестр!I104",
+        "expected": 1150,
+        "actual": 1150,
+        "pass": true
+      },
+      {
+        "key": "Реестр!H104",
+        "expected": {
+          "contains": "Неполных строк: 1"
+        },
+        "actual": "Предварительно. Неполных строк: 1",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P2-07-incomplete-cost",
+    "case": "complete",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Реестр!I104",
+        "expected": 1350,
+        "actual": 1350,
+        "pass": true
+      },
+      {
+        "key": "Реестр!H104",
+        "expected": "Итого",
+        "actual": "Итого",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P2-07-incomplete-cost",
+    "case": "negative",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Реестр!I4",
+        "expected": "НЕ ЗАВЕРШЕНО",
+        "actual": "НЕ ЗАВЕРШЕНО",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P2-07-incomplete-cost",
+    "case": "text",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Реестр!I4",
+        "expected": "НЕ ЗАВЕРШЕНО",
+        "actual": "НЕ ЗАВЕРШЕНО",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P4-06-count-real-comments",
+    "case": "empty",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Реестр замечаний по ИД!E6",
+        "expected": 0,
+        "actual": 0,
+        "pass": true
+      },
+      {
+        "key": "Реестр замечаний по ИД!H6",
+        "expected": 0,
+        "actual": 0,
+        "pass": true
+      },
+      {
+        "key": "Реестр замечаний по ИД!H7",
+        "expected": 0,
+        "actual": 0,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P4-06-count-real-comments",
+    "case": "two-one-closed",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Реестр замечаний по ИД!E6",
+        "expected": 2,
+        "actual": 2,
+        "pass": true
+      },
+      {
+        "key": "Реестр замечаний по ИД!H6",
+        "expected": 1,
+        "actual": 1,
+        "pass": true
+      },
+      {
+        "key": "Реестр замечаний по ИД!H7",
+        "expected": 1,
+        "actual": 1,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P4-06-count-real-comments",
+    "case": "unknown-is-open",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Реестр замечаний по ИД!H6",
+        "expected": 1,
+        "actual": 1,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P4-07-progress-without-empty-rows",
+    "case": "one-complete",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "График устранения замечаний!G4",
+        "expected": 1,
+        "actual": 1,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P4-07-progress-without-empty-rows",
+    "case": "two-half",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "График устранения замечаний!G4",
+        "expected": 0.5,
+        "actual": 0.5,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P4-07-progress-without-empty-rows",
+    "case": "empty",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "График устранения замечаний!G4",
+        "expected": "НЕТ ДАННЫХ",
+        "actual": "НЕТ ДАННЫХ",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P4-07-progress-without-empty-rows",
+    "case": "negative",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "График устранения замечаний!G4",
+        "expected": "ПРОВЕРЬТЕ ПРОЦЕНТ",
+        "actual": "ПРОВЕРЬТЕ ПРОЦЕНТ",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "T2-03-whole-positive-leaf-count",
+    "case": "positive",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Опись!E132",
+        "expected": 3,
+        "actual": 3,
+        "pass": true
+      },
+      {
+        "key": "Опись!C133",
+        "expected": 0,
+        "actual": 0,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "T2-03-whole-positive-leaf-count",
+    "case": "negative",
+    "pass": false,
+    "assertions": [
+      {
+        "key": "Опись!E132",
+        "expected": "ПРОВЕРЬТЕ СТРОКИ",
+        "actual": -1,
+        "pass": false
+      }
+    ]
+  },
+  {
+    "issue": "T2-03-whole-positive-leaf-count",
+    "case": "fraction",
+    "pass": false,
+    "assertions": [
+      {
+        "key": "Опись!E132",
+        "expected": "ПРОВЕРЬТЕ СТРОКИ",
+        "actual": 1.5,
+        "pass": false
+      }
+    ]
+  },
+  {
+    "issue": "T2-03-whole-positive-leaf-count",
+    "case": "text",
+    "pass": false,
+    "assertions": [
+      {
+        "key": "Опись!E132",
+        "expected": "ПРОВЕРЬТЕ СТРОКИ",
+        "actual": 0,
+        "pass": false
+      }
+    ]
+  },
+  {
+    "issue": "T2-03-whole-positive-leaf-count",
+    "case": "no-document",
+    "pass": false,
+    "assertions": [
+      {
+        "key": "Опись!E132",
+        "expected": "ПРОВЕРЬТЕ СТРОКИ",
+        "actual": 4,
+        "pass": false
+      }
+    ]
+  },
+  {
+    "issue": "P13-63-contradictory-covered-status",
+    "case": "contradiction",
+    "pass": false,
+    "assertions": [
+      {
+        "key": "Реестр затрат!H54",
+        "expected": 100000,
+        "actual": 100000,
+        "pass": true
+      },
+      {
+        "key": "Реестр затрат!C53",
+        "expected": {
+          "contains": "ПРОТИВОРЕЧИЕ"
+        },
+        "actual": "Проверка заполнена; решение о цене принимает руководитель",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "issue": "P13-63-contradictory-covered-status",
+    "case": "fully-covered",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Реестр затрат!H54",
+        "expected": 0,
+        "actual": 0,
+        "pass": true
+      },
+      {
+        "key": "Реестр затрат!C53",
+        "expected": {
+          "contains": "Проверка заполнена"
+        },
+        "actual": "Проверка заполнена; решение о цене принимает руководитель",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "issue": "P13-63-contradictory-covered-status",
+    "case": "partial",
+    "pass": true,
+    "assertions": [
+      {
+        "key": "Реестр затрат!H54",
+        "expected": 50000,
+        "actual": 50000,
+        "pass": true
+      }
+    ]
+  }
+]

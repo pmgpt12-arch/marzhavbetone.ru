@@ -1,0 +1,1042 @@
+[
+  {
+    "name": "new-00-00.xlsx",
+    "issue": "P9-04-document-sums-and-completeness",
+    "case": "one-document",
+    "expect": {
+      "Итоги!B8": 100000,
+      "Реестр документов!M4": ""
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Итоги!B8",
+        "expected": 100000,
+        "actual": 100000.0,
+        "pass": true
+      },
+      {
+        "cell": "Реестр документов!M4",
+        "expected": "",
+        "actual": "",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-00-01.xlsx",
+    "issue": "P9-04-document-sums-and-completeness",
+    "case": "duplicate-evidence-not-debt",
+    "expect": {
+      "Итоги!B8": 200000
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Итоги!B8",
+        "expected": 200000,
+        "actual": 200000.0,
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-00-02.xlsx",
+    "issue": "P9-04-document-sums-and-completeness",
+    "case": "unique-documents",
+    "expect": {
+      "Итоги!B8": 150000
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Итоги!B8",
+        "expected": 150000,
+        "actual": 150000.0,
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-00-03.xlsx",
+    "issue": "P9-04-document-sums-and-completeness",
+    "case": "missing-date",
+    "expect": {
+      "Реестр документов!M4": {
+        "contains": "НЕ ЗАВЕРШЕНО"
+      }
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Реестр документов!M4",
+        "expected": {
+          "contains": "НЕ ЗАВЕРШЕНО"
+        },
+        "actual": "НЕ ЗАВЕРШЕНО: реквизиты, дата или включение копии",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-00-04.xlsx",
+    "issue": "P9-04-document-sums-and-completeness",
+    "case": "text-date",
+    "expect": {
+      "Реестр документов!M4": {
+        "contains": "НЕ ЗАВЕРШЕНО"
+      }
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Реестр документов!M4",
+        "expected": {
+          "contains": "НЕ ЗАВЕРШЕНО"
+        },
+        "actual": "НЕ ЗАВЕРШЕНО: реквизиты, дата или включение копии",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "old-00.xlsx",
+    "issue": "P9-04-document-sums-and-completeness",
+    "case": "missing-date",
+    "expect": {
+      "Реестр документов!M4": {
+        "contains": "НЕ ЗАВЕРШЕНО"
+      }
+    },
+    "phase": "before",
+    "checks": [
+      {
+        "cell": "Реестр документов!M4",
+        "expected": {
+          "contains": "НЕ ЗАВЕРШЕНО"
+        },
+        "actual": "",
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-01-00.xlsx",
+    "issue": "P5-22-open-position-date-ties",
+    "case": "same-date-select-open",
+    "expect": {
+      "Сводка!B13": "открытый-2",
+      "Сводка!C13": "объект 2"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Сводка!B13",
+        "expected": "открытый-2",
+        "actual": "открытый-2",
+        "pass": true
+      },
+      {
+        "cell": "Сводка!C13",
+        "expected": "объект 2",
+        "actual": "объект 2",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-01-01.xlsx",
+    "issue": "P5-22-open-position-date-ties",
+    "case": "returned-positive",
+    "expect": {
+      "Сводка!D4": {
+        "contains": "ОШИБКА"
+      },
+      "Сводка!B13": "закрытый-1"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Сводка!D4",
+        "expected": {
+          "contains": "ОШИБКА"
+        },
+        "actual": "ОШИБКА: статус возврата или превышение возврата. Сверьте реестр.",
+        "pass": true
+      },
+      {
+        "cell": "Сводка!B13",
+        "expected": "закрытый-1",
+        "actual": "закрытый-1",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-01-02.xlsx",
+    "issue": "P5-22-open-position-date-ties",
+    "case": "over-return",
+    "expect": {
+      "Сводка!D4": {
+        "contains": "ОШИБКА"
+      }
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Сводка!D4",
+        "expected": {
+          "contains": "ОШИБКА"
+        },
+        "actual": "ОШИБКА: статус возврата или превышение возврата. Сверьте реестр.",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-01-03.xlsx",
+    "issue": "P5-22-open-position-date-ties",
+    "case": "two-dates",
+    "expect": {
+      "Сводка!B13": "закрытый-1",
+      "Сводка!B14": "открытый-2"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Сводка!B13",
+        "expected": "закрытый-1",
+        "actual": "закрытый-1",
+        "pass": true
+      },
+      {
+        "cell": "Сводка!B14",
+        "expected": "открытый-2",
+        "actual": "открытый-2",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "old-01.xlsx",
+    "issue": "P5-22-open-position-date-ties",
+    "case": "same-date-select-open",
+    "expect": {
+      "Сводка!B13": "открытый-2",
+      "Сводка!C13": "объект 2"
+    },
+    "phase": "before",
+    "checks": [
+      {
+        "cell": "Сводка!B13",
+        "expected": "открытый-2",
+        "actual": "закрытый-1",
+        "pass": false
+      },
+      {
+        "cell": "Сводка!C13",
+        "expected": "объект 2",
+        "actual": "объект 1",
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-02-00.xlsx",
+    "issue": "P5-23-unknown-is-not-ready",
+    "case": "empty",
+    "expect": {
+      "Сводка!C8": "НЕТ ДАННЫХ"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Сводка!C8",
+        "expected": "НЕТ ДАННЫХ",
+        "actual": "НЕТ ДАННЫХ",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-02-01.xlsx",
+    "issue": "P5-23-unknown-is-not-ready",
+    "case": "unknown-ks",
+    "expect": {
+      "Сводка!C8": "НЕТ ДАННЫХ"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Сводка!C8",
+        "expected": "НЕТ ДАННЫХ",
+        "actual": "НЕТ ДАННЫХ",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-02-02.xlsx",
+    "issue": "P5-23-unknown-is-not-ready",
+    "case": "unknown-blocking",
+    "expect": {
+      "Сводка!C8": "НЕ ПРОВЕРЕНО"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Сводка!C8",
+        "expected": "НЕ ПРОВЕРЕНО",
+        "actual": "НЕ ПРОВЕРЕНО",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-02-03.xlsx",
+    "issue": "P5-23-unknown-is-not-ready",
+    "case": "blocked",
+    "expect": {
+      "Сводка!C8": {
+        "contains": "не готов"
+      }
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Сводка!C8",
+        "expected": {
+          "contains": "не готов"
+        },
+        "actual": "К закрытию не готов: 1",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-02-04.xlsx",
+    "issue": "P5-23-unknown-is-not-ready",
+    "case": "signed",
+    "expect": {
+      "Сводка!C8": "По внесённым строкам блокирующих нет"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Сводка!C8",
+        "expected": "По внесённым строкам блокирующих нет",
+        "actual": "По внесённым строкам блокирующих нет",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "old-02.xlsx",
+    "issue": "P5-23-unknown-is-not-ready",
+    "case": "empty",
+    "expect": {
+      "Сводка!C8": "НЕТ ДАННЫХ"
+    },
+    "phase": "before",
+    "checks": [
+      {
+        "cell": "Сводка!C8",
+        "expected": "НЕТ ДАННЫХ",
+        "actual": "",
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-03-00.xlsx",
+    "issue": "P5-29-unknown-preserve-gaps-and-minimum",
+    "case": "only-type",
+    "expect": {
+      "Опись!U7": {
+        "contains": "НЕ ПРОВЕРЕНО"
+      }
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Опись!U7",
+        "expected": {
+          "contains": "НЕ ПРОВЕРЕНО"
+        },
+        "actual": "НЕ ПРОВЕРЕНО: наличие или обязательность",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-03-01.xlsx",
+    "issue": "P5-29-unknown-preserve-gaps-and-minimum",
+    "case": "missing-required",
+    "expect": {
+      "Опись!U7": {
+        "contains": "дыра"
+      }
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Опись!U7",
+        "expected": {
+          "contains": "дыра"
+        },
+        "actual": "дыра: обязательного документа нет, запрос не направлен",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-03-02.xlsx",
+    "issue": "P5-29-unknown-preserve-gaps-and-minimum",
+    "case": "requested",
+    "expect": {
+      "Опись!U7": {
+        "contains": "запрошен"
+      }
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Опись!U7",
+        "expected": {
+          "contains": "запрошен"
+        },
+        "actual": "запрошен, не получен",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-03-03.xlsx",
+    "issue": "P5-29-unknown-preserve-gaps-and-minimum",
+    "case": "expert-no-date",
+    "expect": {
+      "Опись!U7": {
+        "contains": "передан без следа"
+      }
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Опись!U7",
+        "expected": {
+          "contains": "передан без следа"
+        },
+        "actual": "передан без следа: эксперт или дата",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-03-04.xlsx",
+    "issue": "P5-29-unknown-preserve-gaps-and-minimum",
+    "case": "minimum-still-open",
+    "expect": {
+      "Сводка!A15": {
+        "contains": "незакрытые"
+      }
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Сводка!A15",
+        "expected": {
+          "contains": "незакрытые"
+        },
+        "actual": "НЕТ ДАННЫХ: заполните опись и обязательный минимум",
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "old-03.xlsx",
+    "issue": "P5-29-unknown-preserve-gaps-and-minimum",
+    "case": "only-type",
+    "expect": {
+      "Опись!U7": {
+        "contains": "НЕ ПРОВЕРЕНО"
+      }
+    },
+    "phase": "before",
+    "checks": [
+      {
+        "cell": "Опись!U7",
+        "expected": {
+          "contains": "НЕ ПРОВЕРЕНО"
+        },
+        "actual": "в порядке",
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-04-00.xlsx",
+    "issue": "P2-07-incomplete-cost",
+    "case": "incomplete",
+    "expect": {
+      "Реестр!I104": 1150,
+      "Реестр!H104": {
+        "contains": "Неполных строк: 1"
+      }
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Реестр!I104",
+        "expected": 1150,
+        "actual": 1150.0,
+        "pass": true
+      },
+      {
+        "cell": "Реестр!H104",
+        "expected": {
+          "contains": "Неполных строк: 1"
+        },
+        "actual": "Итого",
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-04-01.xlsx",
+    "issue": "P2-07-incomplete-cost",
+    "case": "complete",
+    "expect": {
+      "Реестр!I104": 1350,
+      "Реестр!H104": "Итого"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Реестр!I104",
+        "expected": 1350,
+        "actual": 1350.0,
+        "pass": true
+      },
+      {
+        "cell": "Реестр!H104",
+        "expected": "Итого",
+        "actual": "Итого",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-04-02.xlsx",
+    "issue": "P2-07-incomplete-cost",
+    "case": "negative",
+    "expect": {
+      "Реестр!I4": "НЕ ЗАВЕРШЕНО"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Реестр!I4",
+        "expected": "НЕ ЗАВЕРШЕНО",
+        "actual": "НЕ ЗАВЕРШЕНО",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-04-03.xlsx",
+    "issue": "P2-07-incomplete-cost",
+    "case": "text",
+    "expect": {
+      "Реестр!I4": "НЕ ЗАВЕРШЕНО"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Реестр!I4",
+        "expected": "НЕ ЗАВЕРШЕНО",
+        "actual": "НЕ ЗАВЕРШЕНО",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "old-04.xlsx",
+    "issue": "P2-07-incomplete-cost",
+    "case": "incomplete",
+    "expect": {
+      "Реестр!I104": 1150,
+      "Реестр!H104": {
+        "contains": "Неполных строк: 1"
+      }
+    },
+    "phase": "before",
+    "checks": [
+      {
+        "cell": "Реестр!I104",
+        "expected": 1150,
+        "actual": 1150.0,
+        "pass": true
+      },
+      {
+        "cell": "Реестр!H104",
+        "expected": {
+          "contains": "Неполных строк: 1"
+        },
+        "actual": "Итого",
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-05-00.xlsx",
+    "issue": "P4-06-count-real-comments",
+    "case": "empty",
+    "expect": {
+      "Реестр замечаний по ИД!E6": 0,
+      "Реестр замечаний по ИД!H6": 0,
+      "Реестр замечаний по ИД!H7": 0
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Реестр замечаний по ИД!E6",
+        "expected": 0,
+        "actual": 0.0,
+        "pass": true
+      },
+      {
+        "cell": "Реестр замечаний по ИД!H6",
+        "expected": 0,
+        "actual": 0.0,
+        "pass": true
+      },
+      {
+        "cell": "Реестр замечаний по ИД!H7",
+        "expected": 0,
+        "actual": 0.0,
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-05-01.xlsx",
+    "issue": "P4-06-count-real-comments",
+    "case": "two-one-closed",
+    "expect": {
+      "Реестр замечаний по ИД!E6": 2,
+      "Реестр замечаний по ИД!H6": 1,
+      "Реестр замечаний по ИД!H7": 1
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Реестр замечаний по ИД!E6",
+        "expected": 2,
+        "actual": 0.0,
+        "pass": false
+      },
+      {
+        "cell": "Реестр замечаний по ИД!H6",
+        "expected": 1,
+        "actual": 0.0,
+        "pass": false
+      },
+      {
+        "cell": "Реестр замечаний по ИД!H7",
+        "expected": 1,
+        "actual": 0.0,
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-05-02.xlsx",
+    "issue": "P4-06-count-real-comments",
+    "case": "unknown-is-open",
+    "expect": {
+      "Реестр замечаний по ИД!H6": 1
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Реестр замечаний по ИД!H6",
+        "expected": 1,
+        "actual": 0.0,
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "old-05.xlsx",
+    "issue": "P4-06-count-real-comments",
+    "case": "empty",
+    "expect": {
+      "Реестр замечаний по ИД!E6": 0,
+      "Реестр замечаний по ИД!H6": 0,
+      "Реестр замечаний по ИД!H7": 0
+    },
+    "phase": "before",
+    "checks": [
+      {
+        "cell": "Реестр замечаний по ИД!E6",
+        "expected": 0,
+        "actual": 3.0,
+        "pass": false
+      },
+      {
+        "cell": "Реестр замечаний по ИД!H6",
+        "expected": 0,
+        "actual": "",
+        "pass": false
+      },
+      {
+        "cell": "Реестр замечаний по ИД!H7",
+        "expected": 0,
+        "actual": "Закрыто",
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-06-00.xlsx",
+    "issue": "P4-07-progress-without-empty-rows",
+    "case": "one-complete",
+    "expect": {
+      "График устранения замечаний!G4": 1
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "График устранения замечаний!G4",
+        "expected": 1,
+        "actual": "НЕТ ДАННЫХ",
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-06-01.xlsx",
+    "issue": "P4-07-progress-without-empty-rows",
+    "case": "two-half",
+    "expect": {
+      "График устранения замечаний!G4": 0.5
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "График устранения замечаний!G4",
+        "expected": 0.5,
+        "actual": "НЕТ ДАННЫХ",
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-06-02.xlsx",
+    "issue": "P4-07-progress-without-empty-rows",
+    "case": "empty",
+    "expect": {
+      "График устранения замечаний!G4": "НЕТ ДАННЫХ"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "График устранения замечаний!G4",
+        "expected": "НЕТ ДАННЫХ",
+        "actual": "НЕТ ДАННЫХ",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-06-03.xlsx",
+    "issue": "P4-07-progress-without-empty-rows",
+    "case": "negative",
+    "expect": {
+      "График устранения замечаний!G4": "ПРОВЕРЬТЕ ПРОЦЕНТ"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "График устранения замечаний!G4",
+        "expected": "ПРОВЕРЬТЕ ПРОЦЕНТ",
+        "actual": "НЕТ ДАННЫХ",
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "old-06.xlsx",
+    "issue": "P4-07-progress-without-empty-rows",
+    "case": "one-complete",
+    "expect": {
+      "График устранения замечаний!G4": 1
+    },
+    "phase": "before",
+    "checks": [
+      {
+        "cell": "График устранения замечаний!G4",
+        "expected": 1,
+        "actual": 0.5,
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-07-00.xlsx",
+    "issue": "T2-03-whole-positive-leaf-count",
+    "case": "positive",
+    "expect": {
+      "Опись!E132": 3,
+      "Опись!C133": 0
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Опись!E132",
+        "expected": 3,
+        "actual": 0.0,
+        "pass": false
+      },
+      {
+        "cell": "Опись!C133",
+        "expected": 0,
+        "actual": 0.0,
+        "pass": true
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-07-01.xlsx",
+    "issue": "T2-03-whole-positive-leaf-count",
+    "case": "negative",
+    "expect": {
+      "Опись!E132": "ПРОВЕРЬТЕ СТРОКИ"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Опись!E132",
+        "expected": "ПРОВЕРЬТЕ СТРОКИ",
+        "actual": 0.0,
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-07-02.xlsx",
+    "issue": "T2-03-whole-positive-leaf-count",
+    "case": "fraction",
+    "expect": {
+      "Опись!E132": "ПРОВЕРЬТЕ СТРОКИ"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Опись!E132",
+        "expected": "ПРОВЕРЬТЕ СТРОКИ",
+        "actual": 0.0,
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-07-03.xlsx",
+    "issue": "T2-03-whole-positive-leaf-count",
+    "case": "text",
+    "expect": {
+      "Опись!E132": "ПРОВЕРЬТЕ СТРОКИ"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Опись!E132",
+        "expected": "ПРОВЕРЬТЕ СТРОКИ",
+        "actual": 0.0,
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-07-04.xlsx",
+    "issue": "T2-03-whole-positive-leaf-count",
+    "case": "no-document",
+    "expect": {
+      "Опись!E132": "ПРОВЕРЬТЕ СТРОКИ"
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Опись!E132",
+        "expected": "ПРОВЕРЬТЕ СТРОКИ",
+        "actual": 0.0,
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "old-07.xlsx",
+    "issue": "T2-03-whole-positive-leaf-count",
+    "case": "negative",
+    "expect": {
+      "Опись!E132": "ПРОВЕРЬТЕ СТРОКИ"
+    },
+    "phase": "before",
+    "checks": [
+      {
+        "cell": "Опись!E132",
+        "expected": "ПРОВЕРЬТЕ СТРОКИ",
+        "actual": -1.0,
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-08-00.xlsx",
+    "issue": "P13-63-contradictory-covered-status",
+    "case": "contradiction",
+    "expect": {
+      "Реестр затрат!H54": 100000,
+      "Реестр затрат!C53": {
+        "contains": "ПРОТИВОРЕЧИЕ"
+      }
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Реестр затрат!H54",
+        "expected": 100000,
+        "actual": 0.0,
+        "pass": false
+      },
+      {
+        "cell": "Реестр затрат!C53",
+        "expected": {
+          "contains": "ПРОТИВОРЕЧИЕ"
+        },
+        "actual": "Проверка заполнена; решение о цене принимает руководитель",
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "new-08-01.xlsx",
+    "issue": "P13-63-contradictory-covered-status",
+    "case": "fully-covered",
+    "expect": {
+      "Реестр затрат!H54": 0,
+      "Реестр затрат!C53": {
+        "contains": "Проверка заполнена"
+      }
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Реестр затрат!H54",
+        "expected": 0,
+        "actual": 0.0,
+        "pass": true
+      },
+      {
+        "cell": "Реестр затрат!C53",
+        "expected": {
+          "contains": "Проверка заполнена"
+        },
+        "actual": "Проверка заполнена; решение о цене принимает руководитель",
+        "pass": true
+      }
+    ],
+    "expectations_pass": true
+  },
+  {
+    "name": "new-08-02.xlsx",
+    "issue": "P13-63-contradictory-covered-status",
+    "case": "partial",
+    "expect": {
+      "Реестр затрат!H54": 50000
+    },
+    "phase": "after",
+    "checks": [
+      {
+        "cell": "Реестр затрат!H54",
+        "expected": 50000,
+        "actual": 0.0,
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  },
+  {
+    "name": "old-08.xlsx",
+    "issue": "P13-63-contradictory-covered-status",
+    "case": "contradiction",
+    "expect": {
+      "Реестр затрат!H54": 100000,
+      "Реестр затрат!C53": {
+        "contains": "ПРОТИВОРЕЧИЕ"
+      }
+    },
+    "phase": "before",
+    "checks": [
+      {
+        "cell": "Реестр затрат!H54",
+        "expected": 100000,
+        "actual": 0.0,
+        "pass": false
+      },
+      {
+        "cell": "Реестр затрат!C53",
+        "expected": {
+          "contains": "ПРОТИВОРЕЧИЕ"
+        },
+        "actual": "Заполните покрытие всех 51 строк; неприменимые отметьте явно",
+        "pass": false
+      }
+    ],
+    "expectations_pass": false
+  }
+]

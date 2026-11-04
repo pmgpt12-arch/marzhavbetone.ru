@@ -1,0 +1,136 @@
+[
+  {
+    "sku": "P7",
+    "builder": "mvb_build_product_zip",
+    "archive": "03-dogovor-podryada.zip",
+    "sha256": "5d633203aed5f2666ed31b22509ca9b63ed8a303365e7f4818f64f5022224730",
+    "member_count": 13,
+    "members": [
+      {
+        "name": "06-dopsoglashenie-obem.docx",
+        "sha256": "1ff7a818fa5fa9939410c61084cf84957d5ce05937683745273cda733d8fdb37"
+      },
+      {
+        "name": "09-checklist-dogovora.pdf",
+        "sha256": "b86ecf65c9c104e67d569570ddb1b3543d02350f9c83e1204ace67c14749bede"
+      },
+      {
+        "name": "07-dopsoglashenie-sroki.docx",
+        "sha256": "f3aaa1b0157927a1dca276d56a72fefe5ab78f499639670e62fec87cd7bdec8a"
+      },
+      {
+        "name": "04-poryadok-priemki.docx",
+        "sha256": "774f96809f6de685933e8503837bafa49681f859ad41493794edab7f2f1c7410"
+      },
+      {
+        "name": "08-krasnye-flagi.pdf",
+        "sha256": "3af78a07a2d5bdd80b67319f1ebd6973da212a9d10c5d267f951f54d72b0df07"
+      },
+      {
+        "name": "03-kalendarnyy-plan.xlsx",
+        "sha256": "f3525a8bac8eb2664e03971eae1d73b6e9490dfd2353023a4c221bc89cff100c"
+      },
+      {
+        "name": "02-perechen-rabot.xlsx",
+        "sha256": "0bee211d31c8f997b7a26fc87893d9a5aff90e60d7010563aaa10283f21ba983"
+      },
+      {
+        "name": "00-START-HERE.txt",
+        "sha256": "960c1716c7e21ee0b59773673706bbab60a3723b601530f6371d48d35b353074"
+      },
+      {
+        "name": "05-grafik-platezhey.xlsx",
+        "sha256": "e79a370ff72482e30ffafb47dbb5d6f8f2ea21fb1336fa193d8fa41f81c57f35"
+      },
+      {
+        "name": "00-INSTRUKCIYA.docx",
+        "sha256": "b37467d32f107161f405a8114f0c19b303e3537a9803dd9ef826e60e495fe47f"
+      },
+      {
+        "name": "00-INSTRUKCIYA.pdf",
+        "sha256": "7d3244a40f50ada9321dbba079013bfccbe00769a1f2504b4f6555aabe197cca"
+      },
+      {
+        "name": "10-protokol-raznoglasiy.docx",
+        "sha256": "c881837ecffaeeeae2d7d0e3e29ecf952b639a43a00866404a787ef902d29f1d"
+      },
+      {
+        "name": "01-dogovor-subpodryada.docx",
+        "sha256": "486bedc02b6c3a759ff1c64b14736118cf57796cac83d0221b6ed550414f69d7"
+      }
+    ],
+    "changed_files": [
+      "00-INSTRUKCIYA.docx",
+      "01-dogovor-subpodryada.docx"
+    ],
+    "exact_held_docx_reused": [
+      {
+        "path": "products-storage/03-dogovor-podryada/01-dogovor-subpodryada.docx",
+        "sha256": "486bedc02b6c3a759ff1c64b14736118cf57796cac83d0221b6ed550414f69d7",
+        "native_word_receipt_sha256": "409199e3d3e9287269d44af98d0d0206635028e682d4c30c3ea36a6f0f572a58"
+      },
+      {
+        "path": "products-storage/03-dogovor-podryada/00-INSTRUKCIYA.docx",
+        "sha256": "b37467d32f107161f405a8114f0c19b303e3537a9803dd9ef826e60e495fe47f",
+        "native_word_receipt_sha256": "409199e3d3e9287269d44af98d0d0206635028e682d4c30c3ea36a6f0f572a58"
+      }
+    ],
+    "status": "PACKAGE_VERIFIED_WITH_NATIVE_REVIEWED_DOCX",
+    "full_product_status": "RELEASE_BLOCKED_REMAINING_FULL_QA",
+    "canonical_sources_changed": false,
+    "publication": false
+  },
+  {
+    "sku": "T2",
+    "builder": "mvb_build_product_zip",
+    "archive": "14-peredacha-id-pod-podpis.zip",
+    "sha256": "dd24f04c3e0e1e77f7377794bb5072e0d5ac4fda6b9d3b8681999d3137bb7a2a",
+    "member_count": 6,
+    "members": [
+      {
+        "name": "00-START-HERE.pdf",
+        "sha256": "298fa091c81f491669439a33251fac4e9165da14c48c481a3840193732df1357"
+      },
+      {
+        "name": "01-slovar-poley.docx",
+        "sha256": "4a5a5d7ac357633aa9f0ea9c2b92ce6f4eb2c5240f8e4b9392abb49770a9a796"
+      },
+      {
+        "name": "04-akt-priema-peredachi-id.docx",
+        "sha256": "8e650a23f8a09a53f2ddc5e01b7ba68ebc012a09d96cbdb0dcc0b6d52a7ad0e4"
+      },
+      {
+        "name": "02-soprovoditelnoe-pismo-peredachi.docx",
+        "sha256": "421deab192ba409c1690b28ff5400bad1399b029bd0216e9e3fcd87d357a4c53"
+      },
+      {
+        "name": "03-opis-peredavaemogo-komplekta.xlsx",
+        "sha256": "5da1754d3b320a8e8067b5e54820d71a6f1a2a43fa05d0ad993854623e66cf46"
+      },
+      {
+        "name": "05-poryadok-peredachi-id.docx",
+        "sha256": "c69be1f6010f47a55e28acf2fa9235b2f2e494d86625425bb02f74183263e593"
+      }
+    ],
+    "changed_files": [
+      "02-soprovoditelnoe-pismo-peredachi.docx",
+      "05-poryadok-peredachi-id.docx"
+    ],
+    "exact_held_docx_reused": [
+      {
+        "path": "products-storage/14-peredacha-id-pod-podpis/02-soprovoditelnoe-pismo-peredachi.docx",
+        "sha256": "421deab192ba409c1690b28ff5400bad1399b029bd0216e9e3fcd87d357a4c53",
+        "native_word_receipt_sha256": "409199e3d3e9287269d44af98d0d0206635028e682d4c30c3ea36a6f0f572a58"
+      },
+      {
+        "path": "products-storage/14-peredacha-id-pod-podpis/05-poryadok-peredachi-id.docx",
+        "sha256": "c69be1f6010f47a55e28acf2fa9235b2f2e494d86625425bb02f74183263e593",
+        "native_word_receipt_sha256": "409199e3d3e9287269d44af98d0d0206635028e682d4c30c3ea36a6f0f572a58"
+      }
+    ],
+    "status": "PACKAGE_VERIFIED_WITH_NATIVE_REVIEWED_DOCX",
+    "full_product_status": "RELEASE_BLOCKED_REMAINING_FULL_QA",
+    "canonical_sources_changed": false,
+    "publication": false
+  }
+]

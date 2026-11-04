@@ -1,0 +1,54 @@
+{
+  "id": "P11-START-old-brand",
+  "sku": "P11",
+  "path": "products-storage/13-raschet-metrami/00-START-HERE.txt",
+  "source_head": "637a22fe1b34ded1db64a929a363f0fad14d466e",
+  "base_sha256": "7f072aedfb0cd2d87cef202c37383d76614028c185b5c367ecc8bc0c002e8a4a",
+  "new_sha256": "5ae080f3ec510868433b9fafdc94fac6e8eeeb7780a55f969ec6615453cb0aec",
+  "new_git_blob": "7bc94674fa7f534eef7dafcd81987ccbc251c0c4",
+  "reproduction": "Two old site URLs, old support email and old brand in P11 Start",
+  "fix": "Four exact text replacements only; legal and numeric content preserved",
+  "acceptance": "Inverse delta equality; zero old-brand matches; official builder eight-member ZIP; only Start changed; two protected P11 DOCX SHA unchanged",
+  "status": "TEXT_DELTA_AND_PACKAGE_VERIFIED",
+  "full_product_status": "RELEASE_BLOCKED",
+  "archive": {
+    "file": "13-raschet-metrami.zip",
+    "sha256": "38eef1b421c3f8b0f97c5f23b88162f534b61202ff76c5c703708237695a61d5",
+    "member_count": 8,
+    "members": [
+      {
+        "name": "56-pervyy-den-do-podpisi.docx",
+        "sha256": "8830cb6d0407ea0e740216327e1ba119d4cf391cd449773ab021efee3b858a41"
+      },
+      {
+        "name": "50-slovar-poley-raschet-metrami.docx",
+        "sha256": "40c068ab8d7cfabebfc3f3933bd0d984b7beb08e8c2d2cad7abb274cb344da80"
+      },
+      {
+        "name": "51-algoritm-raschet-metrami.pdf",
+        "sha256": "26933a39e735b829089a6cfac3e6ed3cf89afd164894ae1a98d0b15bcb6c3033"
+      },
+      {
+        "name": "54-zapros-sostoyanie-escrow.docx",
+        "sha256": "d2b33b7d4f0036b9003e4aaf3940780932ba9e834e7e6bce9bb4357664b98199"
+      },
+      {
+        "name": "55-pamyatka-punkt-ustupki-escrow.pdf",
+        "sha256": "ebef8943a9744c704e0070df373caf089731700ffa68e06ea5551165a92cacc1"
+      },
+      {
+        "name": "00-START-HERE.txt",
+        "sha256": "5ae080f3ec510868433b9fafdc94fac6e8eeeb7780a55f969ec6615453cb0aec"
+      },
+      {
+        "name": "53-zapros-status-obekta.docx",
+        "sha256": "9a88f1f249016093415811c1bf4ec470e8ac974a00bd4c4b5391e2d2bea89182"
+      },
+      {
+        "name": "52-chek-list-raschet-metrami.docx",
+        "sha256": "df15df36e99e23ed76faa97a5afc2fe350ac301ec6ea2baf5eeb6255fc83fd6d"
+      }
+    ]
+  },
+  "publication": false
+}

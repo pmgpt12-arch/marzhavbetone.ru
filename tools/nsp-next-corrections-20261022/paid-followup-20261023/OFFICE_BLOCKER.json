@@ -1,0 +1,18 @@
+{
+  "excel": {
+    "receipt_sha256": "e306a5b822ceebee1b899958371a55ced0358bd77f2a7ba6e85e315d37d85cf3",
+    "error": "COM activation 0x80080005",
+    "stage": "Before any workbook opening; all 3 files NOT_RUN",
+    "source_or_formula_failure_proven": false
+  },
+  "word": {
+    "receipt_sha256": "71c2f77df2cbacca833fc2722977868c21d7670d68f3ac7e461b15482b554cf9",
+    "first_file": "54-zapros-sostoyanie-escrow.docx",
+    "first_status": "TIMEOUT",
+    "following_2_synthetic_examples": "NO_RECEIPT_NO_ACCEPTANCE",
+    "cause": "Not established; no direct laptop DC surface available"
+  },
+  "changes_to_office_windows_agents_services": false,
+  "new_jobs_after_failure": "NONE; completed failed current.xml preserved",
+  "owner_step": "Save your work; close Excel/Word windows normally; launch Excel and Word manually, dismiss visible startup dialogs, confirm both open. No reinstall, service restart or security setting changes requested."
+}

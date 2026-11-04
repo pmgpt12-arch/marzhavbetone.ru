@@ -1,0 +1,1022 @@
+{
+  "path": "07-uderzhaniya-shtrafy-zachety/22-reestr-garantiynyh-uderzhaniy.xlsx",
+  "sku": "P5",
+  "issue": "P5-22-open-position-date-ties",
+  "base_sha256": "4ff4008082933ff386e3cb3cef6534bf0330cd1460d47e8cdbb6bc843741b674",
+  "edits": [
+    {
+      "sheet": "Сводка",
+      "cell": "A12",
+      "old": "Среди строк, где статус не «возвращено». Прошедшие даты стоят первыми: они самые срочные. Совпадающие даты показываются одной строкой.",
+      "value": "Положительный остаток: пять позиций по дате; при равных датах — в порядке строк реестра. Статус «возвращено» при остатке требует сверки. Ключ отбора в O реестра рассчитывается автоматически."
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "D4",
+      "old": "Сумма остатков по всем строкам реестра",
+      "value": "=IF(SUMPRODUCT(('Реестр'!$I$7:$I$156=\"возвращено\")*('Реестр'!$M$7:$M$156>0))+COUNTIF('Реестр'!$M$7:$M$156,\"<0\")>0,\"ОШИБКА: статус возврата или превышение возврата. Сверьте реестр.\",\"Сумма остатков; проверьте неполные исходные данные\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O6",
+      "old": null,
+      "value": "Ключ отбора: дата + номер строки / 1000"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O7",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H7),H7>0,ISNUMBER(M7),M7>0,A7<>\"\"),H7+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O8",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H8),H8>0,ISNUMBER(M8),M8>0,A8<>\"\"),H8+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O9",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H9),H9>0,ISNUMBER(M9),M9>0,A9<>\"\"),H9+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O10",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H10),H10>0,ISNUMBER(M10),M10>0,A10<>\"\"),H10+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O11",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H11),H11>0,ISNUMBER(M11),M11>0,A11<>\"\"),H11+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O12",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H12),H12>0,ISNUMBER(M12),M12>0,A12<>\"\"),H12+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O13",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H13),H13>0,ISNUMBER(M13),M13>0,A13<>\"\"),H13+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O14",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H14),H14>0,ISNUMBER(M14),M14>0,A14<>\"\"),H14+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O15",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H15),H15>0,ISNUMBER(M15),M15>0,A15<>\"\"),H15+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O16",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H16),H16>0,ISNUMBER(M16),M16>0,A16<>\"\"),H16+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O17",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H17),H17>0,ISNUMBER(M17),M17>0,A17<>\"\"),H17+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O18",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H18),H18>0,ISNUMBER(M18),M18>0,A18<>\"\"),H18+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O19",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H19),H19>0,ISNUMBER(M19),M19>0,A19<>\"\"),H19+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O20",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H20),H20>0,ISNUMBER(M20),M20>0,A20<>\"\"),H20+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O21",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H21),H21>0,ISNUMBER(M21),M21>0,A21<>\"\"),H21+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O22",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H22),H22>0,ISNUMBER(M22),M22>0,A22<>\"\"),H22+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O23",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H23),H23>0,ISNUMBER(M23),M23>0,A23<>\"\"),H23+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O24",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H24),H24>0,ISNUMBER(M24),M24>0,A24<>\"\"),H24+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O25",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H25),H25>0,ISNUMBER(M25),M25>0,A25<>\"\"),H25+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O26",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H26),H26>0,ISNUMBER(M26),M26>0,A26<>\"\"),H26+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O27",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H27),H27>0,ISNUMBER(M27),M27>0,A27<>\"\"),H27+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O28",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H28),H28>0,ISNUMBER(M28),M28>0,A28<>\"\"),H28+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O29",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H29),H29>0,ISNUMBER(M29),M29>0,A29<>\"\"),H29+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O30",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H30),H30>0,ISNUMBER(M30),M30>0,A30<>\"\"),H30+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O31",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H31),H31>0,ISNUMBER(M31),M31>0,A31<>\"\"),H31+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O32",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H32),H32>0,ISNUMBER(M32),M32>0,A32<>\"\"),H32+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O33",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H33),H33>0,ISNUMBER(M33),M33>0,A33<>\"\"),H33+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O34",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H34),H34>0,ISNUMBER(M34),M34>0,A34<>\"\"),H34+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O35",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H35),H35>0,ISNUMBER(M35),M35>0,A35<>\"\"),H35+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O36",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H36),H36>0,ISNUMBER(M36),M36>0,A36<>\"\"),H36+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O37",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H37),H37>0,ISNUMBER(M37),M37>0,A37<>\"\"),H37+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O38",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H38),H38>0,ISNUMBER(M38),M38>0,A38<>\"\"),H38+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O39",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H39),H39>0,ISNUMBER(M39),M39>0,A39<>\"\"),H39+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O40",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H40),H40>0,ISNUMBER(M40),M40>0,A40<>\"\"),H40+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O41",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H41),H41>0,ISNUMBER(M41),M41>0,A41<>\"\"),H41+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O42",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H42),H42>0,ISNUMBER(M42),M42>0,A42<>\"\"),H42+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O43",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H43),H43>0,ISNUMBER(M43),M43>0,A43<>\"\"),H43+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O44",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H44),H44>0,ISNUMBER(M44),M44>0,A44<>\"\"),H44+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O45",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H45),H45>0,ISNUMBER(M45),M45>0,A45<>\"\"),H45+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O46",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H46),H46>0,ISNUMBER(M46),M46>0,A46<>\"\"),H46+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O47",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H47),H47>0,ISNUMBER(M47),M47>0,A47<>\"\"),H47+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O48",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H48),H48>0,ISNUMBER(M48),M48>0,A48<>\"\"),H48+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O49",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H49),H49>0,ISNUMBER(M49),M49>0,A49<>\"\"),H49+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O50",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H50),H50>0,ISNUMBER(M50),M50>0,A50<>\"\"),H50+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O51",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H51),H51>0,ISNUMBER(M51),M51>0,A51<>\"\"),H51+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O52",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H52),H52>0,ISNUMBER(M52),M52>0,A52<>\"\"),H52+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O53",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H53),H53>0,ISNUMBER(M53),M53>0,A53<>\"\"),H53+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O54",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H54),H54>0,ISNUMBER(M54),M54>0,A54<>\"\"),H54+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O55",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H55),H55>0,ISNUMBER(M55),M55>0,A55<>\"\"),H55+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O56",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H56),H56>0,ISNUMBER(M56),M56>0,A56<>\"\"),H56+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O57",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H57),H57>0,ISNUMBER(M57),M57>0,A57<>\"\"),H57+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O58",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H58),H58>0,ISNUMBER(M58),M58>0,A58<>\"\"),H58+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O59",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H59),H59>0,ISNUMBER(M59),M59>0,A59<>\"\"),H59+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O60",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H60),H60>0,ISNUMBER(M60),M60>0,A60<>\"\"),H60+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O61",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H61),H61>0,ISNUMBER(M61),M61>0,A61<>\"\"),H61+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O62",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H62),H62>0,ISNUMBER(M62),M62>0,A62<>\"\"),H62+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O63",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H63),H63>0,ISNUMBER(M63),M63>0,A63<>\"\"),H63+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O64",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H64),H64>0,ISNUMBER(M64),M64>0,A64<>\"\"),H64+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O65",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H65),H65>0,ISNUMBER(M65),M65>0,A65<>\"\"),H65+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O66",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H66),H66>0,ISNUMBER(M66),M66>0,A66<>\"\"),H66+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O67",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H67),H67>0,ISNUMBER(M67),M67>0,A67<>\"\"),H67+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O68",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H68),H68>0,ISNUMBER(M68),M68>0,A68<>\"\"),H68+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O69",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H69),H69>0,ISNUMBER(M69),M69>0,A69<>\"\"),H69+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O70",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H70),H70>0,ISNUMBER(M70),M70>0,A70<>\"\"),H70+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O71",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H71),H71>0,ISNUMBER(M71),M71>0,A71<>\"\"),H71+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O72",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H72),H72>0,ISNUMBER(M72),M72>0,A72<>\"\"),H72+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O73",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H73),H73>0,ISNUMBER(M73),M73>0,A73<>\"\"),H73+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O74",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H74),H74>0,ISNUMBER(M74),M74>0,A74<>\"\"),H74+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O75",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H75),H75>0,ISNUMBER(M75),M75>0,A75<>\"\"),H75+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O76",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H76),H76>0,ISNUMBER(M76),M76>0,A76<>\"\"),H76+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O77",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H77),H77>0,ISNUMBER(M77),M77>0,A77<>\"\"),H77+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O78",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H78),H78>0,ISNUMBER(M78),M78>0,A78<>\"\"),H78+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O79",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H79),H79>0,ISNUMBER(M79),M79>0,A79<>\"\"),H79+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O80",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H80),H80>0,ISNUMBER(M80),M80>0,A80<>\"\"),H80+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O81",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H81),H81>0,ISNUMBER(M81),M81>0,A81<>\"\"),H81+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O82",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H82),H82>0,ISNUMBER(M82),M82>0,A82<>\"\"),H82+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O83",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H83),H83>0,ISNUMBER(M83),M83>0,A83<>\"\"),H83+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O84",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H84),H84>0,ISNUMBER(M84),M84>0,A84<>\"\"),H84+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O85",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H85),H85>0,ISNUMBER(M85),M85>0,A85<>\"\"),H85+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O86",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H86),H86>0,ISNUMBER(M86),M86>0,A86<>\"\"),H86+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O87",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H87),H87>0,ISNUMBER(M87),M87>0,A87<>\"\"),H87+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O88",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H88),H88>0,ISNUMBER(M88),M88>0,A88<>\"\"),H88+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O89",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H89),H89>0,ISNUMBER(M89),M89>0,A89<>\"\"),H89+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O90",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H90),H90>0,ISNUMBER(M90),M90>0,A90<>\"\"),H90+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O91",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H91),H91>0,ISNUMBER(M91),M91>0,A91<>\"\"),H91+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O92",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H92),H92>0,ISNUMBER(M92),M92>0,A92<>\"\"),H92+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O93",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H93),H93>0,ISNUMBER(M93),M93>0,A93<>\"\"),H93+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O94",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H94),H94>0,ISNUMBER(M94),M94>0,A94<>\"\"),H94+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O95",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H95),H95>0,ISNUMBER(M95),M95>0,A95<>\"\"),H95+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O96",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H96),H96>0,ISNUMBER(M96),M96>0,A96<>\"\"),H96+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O97",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H97),H97>0,ISNUMBER(M97),M97>0,A97<>\"\"),H97+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O98",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H98),H98>0,ISNUMBER(M98),M98>0,A98<>\"\"),H98+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O99",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H99),H99>0,ISNUMBER(M99),M99>0,A99<>\"\"),H99+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O100",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H100),H100>0,ISNUMBER(M100),M100>0,A100<>\"\"),H100+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O101",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H101),H101>0,ISNUMBER(M101),M101>0,A101<>\"\"),H101+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O102",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H102),H102>0,ISNUMBER(M102),M102>0,A102<>\"\"),H102+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O103",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H103),H103>0,ISNUMBER(M103),M103>0,A103<>\"\"),H103+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O104",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H104),H104>0,ISNUMBER(M104),M104>0,A104<>\"\"),H104+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O105",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H105),H105>0,ISNUMBER(M105),M105>0,A105<>\"\"),H105+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O106",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H106),H106>0,ISNUMBER(M106),M106>0,A106<>\"\"),H106+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O107",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H107),H107>0,ISNUMBER(M107),M107>0,A107<>\"\"),H107+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O108",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H108),H108>0,ISNUMBER(M108),M108>0,A108<>\"\"),H108+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O109",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H109),H109>0,ISNUMBER(M109),M109>0,A109<>\"\"),H109+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O110",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H110),H110>0,ISNUMBER(M110),M110>0,A110<>\"\"),H110+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O111",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H111),H111>0,ISNUMBER(M111),M111>0,A111<>\"\"),H111+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O112",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H112),H112>0,ISNUMBER(M112),M112>0,A112<>\"\"),H112+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O113",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H113),H113>0,ISNUMBER(M113),M113>0,A113<>\"\"),H113+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O114",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H114),H114>0,ISNUMBER(M114),M114>0,A114<>\"\"),H114+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O115",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H115),H115>0,ISNUMBER(M115),M115>0,A115<>\"\"),H115+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O116",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H116),H116>0,ISNUMBER(M116),M116>0,A116<>\"\"),H116+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O117",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H117),H117>0,ISNUMBER(M117),M117>0,A117<>\"\"),H117+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O118",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H118),H118>0,ISNUMBER(M118),M118>0,A118<>\"\"),H118+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O119",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H119),H119>0,ISNUMBER(M119),M119>0,A119<>\"\"),H119+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O120",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H120),H120>0,ISNUMBER(M120),M120>0,A120<>\"\"),H120+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O121",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H121),H121>0,ISNUMBER(M121),M121>0,A121<>\"\"),H121+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O122",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H122),H122>0,ISNUMBER(M122),M122>0,A122<>\"\"),H122+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O123",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H123),H123>0,ISNUMBER(M123),M123>0,A123<>\"\"),H123+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O124",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H124),H124>0,ISNUMBER(M124),M124>0,A124<>\"\"),H124+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O125",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H125),H125>0,ISNUMBER(M125),M125>0,A125<>\"\"),H125+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O126",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H126),H126>0,ISNUMBER(M126),M126>0,A126<>\"\"),H126+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O127",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H127),H127>0,ISNUMBER(M127),M127>0,A127<>\"\"),H127+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O128",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H128),H128>0,ISNUMBER(M128),M128>0,A128<>\"\"),H128+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O129",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H129),H129>0,ISNUMBER(M129),M129>0,A129<>\"\"),H129+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O130",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H130),H130>0,ISNUMBER(M130),M130>0,A130<>\"\"),H130+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O131",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H131),H131>0,ISNUMBER(M131),M131>0,A131<>\"\"),H131+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O132",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H132),H132>0,ISNUMBER(M132),M132>0,A132<>\"\"),H132+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O133",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H133),H133>0,ISNUMBER(M133),M133>0,A133<>\"\"),H133+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O134",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H134),H134>0,ISNUMBER(M134),M134>0,A134<>\"\"),H134+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O135",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H135),H135>0,ISNUMBER(M135),M135>0,A135<>\"\"),H135+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O136",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H136),H136>0,ISNUMBER(M136),M136>0,A136<>\"\"),H136+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O137",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H137),H137>0,ISNUMBER(M137),M137>0,A137<>\"\"),H137+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O138",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H138),H138>0,ISNUMBER(M138),M138>0,A138<>\"\"),H138+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O139",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H139),H139>0,ISNUMBER(M139),M139>0,A139<>\"\"),H139+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O140",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H140),H140>0,ISNUMBER(M140),M140>0,A140<>\"\"),H140+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O141",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H141),H141>0,ISNUMBER(M141),M141>0,A141<>\"\"),H141+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O142",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H142),H142>0,ISNUMBER(M142),M142>0,A142<>\"\"),H142+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O143",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H143),H143>0,ISNUMBER(M143),M143>0,A143<>\"\"),H143+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O144",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H144),H144>0,ISNUMBER(M144),M144>0,A144<>\"\"),H144+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O145",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H145),H145>0,ISNUMBER(M145),M145>0,A145<>\"\"),H145+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O146",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H146),H146>0,ISNUMBER(M146),M146>0,A146<>\"\"),H146+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O147",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H147),H147>0,ISNUMBER(M147),M147>0,A147<>\"\"),H147+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O148",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H148),H148>0,ISNUMBER(M148),M148>0,A148<>\"\"),H148+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O149",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H149),H149>0,ISNUMBER(M149),M149>0,A149<>\"\"),H149+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O150",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H150),H150>0,ISNUMBER(M150),M150>0,A150<>\"\"),H150+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O151",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H151),H151>0,ISNUMBER(M151),M151>0,A151<>\"\"),H151+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O152",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H152),H152>0,ISNUMBER(M152),M152>0,A152<>\"\"),H152+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O153",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H153),H153>0,ISNUMBER(M153),M153>0,A153<>\"\"),H153+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O154",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H154),H154>0,ISNUMBER(M154),M154>0,A154<>\"\"),H154+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O155",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H155),H155>0,ISNUMBER(M155),M155>0,A155<>\"\"),H155+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "O156",
+      "old": null,
+      "value": "=IF(AND(ISNUMBER(H156),H156>0,ISNUMBER(M156),M156>0,A156<>\"\"),H156+(ROW()-6)/1000,\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "A13",
+      "old": "=IFERROR(IF(SUMPRODUCT(MIN('Реестр'!$H$7:$H$156+(('Реестр'!$H$7:$H$156=\"\")+('Реестр'!$I$7:$I$156=\"возвращено\")+('Реестр'!$H$7:$H$156<=0))*1000000000))>=1000000000,\"\",SUMPRODUCT(MIN('Реестр'!$H$7:$H$156+(('Реестр'!$H$7:$H$156=\"\")+('Реестр'!$I$7:$I$156=\"возвращено\")+('Реестр'!$H$7:$H$156<=0))*1000000000))),\"\")",
+      "value": "=IFERROR(INT(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A13))),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "B13",
+      "old": "=IF($A13=\"\",\"\",IFERROR(INDEX('Реестр'!$A$7:$A$156,MATCH($A13,'Реестр'!$H$7:$H$156,0)),\"\"))",
+      "value": "=IFERROR(INDEX('Реестр'!$A$7:$A$156,MATCH(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A13)),'Реестр'!$O$7:$O$156,0)),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "C13",
+      "old": "=IF($A13=\"\",\"\",IFERROR(INDEX('Реестр'!$B$7:$B$156,MATCH($A13,'Реестр'!$H$7:$H$156,0)),\"\"))",
+      "value": "=IFERROR(INDEX('Реестр'!$B$7:$B$156,MATCH(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A13)),'Реестр'!$O$7:$O$156,0)),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "A14",
+      "old": "=IFERROR(IF(SUMPRODUCT(MIN('Реестр'!$H$7:$H$156+(('Реестр'!$H$7:$H$156=\"\")+('Реестр'!$I$7:$I$156=\"возвращено\")+('Реестр'!$H$7:$H$156<=$A$13))*1000000000))>=1000000000,\"\",SUMPRODUCT(MIN('Реестр'!$H$7:$H$156+(('Реестр'!$H$7:$H$156=\"\")+('Реестр'!$I$7:$I$156=\"возвращено\")+('Реестр'!$H$7:$H$156<=$A$13))*1000000000))),\"\")",
+      "value": "=IFERROR(INT(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A14))),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "B14",
+      "old": "=IF($A14=\"\",\"\",IFERROR(INDEX('Реестр'!$A$7:$A$156,MATCH($A14,'Реестр'!$H$7:$H$156,0)),\"\"))",
+      "value": "=IFERROR(INDEX('Реестр'!$A$7:$A$156,MATCH(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A14)),'Реестр'!$O$7:$O$156,0)),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "C14",
+      "old": "=IF($A14=\"\",\"\",IFERROR(INDEX('Реестр'!$B$7:$B$156,MATCH($A14,'Реестр'!$H$7:$H$156,0)),\"\"))",
+      "value": "=IFERROR(INDEX('Реестр'!$B$7:$B$156,MATCH(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A14)),'Реестр'!$O$7:$O$156,0)),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "A15",
+      "old": "=IFERROR(IF(SUMPRODUCT(MIN('Реестр'!$H$7:$H$156+(('Реестр'!$H$7:$H$156=\"\")+('Реестр'!$I$7:$I$156=\"возвращено\")+('Реестр'!$H$7:$H$156<=$A$14))*1000000000))>=1000000000,\"\",SUMPRODUCT(MIN('Реестр'!$H$7:$H$156+(('Реестр'!$H$7:$H$156=\"\")+('Реестр'!$I$7:$I$156=\"возвращено\")+('Реестр'!$H$7:$H$156<=$A$14))*1000000000))),\"\")",
+      "value": "=IFERROR(INT(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A15))),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "B15",
+      "old": "=IF($A15=\"\",\"\",IFERROR(INDEX('Реестр'!$A$7:$A$156,MATCH($A15,'Реестр'!$H$7:$H$156,0)),\"\"))",
+      "value": "=IFERROR(INDEX('Реестр'!$A$7:$A$156,MATCH(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A15)),'Реестр'!$O$7:$O$156,0)),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "C15",
+      "old": "=IF($A15=\"\",\"\",IFERROR(INDEX('Реестр'!$B$7:$B$156,MATCH($A15,'Реестр'!$H$7:$H$156,0)),\"\"))",
+      "value": "=IFERROR(INDEX('Реестр'!$B$7:$B$156,MATCH(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A15)),'Реестр'!$O$7:$O$156,0)),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "A16",
+      "old": "=IFERROR(IF(SUMPRODUCT(MIN('Реестр'!$H$7:$H$156+(('Реестр'!$H$7:$H$156=\"\")+('Реестр'!$I$7:$I$156=\"возвращено\")+('Реестр'!$H$7:$H$156<=$A$15))*1000000000))>=1000000000,\"\",SUMPRODUCT(MIN('Реестр'!$H$7:$H$156+(('Реестр'!$H$7:$H$156=\"\")+('Реестр'!$I$7:$I$156=\"возвращено\")+('Реестр'!$H$7:$H$156<=$A$15))*1000000000))),\"\")",
+      "value": "=IFERROR(INT(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A16))),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "B16",
+      "old": "=IF($A16=\"\",\"\",IFERROR(INDEX('Реестр'!$A$7:$A$156,MATCH($A16,'Реестр'!$H$7:$H$156,0)),\"\"))",
+      "value": "=IFERROR(INDEX('Реестр'!$A$7:$A$156,MATCH(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A16)),'Реестр'!$O$7:$O$156,0)),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "C16",
+      "old": "=IF($A16=\"\",\"\",IFERROR(INDEX('Реестр'!$B$7:$B$156,MATCH($A16,'Реестр'!$H$7:$H$156,0)),\"\"))",
+      "value": "=IFERROR(INDEX('Реестр'!$B$7:$B$156,MATCH(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A16)),'Реестр'!$O$7:$O$156,0)),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "A17",
+      "old": "=IFERROR(IF(SUMPRODUCT(MIN('Реестр'!$H$7:$H$156+(('Реестр'!$H$7:$H$156=\"\")+('Реестр'!$I$7:$I$156=\"возвращено\")+('Реестр'!$H$7:$H$156<=$A$16))*1000000000))>=1000000000,\"\",SUMPRODUCT(MIN('Реестр'!$H$7:$H$156+(('Реестр'!$H$7:$H$156=\"\")+('Реестр'!$I$7:$I$156=\"возвращено\")+('Реестр'!$H$7:$H$156<=$A$16))*1000000000))),\"\")",
+      "value": "=IFERROR(INT(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A17))),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "B17",
+      "old": "=IF($A17=\"\",\"\",IFERROR(INDEX('Реестр'!$A$7:$A$156,MATCH($A17,'Реестр'!$H$7:$H$156,0)),\"\"))",
+      "value": "=IFERROR(INDEX('Реестр'!$A$7:$A$156,MATCH(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A17)),'Реестр'!$O$7:$O$156,0)),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "C17",
+      "old": "=IF($A17=\"\",\"\",IFERROR(INDEX('Реестр'!$B$7:$B$156,MATCH($A17,'Реестр'!$H$7:$H$156,0)),\"\"))",
+      "value": "=IFERROR(INDEX('Реестр'!$B$7:$B$156,MATCH(SMALL('Реестр'!$O$7:$O$156,ROWS($A$13:A17)),'Реестр'!$O$7:$O$156,0)),\"\")"
+    },
+    {
+      "sheet": "Сводка",
+      "cell": "B4",
+      "old": "=ROUND(SUM('Реестр'!$M$7:$M$156),2)",
+      "value": "=ROUND(SUMIF('Реестр'!$M$7:$M$156,\">0\",'Реестр'!$M$7:$M$156),2)"
+    }
+  ]
+}

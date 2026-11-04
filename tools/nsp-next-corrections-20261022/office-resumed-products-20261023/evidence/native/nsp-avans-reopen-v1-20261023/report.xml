@@ -1,0 +1,27 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-avans-reopen-v1-20261023" excel_version="16.0" excel_build="4324">
+  <check name="avr:input_sha" pass="True" expected="aad26f1c4b3cb65ec99a538083a150e85b9494480854a200c2addf1c4e4b09c8" actual="aad26f1c4b3cb65ec99a538083a150e85b9494480854a200c2addf1c4e4b09c8" />
+  <print_preflight tag="avr" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Изъятия" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Как считать" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Изъятия!Print_Area" refers_to="=Изъятия!$A$1:$G$19" />
+    <print_name name="'Как считать'!Print_Area" refers_to="='Как считать'!$A$1:$C$14" />
+    <print_name name="Изъятия!Print_Titles" refers_to="=Изъятия!$3:$3" />
+    <print_name name="'Как считать'!Print_Titles" refers_to="='Как считать'!$3:$3" />
+  </print_preflight>
+  <check name="avr:saved-blank-input-state:D12" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="avr:saved-blank-input-state:D13" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="avr:saved-blank-input-state:D14" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="avr:saved-blank-input-state:D15" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="avr:saved-blank-input-state:D16" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="avr:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="avr:pdf_export" pass="True" expected="%PDF-" actual="bytes=392565" />
+  <print_preflight tag="avr" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Изъятия" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Как считать" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Изъятия!Print_Area" refers_to="=Изъятия!$A$1:$G$19" />
+    <print_name name="'Как считать'!Print_Area" refers_to="='Как считать'!$A$1:$C$14" />
+    <print_name name="Изъятия!Print_Titles" refers_to="=Изъятия!$3:$3" />
+    <print_name name="'Как считать'!Print_Titles" refers_to="='Как считать'!$3:$3" />
+  </print_preflight>
+  <check name="avr:source_unchanged" pass="True" expected="aad26f1c4b3cb65ec99a538083a150e85b9494480854a200c2addf1c4e4b09c8" actual="aad26f1c4b3cb65ec99a538083a150e85b9494480854a200c2addf1c4e4b09c8" />
+</report>

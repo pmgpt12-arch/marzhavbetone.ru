@@ -1,0 +1,20 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-native-reopen-b3-20261022" excel_version="16.0" excel_build="4324">
+  <check name="r9:input_sha" pass="True" expected="2064cb1dfeb415c3bbb0b96b366a1eac7f6f85480e536f2150331f81c3765005" actual="2064cb1dfeb415c3bbb0b96b366a1eac7f6f85480e536f2150331f81c3765005" />
+  <check name="r9:saved-output-equivalence:H54" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="r9:saved-output-equivalence:C53" pass="True" expected="text:НЕ ПРОВЕРЕНО: заполните и сверьте строки" actual="System.String:НЕ ПРОВЕРЕНО: заполните и сверьте строки" />
+  <check name="r9:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="r9:pdf_export" pass="True" expected="%PDF-" actual="bytes=225285" />
+  <check name="r9:source_unchanged" pass="True" expected="2064cb1dfeb415c3bbb0b96b366a1eac7f6f85480e536f2150331f81c3765005" actual="2064cb1dfeb415c3bbb0b96b366a1eac7f6f85480e536f2150331f81c3765005" />
+  <check name="r10:input_sha" pass="True" expected="83cb0c9af7d8fc221b5defb702ff434f0100731b9ab5856a9ebd2539614b10c1" actual="83cb0c9af7d8fc221b5defb702ff434f0100731b9ab5856a9ebd2539614b10c1" />
+  <check name="r10:saved-output-equivalence:G5" pass="True" expected="number:127500" actual="System.Double:127500" />
+  <check name="r10:saved-output-equivalence:I5" pass="True" expected="text:Расчёт заполнен" actual="System.String:Расчёт заполнен" />
+  <check name="r10:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="r10:pdf_export" pass="True" expected="%PDF-" actual="bytes=177744" />
+  <check name="r10:source_unchanged" pass="True" expected="83cb0c9af7d8fc221b5defb702ff434f0100731b9ab5856a9ebd2539614b10c1" actual="83cb0c9af7d8fc221b5defb702ff434f0100731b9ab5856a9ebd2539614b10c1" />
+  <check name="r11:input_sha" pass="True" expected="68a5352a1873a933958a35ab819dd3888c1f4426fb3d31fa0024f033b4e43747" actual="68a5352a1873a933958a35ab819dd3888c1f4426fb3d31fa0024f033b4e43747" />
+  <check name="r11:saved-output-equivalence:E7" pass="True" expected="number:11" actual="System.Double:11" />
+  <check name="r11:saved-output-equivalence:G7" pass="True" expected="text:Листаж проверен" actual="System.String:Листаж проверен" />
+  <check name="r11:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="r11:pdf_export" pass="True" expected="%PDF-" actual="bytes=177872" />
+  <check name="r11:source_unchanged" pass="True" expected="68a5352a1873a933958a35ab819dd3888c1f4426fb3d31fa0024f033b4e43747" actual="68a5352a1873a933958a35ab819dd3888c1f4426fb3d31fa0024f033b4e43747" />
+</report>

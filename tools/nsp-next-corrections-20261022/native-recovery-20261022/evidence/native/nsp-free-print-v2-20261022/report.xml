@@ -1,0 +1,55 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-free-print-v2-20261022" excel_version="16.0" excel_build="4324">
+  <check name="fp10:input_sha" pass="True" expected="6f5f8dc406f69f70f0529dbf31a192bf7b87089d77662f299e99e6dca7039923" actual="6f5f8dc406f69f70f0529dbf31a192bf7b87089d77662f299e99e6dca7039923" />
+  <print_preflight tag="fp10" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр допработ" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр допработ'!Print_Area" refers_to="='Реестр допработ'!$A$1:$J$5" />
+  </print_preflight>
+  <check name="fp10:empty:G5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="fp10:empty:I5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="fp10:single:G5" pass="True" expected="number:127500" actual="System.Double:127500" />
+  <check name="fp10:single:I5" pass="True" expected="text:Расчёт заполнен" actual="System.String:Расчёт заполнен" />
+  <check name="fp10:additional:G5" pass="True" expected="number:147500" actual="System.Double:147500" />
+  <check name="fp10:missing-price:G5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="fp10:missing-price:I5" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="fp10:negative-volume:G5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="fp10:negative-volume:I5" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="fp10:nonnumeric-price:G5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="fp10:nonnumeric-price:I5" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="fp10:missing-unit:G5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="fp10:missing-unit:I5" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="fp10:rounding:G5" pass="True" expected="number:1.88" actual="System.Double:1.88" />
+  <check name="fp10:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="fp10:pdf_export" pass="True" expected="%PDF-" actual="bytes=176571" />
+  <print_preflight tag="fp10" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр допработ" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр допработ'!Print_Area" refers_to="='Реестр допработ'!$A$1:$J$5" />
+  </print_preflight>
+  <check name="fp10:source_unchanged" pass="True" expected="6f5f8dc406f69f70f0529dbf31a192bf7b87089d77662f299e99e6dca7039923" actual="6f5f8dc406f69f70f0529dbf31a192bf7b87089d77662f299e99e6dca7039923" />
+  <check name="fp11:input_sha" pass="True" expected="2374965c6f64525e36d9e0389b19bf6114a1ede574a806e503d61ec01ad4ba38" actual="2374965c6f64525e36d9e0389b19bf6114a1ede574a806e503d61ec01ad4ba38" />
+  <print_preflight tag="fp11" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр приложений к КС" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр приложений к КС'!Print_Area" refers_to="='Реестр приложений к КС'!$A$1:$G$7" />
+  </print_preflight>
+  <check name="fp11:empty:E7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="fp11:empty:G7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="fp11:baseline:E7" pass="True" expected="number:11" actual="System.Double:11" />
+  <check name="fp11:baseline:G7" pass="True" expected="text:Листаж проверен" actual="System.String:Листаж проверен" />
+  <check name="fp11:additional:E7" pass="True" expected="number:15" actual="System.Double:15" />
+  <check name="fp11:negative:E7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="fp11:negative:G7" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="fp11:fraction:E7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="fp11:fraction:G7" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="fp11:nonnumeric:E7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="fp11:nonnumeric:G7" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="fp11:count-without-document:E7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="fp11:count-without-document:G7" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="fp11:missing-count:E7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="fp11:missing-count:G7" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="fp11:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="fp11:pdf_export" pass="True" expected="%PDF-" actual="bytes=176882" />
+  <print_preflight tag="fp11" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр приложений к КС" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр приложений к КС'!Print_Area" refers_to="='Реестр приложений к КС'!$A$1:$G$7" />
+  </print_preflight>
+  <check name="fp11:source_unchanged" pass="True" expected="2374965c6f64525e36d9e0389b19bf6114a1ede574a806e503d61ec01ad4ba38" actual="2374965c6f64525e36d9e0389b19bf6114a1ede574a806e503d61ec01ad4ba38" />
+</report>

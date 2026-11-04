@@ -1,0 +1,27 @@
+{
+  "created_utc": "2026-10-23T00:12:10.652945+00:00",
+  "hypothesis": "Observed new ONLINE timestamps after previous FAIL receipts; actual recent channel GETs verified. One known-good control per channel checks possible recovery without assuming application startup.",
+  "states": {
+    "native": {
+      "time": 1792713037.887559,
+      "source": "192.168.1.140",
+      "state": "ONLINE"
+    },
+    "word": {
+      "time": 1792713040.3255816,
+      "source": "192.168.1.140",
+      "state": "ONLINE"
+    }
+  },
+  "latest_channel_polls": {
+    "word": 1792714308.592346,
+    "native": 1792714308.590382
+  },
+  "task_validity": "Explicit request to check Word and Excel",
+  "atomicity": "One source file per channel, sequential",
+  "contract": "PASS requires exact source SHA, native opening and PDF; Excel additionally calculates four expected values",
+  "budget_seconds_per_channel": 240,
+  "source_authoring": false,
+  "office_or_worker_settings_changed": false,
+  "preflight": "PASS"
+}

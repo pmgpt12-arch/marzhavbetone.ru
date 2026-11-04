@@ -1,0 +1,100 @@
+[
+  {
+    "archive": "complete-free-candidates/vozvrat-ks.zip",
+    "sha256": "d9585b46988ef4320ddf455e3ea6418f8dfd502e991cf4291b196ffceff5f67a",
+    "source_sha256": "c1cb90e49e4bca59d236782da15ff2d92b6738c2fcb5c5702509d835a3fa3ad4",
+    "members": [
+      {
+        "name": "01-proverochnyy-list-komplekta-ks.docx",
+        "base_sha256": "e6d1a9fbad7afd3a8e8e4a57ff923cf21d61f7f15692c3cd4ef130f218e29cca",
+        "sha256": "b60d1e5e0807ee402e22b1aa7ed9c7398aab82219de32515711fb680e94bf6a1",
+        "changed": true,
+        "native_office": "PASS"
+      },
+      {
+        "name": "02-reestr-prilozheniy.xlsx",
+        "base_sha256": "ffe27aa2380ec17f29efc4fb8d8b69a57c2b19f3a18a87439db20ab4108329a7",
+        "sha256": "2374965c6f64525e36d9e0389b19bf6114a1ede574a806e503d61ec01ad4ba38",
+        "changed": true,
+        "native_office": "PASS"
+      },
+      {
+        "name": "03-tipovye-prichiny-vozvrata.docx",
+        "base_sha256": "4992028c66c58173221b90485d40c8a5bdc544f546ea5f797df2539cd477cc95",
+        "sha256": "7668a8add459c39f03460af141216142e1bfc45a9a4aef128213625f78362ab8",
+        "changed": true,
+        "native_office": "PASS"
+      },
+      {
+        "name": "04-poryadok-vnutrenney-proverki.docx",
+        "base_sha256": "8dd4ed5bb5c75f8c552a0071207182cd7472e2ff880ffc42f1432cb2002e6371",
+        "sha256": "e18068e25385f3f6678536e36eeb472af40e12bc53946a91269e7fdf3410b50a",
+        "changed": true,
+        "native_office": "PASS"
+      },
+      {
+        "name": "99-chto-dalshe.pdf",
+        "base_sha256": "bda7163b4c6af2897108b49a88c793b61c18d972827e4ae10e98d05e29e75032",
+        "sha256": "bda7163b4c6af2897108b49a88c793b61c18d972827e4ae10e98d05e29e75032",
+        "changed": false,
+        "native_office": "UNCHANGED_PDF_VISUALLY_REVIEWED"
+      }
+    ],
+    "status": "QA_CANDIDATE_NATIVE_VISUAL_PACKAGE_PASS",
+    "limits": [
+      "Only existing data rows tested: 3 additional-work rows, 5 attachment rows; extending structure not accepted by this gate.",
+      "Local HTTP byte transfer is not production delivery acceptance.",
+      "Public download switching not authorized or performed."
+    ],
+    "local_http_download": "PASS_HASH_CRC_5_MEMBERS"
+  },
+  {
+    "archive": "complete-free-candidates/dop-raboty.zip",
+    "sha256": "6149e4409c7a1c8033dd08ce8bbc91a76c6ed3ca958a375e24178b6604e7d8ec",
+    "source_sha256": "66544cb03c67218a988db0413de339ca48abf36af93f02d9a842d014b8991157",
+    "members": [
+      {
+        "name": "01-checklist-do-nachala-doprabot.docx",
+        "base_sha256": "40d4e1db132f1bdd97a5c10fd071804ef87e9cc35204de97cbb3509d85f69de9",
+        "sha256": "c065f77a49b5ba5a33cffd54d8428adcd278ed3610c7d1b2d040c2da7eae35d6",
+        "changed": true,
+        "native_office": "PASS"
+      },
+      {
+        "name": "02-shema-fiksacii-porucheniya.docx",
+        "base_sha256": "771b4b09ec01550cdb0d65ea7d3644b1562170ab4fc168d3dbaf68a26b15e462",
+        "sha256": "357d2d28823e43812c3e8678063f8cfe7ef7c5c1ca66ded56029616725e30d0c",
+        "changed": true,
+        "native_office": "PASS"
+      },
+      {
+        "name": "03-shablon-uvedomleniya.docx",
+        "base_sha256": "3ffcdfeca8c075cdebcb17526d171ce122a2e11c0b8f84b4b02b9bf2e7192529",
+        "sha256": "7d614292b27bb5e43698d1117c3038ac0ffbf1a1464728003784ef2b0a0719ce",
+        "changed": true,
+        "native_office": "PASS"
+      },
+      {
+        "name": "04-reestr-doprabot.xlsx",
+        "base_sha256": "10162ee83008f441501aba97a0218cc59c5e030f789985672805ba34110afbe3",
+        "sha256": "6f5f8dc406f69f70f0529dbf31a192bf7b87089d77662f299e99e6dca7039923",
+        "changed": true,
+        "native_office": "PASS"
+      },
+      {
+        "name": "99-chto-dalshe.pdf",
+        "base_sha256": "37e6718cf2fb8040f3841ce4cbe3c96eb63ae6f288d07f21860115738b8be3bb",
+        "sha256": "37e6718cf2fb8040f3841ce4cbe3c96eb63ae6f288d07f21860115738b8be3bb",
+        "changed": false,
+        "native_office": "UNCHANGED_PDF_VISUALLY_REVIEWED"
+      }
+    ],
+    "status": "QA_CANDIDATE_NATIVE_VISUAL_PACKAGE_PASS",
+    "limits": [
+      "Only existing data rows tested: 3 additional-work rows, 5 attachment rows; extending structure not accepted by this gate.",
+      "Local HTTP byte transfer is not production delivery acceptance.",
+      "Public download switching not authorized or performed."
+    ],
+    "local_http_download": "PASS_HASH_CRC_5_MEMBERS"
+  }
+]

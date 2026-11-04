@@ -1,0 +1,237 @@
+{
+  "status": "OWNER_MANUAL_ACCEPTANCE_PASS",
+  "project": "nastoronepodryadchika.ru",
+  "reported_date": "2026-10-22",
+  "recorded_at_utc": "2026-10-22T07:19:15.291746+00:00",
+  "reviewer": "Денис, владелец проекта",
+  "evidence_type": "EXPLICIT_USER_ATTESTATION_IN_CURRENT_CONVERSATION",
+  "owner_statement": "Все тесты ок, открывается и закрывается без ошибок расчеты согласно алгоритма ок, печать ок",
+  "accepted_candidate_commit": "ee5644ba9e9809055424de5380c10cd56bef3585",
+  "candidate_path": "tools/nsp-product-audit-fixes-20261021/p8-02-candidate/P8_02_for_manual_check_2026-10-22.xlsx",
+  "master_path": "products-storage/10-avans-usloviya-i-pribyl/02-kalkulyator-usloviy-avansa.xlsx",
+  "accepted_sha256": "0ca0ab6e8bfd65733f9ec5dc6c8a9af394ee9a7dd80a953011a68ce318e3b45f",
+  "accepted_git_blob_sha": "f91d920ef4c4cc4f606dcaa28dadd3806fe8ab03",
+  "bytes": 39683,
+  "previous_master_sha256": "781f36e37f22ed428561f10b9cb9eebece39a32bcb2f4eb24800121a00400551",
+  "identity_basis": "Owner confirmation refers to the exact candidate link and manual algorithm supplied in the preceding conversation. No edited workbook or per-case execution log was returned.",
+  "reported_results": {
+    "open_and_close_without_errors": "PASS_REPORTED_BY_OWNER",
+    "calculations_following_supplied_algorithm": "PASS_REPORTED_BY_OWNER",
+    "printing": "PASS_REPORTED_BY_OWNER"
+  },
+  "per_scenario_execution_log": null,
+  "automated_native_excel_run": "NOT_RUN_FOR_THIS_CANDIDATE",
+  "scope": "P8/02 only. Manual owner acceptance replaces the agent-run prerequisite for this version, not a release approval.",
+  "promotion": "BYTE_IDENTICAL_COPY_IN_ISOLATED_AUDIT_BRANCH_ONLY",
+  "print_contract_baseline": {
+    "print_names": {
+      "_xlnm.Print_Area:1": "'График КС'!$A$1:$D$44",
+      "_xlnm.Print_Area:2": "'Профиль А'!$A$1:$P$42",
+      "_xlnm.Print_Area:3": "'Профиль Б'!$A$1:$P$42",
+      "_xlnm.Print_Area:4": "'Сравнение'!$A$1:$E$23",
+      "_xlnm.Print_Area:6": "'Пример заполнения'!$A$1:$D$26",
+      "_xlnm.Print_Area:0": "'Условия'!$A$1:$D$38",
+      "_xlnm.Print_Titles:0": "'Условия'!$1:$4",
+      "_xlnm.Print_Titles:1": "'График КС'!$1:$4",
+      "_xlnm.Print_Titles:2": "'Профиль А'!$1:$4",
+      "_xlnm.Print_Titles:3": "'Профиль Б'!$1:$4",
+      "_xlnm.Print_Area:5": "'Как читать'!$A$1:$B$21"
+    },
+    "sheet_print_metadata": {
+      "xl/worksheets/sheet1.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "9",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      },
+      "xl/worksheets/sheet2.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "9",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      },
+      "xl/worksheets/sheet3.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "8",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      },
+      "xl/worksheets/sheet4.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "8",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      },
+      "xl/worksheets/sheet5.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "8",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      },
+      "xl/worksheets/sheet6.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "9",
+            "fitToHeight": "1",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      },
+      "xl/worksheets/sheet7.xml": {
+        "pageSetup": {
+          "attributes": {
+            "orientation": "landscape",
+            "paperSize": "9",
+            "fitToHeight": "0",
+            "fitToWidth": "1"
+          },
+          "text": ""
+        },
+        "pageMargins": {
+          "attributes": {
+            "left": "0.75",
+            "right": "0.75",
+            "top": "1",
+            "bottom": "1",
+            "header": "0.5",
+            "footer": "0.5"
+          },
+          "text": ""
+        },
+        "printOptions": null,
+        "headerFooter": null,
+        "pageSetUpPr": {
+          "fitToPage": "1"
+        }
+      }
+    }
+  },
+  "workbook_resaved_or_edited_after_owner_test": false,
+  "release_authorized": false,
+  "production_changed": false,
+  "buyer_archives_rebuilt": false,
+  "remaining_work": "Other product audit findings, generators, artifact inventory, archive rebuilding and actual delivery verification remain open."
+}

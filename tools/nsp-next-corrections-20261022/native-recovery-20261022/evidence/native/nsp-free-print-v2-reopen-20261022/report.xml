@@ -1,0 +1,30 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-free-print-v2-reopen-20261022" excel_version="16.0" excel_build="4324">
+  <check name="rfp10:input_sha" pass="True" expected="f252d2230a24c7c199a14d706e50bc426210369c668fc89a7507f14c87bee98a" actual="f252d2230a24c7c199a14d706e50bc426210369c668fc89a7507f14c87bee98a" />
+  <print_preflight tag="rfp10" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр допработ" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр допработ'!Print_Area" refers_to="='Реестр допработ'!$A$1:$J$5" />
+  </print_preflight>
+  <check name="rfp10:saved-print-output:G5" pass="True" expected="number:127500" actual="System.Double:127500" />
+  <check name="rfp10:saved-print-output:I5" pass="True" expected="text:Расчёт заполнен" actual="System.String:Расчёт заполнен" />
+  <check name="rfp10:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="rfp10:pdf_export" pass="True" expected="%PDF-" actual="bytes=176571" />
+  <print_preflight tag="rfp10" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр допработ" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр допработ'!Print_Area" refers_to="='Реестр допработ'!$A$1:$J$5" />
+  </print_preflight>
+  <check name="rfp10:source_unchanged" pass="True" expected="f252d2230a24c7c199a14d706e50bc426210369c668fc89a7507f14c87bee98a" actual="f252d2230a24c7c199a14d706e50bc426210369c668fc89a7507f14c87bee98a" />
+  <check name="rfp11:input_sha" pass="True" expected="894371bdb263002e8f0cdf2171ba4cb281fbb79a1021487f6ee4c88155bea8ad" actual="894371bdb263002e8f0cdf2171ba4cb281fbb79a1021487f6ee4c88155bea8ad" />
+  <print_preflight tag="rfp11" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр приложений к КС" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр приложений к КС'!Print_Area" refers_to="='Реестр приложений к КС'!$A$1:$G$7" />
+  </print_preflight>
+  <check name="rfp11:saved-print-output:E7" pass="True" expected="number:11" actual="System.Double:11" />
+  <check name="rfp11:saved-print-output:G7" pass="True" expected="text:Листаж проверен" actual="System.String:Листаж проверен" />
+  <check name="rfp11:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="rfp11:pdf_export" pass="True" expected="%PDF-" actual="bytes=176882" />
+  <print_preflight tag="rfp11" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр приложений к КС" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр приложений к КС'!Print_Area" refers_to="='Реестр приложений к КС'!$A$1:$G$7" />
+  </print_preflight>
+  <check name="rfp11:source_unchanged" pass="True" expected="894371bdb263002e8f0cdf2171ba4cb281fbb79a1021487f6ee4c88155bea8ad" actual="894371bdb263002e8f0cdf2171ba4cb281fbb79a1021487f6ee4c88155bea8ad" />
+</report>

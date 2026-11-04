@@ -1,0 +1,82 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-avans-xlsx-v1-20261023" excel_version="16.0" excel_build="4324">
+  <check name="av1:input_sha" pass="True" expected="0c02dbad883a0eb1f33ee44c30250d901490a852d0d0482d0e9d276b7ddc701d" actual="0c02dbad883a0eb1f33ee44c30250d901490a852d0d0482d0e9d276b7ddc701d" />
+  <print_preflight tag="av1" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Изъятия" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Как считать" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Изъятия!Print_Area" refers_to="=Изъятия!$A$1:$G$19" />
+    <print_name name="'Как считать'!Print_Area" refers_to="='Как считать'!$A$1:$C$14" />
+    <print_name name="Изъятия!Print_Titles" refers_to="=Изъятия!$3:$3" />
+    <print_name name="'Как считать'!Print_Titles" refers_to="='Как считать'!$3:$3" />
+  </print_preflight>
+  <check name="av1:missing-date:D12" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="av1:missing-date:D13" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="av1:missing-date:D14" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="av1:missing-date:D15" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="av1:missing-date:D16" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="av1:verified-zero:D12" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:verified-zero:D13" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:verified-zero:D14" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:verified-zero:D15" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:verified-zero:D16" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:advance-only:D12" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:advance-only:D13" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:advance-only:D14" pass="True" expected="number:1000000" actual="System.Double:1000000" />
+  <check name="av1:advance-only:D15" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:advance-only:D16" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:separate-categories:D12" pass="True" expected="number:80000" actual="System.Double:80000" />
+  <check name="av1:separate-categories:D13" pass="True" expected="number:5000" actual="System.Double:5000" />
+  <check name="av1:separate-categories:D14" pass="True" expected="number:600000" actual="System.Double:600000" />
+  <check name="av1:separate-categories:D15" pass="True" expected="number:100000" actual="System.Double:100000" />
+  <check name="av1:separate-categories:D16" pass="True" expected="number:4000" actual="System.Double:4000" />
+  <check name="av1:missing-held-only:D12" pass="True" expected="text:НЕ ПРОВЕРЕНО" actual="System.String:НЕ ПРОВЕРЕНО" />
+  <check name="av1:missing-held-only:D13" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:missing-held-only:D14" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:missing-held-only:D15" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:missing-held-only:D16" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:negative-held:D12" pass="True" expected="text:ОШИБКА: сумма меньше нуля" actual="System.String:ОШИБКА: сумма меньше нуля" />
+  <check name="av1:negative-held:D13" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:negative-held:D14" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:negative-held:D15" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:negative-held:D16" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:text-fee:D12" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:text-fee:D13" pass="True" expected="text:НЕ ПРОВЕРЕНО" actual="System.String:НЕ ПРОВЕРЕНО" />
+  <check name="av1:text-fee:D14" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:text-fee:D15" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:text-fee:D16" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:boolean-advance:D12" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:boolean-advance:D13" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:boolean-advance:D14" pass="True" expected="text:НЕ ПРОВЕРЕНО" actual="System.String:НЕ ПРОВЕРЕНО" />
+  <check name="av1:boolean-advance:D15" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:boolean-advance:D16" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:work-includes-retention:D12" pass="True" expected="number:10000" actual="System.Double:10000" />
+  <check name="av1:work-includes-retention:D13" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:work-includes-retention:D14" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:work-includes-retention:D15" pass="True" expected="number:100000" actual="System.Double:100000" />
+  <check name="av1:work-includes-retention:D16" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:offset-is-separate:D12" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:offset-is-separate:D13" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:offset-is-separate:D14" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:offset-is-separate:D15" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:offset-is-separate:D16" pass="True" expected="number:25000" actual="System.Double:25000" />
+  <check name="av1:money-decimals:D12" pass="True" expected="number:80001.05" actual="System.Double:80001.05" />
+  <check name="av1:money-decimals:D13" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:money-decimals:D14" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:money-decimals:D15" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:money-decimals:D16" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="av1:invalid-date:D12" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="av1:invalid-date:D13" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="av1:invalid-date:D14" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="av1:invalid-date:D15" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="av1:invalid-date:D16" pass="True" expected="text:УКАЖИТЕ ДАТУ" actual="System.String:УКАЖИТЕ ДАТУ" />
+  <check name="av1:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="av1:pdf_export" pass="True" expected="%PDF-" actual="bytes=392565" />
+  <print_preflight tag="av1" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Изъятия" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Как считать" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Изъятия!Print_Area" refers_to="=Изъятия!$A$1:$G$19" />
+    <print_name name="'Как считать'!Print_Area" refers_to="='Как считать'!$A$1:$C$14" />
+    <print_name name="Изъятия!Print_Titles" refers_to="=Изъятия!$3:$3" />
+    <print_name name="'Как считать'!Print_Titles" refers_to="='Как считать'!$3:$3" />
+  </print_preflight>
+  <check name="av1:source_unchanged" pass="True" expected="0c02dbad883a0eb1f33ee44c30250d901490a852d0d0482d0e9d276b7ddc701d" actual="0c02dbad883a0eb1f33ee44c30250d901490a852d0d0482d0e9d276b7ddc701d" />
+</report>

@@ -1,0 +1,27 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-next-excel-9-20261022" excel_version="16.0" excel_build="4324">
+  <check name="n9:input_sha" pass="True" expected="c444880c809f28f7e125dded060ea2d9a11900f5eb2bd74a4e25b2bf01af5fc5" actual="c444880c809f28f7e125dded060ea2d9a11900f5eb2bd74a4e25b2bf01af5fc5" />
+  <print_preflight tag="n9" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр затрат" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Как заполнять" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Как заполнять'!Print_Area" refers_to="='Как заполнять'!$A$1:$B$9" />
+    <print_name name="'Реестр затрат'!Print_Area" refers_to="='Реестр затрат'!$A$1:$J$56" />
+    <print_name name="'Как заполнять'!Print_Titles" refers_to="='Как заполнять'!$1:$1" />
+    <print_name name="'Реестр затрат'!Print_Titles" refers_to="='Реестр затрат'!$1:$1" />
+  </print_preflight>
+  <check name="n9:contradiction:H54" pass="True" expected="number:100000" actual="System.Double:100000" />
+  <check name="n9:contradiction:C53" pass="True" expected="text:ПРОТИВОРЕЧИЕ: проверьте покрытие и остаток" actual="System.String:ПРОТИВОРЕЧИЕ: проверьте покрытие и остаток" />
+  <check name="n9:fully-covered:H54" pass="True" expected="number:0" actual="System.Double:0" />
+  <check name="n9:fully-covered:C53" pass="True" expected="text:Проверка заполнена; решение о цене принимает руководитель" actual="System.String:Проверка заполнена; решение о цене принимает руководитель" />
+  <check name="n9:partial:H54" pass="True" expected="number:50000" actual="System.Double:50000" />
+  <check name="n9:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="n9:pdf_export" pass="True" expected="%PDF-" actual="bytes=225285" />
+  <print_preflight tag="n9" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр затрат" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Как заполнять" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Как заполнять'!Print_Area" refers_to="='Как заполнять'!$A$1:$B$9" />
+    <print_name name="'Реестр затрат'!Print_Area" refers_to="='Реестр затрат'!$A$1:$J$56" />
+    <print_name name="'Как заполнять'!Print_Titles" refers_to="='Как заполнять'!$1:$1" />
+    <print_name name="'Реестр затрат'!Print_Titles" refers_to="='Реестр затрат'!$1:$1" />
+  </print_preflight>
+  <check name="n9:source_unchanged" pass="True" expected="c444880c809f28f7e125dded060ea2d9a11900f5eb2bd74a4e25b2bf01af5fc5" actual="c444880c809f28f7e125dded060ea2d9a11900f5eb2bd74a4e25b2bf01af5fc5" />
+</report>

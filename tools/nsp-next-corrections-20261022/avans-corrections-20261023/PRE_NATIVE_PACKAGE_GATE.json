@@ -1,0 +1,50 @@
+{
+  "status": "QA_CANDIDATE_NOT_NATIVE_ACCEPTED",
+  "zip_sha256": "5430fc6ea7781fadf586e7c601436ff6f10bd3a927b263358069b3c66cd35c16",
+  "members": [
+    {
+      "file": "01-proverochnyy-list-usloviy-avansa.docx",
+      "sha256": "842f187c0d0035dd67d627bdd8083e99d8b4f1ffc69fef57d57fd9d8a7be6253"
+    },
+    {
+      "file": "02-reestr-izyatiy-po-obektu.xlsx",
+      "sha256": "0c02dbad883a0eb1f33ee44c30250d901490a852d0d0482d0e9d276b7ddc701d"
+    },
+    {
+      "file": "03-formulirovki-lovushki.docx",
+      "sha256": "367f62cd3d7c81730160a00118d4b7d8128d11ef04a9e88d1218959fcd2dda5e"
+    },
+    {
+      "file": "04-zapros-ob-usloviyah-avansa.docx",
+      "sha256": "9e8790df7613e30e6dde7e61f86a4fd001fcba6fa65714638cdb27a9c213725e"
+    },
+    {
+      "file": "99-chto-dalshe.pdf",
+      "sha256": "dbb806e80627e9c451baca2a50a18edfb454db7ea5aed572f0205c9c57e71c26"
+    }
+  ],
+  "changed_members": [
+    "01-proverochnyy-list-usloviy-avansa.docx",
+    "02-reestr-izyatiy-po-obektu.xlsx",
+    "03-formulirovki-lovushki.docx",
+    "04-zapros-ob-usloviyah-avansa.docx"
+  ],
+  "source_99_pdf": "EXACT_UNCHANGED_VISUAL_PASS_1_PAGE",
+  "artifact_engine": {
+    "scenarios": 12,
+    "checks": 60,
+    "status": "PASS"
+  },
+  "libreoffice_numeric": {
+    "scenarios_pass": 10,
+    "checks_pass": 50,
+    "boolean": "UNRESOLVED_DIFFERENCE",
+    "invalid_date": "EXPORT_TIMEOUT_NOT_ACCEPTED"
+  },
+  "libreoffice_print": "PASS_2_PAGES_A3_REGISTER_A4_GUIDE",
+  "word_canonical_render": "PASS_12_PAGES",
+  "native_excel": "PENDING_RUNTIME_RECOVERY_AND_EXACT_SHA_CHECK",
+  "native_word": "PENDING_RUNTIME_RECOVERY_AND_EXACT_SHA_CHECK",
+  "native_jobs_submitted": false,
+  "production_or_public_changes": false
+}

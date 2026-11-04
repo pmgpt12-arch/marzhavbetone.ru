@@ -1,0 +1,51 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-free-negative-controls-20261022" excel_version="16.0" excel_build="4324">
+  <check name="free10:input_sha" pass="True" expected="132df7f97cdcf477d27e8e73066c85b545b3a6537ba1478c2110a39e51547644" actual="132df7f97cdcf477d27e8e73066c85b545b3a6537ba1478c2110a39e51547644" />
+  <print_preflight tag="free10" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр допработ" print_area="" print_title_rows="" print_title_columns="" />
+  </print_preflight>
+  <check name="free10:empty:G5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="free10:empty:I5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="free10:single:G5" pass="True" expected="number:127500" actual="System.Double:127500" />
+  <check name="free10:single:I5" pass="True" expected="text:Расчёт заполнен" actual="System.String:Расчёт заполнен" />
+  <check name="free10:additional:G5" pass="True" expected="number:147500" actual="System.Double:147500" />
+  <check name="free10:missing-price:G5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="free10:missing-price:I5" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="free10:negative-volume:G5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="free10:negative-volume:I5" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="free10:nonnumeric-price:G5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="free10:nonnumeric-price:I5" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="free10:missing-unit:G5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="free10:missing-unit:I5" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="free10:rounding:G5" pass="True" expected="number:1.88" actual="System.Double:1.88" />
+  <check name="free10:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="free10:pdf_export" pass="True" expected="%PDF-" actual="bytes=177744" />
+  <print_preflight tag="free10" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр допработ" print_area="" print_title_rows="" print_title_columns="" />
+  </print_preflight>
+  <check name="free10:source_unchanged" pass="True" expected="132df7f97cdcf477d27e8e73066c85b545b3a6537ba1478c2110a39e51547644" actual="132df7f97cdcf477d27e8e73066c85b545b3a6537ba1478c2110a39e51547644" />
+  <check name="free11:input_sha" pass="True" expected="ee0d705367ed0be047f520643fbda6c5be0a9c387ebbf2f5f9598c38d55b08b7" actual="ee0d705367ed0be047f520643fbda6c5be0a9c387ebbf2f5f9598c38d55b08b7" />
+  <print_preflight tag="free11" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр приложений к КС" print_area="" print_title_rows="" print_title_columns="" />
+  </print_preflight>
+  <check name="free11:empty:E7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="free11:empty:G7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="free11:baseline:E7" pass="True" expected="number:11" actual="System.Double:11" />
+  <check name="free11:baseline:G7" pass="True" expected="text:Листаж проверен" actual="System.String:Листаж проверен" />
+  <check name="free11:additional:E7" pass="True" expected="number:15" actual="System.Double:15" />
+  <check name="free11:negative:E7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="free11:negative:G7" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="free11:fraction:E7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="free11:fraction:G7" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="free11:nonnumeric:E7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="free11:nonnumeric:G7" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="free11:count-without-document:E7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="free11:count-without-document:G7" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="free11:missing-count:E7" pass="True" expected="blank:" actual="System.String:" />
+  <check name="free11:missing-count:G7" pass="True" expected="text:Проверьте строки" actual="System.String:Проверьте строки" />
+  <check name="free11:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="free11:pdf_export" pass="True" expected="%PDF-" actual="bytes=177872" />
+  <print_preflight tag="free11" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр приложений к КС" print_area="" print_title_rows="" print_title_columns="" />
+  </print_preflight>
+  <check name="free11:source_unchanged" pass="True" expected="ee0d705367ed0be047f520643fbda6c5be0a9c387ebbf2f5f9598c38d55b08b7" actual="ee0d705367ed0be047f520643fbda6c5be0a9c387ebbf2f5f9598c38d55b08b7" />
+</report>

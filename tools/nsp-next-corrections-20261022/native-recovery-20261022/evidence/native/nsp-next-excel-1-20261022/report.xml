@@ -1,0 +1,36 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-next-excel-1-20261022" excel_version="16.0" excel_build="4324">
+  <check name="n1:input_sha" pass="True" expected="4eec739ea4bb420815afbbb6e59a5e185aed25404058d62e1b6c36b828a7f3d4" actual="4eec739ea4bb420815afbbb6e59a5e185aed25404058d62e1b6c36b828a7f3d4" />
+  <print_preflight tag="n1" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Объект и должник" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Реестр документов" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Итоги" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Итоги!Print_Area" refers_to="=Итоги!$A$1:$C$19" />
+    <print_name name="'Объект и должник'!Print_Area" refers_to="='Объект и должник'!$A$1:$C$39" />
+    <print_name name="'Пример заполнения'!Print_Area" refers_to="='Пример заполнения'!$A$1:$M$22" />
+    <print_name name="'Реестр документов'!Print_Area" refers_to="='Реестр документов'!$A$1:$M$205" />
+    <print_name name="'Объект и должник'!Print_Titles" refers_to="='Объект и должник'!$1:$3" />
+    <print_name name="'Реестр документов'!Print_Titles" refers_to="='Реестр документов'!$1:$3" />
+  </print_preflight>
+  <check name="n1:one-document:B8" pass="True" expected="number:100000" actual="System.Double:100000" />
+  <check name="n1:one-document:M4" pass="True" expected="blank:" actual="System.String:" />
+  <check name="n1:duplicate-evidence-not-debt:B8" pass="True" expected="number:200000" actual="System.Double:200000" />
+  <check name="n1:unique-documents:B8" pass="True" expected="number:150000" actual="System.Double:150000" />
+  <check name="n1:missing-date:M4" pass="True" expected="text:НЕ ЗАВЕРШЕНО: реквизиты, дата или включение копии" actual="System.String:НЕ ЗАВЕРШЕНО: реквизиты, дата или включение копии" />
+  <check name="n1:text-date:M4" pass="True" expected="text:НЕ ЗАВЕРШЕНО: реквизиты, дата или включение копии" actual="System.String:НЕ ЗАВЕРШЕНО: реквизиты, дата или включение копии" />
+  <check name="n1:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="n1:pdf_export" pass="True" expected="%PDF-" actual="bytes=238072" />
+  <print_preflight tag="n1" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Объект и должник" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Реестр документов" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Итоги" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="Итоги!Print_Area" refers_to="=Итоги!$A$1:$C$19" />
+    <print_name name="'Объект и должник'!Print_Area" refers_to="='Объект и должник'!$A$1:$C$39" />
+    <print_name name="'Пример заполнения'!Print_Area" refers_to="='Пример заполнения'!$A$1:$M$22" />
+    <print_name name="'Реестр документов'!Print_Area" refers_to="='Реестр документов'!$A$1:$M$205" />
+    <print_name name="'Объект и должник'!Print_Titles" refers_to="='Объект и должник'!$1:$3" />
+    <print_name name="'Реестр документов'!Print_Titles" refers_to="='Реестр документов'!$1:$3" />
+  </print_preflight>
+  <check name="n1:source_unchanged" pass="True" expected="4eec739ea4bb420815afbbb6e59a5e185aed25404058d62e1b6c36b828a7f3d4" actual="4eec739ea4bb420815afbbb6e59a5e185aed25404058d62e1b6c36b828a7f3d4" />
+</report>

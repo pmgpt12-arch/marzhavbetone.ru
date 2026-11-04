@@ -1,0 +1,18 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-office-control-native-20261023-001210" excel_version="16.0" excel_build="4324">
+  <check name="controlx:input_sha" pass="True" expected="6f5f8dc406f69f70f0529dbf31a192bf7b87089d77662f299e99e6dca7039923" actual="6f5f8dc406f69f70f0529dbf31a192bf7b87089d77662f299e99e6dca7039923" />
+  <print_preflight tag="controlx" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр допработ" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр допработ'!Print_Area" refers_to="='Реестр допработ'!$A$1:$J$5" />
+  </print_preflight>
+  <check name="controlx:empty:G5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="controlx:empty:I5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="controlx:single:G5" pass="True" expected="number:127500" actual="System.Double:127500" />
+  <check name="controlx:single:I5" pass="True" expected="text:Расчёт заполнен" actual="System.String:Расчёт заполнен" />
+  <check name="controlx:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="controlx:pdf_export" pass="True" expected="%PDF-" actual="bytes=176571" />
+  <print_preflight tag="controlx" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Реестр допработ" print_area="" print_title_rows="" print_title_columns="" />
+    <print_name name="'Реестр допработ'!Print_Area" refers_to="='Реестр допработ'!$A$1:$J$5" />
+  </print_preflight>
+  <check name="controlx:source_unchanged" pass="True" expected="6f5f8dc406f69f70f0529dbf31a192bf7b87089d77662f299e99e6dca7039923" actual="6f5f8dc406f69f70f0529dbf31a192bf7b87089d77662f299e99e6dca7039923" />
+</report>

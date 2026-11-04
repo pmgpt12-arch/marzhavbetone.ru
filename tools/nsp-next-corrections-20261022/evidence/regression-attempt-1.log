@@ -1,0 +1,38 @@
+P9-04-document-sums-and-completeness one-document PASS 
+P9-04-document-sums-and-completeness duplicate-evidence-not-debt PASS 
+P9-04-document-sums-and-completeness unique-documents PASS 
+P9-04-document-sums-and-completeness missing-date PASS 
+P9-04-document-sums-and-completeness text-date PASS 
+P5-22-open-position-date-ties same-date-select-open FAIL [{"key":"Сводка!B13","expected":"открытый-2","actual":"","pass":false},{"key":"Сводка!C13","expected":"объект 2","actual":"","pass":false}]
+P5-22-open-position-date-ties returned-positive FAIL [{"key":"Сводка!D4","expected":{"contains":"ОШИБКА"},"actual":"ОШИБКА: статус возврата или превышение возврата. Сверьте реестр.","pass":true},{"key":"Сводка!B13","expected":"закрытый-1","actual":"","pass":false}]
+P5-22-open-position-date-ties over-return PASS 
+P5-22-open-position-date-ties two-dates FAIL [{"key":"Сводка!B13","expected":"закрытый-1","actual":"","pass":false},{"key":"Сводка!B14","expected":"открытый-2","actual":"","pass":false}]
+P5-23-unknown-is-not-ready empty PASS 
+P5-23-unknown-is-not-ready unknown-ks PASS 
+P5-23-unknown-is-not-ready unknown-blocking PASS 
+P5-23-unknown-is-not-ready blocked PASS 
+P5-23-unknown-is-not-ready signed PASS 
+P5-29-unknown-preserve-gaps-and-minimum only-type PASS 
+P5-29-unknown-preserve-gaps-and-minimum missing-required PASS 
+P5-29-unknown-preserve-gaps-and-minimum requested PASS 
+P5-29-unknown-preserve-gaps-and-minimum expert-no-date PASS 
+P5-29-unknown-preserve-gaps-and-minimum minimum-still-open PASS 
+P2-07-incomplete-cost incomplete PASS 
+P2-07-incomplete-cost complete PASS 
+P2-07-incomplete-cost negative PASS 
+P2-07-incomplete-cost text PASS 
+P4-06-count-real-comments empty FAIL [{"key":"Реестр замечаний по ИД!E6","expected":0,"actual":"#VALUE!","pass":false},{"key":"Реестр замечаний по ИД!H6","expected":0,"actual":"#VALUE!","pass":false},{"key":"Реестр замечаний по ИД!H7","expected":0,"actual":"#VALUE!","pass":false}]
+P4-06-count-real-comments two-one-closed FAIL [{"key":"Реестр замечаний по ИД!E6","expected":2,"actual":"#VALUE!","pass":false},{"key":"Реестр замечаний по ИД!H6","expected":1,"actual":"#VALUE!","pass":false},{"key":"Реестр замечаний по ИД!H7","expected":1,"actual":"#VALUE!","pass":false}]
+P4-06-count-real-comments unknown-is-open FAIL [{"key":"Реестр замечаний по ИД!H6","expected":1,"actual":"#VALUE!","pass":false}]
+P4-07-progress-without-empty-rows one-complete FAIL [{"key":"График устранения замечаний!G4","expected":1,"actual":"#VALUE!","pass":false}]
+P4-07-progress-without-empty-rows two-half FAIL [{"key":"График устранения замечаний!G4","expected":0.5,"actual":"#VALUE!","pass":false}]
+P4-07-progress-without-empty-rows empty FAIL [{"key":"График устранения замечаний!G4","expected":"НЕТ ДАННЫХ","actual":"#VALUE!","pass":false}]
+P4-07-progress-without-empty-rows negative FAIL [{"key":"График устранения замечаний!G4","expected":"ПРОВЕРЬТЕ ПРОЦЕНТ","actual":"#VALUE!","pass":false}]
+T2-03-whole-positive-leaf-count positive FAIL [{"key":"Опись!E132","expected":3,"actual":"#VALUE!","pass":false},{"key":"Опись!C133","expected":0,"actual":"#VALUE!","pass":false}]
+T2-03-whole-positive-leaf-count negative FAIL [{"key":"Опись!E132","expected":"ПРОВЕРЬТЕ СТРОКИ","actual":"#VALUE!","pass":false}]
+T2-03-whole-positive-leaf-count fraction FAIL [{"key":"Опись!E132","expected":"ПРОВЕРЬТЕ СТРОКИ","actual":"#VALUE!","pass":false}]
+T2-03-whole-positive-leaf-count text FAIL [{"key":"Опись!E132","expected":"ПРОВЕРЬТЕ СТРОКИ","actual":"#VALUE!","pass":false}]
+T2-03-whole-positive-leaf-count no-document FAIL [{"key":"Опись!E132","expected":"ПРОВЕРЬТЕ СТРОКИ","actual":"#VALUE!","pass":false}]
+P13-63-contradictory-covered-status contradiction PASS 
+P13-63-contradictory-covered-status fully-covered FAIL [{"key":"Реестр затрат!H54","expected":0,"actual":0,"pass":true},{"key":"Реестр затрат!C53","expected":{"contains":"Проверка заполнена"},"actual":"ПРОТИВОРЕЧИЕ: проверьте полное покрытие, позицию сметы и нулевой остаток","pass":false}]
+P13-63-contradictory-covered-status partial PASS 

@@ -1,0 +1,82 @@
+{
+  "time": "2026-10-22T16:19:27.489199+00:00",
+  "records": [
+    {
+      "id": "nsp-next-excel-7-20261022",
+      "files": [
+        {
+          "name": "07-grafik-ustraneniya.xlsx",
+          "tag": "n7",
+          "sheet": "График устранения замечаний",
+          "sha256": "e5ad05993c1eeaad116d64456b4a2e38d3ae5b5e08869673f7ed031f0e3b30df",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "status": "PASS",
+      "receipt_sha256": "420b3b8d8d3a5bc1d5f01c7cc0290a09f23328058b4f80e61c0df7029b8ee859",
+      "checks": 8,
+      "failed": []
+    },
+    {
+      "id": "nsp-next-excel-8-20261022",
+      "files": [
+        {
+          "name": "03-opis-peredavaemogo-komplekta.xlsx",
+          "tag": "n8",
+          "sheet": "Опись",
+          "sha256": "5da1754d3b320a8e8067b5e54820d71a6f1a2a43fa05d0ad993854623e66cf46",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "status": "FAIL",
+      "receipt_sha256": "76e12f5faebdbb3cdcd7d55f04e3fb43fd369d11d4d8b52bd741f68679967de6",
+      "checks": 10,
+      "failed": [
+        {
+          "name": "n8:text:E132",
+          "pass": "False",
+          "expected": "text:ПРОВЕРЬТЕ СТРОКИ",
+          "actual": "System.Double:3"
+        }
+      ]
+    },
+    {
+      "id": "nsp-next-excel-9-20261022",
+      "files": [
+        {
+          "name": "63-reestr-zatrat-po-obektu.xlsx",
+          "tag": "n9",
+          "sheet": "Реестр затрат",
+          "sha256": "c444880c809f28f7e125dded060ea2d9a11900f5eb2bd74a4e25b2bf01af5fc5",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "status": "PASS",
+      "receipt_sha256": "516acb012971feeed8aee29d8816596645a8ae384746e1f23d70c86feb950e13",
+      "checks": 9,
+      "failed": []
+    },
+    {
+      "id": "nsp-next-excel-10-20261022",
+      "files": [
+        {
+          "name": "04-reestr-doprabot.xlsx",
+          "tag": "n10",
+          "sheet": "Реестр допработ",
+          "sha256": "132df7f97cdcf477d27e8e73066c85b545b3a6537ba1478c2110a39e51547644",
+          "export_source_first": "true",
+          "print_preflight": "true"
+        }
+      ],
+      "status": "PASS",
+      "receipt_sha256": "fcd9b9d42ce859ea8e6a32e81bf323b2f975cb609f9d1aa7667b28d440fafa57",
+      "checks": 6,
+      "failed": []
+    }
+  ],
+  "masters_changed": false,
+  "accepted_13_retested": false
+}

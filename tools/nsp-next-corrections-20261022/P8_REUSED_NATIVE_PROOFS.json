@@ -1,0 +1,66 @@
+{
+  "source": "tools/candidates/remaining-batch-r3-20261018/evidence/native-final-20261019/word-current-index.json",
+  "scope": "Exact SHA reuse only; no fresh Office jobs",
+  "files": [
+    {
+      "sku": "P8",
+      "file": "05-protokol-raznoglasiy-avansovye-punkty.docx",
+      "sha256": "37a909e5e08f47fcffe5e3ed130f385f05bd628cdad6910b19c7d5ecff3977ec",
+      "job": "r3-word-p8-1-20261018",
+      "tag": "p8-03",
+      "status": "PASS",
+      "fresh": false,
+      "pdf_sha256": "57b939d937032cdf872c9e9359251854634ad3992a1af6c7c94a3840a915e674",
+      "proof": "word-native/r3-word-p8-1-20261018",
+      "visual_review": "REUSED_PREVIOUS_REVIEW"
+    },
+    {
+      "sku": "P8",
+      "file": "03-razbor-chetyrekh-usloviy-avansa.docx",
+      "sha256": "3602cb07f9052c146a70aefbe591a5c0d2a3d4bbdfdd64a14db7ce521c55c57d",
+      "job": "r3-word-p8-1-20261018",
+      "tag": "p8-01",
+      "status": "PASS",
+      "fresh": false,
+      "pdf_sha256": "96c8cdd441ef58ef253277b696175f68a4b6a42d8bfcc12061bc6f16c85458cb",
+      "proof": "word-native/r3-word-p8-1-20261018",
+      "visual_review": "REUSED_PREVIOUS_REVIEW"
+    },
+    {
+      "sku": "P8",
+      "file": "01-slovar-poley-avans.docx",
+      "sha256": "aa9f9d54ac7d3e699a0ed007b1718d45877e89849d700e5b9e01b458f81c4160",
+      "job": "r3-word-p8-1-20261018",
+      "tag": "p8-00",
+      "status": "PASS",
+      "fresh": false,
+      "pdf_sha256": "f0741d1d316ec9d2a42ad3ed908eebaac30ce7cfddc17c8d7633a774baafb1d2",
+      "proof": "word-native/r3-word-p8-1-20261018",
+      "visual_review": "REUSED_PREVIOUS_REVIEW"
+    },
+    {
+      "sku": "P8",
+      "file": "06-dopsoglashenie-o-poryadke-pogasheniya-avansa.docx",
+      "sha256": "c21fdf8cfcdf8b0e83283ace243c533ba79c12a8c89f05357683c831a21e4fee",
+      "job": "r3-word-p8-2-20261018",
+      "tag": "p8-04",
+      "status": "PASS",
+      "fresh": false,
+      "pdf_sha256": "d1b860eb7a518fb1e0b43f7f6da4843da802d03305ec91a55e2dd610df1c87b2",
+      "proof": "word-native/r3-word-p8-2-20261018",
+      "visual_review": "REUSED_PREVIOUS_REVIEW"
+    },
+    {
+      "sku": "P8",
+      "file": "04-algoritm-peregovorov-ob-avanse.docx",
+      "sha256": "c0292cc68cc84777a47fca0f31ccf70b828c85d95fd8ac759345875536696414",
+      "job": "r3g-word-p8-1-20261019",
+      "tag": "p8-0",
+      "status": "PASS",
+      "fresh": true,
+      "pdf_sha256": "fc634be0866b7215f656f0fb400e0284387d7e9098d85ce7c285cd3d35805de6",
+      "proof": "word-current-proofs.tar.xz:r3g-word-p8-1-20261019",
+      "visual_review": "PASS"
+    }
+  ]
+}

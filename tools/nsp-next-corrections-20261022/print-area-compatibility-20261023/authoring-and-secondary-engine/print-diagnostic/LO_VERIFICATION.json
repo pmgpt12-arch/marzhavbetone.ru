@@ -1,0 +1,22 @@
+{
+  "engine": "bundled LibreOffice via soffice",
+  "native_excel_acceptance": false,
+  "files": [
+    {
+      "tag": "latin",
+      "source_sha256": "f5c94ceebbb9812918d1cec39e940740906ff2a1b960b4111a9ff3c4d60762f9",
+      "pdf_sha256": "e38348eea765e347d9ad3b3b9b8ceb1b36992fa867a4caa3e916425fbc77dc8a",
+      "outside_marker_printed": false,
+      "status": "PASS",
+      "text": "INCLUDED-latin\n123\nExpected: only column A\n\n\f"
+    },
+    {
+      "tag": "cyrillic",
+      "source_sha256": "4fc6d8ab14e7ea4f22d4ca42cea24561c137f051a221809ddac76d0e28705d18",
+      "pdf_sha256": "94167b014c5c53cb4a95489ac8c755b4fd12f3adec63b5964232809431be5722",
+      "outside_marker_printed": false,
+      "status": "PASS",
+      "text": "INCLUDED-cyrillic\n123\nExpected: only column A\n\n\f"
+    }
+  ]
+}

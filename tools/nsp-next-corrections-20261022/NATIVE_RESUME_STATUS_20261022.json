@@ -1,0 +1,159 @@
+{
+  "source_head": "0cce946a2c0937ca30867231674ab9ba2432bf2d",
+  "status": "PARTIAL_NATIVE_TECHNICAL_EVIDENCE_PRINT_AND_CONNECTIVITY_BLOCKED",
+  "native_engine": "Microsoft Office 2016; Word 16.0.4324, Excel 16.0 build 4324",
+  "word": {
+    "jobs": 2,
+    "files": 8,
+    "technical_pass": 8,
+    "actual_pdf_pages": 20,
+    "full_visual_acceptance": false,
+    "notes": "P5 claim PDF viewed; other native contact sheets generated but device timeouts prevented review. Reported page counts differ from actual PDFs."
+  },
+  "excel": {
+    "pass_jobs": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "pass_scenarios": 19,
+    "fail_job": 5,
+    "fail_case": {
+      "name": "text",
+      "expected": "НЕ ЗАВЕРШЕНО",
+      "actual": "System.Double:20",
+      "input": "D4 kind=text value=2; E4 number=10",
+      "diagnosis": "Likely Excel numeric-string coercion, not yet confirmed by revised native job; workbook unchanged"
+    },
+    "unacknowledged_job": 6,
+    "not_submitted_jobs": [
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "open_mode_proven": false,
+    "print_acceptance": false
+  },
+  "queue": {
+    "active_job_id": "nsp-next-excel-6-20261022",
+    "active_job_not_replaced": true,
+    "automatic_runner_stopped_after_240_seconds_without_receipt": true
+  },
+  "connectivity": {
+    "diagnosed_at_epoch": 1792684189.5232785,
+    "last_native_heartbeat_epoch": 1792680634.9533074,
+    "heartbeat_age_seconds": 3555,
+    "server_transport": "active/running; listening on 127.0.0.1:8765 and 192.168.1.72:8765",
+    "old_laptop_address": "192.168.1.140",
+    "ping": "1 packet sent, no reply; not proof of power-off",
+    "recent_transport_journal": "No entries during last 180 seconds",
+    "dc": "Terminal diagnostics initially worked; subsequent image reads failed with no response from device. A later read-only process request was cancelled locally while waiting; remote execution outcome unknown."
+  },
+  "source_preservation": {
+    "accepted_13_not_edited": true,
+    "candidate_19_not_edited": true,
+    "held_six_not_edited_or_integrated": true,
+    "buyer_archives_not_rebuilt_or_replaced": true,
+    "P8_02_09_not_repeated": true,
+    "main_site_prices_payments_secrets_system_office_settings_not_modified": true
+  },
+  "evidence_location": "/home/denis/projects/nsp-audit-fixes-20261021/qa/next-corrections-20261022/native-resume-20261022",
+  "raw_evidence_repository_sync": "PENDING_DEVICE_CONNECTION; raw XML/PDF/XLSX collected on server, this commit records observed status only",
+  "prepared_hypothesis_job": {
+    "id": "nsp-next-excel-5-coercion-v2-20261022",
+    "status": "PREPARED_NOT_SUBMITTED",
+    "candidate_sha256": "d68c8e54195286d6a3960da6a89aebbc296f389205bcdbd8df37644214513de4",
+    "controls": [
+      "Numeric string 2: expect D4=2 and I4=20",
+      "Nonnumeric два: expect I4=НЕ ЗАВЕРШЕНО"
+    ],
+    "path": "prepared-native/nsp-next-excel-5-coercion-v2-20261022"
+  },
+  "native_print_results": [
+    {
+      "job": 1,
+      "pages": 8,
+      "text_empty_pages": [
+        4,
+        5
+      ],
+      "sha256": "8952809615ccb22da7744564ce0760bd91ed933dbc13f5965d84de8701678f63"
+    },
+    {
+      "job": 2,
+      "pages": 23,
+      "text_empty_pages": [
+        2,
+        3,
+        6,
+        7,
+        10,
+        11,
+        14,
+        15
+      ],
+      "sha256": "16181f6cee811368dcc4357e57c8db361a05b46aff83cd66f841c7580f9fced6"
+    },
+    {
+      "job": 3,
+      "pages": 21,
+      "text_empty_pages": [
+        2,
+        3,
+        6,
+        7,
+        10,
+        11,
+        16,
+        21
+      ],
+      "sha256": "aa574fd80ad97e7686317495b3a31b0d11364546fd0105c87aec656777609178"
+    },
+    {
+      "job": 4,
+      "pages": 49,
+      "text_empty_pages": [
+        5,
+        6,
+        7,
+        10,
+        11,
+        12,
+        15,
+        16,
+        17,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        28,
+        30,
+        31,
+        32,
+        33
+      ],
+      "sha256": "1ea1718cbdd76ebe87061ebf695ae56cad724180a7230176024b12f24f21445f"
+    },
+    {
+      "job": 5,
+      "pages": 5,
+      "text_empty_pages": [
+        2,
+        3
+      ],
+      "sha256": "d704f8ad2b4eed7ddfb2a2f252571f6ba1383c4cb740a09e878083bfa4c04d74"
+    }
+  ],
+  "next_steps": [
+    "Restore fresh laptop polls; inspect pending job 6 before any new submission, do not fabricate a receipt or overwrite current work",
+    "Complete jobs 7-11 and revised P2 control after job6 terminates",
+    "Collect and sync raw evidence and finish native PDF visual review",
+    "Diagnose native print/opening behavior before modifying candidate files; do not change system or Office configuration",
+    "Continue full-product substantive QA; build updated full archives only after any actual version change and matching acceptance"
+  ]
+}

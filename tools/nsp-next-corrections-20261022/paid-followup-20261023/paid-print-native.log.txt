@@ -1,0 +1,6 @@
+SUBMITTED nsp-p5-print-v2-20261023
+Traceback (most recent call last):
+  File "/home/denis/projects/nsp-audit-fixes-20261021/qa/next-corrections-20261022/scripts/native_paid_print_v2.py", line 24, in <module>
+    tag=f.get('tag');pdf=rp.parent/(tag+'-filled.pdf');assert pdf.exists()
+                                                              ^^^^^^^^^^^^
+AssertionError

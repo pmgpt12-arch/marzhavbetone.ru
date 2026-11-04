@@ -1,0 +1,70 @@
+{
+  "status": "P5_S01_NATIVE_EXCEL_ACCEPTED",
+  "path": "products-storage/07-uderzhaniya-shtrafy-zachety/04-raschet-ubytkov.xlsx",
+  "accepted_sha256": "f3b2b013dea927b9b72cd06060079ac314f79b213079e5f35bc8a82fd310f1d3",
+  "previous_sha256": "20165a12e04cf37dee98ac8d528cb78026d5a342e24231f69a09bd70c6bedc31",
+  "base_commit": "88f259b01a3f4132ef8cb704a9815775999ec07f",
+  "reviewed_at": "2026-10-21T23:34:29.007570+07:00",
+  "app": "Microsoft Excel 2016",
+  "app_version": "16.0",
+  "app_build": "4324",
+  "fixed_scenarios": 12,
+  "old_formula_control_scenarios": 1,
+  "saved_file_reopen_scenarios": 1,
+  "native_check_count": 81,
+  "print_contract": "PASS",
+  "print_review": "PASS",
+  "reviewed_pages": 3,
+  "page_format": "A4; one page each for before, after and reopened control",
+  "label": "3. ПРОЦЕНТЫ ПО СТ. 395 ГК РФ: фактические дни каждого года — 365 / 366",
+  "formulas": {
+    "G27": "IF(OR(H27<>\"\",B27=\"\"),\"\",E27*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F27,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100*IF(YEAR(B27)=YEAR(C27),D27/(DATE(YEAR(B27)+1,1,1)-DATE(YEAR(B27),1,1)),(DATE(YEAR(B27)+1,1,1)-B27)/(DATE(YEAR(B27)+1,1,1)-DATE(YEAR(B27),1,1))+YEAR(C27)-YEAR(B27)-1+(C27-DATE(YEAR(C27),1,1)+1)/(DATE(YEAR(C27)+1,1,1)-DATE(YEAR(C27),1,1))))",
+    "G28": "IF(OR(H28<>\"\",B28=\"\"),\"\",E28*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F28,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100*IF(YEAR(B28)=YEAR(C28),D28/(DATE(YEAR(B28)+1,1,1)-DATE(YEAR(B28),1,1)),(DATE(YEAR(B28)+1,1,1)-B28)/(DATE(YEAR(B28)+1,1,1)-DATE(YEAR(B28),1,1))+YEAR(C28)-YEAR(B28)-1+(C28-DATE(YEAR(C28),1,1)+1)/(DATE(YEAR(C28)+1,1,1)-DATE(YEAR(C28),1,1))))",
+    "G29": "IF(OR(H29<>\"\",B29=\"\"),\"\",E29*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F29,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100*IF(YEAR(B29)=YEAR(C29),D29/(DATE(YEAR(B29)+1,1,1)-DATE(YEAR(B29),1,1)),(DATE(YEAR(B29)+1,1,1)-B29)/(DATE(YEAR(B29)+1,1,1)-DATE(YEAR(B29),1,1))+YEAR(C29)-YEAR(B29)-1+(C29-DATE(YEAR(C29),1,1)+1)/(DATE(YEAR(C29)+1,1,1)-DATE(YEAR(C29),1,1))))",
+    "G30": "IF(OR(H30<>\"\",B30=\"\"),\"\",E30*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F30,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100*IF(YEAR(B30)=YEAR(C30),D30/(DATE(YEAR(B30)+1,1,1)-DATE(YEAR(B30),1,1)),(DATE(YEAR(B30)+1,1,1)-B30)/(DATE(YEAR(B30)+1,1,1)-DATE(YEAR(B30),1,1))+YEAR(C30)-YEAR(B30)-1+(C30-DATE(YEAR(C30),1,1)+1)/(DATE(YEAR(C30)+1,1,1)-DATE(YEAR(C30),1,1))))",
+    "G31": "IF(OR(H31<>\"\",B31=\"\"),\"\",E31*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F31,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100*IF(YEAR(B31)=YEAR(C31),D31/(DATE(YEAR(B31)+1,1,1)-DATE(YEAR(B31),1,1)),(DATE(YEAR(B31)+1,1,1)-B31)/(DATE(YEAR(B31)+1,1,1)-DATE(YEAR(B31),1,1))+YEAR(C31)-YEAR(B31)-1+(C31-DATE(YEAR(C31),1,1)+1)/(DATE(YEAR(C31)+1,1,1)-DATE(YEAR(C31),1,1))))"
+  },
+  "original_formula_g27": "IF(OR(H27<>\"\",B27=\"\"),\"\",E27*_xlfn.NUMBERVALUE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F27,\" \",\"\"),\"%\",\"\"),\"'\",\"\"),\".\",\",\"),\",\",\" \")/100/365*D27)",
+  "receipts": {
+    "native-report.xml": "fc2b0b48c9531a48f2d91ebbdc64becb772968ae7b58b132df9ff871a441821b",
+    "reopen-report.xml": "98f3562b1fb9f1e80503fa00e0927afe1659c7451c1a8f258770eb418db12507"
+  },
+  "saved_files": [
+    {
+      "name": "p5before-filled.pdf",
+      "sha256": "ab2f9e3138fea15e4c9ea3dee177db09139ebd2d7200577f453aa95f4d764358"
+    },
+    {
+      "name": "p5fixed-filled.pdf",
+      "sha256": "b7480c186f3f843828471306b58200952f28e6fdf529de7dbf008f924090a25f"
+    },
+    {
+      "name": "p5reopen-filled.pdf",
+      "sha256": "301ea3bee367a19eb51d09d13e3318a7796f9f0643ed171420e18ec281d5fa0f"
+    },
+    {
+      "name": "p5fixed-filled.xlsx",
+      "sha256": "254b2a4daf0321a144b2c6ce21eaf68a6231005d2f71bf1008c577085dac2563"
+    },
+    {
+      "name": "p5reopen-filled.xlsx",
+      "sha256": "a51722c1d9e453d3f753338883f6f55b87f67079053e5688fc2df55d66e02dc2"
+    }
+  ],
+  "cached_error_scans": [
+    {
+      "file": "p5fixed-filled.xlsx",
+      "cached_formula_errors": [],
+      "formula_count": 55
+    },
+    {
+      "file": "p5reopen-filled.xlsx",
+      "cached_formula_errors": [],
+      "formula_count": 55
+    }
+  ],
+  "queue_restored": true,
+  "production_changed": false,
+  "buyer_zips_rebuilt": false,
+  "remaining_p5_issues": "S05/S06/S07 and other product-level audit findings remain open; only calculator calendar-year issue S01 is accepted"
+}

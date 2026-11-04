@@ -1,0 +1,27 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="nsp-next-excel-4-20261022" excel_version="16.0" excel_build="4324">
+  <check name="n4:input_sha" pass="True" expected="1f7ae8af946eba0b79178047f5bea4c2c615f197e7109114b97fd4e269e689b1" actual="1f7ae8af946eba0b79178047f5bea4c2c615f197e7109114b97fd4e269e689b1" />
+  <print_preflight tag="n4" stage="opened" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Спорная зона" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Опись" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Обязательный минимум" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Сводка" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Виды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+  </print_preflight>
+  <check name="n4:only-type:U7" pass="True" expected="text:НЕ ПРОВЕРЕНО: наличие или обязательность" actual="System.String:НЕ ПРОВЕРЕНО: наличие или обязательность" />
+  <check name="n4:missing-required:U7" pass="True" expected="text:дыра: обязательного документа нет, запрос не направлен" actual="System.String:дыра: обязательного документа нет, запрос не направлен" />
+  <check name="n4:requested:U7" pass="True" expected="text:запрошен, не получен" actual="System.String:запрошен, не получен" />
+  <check name="n4:expert-no-date:U7" pass="True" expected="text:передан без следа: эксперт или дата" actual="System.String:передан без следа: эксперт или дата" />
+  <check name="n4:minimum-still-open:A15" pass="True" expected="text:Есть незакрытые обязательные документы или блоки минимума. Закройте дыры или направьте запрос." actual="System.String:Есть незакрытые обязательные документы или блоки минимума. Закройте дыры или направьте запрос." />
+  <check name="n4:export_source_first" pass="True" expected="direct source export; IgnorePrintAreas=False" actual="direct source export; IgnorePrintAreas=False" />
+  <check name="n4:pdf_export" pass="True" expected="%PDF-" actual="bytes=475522" />
+  <print_preflight tag="n4" stage="exported_saved" excel_active_printer_present="True" installed_printer_count="3" default_printer_present="True" spooler_state="Running">
+    <sheet name="Спорная зона" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Опись" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Обязательный минимум" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Сводка" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Виды" print_area="" print_title_rows="" print_title_columns="" />
+    <sheet name="Пример заполнения" print_area="" print_title_rows="" print_title_columns="" />
+  </print_preflight>
+  <check name="n4:source_unchanged" pass="True" expected="1f7ae8af946eba0b79178047f5bea4c2c615f197e7109114b97fd4e269e689b1" actual="1f7ae8af946eba0b79178047f5bea4c2c615f197e7109114b97fd4e269e689b1" />
+</report>

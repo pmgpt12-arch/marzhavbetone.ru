@@ -1,0 +1,219 @@
+{
+  "status": "PARTIAL_NOT_ACCEPTED",
+  "cases": [
+    {
+      "case": "missing-date",
+      "status": "PASS_LIBREOFFICE_RECALC",
+      "actual": [
+        "УКАЖИТЕ ДАТУ",
+        "УКАЖИТЕ ДАТУ",
+        "УКАЖИТЕ ДАТУ",
+        "УКАЖИТЕ ДАТУ",
+        "УКАЖИТЕ ДАТУ"
+      ],
+      "expected": [
+        "УКАЖИТЕ ДАТУ",
+        "УКАЖИТЕ ДАТУ",
+        "УКАЖИТЕ ДАТУ",
+        "УКАЖИТЕ ДАТУ",
+        "УКАЖИТЕ ДАТУ"
+      ]
+    },
+    {
+      "case": "verified-zero",
+      "status": "PASS_LIBREOFFICE_RECALC",
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "advance-only",
+      "status": "PASS_LIBREOFFICE_RECALC",
+      "actual": [
+        0.0,
+        0.0,
+        1000000.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0,
+        0,
+        1000000,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "separate-categories",
+      "status": "PASS_LIBREOFFICE_RECALC",
+      "actual": [
+        80000.0,
+        5000.0,
+        600000.0,
+        100000.0,
+        4000.0
+      ],
+      "expected": [
+        80000,
+        5000,
+        600000,
+        100000,
+        4000
+      ]
+    },
+    {
+      "case": "missing-held-only",
+      "status": "PASS_LIBREOFFICE_RECALC",
+      "actual": [
+        "НЕ ПРОВЕРЕНО",
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        "НЕ ПРОВЕРЕНО",
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "negative-held",
+      "status": "PASS_LIBREOFFICE_RECALC",
+      "actual": [
+        "ОШИБКА: сумма меньше нуля",
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        "ОШИБКА: сумма меньше нуля",
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "text-fee",
+      "status": "PASS_LIBREOFFICE_RECALC",
+      "actual": [
+        0.0,
+        "НЕ ПРОВЕРЕНО",
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0,
+        "НЕ ПРОВЕРЕНО",
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "boolean-advance",
+      "status": "UNRESOLVED_ENGINE_TYPE_DIFFERENCE",
+      "actual": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0,
+        0,
+        "НЕ ПРОВЕРЕНО",
+        0,
+        0
+      ]
+    },
+    {
+      "case": "work-includes-retention",
+      "status": "PASS_LIBREOFFICE_RECALC",
+      "actual": [
+        10000.0,
+        0.0,
+        0.0,
+        100000.0,
+        0.0
+      ],
+      "expected": [
+        10000,
+        0,
+        0,
+        100000,
+        0
+      ]
+    },
+    {
+      "case": "offset-is-separate",
+      "status": "PASS_LIBREOFFICE_RECALC",
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        25000.0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        25000
+      ]
+    },
+    {
+      "case": "money-decimals",
+      "status": "PASS_LIBREOFFICE_RECALC",
+      "actual": [
+        80001.05,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        80001.05,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "invalid-date",
+      "status": "NO_OUTPUT_BEFORE_120S_EXPORT_TIMEOUT",
+      "expected": [
+        "УКАЖИТЕ ДАТУ",
+        "УКАЖИТЕ ДАТУ",
+        "УКАЖИТЕ ДАТУ",
+        "УКАЖИТЕ ДАТУ",
+        "УКАЖИТЕ ДАТУ"
+      ]
+    }
+  ],
+  "confirmed_scenarios": 10,
+  "confirmed_checks": 50,
+  "boolean_observation": "Input XML D4 has t=b and v=1. LibreOffice XLSX output writes TRUE() with numeric cached value and D14=1. Do not change the workbook expectation to numeric 1. Native Excel check required.",
+  "date_observation": "No output for D2=-1 with date number format before 120-second export timeout. Stage/cause not established.",
+  "source_sha256": "0c02dbad883a0eb1f33ee44c30250d901490a852d0d0482d0e9d276b7ddc701d"
+}

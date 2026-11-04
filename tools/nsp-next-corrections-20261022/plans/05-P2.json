@@ -1,0 +1,1214 @@
+{
+  "path": "02-dopraboty-bez-poter/07-raschet-stoimosti.xlsx",
+  "sku": "P2",
+  "issue": "P2-07-incomplete-cost",
+  "base_sha256": "ac4c5d9980bfd1ee102ecda9bdd7fc9b813f4d55e5510595d8fca78c040ea58f",
+  "edits": [
+    {
+      "sheet": "Реестр",
+      "cell": "F4",
+      "old": "=IF(OR(D4=\"\",E4=\"\"),\"\",D4*E4)",
+      "value": "=IF(COUNTA(B4:E4,G4:H4)=0,\"\",IF(OR(B4=\"\",NOT(ISNUMBER(D4)),NOT(ISNUMBER(E4)),D4<=0,E4<0),\"НЕ ЗАВЕРШЕНО\",D4*E4))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I4",
+      "old": "=IF(F4=\"\",\"\",F4*IF(H4=\"\",1,H4))",
+      "value": "=IF(F4=\"\",\"\",IF(OR(NOT(ISNUMBER(F4)),AND(H4<>\"\",OR(NOT(ISNUMBER(H4)),H4<=0))),\"НЕ ЗАВЕРШЕНО\",F4*IF(H4=\"\",1,H4)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F5",
+      "old": "=IF(OR(D5=\"\",E5=\"\"),\"\",D5*E5)",
+      "value": "=IF(COUNTA(B5:E5,G5:H5)=0,\"\",IF(OR(B5=\"\",NOT(ISNUMBER(D5)),NOT(ISNUMBER(E5)),D5<=0,E5<0),\"НЕ ЗАВЕРШЕНО\",D5*E5))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I5",
+      "old": "=IF(F5=\"\",\"\",F5*IF(H5=\"\",1,H5))",
+      "value": "=IF(F5=\"\",\"\",IF(OR(NOT(ISNUMBER(F5)),AND(H5<>\"\",OR(NOT(ISNUMBER(H5)),H5<=0))),\"НЕ ЗАВЕРШЕНО\",F5*IF(H5=\"\",1,H5)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F6",
+      "old": "=IF(OR(D6=\"\",E6=\"\"),\"\",D6*E6)",
+      "value": "=IF(COUNTA(B6:E6,G6:H6)=0,\"\",IF(OR(B6=\"\",NOT(ISNUMBER(D6)),NOT(ISNUMBER(E6)),D6<=0,E6<0),\"НЕ ЗАВЕРШЕНО\",D6*E6))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I6",
+      "old": "=IF(F6=\"\",\"\",F6*IF(H6=\"\",1,H6))",
+      "value": "=IF(F6=\"\",\"\",IF(OR(NOT(ISNUMBER(F6)),AND(H6<>\"\",OR(NOT(ISNUMBER(H6)),H6<=0))),\"НЕ ЗАВЕРШЕНО\",F6*IF(H6=\"\",1,H6)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F7",
+      "old": "=IF(OR(D7=\"\",E7=\"\"),\"\",D7*E7)",
+      "value": "=IF(COUNTA(B7:E7,G7:H7)=0,\"\",IF(OR(B7=\"\",NOT(ISNUMBER(D7)),NOT(ISNUMBER(E7)),D7<=0,E7<0),\"НЕ ЗАВЕРШЕНО\",D7*E7))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I7",
+      "old": "=IF(F7=\"\",\"\",F7*IF(H7=\"\",1,H7))",
+      "value": "=IF(F7=\"\",\"\",IF(OR(NOT(ISNUMBER(F7)),AND(H7<>\"\",OR(NOT(ISNUMBER(H7)),H7<=0))),\"НЕ ЗАВЕРШЕНО\",F7*IF(H7=\"\",1,H7)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F8",
+      "old": "=IF(OR(D8=\"\",E8=\"\"),\"\",D8*E8)",
+      "value": "=IF(COUNTA(B8:E8,G8:H8)=0,\"\",IF(OR(B8=\"\",NOT(ISNUMBER(D8)),NOT(ISNUMBER(E8)),D8<=0,E8<0),\"НЕ ЗАВЕРШЕНО\",D8*E8))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I8",
+      "old": "=IF(F8=\"\",\"\",F8*IF(H8=\"\",1,H8))",
+      "value": "=IF(F8=\"\",\"\",IF(OR(NOT(ISNUMBER(F8)),AND(H8<>\"\",OR(NOT(ISNUMBER(H8)),H8<=0))),\"НЕ ЗАВЕРШЕНО\",F8*IF(H8=\"\",1,H8)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F9",
+      "old": "=IF(OR(D9=\"\",E9=\"\"),\"\",D9*E9)",
+      "value": "=IF(COUNTA(B9:E9,G9:H9)=0,\"\",IF(OR(B9=\"\",NOT(ISNUMBER(D9)),NOT(ISNUMBER(E9)),D9<=0,E9<0),\"НЕ ЗАВЕРШЕНО\",D9*E9))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I9",
+      "old": "=IF(F9=\"\",\"\",F9*IF(H9=\"\",1,H9))",
+      "value": "=IF(F9=\"\",\"\",IF(OR(NOT(ISNUMBER(F9)),AND(H9<>\"\",OR(NOT(ISNUMBER(H9)),H9<=0))),\"НЕ ЗАВЕРШЕНО\",F9*IF(H9=\"\",1,H9)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F10",
+      "old": "=IF(OR(D10=\"\",E10=\"\"),\"\",D10*E10)",
+      "value": "=IF(COUNTA(B10:E10,G10:H10)=0,\"\",IF(OR(B10=\"\",NOT(ISNUMBER(D10)),NOT(ISNUMBER(E10)),D10<=0,E10<0),\"НЕ ЗАВЕРШЕНО\",D10*E10))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I10",
+      "old": "=IF(F10=\"\",\"\",F10*IF(H10=\"\",1,H10))",
+      "value": "=IF(F10=\"\",\"\",IF(OR(NOT(ISNUMBER(F10)),AND(H10<>\"\",OR(NOT(ISNUMBER(H10)),H10<=0))),\"НЕ ЗАВЕРШЕНО\",F10*IF(H10=\"\",1,H10)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F11",
+      "old": "=IF(OR(D11=\"\",E11=\"\"),\"\",D11*E11)",
+      "value": "=IF(COUNTA(B11:E11,G11:H11)=0,\"\",IF(OR(B11=\"\",NOT(ISNUMBER(D11)),NOT(ISNUMBER(E11)),D11<=0,E11<0),\"НЕ ЗАВЕРШЕНО\",D11*E11))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I11",
+      "old": "=IF(F11=\"\",\"\",F11*IF(H11=\"\",1,H11))",
+      "value": "=IF(F11=\"\",\"\",IF(OR(NOT(ISNUMBER(F11)),AND(H11<>\"\",OR(NOT(ISNUMBER(H11)),H11<=0))),\"НЕ ЗАВЕРШЕНО\",F11*IF(H11=\"\",1,H11)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F12",
+      "old": "=IF(OR(D12=\"\",E12=\"\"),\"\",D12*E12)",
+      "value": "=IF(COUNTA(B12:E12,G12:H12)=0,\"\",IF(OR(B12=\"\",NOT(ISNUMBER(D12)),NOT(ISNUMBER(E12)),D12<=0,E12<0),\"НЕ ЗАВЕРШЕНО\",D12*E12))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I12",
+      "old": "=IF(F12=\"\",\"\",F12*IF(H12=\"\",1,H12))",
+      "value": "=IF(F12=\"\",\"\",IF(OR(NOT(ISNUMBER(F12)),AND(H12<>\"\",OR(NOT(ISNUMBER(H12)),H12<=0))),\"НЕ ЗАВЕРШЕНО\",F12*IF(H12=\"\",1,H12)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F13",
+      "old": "=IF(OR(D13=\"\",E13=\"\"),\"\",D13*E13)",
+      "value": "=IF(COUNTA(B13:E13,G13:H13)=0,\"\",IF(OR(B13=\"\",NOT(ISNUMBER(D13)),NOT(ISNUMBER(E13)),D13<=0,E13<0),\"НЕ ЗАВЕРШЕНО\",D13*E13))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I13",
+      "old": "=IF(F13=\"\",\"\",F13*IF(H13=\"\",1,H13))",
+      "value": "=IF(F13=\"\",\"\",IF(OR(NOT(ISNUMBER(F13)),AND(H13<>\"\",OR(NOT(ISNUMBER(H13)),H13<=0))),\"НЕ ЗАВЕРШЕНО\",F13*IF(H13=\"\",1,H13)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F14",
+      "old": "=IF(OR(D14=\"\",E14=\"\"),\"\",D14*E14)",
+      "value": "=IF(COUNTA(B14:E14,G14:H14)=0,\"\",IF(OR(B14=\"\",NOT(ISNUMBER(D14)),NOT(ISNUMBER(E14)),D14<=0,E14<0),\"НЕ ЗАВЕРШЕНО\",D14*E14))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I14",
+      "old": "=IF(F14=\"\",\"\",F14*IF(H14=\"\",1,H14))",
+      "value": "=IF(F14=\"\",\"\",IF(OR(NOT(ISNUMBER(F14)),AND(H14<>\"\",OR(NOT(ISNUMBER(H14)),H14<=0))),\"НЕ ЗАВЕРШЕНО\",F14*IF(H14=\"\",1,H14)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F15",
+      "old": "=IF(OR(D15=\"\",E15=\"\"),\"\",D15*E15)",
+      "value": "=IF(COUNTA(B15:E15,G15:H15)=0,\"\",IF(OR(B15=\"\",NOT(ISNUMBER(D15)),NOT(ISNUMBER(E15)),D15<=0,E15<0),\"НЕ ЗАВЕРШЕНО\",D15*E15))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I15",
+      "old": "=IF(F15=\"\",\"\",F15*IF(H15=\"\",1,H15))",
+      "value": "=IF(F15=\"\",\"\",IF(OR(NOT(ISNUMBER(F15)),AND(H15<>\"\",OR(NOT(ISNUMBER(H15)),H15<=0))),\"НЕ ЗАВЕРШЕНО\",F15*IF(H15=\"\",1,H15)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F16",
+      "old": "=IF(OR(D16=\"\",E16=\"\"),\"\",D16*E16)",
+      "value": "=IF(COUNTA(B16:E16,G16:H16)=0,\"\",IF(OR(B16=\"\",NOT(ISNUMBER(D16)),NOT(ISNUMBER(E16)),D16<=0,E16<0),\"НЕ ЗАВЕРШЕНО\",D16*E16))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I16",
+      "old": "=IF(F16=\"\",\"\",F16*IF(H16=\"\",1,H16))",
+      "value": "=IF(F16=\"\",\"\",IF(OR(NOT(ISNUMBER(F16)),AND(H16<>\"\",OR(NOT(ISNUMBER(H16)),H16<=0))),\"НЕ ЗАВЕРШЕНО\",F16*IF(H16=\"\",1,H16)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F17",
+      "old": "=IF(OR(D17=\"\",E17=\"\"),\"\",D17*E17)",
+      "value": "=IF(COUNTA(B17:E17,G17:H17)=0,\"\",IF(OR(B17=\"\",NOT(ISNUMBER(D17)),NOT(ISNUMBER(E17)),D17<=0,E17<0),\"НЕ ЗАВЕРШЕНО\",D17*E17))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I17",
+      "old": "=IF(F17=\"\",\"\",F17*IF(H17=\"\",1,H17))",
+      "value": "=IF(F17=\"\",\"\",IF(OR(NOT(ISNUMBER(F17)),AND(H17<>\"\",OR(NOT(ISNUMBER(H17)),H17<=0))),\"НЕ ЗАВЕРШЕНО\",F17*IF(H17=\"\",1,H17)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F18",
+      "old": "=IF(OR(D18=\"\",E18=\"\"),\"\",D18*E18)",
+      "value": "=IF(COUNTA(B18:E18,G18:H18)=0,\"\",IF(OR(B18=\"\",NOT(ISNUMBER(D18)),NOT(ISNUMBER(E18)),D18<=0,E18<0),\"НЕ ЗАВЕРШЕНО\",D18*E18))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I18",
+      "old": "=IF(F18=\"\",\"\",F18*IF(H18=\"\",1,H18))",
+      "value": "=IF(F18=\"\",\"\",IF(OR(NOT(ISNUMBER(F18)),AND(H18<>\"\",OR(NOT(ISNUMBER(H18)),H18<=0))),\"НЕ ЗАВЕРШЕНО\",F18*IF(H18=\"\",1,H18)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F19",
+      "old": "=IF(OR(D19=\"\",E19=\"\"),\"\",D19*E19)",
+      "value": "=IF(COUNTA(B19:E19,G19:H19)=0,\"\",IF(OR(B19=\"\",NOT(ISNUMBER(D19)),NOT(ISNUMBER(E19)),D19<=0,E19<0),\"НЕ ЗАВЕРШЕНО\",D19*E19))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I19",
+      "old": "=IF(F19=\"\",\"\",F19*IF(H19=\"\",1,H19))",
+      "value": "=IF(F19=\"\",\"\",IF(OR(NOT(ISNUMBER(F19)),AND(H19<>\"\",OR(NOT(ISNUMBER(H19)),H19<=0))),\"НЕ ЗАВЕРШЕНО\",F19*IF(H19=\"\",1,H19)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F20",
+      "old": "=IF(OR(D20=\"\",E20=\"\"),\"\",D20*E20)",
+      "value": "=IF(COUNTA(B20:E20,G20:H20)=0,\"\",IF(OR(B20=\"\",NOT(ISNUMBER(D20)),NOT(ISNUMBER(E20)),D20<=0,E20<0),\"НЕ ЗАВЕРШЕНО\",D20*E20))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I20",
+      "old": "=IF(F20=\"\",\"\",F20*IF(H20=\"\",1,H20))",
+      "value": "=IF(F20=\"\",\"\",IF(OR(NOT(ISNUMBER(F20)),AND(H20<>\"\",OR(NOT(ISNUMBER(H20)),H20<=0))),\"НЕ ЗАВЕРШЕНО\",F20*IF(H20=\"\",1,H20)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F21",
+      "old": "=IF(OR(D21=\"\",E21=\"\"),\"\",D21*E21)",
+      "value": "=IF(COUNTA(B21:E21,G21:H21)=0,\"\",IF(OR(B21=\"\",NOT(ISNUMBER(D21)),NOT(ISNUMBER(E21)),D21<=0,E21<0),\"НЕ ЗАВЕРШЕНО\",D21*E21))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I21",
+      "old": "=IF(F21=\"\",\"\",F21*IF(H21=\"\",1,H21))",
+      "value": "=IF(F21=\"\",\"\",IF(OR(NOT(ISNUMBER(F21)),AND(H21<>\"\",OR(NOT(ISNUMBER(H21)),H21<=0))),\"НЕ ЗАВЕРШЕНО\",F21*IF(H21=\"\",1,H21)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F22",
+      "old": "=IF(OR(D22=\"\",E22=\"\"),\"\",D22*E22)",
+      "value": "=IF(COUNTA(B22:E22,G22:H22)=0,\"\",IF(OR(B22=\"\",NOT(ISNUMBER(D22)),NOT(ISNUMBER(E22)),D22<=0,E22<0),\"НЕ ЗАВЕРШЕНО\",D22*E22))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I22",
+      "old": "=IF(F22=\"\",\"\",F22*IF(H22=\"\",1,H22))",
+      "value": "=IF(F22=\"\",\"\",IF(OR(NOT(ISNUMBER(F22)),AND(H22<>\"\",OR(NOT(ISNUMBER(H22)),H22<=0))),\"НЕ ЗАВЕРШЕНО\",F22*IF(H22=\"\",1,H22)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F23",
+      "old": "=IF(OR(D23=\"\",E23=\"\"),\"\",D23*E23)",
+      "value": "=IF(COUNTA(B23:E23,G23:H23)=0,\"\",IF(OR(B23=\"\",NOT(ISNUMBER(D23)),NOT(ISNUMBER(E23)),D23<=0,E23<0),\"НЕ ЗАВЕРШЕНО\",D23*E23))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I23",
+      "old": "=IF(F23=\"\",\"\",F23*IF(H23=\"\",1,H23))",
+      "value": "=IF(F23=\"\",\"\",IF(OR(NOT(ISNUMBER(F23)),AND(H23<>\"\",OR(NOT(ISNUMBER(H23)),H23<=0))),\"НЕ ЗАВЕРШЕНО\",F23*IF(H23=\"\",1,H23)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F24",
+      "old": "=IF(OR(D24=\"\",E24=\"\"),\"\",D24*E24)",
+      "value": "=IF(COUNTA(B24:E24,G24:H24)=0,\"\",IF(OR(B24=\"\",NOT(ISNUMBER(D24)),NOT(ISNUMBER(E24)),D24<=0,E24<0),\"НЕ ЗАВЕРШЕНО\",D24*E24))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I24",
+      "old": "=IF(F24=\"\",\"\",F24*IF(H24=\"\",1,H24))",
+      "value": "=IF(F24=\"\",\"\",IF(OR(NOT(ISNUMBER(F24)),AND(H24<>\"\",OR(NOT(ISNUMBER(H24)),H24<=0))),\"НЕ ЗАВЕРШЕНО\",F24*IF(H24=\"\",1,H24)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F25",
+      "old": "=IF(OR(D25=\"\",E25=\"\"),\"\",D25*E25)",
+      "value": "=IF(COUNTA(B25:E25,G25:H25)=0,\"\",IF(OR(B25=\"\",NOT(ISNUMBER(D25)),NOT(ISNUMBER(E25)),D25<=0,E25<0),\"НЕ ЗАВЕРШЕНО\",D25*E25))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I25",
+      "old": "=IF(F25=\"\",\"\",F25*IF(H25=\"\",1,H25))",
+      "value": "=IF(F25=\"\",\"\",IF(OR(NOT(ISNUMBER(F25)),AND(H25<>\"\",OR(NOT(ISNUMBER(H25)),H25<=0))),\"НЕ ЗАВЕРШЕНО\",F25*IF(H25=\"\",1,H25)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F26",
+      "old": "=IF(OR(D26=\"\",E26=\"\"),\"\",D26*E26)",
+      "value": "=IF(COUNTA(B26:E26,G26:H26)=0,\"\",IF(OR(B26=\"\",NOT(ISNUMBER(D26)),NOT(ISNUMBER(E26)),D26<=0,E26<0),\"НЕ ЗАВЕРШЕНО\",D26*E26))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I26",
+      "old": "=IF(F26=\"\",\"\",F26*IF(H26=\"\",1,H26))",
+      "value": "=IF(F26=\"\",\"\",IF(OR(NOT(ISNUMBER(F26)),AND(H26<>\"\",OR(NOT(ISNUMBER(H26)),H26<=0))),\"НЕ ЗАВЕРШЕНО\",F26*IF(H26=\"\",1,H26)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F27",
+      "old": "=IF(OR(D27=\"\",E27=\"\"),\"\",D27*E27)",
+      "value": "=IF(COUNTA(B27:E27,G27:H27)=0,\"\",IF(OR(B27=\"\",NOT(ISNUMBER(D27)),NOT(ISNUMBER(E27)),D27<=0,E27<0),\"НЕ ЗАВЕРШЕНО\",D27*E27))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I27",
+      "old": "=IF(F27=\"\",\"\",F27*IF(H27=\"\",1,H27))",
+      "value": "=IF(F27=\"\",\"\",IF(OR(NOT(ISNUMBER(F27)),AND(H27<>\"\",OR(NOT(ISNUMBER(H27)),H27<=0))),\"НЕ ЗАВЕРШЕНО\",F27*IF(H27=\"\",1,H27)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F28",
+      "old": "=IF(OR(D28=\"\",E28=\"\"),\"\",D28*E28)",
+      "value": "=IF(COUNTA(B28:E28,G28:H28)=0,\"\",IF(OR(B28=\"\",NOT(ISNUMBER(D28)),NOT(ISNUMBER(E28)),D28<=0,E28<0),\"НЕ ЗАВЕРШЕНО\",D28*E28))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I28",
+      "old": "=IF(F28=\"\",\"\",F28*IF(H28=\"\",1,H28))",
+      "value": "=IF(F28=\"\",\"\",IF(OR(NOT(ISNUMBER(F28)),AND(H28<>\"\",OR(NOT(ISNUMBER(H28)),H28<=0))),\"НЕ ЗАВЕРШЕНО\",F28*IF(H28=\"\",1,H28)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F29",
+      "old": "=IF(OR(D29=\"\",E29=\"\"),\"\",D29*E29)",
+      "value": "=IF(COUNTA(B29:E29,G29:H29)=0,\"\",IF(OR(B29=\"\",NOT(ISNUMBER(D29)),NOT(ISNUMBER(E29)),D29<=0,E29<0),\"НЕ ЗАВЕРШЕНО\",D29*E29))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I29",
+      "old": "=IF(F29=\"\",\"\",F29*IF(H29=\"\",1,H29))",
+      "value": "=IF(F29=\"\",\"\",IF(OR(NOT(ISNUMBER(F29)),AND(H29<>\"\",OR(NOT(ISNUMBER(H29)),H29<=0))),\"НЕ ЗАВЕРШЕНО\",F29*IF(H29=\"\",1,H29)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F30",
+      "old": "=IF(OR(D30=\"\",E30=\"\"),\"\",D30*E30)",
+      "value": "=IF(COUNTA(B30:E30,G30:H30)=0,\"\",IF(OR(B30=\"\",NOT(ISNUMBER(D30)),NOT(ISNUMBER(E30)),D30<=0,E30<0),\"НЕ ЗАВЕРШЕНО\",D30*E30))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I30",
+      "old": "=IF(F30=\"\",\"\",F30*IF(H30=\"\",1,H30))",
+      "value": "=IF(F30=\"\",\"\",IF(OR(NOT(ISNUMBER(F30)),AND(H30<>\"\",OR(NOT(ISNUMBER(H30)),H30<=0))),\"НЕ ЗАВЕРШЕНО\",F30*IF(H30=\"\",1,H30)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F31",
+      "old": "=IF(OR(D31=\"\",E31=\"\"),\"\",D31*E31)",
+      "value": "=IF(COUNTA(B31:E31,G31:H31)=0,\"\",IF(OR(B31=\"\",NOT(ISNUMBER(D31)),NOT(ISNUMBER(E31)),D31<=0,E31<0),\"НЕ ЗАВЕРШЕНО\",D31*E31))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I31",
+      "old": "=IF(F31=\"\",\"\",F31*IF(H31=\"\",1,H31))",
+      "value": "=IF(F31=\"\",\"\",IF(OR(NOT(ISNUMBER(F31)),AND(H31<>\"\",OR(NOT(ISNUMBER(H31)),H31<=0))),\"НЕ ЗАВЕРШЕНО\",F31*IF(H31=\"\",1,H31)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F32",
+      "old": "=IF(OR(D32=\"\",E32=\"\"),\"\",D32*E32)",
+      "value": "=IF(COUNTA(B32:E32,G32:H32)=0,\"\",IF(OR(B32=\"\",NOT(ISNUMBER(D32)),NOT(ISNUMBER(E32)),D32<=0,E32<0),\"НЕ ЗАВЕРШЕНО\",D32*E32))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I32",
+      "old": "=IF(F32=\"\",\"\",F32*IF(H32=\"\",1,H32))",
+      "value": "=IF(F32=\"\",\"\",IF(OR(NOT(ISNUMBER(F32)),AND(H32<>\"\",OR(NOT(ISNUMBER(H32)),H32<=0))),\"НЕ ЗАВЕРШЕНО\",F32*IF(H32=\"\",1,H32)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F33",
+      "old": "=IF(OR(D33=\"\",E33=\"\"),\"\",D33*E33)",
+      "value": "=IF(COUNTA(B33:E33,G33:H33)=0,\"\",IF(OR(B33=\"\",NOT(ISNUMBER(D33)),NOT(ISNUMBER(E33)),D33<=0,E33<0),\"НЕ ЗАВЕРШЕНО\",D33*E33))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I33",
+      "old": "=IF(F33=\"\",\"\",F33*IF(H33=\"\",1,H33))",
+      "value": "=IF(F33=\"\",\"\",IF(OR(NOT(ISNUMBER(F33)),AND(H33<>\"\",OR(NOT(ISNUMBER(H33)),H33<=0))),\"НЕ ЗАВЕРШЕНО\",F33*IF(H33=\"\",1,H33)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F34",
+      "old": "=IF(OR(D34=\"\",E34=\"\"),\"\",D34*E34)",
+      "value": "=IF(COUNTA(B34:E34,G34:H34)=0,\"\",IF(OR(B34=\"\",NOT(ISNUMBER(D34)),NOT(ISNUMBER(E34)),D34<=0,E34<0),\"НЕ ЗАВЕРШЕНО\",D34*E34))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I34",
+      "old": "=IF(F34=\"\",\"\",F34*IF(H34=\"\",1,H34))",
+      "value": "=IF(F34=\"\",\"\",IF(OR(NOT(ISNUMBER(F34)),AND(H34<>\"\",OR(NOT(ISNUMBER(H34)),H34<=0))),\"НЕ ЗАВЕРШЕНО\",F34*IF(H34=\"\",1,H34)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F35",
+      "old": "=IF(OR(D35=\"\",E35=\"\"),\"\",D35*E35)",
+      "value": "=IF(COUNTA(B35:E35,G35:H35)=0,\"\",IF(OR(B35=\"\",NOT(ISNUMBER(D35)),NOT(ISNUMBER(E35)),D35<=0,E35<0),\"НЕ ЗАВЕРШЕНО\",D35*E35))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I35",
+      "old": "=IF(F35=\"\",\"\",F35*IF(H35=\"\",1,H35))",
+      "value": "=IF(F35=\"\",\"\",IF(OR(NOT(ISNUMBER(F35)),AND(H35<>\"\",OR(NOT(ISNUMBER(H35)),H35<=0))),\"НЕ ЗАВЕРШЕНО\",F35*IF(H35=\"\",1,H35)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F36",
+      "old": "=IF(OR(D36=\"\",E36=\"\"),\"\",D36*E36)",
+      "value": "=IF(COUNTA(B36:E36,G36:H36)=0,\"\",IF(OR(B36=\"\",NOT(ISNUMBER(D36)),NOT(ISNUMBER(E36)),D36<=0,E36<0),\"НЕ ЗАВЕРШЕНО\",D36*E36))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I36",
+      "old": "=IF(F36=\"\",\"\",F36*IF(H36=\"\",1,H36))",
+      "value": "=IF(F36=\"\",\"\",IF(OR(NOT(ISNUMBER(F36)),AND(H36<>\"\",OR(NOT(ISNUMBER(H36)),H36<=0))),\"НЕ ЗАВЕРШЕНО\",F36*IF(H36=\"\",1,H36)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F37",
+      "old": "=IF(OR(D37=\"\",E37=\"\"),\"\",D37*E37)",
+      "value": "=IF(COUNTA(B37:E37,G37:H37)=0,\"\",IF(OR(B37=\"\",NOT(ISNUMBER(D37)),NOT(ISNUMBER(E37)),D37<=0,E37<0),\"НЕ ЗАВЕРШЕНО\",D37*E37))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I37",
+      "old": "=IF(F37=\"\",\"\",F37*IF(H37=\"\",1,H37))",
+      "value": "=IF(F37=\"\",\"\",IF(OR(NOT(ISNUMBER(F37)),AND(H37<>\"\",OR(NOT(ISNUMBER(H37)),H37<=0))),\"НЕ ЗАВЕРШЕНО\",F37*IF(H37=\"\",1,H37)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F38",
+      "old": "=IF(OR(D38=\"\",E38=\"\"),\"\",D38*E38)",
+      "value": "=IF(COUNTA(B38:E38,G38:H38)=0,\"\",IF(OR(B38=\"\",NOT(ISNUMBER(D38)),NOT(ISNUMBER(E38)),D38<=0,E38<0),\"НЕ ЗАВЕРШЕНО\",D38*E38))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I38",
+      "old": "=IF(F38=\"\",\"\",F38*IF(H38=\"\",1,H38))",
+      "value": "=IF(F38=\"\",\"\",IF(OR(NOT(ISNUMBER(F38)),AND(H38<>\"\",OR(NOT(ISNUMBER(H38)),H38<=0))),\"НЕ ЗАВЕРШЕНО\",F38*IF(H38=\"\",1,H38)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F39",
+      "old": "=IF(OR(D39=\"\",E39=\"\"),\"\",D39*E39)",
+      "value": "=IF(COUNTA(B39:E39,G39:H39)=0,\"\",IF(OR(B39=\"\",NOT(ISNUMBER(D39)),NOT(ISNUMBER(E39)),D39<=0,E39<0),\"НЕ ЗАВЕРШЕНО\",D39*E39))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I39",
+      "old": "=IF(F39=\"\",\"\",F39*IF(H39=\"\",1,H39))",
+      "value": "=IF(F39=\"\",\"\",IF(OR(NOT(ISNUMBER(F39)),AND(H39<>\"\",OR(NOT(ISNUMBER(H39)),H39<=0))),\"НЕ ЗАВЕРШЕНО\",F39*IF(H39=\"\",1,H39)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F40",
+      "old": "=IF(OR(D40=\"\",E40=\"\"),\"\",D40*E40)",
+      "value": "=IF(COUNTA(B40:E40,G40:H40)=0,\"\",IF(OR(B40=\"\",NOT(ISNUMBER(D40)),NOT(ISNUMBER(E40)),D40<=0,E40<0),\"НЕ ЗАВЕРШЕНО\",D40*E40))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I40",
+      "old": "=IF(F40=\"\",\"\",F40*IF(H40=\"\",1,H40))",
+      "value": "=IF(F40=\"\",\"\",IF(OR(NOT(ISNUMBER(F40)),AND(H40<>\"\",OR(NOT(ISNUMBER(H40)),H40<=0))),\"НЕ ЗАВЕРШЕНО\",F40*IF(H40=\"\",1,H40)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F41",
+      "old": "=IF(OR(D41=\"\",E41=\"\"),\"\",D41*E41)",
+      "value": "=IF(COUNTA(B41:E41,G41:H41)=0,\"\",IF(OR(B41=\"\",NOT(ISNUMBER(D41)),NOT(ISNUMBER(E41)),D41<=0,E41<0),\"НЕ ЗАВЕРШЕНО\",D41*E41))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I41",
+      "old": "=IF(F41=\"\",\"\",F41*IF(H41=\"\",1,H41))",
+      "value": "=IF(F41=\"\",\"\",IF(OR(NOT(ISNUMBER(F41)),AND(H41<>\"\",OR(NOT(ISNUMBER(H41)),H41<=0))),\"НЕ ЗАВЕРШЕНО\",F41*IF(H41=\"\",1,H41)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F42",
+      "old": "=IF(OR(D42=\"\",E42=\"\"),\"\",D42*E42)",
+      "value": "=IF(COUNTA(B42:E42,G42:H42)=0,\"\",IF(OR(B42=\"\",NOT(ISNUMBER(D42)),NOT(ISNUMBER(E42)),D42<=0,E42<0),\"НЕ ЗАВЕРШЕНО\",D42*E42))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I42",
+      "old": "=IF(F42=\"\",\"\",F42*IF(H42=\"\",1,H42))",
+      "value": "=IF(F42=\"\",\"\",IF(OR(NOT(ISNUMBER(F42)),AND(H42<>\"\",OR(NOT(ISNUMBER(H42)),H42<=0))),\"НЕ ЗАВЕРШЕНО\",F42*IF(H42=\"\",1,H42)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F43",
+      "old": "=IF(OR(D43=\"\",E43=\"\"),\"\",D43*E43)",
+      "value": "=IF(COUNTA(B43:E43,G43:H43)=0,\"\",IF(OR(B43=\"\",NOT(ISNUMBER(D43)),NOT(ISNUMBER(E43)),D43<=0,E43<0),\"НЕ ЗАВЕРШЕНО\",D43*E43))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I43",
+      "old": "=IF(F43=\"\",\"\",F43*IF(H43=\"\",1,H43))",
+      "value": "=IF(F43=\"\",\"\",IF(OR(NOT(ISNUMBER(F43)),AND(H43<>\"\",OR(NOT(ISNUMBER(H43)),H43<=0))),\"НЕ ЗАВЕРШЕНО\",F43*IF(H43=\"\",1,H43)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F44",
+      "old": "=IF(OR(D44=\"\",E44=\"\"),\"\",D44*E44)",
+      "value": "=IF(COUNTA(B44:E44,G44:H44)=0,\"\",IF(OR(B44=\"\",NOT(ISNUMBER(D44)),NOT(ISNUMBER(E44)),D44<=0,E44<0),\"НЕ ЗАВЕРШЕНО\",D44*E44))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I44",
+      "old": "=IF(F44=\"\",\"\",F44*IF(H44=\"\",1,H44))",
+      "value": "=IF(F44=\"\",\"\",IF(OR(NOT(ISNUMBER(F44)),AND(H44<>\"\",OR(NOT(ISNUMBER(H44)),H44<=0))),\"НЕ ЗАВЕРШЕНО\",F44*IF(H44=\"\",1,H44)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F45",
+      "old": "=IF(OR(D45=\"\",E45=\"\"),\"\",D45*E45)",
+      "value": "=IF(COUNTA(B45:E45,G45:H45)=0,\"\",IF(OR(B45=\"\",NOT(ISNUMBER(D45)),NOT(ISNUMBER(E45)),D45<=0,E45<0),\"НЕ ЗАВЕРШЕНО\",D45*E45))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I45",
+      "old": "=IF(F45=\"\",\"\",F45*IF(H45=\"\",1,H45))",
+      "value": "=IF(F45=\"\",\"\",IF(OR(NOT(ISNUMBER(F45)),AND(H45<>\"\",OR(NOT(ISNUMBER(H45)),H45<=0))),\"НЕ ЗАВЕРШЕНО\",F45*IF(H45=\"\",1,H45)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F46",
+      "old": "=IF(OR(D46=\"\",E46=\"\"),\"\",D46*E46)",
+      "value": "=IF(COUNTA(B46:E46,G46:H46)=0,\"\",IF(OR(B46=\"\",NOT(ISNUMBER(D46)),NOT(ISNUMBER(E46)),D46<=0,E46<0),\"НЕ ЗАВЕРШЕНО\",D46*E46))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I46",
+      "old": "=IF(F46=\"\",\"\",F46*IF(H46=\"\",1,H46))",
+      "value": "=IF(F46=\"\",\"\",IF(OR(NOT(ISNUMBER(F46)),AND(H46<>\"\",OR(NOT(ISNUMBER(H46)),H46<=0))),\"НЕ ЗАВЕРШЕНО\",F46*IF(H46=\"\",1,H46)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F47",
+      "old": "=IF(OR(D47=\"\",E47=\"\"),\"\",D47*E47)",
+      "value": "=IF(COUNTA(B47:E47,G47:H47)=0,\"\",IF(OR(B47=\"\",NOT(ISNUMBER(D47)),NOT(ISNUMBER(E47)),D47<=0,E47<0),\"НЕ ЗАВЕРШЕНО\",D47*E47))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I47",
+      "old": "=IF(F47=\"\",\"\",F47*IF(H47=\"\",1,H47))",
+      "value": "=IF(F47=\"\",\"\",IF(OR(NOT(ISNUMBER(F47)),AND(H47<>\"\",OR(NOT(ISNUMBER(H47)),H47<=0))),\"НЕ ЗАВЕРШЕНО\",F47*IF(H47=\"\",1,H47)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F48",
+      "old": "=IF(OR(D48=\"\",E48=\"\"),\"\",D48*E48)",
+      "value": "=IF(COUNTA(B48:E48,G48:H48)=0,\"\",IF(OR(B48=\"\",NOT(ISNUMBER(D48)),NOT(ISNUMBER(E48)),D48<=0,E48<0),\"НЕ ЗАВЕРШЕНО\",D48*E48))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I48",
+      "old": "=IF(F48=\"\",\"\",F48*IF(H48=\"\",1,H48))",
+      "value": "=IF(F48=\"\",\"\",IF(OR(NOT(ISNUMBER(F48)),AND(H48<>\"\",OR(NOT(ISNUMBER(H48)),H48<=0))),\"НЕ ЗАВЕРШЕНО\",F48*IF(H48=\"\",1,H48)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F49",
+      "old": "=IF(OR(D49=\"\",E49=\"\"),\"\",D49*E49)",
+      "value": "=IF(COUNTA(B49:E49,G49:H49)=0,\"\",IF(OR(B49=\"\",NOT(ISNUMBER(D49)),NOT(ISNUMBER(E49)),D49<=0,E49<0),\"НЕ ЗАВЕРШЕНО\",D49*E49))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I49",
+      "old": "=IF(F49=\"\",\"\",F49*IF(H49=\"\",1,H49))",
+      "value": "=IF(F49=\"\",\"\",IF(OR(NOT(ISNUMBER(F49)),AND(H49<>\"\",OR(NOT(ISNUMBER(H49)),H49<=0))),\"НЕ ЗАВЕРШЕНО\",F49*IF(H49=\"\",1,H49)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F50",
+      "old": "=IF(OR(D50=\"\",E50=\"\"),\"\",D50*E50)",
+      "value": "=IF(COUNTA(B50:E50,G50:H50)=0,\"\",IF(OR(B50=\"\",NOT(ISNUMBER(D50)),NOT(ISNUMBER(E50)),D50<=0,E50<0),\"НЕ ЗАВЕРШЕНО\",D50*E50))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I50",
+      "old": "=IF(F50=\"\",\"\",F50*IF(H50=\"\",1,H50))",
+      "value": "=IF(F50=\"\",\"\",IF(OR(NOT(ISNUMBER(F50)),AND(H50<>\"\",OR(NOT(ISNUMBER(H50)),H50<=0))),\"НЕ ЗАВЕРШЕНО\",F50*IF(H50=\"\",1,H50)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F51",
+      "old": "=IF(OR(D51=\"\",E51=\"\"),\"\",D51*E51)",
+      "value": "=IF(COUNTA(B51:E51,G51:H51)=0,\"\",IF(OR(B51=\"\",NOT(ISNUMBER(D51)),NOT(ISNUMBER(E51)),D51<=0,E51<0),\"НЕ ЗАВЕРШЕНО\",D51*E51))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I51",
+      "old": "=IF(F51=\"\",\"\",F51*IF(H51=\"\",1,H51))",
+      "value": "=IF(F51=\"\",\"\",IF(OR(NOT(ISNUMBER(F51)),AND(H51<>\"\",OR(NOT(ISNUMBER(H51)),H51<=0))),\"НЕ ЗАВЕРШЕНО\",F51*IF(H51=\"\",1,H51)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F52",
+      "old": "=IF(OR(D52=\"\",E52=\"\"),\"\",D52*E52)",
+      "value": "=IF(COUNTA(B52:E52,G52:H52)=0,\"\",IF(OR(B52=\"\",NOT(ISNUMBER(D52)),NOT(ISNUMBER(E52)),D52<=0,E52<0),\"НЕ ЗАВЕРШЕНО\",D52*E52))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I52",
+      "old": "=IF(F52=\"\",\"\",F52*IF(H52=\"\",1,H52))",
+      "value": "=IF(F52=\"\",\"\",IF(OR(NOT(ISNUMBER(F52)),AND(H52<>\"\",OR(NOT(ISNUMBER(H52)),H52<=0))),\"НЕ ЗАВЕРШЕНО\",F52*IF(H52=\"\",1,H52)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F53",
+      "old": "=IF(OR(D53=\"\",E53=\"\"),\"\",D53*E53)",
+      "value": "=IF(COUNTA(B53:E53,G53:H53)=0,\"\",IF(OR(B53=\"\",NOT(ISNUMBER(D53)),NOT(ISNUMBER(E53)),D53<=0,E53<0),\"НЕ ЗАВЕРШЕНО\",D53*E53))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I53",
+      "old": "=IF(F53=\"\",\"\",F53*IF(H53=\"\",1,H53))",
+      "value": "=IF(F53=\"\",\"\",IF(OR(NOT(ISNUMBER(F53)),AND(H53<>\"\",OR(NOT(ISNUMBER(H53)),H53<=0))),\"НЕ ЗАВЕРШЕНО\",F53*IF(H53=\"\",1,H53)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F54",
+      "old": "=IF(OR(D54=\"\",E54=\"\"),\"\",D54*E54)",
+      "value": "=IF(COUNTA(B54:E54,G54:H54)=0,\"\",IF(OR(B54=\"\",NOT(ISNUMBER(D54)),NOT(ISNUMBER(E54)),D54<=0,E54<0),\"НЕ ЗАВЕРШЕНО\",D54*E54))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I54",
+      "old": "=IF(F54=\"\",\"\",F54*IF(H54=\"\",1,H54))",
+      "value": "=IF(F54=\"\",\"\",IF(OR(NOT(ISNUMBER(F54)),AND(H54<>\"\",OR(NOT(ISNUMBER(H54)),H54<=0))),\"НЕ ЗАВЕРШЕНО\",F54*IF(H54=\"\",1,H54)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F55",
+      "old": "=IF(OR(D55=\"\",E55=\"\"),\"\",D55*E55)",
+      "value": "=IF(COUNTA(B55:E55,G55:H55)=0,\"\",IF(OR(B55=\"\",NOT(ISNUMBER(D55)),NOT(ISNUMBER(E55)),D55<=0,E55<0),\"НЕ ЗАВЕРШЕНО\",D55*E55))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I55",
+      "old": "=IF(F55=\"\",\"\",F55*IF(H55=\"\",1,H55))",
+      "value": "=IF(F55=\"\",\"\",IF(OR(NOT(ISNUMBER(F55)),AND(H55<>\"\",OR(NOT(ISNUMBER(H55)),H55<=0))),\"НЕ ЗАВЕРШЕНО\",F55*IF(H55=\"\",1,H55)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F56",
+      "old": "=IF(OR(D56=\"\",E56=\"\"),\"\",D56*E56)",
+      "value": "=IF(COUNTA(B56:E56,G56:H56)=0,\"\",IF(OR(B56=\"\",NOT(ISNUMBER(D56)),NOT(ISNUMBER(E56)),D56<=0,E56<0),\"НЕ ЗАВЕРШЕНО\",D56*E56))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I56",
+      "old": "=IF(F56=\"\",\"\",F56*IF(H56=\"\",1,H56))",
+      "value": "=IF(F56=\"\",\"\",IF(OR(NOT(ISNUMBER(F56)),AND(H56<>\"\",OR(NOT(ISNUMBER(H56)),H56<=0))),\"НЕ ЗАВЕРШЕНО\",F56*IF(H56=\"\",1,H56)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F57",
+      "old": "=IF(OR(D57=\"\",E57=\"\"),\"\",D57*E57)",
+      "value": "=IF(COUNTA(B57:E57,G57:H57)=0,\"\",IF(OR(B57=\"\",NOT(ISNUMBER(D57)),NOT(ISNUMBER(E57)),D57<=0,E57<0),\"НЕ ЗАВЕРШЕНО\",D57*E57))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I57",
+      "old": "=IF(F57=\"\",\"\",F57*IF(H57=\"\",1,H57))",
+      "value": "=IF(F57=\"\",\"\",IF(OR(NOT(ISNUMBER(F57)),AND(H57<>\"\",OR(NOT(ISNUMBER(H57)),H57<=0))),\"НЕ ЗАВЕРШЕНО\",F57*IF(H57=\"\",1,H57)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F58",
+      "old": "=IF(OR(D58=\"\",E58=\"\"),\"\",D58*E58)",
+      "value": "=IF(COUNTA(B58:E58,G58:H58)=0,\"\",IF(OR(B58=\"\",NOT(ISNUMBER(D58)),NOT(ISNUMBER(E58)),D58<=0,E58<0),\"НЕ ЗАВЕРШЕНО\",D58*E58))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I58",
+      "old": "=IF(F58=\"\",\"\",F58*IF(H58=\"\",1,H58))",
+      "value": "=IF(F58=\"\",\"\",IF(OR(NOT(ISNUMBER(F58)),AND(H58<>\"\",OR(NOT(ISNUMBER(H58)),H58<=0))),\"НЕ ЗАВЕРШЕНО\",F58*IF(H58=\"\",1,H58)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F59",
+      "old": "=IF(OR(D59=\"\",E59=\"\"),\"\",D59*E59)",
+      "value": "=IF(COUNTA(B59:E59,G59:H59)=0,\"\",IF(OR(B59=\"\",NOT(ISNUMBER(D59)),NOT(ISNUMBER(E59)),D59<=0,E59<0),\"НЕ ЗАВЕРШЕНО\",D59*E59))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I59",
+      "old": "=IF(F59=\"\",\"\",F59*IF(H59=\"\",1,H59))",
+      "value": "=IF(F59=\"\",\"\",IF(OR(NOT(ISNUMBER(F59)),AND(H59<>\"\",OR(NOT(ISNUMBER(H59)),H59<=0))),\"НЕ ЗАВЕРШЕНО\",F59*IF(H59=\"\",1,H59)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F60",
+      "old": "=IF(OR(D60=\"\",E60=\"\"),\"\",D60*E60)",
+      "value": "=IF(COUNTA(B60:E60,G60:H60)=0,\"\",IF(OR(B60=\"\",NOT(ISNUMBER(D60)),NOT(ISNUMBER(E60)),D60<=0,E60<0),\"НЕ ЗАВЕРШЕНО\",D60*E60))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I60",
+      "old": "=IF(F60=\"\",\"\",F60*IF(H60=\"\",1,H60))",
+      "value": "=IF(F60=\"\",\"\",IF(OR(NOT(ISNUMBER(F60)),AND(H60<>\"\",OR(NOT(ISNUMBER(H60)),H60<=0))),\"НЕ ЗАВЕРШЕНО\",F60*IF(H60=\"\",1,H60)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F61",
+      "old": "=IF(OR(D61=\"\",E61=\"\"),\"\",D61*E61)",
+      "value": "=IF(COUNTA(B61:E61,G61:H61)=0,\"\",IF(OR(B61=\"\",NOT(ISNUMBER(D61)),NOT(ISNUMBER(E61)),D61<=0,E61<0),\"НЕ ЗАВЕРШЕНО\",D61*E61))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I61",
+      "old": "=IF(F61=\"\",\"\",F61*IF(H61=\"\",1,H61))",
+      "value": "=IF(F61=\"\",\"\",IF(OR(NOT(ISNUMBER(F61)),AND(H61<>\"\",OR(NOT(ISNUMBER(H61)),H61<=0))),\"НЕ ЗАВЕРШЕНО\",F61*IF(H61=\"\",1,H61)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F62",
+      "old": "=IF(OR(D62=\"\",E62=\"\"),\"\",D62*E62)",
+      "value": "=IF(COUNTA(B62:E62,G62:H62)=0,\"\",IF(OR(B62=\"\",NOT(ISNUMBER(D62)),NOT(ISNUMBER(E62)),D62<=0,E62<0),\"НЕ ЗАВЕРШЕНО\",D62*E62))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I62",
+      "old": "=IF(F62=\"\",\"\",F62*IF(H62=\"\",1,H62))",
+      "value": "=IF(F62=\"\",\"\",IF(OR(NOT(ISNUMBER(F62)),AND(H62<>\"\",OR(NOT(ISNUMBER(H62)),H62<=0))),\"НЕ ЗАВЕРШЕНО\",F62*IF(H62=\"\",1,H62)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F63",
+      "old": "=IF(OR(D63=\"\",E63=\"\"),\"\",D63*E63)",
+      "value": "=IF(COUNTA(B63:E63,G63:H63)=0,\"\",IF(OR(B63=\"\",NOT(ISNUMBER(D63)),NOT(ISNUMBER(E63)),D63<=0,E63<0),\"НЕ ЗАВЕРШЕНО\",D63*E63))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I63",
+      "old": "=IF(F63=\"\",\"\",F63*IF(H63=\"\",1,H63))",
+      "value": "=IF(F63=\"\",\"\",IF(OR(NOT(ISNUMBER(F63)),AND(H63<>\"\",OR(NOT(ISNUMBER(H63)),H63<=0))),\"НЕ ЗАВЕРШЕНО\",F63*IF(H63=\"\",1,H63)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F64",
+      "old": "=IF(OR(D64=\"\",E64=\"\"),\"\",D64*E64)",
+      "value": "=IF(COUNTA(B64:E64,G64:H64)=0,\"\",IF(OR(B64=\"\",NOT(ISNUMBER(D64)),NOT(ISNUMBER(E64)),D64<=0,E64<0),\"НЕ ЗАВЕРШЕНО\",D64*E64))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I64",
+      "old": "=IF(F64=\"\",\"\",F64*IF(H64=\"\",1,H64))",
+      "value": "=IF(F64=\"\",\"\",IF(OR(NOT(ISNUMBER(F64)),AND(H64<>\"\",OR(NOT(ISNUMBER(H64)),H64<=0))),\"НЕ ЗАВЕРШЕНО\",F64*IF(H64=\"\",1,H64)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F65",
+      "old": "=IF(OR(D65=\"\",E65=\"\"),\"\",D65*E65)",
+      "value": "=IF(COUNTA(B65:E65,G65:H65)=0,\"\",IF(OR(B65=\"\",NOT(ISNUMBER(D65)),NOT(ISNUMBER(E65)),D65<=0,E65<0),\"НЕ ЗАВЕРШЕНО\",D65*E65))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I65",
+      "old": "=IF(F65=\"\",\"\",F65*IF(H65=\"\",1,H65))",
+      "value": "=IF(F65=\"\",\"\",IF(OR(NOT(ISNUMBER(F65)),AND(H65<>\"\",OR(NOT(ISNUMBER(H65)),H65<=0))),\"НЕ ЗАВЕРШЕНО\",F65*IF(H65=\"\",1,H65)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F66",
+      "old": "=IF(OR(D66=\"\",E66=\"\"),\"\",D66*E66)",
+      "value": "=IF(COUNTA(B66:E66,G66:H66)=0,\"\",IF(OR(B66=\"\",NOT(ISNUMBER(D66)),NOT(ISNUMBER(E66)),D66<=0,E66<0),\"НЕ ЗАВЕРШЕНО\",D66*E66))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I66",
+      "old": "=IF(F66=\"\",\"\",F66*IF(H66=\"\",1,H66))",
+      "value": "=IF(F66=\"\",\"\",IF(OR(NOT(ISNUMBER(F66)),AND(H66<>\"\",OR(NOT(ISNUMBER(H66)),H66<=0))),\"НЕ ЗАВЕРШЕНО\",F66*IF(H66=\"\",1,H66)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F67",
+      "old": "=IF(OR(D67=\"\",E67=\"\"),\"\",D67*E67)",
+      "value": "=IF(COUNTA(B67:E67,G67:H67)=0,\"\",IF(OR(B67=\"\",NOT(ISNUMBER(D67)),NOT(ISNUMBER(E67)),D67<=0,E67<0),\"НЕ ЗАВЕРШЕНО\",D67*E67))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I67",
+      "old": "=IF(F67=\"\",\"\",F67*IF(H67=\"\",1,H67))",
+      "value": "=IF(F67=\"\",\"\",IF(OR(NOT(ISNUMBER(F67)),AND(H67<>\"\",OR(NOT(ISNUMBER(H67)),H67<=0))),\"НЕ ЗАВЕРШЕНО\",F67*IF(H67=\"\",1,H67)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F68",
+      "old": "=IF(OR(D68=\"\",E68=\"\"),\"\",D68*E68)",
+      "value": "=IF(COUNTA(B68:E68,G68:H68)=0,\"\",IF(OR(B68=\"\",NOT(ISNUMBER(D68)),NOT(ISNUMBER(E68)),D68<=0,E68<0),\"НЕ ЗАВЕРШЕНО\",D68*E68))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I68",
+      "old": "=IF(F68=\"\",\"\",F68*IF(H68=\"\",1,H68))",
+      "value": "=IF(F68=\"\",\"\",IF(OR(NOT(ISNUMBER(F68)),AND(H68<>\"\",OR(NOT(ISNUMBER(H68)),H68<=0))),\"НЕ ЗАВЕРШЕНО\",F68*IF(H68=\"\",1,H68)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F69",
+      "old": "=IF(OR(D69=\"\",E69=\"\"),\"\",D69*E69)",
+      "value": "=IF(COUNTA(B69:E69,G69:H69)=0,\"\",IF(OR(B69=\"\",NOT(ISNUMBER(D69)),NOT(ISNUMBER(E69)),D69<=0,E69<0),\"НЕ ЗАВЕРШЕНО\",D69*E69))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I69",
+      "old": "=IF(F69=\"\",\"\",F69*IF(H69=\"\",1,H69))",
+      "value": "=IF(F69=\"\",\"\",IF(OR(NOT(ISNUMBER(F69)),AND(H69<>\"\",OR(NOT(ISNUMBER(H69)),H69<=0))),\"НЕ ЗАВЕРШЕНО\",F69*IF(H69=\"\",1,H69)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F70",
+      "old": "=IF(OR(D70=\"\",E70=\"\"),\"\",D70*E70)",
+      "value": "=IF(COUNTA(B70:E70,G70:H70)=0,\"\",IF(OR(B70=\"\",NOT(ISNUMBER(D70)),NOT(ISNUMBER(E70)),D70<=0,E70<0),\"НЕ ЗАВЕРШЕНО\",D70*E70))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I70",
+      "old": "=IF(F70=\"\",\"\",F70*IF(H70=\"\",1,H70))",
+      "value": "=IF(F70=\"\",\"\",IF(OR(NOT(ISNUMBER(F70)),AND(H70<>\"\",OR(NOT(ISNUMBER(H70)),H70<=0))),\"НЕ ЗАВЕРШЕНО\",F70*IF(H70=\"\",1,H70)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F71",
+      "old": "=IF(OR(D71=\"\",E71=\"\"),\"\",D71*E71)",
+      "value": "=IF(COUNTA(B71:E71,G71:H71)=0,\"\",IF(OR(B71=\"\",NOT(ISNUMBER(D71)),NOT(ISNUMBER(E71)),D71<=0,E71<0),\"НЕ ЗАВЕРШЕНО\",D71*E71))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I71",
+      "old": "=IF(F71=\"\",\"\",F71*IF(H71=\"\",1,H71))",
+      "value": "=IF(F71=\"\",\"\",IF(OR(NOT(ISNUMBER(F71)),AND(H71<>\"\",OR(NOT(ISNUMBER(H71)),H71<=0))),\"НЕ ЗАВЕРШЕНО\",F71*IF(H71=\"\",1,H71)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F72",
+      "old": "=IF(OR(D72=\"\",E72=\"\"),\"\",D72*E72)",
+      "value": "=IF(COUNTA(B72:E72,G72:H72)=0,\"\",IF(OR(B72=\"\",NOT(ISNUMBER(D72)),NOT(ISNUMBER(E72)),D72<=0,E72<0),\"НЕ ЗАВЕРШЕНО\",D72*E72))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I72",
+      "old": "=IF(F72=\"\",\"\",F72*IF(H72=\"\",1,H72))",
+      "value": "=IF(F72=\"\",\"\",IF(OR(NOT(ISNUMBER(F72)),AND(H72<>\"\",OR(NOT(ISNUMBER(H72)),H72<=0))),\"НЕ ЗАВЕРШЕНО\",F72*IF(H72=\"\",1,H72)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F73",
+      "old": "=IF(OR(D73=\"\",E73=\"\"),\"\",D73*E73)",
+      "value": "=IF(COUNTA(B73:E73,G73:H73)=0,\"\",IF(OR(B73=\"\",NOT(ISNUMBER(D73)),NOT(ISNUMBER(E73)),D73<=0,E73<0),\"НЕ ЗАВЕРШЕНО\",D73*E73))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I73",
+      "old": "=IF(F73=\"\",\"\",F73*IF(H73=\"\",1,H73))",
+      "value": "=IF(F73=\"\",\"\",IF(OR(NOT(ISNUMBER(F73)),AND(H73<>\"\",OR(NOT(ISNUMBER(H73)),H73<=0))),\"НЕ ЗАВЕРШЕНО\",F73*IF(H73=\"\",1,H73)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F74",
+      "old": "=IF(OR(D74=\"\",E74=\"\"),\"\",D74*E74)",
+      "value": "=IF(COUNTA(B74:E74,G74:H74)=0,\"\",IF(OR(B74=\"\",NOT(ISNUMBER(D74)),NOT(ISNUMBER(E74)),D74<=0,E74<0),\"НЕ ЗАВЕРШЕНО\",D74*E74))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I74",
+      "old": "=IF(F74=\"\",\"\",F74*IF(H74=\"\",1,H74))",
+      "value": "=IF(F74=\"\",\"\",IF(OR(NOT(ISNUMBER(F74)),AND(H74<>\"\",OR(NOT(ISNUMBER(H74)),H74<=0))),\"НЕ ЗАВЕРШЕНО\",F74*IF(H74=\"\",1,H74)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F75",
+      "old": "=IF(OR(D75=\"\",E75=\"\"),\"\",D75*E75)",
+      "value": "=IF(COUNTA(B75:E75,G75:H75)=0,\"\",IF(OR(B75=\"\",NOT(ISNUMBER(D75)),NOT(ISNUMBER(E75)),D75<=0,E75<0),\"НЕ ЗАВЕРШЕНО\",D75*E75))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I75",
+      "old": "=IF(F75=\"\",\"\",F75*IF(H75=\"\",1,H75))",
+      "value": "=IF(F75=\"\",\"\",IF(OR(NOT(ISNUMBER(F75)),AND(H75<>\"\",OR(NOT(ISNUMBER(H75)),H75<=0))),\"НЕ ЗАВЕРШЕНО\",F75*IF(H75=\"\",1,H75)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F76",
+      "old": "=IF(OR(D76=\"\",E76=\"\"),\"\",D76*E76)",
+      "value": "=IF(COUNTA(B76:E76,G76:H76)=0,\"\",IF(OR(B76=\"\",NOT(ISNUMBER(D76)),NOT(ISNUMBER(E76)),D76<=0,E76<0),\"НЕ ЗАВЕРШЕНО\",D76*E76))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I76",
+      "old": "=IF(F76=\"\",\"\",F76*IF(H76=\"\",1,H76))",
+      "value": "=IF(F76=\"\",\"\",IF(OR(NOT(ISNUMBER(F76)),AND(H76<>\"\",OR(NOT(ISNUMBER(H76)),H76<=0))),\"НЕ ЗАВЕРШЕНО\",F76*IF(H76=\"\",1,H76)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F77",
+      "old": "=IF(OR(D77=\"\",E77=\"\"),\"\",D77*E77)",
+      "value": "=IF(COUNTA(B77:E77,G77:H77)=0,\"\",IF(OR(B77=\"\",NOT(ISNUMBER(D77)),NOT(ISNUMBER(E77)),D77<=0,E77<0),\"НЕ ЗАВЕРШЕНО\",D77*E77))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I77",
+      "old": "=IF(F77=\"\",\"\",F77*IF(H77=\"\",1,H77))",
+      "value": "=IF(F77=\"\",\"\",IF(OR(NOT(ISNUMBER(F77)),AND(H77<>\"\",OR(NOT(ISNUMBER(H77)),H77<=0))),\"НЕ ЗАВЕРШЕНО\",F77*IF(H77=\"\",1,H77)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F78",
+      "old": "=IF(OR(D78=\"\",E78=\"\"),\"\",D78*E78)",
+      "value": "=IF(COUNTA(B78:E78,G78:H78)=0,\"\",IF(OR(B78=\"\",NOT(ISNUMBER(D78)),NOT(ISNUMBER(E78)),D78<=0,E78<0),\"НЕ ЗАВЕРШЕНО\",D78*E78))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I78",
+      "old": "=IF(F78=\"\",\"\",F78*IF(H78=\"\",1,H78))",
+      "value": "=IF(F78=\"\",\"\",IF(OR(NOT(ISNUMBER(F78)),AND(H78<>\"\",OR(NOT(ISNUMBER(H78)),H78<=0))),\"НЕ ЗАВЕРШЕНО\",F78*IF(H78=\"\",1,H78)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F79",
+      "old": "=IF(OR(D79=\"\",E79=\"\"),\"\",D79*E79)",
+      "value": "=IF(COUNTA(B79:E79,G79:H79)=0,\"\",IF(OR(B79=\"\",NOT(ISNUMBER(D79)),NOT(ISNUMBER(E79)),D79<=0,E79<0),\"НЕ ЗАВЕРШЕНО\",D79*E79))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I79",
+      "old": "=IF(F79=\"\",\"\",F79*IF(H79=\"\",1,H79))",
+      "value": "=IF(F79=\"\",\"\",IF(OR(NOT(ISNUMBER(F79)),AND(H79<>\"\",OR(NOT(ISNUMBER(H79)),H79<=0))),\"НЕ ЗАВЕРШЕНО\",F79*IF(H79=\"\",1,H79)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F80",
+      "old": "=IF(OR(D80=\"\",E80=\"\"),\"\",D80*E80)",
+      "value": "=IF(COUNTA(B80:E80,G80:H80)=0,\"\",IF(OR(B80=\"\",NOT(ISNUMBER(D80)),NOT(ISNUMBER(E80)),D80<=0,E80<0),\"НЕ ЗАВЕРШЕНО\",D80*E80))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I80",
+      "old": "=IF(F80=\"\",\"\",F80*IF(H80=\"\",1,H80))",
+      "value": "=IF(F80=\"\",\"\",IF(OR(NOT(ISNUMBER(F80)),AND(H80<>\"\",OR(NOT(ISNUMBER(H80)),H80<=0))),\"НЕ ЗАВЕРШЕНО\",F80*IF(H80=\"\",1,H80)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F81",
+      "old": "=IF(OR(D81=\"\",E81=\"\"),\"\",D81*E81)",
+      "value": "=IF(COUNTA(B81:E81,G81:H81)=0,\"\",IF(OR(B81=\"\",NOT(ISNUMBER(D81)),NOT(ISNUMBER(E81)),D81<=0,E81<0),\"НЕ ЗАВЕРШЕНО\",D81*E81))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I81",
+      "old": "=IF(F81=\"\",\"\",F81*IF(H81=\"\",1,H81))",
+      "value": "=IF(F81=\"\",\"\",IF(OR(NOT(ISNUMBER(F81)),AND(H81<>\"\",OR(NOT(ISNUMBER(H81)),H81<=0))),\"НЕ ЗАВЕРШЕНО\",F81*IF(H81=\"\",1,H81)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F82",
+      "old": "=IF(OR(D82=\"\",E82=\"\"),\"\",D82*E82)",
+      "value": "=IF(COUNTA(B82:E82,G82:H82)=0,\"\",IF(OR(B82=\"\",NOT(ISNUMBER(D82)),NOT(ISNUMBER(E82)),D82<=0,E82<0),\"НЕ ЗАВЕРШЕНО\",D82*E82))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I82",
+      "old": "=IF(F82=\"\",\"\",F82*IF(H82=\"\",1,H82))",
+      "value": "=IF(F82=\"\",\"\",IF(OR(NOT(ISNUMBER(F82)),AND(H82<>\"\",OR(NOT(ISNUMBER(H82)),H82<=0))),\"НЕ ЗАВЕРШЕНО\",F82*IF(H82=\"\",1,H82)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F83",
+      "old": "=IF(OR(D83=\"\",E83=\"\"),\"\",D83*E83)",
+      "value": "=IF(COUNTA(B83:E83,G83:H83)=0,\"\",IF(OR(B83=\"\",NOT(ISNUMBER(D83)),NOT(ISNUMBER(E83)),D83<=0,E83<0),\"НЕ ЗАВЕРШЕНО\",D83*E83))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I83",
+      "old": "=IF(F83=\"\",\"\",F83*IF(H83=\"\",1,H83))",
+      "value": "=IF(F83=\"\",\"\",IF(OR(NOT(ISNUMBER(F83)),AND(H83<>\"\",OR(NOT(ISNUMBER(H83)),H83<=0))),\"НЕ ЗАВЕРШЕНО\",F83*IF(H83=\"\",1,H83)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F84",
+      "old": "=IF(OR(D84=\"\",E84=\"\"),\"\",D84*E84)",
+      "value": "=IF(COUNTA(B84:E84,G84:H84)=0,\"\",IF(OR(B84=\"\",NOT(ISNUMBER(D84)),NOT(ISNUMBER(E84)),D84<=0,E84<0),\"НЕ ЗАВЕРШЕНО\",D84*E84))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I84",
+      "old": "=IF(F84=\"\",\"\",F84*IF(H84=\"\",1,H84))",
+      "value": "=IF(F84=\"\",\"\",IF(OR(NOT(ISNUMBER(F84)),AND(H84<>\"\",OR(NOT(ISNUMBER(H84)),H84<=0))),\"НЕ ЗАВЕРШЕНО\",F84*IF(H84=\"\",1,H84)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F85",
+      "old": "=IF(OR(D85=\"\",E85=\"\"),\"\",D85*E85)",
+      "value": "=IF(COUNTA(B85:E85,G85:H85)=0,\"\",IF(OR(B85=\"\",NOT(ISNUMBER(D85)),NOT(ISNUMBER(E85)),D85<=0,E85<0),\"НЕ ЗАВЕРШЕНО\",D85*E85))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I85",
+      "old": "=IF(F85=\"\",\"\",F85*IF(H85=\"\",1,H85))",
+      "value": "=IF(F85=\"\",\"\",IF(OR(NOT(ISNUMBER(F85)),AND(H85<>\"\",OR(NOT(ISNUMBER(H85)),H85<=0))),\"НЕ ЗАВЕРШЕНО\",F85*IF(H85=\"\",1,H85)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F86",
+      "old": "=IF(OR(D86=\"\",E86=\"\"),\"\",D86*E86)",
+      "value": "=IF(COUNTA(B86:E86,G86:H86)=0,\"\",IF(OR(B86=\"\",NOT(ISNUMBER(D86)),NOT(ISNUMBER(E86)),D86<=0,E86<0),\"НЕ ЗАВЕРШЕНО\",D86*E86))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I86",
+      "old": "=IF(F86=\"\",\"\",F86*IF(H86=\"\",1,H86))",
+      "value": "=IF(F86=\"\",\"\",IF(OR(NOT(ISNUMBER(F86)),AND(H86<>\"\",OR(NOT(ISNUMBER(H86)),H86<=0))),\"НЕ ЗАВЕРШЕНО\",F86*IF(H86=\"\",1,H86)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F87",
+      "old": "=IF(OR(D87=\"\",E87=\"\"),\"\",D87*E87)",
+      "value": "=IF(COUNTA(B87:E87,G87:H87)=0,\"\",IF(OR(B87=\"\",NOT(ISNUMBER(D87)),NOT(ISNUMBER(E87)),D87<=0,E87<0),\"НЕ ЗАВЕРШЕНО\",D87*E87))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I87",
+      "old": "=IF(F87=\"\",\"\",F87*IF(H87=\"\",1,H87))",
+      "value": "=IF(F87=\"\",\"\",IF(OR(NOT(ISNUMBER(F87)),AND(H87<>\"\",OR(NOT(ISNUMBER(H87)),H87<=0))),\"НЕ ЗАВЕРШЕНО\",F87*IF(H87=\"\",1,H87)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F88",
+      "old": "=IF(OR(D88=\"\",E88=\"\"),\"\",D88*E88)",
+      "value": "=IF(COUNTA(B88:E88,G88:H88)=0,\"\",IF(OR(B88=\"\",NOT(ISNUMBER(D88)),NOT(ISNUMBER(E88)),D88<=0,E88<0),\"НЕ ЗАВЕРШЕНО\",D88*E88))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I88",
+      "old": "=IF(F88=\"\",\"\",F88*IF(H88=\"\",1,H88))",
+      "value": "=IF(F88=\"\",\"\",IF(OR(NOT(ISNUMBER(F88)),AND(H88<>\"\",OR(NOT(ISNUMBER(H88)),H88<=0))),\"НЕ ЗАВЕРШЕНО\",F88*IF(H88=\"\",1,H88)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F89",
+      "old": "=IF(OR(D89=\"\",E89=\"\"),\"\",D89*E89)",
+      "value": "=IF(COUNTA(B89:E89,G89:H89)=0,\"\",IF(OR(B89=\"\",NOT(ISNUMBER(D89)),NOT(ISNUMBER(E89)),D89<=0,E89<0),\"НЕ ЗАВЕРШЕНО\",D89*E89))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I89",
+      "old": "=IF(F89=\"\",\"\",F89*IF(H89=\"\",1,H89))",
+      "value": "=IF(F89=\"\",\"\",IF(OR(NOT(ISNUMBER(F89)),AND(H89<>\"\",OR(NOT(ISNUMBER(H89)),H89<=0))),\"НЕ ЗАВЕРШЕНО\",F89*IF(H89=\"\",1,H89)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F90",
+      "old": "=IF(OR(D90=\"\",E90=\"\"),\"\",D90*E90)",
+      "value": "=IF(COUNTA(B90:E90,G90:H90)=0,\"\",IF(OR(B90=\"\",NOT(ISNUMBER(D90)),NOT(ISNUMBER(E90)),D90<=0,E90<0),\"НЕ ЗАВЕРШЕНО\",D90*E90))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I90",
+      "old": "=IF(F90=\"\",\"\",F90*IF(H90=\"\",1,H90))",
+      "value": "=IF(F90=\"\",\"\",IF(OR(NOT(ISNUMBER(F90)),AND(H90<>\"\",OR(NOT(ISNUMBER(H90)),H90<=0))),\"НЕ ЗАВЕРШЕНО\",F90*IF(H90=\"\",1,H90)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F91",
+      "old": "=IF(OR(D91=\"\",E91=\"\"),\"\",D91*E91)",
+      "value": "=IF(COUNTA(B91:E91,G91:H91)=0,\"\",IF(OR(B91=\"\",NOT(ISNUMBER(D91)),NOT(ISNUMBER(E91)),D91<=0,E91<0),\"НЕ ЗАВЕРШЕНО\",D91*E91))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I91",
+      "old": "=IF(F91=\"\",\"\",F91*IF(H91=\"\",1,H91))",
+      "value": "=IF(F91=\"\",\"\",IF(OR(NOT(ISNUMBER(F91)),AND(H91<>\"\",OR(NOT(ISNUMBER(H91)),H91<=0))),\"НЕ ЗАВЕРШЕНО\",F91*IF(H91=\"\",1,H91)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F92",
+      "old": "=IF(OR(D92=\"\",E92=\"\"),\"\",D92*E92)",
+      "value": "=IF(COUNTA(B92:E92,G92:H92)=0,\"\",IF(OR(B92=\"\",NOT(ISNUMBER(D92)),NOT(ISNUMBER(E92)),D92<=0,E92<0),\"НЕ ЗАВЕРШЕНО\",D92*E92))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I92",
+      "old": "=IF(F92=\"\",\"\",F92*IF(H92=\"\",1,H92))",
+      "value": "=IF(F92=\"\",\"\",IF(OR(NOT(ISNUMBER(F92)),AND(H92<>\"\",OR(NOT(ISNUMBER(H92)),H92<=0))),\"НЕ ЗАВЕРШЕНО\",F92*IF(H92=\"\",1,H92)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F93",
+      "old": "=IF(OR(D93=\"\",E93=\"\"),\"\",D93*E93)",
+      "value": "=IF(COUNTA(B93:E93,G93:H93)=0,\"\",IF(OR(B93=\"\",NOT(ISNUMBER(D93)),NOT(ISNUMBER(E93)),D93<=0,E93<0),\"НЕ ЗАВЕРШЕНО\",D93*E93))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I93",
+      "old": "=IF(F93=\"\",\"\",F93*IF(H93=\"\",1,H93))",
+      "value": "=IF(F93=\"\",\"\",IF(OR(NOT(ISNUMBER(F93)),AND(H93<>\"\",OR(NOT(ISNUMBER(H93)),H93<=0))),\"НЕ ЗАВЕРШЕНО\",F93*IF(H93=\"\",1,H93)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F94",
+      "old": "=IF(OR(D94=\"\",E94=\"\"),\"\",D94*E94)",
+      "value": "=IF(COUNTA(B94:E94,G94:H94)=0,\"\",IF(OR(B94=\"\",NOT(ISNUMBER(D94)),NOT(ISNUMBER(E94)),D94<=0,E94<0),\"НЕ ЗАВЕРШЕНО\",D94*E94))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I94",
+      "old": "=IF(F94=\"\",\"\",F94*IF(H94=\"\",1,H94))",
+      "value": "=IF(F94=\"\",\"\",IF(OR(NOT(ISNUMBER(F94)),AND(H94<>\"\",OR(NOT(ISNUMBER(H94)),H94<=0))),\"НЕ ЗАВЕРШЕНО\",F94*IF(H94=\"\",1,H94)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F95",
+      "old": "=IF(OR(D95=\"\",E95=\"\"),\"\",D95*E95)",
+      "value": "=IF(COUNTA(B95:E95,G95:H95)=0,\"\",IF(OR(B95=\"\",NOT(ISNUMBER(D95)),NOT(ISNUMBER(E95)),D95<=0,E95<0),\"НЕ ЗАВЕРШЕНО\",D95*E95))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I95",
+      "old": "=IF(F95=\"\",\"\",F95*IF(H95=\"\",1,H95))",
+      "value": "=IF(F95=\"\",\"\",IF(OR(NOT(ISNUMBER(F95)),AND(H95<>\"\",OR(NOT(ISNUMBER(H95)),H95<=0))),\"НЕ ЗАВЕРШЕНО\",F95*IF(H95=\"\",1,H95)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F96",
+      "old": "=IF(OR(D96=\"\",E96=\"\"),\"\",D96*E96)",
+      "value": "=IF(COUNTA(B96:E96,G96:H96)=0,\"\",IF(OR(B96=\"\",NOT(ISNUMBER(D96)),NOT(ISNUMBER(E96)),D96<=0,E96<0),\"НЕ ЗАВЕРШЕНО\",D96*E96))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I96",
+      "old": "=IF(F96=\"\",\"\",F96*IF(H96=\"\",1,H96))",
+      "value": "=IF(F96=\"\",\"\",IF(OR(NOT(ISNUMBER(F96)),AND(H96<>\"\",OR(NOT(ISNUMBER(H96)),H96<=0))),\"НЕ ЗАВЕРШЕНО\",F96*IF(H96=\"\",1,H96)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F97",
+      "old": "=IF(OR(D97=\"\",E97=\"\"),\"\",D97*E97)",
+      "value": "=IF(COUNTA(B97:E97,G97:H97)=0,\"\",IF(OR(B97=\"\",NOT(ISNUMBER(D97)),NOT(ISNUMBER(E97)),D97<=0,E97<0),\"НЕ ЗАВЕРШЕНО\",D97*E97))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I97",
+      "old": "=IF(F97=\"\",\"\",F97*IF(H97=\"\",1,H97))",
+      "value": "=IF(F97=\"\",\"\",IF(OR(NOT(ISNUMBER(F97)),AND(H97<>\"\",OR(NOT(ISNUMBER(H97)),H97<=0))),\"НЕ ЗАВЕРШЕНО\",F97*IF(H97=\"\",1,H97)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F98",
+      "old": "=IF(OR(D98=\"\",E98=\"\"),\"\",D98*E98)",
+      "value": "=IF(COUNTA(B98:E98,G98:H98)=0,\"\",IF(OR(B98=\"\",NOT(ISNUMBER(D98)),NOT(ISNUMBER(E98)),D98<=0,E98<0),\"НЕ ЗАВЕРШЕНО\",D98*E98))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I98",
+      "old": "=IF(F98=\"\",\"\",F98*IF(H98=\"\",1,H98))",
+      "value": "=IF(F98=\"\",\"\",IF(OR(NOT(ISNUMBER(F98)),AND(H98<>\"\",OR(NOT(ISNUMBER(H98)),H98<=0))),\"НЕ ЗАВЕРШЕНО\",F98*IF(H98=\"\",1,H98)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F99",
+      "old": "=IF(OR(D99=\"\",E99=\"\"),\"\",D99*E99)",
+      "value": "=IF(COUNTA(B99:E99,G99:H99)=0,\"\",IF(OR(B99=\"\",NOT(ISNUMBER(D99)),NOT(ISNUMBER(E99)),D99<=0,E99<0),\"НЕ ЗАВЕРШЕНО\",D99*E99))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I99",
+      "old": "=IF(F99=\"\",\"\",F99*IF(H99=\"\",1,H99))",
+      "value": "=IF(F99=\"\",\"\",IF(OR(NOT(ISNUMBER(F99)),AND(H99<>\"\",OR(NOT(ISNUMBER(H99)),H99<=0))),\"НЕ ЗАВЕРШЕНО\",F99*IF(H99=\"\",1,H99)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F100",
+      "old": "=IF(OR(D100=\"\",E100=\"\"),\"\",D100*E100)",
+      "value": "=IF(COUNTA(B100:E100,G100:H100)=0,\"\",IF(OR(B100=\"\",NOT(ISNUMBER(D100)),NOT(ISNUMBER(E100)),D100<=0,E100<0),\"НЕ ЗАВЕРШЕНО\",D100*E100))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I100",
+      "old": "=IF(F100=\"\",\"\",F100*IF(H100=\"\",1,H100))",
+      "value": "=IF(F100=\"\",\"\",IF(OR(NOT(ISNUMBER(F100)),AND(H100<>\"\",OR(NOT(ISNUMBER(H100)),H100<=0))),\"НЕ ЗАВЕРШЕНО\",F100*IF(H100=\"\",1,H100)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F101",
+      "old": "=IF(OR(D101=\"\",E101=\"\"),\"\",D101*E101)",
+      "value": "=IF(COUNTA(B101:E101,G101:H101)=0,\"\",IF(OR(B101=\"\",NOT(ISNUMBER(D101)),NOT(ISNUMBER(E101)),D101<=0,E101<0),\"НЕ ЗАВЕРШЕНО\",D101*E101))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I101",
+      "old": "=IF(F101=\"\",\"\",F101*IF(H101=\"\",1,H101))",
+      "value": "=IF(F101=\"\",\"\",IF(OR(NOT(ISNUMBER(F101)),AND(H101<>\"\",OR(NOT(ISNUMBER(H101)),H101<=0))),\"НЕ ЗАВЕРШЕНО\",F101*IF(H101=\"\",1,H101)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F102",
+      "old": "=IF(OR(D102=\"\",E102=\"\"),\"\",D102*E102)",
+      "value": "=IF(COUNTA(B102:E102,G102:H102)=0,\"\",IF(OR(B102=\"\",NOT(ISNUMBER(D102)),NOT(ISNUMBER(E102)),D102<=0,E102<0),\"НЕ ЗАВЕРШЕНО\",D102*E102))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I102",
+      "old": "=IF(F102=\"\",\"\",F102*IF(H102=\"\",1,H102))",
+      "value": "=IF(F102=\"\",\"\",IF(OR(NOT(ISNUMBER(F102)),AND(H102<>\"\",OR(NOT(ISNUMBER(H102)),H102<=0))),\"НЕ ЗАВЕРШЕНО\",F102*IF(H102=\"\",1,H102)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "F103",
+      "old": "=IF(OR(D103=\"\",E103=\"\"),\"\",D103*E103)",
+      "value": "=IF(COUNTA(B103:E103,G103:H103)=0,\"\",IF(OR(B103=\"\",NOT(ISNUMBER(D103)),NOT(ISNUMBER(E103)),D103<=0,E103<0),\"НЕ ЗАВЕРШЕНО\",D103*E103))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "I103",
+      "old": "=IF(F103=\"\",\"\",F103*IF(H103=\"\",1,H103))",
+      "value": "=IF(F103=\"\",\"\",IF(OR(NOT(ISNUMBER(F103)),AND(H103<>\"\",OR(NOT(ISNUMBER(H103)),H103<=0))),\"НЕ ЗАВЕРШЕНО\",F103*IF(H103=\"\",1,H103)))"
+    },
+    {
+      "sheet": "Реестр",
+      "cell": "A104",
+      "old": null,
+      "value": "=IF(COUNTA(B4:E103,G4:H103)=0,\"НЕТ ДАННЫХ\",IF(COUNTIF(I4:I103,\"НЕ ЗАВЕРШЕНО\")>0,\"Предварительно; неполных: \"&COUNTIF(I4:I103,\"НЕ ЗАВЕРШЕНО\"),\"Позиции заполнены\"))"
+    }
+  ]
+}
