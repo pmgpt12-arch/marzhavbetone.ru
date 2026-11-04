@@ -65,6 +65,47 @@ try {
        'old_source_backup_p4'=>is_dir($attempt.'/rollback/source-p4'),
        'old_source_backup_p7'=>is_dir($attempt.'/rollback/source-p7')
     ];
+    // Read-only: diagnose the last builder SHA mismatch without rebuilding or touching live cache.
+    $recent=getenv('HOME').'/nsp-p4p7-releases/style-41801795745';
+    $ref=new ReflectionFunction('mvb_build_product_zip');
+    $sourceLines=file($ref->getFileName(), FILE_IGNORE_NEW_LINES);
+    check(is_array($sourceLines),'BUILDER_SOURCE_UNREADABLE');
+    $functionSource=implode("\n",array_slice($sourceLines,$ref->getStartLine()-1,$ref->getEndLine()-$ref->getStartLine()+1));
+    $result['release_builder_readonly_diagnostic']=[
+        'stage_present'=>is_dir($recent),
+        'php_version'=>PHP_VERSION,
+        'function_sha256'=>hash('sha256',$functionSource),
+        'function_checks_sources_newer'=>str_contains($functionSource,'mvb_product_sources_newer_than'),
+        'function_uses_zip_archive'=>str_contains($functionSource,'new ZipArchive'),
+        'function_has_filemtime'=>str_contains($functionSource,'filemtime('),
+        'products'=>[]
+    ];
+    $newest=function(string $dir):?int {
+        if (!is_dir($dir)) return null;
+        $last=null;
+        foreach(new DirectoryIterator($dir) as $entry){
+            if($entry->isFile()&&!$entry->isLink()){
+                $mtime=$entry->getMTime();
+                $last=$last===null?$mtime:max($last,$mtime);
+            }
+        }
+        return $last;
+    };
+    clearstatcache(true);
+    foreach(['p4','p7'] as $sku) {
+        $p=$products[$sku];$sourceDir=$private.'/'.$p['dir'];$cacheFile=$cache.'/'.$p['zip'];
+        $discardDir=$recent.'/rollback/discard-'.$sku;
+        $stageZip=$recent.'/'.$sku.'.zip';
+        $result['release_builder_readonly_diagnostic']['products'][$sku]=[
+            'source_newest_mtime'=>$newest($sourceDir),
+            'cache_mtime'=>is_file($cacheFile)?filemtime($cacheFile):null,
+            'staged_new_sources_present'=>is_dir($discardDir),
+            'staged_new_sources_mtime'=>$newest($discardDir),
+            'staged_zip_sha256'=>is_file($stageZip)?hash_file('sha256',$stageZip):null,
+            'backup_cache_present'=>is_file($recent.'/rollback/cache-'.$sku.'.zip'),
+            'rollback_discard_member_count'=>is_dir($discardDir)?count(shas($discardDir)):0
+        ];
+    }
     echo json_encode($result,JSON_UNESCAPED_UNICODE|JSON_THROW_ON_ERROR),"\n";
 }catch(Throwable $e){
     fwrite(STDERR,'P4P7_INSPECT_FAIL='.$e->getMessage()."\n");exit(2);
