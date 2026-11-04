@@ -158,8 +158,9 @@ def main():
         write("release-state.json",receipt)
         applied=True
         result=json.loads(phase("apply",timeout=110))
-        assert result["status"]=="APPLIED_AND_VERIFIED"
+        assert result["status"]=="APPLIED_SOURCES_AND_CACHE_VERIFIED"
         assert set(result["products"])=={"p4","p7"}
+        assert all(v["delivery_builder"]=="PENDING_FRESH_PROCESS" for v in result["products"].values())
         write("live-apply.json",result)
         ver=json.loads(phase("verify",timeout=70))
         assert ver["status"]=="PRODUCTION_VERIFIED"

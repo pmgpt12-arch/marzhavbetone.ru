@@ -104,7 +104,7 @@ function before():array {
     }
     return $checks;
 }
-function verify():array {
+function verify(bool $checkBuyerBuilder=true):array {
     global $m,$site,$stage,$backup;
     gate(is_dir($backup),'BACKUP_ABSENT');
     gate(digest($site.'/products-config.php')===digest($stage.'/config-after.php'),'CONFIG_FINAL_DRIFT');
@@ -119,9 +119,15 @@ function verify():array {
         gate(digest($x['oldmaster'])===$p['before_sha'],'HISTORIC_MASTER_DRIFT:'.$sku);
         gate(digest($x['newmaster'])===$p['after_sha'],'NEW_MASTER_DRIFT:'.$sku);
         gate(digest($x['cache'])===$p['after_sha'],'DELIVERY_CACHE_DRIFT:'.$sku);
-        $effective=mvb_build_product_zip($sku);
-        gate(is_string($effective)&&digest($effective)===$p['after_sha'],'BUYER_BUILDER_DRIFT:'.$sku);
-        $out[$sku]=['sha256'=>$p['after_sha'],'files'=>count($target),'delivery_builder'=>'PASS'];
+        // This PHP process loaded the OLD products-config.php before the atomic swap.
+        // The production builder pins edition SHAs in its function body, so only
+        // a NEW PHP process may validate the post-swap buyer ZIP builder.
+        if ($checkBuyerBuilder) {
+            $effective=mvb_build_product_zip($sku);
+            gate(is_string($effective)&&digest($effective)===$p['after_sha'],'BUYER_BUILDER_DRIFT:'.$sku);
+        }
+        $out[$sku]=['sha256'=>$p['after_sha'],'files'=>count($target),
+            'delivery_builder'=>$checkBuyerBuilder?'PASS':'PENDING_FRESH_PROCESS'];
     }
     return $out;
 }
@@ -195,8 +201,8 @@ try {
             atomic_write($x['cache'],(string)file_get_contents($stage.'/'.$sku.'.zip'));
         }
         atomic_write($site.'/products-config.php',$next);
-        $result=verify();
-        echo json_encode(['status'=>'APPLIED_AND_VERIFIED','products'=>$result],JSON_THROW_ON_ERROR),"\n";
+        $result=verify(false);
+        echo json_encode(['status'=>'APPLIED_SOURCES_AND_CACHE_VERIFIED','products'=>$result],JSON_THROW_ON_ERROR),"\n";
         exit(0);
     }
     if($mode==='verify') {

@@ -100,26 +100,6 @@ jobs:
             assert p['sources']==x,'LIVE_SOURCE_DRIFT_'+sku
           print('P4_P7_EXACT_LIVE_PREFLIGHT_PASS')
           PY
-      - name: Capture exact buyer ZIP builder privately (READ ONLY)
-        if: env.NSP_P4P7_ACTION == 'inspect'
-        shell: bash
-        run: |
-          set -euo pipefail
-          php -l tools/nsp-p4p7-style-release-20261103/read_builder_private.php
-          DIR=/mnt/server-data/nsp/operations/qa-product-staging-20261104
-          OUT="$DIR/PROD_BUYER_ZIP_BUILDER_PRIVATE_20261104.php"
-          test -d "$DIR" && test ! -e "$OUT"
-          umask 077
-          TMP=$(mktemp "$DIR/.buyer-builder-extract-XXXXXXXX")
-          trap 'rm -f "$TMP"' EXIT
-          timeout 45s ssh -p "$PORT" -i "$RUNNER_TEMP/nsp-p4p7-ssh/key" -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$RUNNER_TEMP/nsp-p4p7-ssh/known_hosts" -o ConnectTimeout=12 "$SSH_USER@$HOST" 'php /dev/stdin "$HOME/www/nastoronepodryadchika.ru"' < tools/nsp-p4p7-style-release-20261103/read_builder_private.php > "$TMP"
-          test "$(wc -c < "$TMP")" -ge 800 && test "$(wc -c < "$TMP")" -le 16020
-          php -l "$TMP" >/dev/null
-          chmod 600 "$TMP"
-          mv -n "$TMP" "$OUT"
-          test -s "$OUT"
-          trap - EXIT
-          echo NSP_BUILDER_PRIVATE_CAPTURE_PASS
       - name: Scoped P4/P7 palette release with rollback
         if: env.NSP_P4P7_ACTION == 'publish'
         shell: bash
