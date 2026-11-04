@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""NSP P4/P7-only owner-approved style release; native Office QA deferred.
+"""NSP P4/P7-only owner-approved release; native Office QA verified.
 
 Preflight -> private stage -> apply -> delivery bytes -> receipt, or rollback.
 Works only on exact currently live P4 v3 and P7 review-v2 source identities.
@@ -17,20 +17,20 @@ from datetime import datetime, timezone
 
 ROOT=pathlib.Path("/mnt/server-data/nsp")
 BASE=ROOT/"product-library/accepted-current-20261102/paid"
-CAND=ROOT/"operations/qa-product-staging-20261103"
+CAND=ROOT/"operations/qa-product-staging-20261104"
 EVIDENCE=pathlib.Path(os.environ["RUNNER_TEMP"])/"nsp-p4p7-evidence"
 HERE=pathlib.Path(__file__).resolve().parent
 SHA=lambda b:hashlib.sha256(b).hexdigest()
 EXPECT={
-  "p4":{"sku":"P4","old_zip":"PAID_P4_current.zip","new_zip":"PAID_P4_v3_PALETTE_V2_QA_HOLD.zip",
+  "p4":{"sku":"P4","old_zip":"PAID_P4_current.zip","new_zip":"PAID_P4_v3_PALETTE_V3_QA_HOLD.zip",
         "old_sha":"bcba234220c0f52e5a86b5ba3c70c527d086146301030d1f32197e9fa6e264fc",
-        "new_sha":"be45a7e77cc66e9806365b607a3ea659749c212927e64a9ff8814e494922e660",
-        "old_master":"P4-v3-current.zip","new_master":"P4-v3-palette-v2-20261103.zip",
+        "new_sha":"70a728babb810d6277388a5337decce6bfdf21a7e216bc0a512870860a3d3451",
+        "old_master":"P4-v3-current.zip","new_master":"P4-v3-palette-v3-20261104.zip",
         "name":"08-pto-bez-zamechaniy","zip":"08-pto-bez-zamechaniy.zip","price":2490000,"members":30,"changed":4},
-  "p7":{"sku":"P7","old_zip":"PAID_P7_current.zip","new_zip":"PAID_P7_review-v2_PALETTE_V2_QA_HOLD.zip",
+  "p7":{"sku":"P7","old_zip":"PAID_P7_current.zip","new_zip":"PAID_P7_review-v2_PALETTE_V3_QA_HOLD.zip",
         "old_sha":"99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24",
-        "new_sha":"31a303e85dab7b34586b7a7d64aa3b1ccba928e4345612381d299954a65e70d2",
-        "old_master":"P7-v2-current.zip","new_master":"P7-v2-palette-v2-20261103.zip",
+        "new_sha":"6df6abf578c240ba9e76c9b0e40c7c4cb3bca34c65029e4260b97d82a25ca8a6",
+        "old_master":"P7-v2-current.zip","new_master":"P7-v2-palette-v3-20261104.zip",
         "name":"03-dogovor-podryada","zip":"03-dogovor-podryada.zip","price":2490000,"members":13,"changed":3}
 }
 def now(): return datetime.now(timezone.utc).isoformat()
@@ -65,11 +65,21 @@ def main():
     assert before["status"]=="P4_P7_PRODUCTION_READ_ONLY" and before["delivery_ttl"]==3600
     assert set(before["products"])=={"p4","p7"}
     assert before["site_php_sha"] and before["payment_php_sha"]
-    staging=json.loads((CAND/"FULL_PRODUCTS_STAGING_MANIFEST.json").read_text())
-    independent=json.loads((CAND/"INDEPENDENT_QA_STAGING_READBACK.json").read_text())
-    assert staging["total_files"]==independent["files_total"]==43
-    assert independent["modified_xlsx"]==7 and independent["unchanged_files"]==36
-    assert independent["status"]=="QA_STAGING_VERIFIED_NO_PRODUCTION_CHANGE"
+    staging_path=CAND/"P4P7_V3_PRIVATE_BUYER_QA_RECEIPT.json"
+    staging=json.loads(staging_path.read_text())
+    independent=json.loads((CAND/"INDEPENDENT_BUYER_QA_RECEIPT_V3.json").read_text())
+    assert staging["status"]=="STAGING_PRIVATE_NOT_PUBLISHED"
+    assert independent["status"]=="PRIVATE_FULL_43_OF_43_STRUCTURAL_QA_PASS_NOT_PUBLISHED"
+    assert set(staging["products"])==set(independent["products"])=={"P4","P7"}
+    assert sum(x["members"] for x in staging["products"].values())==43
+    assert sum(len(x["changed"]) for x in staging["products"].values())==4
+    assert sum(len(x["changed_exact"]) for x in independent["products"].values())==4
+    assert sum(x["unchanged_exact"] for x in independent["products"].values())==39
+    assert independent["staging_receipt_sha256"]==SHA(staging_path.read_bytes())
+    visual=ROOT/"operations/qa-style-candidates-v2-20261103/native-p4p7-header-v3-20261104/VISUAL_REVIEW_V3_20261104.json"
+    assert SHA(visual.read_bytes())=="66451e165f725ef3cee3d35d8fd43cc0fceb6cbb44a323db038e324646e05c3a"
+    assert json.loads(visual.read_text())["status"]=="TARGETED_5_HEADER_FIXES_PASS_34_PAGE_NO_GROSS_DEFECTS"
+    assert staging["visual_receipt_sha256"]==SHA(visual.read_bytes())
     products={}
     files={}
     for sku,p in EXPECT.items():
@@ -86,8 +96,12 @@ def main():
         assert sorted(originals)==sorted(changed)==sorted(local["sources"]),"EXACT_SOURCE_MEMBERS"
         assert originals==local["sources"],"LIVE_SOURCE_SHA_MISMATCH"
         assert len(diff)==p["changed"] and all(n.lower().endswith(".xlsx") for n in diff),"DIFF_SCOPE"
-        seen=next(x for x in independent["products"] if x["sku"]==p["sku"])
-        assert sorted(seen["changed_names"])==sorted(diff),"INDEPENDENT_DIFF_MISMATCH"
+        seen=independent["products"][p["sku"]]
+        stage_seen=staging["products"][p["sku"]]
+        assert seen["sha256"]==p["new_sha"] and stage_seen["new_sha256"]==p["new_sha"],"STAGING_SHA_DRIFT"
+        assert sorted(seen["changed_exact"])==sorted(stage_seen["changed"]),"V3_QUALITY_DIFF_DRIFT"
+        assert set(seen["changed_exact"]).issubset(set(diff)),"V3_EDIT_OUTSIDE_LIVE_DIFF"
+        assert seen["files"]==stage_seen["members"]==p["members"],"V3_MEMBERS_COUNT"
         products[sku]={
           "dir":p["name"],"zip":p["zip"],"price":p["price"],"count":p["members"],
           "before_sha":p["old_sha"],"after_sha":p["new_sha"],
@@ -97,8 +111,8 @@ def main():
         files[sku+".zip"]=target.read_bytes()
     manifest={"schema":"NSP_P4P7_PALETTE_RELEASE_V1","run_id":runid,"ttl":3600,
               "config_before":before["site_php_sha"],"payment_before":before["payment_php_sha"],
-              "products":products,"owner_release_override_native_qa":True,
-              "scope":"7 Excel style-only edits, 36 unchanged; no other products, prices, payment or orders"}
+              "products":products,"owner_release_override_native_qa":False,
+              "scope":"7 Excel style/header fixes, 36 unchanged vs live; native Excel 2024 7/7 PASS; prices/payment/orders unchanged"}
     assert sum(p["count"] for p in products.values())==43
     assert sum(x["changed"] for x in EXPECT.values())==7
     files["release.json"]=(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n").encode()
@@ -126,7 +140,7 @@ def main():
     receipt={"schema":"NSP_P4P7_PRODUCTION_RUN_v1","run_id":runid,
              "status":"NOT_STARTED","started_utc":now(),"source_shas":{k:p["before_sha"] for k,p in products.items()},
              "target_shas":{k:p["after_sha"] for k,p in products.items()},
-             "changes":7,"unchanged":36,"no_real_checkout":True,"owner_accepted_qa_override":True}
+             "changes":7,"unchanged":36,"no_real_checkout":True,"owner_accepted_qa_override":False}
     applied=False
     try:
         invoke(ssh+[command],timeout=80,inp=tar)
