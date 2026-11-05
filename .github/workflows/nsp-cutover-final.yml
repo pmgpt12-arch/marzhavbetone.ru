@@ -23,7 +23,7 @@ jobs:
       - name: Read explicit action and configure bounded SSH
         run: |
           set -euo pipefail
-          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","p4p5-inspect","p4p5-preflight","p4p5-publish","titles-preflight","titles-publish","mail-preflight","mail-dry-run","mail-publish","mail-postflight","mail-canary","mail-source-compare"]; print(x["action"])')
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","p4p5-inspect","p4p5-preflight","p4p5-publish","titles-preflight","titles-publish","mail-preflight","mail-dry-run","mail-publish","mail-postflight","mail-canary","mail-source-compare","pinned-master-inspect"]; print(x["action"])')
           echo "NSP_ACTION=$action" >> "$GITHUB_ENV"
           test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
           [[ "$PORT" =~ ^[0-9]+$ ]]
@@ -109,6 +109,14 @@ jobs:
           python3 -m py_compile tools/nsp-final/source-sync-20261105/compare.py
           timeout 110s python3 tools/nsp-final/source-sync-20261105/compare.py
           python3 -c 'import json; x=json.load(open("/tmp/nsp-final-evidence/mail-source-live-diff.json")); assert x["status"]=="PASS" and x["read_only"] is True and set(x["records"])=={"lead.php","webhook.php","products-config.php"}; print("NSP_SOURCE_LIVE_READ_ONLY_COMPARISON_PASS")'
+      - name: Inspect all 11 private SHA-pinned paid ZIPs without copying contents
+        if: env.NSP_ACTION == 'pinned-master-inspect'
+        shell: bash
+        run: |
+          set -euo pipefail
+          php -l tools/nsp-final/pinned-master-20261106/inspect.php
+          timeout 130s ssh -p "$PORT" -i ~/.ssh/nsp_final_key -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=12 "$SSH_USER@$HOST" 'php /dev/stdin "$HOME/www/nastoronepodryadchika.ru"' < tools/nsp-final/pinned-master-20261106/inspect.php > /tmp/nsp-final-evidence/pinned-master-private-qa.json
+          python3 -c 'import json; d=json.load(open("/tmp/nsp-final-evidence/pinned-master-private-qa.json")); assert d["mode"]=="READ_ONLY" and d["status"]=="PASS_ALL_11_REAL_PRIVATE_PINNED_ZIPS" and d["sku_expected"]==d["sku_passed"]==11 and len(d["products"])==11 and d["orders_read"]==d["orders_modified"]==d["public_file_writes"]==d["payment_requests"]==d["email_attempts"]==d["real_paid_zips_exposed"]==0; print("NSP_PRIVATE_11_PINNED_ZIPS_SHA_CRC_PASS")'
       - name: Independent sender production postflight without any writes
         if: env.NSP_ACTION == 'mail-postflight'
         shell: bash
