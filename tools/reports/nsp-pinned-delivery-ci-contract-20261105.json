@@ -1,0 +1,169 @@
+{
+  "schema": "NSP_PINNED_DELIVERY_CI_PREFLIGHT_v1",
+  "status": "READ_ONLY_INVENTORY_PASS__RELEASE_HOLD",
+  "date": "2026-11-05",
+  "source": {
+    "repo": "pmgpt12-arch/marzhavbetone.ru",
+    "branch": "fix/nsp-source-live-parity-20261105",
+    "head": "2c25549eb7d17ad0f7ede372100bd13121c09e0b",
+    "file": "products-config.php",
+    "blob": "eae9d76b39012aafea8f0c6e72b0b3047712ae77",
+    "production_sha256": "12abc5750cc7f1d223cbeb002628338e2261e85e4bd4c3d6b8988cd7da295934",
+    "read_only_run": 42062127165
+  },
+  "ci": {
+    "old_pass_run": 42039761544,
+    "new_fail_run": 42063489397,
+    "changed_tests": 4,
+    "mail_tests_pass": 3,
+    "other_failures_preexisting": true
+  },
+  "fixture_inventory": {
+    "tracked_tree_sha": "2c25549eb7d17ad0f7ede372100bd13121c09e0b",
+    "tracked_tree_truncated": false,
+    "tracked_products_storage_root_zip_count": 0,
+    "production_archive_presence": "NOT_CHECKED_IN_THIS_TASK"
+  },
+  "products": [
+    {
+      "sku": "p1",
+      "master": "P1-v1-current.zip",
+      "sha256": "99df41c33e25ce41b61b8e04e22e27871d08a2c383ddae234119a29df5f29ada",
+      "expected_root": "products-storage/P1-v1-current.zip",
+      "tracked_in_public_repo_root": false,
+      "available_in_ci": "NOT_PRESENT_AT_EXPECTED_ROOT",
+      "production_presence": "NOT_VERIFIED_IN_THIS_TASK"
+    },
+    {
+      "sku": "p2",
+      "master": "P2-v13-current.zip",
+      "sha256": "42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da",
+      "expected_root": "products-storage/P2-v13-current.zip",
+      "tracked_in_public_repo_root": false,
+      "available_in_ci": "NOT_PRESENT_AT_EXPECTED_ROOT",
+      "production_presence": "NOT_VERIFIED_IN_THIS_TASK"
+    },
+    {
+      "sku": "p3",
+      "master": "P3-v1-current.zip",
+      "sha256": "54854b79366598cba9680c5c71451220a5de45929ff33bcf42eba9b97dbcb92b",
+      "expected_root": "products-storage/P3-v1-current.zip",
+      "tracked_in_public_repo_root": false,
+      "available_in_ci": "NOT_PRESENT_AT_EXPECTED_ROOT",
+      "production_presence": "NOT_VERIFIED_IN_THIS_TASK"
+    },
+    {
+      "sku": "p4",
+      "master": "P4-v3-palette-v3-20261104.zip",
+      "sha256": "70a728babb810d6277388a5337decce6bfdf21a7e216bc0a512870860a3d3451",
+      "expected_root": "products-storage/P4-v3-palette-v3-20261104.zip",
+      "tracked_in_public_repo_root": false,
+      "available_in_ci": "NOT_PRESENT_AT_EXPECTED_ROOT",
+      "production_presence": "NOT_VERIFIED_IN_THIS_TASK"
+    },
+    {
+      "sku": "p5",
+      "master": "P5-v2-current.zip",
+      "sha256": "25ce378ee8fd84079b0edd2d57d816a2aaa77585a2a7e7172666e1f846f7dc05",
+      "expected_root": "products-storage/P5-v2-current.zip",
+      "tracked_in_public_repo_root": false,
+      "available_in_ci": "NOT_PRESENT_AT_EXPECTED_ROOT",
+      "production_presence": "NOT_VERIFIED_IN_THIS_TASK"
+    },
+    {
+      "sku": "p7",
+      "master": "P7-v2-palette-v3-20261104.zip",
+      "sha256": "6df6abf578c240ba9e76c9b0e40c7c4cb3bca34c65029e4260b97d82a25ca8a6",
+      "expected_root": "products-storage/P7-v2-palette-v3-20261104.zip",
+      "tracked_in_public_repo_root": false,
+      "available_in_ci": "NOT_PRESENT_AT_EXPECTED_ROOT",
+      "production_presence": "NOT_VERIFIED_IN_THIS_TASK"
+    },
+    {
+      "sku": "p8",
+      "master": "P8-v1-current.zip",
+      "sha256": "31b4e22e5e3e006b0e1c5a1d40892efb2eff2cc8a582f4baa8cbbb2232e865aa",
+      "expected_root": "products-storage/P8-v1-current.zip",
+      "tracked_in_public_repo_root": false,
+      "available_in_ci": "NOT_PRESENT_AT_EXPECTED_ROOT",
+      "production_presence": "NOT_VERIFIED_IN_THIS_TASK"
+    },
+    {
+      "sku": "p9",
+      "master": "P9-v1-current.zip",
+      "sha256": "34bf03bcd3ed2e31d731dd8ac4c316cf9f94a8bb5dde1e4c9fc1aa3a7b7b23d9",
+      "expected_root": "products-storage/P9-v1-current.zip",
+      "tracked_in_public_repo_root": false,
+      "available_in_ci": "NOT_PRESENT_AT_EXPECTED_ROOT",
+      "production_presence": "NOT_VERIFIED_IN_THIS_TASK"
+    },
+    {
+      "sku": "p10",
+      "master": "P10-v1-current.zip",
+      "sha256": "90f9b78ba53e1fb59d751e0972594f4e7135e599946935a3c32d00b3fa9d2594",
+      "expected_root": "products-storage/P10-v1-current.zip",
+      "tracked_in_public_repo_root": false,
+      "available_in_ci": "NOT_PRESENT_AT_EXPECTED_ROOT",
+      "production_presence": "NOT_VERIFIED_IN_THIS_TASK"
+    },
+    {
+      "sku": "p11",
+      "master": "P11-v1-current.zip",
+      "sha256": "ff6cf9a7056cab90ee1203a93ddb964e0308b8bd418394f4ebd672a9b8b860da",
+      "expected_root": "products-storage/P11-v1-current.zip",
+      "tracked_in_public_repo_root": false,
+      "available_in_ci": "NOT_PRESENT_AT_EXPECTED_ROOT",
+      "production_presence": "NOT_VERIFIED_IN_THIS_TASK"
+    },
+    {
+      "sku": "p13",
+      "master": "P13-v1-current.zip",
+      "sha256": "0b1f777b9fb65952cd219d5e61e6b8500cdcd5f1c0039ceba80e3c8f6e67f955",
+      "expected_root": "products-storage/P13-v1-current.zip",
+      "tracked_in_public_repo_root": false,
+      "available_in_ci": "NOT_PRESENT_AT_EXPECTED_ROOT",
+      "production_presence": "NOT_VERIFIED_IN_THIS_TASK"
+    }
+  ],
+  "tests": [
+    {
+      "id": "test_p1_immutable_edition",
+      "file": "tools/test_p1_immutable_edition.php",
+      "observed": "HTTP 503 before mock payment; old test creates unpacked P1 masters, new code requires SHA-pinned P1-v1-current.zip",
+      "classification": "TEST_CONTRACT_AND_FIXTURE_DRIFT",
+      "next": "Synthetic fixed-edition ZIP with test-only hash injection, preserve pin/change/replay/corruption assertions"
+    },
+    {
+      "id": "test_p1_price_http",
+      "file": "tools/test_p1_price_http.py",
+      "observed": "HTTP 503 vs expected 200; test uses P1-buyer-review R3 archive and unpacked P1 folder, not current P1-v1-current.zip",
+      "classification": "FIXTURE_VERSION_MISMATCH",
+      "next": "Synthetic exact-hash P1 master in isolated test, confirm price 2990000, payment/webhook/link/ZIP without real sale"
+    },
+    {
+      "id": "test_delivery_cache_freshness",
+      "file": "tools/test_delivery_cache_freshness.php",
+      "observed": "Returns exit 2 ('archive not built'); uses first catalog SKU P1, now pinned; dynamic mtime-rebuild expectation applies only to non-pinned paths",
+      "classification": "TEST_SCOPE_DRIFT",
+      "next": "Test dynamic cache on a non-pinned SKU such as test1 and separately test pinned SHA rejection"
+    },
+    {
+      "id": "verify_delivery_zips",
+      "file": "tools/verify_delivery_zips.php",
+      "observed": "Fails all 11 paid pinned SKUs; assumes ZIP rebuilt from products-storage/<sku-dir> and compares directory files",
+      "classification": "MISSING_PRIVATE_MASTER_AND_SOURCE_CONTRACT",
+      "next": "Use protected QA with actual pinned archives or synthetic fixtures; validate SHA, CRC, manifest and no public raw master disclosure"
+    }
+  ],
+  "acceptance": {
+    "sku_expected": 11,
+    "sku_verified": 11,
+    "test_expected": 4,
+    "test_verified": 4,
+    "production_writes": 0,
+    "real_mail": 0,
+    "payments": 0,
+    "paid_product_zips_published": 0
+  },
+  "next_gate": "Separate atomic TEST-ONLY adaptation with synthetic pinned fixtures; paid ZIP/PROD business logic unaffected; no merge PR692 until independent QA"
+}
