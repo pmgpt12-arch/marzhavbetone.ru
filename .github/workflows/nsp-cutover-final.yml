@@ -23,7 +23,7 @@ jobs:
       - name: Read explicit action and configure bounded SSH
         run: |
           set -euo pipefail
-          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","p4p5-inspect","p4p5-preflight","p4p5-publish","titles-preflight","titles-publish","mail-preflight","mail-dry-run","mail-publish","mail-postflight"]; print(x["action"])')
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","p4p5-inspect","p4p5-preflight","p4p5-publish","titles-preflight","titles-publish","mail-preflight","mail-dry-run","mail-publish","mail-postflight","mail-canary"]; print(x["action"])')
           echo "NSP_ACTION=$action" >> "$GITHUB_ENV"
           test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
           [[ "$PORT" =~ ^[0-9]+$ ]]
@@ -93,6 +93,14 @@ jobs:
           php -l tools/nsp-final/mail-from-20261105/inspect.php
           timeout 50s ssh -p "$PORT" -i ~/.ssh/nsp_final_key -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=12 "$SSH_USER@$HOST" 'php /dev/stdin "$HOME/www/nastoronepodryadchika.ru"' < tools/nsp-final/mail-from-20261105/inspect.php > /tmp/nsp-final-evidence/mail-preflight.json
           python3 -c 'import json; d=json.load(open("/tmp/nsp-final-evidence/mail-preflight.json")); assert d["status"]=="PASS" and d["mode"]=="READ_ONLY" and d["production_writes"]==0 and set(d["files"])=={"lead.php","webhook.php","products-config.php","config.php","payment.php","check-payment.php","download.php","contact.php"}; print("NSP_MAIL_PRODUCTION_PREFLIGHT_PASS")'
+      - name: One-shot NSP sender delivery canary without buyer order
+        if: env.NSP_ACTION == 'mail-canary'
+        shell: bash
+        run: |
+          set -euo pipefail
+          php -l tools/nsp-final/mail-from-20261105/canary.php
+          python3 -m py_compile tools/nsp-final/mail-from-20261105/run_canary.py
+          timeout 85s python3 tools/nsp-final/mail-from-20261105/run_canary.py
       - name: Independent sender production postflight without any writes
         if: env.NSP_ACTION == 'mail-postflight'
         shell: bash
