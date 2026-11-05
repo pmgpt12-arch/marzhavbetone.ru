@@ -1,6 +1,6 @@
 {
-  "action": "mail-preflight",
-  "revision": 10,
-  "scope": "read-only three active NSP mail From headers",
+  "action": "mail-dry-run",
+  "revision": 11,
+  "scope": "exact eight-file source SHA and three literal From replacements; no production writes",
   "source_pr": 691
 }
