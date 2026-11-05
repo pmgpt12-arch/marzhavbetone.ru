@@ -1,7 +1,8 @@
 {
-  "action": "mail-postflight",
-  "revision": 13,
-  "scope": "independent READ-ONLY exact 3 new From hashes plus 5 unchanged protected PHP hashes",
+  "action": "mail-canary",
+  "revision": 14,
+  "scope": "exactly one site-configured outbound test From site@nastoronepodryadchika.ru to connected project Gmail; no buyer order, no payments",
   "source_pr": 691,
-  "release_run": 42054191796
+  "release_run": 42054191796,
+  "postflight_run": 42054807473
 }
