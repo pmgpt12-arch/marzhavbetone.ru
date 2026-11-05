@@ -1,7 +1,7 @@
 {
-  "action": "mail-publish",
-  "revision": 12,
-  "scope": "only three old From literals with exact 8-file SHA gate, private backup and rollback",
+  "action": "mail-postflight",
+  "revision": 13,
+  "scope": "independent READ-ONLY exact 3 new From hashes plus 5 unchanged protected PHP hashes",
   "source_pr": 691,
-  "approved_context": "Owner instruction: Продолжай after documented successful sender production dry-run"
+  "release_run": 42054191796
 }
