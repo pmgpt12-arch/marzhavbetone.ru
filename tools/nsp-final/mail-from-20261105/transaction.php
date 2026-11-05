@@ -115,6 +115,10 @@ function nsp_operate(string $action, string $rootArg, string $stageArg, array $b
     if ($action === 'dry-run' || $action === 'publish') {
         nsp_need(!file_exists($stage) && !is_link($stage), 'SINGLE_USE_STAGE_EXISTS');
         $rows = nsp_expected_state($root, $baseline);
+        foreach ($rows as $name => $meta) {
+            nsp_need(function_exists('posix_geteuid') && posix_geteuid() === $meta['uid'],
+                'CANNOT_PRESERVE_OWNER_' . $name);
+        }
         if ($action === 'dry-run') {
             return ['status'=>'PASS','mode'=>'dry-run','target_files'=>array_keys($rows),
                 'before_after_sha256'=>$rows,'protected_files_unchanged'=>5,
