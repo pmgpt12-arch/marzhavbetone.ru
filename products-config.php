@@ -877,7 +877,7 @@ function mvb_deliver_and_notify(array &$order): array
     if (!empty($order['email'])) {
         $subject = 'Ваши материалы «На стороне подрядчика» — заказ оплачен';
         $headers = [
-            'From: site@marzhavbetone.ru',
+            'From: site@nastoronepodryadchika.ru',
             'Reply-To: ' . ADMIN_EMAIL,
             'Content-Type: text/plain; charset=UTF-8',
         ];
