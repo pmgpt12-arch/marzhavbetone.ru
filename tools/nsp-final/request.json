@@ -1,8 +1,7 @@
 {
-  "action": "mail-postflight",
-  "revision": 15,
-  "scope": "safe READ-ONLY postrelease state; one-shot sender canary completed and not to be repeated",
+  "action": "mail-source-compare",
+  "revision": 16,
+  "scope": "read-only SHA pinned comparison of three source PHP files to accepted production; no writes to production",
   "source_pr": 691,
-  "release_run": 42054191796,
-  "canary_run": 42056471966
+  "accepted_live_postflight": 42054807473
 }
