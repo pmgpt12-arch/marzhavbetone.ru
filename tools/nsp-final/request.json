@@ -1,8 +1,8 @@
 {
-  "action": "mail-canary",
-  "revision": 14,
-  "scope": "exactly one site-configured outbound test From site@nastoronepodryadchika.ru to connected project Gmail; no buyer order, no payments",
+  "action": "mail-postflight",
+  "revision": 15,
+  "scope": "safe READ-ONLY postrelease state; one-shot sender canary completed and not to be repeated",
   "source_pr": 691,
   "release_run": 42054191796,
-  "postflight_run": 42054807473
+  "canary_run": 42056471966
 }
