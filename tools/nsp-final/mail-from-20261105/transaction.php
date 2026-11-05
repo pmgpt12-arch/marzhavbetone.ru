@@ -145,8 +145,9 @@ function nsp_operate(string $action, string $rootArg, string $stageArg, array $b
                 nsp_need(is_string($bytes), 'CANNOT_READ_BACKUP');
                 $next=str_replace(NSP_OLD_FROM,NSP_NEW_FROM,$bytes);
                 nsp_need(hash('sha256',$next)===$rows[$name]['after'], 'CANDIDATE_MISMATCH');
-                nsp_write_atomic($p,$next,$rows[$name],$rows[$name]['after']);
+                // Include the current path even if the post-rename validation fails.
                 $changed[]=$name;
+                nsp_write_atomic($p,$next,$rows[$name],$rows[$name]['after']);
             }
             nsp_verify_state($root,$baseline,$rows,true);
             nsp_store_json($stage.'/result.json',['status'=>'APPLIED_VERIFIED','targets'=>$rows]);
