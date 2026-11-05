@@ -1,97 +1,54 @@
-# Единственный источник шапки сайта.
-#
-# ЗАЧЕМ ФАЙЛ. Замер 16.08.2026 (`tools/check_nav.py --inventory`): на 84
-# страницах было **десять** разных шапок. Пять страниц не имели шапки вовсе,
-# один и тот же раздел назывался «Калькулятор» и «Калькуляторы», «Каталог» и
-# «Решения», «Разборы» и «Все разборы». Шапка размножалась копированием, и
-# каждая новая страница наследовала ту, откуда её скопировали.
-#
-# Отсюда правило: шапка не пишется руками ни на одной странице. Здесь данные,
-# `tools/build_nav.py --write` их раскладывает, `tools/check_nav.py` сверяет.
-#
-# ПОЧЕМУ ССЫЛКИ АБСОЛЮТНЫЕ. Шапка одинакова на всех уровнях вложенности —
-# `/articles/`, `/materialy/`, `/products/`. Относительный адрес пришлось бы
-# считать от каждой страницы, и он ломался бы ровно там, где его забыли
-# пересчитать. Якоря тоже абсолютные: `#author` на странице товара указывает
-# в никуда, `/#author` — на раздел главной.
-
 brand:
   text: на стороне подрядчика
   mark: Н
   href: /
   aria: На стороне подрядчика, на главную
-
-# Порядок — путь покупателя, а не алфавит: сначала «что у меня за случай»,
-# потом «чем закрыть», потом справочное.
 items:
-  - id: diagnostika
-    text: Диагностика
-    href: /diagnostika.html
-  - id: katalog
-    text: Каталог
-    href: /katalog.html
-  - id: besplatno
-    text: Бесплатно
-    href: /materialy/
-  - id: kalkulyatory
-    # Множественное число проверено содержимым, а не вкусом: на
-    # kalkulyator.html две вкладки `.calculator-panel`, то есть калькуляторов
-    # действительно несколько. Единственное число стояло на пяти вариантах
-    # шапки из десяти.
-    text: Калькуляторы
-    href: /kalkulyator.html
-  - id: razbory
-    text: Практика и судебные решения
-    href: /articles/
-  - id: o-proekte
-    text: О проекте
-    href: /#author
-
-# Индивидуальный разбор объекта прекращён по решению владельца 30.10.2026.
-# Не восстанавливать форму или призыв при следующей сборке шапки.
+- id: diagnostika
+  text: Диагностика
+  href: /diagnostika.html
+- id: katalog
+  text: Каталог
+  href: /katalog.html
+- id: shablony-dokumentov
+  text: Шаблоны документов
+  href: /materialy/
+- id: kalkulyatory
+  text: Калькуляторы
+  href: /kalkulyator.html
+- id: razbory
+  text: Практика и судебные решения
+  href: /articles/
+- id: o-proekte
+  text: О проекте
+  href: /#author
 cta: null
-
-# Соцсети в основную навигацию не входят (указание владельца 16.08.2026):
-# Telegram стоял в шапке на 74 страницах и вытеснял разделы сайта — на
-# странице разбора в шапке были «Все разборы, Каталог, Telegram» и ни
-# диагностики, ни бесплатных материалов, ни калькуляторов. Каналы остаются
-# в плавающем блоке `aside.social-dock` и в подвале.
 social_in_nav: false
-
-# Какой пункт подсвечивается. Правила читаются сверху вниз, первое
-# совпадение выигрывает; префикс каталога — со слешем на конце.
 active:
-  - prefix: products/
-    id: katalog
-  - prefix: articles/
-    id: razbory
-  - prefix: materialy/
-    id: besplatno
-  - prefix: demo/
-    id: besplatno
-  - page: diagnostika.html
-    id: diagnostika
-  - page: katalog.html
-    id: katalog
-  - page: kalkulyator.html
-    id: kalkulyatory
-
-# Корзина живёт не везде: она нужна там, где есть что положить. Список
-# ведётся отдельно, потому что «есть кнопка корзины» — свойство торговой
-# страницы, а не шапки. Добавлять её на разбор незачем, убирать с витрины
-# нельзя.
+- prefix: products/
+  id: katalog
+- prefix: articles/
+  id: razbory
+- prefix: materialy/
+  id: shablony-dokumentov
+- prefix: demo/
+  id: shablony-dokumentov
+- page: diagnostika.html
+  id: diagnostika
+- page: katalog.html
+  id: katalog
+- page: kalkulyator.html
+  id: kalkulyatory
 cart_on:
-  - index.html
-  - katalog.html
-  - prefix: products/
-
-# Страницы, которые шапку не получают. Здесь их нет: раньше в этот список
-# просились юридические (contacts, offer, payment-delivery, privacy, refund),
-# но `.topbar` описан в styles.css, а его грузят и они — то есть шапка им
-# ничего не стоит, а без неё с них не было пути никуда, кроме «На главную».
-skip: []
-
-# Принятая компактная шапка главной; генератор и проверка используют один источник.
+- index.html
+- katalog.html
+- prefix: products/
+skip:
+- demo/algoritm-pri-zaderzhke-oplaty.html
+- demo/obshchiy-princip-osparivaniya-uderzhaniy.html
+- demo/pretenziya-na-neoplatu.html
+- demo/strategiya-otveta-na-zamechaniya.html
 header_overrides:
-  index.html: >-
-    <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span>НА СТОРОНЕ<br>ПОДРЯДЧИКА</span></a><nav aria-label="Основная навигация"><a href="/katalog.html">Каталог</a><a href="/diagnostika.html">Диагностика</a><a href="/articles/">Практика</a><a href="/#author">О проекте</a><a class="nav-secondary" href="/materialy/">Бесплатно</a><a class="nav-secondary" href="/kalkulyator.html">Калькуляторы</a></nav><button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>
+  index.html: <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span>НА СТОРОНЕ<br>ПОДРЯДЧИКА</span></a><nav aria-label="Основная навигация"><a href="/katalog.html">Каталог</a><a
+    href="/diagnostika.html">Диагностика</a><a href="/articles/">Практика</a><a href="/#author">О проекте</a><a class="nav-secondary" href="/materialy/">Шаблоны документов</a><a class="nav-secondary" href="/kalkulyator.html">Калькуляторы</a></nav><button
+    class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>
