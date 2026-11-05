@@ -45,18 +45,26 @@ require $root . '/products-config.php';
 
 $failures = [];
 
-// Берём любой товар каталога: тест не должен зависеть от его состава,
-// он меняется решением владельца.
+// Проверяем только динамическую сборку. Первым платным SKU является P1,
+// который теперь выдаётся из неизменяемого SHA-пинованного master ZIP.
+// Для mtime/cache используем существующий динамический test1 — без оплаты.
 $catalog = mvb_products();
-$sku = array_key_first($catalog);
-if ($sku === null) {
-    echo "Тест не запускался: каталог пуст\n";
+$sku = 'test1';
+if (!isset($catalog[$sku])) {
+    echo "Тест не запускался: нет динамического тестового SKU test1\n";
     exit(2);
 }
 $dir = PRODUCTS_DIR . '/' . $catalog[$sku]['dir'];
 $zip = DELIVERY_DIR . '/' . $catalog[$sku]['zip'];
 mkdir($dir, 0755, true);
 file_put_contents($dir . '/01-документ.txt', 'редакция первая');
+
+// P1 в актуальной схеме запрещено собирать из произвольной папки.
+// При отсутствии подписанного SHA-пинованного master ZIP — fail closed.
+if (mvb_build_product_zip('p1') !== null) {
+    fwrite(STDERR, "P1 unexpectedly available without pinned master ZIP\n");
+    exit(1);
+}
 
 // 1. Первая выдача собирает архив.
 $path = mvb_build_product_zip($sku);
