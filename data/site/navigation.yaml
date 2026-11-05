@@ -31,7 +31,7 @@ items:
     text: Каталог
     href: /katalog.html
   - id: besplatno
-    text: Бесплатно
+    text: Шаблоны документов
     href: /materialy/
   - id: kalkulyatory
     # Множественное число проверено содержимым, а не вкусом: на
@@ -94,4 +94,4 @@ skip: []
 # Принятая компактная шапка главной; генератор и проверка используют один источник.
 header_overrides:
   index.html: >-
-    <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span>НА СТОРОНЕ<br>ПОДРЯДЧИКА</span></a><nav aria-label="Основная навигация"><a href="/katalog.html">Каталог</a><a href="/diagnostika.html">Диагностика</a><a href="/articles/">Практика</a><a href="/#author">О проекте</a><a class="nav-secondary" href="/materialy/">Бесплатно</a><a class="nav-secondary" href="/kalkulyator.html">Калькуляторы</a></nav><button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>
+    <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span>НА СТОРОНЕ<br>ПОДРЯДЧИКА</span></a><nav aria-label="Основная навигация"><a href="/katalog.html">Каталог</a><a href="/diagnostika.html">Диагностика</a><a href="/articles/">Практика</a><a href="/#author">О проекте</a><a class="nav-secondary" href="/materialy/">Шаблоны документов</a><a class="nav-secondary" href="/kalkulyator.html">Калькуляторы</a></nav><button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>
