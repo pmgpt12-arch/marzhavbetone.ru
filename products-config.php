@@ -308,7 +308,7 @@ function mvb_products(): array
         ],
 
         'p7' => [
-            'name'  => 'Система проверки и согласования договора субподряда',
+            'name'  => 'Договор подряда: корректируем в интересах исполнителя',
             'price' => 2490000,
             'dir'   => '03-dogovor-podryada',
             'zip'   => '03-dogovor-podryada.zip',
@@ -318,7 +318,7 @@ function mvb_products(): array
         // Продаётся отдельно, потому что условия аванса правятся и тогда,
         // когда договор уже подписан, — для этого в комплекте допсоглашение.
         'p8' => [
-            'name'  => 'Система управления авансами и расчётами по договору подряда',
+            'name'  => 'Требование о досрочном погашении аванса',
             'price' => 2490000,
             'dir'   => '10-avans-usloviya-i-pribyl',
             'zip'   => '10-avans-usloviya-i-pribyl.zip',
@@ -328,7 +328,7 @@ function mvb_products(): array
         // Нормативная сверка (Р-026) для него предшествует продаже и
         // проведена 31.07.2026 — см. MANIFEST.md в папке продукта.
         'p9' => [
-            'name'  => 'Система защиты требований подрядчика при банкротстве генподрядчика',
+            'name'  => 'Генподрядчик банкротится: заявляем долг в реестр кредиторов',
             'price' => 2490000,
             'dir'   => '11-bankrotstvo-genpodryadchika',
             'zip'   => '11-bankrotstvo-genpodryadchika.zip',
@@ -347,7 +347,7 @@ function mvb_products(): array
         // набор файлов не изменился ни на один, и покупателю прошлого
         // заказа выдаётся ровно то, за что он платил.
         'p10' => [
-            'name'  => 'Система подготовки ответа на претензию заказчика',
+            'name'  => 'Претензия к подрядчику: проверяем требования и готовим ответ',
             'price' => 1790000,
             'dir'   => '15-otvet-na-pretenziyu-baza',
             'zip'   => '15-otvet-na-pretenziyu-baza.zip',
@@ -362,7 +362,7 @@ function mvb_products(): array
         // смежных запросах сделки («переуступка дду»), ядро узкое.
         // Цена — решение decision-price-p11-001 (ai-business-os).
         'p11' => [
-            'name'  => 'Расчёты в неденежной форме: жилые и офисные помещения, машино-места',
+            'name'  => 'Расчёты объектами недвижимости',
             'price' => 2490000,
             'dir'   => '13-raschet-metrami',
             'zip'   => '13-raschet-metrami.zip',
@@ -375,7 +375,7 @@ function mvb_products(): array
         // смете не оплатят». Цена по нижней ступени линейки, как у p7, p8 и
         // p11: тот же покупатель и тот же момент «до подписания».
         'p13' => [
-            'name'  => 'Система проверки сметной документации и выявления неоплачиваемых затрат',
+            'name'  => 'Проверяем смету до подписания: выявляем затраты за счёт подрядчика',
             'price' => 1790000,
             'dir'   => '16-chto-v-smete-ne-oplatyat',
             'zip'   => '16-chto-v-smete-ne-oplatyat.zip',
@@ -448,75 +448,22 @@ function mvb_product_sources_newer_than(string $sourceDir, int $zipMtime): bool
     return false;
 }
 
-/**
- * P1: неизменяемое издание. Хешируется сам ZIP, а не время правки мастеров.
- * Снимок фиксируется до создания платежа. Исходники читаются повторно:
- * изменение состава во время сборки отменяет снимок.
- */
+/** P1: текущее согласованное издание; один общий кеш, срок ссылки 3600 секунд. */
 function mvb_capture_p1_edition(): ?array
 {
-    $product = mvb_products()['p1'];
-    $source = PRODUCTS_DIR . '/' . $product['dir'];
-    if (!is_dir($source)) {
-        return null;
-    }
-    $lock = @fopen(DELIVERY_DIR . '/.p1-edition.lock', 'c');
-    if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) {
-        if ($lock) fclose($lock);
-        return null;
-    }
-    $stage = null;
+    $sha = '99df41c33e25ce41b61b8e04e22e27871d08a2c383ddae234119a29df5f29ada';
+    $edition = ['zip' => 'p1-' . $sha . '.zip', 'sha256' => $sha];
+    $master = PRODUCTS_DIR . '/P1-v1-current.zip';
+    if (!is_file($master) || !hash_equals($sha,(string)@hash_file('sha256',$master))) return null;
+    $destination = DELIVERY_DIR . '/' . $edition['zip'];
+    if (is_file($destination) && hash_equals($sha,(string)@hash_file('sha256',$destination))) return $edition;
+    $stage = @tempnam(DELIVERY_DIR,'.p1-current-');
+    if ($stage === false) return null;
     try {
-        $read = static function () use ($source): array {
-            $files = [];
-            $iterator = new RecursiveIteratorIterator(
-                new RecursiveDirectoryIterator($source, FilesystemIterator::SKIP_DOTS)
-            );
-            foreach ($iterator as $file) {
-                if (!$file->isFile()
-                    || in_array($file->getBasename(), ['.htaccess', '00-PISMO-POSLE-POKUPKI.txt', 'MANIFEST.md'], true)) {
-                    continue;
-                }
-                $relative = substr($file->getPathname(), strlen($source) + 1);
-                $bytes = @file_get_contents($file->getPathname());
-                if ($bytes === false) throw new RuntimeException('cannot read edition source');
-                $files[$relative] = $bytes;
-            }
-            ksort($files, SORT_STRING);
-            return $files;
-        };
-        $files = $read();
-        if (!$files) return null;
-        $stage = tempnam(DELIVERY_DIR, '.p1-stage-');
-        if ($stage === false) return null;
-        $zip = new ZipArchive();
-        if ($zip->open($stage, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) return null;
-        foreach ($files as $name => $bytes) {
-            if (!$zip->addFromString($name, $bytes)
-                || !$zip->setMtimeName($name, 315532800)) {
-                $zip->close();
-                return null;
-            }
-        }
-        if (!$zip->close() || $read() !== $files) return null;
-        $sha = hash_file('sha256', $stage);
-        if ($sha === false) return null;
-        $edition = ['zip' => 'p1-' . $sha . '.zip', 'sha256' => $sha];
-        $destination = DELIVERY_DIR . '/' . $edition['zip'];
-        if (is_file($destination)) {
-            // Не заменять испорченный исторический снимок новой сборкой.
-            if (mvb_p1_edition_path($edition) === null) return null;
-        } elseif (!@rename($stage, $destination)) {
-            return null;
-        }
+        if (!copy($master,$stage) || !hash_equals($sha,(string)@hash_file('sha256',$stage))
+            || !chmod($stage,0644) || !@rename($stage,$destination)) return null;
         return $edition;
-    } catch (Throwable $error) {
-        return null;
-    } finally {
-        if (is_string($stage) && is_file($stage)) @unlink($stage);
-        flock($lock, LOCK_UN);
-        fclose($lock);
-    }
+    } finally { if (is_file($stage)) @unlink($stage); }
 }
 
 /** Без восстановления из текущих мастеров: повреждение снимает доступ. */
@@ -544,6 +491,35 @@ function mvb_build_product_zip(string $sku): ?string
     }
     $sourceDir = PRODUCTS_DIR . '/' . $catalog[$sku]['dir'];
     $zipPath = DELIVERY_DIR . '/' . $catalog[$sku]['zip'];
+    if ($sku === 'p1') {
+        $edition = mvb_capture_p1_edition();
+        return $edition === null ? null : mvb_p1_edition_path($edition);
+    }
+    // P2 v13: only the owner-approved current archive. No historical versions.
+    if ($sku === 'p2' || $sku === 'p3' || $sku === 'p4' || $sku === 'p5' || $sku === 'p7' || $sku === 'p9' || $sku === 'p10' || $sku === 'p11' || $sku === 'p13' || $sku === 'p8') {
+        $current = [
+            'p2' => ['42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da', '/P2-v13-current.zip'],
+            'p3' => ['54854b79366598cba9680c5c71451220a5de45929ff33bcf42eba9b97dbcb92b', '/P3-v1-current.zip'],
+            'p4' => ['70a728babb810d6277388a5337decce6bfdf21a7e216bc0a512870860a3d3451', '/P4-v3-palette-v3-20261104.zip'],
+            'p5' => ['25ce378ee8fd84079b0edd2d57d816a2aaa77585a2a7e7172666e1f846f7dc05', '/P5-v2-current.zip'],
+            'p7' => ['6df6abf578c240ba9e76c9b0e40c7c4cb3bca34c65029e4260b97d82a25ca8a6', '/P7-v2-palette-v3-20261104.zip'],
+            'p9' => ['34bf03bcd3ed2e31d731dd8ac4c316cf9f94a8bb5dde1e4c9fc1aa3a7b7b23d9', '/P9-v1-current.zip'],
+            'p10' => ['90f9b78ba53e1fb59d751e0972594f4e7135e599946935a3c32d00b3fa9d2594', '/P10-v1-current.zip'],
+            'p11' => ['ff6cf9a7056cab90ee1203a93ddb964e0308b8bd418394f4ebd672a9b8b860da', '/P11-v1-current.zip'],
+            'p13' => ['0b1f777b9fb65952cd219d5e61e6b8500cdcd5f1c0039ceba80e3c8f6e67f955', '/P13-v1-current.zip'],
+            'p8' => ['31b4e22e5e3e006b0e1c5a1d40892efb2eff2cc8a582f4baa8cbbb2232e865aa', '/P8-v1-current.zip'],
+        ];
+        [$approved, $currentMaster] = $current[$sku];
+        $master = PRODUCTS_DIR . $currentMaster;
+        if (!is_file($master) || !hash_equals($approved,(string)@hash_file('sha256',$master))) return null;
+        if (is_file($zipPath) && hash_equals($approved,(string)@hash_file('sha256',$zipPath))) return $zipPath;
+        $tmp = @tempnam(DELIVERY_DIR,'.p2-current-');
+        if ($tmp === false) return null;
+        try {
+            if (!copy($master,$tmp) || !hash_equals($approved,(string)@hash_file('sha256',$tmp)) || !chmod($tmp,0644) || !@rename($tmp,$zipPath)) return null;
+            return $zipPath;
+        } finally { if (is_file($tmp)) @unlink($tmp); }
+    }
 
     // Кэш действителен, пока мастера не изменились. Раньше условием было
     // одно существование архива — и обновление файлов продукта до покупателя
@@ -877,7 +853,7 @@ function mvb_deliver_and_notify(array &$order): array
     if (!empty($order['email'])) {
         $subject = 'Ваши материалы «На стороне подрядчика» — заказ оплачен';
         $headers = [
-            'From: site@marzhavbetone.ru',
+            'From: site@nastoronepodryadchika.ru',
             'Reply-To: ' . ADMIN_EMAIL,
             'Content-Type: text/plain; charset=UTF-8',
         ];
@@ -932,7 +908,7 @@ function mvb_delivery_email(array $order, array $links): string
         return $body;
     }
     // Exact accepted entry file for each remaining product.
-    $acceptedStarts = ['p1' => '00-INSTRUKCIYA.pdf', 'p2' => '00-INSTRUKCIYA.pdf', 'p4' => '00-START-HERE.txt', 'p7' => '00-INSTRUKCIYA.pdf', 'p8' => '00-START-HERE.txt', 'p9' => '00-START-HERE.txt', 'p10' => '00-START-HERE.pdf', 'p13' => '00-START-HERE.pdf'];
+    $acceptedStarts = ['p1' => '00-INSTRUKCIYA.pdf', 'p2' => '00-INSTRUKCIYA.pdf', 'p4' => '00-INSTRUKCIYA.pdf', 'p5' => '00-START-HERE.pdf', 'p7' => '00-INSTRUKCIYA.pdf', 'p8' => '00-INSTRUKCIYA.pdf', 'p9' => '00-START-HERE.txt', 'p10' => '00-START-HERE.pdf', 'p13' => '00-INSTRUKCIYA.pdf'];
     if (count($links) === 1 && isset($acceptedStarts[$links[0]["sku"] ?? ""])) {
         $body .= "Порядок действий:\n1. Распакуйте архив и откройте " . $acceptedStarts[$links[0]["sku"]] . ".\n2. Выберите порядок действий по вашей ситуации.\n3. Заполните документы по договору и материалам объекта.\n4. Проверьте реквизиты, расчёты, полномочия и подписи перед направлением.\n\nВопросы: " . ADMIN_EMAIL . "\n\nНа стороне подрядчика\n";
         return $body;
