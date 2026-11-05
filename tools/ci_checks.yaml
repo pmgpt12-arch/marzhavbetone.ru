@@ -370,11 +370,11 @@
   требует: []
   решение: ''
 - id: verify_delivery_zips
-  команда: mkdir -p orders && cp tools/verify_delivery_zips.php . && php verify_delivery_zips.php; rc=$?;
-    rm -f verify_delivery_zips.php; exit $rc
+  команда: mkdir -p orders && cp tools/verify_delivery_zips.php . && NSP_PINNED_QA_SYNTHETIC=1
+    php verify_delivery_zips.php; rc=$?; rm -f verify_delivery_zips.php; exit $rc
   класс: public
   блокирует: true
-  зачем: состав восемнадцати архивов выдачи
+  зачем: 7 динамических ZIP по фактическим мастерам + 11 платных SHA-пинованных SKU по синтетическому контракту; реальные платные master ZIP проверяются отдельно в защищённом контуре
   требует: []
   решение: ''
 - id: test_metrika_utm
