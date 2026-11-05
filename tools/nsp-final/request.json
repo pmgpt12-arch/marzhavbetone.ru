@@ -1,6 +1,7 @@
 {
-  "action": "mail-dry-run",
-  "revision": 11,
-  "scope": "exact eight-file source SHA and three literal From replacements; no production writes",
-  "source_pr": 691
+  "action": "mail-publish",
+  "revision": 12,
+  "scope": "only three old From literals with exact 8-file SHA gate, private backup and rollback",
+  "source_pr": 691,
+  "approved_context": "Owner instruction: Продолжай after documented successful sender production dry-run"
 }
