@@ -409,7 +409,7 @@ class Nesting(HTMLParser):
 # Гейт покраснел на первом же шаге, до собственных проверок репозитория.
 # Чужая страница здесь доказательство, а не наша вёрстка: её ссылки к
 # целостности сайта отношения не имеют.
-NOT_DEPLOYED = {"content", "demo", "products-storage", "research", "tools", "tests",
+NOT_DEPLOYED = {"content", "products-storage", "research", "tools", "tests",
                 "data", ".git", ".github", ".claude", "node_modules"}
 
 # Что не является внутренней целью и проверке не подлежит.
