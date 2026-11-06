@@ -82,15 +82,16 @@ def собрать(данные: dict, rel: str, корзина: str | None) -> 
             отметка = ' class="is-current" aria-current="page"'
         пункты.append(f'<a href="{пункт["href"]}"{отметка}>{пункт["text"]}</a>')
 
-    cta = данные["cta"]
+    cta = данные.get("cta")
     части = [
         '<header class="topbar">',
         f'<a class="brand" href="{brand["href"]}" aria-label="{brand["aria"]}">'
         f'<span class="brand-mark">{brand["mark"]}</span>'
         f'<span>{brand["text"]}</span></a>',
         '<nav aria-label="Основная навигация">' + "".join(пункты) + "</nav>",
-        f'<a class="button button-small nav-cta" href="{cta["href"]}">{cta["text"]}</a>',
     ]
+    if cta is not None:
+        части.append(f'<a class="button button-small nav-cta" href="{cta["href"]}">{cta["text"]}</a>')
     if корзина:
         части.append(корзина)
     части.append("</header>")
@@ -105,11 +106,19 @@ def main() -> int:
 
     данные = yaml.safe_load(ДАННЫЕ.read_text(encoding="utf-8"))
     пропустить = set(данные.get("skip") or [])
+    сохранять_шапку = set(данные.get("preserve_header_on") or [])
+    # An intentionally different home header must never be overwritten by
+    # the generic 84-page template. check_nav validates it separately.
+    if сохранять_шапку != {"index.html"}:
+        raise SystemExit("Нет утверждённого списка исключений для главной")
 
     изменено, добавлено, без_изменений = [], [], 0
     for путь in страницы():
         rel = путь.relative_to(ROOT).as_posix()
         if rel in пропустить:
+            continue
+        if rel in сохранять_шапку:
+            без_изменений += 1
             continue
         html = путь.read_text(encoding="utf-8")
 
