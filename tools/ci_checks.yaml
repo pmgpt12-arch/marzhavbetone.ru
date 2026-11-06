@@ -292,6 +292,13 @@
   зачем: КС-2, КС-3 и АОСР сохраняют реквизиты госформ, а архивы и зеркала совпадают
   требует: []
   решение: ''
+- id: test_nsp_retired_t2_t3_checkout
+  команда: python3 tools/test_nsp_retired_t2_t3_checkout.py
+  класс: public
+  блокирует: true
+  зачем: новые покупки T2/T3 запрещены и по SKU и по старому имени, исторические записи и 11 действующих SKU сохранены
+  требует: []
+  решение: ''
 - id: test_p1_price_http
   команда: python3 tools/test_p1_price_http.py
   класс: public
