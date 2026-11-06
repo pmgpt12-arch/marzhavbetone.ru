@@ -138,6 +138,13 @@
   зачем: 11 платных карточек и JSON-LD против verified private buyer ZIP count, P3 семантика и две негативные регрессии
   требует: []
   решение: ''
+- id: test_nsp_cutover_validator_11_skus
+  команда: python3 tools/test_nsp_cutover_validator_11_skus.py
+  класс: public
+  блокирует: true
+  зачем: 11 действующих SKU без T2/T3, цены, группы и навигационные счётчики; пять негативных регрессий
+  требует: []
+  решение: ''
 - id: test_sync_kit_file_counts
   команда: python3 tools/test_sync_kit_file_counts.py
   класс: public
