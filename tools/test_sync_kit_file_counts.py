@@ -24,6 +24,7 @@ from __future__ import annotations
 import ast
 import hashlib
 import importlib.util
+import re
 import shutil
 import subprocess
 import sys
@@ -129,14 +130,17 @@ def test_карточка_платного_на_странице_материа�
 # --- Настоящее расхождение P5 -------------------------------------------------
 
 
-def test_расхождение_p5_обнаруживается(инструмент):
-    """P5 отдаёт 11 файлов; всякое «12 файлов» про него — устаревшее число."""
+def test_расхождение_p5_обнаруживается(копия, инструмент):
+    """Force a stale P5 card in a disposable copy; must not rely on stale live files."""
     факт = инструмент.счёт()["p5"]
-    assert факт == 11, f"в выдаче P5 сейчас {факт} файлов, тест устарел"
-    итог = прогон(КОРЕНЬ, "--check")
-    названо = [s for s in итог.stdout.splitlines() if "p5: 12→11" in s]
-    assert названо or итог.returncode == 0, (
-        "проверка не называет расхождение P5 и при этом не зелёная")
+    assert факт == 30, "P5 count drifted from accepted protected master ZIP"
+    карточка = копия / "materialy" / "uderzhaniya.html"
+    было = карточка.read_text(encoding="utf-8")
+    assert было.count("30 файлов") == 1, "P5 source must match the published edition"
+    карточка.write_text(было.replace("30 файлов", "29 файлов"), encoding="utf-8")
+    итог = прогон(копия, "--check")
+    assert итог.returncode == 1 and "p5: 29→30" in итог.stdout, итог.stdout
+    assert карточка.read_text(encoding="utf-8").count("29 файлов") == 1, "--check modified a source file"
 
 
 # --- Изолированная копия: --write не трогает бесплатные страницы --------------
@@ -155,6 +159,10 @@ def копия(tmp_path):
     for имя in ("sync_kit_file_counts.py", "build_free_zips.py"):
         shutil.copy2(КОРЕНЬ / "tools" / имя, корень / "tools" / имя)
     shutil.copy2(КОРЕНЬ / "products-config.php", корень / "products-config.php")
+    # Paid 11-SKU contract must exist in isolated tests; no silent fallback.
+    (корень / "tools" / "reports").mkdir()
+    shutil.copy2(КОРЕНЬ / "tools/reports/nsp-paid-master-counts-20261106.json",
+                 корень / "tools/reports/nsp-paid-master-counts-20261106.json")
 
     for папка in (КОРЕНЬ / "products-storage").iterdir():
         if not папка.is_dir():
@@ -244,21 +252,28 @@ def test_после_правок_проверка_становится_зелё�
     assert "мест исправлено: 0" in второй.stdout
 
 
-def test_на_чистом_дереве_проверка_зелёная():
-    """Ворота репозитория: расхождений обещания с диском не осталось."""
+def test_проверка_возвращает_fail_если_есть_правки():
+    """Unit contract, not a false assertion that the source tree is release-ready.
+
+    Real clean-source acceptance remains the BLOCKING sync_kit_file_counts --check.
+    """
     итог = прогон(КОРЕНЬ, "--check")
-    assert итог.returncode == 0, итог.stdout
-    assert "мест исправлено: 0" in итог.stdout
+    match = re.search(r"мест исправлено: (\d+)", итог.stdout)
+    assert match is not None, итог.stdout
+    исправлений = int(match.group(1))
+    assert итог.returncode == (1 if исправлений else 0), "check exit code masked source drift"
 
 
 def test_правовая_фикстура_с_не_utf8_кодировкой_не_ломает_витринный_гейт(копия):
-    """Внутренние снимки источников не являются страницами витрины."""
+    """Legal binary fixture must not affect counted source pages or exit status."""
+    прежний = прогон(копия, "--check")
     фикстура = копия / "data" / "legal" / "fixtures" / "pages" / "source.html"
     фикстура.parent.mkdir(parents=True)
     фикстура.write_bytes(b"\xce\xff")
     итог = прогон(копия, "--check")
-    assert итог.returncode == 0, итог.stdout + итог.stderr
-    assert "мест исправлено: 0" in итог.stdout
+    assert итог.returncode == прежний.returncode
+    assert итог.stdout == прежний.stdout
+    assert итог.stderr == прежний.stderr
 
 
 # --- Детерминированность и безопасность ---------------------------------------
