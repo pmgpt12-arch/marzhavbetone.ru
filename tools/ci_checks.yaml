@@ -42,6 +42,13 @@
   зачем: тема и все ветки письма покупателю используют новый бренд; реальных писем и заказов нет
   требует: []
   решение: ''
+- id: test_retired_t2_t3_not_for_sale
+  команда: python3 tools/test_retired_t2_t3_not_for_sale.py
+  класс: public
+  блокирует: true
+  зачем: T2/T3 исключены из каталога и любых новых покупок; действует 11 платных SKU и ограничение ссылки 1 час
+  требует: []
+  решение: ''
 - id: test_p1_immutable_edition
   команда: php tools/test_p1_immutable_edition.php
   класс: public
@@ -825,4 +832,11 @@
   - products-storage/ARTIFACT-REGISTRY.json
   - products-storage/ARTIFACT-INVENTORY.json
   - tools/build_artifact_inventory.py
+  решение: ''
+- id: test_retired_t2_t3_storefront_archive
+  команда: python3 tools/test_retired_t2_t3_storefront_archive.py
+  класс: public
+  блокирует: true
+  зачем: T2/T3 не имеют кнопки покупки; старые папки не считаются новой выдачей, но любые активные SKU и FREE проверяются строго
+  требует: []
   решение: ''
