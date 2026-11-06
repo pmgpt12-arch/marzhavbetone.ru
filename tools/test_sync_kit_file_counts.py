@@ -113,7 +113,7 @@ def test_check_не_предлагает_править_бейдж_матери�
     # On FREE pages there can be PAID cross-sell cards whose count IS stale.
     # Only the FREE material's own count must never be corrected from a paid SKU.
     ложные = [s for s in строки if re.search(
-        rf"(?<![\\w-]){re.escape(ключ)}: \\d+→\\d+", s)]
+        rf"(?<![\w-]){re.escape(ключ)}: \d+→\d+", s)]
     assert not ложные, f"{ключ}: проверка пытается изменить число бесплатного комплекта: {ложные}"
 
 
@@ -226,7 +226,7 @@ def test_write_в_копии_не_меняет_бесплатный_компле
     итог = прогон(копия, "--write")
     assert итог.returncode == 0, итог.stdout + итог.stderr
 
-    paid_card = re.compile(r'<article\\s+class="product-card"[^>]*>[\\s\\S]*?</article>')
+    paid_card = re.compile(r'<article\s+class="product-card"[^>]*>[\s\S]*?</article>')
     def outside_paid_cards(text):
         return paid_card.sub("[PAID_PRODUCT_CARD_ONLY]", text)
 
