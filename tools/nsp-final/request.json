@@ -1,10 +1,11 @@
 {
-  "action": "catalog-jsonld-preflight",
-  "revision": 19,
-  "scope": "READ ONLY exact one-file katalog.html 6 JSON-LD Product.description count changes; private staging only",
+  "action": "catalog-jsonld-publish",
+  "revision": 20,
+  "scope": "owner-approved one-file katalog.html: exactly six JSON-LD Product.description counts, private backup, SHA-pinned verify and rollback",
   "source_pr": 700,
   "source_issue": 699,
   "source_sha256": "5074803de3aa2b2e78cbc40db0b2503699b627703a60325ce701d65c71064788",
   "candidate_sha256": "d538b110da721b4349daa3e98615eba4095c37e24582dbbb154a0f4a4c34261c",
-  "no_publication": true
+  "owner_approval": "Публикуй PR #700",
+  "publication_scope_files": 1
 }
