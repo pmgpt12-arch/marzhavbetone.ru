@@ -123,7 +123,8 @@ def main() -> int:
             "candidate": str(candidate.relative_to(args.output_dir)),
             "form_redirects_replaced": 1,
             "retired_cards_removed": int(FILES[rel.stem][3]),
-            "p4_file_count_fixed": int(FILES[rel.stem][4]),
+            "p4_count_verified": int(FILES[rel.stem][4]),
+            "p4_file_count_fixed": int(FILES[rel.stem][4] and b"25 файла." in before),
         })
     receipt = {
         "status": "CANDIDATES_ONLY_NOT_DEPLOYED",
@@ -134,7 +135,7 @@ def main() -> int:
     }
     out = args.output_dir / "manifest.json"
     out.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("FREE_FUNNEL_LIVE_CANDIDATE_PASS files=6 forms=6 removed_cards=5 p4_counts=2 "
+    print("FREE_FUNNEL_LIVE_CANDIDATE_PASS files=6 forms=6 removed_cards=5 p4_verified=2 "
           f"manifest_sha256={digest(out.read_bytes())}")
     return 0
 
