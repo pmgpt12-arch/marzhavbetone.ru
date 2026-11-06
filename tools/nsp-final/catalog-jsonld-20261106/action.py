@@ -43,9 +43,14 @@ def evidence(filename, data):
 def preflight_source():
     before=(ROOT/TARGET).read_bytes()
     if SHA(before)!=BEFORE:raise RuntimeError("BRANCH_BASE_CATALOG_PREIMAGE_DRIFT")
-    # Review HEAD is pinned; a subsequent edit requires a new explicit gate.
-    call(["git","fetch","--no-tags","--depth=1","origin",PR_HEAD],timeout=40)
-    after=call(["git","show",PR_HEAD+":"+TARGET],timeout=10)
+    # Git fetch from this worker can block on unrelated git transport/auth.
+    # The exact immutable commit and complete SHA are both required.
+    url="https://raw.githubusercontent.com/pmgpt12-arch/marzhavbetone.ru/"+PR_HEAD+"/"+TARGET
+    req=Request(url,headers={"User-Agent":"NSP-JSONLD-SourceSHA-QA/1.0"})
+    with urlopen(req,timeout=15) as response:
+        if response.status!=200:raise RuntimeError("CANDIDATE_HTTP_NOT_200")
+        after=response.read(300001)
+    if len(after)>300000:raise RuntimeError("CANDIDATE_TOO_LARGE")
     if SHA(after)!=AFTER:raise RuntimeError("EXACT_PR_CANDIDATE_SHA_MISMATCH")
     oldlines=before.decode("utf-8").splitlines()
     newlines=after.decode("utf-8").splitlines()
