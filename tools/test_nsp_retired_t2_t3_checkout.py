@@ -69,6 +69,7 @@ def main():
         # The catalog keeps legacy SKUs, while resolver denies new sales.
         unit="""
             require $argv[1];
+            require $argv[2];
             $all=mvb_products();
             $results=[];
             foreach (['t2','t3'] as $sku) {
@@ -83,11 +84,13 @@ def main():
             foreach (['p1','p2','p3','p4','p5','p7','p8','p9','p10','p11','p13'] as $sku){
                 $results[$sku]=mvb_resolve_product(['sku'=>$sku])!==null;
             }
+            $results['_legacy_names']=['t2'=>$all['t2']['name'],'t3'=>$all['t3']['name']];
             echo json_encode($results,JSON_THROW_ON_ERROR);
         """
-        unitresult=json.loads(run(["php","-r",unit,str(web/"config.php")]))
-        # config.php alone doesn't include products-config; invoke through a single helper:
-        # on error, explicit acceptance gate below will reject missing resolver.
+        unitresult=json.loads(run(["php","-r",unit,str(web/"config.php"),
+                                   str(web/"products-config.php")]))
+        old_names=unitresult.pop("_legacy_names")
+        assert set(old_names)==set(RETIRED)
         for sku,price in RETIRED.items():
             r=unitresult[sku]
             assert r=={"listed":True,"price":price,"sku_rejected":True,
@@ -109,13 +112,13 @@ def main():
             cases=[
                 [{"sku":"t2"}],[{"sku":"t3"}],
                 [{"name":"t2"}],[{"name":"t3"}],
-                [{"name":unitresult["t2_name"]}] if "t2_name" in unitresult else [{"sku":"t2","name":"P4"}],
+                [{"sku":"t2","name":"forged unrelated product"}],
                 [{"sku":"t3"},{"sku":"p4"}],
                 [{"sku":"unknown","name":"T3"}],
             ]
             # Test both historical names verbatim, not approximations.
             for sku in RETIRED:
-                cases.append([{"name":unitresult[sku+"_name"]}])
+                cases.append([{"name":old_names[sku]}])
             for items in cases:
                 code,body=send(port,items)
                 assert code==422 and body.get("ok") is False,(items,code,body)
