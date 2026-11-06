@@ -296,7 +296,19 @@ def main() -> int:
     noted = 0
     doubled = 0
     counted = 0
+    # T2/T3 retired by owner: these two former source folders are archival
+    # only once products-config.php no longer maps *any* SKU to them.
+    # Never waive content checks for a currently addressable SKU or FREE set.
+    retired_directories = {
+        "14-peredacha-id-pod-podpis",
+        "17-odnostoronniy-akt-i-zachet",
+    }
     for package in packages:
+        if package.name in retired_directories and package.name in orphans:
+            print(f"АРХИВ СНЯТОГО SKU  {package.name}: не адресуется покупателю; "
+                  "манифест и прежняя распакованная копия не являются выдачей")
+            noted += 1
+            continue
         manifest = package / "MANIFEST.md"
         if not manifest.is_file():
             print(f"НЕТ МАНИФЕСТА  {package.name}")
