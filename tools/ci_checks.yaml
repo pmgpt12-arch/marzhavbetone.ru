@@ -70,6 +70,13 @@
   зачем: граница публикации каталога data
   требует: []
   решение: ''
+- id: test_nsp_navigation_contract
+  команда: python3 tools/test_nsp_navigation_contract.py
+  класс: public
+  блокирует: true
+  зачем: 84 актуальные шапки и утверждённый вариант главной; старые бренд и битый CTA не возвращаются
+  требует: []
+  решение: ''
 - id: check_nav
   команда: python3 tools/check_nav.py
   класс: public
