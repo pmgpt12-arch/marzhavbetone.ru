@@ -30,6 +30,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import html
+import json
 import re
 import sys
 from pathlib import Path
@@ -41,6 +42,7 @@ ROOT = Path(__file__).resolve().parent.parent
 STORAGE = ROOT / "products-storage"
 CONFIG = ROOT / "products-config.php"
 PRODUCTS = ROOT / "products"
+PINNED_RECEIPT = ROOT / "tools/nsp_p123_pinned_preview_members.json"
 
 FRAGMENTS = 3
 # Сколько первых абзацев файла просматривать. Дальше начинается тело
@@ -72,6 +74,42 @@ def catalog() -> dict[str, str]:
     text = CONFIG.read_text(encoding="utf-8")
     return {m.group(1): m.group(2) for m in re.finditer(
         r"'([a-z0-9]+)'\s*=>\s*\[\s*'name'.*?'dir'\s*=>\s*'([^']+)'", text, re.S)}
+
+
+def pinned_inventory_error(sku: str, page_text: str) -> str:
+    """Validate the displayed names against a verified immutable buyer ZIP.
+
+    The private ZIP is not published in public CI. A complete member receipt
+    is checked against the exact runtime PHP approved SHA + master path.
+    """
+    try:
+        manifest = json.loads(PINNED_RECEIPT.read_text(encoding="utf-8"))
+        products = manifest["products"]
+        if set(products) != {"p1", "p2", "p3"}:
+            return "pinned receipt SKU scope changed"
+        item = products[sku]
+        sha, filename, members = item["sha256"], item["source_master"], item["members"]
+        if not re.fullmatch(r"[a-f0-9]{64}", sha):
+            return f"{sku}: invalid pinned SHA"
+        if not isinstance(members, list) or not members or len(set(members)) != len(members):
+            return f"{sku}: missing or duplicate buyer members"
+        if any(not isinstance(n, str) or "/" in n or "\\" in n or n.startswith(".") for n in members):
+            return f"{sku}: unsafe buyer filename"
+        config = CONFIG.read_text(encoding="utf-8")
+        if sku == "p1":
+            if ("$sha = '" + sha + "';") not in config or (
+                "$master = PRODUCTS_DIR . '/" + filename + "';"
+            ) not in config:
+                return "p1: buyer PHP SHA or master filename drift"
+        else:
+            if ("'" + sku + "' => ['" + sha + "', '/" + filename + "']") not in config:
+                return f"{sku}: buyer PHP SHA or master filename drift"
+        names = re.findall(r"<code[^>]*>([^<]+\.(?:docx|xlsx|xls|pdf|txt))</code>", page_text)
+        if len(names) != len(members) or len(set(names)) != len(names) or set(names) != set(members):
+            return f"{sku}: pinned buyer ZIP member list differs from product page"
+        return ""
+    except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError):
+        return f"{sku}: pinned receipt missing or invalid"
 
 
 def informative(lines: list[str], title: str) -> str:
@@ -177,6 +215,12 @@ def render(path: Path, dirs: dict[str, str]) -> tuple[str, str]:
             return text, ""
         return text, "нет data-sku"
     sku = found.group(1)
+    # P1/P2/P3 buyers receive SHA-pinned ZIPs, not these old source folders.
+    if sku in {"p1", "p2", "p3"}:
+        if not dirs.get(sku):
+            return text, f"{sku}: SKU отсутствует в действующем каталоге"
+        return text, pinned_inventory_error(sku, text)
+
     folder = STORAGE / dirs.get(sku, "")
     if not dirs.get(sku) or not folder.is_dir():
         return text, f"{sku}: каталога комплекта нет в products-storage"

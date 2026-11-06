@@ -1,0 +1,67 @@
+{
+  "schema": "NSP_PINNED_BUYER_MEMBER_NAMES_V1",
+  "verification": "Exact ZIP SHA-256, ZIP CRC and complete non-directory member list independently checked on ai-workstation, 2026-11-06; product pages already enumerate these same member names",
+  "scope": "p1,p2,p3 preview inventory only; not native Office/legal QA",
+  "products": {
+    "p1": {
+      "sha256": "99df41c33e25ce41b61b8e04e22e27871d08a2c383ddae234119a29df5f29ada",
+      "source_master": "P1-v1-current.zip",
+      "members": [
+        "00-INSTRUKCIYA.pdf",
+        "01-ks-2.xls",
+        "02-ks-3.xls",
+        "03-akt-vypolnennyh-rabot.docx",
+        "04-akt-priemki.docx",
+        "05-peredatochnyy-akt.docx",
+        "06-zhurnal-ucheta-rabot-ks-6a.xls",
+        "06A-rabochiy-reestr-obemov.xlsx",
+        "07-reestr-zamechaniy.xlsx",
+        "08-reestr-peredachi.xlsx",
+        "09-checklist-peredachi.pdf",
+        "10-sroki-hraneniya.pdf",
+        "11-slovar-poley.docx",
+        "12-pretenziya-na-neoplatu-po-ks-2.docx",
+        "13-uvedomlenie-o-prosrochke-oplaty.docx",
+        "14-raschet-procentov-395-gk.xlsx",
+        "15-algoritm-pri-zaderzhke-oplaty.docx",
+        "16-iskovoe-zayavlenie-o-vzyskanii.docx"
+      ]
+    },
+    "p2": {
+      "sha256": "42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da",
+      "source_master": "P2-v13-current.zip",
+      "members": [
+        "00-INSTRUKCIYA.pdf",
+        "01-prikaz-na-dopobem.docx",
+        "02-soglasovanie-obema.docx",
+        "03-uvedomlenie-o-doprabotah.docx",
+        "04-akt-skrytyh-rabot.docx",
+        "05-izmenenie-srokov.docx",
+        "06-pismo-o-priostanovke.docx",
+        "07-raschet-stoimosti.xlsx",
+        "08-zhurnal-doprabot.xlsx",
+        "09-checklist-fotofiksacii.pdf",
+        "10-algoritm-doprabot.pdf",
+        "11-dopsoglashenie-obem-i-cena.docx",
+        "12-dopsoglashenie-sroki-doprabot.docx"
+      ]
+    },
+    "p3": {
+      "sha256": "54854b79366598cba9680c5c71451220a5de45929ff33bcf42eba9b97dbcb92b",
+      "source_master": "P3-v1-current.zip",
+      "members": [
+        "00-INSTRUKCIYA.pdf",
+        "01-proverochnyy-list-komplekta-ks.docx",
+        "02-reestr-prilozheniy.xlsx",
+        "03-akt-skrytyh-rabot.docx",
+        "04-protokol-vnutrenney-proverki.docx",
+        "05-pismo-o-nedostatkah.docx",
+        "06-zhurnal-peredachi.xlsx",
+        "07-sroki-hraneniya.docx",
+        "08-algoritm-proverki.pdf",
+        "09-tipovye-oshibki.docx",
+        "10-sravnitelnaya-tablica.docx"
+      ]
+    }
+  }
+}
