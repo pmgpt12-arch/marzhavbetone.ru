@@ -31,9 +31,10 @@ def main() -> None:
         assert b.render(page, catalog) == (original, ""), sku
         members = receipt["products"][sku]["members"]
         assert b.pinned_inventory_error(sku, original) == ""
-        original_marker = "<code>" + members[0] + "</code>"
-        assert original_marker in original, sku
-        must_fail(sku, original.replace(original_marker,
+        marker_match = re.search(
+            r"<code[^>]*>" + re.escape(members[0]) + r"</code>", original)
+        assert marker_match, sku
+        must_fail(sku, original.replace(marker_match.group(0),
                                         "<code>unapproved.docx</code>", 1))
         with TemporaryDirectory(prefix="p123-preview-negative-") as d:
             root = Path(d)
