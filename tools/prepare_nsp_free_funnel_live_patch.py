@@ -53,6 +53,7 @@ def patch_exact_live(name: str, blob: bytes, *, check_sha: bool = True) -> bytes
     count_form = 0
     count_card = 0
     count_p4 = 0
+    verified_p4 = 0
     for line in lines:
         if old_form in line:
             if '<form' not in line or 'id="lead-form"' not in line:
@@ -65,13 +66,15 @@ def patch_exact_live(name: str, blob: bytes, *, check_sha: bool = True) -> bytes
                 continue
             raise ValueError(f"{name}: unexpected retired card")
         if replace_count and 'class="product-card"' in line and f'href="../products/{new_sku}.html"' in line:
-            if line.count("25 файла.") != 1:
-                raise ValueError(f"{name}: P4 preimage count changed")
-            line = line.replace("25 файла.", "30 файлов.", 1)
-            count_p4 += 1
+            verified_p4 += 1
+            if line.count("25 файла.") == 1:
+                line = line.replace("25 файла.", "30 файлов.", 1)
+                count_p4 += 1
+            elif line.count("30 файлов:") != 1 and line.count("30 файлов.") != 1:
+                raise ValueError(f"{name}: P4 count neither old nor accepted")
         patched.append(line)
     candidate = "".join(patched)
-    if count_form != 1 or count_card != int(remove_card) or count_p4 != int(replace_count):
+    if count_form != 1 or count_card != int(remove_card) or verified_p4 != int(replace_count):
         raise ValueError(f"{name}: unexpected edit count")
     if RETIRED.search(candidate) or candidate.count('class="product-card"') != 1:
         raise ValueError(f"{name}: retired SKU or duplicate card remains")
