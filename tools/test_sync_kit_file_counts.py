@@ -110,8 +110,11 @@ def test_check_не_предлагает_править_бейдж_матери�
     итог = прогон(КОРЕНЬ, "--check")
     строки = [s for s in итог.stdout.splitlines()
               if s.startswith(f"страница materialy/{ключ}.html:")]
-    ложные = [s for s in строки if "→" in s and "p5" not in s]
-    assert not ложные, f"{ключ}: проверка предлагает ложную правку: {ложные}"
+    # On FREE pages there can be PAID cross-sell cards whose count IS stale.
+    # Only the FREE material's own count must never be corrected from a paid SKU.
+    ложные = [s for s in строки if re.search(
+        rf"(?<![\\w-]){re.escape(ключ)}: \\d+→\\d+", s)]
+    assert not ложные, f"{ключ}: проверка пытается изменить число бесплатного комплекта: {ложные}"
 
 
 def test_карточка_платного_на_странице_материала_по_прежнему_разбирается(инструмент):
@@ -212,15 +215,27 @@ def копия(tmp_path):
     return корень
 
 
-def test_write_в_копии_не_меняет_страницы_бесплатных_материалов(копия):
-    """Главная гарантия захода: --write обходит четыре бейджа стороной."""
+def test_write_в_копии_не_меняет_бесплатный_комплект_и_форму(копия):
+    """Only embedded PAID cross-sell card text may change in a FREE page.
+
+    The free eyebrow, form, consent, all non-paid content and page links remain
+    byte-identical. No --write is ever run in the real repository tree.
+    """
     страницы = [копия / "materialy" / f"{к}.html" for к in БЕСПЛАТНЫЕ_СТРАНИЦЫ]
-    было = хеши(страницы)
+    было = {p: p.read_text(encoding="utf-8") for p in страницы}
     итог = прогон(копия, "--write")
     assert итог.returncode == 0, итог.stdout + итог.stderr
-    стало = хеши(страницы)
-    разошлись = [п for п in было if было[п] != стало[п]]
-    assert not разошлись, f"--write изменил страницы материалов: {разошлись}"
+
+    paid_card = re.compile(r'<article\\s+class="product-card"[^>]*>[\\s\\S]*?</article>')
+    def outside_paid_cards(text):
+        return paid_card.sub("[PAID_PRODUCT_CARD_ONLY]", text)
+
+    for страница, original in было.items():
+        current = страница.read_text(encoding="utf-8")
+        assert len(paid_card.findall(original)) == len(paid_card.findall(current)), (
+            f"paid card count changed on FREE page: {страница}")
+        assert outside_paid_cards(original) == outside_paid_cards(current), (
+            f"FREE material, lead form or non-product text modified: {страница}")
 
 
 def test_write_в_копии_правит_расхождение_платного(копия, инструмент):
