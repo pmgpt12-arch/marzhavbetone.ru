@@ -833,3 +833,10 @@
   - products-storage/ARTIFACT-INVENTORY.json
   - tools/build_artifact_inventory.py
   решение: ''
+- id: test_retired_t2_t3_storefront_archive
+  команда: python3 tools/test_retired_t2_t3_storefront_archive.py
+  класс: public
+  блокирует: true
+  зачем: T2/T3 не имеют кнопки покупки; старые папки не считаются новой выдачей, но любые активные SKU и FREE проверяются строго
+  требует: []
+  решение: ''
