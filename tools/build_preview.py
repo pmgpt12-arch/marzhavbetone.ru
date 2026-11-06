@@ -168,7 +168,12 @@ def render(path: Path, dirs: dict[str, str]) -> tuple[str, str]:
     found = re.search(r'data-sku="([^"]+)"', text)
     if not found:
         retired=re.findall(r"if \(\$sku === '([^']+)'\) return null;",CONFIG.read_text())
-        if path.name.split('-')[0] in retired and 'add-to-cart' not in text:
+        path_sku = path.name.split('-')[0]
+        # T2/T3 use a combined deny rule in products-config.php, which the
+        # single-SKU regex above cannot parse. Only archive a page when the
+        # SKU is absent from the sellable catalog AND no add-to-cart remains.
+        retired_by_catalog = path_sku in {'t2', 't3'} and path_sku not in dirs
+        if (path_sku in retired or retired_by_catalog) and 'add-to-cart' not in text:
             return text, ""
         return text, "нет data-sku"
     sku = found.group(1)
