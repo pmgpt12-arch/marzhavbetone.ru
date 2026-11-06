@@ -124,7 +124,7 @@ def main() -> int:
             "form_redirects_replaced": 1,
             "retired_cards_removed": int(FILES[rel.stem][3]),
             "p4_count_verified": int(FILES[rel.stem][4]),
-            "p4_file_count_fixed": int(FILES[rel.stem][4] and b"25 файла." in before),
+            "p4_file_count_fixed": int(FILES[rel.stem][4] and "25 файла." in before.decode("utf-8")),
         })
     receipt = {
         "status": "CANDIDATES_ONLY_NOT_DEPLOYED",
