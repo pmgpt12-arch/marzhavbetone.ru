@@ -826,3 +826,10 @@
   - products-storage/ARTIFACT-INVENTORY.json
   - tools/build_artifact_inventory.py
   решение: ''
+- id: test_nsp_free_funnel_current_skus
+  команда: python3 tools/test_nsp_free_funnel_current_skus.py
+  класс: public
+  блокирует: true
+  зачем: после бесплатной выдачи переход только на действующий P-SKU; один платный товар, без удалённых T1–T6 и старых количеств P4
+  требует: []
+  решение: ''
