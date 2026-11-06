@@ -24,6 +24,7 @@ from __future__ import annotations
 import ast
 import hashlib
 import importlib.util
+import json
 import re
 import shutil
 import subprocess
@@ -141,6 +142,28 @@ def test_расхождение_p5_обнаруживается(копия, ин
     итог = прогон(копия, "--check")
     assert итог.returncode == 1 and "p5: 29→30" in итог.stdout, итог.stdout
     assert карточка.read_text(encoding="utf-8").count("29 файлов") == 1, "--check modified a source file"
+
+
+def test_платный_счёт_совпадает_с_sha_пинованным_реестром(инструмент):
+    """All 11 paid SKU counts must follow the independently verified buyer ZIPs."""
+    registry = json.loads(
+        (КОРЕНЬ / "tools/reports/nsp-paid-master-counts-20261106.json")
+        .read_text(encoding="utf-8"))
+    факт = инструмент.счёт()
+    assert set(registry["count_by_sku"]) == {
+        "p1", "p2", "p3", "p4", "p5", "p7", "p8", "p9", "p10", "p11", "p13"
+    }
+    assert all(факт[k] == v for k, v in registry["count_by_sku"].items())
+    assert факт["p5"] == 30 and факт["p1"] == 18
+
+
+def test_пропажа_платного_реестра_останавливает_проверку(копия):
+    """Fail closed rather than falling back to obsolete unpacked paid directories."""
+    registry = копия / "tools/reports/nsp-paid-master-counts-20261106.json"
+    registry.unlink()
+    result = прогон(копия, "--check")
+    assert result.returncode != 0
+    assert "Нет проверенного реестра платных ZIP" in result.stderr
 
 
 # --- Изолированная копия: --write не трогает бесплатные страницы --------------
