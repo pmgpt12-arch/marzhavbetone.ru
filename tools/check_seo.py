@@ -40,7 +40,7 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SITE = "https://marzhavbetone.ru"
+SITE = "https://nastoronepodryadchika.ru"
 SEMANTIC = ROOT / "content" / "strategy" / "semantic-core.csv"
 
 # Страницы, которых в поиске быть не должно: служебные экраны кассы и

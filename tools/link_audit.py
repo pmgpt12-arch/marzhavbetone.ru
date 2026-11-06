@@ -22,7 +22,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SITE = "https://marzhavbetone.ru"
+SITE = "https://nastoronepodryadchika.ru"
 ARTICLES = ROOT / "articles"
 PRODUCTS = ROOT / "products"
 INDEX = ARTICLES / "index.html"

@@ -18,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from link_audit import (GENERATED_AT_DEPLOY, ROOT, SITE, link_integrity,  # noqa: E402
                         resolve_target)
+from check_seo import SITE as SEO_SITE  # noqa: E402
 
 # Файл кладётся в корень: разрешение относительных ссылок идёт от страницы,
 # и подмена каталога сделала бы проверку не той, что работает на сайте.
@@ -55,6 +56,14 @@ def write_probe(body: str) -> None:
         f"</head><body>{body}</body></html>",
         encoding="utf-8",
     )
+
+
+
+def test_canonical_host_is_the_active_nsp_domain() -> None:
+    """Migration gate: both SEO and link checks must audit the live domain."""
+    expected = "https://nastoronepodryadchika.ru"
+    assert SITE == expected, "link audit uses a retired canonical domain"
+    assert SEO_SITE == expected, "SEO audit uses a retired canonical domain"
 
 
 def test_resolve_target_ignores_external_and_anchors() -> None:
