@@ -20,7 +20,7 @@ FILES = {
               "t1-pervyy-shag-pri-neoplate", "p1-oplata-po-ks2", True, False),
     "uderzhaniya": ("6a333059adb5917281a2e3f426c6bb6cd1d3668632bb8afe516826a15a83e1d1",
                    "t3-odnostoronniy-akt-i-zachet", "p5-shtrafy-uderzhaniya", False, False),
-    "bankrotstvo": ("5a6534374bb1d9ec61f81256a0fa8b356e0e8b5bdf379ac1472a9029c951a08f",
+    "bankrotstvo": ("5a6534374bb1b9ec61f81256a0fa8b356e0e8b5bdf379ac1472a9029c951a08f",
                    "t4-genpodryadchik-bankrotitsya", "p9-bankrotstvo-genpodryadchika", True, False),
     "avans": ("f83517c795c928a40f071209ff27b3e7485764621a1186849eb5e44852ef925c",
               "t5-trebuyut-vernut-avans", "p8-avans-po-dogovoru-subpodryada", True, False),
