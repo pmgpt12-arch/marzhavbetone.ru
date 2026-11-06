@@ -1,7 +1,10 @@
 {
-  "action": "mail-postflight",
-  "revision": 18,
-  "scope": "SAFE READ-ONLY postrelease mode; separate 11 paid master ZIP SHA/CRC audit completed as run 42133240407",
-  "source_pr": 698,
-  "private_qa_run": 42133240407
+  "action": "catalog-jsonld-preflight",
+  "revision": 19,
+  "scope": "READ ONLY exact one-file katalog.html 6 JSON-LD Product.description count changes; private staging only",
+  "source_pr": 700,
+  "source_issue": 699,
+  "source_sha256": "5074803de3aa2b2e78cbc40db0b2503699b627703a60325ce701d65c71064788",
+  "candidate_sha256": "d538b110da721b4349daa3e98615eba4095c37e24582dbbb154a0f4a4c34261c",
+  "no_publication": true
 }
