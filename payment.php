@@ -86,28 +86,8 @@ if ($email === '' && $phone === '') {
 $total = 0;
 $descriptionParts = [];
 $validatedItems = [];
-// T2/T3 were merged into P4/P5 and retired from NEW sales by owner decision.
-// Do NOT remove them from mvb_resolve_product(): paid historic orders still
-// rely on that shared function for webhook replay and download delivery.
-$retiredFromNewSales = ['t2', 't3'];
-$retiredNames = [];
-$catalogForRetirement = mvb_products();
-foreach ($retiredFromNewSales as $retiredSku) {
-    if (isset($catalogForRetirement[$retiredSku]['name'])) {
-        $retiredNames[] = $catalogForRetirement[$retiredSku]['name'];
-    }
-}
 foreach ($items as $item) {
-    $requestedItem = (array)$item;
-    $requestedSku = (string)($requestedItem['sku'] ?? '');
-    $requestedName = (string)($requestedItem['name'] ?? '');
-    if (in_array($requestedSku, $retiredFromNewSales, true)
-        || ($requestedName !== '' && in_array($requestedName, $retiredNames, true))) {
-        http_response_code(422);
-        echo json_encode(['ok' => false, 'message' => 'Товар снят с продажи. Выберите действующий комплект в каталоге.'], JSON_UNESCAPED_UNICODE);
-        exit;
-    }
-    $product = mvb_resolve_product($requestedItem);
+    $product = mvb_resolve_product((array)$item);
     if (!$product) {
         http_response_code(422);
         echo json_encode(['ok' => false, 'message' => 'Товар не найден в каталоге. Обновите страницу и соберите корзину заново.'], JSON_UNESCAPED_UNICODE);
