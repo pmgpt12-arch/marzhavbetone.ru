@@ -400,6 +400,10 @@ function mvb_resolve_product(array $item): ?array
     $catalog = mvb_products();
     $sku = (string)($item['sku'] ?? '');
     if ($sku === 't1') return null;
+    // T2 and T3 were merged into P4/P5; keep catalog records for past
+    // deliveries, but never accept NEW purchases even by a crafted SKU.
+    if ($sku === 't2') return null;
+    if ($sku === 't3') return null;
     if ($sku === 't4') return null;
     if ($sku === 't5') return null;
     if ($sku === 't6') return null;
@@ -410,6 +414,9 @@ function mvb_resolve_product(array $item): ?array
     $name = (string)($item['name'] ?? '');
     foreach ($catalog as $key => $product) {
         if ($key === 't1') continue;
+        // Old cart item names must not bypass the retired SKU gate.
+        if ($key === 't2') continue;
+        if ($key === 't3') continue;
         if ($key === 't4') continue;
         if ($key === 't5') continue;
         if ($key === 't6') continue;
