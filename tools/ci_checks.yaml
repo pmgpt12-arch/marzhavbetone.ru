@@ -131,6 +131,13 @@
   зачем: число файлов на страницах и в карточках против диска
   требует: []
   решение: ''
+- id: test_nsp_article_cta_prices
+  команда: python3 tools/test_nsp_article_cta_prices.py
+  класс: public
+  блокирует: true
+  зачем: 13 платных предложений в статьях — цены из утверждённого сервера, число файлов из настоящих pinned ZIP, четыре негативных теста
+  требует: []
+  решение: ''
 - id: test_nsp_paid_catalog_counts
   команда: python3 tools/test_nsp_paid_catalog_counts.py
   класс: public
