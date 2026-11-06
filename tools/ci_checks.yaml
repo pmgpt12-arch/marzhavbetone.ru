@@ -131,6 +131,13 @@
   зачем: число файлов на страницах и в карточках против диска
   требует: []
   решение: ''
+- id: test_nsp_paid_catalog_counts
+  команда: python3 tools/test_nsp_paid_catalog_counts.py
+  класс: public
+  блокирует: true
+  зачем: 11 платных карточек и JSON-LD против verified private buyer ZIP count, P3 семантика и две негативные регрессии
+  требует: []
+  решение: ''
 - id: test_sync_kit_file_counts
   команда: python3 tools/test_sync_kit_file_counts.py
   класс: public
