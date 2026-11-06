@@ -6,7 +6,7 @@ No real payments, provider requests, email or production files are accessed.
 """
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from hashlib import sha256
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from threading import Thread
@@ -67,6 +67,9 @@ class MockKassa(BaseHTTPRequestHandler):
 
 def main():
     assert shutil.which("php"), "PHP_NOT_AVAILABLE"
+    assert sha256((ROOT / "products-config.php").read_bytes()).hexdigest() == (
+        "61ea2d807aff9fd44f96fc4744f5bfe1204e0cd49d58968c5e04c0c5f6176634"
+    ), "CANDIDATE_PHP_SOURCE_SHA_DRIFT"
     with tempfile.TemporaryDirectory(prefix="nsp-retired-t2-t3-qa-") as tmp:
         base = Path(tmp)
         web, orders, masters = base / "web", base / "orders", base / "masters"
