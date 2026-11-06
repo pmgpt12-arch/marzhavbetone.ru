@@ -76,6 +76,12 @@ with tempfile.TemporaryDirectory(prefix="nsp-11-sku-validate-") as tmp:
     assert count == 1, 'TARGETED_GROUP_FIXTURE_NOT_UNIQUE'
     assert check(bad_group, False) == "REJECTED"
 
+    # Top navigation must match real group count even when cards remain correct.
+    bad_nav = exact_replace(source,
+        'href="#group-zakrytie-i-oplata">Закрытие и оплата<span>2</span>',
+        'href="#group-zakrytie-i-oplata">Закрытие и оплата<span>4</span>')
+    assert check(bad_nav, False) == "REJECTED"
+
     # Free-material coverage must remain exactly ten.
     bad_free = source.replace('class="product-card free"', 'class="product-card inactive"', 1)
     assert check(bad_free, False) == "REJECTED"
@@ -83,6 +89,6 @@ with tempfile.TemporaryDirectory(prefix="nsp-11-sku-validate-") as tmp:
 print(json.dumps({
     "status":"PASS", "approved_paid_skus":11, "retired_new_sales":["t2","t3"],
     "group_counts":[4,2,2,2,1], "free_materials":10,
-    "negative_mutations_rejected":4, "production_writes":0,
+    "negative_mutations_rejected":5, "production_writes":0,
     "orders_created":0, "paid_files_exported":0,
 }, ensure_ascii=False))
