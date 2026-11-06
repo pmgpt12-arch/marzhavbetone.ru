@@ -74,7 +74,7 @@ def patch_exact_live(name: str, blob: bytes, *, check_sha: bool = True) -> bytes
                 raise ValueError(f"{name}: P4 count neither old nor accepted")
         patched.append(line)
     candidate = "".join(patched)
-    if count_form != 1 or count_card != int(remove_card) or verified_p4 != int(replace_count):
+    if count_form != 1 or count_card > int(remove_card) or verified_p4 != int(replace_count):
         raise ValueError(f"{name}: unexpected edit count")
     if RETIRED.search(candidate) or candidate.count('class="product-card"') != 1:
         raise ValueError(f"{name}: retired SKU or duplicate card remains")
@@ -122,7 +122,7 @@ def main() -> int:
             "backup": str(backup.relative_to(args.output_dir)),
             "candidate": str(candidate.relative_to(args.output_dir)),
             "form_redirects_replaced": 1,
-            "retired_cards_removed": int(FILES[rel.stem][3]),
+            "retired_cards_removed": int(f'href="../products/{FILES[rel.stem][1]}.html"' in before.decode("utf-8")),
             "p4_count_verified": int(FILES[rel.stem][4]),
             "p4_file_count_fixed": int(FILES[rel.stem][4] and "25 файла." in before.decode("utf-8")),
         })
@@ -135,7 +135,7 @@ def main() -> int:
     }
     out = args.output_dir / "manifest.json"
     out.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("FREE_FUNNEL_LIVE_CANDIDATE_PASS files=6 forms=6 removed_cards=5 p4_verified=2 "
+    print("FREE_FUNNEL_LIVE_CANDIDATE_PASS files=6 forms=6 cards_checked=5 p4_verified=2 "
           f"manifest_sha256={digest(out.read_bytes())}")
     return 0
 
