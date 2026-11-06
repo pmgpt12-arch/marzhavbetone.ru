@@ -40,7 +40,7 @@ def verify_page(name: str, source: str) -> None:
     assert source.count('class="product-card"') == 1, f"{name}: not exactly one paid card"
     assert f'href="../products/{EXPECTED[name]}.html"' in source, f"{name}: paid card mismatch"
     if name in ("ispolnitelnaya-dokumentaciya", "akt-skrytyh-rabot"):
-        assert "30 файлов." in source and "25 файла." not in source, f"{name}: stale P4 count"
+        assert ("30 файлов:" in source or "30 файлов." in source) and "25 файла." not in source, f"{name}: stale P4 count"
 
 
 def must_fail(name: str, modified: str) -> None:
@@ -63,8 +63,10 @@ def main() -> None:
     must_fail("akt-skrytyh-rabot", pages["akt-skrytyh-rabot"].replace(
         "/products/" + old + ".html?utm_source",
         "/products/t2-peredacha-ispolnitelnoy-dokumentacii.html?utm_source", 1))
-    must_fail("ispolnitelnaya-dokumentaciya", pages["ispolnitelnaya-dokumentaciya"].replace(
-        "30 файлов.", "25 файла.", 1))
+    p4_page = pages["ispolnitelnaya-dokumentaciya"]
+    p4_current = "30 файлов:" if "30 файлов:" in p4_page else "30 файлов."
+    must_fail("ispolnitelnaya-dokumentaciya", p4_page.replace(
+        p4_current, "25 файла.", 1))
     must_fail("dengi", pages["dengi"].replace(
         "/products/p1-oplata-po-ks2.html?utm_source",
         "/products/p9-bankrotstvo-genpodryadchika.html?utm_source", 1))
