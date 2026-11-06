@@ -29,11 +29,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES = ROOT / "articles"
 DZEN_TITLES = ROOT / "data" / "site" / "dzen-titles.json"
-SITE = "https://marzhavbetone.ru"
-CHANNEL_TITLE = "Маржа в бетоне"
+SITE = "https://nastoronepodryadchika.ru"
+CHANNEL_TITLE = "На стороне подрядчика"
 CHANNEL_DESCRIPTION = (
-    "Разборы для строительных подрядчиков: как оформить работы, "
-    "защитить допработы и получить оплату."
+    "Практические материалы для исполнителей работ и услуг в строительстве: "
+    "как оформить работы, защитить допработы и получить оплату."
 )
 AUTHOR = "Александр Сергеев"
 MSK = timezone(timedelta(hours=3))
