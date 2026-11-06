@@ -120,7 +120,8 @@ def main():
             "$r['p5_ok']=mvb_resolve_product(['sku'=>'p5'])!==null;"
             "$r['test1_price']=mvb_resolve_product(['sku'=>'test1'])['price'];"
             "$r['active_paid']=array_values(array_filter(array_keys($c),"
-            " static fn($k)=>preg_match('/^p\\d+$/',$k)));"
+            " static fn($k)=>preg_match('/^p\\d+$/',$k) && "
+            "mvb_resolve_product(['sku'=>$k])!==null));"
             "$r['ttl_seconds']=DELIVERY_TTL_SECONDS;"
             "echo json_encode($r,JSON_UNESCAPED_UNICODE);"
         )
