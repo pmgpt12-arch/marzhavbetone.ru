@@ -23,7 +23,7 @@ jobs:
       - name: Read explicit action and configure bounded SSH
         run: |
           set -euo pipefail
-          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","p4p5-inspect","p4p5-preflight","p4p5-publish","titles-preflight","titles-publish","mail-preflight","mail-dry-run","mail-publish","mail-postflight","mail-canary","mail-source-compare","pinned-master-inspect"]; print(x["action"])')
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-final/request.json")); assert x["action"] in ["snapshot","dry-run","publish","p4p5-inspect","p4p5-preflight","p4p5-publish","titles-preflight","titles-publish","mail-preflight","mail-dry-run","mail-publish","mail-postflight","mail-canary","mail-source-compare","pinned-master-inspect","catalog-jsonld-preflight","catalog-jsonld-publish"]; print(x["action"])')
           echo "NSP_ACTION=$action" >> "$GITHUB_ENV"
           test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
           [[ "$PORT" =~ ^[0-9]+$ ]]
@@ -156,6 +156,13 @@ jobs:
             exit 1
           fi
           echo "NSP_SENDER_EXACT_LIVE_PUBLICATION_AND_VERIFY_PASS"
+      - name: One-file JSON-LD catalog counts via existing protected static transaction
+        if: env.NSP_ACTION == 'catalog-jsonld-preflight' || env.NSP_ACTION == 'catalog-jsonld-publish'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/nsp-final/catalog-jsonld-20261106/action.py
+          timeout 260s python3 tools/nsp-final/catalog-jsonld-20261106/action.py "$NSP_ACTION"
       - name: Publish P4v3 and P5v2 via SHA-pinned transactional runner
         if: env.NSP_ACTION == 'p4p5-preflight' || env.NSP_ACTION == 'p4p5-publish'
         run: python3 tools/nsp-final/p4p5-20261102/action.py
