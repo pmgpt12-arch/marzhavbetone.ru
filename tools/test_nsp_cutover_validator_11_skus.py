@@ -27,7 +27,7 @@ assert set(module.PRICES) == set().union(*map(set, module.GROUPS.values())), "PR
 
 source = (ROOT / "katalog.html").read_text(encoding="utf-8")
 assert source.count('data-sku="p1"') == 1
-assert source.count('data-price="2990000"') == 1
+assert source.count('data-sku="p1" data-price="2990000"') == 1
 assert source.count('class="product-card free"') == 10
 
 def exact_replace(text, old, new):
@@ -64,14 +64,16 @@ with tempfile.TemporaryDirectory(prefix="nsp-11-sku-validate-") as tmp:
     assert check(t2, False) == "REJECTED"
 
     # User-provided frontend prices must agree with the accepted server contract.
-    bad_price = exact_replace(source, 'data-price="2990000"', 'data-price="2990001"')
+    bad_price = exact_replace(source, 'data-sku="p1" data-price="2990000"',
+                              'data-sku="p1" data-price="2990001"')
     assert check(bad_price, False) == "REJECTED"
 
     # A catalog count must match the SKUs actually in its group.
     assert len(re.findall(r'id="group-zakrytie-i-oplata"', source)) == 1
-    bad_group = exact_replace(source,
-        '<span class="product-group-count">2</span></summary>',
-        '<span class="product-group-count">3</span></summary>')
+    group_pattern = (r'(<details[^>]*id="group-zakrytie-i-oplata"[^>]*>'
+                     r'[\s\S]*?class="product-group-count">)2(</span></summary>)')
+    bad_group, count = re.subn(group_pattern, lambda m: m[1] + '3' + m[2], source)
+    assert count == 1, 'TARGETED_GROUP_FIXTURE_NOT_UNIQUE'
     assert check(bad_group, False) == "REJECTED"
 
     # Free-material coverage must remain exactly ten.
