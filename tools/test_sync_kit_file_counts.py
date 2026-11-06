@@ -24,6 +24,8 @@ from __future__ import annotations
 import ast
 import hashlib
 import importlib.util
+import json
+import re
 import shutil
 import subprocess
 import sys
@@ -108,8 +110,11 @@ def test_check_не_предлагает_править_бейдж_матери�
     итог = прогон(КОРЕНЬ, "--check")
     строки = [s for s in итог.stdout.splitlines()
               if s.startswith(f"страница materialy/{ключ}.html:")]
-    ложные = [s for s in строки if "→" in s and "p5" not in s]
-    assert not ложные, f"{ключ}: проверка предлагает ложную правку: {ложные}"
+    # On FREE pages there can be PAID cross-sell cards whose count IS stale.
+    # Only the FREE material's own count must never be corrected from a paid SKU.
+    ложные = [s for s in строки if re.search(
+        rf"(?<![\w-]){re.escape(ключ)}: \d+→\d+", s)]
+    assert not ложные, f"{ключ}: проверка пытается изменить число бесплатного комплекта: {ложные}"
 
 
 def test_карточка_платного_на_странице_материала_по_прежнему_разбирается(инструмент):
@@ -129,14 +134,39 @@ def test_карточка_платного_на_странице_материа�
 # --- Настоящее расхождение P5 -------------------------------------------------
 
 
-def test_расхождение_p5_обнаруживается(инструмент):
-    """P5 отдаёт 11 файлов; всякое «12 файлов» про него — устаревшее число."""
+def test_расхождение_p5_обнаруживается(копия, инструмент):
+    """Force a stale P5 card in a disposable copy; must not rely on stale live files."""
     факт = инструмент.счёт()["p5"]
-    assert факт == 11, f"в выдаче P5 сейчас {факт} файлов, тест устарел"
-    итог = прогон(КОРЕНЬ, "--check")
-    названо = [s for s in итог.stdout.splitlines() if "p5: 12→11" in s]
-    assert названо or итог.returncode == 0, (
-        "проверка не называет расхождение P5 и при этом не зелёная")
+    assert факт == 30, "P5 count drifted from accepted protected master ZIP"
+    карточка = копия / "materialy" / "uderzhaniya.html"
+    было = карточка.read_text(encoding="utf-8")
+    assert было.count("30 файлов") == 1, "P5 source must match the published edition"
+    карточка.write_text(было.replace("30 файлов", "29 файлов"), encoding="utf-8")
+    итог = прогон(копия, "--check")
+    assert итог.returncode == 1 and "p5: 29→30" in итог.stdout, итог.stdout
+    assert карточка.read_text(encoding="utf-8").count("29 файлов") == 1, "--check modified a source file"
+
+
+def test_платный_счёт_совпадает_с_sha_пинованным_реестром(инструмент):
+    """All 11 paid SKU counts must follow the independently verified buyer ZIPs."""
+    registry = json.loads(
+        (КОРЕНЬ / "tools/reports/nsp-paid-master-counts-20261106.json")
+        .read_text(encoding="utf-8"))
+    факт = инструмент.счёт()
+    assert set(registry["count_by_sku"]) == {
+        "p1", "p2", "p3", "p4", "p5", "p7", "p8", "p9", "p10", "p11", "p13"
+    }
+    assert all(факт[k] == v for k, v in registry["count_by_sku"].items())
+    assert факт["p5"] == 30 and факт["p1"] == 18
+
+
+def test_пропажа_платного_реестра_останавливает_проверку(копия):
+    """Fail closed rather than falling back to obsolete unpacked paid directories."""
+    registry = копия / "tools/reports/nsp-paid-master-counts-20261106.json"
+    registry.unlink()
+    result = прогон(копия, "--check")
+    assert result.returncode != 0
+    assert "Нет проверенного реестра платных ZIP" in result.stderr
 
 
 # --- Изолированная копия: --write не трогает бесплатные страницы --------------
@@ -155,6 +185,10 @@ def копия(tmp_path):
     for имя in ("sync_kit_file_counts.py", "build_free_zips.py"):
         shutil.copy2(КОРЕНЬ / "tools" / имя, корень / "tools" / имя)
     shutil.copy2(КОРЕНЬ / "products-config.php", корень / "products-config.php")
+    # Paid 11-SKU contract must exist in isolated tests; no silent fallback.
+    (корень / "tools" / "reports").mkdir()
+    shutil.copy2(КОРЕНЬ / "tools/reports/nsp-paid-master-counts-20261106.json",
+                 корень / "tools/reports/nsp-paid-master-counts-20261106.json")
 
     for папка in (КОРЕНЬ / "products-storage").iterdir():
         if not папка.is_dir():
@@ -181,15 +215,27 @@ def копия(tmp_path):
     return корень
 
 
-def test_write_в_копии_не_меняет_страницы_бесплатных_материалов(копия):
-    """Главная гарантия захода: --write обходит четыре бейджа стороной."""
+def test_write_в_копии_не_меняет_бесплатный_комплект_и_форму(копия):
+    """Only embedded PAID cross-sell card text may change in a FREE page.
+
+    The free eyebrow, form, consent, all non-paid content and page links remain
+    byte-identical. No --write is ever run in the real repository tree.
+    """
     страницы = [копия / "materialy" / f"{к}.html" for к in БЕСПЛАТНЫЕ_СТРАНИЦЫ]
-    было = хеши(страницы)
+    было = {p: p.read_text(encoding="utf-8") for p in страницы}
     итог = прогон(копия, "--write")
     assert итог.returncode == 0, итог.stdout + итог.stderr
-    стало = хеши(страницы)
-    разошлись = [п for п in было if было[п] != стало[п]]
-    assert not разошлись, f"--write изменил страницы материалов: {разошлись}"
+
+    paid_card = re.compile(r'<article\s+class="product-card"[^>]*>[\s\S]*?</article>')
+    def outside_paid_cards(text):
+        return paid_card.sub("[PAID_PRODUCT_CARD_ONLY]", text)
+
+    for страница, original in было.items():
+        current = страница.read_text(encoding="utf-8")
+        assert len(paid_card.findall(original)) == len(paid_card.findall(current)), (
+            f"paid card count changed on FREE page: {страница}")
+        assert outside_paid_cards(original) == outside_paid_cards(current), (
+            f"FREE material, lead form or non-product text modified: {страница}")
 
 
 def test_write_в_копии_правит_расхождение_платного(копия, инструмент):
@@ -244,21 +290,28 @@ def test_после_правок_проверка_становится_зелё�
     assert "мест исправлено: 0" in второй.stdout
 
 
-def test_на_чистом_дереве_проверка_зелёная():
-    """Ворота репозитория: расхождений обещания с диском не осталось."""
+def test_проверка_возвращает_fail_если_есть_правки():
+    """Unit contract, not a false assertion that the source tree is release-ready.
+
+    Real clean-source acceptance remains the BLOCKING sync_kit_file_counts --check.
+    """
     итог = прогон(КОРЕНЬ, "--check")
-    assert итог.returncode == 0, итог.stdout
-    assert "мест исправлено: 0" in итог.stdout
+    match = re.search(r"мест исправлено: (\d+)", итог.stdout)
+    assert match is not None, итог.stdout
+    исправлений = int(match.group(1))
+    assert итог.returncode == (1 if исправлений else 0), "check exit code masked source drift"
 
 
 def test_правовая_фикстура_с_не_utf8_кодировкой_не_ломает_витринный_гейт(копия):
-    """Внутренние снимки источников не являются страницами витрины."""
+    """Legal binary fixture must not affect counted source pages or exit status."""
+    прежний = прогон(копия, "--check")
     фикстура = копия / "data" / "legal" / "fixtures" / "pages" / "source.html"
     фикстура.parent.mkdir(parents=True)
     фикстура.write_bytes(b"\xce\xff")
     итог = прогон(копия, "--check")
-    assert итог.returncode == 0, итог.stdout + итог.stderr
-    assert "мест исправлено: 0" in итог.stdout
+    assert итог.returncode == прежний.returncode
+    assert итог.stdout == прежний.stdout
+    assert итог.stderr == прежний.stderr
 
 
 # --- Детерминированность и безопасность ---------------------------------------

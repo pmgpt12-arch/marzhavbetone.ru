@@ -90,9 +90,34 @@ def папки() -> dict[str, str]:
 
 
 def счёт() -> dict[str, int]:
-    return {sku: len([f for f in (СКЛАД / d).iterdir()
-                      if f.is_file() and f.name not in СЛУЖЕБНЫЕ])
-            for sku, d in папки().items() if (СКЛАД / d).is_dir()}
+    """Current 11 PAID ZIPs: verified immutable buyer masters, not old folders.
+
+    Legacy or archived SKUs retain their historical unpacked-directory counts.
+    A missing or changed approved manifest MUST stop the audit, never silently
+    fall back to the old source. Free materials use счёт_материалов() separately.
+    """
+    historical = папки()
+    result = {sku: len([f for f in (СКЛАД / folder).iterdir()
+                         if f.is_file() and f.name not in СЛУЖЕБНЫЕ])
+              for sku, folder in historical.items() if (СКЛАД / folder).is_dir()}
+    registry = КОРЕНЬ / "tools/reports/nsp-paid-master-counts-20261106.json"
+    try:
+        approved = json.loads(registry.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise SystemExit("Нет проверенного реестра платных ZIP: " + type(exc).__name__)
+    source = approved.get("evidence", {})
+    counts = approved.get("count_by_sku")
+    approved_skus = {"p1", "p2", "p3", "p4", "p5", "p7", "p8", "p9",
+                     "p10", "p11", "p13"}
+    if (approved.get("schema") != "NSP_PAID_MASTER_COUNT_CONTRACT_20261106_v1"
+            or source.get("read_only_action_run") != 42133240407
+            or source.get("result") != "PASS_ALL_11_REAL_PRIVATE_PINNED_ZIPS"
+            or not isinstance(counts, dict) or set(counts) != approved_skus
+            or not all(type(v) is int and 1 <= v <= 100 for v in counts.values())
+            or not approved_skus <= set(historical)):
+        raise SystemExit("Реестр платных ZIP не соответствует принятой редакции")
+    result.update(counts)
+    return result
 
 
 def материалы() -> dict[str, str]:
