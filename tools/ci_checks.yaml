@@ -56,6 +56,13 @@
   зачем: 'сторож самого раннера: блокирующая красит прогон, падение одной не отменяет остальные'
   требует: []
   решение: ''
+- id: test_nsp_brand_css_version
+  команда: python3 tools/test_nsp_brand_css_version.py
+  класс: public
+  блокирует: true
+  зачем: CSS brand-approved-2026.css — точный SHA-1 во всех HTML, старые версии и отсутствие CSS отклоняются
+  требует: []
+  решение: ''
 - id: asset_versions
   команда: python3 tools/asset_versions.py --check
   класс: public
