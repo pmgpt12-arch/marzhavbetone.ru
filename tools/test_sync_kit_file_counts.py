@@ -131,6 +131,32 @@ def test_карточка_платного_на_странице_материа�
     assert карточные, "карточка P5 на странице материала перестала опознаваться"
 
 
+@pytest.mark.parametrize(
+    "материал,sku,старое",
+    [("dengi", "p1", 20), ("raschet-metrami", "p11", 8)],
+)
+def test_платная_карточка_с_бесплатной_страницы_имеет_верный_счёт(
+        копия, инструмент, материал, sku, старое):
+    """Paid cross-sell claims use pinned buyer ZIP counts, never FREE badge counts."""
+    страница = копия / "materialy" / (материал + ".html")
+    html = страница.read_text(encoding="utf-8")
+    блоки = re.findall(r'<article class="product-card"[^>]*>[\s\S]*?</article>', html)
+    подходящие = [b for b in блоки if f"/products/{sku}-" in b]
+    assert len(подходящие) == 1, f"{sku}: paid card missing or ambiguous"
+    current = инструмент.счёт()[sku]
+    card = подходящие[0]
+    assert card.count(f"{current} файлов") == 1, f"{sku}: cross-sell count disagrees with pinned ZIP"
+
+    # Deliberately reintroduce the old number INSIDE the paid card only.
+    outdated = card.replace(f"{current} файлов", f"{старое} файлов")
+    assert outdated != card
+    страница.write_text(html.replace(card, outdated, 1), encoding="utf-8")
+    check = прогон(копия, "--check")
+    assert check.returncode == 1
+    assert f"{sku}: {старое}→{current}" in check.stdout, check.stdout
+    assert outdated in страница.read_text(encoding="utf-8"), "--check modified source"
+
+
 # --- Настоящее расхождение P5 -------------------------------------------------
 
 
