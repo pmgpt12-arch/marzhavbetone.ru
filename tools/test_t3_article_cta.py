@@ -1,31 +1,7 @@
 #!/usr/bin/env python3
-"""Ступень t3 доступна из статей, где разобрана её ситуация, и по своей цене.
+"""T3 retirement: no legacy purchase links in approved articles or diagnosis.
 
-Комплект «Односторонний акт или зачёт: возражения в срок» — входная ступень
-двух кластеров диагностики: «Работы выполнены, но не приняты» (S-2) и
-«Часть суммы удержана» (S-4). До 19.09.2026 из статей на него не вело ни
-одной ссылки.
-
-Проверка закрывает этот разрыв и держит две вещи, обе — состояние сайта:
-
-  · в двух статьях, где связка доказана, ссылка на карточку t3 есть;
-  · названная рядом с ней цена совпадает с ценой в `products-config.php` —
-    иначе статья и страница оплаты разойдутся молча.
-
-Своей копии названия, адреса и цены у проверки нет: всё берётся из
-конфигурации, единственного места, где это задано.
-
-Списка «сюда ссылку не ставить» здесь нет намеренно. Где ставить ссылку, а
-где нет, в спорных случаях решает владелец; проверка, запрещающая ему
-поставить её, подменяет решение и делает его правку красным CI. Поэтому
-список только положительный и только из доказанных случаев.
-
-Требования к тексту подписи ссылки проверка тоже не предъявляет: соседние
-строки-ступени на сайте сокращают названия товаров («Заказчик не
-оплачивает работы» вместо полного), и правило «подпись = полное имя»
-действовало бы на два выхода из сорока одной статьи.
-
-    python3 tools/test_t3_article_cta.py
+Active P3/P5 CTA prices must still match server prices. No payments or network.
 """
 from __future__ import annotations
 
@@ -35,101 +11,88 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-ARTICLES = ROOT / "articles"
-
-SKU = "t3"
-
-# Статьи, где связка с t3 доказана содержанием и графом продукта.
-ОБЯЗАНЫ_ВЕСТИ = {
-    "raboty-ne-prinyaty":
-        "разбирает односторонний акт и называет действие t3 — возражение в срок",
-    "garantiynoe-uderzhanie-v-ks-2-i-ks-3":
-        "разбирает переименование удержания в зачёт по ст. 410 ГК РФ",
+ROOT = Path(__file__).resolve().parents[1]
+CONFIG = (ROOT / "products-config.php").read_text(encoding="utf-8")
+EXPECTED = {
+    "raboty-ne-prinyaty": ("p3", "p3-shablony-ks2-ks3.html"),
+    "garantiynoe-uderzhanie-v-ks-2-i-ks-3": ("p5", "p5-shtrafy-uderzhaniya.html"),
 }
+REMOVED = "/products/t3-odnostoronniy-akt-i-zachet.html"
 
 
-def канон() -> tuple[str, int]:
-    """Адрес карточки и цена t3 — из конфигурации сайта, а не отсюда."""
-    config = (ROOT / "products-config.php").read_text(encoding="utf-8")
-    block = config[config.index("function mvb_products()"):]
-    m = re.search(rf"'{SKU}'\s*=>\s*\[\s*\n\s*'name'\s*=>\s*'[^']*',"
-                  rf"\s*\n\s*'price'\s*=>\s*(\d+)", block)
-    assert m, f"{SKU} не найден в products-config.php"
-
-    карточки = sorted(p.name for p in (ROOT / "products").glob(f"{SKU}-*.html"))
-    assert len(карточки) == 1, f"ожидалась одна карточка {SKU}, найдено {карточки}"
-    return f"/products/{карточки[0]}", int(m.group(1)) // 100
+def server_price(sku: str) -> int:
+    section = CONFIG[CONFIG.index("function mvb_products()"):]
+    match = re.search(
+        rf"'{re.escape(sku)}'\s*=>\s*\[\s*'name'\s*=>\s*'(?:[^'\\]|\\.)*'"
+        rf"\s*,\s*'price'\s*=>\s*(\d+)",
+        section, re.S)
+    assert match, f"active {sku} missing from products-config.php"
+    return int(match.group(1)) // 100
 
 
-def статья(slug: str) -> str:
-    return html.unescape((ARTICLES / f"{slug}.html").read_text(encoding="utf-8"))
+def article(slug: str) -> str:
+    return html.unescape((ROOT / "articles" / (slug + ".html")).read_text(encoding="utf-8"))
 
 
-def _цифры(текст: str) -> str:
-    return re.sub(r"\D", "", текст)
+def check_article(slug: str, source: str) -> None:
+    sku, page = EXPECTED[slug]
+    assert REMOVED not in source, f"{slug}: retired T3 cross sell restored"
+    main_cta = re.search(r'<div class="article-cta"[^>]*>(.*?)</div>', source, re.S)
+    assert main_cta, f"{slug}: no CTA"
+    body = main_cta.group(1)
+    assert f'href="/products/{page}"' in body, f"{slug}: approved core missing"
+    visible = re.search(r'<p[^>]*>\s*([\d\s\u00a0]+)\s*₽\s*</p>', body)
+    assert visible, f"{slug}: main CTA price missing"
+    amount = int(re.sub(r"\D", "", visible.group(1)))
+    assert amount == server_price(sku), f"{slug}: CTA price {amount} vs server {server_price(sku)}"
+    if sku == "p5":
+        assert "30 файлов." in body and "11 файлов." not in body, f"{slug}: P5 edition count stale"
 
 
-def test_утверждённые_статьи_ведут_на_t3() -> None:
-    адрес, _ = канон()
-    нет = [f"{slug}: нет ссылки на {адрес} — {причина}"
-           for slug, причина in sorted(ОБЯЗАНЫ_ВЕСТИ.items())
-           if адрес not in статья(slug)]
-    assert not нет, "\n      ".join([""] + нет)
+def diagnostic_items(source: str):
+    m = re.search(r"const SCENARIOS = (\[.*?\]);", source, re.S)
+    assert m, "no diagnosis scenario JSON"
+    return json.loads(m.group(1))
 
 
-def test_цена_рядом_со_ссылкой_совпадает_с_конфигурацией() -> None:
-    """Цена в CTA — не независимый литерал, а то же число, что в каталоге.
-
-    Без этой сверки правка цены в `products-config.php` оставляет в статьях
-    прежнюю, и расхождение видит только покупатель на странице оплаты.
-    """
-    адрес, цена = канон()
-    беды = []
-    for slug in sorted(ОБЯЗАНЫ_ВЕСТИ):
-        текст = статья(slug)
-        названо = re.findall(
-            rf'href="{re.escape(адрес)}"[^>]*>.*?</a>\s*,\s*([\d\s  ]+)\s*₽',
-            текст, re.S)
-        if not названо:
-            беды.append(f"{slug}: рядом со ссылкой на t3 цена не названа")
-            continue
-        for найдено in названо:
-            if _цифры(найдено) != str(цена):
-                беды.append(f"{slug}: в статье «{найдено.strip()} ₽», "
-                            f"в products-config.php {цена} ₽")
-    assert not беды, "\n      ".join([""] + беды)
+def check_diagnosis(source: str) -> None:
+    assert REMOVED not in source, "retired T3 still linked by diagnosis"
+    scenarios = {x["id"]: x for x in diagnostic_items(source)}
+    for sid, (sku, page) in (("S-2", EXPECTED["raboty-ne-prinyaty"]),
+                             ("S-4", EXPECTED["garantiynoe-uderzhanie-v-ks-2-i-ks-3"])):
+        row = scenarios[sid]
+        assert row.get("entry") is None, f"{sid}: retired entry revived"
+        assert row["core"]["url"] == "/products/" + page, f"{sid}: active core mismatch"
+        assert row["core"]["price"] == server_price(sku), f"{sid}: core price mismatch"
 
 
-def test_t3_остаётся_входной_ступенью_своих_кластеров() -> None:
-    """Основание связки — граф продукта, а не память автора.
-
-    Перестанет t3 быть входной ступенью кластеров ks и uderzhanie —
-    основание ставить его в эти статьи исчезнет, и проверка это назовёт.
-    """
-    адрес, _ = канон()
-    source = (ROOT / "diagnostika.html").read_text(encoding="utf-8")
-    scenarios = json.loads(re.search(r"const SCENARIOS = (\[.*?\]);",
-                                     source, re.S).group(1))
-    кластеры = {sc["pain_id"] for sc in scenarios
-                if (sc.get("entry") or {}).get("url") == адрес}
-    assert {"ks", "uderzhanie"} <= кластеры, кластеры
+def must_fail(fn, *args) -> None:
+    try:
+        fn(*args)
+    except AssertionError:
+        return
+    raise AssertionError("negative mutant passed validation")
 
 
-def main() -> int:
-    tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
-    failed = 0
-    for t in tests:
-        try:
-            t()
-        except AssertionError as e:
-            failed += 1
-            print(f"  ✗ {t.__name__}: {str(e)[:400]}")
-        else:
-            print(f"  ✓ {t.__name__}")
-    print(f"\nПроверок {len(tests)}, упало {failed}.")
-    return 1 if failed else 0
+def main() -> None:
+    assert not re.search(r"'t3'\s*=>\s*\[", CONFIG), "T3 active in server price list"
+    for slug in EXPECTED:
+        source = article(slug)
+        check_article(slug, source)
+    diagnosis = (ROOT / "diagnostika.html").read_text(encoding="utf-8")
+    check_diagnosis(diagnosis)
+
+    a = article("raboty-ne-prinyaty")
+    must_fail(check_article, "raboty-ne-prinyaty",
+              a.replace("</div>", '<a href="' + REMOVED + '">old T3</a></div>', 1))
+    b = article("garantiynoe-uderzhanie-v-ks-2-i-ks-3")
+    must_fail(check_article, "garantiynoe-uderzhanie-v-ks-2-i-ks-3",
+              b.replace(">29 900 ₽</p>", ">29 ₽</p>", 1))
+    must_fail(check_diagnosis,
+              diagnosis.replace('"id":"S-2"', '"id":"S-2"', 1).replace(
+                  '"entry":null', '"entry":{"url":"' + REMOVED + '","price":14900}', 1))
+    print("RETIRED_T3_ARTICLE_DIAG_PASS articles=2 scenarios=2 negative_mutations=3")
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main() or 0)
