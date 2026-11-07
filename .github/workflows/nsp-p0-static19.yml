@@ -1,0 +1,65 @@
+name: NSP P0 - explicitly approved static 19 only
+
+on:
+  push:
+    branches:
+      - release/nsp-p0-static19-20261107
+    paths:
+      - tools/nsp-p0-static19/request.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  approved-static19:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+    steps:
+      - name: Check out exact release revision
+        uses: actions/checkout@v4
+      - name: Preflight owner scope, release SHA and SSH credential presence
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
+          python3 - <<'PY'
+          import json, hashlib, pathlib
+          p=pathlib.Path("tools/nsp-p0-static19")
+          req=json.loads((p/"request.json").read_text())
+          assert req["action"] in ("dry-run","publish")
+          assert req["owner_approval_issue"]==707
+          assert req["approved_matrix_sha256"]=="578157c15043ace0cb05a5518dc30945939b233dea228f223f7b649678adf004"
+          assert hashlib.sha256((p/"manifest.json").read_bytes()).hexdigest()=="d1b9c5711b26845e124813e812b5ded16640852b0f8b2b8446530d0192a4f12e"
+          print("OWNER_SCOPE_AND_MANIFEST_PIN_PASS")
+          PY
+      - name: Prepare bounded SSH transport from existing deploy secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/nsp_p0_key
+          chmod 600 ~/.ssh/nsp_p0_key
+          ssh-keygen -y -P '' -f ~/.ssh/nsp_p0_key > /dev/null
+          timeout 16s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          test -s ~/.ssh/known_hosts
+      - name: Atomic transaction - no generic deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/nsp-p0-static19/release.py
+      - name: Preserve non-secret signed-by-SHA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nsp-static19-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/nsp-p0-static19-evidence/
+          retention-days: 30
