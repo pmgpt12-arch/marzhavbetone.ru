@@ -1,0 +1,99 @@
+name: NSP P0 - owner-approved one PHP T2 T3 removal
+
+on:
+  push:
+    branches:
+      - audit/nsp-p0-live-php-sha-readonly-20261107
+    paths:
+      - tools/nsp-php-t23/request.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  single-php-update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+    steps:
+      - name: Checkout exact deployment revision
+        uses: actions/checkout@v4
+
+      - name: Owner scope and SSH setup
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
+          python3 - <<'PY'
+          import json
+          req=json.load(open("tools/nsp-php-t23/request.json",encoding="utf-8"))
+          assert req=={"action":"publish-one-php","owner_approval_issue":707,"file":"products-config.php","retired_skus":["t2","t3"],"other_files":False}
+          print("OWNER_PHP_ONLY_APPROVAL_SCOPE_PASS")
+          PY
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/nsp_p0_key
+          chmod 600 ~/.ssh/nsp_p0_key
+          ssh-keygen -y -P '' -f ~/.ssh/nsp_p0_key >/dev/null
+          timeout 16s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          test -s ~/.ssh/known_hosts
+
+      - name: Fetch exact live PHP privately and test single-file candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          SSH=(ssh -p "$PORT" -i "$HOME/.ssh/nsp_p0_key" -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=12)
+          umask 077
+          LIVE="$RUNNER_TEMP/nsp-live-php-private"
+          CANDIDATE="$RUNNER_TEMP/nsp-candidate-php-private"
+          RECEIPT="$RUNNER_TEMP/nsp-php-receipt-private.json"
+          timeout 30s "${SSH[@]}" "$SSH_USER@$HOST" 'set -eu; p="$HOME/www/nastoronepodryadchika.ru/products-config.php"; test -f "$p" && test ! -L "$p"; cat "$p"' > "$LIVE"
+          sha256sum "$LIVE" | grep -q '^12abc5750cc7f1d223cbeb002628338e2261e85e4bd4c3d6b8988cd7da295934  '
+          python3 tools/nsp-php-t23/patch.py "$LIVE" "$CANDIDATE" "$RECEIPT"
+          echo "CANDIDATE_SHA=$(sha256sum "$CANDIDATE" | cut -d' ' -f1)" >> "$GITHUB_ENV"
+          echo "PHP_LIVE_BASELINE_AND_LOCAL_SYNTHETIC_PASS"
+          rm -f "$LIVE"
+
+      - name: Private hosting backup, atomic one-file replacement and native postflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          SSH=(ssh -p "$PORT" -i "$HOME/.ssh/nsp_p0_key" -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=12)
+          SCP=(scp -q -P "$PORT" -i "$HOME/.ssh/nsp_p0_key" -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=12)
+          REMOTE="$SSH_USER@$HOST"
+          STAGE="nsp-migration-private/php-t23-$GITHUB_RUN_ID"
+          timeout 30s "${SSH[@]}" "$REMOTE" "umask 077; test ! -e \"\$HOME/$STAGE\"; mkdir -p \"\$HOME/$STAGE\"; chmod 700 \"\$HOME/$STAGE\""
+          timeout 45s "${SCP[@]}" "$RUNNER_TEMP/nsp-candidate-php-private" "$REMOTE:$STAGE/candidate.php"
+          timeout 45s "${SCP[@]}" tools/nsp-php-t23/apply.sh "$REMOTE:$STAGE/apply.sh"
+          timeout 65s "${SSH[@]}" "$REMOTE" "bash \"\$HOME/$STAGE/apply.sh\" '$CANDIDATE_SHA' '$GITHUB_RUN_ID'"
+          rm -f "$RUNNER_TEMP/nsp-candidate-php-private"
+          echo "PHP_ONLY_RELEASE_AND_PRIVATE_BACKUP_PASS"
+
+      - name: Publish hash-only receipt to CI artifacts
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,os,pathlib
+          private=json.load(open(os.environ["RUNNER_TEMP"]+"/nsp-php-receipt-private.json"))
+          public={"status":"PHP_T23_DEPLOY_PASS","source_sha256":private["live_sha256"],"candidate_sha256":private["candidate_sha256"],"tests":private["tests"],"backup":"private on hosting only","run_id":os.environ["GITHUB_RUN_ID"],"scope":"products-config.php only"}
+          target=pathlib.Path(os.environ["RUNNER_TEMP"])/"nsp-php-only-receipt.json"
+          target.write_text(json.dumps(public,ensure_ascii=False,indent=2)+"\n")
+          print("RECEIPT_HASH_ONLY_AND_SCOPE_PASS")
+          PY
+
+      - name: Archive non-sensitive receipt
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nsp-p0-t23-php-only-${{ github.run_id }}
+          path: ${{ runner.temp }}/nsp-php-only-receipt.json
+          retention-days: 30
