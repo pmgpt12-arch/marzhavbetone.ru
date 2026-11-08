@@ -2,6 +2,10 @@ name: NSP PR719 targeted HTML only
 on:
   workflow_dispatch:
     inputs:
+      nav_only:
+        description: "Rename free navigation to templates"
+        type: boolean
+        default: false
       discover:
         description: 'Read-only discovery of actual served site root'
         required: true
@@ -51,8 +55,13 @@ jobs:
         if: ${{ inputs.probe_paths == true }}
         run: |
           ssh -i ~/.ssh/deploy_key -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -p "$SSH_PORT" "$USER@$HOST" 'find "$HOME/www" -maxdepth 4 -name katalog.html -type f -print -exec sha256sum {} \; 2>/dev/null | head -40'
+      - name: Rename navigation only
+        if: ${{ inputs.nav_only }}
+        env:
+          APPLY: ${{ inputs.apply }}
+        run: python3 tools/nsp_nav_release.py
       - name: Read production, patch, validate, backup and optionally upload
-        if: ${{ !inputs.probe_paths && !inputs.discover }}
+        if: ${{ !inputs.nav_only && !inputs.probe_paths && !inputs.discover }}
         env:
           APPLY: ${{ inputs.apply }}
         run: |
