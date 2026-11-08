@@ -59,17 +59,26 @@ def transform(path,old):
     assert h and [x[0] for x in NAV]==re.findall(r'<a href="[^"]+"(?: class="is-current" aria-current="page")?>([^<]+)</a>',h.group())
     assert new.count('id="cart-toggle"')==1 and new.count('id="cart-panel"')==1
     anchor_pat=r'<a\b[^>]*\bhref="([^"]+)"'
-    assert collections.Counter(re.findall(anchor_pat,old))==collections.Counter(re.findall(anchor_pat,new)),("anchors",path)
+    old_body=old[:match.start()]+old[match.end():]
+    new_header=HEADER_RE.search(new)
+    new_body=new[:new_header.start()]+new[new_header.end():]
+    assert collections.Counter(re.findall(anchor_pat,old_body))==collections.Counter(re.findall(anchor_pat,new_body)),("content anchors",path)
     for field in ("data-sku","data-price","data-product","data-product-id"):
         pat=field+r'="[^"]*"'
         assert re.findall(pat,old)==re.findall(pat,new),(path,field)
     return new
-paths=remote("cd "+shlex.quote(site)+" && find . -maxdepth 3 -type f -name '*.html' ! -path '*/rebrand-preview*' -print").decode().splitlines()
-paths=[p[2:] for p in paths if p.startswith("./")]
-assert len(paths)>=80 and len(paths)<220 and {"index.html","katalog.html","materialy/index.html","products/p1-oplata-po-ks2.html"}<=set(paths),len(paths)
+# One bounded read-only SSH snapshot rather than an SSH session per page.
+archive=remote("cd "+shlex.quote(site)+" && find . -maxdepth 3 -type f -name '*.html' ! -path '*/rebrand-preview*' -print0 | tar --null -T - -czf -",timeout=90)
+snapshot={}
+with tarfile.open(fileobj=io.BytesIO(archive),mode="r:gz") as tar:
+    for item in tar.getmembers():
+        if not item.isfile():continue
+        p=item.name.removeprefix("./")
+        assert ".." not in pathlib.PurePosixPath(p).parts
+        snapshot[p]=tar.extractfile(item).read()
+assert 80<=len(snapshot)<220 and {"index.html","katalog.html","materialy/index.html","products/p1-oplata-po-ks2.html"}<=set(snapshot),len(snapshot)
 original={};candidate={};untouched=[]
-for path in sorted(paths):
-    b=remote("cat "+shlex.quote(site+"/"+path),timeout=20)
+for path,b in sorted(snapshot.items()):
     try:old=b.decode("utf-8")
     except UnicodeDecodeError:raise RuntimeError("Invalid UTF-8: "+path)
     changed=transform(path,old)
