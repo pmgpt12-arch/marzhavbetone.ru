@@ -20,6 +20,29 @@ assert cart_match, "canonical cart UI not found"
 CART_HTML=cart_match.group().strip()
 assert all('id="'+id+'"' in CART_HTML for id in ("cart-panel","cart-close","cart-empty","cart-items","cart-total","cart-checkout","cart-backdrop"))
 css=(BASE/"nsp-unified-header.css").read_bytes()
+if os.environ.get("CSS_ONLY")=="true":
+    target=site+"/nsp-unified-header.css"
+    before=remote("cat "+shlex.quote(target),timeout=20)
+    baseline=hashlib.sha256(before).hexdigest()
+    assert baseline=="842753e8b1044d3b344100435d27e9f5142629c5931532c6152a9312e245748f",("unexpected live CSS baseline",baseline)
+    assert hashlib.sha256(css).hexdigest()=="59847b051d76f7b708f23a18e678f8c3101066500b89393b9f08a03dfc659993", "new css checksum"
+    print("HEADER_CSS_PREFLIGHT_PASS",baseline,flush=True)
+    if not apply:
+        print("HEADER_CSS_DRY_RUN_PASS",flush=True)
+        sys.exit(0)
+    backup="nsp-header-css-backup-"+datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    remote('mkdir -m 700 -p "$HOME/'+backup+'" && cp '+shlex.quote(target)+' "$HOME/'+backup+'/nsp-unified-header.css"')
+    assert remote("sha256sum "+shlex.quote(target)).decode().split()[0]==baseline,"concurrent CSS update"
+    local=pathlib.Path("/tmp/nsp-header-css-stage.css");local.write_bytes(css)
+    temp=target+".incoming"
+    upload(local,temp)
+    assert remote("sha256sum "+shlex.quote(temp)).decode().split()[0]==hashlib.sha256(css).hexdigest(),"staged CSS mismatch"
+    remote("mv "+shlex.quote(temp)+" "+shlex.quote(target))
+    if remote("sha256sum "+shlex.quote(target)).decode().split()[0]!=hashlib.sha256(css).hexdigest():
+        remote('cp "$HOME/'+backup+'/nsp-unified-header.css" '+shlex.quote(target))
+        raise RuntimeError("CSS failed verification; rolled back")
+    print("HEADER_CSS_UPLOAD_PASS",backup,flush=True)
+    sys.exit(0)
 def current(path):
     if path=="diagnostika.html":return "/diagnostika.html"
     if path=="katalog.html" or path.startswith("products/") or path.startswith("demo/"):return "/katalog.html"

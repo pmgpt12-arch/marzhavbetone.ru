@@ -16,7 +16,7 @@ body.rebrand-approved .topbar.nsp-unified-header .brand span:not(.brand-mark) {
 body.rebrand-approved .topbar.nsp-unified-header nav {
   display:flex;flex:1 1 auto;min-width:0;flex-wrap:nowrap;
   justify-content:center;align-items:center;gap:clamp(8px,1vw,17px);
-  padding:0;margin:0
+  padding:0;margin:0;order:0
 }
 body.rebrand-approved .topbar.nsp-unified-header nav a {
   display:inline-block;flex:0 0 auto;font-size:clamp(12px,.92vw,14px);
@@ -27,7 +27,7 @@ body.rebrand-approved .topbar.nsp-unified-header nav a.is-current {
 }
 body.rebrand-approved .topbar.nsp-unified-header .cart-toggle {
   display:inline-flex!important;align-items:center;justify-content:center;
-  flex:0 0 auto;min-height:38px;padding:9px 12px;margin:0;
+  flex:0 0 auto;min-height:38px;padding:9px 12px;margin:0;order:1;
   white-space:nowrap;font-size:13px
 }
 @media(min-width:1101px) {
