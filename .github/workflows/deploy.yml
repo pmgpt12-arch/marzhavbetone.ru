@@ -7,6 +7,10 @@ on:
         required: true
         type: boolean
         default: false
+      probe_paths:
+        description: "Read-only inventory of site roots"
+        type: boolean
+        default: false
       apply:
         description: 'Apply validated HTML-only patch (false = dry run)'
         required: true
@@ -40,7 +44,12 @@ jobs:
         run: |
           set -euo pipefail
           ssh -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -i ~/.ssh/deploy_key -p "$SSH_PORT" "$USER@$HOST" 'find "$HOME/www" -maxdepth 5 -type f -name katalog.html -print 2>/dev/null | while IFS= read -r f; do if grep -q '''data-sku="t2"''' "$f"; then flag=T2_PRESENT; else flag=NO_T2; fi; echo "CANDIDATE $f $flag"; sha256sum "$f"; done'
+      - name: Read-only site root inventory
+        if: ${{ inputs.probe_paths == true }}
+        run: |
+          ssh -i ~/.ssh/deploy_key -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -p "$SSH_PORT" "$USER@$HOST" 'find "$HOME/www" -maxdepth 4 -name katalog.html -type f -print -exec sha256sum {} \; 2>/dev/null | head -40'
       - name: Read production, patch, validate, backup and optionally upload
+        if: ${{ inputs.probe_paths != true }}
         if: ${{ !inputs.discover }}
         env:
           APPLY: ${{ inputs.apply }}
