@@ -49,34 +49,50 @@ print("NAV_PREFLIGHT_PASS",len(changes),"files",matches,"menu links",flush=True)
 if not apply:
     print("NAV_DRY_RUN_PASS",flush=True)
     sys.exit(0)
-for name,b in original.items():
-    assert remote("sha256sum "+shlex.quote(site+"/"+name)).decode().split()[0]==hashlib.sha256(b).hexdigest(),("changed",name)
-backup="nsp-nav-backup-"+datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-remote('mkdir -m 700 -p "$HOME/'+backup+'"')
-for name in changes:
-    parent=str(pathlib.PurePosixPath(name).parent)
-    remote('mkdir -p "$HOME/'+backup+'/'+parent+'" && cp '+shlex.quote(site+"/"+name)+' "$HOME/'+backup+'/'+name+'"')
-print("NAV_BACKUP_PASS",backup,len(changes),flush=True)
-staged=pathlib.Path("/tmp/nsp-nav-stage")
-done=[]
-try:
-    for name,b in changes.items():
-        assert remote("sha256sum "+shlex.quote(site+"/"+name)).decode().split()[0]==hashlib.sha256(original[name]).hexdigest(),("race",name)
-        f=staged/name
-        f.parent.mkdir(parents=True,exist_ok=True)
-        f.write_bytes(b)
-        target=site+"/"+name
-        temp=target+".nsp-nav-incoming"
-        run(scp+[str(f),f"{user}@{host}:"+temp])
-        assert remote("sha256sum "+shlex.quote(temp)).decode().split()[0]==hashlib.sha256(b).hexdigest()
-        remote("mv "+shlex.quote(temp)+" "+shlex.quote(target))
-        done.append(name)
-    for name,b in changes.items():
-        assert remote("sha256sum "+shlex.quote(site+"/"+name)).decode().split()[0]==hashlib.sha256(b).hexdigest(),name
-    print("NAV_UPLOAD_PASS",len(done),flush=True)
-except BaseException:
-    print("NAV_FAILED_ROLLING_BACK",len(done),flush=True)
-    for name in reversed(done):
-        try:remote('cp "$HOME/'+backup+'/'+name+'" '+shlex.quote(site+"/"+name))
-        except Exception as ex:print("ROLLBACK_FAILED",name,str(ex),flush=True)
-    raise
+# Package a single guarded, reversible batch. Each file is read from the active production root.
+import io, tarfile
+import time
+timestamp=datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+backup="nsp-nav-backup-"+timestamp
+archive=pathlib.Path("/tmp/nsp-nav-batch.tar.gz")
+before_manifest=pathlib.Path("/tmp/nsp-nav-before.sha256")
+after_manifest=pathlib.Path("/tmp/nsp-nav-after.sha256")
+before_manifest.write_text("".join(hashlib.sha256(original[n]).hexdigest()+"  "+n+"\n" for n in sorted(changes)),encoding="utf-8")
+after_manifest.write_text("".join(hashlib.sha256(changes[n]).hexdigest()+"  "+n+"\n" for n in sorted(changes)),encoding="utf-8")
+with tarfile.open(archive,"w:gz") as tar:
+    for n in sorted(changes):
+        data=changes[n]
+        info=tarfile.TarInfo(name=n)
+        info.size=len(data)
+        info.mode=0o644
+        tar.addfile(info,io.BytesIO(data))
+remote_dir="nsp-nav-stage-"+timestamp
+remote('mkdir -m 700 -p "$HOME/'+remote_dir+'"')
+for local,filename in [(archive,"candidate.tar.gz"),(before_manifest,"before.sha256"),(after_manifest,"after.sha256")]:
+    run(scp+[str(local),f"{user}@{host}:"+remote_dir+"/"+filename])
+# Perform full old-SHA check, backup, extraction, full new-SHA check and rollback inside a single SSH process.
+script="""set -eu
+SITE="$HOME/"""+site+""""
+STAGE="$HOME/"""+remote_dir+""""
+BACKUP="$HOME/"""+backup+""""
+cd "$SITE"
+sha256sum -c "$STAGE/before.sha256" >/dev/null
+mkdir -m 700 -p "$BACKUP"
+# Back up via manifest paths without any public webroot file deletion.
+awk '{print $2}' "$STAGE/before.sha256" > "$STAGE/paths.txt"
+tar -czf "$BACKUP/originals.tar.gz" -T "$STAGE/paths.txt"
+echo NAV_BACKUP_PASS
+if tar -xzf "$STAGE/candidate.tar.gz" -C "$SITE" && sha256sum -c "$STAGE/after.sha256" >/dev/null; then
+  echo NAV_UPLOAD_PASS
+else
+  tar -xzf "$BACKUP/originals.tar.gz" -C "$SITE"
+  sha256sum -c "$STAGE/before.sha256" >/dev/null
+  echo NAV_ROLLBACK_PASS
+  exit 21
+fi
+"""
+result=subprocess.run(ssh+["sh -s"],input=script,text=True,capture_output=True,timeout=100)
+print(result.stdout,flush=True)
+if result.returncode:
+    print(result.stderr[-1400:],file=sys.stderr,flush=True)
+    raise RuntimeError("NAV_BATCH_FAILED "+str(result.returncode))
