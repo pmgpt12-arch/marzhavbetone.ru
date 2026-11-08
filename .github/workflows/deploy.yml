@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     env:
-      SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
+      SITE_PATH: www/nastoronepodryadchika.ru
       SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
       HOST: ${{ secrets.DEPLOY_HOST }}
       USER: ${{ secrets.DEPLOY_USER }}
