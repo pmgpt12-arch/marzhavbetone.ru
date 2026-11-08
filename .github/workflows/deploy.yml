@@ -2,6 +2,11 @@ name: NSP PR719 targeted HTML only
 on:
   workflow_dispatch:
     inputs:
+      discover:
+        description: 'Read-only discovery of actual served site root'
+        required: true
+        type: boolean
+        default: false
       apply:
         description: 'Apply validated HTML-only patch (false = dry run)'
         required: true
@@ -30,7 +35,13 @@ jobs:
           printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
           ssh-keygen -y -P '' -f ~/.ssh/deploy_key >/dev/null
           ssh-keyscan -p "$SSH_PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+      - name: Discover site path read-only
+        if: ${{ inputs.discover }}
+        run: |
+          set -euo pipefail
+          ssh -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -i ~/.ssh/deploy_key -p "$SSH_PORT" "$USER@$HOST" 'find "$HOME/www" -maxdepth 5 -type f -name katalog.html -print 2>/dev/null | while IFS= read -r f; do if grep -q '''data-sku="t2"''' "$f"; then flag=T2_PRESENT; else flag=NO_T2; fi; echo "CANDIDATE $f $flag"; sha256sum "$f"; done'
       - name: Read production, patch, validate, backup and optionally upload
+        if: ${{ !inputs.discover }}
         env:
           APPLY: ${{ inputs.apply }}
         run: |
