@@ -1,0 +1,67 @@
+/* NSP unified site header, 2026-11-08. All content pages share one navigation and cart. */
+body.rebrand-approved .topbar.nsp-unified-header {
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;
+  min-height:80px;padding:14px clamp(16px,2.5vw,40px);gap:clamp(8px,.9vw,14px);
+  background:#f5f3ed;backdrop-filter:none;
+}
+body.rebrand-approved .topbar.nsp-unified-header .brand {
+  flex:0 0 auto;width:auto;max-width:180px;min-width:0;
+  font-size:17px;line-height:1.04;letter-spacing:-.025em;
+  font-weight:800;text-transform:uppercase;white-space:normal;
+}
+body.rebrand-approved .topbar.nsp-unified-header .brand-mark {flex:0 0 30px}
+body.rebrand-approved .topbar.nsp-unified-header .brand span:not(.brand-mark) {
+  display:inline!important;max-width:145px;overflow-wrap:normal
+}
+body.rebrand-approved .topbar.nsp-unified-header nav {
+  display:flex;flex:1 1 auto;min-width:0;flex-wrap:nowrap;
+  justify-content:center;align-items:center;gap:clamp(8px,1vw,17px);
+  padding:0;margin:0
+}
+body.rebrand-approved .topbar.nsp-unified-header nav a {
+  display:inline-block;flex:0 0 auto;font-size:clamp(12px,.92vw,14px);
+  font-weight:650;line-height:1.25;white-space:nowrap
+}
+body.rebrand-approved .topbar.nsp-unified-header nav a.is-current {
+  color:#87693a;text-decoration:underline;text-underline-offset:6px
+}
+body.rebrand-approved .topbar.nsp-unified-header .cart-toggle {
+  display:inline-flex!important;align-items:center;justify-content:center;
+  flex:0 0 auto;min-height:38px;padding:9px 12px;margin:0;
+  white-space:nowrap;font-size:13px
+}
+@media(min-width:1101px) {
+  body.rebrand-approved .topbar.nsp-unified-header .nav-toggle {display:none!important}
+}
+@media(min-width:1101px) and (max-width:1280px) {
+  body.rebrand-approved .topbar.nsp-unified-header {gap:9px;padding-left:16px;padding-right:16px}
+  body.rebrand-approved .topbar.nsp-unified-header .brand {font-size:15px;max-width:160px}
+  body.rebrand-approved .topbar.nsp-unified-header nav {gap:9px}
+  body.rebrand-approved .topbar.nsp-unified-header nav a {font-size:12px}
+  body.rebrand-approved .topbar.nsp-unified-header .cart-toggle {font-size:12px;padding:8px 9px}
+}
+@media(max-width:1100px) {
+  body.rebrand-approved .topbar.nsp-unified-header {
+    flex-wrap:wrap;gap:8px;padding:12px 18px;min-height:72px
+  }
+  body.rebrand-approved .topbar.nsp-unified-header .brand {font-size:15px;max-width:160px}
+  body.rebrand-approved .topbar.nsp-unified-header .nav-toggle {
+    display:inline-flex!important;order:3;flex:0 0 44px;width:44px;height:44px;margin:0
+  }
+  body.rebrand-approved .topbar.nsp-unified-header .cart-toggle {
+    margin-left:auto;order:2;min-height:44px
+  }
+  body.rebrand-approved .topbar.nsp-unified-header nav {display:none!important;order:4;flex:0 0 100%;padding:8px 0 0}
+  body.rebrand-approved .topbar.nsp-unified-header nav.is-open {
+    display:flex!important;flex-direction:column;align-items:stretch;gap:0
+  }
+  body.rebrand-approved .topbar.nsp-unified-header nav a,
+  body.home-v3 .topbar.nsp-unified-header nav a {
+    display:flex;min-height:44px;align-items:center;font-size:15px;padding:10px 0;
+    border-bottom:1px solid var(--line)
+  }
+}
+@media(max-width:390px) {
+  body.rebrand-approved .topbar.nsp-unified-header .brand {max-width:130px;font-size:13px}
+  body.rebrand-approved .topbar.nsp-unified-header .cart-toggle {padding:7px;font-size:12px}
+}
