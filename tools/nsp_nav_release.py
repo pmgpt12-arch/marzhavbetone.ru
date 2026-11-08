@@ -6,6 +6,7 @@ host=os.environ["HOST"]
 user=os.environ["USER"]
 port=os.environ["SSH_PORT"]
 apply=os.getenv("APPLY")=="true"
+home_only=os.getenv("HOME_ONLY")=="true"
 key=str(pathlib.Path.home()/".ssh/deploy_key")
 ssh=["ssh","-o","BatchMode=yes","-o","IdentitiesOnly=yes","-o","StrictHostKeyChecking=yes","-o","ConnectTimeout=12","-i",key,"-p",port,f"{user}@{host}"]
 scp=["scp","-q","-o","BatchMode=yes","-o","IdentitiesOnly=yes","-o","StrictHostKeyChecking=yes","-i",key,"-P",port]
@@ -16,6 +17,7 @@ def run(cmd):
 names=remote("cd "+shlex.quote(site)+" && find . -maxdepth 3 -type f -name '*.html' ! -path '*/rebrand-preview*' -print").decode().splitlines()
 names=[n[2:] for n in names if n.startswith("./")]
 assert 30<=len(names)<300 and {"index.html","katalog.html","materialy/index.html"}<=set(names),len(names)
+if home_only:names=["index.html"]
 nav=re.compile(r'(<a\b[^>]*\bhref="/materialy/"[^>]*>)\s*Бесплатно\s*(</a>)')
 changes={}
 original={}
@@ -24,16 +26,20 @@ for name in names:
     b=remote("cat "+shlex.quote(site+"/"+name),timeout=20)
     try:old=b.decode("utf-8")
     except UnicodeDecodeError:continue
-    new,num=nav.subn(lambda m:m.group(1)+"Шаблоны актов"+m.group(2),old)
+    new,num=nav.subn(lambda m:m.group(1)+"Шаблоны актов"+m.group(2),old) if not home_only else (old,0)
+    if home_only and name=="index.html":
+        needle='<a class="nav-secondary" href="/materialy/">Шаблоны актов</a>'
+        assert new.count(needle)==1, "home link changed"
+        new=new.replace(needle,'<a href="/materialy/">Шаблоны актов</a>',1)
     matches+=num
-    if name=="index.html":
+    if not home_only and name=="index.html":
         practice_old='<a href="/articles/">Практика</a>'
         assert old.count(practice_old)==1, "main navigation practice link mismatch"
         new=new.replace(practice_old,'<a href="/articles/">Практика и судебные решения</a>',1)
         prior="<h3>Бесплатные документы для строительного подрядчика</h3>"
         assert prior in new
         new=new.replace(prior,"<h3>Шаблоны актов</h3>",1)
-    if name=="materialy/index.html":
+    if not home_only and name=="materialy/index.html":
         oldh="<h1>Бесплатные документы для строительного подрядчика</h1>"
         assert oldh in new
         new=new.replace(oldh,"<h1>Шаблоны актов</h1>",1)
@@ -44,7 +50,7 @@ for name in names:
             assert re.findall(p,old)==re.findall(p,new),(name,p)
         original[name]=b
         changes[name]=new.encode("utf-8")
-assert len(changes)>=20 and matches>=20,(len(changes),matches)
+assert (len(changes)==1 and matches==0) if home_only else (len(changes)>=20 and matches>=20),(len(changes),matches)
 print("NAV_PREFLIGHT_PASS",len(changes),"files",matches,"menu links",flush=True)
 if not apply:
     print("NAV_DRY_RUN_PASS",flush=True)

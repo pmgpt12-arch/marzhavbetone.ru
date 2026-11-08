@@ -2,6 +2,10 @@ name: NSP PR719 targeted HTML only
 on:
   workflow_dispatch:
     inputs:
+      home_visibility:
+        description: "Show Шаблоны актов in homepage desktop menu"
+        type: boolean
+        default: false
       nav_only:
         description: "Rename free navigation to templates"
         type: boolean
@@ -56,12 +60,13 @@ jobs:
         run: |
           ssh -i ~/.ssh/deploy_key -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -p "$SSH_PORT" "$USER@$HOST" 'find "$HOME/www" -maxdepth 4 -name katalog.html -type f -print -exec sha256sum {} \; 2>/dev/null | head -40'
       - name: Rename navigation only
-        if: ${{ inputs.nav_only }}
+        if: ${{ inputs.nav_only || inputs.home_visibility }}
         env:
           APPLY: ${{ inputs.apply }}
+          HOME_ONLY: ${{ inputs.home_visibility }}
         run: python3 tools/nsp_nav_release.py
       - name: Read production, patch, validate, backup and optionally upload
-        if: ${{ !inputs.nav_only && !inputs.probe_paths && !inputs.discover }}
+        if: ${{ !inputs.home_visibility && !inputs.nav_only && !inputs.probe_paths && !inputs.discover }}
         env:
           APPLY: ${{ inputs.apply }}
         run: |
