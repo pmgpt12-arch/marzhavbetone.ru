@@ -27,6 +27,9 @@ for name in names:
     new,num=nav.subn(lambda m:m.group(1)+"Шаблоны актов"+m.group(2),old)
     matches+=num
     if name=="index.html":
+        practice_old='<a href="/articles/">Практика</a>'
+        assert old.count(practice_old)==1, "main navigation practice link mismatch"
+        new=new.replace(practice_old,'<a href="/articles/">Практика и судебные решения</a>',1)
         prior="<h3>Бесплатные документы для строительного подрядчика</h3>"
         assert prior in new
         new=new.replace(prior,"<h3>Шаблоны актов</h3>",1)
