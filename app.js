@@ -31,6 +31,16 @@ const cartCount = document.querySelector('#cart-count');
 const cartCheckout = document.querySelector('#cart-checkout');
 let cart = [];
 try { cart = JSON.parse(localStorage.getItem('marzhavbetone-cart') || '[]'); } catch (_) { cart = []; }
+// Служебная тестовая покупка не должна оставаться в корзинах посетителей.
+// Её можно добавить только на скрытой /test-pokupka.html при отдельной E2E-проверке.
+if (!Array.isArray(cart)) cart = [];
+if (window.location.pathname !== '/test-pokupka.html') {
+  const cleanCart = cart.filter(item => item && item.sku !== 'test1' && item.name !== 'Тестовая покупка (проверка выдачи)');
+  if (cleanCart.length !== cart.length) {
+    cart = cleanCart;
+    try { localStorage.setItem('marzhavbetone-cart', JSON.stringify(cart)); } catch (_) { /* браузер запретил хранилище */ }
+  }
+}
 
 function money(value) { return new Intl.NumberFormat('ru-RU').format(value / 100) + '\u00a0₽'; }
 function saveCart() { localStorage.setItem('marzhavbetone-cart', JSON.stringify(cart)); }
