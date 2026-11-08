@@ -25,8 +25,8 @@ if os.environ.get("CSS_ONLY")=="true":
     target=site+"/nsp-unified-header.css"
     before=remote("cat "+shlex.quote(target),timeout=20)
     baseline=hashlib.sha256(before).hexdigest()
-    assert baseline=="8ea45f53f4908c94ed744ee15febfca326f0f7d221553e09d7fbd95aee6947ea",("unexpected live CSS baseline",baseline)
-    assert hashlib.sha256(css).hexdigest()=="6ab6f86974510519f9b4333d9907be94298fad5a2812103cf4aa59f313c2cf95", "new css checksum"
+    assert baseline=="6ab6f86974510519f9b4333d9907be94298fad5a2812103cf4aa59f313c2cf95",("unexpected live CSS baseline",baseline)
+    assert hashlib.sha256(css).hexdigest()=="3f60f11a4dd6757149a6e850133e8033d422f0c59135d91f78625f2a704bf0ff", "new css checksum"
     print("HEADER_CSS_PREFLIGHT_PASS",baseline,flush=True)
     if not apply:
         print("HEADER_CSS_DRY_RUN_PASS",flush=True)

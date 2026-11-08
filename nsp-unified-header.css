@@ -37,7 +37,7 @@ body.rebrand-approved .topbar.nsp-unified-header .cart-toggle {
 @media(max-width:1360px) {
   body.rebrand-approved .topbar.nsp-unified-header {
     flex-wrap:wrap;gap:8px;padding:12px 0;min-height:72px;
-    width:calc(100% - 36px)
+    width:min(1100px,calc(100% - 36px))
   }
   body.rebrand-approved .topbar.nsp-unified-header .brand {font-size:15px;max-width:160px}
   body.rebrand-approved .topbar.nsp-unified-header .nav-toggle {
@@ -59,4 +59,29 @@ body.rebrand-approved .topbar.nsp-unified-header .cart-toggle {
 @media(max-width:390px) {
   body.rebrand-approved .topbar.nsp-unified-header .brand {max-width:130px;font-size:13px}
   body.rebrand-approved .topbar.nsp-unified-header .cart-toggle {padding:7px;font-size:12px}
+}
+
+/* Shared content grid: align site sections to the 1100px site header.
+   Full-bleed section backgrounds stay full viewport; only content inset changes.
+   Long-form article copy remains deliberately narrower for readability. */
+@media (min-width: 1200px) {
+  body.rebrand-approved .section:not(.article-page) {
+    padding-left: max(24px, calc((100% - 1100px) / 2));
+    padding-right: max(24px, calc((100% - 1100px) / 2));
+  }
+  body.rebrand-approved.home-v3 .home-opening {
+    padding-left: max(24px, calc((100% - 1100px) / 2));
+    padding-right: max(24px, calc((100% - 1100px) / 2));
+  }
+  body.rebrand-approved.home-v3 #situations {
+    padding-left: max(24px, calc((100% - 1100px) / 2));
+    padding-right: max(24px, calc((100% - 1100px) / 2));
+  }
+  body.rebrand-approved main.dpage,
+  body.rebrand-approved main.calculator-page {
+    width: min(1100px, calc(100% - 48px));
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
