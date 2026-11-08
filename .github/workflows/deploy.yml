@@ -1,25 +1,27 @@
-name: Deploy to server
+name: NSP PR719 targeted HTML only
 on:
   workflow_dispatch:
     inputs:
-      probe_only:
-        description: 'Only check SSH connectivity and production path'
+      apply:
+        description: 'Apply validated HTML-only patch (false = dry run)'
+        required: true
         type: boolean
-        default: true
+        default: false
 permissions:
   contents: read
 jobs:
-  nsp-targeted:
+  html-only:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 12
     env:
       SITE_PATH: ${{ secrets.DEPLOY_PATH || 'www/marzhavbetone.ru' }}
       SSH_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      USER: ${{ secrets.DEPLOY_USER }}
     steps:
-      - name: Probe exact existing production SSH access
+      - uses: actions/checkout@v4
+      - name: Configure SSH without exposing secrets
         env:
-          HOST: ${{ secrets.DEPLOY_HOST }}
-          USER: ${{ secrets.DEPLOY_USER }}
           KEY: ${{ secrets.DEPLOY_SSH_KEY }}
         run: |
           set -euo pipefail
@@ -28,5 +30,9 @@ jobs:
           printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
           ssh-keygen -y -P '' -f ~/.ssh/deploy_key >/dev/null
           ssh-keyscan -p "$SSH_PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
-          ssh -i ~/.ssh/deploy_key -o BatchMode=yes -o IdentitiesOnly=yes -o ConnectTimeout=12 -o StrictHostKeyChecking=yes -p "$SSH_PORT" "$USER@$HOST" "test -f '$SITE_PATH/katalog.html' && sha256sum '$SITE_PATH/katalog.html'" | sed 's# .*# [production katalog.html]#'
-          echo 'SSH_PROBE_PASS'
+      - name: Read production, patch, validate, backup and optionally upload
+        env:
+          APPLY: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          python3 tools/nsp_pr719_html_release.py
