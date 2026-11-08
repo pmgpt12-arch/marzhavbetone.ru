@@ -10,7 +10,7 @@ def remote(command,timeout=24):
     return subprocess.run(ssh+[command],timeout=timeout,check=True,capture_output=True).stdout
 def upload(local,remote_path):
     subprocess.run(scp+[str(local),f"{user}@{host}:"+remote_path],check=True,timeout=40,capture_output=True)
-NAV=[("Диагностика","/diagnostika.html"),("Каталог","/katalog.html"),("Шаблоны актов","/materialy/"),("Калькуляторы","/kalkulyator.html"),("Практика и судебные решения","/articles/"),("О проекте","/#author")]
+NAV=[("Диагностика","/diagnostika.html"),("Каталог","/katalog.html"),("Шаблоны актов","/materialy/"),("Калькуляторы","/kalkulyator.html"),("Практика и решения судов","/articles/"),("О проекте","/#author")]
 HEADER_RE=re.compile(r'<header\s+class="topbar[^"]*"[^>]*>.*?</header>',re.S)
 CART_RE=re.compile(r'\s*<aside class="cart-panel" id="cart-panel".*?</aside>\s*<div class="cart-backdrop" id="cart-backdrop" hidden></div>',re.S)
 BASE=pathlib.Path(__file__).resolve().parent.parent
@@ -20,12 +20,13 @@ assert cart_match, "canonical cart UI not found"
 CART_HTML=cart_match.group().strip()
 assert all('id="'+id+'"' in CART_HTML for id in ("cart-panel","cart-close","cart-empty","cart-items","cart-total","cart-checkout","cart-backdrop"))
 css=(BASE/"nsp-unified-header.css").read_bytes()
+label_only=os.environ.get("LABEL_ONLY")=="true"
 if os.environ.get("CSS_ONLY")=="true":
     target=site+"/nsp-unified-header.css"
     before=remote("cat "+shlex.quote(target),timeout=20)
     baseline=hashlib.sha256(before).hexdigest()
-    assert baseline=="59847b051d76f7b708f23a18e678f8c3101066500b89393b9f08a03dfc659993",("unexpected live CSS baseline",baseline)
-    assert hashlib.sha256(css).hexdigest()=="60ca6847a84e40729f3a3836bbcd2efcf1fc3f80fc1b6d24e08dc258e264ed4d", "new css checksum"
+    assert baseline=="60ca6847a84e40729f3a3836bbcd2efcf1fc3f80fc1b6d24e08dc258e264ed4d",("unexpected live CSS baseline",baseline)
+    assert hashlib.sha256(css).hexdigest()=="8ea45f53f4908c94ed744ee15febfca326f0f7d221553e09d7fbd95aee6947ea", "new css checksum"
     print("HEADER_CSS_PREFLIGHT_PASS",baseline,flush=True)
     if not apply:
         print("HEADER_CSS_DRY_RUN_PASS",flush=True)
@@ -109,7 +110,7 @@ for path,b in sorted(snapshot.items()):
     if changed!=old:
         original[path]=b;candidate[path]=changed.encode("utf-8")
 assert len(candidate)>=80,(len(candidate),untouched)
-assert "Шаблоны актов" in candidate["index.html"].decode()
+assert "Практика и решения судов" in candidate["index.html"].decode()
 assert "Корзина · " in candidate["materialy/index.html"].decode()
 assert "nsp-unified-header" in candidate["katalog.html"].decode()
 print("HEADER_PREFLIGHT_PASS",len(candidate),"HTML; navigation 6/6, cart, CSS, JS; excluded",untouched,flush=True)
@@ -125,7 +126,7 @@ work.mkdir(exist_ok=True)
 before=work/"before.sha256";after=work/"after.sha256";bundle=work/"new.tar.gz"
 before.write_text("".join(hashlib.sha256(original[p]).hexdigest()+"  "+p+"\n" for p in sorted(original)),encoding="utf-8")
 new_files=dict(candidate)
-new_files["nsp-unified-header.css"]=css
+if not label_only:new_files["nsp-unified-header.css"]=css
 after.write_text("".join(hashlib.sha256(new_files[p]).hexdigest()+"  "+p+"\n" for p in sorted(new_files)),encoding="utf-8")
 with tarfile.open(bundle,"w:gz") as tar:
     for p in sorted(new_files):
@@ -138,11 +139,12 @@ remote('mkdir -m 700 -p "$HOME/'+stage+'"')
 for file,name in ((before,"before.sha256"),(after,"after.sha256"),(bundle,"new.tar.gz")):
     upload(file,stage+"/"+name)
 script='''set -eu
+LABEL_ONLY="'''+("true" if label_only else "false")+'''"
 SITE="$HOME/'''+site+'''"
 STAGE="$HOME/'''+stage+'''"
 BACKUP="$HOME/'''+backup+'''"
 cd "$SITE"
-test ! -e nsp-unified-header.css
+if [ "${LABEL_ONLY}" != "true" ]; then test ! -e nsp-unified-header.css; fi
 sha256sum -c "$STAGE/before.sha256" >/dev/null
 mkdir -m 700 -p "$BACKUP"
 awk '{print $2}' "$STAGE/before.sha256" > "$STAGE/paths.txt"
@@ -152,7 +154,7 @@ if tar -xzf "$STAGE/new.tar.gz" -C "$SITE" && sha256sum -c "$STAGE/after.sha256"
   echo HEADER_UPLOAD_PASS
 else
   tar -xzf "$BACKUP/originals.tar.gz" -C "$SITE"
-  rm -f "$SITE/nsp-unified-header.css"
+  if [ "$LABEL_ONLY" != "true" ]; then rm -f "$SITE/nsp-unified-header.css"; fi
   sha256sum -c "$STAGE/before.sha256" >/dev/null
   echo HEADER_ROLLBACK_PASS
   exit 24

@@ -2,6 +2,10 @@ name: NSP PR719 targeted HTML only
 on:
   workflow_dispatch:
     inputs:
+      header_label_only:
+        description: "Update the canonical practice navigation label in all pages"
+        type: boolean
+        default: false
       header_css_only:
         description: "Update unified header CSS after viewport QA"
         type: boolean
@@ -68,19 +72,20 @@ jobs:
         run: |
           ssh -i ~/.ssh/deploy_key -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -p "$SSH_PORT" "$USER@$HOST" 'find "$HOME/www" -maxdepth 4 -name katalog.html -type f -print -exec sha256sum {} \; 2>/dev/null | head -40'
       - name: Unify site-wide header and cart
-        if: ${{ inputs.header_unify || inputs.header_css_only }}
+        if: ${{ inputs.header_unify || inputs.header_css_only || inputs.header_label_only }}
         env:
           APPLY: ${{ inputs.apply }}
           CSS_ONLY: ${{ inputs.header_css_only }}
+          LABEL_ONLY: ${{ inputs.header_label_only }}
         run: python3 tools/nsp_unified_header_release.py
       - name: Rename navigation only
-        if: ${{ !inputs.header_css_only && !inputs.header_unify && (inputs.nav_only || inputs.home_visibility) }}
+        if: ${{ !inputs.header_label_only && !inputs.header_css_only && !inputs.header_unify && (inputs.nav_only || inputs.home_visibility) }}
         env:
           APPLY: ${{ inputs.apply }}
           HOME_ONLY: ${{ inputs.home_visibility }}
         run: python3 tools/nsp_nav_release.py
       - name: Read production, patch, validate, backup and optionally upload
-        if: ${{ !inputs.header_css_only && !inputs.header_unify && !inputs.home_visibility && !inputs.nav_only && !inputs.probe_paths && !inputs.discover }}
+        if: ${{ !inputs.header_label_only && !inputs.header_css_only && !inputs.header_unify && !inputs.home_visibility && !inputs.nav_only && !inputs.probe_paths && !inputs.discover }}
         env:
           APPLY: ${{ inputs.apply }}
         run: |
