@@ -16,6 +16,9 @@ on:
         required: true
         type: boolean
         default: false
+concurrency:
+  group: nsp-pr719-production-html-single-writer
+  cancel-in-progress: false
 permissions:
   contents: read
 jobs:
