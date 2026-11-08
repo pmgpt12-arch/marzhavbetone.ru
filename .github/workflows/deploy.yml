@@ -49,8 +49,7 @@ jobs:
         run: |
           ssh -i ~/.ssh/deploy_key -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -p "$SSH_PORT" "$USER@$HOST" 'find "$HOME/www" -maxdepth 4 -name katalog.html -type f -print -exec sha256sum {} \; 2>/dev/null | head -40'
       - name: Read production, patch, validate, backup and optionally upload
-        if: ${{ inputs.probe_paths != true }}
-        if: ${{ !inputs.discover }}
+        if: ${{ !inputs.probe_paths && !inputs.discover }}
         env:
           APPLY: ${{ inputs.apply }}
         run: |
