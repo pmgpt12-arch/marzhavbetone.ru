@@ -26,7 +26,7 @@ if os.environ.get("CSS_ONLY")=="true":
     before=remote("cat "+shlex.quote(target),timeout=20)
     baseline=hashlib.sha256(before).hexdigest()
     assert baseline=="60ca6847a84e40729f3a3836bbcd2efcf1fc3f80fc1b6d24e08dc258e264ed4d",("unexpected live CSS baseline",baseline)
-    assert hashlib.sha256(css).hexdigest()=="8ea45f53f4908c94ed744ee15febfca326f0f7d221553e09d7fbd95aee6947ea", "new css checksum"
+    assert hashlib.sha256(css).hexdigest()=="6ab6f86974510519f9b4333d9907be94298fad5a2812103cf4aa59f313c2cf95", "new css checksum"
     print("HEADER_CSS_PREFLIGHT_PASS",baseline,flush=True)
     if not apply:
         print("HEADER_CSS_DRY_RUN_PASS",flush=True)
