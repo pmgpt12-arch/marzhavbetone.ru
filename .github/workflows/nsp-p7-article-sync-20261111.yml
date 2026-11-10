@@ -1,0 +1,41 @@
+name: NSP P7 deployed article exact-source GitHub synchronization
+on:
+  push:
+    branches:
+      - 'release/nsp-p7-article-sync-20261111'
+    paths:
+      - '.github/workflows/nsp-p7-article-sync-20261111.yml'
+permissions:
+  contents: write
+jobs:
+  stage:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 9
+    steps:
+      - name: Sparse checkout P7 single article and preview images
+        uses: actions/checkout@v4
+        with:
+          ref: sync/nsp-p7-article-main-20261111
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            articles/dogovor-subpodryada-obrazec.html
+            assets/document-previews
+          sparse-checkout-cone-mode: false
+          persist-credentials: true
+          path: p7-article-sync
+      - name: Verify exact production bytes and push P7-only source commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "pmgpt12-arch/marzhavbetone.ru"
+          test "$GITHUB_REF_NAME" = "release/nsp-p7-article-sync-20261111"
+          cd p7-article-sync
+          test -z "$(git status --porcelain)"
+          python3 /home/denis/projects/nsp-qa19-p8-20261030/sync_p7_article_main_20261111.py "$PWD"
+          git add -- articles/dogovor-subpodryada-obrazec.html assets/document-previews/p7-*-preview.jpg
+          git -c core.whitespace=-blank-at-eol diff --cached --check
+          test "$(git diff --cached --name-only | wc -l)" -eq 5
+          git -c user.name="nsp-p7-article-sync" -c user.email="noreply@users.noreply.github.com" commit -m "Sync live P7 approved article and four native figures [skip deploy]"
+          git push origin HEAD:refs/heads/sync/nsp-p7-article-main-20261111
+          echo "P7_APPROVED_ARTICLE_REVIEW_BRANCH_PUSHED"
