@@ -1,0 +1,41 @@
+name: NSP P3 source sync to protected review branch 2026-11-10
+on:
+  push:
+    branches:
+      - 'release/nsp-p3-main-sync-run-20261110'
+    paths:
+      - '.github/workflows/nsp-p3-main-sync-run-20261110.yml'
+permissions:
+  contents: write
+concurrency:
+  group: nsp-p3-main-source-sync-20261110
+  cancel-in-progress: false
+jobs:
+  stage:
+    name: Produce P3-only commit from published artifacts for PR review
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    steps:
+      - name: Checkout isolated sync branch
+        uses: actions/checkout@v4
+        with:
+          ref: sync/nsp-p3-main-20261110
+          fetch-depth: 2
+          persist-credentials: true
+          path: p3-source-sync
+      - name: Check base SHA and generate P3 scoped changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "pmgpt12-arch/marzhavbetone.ru"
+          test "$GITHUB_REF_NAME" = "release/nsp-p3-main-sync-run-20261110"
+          cd p3-source-sync
+          test -z "$(git status --porcelain)"
+          python3 /home/denis/projects/nsp-qa15-p3-20261030/sync_p3_main_20261110.py "$PWD"
+          php -l products-config.php
+          git add -- products-config.php products/p3-shablony-ks2-ks3.html katalog.html articles/proverka-ks-2-pered-sdachey.html assets/document-previews/p3-*-preview.jpg products-storage/05-ks-bez-vozvrata products-storage/P3-v1-current.zip
+          git diff --cached --check
+          test "$(git diff --cached --name-only | wc -l)" -ge 15
+          git -c user.name="nsp-p3-sync" -c user.email="noreply@users.noreply.github.com" commit -m "Sync approved production P3 source, current ZIP and article [skip deploy]"
+          git push origin HEAD:refs/heads/sync/nsp-p3-main-20261110
+          echo "P3_SOURCE_PR_BRANCH_PUSHED"
