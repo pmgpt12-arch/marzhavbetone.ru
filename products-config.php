@@ -545,6 +545,33 @@ function mvb_build_product_zip(string $sku): ?string
     $sourceDir = PRODUCTS_DIR . '/' . $catalog[$sku]['dir'];
     $zipPath = DELIVERY_DIR . '/' . $catalog[$sku]['zip'];
 
+
+    // P3: owner-approved, branded current edition. Never build a different
+    // archive for an existing paid download. P1/P2 routes remain untouched.
+    if ($sku === 'p3') {
+        $approved = 'd64836140a67101c56edec39371abf8a2a5fd55cb43ce8f82ba0f1228f9b7d3b';
+        $master = PRODUCTS_DIR . '/P3-v1-current.zip';
+        if (!is_file($master) || !hash_equals($approved, (string)@hash_file('sha256', $master))) {
+            return null;
+        }
+        if (is_file($zipPath) && hash_equals($approved, (string)@hash_file('sha256', $zipPath))) {
+            return $zipPath;
+        }
+        $temp = @tempnam(DELIVERY_DIR, '.p3-current-');
+        if ($temp === false) return null;
+        try {
+            if (!copy($master, $temp)
+                || !hash_equals($approved, (string)@hash_file('sha256', $temp))
+                || !@chmod($temp, 0644)
+                || !@rename($temp, $zipPath)) {
+                return null;
+            }
+            return $zipPath;
+        } finally {
+            if (is_file($temp)) @unlink($temp);
+        }
+    }
+
     // Кэш действителен, пока мастера не изменились. Раньше условием было
     // одно существование архива — и обновление файлов продукта до покупателя
     // не доезжало: архив, собранный прошлой версией, отдавался дальше, а
