@@ -21,6 +21,15 @@ jobs:
           ref: sync/nsp-p5-main-20261110
           fetch-depth: 1
           filter: blob:none
+          sparse-checkout: |
+            products-config.php
+            katalog.html
+            articles/vozvrat-garantiynogo-uderzhaniya.html
+            products/p5-shtrafy-uderzhaniya.html
+            assets/document-previews
+            products-storage/07-uderzhaniya-shtrafy-zachety
+            products-storage/P5-v2-current.zip
+          sparse-checkout-cone-mode: false
           persist-credentials: true
           path: p5-source-sync
       - name: Validate P5 exact production snapshot and commit P5 only
@@ -37,7 +46,7 @@ jobs:
           git add -- products-config.php products/p5-shtrafy-uderzhaniya.html katalog.html articles/vozvrat-garantiynogo-uderzhaniya.html assets/document-previews/p5-*-v2-preview.jpg products-storage/07-uderzhaniya-shtrafy-zachety products-storage/P5-v2-current.zip
           git -c core.whitespace=-blank-at-eol diff --cached --check
           count="$(git diff --cached --name-only | wc -l)"
-          test "$count" -ge 10 && test "$count" -le 14
+          test "$count" -ge 35 && test "$count" -le 41
           git -c user.name="nsp-p5-sync" -c user.email="noreply@users.noreply.github.com" commit -m "Sync P5 branded v2 buyer ZIP, source and approved article [skip deploy]"
           git push origin HEAD:refs/heads/sync/nsp-p5-main-20261110
           echo "P5_SOURCE_PR_BRANCH_PUSHED"
