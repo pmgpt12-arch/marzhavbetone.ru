@@ -1,0 +1,29 @@
+name: NSP P3 brandfix current buyer ZIP 2026-11-10
+on:
+  push:
+    branches:
+      - 'release/nsp-p3-brandfix-20261110'
+    paths:
+      - '.github/workflows/nsp-p3-brandfix-20261110.yml'
+permissions:
+  contents: read
+concurrency:
+  group: nsp-production-p3-brandfix-20261110
+  cancel-in-progress: false
+jobs:
+  publish:
+    name: P3 brand correction current-only with rollback
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: Exact P3 current source/master/cache plus single approved SHA update
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f /home/denis/projects/nsp-qa15-p3-20261030/p3-brandfix-20261110/run_publish_product.sh
+          bash /home/denis/projects/nsp-qa15-p3-20261030/p3-brandfix-20261110/run_publish_product.sh
