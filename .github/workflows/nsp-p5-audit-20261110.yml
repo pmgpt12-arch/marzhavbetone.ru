@@ -1,4 +1,4 @@
-name: NSP P5 production master/cache read-only audit
+name: NSP P5 builder source read-only audit
 on:
   push:
     branches:
@@ -21,4 +21,4 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          bash /home/denis/projects/nsp-qa19-p8-20261030/p5-brandfix-20261110/readonly_audit.sh
+          bash /home/denis/projects/nsp-qa19-p8-20261030/p5-brandfix-20261110/readonly_builder_audit.sh
