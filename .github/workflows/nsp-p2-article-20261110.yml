@@ -1,0 +1,29 @@
+name: NSP P2 article 2026-11-10 targeted publish
+on:
+  push:
+    branches:
+      - 'release/nsp-p2-article-20261110'
+    paths:
+      - '.github/workflows/nsp-p2-article-20261110.yml'
+permissions:
+  contents: read
+concurrency:
+  group: nsp-production-p2-article-20261110
+  cancel-in-progress: false
+jobs:
+  publish:
+    name: Targeted P2 editorial article and four real document previews
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: Content-SHA-gated release with rollback and external QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f /home/denis/projects/nsp-qa19-p8-20261030/p2-article-candidate-20261110/p2-article-release-20261110/run_publish.sh
+          bash /home/denis/projects/nsp-qa19-p8-20261030/p2-article-candidate-20261110/p2-article-release-20261110/run_publish.sh
