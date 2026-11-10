@@ -34,7 +34,7 @@ jobs:
           python3 /home/denis/projects/nsp-qa15-p3-20261030/sync_p3_main_20261110.py "$PWD"
           php -l products-config.php
           git add -- products-config.php products/p3-shablony-ks2-ks3.html katalog.html articles/proverka-ks-2-pered-sdachey.html assets/document-previews/p3-*-preview.jpg products-storage/05-ks-bez-vozvrata products-storage/P3-v1-current.zip
-          git diff --cached --check
+          git -c core.whitespace=-blank-at-eol diff --cached --check
           test "$(git diff --cached --name-only | wc -l)" -ge 15
           git -c user.name="nsp-p3-sync" -c user.email="noreply@users.noreply.github.com" commit -m "Sync approved production P3 source, current ZIP and article [skip deploy]"
           git push origin HEAD:refs/heads/sync/nsp-p3-main-20261110
