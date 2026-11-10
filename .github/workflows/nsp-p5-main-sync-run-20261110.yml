@@ -1,0 +1,43 @@
+name: NSP P5 synchronize approved production artifacts to GitHub review branch
+on:
+  push:
+    branches:
+      - 'release/nsp-p5-main-sync-run-20261110'
+    paths:
+      - '.github/workflows/nsp-p5-main-sync-run-20261110.yml'
+permissions:
+  contents: write
+concurrency:
+  group: nsp-p5-main-source-sync-20261110
+  cancel-in-progress: false
+jobs:
+  stage:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    steps:
+      - name: Checkout review branch without fetching unrelated Git blobs
+        uses: actions/checkout@v4
+        with:
+          ref: sync/nsp-p5-main-20261110
+          fetch-depth: 1
+          filter: blob:none
+          persist-credentials: true
+          path: p5-source-sync
+      - name: Validate P5 exact production snapshot and commit P5 only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "pmgpt12-arch/marzhavbetone.ru"
+          test "$GITHUB_REF_NAME" = "release/nsp-p5-main-sync-run-20261110"
+          cd p5-source-sync
+          test "$(git rev-parse HEAD)" = "45b84132dbfc753e9a868c202e00971927cd840f"
+          test -z "$(git status --porcelain)"
+          python3 /home/denis/projects/nsp-qa19-p8-20261030/sync_p5_main_20261110.py "$PWD"
+          php -l products-config.php
+          git add -- products-config.php products/p5-shtrafy-uderzhaniya.html katalog.html articles/vozvrat-garantiynogo-uderzhaniya.html assets/document-previews/p5-*-v2-preview.jpg products-storage/07-uderzhaniya-shtrafy-zachety products-storage/P5-v2-current.zip
+          git -c core.whitespace=-blank-at-eol diff --cached --check
+          count="$(git diff --cached --name-only | wc -l)"
+          test "$count" -ge 10 && test "$count" -le 14
+          git -c user.name="nsp-p5-sync" -c user.email="noreply@users.noreply.github.com" commit -m "Sync P5 branded v2 buyer ZIP, source and approved article [skip deploy]"
+          git push origin HEAD:refs/heads/sync/nsp-p5-main-20261110
+          echo "P5_SOURCE_PR_BRANCH_PUSHED"
