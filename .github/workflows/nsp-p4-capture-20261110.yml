@@ -1,0 +1,24 @@
+name: NSP P4 read-only buyer ZIP capture 2026-11-10
+on:
+  push:
+    branches:
+      - 'release/nsp-p4-capture-20261110'
+    paths:
+      - '.github/workflows/nsp-p4-capture-20261110.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 5
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: Read-only capture current P4 delivery ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash /home/denis/projects/nsp-qa19-p8-20261030/p4_readonly_capture_20261110.sh
