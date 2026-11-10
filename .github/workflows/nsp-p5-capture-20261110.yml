@@ -1,0 +1,24 @@
+name: NSP P5 readonly current buyer ZIP capture
+on:
+  push:
+    branches:
+      - 'release/nsp-p5-capture-20261110'
+    paths:
+      - '.github/workflows/nsp-p5-capture-20261110.yml'
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 5
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: Read-only production P5 ZIP verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash /home/denis/projects/nsp-qa19-p8-20261030/p5_readonly_capture_20261110.sh
