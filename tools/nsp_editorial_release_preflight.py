@@ -107,6 +107,12 @@ def get_live(path, limit=200_000):
     )
     with urllib.request.urlopen(req, timeout=12) as response:
         require(response.status == 200, "HTTP_NOT_200: " + path)
+        if path.startswith("assets/document-previews/"):
+            require(response.headers.get_content_type() == "image/jpeg",
+                    "MEDIA_CONTENT_TYPE: " + path)
+            header = response.read(4)
+            require(header[:3] == b"\xff\xd8\xff", "MEDIA_JPEG_MAGIC: " + path)
+            return header
         data = response.read(limit + 1)
         require(len(data) <= limit, "LIVE_TOO_LARGE: " + path)
         return data
