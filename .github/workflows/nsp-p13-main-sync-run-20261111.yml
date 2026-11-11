@@ -1,0 +1,43 @@
+name: NSP P13 sync published estimate article into GitHub main source
+on:
+  push:
+    branches:
+      - 'release/nsp-p13-main-sync-run-20261111'
+    paths:
+      - '.github/workflows/nsp-p13-main-sync-run-20261111.yml'
+permissions:
+  contents: write
+jobs:
+  synchronize:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 11
+    steps:
+      - name: Sparse checkout article, figures, index and sitemap
+        uses: actions/checkout@v4
+        with:
+          ref: sync/nsp-p13-article-main-20261111
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            articles/proverka-smety-vypadayushchie-zatraty.html
+            articles/index.html
+            sitemap.xml
+            assets/document-previews
+          sparse-checkout-cone-mode: false
+          persist-credentials: true
+          path: p13-source-sync
+      - name: Compare against live SHA and commit exactly P13 seven paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "pmgpt12-arch/marzhavbetone.ru"
+          test "$GITHUB_REF_NAME" = "release/nsp-p13-main-sync-run-20261111"
+          cd p13-source-sync
+          test -z "$(git status --porcelain)"
+          python3 /home/denis/projects/nsp-qa19-p13-20261030/sync_p13_main_20261111.py "$PWD"
+          git add -- articles/proverka-smety-vypadayushchie-zatraty.html articles/index.html sitemap.xml assets/document-previews/p13-*-preview.jpg
+          git -c core.whitespace=-blank-at-eol diff --cached --check
+          test "$(git diff --cached --name-only | wc -l)" -eq 7
+          git -c user.name="nsp-p13-source-sync" -c user.email="noreply@users.noreply.github.com" commit -m "Sync approved P13 estimate article, previews and index [skip deploy]"
+          git push origin HEAD:refs/heads/sync/nsp-p13-article-main-20261111
+          echo "P13_REVIEW_BRANCH_PUSHED"
