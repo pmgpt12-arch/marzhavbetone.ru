@@ -1,0 +1,27 @@
+name: NSP P9 brand-corrected 12-file buyer ZIP release 2026-11-11
+on:
+  push:
+    branches:
+      - 'release/nsp-p9-brandfix-20261111'
+    paths:
+      - '.github/workflows/nsp-p9-brandfix-20261111.yml'
+permissions:
+  contents: read
+concurrency:
+  group: nsp-production-p9-brandfix-20261111
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: Verified one-XLSX metadata correction P9 master, rollback on failure
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash /home/denis/projects/nsp-qa19-p9-20261030/p9-brandfix-20261111/run_publish_product.sh
