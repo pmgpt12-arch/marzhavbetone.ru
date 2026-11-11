@@ -1,0 +1,27 @@
+name: NSP P9 verified insolvency article and native document previews
+on:
+  push:
+    branches:
+      - 'release/nsp-p9-article-20261111'
+    paths:
+      - '.github/workflows/nsp-p9-article-20261111.yml'
+permissions:
+  contents: read
+concurrency:
+  group: nsp-production-p9-article-20261111
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: SHA-guarded release of approved P9 article and four native previews
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash /home/denis/projects/nsp-qa19-p9-20261030/p9-current-reference-20261110/p9-article-release-20261111/run_publish.sh
