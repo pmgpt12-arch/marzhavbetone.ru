@@ -1,0 +1,29 @@
+name: NSP legacy paid article CTA price and file count reconciliation
+on:
+  push:
+    branches:
+      - 'release/nsp-legacy-price-cta-correction-20261111'
+    paths:
+      - '.github/workflows/nsp-legacy-price-cta-correction-20261111.yml'
+permissions:
+  contents: read
+concurrency:
+  group: nsp-legacy-cta-price-20261111
+  cancel-in-progress: false
+jobs:
+  scoped_publication:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 6
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: Publish 12 article CTA corrections with SHA preflight and rollback only
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          test "$GITHUB_REPOSITORY" = "pmgpt12-arch/marzhavbetone.ru"
+          test "$GITHUB_REF_NAME" = "release/nsp-legacy-price-cta-correction-20261111"
+          timeout 230s bash /home/denis/projects/nsp-legacy-price-cta-20261111/run_publish.sh
