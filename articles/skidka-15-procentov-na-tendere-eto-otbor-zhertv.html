@@ -43,9 +43,21 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="/nsp-unified-header.css?v=20261108b">
+  <link rel="stylesheet" href="/cart.css?v=dbf0bfa0">
 </head>
 <body class="rebrand-approved">
-  <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Бесплатно</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и судебные решения</a><a href="/#author">О проекте</a></nav></header>
+  <header class="topbar nsp-unified-header"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Шаблоны актов</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и решения судов</a><a href="/#author">О проекте</a></nav><button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>
+  <aside class="cart-panel" id="cart-panel" aria-label="Корзина" hidden>
+    <div class="cart-head"><div><p class="eyebrow">ВАШ ЗАКАЗ</p><h2>Корзина</h2></div><button class="cart-close" id="cart-close" type="button" aria-label="Закрыть корзину">×</button></div>
+    <div class="cart-empty" id="cart-empty">Пока пусто. Выберите один или несколько пакетов.</div>
+    <ul class="cart-items" id="cart-items"></ul>
+    <div class="cart-total"><span>Итого</span><strong id="cart-total">0 ₽</strong></div>
+    <button class="button cart-checkout" id="cart-checkout" type="button" disabled>Оформить заказ</button>
+    <p class="fine">На этом этапе оплата не списывается. Состав заказа перейдёт в форму оформления.</p>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+
 
   <main class="section article-page">
     <nav aria-label="Хлебные крошки" class="breadcrumbs">
@@ -119,11 +131,11 @@
 
 <div class="article-cta" style="margin:40px 0;padding:40px;background:var(--ink);color:var(--paper);border-radius:8px;">
       <p class="eyebrow" style="color:var(--orange);">ПЛАТНЫЙ КОМПЛЕКТ</p>
-      <h3 style="color:#fff;">Комплект «Договор субподряда: образец, красные флаги, протокол разногласий»</h3>
+      <h3 style="color:#fff;">Проверка и согласование договора субподряда</h3>
       <p style="color:#bbb;">Четыре правила из пяти выше — про то, что правится до подписи: порядок оплаты, порядок приёмки, гарантийное удержание, штрафы, согласование допов. Здесь образец договора, перечень красных флагов, чек-лист проверки условий и протокол разногласий, которым эти строки меняют. 13 файлов.</p>
-      <p style="font-size:28px;font-weight:900;color:var(--orange);">2 490 ₽</p>
+      <p style="font-size:28px;font-weight:900;color:var(--orange);">24 900 ₽</p>
       <a class="button" href="/products/p7-dogovor-podryada.html?utm_campaign=dogovor&amp;utm_source=site&amp;utm_medium=article&amp;utm_content=skidka-15-procentov-na-tendere-eto-otbor-zhertv-core">Купить комплект →</a>
-      <p style="color:var(--concrete);font-size:14px;margin-top:26px;">Если вы уже подписали и работаете, а спор идёт про допы — нужен другой набор: <a href="/products/p2-dopolnitelnye-raboty.html?utm_campaign=dop_raboty&amp;utm_source=site&amp;utm_medium=article&amp;utm_content=skidka-15-procentov-na-tendere-eto-otbor-zhertv-core-dopraboty" style="color:var(--orange);">«Дополнительные работы: как получить оплату»</a>, 19 900 ₽. Приказ на дополнительный объём, уведомления, акт скрытых работ, расчёт стоимости, журнал допработ. Комплекты не пересекаются: общих документов у них нет.</p>
+      <p style="color:var(--concrete);font-size:14px;margin-top:26px;">Если вы уже подписали и работаете, а спор идёт про допы — нужен другой набор: <a href="/products/p2-dopolnitelnye-raboty.html?utm_campaign=dop_raboty&amp;utm_source=site&amp;utm_medium=article&amp;utm_content=skidka-15-procentov-na-tendere-eto-otbor-zhertv-core-dopraboty" style="color:var(--orange);">«Дополнительные работы: как получить оплату»</a>, 24 900 ₽. Приказ на дополнительный объём, уведомления, акт скрытых работ, расчёт стоимости, журнал допработ. Комплекты не пересекаются: общих документов у них нет.</p>
     </div>
 
     <div class="article-lead" style="margin:40px 0;padding:32px;border:2px solid var(--orange);border-radius:8px;">
@@ -153,5 +165,6 @@
     </section>
   </main>
   <script src="/attribution.js?v=e5aab965"></script>
+  <script type="module" src="/app-script.php?v=21"></script>
 </body>
 </html>
