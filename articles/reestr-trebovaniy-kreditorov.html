@@ -43,9 +43,21 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="/nsp-unified-header.css?v=20261108b">
+  <link rel="stylesheet" href="/cart.css?v=dbf0bfa0">
 </head>
 <body class="rebrand-approved">
-  <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Бесплатно</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и судебные решения</a><a href="/#author">О проекте</a></nav></header>
+  <header class="topbar nsp-unified-header"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Шаблоны актов</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и решения судов</a><a href="/#author">О проекте</a></nav><button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>
+  <aside class="cart-panel" id="cart-panel" aria-label="Корзина" hidden>
+    <div class="cart-head"><div><p class="eyebrow">ВАШ ЗАКАЗ</p><h2>Корзина</h2></div><button class="cart-close" id="cart-close" type="button" aria-label="Закрыть корзину">×</button></div>
+    <div class="cart-empty" id="cart-empty">Пока пусто. Выберите один или несколько пакетов.</div>
+    <ul class="cart-items" id="cart-items"></ul>
+    <div class="cart-total"><span>Итого</span><strong id="cart-total">0 ₽</strong></div>
+    <button class="button cart-checkout" id="cart-checkout" type="button" disabled>Оформить заказ</button>
+    <p class="fine">На этом этапе оплата не списывается. Состав заказа перейдёт в форму оформления.</p>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+
 
   <main class="section article-page">
     <nav aria-label="Хлебные крошки" class="breadcrumbs">
@@ -84,6 +96,9 @@
     <h2 id="chto-takoe-reestr-trebovaniy-kreditorov-esli-gov">Что такое реестр требований кредиторов, если говорить про ваш объект</h2>
     <p>Реестр — это учтённый перечень того, кому должник должен: кто кредитор, в каком размере, в какой очереди. Он ведётся в деле о банкротстве, а не в бухгалтерии генподрядчика, и ваш подписанный акт сам по себе в него не попадает. Долг может быть признан, сверка подписана, переписка сохранена — и всё это останется вашим внутренним документооборотом, пока требование не заявлено в дело и не установлено судом.</p>
     <p>Отсюда первое неприятное следствие: <strong>факт долга и наличие требования в реестре — разные вещи.</strong> Вы можете быть кругом правы и при этом не быть кредитором в процедуре. Никто не переносит вас в реестр автоматически по подписанным актам — ни арбитражный управляющий, ни бухгалтерия должника, ни суд по прошлому делу.</p>
+
+    
+    <aside class="article-cta-inline" data-nsp-editorial="v2"><p><strong>Порядок проверки.</strong> Определите стадию дела о банкротстве, состав и основание требования, подтверждающие документы и процессуальный срок для заявления. Состав документов для этой ситуации — в <a href="/products/p9-bankrotstvo-genpodryadchika.html">комплекте «Взыскание задолженности при банкротстве генподрядчика»</a>.</p></aside>
 
     <h2 id="pochemu-privychnyy-marshrut-pretenziya-isk-zdes-">Почему привычный маршрут «претензия — иск» здесь ломается</h2>
     <p>До банкротства всё выглядело понятно: направили претензию, не заплатили — пошли в суд, получили решение, отдали приставам. В деле о банкротстве этот маршрут не продолжается, а заменяется другим. Порядок установления размера требований кредиторов описан отдельными статьями Закона о банкротстве — ст. 71 для наблюдения, ст. 100 для внешнего управления, ст. 142 для конкурсного производства — и требование заявляется в само дело, суду, с направлением управляющему, а не отдельным иском в общем порядке.</p>
@@ -134,9 +149,9 @@
 
 <div class="article-cta" style="margin:40px 0;padding:40px;background:var(--ink);color:var(--paper);border-radius:8px;">
       <p class="eyebrow" style="color:var(--orange);">ПЛАТНЫЙ КОМПЛЕКТ</p>
-      <h3 style="color:#fff;">Комплект «Реестр требований кредиторов: как подрядчику заявить требование, сроки, переписка с управляющим»</h3>
-      <p style="color:#bbb;">10 файлов ровно на ситуацию из этой статьи: маркеры и где их смотреть, пошаговый алгоритм от первого признака до заявления требования, реестр документов и дат по объекту, перечень пакета, два письма арбитражному управляющему, заготовка заявления о включении в реестр и разбор вариантов, если срок уже пропущен. Срок в комплекте не вычисляется формулой: дату вводит человек после проверки действующей редакции, рядом — поля «норма, по которой проверен срок» и «кем и когда проверен». Комплект не ведёт дело о банкротстве и не заменяет юриста: заготовка заявления подаётся только после его проверки. Требование в реестре не означает выплату — в банкротстве оно чаще удовлетворяется частично или не удовлетворяется.</p>
-      <p style="font-size:28px;font-weight:900;color:var(--orange);">2 990 ₽</p>
+      <h3 style="color:#fff;">Взыскание задолженности при банкротстве генподрядчика</h3>
+      <p style="color:#bbb;">12 файлов ровно на ситуацию из этой статьи: маркеры и где их смотреть, пошаговый алгоритм от первого признака до заявления требования, реестр документов и дат по объекту, перечень пакета, два письма арбитражному управляющему, заготовка заявления о включении в реестр и разбор вариантов, если срок уже пропущен. Срок в комплекте не вычисляется формулой: дату вводит человек после проверки действующей редакции, рядом — поля «норма, по которой проверен срок» и «кем и когда проверен». Комплект не ведёт дело о банкротстве и не заменяет юриста: заготовка заявления подаётся только после его проверки. Требование в реестре не означает выплату — в банкротстве оно чаще удовлетворяется частично или не удовлетворяется.</p>
+      <p style="font-size:28px;font-weight:900;color:var(--orange);">24 900 ₽</p>
       <a class="button" href="/products/p9-bankrotstvo-genpodryadchika.html">Купить комплект →</a>
     </div>
 
@@ -171,5 +186,9 @@
     </section>
   </main>
   <script src="/attribution.js?v=e5aab965"></script>
+  <script type="module" src="/app-script.php?v=21"></script>
 </body>
 </html>
+
+
+[executed on device: ai-workstation (ce0aa4dc-7a8e-454f-9d5f-d80cf25f9d9f)]
