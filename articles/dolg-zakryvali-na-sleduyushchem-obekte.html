@@ -43,9 +43,21 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="/nsp-unified-header.css?v=20261108b">
+  <link rel="stylesheet" href="/cart.css?v=dbf0bfa0">
 </head>
 <body class="rebrand-approved">
-  <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Бесплатно</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и судебные решения</a><a href="/#author">О проекте</a></nav></header>
+  <header class="topbar nsp-unified-header"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Шаблоны актов</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и решения судов</a><a href="/#author">О проекте</a></nav><button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>
+  <aside class="cart-panel" id="cart-panel" aria-label="Корзина" hidden>
+    <div class="cart-head"><div><p class="eyebrow">ВАШ ЗАКАЗ</p><h2>Корзина</h2></div><button class="cart-close" id="cart-close" type="button" aria-label="Закрыть корзину">×</button></div>
+    <div class="cart-empty" id="cart-empty">Пока пусто. Выберите один или несколько пакетов.</div>
+    <ul class="cart-items" id="cart-items"></ul>
+    <div class="cart-total"><span>Итого</span><strong id="cart-total">0 ₽</strong></div>
+    <button class="button cart-checkout" id="cart-checkout" type="button" disabled>Оформить заказ</button>
+    <p class="fine">На этом этапе оплата не списывается. Состав заказа перейдёт в форму оформления.</p>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+
 
   <main class="section article-page">
     <nav aria-label="Хлебные крошки" class="breadcrumbs">
@@ -84,6 +96,9 @@
     <h2 id="chto-sluchilos">Что случилось</h2>
     <p>Застройщик вёл крупный жилой микрорайон на банковском финансировании и строил последовательно, дом за домом. Часть стройки финансировалась оборотными средствами субподрядчиков и поставщиков: долг за выполненное «закрывался на следующем объекте», а следующий объект порождал новый долг.</p>
     <p>Отделочная компания прошла по этой цепочке четыре дома — около четырёх с половиной лет от ввода первого объекта до развязки. Схема держалась ровно до тех пор, пока субподрядчик устраивал генподрядчика. Замена пришла, как только перестал.</p>
+
+    
+    <aside class="article-cta-inline" data-nsp-editorial="v2"><p><strong>Порядок проверки.</strong> Если предлагают погасить старую задолженность новым объектом, разделите расчёты по договорам, зафиксируйте признанную сумму и условия её погашения. Не подменяйте обязательство устной договорённостью. В работе с документами поможет комплект <a href="/products/p1-oplata-po-ks2.html">«Получение оплаты за выполненные работы»</a>.</p></aside>
 
     <h2 id="usloviya-na-vhode">Условия на входе</h2>
     <ul>
@@ -171,5 +186,9 @@
     </section>
   </main>
   <script src="/attribution.js?v=e5aab965"></script>
+  <script type="module" src="/app-script.php?v=21"></script>
 </body>
 </html>
+
+
+[executed on device: ai-workstation (ce0aa4dc-7a8e-454f-9d5f-d80cf25f9d9f)]
