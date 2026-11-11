@@ -1,0 +1,24 @@
+name: NSP P10 read-only actual buyer product capture
+on:
+  push:
+    branches:
+      - 'release/nsp-p10-capture-20261111'
+    paths:
+      - '.github/workflows/nsp-p10-capture-20261111.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 5
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: Read production P10 buyer ZIP only
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash /home/denis/projects/nsp-qa19-p10-20261030/p10_readonly_capture_20261111.sh
