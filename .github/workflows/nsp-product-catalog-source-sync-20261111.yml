@@ -1,0 +1,50 @@
+name: NSP scoped production-to-main paid product catalog reconciliation
+on:
+  push:
+    branches:
+      - 'release/nsp-product-catalog-source-sync-20261111'
+    paths:
+      - '.github/workflows/nsp-product-catalog-source-sync-20261111.yml'
+permissions:
+  contents: write
+concurrency:
+  group: nsp-catalog-source-sync-20261111
+  cancel-in-progress: false
+jobs:
+  reconcile:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 8
+    steps:
+      - name: Checkout eight product storefront sources, no production access
+        uses: actions/checkout@v4
+        with:
+          ref: sync/nsp-product-catalog-production-20261111
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            katalog.html
+            products/p1-oplata-po-ks2.html
+            products/p2-dopolnitelnye-raboty.html
+            products/p4-ispolnitelnaya-dokumentaciya-pto.html
+            products/p7-dogovor-podryada.html
+            products/p10-otvet-na-pretenziyu.html
+            products/p11-raschet-metrami.html
+            products/p13-chto-v-smete-ne-oplatyat.html
+          sparse-checkout-cone-mode: false
+          persist-credentials: true
+          path: scoped-catalog-source
+      - name: SHA-locked synchronization of approved live product pages and catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "pmgpt12-arch/marzhavbetone.ru"
+          test "$GITHUB_REF_NAME" = "release/nsp-product-catalog-source-sync-20261111"
+          cd scoped-catalog-source
+          test -z "$(git status --porcelain)"
+          python3 /home/denis/projects/nsp-catalog-qa-20261111/reconcile_paid_product_pages_source_20261111.py "$PWD"
+          git add -- katalog.html products/p1-oplata-po-ks2.html products/p2-dopolnitelnye-raboty.html products/p4-ispolnitelnaya-dokumentaciya-pto.html products/p7-dogovor-podryada.html products/p10-otvet-na-pretenziyu.html products/p11-raschet-metrami.html products/p13-chto-v-smete-ne-oplatyat.html
+          git -c core.whitespace=-blank-at-eol diff --cached --check
+          test "$(git diff --cached --name-only | wc -l)" -eq 8
+          git -c user.name="nsp-prod-source-sync" -c user.email="noreply@users.noreply.github.com" commit -m "Reconcile live 11-SKU catalog and seven buyer product pages [skip deploy]"
+          git push origin HEAD:refs/heads/sync/nsp-product-catalog-production-20261111
+          echo "NSP_8_FILE_SOURCE_RECONCILIATION_BRANCH_READY"
