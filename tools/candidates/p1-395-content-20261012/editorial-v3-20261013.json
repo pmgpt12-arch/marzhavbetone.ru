@@ -1,0 +1,24 @@
+{
+  "status": "PASS_V3_CONTEXT_CONSISTENCY_OOXML_ONLY",
+  "input_v2_sha256": "091c4d0adbfd97a9fc390db22e03734c7fa0e65820aaa899a11b69ca2b8bf350",
+  "candidate_v3_sha256": "f7bd3a6fc8cfbb9e478448b2d217c6c4e3b667a5548f421373a7816978e5874e",
+  "v2_archived": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-editorial-v2-20261013/14-raschet-procentov-395-gk-v2.xlsx",
+  "changed_cell": "sheet3!A19",
+  "changed_zip_parts": [
+    "xl/worksheets/sheet3.xml"
+  ],
+  "other_zip_parts_identical": 14,
+  "xml_nontext_structure_identical": true,
+  "corrected_old": "— Сверку применимых условий договора, фактических обстоятельств и нормативных оснований начисления процентов.",
+  "corrected_new": "— Сверьте применимые условия договора, фактические обстоятельства и нормативные основания начисления процентов.",
+  "time_utc": "2026-10-13T00:57:51.615602+00:00",
+  "remaining": [
+    "independent full OOXML test",
+    "visual",
+    "native Excel",
+    "normative",
+    "buyer",
+    "G1-G8",
+    "release"
+  ]
+}

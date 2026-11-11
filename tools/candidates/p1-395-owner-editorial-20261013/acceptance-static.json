@@ -1,0 +1,130 @@
+{
+  "utc": "2026-10-13T12:07:46.865327+00:00",
+  "status": "ACCEPTED_STATIC_OWNER_DELTA_ONLY",
+  "candidate_sha256": "d29a0fd17baa090d6d98443c984cf33109316ffda8a346e8ea5a7e74ae85b52d",
+  "independent_static": {
+    "utc": "2026-10-13T12:04:00.343515+00:00",
+    "status": "PASS_EXACT_OWNER_EDITED_SERVER_CANDIDATE_STATIC_ONLY",
+    "source_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+    "candidate_sha256": "d29a0fd17baa090d6d98443c984cf33109316ffda8a346e8ea5a7e74ae85b52d",
+    "formula_and_cache_exact": 251,
+    "changed_text_cells": [
+      {
+        "sheet_part": "xl/worksheets/sheet1.xml",
+        "cell": "A2",
+        "before": "Заполните ячейки со светло-золотистой заливкой. Остальные ячейки содержат подписи и формулы.",
+        "after": "Заполните ячейки с бежевой заливкой."
+      },
+      {
+        "sheet_part": "xl/worksheets/sheet2.xml",
+        "cell": "A2",
+        "before": "Заполняются только колонки A и B со светло-золотистой заливкой: разбейте срок просрочки по датам смены ставки и по датам частичных оплат. Остальное считается само. Колонка «Проверка» подскажет, если период разбит неверно.",
+        "after": "Заполните столбцы A и B: разбейте срок просрочки по датам смены ставки и по датам частичных оплат. Столбец «Проверка» подскажет, если период разбит неверно."
+      },
+      {
+        "sheet_part": "xl/worksheets/sheet2.xml",
+        "cell": "A51",
+        "before": "Сверьте итог с независимым расчётом процентов по ст. 395 ГК РФ, например в справочно-правовой системе. При расхождении проверьте ставки, даты, базу долга, разбивку периодов и округление в обоих расчётах. Колонка «Проверка» должна быть пустой во всех заполненных строках.",
+        "after": "Сверьте итог с независимым расчётом процентов по ст. 395 ГК РФ, например в справочно-правовой системе. При расхождении проверьте ставки, даты, базу долга, разбивку периодов и округление в обоих расчётах. Столбец «Проверка» должен быть пустым во всех заполненных строках."
+      },
+      {
+        "sheet_part": "xl/worksheets/sheet3.xml",
+        "cell": "A2",
+        "before": "Значения подставляются сами. Лист печатается как приложение «Расчёт взыскиваемой суммы» — судьи ждут расчёт в разбивке по периодам, поэтому печатайте вместе с листом «Расчёт».",
+        "after": "Печатайте лист как приложение «Расчёт взыскиваемой суммы» вместе с листом «Расчёт», содержащим разбивку по периодам."
+      },
+      {
+        "sheet_part": "xl/worksheets/sheet4.xml",
+        "cell": "A19",
+        "before": "Обратите внимание: период разбит на две строки по дате смены ставки. Если бы просрочка пересекала 31 декабря, разбить пришлось бы и там — колонка «Проверка» об этом напомнит.",
+        "after": "Обратите внимание: период разбит на две строки по дате смены ставки. Если бы просрочка пересекала 31 декабря, разбить пришлось бы и там — столбец «Проверка» об этом напомнит."
+      }
+    ],
+    "italic_definitions_before": 2,
+    "italic_definitions_after": 0,
+    "print_area": "'Расчёт'!$A$1:$H$46",
+    "unchanged_parts": 9,
+    "changed_parts": [
+      "xl/worksheets/sheet1.xml",
+      "xl/worksheets/sheet2.xml",
+      "xl/worksheets/sheet3.xml",
+      "xl/worksheets/sheet4.xml",
+      "xl/styles.xml",
+      "xl/workbook.xml"
+    ],
+    "native": "PENDING",
+    "release": "BLOCKED",
+    "other_local_reported_candidate": {
+      "sha256": "54ccad8ede6a251abccc118a00b3eea0f3012805b5083c88ef213a06e6361121",
+      "local_commit": "b6c2df20e873c49fe8d3e0768a6bee9c13f0107e",
+      "source": "issue291#issuecomment-6144470073",
+      "bytes_accessible_in_known_worktree": false,
+      "not_used_for_this_acceptance": true
+    }
+  },
+  "tests": {
+    "utc": "2026-10-13T12:01:52.239126+00:00",
+    "results": [
+      {
+        "command": [
+          "python3",
+          "tools/test_p1_395_owner_editorial.py"
+        ],
+        "exit_code": 0,
+        "stdout": "{\"status\": \"PASS_OWNER_EDITORIAL_DELTA_ONLY\", \"sha256\": \"d29a0fd17baa090d6d98443c984cf33109316ffda8a346e8ea5a7e74ae85b52d\", \"formulas\": 251, \"text_cells\": 5, \"active_italic\": 0, \"print_area\": \"'Расчёт'!$A$1:$H$46\", \"negative_cases\": [\"formula\", \"italic\", \"print_range\", \"forbidden_column\", \"forbidden_color\", \"filler\", \"bold_loss\", \"false_native_acceptance\"], \"g1_g8\": \"OPEN\"}\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "python3",
+          "-m",
+          "unittest",
+          "tools.test_artifact_registry"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "...........................................\n----------------------------------------------------------------------\nRan 43 tests in 1.090s\n\nOK\n"
+      },
+      {
+        "command": [
+          "python3",
+          "tools/build_artifact_registry.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "ARTIFACT_REGISTRY_PASS\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ]
+  },
+  "registry_test_recovery": {
+    "previous_receipt_sha256": "0c5b6fb09036f0406e26d9538dd8d2371ce66100d68564f9ef30e4214c7c23eb",
+    "status": "PASS",
+    "tests": 43,
+    "regression": "test_job_fixture_selection_ignores_no_job_tail"
+  },
+  "native": {
+    "status": "BLOCKED_AGENT_ERROR_NO_POLL",
+    "requested_job": "p1-395-owner-open-20261013-v1",
+    "submitted": false,
+    "observed_source": "192.168.1.140",
+    "word_state": "ERROR",
+    "excel_state": "ERROR",
+    "observation_utc": "2026-10-13T12:03:55Z",
+    "next": "fresh authenticated idle poll required; do not submit until available"
+  },
+  "G1_G8": "OPEN",
+  "release": "BLOCKED",
+  "canonical_replacement": false,
+  "other_P1_documents": "NOT_REVIEWED_BY_THIS_UNIT"
+}

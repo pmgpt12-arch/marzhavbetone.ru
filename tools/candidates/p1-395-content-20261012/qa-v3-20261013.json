@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "PASS_OOXML_EDITORIAL_AND_LIBREOFFICE_A4_PREVIEW_ONLY",
+  "head_before_edit": "72bfbe9c3606d34dca2290b7d6356c337315b837",
+  "canonical_source_sha256": "0e3fd94bcb4023652d40de96c22890ef494f0d089d565b1ef6017374c19923fe",
+  "previous_draft_candidate_sha256": "0fbed1858b239bffa713f14b95e7ba07c41742726bc9aa2a221904c3f58aa5f5",
+  "candidate_sha256": "f7bd3a6fc8cfbb9e478448b2d217c6c4e3b667a5548f421373a7816978e5874e",
+  "corrected_cells": {
+    "sheet1": [
+      "A47"
+    ],
+    "sheet2": [
+      "A48"
+    ],
+    "sheet3": [
+      "A15",
+      "A16",
+      "A17",
+      "A18",
+      "A19"
+    ]
+  },
+  "zip_parts_total": 15,
+  "zip_parts_changed": [
+    "xl/worksheets/sheet1.xml",
+    "xl/worksheets/sheet2.xml",
+    "xl/worksheets/sheet3.xml"
+  ],
+  "other_package_parts_byte_identical": true,
+  "non_text_xml_structure_identical": true,
+  "formulas_preserved": 251,
+  "styles_print_validation_protection_unchanged": true,
+  "negative_mutations_detected": 3,
+  "buyer_language_check": "PASS_EXACT_CANDIDATE_ONLY",
+  "libreoffice_pdf_sha256": "bcdc64611cfb4d312f5d0ecd128b6562c87b5770c959360745a702a021971d0d",
+  "libreoffice_page_count": 5,
+  "libreoffice_page_format": "A4",
+  "visual_review": "five-page contact sheet inspected; final page 4 checked at 160dpi; no apparent clipping or layout break",
+  "visual_evidence_dir": "/home/denis/.local/state/claude-dispatcher/recovery-20261006/postreconnect-product-gates/p1-395-v3-render-20261013",
+  "not_accepted": [
+    "native Excel 2016",
+    "numeric test vectors",
+    "normative/legal",
+    "filled print",
+    "buyer G1-G8",
+    "canonical source replacement",
+    "release/publication/delivery"
+  ],
+  "production_modified": false
+}

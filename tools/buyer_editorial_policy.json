@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "decision_id": "MB001-EDITORIAL-OWNER-20261013",
+  "source": "https://github.com/pmgpt12-arch/marzhavbetone.ru/issues/291#issuecomment-6143718030",
+  "target_skus": ["P1", "P2", "P3", "P4", "P5+P12", "P7", "P8", "P9", "P10", "P11", "P13", "T2", "T3"],
+  "scope": "Покупательские DOCX/XLSX/PDF, инструкции и их актуальные генерирующие тексты. Исторические отчёты и доказательства не переписываются.",
+  "italic_allowed": false,
+  "column_term": "столбец",
+  "fill_color_term": "бежевая",
+  "change_fill_palette": false,
+  "forbidden_lexical_patterns": ["колонк[а-яё]*", "светло[- ‐‑–]?золотист[а-яё]*"],
+  "remove_exact_filler": ["Остальное считается само.", "Значения подставляются сами.", "Остальные ячейки содержат подписи и формулы."],
+  "grammatical_agreement_required": true,
+  "semantic_review_required": true,
+  "semantic_acceptance": "Оставлять фразу, если она сообщает действие, исходные данные, условие применения, существенный риск, предупреждение, источник или способ проверки. Удалять или сокращать остальные фразы. Не удалять предметные условия и предупреждения общим regex.",
+  "preserve": ["формулы", "числовые значения", "условия применения", "существенные предупреждения", "источники и нормативные основания", "ссылки на файлы и ячейки", "полужирное выделение", "палитра"],
+  "print_policy": {
+    "source_decision": "MB001-PRINT-SCOPE-OWNER-20261013",
+    "whole_workbook_required": false,
+    "single_page_required": false,
+    "user_range_selection_allowed": true,
+    "acceptance": "Читаемость и отсутствие обрезанных значимых данных в выбранном диапазоне.",
+    "exact_overrides": [{"registry_id": "P1-CAND-395-OWNER-EDITORIAL-20261013", "sheet": "Расчёт", "print_area": "$A$1:$H$46", "keep_outside_cells": true}]
+  },
+  "automated_coverage": "P1 exact editorial/style/print delta: tools/test_p1_395_owner_editorial.py; полное внедрение по другим продуктам не подтверждено.",
+  "release_authorized": false
+}

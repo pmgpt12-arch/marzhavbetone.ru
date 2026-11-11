@@ -114,8 +114,19 @@ class RegistryChangeHistoryTests(unittest.TestCase):
         MODULE.validate_change_history(self.history())
         MODULE.verify_history_files(BASE, ROOT)
 
+    def word_index(self, data):
+        rows=data['change_history']['records']
+        ids=[i for i,r in enumerate(rows) if any(g.get('job_id')=='p2-instruction-style-word-20261013-v1' for g in r['gates'])]
+        self.assertEqual(len(ids),1)
+        return ids[0]
+
+    def numeric_index(self, data):
+        ids=[i for i,r in enumerate(data['change_history']['records']) if r['record_id']=='P1-395-NUMERIC-ORDINARY-365-20261013']
+        self.assertEqual(len(ids),1)
+        return ids[0]
+
     def test_exact_word_pass_reused_without_new_job(self):
-        result = MODULE.plan_checkpoint_reuse(BASE, self.request(BASE), ROOT)
+        result = MODULE.plan_checkpoint_reuse(BASE, self.request(BASE,self.word_index(BASE)), ROOT)
         self.assertEqual(result['decision'], 'REUSE_VERIFIED_RESULT')
         self.assertTrue(result['do_not_launch_duplicate'])
         self.assertEqual(result['job_id'], 'p2-instruction-style-word-20261013-v1')
@@ -206,8 +217,18 @@ class RegistryChangeHistoryTests(unittest.TestCase):
         data=self.history();record=copy.deepcopy(data['change_history']['records'][-1]);record['record_id']='new-record'
         with self.assertRaises(MODULE.RegistryError):MODULE.append_change_record(data,record,'0'*64)
 
+    @staticmethod
+    def record_with_job(data):
+        return next(r for r in data['change_history']['records'] if any(g.get('job_id') for g in r['gates']))
+
+    def test_job_fixture_selection_ignores_no_job_tail(self):
+        data=self.history()
+        expected=self.record_with_job(data)['record_id']
+        data['change_history']['records'].append({'record_id':'unrelated-static-tail','gates':[{'job_id':None}]})
+        self.assertEqual(self.record_with_job(data)['record_id'],expected)
+
     def test_same_job_and_fingerprint_cannot_be_recorded_twice(self):
-        data=self.history();record=copy.deepcopy(data['change_history']['records'][-1]);record['record_id']='duplicate-execution'
+        data=self.history();record=copy.deepcopy(self.record_with_job(data));record['record_id']='duplicate-execution'
         with self.assertRaises(MODULE.RegistryError):MODULE.append_change_record(data,record,data['change_history']['head_record_sha256'])
 
     def test_open_print_gate_not_converted_to_pass(self):
@@ -225,8 +246,25 @@ class RegistryChangeHistoryTests(unittest.TestCase):
         with self.assertRaises(MODULE.RegistryError): MODULE.plan_checkpoint_reuse(data,self.request(data,0),ROOT)
 
     def test_cached_native_fail_cannot_override_raw_pass(self):
-        data=self.history();data["change_history"]["records"][-1]["gates"][0]["status"]="FAIL";self.reseal(data)
-        with self.assertRaises(MODULE.RegistryError): MODULE.plan_checkpoint_reuse(data,self.request(data),ROOT)
+        data=self.history();i=self.word_index(data);data["change_history"]["records"][i]["gates"][0]["status"]="FAIL";self.reseal(data)
+        with self.assertRaises(MODULE.RegistryError): MODULE.plan_checkpoint_reuse(data,self.request(data,i),ROOT)
+
+    def test_named_word_checkpoint_survives_appended_numeric_records(self):
+        self.assertLess(self.word_index(BASE),len(BASE['change_history']['records'])-1)
+        result=MODULE.plan_checkpoint_reuse(BASE,self.request(BASE,self.word_index(BASE)),ROOT)
+        self.assertEqual(result['job_id'],'p2-instruction-style-word-20261013-v1')
+
+    def test_numeric_cached_fail_cannot_override_raw_pass(self):
+        data=self.history();i=self.numeric_index(data);data['change_history']['records'][i]['gates'][0]['status']='FAIL';self.reseal(data)
+        with self.assertRaises(MODULE.RegistryError):MODULE.verify_history_files(data,ROOT)
+
+    def test_numeric_batch_wrong_tag_rejected(self):
+        data=self.history();i=self.numeric_index(data);data['change_history']['records'][i]['execution']['tag']='p1n4';self.reseal(data)
+        with self.assertRaises(MODULE.RegistryError):MODULE.verify_history_files(data,ROOT)
+
+    def test_numeric_wrong_raw_job_rejected(self):
+        data=self.history();i=self.numeric_index(data);data['change_history']['records'][i]['gates'][0]['job_id']='wrong-job';self.reseal(data)
+        with self.assertRaises(MODULE.RegistryError):MODULE.verify_history_files(data,ROOT)
 
     def test_baseline_inventory_not_replaced(self):
         self.assertEqual(BASE['file_inventory']['files'],218)

@@ -826,3 +826,27 @@
   - products-storage/ARTIFACT-INVENTORY.json
   - tools/build_artifact_inventory.py
   решение: ''
+
+- id: test_p1_395_editorial_candidate
+  команда: python3 tools/test_p1_395_editorial_candidate.py
+  класс: public
+  блокирует: true
+  зачем: 'P1 395 ГК: OOXML-лексика, 251 формула, core.xml/высота строки, exact native receipts, 9 отрицательных мутаций; не приёмка продукта'
+  требует: []
+  решение: 'Адресная регрессия к PR #610: старый test_p1_value_language читал числовые XML-сущности как строку и не обнаруживал видимые слова «юрист» и «Что это не заменяет». Не распространять PASS на native Excel, право или G1–G8.'
+
+- id: test_p1_395_native_numeric_evidence
+  команда: python3 tools/test_p1_395_native_numeric_evidence.py
+  класс: public
+  блокирует: true
+  зачем: Четыре числовых сценария P1, точные входы, нативные результаты и неизменность 251 формулы
+  требует: []
+  решение: Проверка сохранённых доказательств без повторного Office; не полная приёмка продукта
+
+- id: test_p1_395_owner_editorial
+  команда: python3 tools/test_p1_395_owner_editorial.py
+  класс: public
+  блокирует: true
+  зачем: Правки владельца — текст, отсутствие курсива, область A1:H46 и сохранность 251 формулы
+  требует: []
+  решение: MB001-EDITORIAL-OWNER-20261013; 8 отрицательных тестов; не native или полная продуктовая приёмка

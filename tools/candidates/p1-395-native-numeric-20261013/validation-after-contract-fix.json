@@ -1,0 +1,83 @@
+{
+  "status": "PASS_NUMERIC_EVIDENCE_AND_REGISTRY_ONLY",
+  "source_commit": "586263405d2f6c0ff8c208e4fcbe7a0242b345b1",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "tools/build_artifact_registry.py",
+        "--check"
+      ],
+      "cwd": "/home/denis/projects/mb001-p1-395-copy-correction-20261012",
+      "exit_code": 0,
+      "seconds": 0.292,
+      "timeout_seconds": 35,
+      "stdout": "ARTIFACT_REGISTRY_PASS\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tools/test_artifact_registry.py",
+        "-v"
+      ],
+      "cwd": "/home/denis/projects/mb001-p1-395-copy-correction-20261012",
+      "exit_code": 0,
+      "seconds": 1.266,
+      "timeout_seconds": 35,
+      "stdout": "",
+      "stderr": "test_archive_escape_rejected (tools.test_artifact_registry.RegistryChangeHistoryTests.test_archive_escape_rejected) ... ok\ntest_baseline_inventory_not_replaced (tools.test_artifact_registry.RegistryChangeHistoryTests.test_baseline_inventory_not_replaced) ... ok\ntest_broken_history_link_fails (tools.test_artifact_registry.RegistryChangeHistoryTests.test_broken_history_link_fails) ... ok\ntest_cached_native_fail_cannot_override_raw_pass (tools.test_artifact_registry.RegistryChangeHistoryTests.test_cached_native_fail_cannot_override_raw_pass) ... ok\ntest_cached_native_pass_cannot_override_raw_fail (tools.test_artifact_registry.RegistryChangeHistoryTests.test_cached_native_pass_cannot_override_raw_fail) ... ok\ntest_changed_contract_requires_delta (tools.test_artifact_registry.RegistryChangeHistoryTests.test_changed_contract_requires_delta) ... ok\ntest_changed_dependencies_require_delta (tools.test_artifact_registry.RegistryChangeHistoryTests.test_changed_dependencies_require_delta) ... ok\ntest_changed_input_requires_delta_not_reuse (tools.test_artifact_registry.RegistryChangeHistoryTests.test_changed_input_requires_delta_not_reuse) ... ok\ntest_changed_runtime_requires_delta (tools.test_artifact_registry.RegistryChangeHistoryTests.test_changed_runtime_requires_delta) ... ok\ntest_concurrent_history_head_rejected (tools.test_artifact_registry.RegistryChangeHistoryTests.test_concurrent_history_head_rejected) ... ok\ntest_corrupt_archive_digest_blocks_reuse (tools.test_artifact_registry.RegistryChangeHistoryTests.test_corrupt_archive_digest_blocks_reuse) ... ok\ntest_deleted_history_record_fails (tools.test_artifact_registry.RegistryChangeHistoryTests.test_deleted_history_record_fails) ... ok\ntest_duplicate_record_id_fails_after_reseal (tools.test_artifact_registry.RegistryChangeHistoryTests.test_duplicate_record_id_fails_after_reseal) ... ok\ntest_exact_duplicate_append_is_noop (tools.test_artifact_registry.RegistryChangeHistoryTests.test_exact_duplicate_append_is_noop) ... ok\ntest_exact_word_pass_reused_without_new_job (tools.test_artifact_registry.RegistryChangeHistoryTests.test_exact_word_pass_reused_without_new_job) ... ok\ntest_false_product_pass_rejected (tools.test_artifact_registry.RegistryChangeHistoryTests.test_false_product_pass_rejected) ... ok\ntest_false_release_pass_rejected (tools.test_artifact_registry.RegistryChangeHistoryTests.test_false_release_pass_rejected) ... ok\ntest_gate_cannot_refer_to_another_subject (tools.test_artifact_registry.RegistryChangeHistoryTests.test_gate_cannot_refer_to_another_subject) ... ok\ntest_history_current_records_valid (tools.test_artifact_registry.RegistryChangeHistoryTests.test_history_current_records_valid) ... ok\ntest_known_excel_failure_is_not_retried (tools.test_artifact_registry.RegistryChangeHistoryTests.test_known_excel_failure_is_not_retried) ... ok\ntest_missing_archive_blocks_reuse (tools.test_artifact_registry.RegistryChangeHistoryTests.test_missing_archive_blocks_reuse) ... ok\ntest_named_word_checkpoint_survives_appended_numeric_records (tools.test_artifact_registry.RegistryChangeHistoryTests.test_named_word_checkpoint_survives_appended_numeric_records) ... ok\ntest_numeric_batch_wrong_tag_rejected (tools.test_artifact_registry.RegistryChangeHistoryTests.test_numeric_batch_wrong_tag_rejected) ... ok\ntest_numeric_cached_fail_cannot_override_raw_pass (tools.test_artifact_registry.RegistryChangeHistoryTests.test_numeric_cached_fail_cannot_override_raw_pass) ... ok\ntest_numeric_wrong_raw_job_rejected (tools.test_artifact_registry.RegistryChangeHistoryTests.test_numeric_wrong_raw_job_rejected) ... ok\ntest_open_print_gate_not_converted_to_pass (tools.test_artifact_registry.RegistryChangeHistoryTests.test_open_print_gate_not_converted_to_pass) ... ok\ntest_pending_job_requires_wait (tools.test_artifact_registry.RegistryChangeHistoryTests.test_pending_job_requires_wait) ... ok\ntest_record_digest_tampering_fails (tools.test_artifact_registry.RegistryChangeHistoryTests.test_record_digest_tampering_fails) ... ok\ntest_rewrite_historical_id_rejected (tools.test_artifact_registry.RegistryChangeHistoryTests.test_rewrite_historical_id_rejected) ... ok\ntest_same_job_and_fingerprint_cannot_be_recorded_twice (tools.test_artifact_registry.RegistryChangeHistoryTests.test_same_job_and_fingerprint_cannot_be_recorded_twice) ... ok\ntest_unbounded_pass_rejected (tools.test_artifact_registry.RegistryChangeHistoryTests.test_unbounded_pass_rejected) ... ok\ntest_unknown_current_contract_blocks (tools.test_artifact_registry.RegistryChangeHistoryTests.test_unknown_current_contract_blocks) ... ok\ntest_checkout_matches_seed (tools.test_artifact_registry.RegistryShapeTests.test_checkout_matches_seed) ... ok\ntest_coverage_drift_fails (tools.test_artifact_registry.RegistryShapeTests.test_coverage_drift_fails) ... ok\ntest_duplicate_registry_id_fails (tools.test_artifact_registry.RegistryShapeTests.test_duplicate_registry_id_fails) ... ok\ntest_missing_report_object_fails (tools.test_artifact_registry.RegistryShapeTests.test_missing_report_object_fails) ... ok\ntest_missing_target_fails (tools.test_artifact_registry.RegistryShapeTests.test_missing_target_fails) ... ok\ntest_non_nominated_report_is_blocked (tools.test_artifact_registry.RegistryShapeTests.test_non_nominated_report_is_blocked) ... ok\ntest_report_cannot_be_canonical (tools.test_artifact_registry.RegistryShapeTests.test_report_cannot_be_canonical) ... ok\ntest_runtime_root_count_fails_even_when_coverage_is_reconciled (tools.test_artifact_registry.RegistryShapeTests.test_runtime_root_count_fails_even_when_coverage_is_reconciled) ... ok\ntest_seed_is_valid (tools.test_artifact_registry.RegistryShapeTests.test_seed_is_valid) ... ok\ntest_unknown_role_fails (tools.test_artifact_registry.RegistryShapeTests.test_unknown_role_fails) ... ok\n\n----------------------------------------------------------------------\nRan 42 tests in 0.944s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/run_checks.py",
+        "--class",
+        "public",
+        "--only",
+        "test_p1_395_native_numeric_evidence"
+      ],
+      "cwd": "/home/denis/projects/mb001-p1-395-copy-correction-20261012",
+      "exit_code": 0,
+      "seconds": 0.162,
+      "timeout_seconds": 35,
+      "stdout": "── test_p1_395_native_numeric_evidence — Четыре числовых сценария P1, точные входы, нативные результаты и неизменность 251 формулы\nP1_NATIVE_NUMERIC_EVIDENCE_PASS: 4 derived fixtures; 58 native checks; 66 cached checks (not additive); 5 negative cases; no native replay or G1-G8 claim\nok          test_p1_395_native_numeric_evidence код 0, 0.1 с\n\n========================================================================\nконтур: public\nпрогнано 1, прошли 1, упали 0 (блокирующих 0, предупреждений 0), пропущено без данных 0\n\nИТОГ: PASS — все обязательные проверки прошли.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/build_static_content_snapshot.py",
+        "--check"
+      ],
+      "cwd": "/home/denis/projects/mb001-p1-395-copy-correction-20261012",
+      "exit_code": 0,
+      "seconds": 2.153,
+      "timeout_seconds": 35,
+      "stdout": "SITE_STATIC_CONTENT_SNAPSHOT_PASS pages=88 dependencies=63 sha256=029e2d0763775a05afd8f6fa86c01a6c9fe94af67e597602e4b3779edfaeecbb\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/home/denis/projects/mb001-p1-395-copy-correction-20261012",
+      "exit_code": 0,
+      "seconds": 0.01,
+      "timeout_seconds": 35,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "native_reexecutions": 0,
+  "candidate_sha256_before": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+  "utc_start": "2026-10-13T04:25:29.174510+00:00",
+  "utc_end": "2026-10-13T04:25:33.057905+00:00",
+  "candidate_sha256_after": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+  "G1_G8": "OPEN",
+  "release": "BLOCKED"
+}

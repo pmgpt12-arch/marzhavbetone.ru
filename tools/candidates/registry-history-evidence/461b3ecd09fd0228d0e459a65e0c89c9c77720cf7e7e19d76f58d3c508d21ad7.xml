@@ -1,0 +1,60 @@
+<report status="PASS" scope="NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed" job="p1-395-numeric-four-20261013-v1" excel_version="16.0" excel_build="4324">
+  <check name="p1n1:input_sha" pass="True" expected="e53b31af3690e6d422fb55131c83b14bba399e03c81cf5b3c9ad48829784b085" actual="e53b31af3690e6d422fb55131c83b14bba399e03c81cf5b3c9ad48829784b085" />
+  <check name="p1n1:sheet_protected" pass="True" expected="False" actual="False" />
+  <check name="p1n1:ordinary-365:C4" pass="True" expected="number:10" actual="System.Double:10" />
+  <check name="p1n1:ordinary-365:D4" pass="True" expected="number:1000000" actual="System.Double:1000000" />
+  <check name="p1n1:ordinary-365:E4" pass="True" expected="number:10" actual="System.Double:10" />
+  <check name="p1n1:ordinary-365:F4" pass="True" expected="number:365" actual="System.Double:365" />
+  <check name="p1n1:ordinary-365:G4" pass="True" expected="number:2739.73" actual="System.Double:2739.73" />
+  <check name="p1n1:ordinary-365:H4" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p1n1:ordinary-365:G45" pass="True" expected="number:2739.73" actual="System.Double:2739.73" />
+  <check name="p1n1:ordinary-365:G46" pass="True" expected="number:1002739.73" actual="System.Double:1002739.73" />
+  <check name="p1n1:ordinary-365:H45" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p1n1:pdf_export" pass="True" expected="%PDF-" actual="bytes=215326" />
+  <check name="p1n1:source_unchanged" pass="True" expected="e53b31af3690e6d422fb55131c83b14bba399e03c81cf5b3c9ad48829784b085" actual="e53b31af3690e6d422fb55131c83b14bba399e03c81cf5b3c9ad48829784b085" />
+  <check name="p1n2:input_sha" pass="True" expected="54a5264c6d39e36c75d27326585d8b07b778658a720219f054ecc5c12d64eb84" actual="54a5264c6d39e36c75d27326585d8b07b778658a720219f054ecc5c12d64eb84" />
+  <check name="p1n2:sheet_protected" pass="True" expected="False" actual="False" />
+  <check name="p1n2:leap-partial:C4" pass="True" expected="number:2" actual="System.Double:2" />
+  <check name="p1n2:leap-partial:D4" pass="True" expected="number:1000" actual="System.Double:1000" />
+  <check name="p1n2:leap-partial:E4" pass="True" expected="number:36.5" actual="System.Double:36.5" />
+  <check name="p1n2:leap-partial:F4" pass="True" expected="number:366" actual="System.Double:366" />
+  <check name="p1n2:leap-partial:G4" pass="True" expected="number:1.99" actual="System.Double:1.99" />
+  <check name="p1n2:leap-partial:H4" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p1n2:leap-partial:C5" pass="True" expected="number:1" actual="System.Double:1" />
+  <check name="p1n2:leap-partial:D5" pass="True" expected="number:800" actual="System.Double:800" />
+  <check name="p1n2:leap-partial:E5" pass="True" expected="number:36.5" actual="System.Double:36.5" />
+  <check name="p1n2:leap-partial:F5" pass="True" expected="number:366" actual="System.Double:366" />
+  <check name="p1n2:leap-partial:G5" pass="True" expected="number:0.80" actual="System.Double:0.8" />
+  <check name="p1n2:leap-partial:H5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p1n2:leap-partial:G45" pass="True" expected="number:2.79" actual="System.Double:2.79" />
+  <check name="p1n2:leap-partial:G46" pass="True" expected="number:802.79" actual="System.Double:802.79" />
+  <check name="p1n2:leap-partial:H45" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p1n2:pdf_export" pass="True" expected="%PDF-" actual="bytes=216249" />
+  <check name="p1n2:source_unchanged" pass="True" expected="54a5264c6d39e36c75d27326585d8b07b778658a720219f054ecc5c12d64eb84" actual="54a5264c6d39e36c75d27326585d8b07b778658a720219f054ecc5c12d64eb84" />
+  <check name="p1n3:input_sha" pass="True" expected="71135b41ae24a7a148ff57cc822c1f6c2d1b94320f81aab7d2e2c7f5965106ca" actual="71135b41ae24a7a148ff57cc822c1f6c2d1b94320f81aab7d2e2c7f5965106ca" />
+  <check name="p1n3:sheet_protected" pass="True" expected="False" actual="False" />
+  <check name="p1n3:year-rate:C4" pass="True" expected="number:1" actual="System.Double:1" />
+  <check name="p1n3:year-rate:D4" pass="True" expected="number:100000" actual="System.Double:100000" />
+  <check name="p1n3:year-rate:E4" pass="True" expected="number:10" actual="System.Double:10" />
+  <check name="p1n3:year-rate:F4" pass="True" expected="number:365" actual="System.Double:365" />
+  <check name="p1n3:year-rate:G4" pass="True" expected="number:27.40" actual="System.Double:27.4" />
+  <check name="p1n3:year-rate:H4" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p1n3:year-rate:C5" pass="True" expected="number:2" actual="System.Double:2" />
+  <check name="p1n3:year-rate:D5" pass="True" expected="number:100000" actual="System.Double:100000" />
+  <check name="p1n3:year-rate:E5" pass="True" expected="number:12" actual="System.Double:12" />
+  <check name="p1n3:year-rate:F5" pass="True" expected="number:366" actual="System.Double:366" />
+  <check name="p1n3:year-rate:G5" pass="True" expected="number:65.57" actual="System.Double:65.57" />
+  <check name="p1n3:year-rate:H5" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p1n3:year-rate:G45" pass="True" expected="number:92.97" actual="System.Double:92.97" />
+  <check name="p1n3:year-rate:G46" pass="True" expected="number:100092.97" actual="System.Double:100092.97" />
+  <check name="p1n3:year-rate:H45" pass="True" expected="blank:" actual="System.String:" />
+  <check name="p1n3:pdf_export" pass="True" expected="%PDF-" actual="bytes=216067" />
+  <check name="p1n3:source_unchanged" pass="True" expected="71135b41ae24a7a148ff57cc822c1f6c2d1b94320f81aab7d2e2c7f5965106ca" actual="71135b41ae24a7a148ff57cc822c1f6c2d1b94320f81aab7d2e2c7f5965106ca" />
+  <check name="p1n4:input_sha" pass="True" expected="e6b1b4f4005c986ad39f758b11e1709e70bf243f0b3bee79311664dfdc185813" actual="e6b1b4f4005c986ad39f758b11e1709e70bf243f0b3bee79311664dfdc185813" />
+  <check name="p1n4:sheet_protected" pass="True" expected="False" actual="False" />
+  <check name="p1n4:invalid-gaps:H4" pass="True" expected="text:Период пропущен или перекрыт — исправьте даты" actual="System.String:Период пропущен или перекрыт — исправьте даты" />
+  <check name="p1n4:invalid-gaps:H5" pass="True" expected="text:Период пропущен или перекрыт — исправьте даты" actual="System.String:Период пропущен или перекрыт — исправьте даты" />
+  <check name="p1n4:invalid-gaps:H45" pass="True" expected="text:Последний период не совпадает с датой окончания" actual="System.String:Последний период не совпадает с датой окончания" />
+  <check name="p1n4:pdf_export" pass="True" expected="%PDF-" actual="bytes=216599" />
+  <check name="p1n4:source_unchanged" pass="True" expected="e6b1b4f4005c986ad39f758b11e1709e70bf243f0b3bee79311664dfdc185813" actual="e6b1b4f4005c986ad39f758b11e1709e70bf243f0b3bee79311664dfdc185813" />
+</report>

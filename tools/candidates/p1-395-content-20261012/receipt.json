@@ -1,0 +1,71 @@
+{
+  "schema_version": 3,
+  "source_path": "products-storage/01-zakrytie-rabot/14-raschet-procentov-395-gk.xlsx",
+  "candidate_path": "tools/candidates/p1-395-content-20261012/14-raschet-procentov-395-gk.xlsx",
+  "source_sha256": "0e3fd94bcb4023652d40de96c22890ef494f0d089d565b1ef6017374c19923fe",
+  "candidate_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+  "changed_zip_parts": [
+    "docProps/core.xml",
+    "xl/worksheets/sheet1.xml",
+    "xl/worksheets/sheet2.xml",
+    "xl/worksheets/sheet3.xml",
+    "xl/worksheets/sheet4.xml"
+  ],
+  "corrected_cells": {
+    "sheet1": [
+      "A47"
+    ],
+    "sheet2": [
+      "A48"
+    ],
+    "sheet3": [
+      "A15",
+      "A16",
+      "A17",
+      "A18",
+      "A19"
+    ]
+  },
+  "formulas_before": {
+    "xl/worksheets/sheet1.xml": 0,
+    "xl/worksheets/sheet2.xml": 243,
+    "xl/worksheets/sheet3.xml": 8,
+    "xl/worksheets/sheet4.xml": 0
+  },
+  "formulas_after": {
+    "xl/worksheets/sheet1.xml": 0,
+    "xl/worksheets/sheet2.xml": 243,
+    "xl/worksheets/sheet3.xml": 8,
+    "xl/worksheets/sheet4.xml": 0
+  },
+  "formula_count": 251,
+  "zip_parts_total": 15,
+  "other_package_parts_byte_identical": true,
+  "non_text_xml_structure_identical": false,
+  "visual": {
+    "status": "PASS_HEADER_FIX_ONLY_WITH_OPEN_PAGINATION",
+    "pdf_sha256": "c080a7f04c960fce60d5be0c2ff109088508ca03255a2085f9128406f6e76306",
+    "page_count": 5,
+    "page_format": "A4, mixed portrait/landscape"
+  },
+  "office": "PASS_NATIVE_OPEN_EXPORT_ONLY",
+  "normative_legal": "NOT_ACCEPTED",
+  "buyer": "NOT_ACCEPTED",
+  "g1_g8": "HOLD",
+  "release": "BLOCKED",
+  "scope": "EDITORIAL_METADATA_NATIVE_OPEN_EXPORT_HEADER_ONLY_NOT_PRODUCT_ACCEPTANCE",
+  "qa_report_path": "tools/candidates/p1-395-content-20261012/qa-native-header-20261013.json",
+  "production_modified": false,
+  "registry_id": "P1-CAND-395-NATIVE-HEADER-20261013",
+  "supersedes_for_next_qa": [
+    "P1-CAND-395-PR610-V3",
+    "P1-CAND-395-COREXML-20261013"
+  ],
+  "candidate_bytes": 20192,
+  "permitted_non_text_edits": [
+    "docProps/core.xml: two timezone corrections",
+    "sheet4.xml: row 15 height 38 to 54"
+  ],
+  "native_report_path": "tools/candidates/p1-395-content-20261012/native-header-report-20261013.xml",
+  "native_pdf_path": "tools/candidates/p1-395-content-20261012/native-header-preview-20261013.pdf"
+}

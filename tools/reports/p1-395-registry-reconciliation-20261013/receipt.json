@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "unit_id": "mb001-p1-395-registry-reconciliation-20261013",
+  "created_at_utc": "2026-10-13T03:15:00Z",
+  "status": "READY_FOR_EXACT_HEAD_CI",
+  "checkpoint_policy": "verified_only",
+  "parents": {
+    "product_branch_head": "c5f8355bc68031f5767ad3efa04496938071ed21",
+    "accepted_main_registry_merge": "32cb4ee8627c12d067a0db962fdab9adf49f3ade",
+    "accepted_registry_pr": 617,
+    "accepted_registry_head": "1841d82d2e89a49dcb3638a9519b55d0c7d74790",
+    "product_payload_source_commit": "61c8191e5d8818b8ae472a2b03016eb88c44e859"
+  },
+  "diagnosis": {
+    "class": "CONCURRENT_SCOPE_OVERLAP",
+    "fact": "PR617 introduced the accepted append-only change_history and consumer identity projection while PR610 independently added a fifth nominated artifact record plus temporary whole-registry pin updates",
+    "decision": "take registry/consumer tooling from accepted main; keep P1 product candidate bytes and exact candidate test from 61c819; do not duplicate the P1 record outside change_history"
+  },
+  "overlay": [
+    {
+      "path": "tools/candidates/p1-395-content-20261012/14-raschet-procentov-395-gk.xlsx",
+      "git_blob": "257271d7ca1a51c932be051e838b56c445327a1e",
+      "sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34"
+    },
+    {
+      "path": "tools/candidates/p1-395-content-20261012/native-header-preview-20261013.pdf",
+      "git_blob": "8fe777885d1f2d129462300c7f3d8ce053620214",
+      "sha256": "c080a7f04c960fce60d5be0c2ff109088508ca03255a2085f9128406f6e76306"
+    },
+    {
+      "path": "tools/candidates/p1-395-content-20261012/native-header-report-20261013.xml",
+      "git_blob": "348063a5564f5b6f1672d625124e942f82526736",
+      "sha256": "4e89ad0e0c4ba5349bf092564959f22988173405edf40c28c815f179ccd48f87"
+    },
+    {
+      "path": "tools/candidates/p1-395-content-20261012/qa-native-header-20261013.json",
+      "git_blob": "2883beb1dbd8259618b421de31608296352dba97",
+      "sha256": "585fdadefb07f943712b8ef1369c538fa8f273fb41d33bd5df96184fcfd33a6d"
+    }
+  ],
+  "preserved_from_main": [
+    "products-storage/ARTIFACT-REGISTRY.json with change_history record_count=4",
+    "tools/build_artifact_registry.py reuse preflight",
+    "tools/build_static_content_snapshot.py identity projection",
+    "tools/qualify_p2_canonical_office_transport.py identity projection",
+    "associated negative tests and content-addressed evidence"
+  ],
+  "superseded_branch_changes": [
+    "P1 artifact duplication in ARTIFACT-REGISTRY.json at 67d35e2bb16ca05b3e023685dc98732aab46abe3",
+    "temporary full-registry pin remediation at c5f8355bc68031f5767ad3efa04496938071ed21"
+  ],
+  "execution": {
+    "office_jobs_submitted": 0,
+    "model_calls": 0,
+    "paid_api_calls": 0,
+    "product_binary_rebuilds": 0
+  },
+  "acceptance": [
+    "merge tree contains accepted main registry/tooling unchanged",
+    "P1 candidate artifacts and SHA-bound test equal commit 61c8191e5d8818b8ae472a2b03016eb88c44e859",
+    "exact-head workflows must pass before any further acceptance"
+  ],
+  "limitations": [
+    "no numeric scenario, compact pagination, legal, buyer, G1-G8, canonical replacement, merge, deploy, publication, delivery or release acceptance",
+    "PR610 remains Draft/HOLD"
+  ],
+  "next_step": "run exact-head generic/render and relevant registry consumers; inspect actual conclusions and no open review remarks"
+}

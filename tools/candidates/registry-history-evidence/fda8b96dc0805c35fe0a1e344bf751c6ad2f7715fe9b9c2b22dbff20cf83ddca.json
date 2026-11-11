@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "decision_id": "MB001-EDITORIAL-OWNER-20261013",
+  "decision_source": "https://github.com/pmgpt12-arch/marzhavbetone.ru/issues/291#issuecomment-6143718030",
+  "registry_id": "P1-CAND-395-OWNER-EDITORIAL-20261013",
+  "parent_registry_id": "P1-CAND-395-NATIVE-HEADER-20261013",
+  "recorded_at_utc": "2026-10-13T10:43:52.715079+00:00",
+  "source_commit": "e1d2e76e2f88e9c685856846425c3c0695359473",
+  "source_path": "tools/candidates/p1-395-content-20261012/14-raschet-procentov-395-gk.xlsx",
+  "candidate_path": "tools/candidates/p1-395-owner-editorial-20261013/14-raschet-procentov-395-gk.xlsx",
+  "source_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+  "candidate_sha256": "d29a0fd17baa090d6d98443c984cf33109316ffda8a346e8ea5a7e74ae85b52d",
+  "candidate_bytes": 20443,
+  "status": "PASS_OWNER_TEXT_STYLE_PRINT_CONFIGURATION_ONLY",
+  "checks": {
+    "formulas_preserved": 251,
+    "text_cells_changed": 5,
+    "italic_active": 0,
+    "print_area": "'Расчёт'!$A$1:$H$46",
+    "all_other_cells_values_dimensions_preserved": true,
+    "notes_outside_print_preserved": true,
+    "changed_zip_parts": [
+      "xl/worksheets/sheet1.xml",
+      "xl/worksheets/sheet2.xml",
+      "xl/worksheets/sheet3.xml",
+      "xl/worksheets/sheet4.xml",
+      "xl/styles.xml",
+      "xl/workbook.xml"
+    ],
+    "unchanged_zip_parts": 9,
+    "source_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+    "output_sha256": "d29a0fd17baa090d6d98443c984cf33109316ffda8a346e8ea5a7e74ae85b52d"
+  },
+  "text_changes": [
+    {
+      "part": "xl/worksheets/sheet1.xml",
+      "cell": "A2",
+      "before": "Заполните ячейки со светло-золотистой заливкой. Остальные ячейки содержат подписи и формулы.",
+      "after": "Заполните ячейки с бежевой заливкой."
+    },
+    {
+      "part": "xl/worksheets/sheet2.xml",
+      "cell": "A2",
+      "before": "Заполняются только колонки A и B со светло-золотистой заливкой: разбейте срок просрочки по датам смены ставки и по датам частичных оплат. Остальное считается само. Колонка «Проверка» подскажет, если период разбит неверно.",
+      "after": "Заполните столбцы A и B: разбейте срок просрочки по датам смены ставки и по датам частичных оплат. Столбец «Проверка» подскажет, если период разбит неверно."
+    },
+    {
+      "part": "xl/worksheets/sheet2.xml",
+      "cell": "A51",
+      "before": "Сверьте итог с независимым расчётом процентов по ст. 395 ГК РФ, например в справочно-правовой системе. При расхождении проверьте ставки, даты, базу долга, разбивку периодов и округление в обоих расчётах. Колонка «Проверка» должна быть пустой во всех заполненных строках.",
+      "after": "Сверьте итог с независимым расчётом процентов по ст. 395 ГК РФ, например в справочно-правовой системе. При расхождении проверьте ставки, даты, базу долга, разбивку периодов и округление в обоих расчётах. Столбец «Проверка» должен быть пустым во всех заполненных строках."
+    },
+    {
+      "part": "xl/worksheets/sheet3.xml",
+      "cell": "A2",
+      "before": "Значения подставляются сами. Лист печатается как приложение «Расчёт взыскиваемой суммы» — судьи ждут расчёт в разбивке по периодам, поэтому печатайте вместе с листом «Расчёт».",
+      "after": "Печатайте лист как приложение «Расчёт взыскиваемой суммы» вместе с листом «Расчёт», содержащим разбивку по периодам."
+    },
+    {
+      "part": "xl/worksheets/sheet4.xml",
+      "cell": "A19",
+      "before": "Обратите внимание: период разбит на две строки по дате смены ставки. Если бы просрочка пересекала 31 декабря, разбить пришлось бы и там — колонка «Проверка» об этом напомнит.",
+      "after": "Обратите внимание: период разбит на две строки по дате смены ставки. Если бы просрочка пересекала 31 декабря, разбить пришлось бы и там — столбец «Проверка» об этом напомнит."
+    }
+  ],
+  "italic_font_definitions_removed": 2,
+  "negative_cases": [
+    "old_version"
+  ],
+  "build_idempotence": true,
+  "native_office": "PENDING_NEW_SHA",
+  "visual": "PENDING_NEW_SHA",
+  "numeric_evidence": "PREVIOUS_SOURCE_ONLY; formulas and numeric inputs invariant, not new-SHA native execution",
+  "g1_g8": "HOLD",
+  "release": "BLOCKED",
+  "source_modified": false,
+  "production_modified": false,
+  "model_calls": 0
+}

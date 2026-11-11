@@ -1,0 +1,365 @@
+{
+  "application": {
+    "excel_build": "4324",
+    "excel_version": "16.0",
+    "job": "p1-395-numeric-four-20261013-v1",
+    "scope": "NATIVE_CALCULATION_AND_VALIDATION_VALUE; UI typing/paste, visual/legal/buyer acceptance not performed",
+    "status": "PASS"
+  },
+  "checks": [
+    {
+      "actual": "e53b31af3690e6d422fb55131c83b14bba399e03c81cf5b3c9ad48829784b085",
+      "expected": "e53b31af3690e6d422fb55131c83b14bba399e03c81cf5b3c9ad48829784b085",
+      "name": "p1n1:input_sha",
+      "pass": "True"
+    },
+    {
+      "actual": "False",
+      "expected": "False",
+      "name": "p1n1:sheet_protected",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:10",
+      "expected": "number:10",
+      "name": "p1n1:ordinary-365:C4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:1000000",
+      "expected": "number:1000000",
+      "name": "p1n1:ordinary-365:D4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:10",
+      "expected": "number:10",
+      "name": "p1n1:ordinary-365:E4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:365",
+      "expected": "number:365",
+      "name": "p1n1:ordinary-365:F4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:2739.73",
+      "expected": "number:2739.73",
+      "name": "p1n1:ordinary-365:G4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.String:",
+      "expected": "blank:",
+      "name": "p1n1:ordinary-365:H4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:2739.73",
+      "expected": "number:2739.73",
+      "name": "p1n1:ordinary-365:G45",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:1002739.73",
+      "expected": "number:1002739.73",
+      "name": "p1n1:ordinary-365:G46",
+      "pass": "True"
+    },
+    {
+      "actual": "System.String:",
+      "expected": "blank:",
+      "name": "p1n1:ordinary-365:H45",
+      "pass": "True"
+    },
+    {
+      "actual": "bytes=215326",
+      "expected": "%PDF-",
+      "name": "p1n1:pdf_export",
+      "pass": "True"
+    },
+    {
+      "actual": "e53b31af3690e6d422fb55131c83b14bba399e03c81cf5b3c9ad48829784b085",
+      "expected": "e53b31af3690e6d422fb55131c83b14bba399e03c81cf5b3c9ad48829784b085",
+      "name": "p1n1:source_unchanged",
+      "pass": "True"
+    },
+    {
+      "actual": "54a5264c6d39e36c75d27326585d8b07b778658a720219f054ecc5c12d64eb84",
+      "expected": "54a5264c6d39e36c75d27326585d8b07b778658a720219f054ecc5c12d64eb84",
+      "name": "p1n2:input_sha",
+      "pass": "True"
+    },
+    {
+      "actual": "False",
+      "expected": "False",
+      "name": "p1n2:sheet_protected",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:2",
+      "expected": "number:2",
+      "name": "p1n2:leap-partial:C4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:1000",
+      "expected": "number:1000",
+      "name": "p1n2:leap-partial:D4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:36.5",
+      "expected": "number:36.5",
+      "name": "p1n2:leap-partial:E4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:366",
+      "expected": "number:366",
+      "name": "p1n2:leap-partial:F4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:1.99",
+      "expected": "number:1.99",
+      "name": "p1n2:leap-partial:G4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.String:",
+      "expected": "blank:",
+      "name": "p1n2:leap-partial:H4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:1",
+      "expected": "number:1",
+      "name": "p1n2:leap-partial:C5",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:800",
+      "expected": "number:800",
+      "name": "p1n2:leap-partial:D5",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:36.5",
+      "expected": "number:36.5",
+      "name": "p1n2:leap-partial:E5",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:366",
+      "expected": "number:366",
+      "name": "p1n2:leap-partial:F5",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:0.8",
+      "expected": "number:0.80",
+      "name": "p1n2:leap-partial:G5",
+      "pass": "True"
+    },
+    {
+      "actual": "System.String:",
+      "expected": "blank:",
+      "name": "p1n2:leap-partial:H5",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:2.79",
+      "expected": "number:2.79",
+      "name": "p1n2:leap-partial:G45",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:802.79",
+      "expected": "number:802.79",
+      "name": "p1n2:leap-partial:G46",
+      "pass": "True"
+    },
+    {
+      "actual": "System.String:",
+      "expected": "blank:",
+      "name": "p1n2:leap-partial:H45",
+      "pass": "True"
+    },
+    {
+      "actual": "bytes=216249",
+      "expected": "%PDF-",
+      "name": "p1n2:pdf_export",
+      "pass": "True"
+    },
+    {
+      "actual": "54a5264c6d39e36c75d27326585d8b07b778658a720219f054ecc5c12d64eb84",
+      "expected": "54a5264c6d39e36c75d27326585d8b07b778658a720219f054ecc5c12d64eb84",
+      "name": "p1n2:source_unchanged",
+      "pass": "True"
+    },
+    {
+      "actual": "71135b41ae24a7a148ff57cc822c1f6c2d1b94320f81aab7d2e2c7f5965106ca",
+      "expected": "71135b41ae24a7a148ff57cc822c1f6c2d1b94320f81aab7d2e2c7f5965106ca",
+      "name": "p1n3:input_sha",
+      "pass": "True"
+    },
+    {
+      "actual": "False",
+      "expected": "False",
+      "name": "p1n3:sheet_protected",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:1",
+      "expected": "number:1",
+      "name": "p1n3:year-rate:C4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:100000",
+      "expected": "number:100000",
+      "name": "p1n3:year-rate:D4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:10",
+      "expected": "number:10",
+      "name": "p1n3:year-rate:E4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:365",
+      "expected": "number:365",
+      "name": "p1n3:year-rate:F4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:27.4",
+      "expected": "number:27.40",
+      "name": "p1n3:year-rate:G4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.String:",
+      "expected": "blank:",
+      "name": "p1n3:year-rate:H4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:2",
+      "expected": "number:2",
+      "name": "p1n3:year-rate:C5",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:100000",
+      "expected": "number:100000",
+      "name": "p1n3:year-rate:D5",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:12",
+      "expected": "number:12",
+      "name": "p1n3:year-rate:E5",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:366",
+      "expected": "number:366",
+      "name": "p1n3:year-rate:F5",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:65.57",
+      "expected": "number:65.57",
+      "name": "p1n3:year-rate:G5",
+      "pass": "True"
+    },
+    {
+      "actual": "System.String:",
+      "expected": "blank:",
+      "name": "p1n3:year-rate:H5",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:92.97",
+      "expected": "number:92.97",
+      "name": "p1n3:year-rate:G45",
+      "pass": "True"
+    },
+    {
+      "actual": "System.Double:100092.97",
+      "expected": "number:100092.97",
+      "name": "p1n3:year-rate:G46",
+      "pass": "True"
+    },
+    {
+      "actual": "System.String:",
+      "expected": "blank:",
+      "name": "p1n3:year-rate:H45",
+      "pass": "True"
+    },
+    {
+      "actual": "bytes=216067",
+      "expected": "%PDF-",
+      "name": "p1n3:pdf_export",
+      "pass": "True"
+    },
+    {
+      "actual": "71135b41ae24a7a148ff57cc822c1f6c2d1b94320f81aab7d2e2c7f5965106ca",
+      "expected": "71135b41ae24a7a148ff57cc822c1f6c2d1b94320f81aab7d2e2c7f5965106ca",
+      "name": "p1n3:source_unchanged",
+      "pass": "True"
+    },
+    {
+      "actual": "e6b1b4f4005c986ad39f758b11e1709e70bf243f0b3bee79311664dfdc185813",
+      "expected": "e6b1b4f4005c986ad39f758b11e1709e70bf243f0b3bee79311664dfdc185813",
+      "name": "p1n4:input_sha",
+      "pass": "True"
+    },
+    {
+      "actual": "False",
+      "expected": "False",
+      "name": "p1n4:sheet_protected",
+      "pass": "True"
+    },
+    {
+      "actual": "System.String:Период пропущен или перекрыт — исправьте даты",
+      "expected": "text:Период пропущен или перекрыт — исправьте даты",
+      "name": "p1n4:invalid-gaps:H4",
+      "pass": "True"
+    },
+    {
+      "actual": "System.String:Период пропущен или перекрыт — исправьте даты",
+      "expected": "text:Период пропущен или перекрыт — исправьте даты",
+      "name": "p1n4:invalid-gaps:H5",
+      "pass": "True"
+    },
+    {
+      "actual": "System.String:Последний период не совпадает с датой окончания",
+      "expected": "text:Последний период не совпадает с датой окончания",
+      "name": "p1n4:invalid-gaps:H45",
+      "pass": "True"
+    },
+    {
+      "actual": "bytes=216599",
+      "expected": "%PDF-",
+      "name": "p1n4:pdf_export",
+      "pass": "True"
+    },
+    {
+      "actual": "e6b1b4f4005c986ad39f758b11e1709e70bf243f0b3bee79311664dfdc185813",
+      "expected": "e6b1b4f4005c986ad39f758b11e1709e70bf243f0b3bee79311664dfdc185813",
+      "name": "p1n4:source_unchanged",
+      "pass": "True"
+    }
+  ],
+  "errors": [],
+  "expected_checks": 58,
+  "job_id": "p1-395-numeric-four-20261013-v1",
+  "report_sha256": "461b3ecd09fd0228d0e459a65e0c89c9c77720cf7e7e19d76f58d3c508d21ad7",
+  "source_sha256": "8ec79d20d15a8d4888b2ae69130f374d1a8c6039cfdf2ba71044d7010ff5ce34",
+  "status": "PASS_NATIVE_42_VALUES_PLUS_16_SAFETY"
+}
