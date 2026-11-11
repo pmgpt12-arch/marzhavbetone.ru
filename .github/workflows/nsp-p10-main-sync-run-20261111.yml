@@ -1,0 +1,43 @@
+name: NSP P10 synchronize approved published article in GitHub source
+on:
+  push:
+    branches:
+      - 'release/nsp-p10-main-sync-run-20261111'
+    paths:
+      - '.github/workflows/nsp-p10-main-sync-run-20261111.yml'
+permissions:
+  contents: write
+jobs:
+  stage:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - name: Sparse checkout article, index, sitemap and 4 previews
+        uses: actions/checkout@v4
+        with:
+          ref: sync/nsp-p10-article-main-20261111
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            articles/otvet-na-pretenziyu-zakazchika.html
+            articles/index.html
+            sitemap.xml
+            assets/document-previews
+          sparse-checkout-cone-mode: false
+          persist-credentials: true
+          path: p10-article-sync
+      - name: Production SHA readback and exact seven-file commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "pmgpt12-arch/marzhavbetone.ru"
+          test "$GITHUB_REF_NAME" = "release/nsp-p10-main-sync-run-20261111"
+          cd p10-article-sync
+          test -z "$(git status --porcelain)"
+          python3 /home/denis/projects/nsp-qa19-p10-20261030/sync_p10_main_20261111.py "$PWD"
+          git add -- articles/otvet-na-pretenziyu-zakazchika.html articles/index.html sitemap.xml assets/document-previews/p10-*-preview.jpg
+          git -c core.whitespace=-blank-at-eol diff --cached --check
+          test "$(git diff --cached --name-only | wc -l)" -eq 7
+          git -c user.name="nsp-p10-sync" -c user.email="noreply@users.noreply.github.com" commit -m "Sync P10 editorial HTML, native figures and navigation [skip deploy]"
+          git push origin HEAD:refs/heads/sync/nsp-p10-article-main-20261111
+          echo "P10_REVIEW_SOURCE_BRANCH_PUSHED"
