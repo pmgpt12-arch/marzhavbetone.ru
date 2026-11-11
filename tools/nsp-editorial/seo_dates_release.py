@@ -85,7 +85,7 @@ def run_preflight():
         after = META.sub(lambda m: m.group(1) + DATE + m.group(3), before)
         need(after != before and after.count(b'"dateModified"') == 1,
              "ARTICLE_PATCH_NOT_ATOMIC:" + name)
-        need(after.replace(DATE, old, 1) == before,
+        need(META.sub(lambda m: m.group(1) + old + m.group(3), after) == before,
              "ARTICLE_UNRELATED_MUTATION:" + name)
         artifacts[name] = after
         changes.append({"path": name, "before": sha(before), "after": sha(after),
