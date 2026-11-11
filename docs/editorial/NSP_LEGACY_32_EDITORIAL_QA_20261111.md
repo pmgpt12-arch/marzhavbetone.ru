@@ -42,3 +42,25 @@
 ## Следующий атомарный шаг
 
 Сохранить `PR #739` в статусе **draft**, провести редакционно-юридический review и исправить два указанных коммерческих расхождения в **утверждённых** источниках отдельным ограниченным PR. После release gates — обновить дату модификации, развернуть контролируемо и повторно проверить buyer path. Поисковые позиции и Вебмастер здесь не затрагиваются.
+
+## Предпубликационный gate по условному распоряжению владельца — 11.11.2026
+
+Владелец разрешил публикацию **только при отсутствии блокеров**. По состоянию на проверку условие не выполнено, **merge и production deploy не производились**.
+
+### Уточнение по ранее заявленным T1/T2 — проверено, прежний вывод исправлен
+
+Непосредственная HTTP-проверка **опубликованных** эталонов (200 OK, SHA совпадает с подписанным снимком 11.11.2026):
+
+- P1 `articles/zakazchik-ne-oplachivaet-vypolnennye-raboty.html` — SHA-256 `77387fc86e19144e4fc10c75d2c107127d0d4a11629ae27320aada174f5dd9a0`; ссылок `/products/t*` **нет**.
+- P4 `articles/ispolnitelnaya-dokumentaciya-sostav.html` — SHA-256 `16c50f882c45d09580a405a78fcd2d41b0aee1c08fd42ca014be2f6dfab5afd9`; ссылок `/products/t*` **нет**.
+
+Следовательно, пункт 1–2 в исходном блоке «Неустранённые отклонения» описывает **устаревшие исходники GitHub `main`**, а не текущий опубликованный сайт. Прежняя квалификация как production P0 была ошибочной. Источник: запрос HTML с `Cache-Control: no-cache` и `Accept-Encoding: identity`, SHA-256 фактических HTTP-байтов. Нужно предотвращать возврат старых CTA при любом полном деплое из `main`.
+
+### Что действительно не даёт выпускать сейчас
+
+1. **LEGAL / HUMAN GATE — NOT VERIFIED.** Техническая проверка 32 статей не подтверждает юридическую точность всех правовых тезисов и актуальность норм на дату публикации. Подменять это `HTML_GATE_PASS` недопустимо.
+2. **CI RELEASE GATES — FAIL/UNCLASSIFIED.** Для PR #739 на commit `bc2ee1fbb2e904adfc97cc250b09031a7100f12a` обнаружены неуспешные проверки: `checks`, `render-checks`, `site-route-discovery`, `site-static-content-snapshot`, `site-static-browser-snapshot`. Логи `site-route-discovery` и `site-static-content-snapshot` указывают на `unapproved HTML/PHP delta` с большим списком файлов (не доказательство ошибки 32 статей); `render-checks` сообщает `mobile pixels changed at 390`; `checks` имеет ряд иных fail-контрактов. Не переименовывать системные/source-snapshot несоответствия в «модель не справилась». Требуется ограниченная классификация и, где уместно, обновление согласованного snapshot.
+3. **DEPLOY ROUTE / BLAST RADIUS — NOT VERIFIED.** `.github/workflows/deploy.yml` содержит общий `--delete`/загрузку продуктовых masters и условие `vars.ENABLE_LEGACY_DEPLOY == 'true'`. Запуск без проверенного адресного контракта может затронуть продажи, заказы, PHP и утверждённые файлы. В то же время в проекте есть исторический адресный `tools/nsp-final/release.py`, который требует отдельного актуального release manifest, exact source SHA, backup, dry-run, atomic apply/verify/rollback. Не использовать старый manifest как новый.
+4. **RELEASE METADATA / VISUAL — NOT VERIFIED.** У 32 кандидатов `dateModified` исторический, дата фактического выпуска неизвестна; визуальную проверку после внедрения и checkout regression не выполняли. Изменять метаданные по дате подготовки вместо фактического выпуска не нужно.
+
+**Решение:** `BLOCKED_FOR_PUBLICATION`. Ветка и PR #739 остаются черновыми, готовые 32 HTML и 12 JPEG сохранены; 11 live эталонов менять не требуется. Публикацию выполнять только после фактического прохождения legal, CI, targeted-deploy/dry-run, backup, post-release verification. Поисковая выдача в этот gate не входит.
