@@ -1,0 +1,27 @@
+name: NSP P8 current buyer ZIP brand correction 2026-11-11
+on:
+  push:
+    branches:
+      - 'release/nsp-p8-brandfix-20261111'
+    paths:
+      - '.github/workflows/nsp-p8-brandfix-20261111.yml'
+permissions:
+  contents: read
+concurrency:
+  group: nsp-production-p8-brandfix-20261111
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: SHA-verified P8 one-XLSX metadata change with reversible master/cache swap
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash /home/denis/projects/nsp-qa19-p8-20261030/p8-brandfix-20261111/run_publish_product.sh
