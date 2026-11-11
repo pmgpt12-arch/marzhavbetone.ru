@@ -24,8 +24,8 @@ def candidate():
  tx=ROOT/"tools/nsp-editorial/transaction.php"
  old_tx=(ROOT/"tools/nsp-final/transaction.php").read_text()
  expected=old_tx.replace("'p11'=>2490000,'p13'=>1790000,'t2'=>990000,'t3'=>1490000","'p11'=>2490000,'p13'=>1790000").replace("['t1','t4','t5','t6','p12']","['t1','t2','t3','t4','t5','t6','p12']").replace("// Bounded static-file transaction; all configuration, orders and masters are excluded.","// Bounded static-file transaction; all configuration, orders and masters are excluded.\n// EDITORIAL COPY: T2 and T3 were retired by owner; check as archived, not active.")
- # actual existing copy is the single trusted project executor
- assert tx.is_file()
+ # Exactly two legacy SKU rules and an explanatory comment are the only executor differences.
+ assert tx.is_file() and tx.read_text()==expected,"TRANSACTION_UNRELATED_DRIFT"
  run(["php","-l",str(tx)])
  rows=[{"path":"kalkulyator.html","before":BEFORE,"after":sh(after)}]
  out=EVIDENCE/"calculator-candidate.tar"
