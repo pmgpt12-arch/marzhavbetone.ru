@@ -1,0 +1,27 @@
+name: NSP P10 approved claim-response article and sitemap listing
+on:
+  push:
+    branches:
+      - 'release/nsp-p10-article-20261111'
+    paths:
+      - '.github/workflows/nsp-p10-article-20261111.yml'
+permissions:
+  contents: read
+concurrency:
+  group: nsp-production-p10-article-20261111
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: Scope-locked P10 new HTML, 4 native preview JPGs, index and sitemap atomic release
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash /home/denis/projects/nsp-qa19-p10-20261030/p10-current-reference-20261110/p10-article-release-20261111/run_publish.sh
