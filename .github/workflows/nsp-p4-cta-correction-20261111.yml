@@ -1,0 +1,29 @@
+name: NSP P4 stale legacy article CTA SHA-gated scoped release
+on:
+  push:
+    branches:
+      - 'release/nsp-p4-cta-correction-20261111'
+    paths:
+      - '.github/workflows/nsp-p4-cta-correction-20261111.yml'
+permissions:
+  contents: read
+concurrency:
+  group: nsp-p4-cta-correction-20261111
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 5
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: Scoped seven-article P4 release, SHA preflight, backup and rollback
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          test "$GITHUB_REPOSITORY" = "pmgpt12-arch/marzhavbetone.ru"
+          test "$GITHUB_REF_NAME" = "release/nsp-p4-cta-correction-20261111"
+          timeout 220s bash /home/denis/projects/nsp-p4-legacy-cta-sync-20261111/run_publish.sh
