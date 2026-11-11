@@ -93,6 +93,8 @@ def main() -> int:
 
         if not any("/products/p" in href for href in doc.links):
             errors.append(f"{rel}: no direct paid product link")
+        if rel in legacy and any(re.search(r"/products/t(?:1|4|5)-", href) for href in doc.links):
+            errors.append(f"{rel}: inactive T1/T4/T5 product link in revised article")
         if any(re.search(r"/products/t[23]-", href) for href in doc.links):
             # Immutable approved V2 source contains a pre-existing T2 defect.
             # Do not silently rewrite the approved canonical article in this PR.
