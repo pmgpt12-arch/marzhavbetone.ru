@@ -67,13 +67,13 @@ def validate():
     ).replace("['t1','t4','t5','t6','p12']",
               "['t1','t2','t3','t4','t5','t6','p12']").replace(
         "// Bounded static-file transaction; all configuration, orders and masters are excluded.",
-        "// Bounded static-file transaction; all configuration, orders and masters are excluded.\\n"
+        "// Bounded static-file transaction; all configuration, orders and masters are excluded.\n"
         "// EDITORIAL COPY: T2 and T3 were retired by owner; check as archived, not active."
     )
     # Reject any unrelated changes to the existing transaction or its editorial copy.
     assert tx.read_text(encoding="utf8") == expected_tx, "TRANSACTION_UNRELATED_DRIFT"
     assert tx.is_file()
-    # A previously qualified deploy executor from the project, unmodified.
+    # A narrowly scoped, source-diff-validated copy of the existing executor.
     command(["php", "-l", str(tx)])
     command(["python3", str(ROOT / "tools/nsp_editorial_release_preflight.py"), "--mode", "static"])
     return rows, tx
