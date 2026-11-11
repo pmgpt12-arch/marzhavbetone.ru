@@ -59,6 +59,14 @@ def validate_static():
     require(m["target_host"] == "nastoronepodryadchika.ru", "TARGET_HOST")
     require(m["release_status"] == "PREFLIGHT_ONLY_NO_PRODUCTION_WRITE", "NOT_DRY_RUN")
     require(m["image_uploads"] == 0, "IMAGE_UPLOADS_NOT_ZERO")
+    style = m["style_asset"]
+    require(style["path"] == "article.css", "STYLE_SCOPE")
+    for key in ("before_sha256", "after_sha256"):
+        require(HEX.fullmatch(style[key]) is not None, "STYLE_SHA_FORMAT")
+    style_bytes = (ROOT / style["path"]).read_bytes()
+    require(sha(style_bytes) == style["after_sha256"], "STYLE_SHA_DRIFT")
+    require(len(style_bytes) == style["bytes"], "STYLE_BYTE_DRIFT")
+    require(m["cache_busted_stylesheet"] == "article.css?v=nsp32-20261111", "STYLE_CACHE_VERSION")
     files = m["changed_files"]
     protected = m["protected_approved_articles"]
     require(len(files) == 32 and len(protected) == 11, "FILE_COUNTS")
@@ -81,6 +89,7 @@ def validate_static():
         p = ROOT / path
         require(p.is_file() and not p.is_symlink(), "MISSING_ARTICLE: " + path)
         data = p.read_bytes()
+        require(b"../article.css?v=nsp32-20261111" in data, "STYLE_CACHE_NOT_BUSTED: " + path)
         require(sha(data) == row["after_sha256"], "CANDIDATE_DRIFT: " + path)
         require(len(data) == row["bytes"], "ARTICLE_BYTES: " + path)
         require(row["after_sha256"] != row["before_sha256"],
@@ -122,6 +131,9 @@ def validate_live(m, images, mode):
     keys = "before_sha256" if mode == "live-pre" else "after_sha256"
     checks = [(r["path"], r[keys]) for r in m["changed_files"]]
     checks += [(r["path"], r["sha256"]) for r in m["protected_approved_articles"]]
+    style = m["style_asset"]
+    checks.append((style["path"],
+                   style["before_sha256"] if mode == "live-pre" else style["after_sha256"]))
     media = [(path, None) for path in images]
     def inspect(row):
         path, expected = row
@@ -137,7 +149,7 @@ def validate_live(m, images, mode):
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
         # map preserves deterministic failure order and provides a bounded URL count.
         result = list(pool.map(inspect, checks + media))
-    require(len(result) == 76, "LIVE_CHECK_COUNT")
+    require(len(result) == 77, "LIVE_CHECK_COUNT")
     return len(result)
 
 
