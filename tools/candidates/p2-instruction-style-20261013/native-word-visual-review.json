@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "registry_id": "P2-CAND-INSTR-PR616-V1",
+  "status": "PASS_NATIVE_WORD_OPEN_EXPORT_AND_VISUAL_LAYOUT_ONLY",
+  "verified_utc": "2026-10-13T02:01:29.221411+00:00",
+  "job_id": "p2-instruction-style-word-20261013-v1",
+  "input_sha256": "0f3882fae04bd8bf32a9c368abc24e6d4c1c41fad5d008d37bfc522098148b11",
+  "native_pdf_sha256": "e5e61bc7d38772bd8407681a82e76794383e92426a7b85191201cad9f23aed57",
+  "native_report_sha256": "96817d2e85093dd2b26c04f930e183bc9dde4695f08ba142b1345f0688ffb6c1",
+  "pages_reviewed": 4,
+  "format": "A4",
+  "visual_findings": [],
+  "review_notes": [
+    "All four rendered native-Word pages inspected",
+    "No clipped text, missing glyphs, table overflow or overlap detected",
+    "Table on page 3 is intact; lists continue legibly across page boundaries"
+  ],
+  "page_images": [
+    {
+      "name": "page-1.png",
+      "sha256": "7dabcff4c0ee0d3618dbafd68fe98b4a7ba07e642e2ad4c436018ac9e4d9b774"
+    },
+    {
+      "name": "page-2.png",
+      "sha256": "954963a9a7958553f76c6469ee4541874d312240e7b414dae77744f4b04e8f36"
+    },
+    {
+      "name": "page-3.png",
+      "sha256": "4092df1f4cefef07e5ce7c8898e7dbbd6eeeeee641b8e13b993114031b5736cc"
+    },
+    {
+      "name": "page-4.png",
+      "sha256": "7636638f8dcc3a6483972c21bd3228881e40521a1475d3f8e7bfdf9ffaf3eab6"
+    }
+  ],
+  "not_accepted": [
+    "full product content and normative review",
+    "independent buyer G1-G8",
+    "canonical source replacement",
+    "release/publication/delivery"
+  ],
+  "release": "BLOCKED",
+  "new_office_jobs_submitted": 0,
+  "document_mutations": 0
+}
