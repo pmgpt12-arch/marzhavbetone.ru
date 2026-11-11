@@ -1,0 +1,147 @@
+{
+  "schema": "NSP_ARTICLE_CANONICAL_ACTIVE_v1",
+  "decision": "PUBLISHED_APPROVED_ARTICLES_ARE_SOURCE_OF_TRUTH",
+  "created_utc": "2026-11-11T06:05:30.084526+00:00",
+  "site_url": "https://nastoronepodryadchika.ru/",
+  "catalog_public_sitemap_items": 82,
+  "public_site_reference_zip": "/mnt/server-data/nsp/public-site-article-canon-2026-11-11/NSP_SITE_PUBLIC_ARTICLES_CANON_20261111.zip",
+  "public_site_sha256": "5e4c3ffbcb7778b641f1c1bb40fd0b53e29b640097fd7880c53cf66b4c42e3fb",
+  "public_site_not_deployable": "HTTP HTML and public assets only; private PHP/checkout/secret material excluded",
+  "product_reference_zip": "/mnt/server-data/nsp/accepted-products-2026-11-11/NSP_CANON_ARTICLES_22_PRODUCT_ARCHIVES_20261111.zip",
+  "product_reference_sha256": "3d7ebdeeab1cabf69ae2d20f0ec10b9f22f7656a3e2b5ed8728853bd8266f6cb",
+  "product_snapshot_p1_caveat": "P1: per-order buyer ZIP is dynamically versioned. Old approved template in reference archive; no current production cache file by static name.",
+  "paid_articles": [
+    {
+      "sku": "P1",
+      "article_url": "https://nastoronepodryadchika.ru/articles/zakazchik-ne-oplachivaet-vypolnennye-raboty.html",
+      "article_sha256": "77387fc86e19144e4fc10c75d2c107127d0d4a11629ae27320aada174f5dd9a0",
+      "article_title": "Заказчик не оплачивает выполненные работы: порядок действий подрядчика",
+      "buyer_archive_reference": "paid/P1_P1-layout-v1_current_20261031.zip",
+      "buyer_archive_sha256": "99df41c33e25ce41b61b8e04e22e27871d08a2c383ddae234119a29df5f29ada",
+      "buyer_file_count": 18,
+      "buyer_basis": "HISTORICAL_P1_APPROVED_EDITION_TEMPLATE_PER_ORDER_BUYER_NOT_PRODUCTION_CACHE",
+      "preview_sha_count": 4
+    },
+    {
+      "sku": "P2",
+      "article_url": "https://nastoronepodryadchika.ru/articles/dopolnitelnye-raboty-v-stroitelstve.html",
+      "article_sha256": "70d1fffa4c52c668ad8a36f8f435a0a43190a064d3dd55a3b7833587a490864b",
+      "article_title": "Дополнительные работы в строительстве: порядок согласования, оформления и оплаты",
+      "buyer_archive_reference": "paid/P2-NSP-v13-13-files-20261029.zip",
+      "buyer_archive_sha256": "42b67aeaa5a309b74ce0d396c31098c77832cc6d6235fd642e84bc0f6d4e71da",
+      "buyer_file_count": 13,
+      "buyer_basis": "PRODUCTION_SHA_VERIFIED_20261111",
+      "preview_sha_count": 4
+    },
+    {
+      "sku": "P3",
+      "article_url": "https://nastoronepodryadchika.ru/articles/proverka-ks-2-pered-sdachey.html",
+      "article_sha256": "26110429c3200ab026c8de4cd824e16ef671f6ccf8339de15a306503e8db3769",
+      "article_title": "Проверка КС-2 и КС-3 перед сдачей: как подготовить документы и сократить риск возврата",
+      "buyer_archive_reference": "paid/P3_CURRENT_PRODUCTION_20261111.zip",
+      "buyer_archive_sha256": "d64836140a67101c56edec39371abf8a2a5fd55cb43ce8f82ba0f1228f9b7d3b",
+      "buyer_file_count": 11,
+      "buyer_basis": "ACTUAL_PRODUCTION_SHA_VERIFIED_20261111",
+      "preview_sha_count": 4
+    },
+    {
+      "sku": "P4",
+      "article_url": "https://nastoronepodryadchika.ru/articles/ispolnitelnaya-dokumentaciya-sostav.html",
+      "article_sha256": "16c50f882c45d09580a405a78fcd2d41b0aee1c08fd42ca014be2f6dfab5afd9",
+      "article_title": "Исполнительная документация в строительстве: состав, проверка и передача заказчику",
+      "buyer_archive_reference": "paid/P4_CURRENT_PRODUCTION_20261111.zip",
+      "buyer_archive_sha256": "70a728babb810d6277388a5337decce6bfdf21a7e216bc0a512870860a3d3451",
+      "buyer_file_count": 30,
+      "buyer_basis": "ACTUAL_PRODUCTION_SHA_VERIFIED_20261111",
+      "preview_sha_count": 4
+    },
+    {
+      "sku": "P5",
+      "article_url": "https://nastoronepodryadchika.ru/articles/vozvrat-garantiynogo-uderzhaniya.html",
+      "article_sha256": "b0a5d6d219a1eea09b1eab7285b8a63a55a52ffa15056fb24c02513bb25f1d59",
+      "article_title": "Возврат гарантийного удержания: как подтвердить срок, рассчитать сумму и направить требование",
+      "buyer_archive_reference": "paid/P5_CURRENT_PRODUCTION_20261111.zip",
+      "buyer_archive_sha256": "a31aeb09247f65d06d94ae8e4548e04628ca70c58cc0dc955f18dc436a2ace1f",
+      "buyer_file_count": 30,
+      "buyer_basis": "ACTUAL_PRODUCTION_SHA_VERIFIED_20261111",
+      "preview_sha_count": 4
+    },
+    {
+      "sku": "P7",
+      "article_url": "https://nastoronepodryadchika.ru/articles/dogovor-subpodryada-obrazec.html",
+      "article_sha256": "4047d6629c6bca1e91faa09c9fd6eb2dd58ca9e6aec0b31d8ef48f62e5f4bbf7",
+      "article_title": "Договор субподряда: образец, проверка условий и протокол разногласий",
+      "buyer_archive_reference": "paid/P7_CURRENT_PRODUCTION_20261111.zip",
+      "buyer_archive_sha256": "6df6abf578c240ba9e76c9b0e40c7c4cb3bca34c65029e4260b97d82a25ca8a6",
+      "buyer_file_count": 13,
+      "buyer_basis": "ACTUAL_PRODUCTION_SHA_VERIFIED_20261111",
+      "preview_sha_count": 4
+    },
+    {
+      "sku": "P8",
+      "article_url": "https://nastoronepodryadchika.ru/articles/avans-po-dogovoru-podryada.html",
+      "article_sha256": "01bd96d824a64e9e84e0619fa59e030092401c27c139f6c9789f13441f8ca5c9",
+      "article_title": "Аванс по договору подряда: как согласовать выплату и погашение до начала работ",
+      "buyer_archive_reference": "paid/P8_CURRENT_PRODUCTION_20261111.zip",
+      "buyer_archive_sha256": "89be5987695b5babb2df36f66b85a67842ec8dfd981140c30f426bc4eeca08a5",
+      "buyer_file_count": 12,
+      "buyer_basis": "ACTUAL_PRODUCTION_SHA_VERIFIED_20261111",
+      "preview_sha_count": 4
+    },
+    {
+      "sku": "P9",
+      "article_url": "https://nastoronepodryadchika.ru/articles/bankrotstvo-genpodryadchika-5-markerov.html",
+      "article_sha256": "592fee73580875dfe957b9b72a3409ba7d90c56e94cb14933bd649221a92a549",
+      "article_title": "Как проверить генподрядчика на риск банкротства: пять сигналов и порядок действий подрядчика",
+      "buyer_archive_reference": "paid/P9_CURRENT_PRODUCTION_20261111.zip",
+      "buyer_archive_sha256": "5012fbdbb0c081c0fed3a4a28a3b4793ff788a4916de87b434e96e54a30922e3",
+      "buyer_file_count": 12,
+      "buyer_basis": "ACTUAL_PRODUCTION_SHA_VERIFIED_20261111",
+      "preview_sha_count": 4
+    },
+    {
+      "sku": "P10",
+      "article_url": "https://nastoronepodryadchika.ru/articles/otvet-na-pretenziyu-zakazchika.html",
+      "article_sha256": "66f82986e576da4c9664ee928e5a8f2064ec81cade50e2252acf9f1321cc29a8",
+      "article_title": "Ответ на претензию заказчика по строительному подряду: порядок проверки, контррасчёт и образец",
+      "buyer_archive_reference": "paid/P10_P10-review-v1_current_20261031.zip",
+      "buyer_archive_sha256": "90f9b78ba53e1fb59d751e0972594f4e7135e599946935a3c32d00b3fa9d2594",
+      "buyer_file_count": 10,
+      "buyer_basis": "PRODUCTION_SHA_VERIFIED_20261111",
+      "preview_sha_count": 4
+    },
+    {
+      "sku": "P11",
+      "article_url": "https://nastoronepodryadchika.ru/articles/raschet-metrami.html",
+      "article_sha256": "5927848ec5358047ff43281a34b696f4c5f90cc883f8898df1c5449817e4b422",
+      "article_title": "Расчёты за строительные работы объектами недвижимости: как проверить сделку и погашение долга",
+      "buyer_archive_reference": "paid/P11_P11-review-v1_current_20261031.zip",
+      "buyer_archive_sha256": "ff6cf9a7056cab90ee1203a93ddb964e0308b8bd418394f4ebd672a9b8b860da",
+      "buyer_file_count": 10,
+      "buyer_basis": "PRODUCTION_SHA_VERIFIED_20261111",
+      "preview_sha_count": 4
+    },
+    {
+      "sku": "P13",
+      "article_url": "https://nastoronepodryadchika.ru/articles/proverka-smety-vypadayushchie-zatraty.html",
+      "article_sha256": "51940942f0c607d8fdd97e8a3db891608eb6e09c8a3eb280a05dc4cd6f634e75",
+      "article_title": "Проверка строительной сметы до подписания договора: какие затраты останутся за счёт подрядчика",
+      "buyer_archive_reference": "paid/P13_P13-review-v1_current_20261031.zip",
+      "buyer_archive_sha256": "0b1f777b9fb65952cd219d5e61e6b8500cdcd5f1c0039ceba80e3c8f6e67f955",
+      "buyer_file_count": 12,
+      "buyer_basis": "PRODUCTION_SHA_VERIFIED_20261111",
+      "preview_sha_count": 4
+    }
+  ],
+  "free_products_count": 11,
+  "paid_products_count": 11,
+  "quality_status": "SNAPSHOTS_VERIFIED_NOT_ALL_PRODUCT_REVISION_QA_COMPLETE",
+  "open_gates": [
+    "P1 per-order ZIP creation and paid delivery E2E on native Office, as applicable",
+    "P1/P2 instruction PDF legacy wording \"Система...\" vs article canonical product names",
+    "P5 product page badge and checkout registry old label \"Система\"",
+    "P11 product page heading still old title vs article and live SKU registry",
+    "Article legal specifics for all 11 product files to be reviewed separately before revised buyer ZIP publication"
+  ],
+  "immutability": "Prior accepted product or site backups NEVER overwritten; current archive pointers versioned only."
+}
