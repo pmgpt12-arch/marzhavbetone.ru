@@ -1,0 +1,102 @@
+[
+  {
+    "sku": "P2",
+    "defect_id": null,
+    "exact_quote": "| **p2** | Комплект «Дополнительные работы: как получить оплату» · `/products/p2-dopolnitelnye-raboty.html` | 2 490 ₽ | `02-dopraboty-bez-poter` → `02-dopy-ne-v-podarok.zip` | 15 | Попросили сделать сверх договора «потом оформим» | [Ф] Все 8 .docx — G1, 82–140 слов (`02-soglasovanie-obema.docx`: 6 полей `[___]` + общий чек-лист); `07-raschet-stoimosti.xlsx` 100 формул, ошибок нет; 09, 10 — PDF | [В] Обещание «Допобъём оформлен так, что его можно предъявить к оплате» опирается на схемы, а не на заполняемые документы | [Г] **4 900 ₽** «Рабочий комплект» — только после пересборки 01–06, 11–12 до G2 | **BLOCKER** |",
+    "source_path": "tools/candidates/MB001_PRODUCT_REPACKAGING_MATRIX.md",
+    "source_sha": "fdd643e1cbc94a0ed975f2280433df4769647a71",
+    "start_line": 43,
+    "end_line": 43,
+    "historical": true
+  },
+  {
+    "sku": "P3",
+    "defect_id": null,
+    "exact_quote": "| **p3** | Комплект «КС-2 без возврата: сдайте с первой попытки» · `/products/p3-shablony-ks2-ks3.html` | 1 990 ₽ | `05-ks-bez-vozvrata` → `05-ks-bez-vozvrata.zip` | 11 | Комплект КС возвращают с замечаниями | [Ф] `03-akt-skrytyh-rabot.docx` — «5 ТИПОВЫХ ФОРМ АОСР», но каждая форма — строка-заглушка `[Шаблон акта с полями: …]` (5 заглушек, 146 слов); `09`, `10` сравнивают с «Полным комплектом», которого нет в продаже; `01` обещает «соответствие СНиП, ГОСТ»; все .docx — G1 | [В] Страница и витрина обещают «10 шаблонов», из них один — пять описаний вместо форм | [Р] Остаётся отдельным продуктом. [Г] **1 990 ₽** «Первый рабочий шаг» — цена уже на уровне, состав нет | **BLOCKER** |",
+    "source_path": "tools/candidates/MB001_PRODUCT_REPACKAGING_MATRIX.md",
+    "source_sha": "fdd643e1cbc94a0ed975f2280433df4769647a71",
+    "start_line": 44,
+    "end_line": 44,
+    "historical": true
+  },
+  {
+    "sku": "P4",
+    "defect_id": null,
+    "exact_quote": "| **p4** | Комплект «Акты скрытых работ и исполнительная документация» · `/products/p4-ispolnitelnaya-dokumentaciya-pto.html` | 2 990 ₽ | `08-pto-bez-zamechaniy` → `08-pto-bez-zamechaniy.zip` | 23 | ИД вернули, приёмка и оплата стоят | [Ф] 01–10 — копия неиспользуемой папки `06-id-blokiruet-oplatu` (01–05, 09 побайтно); 31–34 — G1 (100, 87, 82, 86 слов); 35–38 xlsx без формул; 41–42 — G2, **побайтно = P12 37–38**; 05 и 34 — две разные «служебные записки»; `10-sravnitelnaya-tablica` — «Бесплатный vs Полный комплект» и строка «Проверочный лист КС» (тема P3) | [В] Сборка из трёх поколений; витрина «Соответствуют СП и СНиП» — нормативное обещание, в R0 не подтверждено | [Г] **4 900 ₽** после пересборки ядра (31–34, 01–05) до G2 и снятия дублей | **BLOCKER** |",
+    "source_path": "tools/candidates/MB001_PRODUCT_REPACKAGING_MATRIX.md",
+    "source_sha": "fdd643e1cbc94a0ed975f2280433df4769647a71",
+    "start_line": 45,
+    "end_line": 45,
+    "historical": true
+  },
+  {
+    "sku": "P7",
+    "defect_id": null,
+    "exact_quote": "| **p7** | Комплект «Договор субподряда: образец, красные флаги, протокол разногласий» · `/products/p7-dogovor-podryada.html` | 2 490 ₽ | `03-dogovor-podryada` → `03-dogovor-podryada.zip` | 13 | Договор прислали на подпись | [Ф] `01-dogovor-subpodryada.docx` — **199 слов**, одна таблица 6×2: разделы-тезисы («Цена: твёрдая / приблизительная / по единичным расценкам»), а не текст договора; `10-protokol-raznoglasiy.docx` — 72 слова, одна позиция; 02, 03, 05 xlsx без формул | [В] Название обещает «образец договора», страница — «редактируемый шаблон: предмет, объём, приёмка, оплата и ответственность связаны между собой». В файле этого нет | [Г] **4 900 ₽** после полноценного договора и протокола; либо ядро будущей системы «До подписания» (§5, [Г] H3) | **BLOCKER** |",
+    "source_path": "tools/candidates/MB001_PRODUCT_REPACKAGING_MATRIX.md",
+    "source_sha": "fdd643e1cbc94a0ed975f2280433df4769647a71",
+    "start_line": 47,
+    "end_line": 47,
+    "historical": true
+  },
+  {
+    "sku": "P3",
+    "defect_id": "D-4",
+    "exact_quote": "| D-4 | p3 | `03-akt-skrytyh-rabot.docx` | 5 «форм» — 5 строк-описаний в квадратных скобках | файл, абзацы 3, 5, 7, 9, 11 |",
+    "source_path": "tools/candidates/MB001_PRODUCT_REPACKAGING_MATRIX.md",
+    "source_sha": "fdd643e1cbc94a0ed975f2280433df4769647a71",
+    "start_line": 89,
+    "end_line": 89,
+    "historical": true
+  },
+  {
+    "sku": "P7",
+    "defect_id": "S-7",
+    "exact_quote": "| S-7 | p7 страница | «Редактируемый шаблон: предмет, объём, приёмка, оплата и ответственность связаны между собой» — файл 199 слов, тезисы | Обещание шире состава |",
+    "source_path": "tools/candidates/MB001_PRODUCT_REPACKAGING_MATRIX.md",
+    "source_sha": "fdd643e1cbc94a0ed975f2280433df4769647a71",
+    "start_line": 182,
+    "end_line": 182,
+    "historical": true
+  },
+  {
+    "sku": "P3",
+    "defect_id": "S-8",
+    "exact_quote": "| S-8 | p3 витрина | «10 шаблонов», из них АОСР — заглушки | Обещание шире состава |",
+    "source_path": "tools/candidates/MB001_PRODUCT_REPACKAGING_MATRIX.md",
+    "source_sha": "fdd643e1cbc94a0ed975f2280433df4769647a71",
+    "start_line": 183,
+    "end_line": 183,
+    "historical": true
+  },
+  {
+    "sku": "P3",
+    "defect_id": "S-10",
+    "exact_quote": "| S-10 | p3 блок «Если ваша ситуация также включает» | Карточки p10 и p12 подписаны «Не принимают и не подписывают КС» | Ошибка маршрута |",
+    "source_path": "tools/candidates/MB001_PRODUCT_REPACKAGING_MATRIX.md",
+    "source_sha": "fdd643e1cbc94a0ed975f2280433df4769647a71",
+    "start_line": 185,
+    "end_line": 185,
+    "historical": true
+  },
+  {
+    "sku": "P2",
+    "defect_id": "S-11",
+    "exact_quote": "| S-11 | p2 блок тот же | p13 (смета до подписи) подписан «Не оплачивают дополнительные работы» | Ошибка маршрута |",
+    "source_path": "tools/candidates/MB001_PRODUCT_REPACKAGING_MATRIX.md",
+    "source_sha": "fdd643e1cbc94a0ed975f2280433df4769647a71",
+    "start_line": 186,
+    "end_line": 186,
+    "historical": true
+  },
+  {
+    "sku": "P4",
+    "defect_id": "S-14",
+    "exact_quote": "| S-14 | p4 страница | Не сказано, что 41–42 входят и в p12 | Раскрытие |",
+    "source_path": "tools/candidates/MB001_PRODUCT_REPACKAGING_MATRIX.md",
+    "source_sha": "fdd643e1cbc94a0ed975f2280433df4769647a71",
+    "start_line": 189,
+    "end_line": 189,
+    "historical": true
+  }
+]

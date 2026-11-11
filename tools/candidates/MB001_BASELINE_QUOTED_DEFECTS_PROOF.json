@@ -1,0 +1,36 @@
+{
+  "source_commit": "fdd643e1cbc94a0ed975f2280433df4769647a71",
+  "source_blob": "2a12297c9ffeba6ff5aed3c9f8f711b8d8ab7c39",
+  "source_bytes": 60947,
+  "source_lines": 290,
+  "record_count": 10,
+  "checks": {
+    "positive": "PASS",
+    "changed_quote": "REJECTED/PASS",
+    "missing_line": "REJECTED/PASS",
+    "wrong_sha": "REJECTED/PASS",
+    "wrong_sku": "REJECTED/PASS",
+    "historical_false": "REJECTED/PASS"
+  },
+  "manual_review": [
+    {
+      "line": 180,
+      "reason": "Location does not identify one explicit primary SKU",
+      "exact_quote": "| S-5 | p3 `09`, `10`; p4 `10` | Сравнение с «Полным комплектом», снятым 11.08.2026 | Устаревшее обещание в выдаче |"
+    },
+    {
+      "line": 188,
+      "reason": "Location does not identify one explicit primary SKU",
+      "exact_quote": "| S-13 | p4 витрина «Соответствуют СП и СНиП»; p3 01 «соответствие СНиП, ГОСТ»; p1 «с учётом 44-ФЗ и 223-ФЗ»; p10/p12 «Тексты прошли вычитку юристом» | Нормативные и правовые обещания | **Не подтверждено в R0**, юридических выводов не делается |"
+    },
+    {
+      "line": 192,
+      "reason": "Location does not identify one explicit primary SKU",
+      "exact_quote": "| S-17 | 5 `00-START-HERE.txt` платных (p2, p3, p4, p5, t1) | Имя P1 и «2 490 ₽» — станут неверными при P1→S1 (#290 §4.2, B-11); генератора START-HERE в репозитории нет | Цена в выдаче |"
+    }
+  ],
+  "elapsed_seconds": 0.0012962299997525406,
+  "llm_api_calls": 0,
+  "execution_environment": "ChatGPT execution workspace Python3; not ai-workstation",
+  "selection_rule": "Whole table rows only. Sections1,3,6. Explicit primary SKU or single SKU location; multi/indirect locations retained for manual review. No field paraphrasing."
+}
