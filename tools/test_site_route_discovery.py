@@ -17,17 +17,17 @@ class SiteRouteDiscoveryTests(unittest.TestCase):
         cls.report = mod.build_report()
 
     def test_exact_counts(self):
-        self.assertEqual(self.report["candidate_count"], 116)
+        self.assertEqual(self.report["candidate_count"], 117)
         self.assertEqual(self.report["sitemap_route_count"], 84)
         self.assertEqual(self.report["public_route_count"], 98)
-        self.assertEqual(self.report["non_route_count"], 18)
+        self.assertEqual(self.report["non_route_count"], 19)
         self.assertEqual(self.report["counts_by_class"], {
             "cli_only": 1,
             "indexable_page": 84,
             "non_route_module": 3,
             "public_endpoint": 10,
             "supporting_page": 4,
-            "test_fixture": 14,
+            "test_fixture": 15,
         })
 
     def test_byte_determinism(self):
