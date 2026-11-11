@@ -339,3 +339,41 @@
 .next-step .eyebrow{margin:0 0 8px}
 .next-step p{margin:0;line-height:1.6}
 .next-step a{font-weight:700}
+
+/* NSP editorial document preview v2: responsive screenshots within article body. */
+.article-page .nsp-document-preview {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  margin: 28px 0;
+  padding: clamp(12px, 2vw, 20px);
+  border: 1px solid rgba(36, 38, 41, .16);
+  border-radius: 8px;
+  background: #f7f4ec;
+}
+.article-page .nsp-document-preview a {
+  display: block;
+  max-width: 100%;
+  min-width: 0;
+}
+.article-page .nsp-document-preview img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.article-page .nsp-document-preview figcaption {
+  max-width: 100%;
+  padding-top: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #57595b;
+}
+.article-page .nsp-document-preview .preview-note {
+  display: inline;
+  font-size: 12px;
+  color: #6a6b6d;
+}
