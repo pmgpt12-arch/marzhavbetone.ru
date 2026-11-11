@@ -113,7 +113,7 @@ mvb_with_order_lock($orderFile, function (array &$locked) use ($status, $payment
                     'subject' => '=?UTF-8?B?' . base64_encode('✅ Оплачен заказ ' . $orderId) . '?=',
                     'body'    => $body,
                     'headers' => implode("\r\n", [
-                        'From: site@marzhavbetone.ru',
+                        'From: site@nastoronepodryadchika.ru',
                         'Reply-To: ' . ($locked['email'] ?: ADMIN_EMAIL),
                         'Content-Type: text/plain; charset=UTF-8',
                     ]),
