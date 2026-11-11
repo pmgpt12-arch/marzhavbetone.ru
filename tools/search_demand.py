@@ -39,7 +39,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "seo" / "search-demand.csv"
 RULES = ROOT / "data" / "seo" / "search-demand-rules.yaml"
-HOST = "marzhavbetone.ru"
+HOST = os.environ.get("YANDEX_WEBMASTER_HOST", "nastoronepodryadchika.ru").strip()
 API = "https://api.webmaster.yandex.net/v4"
 
 COLUMNS = [
