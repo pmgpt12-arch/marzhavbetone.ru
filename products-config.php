@@ -546,6 +546,29 @@ function mvb_build_product_zip(string $sku): ?string
     $zipPath = DELIVERY_DIR . '/' . $catalog[$sku]['zip'];
 
 
+    // P8: existing buyer ZIP pinned to the owner-verified current edition.
+    if ($sku === 'p8') {
+        $approved = '89be5987695b5babb2df36f66b85a67842ec8dfd981140c30f426bc4eeca08a5';
+        $master = PRODUCTS_DIR . '/P8-v1-current.zip';
+        if (!is_file($master) || !hash_equals($approved, (string)@hash_file('sha256', $master))) {
+            return null;
+        }
+        if (is_file($zipPath) && hash_equals($approved, (string)@hash_file('sha256', $zipPath))) {
+            return $zipPath;
+        }
+        $tmp = @tempnam(DELIVERY_DIR, '.p8-current-');
+        if ($tmp === false) return null;
+        try {
+            if (!copy($master, $tmp)
+                || !hash_equals($approved, (string)@hash_file('sha256', $tmp))
+                || !@chmod($tmp, 0644)
+                || !@rename($tmp, $zipPath)) return null;
+            return $zipPath;
+        } finally {
+            if (is_file($tmp)) @unlink($tmp);
+        }
+    }
+
     // P3: owner-approved, branded current edition. Never build a different
     // archive for an existing paid download. P1/P2 routes remain untouched.
     if ($sku === 'p3') {
