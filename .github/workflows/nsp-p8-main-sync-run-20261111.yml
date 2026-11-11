@@ -1,0 +1,51 @@
+name: NSP P8 published buyer product and article synchronization
+on:
+  push:
+    branches:
+      - 'release/nsp-p8-main-sync-run-20261111'
+    paths:
+      - '.github/workflows/nsp-p8-main-sync-run-20261111.yml'
+permissions:
+  contents: write
+concurrency:
+  group: nsp-p8-source-sync-20261111
+  cancel-in-progress: false
+jobs:
+  stage:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    steps:
+      - name: Sparse checkout exact P8 source scope
+        uses: actions/checkout@v4
+        with:
+          ref: sync/nsp-p8-main-20261111
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            products-config.php
+            katalog.html
+            articles/avans-po-dogovoru-podryada.html
+            products/p8-avans-po-dogovoru-subpodryada.html
+            assets/document-previews
+            products-storage/10-avans-usloviya-i-pribyl
+            products-storage/P8-v1-current.zip
+          sparse-checkout-cone-mode: false
+          persist-credentials: true
+          path: p8-source-sync
+      - name: SHA-verified P8-only product and article source commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "pmgpt12-arch/marzhavbetone.ru"
+          test "$GITHUB_REF_NAME" = "release/nsp-p8-main-sync-run-20261111"
+          cd p8-source-sync
+          test -z "$(git status --porcelain)"
+          python3 /home/denis/projects/nsp-qa19-p8-20261030/sync_p8_main_20261111.py "$PWD"
+          php -l products-config.php
+          git add -- products-config.php katalog.html articles/avans-po-dogovoru-podryada.html products/p8-avans-po-dogovoru-subpodryada.html assets/document-previews/p8-*-candidate-preview.jpg products-storage/10-avans-usloviya-i-pribyl products-storage/P8-v1-current.zip
+          git -c core.whitespace=-blank-at-eol diff --cached --check
+          count="$(git diff --cached --name-only | wc -l)"
+          test "$count" -ge 10 && test "$count" -le 23
+          git -c user.name="nsp-p8-sync" -c user.email="noreply@users.noreply.github.com" commit -m "Sync verified P8 current buyer ZIP, source documents and article [skip deploy]"
+          git push origin HEAD:refs/heads/sync/nsp-p8-main-20261111
+          echo "P8_REVIEW_BRANCH_PUSHED"
