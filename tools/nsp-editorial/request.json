@@ -1,10 +1,12 @@
 {
-  "action": "dry-run",
+  "action": "publish",
   "scope": "NSP_32_ARTICLES_AND_CSS_ONLY",
   "target_host": "nastoronepodryadchika.ru",
   "approved_candidate_manifest": "docs/editorial/NSP_LEGACY_32_RELEASE_MANIFEST_20261111.json",
   "reason": "Owner requested expedited editorial release after verified targeted preflight",
   "request_date": "2026-11-11",
   "remediation": "Replace stale active T2/T3 price gate with explicit retired-SKU guard. Two-rule copy verified against original.",
-  "attempt": 2
+  "attempt": 2,
+  "dry_run_receipt": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/43042618138",
+  "approval_basis": "Owner: Если нет блоков, публикуй; затем Не затягивай публикацию"
 }
