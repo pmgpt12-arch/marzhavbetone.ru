@@ -1,0 +1,129 @@
+{
+  "schema": "NSP_FULL_P4_P7_PALETTE_V2_QA_STAGING_v1",
+  "created_utc": "2026-11-03T10:29:35.467176+00:00",
+  "status": "STAGED_FULL_EDITION_STATIC_PASS_NATIVE_PENDING_PUBLISH_HOLD",
+  "source_qa_archive_sha256": "739bf32d811f48bd7e3f41d0b45418bddba4eb31e07b1db5d99abc3d30d3fcc6",
+  "scope": "2 full product ZIPs on server HDD, 43 total files, only 7 addressed style-corrected XLSX",
+  "products": [
+    {
+      "sku": "P4",
+      "source_archive": "PAID_P4_current.zip",
+      "source_archive_sha256": "bcba234220c0f52e5a86b5ba3c70c527d086146301030d1f32197e9fa6e264fc",
+      "staged_archive": "PAID_P4_v3_PALETTE_V2_QA_HOLD.zip",
+      "staged_archive_sha256": "be45a7e77cc66e9806365b607a3ea659749c212927e64a9ff8814e494922e660",
+      "files": 30,
+      "replaced_files": 4,
+      "unchanged_members": 26,
+      "replacements": [
+        {
+          "name": "35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx",
+          "source_sha256": "54ef5d86e81ab120910cc5ad1889c54ff5253951ec06a180be655eaf4cf65cc4",
+          "candidate_sha256": "60e5929fedd1f054c3d2f621972c89eb98728fc7036307e741331377450e60c1",
+          "original_bytes": 9442,
+          "candidate_bytes": 9444,
+          "inner_members": 10,
+          "modified_inner_members": [
+            "xl/styles.xml"
+          ],
+          "exact_color_edits": 2
+        },
+        {
+          "name": "36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx",
+          "source_sha256": "e10f379069eb327133fe0b5bb30343b1d1f0604b792f26bf28baf9d9773a995e",
+          "candidate_sha256": "da271987ea794b8bb6a769269682af24e5d18182214923cb33ce3494d7810b90",
+          "original_bytes": 9112,
+          "candidate_bytes": 9114,
+          "inner_members": 10,
+          "modified_inner_members": [
+            "xl/styles.xml"
+          ],
+          "exact_color_edits": 2
+        },
+        {
+          "name": "37-reestr-pasportov.xlsx",
+          "source_sha256": "d8a4d449ddf29b84e7ccaf0d812ed7d6ddd53308f28e9f79ffba4e3154f7f85d",
+          "candidate_sha256": "a7b4d4fb0b5d2544d85197d9f71d16d9add619a1f823660979efafd27a074304",
+          "original_bytes": 9129,
+          "candidate_bytes": 9131,
+          "inner_members": 10,
+          "modified_inner_members": [
+            "xl/styles.xml"
+          ],
+          "exact_color_edits": 2
+        },
+        {
+          "name": "38-reestr-id.xlsx",
+          "source_sha256": "792ada310c16e823d04956c4ccdc1c64618206fc631c73500a9a4aa09726b67d",
+          "candidate_sha256": "10ee4cce30327b56c909f0fb2ea6f60696624aeb60143bfba60ad80bc6a31d30",
+          "original_bytes": 10712,
+          "candidate_bytes": 10713,
+          "inner_members": 9,
+          "modified_inner_members": [
+            "xl/styles.xml"
+          ],
+          "exact_color_edits": 2
+        }
+      ],
+      "zip_crc_pass": true,
+      "production_modified": false
+    },
+    {
+      "sku": "P7",
+      "source_archive": "PAID_P7_current.zip",
+      "source_archive_sha256": "99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24",
+      "staged_archive": "PAID_P7_review-v2_PALETTE_V2_QA_HOLD.zip",
+      "staged_archive_sha256": "31a303e85dab7b34586b7a7d64aa3b1ccba928e4345612381d299954a65e70d2",
+      "files": 13,
+      "replaced_files": 3,
+      "unchanged_members": 10,
+      "replacements": [
+        {
+          "name": "02-perechen-rabot.xlsx",
+          "source_sha256": "5dfac2b0a925a5f2dae1ad74e079cf60075430eb47112074866f8424d79b0f80",
+          "candidate_sha256": "14f4665e39cc17d2c4f2045544f427dab2dc145b13d6cc8a4553450649be283e",
+          "original_bytes": 8532,
+          "candidate_bytes": 8534,
+          "inner_members": 9,
+          "modified_inner_members": [
+            "xl/styles.xml"
+          ],
+          "exact_color_edits": 2
+        },
+        {
+          "name": "03-kalendarnyy-plan.xlsx",
+          "source_sha256": "546b19dbeb3193eaa7691894dfc9a43baf56975acc1029749063d72242a1d202",
+          "candidate_sha256": "708f791eece55d62992d36d86368f2f6d2580d6391a7e16f095beb4a264bc4b6",
+          "original_bytes": 8630,
+          "candidate_bytes": 8632,
+          "inner_members": 9,
+          "modified_inner_members": [
+            "xl/styles.xml"
+          ],
+          "exact_color_edits": 2
+        },
+        {
+          "name": "05-grafik-platezhey.xlsx",
+          "source_sha256": "aabf6943b408dc5e6b9e60022af7f2e47d500ba5be7c75c6777d93818b2d7dc5",
+          "candidate_sha256": "0c594f63333b6e770bdcf71791e898839635625e9a49a4a4c639cd3b4474466b",
+          "original_bytes": 8833,
+          "candidate_bytes": 8834,
+          "inner_members": 9,
+          "modified_inner_members": [
+            "xl/styles.xml"
+          ],
+          "exact_color_edits": 2
+        }
+      ],
+      "zip_crc_pass": true,
+      "production_modified": false
+    }
+  ],
+  "total_files": 43,
+  "replaced_xlsx": 7,
+  "unchanged_files": 36,
+  "native_office_final_sha": "PENDING",
+  "customer_delivery_modified": false,
+  "website_modified": false,
+  "release_allowed": false,
+  "next_gate": "Microsoft Excel 2024 exact staged SHA, print all sheets, then explicit release decision"
+}

@@ -1,0 +1,214 @@
+{
+  "schema": "NSP_7_XLSX_PALETTE_INDEPENDENT_ACCEPTANCE_v2",
+  "created_utc": "2026-11-03T04:38:25.636874+00:00",
+  "status": "SEVEN_STATIC_EXACT_DELTA_PASS_NATIVE_FINAL_SHA_PENDING",
+  "source_archives": {
+    "P4": "bcba234220c0f52e5a86b5ba3c70c527d086146301030d1f32197e9fa6e264fc",
+    "P7": "99e877fc851843a79c8524f508529ecab7da049aa6886590fcbce68a97676e24"
+  },
+  "count_files": 7,
+  "old_orange_applied_cells_total": 76,
+  "old_orange_cells_remaining": 0,
+  "worksheet_values_formulas_print_and_validation_byte_preserved": true,
+  "selftests": {
+    "non_style_change_rejected": true,
+    "unrelated_style_change_rejected_by_byte_token_equality": true
+  },
+  "files": [
+    {
+      "sku": "P4",
+      "member": "35A-rabochiy-zhurnal-proizvodstva-rabot.xlsx",
+      "source_sha256": "54ef5d86e81ab120910cc5ad1889c54ff5253951ec06a180be655eaf4cf65cc4",
+      "candidate_sha256": "f0dbdbabfc59905826680fe6a740d106f29738062b63a563a6c1225680fcc230",
+      "members": 10,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "unchanged_parts": 9,
+      "old_orange_applied_cells": 11,
+      "candidate_old_orange_applied_cells": 0,
+      "graphite_present_in_all_old_orange_addresses": true,
+      "old_orange_addresses": [
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "F3",
+        "G3",
+        "H3",
+        "I3",
+        "J3",
+        "K3"
+      ]
+    },
+    {
+      "sku": "P4",
+      "member": "36A-rabochiy-reestr-vhodnogo-kontrolya.xlsx",
+      "source_sha256": "e10f379069eb327133fe0b5bb30343b1d1f0604b792f26bf28baf9d9773a995e",
+      "candidate_sha256": "8de66938040d565e1cba8432fb1c4f9c4327d5b58b55a77d67813bac9c933c72",
+      "members": 10,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "unchanged_parts": 9,
+      "old_orange_applied_cells": 10,
+      "candidate_old_orange_applied_cells": 0,
+      "graphite_present_in_all_old_orange_addresses": true,
+      "old_orange_addresses": [
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "F3",
+        "G3",
+        "H3",
+        "I3",
+        "J3"
+      ]
+    },
+    {
+      "sku": "P4",
+      "member": "37-reestr-pasportov.xlsx",
+      "source_sha256": "d8a4d449ddf29b84e7ccaf0d812ed7d6ddd53308f28e9f79ffba4e3154f7f85d",
+      "candidate_sha256": "301e0cde1f085a95d7a99cefd89f020064bf5e53838ec381a30e58257a7a34b9",
+      "members": 10,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "unchanged_parts": 9,
+      "old_orange_applied_cells": 10,
+      "candidate_old_orange_applied_cells": 0,
+      "graphite_present_in_all_old_orange_addresses": true,
+      "old_orange_addresses": [
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "F3",
+        "G3",
+        "H3",
+        "I3",
+        "J3"
+      ]
+    },
+    {
+      "sku": "P4",
+      "member": "38-reestr-id.xlsx",
+      "source_sha256": "792ada310c16e823d04956c4ccdc1c64618206fc631c73500a9a4aa09726b67d",
+      "candidate_sha256": "54eed599371a6019c625a77cdae71563055120bf9a2b8d923a486b1c36ac67da",
+      "members": 9,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "unchanged_parts": 8,
+      "old_orange_applied_cells": 17,
+      "candidate_old_orange_applied_cells": 0,
+      "graphite_present_in_all_old_orange_addresses": true,
+      "old_orange_addresses": [
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "F3",
+        "G3",
+        "H3",
+        "I3",
+        "J3",
+        "K3",
+        "L3",
+        "M3",
+        "N3",
+        "O3",
+        "P3",
+        "Q3"
+      ]
+    },
+    {
+      "sku": "P7",
+      "member": "02-perechen-rabot.xlsx",
+      "source_sha256": "5dfac2b0a925a5f2dae1ad74e079cf60075430eb47112074866f8424d79b0f80",
+      "candidate_sha256": "428886ad35b0963dbdca8a9421da019f8026e8ada201e54412507d1ad5700178",
+      "members": 9,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "unchanged_parts": 8,
+      "old_orange_applied_cells": 9,
+      "candidate_old_orange_applied_cells": 0,
+      "graphite_present_in_all_old_orange_addresses": true,
+      "old_orange_addresses": [
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "F3",
+        "G3",
+        "H3",
+        "I3"
+      ]
+    },
+    {
+      "sku": "P7",
+      "member": "03-kalendarnyy-plan.xlsx",
+      "source_sha256": "546b19dbeb3193eaa7691894dfc9a43baf56975acc1029749063d72242a1d202",
+      "candidate_sha256": "f9ac7b8b9039b600b66244b183ea80ba97cbeb24b96e68ad85014d025df87b02",
+      "members": 9,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "unchanged_parts": 8,
+      "old_orange_applied_cells": 9,
+      "candidate_old_orange_applied_cells": 0,
+      "graphite_present_in_all_old_orange_addresses": true,
+      "old_orange_addresses": [
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "F3",
+        "G3",
+        "H3",
+        "I3"
+      ]
+    },
+    {
+      "sku": "P7",
+      "member": "05-grafik-platezhey.xlsx",
+      "source_sha256": "aabf6943b408dc5e6b9e60022af7f2e47d500ba5be7c75c6777d93818b2d7dc5",
+      "candidate_sha256": "bdf43009c00cfd9d341598220a25ba244e82face8044398c507e415d37d922a0",
+      "members": 9,
+      "changed_parts": [
+        "xl/styles.xml"
+      ],
+      "unchanged_parts": 8,
+      "old_orange_applied_cells": 10,
+      "candidate_old_orange_applied_cells": 0,
+      "graphite_present_in_all_old_orange_addresses": true,
+      "old_orange_addresses": [
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "F3",
+        "G3",
+        "H3",
+        "I3",
+        "J3"
+      ]
+    }
+  ],
+  "gates_pending": [
+    "native Microsoft Excel exact candidate SHA open/print",
+    "P4-35A row-3 legibility for F/G/K; do not combine with color-only change",
+    "owner acceptance of post-QA edition before publication"
+  ],
+  "production_modified": false,
+  "published_zip_modified": false
+}
