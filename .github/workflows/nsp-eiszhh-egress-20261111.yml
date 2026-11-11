@@ -1,0 +1,31 @@
+name: Read-only server egress geography check for EISZHS
+on:
+  push:
+    branches:
+      - 'audit/nsp-eiszhh-egress-20261111'
+    paths:
+      - '.github/workflows/nsp-eiszhh-egress-20261111.yml'
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 3
+    steps:
+      - name: Print country of outbound IP only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import requests,os
+          s=requests.Session()
+          print("HOST",os.uname().nodename)
+          print("PROXY_SETTINGS_PRESENT",sorted(k for k in os.environ if "proxy" in k.lower()))
+          for name,url in [("ipwho.is","https://ipwho.is/"),("ipapi.co","https://ipapi.co/json/")]:
+              try:
+                  r=s.get(url,timeout=8);j=r.json();print("GEO",name,"HTTP",r.status_code,"country",j.get("country"),"country_code",j.get("country_code"),"city",j.get("city"))
+              except Exception as e:print("GEO_ERROR",name,type(e).__name__,str(e)[:100])
+          try:
+              r=s.get("https://наш.дом.рф/",timeout=9);print("EISZHS_STATUS",r.status_code)
+          except Exception as e:print("EISZHS_ERROR",type(e).__name__,str(e)[:100])
+          PY
