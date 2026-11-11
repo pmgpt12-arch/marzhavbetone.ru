@@ -1,0 +1,59 @@
+{
+  "schema": "NSP_EDITORIAL_ARTICLE_ONLY_PRODUCTION_RECEIPT_v1",
+  "verified_date": "2026-11-11",
+  "site": "https://nastoronepodryadchika.ru/",
+  "result": "VERIFIED_RELEASE",
+  "scope": {
+    "articles_changed": 32,
+    "stylesheet_changed": 1,
+    "stylesheets": [
+      "article.css"
+    ],
+    "approved_articles_preserved": 11,
+    "existing_document_preview_images_reused": 33,
+    "image_uploads": 0,
+    "other_site_files_changed": 0
+  },
+  "run": {
+    "preflight": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/43042618138",
+    "publication": "https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/43042951868",
+    "publication_source_commit": "599db57c20dab8bb9ef2f724906bbeb0d99fca87",
+    "source_branch": "editorial/legacy-v2-20261111",
+    "source_pr": "https://github.com/pmgpt12-arch/marzhavbetone.ru/pull/739"
+  },
+  "verified": {
+    "hosting_transaction": "PASS",
+    "hosting_private_backup": "CREATED",
+    "hosting_protected_php": "UNCHANGED",
+    "hosting_product_masters": "UNCHANGED",
+    "post_https_sha256": "PASS",
+    "independent_live_check": {
+      "status": "PASS",
+      "mode": "live-post",
+      "checked_resources": 77,
+      "article_candidates": 32,
+      "approved_articles": 11,
+      "document_images": 33,
+      "stylesheet": 1,
+      "production_writes_during_check": 0
+    },
+    "product_pages": [
+      {
+        "path": "/products/p1-oplata-po-ks2.html",
+        "http": 200,
+        "sku": "p1"
+      },
+      {
+        "path": "/products/p4-ispolnitelnaya-dokumentaciya-pto.html",
+        "http": 200,
+        "sku": "p4"
+      }
+    ]
+  },
+  "notes": [
+    "Buyer payment E2E was not repeated; PHP handlers and product masters were hash-checked unchanged.",
+    "Full independent legal review remains separate from targeted legal spotchecks.",
+    "SEO dateModified metadata intentionally retained; separate low-priority metadata correction.",
+    "PR remains draft and unmerged because legacy main full-deploy CI contains other unrelated failures; do not redeploy stale main over accepted production without reconciling exact SHA."
+  ]
+}
