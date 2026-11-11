@@ -1,0 +1,51 @@
+name: NSP P9 source synchronization of deployed article and buyer archive
+on:
+  push:
+    branches:
+      - 'release/nsp-p9-main-sync-run-20261111'
+    paths:
+      - '.github/workflows/nsp-p9-main-sync-run-20261111.yml'
+permissions:
+  contents: write
+concurrency:
+  group: nsp-p9-source-sync-20261111
+  cancel-in-progress: false
+jobs:
+  stage:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    steps:
+      - name: Sparse checkout exact P9 source scope
+        uses: actions/checkout@v4
+        with:
+          ref: sync/nsp-p9-main-20261111
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            products-config.php
+            katalog.html
+            articles/bankrotstvo-genpodryadchika-5-markerov.html
+            products/p9-bankrotstvo-genpodryadchika.html
+            assets/document-previews
+            products-storage/11-bankrotstvo-genpodryadchika
+            products-storage/P9-v1-current.zip
+          sparse-checkout-cone-mode: false
+          persist-credentials: true
+          path: p9-source-sync
+      - name: Verify P9 buyer SHA and article before scoped commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "pmgpt12-arch/marzhavbetone.ru"
+          test "$GITHUB_REF_NAME" = "release/nsp-p9-main-sync-run-20261111"
+          cd p9-source-sync
+          test -z "$(git status --porcelain)"
+          python3 /home/denis/projects/nsp-qa19-p9-20261030/sync_p9_main_20261111.py "$PWD"
+          php -l products-config.php
+          git add -- products-config.php katalog.html articles/bankrotstvo-genpodryadchika-5-markerov.html products/p9-bankrotstvo-genpodryadchika.html assets/document-previews/p9-*-candidate-preview.jpg products-storage/11-bankrotstvo-genpodryadchika products-storage/P9-v1-current.zip
+          git -c core.whitespace=-blank-at-eol diff --cached --check
+          count="$(git diff --cached --name-only | wc -l)"
+          test "$count" -ge 10 && test "$count" -le 23
+          git -c user.name="nsp-p9-sync" -c user.email="noreply@users.noreply.github.com" commit -m "Sync verified P9 current ZIP, article and product sources [skip deploy]"
+          git push origin HEAD:refs/heads/sync/nsp-p9-main-20261111
+          echo "P9_REVIEW_BRANCH_READY"
