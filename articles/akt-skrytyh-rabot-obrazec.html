@@ -49,9 +49,21 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="/nsp-unified-header.css?v=20261108b">
+  <link rel="stylesheet" href="/cart.css?v=dbf0bfa0">
 </head>
 <body class="rebrand-approved">
-  <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Бесплатно</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и судебные решения</a><a href="/#author">О проекте</a></nav></header>
+  <header class="topbar nsp-unified-header"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Шаблоны актов</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и решения судов</a><a href="/#author">О проекте</a></nav><button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>
+  <aside class="cart-panel" id="cart-panel" aria-label="Корзина" hidden>
+    <div class="cart-head"><div><p class="eyebrow">ВАШ ЗАКАЗ</p><h2>Корзина</h2></div><button class="cart-close" id="cart-close" type="button" aria-label="Закрыть корзину">×</button></div>
+    <div class="cart-empty" id="cart-empty">Пока пусто. Выберите один или несколько пакетов.</div>
+    <ul class="cart-items" id="cart-items"></ul>
+    <div class="cart-total"><span>Итого</span><strong id="cart-total">0 ₽</strong></div>
+    <button class="button cart-checkout" id="cart-checkout" type="button" disabled>Оформить заказ</button>
+    <p class="fine">На этом этапе оплата не списывается. Состав заказа перейдёт в форму оформления.</p>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+
   <main class="section article-page">
     <nav aria-label="Хлебные крошки" class="breadcrumbs">
       <ol>
@@ -156,7 +168,7 @@
     <p>Что в бланке менять можно: добавлять строки под свой узел — участок, партию материала, ссылку на номер исполнительной схемы, графу для отметки о вызове второй стороны. Что нельзя: выбрасывать блоки. Сокращённый бланк, где нет проектной основы или перечня приложений, возвращают быстрее, чем плохо заполненный полный.</p>
 
         <aside class="article-cta-inline">
-      <p>Пять заготовок актов скрытых работ в Word, карточка исполнительной схемы и общий журнал работ — в комплекте <a href="/products/p4-ispolnitelnaya-dokumentaciya-pto.html">«Акты скрытых работ и исполнительная документация»</a>.</p>
+      <p>Пять заготовок актов скрытых работ в Word, карточка исполнительной схемы и общий журнал работ — в комплекте <a href="/products/p4-ispolnitelnaya-dokumentaciya-pto.html">комплект «Исполнительная документация: ведение, проверка и передача»</a>.</p>
     </aside>
 
     <h2 id="kto-podpisyvaet">Кто подписывает</h2>
@@ -203,14 +215,14 @@
     <p>Материал носит информационный характер: состав документов и порядок освидетельствования на конкретном объекте определяются договором, проектом и действующей редакцией нормативных актов, поэтому спорные позиции стоит проверять с профильным специалистом.</p>
 
     <div class="article-cta" style="margin:40px 0;padding:40px;background:var(--ink);color:var(--paper);border-radius:8px;">
-      <p class="eyebrow" style="color:var(--orange);">ПЛАТНЫЙ КОМПЛЕКТ</p>
-      <h3 style="color:#fff;">Комплект «Акты скрытых работ и исполнительная документация»</h3>
-      <p style="color:#bbb;">Формы актов скрытых работ и освидетельствования, шаблон исполнительной схемы, общий журнал работ, журнал входного контроля, реестр исполнительной документации, реестр паспортов и сертификатов, письмо о вызове на освидетельствование, опись передачи комплекта и алгоритм работы с замечаниями ПТО, акт передачи площадки и фронта работ, акт входного контроля давальческих материалов. 23 файла. Комплект не заменяет проект и не отменяет проверку действующей редакции нормативных требований — он снимает ручную работу по сборке и передаче.</p>
-      <p style="font-size:28px;font-weight:900;color:var(--orange);">2 990 ₽</p>
-      <a class="button" href="/products/p4-ispolnitelnaya-dokumentaciya-pto.html">Купить комплект →</a>
-    </div>
+<p class="eyebrow" style="color:var(--orange);">КОМПЛЕКТ P4 / 30 ФАЙЛОВ</p>
+<h3 style="color:#fff;">Исполнительная документация: ведение, проверка и передача</h3>
+<p style="color:#bbb;">30 файлов: 16 DOCX, 7 XLSX и 7 PDF. Рабочие формы, реестры, журналы и контрольные листы для ведения и проверки исполнительной документации, фиксации замечаний и передачи заказчику. Включены документы по освидетельствованию скрытых работ. Формы необходимо адаптировать под проект, объект и действующие нормативные требования.</p>
+<p style="font-size:28px;font-weight:900;color:var(--orange);">24 900 ₽</p>
+<a class="button" href="/products/p4-ispolnitelnaya-dokumentaciya-pto.html">Посмотреть комплект →</a>
+</div>
 
-    <p style="color:var(--ink-soft);font-size:14px;margin-top:20px;">Нужен не весь комплект, а один день работы — сдать собранную документацию под подпись? Сопроводительное письмо, опись с листажом и привязкой к актам, акт приёма-передачи и порядок действий при отказе принимать: <a href="/products/t2-peredacha-ispolnitelnoy-dokumentacii.html" style="color:var(--orange);">«Передача исполнительной документации»</a>, 9 900 ₽. Формы актов, журналов и работа с замечаниями остаются в комплекте выше.</p>
+    <p style="color:var(--ink-soft);font-size:14px;margin-top:20px;">Сопроводительное письмо, Excel-опись с автоматическим подсчётом листов, акты передачи ИД, журналы, контроль комплектности и работа с замечаниями объединены в <a href="/products/p4-ispolnitelnaya-dokumentaciya-pto.html" style="color:var(--orange);">системе исполнительной документации P4</a>. 30 файлов, 24 900 ₽.</p>
 
     <div class="article-lead" style="margin:40px 0;padding:32px;border:2px solid var(--orange);border-radius:8px;">
       <p class="eyebrow" style="color:var(--orange);">БЕСПЛАТНО, ЗА EMAIL</p>
@@ -244,5 +256,6 @@
     </section>
   </main>
   <script src="/attribution.js?v=e5aab965"></script>
+  <script type="module" src="/app-script.php?v=21"></script>
 </body>
 </html>
