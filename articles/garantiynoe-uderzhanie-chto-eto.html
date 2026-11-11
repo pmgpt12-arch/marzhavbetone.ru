@@ -67,9 +67,21 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="/nsp-unified-header.css?v=20261108b">
+  <link rel="stylesheet" href="/cart.css?v=dbf0bfa0">
 </head>
 <body class="rebrand-approved">
-  <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Бесплатно</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и судебные решения</a><a href="/#author">О проекте</a></nav></header>
+  <header class="topbar nsp-unified-header"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Шаблоны актов</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и решения судов</a><a href="/#author">О проекте</a></nav><button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>
+  <aside class="cart-panel" id="cart-panel" aria-label="Корзина" hidden>
+    <div class="cart-head"><div><p class="eyebrow">ВАШ ЗАКАЗ</p><h2>Корзина</h2></div><button class="cart-close" id="cart-close" type="button" aria-label="Закрыть корзину">×</button></div>
+    <div class="cart-empty" id="cart-empty">Пока пусто. Выберите один или несколько пакетов.</div>
+    <ul class="cart-items" id="cart-items"></ul>
+    <div class="cart-total"><span>Итого</span><strong id="cart-total">0 ₽</strong></div>
+    <button class="button cart-checkout" id="cart-checkout" type="button" disabled>Оформить заказ</button>
+    <p class="fine">На этом этапе оплата не списывается. Состав заказа перейдёт в форму оформления.</p>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+
   <main class="section article-page">
     <nav aria-label="Хлебные крошки" class="breadcrumbs">
       <ol>
@@ -175,9 +187,9 @@
 
     <div class="article-cta" style="margin:40px 0;padding:40px;background:var(--ink);color:var(--paper);border-radius:8px;">
       <p class="eyebrow" style="color:var(--orange);">ПЛАТНЫЙ КОМПЛЕКТ</p>
-      <h3 style="color:#fff;">Комплект «Гарантийное удержание: возврат, оспаривание штрафов и зачётов»</h3>
-      <p style="color:#bbb;">Претензия о возврате удержания, возражение на односторонний зачёт, расчёт убытков от заморозки денег, реестр удержаний по объекту, письмо о наступлении условия возврата, требование о возврате удержания по наступившему сроку и алгоритм действий по срокам. 11 файлов. Комплект не заменяет юриста в споре по конкретному договору: он даёт формулировки и порядок, а оценку вашей позиции делает юрист.</p>
-      <p style="font-size:28px;font-weight:900;color:var(--orange);">2 990 ₽</p>
+      <h3 style="color:#fff;">Защита от штрафов, претензий и удержаний</h3>
+      <p style="color:#bbb;">Претензия о возврате удержания, возражение на односторонний зачёт, расчёт убытков от заморозки денег, реестр удержаний по объекту, письмо о наступлении условия возврата, требование о возврате удержания по наступившему сроку и алгоритм действий по срокам. 30 файлов. Комплект не заменяет юриста в споре по конкретному договору: он даёт формулировки и порядок, а оценку вашей позиции делает юрист.</p>
+      <p style="font-size:28px;font-weight:900;color:var(--orange);">29 900 ₽</p>
       <a class="button" href="/products/p5-shtrafy-uderzhaniya.html">Купить комплект →</a>
     </div>
 
@@ -207,5 +219,6 @@
     </section>
   </main>
   <script src="/attribution.js?v=e5aab965"></script>
+  <script type="module" src="/app-script.php?v=21"></script>
 </body>
 </html>
