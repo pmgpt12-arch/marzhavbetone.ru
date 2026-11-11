@@ -1,0 +1,37 @@
+name: NSP read-only production SKU registry QA audit
+on:
+  push:
+    branches:
+      - 'audit/nsp-production-sku-registry-20261111'
+    paths:
+      - '.github/workflows/nsp-production-sku-registry-20261111.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 4
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: Report public SKU names and status only; never change server files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "pmgpt12-arch/marzhavbetone.ru"
+          test "$GITHUB_REF_NAME" = "audit/nsp-production-sku-registry-20261111"
+          SOURCE=/home/denis/projects/nsp-catalog-qa-20261111/prod_sku_config_probe.php
+          test -r "$SOURCE"
+          KEYFILE="$(mktemp /tmp/nsp-prod-sku-key.XXXXXX)"
+          KNOWN="$(mktemp /tmp/nsp-prod-sku-known.XXXXXX)"
+          trap 'rm -f "$KEYFILE" "$KNOWN"' EXIT
+          printf "%s\n" "$KEY" | tr -d "\r" > "$KEYFILE"
+          chmod 600 "$KEYFILE"
+          unset KEY
+          ssh-keygen -y -P "" -f "$KEYFILE" >/dev/null
+          timeout 18s ssh-keyscan -p "$PORT" -H "$HOST" > "$KNOWN" 2>/dev/null
+          test -s "$KNOWN"
+          timeout 45s ssh -p "$PORT" -i "$KEYFILE" -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=12 -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$KNOWN" "$SSH_USER@$HOST" 'cd "$HOME/www/nastoronepodryadchika.ru" && php' < "$SOURCE"
