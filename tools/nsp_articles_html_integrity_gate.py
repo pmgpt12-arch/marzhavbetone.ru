@@ -2,6 +2,7 @@
 """Regression gate for NSP article HTML and editorial navigation (no network calls)."""
 from __future__ import annotations
 
+import json
 import re
 import sys
 from html.parser import HTMLParser
@@ -46,8 +47,14 @@ def main() -> int:
     assert not clean_end("<html></html>\n[executed on device: ai-workstation]"), "transport fixture"
     files = sorted(p for p in ARTICLES.glob("*.html") if p.name != "index.html")
     errors: list[str] = []
-    if len(files) < 43:
-        errors.append(f"article count unexpectedly lower than 43: {len(files)}")
+    matrix_path = ROOT / "docs/editorial/NSP_ALL_43_ARTICLES_MATRIX_20261111.json"
+    if not matrix_path.is_file():
+        print("FAIL: editorial source matrix missing")
+        return 1
+    rows = json.loads(matrix_path.read_text(encoding="utf-8"))["articles"]
+    legacy = {entry["path"]: entry for entry in rows if entry["state"] == "LEGACY_UNREVISED"}
+    if len(files) != len(rows):
+        errors.append(f"article count mismatch actual={len(files)} expected={len(rows)}")
     for path in files:
         text = path.read_text(encoding="utf-8")
         doc = Inspect()
@@ -59,6 +66,31 @@ def main() -> int:
             errors.append(f"{rel}: main={doc.main}, h1={doc.h1}")
         if doc.canonical != HOST + rel:
             errors.append(f"{rel}: wrong canonical")
+        if rel in legacy:
+            previews = re.findall(
+                r'<figure\b[^>]*class="[^"]*\bnsp-document-preview\b[^"]*"[^>]*>[\s\S]*?</figure>',
+                text,
+                flags=re.I,
+            )
+            if not 3 <= len(previews) <= 5:
+                errors.append(f"{rel}: native preview count {len(previews)}, expected 3-5")
+            product = legacy[rel]["sku"]
+            if product == "t1":
+                product = "p1"
+            for fragment in previews:
+                image = re.search(r'<img\b[^>]*\bsrc="([^"]+)"', fragment, flags=re.I)
+                href = re.search(r'<a\b[^>]*\bhref="([^"]+)"', fragment, flags=re.I)
+                if not image or not href:
+                    errors.append(f"{rel}: native preview missing linked image")
+                    continue
+                src = image.group(1)
+                asset = (path.parent / src).resolve()
+                asset_dir = (ROOT / "assets/document-previews").resolve()
+                if asset_dir not in asset.parents or not asset.is_file() or asset.stat().st_size == 0:
+                    errors.append(f"{rel}: preview asset missing or outside approved path {src}")
+                if not href.group(1).startswith(f"/products/{product}-"):
+                    errors.append(f"{rel}: preview not linked to primary product {product}")
+
         if not any("/products/p" in href for href in doc.links):
             errors.append(f"{rel}: no direct paid product link")
         if any(re.search(r"/products/t[23]-", href) for href in doc.links):
