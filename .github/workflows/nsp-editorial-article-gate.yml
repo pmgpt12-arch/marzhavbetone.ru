@@ -8,6 +8,8 @@ on:
       - tools/nsp_editorial_release_preflight.py
       - docs/editorial/NSP_LEGACY_32_RELEASE_MANIFEST_20261111.json
       - .github/workflows/nsp-editorial-article-gate.yml
+      - tools/nsp_editorial_article_transaction.php
+      - tools/test_nsp_editorial_article_transaction.py
   workflow_dispatch:
 
 permissions:
@@ -24,6 +26,10 @@ jobs:
         run: python3 tools/nsp_editorial_release_preflight.py --mode static
       - name: HTML, CTA, preview and canonical integrity
         run: python3 tools/nsp_articles_html_integrity_gate.py
+      - name: Narrow transactional staging, approval, rollback and conflict gates
+        run: |
+          php -l tools/nsp_editorial_article_transaction.php
+          python3 tools/test_nsp_editorial_article_transaction.py
       - name: Confirm this workflow never deploys
         run: |
           test -f docs/editorial/NSP_LEGACY_32_RELEASE_MANIFEST_20261111.json
