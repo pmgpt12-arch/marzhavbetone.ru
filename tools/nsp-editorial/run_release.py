@@ -2,7 +2,7 @@
 """Targeted, rollback-capable NSP editorial release: exactly 32 HTML + article.css.
 
 No products, checkout handlers, secrets, order data, or approved article content
-are included in the candidate. Reuses the existing nsp-final PHP transaction.
+are included in the candidate. Uses a two-rule, checked copy of the existing nsp-final PHP transaction.
 """
 import hashlib
 import io
@@ -59,7 +59,19 @@ def validate():
         rows.append({"path": p, "before": x["before_sha256"], "after": x["after_sha256"]})
     assert len({r["path"] for r in rows}) == 33
     assert not any(r["path"] in {x["path"] for x in approved} for r in rows)
-    tx = ROOT / "tools/nsp-final/transaction.php"
+    tx = ROOT / "tools/nsp-editorial/transaction.php"
+    old_tx = (ROOT / "tools/nsp-final/transaction.php").read_text(encoding="utf8")
+    expected_tx = old_tx.replace(
+        "'p11'=>2490000,'p13'=>1790000,'t2'=>990000,'t3'=>1490000",
+        "'p11'=>2490000,'p13'=>1790000"
+    ).replace("['t1','t4','t5','t6','p12']",
+              "['t1','t2','t3','t4','t5','t6','p12']").replace(
+        "// Bounded static-file transaction; all configuration, orders and masters are excluded.",
+        "// Bounded static-file transaction; all configuration, orders and masters are excluded.\\n"
+        "// EDITORIAL COPY: T2 and T3 were retired by owner; check as archived, not active."
+    )
+    # Reject any unrelated changes to the existing transaction or its editorial copy.
+    assert tx.read_text(encoding="utf8") == expected_tx, "TRANSACTION_UNRELATED_DRIFT"
     assert tx.is_file()
     # A previously qualified deploy executor from the project, unmodified.
     command(["php", "-l", str(tx)])
