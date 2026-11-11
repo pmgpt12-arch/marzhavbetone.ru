@@ -1,0 +1,343 @@
+{
+  "scope": "Independent mechanical XLSX comparison; no normative, UI, print-render or full G3 acceptance",
+  "history": [
+    {
+      "result": "FAIL_SCHEMA",
+      "files": [
+        {
+          "file": "07-raschet-stoimosti.xlsx",
+          "sha256": "cf5379dcd747c41844a9246e6b2c1029a5f8b5213b15e09abe8daa73ad9b04d2",
+          "sheet_names_equal": true,
+          "values_formulas_differences": [],
+          "visual_style_differences": [],
+          "formula_count": 202,
+          "lock_mismatches": [],
+          "freeze_merge_dimensions_preserved": true,
+          "print_areas": {
+            "Реестр": "'Реестр'!$A$1:$J$104",
+            "Инструкция": "'Инструкция'!$A$1:$A$3"
+          },
+          "print_repeat_rows": "$1:$3",
+          "schema_issues": [
+            {
+              "part": "xl/worksheets/sheet1.xml",
+              "defect": "Duplicate singleton pageMargins"
+            },
+            {
+              "part": "xl/worksheets/sheet1.xml",
+              "defect": "printOptions follows pageMargins; invalid order"
+            },
+            {
+              "part": "xl/worksheets/sheet2.xml",
+              "defect": "Duplicate singleton pageMargins"
+            },
+            {
+              "part": "xl/worksheets/sheet2.xml",
+              "defect": "printOptions follows pageMargins; invalid order"
+            }
+          ]
+        },
+        {
+          "file": "08-zhurnal-doprabot.xlsx",
+          "sha256": "5ccb35636914c318e26c402ea4f30262f6ed61993532e106371c35d54926dfdb",
+          "sheet_names_equal": true,
+          "values_formulas_differences": [],
+          "visual_style_differences": [],
+          "formula_count": 0,
+          "lock_mismatches": [],
+          "freeze_merge_dimensions_preserved": true,
+          "print_areas": {
+            "Реестр": "'Реестр'!$A$1:$L$103",
+            "Инструкция": "'Инструкция'!$A$1:$A$3"
+          },
+          "print_repeat_rows": "$1:$3",
+          "schema_issues": [
+            {
+              "part": "xl/worksheets/sheet1.xml",
+              "defect": "Duplicate singleton pageMargins"
+            },
+            {
+              "part": "xl/worksheets/sheet1.xml",
+              "defect": "printOptions follows pageMargins; invalid order"
+            },
+            {
+              "part": "xl/worksheets/sheet2.xml",
+              "defect": "Duplicate singleton pageMargins"
+            },
+            {
+              "part": "xl/worksheets/sheet2.xml",
+              "defect": "printOptions follows pageMargins; invalid order"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "Independent mechanical XLSX comparison; no normative, UI, print-render or full G3 acceptance",
+      "files": [
+        {
+          "file": "07-raschet-stoimosti.xlsx",
+          "sha256": "54902d662dedef692cb08b6fd561b3cc6eb97885a11b4622bfbbb578739f746a",
+          "values_formulas_differences": [],
+          "visual_style_differences": [],
+          "lock_mismatches": [],
+          "freeze_merge_dimensions_preserved": true,
+          "print_areas": {
+            "Реестр": "'Реестр'!$A$1:$J$104",
+            "Инструкция": "'Инструкция'!$A$1:$A$3"
+          },
+          "print_repeat_rows": "$1:$3",
+          "schema_issues": []
+        },
+        {
+          "file": "08-zhurnal-doprabot.xlsx",
+          "sha256": "c33ab5b412338ba790beb6b3f1e25f07307ffd6442704b1c247fc89f1ee1fe2f",
+          "values_formulas_differences": [],
+          "visual_style_differences": [],
+          "lock_mismatches": [],
+          "freeze_merge_dimensions_preserved": true,
+          "print_areas": {
+            "Реестр": "'Реестр'!$A$1:$L$103",
+            "Инструкция": "'Инструкция'!$A$1:$A$3"
+          },
+          "print_repeat_rows": "$1:$3",
+          "schema_issues": []
+        }
+      ],
+      "defects": [],
+      "result": "PASS_MECHANICAL"
+    },
+    {
+      "scope": "Independent mechanical XLSX comparison; no normative, UI, print-render or full G3 acceptance",
+      "files": [
+        {
+          "file": "07-raschet-stoimosti.xlsx",
+          "sha256": "00ff8043c0281ade1076d76285f853d53cd06ae995fdfacece533ca843bb7f3d",
+          "sheet_names_equal": true,
+          "values_formulas_differences": [],
+          "unexpected_new_values": [],
+          "visual_style_differences": [],
+          "lock_mismatches": [],
+          "freeze_merge_dimensions_preserved": true,
+          "row_column_dimensions_preserved": false,
+          "validations_preserved": true,
+          "conditional_formatting_preserved": true,
+          "sheet_protection_enabled": true,
+          "print_areas": {
+            "Реестр": "'Реестр'!$A$1:$J$104",
+            "Инструкция": "'Инструкция'!$A$1:$A$3"
+          },
+          "print_repeat_rows": "$1:$3",
+          "print_setup": {
+            "Реестр": {
+              "paperSize": 8,
+              "orientation": "landscape",
+              "fitToWidth": 1,
+              "fitToHeight": 0
+            },
+            "Инструкция": {
+              "paperSize": 9,
+              "orientation": "landscape",
+              "fitToWidth": 1,
+              "fitToHeight": 0
+            }
+          },
+          "schema_issues": []
+        },
+        {
+          "file": "08-zhurnal-doprabot.xlsx",
+          "sha256": "f50e316cd8e0ecb43343803112b0228f1e6584bd27fa13426c4af72972049950",
+          "sheet_names_equal": true,
+          "values_formulas_differences": [],
+          "unexpected_new_values": [],
+          "visual_style_differences": [],
+          "lock_mismatches": [],
+          "freeze_merge_dimensions_preserved": true,
+          "row_column_dimensions_preserved": false,
+          "validations_preserved": true,
+          "conditional_formatting_preserved": true,
+          "sheet_protection_enabled": true,
+          "print_areas": {
+            "Реестр": "'Реестр'!$A$1:$L$103",
+            "Инструкция": "'Инструкция'!$A$1:$A$3"
+          },
+          "print_repeat_rows": "$1:$3",
+          "print_setup": {
+            "Реестр": {
+              "paperSize": 8,
+              "orientation": "landscape",
+              "fitToWidth": 1,
+              "fitToHeight": 0
+            },
+            "Инструкция": {
+              "paperSize": 9,
+              "orientation": "landscape",
+              "fitToWidth": 1,
+              "fitToHeight": 0
+            }
+          },
+          "schema_issues": []
+        }
+      ],
+      "defects": [
+        {
+          "file": "07-raschet-stoimosti.xlsx",
+          "defect": "row_column_dimensions_preserved"
+        },
+        {
+          "file": "08-zhurnal-doprabot.xlsx",
+          "defect": "row_column_dimensions_preserved"
+        }
+      ],
+      "result": "FAIL_MECHANICAL",
+      "classification": "Verifier object identity false negative on dimensions; serialized attributes identical. Corrected verifier below."
+    },
+    {
+      "scope": "Independent mechanical XLSX comparison; no normative, UI, print-render or full G3 acceptance",
+      "files": [
+        {
+          "file": "07-raschet-stoimosti.xlsx",
+          "sha256": "00ff8043c0281ade1076d76285f853d53cd06ae995fdfacece533ca843bb7f3d",
+          "sheet_names_equal": true,
+          "values_formulas_differences": [],
+          "unexpected_new_values": [],
+          "visual_style_differences": [],
+          "lock_mismatches": [],
+          "freeze_merge_dimensions_preserved": true,
+          "row_column_dimensions_preserved": true,
+          "validations_preserved": true,
+          "conditional_formatting_preserved": true,
+          "sheet_protection_enabled": true,
+          "print_areas": {
+            "Реестр": "'Реестр'!$A$1:$J$104",
+            "Инструкция": "'Инструкция'!$A$1:$A$3"
+          },
+          "print_repeat_rows": "$1:$3",
+          "print_setup": {
+            "Реестр": {
+              "paperSize": 8,
+              "orientation": "landscape",
+              "fitToWidth": 1,
+              "fitToHeight": 0
+            },
+            "Инструкция": {
+              "paperSize": 9,
+              "orientation": "landscape",
+              "fitToWidth": 1,
+              "fitToHeight": 0
+            }
+          },
+          "schema_issues": []
+        },
+        {
+          "file": "08-zhurnal-doprabot.xlsx",
+          "sha256": "f50e316cd8e0ecb43343803112b0228f1e6584bd27fa13426c4af72972049950",
+          "sheet_names_equal": true,
+          "values_formulas_differences": [],
+          "unexpected_new_values": [],
+          "visual_style_differences": [],
+          "lock_mismatches": [],
+          "freeze_merge_dimensions_preserved": true,
+          "row_column_dimensions_preserved": true,
+          "validations_preserved": true,
+          "conditional_formatting_preserved": true,
+          "sheet_protection_enabled": true,
+          "print_areas": {
+            "Реестр": "'Реестр'!$A$1:$L$103",
+            "Инструкция": "'Инструкция'!$A$1:$A$3"
+          },
+          "print_repeat_rows": "$1:$3",
+          "print_setup": {
+            "Реестр": {
+              "paperSize": 8,
+              "orientation": "landscape",
+              "fitToWidth": 1,
+              "fitToHeight": 0
+            },
+            "Инструкция": {
+              "paperSize": 9,
+              "orientation": "landscape",
+              "fitToWidth": 1,
+              "fitToHeight": 0
+            }
+          },
+          "schema_issues": []
+        }
+      ],
+      "defects": [],
+      "result": "PASS_MECHANICAL"
+    }
+  ],
+  "files": [
+    {
+      "file": "07-raschet-stoimosti.xlsx",
+      "sha256": "00ff8043c0281ade1076d76285f853d53cd06ae995fdfacece533ca843bb7f3d",
+      "sheet_names_equal": true,
+      "values_formulas_differences": [],
+      "unexpected_new_values": [],
+      "visual_style_differences": [],
+      "lock_mismatches": [],
+      "freeze_merge_dimensions_preserved": true,
+      "row_column_dimensions_preserved": true,
+      "validations_preserved": true,
+      "conditional_formatting_preserved": true,
+      "sheet_protection_enabled": true,
+      "print_areas": {
+        "Реестр": "'Реестр'!$A$1:$J$104",
+        "Инструкция": "'Инструкция'!$A$1:$A$3"
+      },
+      "print_repeat_rows": "$1:$3",
+      "print_setup": {
+        "Реестр": {
+          "paperSize": 8,
+          "orientation": "landscape",
+          "fitToWidth": 1,
+          "fitToHeight": 0
+        },
+        "Инструкция": {
+          "paperSize": 9,
+          "orientation": "landscape",
+          "fitToWidth": 1,
+          "fitToHeight": 0
+        }
+      },
+      "schema_issues": []
+    },
+    {
+      "file": "08-zhurnal-doprabot.xlsx",
+      "sha256": "f50e316cd8e0ecb43343803112b0228f1e6584bd27fa13426c4af72972049950",
+      "sheet_names_equal": true,
+      "values_formulas_differences": [],
+      "unexpected_new_values": [],
+      "visual_style_differences": [],
+      "lock_mismatches": [],
+      "freeze_merge_dimensions_preserved": true,
+      "row_column_dimensions_preserved": true,
+      "validations_preserved": true,
+      "conditional_formatting_preserved": true,
+      "sheet_protection_enabled": true,
+      "print_areas": {
+        "Реестр": "'Реестр'!$A$1:$L$103",
+        "Инструкция": "'Инструкция'!$A$1:$A$3"
+      },
+      "print_repeat_rows": "$1:$3",
+      "print_setup": {
+        "Реестр": {
+          "paperSize": 8,
+          "orientation": "landscape",
+          "fitToWidth": 1,
+          "fitToHeight": 0
+        },
+        "Инструкция": {
+          "paperSize": 9,
+          "orientation": "landscape",
+          "fitToWidth": 1,
+          "fitToHeight": 0
+        }
+      },
+      "schema_issues": []
+    }
+  ],
+  "defects": [],
+  "result": "PASS_MECHANICAL"
+}
