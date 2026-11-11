@@ -1,0 +1,24 @@
+name: NSP P11 read-only actual buyer archive capture
+on:
+  push:
+    branches:
+      - 'release/nsp-p11-capture-20261111'
+    paths:
+      - '.github/workflows/nsp-p11-capture-20261111.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 5
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: Snapshot P11 current 10-file buyer ZIP read-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash /home/denis/projects/nsp-qa19-p11-20261030/p11_readonly_capture_20261111.sh
