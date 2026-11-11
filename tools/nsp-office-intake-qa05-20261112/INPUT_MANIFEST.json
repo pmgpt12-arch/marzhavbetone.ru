@@ -1,0 +1,23 @@
+{
+  "auto_deploy": false,
+  "files": [
+    {
+      "blob_sha": "c2eb8459142a4ec880c7cd8db0c72b257defa216",
+      "name": "01-checklist-krasnye-flagi.docx",
+      "sha256": "5614954e7e2ddc717812e872d90d67f044bea1eafa339096c18daaee18d91c75",
+      "source_path": "tools/nsp-office-intake-qa05-20261112/input/01-checklist-krasnye-flagi.docx"
+    }
+  ],
+  "native_replay_required": true,
+  "prior_acceptance": {
+    "archive_sha256": "b9a3fd2bb0e9477aef799c0a44e555a77aac281a6176d422a2f38bcc1d181f30",
+    "qa_ref": "QA-05-REPORT",
+    "sha_manifest_sha256": "820da8adcfbff1ec584d5efc15f12f3a790c9318cf7127e8d78da5483790cdeb",
+    "status": "FULL_QA_PASS_FOR_HISTORICAL_QA_CANDIDATE"
+  },
+  "purpose": "qa_only_native_replay",
+  "qa_acceptance_of_replay": "UNKNOWN",
+  "qa_profile": "docx_native",
+  "release_allowed": false,
+  "schema": "nsp.native-file-manifest.v1"
+}
