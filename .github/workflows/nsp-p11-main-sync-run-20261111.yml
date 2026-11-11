@@ -1,0 +1,43 @@
+name: NSP P11 sync approved published article to source
+on:
+  push:
+    branches:
+      - 'release/nsp-p11-main-sync-run-20261111'
+    paths:
+      - '.github/workflows/nsp-p11-main-sync-run-20261111.yml'
+permissions:
+  contents: write
+jobs:
+  synchronize:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 11
+    steps:
+      - name: Sparse checkout only P11 article, previews, index, sitemap
+        uses: actions/checkout@v4
+        with:
+          ref: sync/nsp-p11-article-main-20261111
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            articles/raschet-metrami.html
+            articles/index.html
+            sitemap.xml
+            assets/document-previews
+          sparse-checkout-cone-mode: false
+          persist-credentials: true
+          path: p11-source-sync
+      - name: Compare to exact deployed SHA and commit only P11 7 files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "pmgpt12-arch/marzhavbetone.ru"
+          test "$GITHUB_REF_NAME" = "release/nsp-p11-main-sync-run-20261111"
+          cd p11-source-sync
+          test -z "$(git status --porcelain)"
+          python3 /home/denis/projects/nsp-qa19-p11-20261030/sync_p11_main_20261111.py "$PWD"
+          git add -- articles/raschet-metrami.html articles/index.html sitemap.xml assets/document-previews/p11-*-preview.jpg
+          git -c core.whitespace=-blank-at-eol diff --cached --check
+          test "$(git diff --cached --name-only | wc -l)" -eq 7
+          git -c user.name="nsp-p11-source-sync" -c user.email="noreply@users.noreply.github.com" commit -m "Sync published P11 real-estate settlement article and figures [skip deploy]"
+          git push origin HEAD:refs/heads/sync/nsp-p11-article-main-20261111
+          echo "P11_REVIEW_BRANCH_PUSHED"
