@@ -1,0 +1,27 @@
+name: NSP P11 owner-approved real-estate settlement article and document figures
+on:
+  push:
+    branches:
+      - 'release/nsp-p11-article-20261111'
+    paths:
+      - '.github/workflows/nsp-p11-article-20261111.yml'
+permissions:
+  contents: read
+concurrency:
+  group: nsp-production-p11-article-20261111
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 12
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - name: Atomic P11 HTML, four real previews, sitemap and index with SHA rollback
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash /home/denis/projects/nsp-qa19-p11-20261030/p11-current-reference-20261110/p11-article-release-20261111/run_publish.sh
