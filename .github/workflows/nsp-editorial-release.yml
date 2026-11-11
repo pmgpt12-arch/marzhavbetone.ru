@@ -1,0 +1,53 @@
+name: NSP editorial article-only release
+on:
+  push:
+    branches: [editorial/legacy-v2-20261111]
+    paths:
+      - tools/nsp-editorial/request.json
+permissions:
+  contents: read
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+jobs:
+  targeted:
+    name: Checked 32-article static release (no products)
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse exact bounded release request
+        run: |
+          set -euo pipefail
+          action=$(python3 -c 'import json; x=json.load(open("tools/nsp-editorial/request.json")); assert x["action"] in ("dry-run","publish"); assert x["scope"] == "NSP_32_ARTICLES_AND_CSS_ONLY"; assert x["target_host"] == "nastoronepodryadchika.ru"; print(x["action"])')
+          echo "NSP_EDITORIAL_ACTION=$action" >> "$GITHUB_ENV"
+          test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
+          mkdir -p /tmp/nsp-editorial-evidence
+      - name: Verify exact candidate and protected 11 articles (read-only)
+        run: |
+          set -euo pipefail
+          python3 tools/nsp_editorial_release_preflight.py --mode static
+          python3 tools/nsp_articles_html_integrity_gate.py
+          python3 tools/nsp-editorial/run_release.py validate
+      - name: SSH for approved targeting only
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_final_key
+          chmod 600 ~/.ssh/nsp_final_key
+          timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          test -s ~/.ssh/known_hosts
+      - name: Execute bounded address-only dry-run or publication
+        run: timeout 450s python3 tools/nsp-editorial/run_release.py "$NSP_EDITORIAL_ACTION"
+      - name: Save exact release receipt and rollback evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nsp-editorial-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/nsp-editorial-evidence/
+          retention-days: 45

@@ -1,0 +1,46 @@
+name: NSP calculator one-page CTA hotfix
+on:
+  push:
+    branches: [editorial/legacy-v2-20261111]
+    paths:
+      - tools/nsp-editorial/calculator-request.json
+permissions:
+  contents: read
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+jobs:
+  one-page:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bound the release to one live calculator link
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/nsp-editorial/calculator_cta_release.py
+          php -l tools/nsp-editorial/transaction.php
+          python3 -c 'import json; x=json.load(open("tools/nsp-editorial/calculator-request.json")); assert x == {"action":"publish","scope":"ONE_LIVE_CALCULATOR_CTA","base_sha256":"1fb2271e637aef494b082bddf8181a694f904cf42e8b11b8a81a68122a388b5f"}'
+          test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
+      - name: Configure existing hosting SSH
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_final_key
+          chmod 600 ~/.ssh/nsp_final_key
+          timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          test -s ~/.ssh/known_hosts
+      - name: Exact live-source staging, protected dry-run, apply, verify or rollback
+        run: timeout 300s python3 tools/nsp-editorial/calculator_cta_release.py
+      - name: Release and rollback evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nsp-calculator-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/nsp-calculator-evidence/
+          retention-days: 45

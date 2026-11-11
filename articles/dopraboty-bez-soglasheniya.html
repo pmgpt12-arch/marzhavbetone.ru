@@ -13,7 +13,7 @@
   <title>Допработы без соглашения — На стороне подрядчика</title>
   <link rel="canonical" href="https://nastoronepodryadchika.ru/articles/dopraboty-bez-soglasheniya.html">
   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
-  <link rel="stylesheet" href="../article.css?v=384bf284">
+  <link rel="stylesheet" href="../article.css?v=nsp32-20261111">
   <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
   <script type="application/ld+json">
   {
@@ -49,9 +49,21 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="/nsp-unified-header.css?v=20261108b">
+  <link rel="stylesheet" href="/cart.css?v=dbf0bfa0">
 </head>
 <body class="rebrand-approved">
-  <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Бесплатно</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и судебные решения</a><a href="/#author">О проекте</a></nav></header>
+  <header class="topbar nsp-unified-header"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Шаблоны актов</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и решения судов</a><a href="/#author">О проекте</a></nav><button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>
+  <aside class="cart-panel" id="cart-panel" aria-label="Корзина" hidden>
+    <div class="cart-head"><div><p class="eyebrow">ВАШ ЗАКАЗ</p><h2>Корзина</h2></div><button class="cart-close" id="cart-close" type="button" aria-label="Закрыть корзину">×</button></div>
+    <div class="cart-empty" id="cart-empty">Пока пусто. Выберите один или несколько пакетов.</div>
+    <ul class="cart-items" id="cart-items"></ul>
+    <div class="cart-total"><span>Итого</span><strong id="cart-total">0 ₽</strong></div>
+    <button class="button cart-checkout" id="cart-checkout" type="button" disabled>Оформить заказ</button>
+    <p class="fine">На этом этапе оплата не списывается. Состав заказа перейдёт в форму оформления.</p>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+
   <main class="section article-page">
     <nav aria-label="Хлебные крошки" class="breadcrumbs">
       <ol>
@@ -91,8 +103,13 @@
       <p>Готовые документы по этой теме — <a href="/products/p2-dopolnitelnye-raboty.html">Комплект «Дополнительные работы: как получить оплату»</a>.</p>
     </aside>
 
+    
+    <aside class="article-cta-inline" data-nsp-editorial="v2"><p><strong>Порядок проверки.</strong> До выполнения незапланированного объёма зафиксируйте основание его возникновения, уведомление заказчика, стоимость и процедуру согласования. В работе с документами поможет комплект <a href="/products/p2-dopolnitelnye-raboty.html">«Оформление и оплата дополнительных работ»</a>.</p></aside>
+
     <h2 id="chto-pridetsya-dokazyvat-po-otdelnosti">Что придётся доказывать по отдельности</h2>
     <p>Спор распадается на самостоятельные вопросы, и убедительный ответ на один не закрывает остальные. Комплект, где густо по факту выполнения и пусто по полномочиям, разваливается по полномочиям.</p>
+    <figure class="nsp-document-preview" data-document="uvedomlenie"><a aria-label="Уведомление о дополнительных работах — посмотреть состав комплекта" href="/products/p2-dopolnitelnye-raboty.html"><img alt="Уведомление о дополнительных работах — фрагмент реального документа из комплекта P2" decoding="async" height="1170" loading="lazy" src="../assets/document-previews/p2-uvedomlenie-preview.jpg" width="1061"/></a><figcaption><strong>Уведомление о дополнительных работах.</strong> Фрагмент рабочего документа: обстоятельства и запрос письменного решения заказчика. <span class="preview-note">Образец · часть документа</span></figcaption></figure>
+
     <table>
       <tr><th>Что доказывается</th><th>Чем</th><th>Чего этим не докажешь</th></tr>
       <tr><td>Работы выполнены</td><td>Обмеры, исполнительные схемы, фото с датой и привязкой к месту, записи журнала, накладные, путевые листы</td><td>Что объём был поручен</td></tr>
@@ -105,6 +122,8 @@
 
     <h2 id="chem-podtverzhdaetsya-poruchenie-esli-soglasheni">Чем подтверждается поручение, если соглашение не подписали</h2>
     <p>Устная команда договор не меняет: соглашение об изменении договора совершается в той же форме, что и сам договор — статья 452 ГК РФ в действующей редакции.</p>
+    <figure class="nsp-document-preview" data-document="akt-skrytyh"><a aria-label="Акт освидетельствования скрытых работ — посмотреть состав комплекта" href="/products/p2-dopolnitelnye-raboty.html"><img alt="Акт освидетельствования скрытых работ — фрагмент реального документа из комплекта P2" decoding="async" height="1170" loading="lazy" src="../assets/document-previews/p2-akt-skrytyh-preview.jpg" width="1061"/></a><figcaption><strong>Акт освидетельствования скрытых работ.</strong> Фрагмент редактируемой Word-формы для оформления результатов освидетельствования. <span class="preview-note">Образец · часть документа</span></figcaption></figure>
+
     <p>Дальше работает статья 162 ГК РФ: несоблюдение простой письменной формы лишает права ссылаться на свидетельские показания, но не лишает права приводить письменные и другие доказательства. «Мне сказали на обходе» в споре не звучит. Служебная записка, написанная в день того же обхода и зарегистрированная в журнале исходящих, звучит.</p>
     <p>Второй вопрос — кто говорил. Полномочие следует из доверенности, приказа, условия договора о лицах, уполномоченных подписывать документы по объекту, и может явствовать из обстановки (статья 182 ГК РФ). Сделка, совершённая неуполномоченным лицом, обязывает организацию, если та её впоследствии одобрила (статья 183 ГК РФ). Одобрение — это действия: оплата части спорного объёма, подписание акта уполномоченным лицом, письмо с признанием объёма.</p>
     <p>Третий узел — статья 743 ГК РФ. Подрядчик, обнаруживший не учтённые в технической документации работы и вызванную этим необходимость увеличения сметной стоимости, обязан сообщить заказчику; не выполнивший эту обязанность лишается права требовать оплаты дополнительных работ, кроме случая, когда докажет необходимость немедленных действий в интересах заказчика. Норма проверяет подрядчика — тем, что он написал до начала, а не тем, что построил. <a href="/articles/dopolnitelnye-raboty-v-stroitelstve.html">Штатный порядок оформления дополнительных работ — от поручения до оплаты — разобран отдельно</a>.</p>
@@ -112,6 +131,8 @@
 
     <h2 id="chto-daet-perepiska-i-zhurnal-rabot-i-chego-ne-d">Что даёт переписка и журнал работ — и чего не даёт</h2>
     <p>Переписка и журнал — основной материал в таком споре, а часто и единственный. Их слабость в том, что они доказывают меньше, чем от них ждут.</p>
+    <figure class="nsp-document-preview" data-document="dopsoglashenie"><a aria-label="Дополнительное соглашение об объёме и цене — посмотреть состав комплекта" href="/products/p2-dopolnitelnye-raboty.html"><img alt="Дополнительное соглашение об объёме и цене — фрагмент реального документа из комплекта P2" decoding="async" height="1170" loading="lazy" src="../assets/document-previews/p2-dopsoglashenie-preview.jpg" width="1061"/></a><figcaption><strong>Дополнительное соглашение об объёме и цене.</strong> Фрагмент документа для письменного оформления согласованных изменений. <span class="preview-note">Образец · часть документа</span></figcaption></figure>
+
     <table>
       <tr><th>Документ</th><th>Что подтверждает</th><th>Чего не подтверждает</th></tr>
       <tr><td>Исходящее письмо с отметкой о вручении</td><td>Дату, содержание требования, осведомлённость адресата</td><td>Согласие заказчика и полномочия принявшего</td></tr>
@@ -185,9 +206,9 @@
     </div>
     <div class="article-cta" style="margin:40px 0;padding:40px;background:var(--ink);color:var(--paper);border-radius:8px;">
       <p class="eyebrow" style="color:var(--orange);">ПЛАТНЫЙ КОМПЛЕКТ</p>
-      <h3 style="color:#fff;">Комплект «Дополнительные работы: как получить оплату»</h3>
-      <p style="color:#bbb;">Формы помогают зафиксировать поручение, согласовать объём и стоимость, отразить влияние на сроки и собрать документы для предъявления допработ к оплате. Поручение, уведомление, расчёт, журнал, акт и соглашения — 15 файлов.</p>
-      <p style="font-size:28px;font-weight:900;color:var(--orange);">19 900 ₽</p>
+      <h3 style="color:#fff;">Оформление и оплата дополнительных работ</h3>
+      <p style="color:#bbb;">Формы помогают зафиксировать поручение, согласовать объём и стоимость, отразить влияние на сроки и собрать документы для предъявления допработ к оплате. Поручение, уведомление, расчёт, журнал, акт и соглашения — 13 файлов.</p>
+      <p style="font-size:28px;font-weight:900;color:var(--orange);">24 900 ₽</p>
       <a class="button" href="/products/p2-dopolnitelnye-raboty.html">Купить комплект →</a>
     </div>
 
@@ -219,5 +240,6 @@
     </section>
   </main>
   <script src="/attribution.js?v=e5aab965"></script>
+  <script type="module" src="/app-script.php?v=21"></script>
 </body>
 </html>

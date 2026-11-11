@@ -13,7 +13,7 @@
   <title>Работы выполнены, но не приняты — На стороне подрядчика</title>
   <link rel="canonical" href="https://nastoronepodryadchika.ru/articles/raboty-ne-prinyaty.html">
   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
-  <link rel="stylesheet" href="../article.css?v=384bf284">
+  <link rel="stylesheet" href="../article.css?v=nsp32-20261111">
   <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
   <script type="application/ld+json">
   {
@@ -49,9 +49,21 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="/nsp-unified-header.css?v=20261108b">
+  <link rel="stylesheet" href="/cart.css?v=dbf0bfa0">
 </head>
 <body class="rebrand-approved">
-  <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Бесплатно</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и судебные решения</a><a href="/#author">О проекте</a></nav></header>
+  <header class="topbar nsp-unified-header"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Шаблоны актов</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и решения судов</a><a href="/#author">О проекте</a></nav><button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>
+  <aside class="cart-panel" id="cart-panel" aria-label="Корзина" hidden>
+    <div class="cart-head"><div><p class="eyebrow">ВАШ ЗАКАЗ</p><h2>Корзина</h2></div><button class="cart-close" id="cart-close" type="button" aria-label="Закрыть корзину">×</button></div>
+    <div class="cart-empty" id="cart-empty">Пока пусто. Выберите один или несколько пакетов.</div>
+    <ul class="cart-items" id="cart-items"></ul>
+    <div class="cart-total"><span>Итого</span><strong id="cart-total">0 ₽</strong></div>
+    <button class="button cart-checkout" id="cart-checkout" type="button" disabled>Оформить заказ</button>
+    <p class="fine">На этом этапе оплата не списывается. Состав заказа перейдёт в форму оформления.</p>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+
   <main class="section article-page">
     <nav aria-label="Хлебные крошки" class="breadcrumbs">
       <ol>
@@ -61,7 +73,7 @@
       </ol>
     </nav>
     <p class="eyebrow">ПРИЁМКА / НЕ СОСТОЯЛАСЬ</p>
-    <h1>Работы готовы. Выручка пока нет</h1>
+    <h1>Работы выполнены, но приёмка затягивается: порядок действий подрядчика</h1>
     <p class="article-date"><time datetime="2026-07-25">Опубликовано 25 июля 2026</time></p>
 
     <img class="article-cover" src="../assets/priemka.jpg" alt="Церемониальные ножницы застыли в бетоне" width="1080" height="1350" fetchpriority="high" decoding="async">
@@ -96,8 +108,13 @@
     <p>Канал отправки берётся из договора, а не из удобства. Статья 165.1 ГК РФ считает сообщение доставленным и тогда, когда оно поступило адресату, но по зависящим от него обстоятельствам не было вручено. Заказное письмо с описью вложения по адресу из ЕГРЮЛ работает и в том случае, если его не забрали с почты; переписка в мессенджере — только если этот канал назван договором.</p>
     <p>Осмотр фиксируется в тот же день. Вышел представитель — протокол с перечнем предъявленного. Не вышел — акт о неявке: дата, время, кто ждал, каким письмом и когда вызывался заказчик. Приёмку заказчик по общему правилу организует за свой счёт (п. 2 ст. 753 ГК РФ), и отсутствие его специалистов — его событие, а не ваше.</p>
 
+    
+    <aside class="article-cta-inline" data-nsp-editorial="v2"><p><strong>Порядок проверки.</strong> Сохраните сообщения о готовности к приёмке, подтверждения передачи документов и замечания заказчика; ведите хронологию ответов и повторного предъявления. Состав документов для этой ситуации — в <a href="/products/p3-shablony-ks2-ks3.html">комплекте «Подготовка и проверка КС-2 и КС-3»</a>.</p></aside>
+
     <h2 id="rabotat-s-zamechaniyami-kak-s-reestrom">Работать с замечаниями как с реестром</h2>
     <p>Каждое замечание должно иметь автора, дату, ссылку на требование, ответственного и статус. Отделяйте дефекты от новых пожеланий и изменений объёма.</p>
+    <figure class="nsp-document-preview" data-document="proverochnyy-list"><a aria-label="Проверочный лист КС-2 и КС-3 — открыть комплект" href="/products/p3-shablony-ks2-ks3.html"><img alt="Проверочный лист КС-2 и КС-3 — изображение подлинного документа из обновлённого комплекта P3" decoding="async" height="1170" loading="lazy" src="../assets/document-previews/p3-proverochnyy-list-preview.jpg" width="1061"/></a><figcaption><strong>Проверочный лист КС-2 и КС-3.</strong> 40 контрольных пунктов проверки комплекта перед сдачей. <span class="preview-note">Образец · фрагмент документа</span></figcaption></figure>
+
     <p>Замечание без автора и даты — разговор, а не замечание. Реестр обнажает то, что теряется в переписке: одно требование, повторённое разными людьми как три; пункт, появившийся после истечения срока приёмки; устранённое, что вернулось в следующем письме.</p>
     <p>Колонки: дата и автор с должностью; к чему относится — позиция ведомости, ось, отметка, помещение; формулировка дословно; ссылка на требование — пункт договора, лист проекта, пункт норматива; тип; чем и когда закрыто. Тип заполняется первым:</p>
     <ul>
@@ -112,6 +129,8 @@
 
     <h2 id="motivirovannyy-otkaz-ot-priemki">Мотивированный отказ: что делает его мотивированным</h2>
     <p>«Работы не принимаем» — не отказ. Отказ — это документ, из которого видно, что именно, где именно и какому требованию не соответствует.</p>
+    <figure class="nsp-document-preview" data-document="reestr-prilozheniy"><a aria-label="Реестр передаваемых документов — открыть комплект" href="/products/p3-shablony-ks2-ks3.html"><img alt="Реестр передаваемых документов — изображение подлинного документа из обновлённого комплекта P3" decoding="async" height="827" loading="lazy" src="../assets/document-previews/p3-reestr-prilozheniy-preview.jpg" width="1500"/></a><figcaption><strong>Реестр передаваемых документов.</strong> Фрагмент Excel-реестра с полями для состава, реквизитов и контроля приложений. <span class="preview-note">Образец · фрагмент документа</span></figcaption></figure>
+
     <p>Пункт 6 статьи 753 ГК РФ разрешает заказчику отказаться от приёмки результата при недостатках, которые исключают возможность использования его для указанной в договоре цели и не могут быть устранены подрядчиком или заказчиком. Два признака работают только вместе. Пятно на штукатурке не отвечает ни одному, и построенный на нём отказ разбирается как замечание к устранению.</p>
     <p>Мотивированным отказ делает не тон. Проверяется по пунктам:</p>
     <ul>
@@ -126,6 +145,8 @@
 
     <h2 id="odnostoronniy-akt">Односторонний акт: когда он работает и чего не закрывает</h2>
     <p>Пункт 4 статьи 753 ГК РФ: сдача результата подрядчиком и приёмка заказчиком оформляются актом, подписанным обеими сторонами; при отказе одной из сторон от подписания в акте делается отметка об этом и акт подписывается другой стороной. Односторонний акт может быть признан судом недействительным лишь в случае, если мотивы отказа от подписания признаны им обоснованными.</p>
+    <figure class="nsp-document-preview" data-document="protokol-proverki"><a aria-label="Протокол внутренней проверки — открыть комплект" href="/products/p3-shablony-ks2-ks3.html"><img alt="Протокол внутренней проверки — изображение подлинного документа из обновлённого комплекта P3" decoding="async" height="1170" loading="lazy" src="../assets/document-previews/p3-protokol-proverki-preview.jpg" width="1061"/></a><figcaption><strong>Протокол внутренней проверки.</strong> Фрагмент Word-формы для учёта замечаний, ответственных лиц и повторной проверки. <span class="preview-note">Образец · фрагмент документа</span></figcaption></figure>
+
     <p>Норму читают в обратную сторону: акт обесценивает обоснованность мотивов, а не отсутствие подписи. Спор смещается с «подписано ли» на «был ли мотив и был ли он обоснован» — то есть на территорию переписки.</p>
     <p>Оформлять его имеет смысл, когда сошлось всё: работы выполнены и объём подтверждается помимо самого акта; заказчик уведомлён и вызван тем способом, который назван в договоре; срок приёмки истёк; мотивированного отказа не поступило либо в нём нет ни требования, ни описания отступления; в акте есть отметка об отказе с датами и реквизитами писем; акт направлен тем же порядком, что и уведомление.</p>
     <p>Чего он не делает: не превращает несогласованные дополнительные работы в согласованные (статья 743 ГК РФ), не заменяет передачу исполнительной документации (статья 726 ГК РФ), не снимает вопрос качества (статья 723 ГК РФ) и не отменяет договорную процедуру — там, где предусмотрены комиссия или испытания, акт поверх пропущенной процедуры уязвим.</p>
@@ -170,12 +191,12 @@
     </div>
     <div class="article-cta" style="margin:40px 0;padding:40px;background:var(--ink);color:var(--paper);border-radius:8px;">
       <p class="eyebrow" style="color:var(--orange);">ПЛАТНЫЙ КОМПЛЕКТ</p>
-      <h3 style="color:#fff;">Комплект «КС-2 без возврата: сдайте с первой попытки»</h3>
-      <p style="color:#bbb;">Система подготовки КС-2 к сдаче: реестры, шаблоны, алгоритм проверки перед подачей, типовые замечания и готовые ответы на них. 10 файлов. Комплект работает до приёмки — он про то, чтобы акт не вернули, а не про взыскание после того, как вернули.</p>
+      <h3 style="color:#fff;">Подготовка и проверка КС-2 и КС-3</h3>
+      <p style="color:#bbb;">Комплект документов для подготовки КС-2 и КС-3: реестры, шаблоны, алгоритм проверки перед подачей, типовые замечания и готовые ответы на них. 11 файлов. Комплект работает до приёмки — он про то, чтобы акт не вернули, а не про взыскание после того, как вернули.</p>
       <p style="font-size:28px;font-weight:900;color:var(--orange);">17 900 ₽</p>
       <a class="button" href="/products/p3-shablony-ks2-ks3.html">Купить комплект →</a>
-      <p style="color:var(--concrete);font-size:14px;margin-top:20px;">Если акты уже приняты, а оплата просрочена — это другая стадия и другой набор документов: <a href="/products/t1-pervyy-shag-pri-neoplate.html" style="color:var(--orange);">«Заказчик не оплачивает работы»</a>, 990 ₽.</p>
-      <p style="color:var(--concrete);font-size:14px;margin-top:20px;">Вместо мотивов пришёл односторонний акт о недостатках или уведомление о списании в одностороннем порядке — подготовьте письменные возражения: <a href="/products/t3-odnostoronniy-akt-i-zachet.html" style="color:var(--orange);">«Система подготовки возражений на односторонний акт или списание в одностороннем порядке»</a>, 14 900 ₽.</p>
+      <p style="color:var(--concrete);font-size:14px;margin-top:20px;">Если акты уже приняты, но срок оплаты прошёл, переходите к <a href="/products/p1-oplata-po-ks2.html" style="color:var(--orange);">комплекту P1 «Получение оплаты за выполненные работы»</a> — документы для подтверждения долга, расчёта процентов и предъявления требования об оплате.</p>
+      <p style="color:var(--concrete);font-size:14px;margin-top:20px;">Получили односторонний акт о недостатках или уведомление об удержании из оплаты? Письменные возражения и порядок фиксации доказательств включены в <a href="/products/p5-shtrafy-uderzhaniya.html" style="color:var(--orange);">комплект «Защита от штрафов, претензий и удержаний»</a> (30 файлов, 29 900 ₽).</p>
     </div>
 
     <div class="article-lead" style="margin:40px 0;padding:32px;border:2px solid var(--orange);border-radius:8px;">
@@ -206,5 +227,6 @@
     </section>
   </main>
   <script src="/attribution.js?v=e5aab965"></script>
+  <script type="module" src="/app-script.php?v=21"></script>
 </body>
 </html>

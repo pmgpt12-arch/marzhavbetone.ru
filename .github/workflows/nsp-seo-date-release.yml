@@ -1,0 +1,50 @@
+name: NSP SEO editorial date-only release
+on:
+  push:
+    branches: [editorial/legacy-v2-20261111]
+    paths:
+      - tools/nsp-editorial/seo-request.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  seo-date-only:
+    name: 32 dateModified + 32 sitemap lastmod — protected
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      SSH_USER: ${{ secrets.DEPLOY_USER }}
+      KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Request and code validity
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/nsp-editorial/seo_dates_release.py
+          php -l tools/nsp-editorial/transaction.php
+          python3 -c 'import json; x=json.load(open("tools/nsp-editorial/seo-request.json")); assert x == {"action":"publish","scope":"32_ARTICLE_DATES_PLUS_SITEMAP","date":"2026-11-11"}'
+          test -n "$HOST" && test -n "$SSH_USER" && test -n "$KEY"
+      - name: Configure bounded SSH
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/nsp_final_key
+          chmod 600 ~/.ssh/nsp_final_key
+          timeout 15s ssh-keyscan -T 8 -p "$PORT" -H "$HOST" > ~/.ssh/known_hosts 2>/dev/null
+          test -s ~/.ssh/known_hosts
+      - name: Validate pinned public SHA, backup, publish and verify
+        run: timeout 360s python3 tools/nsp-editorial/seo_dates_release.py publish
+      - name: Preserve release receipt and rollback evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nsp-seo-date-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/nsp-seo-32-evidence/
+          retention-days: 45
