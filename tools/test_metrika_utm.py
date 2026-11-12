@@ -22,6 +22,7 @@ Actions — из облачной сессии адрес Метрики зак�
 from __future__ import annotations
 
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -75,14 +76,24 @@ def fake_stat(answers: list):
     return call
 
 
-def run(answers: list, goals: dict, total_visits: float) -> dict:
-    original = mr.stat
-    mr.stat = fake_stat(answers)
-    try:
-        return mr.utm_report("t", "1", goals, "2026-08-07", "2026-08-13",
-                             total_visits)
-    finally:
-        mr.stat = original
+def run(answers: list, goals: dict, total_visits: float,
+        rules_available: bool = True) -> dict:
+    # Synthetic public-only rules fixture; never copy the missing private file.
+    original_stat, original_root = mr.stat, mr.ROOT
+    with tempfile.TemporaryDirectory() as temp_dir:
+        root = Path(temp_dir)
+        if rules_available:
+            rules = root / "data" / "content" / "rules.yaml"
+            rules.parent.mkdir(parents=True)
+            rules.write_text("utm:\n  sources: [telegram, dzen, instagram]\nsite: {}\n",
+                             encoding="utf-8")
+        mr.ROOT = root
+        mr.stat = fake_stat(answers)
+        try:
+            return mr.utm_report("t", "1", goals, "2026-08-07", "2026-08-13",
+                                 total_visits)
+        finally:
+            mr.stat, mr.ROOT = original_stat, original_root
 
 
 # 1. Обычный случай: своды по каналам и ступени по источнику
@@ -146,6 +157,16 @@ check("измерения меток названы явно",
       "ym:s:UTMSource" in source and "ym:s:UTMCampaign" in source
       and "ym:s:UTMMedium" in source,
       "источник, канал и кампания")
+
+# 6. Public checkout without private rules: fail closed, never fabricate other_utm.
+missing = run([BY_SOURCE, BY_CAMPAIGN], GOALS, 34.0,
+              rules_available=False)
+check("отсутствие канонических каналов не превращает все визиты в прочие",
+      bool(missing["error"] and "UTM_CHANNEL_RULES_MISSING" in missing["error"])
+      and missing["by_channel"] == {}
+      and missing["attributed_visits"] == 13.0
+      and any(row["source"] == "telegram" for row in missing["sources"]),
+      f"error={missing['error']!r}, by_channel={missing['by_channel']}")
 
 print()
 if failures:

@@ -341,9 +341,18 @@ def utm_report(token: str, counter: str, found: dict[str, int],
             "visits": round(row["metrics"][0], 2),
         })
 
-    # Свод по объявленным каналам: ответ должен читаться строкой, а не
-    # складываться глазами из таблицы источников.
-    channels = {name: 0.0 for name in declared_channels()}
+    # Свод по объявленным каналам: без канонического rules.yaml нельзя
+    # подменять telegram/dzen/instagram значением other_utm. В публичном
+    # checkout/source tree этот файл может отсутствовать намеренно.
+    channel_names = declared_channels()
+    if not channel_names:
+        report["error"] = ("UTM_CHANNEL_RULES_MISSING: нет стандартных источников "
+                           "в data/content/rules.yaml; разбивка по каналам "
+                           "НЕ ПРОВЕРЕНА, сырые UTM-источники сохранены")
+        report["attributed_visits"] = round(attributed, 2)
+        report["unmarked_visits"] = round(unmarked, 2)
+        return report
+    channels = {name: 0.0 for name in channel_names}
     other = 0.0
     for row in report["sources"]:
         if row["source"] in channels:
