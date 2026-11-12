@@ -54,14 +54,15 @@ jobs:
         env:
           METRIKA_TOKEN: ${{ secrets.METRIKA_TOKEN }}
         run: |
+          set -o pipefail
           days="${{ inputs.days || '7' }}"
           write=""
           if [ "${{ inputs.write }}" != "false" ]; then write="--write"; fi
-          # --create-goals заводит в счётчике цели, которых там ещё нет.
-          # Метрика считает только объявленные цели и по необъявленной молчит,
-          # а не ошибается: без этого шага новая цель из кода не считалась бы
-          # и заметить это было бы нечем. Шаг добавляющий и идемпотентный.
-          python3 tools/metrika_report.py --days "$days" --create-goals $write \
+          # Регистрация новых целей остаётся только в старом scheduled route.
+          # Manual diagnostics: API GET/read-only, никаких целей не создавать.
+          create_goals=""
+          if [ "${{ github.event_name }}" = "schedule" ]; then create_goals="--create-goals"; fi
+          python3 tools/metrika_report.py --days "$days" $create_goals $write \
             | tee /tmp/metrika.txt
           {
             echo '## Числа сайта'
