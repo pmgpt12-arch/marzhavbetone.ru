@@ -14,7 +14,7 @@
   <title>«Всё включено в цену» стоит вам миллионы — На стороне подрядчика</title>
   <link rel="canonical" href="https://nastoronepodryadchika.ru/articles/vsyo-vklyucheno-v-cenu.html">
   <link rel="stylesheet" href="../styles.css?v=fda7e0ac">
-  <link rel="stylesheet" href="../article.css?v=384bf284">
+  <link rel="stylesheet" href="../article.css?v=nsp32-20261111">
   <link rel="stylesheet" href="../brand-approved-2026.css?v=129e847b">
   <script type="application/ld+json">
   {
@@ -29,7 +29,7 @@
         "author": {"@type": "Person", "name": "Александр Сергеев", "url": "https://nastoronepodryadchika.ru/#author"},
         "publisher": {"@id": "https://nastoronepodryadchika.ru/#organization"},
         "datePublished": "2026-07-26",
-        "dateModified": "2026-07-26",
+        "dateModified": "2026-11-11",
         "mainEntityOfPage": {"@type": "WebPage", "@id": "https://nastoronepodryadchika.ru/articles/vsyo-vklyucheno-v-cenu.html"}
       },
       {
@@ -43,9 +43,21 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="/nsp-unified-header.css?v=20261108b">
+  <link rel="stylesheet" href="/cart.css?v=dbf0bfa0">
 </head>
 <body class="rebrand-approved">
-  <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Бесплатно</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и судебные решения</a><a href="/#author">О проекте</a></nav></header>
+  <header class="topbar nsp-unified-header"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Шаблоны актов</a><a href="/kalkulyator.html">Калькуляторы</a><a href="/articles/" class="is-current" aria-current="page">Практика и решения судов</a><a href="/#author">О проекте</a></nav><button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>
+  <aside class="cart-panel" id="cart-panel" aria-label="Корзина" hidden>
+    <div class="cart-head"><div><p class="eyebrow">ВАШ ЗАКАЗ</p><h2>Корзина</h2></div><button class="cart-close" id="cart-close" type="button" aria-label="Закрыть корзину">×</button></div>
+    <div class="cart-empty" id="cart-empty">Пока пусто. Выберите один или несколько пакетов.</div>
+    <ul class="cart-items" id="cart-items"></ul>
+    <div class="cart-total"><span>Итого</span><strong id="cart-total">0 ₽</strong></div>
+    <button class="button cart-checkout" id="cart-checkout" type="button" disabled>Оформить заказ</button>
+    <p class="fine">На этом этапе оплата не списывается. Состав заказа перейдёт в форму оформления.</p>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+
 
   <main class="section article-page">
     <nav aria-label="Хлебные крошки" class="breadcrumbs">
@@ -57,12 +69,23 @@
     </nav>
 
     <p class="eyebrow">ДОГОВОР / ОПАСНАЯ ФОРМУЛИРОВКА</p>
-    <h1>«Всё включено в цену» стоит вам миллионы</h1>
+    <h1>«Всё включено в цену»: как проверить состав работ и дополнительные затраты</h1>
     <p class="article-date"><time datetime="2026-07-26">Опубликовано 26 июля 2026</time></p>
 
     <img class="article-cover" src="../assets/vsyo-vklyucheno-v-cenu.jpg" alt="Обложка: договор с формулировкой «всё включено в цену»" width="1536" height="1024" fetchpriority="high" decoding="async">
 
     <p class="lead">Вы выполнили дополнительный объём — заказчик менял планировку, вы переносили перегородки, докупали материал. Приходите с актом на оплату. Ответ: «Это входит в цену договора, у нас же „все сопутствующие работы включены“». Вы открываете договор — действительно, есть такая строчка. Только когда подписывали, речь шла о доставке и разгрузке. Теперь под неё подгоняют месяц работы бригады.</p>
+    <nav class="toc" aria-label="Содержание разбора">
+      <p class="toc-title">В разборе</p>
+      <ol>
+        <li><a href="#kak-formulirovka-rasshiryaetsya-na-hodu">Как формулировка расширяется на ходу</a></li>
+        <li><a href="#tri-scenariya-gde-eto-srabatyvaet">Три сценария, где это срабатывает</a></li>
+        <li><a href="#pochemu-nelzya-prosto-udalit-punkt">Почему нельзя просто удалить пункт</a></li>
+        <li><a href="#kak-perepisat-formulirovku">Как переписать формулировку</a></li>
+        <li><a href="#esli-dogovor-uzhe-podpisan-s-shirokoy-formulirov">Если договор уже подписан с широкой формулировкой</a></li>
+      </ol>
+    </nav>
+
 
     <h2 id="kak-formulirovka-rasshiryaetsya-na-hodu">Как формулировка расширяется на ходу</h2>
     <p>В типовом договоре подряда есть пункт вроде: «В цену договора включены все сопутствующие и вспомогательные работы, необходимые для достижения результата». Пункт задумывался для мелочей — уборки территории, временного электроснабжения, подъёма материалов на этаж. Но формулировка не ограничивает состав «сопутствующих работ» закрытым перечнем — и это лазейка.</p>
@@ -72,6 +95,9 @@
       <p>Готовые документы по этой теме — <a href="/products/p2-dopolnitelnye-raboty.html">Комплект «Дополнительные работы: как получить оплату»</a>.</p>
     </aside>
 
+    
+    <aside class="article-cta-inline" data-nsp-editorial="v2"><p><strong>Практический следующий шаг.</strong> Сопоставьте проект, смету и текст условия о включённых расходах; выделите работы, которые требуют отдельного согласования стоимости и сроков. Документы и проверочные материалы — в <a href="/products/p2-dopolnitelnye-raboty.html">комплекте «Оформление и оплата дополнительных работ»</a>.</p></aside>
+
     <h2 id="tri-scenariya-gde-eto-srabatyvaet">Три сценария, где это срабатывает</h2>
     <table>
       <tr><th>Ситуация</th><th>Как трактуют «всё включено»</th></tr>
@@ -80,11 +106,17 @@
       <tr><td>Бригада простояла три дня, ожидая доступа на объект</td><td>«Простой — не работа, значит, не оплачивается вообще, а не «сверх цены»»</td></tr>
     </table>
     <p><strong>Во всех трёх случаях объём реален, подтверждён журналом работ и фотофиксацией. Спор не о факте — о формулировке одного пункта.</strong></p>
+    <figure class="nsp-document-preview" data-document="uvedomlenie"><a aria-label="Уведомление о дополнительных работах — посмотреть состав комплекта" href="/products/p2-dopolnitelnye-raboty.html"><img alt="Уведомление о дополнительных работах — фрагмент реального документа из комплекта P2" decoding="async" height="1170" loading="lazy" src="../assets/document-previews/p2-uvedomlenie-preview.jpg" width="1061"/></a><figcaption><strong>Уведомление о дополнительных работах.</strong> Фрагмент рабочего документа: обстоятельства и запрос письменного решения заказчика. <span class="preview-note">Образец · часть документа</span></figcaption></figure>
+
 
     <h2 id="pochemu-nelzya-prosto-udalit-punkt">Почему нельзя просто удалить пункт</h2>
     <p>Полностью убрать формулировку из договора обычно не получится — заказчики и генподрядчики отстаивают её как стандартную. Задача не в удалении, а в том, чтобы закрыть перечнем и границей. Пункт должен отвечать на два вопроса: что именно считается сопутствующей работой и где заканчивается «результат», ради которого работа делается бесплатно.</p>
+    <figure class="nsp-document-preview" data-document="akt-skrytyh"><a aria-label="Акт освидетельствования скрытых работ — посмотреть состав комплекта" href="/products/p2-dopolnitelnye-raboty.html"><img alt="Акт освидетельствования скрытых работ — фрагмент реального документа из комплекта P2" decoding="async" height="1170" loading="lazy" src="../assets/document-previews/p2-akt-skrytyh-preview.jpg" width="1061"/></a><figcaption><strong>Акт освидетельствования скрытых работ.</strong> Фрагмент редактируемой Word-формы для оформления результатов освидетельствования. <span class="preview-note">Образец · часть документа</span></figcaption></figure>
+
 
     <h2 id="kak-perepisat-formulirovku">Как переписать формулировку</h2>
+    <figure class="nsp-document-preview" data-document="dopsoglashenie"><a aria-label="Дополнительное соглашение об объёме и цене — посмотреть состав комплекта" href="/products/p2-dopolnitelnye-raboty.html"><img alt="Дополнительное соглашение об объёме и цене — фрагмент реального документа из комплекта P2" decoding="async" height="1170" loading="lazy" src="../assets/document-previews/p2-dopsoglashenie-preview.jpg" width="1061"/></a><figcaption><strong>Дополнительное соглашение об объёме и цене.</strong> Фрагмент документа для письменного оформления согласованных изменений. <span class="preview-note">Образец · часть документа</span></figcaption></figure>
+
     <ol>
       <li><strong>Закрытый перечень вместо общей фразы.</strong> «В цену включены: погрузочно-разгрузочные работы, уборка территории от строительного мусора, временное электроснабжение зоны производства работ» — и точка. Всё, чего нет в списке, — не входит.</li>
       <li><strong>Прямая оговорка про изменения проекта.</strong> «Работы, вызванные изменением проектной документации или указаниями заказчика после начала выполнения, к сопутствующим не относятся и оплачиваются дополнительно».</li>
@@ -101,9 +133,9 @@
 
 <div class="article-cta" style="margin:40px 0;padding:40px;background:var(--ink);color:var(--paper);border-radius:8px;">
       <p class="eyebrow" style="color:var(--orange);">ПЛАТНЫЙ КОМПЛЕКТ</p>
-      <h3 style="color:#fff;">Комплект «Дополнительные работы: как получить оплату»</h3>
-      <p style="color:#bbb;">Формы помогают зафиксировать поручение, согласовать объём и стоимость, отразить влияние на сроки и собрать документы для предъявления допработ к оплате. Поручение, уведомление, расчёт, журнал, акт и соглашения — 15 файлов.</p>
-      <p style="font-size:28px;font-weight:900;color:var(--orange);">19 900 ₽</p>
+      <h3 style="color:#fff;">Оформление и оплата дополнительных работ</h3>
+      <p style="color:#bbb;">Формы помогают зафиксировать поручение, согласовать объём и стоимость, отразить влияние на сроки и собрать документы для предъявления допработ к оплате. Поручение, уведомление, расчёт, журнал, акт и соглашения — 13 файлов.</p>
+      <p style="font-size:28px;font-weight:900;color:var(--orange);">24 900 ₽</p>
       <a class="button" href="/products/p2-dopolnitelnye-raboty.html">Купить комплект →</a>
     </div>
 
@@ -134,5 +166,6 @@
     </section>
   </main>
   <script src="/attribution.js?v=e5aab965"></script>
+  <script type="module" src="/app-script.php?v=21"></script>
 </body>
 </html>

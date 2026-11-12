@@ -33,8 +33,8 @@ DZEN_TITLES = ROOT / "data" / "site" / "dzen-titles.json"
 SITE = "https://nastoronepodryadchika.ru"
 CHANNEL_TITLE = "На стороне подрядчика"
 CHANNEL_DESCRIPTION = (
-    "Разборы для строительных подрядчиков: как оформить работы, "
-    "защитить допработы и получить оплату."
+    "Практические материалы для исполнителей работ и услуг в строительстве: "
+    "как оформить работы, защитить допработы и получить оплату."
 )
 # Explicit, reviewed landing links for the first Dzen editorial batch.
 # Other articles retain their own stable source page as the next step.

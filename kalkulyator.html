@@ -48,9 +48,21 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="/nsp-unified-header.css?v=20261108b">
+  <link rel="stylesheet" href="/cart.css?v=dbf0bfa0">
 </head>
 <body class="rebrand-approved">
-  <header class="topbar"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Бесплатно</a><a href="/kalkulyator.html" class="is-current" aria-current="page">Калькуляторы</a><a href="/articles/">Практика и судебные решения</a><a href="/#author">О проекте</a></nav></header>
+  <header class="topbar nsp-unified-header"><a class="brand" href="/" aria-label="На стороне подрядчика, на главную"><span class="brand-mark">Н</span><span>на стороне подрядчика</span></a><nav aria-label="Основная навигация"><a href="/diagnostika.html">Диагностика</a><a href="/katalog.html">Каталог</a><a href="/materialy/">Шаблоны актов</a><a href="/kalkulyator.html" class="is-current" aria-current="page">Калькуляторы</a><a href="/articles/">Практика и решения судов</a><a href="/#author">О проекте</a></nav><button class="button button-small cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel" aria-expanded="false">Корзина · <span id="cart-count">0</span></button></header>
+  <aside class="cart-panel" id="cart-panel" aria-label="Корзина" hidden>
+    <div class="cart-head"><div><p class="eyebrow">ВАШ ЗАКАЗ</p><h2>Корзина</h2></div><button class="cart-close" id="cart-close" type="button" aria-label="Закрыть корзину">×</button></div>
+    <div class="cart-empty" id="cart-empty">Пока пусто. Выберите один или несколько пакетов.</div>
+    <ul class="cart-items" id="cart-items"></ul>
+    <div class="cart-total"><span>Итого</span><strong id="cart-total">0 ₽</strong></div>
+    <button class="button cart-checkout" id="cart-checkout" type="button" disabled>Оформить заказ</button>
+    <p class="fine">На этом этапе оплата не списывается. Состав заказа перейдёт в форму оформления.</p>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+
 
   <main class="calculator-page">
     <p class="eyebrow">БЕСПЛАТНЫЙ ИНСТРУМЕНТ</p>
@@ -94,7 +106,7 @@
       <div id="next-debt" hidden>
         <p>Работы сданы, срок оплаты прошёл — порядок один: сверить собственные документы, зафиксировать просрочку, предъявить требование.</p>
         <p><a class="button" href="/products/p1-oplata-po-ks2.html">Комплект «Заказчик не оплачивает работы»</a></p>
-        <p class="calculator-note">Нужен только первый ход — <a href="/products/t1-pervyy-shag-pri-neoplate.html">«Первый шаг при неоплате»</a>. Проверить свои документы бесплатно — <a href="/materialy/dengi.html">семь проверок до обращения к юристу</a>.</p>
+        <p class="calculator-note">Проверить документы перед требованием оплаты можно бесплатно: <a href="/materialy/dengi.html">семь проверок до обращения к юристу</a>. Полный комплект — <a href="/products/p1-oplata-po-ks2.html">«Получение оплаты за выполненные работы»</a>.</p>
       </div>
       <div id="next-retention" hidden>
         <p>Если сумма удержана как гарантийная — спор идёт не о выполнении работ, а об основании и сроке возврата.</p>
@@ -171,5 +183,6 @@
     calculate();
   </script>
   <script src="/attribution.js?v=e5aab965"></script>
+  <script type="module" src="/app-script.php?v=21"></script>
 </body>
 </html>
