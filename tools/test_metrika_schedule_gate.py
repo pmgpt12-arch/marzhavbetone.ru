@@ -1,6 +1,8 @@
 """Regression gate: scheduled Metrika snapshots must be committed, manual opt-out respected."""
 from pathlib import Path
 import re
+import subprocess
+import tempfile
 import unittest
 
 WORKFLOW = Path(__file__).resolve().parents[1] / ".github/workflows/metrika.yml"
@@ -57,6 +59,39 @@ class MetrikaScheduleGateTests(unittest.TestCase):
         self.assertIsNotNone(block)
         self.assertIn("set -o pipefail", block.group(1))
         self.assertIn("| tee /tmp/metrika.txt", block.group(1))
+
+    def test_ignored_snapshot_is_committed_without_private_content(self):
+        block = self.source.split("      - name: Commit snapshot", 1)[1]
+        self.assertIn('snapshot="content/metrics/site-$(date -u +%F).yaml"', block)
+        self.assertIn('if [ ! -f "$snapshot" ]; then', block)
+        self.assertIn('git add -f -- "$snapshot"', block)
+        self.assertIn('git diff --cached --quiet -- "$snapshot"', block)
+        self.assertNotIn('git add content/metrics', block)
+        with tempfile.TemporaryDirectory(prefix="nsp-metrika-git-fixture-") as tmp:
+            root = Path(tmp)
+            subprocess.run(["git", "-C", tmp, "init", "-q"], check=True)
+            (root / ".gitignore").write_text("content/\n", encoding="utf-8")
+            path = "content/metrics/site-2026-11-12.yaml"
+            snapshot = root / path
+            snapshot.parent.mkdir(parents=True)
+            snapshot.write_text("traffic:\n  visits: 0\n", encoding="utf-8")
+            secret = root / "content" / "internal-secret.txt"
+            secret.write_text("DO NOT PUBLISH\n", encoding="utf-8")
+            ignored = subprocess.run(["git", "-C", tmp, "status", "--porcelain", "--", "content/"],
+                                     check=True, capture_output=True, text=True)
+            self.assertEqual(ignored.stdout.strip(), "")
+            subprocess.run(["git", "-C", tmp, "add", "-f", "--", path], check=True)
+            staged = subprocess.run(["git", "-C", tmp, "diff", "--cached", "--name-only"],
+                                    check=True, capture_output=True, text=True)
+            self.assertEqual(staged.stdout.splitlines(), [path])
+            subprocess.run(["git", "-C", tmp, "-c", "user.name=qa",
+                            "-c", "user.email=qa@example.invalid",
+                            "commit", "-qm", "snapshot [skip deploy]", "--", path], check=True)
+            committed = subprocess.run(["git", "-C", tmp, "show", "--pretty=format:",
+                                        "--name-only", "HEAD"], check=True,
+                                       capture_output=True, text=True)
+            self.assertEqual(committed.stdout.strip(), path)
+            self.assertTrue(secret.exists())
 
 
 if __name__ == "__main__":

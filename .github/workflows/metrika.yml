@@ -78,12 +78,20 @@ jobs:
         # The writer above defaults to --write for schedule, so this gate must agree.
         if: steps.check.outputs.enabled == 'true' && (github.event_name == 'schedule' || inputs.write == true)
         run: |
-          if [ -z "$(git status --porcelain content/metrics)" ]; then
+          set -euo pipefail
+          snapshot="content/metrics/site-$(date -u +%F).yaml"
+          if [ ! -f "$snapshot" ]; then
+            echo "::error::Не найден сформированный снимок: $snapshot"
+            exit 1
+          fi
+          # .gitignore исключает весь content/. Force-add ТОЛЬКО этот
+          # агрегированный YAML, не открывая остальные внутренние файлы.
+          git add -f -- "$snapshot"
+          if git diff --cached --quiet -- "$snapshot"; then
             echo "::notice::Снимок не изменился — коммитить нечего."
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/metrics
-          git commit -m "Снимок чисел сайта из Метрики за $(date -u +%F) [skip deploy]"
+          git commit -m "Снимок чисел сайта из Метрики за $(date -u +%F) [skip deploy]" -- "$snapshot"
           git push
