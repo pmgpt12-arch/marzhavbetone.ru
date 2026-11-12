@@ -377,6 +377,8 @@ function mvb_resolve_product(array $item): ?array
     $catalog = mvb_products();
     $sku = (string)($item['sku'] ?? '');
     if ($sku === 't1') return null;
+    if ($sku === 't2') return null;
+    if ($sku === 't3') return null;
     if ($sku === 't4') return null;
     if ($sku === 't5') return null;
     if ($sku === 't6') return null;

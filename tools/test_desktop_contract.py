@@ -20,7 +20,12 @@ def main():
         try:
             for label, html, rel, accepted in [
                 ('modern', MODERN, 'products/p1-oplata-po-ks2.html', True),
-                ('original', MODERN.replace('<h2>Результат</h2><p>Документы и расчёт задолженности.</p>', '<div class="product-fit">Когда применять и результат</div>'), 'products/t2-peredacha-ispolnitelnoy-dokumentacii.html', True),
+                ('original fit layout', MODERN.replace('<h2>Результат</h2><p>Документы и расчёт задолженности.</p>', '<div class="product-fit">Когда применять и результат</div>'), 'products/p2-dopolnitelnye-raboty.html', True),
+                ('alternative result wording', MODERN.replace('<h2>Результат</h2>', '<h2>Что вы подготовите</h2>'), 'products/p9-bankrotstvo-genpodryadchika.html', True),
+                ('alternative wording without explanation', MODERN.replace('<h2>Результат</h2><p>Документы и расчёт задолженности.</p>', '<h2>Что вы подготовите</h2><div>Недостаточно</div>'), 'products/p9-bankrotstvo-genpodryadchika.html', False),
+                ('p8 ordered outcome', MODERN.replace('<h2>Результат</h2><p>Документы и расчёт задолженности.</p>', '<h2>От требования заказчика — к обоснованному ответу</h2><ol><li>Проверьте аванс и расчёт</li></ol>'), 'products/p8-avans-po-dogovoru-subpodryada.html', True),
+                ('p8 empty outcome list', MODERN.replace('<h2>Результат</h2><p>Документы и расчёт задолженности.</p>', '<h2>От требования заказчика — к обоснованному ответу</h2><ol></ol>'), 'products/p8-avans-po-dogovoru-subpodryada.html', False),
+                ('p8 hidden outcome list', MODERN.replace('<h2>Результат</h2><p>Документы и расчёт задолженности.</p>', '<h2>От требования заказчика — к обоснованному ответу</h2><ol hidden><li>Проверка</li></ol>'), 'products/p8-avans-po-dogovoru-subpodryada.html', False),
                 ('missing result', MODERN.replace('<h2>Результат</h2>', '<h2>Другое</h2>'), 'products/p1-oplata-po-ks2.html', False),
                 ('hidden result', MODERN.replace('<h2>Результат</h2><p>', '<h2>Результат</h2><p hidden>'), 'products/p1-oplata-po-ks2.html', False),
                 ('missing price', MODERN.replace('class="price"','class="other"'), 'products/p1-oplata-po-ks2.html', False),
@@ -31,6 +36,10 @@ def main():
                 ('archive wrong path', '<main><a href="/missing/p1-oplata-po-ks2.html">Перейти</a></main>', 'products/t1-pervyy-shag-pri-neoplate.html', False),
                 ('archive hidden', '<main><a hidden href="p1-oplata-po-ks2.html">Перейти</a></main>', 'products/t1-pervyy-shag-pri-neoplate.html', False),
                 ('retired sale', MODERN.replace('class="add-to-cart"','class="add-to-cart" data-sku="t1"'), 'products/t1-pervyy-shag-pri-neoplate.html', False),
+                ('retired t2 sale denied', MODERN.replace('class="add-to-cart"','class="add-to-cart" data-sku="t2"'), 'products/t2-peredacha-ispolnitelnoy-dokumentacii.html', False),
+                ('retired t3 sale denied', MODERN.replace('class="add-to-cart"','class="add-to-cart" data-sku="t3"'), 'products/t3-odnostoronniy-akt-i-zachet.html', False),
+                ('retired t2 link allowed', '<main><a href="p4-ispolnitelnaya-dokumentaciya-pto.html">К действующему P4</a></main>', 'products/t2-peredacha-ispolnitelnoy-dokumentacii.html', True),
+                ('retired t3 link allowed', '<main><a href="p5-shtrafy-uderzhaniya.html">К действующему P5</a></main>', 'products/t3-odnostoronniy-akt-i-zachet.html', True),
             ]:
                 page.set_content(BASE+html)
                 errors=desktop.first_screen(page, HEIGHT, rel)
