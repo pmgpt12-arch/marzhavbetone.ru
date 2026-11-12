@@ -74,10 +74,22 @@ def main():
                     mobile.goto(base+'/index.html',wait_until='networkidle')
                     mobile.evaluate('document.fonts.ready')
                     if width<768:
-                        after=mobile.screenshot(full_page=True,animations='disabled')
+                        # Compare only the block governed by this CSS rule.
+                        # The full page contains an independently mutable mobile
+                        # header; two untouched full-page screenshots differ
+                        # near x=235..370, y=17..60 (12.11.2026 evidence).
+                        assert not mobile.evaluate("matchMedia('(min-width:1100px)').matches")
+                        checklist=mobile.locator('.checklist')
+                        with_style=checklist.screenshot(animations='disabled')
                         mobile.locator('#checklist-title-fit').evaluate('(e)=>e.remove()')
-                        before=mobile.screenshot(full_page=True,animations='disabled')
-                        assert after==before, f'mobile pixels changed at {width}'
+                        without_style=checklist.screenshot(animations='disabled')
+                        assert with_style==without_style, f'mobile checklist changed at {width}'
+                        # Mutation gate: an active mobile title-size rule MUST
+                        # be detected; otherwise a narrowed crop could pass
+                        # while missing a genuine responsive regression.
+                        mobile.add_style_tag(content='body.home-v3 .checklist .document h3{font-size:38px}')
+                        mutated=checklist.screenshot(animations='disabled')
+                        assert mutated!=without_style, f'mobile CSS mutation undetected at {width}'
                     else:
                         size=mobile.locator('.checklist .document h3').evaluate('(e)=>getComputedStyle(e).fontSize')
                         assert size=='38px', size
