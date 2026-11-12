@@ -21,6 +21,13 @@
 #
 # Прогон: python3 tools/run_checks.py --class public
 проверки:
+- id: test_dzen_traffic_contract
+  команда: python3 tools/test_dzen_traffic_contract.py
+  класс: public
+  блокирует: true
+  зачем: бренд Дзена, тематические переходы, абсолютные ссылки и сохранность link/guid
+  требует: []
+  решение: ''
 - id: test_nsp_form_mail
   команда: python3 tools/test_nsp_form_mail.py --handlers-only
   класс: public

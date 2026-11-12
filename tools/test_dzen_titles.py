@@ -77,6 +77,19 @@ def упасть_на(подпись: str, данные: object, статьи: P
 
 
 def main() -> int:
+    # RSS source parity must match the already published NSP channel.
+    expected_site = "https://nastoronepodryadchika.ru"
+    expected_title = "На стороне подрядчика"
+    expected_description = (
+        "Практические материалы для исполнителей работ и услуг в строительстве: "
+        "как оформить работы, защитить допработы и получить оплату."
+    )
+    if build_rss.SITE != expected_site:
+        дефект("RSS SITE вернулся к старому или чужому домену")
+    if build_rss.CHANNEL_TITLE != expected_title:
+        дефект("RSS channel/title разошёлся с опубликованным НСП")
+    if build_rss.CHANNEL_DESCRIPTION != expected_description:
+        дефект("RSS channel/description разошёлся с опубликованным НСП")
     # 1. Флаг. Снятый флаг — законная ручка на случай требования Дзена, но
     #    незаметной она быть не должна: гейт обязан её показать.
     if not build_rss.USE_DZEN_TITLES:

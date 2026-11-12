@@ -25,16 +25,30 @@ import struct
 import sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from urllib.parse import urljoin, urlsplit, urlunsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES = ROOT / "articles"
 DZEN_TITLES = ROOT / "data" / "site" / "dzen-titles.json"
 SITE = "https://nastoronepodryadchika.ru"
-CHANNEL_TITLE = "Маржа в бетоне"
+CHANNEL_TITLE = "На стороне подрядчика"
 CHANNEL_DESCRIPTION = (
-    "Разборы для строительных подрядчиков: как оформить работы, "
-    "защитить допработы и получить оплату."
+    "Практические материалы для исполнителей работ и услуг в строительстве: "
+    "как оформить работы, защитить допработы и получить оплату."
 )
+# Explicit, reviewed landing links for the first Dzen editorial batch.
+# Other articles retain their own stable source page as the next step.
+DZEN_CTA = {
+    "zakazchik-ne-oplachivaet-vypolnennye-raboty": (
+        "dengi", "КС подписаны, оплаты нет: 7 первых проверок"),
+    "proverka-ks-2-pered-sdachey": (
+        "vozvrat-ks", "КС-2 и КС-3: проверка перед сдачей"),
+    "dopolnitelnye-raboty-v-stroitelstve": (
+        "dop-raboty", "Дополнительные работы: как зафиксировать поручение"),
+    "vozvrat-garantiynogo-uderzhaniya": (
+        "uderzhaniya", "Гарантийное удержание: проверка условий договора"),
+}
+
 AUTHOR = "Александр Сергеев"
 MSK = timezone(timedelta(hours=3))
 
@@ -220,7 +234,7 @@ def table_to_list(fragment: str) -> str:
     return "<ul>" + "".join(items) + "</ul>" if items else ""
 
 
-def article_body(source: str) -> str:
+def article_body(source: str, base_url: str = SITE + "/") -> str:
     """Текст статьи для content:encoded: лид, заголовки, абзацы, списки."""
     main = re.search(r"<main[^>]*>(.*?)</main>", source, re.S)
     if not main:
@@ -258,15 +272,12 @@ def article_body(source: str) -> str:
     # до `rss.xml`. Ловится это `tools/check_rss.py`; снимать метки по месту
     # надёжнее, чем помнить про класс обёртки в каждой новой статье.
     def _без_utm(совпадение: re.Match) -> str:
-        адрес = совпадение.group(1)
-        если_есть = адрес.split("?", 1)
-        if len(если_есть) == 1:
-            return совпадение.group(0)
-        основа, запрос = если_есть
-        оставшиеся = [ч for ч in запрос.replace("&amp;", "&").split("&")
-                      if ч and not ч.startswith("utm_")]
-        хвост = "?" + "&amp;".join(оставшиеся) if оставшиеся else ""
-        return f'href="{основа}{хвост}"'
+        адрес = urljoin(base_url, html.unescape(совпадение.group(1)))
+        части = urlsplit(адрес)
+        параметры = [п for п in части.query.split("&")
+                     if п and not п.partition("=")[0].lower().startswith("utm_")]
+        чистый = urlunsplit(части._replace(query="&".join(параметры)))
+        return f'href="{html.escape(чистый, quote=True)}"'
 
     body = re.sub(r'href="([^"]*)"', _без_utm, body)
 
@@ -468,7 +479,7 @@ def collect() -> list[dict]:
         eyebrow = re.search(r'<p class="eyebrow">(.*?)</p>', source, re.S)
         category = strip_tags(eyebrow.group(1)).split("/")[0].strip().capitalize() if eyebrow else "Разбор"
 
-        body = article_body(source)
+        body = article_body(source, f"{SITE}/articles/{path.name}")
         if len(strip_tags(body)) < 200:
             raise SystemExit(f"{path.name}: слишком короткий текст для фида")
 
@@ -524,10 +535,17 @@ def build(items: list[dict]) -> str:
         # закрыли вход, а площадка требует адреса «без UTM-меток и других
         # параметров». Переходы остаются видны в Метрике по источнику
         # dzen.ru — это грубее, чем метка, и это осознанная потеря.
-        cta = (
-            f'<p><a href="{SITE}/">Комплекты документов для подрядчиков '
-            f"на «Марже в бетоне»</a></p>"
-        )
+        slug = Path(urlsplit(item["link"]).path).stem
+        target = DZEN_CTA.get(slug)
+        if target:
+            material, label = target
+            href = f"{SITE}/materialy/{material}.html"
+            label = f"Бесплатный материал: {label}"
+        else:
+            href = item["link"]
+            label = "Разбор и связанные материалы на сайте «На стороне подрядчика»"
+        cta = (f'<p><a href="{html.escape(href, quote=True)}">'
+               f"{esc(label)}</a></p>")
         parts += [
             "    <item>",
             f"      <title>{esc(item['title'])}</title>",
