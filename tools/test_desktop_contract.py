@@ -79,16 +79,24 @@ def main():
                         # header; two untouched full-page screenshots differ
                         # near x=235..370, y=17..60 (12.11.2026 evidence).
                         assert not mobile.evaluate("matchMedia('(min-width:1100px)').matches")
-                        checklist=mobile.locator('.checklist')
-                        with_style=checklist.screenshot(animations='disabled')
+                        # Pixel snapshots differ between Chrome environments
+                        # even for untouched DOM (including cropped checklist).
+                        # This rule controls only heading font-size: verify
+                        # computed CSS, not rasterisation of a long page.
+                        headings=mobile.locator('.checklist .document h3')
+                        assert headings.count()>0, 'checklist headings missing'
+                        css_signature=lambda: headings.evaluate_all(
+                            '(els)=>els.map(e=>({size:getComputedStyle(e).fontSize,'
+                            'lineHeight:getComputedStyle(e).lineHeight,'
+                            'weight:getComputedStyle(e).fontWeight}))')
+                        with_style=css_signature()
                         mobile.locator('#checklist-title-fit').evaluate('(e)=>e.remove()')
-                        without_style=checklist.screenshot(animations='disabled')
-                        assert with_style==without_style, f'mobile checklist changed at {width}'
-                        # Mutation gate: an active mobile title-size rule MUST
-                        # be detected; otherwise a narrowed crop could pass
-                        # while missing a genuine responsive regression.
+                        without_style=css_signature()
+                        assert with_style==without_style, f'mobile checklist CSS changed at {width}'
+                        # Negative mutation: a genuine responsive leak must
+                        # still fail the gate even if screenshots are unstable.
                         mobile.add_style_tag(content='body.home-v3 .checklist .document h3{font-size:38px}')
-                        mutated=checklist.screenshot(animations='disabled')
+                        mutated=css_signature()
                         assert mutated!=without_style, f'mobile CSS mutation undetected at {width}'
                     else:
                         size=mobile.locator('.checklist .document h3').evaluate('(e)=>getComputedStyle(e).fontSize')
