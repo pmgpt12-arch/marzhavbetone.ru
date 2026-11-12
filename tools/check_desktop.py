@@ -508,7 +508,8 @@ def first_screen(page, height: int, rel: str = '') -> list[str]:
           let fit = at('main .product-fit');
           if (fit === null) {
             const result = [...document.querySelectorAll('main h2')].find(
-              e => e.innerText.trim().toLowerCase() === 'результат');
+              e => ['результат', 'что вы подготовите'].includes(
+                e.innerText.trim().toLowerCase()));
             const lead = at('main .lead');
             const body = result && result.nextElementSibling;
             const outcome = body && body.tagName === 'P' ? bottom(body) : null;
@@ -518,7 +519,7 @@ def first_screen(page, height: int, rel: str = '') -> list[str]:
         }""")
     for name, key, limit, human in (
             ("ситуация и результат", "fit", PRODUCT_FIT_SCREENS,
-             ".product-fit или main .lead + раздел «Результат»"),
+             ".product-fit или main .lead + раздел «Результат»/«Что вы подготовите»"),
             ("кнопка покупки", "buy", PRODUCT_BUY_SCREENS, ".add-to-cart"),
             ("цена", "price", PRODUCT_BUY_SCREENS, ".price")):
         bottom = box[key]
