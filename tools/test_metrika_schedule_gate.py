@@ -38,6 +38,11 @@ class MetrikaScheduleGateTests(unittest.TestCase):
     def test_only_one_commit_step(self):
         self.assertEqual(self.source.count("- name: Commit snapshot"), 1)
 
+    def test_metrics_snapshot_push_cannot_trigger_legacy_site_deploy(self):
+        self.assertIn('git commit -m "Снимок чисел сайта из Метрики за $(date -u +%F) [skip deploy]"', self.source)
+        deploy = (WORKFLOW.parent / "deploy.yml").read_text(encoding="utf-8")
+        self.assertIn("!contains(github.event.head_commit.message, '[skip deploy]')", deploy)
+
 
 if __name__ == "__main__":
     unittest.main()
