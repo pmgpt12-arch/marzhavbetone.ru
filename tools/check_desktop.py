@@ -508,18 +508,21 @@ def first_screen(page, height: int, rel: str = '') -> list[str]:
           let fit = at('main .product-fit');
           if (fit === null) {
             const result = [...document.querySelectorAll('main h2')].find(
-              e => ['результат', 'что вы подготовите'].includes(
+              e => ['результат', 'что вы подготовите',
+                    'от требования заказчика — к обоснованному ответу'].includes(
                 e.innerText.trim().toLowerCase()));
             const lead = at('main .lead');
             const body = result && result.nextElementSibling;
-            const outcome = body && body.tagName === 'P' ? bottom(body) : null;
+            // P8 describes the outcome as an ordered action list, not a P.
+            const outcome = body && ['P', 'OL', 'UL'].includes(body.tagName)
+              ? bottom(body) : null;
             if (lead !== null && outcome !== null) fit = Math.max(lead, outcome);
           }
           return {fit, buy:at('main .add-to-cart'), price:at('main .price')};
         }""")
     for name, key, limit, human in (
             ("ситуация и результат", "fit", PRODUCT_FIT_SCREENS,
-             ".product-fit или main .lead + раздел «Результат»/«Что вы подготовите»"),
+             ".product-fit или main .lead + одобренный раздел результата (P/OL/UL)"),
             ("кнопка покупки", "buy", PRODUCT_BUY_SCREENS, ".add-to-cart"),
             ("цена", "price", PRODUCT_BUY_SCREENS, ".price")):
         bottom = box[key]
