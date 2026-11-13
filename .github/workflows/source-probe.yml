@@ -1,71 +1,112 @@
-name: NSP scoped RSS editorial release
+# Что отвечает первичным источникам: с раннера и с хостинга.
+#
+# Зачем два адреса. Раннер GitHub стоит за рубежом, и половина российских
+# государственных источников закрывает его по географии. Хостинг reg.ru —
+# российский адрес, и ключ к нему уже лежит в секретах деплоя. Пока обе
+# колонки не измерены, «источник недоступен» это предположение.
+#
+# Проба ничего не скачивает: один HEAD на источник, только код ответа.
+# Сбор данных — отдельная задача и отдельное решение владельца: хостинг
+# сайта не место для регулярной выгрузки, и вопрос о ней ставится числами
+# из этой пробы, а не заранее.
+name: Проба источников
+
 on:
   workflow_dispatch:
+    inputs:
+      query:
+        description: 'Проверить настоящим запросом, а не только главной'
+        type: boolean
+        default: false
+      yandex_serp:
+        description: 'Проверить доступ к выдаче Яндекса; результаты не извлекаются'
+        type: boolean
+        default: false
+
 permissions:
-  contents: read
+  contents: write
+
 concurrency:
-  group: nsp-rss-production
-  cancel-in-progress: false
+  group: source-probe
+
 jobs:
-  rss-only:
+  probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 4
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Validate reproducible feed and identities
+
+      - name: С раннера GitHub
+        id: runner
         run: |
-          set -euo pipefail
-          cp rss.xml /tmp/expected-rss.xml
-          python3 tools/build_rss.py
-          cmp /tmp/expected-rss.xml rss.xml
-          python3 tools/check_rss.py
-          python3 tools/test_dzen_traffic_contract.py
-          python3 tools/test_dzen_titles.py
-          python3 - <<'PY'
-          from pathlib import Path
-          import base64
-          s=Path('tools/nsp-dzen-20261112/publish-rss.php').read_text()
-          s=s.replace('__RSS_BASE64__',base64.b64encode(Path('rss.xml').read_bytes()).decode())
-          Path('/tmp/publish-rss.php').write_text(s)
-          PY
-          php -l /tmp/publish-rss.php
-      - name: Publish only rss.xml with backup and drift guard
-        id: deploy
+          args=''
+          [ "${{ inputs.query }}" = 'true' ] && args="$args --query"
+          [ "${{ inputs.yandex_serp }}" = 'true' ] && args="$args --yandex-serp"
+          sh tools/source_probe.sh $args | tee /tmp/runner.txt
+
+      - name: Проверить ключ хостинга
+        id: check
         env:
           KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           HOST: ${{ secrets.DEPLOY_HOST }}
-          SSH_USER: ${{ secrets.DEPLOY_USER }}
-          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          USER: ${{ secrets.DEPLOY_USER }}
         run: |
-          set -euo pipefail
-          test -n "$KEY" && test -n "$HOST" && test -n "$SSH_USER"
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          printf '%s\n' "$KEY" > ~/.ssh/nsp_rss_key
-          chmod 600 ~/.ssh/nsp_rss_key
-          timeout 15s ssh-keyscan -p "$PORT" -H "$HOST" > ~/.ssh/nsp_rss_hosts 2>/dev/null
-          test -s ~/.ssh/nsp_rss_hosts
-          timeout 45s ssh -p "$PORT" -i ~/.ssh/nsp_rss_key -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/nsp_rss_hosts -o ConnectTimeout=12 "$SSH_USER@$HOST" 'php /dev/stdin' < /tmp/publish-rss.php
-      - name: Verify public HTTPS exact content
-        id: verify
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import urllib.request,hashlib
-          with urllib.request.urlopen('https://nastoronepodryadchika.ru/rss.xml',timeout=25) as r:
-              assert r.status==200
-              b=r.read()
-          assert b==Path('rss.xml').read_bytes(),'PUBLIC_FEED_HASH_MISMATCH'
-          print('HTTPS_FEED_EXACT_PASS',hashlib.sha256(b).hexdigest())
-          PY
-      - name: Roll back only this feed after failed public verification
-        if: failure() && steps.deploy.outcome == 'success' && steps.verify.outcome == 'failure'
+          if [ -z "$KEY" ] || [ -z "$HOST" ] || [ -z "$USER" ]; then
+            echo "secrets=no" >> "$GITHUB_OUTPUT"
+            echo "Секретов деплоя нет — вторая колонка НЕ ИЗМЕРЕНА."
+          else
+            echo "secrets=yes" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: С хостинга reg.ru
+        if: steps.check.outputs.secrets == 'yes'
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
-          SSH_USER: ${{ secrets.DEPLOY_USER }}
+          USER: ${{ secrets.DEPLOY_USER }}
           PORT: ${{ secrets.DEPLOY_PORT || '22' }}
         run: |
-          timeout 45s ssh -p "$PORT" -i ~/.ssh/nsp_rss_key -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/nsp_rss_hosts -o ConnectTimeout=12 "$SSH_USER@$HOST" 'NSP_ROLLBACK=1 php /dev/stdin' < /tmp/publish-rss.php
-      - name: Remove ephemeral key
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/probe_key
+          chmod 600 ~/.ssh/probe_key
+          ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          # IdentitiesOnly — иначе может войти другой ключ и замер соврёт.
+          args=''
+          [ "${{ inputs.query }}" = 'true' ] && args="$args --query"
+          [ "${{ inputs.yandex_serp }}" = 'true' ] && args="$args --yandex-serp"
+          ssh -i ~/.ssh/probe_key -o IdentitiesOnly=yes -p "$PORT" \
+              -o BatchMode=yes -o ConnectTimeout=20 "$USER@$HOST" \
+              "sh -s -- $args" \
+              < tools/source_probe.sh | tee /tmp/hosting.txt
+
+      - name: Записать отчёт
         if: always()
-        run: rm -f ~/.ssh/nsp_rss_key /tmp/publish-rss.php
+        run: |
+          out="content/metrics/source-probe-$(date -u +%F).md"
+          mkdir -p "$(dirname "$out")"
+          {
+            echo "# Проба первичных источников"
+            echo
+            echo "Дата: $(date -u +%F). Прогон: source-probe.yml."
+            echo
+            echo "Каждая строка — код ответа на один запрос. Проба"
+            echo "отвечает на вопрос «пустит ли», а не собирает данные."
+            echo
+            echo '## С раннера GitHub (зарубежный адрес)'
+            echo
+            echo '```'
+            cat /tmp/runner.txt 2>/dev/null || echo 'не измерено'
+            echo '```'
+            echo
+            echo '## С хостинга reg.ru (российский адрес)'
+            echo
+            echo '```'
+            cat /tmp/hosting.txt 2>/dev/null \
+              || echo 'НЕ ИЗМЕРЕНО: секретов деплоя нет или SSH не ответил'
+            echo '```'
+          } > "$out"
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add content/metrics
+          git diff --cached --quiet && { echo 'Изменений нет'; exit 0; }
+          git commit -m "Проба первичных источников за $(date -u +%F)"
+          git push

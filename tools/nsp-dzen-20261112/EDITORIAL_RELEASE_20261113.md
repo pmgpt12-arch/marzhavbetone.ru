@@ -12,3 +12,6 @@ Before feed SHA-256: 62f921f7d72fba7596a430e25a51d639d9fc29fdf50b22496de6a092074
 Candidate: 29d60ab71d520539164105a2182b8b704e27833b10dfa44b668ccecc5f2e512a
 
 The PHP publisher refuses unexpected live hashes, verifies a private backup outside webroot, writes through a temporary file and atomic rename, and checks index.html remains unchanged. Failed HTTPS verification invokes a rollback guarded by the candidate hash.
+
+## Verified live result
+Release Actions run: https://github.com/pmgpt12-arch/marzhavbetone.ru/actions/runs/43386476216 — success. Independent public HTTPS returned 200 and exactly matched candidate SHA-256. All 33 old-cover and CTA endpoints returned 200. Controlled publish, rollback and concurrent-drift refusal tests passed. Dzen ingestion is not verified. The operational source-probe.yml override stays in the isolated deployment branch and is excluded from the clean source PR.
