@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Regression checks for Dzen reader-to-site links and brand identity."""
 import re
+import json
+import hashlib
 import unittest
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -28,6 +30,32 @@ def item(slug):
     }
 
 class DzenTrafficContract(unittest.TestCase):
+    def test_release_preserves_existing_articles_and_exact_revisions(self):
+        policy = json.loads(feed.DZEN_RELEASE.read_text())
+        revisions = json.loads(feed.DZEN_EDITORIAL.read_text())
+        items = feed.collect()
+        root = ET.fromstring(feed.build(items))
+        actual = {Path(x.findtext("link")).stem: x for x in root.findall("channel/item")}
+        self.assertEqual(set(actual), set(policy))
+        self.assertEqual(len(actual), 29)
+        self.assertEqual(len(revisions), 4)
+        for slug, original in policy.items():
+            x = actual[slug]
+            for field in ("link", "guid", "pubDate"):
+                self.assertEqual(x.findtext(field), original[field], (slug, field))
+            self.assertEqual(x.find("enclosure").get("url"), original["image"])
+            self.assertEqual(x.find("enclosure").get("type"), original["image_type"])
+            body = x.findtext(NS)
+            self.assertFalse(re.search(r'href="(?:/|\.\.?/|#)', body))
+            self.assertNotIn("Марже в бетоне", body)
+            if slug in revisions:
+                revision = revisions[slug]
+                self.assertEqual(body.strip(), revision["body"].strip())
+                self.assertEqual(hashlib.sha256(revision["body"].encode()).hexdigest(),
+                                 revision["body_sha256"])
+                self.assertEqual(x.findtext("title"), revision["title"])
+                self.assertEqual(body.count(revision["target_url"]), 1)
+
     def test_channel_brand(self):
         root = ET.fromstring(feed.build([item("example")]))
         self.assertEqual(root.findtext("channel/title"), "На стороне подрядчика")

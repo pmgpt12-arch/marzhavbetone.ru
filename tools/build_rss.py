@@ -19,6 +19,8 @@
 from __future__ import annotations
 
 import html
+import hashlib
+from email.utils import parsedate_to_datetime
 import json
 import re
 import struct
@@ -30,6 +32,8 @@ from urllib.parse import urljoin, urlsplit, urlunsplit
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES = ROOT / "articles"
 DZEN_TITLES = ROOT / "data" / "site" / "dzen-titles.json"
+DZEN_EDITORIAL = ROOT / "data/site/dzen-editorial.json"
+DZEN_RELEASE = ROOT / "tools/nsp-dzen-20261112/release-identities.json"
 SITE = "https://nastoronepodryadchika.ru"
 CHANNEL_TITLE = "На стороне подрядчика"
 CHANNEL_DESCRIPTION = (
@@ -424,6 +428,10 @@ def dzen_titles(файл: Path = DZEN_TITLES,
 
 def collect() -> list[dict]:
     items = []
+    policy = json.loads(DZEN_RELEASE.read_text(encoding="utf-8"))
+    editorial = json.loads(DZEN_EDITORIAL.read_text(encoding="utf-8"))
+    if not set(editorial) <= set(policy):
+        raise SystemExit("editorial entry outside approved RSS identities")
     skipped = []
     held: list[tuple[str, str]] = []
     headlines = dzen_titles()
@@ -436,6 +444,10 @@ def collect() -> list[dict]:
         if path.stem in PUBLISHED_BY_HAND:
             skipped.append(path.stem)
             continue
+        if path.stem not in policy:
+            continue
+        identity = policy[path.stem]
+        revision = editorial.get(path.stem)
         due = RELEASE.get(path.stem)
         if due and due > today:
             held.append((due, path.stem))
@@ -451,7 +463,8 @@ def collect() -> list[dict]:
         # Заголовок из файла соответствий главнее поискового: он написан
         # под ленту. Нет записи — идёт заголовок сайта, и это объявленный
         # откат: он назван поимённо в конце сборки.
-        headline = headlines.get(path.stem)
+        title = identity["title"]
+        headline = headlines.get(path.stem, title)
         if headline and headline != title:
             adapted.append(path.stem)
             title = headline
@@ -461,9 +474,9 @@ def collect() -> list[dict]:
         published = re.search(r'"datePublished":\s*"([^"]+)"', source)
         if not published:
             raise SystemExit(f"{path.name}: нет datePublished в разметке JSON-LD")
-        date = datetime.fromisoformat(published.group(1)).replace(tzinfo=MSK)
+        date = parsedate_to_datetime(identity["pubDate"])
 
-        image = meta(source, "og:image") or ""
+        image = identity["image"]
         image_mime = "image/jpeg"
         if image:
             local = ROOT / image.replace(f"{SITE}/", "")
@@ -480,12 +493,19 @@ def collect() -> list[dict]:
         category = strip_tags(eyebrow.group(1)).split("/")[0].strip().capitalize() if eyebrow else "Разбор"
 
         body = article_body(source, f"{SITE}/articles/{path.name}")
+        if revision:
+            body = revision["body"]
+            if hashlib.sha256(body.encode()).hexdigest() != revision["body_sha256"]:
+                raise SystemExit("editorial body hash mismatch: " + path.stem)
+            if revision["title"] != headlines.get(path.stem):
+                raise SystemExit("editorial/title contract mismatch: " + path.stem)
         if len(strip_tags(body)) < 200:
             raise SystemExit(f"{path.name}: слишком короткий текст для фида")
 
         items.append({
             "title": title,
-            "image_type": image_mime,
+            "editorial": bool(revision),
+            "image_type": identity["image_type"],
             "link": f"{SITE}/articles/{path.name}",
             "description": meta(source, "og:description") or "",
             "date": date,
@@ -494,6 +514,8 @@ def collect() -> list[dict]:
             "body": body,
         })
 
+    if {Path(urlsplit(x["link"]).path).stem for x in items} != set(policy):
+        raise SystemExit("approved RSS identity missing from source articles")
     items.sort(key=lambda item: item["date"], reverse=True)
     # Число называется всегда, включая ноль: молчание здесь читалось бы как
     # «заголовки адаптированы», а означало бы «заготовки не нашлись».
@@ -546,6 +568,8 @@ def build(items: list[dict]) -> str:
             label = "Разбор и связанные материалы на сайте «На стороне подрядчика»"
         cta = (f'<p><a href="{html.escape(href, quote=True)}">'
                f"{esc(label)}</a></p>")
+        if item.get("editorial"):
+            cta = ""  # Approved reader revision already contains its single CTA.
         parts += [
             "    <item>",
             f"      <title>{esc(item['title'])}</title>",

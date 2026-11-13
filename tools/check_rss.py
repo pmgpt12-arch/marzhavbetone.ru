@@ -21,6 +21,8 @@
 from __future__ import annotations
 
 import html
+import json
+import xml.etree.ElementTree as ET
 import re
 from datetime import date
 import subprocess
@@ -52,7 +54,9 @@ def main() -> int:
     # решении. Список берётся из сборщика, а не повторяется здесь — две
     # копии разошлись бы молча.
     sys.path.insert(0, str(ROOT / "tools"))
-    from build_rss import PUBLISHED_BY_HAND, RELEASE
+    from build_rss import PUBLISHED_BY_HAND, RELEASE, DZEN_RELEASE, DZEN_EDITORIAL
+    policy = json.loads(DZEN_RELEASE.read_text(encoding="utf-8"))
+    editorial = json.loads(DZEN_EDITORIAL.read_text(encoding="utf-8"))
 
     # Придержанных до срока в фиде нет по замыслу: спрашивать с них
     # содержимое значило бы жечь проверку на своём же расписании.
@@ -67,13 +71,25 @@ def main() -> int:
     flat = " ".join(html.unescape(re.sub(r"<[^>]+>", " ", feed)).split())
     articles = [p for p in sorted(ARTICLES.glob("*.html"))
                 if p.name != "index.html"
-                and p.stem not in PUBLISHED_BY_HAND and p.stem not in held]
+                and p.stem not in PUBLISHED_BY_HAND and p.stem not in held
+                and p.stem in policy]
 
     problems: list[str] = []
     checked = 0
     leaked = 0
+    parsed = ET.fromstring(feed)
+    actual = {Path(i.findtext("link")).stem: i for i in parsed.findall("channel/item")}
     for path in articles:
+        if path.stem in editorial:
+            item = actual.get(path.stem)
+            body = item.findtext("{http://purl.org/rss/1.0/modules/content/}encoded") if item is not None else ""
+            if body.strip() != editorial[path.stem]["body"].strip():
+                problems.append(path.name + ": approved Dzen revision differs from feed")
+            continue
         source = path.read_text(encoding="utf-8")
+        item = actual.get(path.stem)
+        body = item.findtext("{http://purl.org/rss/1.0/modules/content/}encoded") if item is not None else ""
+        flat = " ".join(html.unescape(re.sub(r"<[^>]+>", " ", body)).split())
 
         # Рекламные блоки в фид не идут. Проверяется по содержимому, а не
         # по слову «₽»: цена может законно стоять в тексте разбора, а вот
